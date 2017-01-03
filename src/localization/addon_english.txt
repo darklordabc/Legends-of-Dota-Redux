@@ -8277,4 +8277,12 @@
         "DOTA_Tooltip_ability_imba_wraith_king_reincarnation_aura_radius_scepter"           "WRAITH FORM RADIUS:"
         "DOTA_Tooltip_ability_imba_wraith_king_reincarnation_wraith_duration_scepter"       "WRAITH FORM DURATION:"
 
+        "npc_imba_warlock_upheaval_tower"                                                   "Demonic Ward"
+        "npc_imba_warlock_golem_1"                                                          "Chaotic Golem"
+        "npc_imba_warlock_golem_2"                                                          "Chaotic Golem"
+        "npc_imba_warlock_golem_3"                                                          "Chaotic Golem"
+        "npc_imba_warlock_golem_4"                                                          "Chaotic Golem"
+        "npc_imba_warlock_golem_5"                                                          "JARAXXUS"
+        "npc_imba_warlock_golem_extra"                                                      "Infernal"
+
 }

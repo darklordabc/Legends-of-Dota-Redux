@@ -523,15 +523,103 @@
             "ogre_magi_multicast"            "1"
             // Aftershock
             "earthshaker_aftershock"            "1"
+            "alpha_wolf_group" {
+                "alpha_wolf_command_aura"                "1"
+                "alpha_wolf_critical_strike"                "1"
+            }
+            "beastmaster_boar_group" {
+                "beastmaster_boar_poison"                "1"
+                "beastmaster_greater_boar_poison"                "1"
+            }
+            "big_thunder_lizard_group" {
+                "big_thunder_lizard_frenzy"                "1"
+                "big_thunder_lizard_slam"                "1"
+                //"big_thunder_lizard_wardrums_aura"                  "1"              
+            }
+            "black_dragon_group" {
+                "black_dragon_splash_attack"                "1"
+                // "black_dragon_fireball"                "1"
+            "black_dragon_fireball_lod"                "1"
+                // "neutral_spell_immunity"                "1"
+                //"black_dragon_dragonhide_aura"                      "1"
+            }
+            "blue_dragonspawn_group" {
+                "blue_dragonspawn_overseer_devotion_aura"                "1"
+                "blue_dragonspawn_overseer_evasion"                "1"
+                "blue_dragonspawn_sorcerer_evasion"                "1"
+            }
+            "centaur_khan_group" {
+                "centaur_khan_endurance_aura"                "1"
+                "centaur_khan_war_stomp"                "1"
+            }
+            "dark_troll_warlord_group" {
+                "dark_troll_warlord_ensnare"                "1"
+                "dark_troll_warlord_raise_dead"                "1"
+            }
+            "enraged_wildkin_group" {
+                "enraged_wildkin_tornado"                "1"
+                "enraged_wildkin_toughness_aura"                "1"
+            }
+            "lone_druid_spirit_bear_group" {
+                "lone_druid_spirit_bear_demolish"                "1"
+                "lone_druid_spirit_bear_entangle"                "1"
+                //"lone_druid_spirit_bear_return"                "1"
+                "lone_druid_spirit_bear_return_lod"                "1"
+            }
+            "satyr_group" {
+                "satyr_hellcaller_shockwave"                "1"
+                "satyr_hellcaller_unholy_aura"                "1"
+                "satyr_soulstealer_mana_burn"                "1"
+                "satyr_trickster_purge"                "1"
+            }
+            "necronomicon_group" {
+                "necronomicon_archer_aoe_lod"                "1"
+                "necronomicon_archer_mana_burn_lod"                "1"
+                "necronomicon_warrior_last_will_lod"                "1"
+                "necronomicon_warrior_mana_burn_lod"                "1"
+            }
+            "roshan_group" {
+                "roshan_slam"                "1"
+                "roshan_spell_block"                "1"
+                //"roshan_spell_block_lod"                "1"
+                "roshan_bash"                "1"
+            }
+            "prowler_group" {
+                "spawnlord_aura"                "1"
+                "spawnlord_master_stomp"                "1"
+                "spawnlord_master_freeze"                "1"
+            }
+            "warlock_group" {
+                "warlock_golem_flaming_fists"                "1"
+                "warlock_golem_permanent_immolation"                "1"
+                "warlock_golem_permanent_immolation_lod"        "1"
+            }
+            "misc_neutral_1_group" {
+                "forest_troll_high_priest_heal"                "1"
+                "ghost_frost_attack"                "1"
+                "giant_wolf_critical_strike"                "1"
+                "gnoll_assassin_envenomed_weapon"                "1"
+            }
+            "misc_neutral_2_group" {
+                "granite_golem_hp_aura"                "1"
+                "harpy_storm_chain_lightning"                "1"
+                "kobold_taskmaster_speed_aura"                "1"
+                "lycan_summon_wolves_critical_strike"                "1"
+            }
+            "misc_neutral_3_group" {
+                "ogre_magi_frost_armor"                "1"
+                "polar_furbolg_ursa_warrior_thunder_clap"                "1"
+                "undying_tombstone_zombie_deathstrike"                "1"
+                "mud_golem_hurl_boulder"                "1"
+            }
+            "misc_neutral_4_group" {
+                // Removed because its buggy "backdoor_protection"                "1"
+                "broodmother_poison_sting"                "1"
+                "visage_summon_familiars_stone_form"                "1"
+            }
         }
         // The neutrals skills
         "neutral" {
-            "imba_lich" {
-                  "imba_lich_frost_nova"    "1"
-                  "imba_lich_frost_armor"  "1"
-                  "imba_lich_dark_ritual"      "1"
-                  "imba_lich_chain_frost"      "1"
-               }
             "imba_lina" {
                   "imba_lina_dragon_slave"    "1"
                   "imba_lina_dragon_slave_aux"  "1"
@@ -634,13 +722,7 @@
                   "imba_sniper_take_aim_normal"      "1"
                   "imba_sniper_take_aim_far"      "1"
                   "imba_sniper_assassinate"      "1"
-               }
-            "imba_sven" {
-                  "imba_sven_storm_bolt"    "1"
-                  "imba_sven_great_cleave"  "1"
-                  "imba_sven_warcry"      "1"
-                  "imba_sven_gods_strength"      "1"
-               }
+               }            
             "imba_techies" {
                   "imba_techies_land_mines"    "1"
                   "imba_techies_land_mine_passive"  "1"
@@ -700,13 +782,6 @@
                   "imba_venomancer_scourge_ward_multiattack"      "1"
                   "imba_venomancer_toxicity"      "1"
                   "imba_venomancer_poison_nova"      "1"
-               }
-            "imba_warlock" {
-                  "imba_warlock_shadow_word"    "1"
-                  "imba_warlock_upheaval"  "1"
-                  "imba_warlock_rain_of_chaos"      "1"
-                  "imba_warlock_flaming_fists"      "1"
-                  "imba_warlock_permanent_immolation"      "1"
                }
             "imba_rubick" {
                   "imba_rubick_telekinesis"    "1"
@@ -818,103 +893,28 @@
                   "imba_axe_counter_helix"      "1"
                   "imba_axe_culling_blade"   "1"
             } 
-            "alpha_wolf_group" {
-                "alpha_wolf_command_aura"                "1"
-                "alpha_wolf_critical_strike"                "1"
-            }
-            "beastmaster_boar_group" {
-                "beastmaster_boar_poison"                "1"
-                "beastmaster_greater_boar_poison"                "1"
-            }
-            "big_thunder_lizard_group" {
-                "big_thunder_lizard_frenzy"                "1"
-                "big_thunder_lizard_slam"                "1"
-                //"big_thunder_lizard_wardrums_aura"                  "1"              
-            }
-            "black_dragon_group" {
-                "black_dragon_splash_attack"                "1"
-                // "black_dragon_fireball"                "1"
-            "black_dragon_fireball_lod"                "1"
-                // "neutral_spell_immunity"                "1"
-                //"black_dragon_dragonhide_aura"                      "1"
-            }
-            "blue_dragonspawn_group" {
-                "blue_dragonspawn_overseer_devotion_aura"                "1"
-                "blue_dragonspawn_overseer_evasion"                "1"
-                "blue_dragonspawn_sorcerer_evasion"                "1"
-            }
-            "centaur_khan_group" {
-                "centaur_khan_endurance_aura"                "1"
-                "centaur_khan_war_stomp"                "1"
-            }
-            "dark_troll_warlord_group" {
-                "dark_troll_warlord_ensnare"                "1"
-                "dark_troll_warlord_raise_dead"                "1"
-            }
-            "enraged_wildkin_group" {
-                "enraged_wildkin_tornado"                "1"
-                "enraged_wildkin_toughness_aura"                "1"
-            }
-            "lone_druid_spirit_bear_group" {
-                "lone_druid_spirit_bear_demolish"                "1"
-                "lone_druid_spirit_bear_entangle"                "1"
-                //"lone_druid_spirit_bear_return"                "1"
-                "lone_druid_spirit_bear_return_lod"                "1"
-            }
-            "satyr_group" {
-                "satyr_hellcaller_shockwave"                "1"
-                "satyr_hellcaller_unholy_aura"                "1"
-                "satyr_soulstealer_mana_burn"                "1"
-                "satyr_trickster_purge"                "1"
-            }
-            "necronomicon_group" {
-                "necronomicon_archer_aoe_lod"                "1"
-                "necronomicon_archer_mana_burn_lod"                "1"
-                "necronomicon_warrior_last_will_lod"                "1"
-                "necronomicon_warrior_mana_burn_lod"                "1"
-            }
-            "roshan_group" {
-                "roshan_slam"                "1"
-                "roshan_spell_block"                "1"
-                //"roshan_spell_block_lod"                "1"
-                "roshan_bash"                "1"
-            }
-            "prowler_group" {
-                "spawnlord_aura"                "1"
-                "spawnlord_master_stomp"                "1"
-                "spawnlord_master_freeze"                "1"
-            }
-            "warlock_group" {
-                "warlock_golem_flaming_fists"                "1"
-                "warlock_golem_permanent_immolation"                "1"
-                "warlock_golem_permanent_immolation_lod"        "1"
-            }
-            "misc_neutral_1_group" {
-                "forest_troll_high_priest_heal"                "1"
-                "ghost_frost_attack"                "1"
-                "giant_wolf_critical_strike"                "1"
-                "gnoll_assassin_envenomed_weapon"                "1"
-            }
-            "misc_neutral_2_group" {
-                "granite_golem_hp_aura"                "1"
-                "harpy_storm_chain_lightning"                "1"
-                "kobold_taskmaster_speed_aura"                "1"
-                "lycan_summon_wolves_critical_strike"                "1"
-            }
-            "misc_neutral_3_group" {
-                "ogre_magi_frost_armor"                "1"
-                "polar_furbolg_ursa_warrior_thunder_clap"                "1"
-                "undying_tombstone_zombie_deathstrike"                "1"
-                "mud_golem_hurl_boulder"                "1"
-            }
-            "misc_neutral_4_group" {
-                // Removed because its buggy "backdoor_protection"                "1"
-                "broodmother_poison_sting"                "1"
-                "visage_summon_familiars_stone_form"                "1"
-            }
         }
         // The custom skills in LoD
         "custom" {
+            "imba_warlock" {
+                  "imba_warlock_shadow_word"    "1"
+                  "imba_warlock_upheaval"  "1"
+                  "imba_warlock_rain_of_chaos"      "1"
+                  "imba_warlock_flaming_fists"      "1"
+                  "imba_warlock_permanent_immolation"      "1"
+               }
+            "imba_lich" {
+                  "imba_lich_frost_nova"    "1"
+                  "imba_lich_frost_armor"  "1"
+                  "imba_lich_dark_ritual"      "1"
+                  "imba_lich_chain_frost"      "1"
+               }
+            "imba_sven" {
+                  "imba_sven_storm_bolt"    "1"
+                  "imba_sven_great_cleave"  "1"
+                  "imba_sven_warcry"      "1"
+                  "imba_sven_gods_strength"      "1"
+               }
             "holdout" {
                 "zuus_thundergods_vengeance"                "1"
                 "holdout_omnislash"                "1"

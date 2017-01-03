@@ -78,7 +78,7 @@ function ShurikenTossImpact( keys )
 
 		-- Retrieve the impact position
 		local target_position = target:GetAbsOrigin()
-		target.shuriken_toss_dummy = CreateUnitByName("npc_dummy_unit", target_position, false, nil, nil, caster:GetTeamNumber())
+		target.shuriken_toss_dummy = CreateUnitByName("npc_dummy_unit_imba", target_position, false, nil, nil, caster:GetTeamNumber())
 		target.shuriken_position = target:GetAbsOrigin()
 		target.shuriken_toss_dummy:SetAbsOrigin(target.shuriken_position)
 
