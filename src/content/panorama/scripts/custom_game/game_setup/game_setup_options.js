@@ -506,6 +506,16 @@ var advancedOptions = {
                     }
                 ]
             },
+            {
+                name: 'lodOptionIngameBuilderPenalty',
+                des: 'lodOptionDesIngameBuilderPenalty',
+                about: 'lodOptionAboutIngameBuilderPenalty',
+                sort: 'range',
+                min: 0,
+                max: 180,
+                step: 1,
+                default: 0,
+            },
         ]
     },
 
@@ -1211,16 +1221,6 @@ var advancedOptions = {
 					},
 				]
 			},
-            {
-                name: 'lodOptionIngameBuilderPenalty',
-                des: 'lodOptionDesIngameBuilderPenalty',
-                about: 'lodOptionAboutIngameBuilderPenalty',
-                sort: 'range',
-                min: 0,
-                max: 180,
-                step: 1,
-                default: 0,
-            },
             {
                 name: 'lodOptionRefreshCooldownsOnDeath',
                 des: 'lodOptionDesRefreshCooldownsOnDeath',
