@@ -127,6 +127,7 @@
                         "value"
                         {
                             "value0"        "sounds/triplekill.vsnd"
+                            "value1"        "sounds/triplekill1.vsnd"
                         }
                     }
                     "volume"            {   "value"     "2.50000"  }
