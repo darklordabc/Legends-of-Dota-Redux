@@ -55,9 +55,51 @@ function skywrath_mage_concussive_break:OnSpellStart()
         iVisionTeamNumber = caster:GetTeamNumber(),
         iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1
       }
-    caster:EmitSound("Hero_SkywrathMage.ConcussiveShot.Cast")
     ProjectileManager:CreateTrackingProjectile( projTable )
-    break
+    caster:EmitSound("Hero_SkywrathMage.ConcussiveShot.Cast")
+      -- 2nd target for scepter
+      if caster:HasScepter() then
+        local unitsScepter = FindUnitsInRadius(caster:GetTeamNumber(), v:GetAbsOrigin(), caster, 700, targetTeam, targetType, targetFlag, FIND_ANY_ORDER, false)
+        for _,unit in pairs(unitsScepter) do
+          if #unitsScepter > 0 then
+            local projTable = {
+              EffectName = "particles/skywrath_mage_concussive_break/skywrath_mage_concussive_break.vpcf",
+              Ability = ability,
+              Target = unit,
+              Source = caster,
+              bDodgeable = false,
+              bProvidesVision = true,
+              vSpawnOrigin = caster:GetAbsOrigin(),
+              iMoveSpeed = speed,
+              iVisionRadius = radius,
+              iVisionTeamNumber = caster:GetTeamNumber(),
+              iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1
+            }
+            ProjectileManager:CreateTrackingProjectile( projTable )
+            return
+          else 
+            unitsScepter = FindUnitsInRadius(caster:GetTeamNumber(), v:GetAbsOrigin(), caster, 700, targetTeam, DOTA_UNIT_TARGET_BASIC, targetFlag, FIND_ANY_ORDER, false)
+            if #unitsScepter > 0 then
+              local projTable = {
+                EffectName = "particles/skywrath_mage_concussive_break/skywrath_mage_concussive_break.vpcf",
+                Ability = ability,
+                Target = unit,
+                Source = caster,
+                bDodgeable = false,
+                bProvidesVision = true,
+                vSpawnOrigin = caster:GetAbsOrigin(),
+                iMoveSpeed = speed,
+                iVisionRadius = radius,
+                iVisionTeamNumber = caster:GetTeamNumber(),
+                iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1
+              }
+              ProjectileManager:CreateTrackingProjectile( projTable )
+            end
+            return
+          end
+        end
+      break
+      end
     end
   end
 end

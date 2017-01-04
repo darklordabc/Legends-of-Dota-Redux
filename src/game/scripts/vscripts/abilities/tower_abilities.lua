@@ -44,49 +44,53 @@ function AIControl( keys )
     -- Check if the ability should be cast
         -- IF TOWER IS VULNERABLE AND DOES NOT HAVE BACK DOOR PROTECTION AND AT LEAST 1 ENEMY NEARBY
     for _,enemy in pairs(EnemyInRange) do
-        if util:isPlayerBot(enemy:GetPlayerID()) then
-            local distance = (tower_loc - enemy:GetAbsOrigin()):Length2D()
-			-- IF BOT IS ABOUT TO DIE, SAVE IT AND SEND IT BACK TO BASE WITH FULL HP MP AND MAX MOVE SPEED FOR 30 SECONDS
-            if enemy:GetHealth() < 300 and enemy:HasModifier("modifier_pugna_decrepify") == false and #AllyInRange == 0 then
-                enemy:AddNewModifier(caster, ability, "modifier_pugna_decrepify", {duration = 5})
-                enemy:AddNewModifier(caster, ability, "modifier_chen_test_of_faith_teleport", {duration = 5})
-				ability:StartCooldown(ability:GetCooldown(-1))
-                Timers:CreateTimer(1, function()
-                    if enemy then
-                        enemy:AddNewModifier(caster, ability, "modifier_stunned", {duration = 4})
-                        
-                    end
-                end)
-				Timers:CreateTimer(5, function()
-                    if enemy:IsAlive() then
-						enemy:SetHealth(enemy:GetMaxHealth())
-						enemy:SetMana(enemy:GetMaxMana())
-						local tpScroll = enemy:FindItemByName("item_tpscroll")
-						if tpScroll then
-							tpScroll:StartCooldown(30)
-						end
-                        enemy:AddNewModifier(caster, ability, "modifier_dark_seer_surge", {duration = 30})
-                    end
-                end)
-            else
-				local invulnerable = (caster:HasModifier("modifier_invulnerable") or caster:HasModifier("modifier_backdoor_protection_active"))
-                if distance < veryClose then
-                    if invulnerable then
-                        abilityRoar = caster:FindAbilityByName("lone_druid_savage_roar_tower")    
-                        caster:CastAbilityImmediately(abilityRoar, caster:GetPlayerOwnerID())
-                        enemy:AddNewModifier(caster, ability, "modifier_phased", {duration = 4})
-                        enemy:AddNewModifier(caster, ability, "modifier_dark_seer_surge", {duration = 4})
-                        ability:StartCooldown(ability:GetCooldown(-1))
-                    elseif enemy:GetHealth() > enemy:GetMaxHealth() * 0.90 and veryCloseAllies == 0 then
-                        enemy:AddNewModifier(caster, ability, "modifier_axe_berserkers_call", {duration = 1.5})
-                        ability:StartCooldown(ability:GetCooldown(-1))
-                    end
-                elseif not enemy:HasModifier("modifier_lone_druid_savage_roar") and not enemy:HasModifier("modifier_pugna_decrepify") and #AllyInRange == 0 and not invulnerable then
-                    enemy:AddNewModifier(caster, ability, "modifier_axe_berserkers_call", {duration = 1.5})
-                    ability:StartCooldown(ability:GetCooldown(-1))
-                end
-            end
-        end
+    	if IsValidEntity(enemy) then
+	        if util:isPlayerBot(enemy:GetPlayerID()) then
+	            local distance = (tower_loc - enemy:GetAbsOrigin()):Length2D()
+				-- IF BOT IS ABOUT TO DIE, SAVE IT AND SEND IT BACK TO BASE WITH FULL HP MP AND MAX MOVE SPEED FOR 30 SECONDS
+	            if enemy:GetHealth() < 300 and enemy:HasModifier("modifier_pugna_decrepify") == false and #AllyInRange == 0 then
+	                enemy:AddNewModifier(caster, ability, "modifier_pugna_decrepify", {duration = 5})
+	                enemy:AddNewModifier(caster, ability, "modifier_chen_test_of_faith_teleport", {duration = 5})
+					ability:StartCooldown(ability:GetCooldown(-1))
+	                Timers:CreateTimer(1, function()
+	                    if enemy then
+	                        enemy:AddNewModifier(caster, ability, "modifier_stunned", {duration = 4})
+	                        
+	                    end
+	                end)
+					Timers:CreateTimer(5, function()
+	                    if enemy:IsAlive() then
+							enemy:SetHealth(enemy:GetMaxHealth())
+							enemy:SetMana(enemy:GetMaxMana())
+							local tpScroll = enemy:FindItemByName("item_tpscroll")
+							if tpScroll then
+								tpScroll:StartCooldown(30)
+							end
+	                        enemy:AddNewModifier(caster, ability, "modifier_dark_seer_surge", {duration = 30})
+	                        enemy:AddExperience(100,0,false,false)
+	                        enemy:ModifyGold(100, false, 0) 
+	                    end
+	                end)
+	            else
+					local invulnerable = (caster:HasModifier("modifier_invulnerable") or caster:HasModifier("modifier_backdoor_protection_active"))
+	                if distance < veryClose then
+	                    if invulnerable then
+	                        abilityRoar = caster:FindAbilityByName("lone_druid_savage_roar_tower")    
+	                        caster:CastAbilityImmediately(abilityRoar, caster:GetPlayerOwnerID())
+	                        enemy:AddNewModifier(caster, ability, "modifier_phased", {duration = 4})
+	                        enemy:AddNewModifier(caster, ability, "modifier_dark_seer_surge", {duration = 4})
+	                        ability:StartCooldown(ability:GetCooldown(-1))
+	                    elseif enemy:GetHealth() > enemy:GetMaxHealth() * 0.90 and veryCloseAllies == 0 then
+	                        enemy:AddNewModifier(caster, ability, "modifier_axe_berserkers_call", {duration = 1.5})
+	                        ability:StartCooldown(ability:GetCooldown(-1))
+	                    end
+	                elseif not enemy:HasModifier("modifier_lone_druid_savage_roar") and not enemy:HasModifier("modifier_pugna_decrepify") and #AllyInRange == 0 and not invulnerable then
+	                    enemy:AddNewModifier(caster, ability, "modifier_axe_berserkers_call", {duration = 1.5})
+	                    ability:StartCooldown(ability:GetCooldown(-1))
+	                end
+	            end
+	        end
+    	end
     end                                    
 end
 		

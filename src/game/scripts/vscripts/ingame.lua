@@ -111,19 +111,61 @@ function Ingame:init()
     
     -- Set it to no team balance
     self:setNoTeamBalanceNeeded()
-end
+end   
 
 function Ingame:OnHeroLeveledUp(keys)
     -- Give abilitypoints to spend on the levels the game doesn't give.
     local pID = keys.player -1    
     local player = PlayerResource:GetPlayer(pID)
     local hero = player:GetAssignedHero()
-    
+
+    -- Leveling the talents for bots
+    if util:isPlayerBot(pID) and keys.level == 10 then
+        for i=1,23 do
+            local abName = hero:GetAbilityByIndex(i):GetAbilityName()
+            if abName and string.find(abName, "special_bonus") then
+                local random = RandomInt(0,1)
+                hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                break
+            end
+        end
+    elseif util:isPlayerBot(pID) and keys.level == 15 then
+        for i=1,23 do
+            local abName = hero:GetAbilityByIndex(i):GetAbilityName()
+            if abName and string.find(abName, "special_bonus") then
+                local random = RandomInt(2,3)
+                hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                break
+            end
+        end
+
+    elseif util:isPlayerBot(pID) and keys.level == 20 then
+        for i=1,23 do
+            local abName = hero:GetAbilityByIndex(i):GetAbilityName()
+            if abName and string.find(abName, "special_bonus") then
+                local random = RandomInt(4,5)
+                hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                break
+            end
+        end
+
+    elseif util:isPlayerBot(pID) and keys.level == 25 then
+        for i=1,23 do
+            local abName = hero:GetAbilityByIndex(i):GetAbilityName()
+            if abName and string.find(abName, "special_bonus") then
+                local random = RandomInt(6,7)
+                hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                break
+            end
+        end 
+    end
+
     local markedLevels = {[17]=true,[19]=true,[21]=true,[22]=true,[23]=true,[24]=true}
     if markedLevels[keys.level] then
         hero:SetAbilityPoints(hero:GetAbilityPoints() + 1)
     end
 end
+
 
 
 function Ingame:OnPlayerPurchasedItem(keys)
@@ -225,6 +267,12 @@ dc_table = {};
 -- Called when the game starts
 function Ingame:onStart()
     local this = self
+
+    -- Force bots to take a defensive pose until the first tower has been destroyed. This is top stop bots from straight away pushing lanes when they hit level 6
+    Timers:CreateTimer(function ()
+               GameRules:GetGameModeEntity():SetBotsInLateGame(false)
+               --print("bots will only defend")
+            end, 'forceBotsToDefend', 0.5)
     
     ---Enable and then quickly disable all vision. This fixes two problems. First it fixes the scoreboard missing enemy abilities, and second it fixes the issues of bots not moving until they see an enemy player.
     if Convars:GetBool("dota_all_vision") == false then
@@ -238,7 +286,7 @@ function Ingame:onStart()
             end, 'disable_all_vision_fix', 1.2)
             
     end
-        
+    
     -- ---Bot Quickfix: Bots sometimes get stuck at runespot at 0:00 gametime. This orders all bots to attack move to center of map, will unjam the stuck bots. 
     
     -- Timers:CreateTimer(function ()   
@@ -827,6 +875,15 @@ function Ingame:handleRespawnModifier()
                         if IsValidEntity(hero) and not hero:IsAlive() then
                             local timeLeft = hero:GetRespawnTime()
 
+                            --hotfix start: stop heros from having crazy respawn times
+                            if hero:GetLevel() > 25 then
+                                timeLeft = 4 * hero:GetLevel()
+                            end
+                            if timeLeft > 160 then
+                                timeLeft = 160
+                            end
+                            --hotfix end
+
                             timeLeft = timeLeft * respawnModifierPercentage / 100 + respawnModifierConstant
 
                             if timeLeft <= 0 then
@@ -999,6 +1056,13 @@ end
 -- Option to modify EXP
 function Ingame:FilterModifyExperience(filterTable)
     local expModifier = OptionManager:GetOption('expModifier')
+    --hotfix start: to stop the insane amount of EXP
+    if filterTable.experience > 1000 then
+        filterTable.experience = 440   
+    end 
+    --hotfix end
+    --print("experience gained")
+    --print(filterTable.experience)
 
     if expModifier ~= 1 then
         filterTable.experience = math.ceil(filterTable.experience * expModifier / 100)
@@ -1152,27 +1216,97 @@ function Ingame:addStrongTowers()
                         botsEnabled = true
                     end
                 end
-                local oldAbList = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers
-                local towerSkills = {}
+
+                local oldAbList = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers_weak
+                local oldAbList2 = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers_medium
+                local oldAbList3 = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers_strong
+
+                local weakTowerSkills = {}
+                local mediumTowerSkills = {}
+                local strongTowerSkills = {}
+
                 for skill_name in pairs(oldAbList) do
                     if botsEnabled == true then
-                        if skill_name ~= "imba_tower_vicious" and skill_name ~= "imba_tower_forest" then
-                            table.insert(towerSkills, skill_name)   
+                        -- Disable troublesome abilities that break bots
+                        if skill_name ~= "imba_tower_vicious" and skill_name ~= "imba_tower_forest" and skill_name ~= "imba_tower_disease" then
+                            table.insert(weakTowerSkills, skill_name)   
                         end
                     else 
-                        table.insert(towerSkills, skill_name)                                                                               
+                        table.insert(weakTowerSkills, skill_name)                                                                               
                     end
                 end
+
+                for skill_name in pairs(oldAbList2) do
+                    if botsEnabled == true then
+                        -- Disable troublesome abilities that break bots
+                        if skill_name ~= "imba_tower_vicious" and skill_name ~= "imba_tower_forest" and skill_name ~= "imba_tower_disease" then
+                            table.insert(mediumTowerSkills, skill_name)   
+                        end
+                    else 
+                        table.insert(mediumTowerSkills, skill_name)                                                                               
+                    end
+                end
+
+                for skill_name in pairs(oldAbList3) do
+                    if botsEnabled == true then
+                        -- Disable troublesome abilities that break bots
+                        if skill_name ~= "imba_tower_vicious" and skill_name ~= "imba_tower_forest" and skill_name ~= "imba_tower_disease" then
+                            table.insert(strongTowerSkills, skill_name)   
+                        end
+                    else 
+                        table.insert(strongTowerSkills, skill_name)                                                                               
+                    end
+                end
+
                 local towers = Entities:FindAllByClassname('npc_dota_tower')
                 for _, tower in pairs(towers) do
-                    local ability_name = RandomFromTable(towerSkills)
-                    tower:AddAbility(ability_name)
-                    local ability = tower:FindAbilityByName(ability_name)
-                    ability:SetLevel(1)
+                    -- If Tower is level 1, give it a weak ability
+                    if tower:GetLevel() == 1 then
+                        local ability_name = RandomFromTable(weakTowerSkills)
+                        tower:AddAbility(ability_name)
+                        local ability = tower:FindAbilityByName(ability_name)
+                        ability:SetLevel(1)
+                    -- If a Tower is level 2, it has 50% chance of getting weak ability, and 50% chance of getting medium ability
+                    elseif tower:GetLevel() == 2 then
+                        local random = RandomInt(1,2)
+                        if random == 1 then 
+                            local ability_name = RandomFromTable(weakTowerSkills)
+                            tower:AddAbility(ability_name)
+                            local ability = tower:FindAbilityByName(ability_name)
+                            ability:SetLevel(1) 
+                        elseif random == 2 then
+                            local ability_name = RandomFromTable(mediumTowerSkills)
+                            tower:AddAbility(ability_name)
+                            local ability = tower:FindAbilityByName(ability_name)
+                            ability:SetLevel(1) 
+                        end  
+                    -- If a Tower is level 3 or higher, the tower will get a strong ability                                       
+                    elseif tower:GetLevel() > 2 then
+                        local ability_name = RandomFromTable(strongTowerSkills)
+                        tower:AddAbility(ability_name)
+                        local ability = tower:FindAbilityByName(ability_name)
+                        ability:SetLevel(1)
+                    end
+
+                   
                 end
         end
     end, nil)
     ListenToGameEvent('dota_tower_kill', function (keys)
+        -- If a tower is destroyed, there is a 2/3 chance for bots to switch/stay in lategame behaviour. There is a 1/3 chance they will switch back to early game behaviour (but only for 3 minutes). 
+        local switchAI = (RandomInt(1,3))
+        if switchAI == 1 then
+            --print("bots are in early game behaviour")
+            GameRules:GetGameModeEntity():SetBotsInLateGame(false)
+            Timers:CreateTimer(function()
+                GameRules:GetGameModeEntity():SetBotsInLateGame(true)
+                --print("bots have gone back to pushing")
+            end, DoUniqueString('makesBotsLateGameAgain'), 180)
+        else
+            --print("bots are in late game behaviour")
+            GameRules:GetGameModeEntity():SetBotsInLateGame(true)        
+        end
+        
         if OptionManager:GetOption('strongTowers') then
             local tower_team = keys.teamnumber
             local towers = Entities:FindAllByClassname('npc_dota_tower')

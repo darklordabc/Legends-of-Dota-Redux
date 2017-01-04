@@ -2,7 +2,505 @@
 "DOTAAbilities"
 {
     "Version"       "1"
+
+	"titan_command_aura"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityTextureName"			"custom/titan_command_aura"
 	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1100"
+		"AbilityCastPoint"				"0"
+		
+		// Time		
+		//---------------------------------------------------a----------------------------------------------------------
+		"AbilityCooldown"				"0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// All about the damage
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"1100"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_armor"					"3 6 9"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"bonus_regen"					"10 20 30"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_damage"					"0"
+			}
+		}
+		
+		"precache"
+			{
+			"particle"			"particles/units/heroes/hero_bloodseeker/bloodseeker_rupture_glow_lv.vpcf"
+			"soundfile" "soundevents\hero_phantom.vsndevts"
+			}
+		
+		"Modifiers"
+			{
+				"modifier_command_aura"
+				{
+					"Passive"			"1"
+					"IsHidden"			"1"
+					"IsDebuff"			"0"
+				
+					"Aura"          	"modifier_command_aura_fx"
+					"Aura_Radius"   	"%radius"
+					"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Aura_Types"    	"DOTA_UNIT_TARGET_CREEP"
+					"Aura_Flags"		"DOTA_UNIT_TARGET_FLAG_NONE"
+					"Aura_ApplyToCaster" "0"
+				}
+				"modifier_command_aura_fx"
+				{
+					"Passive"			"0"
+					"IsHidden"			"0"
+					"IsBuff"			"1"
+					"IsDebuff"			"0"
+					"EffectName" "particles/units/heroes/hero_bloodseeker/bloodseeker_rupture_glow_lv.vpcf"
+				
+					"Properties"
+					{
+						"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%bonus_damage"
+						"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%bonus_armor"
+						"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%bonus_regen"
+					}
+				}
+			}
+	}
+
+	"summoner_tesla_coil"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"custom/summoner_tesla"
+		"MaxLevel"						"3"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// All about the damage
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+		"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"slow"							"-20 -40 -60"
+			}
+		"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"30 45 60"
+			}
+		"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"interval"						"0.60"
+			}
+		}
+		
+		"precache"
+			{
+			"particle" "particles/units/heroes/hero_summoner/tesla_coil_bolt.vpcf"
+			"particle" "particles/units/heroes/hero_summoner/cloaked.vpcf"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
+			}
+		
+		"Modifiers"
+			{
+				"modifier_tesla_coil"
+				{
+					"ThinkInterval"  "%interval"
+					"OnIntervalThink"
+					{
+						"RunScript"
+						{
+							"ScriptFile"	"abilities/dusk/summoner_abilities.lua"
+							"Function"		"ChainLightning"
+							"damage"		"%damage"
+						}
+					}
+					"Passive"			"1"
+					"IsPurgable"		"0"
+					"IsBuff"			"0"
+					"IsDebuff"			"0"
+					"IsStunDebuff"		"0"
+					"IsHidden"			"1"
+					
+				}
+				"modifier_tesla_coil_slow"
+				{
+					"Duration"			"0.75"
+					"IsPurgable"		"1"
+					"IsBuff"			"0"
+					"IsDebuff"			"1"
+					"IsStunDebuff"		"0"
+					"IsHidden"			"1"
+					//Purge(bool RemovePositiveBuffs, bool RemoveDebuffs, bool BuffsCreatedThisFrameOnly, bool RemoveStuns, bool RemoveExceptions)
+					"Properties"
+					{
+						"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%slow"
+					    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow"
+					}
+				}
+			}
+	}
+
+    //=====================================================================================================
+	// LICH: Cold Aura
+	//=====================================================================================================
+	"lich_cold_aura"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"custom/lich_cold_aura"		
+		"MaxLevel"						"3"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow"					"-10 -15 -20"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage"				"1.0 1.5 2.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor_bonus"			"0"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"700"
+			}
+		}
+	
+		"precache"
+		{
+			
+	
+		}
+		
+		"Modifiers"
+			{
+			"lich_cold_aura_mod"
+			{
+				"Passive" "1"
+				"IsHidden" "1"
+				"Aura" "lich_cold_aura_effect_mod"
+				"Aura_Radius"   "%radius"
+				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types" "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_bonus"
+				}
+			}
+			"lich_cold_aura_effect_mod"
+			{
+			"IsHidden" "0"
+			"StatusEffectName" "particles/status_fx/status_effect_frost_lich.vpcf"
+			"StatusEffectPriority" "10"
+			"ThinkInterval" "0.5"
+			"OnIntervalThink"
+				{
+				"Damage"
+					{
+					"Damage" "%damage"
+					"MaxHealthPercentBasedDamage" "1"
+					"Target" "TARGET"
+					"Type" "DAMAGE_TYPE_PHYSICAL"
+					}
+				}
+			"Properties"
+				{
+				"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow"
+				"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%slow"
+				}
+			}
+			}
+	}
+
+    //=====================================================================================================
+	// BAHAMUT: Reckoning Aura
+	//=====================================================================================================
+	"bahamut_reckoning_aura"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityTextureName"			"custom/bahamut_reckoning_aura"
+		"MaxLevel"						"3"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"900"
+		"AbilityCastPoint"				"0"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// All about the damage
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"20 40 60"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"900"
+			}
+		}
+				
+		"Modifiers"
+			{
+				"modifier_reckoning_aura"
+				{
+					"Passive"			"1"
+					"IsHidden"			"1"
+					"IsDebuff"			"0"
+				
+					"Aura"          	"modifier_reckoning_aura_eff"
+					"Aura_Radius"   	"%radius"
+					"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+					"Aura_ApplyToCaster" "0"
+				}
+				"modifier_reckoning_aura_eff"
+				{
+					"Passive"			"0"
+					"IsHidden"			"0"
+					"IsDebuff"			"1"
+				
+					"Properties"
+					{
+						"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "%damage"
+					}
+				}
+			}
+	}
+	
+	"monkey_king_jingu_mastery_lod"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"AbilityTextureName"			"monkey_king_jingu_mastery"
+		
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_monkey_king/monkey_king_quad_tap_stack.vpcf"
+			"particle"	"particles/units/heroes/hero_monkey_king/monkey_king_quad_tap_hit.vpcf"
+			"particle"	"particles/units/heroes/hero_monkey_king/monkey_king_quad_tap_start.vpcf"
+			"particle"	"particles/units/heroes/hero_monkey_king/monkey_king_quad_tap_overhead.vpcf"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"required_hits"				"4"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"counter_duration"			"10"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"charges"					"4"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_damage"				"80 120 160 200"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"lifesteal"					"20 30 40 50"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_jingu_mastery_hit_registerer"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/epic_boss_fight/monkey_king.lua"
+						"Function"		"CheckJingu"
+						"particle"		"particles/units/heroes/hero_monkey_king/monkey_king_quad_tap_stack.vpcf"
+					}
+				}
+			}
+			"modifier_jingu_mastery_activated_damage"
+			{
+				"IsHidden"	"1"
+				"IsPurgeable"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
+				}
+			}
+			"modifier_jingu_mastery_activated"
+			{
+				"IsBuff"	"1"
+				"IsPurgeable"	"1"
+				"EffectName"	"particles/units/heroes/hero_monkey_king/monkey_king_quad_tap_overhead.vpcf"
+				"EffectAttachType"	"follow_overhead"
+
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/epic_boss_fight/monkey_king.lua"
+						"Function"		"JinguHit"
+						"particle"		"particles/units/heroes/hero_monkey_king/monkey_king_quad_tap_hit.vpcf"
+					}
+					"FireEffect"
+					{
+						"EffectName"		"particles/units/heroes/hero_monkey_king/monkey_king_quad_tap_hit.vpcf"
+						"EffectAttachType"	"attach_hitloc"
+						"Target"			"TARGET"
+						
+						"ControlPointEntities"
+						{
+							"TARGET"	"attach_hitloc"
+							"TARGET"	"attach_hitloc"
+						}
+					}
+					"Lifesteal"
+					{
+						"Target"				"ATTACKER"
+						"LifestealPercent"		"%lifesteal"
+					}
+				}
+			}
+			"modifier_jingu_mastery_hitcount"
+			{
+				"IsDebuff"		"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/epic_boss_fight/monkey_king.lua"
+						"Function"		"JinguOverheadInit"
+						"particle"		"particles/units/heroes/hero_monkey_king/monkey_king_quad_tap_stack.vpcf"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/epic_boss_fight/monkey_king.lua"
+						"Function"		"JinguOverheadDestroy"
+					}
+				}
+			}
+		}
+	}
+
 	//=====================================================================================================
 	// GEMINI: Abyssal Vortex
 	//=====================================================================================================
@@ -3826,13 +4324,13 @@
         }
     }
 
-    "pudge_flesh_heap_agi"
+    "pudge_flesh_heap_agility"
         {
         // General
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                        "ability_lua"
         "AbilityTextureName"                "custom/flesh_heap_agi"
-        "ScriptFile"                        "abilities/pudge_flesh_heap_agi.lua"
+        "ScriptFile"                        "abilities/pudge_flesh_heap_agility.lua"
         "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_PASSIVE"
             "AbilityCastRange"              "450"
     
@@ -4074,7 +4572,44 @@
             }
         }
     } 
-	
+
+	"aether_range_lod_global"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"            "custom/aether_range_lod_OP"
+        "MaxLevel"						"1"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "cast_range_bonus"          "99999"
+            }
+        }
+        "OnOwnerSpawned"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/aether_range_lod.lua"
+                "Function"      "SetCastRange"
+            }
+        }
+        "OnUpgrade"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/aether_range_lod.lua"
+                "Function"      "SetCastRange"
+            }
+        }
+    } 
+
     "octarine_vampirism_lod"
     {
         // General
@@ -4603,39 +5138,40 @@
         
     }
     
+    // Spell Block Lod And Linkens Guard are removed because they block spells when unlearned with no cooldown
     //=================================================================================================================
     // Roshan: Spell Block
     //=================================================================================================================
-    "roshan_spell_block_lod"
-    {
-        // General
-        //-------------------------------------------------------------------------------------------------------------
-        "BaseClass"                     "roshan_spell_block"
-        "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "MaxLevel"                      "4"
-    "AbilityTextureName"            "custom/roshan_spell_block_lod"
-
+    //"roshan_spell_block_lod"
+    //{
+    //    // General
+    //    //-------------------------------------------------------------------------------------------------------------
+    //    "BaseClass"                     "roshan_spell_block"
+    //    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    //    "MaxLevel"                      "4"
+    //	"AbilityTextureName"            "custom/roshan_spell_block_lod"
+	//	
         // Time
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCooldown"               "70.0 60.0 50.0 35.0"    
-    }
+    //    "AbilityCooldown"               "70.0 60.0 50.0 35.0"    
+    //}
 	
 	//=================================================================================================================
     // Linken's Guard
     //=================================================================================================================
-    "linkens_guard_lod"
-    {
-        // General
-        //-------------------------------------------------------------------------------------------------------------
-        "BaseClass"                     "roshan_spell_block"
-        "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "MaxLevel"                      "4"
-		"AbilityTextureName"            "custom/linkens_guard_lod"
-
-        // Time
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilityCooldown"               "13.0 10.0 7.0 4.0"    
-    }
+    //"linkens_guard_lod"
+    //{
+    //    // General
+    //    //-------------------------------------------------------------------------------------------------------------
+    //    "BaseClass"                     "roshan_spell_block"
+    //    "AbilityBehavior"       		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    //    "MaxLevel"                      "4"
+	//	"AbilityTextureName"            "custom/linkens_guard_lod"
+	//
+    //    // Time
+    //    //-------------------------------------------------------------------------------------------------------------
+    //    "AbilityCooldown"               "13.0 10.0 7.0 4.0"    
+    //}
     
     //=================================================================================================================
     // Golem: Permanent Immolation
@@ -5531,7 +6067,7 @@
             "07"
             {
                 "var_type"            "FIELD_INTEGER"
-                "spore_movespeed"        "200"
+                "spore_movespeed"        "400"
             }
             "08"
             {
@@ -9366,6 +9902,182 @@
             }
         }
     }
+
+    //=================================================================================================================
+    // DAZZLE's Shallow Grave ONE LEVEL
+    //=================================================================================================================
+    "imba_dazzle_shallow_grave_one"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                                        "ability_datadriven"
+        "MaxLevel"                              "1"
+        "AbilityBehavior"                                "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"                            "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"                            "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                                "SPELL_IMMUNITY_ALLIES_YES"
+        "FightRecapLevel"                                "1"
+        "AbilityTextureName"                            "custom/dazzle_nothl_protection"
+
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "soundfile"                                    "soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
+            "particle"                                    "particles/units/heroes/hero_dazzle/dazzle_shallow_grave.vpcf"
+        }
+        
+        // Time        
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"                                "50.0"
+        
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                "FIELD_INTEGER"
+                "min_health"                            "2"
+            }
+            "02"
+            {
+                "var_type"                                "FIELD_FLOAT"
+                "passive_cooldown_scepter"                "50.0"
+            }
+            "03"
+            {
+                "var_type"                                "FIELD_FLOAT"
+                "passive_duration"                        "3.5"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                    "abilities/hero_dazzle.lua"
+                "Function"                        "ShallowGraveDamageTrigger"
+                "modifier_passive"                "modifier_imba_shallow_grave_passive"
+                "modifier_grave"                "modifier_imba_shallow_grave"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_shallow_grave_passive_check"
+            {
+                "Passive"                                "1"
+                "IsHidden"                                "1"
+                "IsBuff"                                "1"
+                "IsPurgable"                            "0"
+
+                "ThinkInterval"                            "0.1"
+
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                    "abilities/hero_dazzle.lua"
+                        "Function"                        "ShallowGravePassive"
+                        "Target"                        "CASTER"
+
+                        "modifier_passive"            "modifier_imba_shallow_grave_passive"
+                        "modifier_cooldown"                    "modifier_imba_shallow_grave_passive_cooldown"
+                    }
+                }
+
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                    "lib/util_imba.lua" 
+                        "Function"                        "IllusionPassiveRemover"
+
+                        "modifier"                        "modifier_imba_shallow_grave_passive_check"
+                    }
+                }
+            }
+            "modifier_imba_shallow_grave"
+            {
+                "Passive"                                "0"
+                "IsBuff"                                "1"
+                "IsHidden"                                "0"
+                "IsPurgable"                            "0"
+                
+                "EffectName"                            "particles/units/heroes/hero_dazzle/dazzle_shallow_grave.vpcf"
+                "EffectAttachType"                        "follow_origin"
+        
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MIN_HEALTH"        "%min_health" 
+                }
+
+                "OnCreated"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"                    "Hero_Dazzle.Shallow_Grave"
+                        "Target"                         "TARGET"
+                    }
+                }
+
+                "OnTakeDamage"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                    "abilities/hero_dazzle.lua"
+                        "Function"                        "ShallowGraveDamageStorage"
+                        "DamageTaken"                    "%attack_damage"
+                    }
+                }
+            }
+
+            "modifier_imba_shallow_grave_passive"
+            {
+                "Passive"                                "0"
+                "IsBuff"                                "1"
+                "IsHidden"                                "0"
+                "IsPurgable"                            "0"
+
+                "TextureName"                            "dazzle_nothl_protection"
+
+                "Attributes"                            "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+
+                "OnTakeDamage"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                    "abilities/hero_dazzle.lua"
+                        "Function"                        "ShallowGraveDamageCheck"
+                        "modifier_grave"                "modifier_imba_shallow_grave"
+                    }
+                }
+                
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MIN_HEALTH"        "%min_health" 
+                }
+            }
+
+            "modifier_imba_shallow_grave_passive_cooldown"
+            {
+                "IsHidden"                                "0"
+                "IsDebuff"                                "1"
+                "IsPurgable"                            "0"
+                "TextureName"                            "dazzle_shallow_grave_cooldown"
+
+                "Attributes"                            "MODIFIER_ATTRIBUTE_PERMANENT"
+
+                "OnDestroy"
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"                    "modifier_imba_shallow_grave_passive_check"
+                        "Target"                        "CASTER"
+                    }
+                }
+            }
+        }
+    }
     
     //=================================================================================================================
     // Tower ability: Laser
@@ -9376,7 +10088,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                             "ability_datadriven"
         "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityTextureName"                    "tinker_laser"
+        "AbilityTextureName"                    "custom/imba_tower_laser"
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityCastRange"                      "800 1000 1200"
@@ -9529,7 +10241,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                             "ability_datadriven"
         "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityTextureName"                    "shadow_shaman_voodoo"
+        "AbilityTextureName"                    "custom/imba_tower_hex_aura"
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityCastRange"                      "800 1000 1200"
@@ -9646,7 +10358,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                             "ability_datadriven"
         "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityTextureName"                    "antimage_mana_break"
+        "AbilityTextureName"                    "custom/imba_tower_mana_burn"
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
@@ -9820,7 +10532,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                             "ability_datadriven"
         "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityTextureName"                    "faceless_void_chronosphere"
+        "AbilityTextureName"                    "custom/imba_tower_chrono"
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityCastRange"                      "800 1000 1200"
@@ -10549,7 +11261,7 @@
                     "Damage"
                     {
                         "Target"                "TARGET"
-                        "Type"                  "DAMAGE_TYPE_MAGICAL"
+                        "Type"                  "DAMAGE_TYPE_PHYSICAL"
                         "Damage"                "%damage_per_tick"
                     }
                 }
@@ -10737,7 +11449,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                             "ability_datadriven"
         "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityTextureName"                    "giant_wolf_critical_strike"
+        "AbilityTextureName"                    "custom/imba_tower_vicious"
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
@@ -10906,57 +11618,7 @@
             }
         }
     }
-
-    //=================================================================================================================
-    // Tower ability: Reality
-    //=================================================================================================================
-    "imba_tower_reality"
-    {
-        // General
-        //-------------------------------------------------------------------------------------------------------------
-        "BaseClass"                             "ability_datadriven"
-        "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityTextureName"                    "terrorblade_reflection"
-        "MaxLevel"                              "3"
-        "AbilitySharedWithTeammates"            "1"
-        "AbilityCastRange"                      "600 900 1200"
-        "AbilityCooldown"                       "10 8 6"
-        "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
-
-        // Special
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilitySpecial"
-        {
-            "01"
-            {
-                "var_type"                      "FIELD_INTEGER"
-                "reality_aoe"                   "600 900 1200"
-            }
-        }
-
-        "Modifiers"
-        {
-            "modifier_imba_tower_reality"
-            {
-                "Passive"                       "1"
-                "IsHidden"                      "1"
-
-                "ThinkInterval"                 "0.5"
-
-                "OnIntervalThink"
-                {
-                    "RunScript"
-                    {
-                        "ScriptFile"            "abilities/tower_abilities.lua"
-                        "Function"              "Reality"
-
-                        "sound_reality"         "DOTA_Item.DiffusalBlade.Activate"
-                    }
-                }
-            }
-        }
-    }
-
+    
     //=================================================================================================================
     // Tower ability: Force
     //=================================================================================================================
@@ -11127,7 +11789,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                             "ability_datadriven"
         "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityTextureName"                    "silencer_last_word"
+        "AbilityTextureName"                    "custom/imba_tower_mindblast"
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityCastRange"                      "800 1000 1200"
@@ -11327,11 +11989,11 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                             "ability_datadriven"
         "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityTextureName"                    "furion_sprout"
-        "MaxLevel"                              "4"
+        "AbilityTextureName"                    "custom/imba_tower_forest"
+        "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
-        "AbilityCastRange"                      "600 650 700 750"
-        "AbilityCooldown"                       "12 10 8 6"
+        "AbilityCastRange"                      "650 700 750"
+        "AbilityCooldown"                       "10 8 6"
         "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
         "RequiredLevel"                 "1"
 
@@ -11342,7 +12004,63 @@
             "01"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "tree_radius"                   "600 650 700 750"
+                "tree_radius"                   "650 700 750"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "tree_duration"                 "240"
+            }
+        }
+
+        "Modifiers"
+        {
+            "modifier_imba_tower_forest"
+            {
+                "Passive"                       "1"
+                "IsHidden"                      "1"
+
+                "ThinkInterval"                 "1.0"
+
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "abilities/tower_abilities.lua"
+                        "Function"              "Forest"
+
+                        "sound_tree"            "Tree.GrowBack"
+                    }
+                }
+            }
+        }
+    }
+
+    /=================================================================================================================
+    // Tower ability: Forest One Level
+    //=================================================================================================================
+    "imba_tower_forest_one"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                             "ability_datadriven"
+        "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                    "custom/imba_tower_forest"
+        "MaxLevel"                              "1"
+        "AbilitySharedWithTeammates"            "1"
+        "AbilityCastRange"                      "700"
+        "AbilityCooldown"                       "8"
+        "AbilityType"                    "DOTA_ABILITY_TYPE_BASIC"
+        "RequiredLevel"                 "1"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "tree_radius"                   "700"
             }
             "02"
             {
@@ -11383,7 +12101,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                             "ability_datadriven"
         "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityTextureName"                    "luna_moon_glaive"
+        "AbilityTextureName"                    "custom/imba_tower_split"
         "MaxLevel"                              "3"
         "AbilitySharedWithTeammates"            "1"
         "AbilityType"                    "DOTA_ABILITY_TYPE_ULTIMATE"
@@ -14796,7 +15514,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_percent"		"20 25 30 35"
+				"damage_percent"		"35 40 45 50"
 			}
 		}
 		
@@ -21427,6 +22145,61 @@
 			}
 		}
 	}
+
+	"ebf_rubick_arcane_echo_one"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"ability_datadriven"
+		"AbilityTextureName"			"custom/rubick_spell_echo"
+		"MaxLevel"              "1"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"		"particles/rubick_spell_echo.vpcf"
+		}
+			
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+			
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"		"0.5"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_reduction"		"50"
+			}
+		}
+		"Modifiers"
+		{
+			"rubick_spell_echo_passive"
+			{
+				"IsHidden"		"1"
+				"Passive"		"1"
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/epic_boss_fight/ebf_rubick_arcane_echo"
+						"Function"		"SpellEcho"
+						"Target"		"POINT"
+					}
+				}
+			}
+		}
+	}
 	
 	"ebf_rubick_arcane_echo_OP"
 	{
@@ -21531,6 +22304,7 @@
 		  "SpellImmunityType"       "SPELL_IMMUNITY_ENEMIES_NO"
 		  "FightRecapLevel"       "1"
 		  "AbilityTextureName"      "custom/skywrath_mage_concussive_break"
+		  "HasScepterUpgrade"				"1"
 
 		  // Casting
 		  //-------------------------------------------------------------------------------------------------------------
@@ -22341,5 +23115,38 @@
 				"IsBuff"	"1"
 			}
 		}
+	}
+
+	"bloodseeker_blood_bath2"
+ 	{
+	    "BaseClass"                 "ability_lua"
+	    "ScriptFile"            "abilities/bloodseeker_blood_bath"
+	    "AbilityTextureName"      "custom/bloodbath_two"
+	    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    
+	    "precache"
+	    {
+	      "particle"   "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodbath.vpcf"          
+
+	    }
+
+	    "AbilitySpecial"
+	    {
+			  "01"
+			  {
+			    "var_type"      "FIELD_INTEGER"
+			    "heal_radius"      "325"
+			  }
+			  "02"
+			  {
+			    "var_type"      "FIELD_INTEGER"
+			    "hero_max_hp_heal"    "10 20 30 40"
+			  }
+			  "03"
+			  {
+			    "var_type"      "FIELD_INTEGER"
+			    "non_hero_max_hp_heal"    "10 15 20 25"
+			  }
+	    }
 	}	  
 }

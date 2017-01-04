@@ -1,6 +1,11 @@
 "DOTAAbilities"
 {
 	
+	"spawnlord_master_freeze"
+	{
+		"MaxLevel"					"1"	
+	}													
+
 	"beastmaster_greater_boar_poison"
 	{
     	"AbilityTextureName"            "custom/beastmaster_greater_boar_poison_lod"
@@ -227,9 +232,9 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"500 1000 2000 4000"
 		"AbilityCastPoint"				"0.75"
-		"AbilityCooldown"				"70.0"
+		"AbilityCooldown"				"40.0"
 		"AbilityChannelTime"			"40.0"
-		"AbilityManaCost"				"200"
+		"AbilityManaCost"				"50"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------

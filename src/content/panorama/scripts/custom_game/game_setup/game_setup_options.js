@@ -81,7 +81,13 @@ var basicOptions = {
                     },                   
                     {
                         name: 'lodOptionGameSpeedUpgradedUlts',
-                        about: 'lodMutatorUpgradedUlts'
+                        default: {
+                            'lodMutatorUpgradedUlts': 0,
+                        },
+                        states: {
+                            'lodMutatorUpgradedUlts': 1,
+                            'lodMutatorUpgradedUltsNoBots': 2,
+                        }
                     },					
                     {
                         about: 'lodMutatorFastStart',
@@ -109,7 +115,7 @@ var basicOptions = {
                             },
                             'lodMutatorFastBuybackCooldown3': {
                                 'lodOptionBuybackCooldownTimeConstant': 0,
-                                'lodOptionGameSpeedRespawnTimePercentage': 0
+                                'lodOptionGameSpeedRespawnTimePercentage': 5
                             }
                         }
                     },
@@ -340,20 +346,34 @@ var basicOptions = {
                         }
                     },
                     {
-                        name: 'lodOptionSliders',        
-                        extraInfo: 'lodOptionAboutSliders',
-                        about: 'lodMutatorSliders',
+                        name: 'lodOptionExtraAbility',        
+                        default: {
+                            'lodMutatorFreeAbility': 0,
+                        },
+                        states: {
+                            'lodMutatorSliders': 1,
+                            'lodMutatorNothl': 2,
+                            'lodMutatorMonkeyBusiness': 3,
+                            'lodMutatorEcho': 4,
+                            'lodMutatorFleashHeaps': 5,
+                            'lodMutatorFury': 6,
+                            'lodMutatorBashwars': 7,
+                            'lodMutatorWitch': 8,
+                            'lodMutatorTakeaim': 9,
+                            'lodMutatorAether': 10,
+                            'lodMutatorGreed': 11,
+                            'lodMutatorNether': 12,
+                        }
                     },
                     {
-                        name: 'lodOptionMonkeyBusiness',        
-                        extraInfo: 'lodOptionAboutMonkeyBusiness',
-                        about: 'lodMutatorMonkeyBusiness',
+                        name: 'lodOptionGlobalCast',
+                        about: 'lodMutatorGlobalCast'
                     },
-                    {
-                        name: 'lodOptionMemesRedux',
-                        extraInfo: 'lodOptionAboutMemesRedux',
-                        about: 'lodMutatorMemesRedux'
-                    },
+                    //{
+                   //     name: 'lodOptionMonkeyBusiness',        
+                   //     extraInfo: 'lodOptionAboutMonkeyBusiness',
+                   //     about: 'lodMutatorMonkeyBusiness',
+                   // },
                 ]
             }
         ]
@@ -453,6 +473,22 @@ var advancedOptions = {
                 name: 'lodOptionDuels',
                 des: 'lodOptionDesDuels',
                 about: 'lodOptionAboutDuels',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionIngameBuilder',
+                des: 'lodOptionDesIngameBuilder',
+                about: 'lodOptionAboutIngameBuilder',
                 sort: 'toggle',
                 values: [
                     {
@@ -706,7 +742,7 @@ var advancedOptions = {
                 name: 'lodOptionGameSpeedUpgradedUlts',
                 des: 'lodOptionDesGameSpeedUpgradedUlts',
                 about: 'lodOptionAboutGameSpeedUpgradedUlts',
-                sort: 'toggle',
+                sort: 'dropdown',
                 values: [
                     {
                         text: 'lodOptionNo',
@@ -715,7 +751,11 @@ var advancedOptions = {
                     {
                         text: 'lodOptionYes',
                         value: 1
-                    }
+                    },
+                    {
+                        text: 'lodOptionYesHumansOnly',
+                        value: 2
+                    },
                 ]
             },
             {
@@ -1167,22 +1207,6 @@ var advancedOptions = {
 				]
 			},
             {
-                name: 'lodOptionIngameBuilder',
-                des: 'lodOptionDesIngameBuilder',
-                about: 'lodOptionAboutIngameBuilder',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
-            {
                 name: 'lodOptionIngameBuilderPenalty',
                 des: 'lodOptionDesIngameBuilderPenalty',
                 about: 'lodOptionAboutIngameBuilderPenalty',
@@ -1245,25 +1269,69 @@ var advancedOptions = {
                 ]
             },
             {
-                name: 'lodOptionSliders',
-                des: 'lodOptionDesSliders',
-                about: 'lodOptionAboutSliders',
-                sort: 'toggle',
+                name: 'lodOptionExtraAbility',
+                des: 'lodOptionDesExtraAbility',
+                about: 'lodOptionAboutExtraAbility',
+                sort: 'dropdown',
                 values: [
                     {
                         text: 'lodOptionNo',
                         value: 0
                     },
                     {
-                        text: 'lodOptionYes',
+                        text: 'DOTA_Tooltip_ability_gemini_unstable_rift',
                         value: 1
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_imba_dazzle_shallow_grave',
+                        value: 2
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_imba_tower_forest',
+                        value: 3
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_ebf_rubick_arcane_echo',
+                        value: 4
+                    },
+                    {
+                        text: 'lodMutatorFleashHeaps',
+                        value: 5
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_ursa_fury_swipes',
+                        value: 6
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_spirit_breaker_greater_bash',
+                        value: 7
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_death_prophet_witchcraft',
+                        value: 8
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_sniper_take_aim',
+                        value: 9
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_aether_range_lod',
+                        value: 10
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_alchemist_goblins_greed',
+                        value: 11
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_angel_arena_nether_ritual',
+                        value: 12
                     }
                 ]
             },
             {
-                name: 'lodOptionMonkeyBusiness',
-                des: 'lodOptionDesMonkeyBusiness',
-                about: 'lodOptionAboutMonkeyBusiness',
+                name: 'lodOptionGlobalCast',
+                des: 'lodOptionDesGlobalCast',
+                about: 'lodOptionAboutGlobalCast',
                 sort: 'toggle',
                 values: [
                     {
@@ -1276,22 +1344,22 @@ var advancedOptions = {
                     }
                 ]
             },
-            {
-                name: 'lodOptionMemesRedux',
-                des: 'lodOptionDesMemesRedux',
-                about: 'lodOptionAboutMemesRedux',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
+            //{
+            //    name: 'lodOptionMonkeyBusiness',
+            //    des: 'lodOptionDesMonkeyBusiness',
+           //     about: 'lodOptionAboutMonkeyBusiness',
+            //    sort: 'toggle',
+           //     values: [
+            //        {
+            //            text: 'lodOptionNo',
+            //            value: 0
+            //        },
+            //        {
+            //            text: 'lodOptionYes',
+            //            value: 1
+            //        }
+            //    ]
+            //},
         ]
     }
 }

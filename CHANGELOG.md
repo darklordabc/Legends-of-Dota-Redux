@@ -2,14 +2,75 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 4.0 - Development Version
+## 4.5 - Development Version
+### Bug Fixing/New Features
+- Added much more time for draft rounds (15 to 50 seconds)
+
+### Balance
+- 
+
+## 4.4 - Steam Version
+### Bug Fixing/New Features
+- Fixed Dazzle always getting shallow grave
+- Improved Bot AI, so that when they are in defensive mode, they are not stupid anymore.
+- Upgraded concussive break to add its new aghs component
+- Added Global Cast Range mutator
+
+### Balance
+- 
+
+## 4.3 
+### Bug Fixing/New Features
+- Fixed creep power always activating when pressing load"
+- Hopefully fixed flesh heaps
+- Added 7 new settings on the free ability mutator
+
+### Balance
+- Bots will revert to their usual pushing behaviour if a tower is destroyed
+- While bots are forced in defensive mode, they will automatically teleport when below 200 HP. This is to compenstate for their suicidal behaviour
+- Improved holy books damage percantage
+
+## 4.2 
+### Bug Fixing/New Features
+- Fixed sniper always getting shrapnel even if he didnt pick it
+- Fixed Strong towers not getting extra abilities on upgrade
+- You can now see bot's talents upgrades, view looking at the tree. 
+- Added variety of Free Scepter mutator, now it can be set disabled for bots
+- Removed Monkey Business and Sliders mutator
+- Added new mutator that gives all players certain abilities. Different states, give different abilities. 
+
+### Balance
+- Added new tower abilities: Reckoning Aura, Frostbite Aura, Titan command aura
+- Removed IMBA reality tower ability (cause it sucked)
+- Bots now recieve 100 gold/exp when being teleported back to base from a tower
+- Explosive spore movement speed increased to 400 from 200
+- Reworked logic on giving tower abilities: At start of game, tier 1 towers only get weak abiliites, tier 2 get weak or medium abilities, tier 3 and 4 get given strong abilities. When towers are given random abilities, they can get any type of tower. 
+- Bots will now stay in defensive behaviour for the first 8 minutes of the game, even if they are high levels. This is to prevent immediedtly pushing at level 6. 
+
+## 4.1 
 ### Bug Fixing/New Features
 - 
 
 ### Balance
-- Removed the sound that repeated on Abyssal Vortex. 
+- Removed Betrayal and True randoms because they are unstable
+- Bots now use unique team skills by default, its a bit lame for all bots to have invisiblity
+- 'Instant Respawn' mutator setting, now has respawn time at 5% instead of 0.
+- Lowered cooldown and manacast on Neutral ability Toranado
+- Removed Linkens Guard and Roshan Spell Block Redux from the game because they were blocking spells while unlearned
+- Re-enabled Strong Towers having the best tower abilities, they had accidentedly been disabled for towers
 
-## 3.9 - Steam Version
+## 4.0 
+### Bug Fixing/New Features
+- Added hotfix to stop crazy respawn times and crazy experiencg gain. 
+
+
+### Balance
+- Removed the sound that repeated on Abyssal Vortex. 
+- Bots will now level talents, choosen randomly. Not visible in their trees. 
+- Added 3 Neutral Prowler Abilities
+- Fixed Jingu Mastery (Imported from Epic Boss Fight)
+
+## 3.9
 ### Bug Fixing/New Features
 - Added Bot Unique Skills Mutator
 

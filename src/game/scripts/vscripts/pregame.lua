@@ -41,11 +41,11 @@ require('lib/wearables')
 require('lib/util_aar')
 
 require('chat')
+require('dedicated')
 
 -- Custom AI script modifiers
 LinkLuaModifier( "modifier_slark_shadow_dance_ai", "abilities/botAI/modifier_slark_shadow_dance_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_alchemist_chemical_rage_ai", "abilities/botAI/modifier_alchemist_chemical_rage_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
-
 
 --[[
     Main pregame, selection related handler
@@ -266,12 +266,9 @@ function Pregame:init()
     -- Setup default option related stuff
     network:setActiveOptionsTab('presets')
 
-    self:setOption('lodOptionSlots', 6)
-    self:setOption('lodOptionUlts', 2)
-    self:setOption('lodOptionGamemode', 1)
-    self:setOption('lodOptionDraftAbilities', 25)
-    self:setOption('lodOptionCreepPower', 0)
+    self:loadDefaultSettings()
 
+    -- If its single player, enable single player abilities
     Timers:CreateTimer(function()
         if util:isSinglePlayerMode() then
             self:setOption('lodOptionBanningUseBanList', 0, true)
@@ -378,6 +375,153 @@ function Pregame:init()
     self.cachedPlayerHeroes = {}
 end
 
+-- Load Default Values 
+function Pregame:loadDefaultSettings()
+    -- Total slots is copied
+    self:setOption('lodOptionCommonMaxSlots', 6, true)
+
+    -- Max skills is always 6
+    self:setOption('lodOptionCommonMaxSkills', 6, true)
+
+    -- Max ults is copied
+    self:setOption('lodOptionCommonMaxUlts', 2, true)
+
+    -- Set Draft Abilities to 100
+    self:setOption('lodOptionCommonDraftAbilities', 100, true)
+    self:setOption('lodOptionSlots', 6)
+    self:setOption('lodOptionUlts', 2)
+    self:setOption('lodOptionDraftAbilities', 25)
+    
+    -- Balance Mode disabled by default
+    self:setOption('lodOptionBalanceMode', 0, true)
+
+    -- Mutators disabled by default
+    self:setOption('lodOptionDuels', 0, false)
+    self:setOption('lodOption322', 0, false)
+    self:setOption('lodOptionExtraAbility', 0, false)
+    self:setOption('lodOptionRefreshCooldownsOnDeath', 0, false)
+    self:setOption('lodOptionGlobalCast', 0, false)
+
+    -- Balance Mode Ban List disabled by default
+    self:setOption('lodOptionBanningBalanceMode', 0, true)
+    self:setOption('lodOptionBalanceMode', 0, false)
+
+    -- Set banning
+    self:setOption('lodOptionBanning', 1)
+
+    -- Block troll combos is always on
+    self:setOption('lodOptionBanningBlockTrollCombos', 1, true)
+
+    -- Bots get bonus points by default
+    --self:setOption('lodOptionBotsBonusPoints', 1, true)
+
+    -- Default, we don't ban all invisiblity
+    self:setOption('lodOptionBanningBanInvis', 0, true)
+
+    -- Starting level is lvl 1
+    self:setOption('lodOptionGameSpeedStartingLevel', 1, true)
+
+    -- Max level is 25
+    self:setOption('lodOptionGameSpeedMaxLevel', 25, true)
+
+    -- Don't mess with gold rate
+    self:setOption('lodOptionGameSpeedStartingGold', 0, true)
+    self:setOption('lodOptionGameSpeedGoldTickRate', 1, true)
+    self:setOption('lodOptionGameSpeedGoldModifier', 100, true)
+    self:setOption('lodOptionGameSpeedEXPModifier', 100, true)
+    self:setOption('lodOptionGameSpeedSharedEXP', 0, true)
+
+    -- Default respawn time
+    self:setOption('lodOptionGameSpeedRespawnTimePercentage', 100, true)
+    self:setOption('lodOptionGameSpeedRespawnTimeConstant', 0, true)
+
+    -- Buyback cooldown time
+
+    self:setOption('lodOptionBuybackCooldownTimeConstant', 420, true)
+
+    -- 3 Towers per lane
+    self:setOption('lodOptionGameSpeedTowersPerLane', 3, true)
+
+    -- Do not start scepter upgraded
+    self:setOption('lodOptionGameSpeedUpgradedUlts', 0, true)
+
+    -- Do not make stronger towers
+    self:setOption('lodOptionGameSpeedStrongTowers', 0, true)
+    self:setOption('lodOptionCreepPower', 0)
+
+    -- Do not increase creep power
+    self:setOption('lodOptionCreepPower', 0, true)
+
+    -- Start with a free courier
+    self:setOption('lodOptionGameSpeedFreeCourier', 1, true)
+
+    -- Set bot options
+    self:setOption('lodOptionBotsRadiant', 5, true)
+    self:setOption('lodOptionBotsDire', 5, true)
+    self:setOption('lodOptionBotsUnfairBalance', 1, true)
+
+    -- Turn easy mode off
+    --self:setOption('lodOptionCrazyEasymode', 0, true)
+
+    -- Enable hero abilities
+    self:setOption('lodOptionAdvancedHeroAbilities', 1, true)
+
+    -- Enable neutral abilities
+    self:setOption('lodOptionAdvancedNeutralAbilities', 1, true)
+
+    -- Enable Custom Abilities
+    self:setOption('lodOptionAdvancedCustomSkills', 0, true)
+
+    -- Disable OP abilities
+    self:setOption('lodOptionAdvancedOPAbilities', 1, true)
+
+    -- Unique Skills default
+    self:setOption('lodOptionBotsUniqueSkills', 1, true)
+
+    -- Restrict Skills default
+    self:setOption('lodOptionBotsRestrict', 0, true)
+
+    -- Hide enemy picks
+    self:setOption('lodOptionAdvancedHidePicks', 1, true)
+
+    -- Disable Unique Skills
+    self:setOption('lodOptionAdvancedUniqueSkills', 0, true)
+
+    -- Disable Unique Heroes
+    self:setOption('lodOptionAdvancedUniqueHeroes', 0, true)
+
+    -- Enable picking primary attr
+    self:setOption('lodOptionAdvancedSelectPrimaryAttr', 1, true)
+
+    -- Disable Fountain Camping
+    self:setOption('lodOptionCrazyNoCamping', 1, true)
+
+    -- Enable Universal Shop
+    self:setOption('lodOptionCrazyUniversalShop', 1, true)
+
+    -- Disable All Vision
+    self:setOption('lodOptionCrazyAllVision', 0, true)
+
+    -- Disable Multicast Madness
+    self:setOption('lodOptionCrazyMulticast', 0, true)
+
+    -- Disable WTF Mode
+    self:setOption('lodOptionCrazyWTF', 0, true)
+
+    -- Disable ingame hero builder
+    self:setOption('lodOptionIngameBuilder', 0, true)
+    self:setOption("lodOptionIngameBuilderPenalty", 0)
+
+    -- Enable Perks
+    self:setOption('lodOptionDisablePerks', 0, false)
+
+    -- Disable Fat-O-Meter
+    self:setOption("lodOptionCrazyFatOMeter", 0)
+
+    -- Normal speed
+    self:setOption("lodOptionGottaGoFast", 0)
+end
+
 -- Gets stats for the given player
 function Pregame:getPlayerStats(playerID)
     local playerInfo =  {
@@ -475,7 +619,7 @@ function Pregame:startBoosterDraftRound( pID )
     
     local duration = 25
     if self.finalArrays[pID] then
-        duration = 15
+        duration = 50
     end
     network:setCustomEndTimer(PlayerResource:GetPlayer(pID), Time() + duration)
     
@@ -921,7 +1065,7 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                 local status2,err2 = pcall(function()
 
                     -- Create the hero and validate it
-                    print(heroName)
+                    --print(heroName)
                     if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil then
                         UTIL_Remove(PlayerResource:GetSelectedHeroEntity(playerID))
                     end
@@ -2064,7 +2208,7 @@ function Pregame:initOptionSelector()
 
         -- Game Speed - Scepter Upgraded
         lodOptionGameSpeedUpgradedUlts = function(value)
-            return value == 0 or value == 1
+            return value == 0 or value == 1 or value == 2
         end,
 
         -- Game Speed - Stronger Towers
@@ -2216,23 +2360,19 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
-        -- Other - Teleporation
-        lodOptionSliders = function(value)
+        -- Other - Global Cast Range
+        lodOptionGlobalCast = function(value)
             return value == 0 or value == 1
         end,
 
-        -- Other - Monkey Business
-        lodOptionMonkeyBusiness = function(value)
-            return value == 0 or value == 1
+        -- Other - Extra ability
+        lodOptionExtraAbility = function(value)
+            return value == 0 or value == 1 or value == 2 or value == 3 or value == 4  or value == 5 or value == 6 or value == 7 or value == 8 or value == 9 or value == 10  or value == 11 or value == 12
         end,
 
         -- Other -- Gotta Go Fast!
         lodOptionGottaGoFast = function(value)
             return value == 0 or value == 1 or value == 2 or value == 3
-        end, 
-
-        lodOptionMemesRedux = function(value)
-            return value == 0 or value == 1
         end, 
 
         -- Other -- Ingame Builder
@@ -2260,157 +2400,13 @@ function Pregame:initOptionSelector()
             if optionValue ~= -1 then
                 -- Gamemode is copied
                 self:setOption('lodOptionCommonGamemode', optionValue, true)
-
-                -- Total slots is copied
-                self:setOption('lodOptionCommonMaxSlots', self.optionStore['lodOptionSlots'], true)
-
-                -- Max skills is always 6
-                self:setOption('lodOptionCommonMaxSkills', 6, true)
-
-                -- Max ults is copied
-                self:setOption('lodOptionCommonMaxUlts', self.optionStore['lodOptionUlts'], true)
-
-                -- Set Draft Abilities to 100
-                self:setOption('lodOptionCommonDraftAbilities', 100, true)
-
-                -- Balance Mode disabled by default
-                self:setOption('lodOptionBalanceMode', 0, true)
-
-                -- Mutators disabled by default
-                self:setOption('lodOptionDuels', 0, false)
-                self:setOption('lodOption322', 0, false)
-                self:setOption('lodOptionSliders', 0, false)
-                self:setOption('lodOptionMonkeyBusiness', 0, false)
-                self:setOption('lodOptionRefreshCooldownsOnDeath', 0, false)
-
-                -- Balance Mode Ban List disabled by default
-                self:setOption('lodOptionBanningBalanceMode', 0, true)
-                self:setOption('lodOptionBalanceMode', 0, false)
-
-                -- Set banning
-                self:setOption('lodOptionBanning', 1)
-
-                -- Block troll combos is always on
-                self:setOption('lodOptionBanningBlockTrollCombos', 1, true)
-
-                -- Bots get bonus points by default
-                --self:setOption('lodOptionBotsBonusPoints', 1, true)
-
-                -- Default, we don't ban all invisiblity
-                self:setOption('lodOptionBanningBanInvis', 0, true)
-
-                -- Starting level is lvl 1
-                self:setOption('lodOptionGameSpeedStartingLevel', 1, true)
-
-                -- Max level is 25
-                self:setOption('lodOptionGameSpeedMaxLevel', 25, true)
-
-                -- Don't mess with gold rate
-                self:setOption('lodOptionGameSpeedStartingGold', 0, true)
-                self:setOption('lodOptionGameSpeedGoldTickRate', 1, true)
-                self:setOption('lodOptionGameSpeedGoldModifier', 100, true)
-                self:setOption('lodOptionGameSpeedEXPModifier', 100, true)
-                self:setOption('lodOptionGameSpeedSharedEXP', 0, true)
-
-                -- Default respawn time
-                self:setOption('lodOptionGameSpeedRespawnTimePercentage', 100, true)
-                self:setOption('lodOptionGameSpeedRespawnTimeConstant', 0, true)
-
-                -- Buyback cooldown time
-
-                self:setOption('lodOptionBuybackCooldownTimeConstant', 420, true)
-
-                -- 3 Towers per lane
-                self:setOption('lodOptionGameSpeedTowersPerLane', 3, true)
-
-                -- Do not start scepter upgraded
-                self:setOption('lodOptionGameSpeedUpgradedUlts', 0, true)
-
-                -- Do not make stronger towers
-                self:setOption('lodOptionGameSpeedStrongTowers', 0, true)
-
-                -- Do not increase creep power
-                self:setOption('lodOptionCreepPower', 0, true)
-
-                -- Start with a free courier
-                self:setOption('lodOptionGameSpeedFreeCourier', 1, true)
-
-                -- Set bot options
-                self:setOption('lodOptionBotsRadiant', 5, true)
-                self:setOption('lodOptionBotsDire', 5, true)
-                self:setOption('lodOptionBotsUnfairBalance', 1, true)
-
-                -- Turn easy mode off
-                --self:setOption('lodOptionCrazyEasymode', 0, true)
-
-                -- Enable hero abilities
-                self:setOption('lodOptionAdvancedHeroAbilities', 1, true)
-
-                -- Enable neutral abilities
-                self:setOption('lodOptionAdvancedNeutralAbilities', 1, true)
-
-                -- Enable Custom Abilities
-                self:setOption('lodOptionAdvancedCustomSkills', 1, true)
-
-                -- Disable OP abilities
-                self:setOption('lodOptionAdvancedOPAbilities', 1, true)
-
-                -- Unique Skills default
-                self:setOption('lodOptionBotsUniqueSkills', 0, true)
-
-                -- Restrict Skills default
-                self:setOption('lodOptionBotsRestrict', 0, true)
-
-                -- Hide enemy picks
-                self:setOption('lodOptionAdvancedHidePicks', 1, true)
-
-                -- Disable Unique Skills
-                self:setOption('lodOptionAdvancedUniqueSkills', 0, true)
-
-                -- Disable Unique Heroes
-                self:setOption('lodOptionAdvancedUniqueHeroes', 0, true)
-
-                -- Enable picking primary attr
-                self:setOption('lodOptionAdvancedSelectPrimaryAttr', 1, true)
-
-                -- Disable Fountain Camping
-                self:setOption('lodOptionCrazyNoCamping', 1, true)
-
-                -- Enable Universal Shop
-                self:setOption('lodOptionCrazyUniversalShop', 1, true)
-
-                -- Disable All Vision
-                self:setOption('lodOptionCrazyAllVision', 0, true)
-
-                -- Disable Multicast Madness
-                self:setOption('lodOptionCrazyMulticast', 0, true)
-
-                -- Disable WTF Mode
-                self:setOption('lodOptionCrazyWTF', 0, true)
-
-                -- Disable ingame hero builder
-                self:setOption('lodOptionIngameBuilder', 0, true)
-                self:setOption("lodOptionIngameBuilderPenalty", 0)
-
-                -- Enable Perks
-                self:setOption('lodOptionDisablePerks', 0, false)
-
-                -- Disable Fat-O-Meter
-                self:setOption("lodOptionCrazyFatOMeter", 0)
-
-                -- Normal speed
-                self:setOption("lodOptionGottaGoFast", 0)
-
-                -- NO MEMES UncleNox
-                self:setOption("lodOptionMemesRedux", 0)
-
+              
                 -- Balanced All Pick Mode
                 if optionValue == 1 then
                     self:setOption('lodOptionBanningHostBanning', 0, true)
                     self:setOption('lodOptionBanningBalanceMode', 1, true)
                     self:setOption('lodOptionAdvancedOPAbilities', 0, true)
                     self:setOption('lodOptionBanningBlockTrollCombos', 1, true)
-                    --self:setOption('lodOptionBotsBonusPoints', 1, true)
                     self:setOption('lodOptionBalanceMode', 1, true)
                 end
 
@@ -2421,42 +2417,40 @@ function Pregame:initOptionSelector()
                     self:setOption('lodOptionBanningBalanceMode', 0, true)
                     self:setOption('lodOptionAdvancedOPAbilities', 1, true)
                     self:setOption('lodOptionBalanceMode', 0, true)
-
-                    -- Turn easy mode on
-                    --self:setOption('lodOptionCrazyEasymode', 1, true)
                 end
 
                 -- Mirror Draft Pick Mode
                 if optionValue == 3 then
                     self:setOption('lodOptionBanningBalanceMode', 0, true)
+                    self:setOption('lodOptionAdvancedOPAbilities', 0, true)
+                    self:setOption('lodOptionBalanceMode', 0, true)
+                end
+
+                -- All Random Pick Mode
+                if optionValue == 4 then
+                    self:setOption('lodOptionBanningBalanceMode', 0, true)
+                    self:setOption('lodOptionAdvancedOPAbilities', 0, true)
                     self:setOption('lodOptionBalanceMode', 0, true)
                 end
 
                 -- Single Draft Pick Mode
                 if optionValue == 5 then
-                    self:setOption('lodOptionAdvancedOPAbilities', 0, true)
                     self:setOption('lodOptionBanningBalanceMode', 0, true)
-                    self:setOption('lodOptionBalanceMode', 0, true)
-                end
-
-                -- Single Draft Pick Mode
-                if optionValue == 5 then
                     self:setOption('lodOptionAdvancedOPAbilities', 0, true)
-                    self:setOption('lodOptionBanningBalanceMode', 0, true)
                     self:setOption('lodOptionBalanceMode', 0, true)
                 end
 
                 -- Booster Draft Pick Mode
                 if optionValue == 6 then
-                    self:setOption('lodOptionCommonGamemode', 6, true)
-                    self:setOption('lodOptionAdvancedOPAbilities', 0, true)
                     self:setOption('lodOptionBanningBalanceMode', 0, true)
+                    self:setOption('lodOptionAdvancedOPAbilities', 0, true)
                     self:setOption('lodOptionBalanceMode', 0, true)
                     self:setOption('lodOptionBotsUniqueSkills', 2, true)
                     self:setOption('lodOptionDraftAbilities', 47, false)
                 end
             else
-                self:setOption('lodOptionCommonGamemode', 1)
+                self:loadDefaultSettings()
+                self:setOption('lodOptionCommonGamemode', 1)               
             end
         end,
 
@@ -3063,7 +3057,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('respawnModifierPercentage', this.optionStore['lodOptionGameSpeedRespawnTimePercentage'])
         OptionManager:SetOption('respawnModifierConstant', this.optionStore['lodOptionGameSpeedRespawnTimeConstant'])
         OptionManager:SetOption('buybackCooldownConstant', this.optionStore['lodOptionBuybackCooldownTimeConstant'])
-        OptionManager:SetOption('freeScepter', this.optionStore['lodOptionGameSpeedUpgradedUlts'] == 1)
+        OptionManager:SetOption('freeScepter', this.optionStore['lodOptionGameSpeedUpgradedUlts'])
         OptionManager:SetOption('freeCourier', this.optionStore['lodOptionGameSpeedFreeCourier'] == 1)
         OptionManager:SetOption('strongTowers', this.optionStore['lodOptionGameSpeedStrongTowers'] == 1)
         OptionManager:SetOption('towerCount', this.optionStore['lodOptionGameSpeedTowersPerLane'])
@@ -3073,11 +3067,10 @@ function Pregame:processOptions()
         --OptionManager:SetOption('botBonusPoints', this.optionStore['lodOptionBotsBonusPoints'] == 1)
         OptionManager:SetOption('ingameBuilderPenalty', this.optionStore['lodOptionIngameBuilderPenalty'])
         OptionManager:SetOption('322', this.optionStore['lodOption322'])
-        OptionManager:SetOption('sliders', this.optionStore['lodOptionSliders'])
-        OptionManager:SetOption('monkeyBusiness', this.optionStore['lodOptionMonkeyBusiness'])
+        OptionManager:SetOption('extraAbility', this.optionStore['lodOptionExtraAbility'])
+        OptionManager:SetOption('globalCastRange', this.optionStore['lodOptionGlobalCast'])
         OptionManager:SetOption('refreshCooldownsOnDeath', this.optionStore['lodOptionRefreshCooldownsOnDeath'])
         OptionManager:SetOption('gottaGoFast', this.optionStore['lodOptionGottaGoFast'])
-        OptionManager:SetOption('memesRedux', this.optionStore['lodOptionMemesRedux'])
 
         -- Enforce max level
         if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -3173,6 +3166,44 @@ function Pregame:processOptions()
             end
         end
 
+        
+        -- All extra ability mutator stuff
+        if this.optionStore['lodOptionExtraAbility'] == 1 then
+            this:banAbility("gemini_unstable_rift")
+        elseif this.optionStore['lodOptionExtraAbility'] == 2 then
+            this:banAbility("imba_dazzle_shallow_grave")
+        elseif this.optionStore['lodOptionExtraAbility'] == 3 then
+            this:banAbility("imba_tower_forest")
+        elseif this.optionStore['lodOptionExtraAbility'] == 4 then
+            this:banAbility("ebf_rubick_arcane_echo")
+            this:banAbility("ebf_rubick_arcane_echo_OP")
+        elseif this.optionStore['lodOptionExtraAbility'] == 6 then
+            this:banAbility("ursa_fury_swipes")
+            this:banAbility("ursa_fury_swipes_lod")
+        elseif this.optionStore['lodOptionExtraAbility'] == 7 then
+            this:banAbility("spirit_breaker_greater_bash")
+        elseif this.optionStore['lodOptionExtraAbility'] == 8 then
+            this:banAbility("death_prophet_witchcraft")
+        elseif this.optionStore['lodOptionExtraAbility'] == 9 then
+            this:banAbility("sniper_take_aim")
+        elseif this.optionStore['lodOptionExtraAbility'] == 10 then
+            this:banAbility("aether_range_lod")
+            this:banAbility("aether_range_lod_op")
+        elseif this.optionStore['lodOptionExtraAbility'] == 11 then
+            this:banAbility("alchemist_goblins_greed")
+        elseif this.optionStore['lodOptionExtraAbility'] == 12 then
+            this:banAbility("angel_arena_nether_ritual")
+        end
+
+        -- If Global Cast Range is enabled, disable certain abilities that are troublesome with global cast range
+        if this.optionStore['lodOptionGlobalCast'] == 1 then
+            this:banAbility("aether_range_lod")
+            this:banAbility("aether_range_lod_OP")
+            this:banAbility("pudge_meat_hook")
+            this:banAbility("earthshaker_fissure")
+        end
+
+        
         -- Enable Universal Shop
         if this.optionStore['lodOptionCrazyUniversalShop'] == 1 then
             GameRules:SetUseUniversalShopMode(true)
@@ -3220,7 +3251,7 @@ function Pregame:processOptions()
                     ['Advanced: Start With Free Courier'] = this.optionStore['lodOptionGameSpeedFreeCourier'],
                     ['Advanced: Unique Heroes'] = this.optionStore['lodOptionAdvancedUniqueHeroes'],
                     ['Advanced: Unique Skills'] = this.optionStore['lodOptionAdvancedUniqueSkills'],
-                    ['Bans: Balance Mode Banning'] = this.optionStore['lodOptionBanningBalanceMode'],
+                    ['Bans: Points Mode Banning'] = this.optionStore['lodOptionBanningBalanceMode'],
                     ['Bans: Block Invis Abilities'] = this.optionStore['lodOptionBanningBanInvis'],
                     ['Bans: Block OP Abilities'] = this.optionStore['lodOptionAdvancedOPAbilities'],
                     ['Bans: Block Troll Combos'] = this.optionStore['lodOptionBanningBlockTrollCombos'],
@@ -3241,7 +3272,7 @@ function Pregame:processOptions()
                     ['Game Speed: Start With Upgraded Ults'] = this.optionStore['lodOptionGameSpeedUpgradedUlts'],
                     ['Game Speed: Starting Level'] = this.optionStore['lodOptionGameSpeedStartingLevel'],
                     ['Game Speed: XP Modifier'] = math.floor(this.optionStore['lodOptionGameSpeedEXPModifier']),
-                    ['Gamemode: Balance Mode'] = this.optionStore['lodOptionBalanceMode'],
+                    ['Gamemode: Points Mode'] = this.optionStore['lodOptionBalanceMode'],
                     ['Gamemode: Duels'] = this.optionStore['lodOptionDuels'],
                     ['Gamemode: Gamemode'] = this.optionStore['lodOptionCommonGamemode'],
                     ['Gamemode: Max Skills'] = this.optionStore['lodOptionCommonMaxSkills'],
@@ -3256,8 +3287,8 @@ function Pregame:processOptions()
                     ['Other: Fat-O-Meter'] = this.optionStore['lodOptionCrazyFatOMeter'],
                     ['Other: Stop Fountain Camping'] = this.optionStore['lodOptionCrazyNoCamping'],
                     ['Other: 322'] = this.optionStore['lodOption322'],
-                    ['Other: Free Teleport Ability'] = this.optionStore['lodOptionSliders'],
-                    ['Other: Monkey Business'] = this.optionStore['lodOptionMonkeyBusiness'],
+                    ['Other: Free Extra Ability'] = this.optionStore['lodOptionExtraAbility'],
+                    ['Other: Global Cast Range'] = this.optionStore['lodOptionGlobalCast'],
                     ['Other: Refresh Cooldowns On Death'] = this.optionStore['lodOptionRefreshCooldownsOnDeath'],
                     ['Other: Gotta Go Fast!'] = this.optionStore['lodOptionGottaGoFast'],
                     ['Towers: Enable Stronger Towers'] = this.optionStore['lodOptionGameSpeedStrongTowers'],
@@ -5881,10 +5912,10 @@ function Pregame:fixSpawningIssues()
                        if perk then perk:SetLevel(1) end
                        spawnedUnit:AddNewModifier(spawnedUnit, perk, perkModifier, {})
                        spawnedUnit.hasPerk = true
-                       print("Perk assigned")
+                       --print("Perk assigned")
                     end
                 end, DoUniqueString('addPerk'), 1.0)
-
+                
                 -- Add talents
                 Timers:CreateTimer(function()
                     --print(self.perksDisabled)
@@ -5929,15 +5960,15 @@ function Pregame:fixSpawningIssues()
                         spawnedUnit.hasTalent = true
                     end
 
-                    for i = 0, spawnedUnit:GetAbilityCount() do
-                        if spawnedUnit:GetAbilityByIndex(i) then
+                    --for i = 0, spawnedUnit:GetAbilityCount() do
+                   --     if spawnedUnit:GetAbilityByIndex(i) then
                             --print("removed") 
-                            local ability = spawnedUnit:GetAbilityByIndex(i)
-                            if ability then
-                                --print("Ability " .. i .. ": " .. ability:GetAbilityName() .. ", Level " .. ability:GetLevel())
-                            end
-                        end
-                    end
+                      --      local ability = spawnedUnit:GetAbilityByIndex(i)
+                         --   if ability then
+                             --   print("Ability " .. i .. ": " .. ability:GetAbilityName() .. ", Level " .. ability:GetLevel())
+                          --  end
+                       -- end
+                    --end
                 end, DoUniqueString('addTalents'), 1.5)
                 
 
@@ -5986,38 +6017,145 @@ function Pregame:fixSpawningIssues()
                 --handleFreeCourier(spawnedUnit)
 
                 -- Handle free scepter stuff, Gyro will not benefit
-                if OptionManager:GetOption('freeScepter') then
-                    if spawnedUnit:GetUnitName() ~= "npc_dota_hero_gyrocopter" and spawnedUnit:GetUnitName() ~= "npc_dota_hero_night_stalker" and spawnedUnit:GetUnitName() ~= "npc_dota_hero_keeper_of_the_light"  then
-                        spawnedUnit:AddNewModifier(spawnedUnit, nil, 'modifier_item_ultimate_scepter_consumed', {
-                            bonus_all_stats = 0,
-                            bonus_health = 0,
-                            bonus_mana = 0
-                        })
-                    end
+                if OptionManager:GetOption('freeScepter') ~= 0 then
+                    -- If setting is 1, everyone gets free scepter modifier, if its 2, only human players get the upgrade
+                    if OptionManager:GetOption('freeScepter') == 1 or (OptionManager:GetOption('freeScepter') == 2 and not util:isPlayerBot(playerID))  then
+                        if spawnedUnit:GetUnitName() ~= "npc_dota_hero_gyrocopter" and spawnedUnit:GetUnitName() ~= "npc_dota_hero_night_stalker" and spawnedUnit:GetUnitName() ~= "npc_dota_hero_keeper_of_the_light"  then
+                            spawnedUnit:AddNewModifier(spawnedUnit, nil, 'modifier_item_ultimate_scepter_consumed', {
+                                bonus_all_stats = 0,
+                                bonus_health = 0,
+                                bonus_mana = 0
+                            })
+                        end
+                     end
                 end
 
-                -- Give all non-bot heros the a free unstable rift ability, it has one level and is upgraded from start
-                Timers:CreateTimer(function()                   
-                    if OptionManager:GetOption('sliders') > 0 then
-                        if not util:isPlayerBot(playerID) then
-                            local riftAbility = spawnedUnit:AddAbility("gemini_unstable_rift_one")
-                            riftAbility:UpgradeAbility(true)
-                        end
-                    end
-                 end, DoUniqueString('addRift'), .5)
+                -- Give out the global cast range ability
+                if OptionManager:GetOption('globalCastRange') == 1 then
+                    Timers:CreateTimer(function()
+                            if IsValidEntity(spawnedUnit) then
+                                -- If hero is not earthshaker or pudge, give ability, or if the hero is not a bot, give the ability.
+                                if util:isPlayerBot(playerID) == false then
+                                    local globalCastRangeAbility = spawnedUnit:AddAbility("aether_range_lod_global")
+                                    globalCastRangeAbility:UpgradeAbility(true)
+                                elseif spawnedUnit:GetUnitName() ~= "npc_dota_hero_earthshaker" and spawnedUnit:GetUnitName() ~= "npc_dota_hero_pudge" then
+                                    local globalCastRangeAbility = spawnedUnit:AddAbility("aether_range_lod_global")
+                                    globalCastRangeAbility:UpgradeAbility(true)
+                                end
+                            end
+                        end, DoUniqueString('giveGlobalCastRange'), 1)
+                end
 
-                -- Give all non-bot heros the a free Mischief ability, it has one level and is upgraded from start
-                Timers:CreateTimer(function()    
-                    if OptionManager:GetOption('monkeyBusiness') > 0 then
-                        print(OptionManager:GetOption('monkeyBusiness'))
-                        if not util:isPlayerBot(playerID) then
-                            local mischieftAbility = spawnedUnit:AddAbility("monkey_king_mischief")
-                            mischieftAbility:UpgradeAbility(true)
-                            local mischieftAbility2 = spawnedUnit:AddAbility("monkey_king_untransform")
-                            mischieftAbility2:UpgradeAbility(true)
+                -- Give out the free extra abilities
+                if OptionManager:GetOption('extraAbility') > 0 then
+                    Timers:CreateTimer(function()                   
+                        if OptionManager:GetOption('extraAbility') == 1 then
+                            if not util:isPlayerBot(playerID) then
+                                local extraAbility = spawnedUnit:AddAbility("gemini_unstable_rift_one")
+                                extraAbility:UpgradeAbility(true)
+                            end
+                        elseif OptionManager:GetOption('extraAbility') == 2 then
+                            local extraAbility = spawnedUnit:AddAbility("imba_dazzle_shallow_grave_one")
+                            extraAbility:UpgradeAbility(true)
+                        elseif OptionManager:GetOption('extraAbility') == 3 then
+                            local extraAbility = spawnedUnit:AddAbility("imba_tower_forest_one")
+                            extraAbility:UpgradeAbility(true)
+                        elseif OptionManager:GetOption('extraAbility') == 4 then
+                            local extraAbility = spawnedUnit:AddAbility("ebf_rubick_arcane_echo_one")
+                            extraAbility:UpgradeAbility(true)
+                        elseif OptionManager:GetOption('extraAbility') == 5 then
+                            local random = RandomInt(1,7)  
+                            local givenAbility = false
+                            -- Randomly choose which flesh heap to give them
+                            if random == 1 and not spawnedUnit:HasAbility('pudge_flesh_heap')  then
+                                local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap")
+                                extraAbility:SetLevel(4)
+                                givenAbility = true
+                            elseif random == 2 and not spawnedUnit:HasAbility('pudge_flesh_heap_int') then
+                                local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_int")
+                                extraAbility:SetLevel(4)
+                                givenAbility = true
+                            elseif random == 3 and not spawnedUnit:HasAbility('pudge_flesh_heap_agility') then
+                                local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_agility")
+                                extraAbility:SetLevel(4)
+                                givenAbility = true
+                            elseif random == 4 and not spawnedUnit:HasAbility('pudge_flesh_heap_move_speed') then
+                                local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_move_speed")
+                                extraAbility:SetLevel(4)
+                                givenAbility = true
+                            elseif random == 5 and not spawnedUnit:HasAbility('pudge_flesh_heap_spell_amp') then
+                                local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_spell_amp")
+                                extraAbility:SetLevel(4)
+                                givenAbility = true
+                            elseif random == 6 and not spawnedUnit:HasAbility('pudge_flesh_heap_attack_range') then
+                                local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_attack_range")
+                                extraAbility:SetLevel(4)
+                                givenAbility = true
+                            elseif random == 7 and not spawnedUnit:HasAbility('pudge_flesh_heap_bonus_vision') then
+                                local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_bonus_vision")
+                                extraAbility:SetLevel(4)
+                                givenAbility = true
+                            end
+                            -- If they randomly picked a flesh heap they already had, go through this list and try to give them one until they get one
+                            if not givenAbility then
+                                if not spawnedUnit:HasAbility('pudge_flesh_heap') then
+                                    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap")
+                                    extraAbility:SetLevel(4)
+                                    givenAbility = true
+                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_int') and givenAbility == false then
+                                    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_int")
+                                    extraAbility:SetLevel(4)
+                                    givenAbility = true
+                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_agility') and givenAbility == false then
+                                    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_agility")
+                                    extraAbility:SetLevel(4)
+                                    givenAbility = true
+                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_move_speed') and givenAbility == false then
+                                    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_move_speed")
+                                    extraAbility:SetLevel(4)
+                                    givenAbility = true
+                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_spell_amp') and givenAbility == false then
+                                    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_spell_amp")
+                                    extraAbility:SetLevel(4)
+                                    givenAbility = true
+                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_attack_range') and givenAbility == false then
+                                    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_attack_range")
+                                    extraAbility:SetLevel(4)
+                                    givenAbility = true
+                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_bonus_vision') and givenAbility == false then
+                                    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_bonus_vision")
+                                    extraAbility:SetLevel(4)
+                                    givenAbility = true
+                                end
+                            end
+                        elseif OptionManager:GetOption('extraAbility') == 6 then
+                            local extraAbility = spawnedUnit:AddAbility("ursa_fury_swipes")
+                            extraAbility:SetLevel(4)
+                        elseif OptionManager:GetOption('extraAbility') == 7 then
+                            local extraAbility = spawnedUnit:AddAbility("spirit_breaker_greater_bash")
+                            extraAbility:SetLevel(4)
+                        elseif OptionManager:GetOption('extraAbility') == 8 then
+                            local extraAbility = spawnedUnit:AddAbility("death_prophet_witchcraft")
+                            extraAbility:SetLevel(4)
+                        elseif OptionManager:GetOption('extraAbility') == 9 then
+                            local extraAbility = spawnedUnit:AddAbility("sniper_take_aim")
+                            extraAbility:SetLevel(4)
+                        elseif OptionManager:GetOption('extraAbility') == 10 then
+                            --If global cast range mutator is on, dont added this ability as it overrides it
+                            if OptionManager:GetOption('globalCastRange') == 0 then
+                                local extraAbility = spawnedUnit:AddAbility("aether_range_lod")
+                                extraAbility:SetLevel(4)
+                            end
+                        elseif OptionManager:GetOption('extraAbility') == 11 then
+                            local extraAbility = spawnedUnit:AddAbility("alchemist_goblins_greed")
+                            extraAbility:SetLevel(4)
+                        elseif OptionManager:GetOption('extraAbility') == 12 then
+                            local extraAbility = spawnedUnit:AddAbility("angel_arena_nether_ritual")
+                            extraAbility:SetLevel(3)
                         end
-                    end
-                end, DoUniqueString('addMischief'), .5)
+
+                    end, DoUniqueString('addExtra'), RandomInt(1,3) )
+                end
 
                if OptionManager:GetOption('freeCourier') then
                     local team = spawnedUnit:GetTeam()
@@ -6106,7 +6244,9 @@ local _instance = Pregame()
 ListenToGameEvent('game_rules_state_change', function(keys)
     local newState = GameRules:State_Get()
     if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-        SU:SendPlayerBuild( buildBackups )
+        if IsDedicatedServer() then
+          SU:SendPlayerBuild( buildBackups )
+        end
 
         WAVE = 0
 

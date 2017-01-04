@@ -131,7 +131,7 @@ function modifier_flesh_heap_int:OnDeath(keys)
     return 
   end
 
-  if not keys.unit:IsRealHero() or keys.attacker ~= self:GetParent() then
+  if not keys.unit:IsRealHero() then
     return 
   end
 
@@ -143,7 +143,7 @@ function modifier_flesh_heap_int:OnDeath(keys)
   local hVictim = keys.unit
 
 
-  if keys.unit:GetTeamNumber() ~= keys.attacker:GetTeamNumber() then
+  if self:GetCaster():GetTeamNumber() ~= hVictim:GetTeamNumber() and self:GetCaster():GetTeamNumber() == hKiller:GetTeamNumber() then
     self.fleshHeapRange = self:GetAbility():GetSpecialValueFor( "flesh_heap_range")
     local vToCaster = self:GetCaster():GetOrigin() - hVictim:GetOrigin()
     local flDistance = vToCaster:Length2D() - (self:GetCaster():GetCollisionPadding() + hVictim:GetCollisionPadding())

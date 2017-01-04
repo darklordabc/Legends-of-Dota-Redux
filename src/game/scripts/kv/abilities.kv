@@ -10,8 +10,8 @@
             "slark_essence_shift_agility_lod"            "1"
             "ursa_fury_swipes_lod"              "1"
             "ursa_enrage_old"                  "1"
-            "pudge_flesh_heap_str"            "1"
-            "pudge_flesh_heap_agi"            "1"
+            "pudge_flesh_heap"            "1"
+            "pudge_flesh_heap_agility"            "1"
             "pudge_flesh_heap_int"            "1"
              "pudge_flesh_heap_move_speed"     "1"
             "pudge_flesh_heap_spell_amp"       "1"
@@ -64,6 +64,7 @@
             "bloodseeker_bloodrage"            "1"
             "bloodseeker_rupture"            "1"
             "bloodseeker_thirst_lod"            "1"
+            "bloodseeker_blood_bath2"           "1"
             "bounty_hunter_jinada"            "1"
             "bounty_hunter_shuriken_toss"            "1"
             "bounty_hunter_track"            "1"
@@ -250,9 +251,8 @@
             "monkey_king_boundless_strike"  "1"
             "monkey_king_tree_dance"  "1"
             "monkey_king_primal_spring"  "1"
-            "monkey_king_jingu_mastery"  "1"
+            "monkey_king_jingu_mastery_lod"  "1"
             "monkey_king_mischief"  "1"
-            "monkey_king_wukongs_command"  "1"
             "morphling_adaptive_strike"            "1"
             "morphling_morph_agi"            "1"
             "morphling_morph_str"            "1"
@@ -408,7 +408,7 @@
             "terrorblade_reflection"            "1"
             "terrorblade_sunder"            "1"
             "tidehunter_anchor_smash"            "1"
-            "tidehunter_gush"            "1"
+            "tidehunter_gush"            "1"   
             "tidehunter_kraken_shell"            "1"
             "tidehunter_ravage"            "1"
             "tinker_heat_seeking_missile"            "1"
@@ -485,7 +485,7 @@
             "shadow_demon_demonic_purge"            "1"
             "shredder_chakram_2"            "1"
             "earth_spirit_petrify"            "1"
-            //"earth_spirit_stone_caller"            "1"
+            "earth_spirit_stone_caller"            "1"
             "winter_wyvern_arctic_burn"            "1"
             "winter_wyvern_splinter_blast"            "1"
             "winter_wyvern_cold_embrace"            "1"
@@ -584,13 +584,18 @@
             "roshan_group" {
                 "roshan_slam"                "1"
                 "roshan_spell_block"                "1"
-                "roshan_spell_block_lod"                "1"
+                //"roshan_spell_block_lod"                "1"
                 "roshan_bash"                "1"
+            }
+            "prowler_group" {
+                "spawnlord_aura"                "1"
+                "spawnlord_master_stomp"                "1"
+                "spawnlord_master_freeze"                "1"
             }
             "warlock_group" {
                 "warlock_golem_flaming_fists"                "1"
                 "warlock_golem_permanent_immolation"                "1"
-                        "warlock_golem_permanent_immolation_lod"        "1"
+                "warlock_golem_permanent_immolation_lod"        "1"
             }
             "misc_neutral_1_group" {
                 "forest_troll_high_priest_heal"                "1"
@@ -637,14 +642,14 @@
                 "force_dash_lod"                "1"
                 "shards_of_truesight_lod"                "1"
             }
-            "random_abilities" {
-                "true_random_lod_1"    "1"
-                "true_random_lod_2"    "1"
-                "true_random_lod_3"    "1"
-                "true_random_lod_4"    "1"
-                "true_random_lod_5"    "1"
-                "true_random_lod_6"    "1"
-            }
+           //  "random_abilities" {
+           //     "true_random_lod_1"    "1"
+           //     "true_random_lod_2"    "1"
+           //     "true_random_lod_3"    "1"
+           //     "true_random_lod_4"    "1"
+           //     "true_random_lod_5"    "1"
+           //     "true_random_lod_6"    "1"
+           // }
             "cherub_abilities" {
                 "cherub_sleep_cloud"      "1"
                 "cherub_synthesis"      "1"
@@ -734,7 +739,7 @@
                   "illusionist_mastery_of_illusions"  "1"
             }
             "retro_dota" {
-                  "invoker_retro_betrayal"      "1"
+            //      "invoker_retro_betrayal"      "1"
                   "invoker_retro_portal"      "1"
                   "invoker_retro_scout"      "1"      
                   "invoker_retro_invisibility_aura"      "1"      
@@ -742,39 +747,44 @@
                   "invoker_retro_disarm"      "1"
                   "invoker_retro_deafening_blast"      "1"                    
             }                 
-            "imba_towers" {
+            "imba_towers_weak" {
+                "titan_command_aura"    "1"            
+                "bahamut_reckoning_aura"  "1"
                 "imba_tower_aegis"   "1"
-                "imba_tower_atrophy"   "1"
-                "imba_tower_berserk"   "1"
-                "imba_tower_chrono"   "1"
-                "imba_tower_disease"   "1"                               
+                "imba_tower_atrophy"   "1"                                                       
                 "imba_tower_force"   "1"
                 "imba_tower_forest"   "1"
-                "imba_tower_hex_aura"   "1"
-                "imba_tower_laser"   "1"
                 "imba_tower_mana_burn"   "1"
                 "imba_tower_mana_flare"   "1"
-                "imba_tower_mindblast"   "1"
-                "imba_tower_nature"   "1"
+                "imba_tower_mindblast"   "1"             
                 "imba_tower_permabash"   "1"
-                "imba_tower_plague"   "1"
-                "imba_tower_reality"   "1"               
+                "imba_tower_plague"   "1"            
                 "imba_tower_self_repair"   "1"                
                 "imba_tower_spacecow"   "1"     
-                "imba_tower_thorns"   "1"
-                "imba_tower_vicious"   "1"
+                "imba_tower_thorns"   "1"                              
+            }
+            "imba_towers_medium" {
+                  "imba_tower_berserk"   "1"  
+                  "imba_tower_spell_shield"   "1"
+                  "imba_tower_hex_aura"   "1"
+                  "imba_tower_vicious"   "1"
+                  "imba_tower_nature"   "1"
+                  "imba_tower_chrono"   "1"
+                  "summoner_tesla_coil"   "1"
+                  "lich_cold_aura"    "1"
+                  "imba_tower_laser"   "1"
+                  "imba_tower_disease"   "1"  
             }
             "imba_towers_strong" {
                   "imba_tower_multihit"   "1"
                   "imba_tower_sniper"   "1"
                   "imba_tower_grievous_wounds"   "1"
-                  "imba_tower_spell_shield"   "1"
                   "imba_tower_essence_drain"   "1"
                   "imba_tower_machinegun"   "1"
                   "imba_tower_salvo"   "1"
                   "imba_tower_fervor"   "1"
                   "imba_tower_split"   "1"
-            }
+            }         
             "imba" {
                   "imba_dazzle_shallow_grave" "1"
                   "imba_omniknight_degen_aura"  "1"
@@ -813,7 +823,7 @@
                   "ebf_rubick_arcane_echo_OP"   "1"
                   "octarine_vampirism_lod_OP"   "1"
                   "aether_range_lod_OP"   "1"
-                  "linkens_guard_lod"     "1"
+                  //"linkens_guard_lod"     "1"
                   "lord_of_lightning_holy_wrath_OP"   "1"
                   "angel_arena_razor_power_OP"  "1"
                   "angel_arena_nether_ritual"   "1"
@@ -850,6 +860,7 @@
             "Ability2"            "bloodseeker_blood_bath"
             "Ability3"            "bloodseeker_thirst_lod"
             "Ability4"            "bloodseeker_bloodrage"
+            "Ability5"            "bloodseeker_blood_bath2"
         }
         "npc_dota_hero_ogre_magi" {
             "Ability1"            "ogre_magi_bloodlust"
@@ -957,9 +968,9 @@
         "npc_dota_hero_pudge" {
             "Ability1"            "pudge_meat_hook"
             "Ability2"            "pudge_rot"
-            "Ability3"            "pudge_flesh_heap_str"
+            "Ability3"            "pudge_flesh_heap"
             "Ability4"            "pudge_flesh_heap_int"
-            "Ability5"            "pudge_flesh_heap_agi"
+            "Ability5"            "pudge_flesh_heap_agility"
             "Ability6"            "pudge_dismember"
             "Ability7"            "pudge_flesh_heap_move_speed"
             "Ability8"            "pudge_flesh_heap_spell_amp"
@@ -1041,9 +1052,16 @@
             "Ability2"	"undying_soul_rip"
             "Ability3"	"undying_tombstone"
             "Ability4" 	"undying_flesh_golem"
-            "Ability5" "undying_tombstone_zombie_deathstrike"
-			"Ability6" "undying_decay_agi"
-			"Ability7" "undying_decay_int"
+		"Ability5" "undying_decay_agi"
+		"Ability6" "undying_decay_int"
+        }
+        "npc_dota_hero_monkey_king"
+        {
+            "Ability1" "monkey_king_boundless_strike"
+            "Ability2"  "monkey_king_tree_dance"
+            "Ability3"  "monkey_king_primal_spring"
+            "Ability4"  "monkey_king_jingu_mastery_lod"
+            "Ability5" "monkey_king_mischief"
         }
     }
 }

@@ -35,8 +35,11 @@ function modifier_npc_dota_hero_sniper_perk:OnCreated(keys)
         local caster = self:GetCaster()
 
         if caster:HasAbility("sniper_shrapnel") and PlayerResource:GetSteamAccountID(caster:GetPlayerOwnerID()) > 0 then
-	        self.grave = caster:AddAbility("sniper_shrapnel_perk")
-	        caster:SwapAbilities("sniper_shrapnel","sniper_shrapnel_perk",false,true)
+        	local shrapnel = caster:FindAbilityByName("sniper_shrapnel")
+        	if not shrapnel:IsHidden() then
+		        self.grave = caster:AddAbility("sniper_shrapnel_perk")
+		        caster:SwapAbilities("sniper_shrapnel","sniper_shrapnel_perk",false,true)
+	    	end
         end
     end
 end

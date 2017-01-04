@@ -1,15 +1,15 @@
-pudge_flesh_heap_agi = class({})
+pudge_flesh_heap_agility = class({})
 
-LinkLuaModifier( "modifier_flesh_heap_agi", "abilities/pudge_flesh_heap_agi.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_flesh_heap_agi", "abilities/pudge_flesh_heap_agility.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 
-function pudge_flesh_heap_agi:GetagirinsicModifierName()
+function pudge_flesh_heap_agility:GetIntrinsicModifierName()
   return "modifier_flesh_heap_agi"
 end
 
 --------------------------------------------------------------------------------
 
---[[function pudge_flesh_heap_agi:OnHeroDiedNearby( hVictim, hKiller, kv )
+--[[function pudge_flesh_heap_int:OnHeroDiedNearby( hVictim, hKiller, kv )
   if hVictim == nil or hKiller == nil then
     return  
   end
@@ -131,7 +131,7 @@ function modifier_flesh_heap_agi:OnDeath(keys)
     return 
   end
 
-  if not keys.unit:IsRealHero() or keys.attacker ~= self:GetParent() then
+  if not keys.unit:IsRealHero() then
     return 
   end
 
@@ -143,7 +143,7 @@ function modifier_flesh_heap_agi:OnDeath(keys)
   local hVictim = keys.unit
 
 
-  if keys.unit:GetTeamNumber() ~= keys.attacker:GetTeamNumber() then
+  if self:GetCaster():GetTeamNumber() ~= hVictim:GetTeamNumber() and self:GetCaster():GetTeamNumber() == hKiller:GetTeamNumber() then
     self.fleshHeapRange = self:GetAbility():GetSpecialValueFor( "flesh_heap_range")
     local vToCaster = self:GetCaster():GetOrigin() - hVictim:GetOrigin()
     local flDistance = vToCaster:Length2D() - (self:GetCaster():GetCollisionPadding() + hVictim:GetCollisionPadding())
@@ -171,5 +171,5 @@ end
 
 
 function modifier_flesh_heap_agi:GetModifierBonusStats_Agility()
-  return self:GetStackCount() * self:GetAbility():GetSpecialValueFor( "flesh_heap_agility_buff_amount" )
+  return self:GetStackCount() * self.flesh_heap_agi_buff_amount
 end

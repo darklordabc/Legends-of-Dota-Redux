@@ -72,6 +72,7 @@
     "importAndExport_apply"                         "Apply"
     "importAndExport_save"                          "Save"
     "importAndExport_load"                          "Load"
+    "bansImportAndExport_tooltip"                   "Use Save to store your current bans to local storage. Use Load to load your bans. Loading bans is limited to the amount of bans you are allowed, unless your the Host and using Host Bans, in which case you have unlimited bans."
     "importAndExport_tooltip"                       "Use the Save button to save current settings to the cloud. Press load to retrieve them in future games."
     "importAndExport_empty"                         "Please enter settings code"
     "importAndExport_error"                         "An error occured during parsing"
@@ -80,8 +81,8 @@
     "importAndExport_no_changes"                    "No changes detected!"
 
     // Booster Draft tips
-    "boosterDraftTip1"                              "Every player gets set of abilities called \'booster\'. Once player picked some ability remaining abilities goes to next player. There are 10 round which means that you will draft 10 abilities and will be able to build your hero from that pool. If round ends and you have no selected ability then most powerful one will be autopicked."
-    "lodBoosterDraftMessage"                        "Every player gets set of abilities called <font color='#70EA72'>booster</font>. Once player picked some ability remaining abilities goes to next player. There are 10 round which means that you will draft 10 abilities and will be able to build your hero from that pool. If round ends and you have no selected ability then most powerful one will be autopicked."
+    "boosterDraftTip1"                              "At the start of booster draft, each player gets a pack of random abilities and picks a single ability.<br><br>Then everyone passes the rest of their pack to the next player, each player then picks a ability from the pack they just received before passing again.<br><br>This process continues until all players have drafted 10 abilities. Then each player creates a hero build from the pool of 10 abilities they picked.<br><br>If a player fails to pick an ability in the limited time they will be given the most powerful ability (as determined by points mode's costs)"
+    "lodBoosterDraftMessage"                        "At the start of booster draft, each player gets a pack of random abilities and picks a single ability.<br><br>Then everyone passes the rest of their pack to the next player, each player then picks a ability from the pack they just received before passing again.<br><br>This process continues until all players have drafted 10 abilities. Then each player creates a hero build from the pool of 10 abilities they picked.<br><br>If a player fails to pick an ability in the limited time they will be given the most powerful ability (as determined by points mode's costs)"
 
     // Categories for option selection
     "filter_by_category"                            "Filter by category:"
@@ -101,6 +102,7 @@
 
     "lodOptionYes"                                  "Yes"
     "lodOptionNo"                                   "No"
+    "lodOptionYesHumansOnly"                                  "Yes (Humans Only)"
 
     // Option text
     "lodOptionsPresetGamemode"                      "Preset Gamemode"
@@ -117,8 +119,20 @@
     "lodMutatorGameMode"                            "Game Mode"
     "lodMutatorBanningBanInvis"                     "No Invisible"
     "lodMutatorUpgradedUlts"                        "Free Scepter"
-    "lodMutatorSliders"                             "Sliders"
-    "lodMutatorMonkeyBusiness"                      "Monkey Business"
+    "lodMutatorUpgradedUltsNoBots"                  "Free Scepter (Humans Only)"
+    "lodMutatorFreeAbility"                         "Free Ability"
+    "lodMutatorSliders"                             "Unstable Rift"
+    "lodMutatorNothl"                               "Nothl Protection"
+    "lodMutatorMonkeyBusiness"                      "Forest Maker"
+    "lodMutatorFleashHeaps"                         "Random Flesh Heap"
+    "lodMutatorFury"                                "Fury Swipes"
+    "lodMutatorWitch"                               "Witchcraft"
+    "lodMutatorTakeaim"                             "Take Aim"
+    "lodMutatorBashwars"                            "Bash Wars"
+    "lodMutatorGreed"                               "Greevil's Greed"
+    "lodMutatorEcho"                                "Arcane Echo"
+    "lodMutatorAether"                              "Aether Range"
+    "lodMutatorNether"                              "Nether Ritual"
     "lodMutatorFastStart"                           "Fast Start"
     "lodMutatorStrongTowers"                        "Strong Towers"
     "lodMutatorDoubleTowers"                        "Extra Towers"
@@ -132,7 +146,6 @@
 	"lodMutatorShareEXP"                            "Team Shared EXP"
     "lodMutatorWTF"                                 "Crazy WTF"
     "lodMutatorDisablePerks"                        "Disable Perks"
-	--"lodMutatorBotsBuff1"                           "Buff Bots"
 	"lodMutatorDuel"								"Duels"
     "lodMutatorBoosterDraft"                        "Booster Draft"
 
@@ -363,16 +376,14 @@
     "lodMutatorGottaGoFastOn"                               "Gotta Go Fast!"
     "lodMutatorGottaGoREALLYFast"                           "Gotta Go FASTER!"
 
-    "lodOptionMemesRedux"                                  "Memes Redux"
-    "lodOptionDesMemesRedux"                               "Enable Memes"
-    "lodOptionAboutMemesRedux"                             "Adds all the dankest memes into your game, depending on what abilities you use."
-    "lodMutatorMemesRedux"                                 "Memes Redux"
+    "lodOptionDesExtraAbility"                                   "Free Extra Ability"
+    "lodOptionAboutExtraAbility"                                 "All players gain a free extra ability."
 
-    "lodOptionDesSliders"                                   "Enable Free Teleport Ability"
-    "lodOptionAboutSliders"                                 "All players gain Unstable Rift teleportation ability."
-
-    "lodOptionDesMonkeyBusiness"                                   "Enable Free Mischief Ability"
-    "lodOptionAboutMonkeyBusiness"                                 "All players gain Monkey King's Mischief ability."
+    "lodOptionGlobalCast"                                 "Global Cast Range"
+    "lodOptionDesGlobalCast"                               "Enable Global Cast Range"
+    "lodOptionAboutGlobalCast"                                 "Makes most spells have global cast range. Some spells are disabled (like Fissure) for technial reasons."
+    "lodMutatorGlobalCast"                                 "Global Cast Range"
+    
 
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"
     "lodOptionDesAdvancedNeutralAbilities"          "Allow Neutral Abilities"
@@ -454,11 +465,11 @@
     "balance_mode_points"                           "Points Remaining: {d:points}"
 
     "acceptHosting"                                 "Ok, I understand"
-    "lodHostingMessage"                             "<font color='#ffffff'>Thanks for playing Redux and having patience while we recover from the <font color='#FF4C4C'>7.00 patch</font>. Most issues have been fixed, but some still remain. Please keep an eye out for them.<br><br> Remeber, if you like Redux, and want to help it improve, <font color='#70EA72'>please join the Discord server and let the developers know of any bugs or any feedback you may have</font>, its much more important than you may think. The address of the discord server can be found on the steampage of this mod.</font>"
+    "lodHostingMessage"                             "<font color='#ffffff'>Thanks for playing Redux and having patience while we recover from the <font color='#FF4C4C'>7.00 patch</font>. Most issues have been fixed, but some still remain. Please keep an eye out for them. Merry Christmas and a have a Happy New Year!<br><br> <font color='#70EA72'>Redux 4.4 update:</font><br>- Fixed Dazzle always getting shallow grave<br>- Improved Bot AI, so that when they are in defensive mode, they are not stupid anymore.<br>- Upgraded concussive break to add its new aghs component<br>- Added Global Cast Range mutator<br><br> <font color='#FF4C4C'>The <font color='#70EA72'>Global Cast Range mutator</font> may have some buggy interactions with some abilities</font>, please report any abilities that don't work with it and they will be added to a blacklist. So far, only Hook, Fissure have been banned with global cast range."
     "lodPickingMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked.<br><br><font color='#70EA72'>Remeber to pick a hero before time runs out or else you will get stuck with a random hero.</font>"
     "lodBanningMessage"                             "<font color='#70EA72'>This is the banning phase</font>. You can ban heroes and abilities to prevent players from selecting them in this match.<br><br> If you dont want to ban or have finished banning, <font color='#70EA72'>press the 'Finish Banning' button</font> to confirm your ready and to speed up the game."
     "lodBalanceMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked. <br><br><font color='#70EA72'>Points Mode is on.</font> In Points Mode you have limited points to spend on abilities. Abilities are priced by how powerful they are and abilities with no price tags are free. Have fun!"
-    "lodHostingNoobMessage"                         "<font color='#ffffff'>Thanks for playing Redux and having patience while we recover from the <font color='#FF4C4C'>7.00 patch</font>. Most issues have been fixed, but some still remain. Please keep an eye out for them.<br><br> Remeber, if you like Redux, and want to help it improve, <font color='#70EA72'>please join the Discord server and let the developers know of any bugs or any feedback you may have</font>, its much more important than you may think. The address of the discord server can be found on the steampage of this mod.</font>"
+   "lodHostingNoobMessage"                            "<font color='#ffffff'>Thanks for playing Redux and having patience while we recover from the <font color='#FF4C4C'>7.00 patch</font>. Most issues have been fixed, but some still remain. Please keep an eye out for them. Merry Christmas and a have a Happy New Year!<br><br> <font color='#70EA72'>Redux 4.4 update:</font><br>- Fixed Dazzle always getting shallow grave<br>- Improved Bot AI, so that when they are in defensive mode, they are not stupid anymore.<br>- Upgraded concussive break to add its new aghs component<br>- Added Global Cast Range mutator<br><br> <font color='#FF4C4C'>The <font color='#70EA72'>Global Cast Range mutator</font> may have some buggy interactions with some abilities</font>, please report any abilities that don't work with it and they will be added to a blacklist. So far, only Hook, Fissure have been banned with global cast range."
     "lodOptionVoting"                               "Cast your vote to select the options."
 
 
@@ -609,6 +620,7 @@
 	"hintDiscord"                         "Join the conversation! Come to the Discord chat-room to discuss with developers anything relating to Redux. The link to the chat-room is on the Steam page."
 	"hintBotsDifficulty"                         "Bots too hard? Sick of them using OP abilities? Check out the bots menu in custom settings and remove their buffs, force them to use unique skills or make them use only their default 4 skills."
 	"hintDuels"                         "Try playing with Duels! This is a game mechanic that has been borrowed from Angel Arena Reborn and ensures frequent hero fights."
+    "hintBotTalents"                         "Bots receive 2 extra abilities, they will always choose the best available ability for their hero based on a predefined list. Bots will also level randomly selected talents, however, their talent picks are not shown in their talent trees. "
 
 	// Perk-related Hints
 	"hintLina"							"Lina's intelligence increases by 3 for each level put in Fire abilities"
@@ -881,9 +893,6 @@
     "lodOptionRestrictDire"                         "Only Dire"
     "lodOptionRestrictBoth"                         "Both Teams"
 
-    --"lodOptionDesBotsBonusPoints"                  "Bonus Attribute Points"
-    --"lodOptionAboutBotsBonusPoints"                "This option will allow bots to level up their Attribute Bonus ability without using a skill point. They will upgrade it at every level, resulting in them having much more stats than the regular player."
-  
     "statsPlayerName"                               "Player Name"
     "statsTotalGames"                               "Total Games"
     "statsTotalWins"                                "Total Wins"
@@ -1169,12 +1178,13 @@
 	"warning_ebf_rubick_arcane_echo" "<font color=\'#FF4949\'>Warning:</font> This ability is still in the process of being balanced. Post balance suggestions on Steam page or by in-game comment system.\n"
 	"warning_roshan_bash" "Roshan has a chance to stun on attack.\n\n<font color=\'#FF4949\'>Warning:</font> This ability works on illusions. Hence, it is a troll combo with any non-ultimate self-illusion creating ability.\n"
     "warning_roshan_spell_block" "<font color=\'#FF4949\'>Warning:</font> Also blocks friendly spells."
-    "warning_roshan_spell_block_lod" "<font color=\'#FF4949\'>Warning:</font> Also blocks friendly spells."
-    "warning_linkens_guard_lod" "<font color=\'#FF4949\'>Warning:</font> Also blocks friendly spells."
+    //"warning_roshan_spell_block_lod" "<font color=\'#FF4949\'>Warning:</font> Also blocks friendly spells."
+    //"warning_linkens_guard_lod" "<font color=\'#FF4949\'>Warning:</font> Also blocks friendly spells."
     "warning_earth_spirit_boulder_smash" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Stone Remnant.</font>"
     "warning_earth_spirit_geomagnetic_grip" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Stone Remnant.</font>"
     "warning_earth_spirit_magnetize" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Stone Remnant.</font>"
     "warning_earth_spirit_rolling_boulder" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Stone Remnant.</font>"
+    "warning_monkey_king_mischief" "<font color=\'#FF4949\'>Hero Requirement:</font> You have to play as <font color=\'#70EA72\'>Monkey King</font> for tree disguise models to work."
 
     "credit_aether_range_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
     "credit_undying_decay_agi"           "<font color=\'#7D7D7D\'>Sponsored by Budster16"
@@ -1183,7 +1193,7 @@
 	"credit_force_dash_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
 	"credit_shards_of_truesight_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
 	"credit_pudge_flesh_heap_int"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
-	"credit_pudge_flesh_heap_agi"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+	"credit_pudge_flesh_heap_agility"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
 	"credit_pudge_flesh_heap_attack_range"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
 	"credit_pudge_flesh_heap_move_speed"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
 	"credit_pudge_flesh_heap_spell_amp"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
@@ -1200,6 +1210,7 @@
 	"credit_cherub_sleep_cloud"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
 	"credit_cherub_synthesis"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"  
     "credit_angel_arena_archmage_anomaly"           "<font color=\'#7D7D7D\'>Fixed by Yahnich | github.com/Yahnich</font>"
+    "credit_monkey_king_jingu_mastery_lod"           "<font color=\'#7D7D7D\'>Fixed by Yahnich | github.com/Yahnich</font>"
 	"credit_cherub_explosive_spore"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
 	"credit_cherub_flower_garden"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
 	"credit_garden_white_flower_base"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
@@ -1231,7 +1242,6 @@
 	"credit_imba_tower_nature"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
 	"credit_imba_tower_permabash"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
 	"credit_imba_tower_plague"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-	"credit_imba_tower_reality"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
 	"credit_imba_tower_salvo"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
 	"credit_imba_tower_self_repair"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
 	"credit_imba_tower_sniper"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
@@ -1793,10 +1803,10 @@
     //"DOTA_Tooltip_ability_death_prophet_witchcraft_bonus_movement_speed"          "%MOVEMENT SPEED:"
 
     //flesh heap spells
-    "DOTA_Tooltip_ability_pudge_flesh_heap_agi"			"Flesh Heap - Agility"
-    "DOTA_Tooltip_ability_pudge_flesh_heap_agi_Description"	"<font color='#70EA72'>Gives bonus agility that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Agility is retroactive, meaning it can gain charges before it is skilled, which then become active."
-    "DOTA_Tooltip_ability_pudge_flesh_heap_agi_flesh_heap_agility_buff_amount"	"AGILITY PER STACK:"
-    "DOTA_Tooltip_ability_pudge_flesh_heap_agi_flesh_heap_range"			"RANGE:"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_agility"			"Flesh Heap - Agility"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_agility_Description"	"<font color='#70EA72'>Gives bonus agility that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Agility is retroactive, meaning it can gain charges before it is skilled, which then become active."
+    "DOTA_Tooltip_ability_pudge_flesh_heap_agility_flesh_heap_agility_buff_amount"	"AGILITY PER STACK:"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_agility_flesh_heap_range"			"RANGE:"
     "DOTA_Tooltip_modifier_flesh_heap_agi"					"Flesh Heap - Agility"
     "DOTA_Tooltip_modifier_flesh_heap_agi_Description"				"Gaining bonus agility"
     
@@ -1938,18 +1948,18 @@
     "DOTA_Tooltip_ability_lone_druid_spirit_bear_return_lod_OP_Description"                      "Immediately teleports to the bottom part of your current view. <font color='#70EA72'>Shorter cooldown and lower mana cost</font>."
 
     // Roshan spell block
-    "DOTA_Tooltip_ability_roshan_spell_block_lod"                               "Spell Block Redux"
-    "DOTA_Tooltip_ability_roshan_spell_block_lod_Description"                   "Roshan will block one targeted spell every few seconds."
-    "DOTA_Tooltip_modifier_roshan_spell_block_Description"                      "Will block one targeted spell every few seconds."
+    //"DOTA_Tooltip_ability_roshan_spell_block_lod"                               "Spell Block Redux"
+    //"DOTA_Tooltip_ability_roshan_spell_block_lod_Description"                   "Roshan will block one targeted spell every few seconds."
+    //"DOTA_Tooltip_modifier_roshan_spell_block_Description"                      "Will block one targeted spell every few seconds."
 	
 	// Linken's Guard
-    "DOTA_Tooltip_ability_linkens_guard_lod"                               "Linken's Guard"
-    "DOTA_Tooltip_ability_linkens_guard_lod_Description"                   "Blocks most targeted spells once every few seconds."
-    "DOTA_Tooltip_modifier_linkens_guard_lod_Description"                      "Will block one targeted spell every few seconds."
+    //"DOTA_Tooltip_ability_linkens_guard_lod"                               "Linken's Guard"
+    //"DOTA_Tooltip_ability_linkens_guard_lod_Description"                   "Blocks most targeted spells once every few seconds."
+    //"DOTA_Tooltip_modifier_linkens_guard_lod_Description"                      "Will block one targeted spell every few seconds."
 
 	// Warlock Permanent Immolation
     "DOTA_Tooltip_ability_warlock_golem_permanent_immolation_lod"                               "Permanent Immolation Redux"
-    "DOTA_Tooltip_ability_warlock_golem_permanent_immolation_lod_Description"                   "Burns the Golem's nearby enemy units, with damage per second."
+    "DOTA_Tooltip_ability_warlock_golem_permanent_immolation_lod_Description"                   "Burns the Golem's nearby enemy units, with damage per second.<font color='#70EA72'> Deals less damage on earlier levels</font>."
     "DOTA_Tooltip_ability_warlock_golem_permanent_immolation_lod_damage"        "DAMAGE PER SECOND:"
     "DOTA_Tooltip_ability_warlock_golem_permanent_immolation_lod_radius"        "RADIUS:"
 
@@ -2024,8 +2034,11 @@
 	"DOTA_Tooltip_modifier_marksmanship_str_effect_datadriven_Description" 				"Bonus Strength. Deactivated by nearby enemy heroes."
 
 	//Bot Controller
-	"DOTA_Tooltip_ability_imba_tower_ai_controller"									"Bot Controller"
-	"DOTA_Tooltip_ability_imba_tower_ai_controller_Description"						"Will Force Bots to attack towers if there is no nearby allied heros. Will force bots to retreat from towers with invulnerability, this is to prevent diving. Will also decripfy, stun and then teleport bots back to their base if they reach below a certain HP threshold, this is to prevent them dying due to recklessness. Bot Controller is only enabled when there is more than the default number of towers."
+	"DOTA_Tooltip_ability_imba_tower_ai_controller"									"Bot AI Helper"
+	"DOTA_Tooltip_ability_imba_tower_ai_controller_Description"						"<font color='#70EA72'>This ability is designed to help bots deal with multiple towers. The logic is roughly as follows:</font>\n1. If an enemy bot is nearby AND tower is not invunerable AND there is no nearby allies = <font color='#70EA72'>Force enemy bot to attack tower</font>
+\n2. If an enemy bot is nearby AND enemy bot health is below 300 AND there is no nearby allies = <font color='#70EA72'>Teleport bot back to their base </font>
+\n3. If an enemy bot is nearby AND tower is invunerable = <font color='#70EA72'>Scare enemy bot away</font>
+\n\nEnemy bots that are teleported back to their base, receive the following compenstation for being displaced from battle: <font color='#70EA72'>100 gold and experience, full HP and MP on return and maximum movespeed for a period of time. </font>"
 	"DOTA_Tooltip_ability_imba_tower_ai_controller_Lore"								"ASSUMING DIRECT CONTROL"
 
 
@@ -2194,6 +2207,7 @@
     "garden_plot"           "Garden Plot"
     "white_flower"          "White Flower"
     "red_flower"            "Red Flower"
+    "red_flower_OP"         "Scarlet Flower"
     "pink_flower"           "Pink Blossom"
     "blue_flower"           "Blue Blossom"
     "yellow_flower"         "Yellow Daisy"
@@ -2330,6 +2344,12 @@
 	"DOTA_Tooltip_ability_imba_dazzle_shallow_grave_Note0"								"Damage which would not kill the target is not counted for Gravely mistaken."
 	"DOTA_Tooltip_ability_imba_dazzle_shallow_grave_Lore"								"Only a seasoned acolyte of the Shadow can properly perform the rite of preventing death."
 	"DOTA_Tooltip_ability_imba_dazzle_shallow_grave_passive_duration"					"DURATION:"
+
+    "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_one"                                    "Nothl Protection IMBA"
+    "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_one_Description"                        "<font color='#70EA72'>If Dazzle is mortally wounded, Nothl Protection will trigger automatically.</font> No matter how close to death, Dazzle cannot die while under its protection. Nothl Protection needs to cool down for some time after activation."
+    "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_one_Note0"                              "Damage which would not kill the target is not counted for Gravely mistaken."
+    "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_one_Lore"                               "Only a seasoned acolyte of the Shadow can properly perform the rite of preventing death."
+    "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_one_passive_duration"                   "DURATION:"
 
 	"DOTA_Tooltip_modifier_imba_shallow_grave"											"Shallow Grave"
 	"DOTA_Tooltip_modifier_imba_shallow_grave_Description"								"Protected from death for the duration"
@@ -2519,12 +2539,6 @@
 	"DOTA_Tooltip_ability_imba_tower_spacecow_knockback_distance"						"KNOCKBACK DISTANCE:"
 	"DOTA_Tooltip_ability_imba_tower_spacecow_knockback_duration"						"KNOCKBACK DURATION:"
 
-	"DOTA_Tooltip_ability_imba_tower_reality"											"Reality Tower"
-	"DOTA_Tooltip_ability_imba_tower_reality_Description"								"Destroys any illusions in its area of effect."
-	"DOTA_Tooltip_ability_imba_tower_reality_Note0"										"Activates when at least one hero illusion enters its range."
-	"DOTA_Tooltip_ability_imba_tower_reality_Lore"										"This tower hates cheap tricks, cheap lies, and imaginary dragons."
-	"DOTA_Tooltip_ability_imba_tower_reality_reality_aoe"								"EFFECT RADIUS:"
-
 	"DOTA_Tooltip_ability_imba_tower_force"												"Force Tower"
 	"DOTA_Tooltip_ability_imba_tower_force_Description"									"Periodically pushes enemies away from itself."
 	"DOTA_Tooltip_ability_imba_tower_force_Note0"										"Activates when at least four creeps, or one enemy hero, enters its range."
@@ -2565,6 +2579,12 @@
 	"DOTA_Tooltip_ability_imba_tower_forest_Lore"										"An atheist, vegan, crosfitting, environment-friendly activist tower. Has a boyfriend."
 	"DOTA_Tooltip_ability_imba_tower_forest_tree_radius"								"TREE CREATION RADIUS:"
 	"DOTA_Tooltip_ability_imba_tower_forest_tree_duration"								"TREE DURATION:"
+
+    "DOTA_Tooltip_ability_imba_tower_forest_one"                                            "Forest Tower"
+    "DOTA_Tooltip_ability_imba_tower_forest_one_Description"                                "Periodically spawns trees near itself."
+    "DOTA_Tooltip_ability_imba_tower_forest_one_Lore"                                       "An atheist, vegan, crosfitting, environment-friendly activist tower. Has a boyfriend."
+    "DOTA_Tooltip_ability_imba_tower_forest_one_tree_radius"                                "TREE CREATION RADIUS:"
+    "DOTA_Tooltip_ability_imba_tower_forest_one_tree_duration"                              "TREE DURATION:"
 
 	"DOTA_Tooltip_ability_imba_tower_split"												"Split Tower"
 	"DOTA_Tooltip_ability_imba_tower_split_Description"									"This tower's attacks have a chance to split, hitting up to %split_amount% additional targets."
@@ -3771,6 +3791,11 @@
 	"DOTA_Tooltip_ability_ebf_rubick_arcane_echo_OP_Lore"                                 "A jester at heart, Rubick enjoys confusing his enemies."
 	"DOTA_Tooltip_ability_ebf_rubick_arcane_echo_OP_delay"                                 "ECHO DELAY:"
 
+    "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_one"                                     "Arcane Echo"
+    "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_one_Description"                         "Rubick, being the grandest magus there is, casts the last ability he used a second time for free and without cooldown."
+    "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_one_Lore"                                 "A jester at heart, Rubick enjoys confusing his enemies."
+    "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_one_delay"                                 "ECHO DELAY:"
+
 	"DOTA_Tooltip_ability_ebf_mana_fiend_essence_amp"                    "Essence Amp Crit"
 	"DOTA_Tooltip_ability_ebf_mana_fiend_essence_amp_Description"        "Each instance of magical damage you deal has a chance to Crit dealing extra magical damage but consuming more mana. Sources of magic damage that does not have a mana cost will not Crit."
 	"DOTA_Tooltip_ability_ebf_mana_fiend_essence_amp_Note0"                "Burns mana equal to casting the ability multiple times on crit."
@@ -3786,8 +3811,8 @@
 
 
     "DOTA_Tooltip_ability_skywrath_mage_concussive_break"                             "Concussive Break"
-    "DOTA_Tooltip_ability_skywrath_mage_concussive_break_Description"                 "Skywrath Mage sets off a long range shot that hits the closest hero within a long range.  Upon impact, it <font color='#70EA72'>disables the target's passives</font> and slows in an area of effect."
-
+    "DOTA_Tooltip_ability_skywrath_mage_concussive_break_Description"                 "Skywrath Mage sets off a long range shot that hits the closest hero within a long range.  Upon impact, it <font color='#70EA72'>disables the target's passives</font> and slows in an area of effect.\nUpgradable by Aghanim's Scepter."
+   "DOTA_Tooltip_ability_skywrath_mage_concussive_break_Aghanim_Description"    "With Aghanim's Scepter, whenever Concussive Shot is cast, a different random target within the search radius is also being targeted."
    "DOTA_Tooltip_ability_skywrath_mage_concussive_break_Lore"            "Rivers know this: there is no hurry. We shall get there some day."
    "DOTA_Tooltip_ability_skywrath_mage_concussive_break_Note0"         "Does not work when no heroes are in range or heroes are in fog."
    "DOTA_Tooltip_ability_skywrath_mage_concussive_break_Note1"         "Provides 400 vision around the projectile, and reveals the target area for 3.34 seconds upon impact."
@@ -3871,4 +3896,59 @@
     "DOTA_Tooltip_modifier_decay_bonus_agi_counter_Description" "Stealing Agility."
 
     "DOTA_Tooltip_ability_item_backPackBlocker" "Bot BackPack Blocker"
+
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod"                            "Jingu Mastery"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_Description"                "Monkey King's attacks awaken the Jingu Bang's power. Upon the fourth hit on the same enemy hero, Monkey King earns four charged attacks that have bonus damage and lifesteal."
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_Lore"                       "Always sensitive to the moods of its master, the Jingu Bang radiates power when Sun Wukong's combat fervor is on full display."
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_required_hits"              "REQUIRED HITS:"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_counter_duration"           "STACK DURATION:"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_charges"                    "CHARGES:"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_bonus_damage"               "BONUS DAMAGE:"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_lifesteal"                  "%LIFESTEAL:"
+    
+    "DOTA_Tooltip_modifier_jingu_mastery_activated"                                 "Jingu Mastery"
+    "DOTA_Tooltip_modifier_jingu_mastery_activated_Description"                     "Gaining bonus attack damage and lifesteal."
+    
+    "DOTA_Tooltip_modifier_jingu_mastery_hitcount"                                  "Jingu Banged"
+    "DOTA_Tooltip_modifier_jingu_mastery_hitcount_Description"                      "Amount of hits Monkey King has landed on you, he powers up at 4."
+
+    "DOTA_Tooltip_ability_bloodseeker_blood_bath2" "Blood Bath"
+    "DOTA_Tooltip_ability_bloodseeker_blood_bath2_Description" "This hero revels in combat, regaining health with every unit he kills or whenever an enemy Hero dies around him. The health gained is a percentage of the killed unit's maximum HP."
+
+    "DOTA_Tooltip_ability_bloodseeker_blood_bath2_heal_radius" "RADIUS:"
+    "DOTA_Tooltip_ability_bloodseeker_blood_bath2_hero_max_hp_heal" "KILLED HERO'S MAX HEALTH AS HEAL:"
+    "DOTA_Tooltip_ability_bloodseeker_blood_bath2_non_hero_max_hp_heal" "KILLED NON HERO'S MAX HEALTH AS HEAL:"
+
+    "DOTA_Tooltip_ability_bahamut_reckoning_aura"                                     "Reckoning Aura"
+    "DOTA_Tooltip_ability_bahamut_reckoning_aura_description"                         "Bahamut's very presence causes nearby enemies to take more damage.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
+    "DOTA_Tooltip_ability_bahamut_reckoning_aura_damage"                              "%EXTRA DAMAGE RECEIVED:"
+
+    "DOTA_Tooltip_modifier_reckoning_aura_eff"                                        "Reckoning Aura"
+    "DOTA_Tooltip_modifier_reckoning_aura_eff_description"                            "Taking %dMODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE%%% more damage."
+
+    "DOTA_Tooltip_lich_cold_aura_effect_mod"                                        "Frostbite Aura"
+    "DOTA_Tooltip_lich_cold_aura_effect_mod_description"                            "Taking percentage of max health over time and slowed."
+
+    "DOTA_Tooltip_ability_lich_cold_aura" "Frostbite Aura"
+    "DOTA_Tooltip_ability_lich_cold_aura_description" "Enemies within a short radius of the Tower are slowed and take damage over time based upon their max health total.  Passively grants the Tower bonus Armor as well.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
+    "DOTA_Tooltip_ability_lich_cold_aura_Lore" "Brrr."
+    "DOTA_Tooltip_ability_lich_cold_aura_damage" "%DAMAGE:"
+    "DOTA_Tooltip_ability_lich_cold_aura_slow" "%SLOW:"
+    "DOTA_Tooltip_ability_lich_cold_aura_radius" "RADIUS:"
+
+    "DOTA_Tooltip_ability_summoner_tesla_coil"                                        "Tesla Coil"
+    "DOTA_Tooltip_ability_summoner_tesla_coil_description"                            "Zaps nearby enemies periodically, dealing damage and slowing.  Targets are selected randomly.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
+    "DOTA_Tooltip_ability_summoner_tesla_coil_slow"                                   "%SLOW:"
+    "DOTA_Tooltip_ability_summoner_tesla_coil_damage"                                 "DAMAGE:"
+    "DOTA_Tooltip_ability_summoner_tesla_coil_interval"                               "INTERVAL:"
+
+    "DOTA_Tooltip_ability_titan_command_aura"                                         "Titan Command Aura"
+    "DOTA_Tooltip_ability_titan_command_aura_Description"                             "Grants bonuses to nearby creeps.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
+    "DOTA_Tooltip_ability_titan_command_aura_radius"                                  "RADIUS:"
+    "DOTA_Tooltip_ability_titan_command_aura_bonus_armor"                             "BONUS ARMOR:"
+    "DOTA_Tooltip_ability_titan_command_aura_bonus_regen"                             "BONUS REGEN:"
+
+    "DOTA_Tooltip_modifier_command_aura_fx"                                           "Command Aura"
+    "DOTA_Tooltip_modifier_command_aura_fx_Description"                               "Receiving bonus armor and health regeneration."  
+
 }
