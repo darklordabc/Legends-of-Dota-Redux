@@ -121,7 +121,7 @@ end
 modifier_sniper_assassinate_target_redux = class({})
 
 function modifier_sniper_assassinate_target_redux:IsHidden()
-  return true
+  return false
 end
 function modifier_sniper_assassinate_target_redux:IsPurgable()
   return false
@@ -139,15 +139,33 @@ end
 function modifier_sniper_assassinate_target_redux:CheckStates()
   local state = {
     [MODIFIER_STATE_INVISIBLE] = false,
-    [MODIFIER_STATE_PROVIDES_VISION] = true,
+    --[MODIFIER_STATE_PROVIDES_VISION] = true,
   }
   return state
+end
+
+--[[function modifier_sniper_assassinate_target_redux:DeclareFuntions()
+  local funcs = { 
+    MODIFIER_PROPERTY_PROVIDES_FOW_POSITION,
+  }
+end
+function modifier_sniper_assassinate_target_redux:GetModifierProvidesFOWVision()
+  return 1
+end]]
+
+function modifier_sniper_assassinate_target_redux:OnCreated()
+  self:StartIntervalThink(0.1)
+end
+function modifier_sniper_assassinate_target_redux:OnIntervalThink()
+  if IsServer() then 
+    AddFOWViewer(self:GetCaster():GetTeamNumber(),self:GetParent():GetAbsOrigin(),10,0.1,true)
+  end
 end
 
 modifier_sniper_assassinate_caster_redux = class({})
 
 function modifier_sniper_assassinate_caster_redux:IsHidden()
-  return true
+  return false
 end
 function modifier_sniper_assassinate_caster_redux:IsPurgable()
   return false
