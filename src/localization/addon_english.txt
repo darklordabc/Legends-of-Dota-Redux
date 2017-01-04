@@ -890,11 +890,11 @@
     "lodOptionDesBotsUnfairBalance"                 "Bots XP Advantage"
     "lodOptionAboutUnfairBalance"                   "Bots will gain XP to match the person with the highest level in the match."
 
-    "lodOptionDesBotsRestrict"                      "Restrict skills to default (Bots)"
-    "lodOptionAboutBotsRestrict"                    "This option prevents bots from selecting non-default abilities. Bots will only have 4 abilities."
+    "lodOptionDesBotsRestrict"                      "Limit Bot Skills"
+    "lodOptionAboutBotsRestrict"                    "This option prevents bots from selecting non-default abilities."
     "lodOptionRestrictNo"                           "No"
-    "lodOptionRestrictRadiant"                      "Only Radiant"
-    "lodOptionRestrictDire"                         "Only Dire"
+    "lodOptionRestrictRadiant"                      "Only Radiant Bots"
+    "lodOptionRestrictDire"                         "Only Dire Bots"
     "lodOptionRestrictBoth"                         "Both Teams"
 
     "statsPlayerName"                               "Player Name"
