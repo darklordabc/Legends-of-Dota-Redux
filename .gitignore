@@ -224,3 +224,17 @@ lod_game/resource/flash3/images/workshop/
 setup shortcut.ahk
 setup shortcut - Shortcut.lnk
 Dota 2 tester.lnk
+
+#############
+#  DOTA 2
+#############
+
+*.vpk
+*.vpcf_c
+*.vsnd_c
+*.vsndevts_c
+*.vmat_c
+*.vtex_c
+*.vxml_c
+*.vcss_c
+*.vjs_c
