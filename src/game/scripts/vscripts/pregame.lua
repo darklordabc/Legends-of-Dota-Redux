@@ -619,7 +619,7 @@ function Pregame:startBoosterDraftRound( pID )
     
     local duration = 25
     if self.finalArrays[pID] then
-        duration = 40
+        duration = 50
     end
     network:setCustomEndTimer(PlayerResource:GetPlayer(pID), Time() + duration)
     

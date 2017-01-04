@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ## 4.5 - Development Version
 ### Bug Fixing/New Features
-- Added much more time for draft rounds (15 to 40 seconds)
+- Added much more time for draft rounds (15 to 50 seconds)
 
 ### Balance
 - 
