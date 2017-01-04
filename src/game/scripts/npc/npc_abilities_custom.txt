@@ -23148,5 +23148,93 @@
 			    "non_hero_max_hp_heal"    "10 15 20 25"
 			  }
 	    }
-	}	  
+	}
+	"sniper_assassinate_redux"
+	{
+	  // General
+	  //-------------------------------------------------------------------------------------------------------------
+	  "BaseClass"       "ability_lua"
+	  "ScriptFile"       "abilities/sniper_assassinate.lua" 
+	  "AbilityType"         "DOTA_ABILITY_TYPE_ULTIMATE"
+	  //"AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
+	  "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+	  "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	  "AbilityUnitTargetFlags"    "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+	  "SpellImmunityType"       "SPELL_IMMUNITY_ENEMIES_YES"
+	  //"AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL" 
+	  "FightRecapLevel"       "2"
+	  "AbilityTextureName"      "sniper_assassinate"
+	  
+	  // Casting
+	  //-------------------------------------------------------------------------------------------------------------
+	  "AbilityCastRange"        "2000 2500 3000"
+	  "AbilityCastRangeBuffer"  "600"
+	  "AbilityCastPoint"        "2.0 2.0 2.0"
+	  
+
+	  // Time   
+	  //-------------------------------------------------------------------------------------------------------------
+	  "AbilityCooldown"       "20.0 15.0 10.0"
+
+	  // Damage.
+	  //-------------------------------------------------------------------------------------------------------------
+	  //"AbilityDamage"         "320 485 650"
+
+	  // Cost
+	  //-------------------------------------------------------------------------------------------------------------
+	  "AbilityManaCost"       "175 275 375"
+	  
+	  // Stats
+	  //-------------------------------------------------------------------------------------------------------------
+	  "AbilityModifierSupportValue" "0.0" // Modifier just does damage
+
+	  // Special
+	  //-------------------------------------------------------------------------------------------------------------
+	  "AbilitySpecial"
+	  {
+	    "01"
+	    {
+	      "var_type"          "FIELD_INTEGER"
+	      "projectile_speed"      "2500 2500 2500"
+	    }
+	    "02"
+	    {
+	      "var_type"          "FIELD_INTEGER"
+	      "tooltip_range"       "2000 2500 3000"
+	    }
+	    // Extra variables
+	    "03"
+	    {
+	      "var_type"          "FIELD_FLOAT"
+	      "charge_time"       "2.0"
+	    }
+	    "04"
+	    {
+	      "var_type"          "FIELD_FLOAT"
+	      "debuff_duration"     "4.0"
+	    }
+	    "05"
+	    {
+	      "var_type"          "FIELD_INTEGER"
+	      "damage"       "355 505 655"
+	    }
+	    "06"
+	    {
+	      "var_type"          "FIELD_INTEGER"
+	      "scepter_radius"    "400"
+	    }
+	    "07"
+	    {
+	      "var_type"          "FIELD_INTEGER"
+	      "scepter_crit_bonus"      "280"
+	    }
+	  }
+	 
+	  "precache"
+	  {
+	    "soundfile"         "soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
+	    "particle"          "particles/units/heroes/hero_sniper/sniper_assassinate.vpcf"
+	    "particle"          "particles/units/heroes/hero_sniper/sniper_crosshair.vpcf"
+	  }
+	}  	  
 }
