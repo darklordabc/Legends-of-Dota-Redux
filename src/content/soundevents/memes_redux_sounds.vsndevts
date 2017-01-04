@@ -110,6 +110,46 @@
     }
 }
 
+"Memes.Review"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                            "value0"        "sounds/bru-luck.vsnd"
+                            "value1"        "sounds/ch-huskar.vsnd"
+                            "value2"        "sounds/g-welcome.vsnd"
+                            "value3"        "sounds/ku-gman.vsnd"
+                            "value4"        "sounds/pf-nofun.vsnd"
+                            "value5"        "sounds/ppd-gg.vsnd"
+                            "value6"        "sounds/sing-bemad.vsnd"
+                            "value7"        "sounds/slacks-discussion.vsnd"
+                            "value8"        "sounds/t-historydota.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "4.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.00000"  }
+                    "pitch_rand_max"    {   "value"     "0.000000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "100.00000" }
+                    "distance_max"      {   "value"     "1600.000"  }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
 "Memes.TripleKill"
 {
     "operator_stacks"
@@ -131,6 +171,46 @@
                         }
                     }
                     "volume"            {   "value"     "2.50000"  }
+                    "pitch_rand_min"    {   "value"     "-0.00000"  }
+                    "pitch_rand_max"    {   "value"     "0.000000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "100.00000" }
+                    "distance_max"      {   "value"     "1600.000"  }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Memes.IntroSong"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                            "value0"        "sounds/nt4.vsnd"
+                            "value1"        "sounds/nt5.vsnd"
+                            "value2"        "sounds/vista.vsnd"
+                            "value3"        "sounds/wfw311.vsnd"
+                            "value4"        "sounds/win31.vsnd"
+                            "value5"        "sounds/win95.vsnd"
+                            "value6"        "sounds/win98.vsnd"
+                            "value7"        "sounds/win2000.vsnd"
+                            "value8"        "sounds/winxp.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "4.00000"  }
                     "pitch_rand_min"    {   "value"     "-0.00000"  }
                     "pitch_rand_max"    {   "value"     "0.000000"  }
                     "pitch"             {   "value"     "1.000000"  }

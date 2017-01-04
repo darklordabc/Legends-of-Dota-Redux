@@ -820,8 +820,12 @@ function Pregame:onThink()
 
         if not self.Announce_Picking_Phase then
             self.Announce_Picking_Phase = true
-            local sound = self:getRandomSound('game_picking_phase')
-            EmitAnnouncerSound(sound)
+            if OptionManager:GetOption("memesRedux") == 1 then
+                EmitGlobalSound("Memes.IntroSong")
+            else
+                local sound = self:getRandomSound('game_picking_phase')
+                EmitAnnouncerSound(sound)
+            end
         end
 
         --Check if countdown reaches 30 sec remaining
@@ -3548,6 +3552,7 @@ function Pregame:setSelectedHero(playerID, heroName, force)
 
         -- Update the selected hero
         network:setSelectedHero(playerID, heroName)
+
     end
 end
 
@@ -3962,9 +3967,13 @@ function Pregame:checkForReady()
         maxTime = OptionManager:GetOption('reviewTime')
 
         if not self.Announce_review then
-            self.Announce_review = true
-            local sound = self:getRandomSound("game_review_phase")
-            EmitAnnouncerSound(sound)
+            self.Announce_review = true            
+            if OptionManager:GetOption("memesRedux") == 1 then
+                EmitGlobalSound("Memes.Review")
+            else
+                local sound = self:getRandomSound("game_review_phase")
+                EmitAnnouncerSound(sound)
+            end
         end
 
 
@@ -4780,6 +4789,9 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
             if not dontNetwork then
                 -- Network it
                 network:setSelectedAbilities(playerID, build)
+                if OptionManager:GetOption("memesRedux") == 1 then
+                     EmitGlobalSound("Memes.SnipeHit")
+                end
             end
         end
     end
