@@ -383,8 +383,12 @@
     "lodOptionDesGlobalCast"                               "Enable Global Cast Range"
     "lodOptionAboutGlobalCast"                                 "Makes most spells have global cast range. Some spells are disabled (like Fissure) for technial reasons."
     "lodMutatorGlobalCast"                                 "Global Cast Range"
-    
 
+    "lodOptionMemesRedux"                                  "Memes Redux"
+    "lodOptionDesMemesRedux"                               "Enable Memes"
+    "lodOptionAboutMemesRedux"                             "Adds all the dankest memes into your game, depending on what abilities you use."
+    "lodMutatorMemesRedux"                                 "Memes Redux"
+    
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"
     "lodOptionDesAdvancedNeutralAbilities"          "Allow Neutral Abilities"
     "lodOptionDesAdvancedCustomSkills"              "Allow Custom Abilities"

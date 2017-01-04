@@ -11,6 +11,9 @@ LinkLuaModifier( "modifier_gottagofast_aura", "abilities/global_mutators/global_
 LinkLuaModifier( "modifier_gottagofast_effect", "abilities/global_mutators/global_mutator.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_gottagoreallyfast_aura", "abilities/global_mutators/global_mutator.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_gottagoreallyfast_effect", "abilities/global_mutators/global_mutator.lua" ,LUA_MODIFIER_MOTION_NONE )
+-- Memes modifier
+LinkLuaModifier( "modifier_memes_redux", "abilities/global_mutators/memes_redux.lua" ,LUA_MODIFIER_MOTION_NONE )
+
 
 --------------------------------------------------------------------------------------------------------
 if global_mutator ~= "" then global_mutator = class({}) end
@@ -53,10 +56,15 @@ end
 if IsServer() then
 --------------------------------------------------------------------------------------------------------
 	function modifier_global_mutator:OnCreated()
+		-- Gotta Go Fast
 		if OptionManager:GetOption("gottaGoFast") == 1 then
 			local thinker = CreateModifierThinker(self:GetParent(),self:GetAbility(),"modifier_gottagofast_aura",{},Vector(0,0,0),20,false)
 		elseif OptionManager:GetOption("gottaGoFast") == 2 then
 			local thinker = CreateModifierThinker(self:GetParent(),self:GetAbility(),"modifier_gottagoreallyfast_aura",{},Vector(0,0,0),20,false)
+		end
+		-- Memes Redux
+		if OptionManager:GetOption("memesRedux") == 1 then
+			local memer = CreateModifierThinker(self:GetParent(),self:GetAbility(),"modifier_memes_redux",{},Vector(0,0,0),20,false)
 		end
 	end
 end
@@ -186,3 +194,4 @@ end
 function modifier_gottagoreallyfast_effect:GetModifierMoveSpeed_Max()
 	return 1000
 end
+----------------------------------------------------------------------------------------------------------

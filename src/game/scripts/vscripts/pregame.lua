@@ -520,6 +520,10 @@ function Pregame:loadDefaultSettings()
 
     -- Normal speed
     self:setOption("lodOptionGottaGoFast", 0)
+
+    -- NO MEMES UncleNox
+    self:setOption("lodOptionMemesRedux", 0)
+
 end
 
 -- Gets stats for the given player
@@ -816,8 +820,12 @@ function Pregame:onThink()
 
         if not self.Announce_Picking_Phase then
             self.Announce_Picking_Phase = true
-            local sound = self:getRandomSound('game_picking_phase')
-            EmitAnnouncerSound(sound)
+            if OptionManager:GetOption("memesRedux") == 1 then
+                EmitGlobalSound("Memes.IntroSong")
+            else
+                local sound = self:getRandomSound('game_picking_phase')
+                EmitAnnouncerSound(sound)
+            end
         end
 
         --Check if countdown reaches 30 sec remaining
@@ -2390,6 +2398,11 @@ function Pregame:initOptionSelector()
             -- Valid
             return true
         end,
+
+         -- Other -- Memes Redux
+        lodOptionMemesRedux = function(value)
+             return value == 0 or value == 1
+        end, 
     }
 
     -- Callbacks
@@ -3071,6 +3084,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('globalCastRange', this.optionStore['lodOptionGlobalCast'])
         OptionManager:SetOption('refreshCooldownsOnDeath', this.optionStore['lodOptionRefreshCooldownsOnDeath'])
         OptionManager:SetOption('gottaGoFast', this.optionStore['lodOptionGottaGoFast'])
+        OptionManager:SetOption('memesRedux', this.optionStore['lodOptionMemesRedux'])
 
         -- Enforce max level
         if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -3291,6 +3305,7 @@ function Pregame:processOptions()
                     ['Other: Global Cast Range'] = this.optionStore['lodOptionGlobalCast'],
                     ['Other: Refresh Cooldowns On Death'] = this.optionStore['lodOptionRefreshCooldownsOnDeath'],
                     ['Other: Gotta Go Fast!'] = this.optionStore['lodOptionGottaGoFast'],
+                    ['Other: Memes Redux'] = this.optionStore['lodOptionMemesRedux'],
                     ['Towers: Enable Stronger Towers'] = this.optionStore['lodOptionGameSpeedStrongTowers'],
                     ['Towers: Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],
                 })
@@ -3537,6 +3552,7 @@ function Pregame:setSelectedHero(playerID, heroName, force)
 
         -- Update the selected hero
         network:setSelectedHero(playerID, heroName)
+
     end
 end
 
@@ -3951,9 +3967,13 @@ function Pregame:checkForReady()
         maxTime = OptionManager:GetOption('reviewTime')
 
         if not self.Announce_review then
-            self.Announce_review = true
-            local sound = self:getRandomSound("game_review_phase")
-            EmitAnnouncerSound(sound)
+            self.Announce_review = true            
+            if OptionManager:GetOption("memesRedux") == 1 then
+                EmitGlobalSound("Memes.Review")
+            else
+                local sound = self:getRandomSound("game_review_phase")
+                EmitAnnouncerSound(sound)
+            end
         end
 
 
@@ -4769,6 +4789,9 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
             if not dontNetwork then
                 -- Network it
                 network:setSelectedAbilities(playerID, build)
+                if OptionManager:GetOption("memesRedux") == 1 then
+                     EmitGlobalSound("Memes.SnipeHit")
+                end
             end
         end
     end
