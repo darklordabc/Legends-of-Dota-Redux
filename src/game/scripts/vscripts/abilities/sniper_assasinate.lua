@@ -54,7 +54,7 @@ function sniper_assassinate_redux:OnAbilityPhaseStart(keys)
     self.storedTarget[1]:AddNewModifier(caster,self,"modifier_sniper_assassinate_target_redux",{duration = self:GetSpecialValueFor("debuff_duration")}) -- Make this
   else
     local point = self:GetCursorPosition()
-    self.storedTarget = FindUnitsInRadius(caster:GetTeamNumber(),point,caster,self:GetSpecialValueFor("scepter_radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
+    self.storedTarget = FindUnitsInRadius(caster:GetTeamNumber(),point,caster,self:GetSpecialValueFor("scepter_radius"), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NO_INVIS, FIND_CLOSEST, false)
     for k,v in pairs(self.storedTarget) do
       v:AddNewModifier(caster,self,"modifier_sniper_assassinate_target_redux",{duration = self:GetSpecialValueFor("debuff_duration")})
     end
