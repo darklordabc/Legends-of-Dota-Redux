@@ -7,6 +7,7 @@ require('lib/util_imba')
 require('abilities/hero_perks/hero_perks_filters')
 require('abilities/epic_boss_fight/ebf_mana_fiend_essence_amp')
 require('abilities/global_mutators/global_mutator')
+require('bottle')
 
 -- Create the class for it
 local Ingame = class({})
@@ -107,6 +108,7 @@ function Ingame:init()
     
     -- Listen to correct the changed abilitypoints
     ListenToGameEvent('dota_player_gained_level', Dynamic_Wrap(Ingame, 'OnHeroLeveledUp'), self)
+    ListenToGameEvent('dota_item_picked_up', Dynamic_Wrap(Ingame, 'OnItemPickedUp'), self)
     
     -- Set it to no team balance
     self:setNoTeamBalanceNeeded()
@@ -165,7 +167,150 @@ function Ingame:OnHeroLeveledUp(keys)
     end
 end
 
+function Ingame:OnItemPickedUp(keys)
+    local heroEntity = EntIndexToHScript(keys.HeroEntityIndex)
+    local itemEntity = EntIndexToHScript(keys.ItemEntityIndex)
+    local player = PlayerResource:GetPlayer(keys.PlayerID)
+    local itemname = keys.itemname
+    
+    if string.find(itemname,"item_rune") ~= nil then -- We are picking up a rune
+      if itemname == "item_rune_bounty" then -- It's a bounty rune, use that behaviour
+        local item =  heroEntity:GetItemByName("item_bottle_2")
+         or heroEntity:GetItemByName("item_bottle_1") 
+         or heroEntity:GetItemByName("item_bottle_0") 
+         or heroEntity:GetItemByName("item_bottle_bounty")
 
+        if item then
+          heroEntity:RemoveItem(item)
+          heroEntity:AddItemByName("item_bottle_bounty")
+        else
+          self:UseBountyRune(heroEntity)
+        end
+      else -- It is any other rune
+        local item = heroEntity:GetItemByName("item_bottle_3")
+         or heroEntity:GetItemByName("item_bottle_2")
+         or heroEntity:GetItemByName("item_bottle_1") 
+         or heroEntity:GetItemByName("item_bottle_0") 
+         or heroEntity:GetItemByName("item_bottle_bounty")
+         or heroEntity:GetItemByName("item_bottle_illusion") 
+         or heroEntity:GetItemByName("item_bottle_haste") 
+         or heroEntity:GetItemByName("item_bottle_regen")
+         or heroEntity:GetItemByName("item_bottle_doubledamage") 
+         or heroEntity:GetItemByName("item_bottle_arcane") 
+         or heroEntity:GetItemByName("item_bottle_invis")
+         
+        if item then
+          heroEntity:RemoveItem(item)
+          local bottleName = "item_bottle_".. string.sub(itemname, 11) --item_rune_bounty
+          heroEntity:AddItemByName(bottleName)
+        else -- Instantly apply the effect
+          if itemname ~= "item_rune_illusion" then
+            local modifierName = "modifier_rune_".. string.sub(itemname, 11)
+            local modifier =heroEntity:AddNewModifier(heroEntity,itemEntity,modifierName,{duration = itemEntity:GetSpecialValueFor("duration")})
+          else -- create the illusions
+            local illusionOne = CreateUnitByName(heroEntity:GetUnitName(),heroEntity:GetAbsOrigin() + RandomVector(75),true,heroEntity,heroEntity:GetOwner(),heroEntity:GetTeamNumber())
+            local player = heroEntity:GetPlayerID() 
+            illusionOne:MakeIllusion()
+            illusionOne:SetControllableByPlayer(player,true) 
+            illusionOne:SetPlayerID(player)
+            illusionOne:SetHealth(heroEntity:GetHealth())
+            illusionOne:SetMana(heroEntity:GetMana())
+            local incoming_damage
+            if heroEntity:IsRangedAttacker() then
+              incoming_damage = itemEntity:GetSpecialValueFor("incoming_damage_ranged")
+            else
+              incoming_damage = itemEntity:GetSpecialValueFor("incoming_damage_melee")
+            end
+            illusionOne:AddNewModifier(heroEntity, itemEntity, "modifier_illusion", {duration = itemEntity:GetSpecialValueFor("duration"), outgoing_damage = itemEntity:GetSpecialValueFor("outgoing_damage"), incoming_damage = incoming_damage})
+
+            local illusionTwo = CreateUnitByName(heroEntity:GetUnitName(),heroEntity:GetAbsOrigin() + RandomVector(75),true,heroEntity,heroEntity:GetOwner(),heroEntity:GetTeamNumber())
+            local player = heroEntity:GetPlayerID() 
+            illusionTwo:MakeIllusion()
+            illusionTwo:SetControllableByPlayer(player,true) 
+            illusionTwo:SetPlayerID(player)
+            illusionTwo:SetHealth(heroEntity:GetHealth())
+            illusionTwo:SetMana(heroEntity:GetMana())
+            illusionTwo:AddNewModifier(heroEntity, itemEntity, "modifier_illusion", {duration = itemEntity:GetSpecialValueFor("duration"), outgoing_damage = itemEntity:GetSpecialValueFor("outgoing_damage"), incoming_damage = incoming_damage})
+          end
+        end
+      end
+    end
+  end
+
+  function Ingame:UseBountyRune(heroEntity)
+    local bountyGold
+    local bountyExp
+    if self.notFirstRuneBounty then
+        bountyGold = 50 + math.floor(GameRules:GetGameTime()/30)
+        bountyExp = 50 + math.floor(GameRules:GetGameTime()/12)
+    else 
+        bountyGold = 100
+        bountyExp = 0
+    end
+
+    SendOverheadEventMessage( heroEntity, OVERHEAD_ALERT_GOLD  , heroEntity, bountyGold, nil )
+    heroEntity:ModifyGold(bountyGold,false,DOTA_ModifyGold_Unspecified)
+    
+    heroEntity:AddExperience(bountyExp,DOTA_ModifyXP_Unspecified,false,false)
+    heroEntity:EmitSound("Rune.Bounty")
+  end
+
+
+function Ingame:SpawnRunes()
+
+    --If runes exist delete them
+    if runeSouthEast and not runeSouthEast:IsNull() then
+      runeSouthEast:Kill()
+    end
+    if runeSouthWest and not runeSouthWest:IsNull() then
+      runeSouthWest:Kill()
+    end
+    if runeNorthWest and not runeNorthWest:IsNull() then
+      runeNorthWest:Kill()
+    end
+    if runeNorthEast and not runeNorthEast:IsNull() then
+      runeNorthEast:Kill()
+    end
+    if actionRune and not actionRune:IsNull() then
+      actionRune:Kill()
+    end
+
+
+    local item = CreateItem("item_rune_bounty",nil,nil)
+    local runeTable = {
+      [1] = "item_rune_doubledamage",
+      [2] = "item_rune_haste",
+      [3] = "item_rune_illusion",
+      [4] = "item_rune_invis",
+      [5] = "item_rune_regen",
+      [6] = "item_rune_arcane",
+    }
+    -- Bounty rune locations
+    local runeVectorSouthEast = Vector(1296,-4128,100)
+    local runeVectorSouthWest = Vector(-4352,192,100)
+    local runeVectorNorthWest = Vector(-2824,4136,100)
+    local runeVectorNorthEast = Vector(3488,288,100)
+    -- Drop Bounty runes
+    runeSouthEast = CreateItemOnPositionSync(runeVectorSouthEast,item)
+    runeSouthWest = CreateItemOnPositionSync(runeVectorSouthWest,item)
+    runeNorthWest = CreateItemOnPositionSync(runeVectorNorthWest,item)
+    runeNorthEast = CreateItemOnPositionSync(runeVectorNorthEast,item)
+
+    if self.notFirstRune then
+      local runeVector
+      local randomTopBot = RandomInt(1,2)
+      if randomTopBot == 1 then
+        runeVector = Vector(-1760,1216,100)
+      else
+        runeVector = Vector(2618,-2003,100)
+      end
+      local randomRuneType = RandomInt(1,6)
+      local item = CreateItem(runeTable[randomRuneType],nil,nil)
+      actionRune = CreateItemOnPositionSync(runeVector,item)
+      self.notFirstRuneBounty = true
+    end
+    self.notFirstRune = true
+end
 
 function Ingame:OnPlayerPurchasedItem(keys)
     -- Bots will get items auto-delievered to them
@@ -218,6 +363,14 @@ function Ingame:OnPlayerPurchasedItem(keys)
                 end
             end
         end
+    else -- Fix bottle for human players
+        local hero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()
+        if keys.itemname == "item_bottle" then
+            local item = hero:GetItemByName("item_bottle")
+            hero:RemoveItem(item)
+            local item = hero:AddItem(CreateItem("item_bottle_3", hero, hero))
+        end
+
     end
             
         
@@ -279,6 +432,14 @@ function Ingame:onStart()
             end, 'disable_all_vision_fix', 1.2)
             
     end
+    
+    -- Spawn the runes
+    ListenToGameEvent('game_rules_state_change', function(keys)
+        Timers:CreateTimer(function () 
+            Ingame:SpawnRunes()
+            return 120
+        end, DoUniqueString("spawn_runes"),0)
+    end, nil)
     
     -- ---Bot Quickfix: Bots sometimes get stuck at runespot at 0:00 gametime. This orders all bots to attack move to center of map, will unjam the stuck bots. 
     
