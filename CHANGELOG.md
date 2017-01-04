@@ -2,7 +2,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 4.4 - Development Version
+## 4.5 - Development Version
+### Bug Fixing/New Features
+- Added much more time for draft rounds (15 to 40 seconds)
+
+### Balance
+- 
+
+## 4.4 - Steam Version
 ### Bug Fixing/New Features
 - Fixed Dazzle always getting shallow grave
 - Improved Bot AI, so that when they are in defensive mode, they are not stupid anymore.
@@ -12,7 +19,7 @@ All notable changes to this project will be documented in this file.
 ### Balance
 - 
 
-## 4.3 - Steam Version
+## 4.3 
 ### Bug Fixing/New Features
 - Fixed creep power always activating when pressing load"
 - Hopefully fixed flesh heaps
