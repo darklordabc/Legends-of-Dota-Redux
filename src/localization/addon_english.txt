@@ -3953,6 +3953,15 @@
     "DOTA_Tooltip_ability_titan_command_aura_bonus_regen"                             "BONUS REGEN:"
 
     "DOTA_Tooltip_modifier_command_aura_fx"                                           "Command Aura"
-    "DOTA_Tooltip_modifier_command_aura_fx_Description"                               "Receiving bonus armor and health regeneration."  
+    "DOTA_Tooltip_modifier_command_aura_fx_Description"                               "Receiving bonus armor and health regeneration." 
+
+    "DOTA_Tooltip_ability_sniper_assassinate_redux" "Assassinate"
+    "DOTA_Tooltip_ability_sniper_assassinate_redux_Description" "Sniper locks onto a target enemy unit and, after a while, fires a devastating shot that deals damage at long range, and mini-stuns the target."
+    "DOTA_Tooltip_ability_sniper_assassinate_redux_aghanim_description" "Hits all units in 400 units around the target. Damage is now an amplified attack"
+
+    "DOTA_Tooltip_ability_sniper_assassinate_redux_damage" "NON-SCEPTER DAMAGE:"
+    "DOTA_Tooltip_ability_sniper_assassinate_redux_tooltip_range" "RANGE:"
+    "DOTA_Tooltip_ability_sniper_assassinate_redux_scepter_radius" "SCEPTER RADIUS:"
+    "DOTA_Tooltip_ability_sniper_assassinate_redux_scepter_crit_bonus" "SCEPTER CRIT:" 
 
 }
