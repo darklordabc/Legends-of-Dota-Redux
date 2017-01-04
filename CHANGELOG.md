@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 ### Bug Fixing/New Features
 - Added much more time for draft rounds (15 to 50 seconds)
 - Added Memes Redux mutator (let us know of any funny meme sound events to add) 
+- Remove Bacckpack blocker and two other weird items from showing in the shop
 
 ### Balance
 - 

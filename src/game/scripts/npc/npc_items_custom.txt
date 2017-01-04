@@ -4,7 +4,7 @@
     {
         "BaseClass"                     "item_datadriven"
         "AbilityTextureName"            "tiny_grow"
-        "ItemPurchaseable"              "0"
+        "ItemPurchasable"              "0"
         "ID"                            "2001"
         "Modifiers"
         {
@@ -31,7 +31,7 @@
     {
         "BaseClass"                     "item_datadriven"
         "AbilityTextureName"            "item_winter_stocking"
-        "ItemPurchaseable"              "0"
+        "ItemPurchasable"              "0"
         "ID"                            "2002"
     }
 
@@ -41,6 +41,7 @@
         "BaseClass"                     "item_datadriven"
         "IsSellable"                    "0"
         "ID"                            "2003"
+        "ItemPurchasable"              "0"
 
         "Modifiers"
         {
