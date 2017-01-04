@@ -48,7 +48,7 @@ function sniper_assassinate_redux:OnAbilityPhaseStart(keys)
   local caster = self:GetCaster()
   caster:EmitSound("Ability.AssassinateLoad")
   self.storedTarget = {}
-  caster:AddNewModifier(caster,self,"modifier_sniper_assassinate_caster_redux",{duration = self:GetCastPoint()})
+  caster:AddNewModifier(caster,self,"modifier_sniper_assassinate_caster_redux",{})
   if not caster:HasScepter() then
     self.storedTarget[1] = self:GetCursorTarget()
     self.storedTarget[1]:AddNewModifier(caster,self,"modifier_sniper_assassinate_target_redux",{duration = self:GetSpecialValueFor("debuff_duration")}) -- Make this
@@ -111,7 +111,7 @@ function sniper_assassinate_redux:OnProjectileHit(hTarget,vLocation)
   else
     local oldLocation =  caster:GetAbsOrigin()
     caster:SetAbsOrigin(target:GetAbsOrigin())
-    SendOverheadEventMessage(caster,OVERHEAD_ALERT_CRITICAL,target,caster:GetAttackDamage() *self:GetSpecialValueFor("scepter_crit_bonus") * 0.01 ,nil)
+    --SendOverheadEventMessage(caster,OVERHEAD_ALERT_CRITICAL,target,caster:GetAttackDamage() *self:GetSpecialValueFor("scepter_crit_bonus") * 0.01 ,nil)
     caster:PerformAttack(target,true,true,true,true,false)
     caster:SetAbsOrigin(oldLocation)
   end
@@ -144,7 +144,7 @@ function modifier_sniper_assassinate_target_redux:CheckStates()
   return state
 end
 
---[[function modifier_sniper_assassinate_target_redux:DeclareFuntions()
+--[[function modifier_sniper_assassinate_target_redux:DeclareFunctions()
   local funcs = { 
     MODIFIER_PROPERTY_PROVIDES_FOW_POSITION,
   }
@@ -171,7 +171,7 @@ function modifier_sniper_assassinate_caster_redux:IsPurgable()
   return false
 end
 
-function modifier_sniper_assassinate_caster_redux:DeclareFuntions()
+function modifier_sniper_assassinate_caster_redux:DeclareFunctions()
   local funcs = {
     MODIFIER_EVENT_ON_ORDER,
     MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
@@ -180,18 +180,20 @@ function modifier_sniper_assassinate_caster_redux:DeclareFuntions()
   return funcs
 end
 
-function modifier_sniper_assassinate_caster_redux:OnOrder()
-  for k,v in pairs(self.storedTarget) do
-    v:RemoveModifierByName("modifier_sniper_assassinate_target_redux")
+function modifier_sniper_assassinate_caster_redux:OnOrder(keys)
+  if self:GetCaster() == keys.unit and IsServer() then
+    if self.storedTarget then
+      for k,v in pairs(self.storedTarget) do
+        v:RemoveModifierByName("modifier_sniper_assassinate_target_redux")
+      end
+    end
+    self:GetAbility().storedTarget = nil
+    self:GetCaster():RemoveModifierByName("modifier_sniper_assassinate_caster_redux")
   end
-  self:GetAbility().storedTarget = nil
-  self:GetCaster():RemoveModifierByName("modifier_sniper_assassinate_caster_redux")
 end
 
 function modifier_sniper_assassinate_caster_redux:GetModifierPreAttack_CriticalStrike()
-  return self:GetAbility():GetSpecialValueFor("scepter_crit_bonus")
-end
-
-function modifier_sniper_assassinate_caster_redux:OnAbilityFullyCast()
-  self:GetCaster():RemoveModifierByName("modifier_sniper_assassinate_caster_redux")
+  if IsServer() then
+    return self:GetAbility():GetSpecialValueFor("scepter_crit_bonus")
+  end
 end
