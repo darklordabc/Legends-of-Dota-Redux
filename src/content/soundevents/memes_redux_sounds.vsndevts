@@ -1007,7 +1007,7 @@
                             "value0"        "sounds/chemicalrage1.vsnd"
                         }
                     }
-                    "volume"            {   "value"     "4.00000"  }
+                    "volume"            {   "value"     "5.00000"  }
                     "pitch_rand_min"    {   "value"     "-0.00000"  }
                     "pitch_rand_max"    {   "value"     "0.000000"  }
                     "pitch"             {   "value"     "1.000000"  }
