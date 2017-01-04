@@ -5821,8 +5821,8 @@ function Pregame:fixSpawningIssues()
                 
                         -- Change sniper assassinate to our custom version to work with aghs
                         if spawnedUnit:HasAbility("sniper_assassinate") and not util:isPlayerBot(playerID) then
-                            spawnedUnit:AddAbility("sniper_assassinate_datadriven")
-                            spawnedUnit:SwapAbilities("sniper_assassinate","sniper_assassinate_datadriven",false,true)
+                            spawnedUnit:AddAbility("sniper_assassinate_redux")
+                            spawnedUnit:SwapAbilities("sniper_assassinate","sniper_assassinate_redux",false,true)
                             spawnedUnit:RemoveAbility("sniper_assassinate")
                         end
                         -- Custom Flesh Heap fixes
