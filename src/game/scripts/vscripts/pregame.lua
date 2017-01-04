@@ -3017,17 +3017,8 @@ function Pregame:validateBuilds()
             self.selectedSkills[playerID] = build
         end
 
-        local player = PlayerResource:GetPlayer(playerID)
-        local team = 0
-
-        if not player and self.botPlayers and self.botPlayers.all[playerID] then
-            team = self.botPlayers.all[playerID].team
-        elseif player then
-            team = player:GetTeam()
-        end
-
         for slot=1,maxSlots do
-            if (self.optionStore['lodOptionBotsRestrict'] ~= 3 and ((self.optionStore['lodOptionBotsRestrict'] == 1 and team ~= DOTA_TEAM_GOODGUYS) or (self.optionStore['lodOptionBotsRestrict'] == 2 and team ~= DOTA_TEAM_BADGUYS))) or ((not self.botPlayers or not self.botPlayers.all[playerID]) and not build[slot]) then
+            if (not self.botPlayers or not self.botPlayers.all[playerID]) and not build[slot] then
                 -- Grab a random ability
                 local newAbility = self:findRandomSkill(build, slot, playerID)
 
@@ -5496,6 +5487,17 @@ end
 function Pregame:getSkillforBot( botInfo, botSkills )
     local playerID = botInfo.ID
     local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
+
+    if self.optionStore['lodOptionBotsRestrict'] > 0 then
+        if self.optionStore['lodOptionBotsRestrict'] == 1 and PlayerResource:GetTeam(playerID) == DOTA_TEAM_GOODGUYS then
+            maxSlots = 4
+        elseif self.optionStore['lodOptionBotsRestrict'] == 2 and PlayerResource:GetTeam(playerID) == DOTA_TEAM_BADGUYS then
+            maxSlots = 4
+        elseif self.optionStore['lodOptionBotsRestrict'] == 3 then
+            maxSlots = 4
+        end
+    end
+
     local build = botInfo.build or {}
     local skillID = botInfo.skillID or 1
     local heroName = botInfo.heroName
@@ -5563,14 +5565,6 @@ function Pregame:getSkillforBot( botInfo, botSkills )
                 build = info.build
                 heroName = info.heroName
             end
-        elseif self.optionStore['lodOptionBotsRestrict'] > 0 then
-            if self.optionStore['lodOptionBotsRestrict'] == 1 and botInfo.team == DOTA_TEAM_GOODGUYS then
-                build = self.botHeroes[heroName]
-            elseif self.optionStore['lodOptionBotsRestrict'] == 2 and botInfo.team == DOTA_TEAM_BADGUYS then
-                build = self.botHeroes[heroName]
-            elseif self.optionStore['lodOptionBotsRestrict'] == 3 then
-                build = self.botHeroes[heroName]
-            end 
         end
 
         -- Store the info
