@@ -91,6 +91,10 @@ function sniper_assassinate_redux:OnProjectileHit(hTarget,vLocation)
   local caster = self:GetCaster()
   local ability = self
   local target = hTarget
+  
+  if not target then
+    return 
+  end
 
   if not self:GetCaster():HasScepter() then 
     if target:TriggerSpellAbsorb(self) then
@@ -172,11 +176,18 @@ function modifier_sniper_assassinate_caster_redux:IsPurgable()
 end
 
 function modifier_sniper_assassinate_caster_redux:DeclareFunctions()
-  local funcs = {
-    MODIFIER_EVENT_ON_ORDER,
-    MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
-    MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
-  }
+  local funcs
+  if self:GetParent():HasScepter() then
+    
+    funcs = {
+      MODIFIER_EVENT_ON_ORDER,
+      MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
+     }
+   else 
+     funcs = {
+       MODIFIER_EVENT_ON_ORDER,
+     }
+    end
   return funcs
 end
 
