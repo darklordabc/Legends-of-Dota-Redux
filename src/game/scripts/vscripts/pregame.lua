@@ -520,6 +520,10 @@ function Pregame:loadDefaultSettings()
 
     -- Normal speed
     self:setOption("lodOptionGottaGoFast", 0)
+
+    -- NO MEMES UncleNox
+    self:setOption("lodOptionMemesRedux", 0)
+
 end
 
 -- Gets stats for the given player
@@ -2390,6 +2394,11 @@ function Pregame:initOptionSelector()
             -- Valid
             return true
         end,
+
+         -- Other -- Memes Redux
+        lodOptionMemesRedux = function(value)
+             return value == 0 or value == 1
+        end, 
     }
 
     -- Callbacks
@@ -3071,6 +3080,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('globalCastRange', this.optionStore['lodOptionGlobalCast'])
         OptionManager:SetOption('refreshCooldownsOnDeath', this.optionStore['lodOptionRefreshCooldownsOnDeath'])
         OptionManager:SetOption('gottaGoFast', this.optionStore['lodOptionGottaGoFast'])
+        OptionManager:SetOption('memesRedux', this.optionStore['lodOptionMemesRedux'])
 
         -- Enforce max level
         if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -3291,6 +3301,7 @@ function Pregame:processOptions()
                     ['Other: Global Cast Range'] = this.optionStore['lodOptionGlobalCast'],
                     ['Other: Refresh Cooldowns On Death'] = this.optionStore['lodOptionRefreshCooldownsOnDeath'],
                     ['Other: Gotta Go Fast!'] = this.optionStore['lodOptionGottaGoFast'],
+                    ['Other: Memes Redux'] = this.optionStore['lodOptionMemesRedux'],
                     ['Towers: Enable Stronger Towers'] = this.optionStore['lodOptionGameSpeedStrongTowers'],
                     ['Towers: Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],
                 })

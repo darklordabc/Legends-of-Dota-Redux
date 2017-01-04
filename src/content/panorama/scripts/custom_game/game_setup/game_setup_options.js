@@ -369,6 +369,11 @@ var basicOptions = {
                         name: 'lodOptionGlobalCast',
                         about: 'lodMutatorGlobalCast'
                     },
+                    {
+                         name: 'lodOptionMemesRedux',
+                         extraInfo: 'lodOptionAboutMemesRedux',
+                        about: 'lodMutatorMemesRedux'
+                    },
                     //{
                    //     name: 'lodOptionMonkeyBusiness',        
                    //     extraInfo: 'lodOptionAboutMonkeyBusiness',
@@ -1332,6 +1337,22 @@ var advancedOptions = {
                 name: 'lodOptionGlobalCast',
                 des: 'lodOptionDesGlobalCast',
                 about: 'lodOptionAboutGlobalCast',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionMemesRedux',
+                des: 'lodOptionDesMemesRedux',
+                about: 'lodOptionAboutMemesRedux',
                 sort: 'toggle',
                 values: [
                     {
