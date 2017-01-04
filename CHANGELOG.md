@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 4.5 - Development Version
 ### Bug Fixing/New Features
 - Added much more time for draft rounds (15 to 50 seconds)
+- Added Memes Redux mutator (let us know of any funny meme sound events to add) 
 
 ### Balance
 - 
