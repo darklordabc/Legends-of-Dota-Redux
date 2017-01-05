@@ -1132,3 +1132,49 @@
         }
     }
 }
+
+"Memes.RandomSample"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                            "value0"        "sounds/blackhole.vsnd"
+                            "value1"        "sounds/chemicalrage1.vsnd"
+                            "value2"        "sounds/duel3.vsnd"
+                            "value3"        "sounds/duellose1.vsnd"
+                            "value4"        "sounds/fly1.vsnd"
+                            "value5"        "sounds/g-newell.vsnd"
+                            "value6"        "sounds/hook1.vsnd"
+                            "value7"        "sounds/kill1.vsnd"
+                            "value8"        "sounds/letitgo.vsnd"
+                            "value9"        "sounds/noscope2.vsnd"
+                            "value10"        "sounds/snipe1.vsnd"
+                            "value11"        "sounds/vista.vsnd"
+                            "value12"        "sounds/WAOW.vsnd"
+                            "value13"        "sounds/ppd-gg.vsnd"
+                            "value14"        "sounds/ku-gman.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "4.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.00000"  }
+                    "pitch_rand_max"    {   "value"     "0.000000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "100.00000" }
+                    "distance_max"      {   "value"     "1600.000"  }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
