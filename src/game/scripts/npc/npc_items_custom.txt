@@ -4,7 +4,7 @@
     {
         "BaseClass"                     "item_datadriven"
         "AbilityTextureName"            "tiny_grow"
-        "ItemPurchaseable"              "0"
+        "ItemPurchasable"              "0"
         "ID"                            "2001"
         "Modifiers"
         {
@@ -31,7 +31,7 @@
     {
         "BaseClass"                     "item_datadriven"
         "AbilityTextureName"            "item_winter_stocking"
-        "ItemPurchaseable"              "0"
+        "ItemPurchasable"              "0"
         "ID"                            "2002"
     }
 
@@ -41,6 +41,7 @@
         "BaseClass"                     "item_datadriven"
         "IsSellable"                    "0"
         "ID"                            "2003"
+        "ItemPurchasable"              "0"
 
         "Modifiers"
         {
@@ -115,6 +116,7 @@
   {
     "BaseClass"                     "item_datadriven"
     "AbilityTextureName"            "item_winter_stocking"
+    "AbilityBehavior"             "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
     "ItemPurchaseable"              "0"
     "ItemCastOnPickup" "1"
     "Model"           "models/props_gameplay/rune_goldxp.vmdl"
@@ -124,6 +126,7 @@
   {
     "BaseClass"                     "item_datadriven"
     "AbilityTextureName"            "item_winter_stocking"
+    "AbilityBehavior"             "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
     "ItemPurchaseable"              "0"
     "ItemCastOnPickup" "1"
     "Model"           "models/props_gameplay/rune_doubledamage01.vmdl"
@@ -135,12 +138,26 @@
         "duration"    "45"
       }
     }
+
+    "precache"
+    {
+      "soundfile" "soundevents/game_sounds.vsndevts"
+    }
+    "OnSpellStart"
+    {
+        "FireSound"
+        {
+            "EffectName"    "Rune.DD"
+            "Target"         "CASTER"
+        }
+    }
   }
   "item_rune_haste"
   
   {
     "BaseClass"                     "item_datadriven"
     "AbilityTextureName"            "rune_haste"
+    "AbilityBehavior"             "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
     "ItemPurchaseable"              "0"
     "ItemCastOnPickup" "1"
     "Model"           "models/props_gameplay/rune_haste01.vmdl"
@@ -152,12 +169,25 @@
         "duration"    "22"
       }
     }
+    "precache"
+    {
+      "soundfile" "soundevents/game_sounds.vsndevts"
+    }
+    "OnSpellStart"
+    {
+        "FireSound"
+        {
+            "EffectName"    "Rune.Haste"
+            "Target"         "CASTER"
+        }
+    }
   }
   "item_rune_illusion"
   
   {
     "BaseClass"                     "item_datadriven"
     "AbilityTextureName"            "rune_illusion"
+    "AbilityBehavior"             "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
     "ItemPurchaseable"              "0"
     "ItemCastOnPickup" "1"
     "Model"           "models/props_gameplay/rune_illusion01.vmdl"
@@ -189,12 +219,25 @@
         "outgoing_damage"    "35"
       }
     }
+    "precache"
+    {
+      "soundfile" "soundevents/game_sounds.vsndevts"
+    }
+    "OnSpellStart"
+    {
+        "FireSound"
+        {
+            "EffectName"    "Rune.Illusion"
+            "Target"         "CASTER"
+        }
+    }
   }
   "item_rune_invis"
   
   {
     "BaseClass"                     "item_datadriven"
     "AbilityTextureName"            "rune_invis"
+    "AbilityBehavior"             "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
     "ItemPurchaseable"              "0"
     "ItemCastOnPickup" "1"
     "Model"           "models/props_gameplay/rune_invisibility01.vmdl"
@@ -207,12 +250,25 @@
         "duration"    "45"
       }
     }
+    "precache"
+    {
+      "soundfile" "soundevents/game_sounds.vsndevts"
+    }
+    "OnSpellStart"
+    {
+        "FireSound"
+        {
+            "EffectName"    "Rune.Invis"
+            "Target"         "CASTER"
+        }
+    }
   }
   "item_rune_regen"
   
   {
     "BaseClass"                     "item_datadriven"
     "AbilityTextureName"            "item_winter_stocking"
+    "AbilityBehavior"             "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
     "ItemPurchaseable"              "0"
     "ItemCastOnPickup" "1"
     "Model"           "models/props_gameplay/rune_regeneration01.vmdl"
@@ -224,6 +280,18 @@
         "duration"    "30"
       }
     }
+    "precache"
+    {
+      "soundfile" "soundevents/game_sounds.vsndevts"
+    }
+    "OnSpellStart"
+    {
+        "FireSound"
+        {
+            "EffectName"    "Rune.Regen"
+            "Target"         "CASTER"
+        }
+    }
 
   }
   "item_rune_arcane"
@@ -231,6 +299,7 @@
   {
     "BaseClass"                     "item_datadriven"
     "AbilityTextureName"            "item_winter_stocking"
+    "AbilityBehavior"             "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
     "ItemPurchaseable"              "0"
     "ItemCastOnPickup" "1"
     "Model"           "models/props_gameplay/rune_arcane.vmdl"
@@ -241,6 +310,18 @@
         "var_type"      "FIELD_INTEGER"
         "duration"    "50"
       }
+    }
+    "precache"
+    {
+      "soundfile" "soundevents/game_sounds.vsndevts"
+    }
+    "OnSpellStart"
+    {
+        "FireSound"
+        {
+            "EffectName"    "Rune.Arcane"
+            "Target"         "CASTER"
+        }
     }
   }
 
@@ -497,9 +578,18 @@
         "fade_time"    "2"
       }
     }
+    "precache"
+    {
+      "soundfile" "soundevents/game_sounds.vsndevts"
+    }
     "OnSpellStart"
     {
-      "RunScript"
+        "FireSound"
+        {
+            "EffectName"    "Rune.Invis"
+            "Target"         "CASTER"
+        }
+        "RunScript"
       {
         "ScriptFile"  "bottle.lua"
         "Function"    "OnBottleUsed"
@@ -533,14 +623,22 @@
         "manacost_reduction"    "40"
       }
     }
-
+    "precache"
+    {
+      "soundfile" "soundevents/game_sounds.vsndevts"
+    }
     "OnSpellStart"
     {
-      "RunScript"
-      {
-        "ScriptFile"  "bottle.lua"
-        "Function"    "OnBottleUsed"
-      }
+        "FireSound"
+        {
+            "EffectName"    "Rune.Arcane"
+            "Target"         "CASTER"
+        }
+        "RunScript"
+        {
+          "ScriptFile"  "bottle.lua"
+          "Function"    "OnBottleUsed"
+        }
     }
   }
   "item_bottle_doubledamage" // 
@@ -565,13 +663,22 @@
         "damage_increase"    "100"
       }
     }
+    "precache"
+    {
+      "soundfile" "soundevents/game_sounds.vsndevts"
+    }
     "OnSpellStart"
     {
-      "RunScript"
-      {
-        "ScriptFile"  "bottle.lua"
-        "Function"    "OnBottleUsed"
-      }
+        "FireSound"
+        {
+            "EffectName"    "Rune.DD"
+            "Target"         "CASTER"
+        }
+        "RunScript"
+        { 
+          "ScriptFile"  "bottle.lua"
+          "Function"    "OnBottleUsed"
+        }
     }
   }
   "item_bottle_regen" // 
@@ -601,9 +708,18 @@
         "mana_regeneration"    "67"
       }
     }
+    "precache"
+    {
+      "soundfile" "soundevents/game_sounds.vsndevts"
+    }
     "OnSpellStart"
     {
-      "RunScript"
+        "FireSound"
+        {
+            "EffectName"    "Rune.Regen"
+            "Target"         "CASTER"
+        }
+        "RunScript"
       {
         "ScriptFile"  "bottle.lua"
         "Function"    "OnBottleUsed"
@@ -632,13 +748,22 @@
         "haste_speed"    "550"
       }
     }
+    "precache"
+    {
+      "soundfile" "soundevents/game_sounds.vsndevts"
+    }
     "OnSpellStart"
     {
-      "RunScript"
-      {
-        "ScriptFile"  "bottle.lua"
-        "Function"    "OnBottleUsed"
-      }
+        "FireSound"
+        {
+            "EffectName"    "Rune.Haste"
+            "Target"         "CASTER"
+        }
+        "RunScript"
+        {
+          "ScriptFile"  "bottle.lua"
+          "Function"    "OnBottleUsed"
+        }
     }
   }
   "item_bottle_illusion" // 
@@ -678,13 +803,22 @@
         "outgoing_damage"    "35"
       }
     }
+    "precache"
+    {
+      "soundfile" "soundevents/game_sounds.vsndevts"
+    }
     "OnSpellStart"
     {
-      "RunScript"
-      {
-        "ScriptFile"  "bottle.lua"
-        "Function"    "OnBottleUsed"
-      }
+        "FireSound"
+        {
+            "EffectName"    "Rune.Illusion"
+            "Target"         "CASTER"
+        }
+        "RunScript"
+        {
+          "ScriptFile"  "bottle.lua"
+          "Function"    "OnBottleUsed"
+        }
     }
   } 
 }
