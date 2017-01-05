@@ -174,6 +174,7 @@ function Ingame:OnItemPickedUp(keys)
     local itemname = keys.itemname
     
     if string.find(itemname,"item_rune") ~= nil then -- We are picking up a rune
+        heroEntity:EmitSound("General.RunePickUp")
       if itemname == "item_rune_bounty" then -- It's a bounty rune, use that behaviour
         local item =  heroEntity:GetItemByName("item_bottle_2")
          or heroEntity:GetItemByName("item_bottle_1") 
