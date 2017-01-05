@@ -1,8 +1,25 @@
 function CDOTA_BaseNPC_Hero:GetItemByName(item_name)
-  for i=DOTA_ITEM_SLOT_1, DOTA_ITEM_SLOT_6 do
+  for i=DOTA_ITEM_SLOT_1, DOTA_ITEM_SLOT_9 do
     local item = self:GetItemInSlot(i)
     if item and item:GetAbilityName() == item_name then
       return item
+    end
+  end
+end
+
+function CDOTA_BaseNPC_Hero:GetItemByNameFromStash(item_name)
+  for i=DOTA_STASH_SLOT_1, DOTA_STASH_SLOT_6 do
+    local item = self:GetItemInSlot(i)
+    if item and item:GetAbilityName() == item_name then
+      return item
+    end
+  end
+end
+
+function CDOTA_BaseNPC_Hero:GetItemSlot(item)
+  for i=0,5 do 
+    if self:GetItemInSlot(i) == item then
+      return i
     end
   end
 end
@@ -18,29 +35,49 @@ function OnBottleUsed(keys)
     local bottleDuration = ability:GetSpecialValueFor("duration")
 
     if bottleName == "item_bottle_3" then
+      local nOldSlot = caster:GetItemSlot(ability)
       caster:RemoveItem(ability)
       local ability = caster:AddItemByName("item_bottle_2")
       target:AddNewModifier(caster,ability,"modifier_bottle_regeneration",{duration = bottleDuration, health_restore = ability:GetSpecialValueFor("health_restore"), mana_restore =  ability:GetSpecialValueFor("mana_restore")})
       ability:StartCooldown(1)
+      local nNewSlot = caster:GetItemSlot(ability)
+      if nNewSlot ~= nOldSlot then
+        caster:SwapItems(nOldSlot,nNewSlot)
+      end
       
     elseif bottleName == "item_bottle_2" then
-     caster:RemoveItem(ability)
+      local nOldSlot = caster:GetItemSlot(ability)
+      caster:RemoveItem(ability)
       local ability = caster:AddItemByName("item_bottle_1")
       target:AddNewModifier(caster,ability,"modifier_bottle_regeneration",{duration = bottleDuration, health_restore = ability:GetSpecialValueFor("health_restore"), mana_restore =  ability:GetSpecialValueFor("mana_restore")})
       ability:StartCooldown(1)
+      local nNewSlot = caster:GetItemSlot(ability)
+      if nNewSlot ~= nOldSlot then
+        caster:SwapItems(nOldSlot,nNewSlot)
+      end
       
     elseif bottleName == "item_bottle_1" then
+      local nOldSlot = caster:GetItemSlot(ability)
       caster:RemoveItem(ability)
       local ability = caster:AddItemByName("item_bottle_0")
       target:AddNewModifier(caster,ability,"modifier_bottle_regeneration",{duration = bottleDuration, health_restore = ability:GetSpecialValueFor("health_restore"), mana_restore =  ability:GetSpecialValueFor("mana_restore")})
       ability:StartCooldown(1)
+      local nNewSlot = caster:GetItemSlot(ability)
+      if nNewSlot ~= nOldSlot then
+        caster:SwapItems(nOldSlot,nNewSlot)
+      end
       
     elseif bottleName == "item_bottle_0" then
       caster:GetItemByName("item_bottle_0"):StartCooldown(1)
     elseif bottleName == "item_bottle_bounty" then
+      local nOldSlot = caster:GetItemSlot(ability)
       caster:RemoveItem(caster:GetItemByName("item_bottle_bounty"))
       local ability = caster:AddItemByName("item_bottle_2")
       Ingame:UseBountyRune(caster)
+      local nNewSlot = caster:GetItemSlot(ability)
+      if nNewSlot ~= nOldSlot then
+        caster:SwapItems(nOldSlot,nNewSlot)
+      end
     else
     -- We know we got a special rune
       if bottleName ~= "item_bottle_illusion" then
@@ -70,10 +107,14 @@ function OnBottleUsed(keys)
         illusionTwo:SetMana(caster:GetMana())
         illusionTwo:AddNewModifier(caster, ability, "modifier_illusion", {duration = ability:GetSpecialValueFor("duration"), outgoing_damage = ability:GetSpecialValueFor("outgoing_damage"), incoming_damage = incoming_damage})
       end
-
+      local nOldSlot = caster:GetItemSlot(ability)
       caster:RemoveItem(ability)
       caster:AddItemByName("item_bottle_3")
       caster:GetItemByName("item_bottle_3"):StartCooldown(1)
+      local nNewSlot = caster:GetItemSlot(ability)
+      if nNewSlot ~= nOldSlot then
+        caster:SwapItems(nOldSlot,nNewSlot)
+      end
     end
   end
 
