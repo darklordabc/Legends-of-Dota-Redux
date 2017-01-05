@@ -125,7 +125,7 @@ end
 modifier_sniper_assassinate_target_redux = class({})
 
 function modifier_sniper_assassinate_target_redux:IsHidden()
-  return false
+  return true
 end
 function modifier_sniper_assassinate_target_redux:IsPurgable()
   return false
@@ -169,7 +169,7 @@ end
 modifier_sniper_assassinate_caster_redux = class({})
 
 function modifier_sniper_assassinate_caster_redux:IsHidden()
-  return false
+  return true
 end
 function modifier_sniper_assassinate_caster_redux:IsPurgable()
   return false
