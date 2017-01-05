@@ -12,9 +12,7 @@ var cheat_list = [
 	},
 	{
 		name: 'com_lvl_max',
-		command: 'lvl_up',
-		value: 100,
-		isCustom: true,
+		command: 'dota_dev hero_maxlevel',
 	},
 	{
 		name: 'com_gold_max',
