@@ -2181,6 +2181,7 @@ var activeTabs = {};
 var uniqueSkillsMode = 0;
 var uniqueBotsSkillsMode = 1;
 var searchParts = [];
+var groupBlocks = {};
 function OnSkillTabShown(tabName) {
     if(firstSkillTabCall) {
         // Empty the skills tab
@@ -2202,7 +2203,6 @@ function OnSkillTabShown(tabName) {
             custom: true
         };
 
-        var groupBlocks = {};
         calculateFilters = function() {
             // Array used to sort abilities
             var toSort = [];
@@ -2256,7 +2256,7 @@ function OnSkillTabShown(tabName) {
                                 if(groupCon == null) {
                                     groupCon = $.CreatePanel('Panel', con, 'group_container_' + groupKey);
                                     groupCon.SetHasClass('grouped_skills', true);
-                                    groupCon.SetHasClass('draftSkills', isDraftGamemode())
+                                    groupCon.SetHasClass('draftSkills', isDraftGamemode() && currentPhase != PHASE_BANNING)
                                 }
 
                                 groupBlocks[groupKey] = groupCon;
@@ -2433,14 +2433,6 @@ function OnSkillTabShown(tabName) {
                 abcon.SetAttributeString('abilityname', abName); 
                 abcon.SetHasClass('lodMiniAbility', true);
                 label.SetHasClass('skillCostSmall', true);
-
-                if (isDraftGamemode()) {
-                    label.SetHasClass('skillCostLarge', true);
-                    label.SetHasClass('skillCostSmall', false);
-
-                    abcon.AddClass("hide");
-                    abcon.AddClass("lodDraftAbility");
-                }
        
                 if (typeof($.GetContextPanel().balanceMode) === "boolean") {
                     label.visible = $.GetContextPanel().balanceMode;
@@ -4026,6 +4018,11 @@ function OnPhaseChanged(table_name, key, data) {
                     seenPopupMessages.skillBanningInfo = true;
                     showPopupMessage('lodBanningMessage');
                 }
+
+                // for (var group in groupBlocks) {
+                //     groupBlocks[group].SetHasClass('draftSkills', false)
+
+                // }
             }
 
 
@@ -4060,6 +4057,15 @@ function OnPhaseChanged(table_name, key, data) {
                             seenPopupMessages.skillDraftingInfo = true;
                             showPopupMessage('lodPickingMessage');
                         }
+                    }
+                }
+
+                for (var abName in abilityStore) {
+                    if (isDraftGamemode()) {
+                        abilityStore[abName].SetHasClass('skillCostLarge', true);
+                        abilityStore[abName].SetHasClass('skillCostSmall', false);
+                        abilityStore[abName].AddClass("hide");
+                        abilityStore[abName].AddClass("lodDraftAbility");
                     }
                 }
             }
