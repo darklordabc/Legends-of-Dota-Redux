@@ -41,7 +41,7 @@ function modifier_npc_dota_hero_rubick_perk:OnCreated(keys)
         else 
             nullField = caster:AddAbility("rubick_null_field")
             nullField:SetHidden(true)
-            nullField:SetLevel(1)
+            nullField:SetLevel(1)	
         end
     end
 end
