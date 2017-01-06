@@ -512,14 +512,22 @@ function OnSelectedSkillsChanged(table_name, key, data) {
                 var ab = $('#lodYourAbility' + i);
                 ab.abilityname = defaultSkill;
                 ab.SetAttributeString('abilityname', defaultSkill);
+
+                var abCost = ab.GetChild(0);
+
                 if (balanceMode) {
                     // Clear the labels
-                    var abCost = ab.GetChild(0);
                     if (abCost) {
                         for (var j = 0; j < GameUI.AbilityCosts.TIER_COUNT; ++j) {
                             abCost.SetHasClass('tier' + (j+1), false);
                         }
                         abCost.text = "";
+                    }
+                }
+
+                if (typeof($.GetContextPanel().balanceMode) == "boolean") {
+                    if (abCost) {
+                        abCost.visible = $.GetContextPanel().balanceMode;
                     }
                 }
             }
@@ -533,16 +541,24 @@ function OnSelectedSkillsChanged(table_name, key, data) {
                 ab.abilityname = abName;
                 ab.SetAttributeString('abilityname', abName);
                 
+                var abCost = ab.GetChild(0);
+
                 if (balanceMode) {
                     // Set the label to the cost of the ability
                     var filterInfo = getSkillFilterInfo(abName);
-                    var abCost = ab.GetChild(0);
+                    
                     if (abCost) {
                         for (var i = 0; i < GameUI.AbilityCosts.TIER_COUNT; ++i) {
                             abCost.SetHasClass('tier' + (i + 1), filterInfo.cost == GameUI.AbilityCosts.TIER[i]);
                         }
                         abCost.text = (filterInfo.cost != GameUI.AbilityCosts.NO_COST)? filterInfo.cost: "";
                         balance -= filterInfo.cost;
+                    }
+                }
+
+                if (typeof($.GetContextPanel().balanceMode) == "boolean") {
+                    if (abCost) {
+                        abCost.visible = $.GetContextPanel().balanceMode;
                     }
                 }
             }
@@ -1935,6 +1951,7 @@ var recommenedBuildContainerList = [];
 function addRecommendedBuild(con, build) {
     var buildCon = $.CreatePanel('Panel', con, 'recBuild_' + (++recBuildCounter));
     buildCon.BLoadLayout('file://{resources}/layout/custom_game/game_setup/recommended_build.xml', false, false);
+    buildCon.balanceMode = $.GetContextPanel().balanceMode;
     buildCon.setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, build, balanceMode);
     buildCon.updateFilters(getSkillFilterInfo, getHeroFilterInfo); 
 
@@ -2424,7 +2441,10 @@ function OnSkillTabShown(tabName) {
                     abcon.AddClass("hide");
                     abcon.AddClass("lodDraftAbility");
                 }
-
+       
+                if (typeof($.GetContextPanel().balanceMode) === "boolean") {
+                    label.visible = $.GetContextPanel().balanceMode;
+                }
                 //abcon.SetHasClass('disallowedSkill', true);
 
                 makeSkillSelectable(abcon);
@@ -4402,15 +4422,18 @@ function onAllowedCategoriesChanged() {
 }
 
 function onBalanceModeChanged() {
-    balanceMode = optionValueList['lodOptionBalanceMode'];
-    GameUI.AbilityCosts.balanceModeEnabled = optionValueList['lodOptionBalanceMode'];
-    $( "#balanceModeFilter" ).SetHasClass("balanceModeDisabled", !balanceMode);    
-    for (var i = 0; i < GameUI.AbilityCosts.TIER_COUNT; ++i) {
-        $( "#buttonShowTier" + (i + 1) ).SetHasClass("balanceModeDisabled", !balanceMode);
+    if (typeof($.GetContextPanel().balanceMode) != "boolean") {
+        balanceMode = optionValueList['lodOptionBalanceMode'] == 1;
+        GameUI.AbilityCosts.balanceModeEnabled = balanceMode;
+
+        $( "#balanceModeFilter" ).SetHasClass("balanceModeDisabled", !balanceMode);    
+        for (var i = 0; i < GameUI.AbilityCosts.TIER_COUNT; ++i) {
+            $( "#buttonShowTier" + (i + 1) ).SetHasClass("balanceModeDisabled", !balanceMode);
+        }
+        $( "#balanceModePointsPreset" ).SetHasClass("balanceModeDisabled", !balanceMode);
+        $( "#balanceModePointsHeroes" ).SetHasClass("balanceModeDisabled", !balanceMode);
+        $( "#balanceModePointsSkills" ).SetHasClass("balanceModeDisabled", !balanceMode);
     }
-    $( "#balanceModePointsPreset" ).SetHasClass("balanceModeDisabled", !balanceMode);
-    $( "#balanceModePointsHeroes" ).SetHasClass("balanceModeDisabled", !balanceMode);
-    $( "#balanceModePointsSkills" ).SetHasClass("balanceModeDisabled", !balanceMode);
 }
 
 function onBalanceModeBanList() {

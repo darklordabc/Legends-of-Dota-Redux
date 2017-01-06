@@ -130,6 +130,13 @@ function updateFilters(getSkillFilterInfo, getHeroFilterInfo) {
                 abCost.text = (filterInfo.cost != GameUI.AbilityCosts.NO_COST)? filterInfo.cost: "";
             }
         }
+
+        if (typeof($.GetContextPanel().balanceMode) === "boolean") {
+            var abCost = slot.GetChild(0);
+            if (abCost) {
+                abCost.visible = $.GetContextPanel().balanceMode;
+            }
+        }
     }
 
     // Update hero
