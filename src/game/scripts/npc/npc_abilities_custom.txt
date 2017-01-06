@@ -4589,7 +4589,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "cast_range_bonus"          "99999"
+                "cast_range_bonus"          "20000"
             }
         }
         "OnOwnerSpawned"
