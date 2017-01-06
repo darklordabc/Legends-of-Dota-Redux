@@ -4880,6 +4880,13 @@
         "DOTA_Tooltip_ability_imba_necrolyte_sadist_mana_regen"                             "MANA REGENERATION:"
         "DOTA_Tooltip_ability_imba_necrolyte_sadist_regen_duration"                         "STACK DURATION:"
 
+        "DOTA_Tooltip_ability_necrolyte_sadist_lod"                                        "Sadist"
+        "DOTA_Tooltip_ability_necrolyte_sadist_lod_Description"                            "Necrolytephos gains health and mana regeneration every time he kills an unit. Hero kills grant 10 times the bonus."
+        "DOTA_Tooltip_ability_necrolyte_sadist_lod_Lore"                                   "Rotund'jere revels in death and decay, gaining renewed strength from it."
+        "DOTA_Tooltip_ability_necrolyte_sadist_lod_health_regen"                           "HEALTH REGENERATION:"
+        "DOTA_Tooltip_ability_necrolyte_sadist_lod_mana_regen"                             "MANA REGENERATION:"
+        "DOTA_Tooltip_ability_necrolyte_sadist_lod_regen_duration"                         "STACK DURATION:"
+
         "DOTA_Tooltip_ability_imba_necrolyte_reapers_scythe"                                "Reaper's Scythe"
         "DOTA_Tooltip_ability_imba_necrolyte_reapers_scythe_Description"                    "Stuns an enemy hero, then deals damage based on its maximum health.\n<font color='#FF7800'>Fear the reaper:</font> For each 1%% health the target is missing, Reaper's Scythe's damage is increased by 3%%.\n<font color='#FF7800'>Eternal rest:</font> Being killed by Reaper's Scythe adds %respawn_base% seconds to your next respawn time, and %respawn_stack% seconds to every respawn time after that.\n\n<font color='#00FF40'>Upgradable by Aghanim's Scepter:</font> Whenever an enemy hero is killed by Reaper's Scythe, Necrolyte grants %stacks_scepter% stacks of Sadist to allies in %sadist_aoe_scepter% range of the target, and prevents it from buying back."
         "DOTA_Tooltip_ability_imba_necrolyte_reapers_scythe_Lore"                           "The amount of death and suffering in the air increases the power of the Necrophos's plague magic."

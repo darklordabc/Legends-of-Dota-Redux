@@ -228,7 +228,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"internal/util.lua"
+						"ScriptFile"	"lib/util_imba.lua"
 						"Function"		"IllusionPassiveRemover"
 
 						"modifier"		"modifier_imba_frost_nova_aura"
@@ -3575,7 +3575,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"		"internal/util.lua"
+						"ScriptFile"		"lib/util_imba.lua"
 						"Function"			"IllusionPassiveRemover"
 
 						"modifier"			"modifier_imba_heartstopper_aura_emitter_enemy"
@@ -3601,7 +3601,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"		"internal/util.lua"
+						"ScriptFile"		"lib/util_imba.lua"
 						"Function"			"IllusionPassiveRemover"
 
 						"modifier"			"modifier_imba_heartstopper_aura_emitter_ally"
@@ -3772,7 +3772,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"		"internal/util.lua"
+						"ScriptFile"		"lib/util_imba.lua"
 						"Function"			"IllusionPassiveRemover"
 
 						"modifier"			"modifier_imba_sadist"
@@ -3800,6 +3800,132 @@
 						"regen_modifier"	"modifier_imba_sadist_regen"
 					}
 				}
+			}
+
+			"modifier_imba_sadist_stack"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsBuff"			"1"
+				"IsPurgable"		"0"
+
+				"Duration"			"%regen_duration"
+			}
+
+			"modifier_imba_sadist_regen"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsBuff"			"1"
+				"IsPurgable"		"0"
+
+				"Duration"			"%regen_duration"
+
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/dota imba/hero_necrolyte.lua"
+						"Function"			"ApplySadist"
+
+						"stack_modifier"	"modifier_imba_sadist_stack"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/dota imba/hero_necrolyte.lua"
+						"Function"			"RemoveSadist"
+
+						"stack_modifier"	"modifier_imba_sadist_stack"
+					}
+				}
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"		"%mana_regen"
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%health_regen"
+				}
+			}
+		}
+	}
+
+		//=================================================================================================================
+	// Necrolyte's Sadist
+	//=================================================================================================================
+	"necrolyte_sadist_lod"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"necrolyte_sadist"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1200"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"mana_regen"		"2 4 6 12"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"health_regen"		"1 2 3 6"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"hero_multiplier"	"10"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"regen_duration"	"6"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_imba_sadist"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"IsBuff"			"1"
+				"IsPurgable"		"0"
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"lib/util_imba.lua"
+						"Function"			"IllusionPassiveRemover"
+
+						"modifier"			"modifier_imba_sadist"
+					}
+				}
+
+				"OnKill"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/dota imba/hero_necrolyte.lua"
+						"Function"			"SadistKill"
+
+						"regen_modifier"	"modifier_imba_sadist_regen"
+					}
+				}
+
 			}
 
 			"modifier_imba_sadist_stack"
@@ -4470,7 +4596,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"			"internal/util.lua"
+						"ScriptFile"			"lib/util_imba.lua"
 						"Function"				"IllusionPassiveRemover"
 
 						"modifier"				"modifier_imba_necromastery"
@@ -4686,7 +4812,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"internal/util.lua"
+						"ScriptFile"	"lib/util_imba.lua"
 						"Function"		"IllusionPassiveRemover"
 
 						"modifier"		"modifier_imba_dark_lord"
@@ -4969,7 +5095,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"			"internal/util.lua"
+						"ScriptFile"			"lib/util_imba.lua"
 						"Function"				"IllusionPassiveRemover"
 
 						"modifier"				"modifier_imba_requiem_death_cast_modifier"
@@ -6583,7 +6709,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"		"internal/util.lua"
+						"ScriptFile"		"lib/util_imba.lua"
 						"Function"			"IllusionPassiveRemover"
 
 						"modifier"			"modifier_imba_essence_aura"
@@ -6876,7 +7002,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"		"internal/util.lua"
+						"ScriptFile"		"lib/util_imba.lua"
 						"Function"			"IllusionPassiveRemover"
 
 						"modifier"			"modifier_imba_purification_passive"
@@ -7106,7 +7232,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"					"internal/util.lua"
+						"ScriptFile"					"lib/util_imba.lua"
 						"Function"						"IllusionPassiveRemover"
 
 						"modifier"						"modifier_imba_degen_aura"
@@ -7832,7 +7958,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"		"internal/util.lua"
+						"ScriptFile"		"lib/util_imba.lua"
 						"Function"			"IllusionPassiveRemover"
 
 						"modifier"			"modifier_imba_coup_de_grace_kill"
@@ -8073,7 +8199,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"		"internal/util.lua"
+						"ScriptFile"		"lib/util_imba.lua"
 						"Function"			"IllusionPassiveRemover"
 
 						"modifier"			"modifier_imba_hook_stack_controller"
@@ -8446,7 +8572,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"				"internal/util.lua"
+						"ScriptFile"				"lib/util_imba.lua"
 						"Function"					"IllusionPassiveRemover"
 
 						"modifier"					"modifier_imba_flesh_heap_aura"
@@ -9792,7 +9918,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"			"internal/util.lua"
+						"ScriptFile"			"lib/util_imba.lua"
 						"Function"				"IllusionPassiveRemover"
 
 						"modifier"				"modifier_imba_shadow_strike_passive"
@@ -12559,7 +12685,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"		"internal/util.lua"
+						"ScriptFile"		"lib/util_imba.lua"
 						"Function"			"IllusionPassiveRemover"
 
 						"modifier"			"modifier_imba_land_mines_caster"
@@ -13726,7 +13852,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"		"internal/util.lua"
+						"ScriptFile"		"lib/util_imba.lua"
 						"Function"			"IllusionPassiveRemover"
 
 						"modifier"			"modifier_imba_caustic_finale_caster"
@@ -15130,7 +15256,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"		"internal/util.lua"
+						"ScriptFile"		"lib/util_imba.lua"
 						"Function"			"IllusionPassiveRemover"
 
 						"modifier"			"modifier_imba_fervor"
@@ -15274,7 +15400,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"internal/util.lua"
+						"ScriptFile"	"lib/util_imba.lua"
 						"Function"		"IllusionPassiveRemover"
 
 						"modifier"		"modifier_imba_berserkers_rage"
@@ -15836,7 +15962,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"		"internal/util.lua"
+						"ScriptFile"		"lib/util_imba.lua"
 						"Function"			"IllusionPassiveRemover"
 
 						"modifier"			"modifier_imba_mortal_strike_crit"
@@ -16045,7 +16171,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"				"internal/util.lua"
+						"ScriptFile"				"lib/util_imba.lua"
 						"Function"					"IllusionPassiveRemover"
 
 						"modifier"					"modifier_imba_reincarnation"
@@ -17620,7 +17746,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"		"internal/util.lua"
+						"ScriptFile"		"lib/util_imba.lua"
 						"Function"			"IllusionPassiveRemover"
 
 						"modifier"			"modifier_imba_poison_sting_caster"
@@ -21913,7 +22039,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"		"internal/util.lua"
+						"ScriptFile"		"lib/util_imba.lua"
 						"Function"			"IllusionPassiveRemover"
 
 						"modifier"			"modifier_imba_time_lock"
@@ -21990,7 +22116,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"		"internal/util.lua"
+						"ScriptFile"		"lib/util_imba.lua"
 						"Function"			"IllusionPassiveRemover"
 
 						"modifier"			"modifier_imba_timelord"
@@ -23929,7 +24055,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"		"internal/util.lua"
+						"ScriptFile"		"lib/util_imba.lua"
 						"Function"			"IllusionPassiveRemover"
 
 						"modifier"			"modifier_imba_trueshot_aura_owner_hero"
@@ -23953,7 +24079,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"		"internal/util.lua"
+						"ScriptFile"		"lib/util_imba.lua"
 						"Function"			"IllusionPassiveRemover"
 
 						"modifier"			"modifier_imba_trueshot_aura_owner_creep"
@@ -24539,7 +24665,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"					"internal/util.lua"
+						"ScriptFile"					"lib/util_imba.lua"
 						"Function"						"IllusionPassiveRemover"
 
 						"modifier"						"modifier_imba_shallow_grave_passive_check"
@@ -25553,7 +25679,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"					"internal/util.lua"
+						"ScriptFile"					"lib/util_imba.lua"
 						"Function"						"IllusionPassiveRemover"
 
 						"modifier"						"modifier_imba_frostbite_passive"
@@ -25924,7 +26050,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"					"internal/util.lua"
+						"ScriptFile"					"lib/util_imba.lua"
 						"Function"						"IllusionPassiveRemover"
 
 						"modifier"						"modifier_imba_freezing_field_scepter_check"
@@ -26300,7 +26426,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"					"internal/util.lua"
+						"ScriptFile"					"lib/util_imba.lua"
 						"Function"						"IllusionPassiveRemover"
 
 						"modifier"						"modifier_imba_freezing_field_scepter_check"
@@ -26683,7 +26809,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"			"internal/util.lua"
+						"ScriptFile"			"lib/util_imba.lua"
 						"Function"				"IllusionPassiveRemover"
 
 						"modifier"				"modifier_imba_searing_arrows_caster"
@@ -35484,7 +35610,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "cast_range_bonus"          "99999"
+                "cast_range_bonus"          "2000"
             }
         }
         "OnOwnerSpawned"
