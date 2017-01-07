@@ -11,6 +11,8 @@ function showIngameBuilder() {
     if(!spawnedHeroBuilder) {
         spawnedHeroBuilder = true;
 
+        var balanceMode = GameUI.AbilityCosts.balanceModeEnabled == 1 ? true : false;
+
         // Spawn the hero builder
         heroBuilderPanel = $.CreatePanel('Panel', $('#heroBuilderDisplay'), '');
         heroBuilderPanel.BLoadLayout('file://{resources}/layout/custom_game/game_setup/game_setup.xml', false, false);
@@ -22,16 +24,15 @@ function showIngameBuilder() {
         // heroBuilderPanel.SetHasClass('phase_ingame', true);
         heroBuilderPanel.SetHasClass('phase_selection_selected', true);
         heroBuilderPanel.SetHasClass('phase_selection', true);
-        if (GameUI.AbilityCosts.balanceModeEnabled) {
-            var balanceMode = GameUI.AbilityCosts.balanceModeEnabled === 1 ? true : false;
-            heroBuilderPanel.FindChildTraverse("balanceModeFilter").SetHasClass("balanceModeDisabled", !balanceMode);
-            for (var i = 0; i < GameUI.AbilityCosts.TIER_COUNT; ++i) {
-                heroBuilderPanel.FindChildTraverse("buttonShowTier" + (i + 1) ).SetHasClass("balanceModeDisabled", !balanceMode);
-            }
-            heroBuilderPanel.FindChildTraverse("balanceModePointsPreset").SetHasClass("balanceModeDisabled", !balanceMode);
-            heroBuilderPanel.FindChildTraverse("balanceModePointsHeroes").SetHasClass("balanceModeDisabled", !balanceMode);
-            heroBuilderPanel.FindChildTraverse("balanceModePointsSkills").SetHasClass("balanceModeDisabled", !balanceMode);
+
+        heroBuilderPanel.balanceMode = balanceMode;
+        heroBuilderPanel.FindChildTraverse("balanceModeFilter").SetHasClass("balanceModeDisabled", true);
+        for (var i = 0; i < GameUI.AbilityCosts.TIER_COUNT; ++i) {
+            heroBuilderPanel.FindChildTraverse("buttonShowTier" + (i + 1) ).SetHasClass("balanceModeDisabled", balanceMode == false);
         }
+        heroBuilderPanel.FindChildTraverse("balanceModePointsPreset").SetHasClass("balanceModeDisabled", balanceMode == false);
+        heroBuilderPanel.FindChildTraverse("balanceModePointsHeroes").SetHasClass("balanceModeDisabled", balanceMode == false);
+        heroBuilderPanel.FindChildTraverse("balanceModePointsSkills").SetHasClass("balanceModeDisabled", balanceMode == false);
 
         heroBuilderPanel.showBuilderTab('pickingPhaseMainTab');
 
