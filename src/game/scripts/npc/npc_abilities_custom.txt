@@ -13,7 +13,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"necrolyte_sadist"
+		"AbilityTextureName"			"custom/necrolyte_sadist_lod"
 		
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

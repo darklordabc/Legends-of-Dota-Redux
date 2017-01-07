@@ -3955,7 +3955,7 @@
     "DOTA_Tooltip_modifier_command_aura_fx"                                           "Command Aura"
     "DOTA_Tooltip_modifier_command_aura_fx_Description"                               "Receiving bonus armor and health regeneration."  
 
-    "DOTA_Tooltip_ability_necrolyte_sadist_lod"                                        "Sadist"
+    "DOTA_Tooltip_ability_necrolyte_sadist_lod"                                        "Sadist (pre 7.00)"
     "DOTA_Tooltip_ability_necrolyte_sadist_lod_Description"                            "Necrolytephos gains health and mana regeneration every time he kills an unit. Hero kills grant 10 times the bonus."
     "DOTA_Tooltip_ability_necrolyte_sadist_lod_Lore"                                   "Rotund'jere revels in death and decay, gaining renewed strength from it."
     "DOTA_Tooltip_ability_necrolyte_sadist_lod_health_regen"                           "HEALTH REGENERATION:"
