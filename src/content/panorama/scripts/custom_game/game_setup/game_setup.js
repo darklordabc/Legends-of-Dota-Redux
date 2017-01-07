@@ -4062,8 +4062,8 @@ function OnPhaseChanged(table_name, key, data) {
                     }
                 }
 
-                for (var abName in abilityStore) {
-                    if (isDraftGamemode()) {
+                if (isDraftGamemode()) {
+                    for (var abName in abilityStore) {
                         var label = abilityStore[abName].GetChild(0);
                         if (label) {
                             label.SetHasClass('skillCostLarge', true);
