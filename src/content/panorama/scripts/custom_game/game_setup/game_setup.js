@@ -1313,6 +1313,8 @@ function setSelectedHelperHero(heroName, dontUnselect) {
         } else {
             abCon.visible = false;
         }
+
+        hookSkillInfo(abCon);
     }
 
     // Highlight drop slots correctly
@@ -4900,6 +4902,8 @@ function loadPlayerBans() {
     hookAndFire('random_builds', OnGetRandomBuilds);
     //hookAndFire('selected_random_builds', OnSelectedRandomBuildChanged);
     hookAndFire('draft_array', OnGetDraftArray);
+
+    GameUI.CustomUIConfig().hookSkillInfo = hookSkillInfo;
 
     // Listen for notifications
     GameEvents.Subscribe('lodNotification', function(data) {

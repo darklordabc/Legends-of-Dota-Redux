@@ -98,6 +98,8 @@ function OnGetHeroBuildData(build) {
 			con.abilityname = 'life_stealer_empty_1';
 			con.SetAttributeString('abilityname', 'life_stealer_empty_1');
 		}
+
+		GameUI.CustomUIConfig().hookSkillInfo(con);
 	}
 }
 
