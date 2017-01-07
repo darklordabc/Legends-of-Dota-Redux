@@ -4064,8 +4064,11 @@ function OnPhaseChanged(table_name, key, data) {
 
                 for (var abName in abilityStore) {
                     if (isDraftGamemode()) {
-                        abilityStore[abName].SetHasClass('skillCostLarge', true);
-                        abilityStore[abName].SetHasClass('skillCostSmall', false);
+                        var label = abilityStore[abName].GetChild(0);
+                        if (label) {
+                            label.SetHasClass('skillCostLarge', true);
+                            label.SetHasClass('skillCostSmall', false);
+                        }
                         abilityStore[abName].AddClass("hide");
                         abilityStore[abName].AddClass("lodDraftAbility");
                     }
