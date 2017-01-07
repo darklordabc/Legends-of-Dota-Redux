@@ -4436,8 +4436,8 @@ function onAllowedCategoriesChanged() {
 
 function onBalanceModeChanged() {
     if (typeof($.GetContextPanel().balanceMode) != "boolean") {
-        balanceMode = optionValueList['lodOptionBalanceMode'] == 1;
-        GameUI.AbilityCosts.balanceModeEnabled = balanceMode;
+        balanceMode = optionValueList['lodOptionBalanceMode'];
+        GameUI.AbilityCosts.balanceModeEnabled = optionValueList['lodOptionBalanceMode'];
 
         $( "#balanceModeFilter" ).SetHasClass("balanceModeDisabled", !balanceMode);    
         for (var i = 0; i < GameUI.AbilityCosts.TIER_COUNT; ++i) {
