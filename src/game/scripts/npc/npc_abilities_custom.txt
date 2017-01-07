@@ -3,6 +3,133 @@
 {
     "Version"       "1"
 
+
+	//=================================================================================================================
+	// Necrolyte's Sadist from Dota IMBA
+	//=================================================================================================================
+	"necrolyte_sadist_lod"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"necrolyte_sadist"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1200"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"mana_regen"		"2 4 6 12"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"health_regen"		"1 2 3 6"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"hero_multiplier"	"10"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"regen_duration"	"6"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_imba_sadist"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"IsBuff"			"1"
+				"IsPurgable"		"0"
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"lib/util_imba.lua"
+						"Function"			"IllusionPassiveRemover"
+
+						"modifier"			"modifier_imba_sadist"
+					}
+				}
+
+				"OnKill"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/dota imba/hero_necrolyte.lua"
+						"Function"			"SadistKill"
+
+						"regen_modifier"	"modifier_imba_sadist_regen"
+					}
+				}
+
+			}
+
+			"modifier_imba_sadist_stack"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsBuff"			"1"
+				"IsPurgable"		"0"
+
+				"Duration"			"%regen_duration"
+			}
+
+			"modifier_imba_sadist_regen"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsBuff"			"1"
+				"IsPurgable"		"0"
+
+				"Duration"			"%regen_duration"
+
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/dota imba/hero_necrolyte.lua"
+						"Function"			"ApplySadist"
+
+						"stack_modifier"	"modifier_imba_sadist_stack"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/dota imba/hero_necrolyte.lua"
+						"Function"			"RemoveSadist"
+
+						"stack_modifier"	"modifier_imba_sadist_stack"
+					}
+				}
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"		"%mana_regen"
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%health_regen"
+				}
+			}
+		}
+	}
+
 	"titan_command_aura"
 	{
 		// General
