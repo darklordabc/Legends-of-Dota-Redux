@@ -12,7 +12,6 @@ function InitPlayer(panel) {
 		var talentsPanel = panel.FindChildTraverse("Talents");
 
 		if (!abilitiesPanel) {
-			$.Msg(panel.id, "asd");
 			abilitiesPanel = $.CreatePanel("Panel", panel, "HeroAbilities");
 			abilitiesPanel.style.height = "100%;";
 			abilitiesPanel.style.width = "200px;";
