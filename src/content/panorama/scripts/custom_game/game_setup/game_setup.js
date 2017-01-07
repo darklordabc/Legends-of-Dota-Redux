@@ -512,6 +512,7 @@ function OnSelectedSkillsChanged(table_name, key, data) {
                 var ab = $('#lodYourAbility' + i);
                 ab.abilityname = defaultSkill;
                 ab.SetAttributeString('abilityname', defaultSkill);
+                hookSkillInfo(ab);
 
                 var abCost = ab.GetChild(0);
 
@@ -540,6 +541,7 @@ function OnSelectedSkillsChanged(table_name, key, data) {
             if(ab != null) {
                 ab.abilityname = abName;
                 ab.SetAttributeString('abilityname', abName);
+                hookSkillInfo(ab);
                 
                 var abCost = ab.GetChild(0);
 
@@ -2428,10 +2430,10 @@ function OnSkillTabShown(tabName) {
                 // Create the image
                 var abcon = $.CreatePanel('DOTAAbilityImage', con, 'skillTabSkill' + (++unqiueCounter));
                 var label = $.CreatePanel('Label', abcon, 'skillTabCost' + (++unqiueCounter));
-                hookSkillInfo(abcon);
                 abcon.abilityname = abName;
                 abcon.SetAttributeString('abilityname', abName); 
                 abcon.SetHasClass('lodMiniAbility', true);
+                hookSkillInfo(abcon);
                 label.SetHasClass('skillCostSmall', true);
        
                 if (typeof($.GetContextPanel().balanceMode) === "boolean") {

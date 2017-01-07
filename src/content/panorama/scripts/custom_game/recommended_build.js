@@ -16,8 +16,7 @@ function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, bu
 
         // Make it selectable and show info
         makeSkillSelectable(slot);
-        hookSkillInfo(slot);
-
+        
         if(curBuild[slotID]) {
             slot.visible = true;
             slot.abilityname = curBuild[slotID];
@@ -25,6 +24,8 @@ function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, bu
         } else {
             slot.visible = false;
         }
+
+        hookSkillInfo(slot);
 
         // Add abilities names
         searchTags.push($.Localize('DOTA_Tooltip_ability_' + slot.abilityname).toLowerCase());
