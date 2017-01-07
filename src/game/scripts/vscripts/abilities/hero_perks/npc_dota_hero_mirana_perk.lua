@@ -47,8 +47,9 @@ function modifier_npc_dota_hero_mirana_perk:OnAbilityFullyCast(keys)
     cooldownReduction = 1 - (cooldownReduction * 0.01)
 
     if keys.ability:HasAbilityFlag("skillshot") and keys.unit == self:GetParent() then
+      local cooldown = keys.ability:GetCooldownTimeRemaining()
       keys.ability:EndCooldown()
-      keys.ability:StartCooldown(keys.ability:GetCooldown(keys.ability:GetLevel()-1)*cooldownReduction)
+      keys.ability:StartCooldown(cooldown*cooldownReduction)
       self:GetParent():GiveMana(keys.ability:GetManaCost(keys.ability:GetLevel()-1)*manaRefund)
     end
   end
