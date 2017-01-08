@@ -957,6 +957,7 @@
     "heroStats_SpecialBonus2"                       "<font color=\'#5991E9\'>Level 15</font>"
     "heroStats_SpecialBonus3"                       "<font color=\'#3778DE\'>Level 20</font>"
     "heroStats_SpecialBonus4"                       "<font color=\'#135BCE\'>Level 25</font>"
+    "heroStats_or"                                  "<font color=\'#999999\'> or </font>"
     
     "heroStats_ringRadius"                          "HERO SIZE RADIUS"
     "heroStats_visionDay"                           "DAY VISION"
