@@ -1,7 +1,11 @@
+var parent = $.GetContextPanel().GetParent();
+while(parent.id != "Hud")
+	parent = parent.GetParent();
+
 function InitPlayer(panel) {
-	$.Schedule(0.5, function () {
-		InitPlayer(panel);
-	})
+	// $.Schedule(0.5, function () {
+	// 	InitPlayer(panel);
+	// })
 	if (panel) {
 		var playerId = parseInt((panel.id.match(/\d/g)).join(""));
 
@@ -66,32 +70,32 @@ function InitPlayer(panel) {
 	}
 }
 
+function InitPlayers() {
+	for (var i = 0; i < 23; i++) {
+		InitPlayer(parent.FindChildTraverse("scoreboard").FindChildTraverse("RadiantPlayer"+i))
+	}
+
+	for (var i = 0; i < 23; i++) {
+		InitPlayer(parent.FindChildTraverse("scoreboard").FindChildTraverse("DirePlayer"+i))
+	}
+
+	$.Schedule(0.5, InitPlayers);
+}
+
 (function () {
-	$.Schedule(5.0, function () {
-		var parent = $.GetContextPanel().GetParent();
-		while(parent.id != "Hud")
-			parent = parent.GetParent();
+	parent.FindChildTraverse("scoreboard").FindChildTraverse("SharedContent").style.marginLeft = "542px;";
+	parent.FindChildTraverse("scoreboard").FindChildTraverse("SharedUnitControl").style.marginLeft = "650px;";
+	parent.FindChildTraverse("scoreboard").FindChildTraverse("TeamInventories").style.marginLeft = "650px;";
 
-		parent.FindChildTraverse("scoreboard").FindChildTraverse("SharedContent").style.marginLeft = "542px;";
-		parent.FindChildTraverse("scoreboard").FindChildTraverse("SharedUnitControl").style.marginLeft = "650px;";
-		parent.FindChildTraverse("scoreboard").FindChildTraverse("TeamInventories").style.marginLeft = "650px;";
+	var radiantHeader = parent.FindChildTraverse("scoreboard").FindChildTraverse("RadiantHeader");
+	if (!radiantHeader.FindChildTraverse("AbilitiesLabel")) {
+		var abilitiesHeader = $.CreatePanel("Label", radiantHeader, "AbilitiesLabel");
+		abilitiesHeader.SetHasClass("SubheaderDesc", true);
+		abilitiesHeader.style.width = "200px;";
+		abilitiesHeader.style.paddingRight = "23px;";
+		abilitiesHeader.text = "ABILITIES";
+		radiantHeader.MoveChildAfter(abilitiesHeader, radiantHeader.FindChildTraverse("RadiantTeamLabel"))
+	}
 
-		var radiantHeader = parent.FindChildTraverse("scoreboard").FindChildTraverse("RadiantHeader");
-		if (!radiantHeader.FindChildTraverse("AbilitiesLabel")) {
-			var abilitiesHeader = $.CreatePanel("Label", radiantHeader, "AbilitiesLabel");
-			abilitiesHeader.SetHasClass("SubheaderDesc", true);
-			abilitiesHeader.style.width = "200px;";
-			abilitiesHeader.style.paddingRight = "23px;";
-			abilitiesHeader.text = "ABILITIES";
-			radiantHeader.MoveChildAfter(abilitiesHeader, radiantHeader.FindChildTraverse("RadiantTeamLabel"))
-		}
-
-		for (var i = 0; i < 23; i++) {
-			InitPlayer(parent.FindChildTraverse("scoreboard").FindChildTraverse("RadiantPlayer"+i))
-		}
-
-		for (var i = 0; i < 23; i++) {
-			InitPlayer(parent.FindChildTraverse("scoreboard").FindChildTraverse("DirePlayer"+i))
-		}
-	})
+	InitPlayers()
 })();
