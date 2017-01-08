@@ -953,7 +953,11 @@
 
     "heroStats_uniqueMechanic"                      "UNIQUE MECHANIC"
     "heroStats_talentTree"                          "TALENT TREE"
-
+    "heroStats_SpecialBonus1"                       "<font color=\'#7FABF1\'>Level 10</font>"
+    "heroStats_SpecialBonus2"                       "<font color=\'#5991E9\'>Level 15</font>"
+    "heroStats_SpecialBonus3"                       "<font color=\'#3778DE\'>Level 20</font>"
+    "heroStats_SpecialBonus4"                       "<font color=\'#135BCE\'>Level 25</font>"
+    
     "heroStats_ringRadius"                          "HERO SIZE RADIUS"
     "heroStats_visionDay"                           "DAY VISION"
     "heroStats_visionNight"                         "NIGHT VISION"
@@ -1094,8 +1098,6 @@
 	"unique_mechanic_witch_doctor"           "<font color=\'#ffd966\'>Healing</font> abilities <br>have 25% extra effectiveness when used <br>by Witch Doctor."
 	"unique_mechanic_skeleton_king"                        "Wraith King can buyback <br>with a 50% reduced cooldown, refunding <br>50% of the buyback cost and removing the <br>gold penalty."
 	"unique_mechanic_zuus"                        "When Bloodseeker <br>casts <font color='#ffd966'>Rupture</font>, 100% of the mana cost <br>will be refunded and cooldown reduced <br>by 20%."
-
-    "talent_tree_zuus"                        "<br><font color=\'#7FABF1\'>Level 10:</font> +150 Health <br><font color=\'#999999\'>or</font> +2 Mana Regen<br> <font color=\'#5991E9\'>Level 15:</font> +10% Magic Resistance <br><font color=\'#999999\'>or</font> +5 Armor<br><font color=\'#3778DE\'>Level 20:</font> -40 Respawn Time <br><font color=\'#999999\'>or</font> +35 Movement Speed<br> <font color=\'#135BCE\'>Level 25:</font> +1.5% <font color=\'#ffd966\'>Static Field​</font> Damage <br><font color=\'#999999\'>or</font> +200 Cast Range</font></font>"
 
     /////////////////
     // Cheats
