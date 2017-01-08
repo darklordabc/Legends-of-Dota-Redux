@@ -3902,6 +3902,13 @@ function generateFormattedHeroStatsString(heroName, info) {
         heroStats += heroStatsLine('heroStats_uniqueMechanic', heroMechanic, '23FF27', '70EA72');
     }
 
+     // Talent Trees
+    var talentTree = $.Localize("talent_tree_" + heroName.substring(14));
+    if(talentTree != "talent_tree_" + heroName.substring(14)) {
+        heroStats += '<br>';
+        heroStats += heroStatsLine('heroStats_talentTree', talentTree, '7FABF1', 'FFFFFF');
+    }
+
     return heroStats;
 }
 
