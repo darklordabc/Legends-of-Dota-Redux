@@ -3905,7 +3905,6 @@ function generateFormattedHeroStatsString(heroName, info) {
     // Talent Trees
     heroStats += '<br>';
     heroStats += heroStatsLine($.Localize('heroStats_talentTree'), "", '7FABF1', 'FFFFFF');
-    heroStats += '<br>';
     for (var i = 1; i <= 4; i++) {
         var specialGroup = info["SpecialBonus"+i];
         heroStats += heroStatsLine($.Localize("heroStats_SpecialBonus"+i), $.Localize("DOTA_Tooltip_ability_"+specialGroup["1"]) + " or " + $.Localize("DOTA_Tooltip_ability_"+specialGroup["2"]), '7FABF1', 'FFFFFF');
