@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 ### Bug Fixing/New Features
 - Added Talent information to the hero popup infobox
 - Fixed Upgraded Version of Assassinate
-
+- Returned being able to view abilities in scoreboard feature (now also Talents!)
 ### Balance
 - 
 
