@@ -111,7 +111,6 @@
                   "earth_spirit_geomagnetic_grip"                       "1"
                   "earth_spirit_magnetize"                              "1"
                   "earth_spirit_rolling_boulder"                        "1"
-                  "earthshaker_aftershock_lod"                          "1"
                   "earthshaker_echo_slam"                               "1"
                   "earthshaker_enchant_totem"                           "1"
                   "earthshaker_fissure"                                 "1"
@@ -227,7 +226,7 @@
                   "mirana_arrow"                                        "1"
                   "mirana_invis"                                        "1"
                   "mirana_leap"                                         "1"
-                  //"mirana_starfall"                                   "1"
+                  "mirana_starfall_lod"                                 "1"
                   "morphling_adaptive_strike"                           "1"
                   "morphling_morph_agi"                                 "1"
                   "morphling_morph_str"                                 "1"
@@ -257,7 +256,6 @@
                   "nyx_assassin_vendetta"                               "1"
                   "obsidian_destroyer_arcane_orb"                       "1"
                   "obsidian_destroyer_astral_imprisonment"              "1"
-                  "obsidian_destroyer_essence_aura_lod"                 "1"
                   "obsidian_destroyer_sanity_eclipse"                   "1"
                   "ogre_magi_bloodlust"                                 "1"
                   "ogre_magi_fireblast"                                 "1"
@@ -316,7 +314,7 @@
                   "riki_smoke_screen"                                   "1"
                   "rubick_fade_bolt"                                    "1"
                   "rubick_null_field"                                   "1"
-                  "rubick_spell_steal"                                  "1"
+                  //"rubick_spell_steal"                                "1"
                   "rubick_telekinesis"                                  "1"
                   "sandking_burrowstrike"                               "1"
                   //"sandking_caustic_finale"                           "1"
@@ -509,17 +507,16 @@
                   "riki_permanent_invisibility"                         "1"
 
                   // Multicast
-                  "ogre_magi_multicast_lod"                             "1"
                   "ogre_magi_multicast"                                 "1"
-
-                  // Witch Craft
-                  "death_prophet_witchcraft"                            "1"
 
                   // Aftershock
                   "earthshaker_aftershock"                              "1"
 
                   // Essence Shift
                   "slark_essence_shift"                                 "1"
+
+                  // Global Break
+                  "silencer_global_break"                                        "1"
             }
 
             // The neutrals skills
@@ -607,6 +604,14 @@
             "custom" {
                   "slark_essence_shift_strength_lod"                    "1"
                   "slark_essence_shift_intellect_lod"                   "1"
+                  "pudge_flesh_heap_agi"                                      "1"
+                  "pudge_flesh_heap_int"                                      "1"
+                  "silencer_global_break"                                        "1"
+                  "ogre_magi_multicast_lod"                             "1"
+                  "death_prophet_witchcraft"                            "1"
+                  "obsidian_destroyer_essence_aura_lod"                 "1"
+                  "earthshaker_aftershock_lod"                          "1"
+                  "tinker_rearm_lod"                                    "1"
             }
       }
 
@@ -621,6 +626,13 @@
                   "Ability7"  "invoker_ice_wall_lod"
                   "Ability8"  "invoker_sun_strike_lod"
                   "Ability9"  "invoker_tornado_lod"
+            }
+
+            "npc_dota_hero_mirana" {
+                  "Ability1"  "mirana_starfall_lod"
+                  "Ability2"  "mirana_arrow"
+                  "Ability3"  "mirana_leap"
+                  "Ability4"  "mirana_invis"
             }
 
             "npc_dota_hero_tiny" {
@@ -732,6 +744,14 @@
                   "Ability5"  "earthshaker_echo_slam"
             }
 
+            "npc_dota_hero_tinker" {
+                  "Ability1"  "tinker_laser"
+                  "Ability2"  "tinker_heat_seeking_missile"
+                  "Ability3"  "tinker_march_of_the_machines"
+                  "Ability4"  "tinker_rearm_lod"
+                  "Ability5"  "tinker_rearm"
+            }
+
             "npc_dota_hero_slark" {
                   "Ability1" "slark_dark_pact"
                   "Ability2" "slark_pounce"
@@ -740,5 +760,22 @@
                   "Ability5" "slark_essence_shift_strength_lod"
                   "Ability6" "slark_shadow_dance"
            }
+           "npc_dota_hero_pudge" {
+                  "Ability1" "pudge_meat_hook"
+                  "Ability2" "pudge_rot"
+                  "Ability3" "pudge_flesh_heap"
+                  "Ability4" "pudge_flesh_heap_int"
+                  "Ability5" "pudge_flesh_heap_agi"
+                  "Ability6" "pudge_dismember"
+                  }
+                  
+           "npc_dota_hero_silencer" {
+                  "Ability1" "silencer_curse_of_the_silent"
+                  "Ability2" "silencer_glaives_of_wisdom"
+                  "Ability3" "silencer_last_word"
+                  "Ability4" "silencer_global_break"
+                  "Ability5" "silencer_global_silence"
+           }
+           
       }
 }

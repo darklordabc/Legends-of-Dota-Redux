@@ -11,8 +11,8 @@
         <Panel id="lodNotificationArea">
         </Panel>
 
-        <Panel id="lodTimerWarning">
-            <Label id="lodTimerWarningLabel" text="lol" />
+        <Panel id="lodTimerWarning" hittest="false">
+            <Label id="lodTimerWarningLabel" text="lol" hittest="false"/>
         </Panel>
 
         <Panel id="lodPopupMessage">
@@ -32,11 +32,17 @@
             <Panel id="mainTeamContainer">
                 <Panel id="theRadiant" class="theTeamTopLevel" onactivate="onJoinRadiantPressed()">
                     <Label class="radiantGlow" text="theRadiant" />
-                    <Panel id="theRadiantContainer" class="theTeamContainer" />
+                    <Panel id="theRadiantContainer" class="theTeamContainer">
+                        <Panel id="theRadiantContainerTop" class="theTeamContainerSub" />
+                        <Panel id="theRadiantContainerBot" class="theTeamContainerSub" />
+                    </Panel>
                 </Panel>
                 <Panel id="theDire" class="theTeamTopLevel" onactivate="onJoinDirePressed()">
                     <Label class="direGlow" text="theDire" />
-                    <Panel id="theDireContainer" class="theTeamContainer" />
+                    <Panel id="theDireContainer" class="theTeamContainer">
+                        <Panel id="theDireContainerTop" class="theTeamContainerSub" />
+                        <Panel id="theDireContainerBot" class="theTeamContainerSub" />
+                    </Panel>
                 </Panel>
 
                 <Panel id="middleButtons">
@@ -361,9 +367,15 @@
             </Panel>
 
             <Panel id="reviewPhase">
-                <Panel id="reviewRadiantTeam" class="reviewPhaseTeam" />
+                <Panel id="reviewRadiantTeam" class="reviewPhaseTeam">
+                    <Panel id="reviewPhaseRadiantTeamTop" class="subReviewContainer" />
+                    <Panel id="reviewPhaseRadiantTeamBot" class="subReviewContainer" />
+                </Panel>
                 <Label id="reviewPhaseVS" text="VS" />
-                <Panel id="reviewDireTeam" class="reviewPhaseTeam" />
+                <Panel id="reviewDireTeam" class="reviewPhaseTeam">
+                    <Panel id="reviewPhaseDireTeamTop" class="subReviewContainer" />
+                    <Panel id="reviewPhaseDireTeamBot" class="subReviewContainer" />
+                </Panel>
 
                 <Panel class="reviewButtons">
                     <Button id="reviewReadyButton" class="heroBuildMenuButtonSmall lockBuildButton makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">

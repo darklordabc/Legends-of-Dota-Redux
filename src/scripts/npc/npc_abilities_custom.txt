@@ -201,17 +201,17 @@
             "04"
             {
                 "var_type"              "FIELD_FLOAT"
-                "base_attack_time"      "1.55"
+                "base_attack_time"      "1.5"
             }
             "05"
             {
                 "var_type"              "FIELD_INTEGER"
-                "bonus_hp"              "100"
+                "bonus_hp"              "0"
             }
             "06"
             {
                 "var_type"              "FIELD_INTEGER"
-                "bonus_armor"           "3"
+                "bonus_armor"           "6"
             }
             "07"
             {
@@ -1276,6 +1276,237 @@
     }
 
     //=================================================================================================================
+    // Mirana: Starfall - based on https://raw.githubusercontent.com/Pizzalol/SpellLibrary but also with scepter implementation
+    //=================================================================================================================
+    "mirana_starfall_lod"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"             "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "FightRecapLevel"               "1"
+        "AbilityTextureName"            "mirana_starfall"
+
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "soundfile"         "soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
+            "particle"          "particles/units/heroes/hero_mirana/mirana_starfall_attack.vpcf"
+            "particle"          "particles/units/heroes/hero_mirana/mirana_starfall_circle.vpcf"
+        }
+        
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastPoint"              "0.5 0.5 0.5 0.5"
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "12.0 12.0 12.0 12.0"
+        "AbilityDuration"               "10.0 10.0 10.0 10.0"
+
+        // Damage.
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityDamage"                 "75 150 225 300"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "100 120 140 160"
+
+        // Cast animation
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "starfall_radius"   "625"       
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "starfall_secondary_radius" "175"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "starfall_delay"    "0.57"
+            }
+            "04"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "starfall_secondary_damage_pct" "0.75"
+            }
+            "05"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "starfall_secondary_targets"    "1"
+            }
+            "06"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "scepter_interval"  "8.0"
+            }
+        }
+
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "EffectName"    "Ability.Starfall"
+                "Target"        "CASTER"
+            }
+
+            "FireEffect"
+            {
+                "EffectName"    "particles/units/heroes/hero_mirana/mirana_starfall_circle.vpcf"
+                "EffectAttachType"  "attach_origin"
+                "Target"        "CASTER"
+            }
+
+            "ActOnTargets"
+            {
+                "Target"
+                {
+                    "Center" "CASTER"
+                    "Radius" "%starfall_radius"
+                    "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY" 
+                    "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                }
+
+                "Action"
+                {
+                    "FireEffect"
+                    {
+                        "EffectName"    "particles/units/heroes/hero_mirana/mirana_starfall_attack.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"        "TARGET"
+                    }
+
+                    "DelayedAction"
+                    {
+                        "Delay"     "%starfall_delay"
+
+                        "Action"
+                        {
+
+                            "FireSound"
+                            {
+                                "EffectName"    "Ability.StarfallImpact"
+                                "Target"        "TARGET"
+                            }
+
+                            "Damage"
+                            {
+                                "Target"    "TARGET"
+                                "Type"      "DAMAGE_TYPE_MAGICAL"
+                                "Damage"    "%AbilityDamage"
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Secondary starfall
+            "ActOnTargets"
+            {
+                "Target"
+                {
+                    "Center" "CASTER"
+                    "Radius" "%starfall_secondary_radius"
+                    "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY" 
+                    "Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                    "MaxTargets"    "%starfall_secondary_targets"
+                    "Random"        "1"
+                }
+
+                "Action"
+                {
+                    "DelayedAction"
+                    {
+                        "Delay" "%starfall_delay"
+
+                        "Action"
+                        {
+                            "FireEffect"
+                            {
+                                "EffectName"    "particles/units/heroes/hero_mirana/mirana_starfall_attack.vpcf"
+                                "EffectAttachType"  "follow_origin"
+                                "Target"        "TARGET"
+                            }
+
+                            "DelayedAction"
+                            {
+                                "Delay"     "%starfall_delay"
+
+                                "Action"
+                                {
+
+                                    "FireSound"
+                                    {
+                                        "EffectName"    "Ability.StarfallImpact"
+                                        "Target"        "TARGET"
+                                    }
+
+                                    "Damage"
+                                    {
+                                        "Target"    "TARGET"
+                                        "Type"      "DAMAGE_TYPE_MAGICAL"
+                                        "Damage"    "%AbilityDamage * %starfall_secondary_damage_pct"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        "Modifiers"
+        {
+            "modifier_mirana_starfall_scepter_cooldown"
+            {
+                "Duration"        "%scepter_interval"
+
+                "IsHidden"            "1"
+                "IsDebuff"            "0"
+
+                "OnDestroy"
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"    "modifier_mirana_starfall_scepter_thinker"
+                        "Target"         "CASTER"
+                    }
+                }
+            }
+
+            "modifier_mirana_starfall_scepter_thinker"
+            {
+                "Passive"            "1"
+                "IsHidden"            "1"
+                "IsDebuff"            "0"
+        
+                "ThinkInterval"  "1.0"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "scripts/vscripts/../abilities/mirana_starfall_lod.lua"
+                        "Function"      "ScepterStarfallCheck"
+                    }
+                }
+            }
+        }
+    }
+
+    //=================================================================================================================
     // Keeper of the Light: Recall
     //=================================================================================================================
     "keeper_of_the_light_recall_lod"
@@ -2246,9 +2477,6 @@
             }
         }
     }
-    // Rewrite of Slark's Essence Shift
-    // Author: Rook
-    // Date: January 28, 2015
 
     "slark_essence_shift_strength_lod"
     {
@@ -2319,7 +2547,6 @@
 
                 "Properties"
                 {
-                    "MODIFIER_PROPERTY_STATS_TOOLTIP"               "%stat_loss"
                     "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"        "%stat_loss"
                     "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"         "%stat_loss"
                     "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"       "%stat_loss"
@@ -2434,7 +2661,6 @@
 
                 "Properties"
                 {
-                    "MODIFIER_PROPERTY_STATS_TOOLTIP"               "%stat_loss"
                     "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"        "%stat_loss"
                     "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"         "%stat_loss"
                     "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"       "%stat_loss"
@@ -2478,6 +2704,144 @@
         }
     }    
     //=================================================================================================================
+    // LoD Rearm
+    //=================================================================================================================
+    "tinker_rearm_lod"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"				"ability_datadriven"
+        "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+        "AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityTextureName"			"tinker_rearm_lod"
+        "AbilityCastAnimation"			"ACT_DOTA_CHANNEL_ABILITY_4"
+    
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastPoint"				"0.53 0.53 0.53 0.53"
+        "AbilityChannelTime"			"3.0 1.5 0.75"
+    
+        // Time		
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"				"60.0 30.0 15.0"
+    
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"				"100 200 300"
+        
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"				"FIELD_FLOAT"
+                "channel_tooltip"			"3.0 1.5 0.75"
+            }
+        }
+        
+        // Data Driven
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "soundfile"				"soundevents/game_sounds_heroes/game_sounds_tinker.vsndevts"
+            "particle"				"particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
+        }
+        
+        "OnAbilityPhaseStart"
+        {
+            "FireSound"
+            {
+                "Target"			"CASTER"
+                "EffectName"		"Hero_Tinker.RearmStart"
+            }
+        }
+        
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "Target"			"CASTER"
+                "EffectName"		"Hero_Tinker.Rearm"
+            }
+        
+            "RunScript"
+            {
+                "ScriptFile"		"scripts/vscripts/../abilities/tinker_rearm_lod.lua"
+                "Function"			"rearm_start"
+            }
+        }
+        
+        "OnChannelInterrupted"
+        {
+            "RemoveModifier"
+            {
+                "Target"			"CASTER"
+                "ModifierName"		"modifier_rearm_level_1_datadriven"
+            }
+        
+            "RemoveModifier"
+            {
+                "Target"			"CASTER"
+                "ModifierName"		"modifier_rearm_level_2_datadriven"
+            }
+        
+            "RemoveModifier"
+            {
+                "Target"			"CASTER"
+                "ModifierName"		"modifier_rearm_level_3_datadriven"
+            }
+        }
+        
+        "OnChannelSucceeded"
+        {
+            "RunScript"
+            {
+                "ScriptFile"		"scripts/vscripts/../abilities/tinker_rearm_lod.lua"
+                "Function"			"rearm_refresh_cooldown"
+            }
+        }
+        
+        "Modifiers"
+        {
+            "modifier_rearm_level_1_datadriven"
+            {
+                "IsHidden"			"0"
+        
+                "Duration"			"%channel_tooltip"
+        
+                "EffectName"		"particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
+                "EffectAttachType"	"follow_origin"
+        
+                "OverrideAnimation"	"ACT_DOTA_TINKER_REARM1"
+            }
+        
+            "modifier_rearm_level_2_datadriven"
+            {
+                "IsHidden"			"0"
+        
+                "Duration"			"%channel_tooltip"
+                
+                "EffectName"		"particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
+                "EffectAttachType"	"follow_origin"
+        
+                "OverrideAnimation"	"ACT_DOTA_TINKER_REARM2"
+            }
+        
+            "modifier_rearm_level_3_datadriven"
+            {
+                "IsHidden"			"0"
+        
+                "Duration"			"%channel_tooltip"
+                
+                "EffectName"		"particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
+                "EffectAttachType"	"follow_origin"
+                
+                "OverrideAnimation"	"ACT_DOTA_TINKER_REARM3"
+            }
+        }
+    }
+    //=================================================================================================================
     // Dummy unit spell -- Taken from reflex github.com/bmddota/reflexdota
     //=================================================================================================================
     "lod_dummy_unit"
@@ -2503,4 +2867,133 @@
           }
         }
     }
+
+    "pudge_flesh_heap_agi"
+        {
+    	// General
+    	//-------------------------------------------------------------------------------------------------------------
+    	"BaseClass"						"ability_lua"
+    	"AbilityTextureName"				"flesh_heap_agi"
+    	"ScriptFile"						"scripts/vscripts/../abilities/pudge_flesh_heap_agi.lua"
+    	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+            "AbilityCastRange"              "450"
+    
+    	// Precache
+    	//-------------------------------------------------------------------------------------------------------------
+    	"precache"
+    	{
+    		"particle"			"particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf"
+    	}		
+    
+    	// Special
+    	//-------------------------------------------------------------------------------------------------------------
+    	"AbilitySpecial"
+    	{
+    		"01"
+    		{
+    			"var_type"							"FIELD_FLOAT"
+    			"flesh_heap_agility_buff_amount"	"1.0 1.5 2 2.5"
+    		}
+    		"02"
+    		{
+    			"var_type"				"FIELD_INTEGER"
+    			"flesh_heap_range"		"450"
+    		}
+    	}
+    }
+    "pudge_flesh_heap_int"
+    {
+    	// General
+    	//-------------------------------------------------------------------------------------------------------------
+    	"BaseClass"						"ability_lua"
+    	"AbilityTextureName"					"flesh_heap_int"
+    	"ScriptFile"						"scripts/vscripts/../abilities/pudge_flesh_heap_int.lua"
+    	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+            "AbilityCastRange"              "450"
+    
+    	// Precache
+    	//-------------------------------------------------------------------------------------------------------------
+    	"precache"
+    	{
+    		"particle"			"particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf"
+    	}
+    }
+   "silencer_global_break"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "silencer_global_break"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityCastPoint"              "0.3"
+        "AbilityCooldown"               "130"
+        "AbilityManaCost"               "250 375 500"
+        "AbilityDuration"               "4 5 6"
+        
+        "precache"
+        {
+            "particle"  "particles/items3_fx/silver_edge_slow.vpcf"
+            "soundfile"     "soundevents/game_sounds_heroes/game_sounds_silencer.vsndevts"      
+            "particle"      "particles/units/heroes/hero_silencer/silencer_global_silence.vpcf"     
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "duration"              "4 5 6"
+            }
+        }
+        
+        
+    
+        "OnSpellStart"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_silencer_global_break"
+                "Target"
+                {
+                    "Center"                "CASTER"
+                    "Radius"                "GLOBAL"
+                    "Teams"                 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                    "Types"                 "DOTA_UNIT_TARGET_HERO" 
+                }
+                "Duration"      "%AbilityDuration"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Hero_Silencer.GlobalSilence.Cast"
+                "Target"        "CASTER"
+            }
+
+            "FireEffect"
+            {
+                "EffectName"    "particles/units/heroes/hero_silencer/silencer_global_silence.vpcf"
+                "EffectAttachType"  "follow_origin"
+                "Target"        "CASTER"
+            }
+        }
+        "Modifiers"
+        {
+            
+            "modifier_silencer_global_break"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "1"
+            
+                "EffectName"        "particles/items3_fx/silver_edge_slow.vpcf"
+                "EffectAttachType"  "follow_origin"
+            
+                "States"
+                {
+                    "MODIFIER_STATE_PASSIVES_DISABLED"      "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+                
+        }
+    }
+
 }
