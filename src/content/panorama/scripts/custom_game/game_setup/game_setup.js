@@ -3902,6 +3902,14 @@ function generateFormattedHeroStatsString(heroName, info) {
         heroStats += heroStatsLine('heroStats_uniqueMechanic', heroMechanic, '23FF27', '70EA72');
     }
 
+    // Talent Trees
+    heroStats += '<br>';
+    heroStats += heroStatsLine($.Localize('heroStats_talentTree'), "", '7FABF1', 'FFFFFF');
+    for (var i = 1; i <= 4; i++) {
+        var specialGroup = info["SpecialBonus"+i];
+        heroStats += heroStatsLine($.Localize("heroStats_SpecialBonus"+i), $.Localize("DOTA_Tooltip_ability_"+specialGroup["1"]) + $.Localize("heroStats_or") + $.Localize("DOTA_Tooltip_ability_"+specialGroup["2"]), '7FABF1', 'FFFFFF');
+    }
+
     return heroStats;
 }
 

@@ -1354,7 +1354,7 @@ function Pregame:networkHeroes()
             else
                 self.heroRole[heroName] = 'melee'
             end
-
+           
             if heroToSkillMap[heroName] then
                 for k,v in pairs(heroToSkillMap[heroName]) do
                     theData[k] = v
@@ -1368,6 +1368,17 @@ function Pregame:networkHeroes()
                         theData['Ability' .. sn] = abName
                         sn = sn + 1
                     end
+                end
+            end
+
+            local sb = 1
+            for i=1,23 do
+                local abName = heroValues['Ability' .. i]
+
+                if abName and string.match(abName, "special_bonus_") then
+                    theData['SpecialBonus'..tostring(math.ceil(sb / 2))] = theData['SpecialBonus'..tostring(math.ceil(sb / 2))] or {}
+                    table.insert(theData['SpecialBonus'..tostring(math.ceil(sb / 2))], abName)
+                    sb = sb + 1
                 end
             end
 
