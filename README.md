@@ -59,6 +59,7 @@ Legends of Dota
  - All code should be thread safe
   - If you make a call to an async function, ensure you check that the resources you want to access are still valid once the callback happens, this is usually needed when timers are used to process something on a unit after a short delay
  - Do not put credits or your name in code, the commit log will have your name, as well as the blame section of GitHub
+ - Filenames are strictly lowercase. Sperate words should be seperated by an underscore (_) to increase readability, short file names should be used where possible, however, file names need to be readible and easily understandable.
 
 ###Can I translate this into my language?###
  - Yes!
