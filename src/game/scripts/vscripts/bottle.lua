@@ -25,6 +25,7 @@ function CDOTA_BaseNPC_Hero:GetItemSlot(item)
 end
 
 function OnBottleUsed(keys)
+    local ingame = require('ingame')
     local caster = keys.caster
     local target = keys.target
     if not target then
