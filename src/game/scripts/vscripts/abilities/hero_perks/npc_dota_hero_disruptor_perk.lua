@@ -45,8 +45,9 @@ end
 function modifier_npc_dota_hero_disruptor_perk:OnAbilityFullyCast(keys)
   if IsServer() then
     if keys.ability:HasAbilityFlag("blocking") and keys.unit == self:GetParent() then
+      local cooldown = keys.ability:GetCooldownTimeRemaining()
       keys.ability:EndCooldown()
-      keys.ability:StartCooldown(keys.ability:GetCooldown(keys.ability:GetLevel()-1)*self.cooldownReduction)
+      keys.ability:StartCooldown(cooldown*cooldownReduction)
     end
   end
 end
