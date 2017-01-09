@@ -3,6 +3,7 @@ function ScepterStarfallCheck( keys )
 	local ability = keys.ability
 	
 	if caster:IsIllusion() then return end
+	if caster:PassivesDisabled() then return end
 	-- Check if we actually have scepter
 	if caster:HasScepter() and caster:IsInvisible() == false then
 		local abLevel = ability:GetLevel()

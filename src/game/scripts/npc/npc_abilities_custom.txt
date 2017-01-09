@@ -2691,7 +2691,7 @@
             "02"
             {
                 "var_type"          "FIELD_INTEGER"
-                "starfall_secondary_radius" "175"
+                "starfall_secondary_radius" "425"
             }
             "03"
             {
@@ -2701,7 +2701,7 @@
             "04"
             {
                 "var_type"          "FIELD_FLOAT"
-                "starfall_secondary_damage_pct" "0.75"
+                "starfall_secondary_damage_pct" "56.25 112.5 168.75 225"
             }
             "05"
             {
@@ -2711,7 +2711,7 @@
             "06"
             {
                 "var_type"          "FIELD_FLOAT"
-                "scepter_interval"  "8.0"
+                "scepter_interval"  "10.0"
             }
         }
 
@@ -2818,7 +2818,7 @@
                                     {
                                         "Target"    "TARGET"
                                         "Type"      "DAMAGE_TYPE_MAGICAL"
-                                        "Damage"    "%AbilityDamage * %starfall_secondary_damage_pct"
+                                        "Damage"    "%starfall_secondary_damage_pct"
                                     }
                                 }
                             }
