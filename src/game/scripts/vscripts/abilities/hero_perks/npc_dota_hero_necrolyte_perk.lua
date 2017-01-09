@@ -17,7 +17,7 @@ function modifier_npc_dota_hero_necrolyte_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_necrolyte_perk:IsHidden()
-	return false
+	return true
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_necrolyte_perk:IsPurgable()
@@ -29,7 +29,7 @@ function modifier_npc_dota_hero_necrolyte_perk:RemoveOnDeath()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_necrolyte_perk:GetTexture()
-	return "necrolyte_sadist"
+	return "necrolyte_heartstopper_aura"
 end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
@@ -38,12 +38,12 @@ end
 function modifier_npc_dota_hero_necrolyte_perk:OnCreated(keys)
     if IsServer() then
         local caster = self:GetCaster()
-        local sadist = caster:FindAbilityByName("necrolyte_sadist")
+        local sadist = caster:FindAbilityByName("necrolyte_heartstopper_aura")
 
         if sadist then
             sadist:UpgradeAbility(false)
         else 
-            sadist = caster:AddAbility("necrolyte_sadist")
+            sadist = caster:AddAbility("necrolyte_heartstopper_aura")
             sadist:SetHidden(true)
             sadist:SetLevel(1)
         end

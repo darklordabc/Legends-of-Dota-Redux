@@ -9,7 +9,7 @@ All notable changes to this project will be documented in this file.
 - Returned being able to view abilities in scoreboard feature (now also Talents!)
 
 ### Balance
-- 
+- Necrolyte Perk gives a free level of Heartstopper Aura, not Sadist (that ability is gone)
 
 ## 4.6 - Steam Version
 ### Bug Fixing/New Features

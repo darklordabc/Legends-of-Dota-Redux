@@ -696,7 +696,7 @@
 	"hintMagnus"                         "When Magnus casts Enemy Moving abilities, they will have 25% mana refunded and cooldowns reduced by 25%. Abilities that only move units upwards are not counted."
 	"hintMedusa"                         "Medusa gains +0.5 mana regeneration per active Toggle effect."
 	"hintMirana"                         "When Mirana casts Skillshots, they will have 50% mana refunded and cooldowns reduced by 20%."
-	"hintNecrophos"                         "At the start of the game, Necrophos gains a free level of Sadist, whether he has it or not."
+	"hintNecrophos"                         "At the start of the game, Necrophos gains a free level of Heartstopper Aura, whether he has it or not."
 	"hintOmniknight"                         "Light spells refund 40% of their mana cost when cast by Omniknight."
 	"hintOracle"                         "Support items used by Oracle will have their cooldowns reduced by 20%."
 	"hintOD"                         "Astral Imprisonment steals 7 intelligence for 60 seconds when cast by Outworld Devourer."
@@ -1045,7 +1045,7 @@
     "unique_mechanic_morphling"                              "Morphling gains 50% bonus movement speed in water."
     "unique_mechanic_naga_siren"                        "<font color=\'#ffd966\'>Illusion</font> creating abilities will have 50% of their mana refunded and cooldowns reduced by 20%."
     "unique_mechanic_furion"                        "The cooldowns of all <font color=\'#ffd966\'>Teleportation</font> abilities are reduced by 50% for Nature's Prophet."
-    "unique_mechanic_necrolyte"                        "At the start of the game, Necrophos gains a free level of <font color=\'#ffd966\'>Sadist</font>, whether he has it or not."
+    "unique_mechanic_necrolyte"                        "At the start of the game, Necrophos gains a free level of <font color=\'#ffd966\'>Heartstopper Aura</font>, whether he has it or not."
     "unique_mechanic_night_stalker"                 "<font color=\'#ffd966\'>Aghanim's Scepter</font> will give Night Stalker unobstructed night vision. If 'Free Scepter' option is enabled, this hero will not benefit from it."
     "unique_mechanic_nyx_assassin"                        "Nyx Assassin gains 10% bonus movement speed when invisible."
     "unique_mechanic_ogre_magi"                        "When Ogre Magi casts a spell, there is a 2% chance to refund the manacost of that spell and refresh its cooldown."
@@ -2859,7 +2859,7 @@
 
 	/// NECROPHOS​
     "DOTA_Tooltip_modifier_npc_dota_hero_necrolyte_perk"               "Necrophos Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_necrolyte_perk_Description"   "Gained a free level of Sadist.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_necrolyte_perk_Description"   "Gained a free level of Heartstopper Aura.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
 	/// NIGHT STALKER PERK HARD-CODED INGAME
 
