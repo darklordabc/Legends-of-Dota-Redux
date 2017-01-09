@@ -23164,6 +23164,7 @@
 	  //"AbilityUnitDamageType"     "DAMAGE_TYPE_MAGICAL" 
 	  "FightRecapLevel"       "2"
 	  "AbilityTextureName"      "sniper_assassinate"
+	  "HasScepterUpgrade"				"1"
 	  
 	  // Casting
 	  //-------------------------------------------------------------------------------------------------------------
