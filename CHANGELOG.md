@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 4.7 - Development Version
 ### Bug Fixing/New Features
 - Added Talent information to the hero popup infobox
+- Fixed Upgraded Version of Assassinate
 
 ### Balance
 - 
