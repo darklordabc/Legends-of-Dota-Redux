@@ -7,8 +7,11 @@ local Timers = require('easytimers')
 -- Create the class for it
 local Ingame = class({})
 
+local ts_entities = LoadKeyValues('scripts/kv/ts_entities.kv')
+
 -- Init Ingame stuff, sets up all ingame related features
 function Ingame:init()
+    local this = self
     -- Init everything
     self:handleRespawnModifier()
     self:initGoldBalancer()
@@ -16,7 +19,20 @@ function Ingame:init()
     -- Setup standard rules
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
 
-    -- Precache orgre magi stuff
+    -- Balance Player
+    CustomGameEventManager:RegisterListener('swapPlayers', function(_, args)
+        this:swapPlayers(args.x, args.y)
+    end)
+
+    CustomGameEventManager:RegisterListener( 'declined', function (eventSourceIndex)
+        this:declined(eventSourceIndex)
+    end)
+
+    CustomGameEventManager:RegisterListener( "ask_custom_team_info", function(eventSourceIndex, args)
+        this:returnCustomTeams(eventSourceIndex, args)
+    end)
+
+    -- Precache ogre magi stuff
     PrecacheUnitByNameAsync('npc_precache_npc_dota_hero_ogre_magi', function()
         CreateUnitByName('npc_precache_npc_dota_hero_ogre_magi', Vector(-10000, -10000, 0), false, nil, nil, 0)
     end)
@@ -36,9 +52,25 @@ function Ingame:init()
         CreateUnitByName('npc_precache_always', Vector(-10000, -10000, 0), false, nil, nil, 0)
     end)
 
+    GameRules:GetGameModeEntity():SetExecuteOrderFilter(self.FilterExecuteOrder, self)    
+
     -- Set it to no team balance
     self:setNoTeamBalanceNeeded()
 end
+
+function Ingame:FilterExecuteOrder(filterTable)
+    local units = filterTable["units"]
+    local issuer = filterTable["issuer_player_id_const"]
+    for n,unit_index in pairs(units) do
+        local unit = EntIndexToHScript(unit_index)
+        if unit:GetTeamNumber() ~= PlayerResource:GetCustomTeamAssignment(issuer) and PlayerResource:GetConnectionState(issuer) ~= 0 then 
+            return false
+        end
+    end
+    return true
+end    
+
+dc_table = {};
 
 -- Called when the game starts
 function Ingame:onStart()
@@ -59,19 +91,52 @@ function Ingame:onStart()
     end, nil)
 end
 
+function Ingame:returnCustomTeams(eventSourceIndex, args)
+    local playerCount = PlayerResource:GetPlayerCount();
+    local customTeamAssignments = {};
+
+    local cur_time = Time()
+    for playerID = 0, playerCount-1 do
+        customTeamAssignments[playerID] = PlayerResource:GetCustomTeamAssignment(playerID);
+        if PlayerResource:GetConnectionState(playerID) == 3 then
+            if not dc_table[playerID] then
+                dc_table[playerID] = cur_time
+            end
+        else
+            dc_table[playerID] = nil
+        end
+    end
+
+    local dc_timeout = {}
+    for i,v in pairs(dc_table) do
+        if cur_time - v >= 300 then
+            dc_timeout[#dc_timeout + 1] = i
+        end
+    end
+    
+    CustomGameEventManager:Send_ServerToAllClients( "send_custom_team_info", {x = customTeamAssignments, y = dc_timeout} )
+end
+
+function Ingame:switchTeam(eventSourceIndex, args)
+    local this = self
+    this:balancePlayer(args.swapID, args.newTeam)
+end
+
 -- Balances a player onto another team
 function Ingame:balancePlayer(playerID, newTeam)
     -- Balance the player
     PlayerResource:SetCustomTeamAssignment(playerID, newTeam)
-
     -- Balance their hero
     local hero = PlayerResource:GetSelectedHeroEntity(playerID)
     if IsValidEntity(hero) then
         -- Change the team
         hero:SetTeam(newTeam)
+        hero:SetPlayerID(playerID)
+        hero:SetOwner(PlayerResource:GetPlayer(playerID))
 
         -- Kill the hero
         hero:Kill(nil, nil)
+        hero:SetGold(0, true)
 
         -- Respawn after 1.11 seconds
         Timers:CreateTimer(function()
@@ -90,9 +155,117 @@ function Ingame:balancePlayer(playerID, newTeam)
                         end
                     end
                 end
+                for spell, name in pairs(ts_entities.Switch) do
+                    if hero:HasAbility(spell) then
+                        local units = Entities:FindAllByName(name)
+                        if #units == 0 then
+                            units = Entities:FindAllByModel(name)
+                        end
+                        
+                        for _, unit in pairs(units) do
+                            print("found units")
+                            if unit:GetPlayerOwnerID() == playerID then
+                                unit:SetTeam(newTeam)
+                            end
+                        end
+                    end
+                end
+                for spell, name in pairs(ts_entities.Kill) do
+                    if hero:HasAbility(spell) then
+                        local units = Entities:FindAllByName(name)
+                        if #units == 0 then
+                            units = Entities:FindAllByModel(name)
+                        end
+                        
+                        for _, unit in pairs(units) do
+                            if unit:GetPlayerOwnerID() == playerID then
+                                unit:Kill(nil, nil)
+                            end
+                        end
+                    end
+                end
             end
         end, DoUniqueString('respawn'), 0.11)
     end
+end
+
+function otherTeam(team)
+    if team == DOTA_TEAM_BADGUYS then
+        return DOTA_TEAM_GOODGUYS
+    elseif team == DOTA_TEAM_GOODGUYS then
+        return DOTA_TEAM_BADGUYS
+    end
+    return -1
+end
+
+function Ingame:swapPlayers(x, y)
+    local player_count = PlayerResource:GetPlayerCount()
+    local cp_count = 0
+    
+    for i = 0, player_count do
+        local recepientEntity = PlayerResource:GetPlayer(i)
+        CustomGameEventManager:Send_ServerToPlayer(recepientEntity, 'vote_dialog', {swapper = x, swappee = y })
+        if PlayerResource:GetConnectionState(i) == 2 then
+            cp_count = cp_count + 1
+        end
+    end
+
+    local accepted = 0;
+    local h;
+    h = CustomGameEventManager:RegisterListener( 'accept', function ()
+        accepted = accepted + 1
+        if accepted >= cp_count then
+            Timers:CreateTimer(function ()
+                self:accepted(x,y)
+                CustomGameEventManager:UnregisterListener(h)
+                CustomGameEventManager:Send_ServerToAllClients('player_accepted', {});
+            end, 'accepted', 0)
+        end
+    end)
+    
+    PauseGame(true);
+
+    Timers:CreateTimer(function ()
+        self:accepted(x,y)
+        CustomGameEventManager:UnregisterListener(h)
+    end, 'accepted', 10)
+end
+
+function Ingame:accepted(x, y)
+    local newTeam = otherTeam(PlayerResource:GetCustomTeamAssignment(x))
+    local oldTeam = otherTeam(PlayerResource:GetCustomTeamAssignment(y))
+
+    local xuMoney = PlayerResource:GetUnreliableGold(x)
+    local yuMoney = PlayerResource:GetUnreliableGold(y)
+    local xrMoney = PlayerResource:GetReliableGold(x)
+    local yrMoney = PlayerResource:GetReliableGold(y)
+
+    self:balancePlayer(x, newTeam)
+    self:balancePlayer(y, oldTeam)
+
+    PlayerResource:SetGold(x, xuMoney, false)
+    PlayerResource:SetGold(y, yuMoney, false)
+    PlayerResource:SetGold(x, xrMoney, true)
+    PlayerResource:SetGold(y, yrMoney, true)
+    
+    for i = 0, PlayerResource:GetNumCouriersForTeam(newTeam) - 1 do
+        local cour = PlayerResource:GetNthCourierForTeam(i, newTeam)
+        cour:SetControllableByPlayer(x, false)
+        for j=0, 5 do
+            local item = cour:GetItemInSlot(j)
+            if item and item:GetPurchaser():GetPlayerID() == y then
+                PlayerResource:ModifyGold(y, item:GetCost(), true, 0)
+                cour:RemoveItem(item)
+            end
+        end
+    end
+
+    Timers:CreateTimer(function () PauseGame(false) end, DoUniqueString(''), 2)
+end
+
+function Ingame:declined(event_source_index)
+    CustomGameEventManager:Send_ServerToAllClients('player_declined', {});
+    Timers:CreateTimer(function () PauseGame(false) end, 'accepted', 2)
 end
 
 -- Sets it to no team balancing is required

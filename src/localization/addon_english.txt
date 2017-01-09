@@ -487,14 +487,15 @@
     "warning_silencer_glaives_of_wisdom" "<font color=\"#FF4949\">LoD Warning:</font> Silencer's Intelligence Steal Ability is part of this ability."
     "warning_elder_titan_ancestral_spirit" "<font color=\"#FF4949\">LoD Warning:</font> The astral spirit wont have <font color=\"#70EA72\">Natural Order</font> or <font color=\"#70EA72\">Echo Stomp</font>", unless you also have it."
     "warning_skeleton_king_reincarnation" "<font color=\"#FF4949\">LoD Warning:</font> Sometimes the 3 second reincarnation time will be replaced with the default respawn time. This is a bug."
+	"warning_shredder_chakram" "<font color=\"#FF4949\">LoD Warning:</font> Aghanim's Scepter will not give <font color=\"#70EA72\">Second Chakram</font> as an extra ability.</font>"
 	"warning_shredder_chakram_2" "<font color=\"#FF4949\">LoD Warning:</font> Requires original <font color=\"#70EA72\">Chakram.</font>"
 	"warning_shadow_demon_shadow_poison_release" "<font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Shadow Poison.</font>"
 	"warning_nevermore_requiem" "<font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Necromastery</font> and stored souls to do damage."
 	"warning_templar_assassin_trap" "<font color=\"#FF4949\">LoD Warning:</font> Requires <font color=\"#70EA72\">Psionic Trap.</font>"
 	"warning_templar_assassin_psionic_trap" "<font color=\"#FF4949\">LoD Warning:</font> If you don't have <font color=\"#70EA72\">Trap</font>, you will have to manually activate traps."
 	"warning_tiny_grow_lod" "<font color=\"#FF4949\">LoD Warning:</font> You might need to buy an item, level up this skill, or respawn for the scepter upgrade to work.\nBuying an item and selling it will work.\nCheck the modifier to verify you have the upgrade."
-    "warning_ogre_magi_multicast" "<font color=\"#FF4949\">LoD Warning:</font> This version of multicast is the standard version of multicast that ONLY works on Ogre Magi's abilities."
-    "warning_ogre_magi_multicast_lod" "<font color=\"#FF4949\">LoD Warning:</font> This ability will not have a cooldown if OP abilities are enabled."
+    "warning_ogre_magi_multicast" "<font color=\"#FF4949\">LoD Warning:</font> Only works with <font color=\"#70EA72\">Fireblast, Ignire, Bloodlust</font> and <font color=\"#70EA72\">Unrefined Fireblast</font>. Aghanim's Scepter will not give <font color=\"#70EA72\">Unrefined Fireblast</font> as an extra ability."
+    "warning_ogre_magi_multicast_lod" "<font color=\"#FF4949\">LoD Warning:</font> This ability will not have a cooldown if OP abilities are enabled. Aghanim's Scepter will not give <font color=\"#70EA72\">Unrefined Fireblast</font> as an extra ability."
     "warning_meepo_poof" "<font color=\"#FF4949\">LoD Warning:</font> Can teleport to any ally who has the same hero as you."
 
     /////////////////
@@ -830,6 +831,17 @@
     "DOTA_Tooltip_ability_treant_eyes_in_the_forest_lod_Note1"                  "If the enemy has True Sight, they will be able to see which trees are enchanted."
     "DOTA_Tooltip_ability_treant_eyes_in_the_forest_lod_Lore"                       "One can never be too certain who, or what, might need protecting."
 
+    // Starfall
+    "DOTA_Tooltip_ability_mirana_starfall_lod"                                          "Starstorm"
+    "DOTA_Tooltip_ability_mirana_starfall_lod_Description"                              "Calls down a wave of meteors to damage nearby enemy units. The closest enemy unit to Mirana in a %starfall_secondary_radius% radius will be struck a second time for 75%% of the damage.\n\nUpgradable by Aghanim's Scepter."
+    "DOTA_Tooltip_ability_mirana_starfall_lod_Lore"                                     "The Goddess breaks the strata to empower her Princess in the time of need."
+    "DOTA_Tooltip_ability_mirana_starfall_lod_Note0"                                    "Starstorm is not blocked by Linken's Sphere."
+    "DOTA_Tooltip_ability_mirana_starfall_lod_Note1"                                    "Starstorm cannot hit invisible units."
+    "DOTA_Tooltip_ability_mirana_starfall_lod_Note2"                                    "Starstorm will choose a new target for the second star if the first died before impact."
+    "DOTA_Tooltip_ability_mirana_starfall_lod_starfall_radius"                          "RADIUS:"
+    "DOTA_Tooltip_ability_mirana_starfall_lod_scepter_interval"                         "SCEPTER INTERVAL:"
+    "DOTA_Tooltip_ability_mirana_starfall_lod_aghanim_description"                      "Passively triggers Starstorm every 8 seconds. Does not trigger if the enemy doesn't see Mirana."
+
     // Essence Aura
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod"                      "Essence Aura"
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_Description"          "Whenever nearby allied Heroes or Outworld Devourer itself casts a spell, it gains a chance to restore a percentage of its mana pool.  Outworld Devourer also passively gains a bonus to its base mana pool.  Several skills with no cooldown and toggled spells cannot trigger Essence Aura."
@@ -851,6 +863,13 @@
     "DOTA_Tooltip_ability_earthshaker_aftershock_lod_aftershock_range"                  "RADIUS:"
     "DOTA_Tooltip_ability_earthshaker_aftershock_lod_tooltip_duration"                  "DURATION:"
 
+    // Rearm
+    "DOTA_Tooltip_ability_tinker_rearm_lod"                                   "Rearm"
+    "DOTA_Tooltip_ability_tinker_rearm_lod_Description"                       "CHANNELED - Removes 30 seconds from the cooldown on most of Tinker's items and abilities."
+    "DOTA_Tooltip_ability_tinker_rearm_lod_Lore"                              "A new battery here, another set of rockets there, Boush continually improves on existing technology."
+    "DOTA_Tooltip_ability_tinker_rearm_lod_Note0"				      "Rearm works on all items except Black King Bar, Arcane Boots, Helm of the Dominator, Hand of Midas, Refresher Orb, Linken's Sphere, and Necronomicon."
+    "DOTA_Tooltip_ability_tinker_rearm_lod_channel_tooltip"			      "TIME TO REARM:"
+
     // Essence Shift
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod"                                             "Essence Shift - Strength"
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_Description"					"Slark steals the life essence of enemy heroes with his attacks, draining each of their attributes and converting them to bonus Strength."
@@ -863,20 +882,20 @@
     "DOTA_Tooltip_modifier_slark_essence_shift_strength_datadriven_buff_counter"							"Essence Shift"
     "DOTA_Tooltip_modifier_slark_essence_shift_strength_datadriven_buff_counter_Description"				"Stealing %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS% strength."
     "DOTA_Tooltip_modifier_slark_essence_shift_strength_datadriven_debuff_counter"			"Essence Shift"
-    "DOTA_Tooltip_modifier_slark_essence_shift_strength_datadriven_debuff_counter_Description"	"Losing %dMODIFIER_PROPERTY_TOOLTIP% of each attribute."
+    "DOTA_Tooltip_modifier_slark_essence_shift_strength_datadriven_debuff_counter_Description"	"Losing %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS% of each attribute."
 
-    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod"                                             "Essence Shift - Intellect"
-    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_Description"					"Slark steals the life essence of enemy heroes with his attacks, draining each of their attributes and converting them to bonus Intellect."
+    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod"                                             "Essence Shift - Intelligence"
+    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_Description"					"Slark steals the life essence of enemy heroes with his attacks, draining each of their attributes and converting them to bonus Intelligence."
     "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_Lore"						"With each strike at his adversaries, Slark's knowledge of their weaknesses improves."
     "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_Note0"						"Attributes cannot be dropped below 1."
     "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_Note1"						"Essence Shifted stats are returned to normal on death. The stat return for Slark and for the affected hero are separate."
-    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_int_gain"						"INTELLECT GAINED:"
+    "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_int_gain"						"INTELLIGENCE GAINED:"
     "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_stat_loss"					"ALL ATTRIBUTE LOSS:"
     "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_duration"						"DURATION:"
     "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_buff_counter"							"Essence Shift"
-    "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_buff_counter_Description"				"Stealing %dMODIFIER_PROPERTY_STATS_INTELLECT_BONUS% intellect."
+    "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_buff_counter_Description"				"Stealing %dMODIFIER_PROPERTY_STATS_INTELLECT_BONUS% intelligence."
     "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_debuff_counter"			"Essence Shift"
-    "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_debuff_counter_Description"	"Losing %dMODIFIER_PROPERTY_TOOLTIP% of each attribute."
+    "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_debuff_counter_Description"	"Losing %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS% of each attribute."
 
     "DOTA_Tooltip_ability_death_prophet_witchcraft"                                 "Witchcraft"
     "DOTA_Tooltip_ability_death_prophet_witchcraft_Description"                     "Decreases the cooldowns of abilities by upto 4 seconds, a cooldown can not be lowered below 1 second. The Witchcraft cooldown reduction is applied before octarine core reduction."
@@ -885,4 +904,25 @@
     //"DOTA_Tooltip_ability_death_prophet_witchcraft_carrion_swarm_mana_cost_adjust"    "MANA COST DECREASE:"
     //"DOTA_Tooltip_ability_death_prophet_witchcraft_exorcism_1_extra_spirits"      "ADDED EXORCISM SPIRITS:"
     //"DOTA_Tooltip_ability_death_prophet_witchcraft_bonus_movement_speed"          "%MOVEMENT SPEED:"
+    
+    //flesh heap spells
+    "DOTA_Tooltip_ability_pudge_flesh_heap_agi"			"Flesh Heap - Agility"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_agi_Description"	"Gives bonus agility that increases each time this hero kills an enemy Hero or it dies in his vicinity. Flesh Heap Agility is retroactive, meaning it can gain charges before it is skilled, which then become active."
+    "DOTA_Tooltip_ability_pudge_flesh_heap_agi_flesh_heap_agility_buff_amount"	"AGILITY PER STACK:"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_agi_flesh_heap_range"			"RANGE:"
+    "DOTA_Tooltip_modifier_flesh_heap_agi"					"Flesh Heap - Agility"
+    "DOTA_Tooltip_modifier_flesh_heap_agi_Description"				"Gaining bonus agility"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_int"					"Flesh Heap - Intelligence"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_int_Description"				"Gives bonus intelligence that increases each time this hero kills an enemy Hero or it dies in his vicinity. Flesh Heap Intelligence is retroactive, meaning it can gain charges before it is skilled, which then become active."
+    "DOTA_Tooltip_ability_pudge_flesh_heap_int_flesh_heap_intelligence_buff_amount"		"INTELLIGENCE PER STACK:"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_int_flesh_heap_range"				"RANGE:"
+    "DOTA_Tooltip_modifier_flesh_heap_int"						"Flesh Heap - Intelligence"
+    "DOTA_Tooltip_modifier_flesh_heap_int_Description"					"Gaining bonus intelligence"
+    
+    // global break
+    "DOTA_Tooltip_modifier_silencer_global_break"                                              "Global Break"
+    "DOTA_Tooltip_modifier_silencer_global_break_Description"                                  "Disables abilities"
+    "DOTA_Tooltip_ability_silencer_global_break"                                               "Global Break"
+    "DOTA_Tooltip_ability_silencer_global_break_Description"                                   "This Hero breaks heroes on the map, disabling most passive abilities for the duration."
+    "DOTA_Tooltip_modifier_silencer_global_break_duration"                                      "DURATION:"
 }
