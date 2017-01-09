@@ -931,6 +931,37 @@ function Pregame:onThink()
         -- Do things after a small delay
         local this = self
 
+        local gameModeTranslation = {
+            "All Pick",
+            "",
+            "Mirror Draft",
+            "All Random",
+            "Single Draft"
+        }
+        Say(nil, string.format("<font color='#FF7800'>%s</font>",
+                               gameModeTranslation[self.optionStore['lodOptionCommonGamemode']]), false)
+        Say(nil, string.format("Heroes will start with <font color='#FF7800'>%d</font> gold, at level <font color='#FF7800'>%d</font>, and can progress up to level <font color='#FF7800'>%d</font>",
+                               self.optionStore['lodOptionGameSpeedStartingGold'],
+                               self.optionStore['lodOptionGameSpeedStartingLevel'],
+                               self.optionStore['lodOptionGameSpeedMaxLevel']), false)
+        Say(nil, string.format("The respawn time is decreased by <font color='#FF7800'>%d</font>%%, with an additional <font color='#FF7800'>%d</font> seconds. Buyback cooldown is set to <font color='#FF7800'>%d</font>.",
+                               100 - self.optionStore['lodOptionGameSpeedRespawnTimePercentage'],
+                               self.optionStore['lodOptionGameSpeedRespawnTimeConstant'],
+                               self.optionStore['lodOptionBuybackCooldownTimeConstant']), false)
+        Say(nil, string.format("There are <font color='#FF7800'>%d%s</font> towers per lane.",
+                               self.optionStore['lodOptionGameSpeedTowersPerLane'],
+                               self.optionStore['lodOptionGameSpeedStrongTowers'] == 1 and " stronger" or ""), false)
+        local others = table.concat({
+            self.optionStore['lodOptionCrazyUniversalShop'] == 1 and "Universal Shop, " or "",
+            self.optionStore['lodOptionCrazyAllVision'] == 1 and "All Vision, " or "",
+            self.optionStore['lodOptionCrazyWTF'] == 1 and "WTF, " or "",
+            self.optionStore['lodOptionCrazyMulticast'] == 1 and "Multicast Madness, " or "",
+            self.optionStore['lodOptionCrazyNoCamping'] == 1 and "Prevent Fountain Camping, " or ""})
+        if others ~= "" then
+            Say(nil, others:sub(1, others:len() - 2), false)
+        end
+        
+
         -- Hook bot stuff
         self:hookBotStuff()
 
