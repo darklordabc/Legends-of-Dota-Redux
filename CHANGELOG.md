@@ -2,7 +2,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 4.6 - Development Version
+## 4.7 - Development Version
+### Bug Fixing/New Features
+- Added Talent information to the hero popup infobox
+
+### Balance
+- 
+
+## 4.6 - Steam Version
 ### Bug Fixing/New Features
 - Added back pre 7.00 Sadist (Thanks to Dota IMBA)
 - Fixed points showing in the ingame hero builder even when balance mode was off
@@ -12,7 +19,7 @@ All notable changes to this project will be documented in this file.
 ### Balance
 - 
 
-## 4.5 - Steam Version
+## 4.5 
 ### Bug Fixing/New Features
 - Added much more time for draft rounds (15 to 50 seconds)
 - Added Memes Redux mutator (let us know of any funny meme sound events to add) 
