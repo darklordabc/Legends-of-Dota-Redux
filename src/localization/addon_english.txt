@@ -3910,6 +3910,8 @@
 
     "DOTA_Tooltip_ability_item_backPackBlocker" "Bot BackPack Blocker"
 
+    "DOTA_Tooltip_ability_item_devDagger" "Toolsmode Blink Dagger"
+
     "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod"                            "Jingu Mastery"
     "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_Description"                "Monkey King's attacks awaken the Jingu Bang's power. Upon the fourth hit on the same enemy hero, Monkey King earns four charged attacks that have bonus damage and lifesteal."
     "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_Lore"                       "Always sensitive to the moods of its master, the Jingu Bang radiates power when Sun Wukong's combat fervor is on full display."

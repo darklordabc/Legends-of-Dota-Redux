@@ -6066,6 +6066,14 @@ function Pregame:fixSpawningIssues()
                 -- Handle the free courier stuff
                 --handleFreeCourier(spawnedUnit)
 
+                -- Toolsmode developer stuff to help test
+                if IsInToolsMode() then
+                    -- If setting is 1, everyone gets free scepter modifier, if its 2, only human players get the upgrade
+                    if not util:isPlayerBot(playerID) then
+                        spawnedUnit:AddItemByName('item_devDagger')
+                     end
+                end
+
                 -- Handle free scepter stuff, Gyro will not benefit
                 if OptionManager:GetOption('freeScepter') ~= 0 then
                     -- If setting is 1, everyone gets free scepter modifier, if its 2, only human players get the upgrade
