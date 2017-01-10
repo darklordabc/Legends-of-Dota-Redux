@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - Fixed Upgraded Version of Assassinate
 - Returned being able to view abilities in scoreboard feature (now also Talents!)
 - Fixed Mirana starfall not doing damage on secondary star
+- Added two extra settings for 'Gotta Go Fast' Mutator
 
 ### Balance
 - Necrolyte Perk gives a free level of Heartstopper Aura, not Sadist (that ability is gone)

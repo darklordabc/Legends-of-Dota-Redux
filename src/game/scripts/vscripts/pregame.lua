@@ -2394,7 +2394,7 @@ function Pregame:initOptionSelector()
 
         -- Other -- Gotta Go Fast!
         lodOptionGottaGoFast = function(value)
-            return value == 0 or value == 1 or value == 2 or value == 3
+            return value == 0 or value == 1 or value == 2 or value == 3 or value == 4
         end, 
 
         -- Other -- Ingame Builder

@@ -351,6 +351,7 @@
 
     "lodOptionDesGottaGoFast"                               "Movespeed Multiplier"
     "lodOptionGottaGoFastOff"                               "Normal Movespeed"
+    "lodOptionGottaGoQuickOn"                                "+20% movespeed."
     "lodOptionGottaGoFastOn"                                "+50% movespeed, 1000ms limit."
     "lodOptionGottaGoREALLYFast"                            "All heroes have 1000ms and cannot be slowed."
     "lodOptionAboutGottaGoFast"                             "Gotta Go Fast: Increases the movement speed of all heroes by 50%, and raises the movespeed cap from 550 to 1000.\n Gotta Go FASTER: All heroes have 1000ms and cannot be slowed."
