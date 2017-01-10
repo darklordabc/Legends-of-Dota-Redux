@@ -1218,7 +1218,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"9109"		
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"abilities/tiny_grow_lod.lua"	 --- PATH WERY IMPORTANT!! AND NAME 
+		"ScriptFile"					"abilities/tiny_grow_lod.lua"	 // PATH WERY IMPORTANT!! AND NAME 
 		"AbilityTextureName"			"tiny_grow"		
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
@@ -12163,7 +12163,7 @@
         }
     }
 
-    /=================================================================================================================
+    //=================================================================================================================
     // Tower ability: Forest One Level
     //=================================================================================================================
     "imba_tower_forest_one"
@@ -12863,12 +12863,19 @@
             {
                 "var_type"              "FIELD_INTEGER"
                 "max_charges"           "3"
+                "LinkedSpecialBonus"	"special_bonus_unique_sniper_2"
             }
             "08"
             {
                 "var_type"              "FIELD_INTEGER"
                 "charge_restore_time"   "55"
             }
+            "09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"shrapnel_damage"		"15 35 55 75"
+				"LinkedSpecialBonus"	"special_bonus_unique_sniper_1"
+			}
         }
     }
     "dazzle_shallow_grave_perk"
