@@ -22,7 +22,10 @@
 		"dota/game/panorama/scripts/custom_game",
 		
 		"dota/content/soundevents",
-		"dota/content/sounds"
+		"dota/content/sounds",
+
+		"dota/game/soundevents",
+		"dota/game/sounds"
 	],
 
 	"linkDirs" : [
@@ -31,6 +34,7 @@
 		{ "link": "../dota/content/materials", "dir": "../src/content/materials" },
 		{ "link": "../dota/content/models", "dir": "../src/content/models" },
 		{ "link": "../dota/content/textures", "dir": "../src/content/textures" },
+
 
 		{ "link": "../dota/game/addoninfo.txt", "dir": "../src/game/addoninfo.txt" },
 
@@ -54,6 +58,9 @@
 		
 		{ "link": "../dota/content/soundevents", "dir": "../src/content/soundevents" },
 		{ "link": "../dota/content/sounds", "dir": "../src/content/sounds" },
+
+		{ "link": "../dota/game/soundevents", "dir": "../src/game/soundevents" },
+		{ "link": "../dota/game/sounds", "dir": "../src/game/sounds" },
 
 		{ "link": "../dota/game/resource/flash3", "dir": "../src/game/resource/flash3" },
 		{ "link": "../dota/game/resource/overviews", "dir": "../src/game/resource/overviews" },

@@ -2,7 +2,36 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 4.4 - Development Version
+## 4.7 - Development Version
+### Bug Fixing/New Features
+- Added Talent information to the hero popup infobox
+- Fixed Upgraded Version of Assassinate
+- Returned being able to view abilities in scoreboard feature (now also Talents!)
+- Fixed Mirana starfall not doing damage on secondary star
+
+### Balance
+- Necrolyte Perk gives a free level of Heartstopper Aura, not Sadist (that ability is gone)
+
+## 4.6 - Steam Version
+### Bug Fixing/New Features
+- Added back pre 7.00 Sadist (Thanks to Dota IMBA)
+- Fixed points showing in the ingame hero builder even when balance mode was off
+- Fixed display of skills being broken in banning mode, during boosting draft gamemode
+- Fixed tooltips for abiltiies not showing in menu phase
+
+### Balance
+- 
+
+## 4.5 
+### Bug Fixing/New Features
+- Added much more time for draft rounds (15 to 50 seconds)
+- Added Memes Redux mutator (let us know of any funny meme sound events to add) 
+- Remove Bacckpack blocker and two other weird items from showing in the shop
+
+### Balance
+- 
+
+## 4.4 
 ### Bug Fixing/New Features
 - Fixed Dazzle always getting shallow grave
 - Improved Bot AI, so that when they are in defensive mode, they are not stupid anymore.
@@ -12,7 +41,7 @@ All notable changes to this project will be documented in this file.
 ### Balance
 - 
 
-## 4.3 - Steam Version
+## 4.3 
 ### Bug Fixing/New Features
 - Fixed creep power always activating when pressing load"
 - Hopefully fixed flesh heaps

@@ -46,6 +46,7 @@ require('dedicated')
 -- Custom AI script modifiers
 LinkLuaModifier( "modifier_slark_shadow_dance_ai", "abilities/botAI/modifier_slark_shadow_dance_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_alchemist_chemical_rage_ai", "abilities/botAI/modifier_alchemist_chemical_rage_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
+--LinkLuaModifier( "modifier_rattletrap_rocket_flare_ai", "abilities/botAI/modifier_rattletrap_rocket_flare_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 --[[
     Main pregame, selection related handler
@@ -57,7 +58,7 @@ local buildBackups = {}
 -- Init pregame stuff
 function Pregame:init()
     -- Store for options
-    self.optionStore = {}
+    self.optionStore = {} 
 
     -- Store for selected heroes and skills
     self.selectedHeroes = {}
@@ -103,6 +104,8 @@ function Pregame:init()
     GameRules:SetCustomGameSetupTimeout(-1)
     GameRules:EnableCustomGameSetupAutoLaunch(false)
     self:sendContributors()
+
+    self.chanceToHearMeme = 1
 
     -- Init thinker
     GameRules:GetGameModeEntity():SetThink('onThink', self, 'PregameThink', 0.25)
@@ -520,6 +523,10 @@ function Pregame:loadDefaultSettings()
 
     -- Normal speed
     self:setOption("lodOptionGottaGoFast", 0)
+
+    -- NO MEMES UncleNox
+    self:setOption("lodOptionMemesRedux", 0)
+
 end
 
 -- Gets stats for the given player
@@ -619,7 +626,7 @@ function Pregame:startBoosterDraftRound( pID )
     
     local duration = 25
     if self.finalArrays[pID] then
-        duration = 15
+        duration = 50
     end
     network:setCustomEndTimer(PlayerResource:GetPlayer(pID), Time() + duration)
     
@@ -816,8 +823,12 @@ function Pregame:onThink()
 
         if not self.Announce_Picking_Phase then
             self.Announce_Picking_Phase = true
-            local sound = self:getRandomSound('game_picking_phase')
-            EmitAnnouncerSound(sound)
+            if OptionManager:GetOption("memesRedux") == 1 then
+                EmitGlobalSound("Memes.IntroSong")
+            else
+                local sound = self:getRandomSound('game_picking_phase')
+                EmitAnnouncerSound(sound)
+            end
         end
 
         --Check if countdown reaches 30 sec remaining
@@ -1343,7 +1354,7 @@ function Pregame:networkHeroes()
             else
                 self.heroRole[heroName] = 'melee'
             end
-
+           
             if heroToSkillMap[heroName] then
                 for k,v in pairs(heroToSkillMap[heroName]) do
                     theData[k] = v
@@ -1357,6 +1368,17 @@ function Pregame:networkHeroes()
                         theData['Ability' .. sn] = abName
                         sn = sn + 1
                     end
+                end
+            end
+
+            local sb = 1
+            for i=1,23 do
+                local abName = heroValues['Ability' .. i]
+
+                if abName and string.match(abName, "special_bonus_") then
+                    theData['SpecialBonus'..tostring(math.ceil(sb / 2))] = theData['SpecialBonus'..tostring(math.ceil(sb / 2))] or {}
+                    table.insert(theData['SpecialBonus'..tostring(math.ceil(sb / 2))], abName)
+                    sb = sb + 1
                 end
             end
 
@@ -2390,6 +2412,23 @@ function Pregame:initOptionSelector()
             -- Valid
             return true
         end,
+
+         -- Other -- Memes Redux
+        lodOptionMemesRedux = function(value)
+            
+            -- When the player activates this potion, they have a chance to hear a meme sound. Becomes more unlikely the more they hear.
+            if value == 1 then
+
+                local shouldPlay = RandomInt(1, self.chanceToHearMeme)
+                if shouldPlay == 1 then
+                    EmitGlobalSound("Memes.RandomSample")
+                    self.chanceToHearMeme = self.chanceToHearMeme + 1
+                end
+                
+            end
+
+            return value == 0 or value == 1
+        end, 
     }
 
     -- Callbacks
@@ -3004,17 +3043,8 @@ function Pregame:validateBuilds()
             self.selectedSkills[playerID] = build
         end
 
-        local player = PlayerResource:GetPlayer(playerID)
-        local team = 0
-
-        if not player and self.botPlayers and self.botPlayers.all[playerID] then
-            team = self.botPlayers.all[playerID].team
-        elseif player then
-            team = player:GetTeam()
-        end
-
         for slot=1,maxSlots do
-            if (self.optionStore['lodOptionBotsRestrict'] ~= 3 and ((self.optionStore['lodOptionBotsRestrict'] == 1 and team ~= DOTA_TEAM_GOODGUYS) or (self.optionStore['lodOptionBotsRestrict'] == 2 and team ~= DOTA_TEAM_BADGUYS))) or ((not self.botPlayers or not self.botPlayers.all[playerID]) and not build[slot]) then
+            if (not self.botPlayers or not self.botPlayers.all[playerID]) and not build[slot] then
                 -- Grab a random ability
                 local newAbility = self:findRandomSkill(build, slot, playerID)
 
@@ -3071,6 +3101,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('globalCastRange', this.optionStore['lodOptionGlobalCast'])
         OptionManager:SetOption('refreshCooldownsOnDeath', this.optionStore['lodOptionRefreshCooldownsOnDeath'])
         OptionManager:SetOption('gottaGoFast', this.optionStore['lodOptionGottaGoFast'])
+        OptionManager:SetOption('memesRedux', this.optionStore['lodOptionMemesRedux'])
 
         -- Enforce max level
         if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -3251,7 +3282,7 @@ function Pregame:processOptions()
                     ['Advanced: Start With Free Courier'] = this.optionStore['lodOptionGameSpeedFreeCourier'],
                     ['Advanced: Unique Heroes'] = this.optionStore['lodOptionAdvancedUniqueHeroes'],
                     ['Advanced: Unique Skills'] = this.optionStore['lodOptionAdvancedUniqueSkills'],
-                    ['Bans: Balance Mode Banning'] = this.optionStore['lodOptionBanningBalanceMode'],
+                    ['Bans: Points Mode Banning'] = this.optionStore['lodOptionBanningBalanceMode'],
                     ['Bans: Block Invis Abilities'] = this.optionStore['lodOptionBanningBanInvis'],
                     ['Bans: Block OP Abilities'] = this.optionStore['lodOptionAdvancedOPAbilities'],
                     ['Bans: Block Troll Combos'] = this.optionStore['lodOptionBanningBlockTrollCombos'],
@@ -3272,7 +3303,7 @@ function Pregame:processOptions()
                     ['Game Speed: Start With Upgraded Ults'] = this.optionStore['lodOptionGameSpeedUpgradedUlts'],
                     ['Game Speed: Starting Level'] = this.optionStore['lodOptionGameSpeedStartingLevel'],
                     ['Game Speed: XP Modifier'] = math.floor(this.optionStore['lodOptionGameSpeedEXPModifier']),
-                    ['Gamemode: Balance Mode'] = this.optionStore['lodOptionBalanceMode'],
+                    ['Gamemode: Points Mode'] = this.optionStore['lodOptionBalanceMode'],
                     ['Gamemode: Duels'] = this.optionStore['lodOptionDuels'],
                     ['Gamemode: Gamemode'] = this.optionStore['lodOptionCommonGamemode'],
                     ['Gamemode: Max Skills'] = this.optionStore['lodOptionCommonMaxSkills'],
@@ -3291,6 +3322,7 @@ function Pregame:processOptions()
                     ['Other: Global Cast Range'] = this.optionStore['lodOptionGlobalCast'],
                     ['Other: Refresh Cooldowns On Death'] = this.optionStore['lodOptionRefreshCooldownsOnDeath'],
                     ['Other: Gotta Go Fast!'] = this.optionStore['lodOptionGottaGoFast'],
+                    ['Other: Memes Redux'] = this.optionStore['lodOptionMemesRedux'],
                     ['Towers: Enable Stronger Towers'] = this.optionStore['lodOptionGameSpeedStrongTowers'],
                     ['Towers: Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],
                 })
@@ -3537,6 +3569,7 @@ function Pregame:setSelectedHero(playerID, heroName, force)
 
         -- Update the selected hero
         network:setSelectedHero(playerID, heroName)
+
     end
 end
 
@@ -3951,9 +3984,13 @@ function Pregame:checkForReady()
         maxTime = OptionManager:GetOption('reviewTime')
 
         if not self.Announce_review then
-            self.Announce_review = true
-            local sound = self:getRandomSound("game_review_phase")
-            EmitAnnouncerSound(sound)
+            self.Announce_review = true            
+            if OptionManager:GetOption("memesRedux") == 1 then
+                EmitGlobalSound("Memes.Review")
+            else
+                local sound = self:getRandomSound("game_review_phase")
+                EmitAnnouncerSound(sound)
+            end
         end
 
 
@@ -4769,6 +4806,9 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
             if not dontNetwork then
                 -- Network it
                 network:setSelectedAbilities(playerID, build)
+                if OptionManager:GetOption("memesRedux") == 1 then
+                     EmitGlobalSound("Memes.SnipeHit")
+                end
             end
         end
     end
@@ -5473,6 +5513,17 @@ end
 function Pregame:getSkillforBot( botInfo, botSkills )
     local playerID = botInfo.ID
     local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
+
+    if self.optionStore['lodOptionBotsRestrict'] > 0 then
+        if self.optionStore['lodOptionBotsRestrict'] == 1 and PlayerResource:GetTeam(playerID) == DOTA_TEAM_GOODGUYS then
+            maxSlots = 4
+        elseif self.optionStore['lodOptionBotsRestrict'] == 2 and PlayerResource:GetTeam(playerID) == DOTA_TEAM_BADGUYS then
+            maxSlots = 4
+        elseif self.optionStore['lodOptionBotsRestrict'] == 3 then
+            maxSlots = 4
+        end
+    end
+
     local build = botInfo.build or {}
     local skillID = botInfo.skillID or 1
     local heroName = botInfo.heroName
@@ -5540,14 +5591,6 @@ function Pregame:getSkillforBot( botInfo, botSkills )
                 build = info.build
                 heroName = info.heroName
             end
-        elseif self.optionStore['lodOptionBotsRestrict'] > 0 then
-            if self.optionStore['lodOptionBotsRestrict'] == 1 and botInfo.team == DOTA_TEAM_GOODGUYS then
-                build = self.botHeroes[heroName]
-            elseif self.optionStore['lodOptionBotsRestrict'] == 2 and botInfo.team == DOTA_TEAM_BADGUYS then
-                build = self.botHeroes[heroName]
-            elseif self.optionStore['lodOptionBotsRestrict'] == 3 then
-                build = self.botHeroes[heroName]
-            end 
         end
 
         -- Store the info
@@ -5779,6 +5822,7 @@ function Pregame:fixSpawningIssues()
     local botAIModifier = {
         slark_shadow_dance = true,
         alchemist_chemical_rage = true,
+        --rattletrap_rocket_flare = true,
     }
 
     local disabledPerks = {
@@ -5863,6 +5907,12 @@ function Pregame:fixSpawningIssues()
                             end
                         else
                             spawnedUnit:RemoveModifierByName('modifier_silencer_int_steal')
+                        end
+                        -- Change sniper assassinate to our custom version to work with aghs
+                        if spawnedUnit:HasAbility("sniper_assassinate") and not util:isPlayerBot(playerID) then
+                            spawnedUnit:AddAbility("sniper_assassinate_redux")
+                            spawnedUnit:SwapAbilities("sniper_assassinate","sniper_assassinate_redux",false,true)
+                            spawnedUnit:RemoveAbility("sniper_assassinate")
                         end
                         -- Custom Flesh Heap fixes
                         for abilitySlot=0,6 do

@@ -7,6 +7,7 @@ require('lib/util_imba')
 require('abilities/hero_perks/hero_perks_filters')
 require('abilities/epic_boss_fight/ebf_mana_fiend_essence_amp')
 require('abilities/global_mutators/global_mutator')
+require('abilities/global_mutators/memes_redux')
 
 -- Create the class for it
 local Ingame = class({})
@@ -95,10 +96,10 @@ function Ingame:init()
         CreateUnitByName('npc_precache_always', Vector(-10000, -10000, 0), false, nil, nil, 0)
     end)
 
-    GameRules:GetGameModeEntity():SetExecuteOrderFilter(self.FilterExecuteOrder, self)
-    GameRules:GetGameModeEntity():SetTrackingProjectileFilter(self.FilterProjectiles,self)
-    GameRules:GetGameModeEntity():SetModifierGainedFilter(self.FilterModifiers,self)  
-    GameRules:GetGameModeEntity():SetDamageFilter(self.FilterDamage,self)
+    GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(Ingame, 'FilterExecuteOrder'), self)
+    GameRules:GetGameModeEntity():SetTrackingProjectileFilter(Dynamic_Wrap(Ingame, 'FilterProjectiles'), self)
+    GameRules:GetGameModeEntity():SetModifierGainedFilter(Dynamic_Wrap(Ingame, 'FilterModifiers'),self)  
+    GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(Ingame, 'FilterDamage'),self)
 
     -- Listen if abilities are being used.
     ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(Ingame, 'OnAbilityUsed'), self)
@@ -169,7 +170,7 @@ end
 
 function Ingame:OnPlayerPurchasedItem(keys)
     -- Bots will get items auto-delievered to them
-    if util:isPlayerBot(keys.PlayerID) then         
+    if util:isPlayerBot(keys.PlayerID) then
         local hero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()      
             for slot =  DOTA_STASH_SLOT_1, DOTA_STASH_SLOT_6 do
                 item = hero:GetItemInSlot(slot)
@@ -251,7 +252,13 @@ function Ingame:FilterExecuteOrder(filterTable)
             return false
         end
     end
-    filterTable = heroPerksOrderFilter(filterTable)
+    if OptionManager:GetOption('disablePerks') == 0 then
+        filterTable = heroPerksOrderFilter(filterTable)
+    end
+
+    if OptionManager:GetOption('memesRedux') == 1 then
+        filterTable = memesOrderFilter(filterTable)
+    end
     return true
 end    
 
@@ -1354,7 +1361,7 @@ function Ingame:FilterProjectiles(filterTable)
     local abilityIndex = filterTable["entindex_ability_const"]
     local ability = EntIndexToHScript(abilityIndex)
     -- Hero perks
-    if ability then
+    if ability and OptionManager:GetOption('disablePerks') == 0 then
         filterTable = heroPerksProjectileFilter(filterTable) --Sending all the data to the heroPerksDamageFilter
     end
     return true    
@@ -1401,7 +1408,14 @@ function Ingame:FilterDamage( filterTable )
     end
 
      -- Hero perks
-    filterTable = heroPerksDamageFilter(filterTable)
+    if OptionManager:GetOption('disablePerks') == 0 then
+        filterTable = heroPerksDamageFilter(filterTable)
+    end
+
+    -- Memes
+    if OptionManager:GetOption('memesRedux') == 1 then
+        filterTable = memesDamageFilter(filterTable)
+    end
     
     return true
 end
@@ -1417,9 +1431,17 @@ function Ingame:FilterModifiers( filterTable )
     local parent = EntIndexToHScript( parent_index )
     local caster = EntIndexToHScript( caster_index )
     local ability = EntIndexToHScript( ability_index )
+
      -- Hero perks
-    filterTable = heroPerksModifierFilter(filterTable)
-    
+    if OptionManager:GetOption('disablePerks') == 0 then
+        filterTable = heroPerksModifierFilter(filterTable)
+    end
+
+    -- Memes
+    if OptionManager:GetOption('memesRedux') == 1 then
+        filterTable = memesModifierFilter(filterTable)
+    end
+
     return true
 end
 

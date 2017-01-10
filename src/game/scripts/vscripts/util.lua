@@ -686,6 +686,7 @@ end
 
 function CDOTABaseAbility:IsCustomAbility()
     local spell = self:GetAbilityName():gsub("_lod", "")
+    spell = self:GetAbilityName():gsub("_redux", "")
     if not regularSpells[spell] then
         return true
     else

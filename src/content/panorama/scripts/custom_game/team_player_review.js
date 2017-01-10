@@ -108,6 +108,8 @@ function OnGetHeroBuildData(build) {
 			con.abilityname = build[i];
 			con.SetAttributeString('abilityname', build[i]);
 		}
+
+        GameUI.CustomUIConfig().hookSkillInfo(con);
 	}
 }
 

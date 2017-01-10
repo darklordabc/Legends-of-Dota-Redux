@@ -7,6 +7,7 @@ Dota 2 Redux
  - Choose from a huge selection of gamemodes and mutators to make every experience unique!
  - Pick your skills or select a random build!
  - Take advantage of hero perks and custom abilities to further enhance your hero! 
+ - View the [Changelog](https://github.com/darklordabc/Dota-2-Redux/blob/develop/CHANGELOG.md)
 
 ###Github Issues###
  - Feel free to post an [issue](https://github.com/darklordabc/Dota-2-Redux/issues) on any subject. Improvements, bugs, ideas or to start a discussion, its all good.

@@ -16,8 +16,7 @@ function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, bu
 
         // Make it selectable and show info
         makeSkillSelectable(slot);
-        hookSkillInfo(slot);
-
+        
         if(curBuild[slotID]) {
             slot.visible = true;
             slot.abilityname = curBuild[slotID];
@@ -25,6 +24,8 @@ function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, bu
         } else {
             slot.visible = false;
         }
+
+        hookSkillInfo(slot);
 
         // Add abilities names
         searchTags.push($.Localize('DOTA_Tooltip_ability_' + slot.abilityname).toLowerCase());
@@ -128,6 +129,13 @@ function updateFilters(getSkillFilterInfo, getHeroFilterInfo) {
                     abCost.SetHasClass('tier' + (i + 1), filterInfo.cost == GameUI.AbilityCosts.TIER[i]);
                 }
                 abCost.text = (filterInfo.cost != GameUI.AbilityCosts.NO_COST)? filterInfo.cost: "";
+            }
+        }
+
+        if (typeof($.GetContextPanel().balanceMode) === "boolean") {
+            var abCost = slot.GetChild(0);
+            if (abCost) {
+                abCost.visible = $.GetContextPanel().balanceMode;
             }
         }
     }
