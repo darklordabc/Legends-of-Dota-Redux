@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 
 ### Balance
 - Necrolyte Perk gives a free level of Heartstopper Aura, not Sadist (that ability is gone)
+- Added Caustic Finale (Thanks to Dota IMBA and FireToad)
 
 ## 4.6 - Steam Version
 ### Bug Fixing/New Features

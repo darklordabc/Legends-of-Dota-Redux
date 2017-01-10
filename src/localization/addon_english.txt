@@ -1197,6 +1197,8 @@
     "warning_monkey_king_mischief" "<font color=\'#FF4949\'>Hero Requirement:</font> You have to play as <font color=\'#70EA72\'>Monkey King</font> for tree disguise models to work."
 
     "credit_aether_range_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
+    "credit_sandking_caustic_finale_redux"           "<font color=\'#7D7D7D\'>Credits: Fixed by Firetoad | github.com/fcalife</font>"
+    "credit_necrolyte_sadist_lod"           "<font color=\'#7D7D7D\'>Credits: Fixed by Firetoad | github.com/fcalife</font>"
     "credit_undying_decay_agi"           "<font color=\'#7D7D7D\'>Sponsored by Budster16"
     "credit_undying_decay_int"           "<font color=\'#7D7D7D\'>Sponsored by Budster16"
 	"credit_octarine_vampirism_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
@@ -3980,4 +3982,22 @@
 
     "DOTA_Tooltip_modifier_imba_sadist_stack"                                           "Sadist"
     "DOTA_Tooltip_modifier_imba_sadist_stack_Description"                               "Regenerating health and mana"
+
+    "DOTA_Tooltip_ability_sandking_caustic_finale_redux"                                 "Caustic Finale"
+    "DOTA_Tooltip_ability_sandking_caustic_finale_redux_Description"                     "Sand King poisons his enemies with every attack. When the poison debuff expires, enemies' body explodes, slowing and dealing damage to all nearby enemies."
+    "DOTA_Tooltip_ability_sandking_caustic_finale_redux_Lore"                            "An injection from Crixalis makes one as brittle as the sands of his home."
+    "DOTA_Tooltip_ability_sandking_caustic_finale_redux_Note0"                           "Also activates if the affected unit dies, or if the debuff is purged."
+    "DOTA_Tooltip_ability_sandking_caustic_finale_redux_Note1"                           "Damaging an unit already affected by Caustic Finale does not refresh the debuff."
+    "DOTA_Tooltip_ability_sandking_caustic_finale_redux_radius"                          "EXPLOSION RADIUS:"
+    "DOTA_Tooltip_ability_sandking_caustic_finale_redux_damage"                          "EXPLOSION DAMAGE:"
+    "DOTA_Tooltip_ability_sandking_caustic_finale_redux_debuff_duration"                 "DEBUFF DURATION:"
+    "DOTA_Tooltip_ability_sandking_caustic_finale_redux_ms_slow"                         "%MOVEMENT SPEED SLOW:"
+    "DOTA_Tooltip_ability_sandking_caustic_finale_redux_slow_duration"                   "SLOW DURATION:"
+
+    "DOTA_Tooltip_modifier_imba_caustic_finale"                                         "Caustic Finale"
+    "DOTA_Tooltip_modifier_imba_caustic_finale_Description"                             "O-oh."
+
+    "DOTA_Tooltip_modifier_imba_caustic_finale_slow"                                    "Caustic Finale"
+    "DOTA_Tooltip_modifier_imba_caustic_finale_slow_Description"                        "Move speed slowed"
+
 }
