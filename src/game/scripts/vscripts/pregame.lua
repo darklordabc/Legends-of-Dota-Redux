@@ -1007,7 +1007,7 @@ function Pregame:spawnAllHeroes(onSpawned)
         self.spawnDelay = 0
     end
 
-    self.playerQueue = function ()
+    self.playerQueue = function (hero)
         PauseGame(true)
         self.spawnQueueID = self.spawnQueueID + 1
 
@@ -1024,7 +1024,11 @@ function Pregame:spawnAllHeroes(onSpawned)
         end
 
         -- Skip disconnected players
-        if PlayerResource:GetConnectionState(self.spawnQueueID) < 1 then
+        -- if PlayerResource:GetConnectionState(self.spawnQueueID) < 1 then
+        --     self.playerQueue()
+        --     return
+        -- end
+        if not hero then
             self.playerQueue()
             return
         end
@@ -1035,22 +1039,22 @@ function Pregame:spawnAllHeroes(onSpawned)
         end, DoUniqueString('playerSpawn'), self.spawnDelay)
     end
 
-    self.playerQueue()
+    self.playerQueue(true)
 end
 
 -- Spawns a given player
 function Pregame:spawnPlayer(playerID, callback)
-    -- Is there a player in this slot?
-    if PlayerResource:GetConnectionState(playerID) >= 1 then
-        -- Only spawn a hero for a given player ONCE
-        if self.spawnedHeroesFor[playerID] then return end
-        self.spawnedHeroesFor[playerID] = true
+    -- -- Is there a player in this slot?
+    -- if PlayerResource:GetConnectionState(playerID) >= 1 then
+    -- Only spawn a hero for a given player ONCE
+    if self.spawnedHeroesFor[playerID] then return end
+    self.spawnedHeroesFor[playerID] = true
 
-        self.currentlySpawning = true
+    self.currentlySpawning = true
 
-        -- Actually spawn the player
-        self:actualSpawnPlayer(playerID, callback)
-    end
+    -- Actually spawn the player
+    self:actualSpawnPlayer(playerID, callback)
+    -- end
 end
 
 function Pregame:actualSpawnPlayer(playerID, callback)
@@ -1069,10 +1073,11 @@ function Pregame:actualSpawnPlayer(playerID, callback)
 
         -- Validate the player
         local player = PlayerResource:GetPlayer(playerID)
-        if player ~= nil then
+        if true then -- player ~= nil
             local heroName = self.selectedHeroes[playerID] or self:getRandomHero()
 
             function spawnTheHero()
+                local hero
                 local status2,err2 = pcall(function()
 
                     -- Create the hero and validate it
@@ -1081,9 +1086,11 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                         UTIL_Remove(PlayerResource:GetSelectedHeroEntity(playerID))
                     end
 
-                    local hero = PlayerResource:ReplaceHeroWith(playerID,heroName,625 + OptionManager:GetOption('bonusGold'),0)
+                    hero = PlayerResource:ReplaceHeroWith(playerID,heroName,625 + OptionManager:GetOption('bonusGold'),0)
 
-                    CustomGameEventManager:Send_ServerToPlayer(player,"lodCreatedHero",{})
+                    if player then
+                        CustomGameEventManager:Send_ServerToPlayer(player,"lodCreatedHero",{})
+                    end
 
                     -- CreateUnitByName(heroName,Vector(0,0,0),true,player,player,player:GetTeamNumber())
                     if hero ~= nil and IsValidEntity(hero) then
@@ -1119,17 +1126,20 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                 if not status2 then
                     SendToServerConsole('say "Post this to the LoD comments section: '..err2:gsub('"',"''")..'"')
                 end
+
+                return hero
             end
 
             self.currentlySpawning = false
 
+
             PrecacheUnitByNameAsync(heroName, function()
                 this.cachedPlayerHeroes[playerID] = true
 
-                spawnTheHero()
+                local hero = spawnTheHero()
 
                 if callback then
-                    callback()
+                    callback(hero)
                 end
             end, playerID)
         else
