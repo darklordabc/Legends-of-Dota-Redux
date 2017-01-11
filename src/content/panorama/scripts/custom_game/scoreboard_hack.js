@@ -79,7 +79,7 @@ function InitPlayers() {
 		InitPlayer(parent.FindChildTraverse("scoreboard").FindChildTraverse("DirePlayer"+i))
 	}
 
-	$.Schedule(0.5, InitPlayers);
+	$.Schedule(1, InitPlayers);
 }
 
 (function () {
