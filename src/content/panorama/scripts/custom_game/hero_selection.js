@@ -32,7 +32,6 @@ function checkForHero() {
 function rollBackChanges() {
     hud.FindChildTraverse("lower_hud").visible = true;
     hud.FindChildTraverse("topbar").visible = true;
-    GameUI.CustomUIConfig().topScoreboard.visible = true;
 
     label.text = $.Localize("DOTA_Hud_Paused");
 
@@ -48,7 +47,6 @@ function rollBackChanges() {
 
     hud.FindChildTraverse("lower_hud").visible = false;
     hud.FindChildTraverse("topbar").visible = false;
-    GameUI.CustomUIConfig().topScoreboard.visible = false;
 
     // Check if we have a hero yet
     checkForHero();
