@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 ### Balance
 - Added Global Disarm
 - Added 4 abilities from Dusk, Hawkeye hero
+- Added Shield Ability for Towers, From Dusk Mod
 
 ## 4.7 - Steam Version
 ### Bug Fixing/New Features
