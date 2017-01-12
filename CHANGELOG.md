@@ -2,7 +2,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 4.7 - Development Version
+## 4.8 - Development Version
+### Bug Fixing/New Features
+- 
+
+### Balance
+- Added Global Disarm
+
+## 4.7 - Steam Version
 ### Bug Fixing/New Features
 - Added Talent information to the hero popup infobox
 - Fixed Upgraded Version of Assassinate
@@ -14,7 +21,7 @@ All notable changes to this project will be documented in this file.
 - Necrolyte Perk gives a free level of Heartstopper Aura, not Sadist (that ability is gone)
 - Added Caustic Finale (Thanks to Dota IMBA and FireToad)
 
-## 4.6 - Steam Version
+## 4.6 
 ### Bug Fixing/New Features
 - Added back pre 7.00 Sadist (Thanks to Dota IMBA)
 - Fixed points showing in the ingame hero builder even when balance mode was off

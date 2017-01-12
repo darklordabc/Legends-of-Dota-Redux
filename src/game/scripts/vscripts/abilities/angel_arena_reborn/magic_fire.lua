@@ -44,6 +44,8 @@ function mana_burn_function( keys )
 	Timers:CreateTimer( life_time, function()
 			ParticleManager:DestroyParticle( numberIndex, false )
 			ParticleManager:DestroyParticle( burnIndex, false)
+			ParticleManager:ReleaseParticleIndex(numberIndex)
+			ParticleManager:ReleaseParticleIndex(burnIndex)
 			return nil
 		end
 	)

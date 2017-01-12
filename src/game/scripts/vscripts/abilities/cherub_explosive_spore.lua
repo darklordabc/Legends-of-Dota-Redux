@@ -29,5 +29,6 @@ function ExplosiveSporeSound( keys )
         
         local fxIndex = ParticleManager:CreateParticle( particleName, PATTACH_ABSORIGIN, keys.target )
         StartSoundEvent( soundEventName, keys.target )
+        ParticleManager:ReleaseParticleIndex(fxIndex)
     end
 end
