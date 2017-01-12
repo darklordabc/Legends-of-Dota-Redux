@@ -3408,7 +3408,17 @@
 	"DOTA_Tooltip_ability_dark_ranger_black_arrow_outgoing_damage"	"%ILLUSION OUTGOING DAMAGE:"
 	"DOTA_Tooltip_ability_dark_ranger_black_arrow_incoming_damage"	"%ILLUSION INCOMING DAMAGE:"
 	
-	"DOTA_Tooltip_ability_gemini_voidal_flare" "Voidal Flare"
+    "DOTA_Tooltip_ability_vassal_shield"                                              "Shield"
+    "DOTA_Tooltip_ability_vassal_shield_description"                                  "Shields nearby allies, causing them to take less damage, and block a small amount of Physical damage.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
+    "DOTA_Tooltip_ability_vassal_shield_damage_reduction"                             "%DAMAGE REDUCTION:"
+    "DOTA_Tooltip_ability_vassal_shield_block"                                        "DAMAGE BLOCK:"
+    "DOTA_Tooltip_ability_vassal_shield_radius"                                       "RADIUS:"
+
+	"DOTA_Tooltip_modifier_vassal_shield"                                             "Shielded"
+    "DOTA_Tooltip_modifier_vassal_shield_description"                                 "Taking less damage from sources."
+
+
+    "DOTA_Tooltip_ability_gemini_voidal_flare" "Voidal Flare"
 	"DOTA_Tooltip_ability_gemini_voidal_flare_description" "The Voidwalker fires a flare of dark energy at the target, annihilating any magical effects, damaging them, and stunning them for a short time.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
 	"DOTA_Tooltip_ability_gemini_voidal_flare_Note0" "This ability purges all buffs and debuffs from the target as a strong dispel spell."
 	"DOTA_Tooltip_ability_gemini_voidal_flare_Note1" "Allies are not stunned or damaged by the bolt."
