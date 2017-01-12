@@ -58,6 +58,15 @@ function Debug:init()
         initDuel()
     end, 'test', 0)
 
+    Convars:RegisterCommand('test_reconnect', function(...)
+        local ply = Convars:GetCommandClient()
+        if not ply then return end
+        local playerID = ply:GetPlayerID()
+
+        local player = PlayerResource:GetPlayer(playerID)
+        CustomGameEventManager:Send_ServerToPlayer(player, "lodAttemptReconnect",{})
+    end, 'test_reconnect', 0)
+
     Convars:RegisterCommand('test_aar_duel_end', function(...)
         local ply = Convars:GetCommandClient()
         if not ply then return end

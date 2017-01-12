@@ -1024,14 +1024,14 @@ function Pregame:spawnAllHeroes(onSpawned)
         end
 
         -- Skip disconnected players
-        -- if PlayerResource:GetConnectionState(self.spawnQueueID) < 1 then
-        --     self.playerQueue()
-        --     return
-        -- end
-        if not hero then
+        if PlayerResource:GetConnectionState(self.spawnQueueID) < 1 then
             self.playerQueue()
             return
         end
+        -- if not hero then
+        --     self.playerQueue()
+        --     return
+        -- end
 
         -- Keep spawning
         Timers:CreateTimer(function()
@@ -1044,17 +1044,16 @@ end
 
 -- Spawns a given player
 function Pregame:spawnPlayer(playerID, callback)
-    -- -- Is there a player in this slot?
-    -- if PlayerResource:GetConnectionState(playerID) >= 1 then
-    -- Only spawn a hero for a given player ONCE
+    local player = PlayerResource:GetPlayer(playerID)
+    if player then
+        CustomGameEventManager:Send_ServerToPlayer(player,"lodCreatedHero",{})
+    end
+
     if self.spawnedHeroesFor[playerID] then return end
-    self.spawnedHeroesFor[playerID] = true
 
     self.currentlySpawning = true
 
-    -- Actually spawn the player
     self:actualSpawnPlayer(playerID, callback)
-    -- end
 end
 
 function Pregame:actualSpawnPlayer(playerID, callback)
@@ -1064,16 +1063,16 @@ function Pregame:actualSpawnPlayer(playerID, callback)
     -- Try to spawn this player using safe stuff
     local status, err = pcall(function()
         -- Don't allow a player to get two heroes
-        if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil and not PlayerResource:GetSelectedHeroEntity(playerID).dummy then
-            return
-        end
+        -- if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil and not PlayerResource:GetSelectedHeroEntity(playerID).dummy then
+        --     return
+        -- end
 
         -- Grab their build
         local build = self.selectedSkills[playerID]
 
         -- Validate the player
         local player = PlayerResource:GetPlayer(playerID)
-        if true then -- player ~= nil
+        if player ~= nil then
             local heroName = self.selectedHeroes[playerID] or self:getRandomHero()
 
             function spawnTheHero()
@@ -1084,16 +1083,16 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                     --print(heroName)
                     if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil then
                         UTIL_Remove(PlayerResource:GetSelectedHeroEntity(playerID))
-                    end
-
-                    hero = PlayerResource:ReplaceHeroWith(playerID,heroName,625 + OptionManager:GetOption('bonusGold'),0)
-
-                    if player then
-                        CustomGameEventManager:Send_ServerToPlayer(player,"lodCreatedHero",{})
+                        hero = PlayerResource:ReplaceHeroWith(playerID,heroName,625 + OptionManager:GetOption('bonusGold'),0)
+                    else
+                        hero = CreateHeroForPlayer(heroName,player) 
+                        hero = PlayerResource:ReplaceHeroWith(playerID,heroName,625 + OptionManager:GetOption('bonusGold'),0)
                     end
 
                     -- CreateUnitByName(heroName,Vector(0,0,0),true,player,player,player:GetTeamNumber())
                     if hero ~= nil and IsValidEntity(hero) then
+                        self.spawnedHeroesFor[playerID] = true
+
                         SkillManager:ApplyBuild(hero, build or {})
 
                         buildBackups[playerID] = build
@@ -3689,33 +3688,7 @@ function Pregame:onPlayerAskForHero(eventSourceIndex, args)
 
     -- Has this player already asked for their hero?
     if self.heroesSpawned then
-        -- Do they have a hero?
-
-        if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil then
-            return
-        end
-
-        CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(playerID),"lodSpawningQueue",{queue = 0})
-
-        -- Attempt to spawn a hero (this is validated inside to prevent multiple heroes)
         self:spawnPlayer(playerID)
-
-        self.spawnedHeroesFor[playerID] = true
-
-        -- if not self.requestHeroAgain then
-        --  self.requestHeroAgain = {}
-        -- end
-
-        -- if self.requestHeroAgain[playerID] then
-        --  if Time() > self.requestHeroAgain[playerID] then
-        --      self.requestHeroAgain[playerID] = nil
-        --      self.currentlySpawning = false
-        --      self.spawnedHeroesFor[playerID] = false
-        --  end
-        -- else
-        --  -- Allocate 3 seconds then allow them to spawn a hero
-        --  self.requestHeroAgain[playerID] = Time() + 3
-        -- end
     end
 end
 

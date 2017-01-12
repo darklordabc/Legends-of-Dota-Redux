@@ -108,10 +108,19 @@ function Ingame:init()
     
     -- Listen to correct the changed abilitypoints
     ListenToGameEvent('dota_player_gained_level', Dynamic_Wrap(Ingame, 'OnHeroLeveledUp'), self)
+
+    ListenToGameEvent("player_reconnected", Dynamic_Wrap(Ingame, 'OnPlayerReconnect'), self)
     
     -- Set it to no team balance
     self:setNoTeamBalanceNeeded()
 end   
+
+function Ingame:OnPlayerReconnect(keys)
+    Timers:CreateTimer(function ()
+        local player = PlayerResource:GetPlayer(keys.PlayerID)
+        CustomGameEventManager:Send_ServerToPlayer(player, "lodAttemptReconnect",{})
+    end, DoUniqueString('reconnect'), 4.0)
+end
 
 function Ingame:OnHeroLeveledUp(keys)
     -- Give abilitypoints to spend on the levels the game doesn't give.
