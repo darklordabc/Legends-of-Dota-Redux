@@ -2096,6 +2096,20 @@
     "DOTA_Tooltip_ability_hawkeye_double_tap_second_shot_base_damage" "BASE DAMAGE:"
     "DOTA_Tooltip_ability_hawkeye_double_tap_second_shot_mult_scepter" "SCEPTER MULTIPLIER:"
     
+    "DOTA_Tooltip_hawkeye_ricochet_mod"                                               "Hawkeye Ricochet Mod"
+    "DOTA_Tooltip_hawkeye_ricochet_mod_description"                                   ""
+
+    "DOTA_Tooltip_hawkeye_detonator_dart_mod"                                         "Detonator Dart"
+    "DOTA_Tooltip_hawkeye_detonator_dart_mod_description"                             "BOOM!"
+
+    "DOTA_Tooltip_hawkeye_shrapnel_effects_mod"                                       "None"
+    "DOTA_Tooltip_hawkeye_shrapnel_effects_mod_description"                           ""
+
+    "DOTA_Tooltip_hawkeye_shrapnel_damage_slow_mod"                                   "Hit 'n' Run Shrapnel"
+    "DOTA_Tooltip_hawkeye_shrapnel_damage_slow_mod_description"                       "Taking damage and being slowed."
+
+    "DOTA_Tooltip_hawkeye_double_tap_second_shot_effect_mod"                          "Double Tap"
+    "DOTA_Tooltip_hawkeye_double_tap_second_shot_effect_mod_description"              "Take your best shot."
 
 	//Bot Controller
 	"DOTA_Tooltip_ability_imba_tower_ai_controller"									"Bot AI Helper"
