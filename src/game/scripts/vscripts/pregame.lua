@@ -6070,7 +6070,10 @@ function Pregame:fixSpawningIssues()
                 if IsInToolsMode() then
                     -- If setting is 1, everyone gets free scepter modifier, if its 2, only human players get the upgrade
                     if not util:isPlayerBot(playerID) then
-                        spawnedUnit:AddItemByName('item_devDagger')
+                        local devDagger = spawnedUnit:FindItemByName("item_devDagger")
+                        if not devDagger then
+                            spawnedUnit:AddItemByName('item_devDagger')
+                        end
                      end
                 end
 
