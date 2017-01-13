@@ -1335,6 +1335,9 @@
 	"credit_ebf_troll_warlord_multistrike"           "<font color=\'#7D7D7D\'>Imported from <font color='#892b86'>E</font><font color='#922b73'>P</font><font color='#9c2a61'>I</font><font color='#a52a4e'>C</font><font color='#a62648'> </font><font color='#a72343'>B</font><font color='#a81f3d'>O</font><font color='#b42a30'>S</font><font color='#c03423'>S</font><font color='#d43f32'> </font><font color='#e94942'>F</font><font color='#fd5451'>I</font><font color='#fd8a3e'>G</font><font color='#fec02a'>H</font><font color='#fef617'>T</font>"
 	"credit_ebf_clinkz_trickshot_passive"           "<font color=\'#7D7D7D\'>Imported from <font color='#892b86'>E</font><font color='#922b73'>P</font><font color='#9c2a61'>I</font><font color='#a52a4e'>C</font><font color='#a62648'> </font><font color='#a72343'>B</font><font color='#a81f3d'>O</font><font color='#b42a30'>S</font><font color='#c03423'>S</font><font color='#d43f32'> </font><font color='#e94942'>F</font><font color='#fd5451'>I</font><font color='#fd8a3e'>G</font><font color='#fec02a'>H</font><font color='#fef617'>T</font>"
 
+    "credit_makemeleecreeps_lua"           "<font color=\'#7D7D7D\'>Imported from <font color=\'#803935\'>Definitely Not Dota</font></font>"
+    "credit_makerangedcreeps_lua"           "<font color=\'#7D7D7D\'>Imported from <font color=\'#803935\'>Definitely Not Dota</font></font>"
+    "credit_makecatapults_lua"           "<font color=\'#7D7D7D\'>Imported from <font color=\'#803935\'>Definitely Not Dota</font></font>"
 
     /////////////////
     // CUSTOM ABILITIES
@@ -4083,5 +4086,21 @@
 
     "DOTA_Tooltip_modifier_imba_caustic_finale_slow"                                    "Caustic Finale"
     "DOTA_Tooltip_modifier_imba_caustic_finale_slow_Description"                        "Move speed slowed"
+
+    "DOTA_Tooltip_ability_makerangedcreeps_lua"                     "Spawn Ranged Creeps"
+    "DOTA_Tooltip_ability_makerangedcreeps_lua_Description"                     "Spawns controllable melee troops."
+    "DOTA_Tooltip_ability_makerangedcreeps_lua_maxrangedcreeps"                          "MAX RANGE CREEPS:"
+
+    "DOTA_Tooltip_ability_makemeleecreeps_lua"                      "Spawn Melee Creeps"
+    "DOTA_Tooltip_ability_makemeleecreeps_lua_Description"                     "Spawns controllable ranged troops."
+    "DOTA_Tooltip_ability_makemeleecreeps_lua_maxmeleecreeps"                          "MAX Melee CREEPS:"
+
+    "DOTA_Tooltip_ability_makecatapults_lua"                        "Spawn Siege Creeps"
+    "DOTA_Tooltip_ability_makecatapults_lua_Description"                     "Spawns controllable catapults."
+    "DOTA_Tooltip_ability_makecatapults_lua_maxcatapults"                          "MAX CATAPULTS:"
+
+    "DOTA_Tooltip_ability_phase_datadriven"                     "Phase"
+    "DOTA_Tooltip_ability_phase_datadriven_Description"                     "Allows you to pass through units, don't get tripped up!"
+
 
 }

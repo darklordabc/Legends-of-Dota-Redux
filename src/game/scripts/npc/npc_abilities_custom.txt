@@ -3,7 +3,133 @@
 {
     "Version"       "1"
 
+	"makemeleecreeps_lua"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"AbilityTextureName"			"custom/spawnmeleecreep"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ScriptFile"					"abilities/definitely not dota/makemeleecreeps_lua"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0"
 
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"45 36 36 24"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		"AbilitySpecial"
+		{
+		    "01"
+		    {
+		        "var_type"  "FIELD_INTEGER"
+		        "maxmeleecreeps"    "2 3 4 5"
+		    }
+
+		}
+
+	}
+
+	"makerangedcreeps_lua"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"AbilityTextureName"			"custom/spawnrangedcreep"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ScriptFile"					"abilities/definitely not dota/makerangedcreeps_lua"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"45 36 36 24"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		"AbilitySpecial"
+		{
+		    "01"
+		    {
+		        "var_type"  "FIELD_INTEGER"
+		        "maxrangedcreeps"    "1 1 2 3"
+		    }
+
+		}
+
+	}
+
+
+	"makecatapults_lua"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"AbilityTextureName"			"custom/spawnseigecreep"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ScriptFile"					"abilities/definitely not dota/makecatapults_lua"
+		"MaxLevel"						"3"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"90 63 40"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		"AbilitySpecial"
+		{
+		    "01"
+		    {
+		        "var_type"  "FIELD_INTEGER"
+		        "maxcatapults"    "1 1 2"
+		    }
+
+		}
+
+	}
+
+	"phase_datadriven"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"custom/hero_phase"
+		"MaxLevel"						"1"		
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+		"Modifiers"
+		{
+			"modifier_phase_datadriven"
+			{
+				"Passive"           "1"
+				"IsPurgable"        "0"
+				"IsHidden"          "1"
+				
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
 	//=================================================================================================================
 	// Necrolyte's Sadist from Dota IMBA
 	//=================================================================================================================

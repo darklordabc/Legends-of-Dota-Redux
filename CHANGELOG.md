@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 - Added Global Disarm
 - Added 4 abilities from Dusk, Hawkeye hero
 - Added Shield Ability for Towers, From Dusk Mod
+- Added Dire Safe Lane abilities from 'Definitely Not Dota'
 
 ## 4.7 - Steam Version
 ### Bug Fixing/New Features
