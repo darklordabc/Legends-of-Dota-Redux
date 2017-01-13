@@ -2,7 +2,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 4.8 - Development Version
+## 4.9 - Development Version
+### Bug Fixing/New Features
+- Removed Divided We Stand because of a terrible respawn bug
+
+### Balance
+- 
+
+
+## 4.8 - Steam Version
 ### Bug Fixing/New Features
 - 
 
@@ -12,7 +20,7 @@ All notable changes to this project will be documented in this file.
 - Added Shield Ability for Towers, From Dusk Mod
 - Added Dire Safe Lane abilities from 'Definitely Not Dota'
 
-## 4.7 - Steam Version
+## 4.7 
 ### Bug Fixing/New Features
 - Added Talent information to the hero popup infobox
 - Fixed Upgraded Version of Assassinate
