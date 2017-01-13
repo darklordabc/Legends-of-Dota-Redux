@@ -17,7 +17,7 @@ var styles = {
 
     // Top bar
     '#topbar': {
-        'width': '100%'
+        'width': 'fit-children'
     },
 
     '#TopBarRadiantTeam': {
@@ -46,7 +46,11 @@ var styles = {
 
     '#TopBarDirePlayersContainer': {
         'width': 'fit-children'
-    }    
+    },
+
+    '#HUDSkinTopBarBG': {
+    	'width': '20%'
+    }
 };
 
 // When this panel loads
