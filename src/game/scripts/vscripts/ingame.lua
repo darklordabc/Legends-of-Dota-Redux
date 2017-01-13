@@ -118,52 +118,12 @@ function Ingame:OnHeroLeveledUp(keys)
     local pID = keys.player -1    
     local player = PlayerResource:GetPlayer(pID)
     local hero = player:GetAssignedHero()
-
-    -- Leveling the talents for bots
-    if util:isPlayerBot(pID) and keys.level == 10 then
-        for i=1,23 do
-            local abName = hero:GetAbilityByIndex(i):GetAbilityName()
-            if abName and string.find(abName, "special_bonus") then
-                local random = RandomInt(0,1)
-                hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
-                break
-            end
-        end
-    elseif util:isPlayerBot(pID) and keys.level == 15 then
-        for i=1,23 do
-            local abName = hero:GetAbilityByIndex(i):GetAbilityName()
-            if abName and string.find(abName, "special_bonus") then
-                local random = RandomInt(2,3)
-                hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
-                break
-            end
-        end
-
-    elseif util:isPlayerBot(pID) and keys.level == 20 then
-        for i=1,23 do
-            local abName = hero:GetAbilityByIndex(i):GetAbilityName()
-            if abName and string.find(abName, "special_bonus") then
-                local random = RandomInt(4,5)
-                hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
-                break
-            end
-        end
-
-    elseif util:isPlayerBot(pID) and keys.level == 25 then
-        for i=1,23 do
-            local abName = hero:GetAbilityByIndex(i):GetAbilityName()
-            if abName and string.find(abName, "special_bonus") then
-                local random = RandomInt(6,7)
-                hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
-                break
-            end
-        end 
-    end
-
+    
     local markedLevels = {[17]=true,[19]=true,[21]=true,[22]=true,[23]=true,[24]=true}
     if markedLevels[keys.level] then
         hero:SetAbilityPoints(hero:GetAbilityPoints() + 1)
     end
+
 end
 
 

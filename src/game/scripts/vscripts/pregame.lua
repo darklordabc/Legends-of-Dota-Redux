@@ -5799,6 +5799,48 @@ function Pregame:hookBotStuff()
                 if lowestAb ~= nil then
                     lowestAb:SetLevel(lowestLevel + 1)
                 end
+
+                -- Leveling the talents for bots
+                if keys.level == 10 then
+                    for i=1,23 do
+                        local abName = hero:GetAbilityByIndex(i):GetAbilityName()
+                        if abName and string.find(abName, "special_bonus") then
+                            local random = RandomInt(0,1)
+                            hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                            break
+                        end
+                    end
+                elseif keys.level == 15 then
+                    for i=1,23 do
+                        local abName = hero:GetAbilityByIndex(i):GetAbilityName()
+                        if abName and string.find(abName, "special_bonus") then
+                            local random = RandomInt(2,3)
+                            hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                            break
+                        end
+                    end
+
+                elseif keys.level == 20 then
+                    for i=1,23 do
+                        local abName = hero:GetAbilityByIndex(i):GetAbilityName()
+                        if abName and string.find(abName, "special_bonus") then
+                            local random = RandomInt(4,5)
+                            hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                            break
+                        end
+                    end
+
+                elseif keys.level == 25 then
+                    for i=1,23 do
+                        local abName = hero:GetAbilityByIndex(i):GetAbilityName()
+                        if abName and string.find(abName, "special_bonus") then
+                            local random = RandomInt(6,7)
+                            hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                            break
+                        end
+                    end 
+                end
+
             end
         end
     end, nil)

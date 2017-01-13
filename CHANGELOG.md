@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 4.9 - Development Version
 ### Bug Fixing/New Features
 - Removed Divided We Stand because of a terrible respawn bug
+- When strong creeps are enabled, they will change their models to mega creeps once they become very strong
 
 ### Balance
 - 
