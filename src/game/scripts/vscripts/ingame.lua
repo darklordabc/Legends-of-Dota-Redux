@@ -164,6 +164,9 @@ function Ingame:OnHeroLeveledUp(keys)
     if markedLevels[keys.level] then
         hero:SetAbilityPoints(hero:GetAbilityPoints() + 1)
     end
+    if keys.level == 25 and OptionManager:GetOption('maxHeroLevel') == 25 then
+        hero:SetAbilityPoints(100)
+    end
 end
 
 
