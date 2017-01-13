@@ -38,7 +38,8 @@ local ingame = require('ingame')
 local localStorage = require("ModDotaLib.LocalStorage")
 require('lib/wearables')
 
-require('lib/util_aar')
+-- This should alone be used if duels are on.
+--require('lib/util_aar')
 
 require('chat')
 require('dedicated')

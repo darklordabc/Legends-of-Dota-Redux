@@ -102,7 +102,7 @@ function Ingame:init()
     GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(Ingame, 'FilterDamage'),self)
 
     -- Listen if abilities are being used.
-    ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(Ingame, 'OnAbilityUsed'), self)
+    --ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(Ingame, 'OnAbilityUsed'), self)
 
     ListenToGameEvent('dota_item_purchased', Dynamic_Wrap(Ingame, 'OnPlayerPurchasedItem'), self)
     
@@ -1072,22 +1072,23 @@ function Ingame:BountyRunePickupFilter(filterTable)
     return true
 end
 
-function Ingame:OnAbilityUsed(event)
-    local PlayerID = event.PlayerID
-    local abilityname = event.abilityname
-    local hero = PlayerResource:GetSelectedHeroEntity(PlayerID)
-    local ability = hero:FindAbilityByName(abilityname)
-    if not ability then return end
-    if ability.randomRoot then
-        local randomMain = hero:FindAbilityByName(ability.randomRoot)
-        print(ability.randomRoot)
-        if not randomMain then return end
-        if abilityname == randomMain.randomAb then
-            randomMain:OnChannelFinish(true)
-            randomMain:OnAbilityPhaseStart()
-        end
-    end
-end
+-- This function relates to true random which isnt in the game anymore
+--function Ingame:OnAbilityUsed(event)
+--    local PlayerID = event.PlayerID
+--    local abilityname = event.abilityname
+--    local hero = PlayerResource:GetSelectedHeroEntity(PlayerID)
+--    local ability = hero:FindAbilityByName(abilityname)
+--    if not ability then return end
+--    if ability.randomRoot then
+--        local randomMain = hero:FindAbilityByName(ability.randomRoot)
+--        print(ability.randomRoot)
+--        if not randomMain then return end
+--        if abilityname == randomMain.randomAb then
+--            randomMain:OnChannelFinish(true)
+--            randomMain:OnAbilityPhaseStart()
+--        end
+--    end
+--end
 
 -- Buyback cooldowns
 function Ingame:checkBuybackStatus()
