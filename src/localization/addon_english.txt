@@ -4088,11 +4088,11 @@
     "DOTA_Tooltip_modifier_imba_caustic_finale_slow_Description"                        "Move speed slowed"
 
     "DOTA_Tooltip_ability_makerangedcreeps_lua"                     "Spawn Ranged Creeps"
-    "DOTA_Tooltip_ability_makerangedcreeps_lua_Description"                     "Spawns controllable melee troops."
+    "DOTA_Tooltip_ability_makerangedcreeps_lua_Description"                     "Spawns controllable ranged troops."
     "DOTA_Tooltip_ability_makerangedcreeps_lua_maxrangedcreeps"                          "MAX RANGE CREEPS:"
 
     "DOTA_Tooltip_ability_makemeleecreeps_lua"                      "Spawn Melee Creeps"
-    "DOTA_Tooltip_ability_makemeleecreeps_lua_Description"                     "Spawns controllable ranged troops."
+    "DOTA_Tooltip_ability_makemeleecreeps_lua_Description"                     "Spawns controllable melee troops."
     "DOTA_Tooltip_ability_makemeleecreeps_lua_maxmeleecreeps"                          "MAX Melee CREEPS:"
 
     "DOTA_Tooltip_ability_makecatapults_lua"                        "Spawn Siege Creeps"
