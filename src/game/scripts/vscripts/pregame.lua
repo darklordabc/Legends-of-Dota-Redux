@@ -5952,10 +5952,10 @@ function Pregame:fixSpawningIssues()
                             spawnedUnit:RemoveModifierByName('modifier_silencer_int_steal')
                         end
                         -- Change sniper assassinate to our custom version to work with aghs
-                        if spawnedUnit:HasAbility("sniper_assassinate") and not util:isPlayerBot(playerID) then
-                            spawnedUnit:AddAbility("sniper_assassinate_redux")
-                            spawnedUnit:SwapAbilities("sniper_assassinate","sniper_assassinate_redux",false,true)
-                            spawnedUnit:RemoveAbility("sniper_assassinate")
+                        if spawnedUnit:HasAbility("sniper_assassinate") and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("sniper_assassinate"):IsHidden() then
+                                spawnedUnit:AddAbility("sniper_assassinate_redux")
+                                spawnedUnit:SwapAbilities("sniper_assassinate","sniper_assassinate_redux",false,true)
+                                spawnedUnit:RemoveAbility("sniper_assassinate")
                         end
                         -- Custom Flesh Heap fixes
                         for abilitySlot=0,6 do
