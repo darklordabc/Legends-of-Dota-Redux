@@ -641,7 +641,7 @@
 	"hintFurion"                         "The cooldowns of all Teleportation abilities are reduced by 50% for Nature's Prophet."
 	"hintChen"                         "When Chen sends creeps home to the fountain by casting Test of Faith (Teleport) they will receive an extra ability."
 	"hintUrsa"                         "Ursa does 15% extra damage to neutrals, including Roshan."
-	//"hintStormSpirit"                         "Storm Spirit restores mana when Storm Spirit travels at high speeds. (WIP) "
+	"hintStormSpirit"                         "At the start of the game, Storm Spirit gains a free level of Overload, whether he has it or not."
 	"hintMorphling"                         "Morphling gains 50% bonus movement speed in water."
 	"hintTimbersaw"                         "Timbersaw gains health, mana, and experience points whenever a nearby tree is cut down."
 	"hintTideHunter"                         "When Tidehunter dies, Ravage's cooldown will be refreshed."
@@ -1080,7 +1080,7 @@
     "unique_mechanic_sniper"                        "<font color=\'#ffd966\'>Shrapnel</font> will have global cast range if used by Sniper."
     "unique_mechanic_spectre"           "Spectre gains phased movement when casting abilities."
     "unique_mechanic_spirit_breaker"                "<font color=\'#ffd966\'>Skull Basher</font> and  <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero.When Spirit Breaker bashes, he also applies <font color=\'#ffd966\'>Break</font>."
-    //"unique_mechanic_storm_spirit"                              "Storm gains mana based on distance when moving at high speeds."
+    "unique_mechanic_storm_spirit"                 "At the start of the game, Storm Spirit gains a free level of <font color=\'#ffd966\'>Overload</font>, whether he has it or not.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
     "unique_mechanic_sven"                        "At the start of the game, Sven gains a free level of <font color=\'#ffd966\'>Great Cleave</font>, whether he has it or not."
     "unique_mechanic_techies"                        "<font color=\'#ffd966\'>Traps</font> and <font color=\'#ffd966\'>Explosives</font> will have 50% of their mana refunded and cooldowns reduced by 50% when used by Techies."
     "unique_mechanic_templar_assassin"          "Templar Assassin turns invisible for 10 seconds after not moving for 5 seconds. Invisibility breaks upon moving or attacking."
@@ -3052,7 +3052,9 @@
 	"DOTA_Tooltip_modifier_npc_dota_hero_spirit_breaker_perk_break"  "Break"
 	"DOTA_Tooltip_modifier_npc_dota_hero_spirit_breaker_perk_break_Description"  "Passives Disabled. Applied from Spirit Breaker's Bash effects."
 
-	/// MISSING STORM SPIRIT PERK
+	/// STORM SPIRIT PERK
+    "DOTA_Tooltip_modifier_npc_dota_hero_storm_spirit_perk" "Storm Spirit Perk"
+    "DOTA_Tooltip_modifier_npc_dota_hero_storm_spirit_perk_Description" "At the start of the game, Storm Spirit gains a free level of Overload, whether he has it or not.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
 	/// SVEN​
 	"DOTA_Tooltip_modifier_npc_dota_hero_sven_perk"	"Sven Perk"
