@@ -6334,34 +6334,33 @@ function Pregame:fixSpawningIssues()
                 -- Increasing creep power over time
                 if this.optionStore['lodOptionCreepPower'] > 0 then
                     local level = math.ceil((WAVE or 1) / (this.optionStore['lodOptionCreepPower'] / 30))
-
                     local ability = spawnedUnit:AddAbility("lod_creep_power")
                     ability:UpgradeAbility(false)
 
-                    -- After 15 minutes upgrade creep model to mega creep to indicate their strength to players
-                    local timeToUpgrade = 900
+                    -- After level 14, creeps evolve model to represent their upgraded power
+                    local levelToUpgrade = 14
 
-                    -- If Extreme creeps are on, they will upgrade after around 7 minutes
-                    if this.optionStore['lodOptionCreepPower'] == 30 then
-                        timeToUpgrade = 420
-                    end
-
-                    spawnedUnit:SetModifierStackCount("modifier_creep_power",spawnedUnit,level)
-                    if GameRules:GetGameTime() > timeToUpgrade then
-                        if spawnedUnit:GetModelName() == "models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee.vmdl" then
-                            spawnedUnit:SetModel("models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee_mega.vmdl")
-                            spawnedUnit:SetOriginalModel("models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee_mega.vmdl")
-                        elseif spawnedUnit:GetModelName() == "models/creeps/lane_creeps/creep_bad_ranged/lane_dire_ranged.vmdl" then
-                            spawnedUnit:SetModel("models/creeps/lane_creeps/creep_bad_ranged/lane_dire_ranged_mega.vmdl")
-                            spawnedUnit:SetOriginalModel("models/creeps/lane_creeps/creep_bad_ranged/lane_dire_ranged_mega.vmdl")
-                        elseif spawnedUnit:GetModelName() == "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee.vmdl" then
-                            spawnedUnit:SetModel("models/creeps/lane_creeps/creep_radiant_melee/radiant_melee_mega.vmdl")
-                            spawnedUnit:SetOriginalModel("models/creeps/lane_creeps/creep_radiant_melee/radiant_melee_mega.vmdl")
-                        elseif spawnedUnit:GetModelName() == "models/creeps/lane_creeps/creep_radiant_ranged/radiant_ranged.vmdl" then
-                            spawnedUnit:SetModel("models/creeps/lane_creeps/creep_radiant_ranged/radiant_ranged_mega.vmdl")
-                            spawnedUnit:SetOriginalModel("models/creeps/lane_creeps/creep_radiant_ranged/radiant_ranged_mega.vmdl")
+                    Timers:CreateTimer(function()
+                        if IsValidEntity(spawnedUnit) then
+                            spawnedUnit:SetModifierStackCount("modifier_creep_power",spawnedUnit,level)
+                            if level > levelToUpgrade then
+                                if spawnedUnit:GetModelName() == "models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee.vmdl" then
+                                    spawnedUnit:SetModel("models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee_mega.vmdl")
+                                    spawnedUnit:SetOriginalModel("models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee_mega.vmdl")
+                                elseif spawnedUnit:GetModelName() == "models/creeps/lane_creeps/creep_bad_ranged/lane_dire_ranged.vmdl" then
+                                    spawnedUnit:SetModel("models/creeps/lane_creeps/creep_bad_ranged/lane_dire_ranged_mega.vmdl")
+                                    spawnedUnit:SetOriginalModel("models/creeps/lane_creeps/creep_bad_ranged/lane_dire_ranged_mega.vmdl")
+                                elseif spawnedUnit:GetModelName() == "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee.vmdl" then
+                                    spawnedUnit:SetModel("models/creeps/lane_creeps/creep_radiant_melee/radiant_melee_mega.vmdl")
+                                    spawnedUnit:SetOriginalModel("models/creeps/lane_creeps/creep_radiant_melee/radiant_melee_mega.vmdl")
+                                elseif spawnedUnit:GetModelName() == "models/creeps/lane_creeps/creep_radiant_ranged/radiant_ranged.vmdl" then
+                                    spawnedUnit:SetModel("models/creeps/lane_creeps/creep_radiant_ranged/radiant_ranged_mega.vmdl")
+                                    spawnedUnit:SetOriginalModel("models/creeps/lane_creeps/creep_radiant_ranged/radiant_ranged_mega.vmdl")
+                                end
+                            end
                         end
-                    end
+                    end, DoUniqueString('evolveCreep'), .5)
+                    
                 end
             end
         end

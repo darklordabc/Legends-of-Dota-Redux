@@ -2,21 +2,25 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 4.9 - Development Version
+## 5.0 - Development Version
+### Bug Fixing/New Features
+- Fixed strong creeps evolving models too quickly
+
+
+### Balance
+- 
+
+## 4.9 - Steam Version
 ### Bug Fixing/New Features
 - Removed Divided We Stand because of a terrible respawn bug
 - When strong creeps are enabled, they will change their models to mega creeps once they become very strong
 - Fixed Sniper always getting Assassinate
 - Added a basic perk for Storm Spirit
+- Fixed towers not getting extra abilites (again)
+- Fixed
 
-### Balance
-- 
 
-
-## 4.8 - Steam Version
-### Bug Fixing/New Features
-- 
-
+## 4.8 
 ### Balance
 - Added Global Disarm
 - Added 4 abilities from Dusk, Hawkeye hero
