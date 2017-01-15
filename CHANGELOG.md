@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 5.0 - Development Version
 ### Bug Fixing/New Features
 - Fixed strong creeps evolving models too quickly
+- Fixed an issue where if you disconnected during hero spawn and reconnected you were stuck as wisp.
 
 ### Balance
 - 
