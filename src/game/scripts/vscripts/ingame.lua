@@ -237,6 +237,9 @@ dc_table = {};
 function Ingame:onStart()
     local this = self
 
+    
+
+
     -- Force bots to take a defensive pose until the first tower has been destroyed. This is top stop bots from straight away pushing lanes when they hit level 6
     Timers:CreateTimer(function ()
                GameRules:GetGameModeEntity():SetBotsInLateGame(false)
@@ -377,6 +380,26 @@ function Ingame:onStart()
             end
         end, nil)
     end
+
+
+    -- Level the heroes if starting level requires that
+    local startingLevel = OptionManager:GetOption('startingLevel')
+    if startingLevel > 1 then
+        for i=0,DOTA_MAX_TEAM_PLAYERS-1 do
+            if PlayerResource:GetPlayer(i) then
+                local spawnedUnit = PlayerResource:GetPlayer(i):GetAssignedHero()
+                -- Do we need to level up?
+            
+                -- Level it up
+                for i=1,startingLevel-1 do
+                    spawnedUnit:HeroLevelUp(false)
+                end
+            end
+        end
+    end
+
+    -- Fix EXP
+    --spawnedUnit:AddExperience(constants.XP_PER_LEVEL_TABLE[startingLevel], false, false)
 end
 
 function Ingame:fixRuneBug()
