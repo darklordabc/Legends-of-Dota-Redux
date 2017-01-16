@@ -9,7 +9,7 @@ All notable changes to this project will be documented in this file.
 - Added IMBA Category of abilities, will slowly add more IMBA abilities, only available in custom gamemode. 
 
 ### Balance
-- Added IMBA Sadist
+- Added IMBA Necro, PA, Kunkka, Jugg, Lion, Warlock, Lich, Sven. These abilities will have issues, needs testing. Please report errors/issues/missing particles.
 
 ## 4.9 - Steam Version
 ### Bug Fixing/New Features
