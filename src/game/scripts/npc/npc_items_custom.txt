@@ -1,5 +1,22 @@
 "DOTAAbilities"
 {
+    //=================================================================================================================
+    // Dummy Item
+    //=================================================================================================================
+    "item_imba_dummy"  //A dummy item that is used to take up item slots in the SwapToItem() Lua function.
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "1999"
+        "BaseClass"                     "item_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "ItemBaseLevel"                 "1"
+        "ItemPurchasable"               "0"
+        "ItemSellable"                  "0"
+        "ItemKillable"                  "0"
+        "ItemDroppable"                 "0"
+    }
+
     "item_survival_modifier"
     {
         "BaseClass"                     "item_datadriven"

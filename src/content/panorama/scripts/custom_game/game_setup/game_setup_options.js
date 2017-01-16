@@ -1314,7 +1314,7 @@ var advancedOptions = {
                         value: 1
                     },
                     {
-                        text: 'DOTA_Tooltip_ability_imba_dazzle_shallow_grave',
+                        text: 'DOTA_Tooltip_ability_imba_dazzle_shallow_grave_passive',
                         value: 2
                     },
                     {

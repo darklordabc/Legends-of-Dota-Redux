@@ -2675,7 +2675,7 @@ function Pregame:isAllowed( abilityName )
     elseif cat == 'custom' then
         allowed = self.optionStore['lodOptionAdvancedCustomSkills'] == 1
     elseif cat == 'dotaimba' then
-        allowed = self.optionStore['lodOptionAdvancedImbaAbilities'] == 0
+        allowed = self.optionStore['lodOptionAdvancedImbaAbilities'] == 1
     elseif cat == 'OP' then
         allowed = self.optionStore['lodOptionAdvancedOPAbilities'] == 0
     end
@@ -3234,7 +3234,7 @@ function Pregame:processOptions()
         if this.optionStore['lodOptionExtraAbility'] == 1 then
             this:banAbility("gemini_unstable_rift")
         elseif this.optionStore['lodOptionExtraAbility'] == 2 then
-            this:banAbility("imba_dazzle_shallow_grave")
+            this:banAbility("imba_dazzle_shallow_grave_passive")
         elseif this.optionStore['lodOptionExtraAbility'] == 3 then
             this:banAbility("imba_tower_forest")
         elseif this.optionStore['lodOptionExtraAbility'] == 4 then
@@ -4613,7 +4613,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
         elseif cat == 'custom' then
             allowed = self.optionStore['lodOptionAdvancedCustomSkills'] == 1
         elseif cat == 'dotaimba' then
-            allowed = self.optionStore['lodOptionAdvancedImbaAbilities'] == 0
+            allowed = self.optionStore['lodOptionAdvancedImbaAbilities'] == 1
         elseif cat == 'OP' then
             allowed = self.optionStore['lodOptionAdvancedOPAbilities'] == 0
         end
@@ -6167,7 +6167,7 @@ function Pregame:fixSpawningIssues()
                                 extraAbility:UpgradeAbility(true)
                             end
                         elseif OptionManager:GetOption('extraAbility') == 2 then
-                            local extraAbility = spawnedUnit:AddAbility("imba_dazzle_shallow_grave_one")
+                            local extraAbility = spawnedUnit:AddAbility("imba_dazzle_shallow_grave_passive_one")
                             extraAbility:UpgradeAbility(true)
                         elseif OptionManager:GetOption('extraAbility') == 3 then
                             local extraAbility = spawnedUnit:AddAbility("imba_tower_forest_one")
