@@ -6,9 +6,10 @@ All notable changes to this project will be documented in this file.
 ### Bug Fixing/New Features
 - Fixed strong creeps evolving models too quickly
 - Fixed an issue where if you disconnected during hero spawn and reconnected you were stuck as wisp.
+- Added IMBA Category of abilities, will slowly add more IMBA abilities, only available in custom gamemode. 
 
 ### Balance
-- 
+- Added IMBA Sadist
 
 ## 4.9 - Steam Version
 ### Bug Fixing/New Features
