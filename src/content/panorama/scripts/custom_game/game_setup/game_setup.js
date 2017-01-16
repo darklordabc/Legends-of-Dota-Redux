@@ -2204,7 +2204,8 @@ function OnSkillTabShown(tabName) {
         activeTabs = {
             main: true,
             neutral: isDraftGamemode(),
-            custom: true
+            custom: true,
+            dotaimba: true
         };
 
         calculateFilters = function() {
@@ -2320,6 +2321,7 @@ function OnSkillTabShown(tabName) {
             categorySorting["main"] = 1;
             categorySorting["neutral"] = 2;
             categorySorting["custom"] = 3;
+            categorySorting["dotaimba"] = 4;
             
             // Do the main sort
             toSort.sort(function(a, b) {
@@ -2460,7 +2462,8 @@ function OnSkillTabShown(tabName) {
         var tabList = [
             'main',
             'neutral',
-            'custom'
+            'custom',
+            'dotaimba',
         ];
 
         // Used to store tabs to highlight them correctly
@@ -4213,6 +4216,7 @@ function OnOptionChanged(table_name, key, data) {
         case 'lodOptionAdvancedNeutralAbilities':
         case 'lodOptionAdvancedOPAbilities':
         case 'lodOptionAdvancedCustomSkills':
+        case 'lodOptionAdvancedImbaAbilities':
             onAllowedCategoriesChanged();
             break;
 
@@ -4430,6 +4434,10 @@ function onAllowedCategoriesChanged() {
 
     if(optionValueList['lodOptionAdvancedCustomSkills'] == 1) {
         allowedCategories['custom'] = true;
+    }
+
+    if(optionValueList['lodOptionAdvancedImbaAbilities'] == 1) {
+        allowedCategories['dotaimba'] = true;
     }
 
     if(optionValueList['lodOptionAdvancedOPAbilities'] == 1) {

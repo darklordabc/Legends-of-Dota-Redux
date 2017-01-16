@@ -396,6 +396,7 @@
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"
     "lodOptionDesAdvancedNeutralAbilities"          "Allow Neutral Abilities"
     "lodOptionDesAdvancedCustomSkills"              "Allow Custom Abilities"
+    "lodOptionDesAdvancedIMBASkills"              "Allow Dota IMBA Abilities"
     "lodOptionDesAdvancedOPAbilities"               "Ban OP Abilities"
     "lodOptionDesCrazyWTF"                          "Enable WTF Mode"
     "lodOptionDesIngameBuilder"                     "Enable Ingame Hero Builder"
@@ -516,6 +517,7 @@
     "lodOptionAboutAdvancedHeroAbilities"           "Players are allowed to select hero abilities."
     "lodOptionAboutAdvancedNeutralAbilities"        "Players are allowed to select neutral abilities."
     "lodOptionAboutAdvancedCustomSkills"            "Players are allowed to select custom Redux abilities."
+    "lodOptionAboutAdvancedIMBASkills"            "Players use DOTA IMBA abilities. No other abilities are allowed with this selection."
     "lodOptionAboutAdvancedHidePicks"               "Players will not be able to see the heroes and abilities selected by the enemy team."
     "lodOptionAboutAdvancedUniqueSkills"            "This option prevents two players from selecting the same abilities.\nUnique Team Skills: Players from the same team can not pick the same abilities.\nGlobal Unique Skills: Only one player can have each ability."
     "lodOptionAboutAdvancedUniqueHeroes"            "Players will not be able to select the same hero."
@@ -807,6 +809,7 @@
     "lodCategory_neutral"                           "Neutral Abilities"
     "lodCategory_OP"                                "Over Powered Abilities"
     "lodCategory_custom"                            "Custom Abilities"
+    "lodCategory_dotaimba"                          "Dota IMBA Abilities"
 
     // Error messages
     "lodFailedToFindHero"                           "Please select a valid hero."

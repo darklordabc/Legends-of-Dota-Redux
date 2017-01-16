@@ -476,6 +476,9 @@ function Pregame:loadDefaultSettings()
     -- Enable Custom Abilities
     self:setOption('lodOptionAdvancedCustomSkills', 0, true)
 
+    -- Enable IMBA abilities
+    self:setOption('lodOptionAdvancedImbaAbilities', 0, true)
+
     -- Disable OP abilities
     self:setOption('lodOptionAdvancedOPAbilities', 1, true)
 
@@ -2317,6 +2320,21 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
+        -- Advanced -- Enable IMBA Abilities
+        lodOptionAdvancedImbaAbilities = function(value)
+        -- If you use IMBA abilities, you cannot use any other major category of abilities.
+            if value == 1 then 
+                self:setOption('lodOptionAdvancedHeroAbilities', 0, true)
+                self:setOption('lodOptionAdvancedNeutralAbilities', 0, true)
+                self:setOption('lodOptionAdvancedCustomSkills', 0, true)
+            else
+                self:setOption('lodOptionAdvancedHeroAbilities', 1, true)
+                self:setOption('lodOptionAdvancedNeutralAbilities', 1, true)
+            end
+
+            return value == 0 or value == 1
+        end,
+
         -- Advanced -- Enable OP Abilities
         lodOptionAdvancedOPAbilities = function(value)
             return value == 0 or value == 1
@@ -2656,6 +2674,8 @@ function Pregame:isAllowed( abilityName )
         allowed = self.optionStore['lodOptionAdvancedNeutralAbilities'] == 1
     elseif cat == 'custom' then
         allowed = self.optionStore['lodOptionAdvancedCustomSkills'] == 1
+    elseif cat == 'dotaimba' then
+        allowed = self.optionStore['lodOptionAdvancedImbaAbilities'] == 0
     elseif cat == 'OP' then
         allowed = self.optionStore['lodOptionAdvancedOPAbilities'] == 0
     end
@@ -4592,6 +4612,8 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
             allowed = self.optionStore['lodOptionAdvancedNeutralAbilities'] == 1
         elseif cat == 'custom' then
             allowed = self.optionStore['lodOptionAdvancedCustomSkills'] == 1
+        elseif cat == 'dotaimba' then
+            allowed = self.optionStore['lodOptionAdvancedImbaAbilities'] == 0
         elseif cat == 'OP' then
             allowed = self.optionStore['lodOptionAdvancedOPAbilities'] == 0
         end
