@@ -933,80 +933,67 @@ function StickProcCheck( ability )
 	return true
 end
 
+function IsUniqueAbility( table, element )
+	for _, ability in ipairs(table) do
+        if ability:GetName() == element then
+            return false
+        end
+    end
+
+    return true
+end
+
 -- Upgrades a tower's abilities
 function UpgradeTower( tower )
 
-	local abilities = {}
+    local abilities = {}
 
-	-- Fetch tower abilities
-	for i = 0, 15 do
-		local current_ability = tower:GetAbilityByIndex(i)
-		if current_ability and current_ability:GetName() ~= "backdoor_protection" and current_ability:GetName() ~= "backdoor_protection_in_base" and current_ability:GetName() ~= "imba_tower_buffs" then
-			abilities[#abilities+1] = current_ability
-		end
-	end
+    -- Fetch tower abilities
+    for i = 0, 15 do
+        local current_ability = tower:GetAbilityByIndex(i)
+        if current_ability and current_ability:GetName() ~= "backdoor_protection" and current_ability:GetName() ~= "imba_tower_ai_controller"and current_ability:GetName() ~= "lone_druid_savage_roar_tower" and current_ability:GetName() ~= "backdoor_protection_in_base" and current_ability:GetName() ~= "imba_tower_buffs" then
+            abilities[#abilities+1] = current_ability 
+        end
+    end
 
-	-- Iterate through abilities to identify the upgradable one
-	for i = 1,4 do
+    -- Iterate through abilities to identify the upgradable one
+    for i = 1,4 do
 
-		-- If this ability is not maxed, try to upgrade it
-		if abilities[i] and abilities[i]:GetLevel() < 3 then
+        -- If this ability is not maxed, try to upgrade it
+        if abilities[i] and abilities[i]:GetLevel() < 3 then
+            -- Upgrade ability
+            abilities[i]:SetLevel( abilities[i]:GetLevel() + 1 )
 
-			-- Upgrade ability
-			abilities[i]:SetLevel( abilities[i]:GetLevel() + 1 )
+            return nil
 
-			return nil
+        -- If this ability is maxed and the last one, then add a new one
+        elseif abilities[i] and abilities[i]:GetLevel() == 3 and #abilities == i then
 
-		-- If this ability is maxed and the last one, then add a new one
-		elseif abilities[i] and abilities[i]:GetLevel() == 3 and #abilities == i then
+            -- Else, add a new ability from this game's ability tree
+            local oldAbList = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers_weak
+            local oldAbList2 = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers_medium
+            local oldAbList3 = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers_strong
 
-			-- If there are no more abilities on the tree for this tower, do nothing
-			if (tower.tower_tier <= 3 and i >= 3) or i >= 4 then
-				return nil
-			end
+			util:MergeTables(oldAbList, oldAbList2)
+			util:MergeTables(oldAbList, oldAbList3)
 
-			-- Else, add a new ability from this game's ability tree
-			local new_ability = false
-			if tower.tower_tier == 1 then
-				if tower.tower_lane == "safelane" then
-					new_ability = TOWER_UPGRADE_TREE["safelane"]["tier_1"][i+1]
-				elseif tower.tower_lane == "midlane" then
-					new_ability = TOWER_UPGRADE_TREE["midlane"]["tier_1"][i+1]
-				elseif tower.tower_lane == "hardlane" then
-					new_ability = TOWER_UPGRADE_TREE["hardlane"]["tier_1"][i+1]
-				end
-			elseif tower.tower_tier == 2 then
-				if tower.tower_lane == "safelane" then
-					new_ability = TOWER_UPGRADE_TREE["safelane"]["tier_2"][i+1]
-				elseif tower.tower_lane == "midlane" then
-					new_ability = TOWER_UPGRADE_TREE["midlane"]["tier_2"][i+1]
-				elseif tower.tower_lane == "hardlane" then
-					new_ability = TOWER_UPGRADE_TREE["hardlane"]["tier_2"][i+1]
-				end
-			elseif tower.tower_tier == 3 then
-				if tower.tower_lane == "safelane" then
-					new_ability = TOWER_UPGRADE_TREE["safelane"]["tier_3"][i+1]
-				elseif tower.tower_lane == "midlane" then
-					new_ability = TOWER_UPGRADE_TREE["midlane"]["tier_3"][i+1]
-				elseif tower.tower_lane == "hardlane" then
-					new_ability = TOWER_UPGRADE_TREE["hardlane"]["tier_3"][i+1]
-				end
-			elseif tower.tower_tier == 41 then
-				new_ability = TOWER_UPGRADE_TREE["midlane"]["tier_41"][i+1]
-			elseif tower.tower_tier == 42 then
-				new_ability = TOWER_UPGRADE_TREE["midlane"]["tier_42"][i+1]
-			end
+            local towerSkills = {}
+                for skill_name in pairs(oldAbList) do
+                    table.insert(towerSkills, skill_name)
+                end
+            local new_ability = RandomFromTable(towerSkills)
+            while not IsUniqueAbility(abilities, new_ability) do
+            	new_ability = RandomFromTable(towerSkills)
+            end
 
-			-- Add the new ability
-			if new_ability then
-				tower:AddAbility(new_ability)
-				new_ability = tower:FindAbilityByName(new_ability)
-				new_ability:SetLevel(1)
-			end
+            -- Add the new ability
+            tower:AddAbility(new_ability)
+            new_ability = tower:FindAbilityByName(new_ability)
+            new_ability:SetLevel(1)
 
-			return nil
-		end
-	end
+            return nil
+        end
+    end
 end
 
 -- Sets a creature's max health to [health]

@@ -2204,7 +2204,8 @@ function OnSkillTabShown(tabName) {
         activeTabs = {
             main: true,
             neutral: isDraftGamemode(),
-            custom: true
+            custom: true,
+            dotaimba: true
         };
 
         calculateFilters = function() {
@@ -2320,6 +2321,7 @@ function OnSkillTabShown(tabName) {
             categorySorting["main"] = 1;
             categorySorting["neutral"] = 2;
             categorySorting["custom"] = 3;
+            categorySorting["dotaimba"] = 4;
             
             // Do the main sort
             toSort.sort(function(a, b) {
@@ -2460,7 +2462,8 @@ function OnSkillTabShown(tabName) {
         var tabList = [
             'main',
             'neutral',
-            'custom'
+            'custom',
+            'dotaimba',
         ];
 
         // Used to store tabs to highlight them correctly
@@ -2566,7 +2569,7 @@ function onImportAndExportPressed() {
     var data = $('#importAndExportEntry').text;
 
     if(data.length == 0) {
-        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportLoadButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_empty"));
+        addNotification({"text" : 'importAndExport_empty'});
         setOption()
         return;
     }
@@ -2575,7 +2578,7 @@ function onImportAndExportPressed() {
     try {
         decodeData = JSON.parse(data);
     } catch(e) {
-        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportLoadButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_error"));
+        addNotification({"text" : 'importAndExport_error'});
         setOption()
         return;
     }
@@ -2600,9 +2603,9 @@ function onImportAndExportPressed() {
     }
 
     if (!changed) {
-        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportLoadButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_no_changes"));
+        addNotification({"text" : 'importAndExport_no_changes'});
     } else {
-        $.DispatchEvent( 'UIShowCustomLayoutParametersTooltip', $('#importAndExportLoadButton'), "ImportAndExportTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("importAndExport_success"));
+        addNotification({"text" : 'importAndExport_success'});
     }
     $.Schedule(0.1, function () {
         $('#importAndExportEntry').text = JSON.stringify(optionValueList).replace(/,/g, ',\n');
@@ -4213,6 +4216,7 @@ function OnOptionChanged(table_name, key, data) {
         case 'lodOptionAdvancedNeutralAbilities':
         case 'lodOptionAdvancedOPAbilities':
         case 'lodOptionAdvancedCustomSkills':
+        case 'lodOptionAdvancedImbaAbilities':
             onAllowedCategoriesChanged();
             break;
 
@@ -4430,6 +4434,10 @@ function onAllowedCategoriesChanged() {
 
     if(optionValueList['lodOptionAdvancedCustomSkills'] == 1) {
         allowedCategories['custom'] = true;
+    }
+
+    if(optionValueList['lodOptionAdvancedImbaAbilities'] == 1) {
+        allowedCategories['dotaimba'] = true;
     }
 
     if(optionValueList['lodOptionAdvancedOPAbilities'] == 1) {

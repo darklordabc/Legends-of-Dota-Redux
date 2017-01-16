@@ -3,6 +3,1113 @@
 {
     "Version"       "1"
 
+    //=====================================================================================================
+	// VASSAL: Shield
+	//=====================================================================================================
+	"vassal_shield"
+	{
+	    // General
+	    //-------------------------------------------------------------------------------------------------------------
+	    "BaseClass"                     "ability_datadriven"
+	    "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+	    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	    "SpellImmunityType"             "SPELL_IMMUNITY_ALLIES_YES"
+	    "AbilityCastAnimation"          "ACT_DOTA_ATTACK"
+	    "AbilityTextureName"            "custom/vassal_shield"
+	    "MaxLevel"						"3"
+	
+	    // Casting
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCastRange"              "700"
+	    "AbilityCastPoint"              "0.45"
+	    
+	    // Time     
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityCooldown"               "0"
+	
+	    // Cost
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityManaCost"               "0"
+	    
+	    // Stats
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilityModifierSupportValue"   "0.0"   // All about the damage
+	
+	    // Special
+	    //-------------------------------------------------------------------------------------------------------------
+	    "AbilitySpecial"
+	    {
+	    "01"
+	        {
+	            "var_type"                      "FIELD_INTEGER"
+	            "damage_reduction"              "-14 -18 -22" // percentage total
+	        }
+	    "02"
+	        {
+	            "var_type"                      "FIELD_INTEGER"
+	            "radius"                        "700" // percentage total
+	        }
+	    "03"
+	        {
+	            "var_type"                      "FIELD_INTEGER"
+	            "block"                         "8 12 16" // percentage total
+	        }
+	    }
+	    
+	    "precache"
+	        {
+	        "particle" "particles/units/heroes/hero_summoner/vassal_shield.vpcf"
+	        "soundfile" "soundevents\hero_phantom.vsndevts"
+	        }
+	    
+	    "Modifiers"
+	        {
+	            "modifier_vassal_shield"
+	            {
+	                "EffectName" "particles/units/heroes/hero_summoner/vassal_shield.vpcf"
+	                "Properties"
+	                {
+	                    "MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "%damage_reduction"
+	                    "MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK" "%block"
+	                }
+	            }
+	            "modifier_vassal_shield_aura"
+	            {
+	                "Passive"            "1"
+	                "IsHidden"            "1"
+	                "IsDebuff"            "0"
+	            
+	                "Aura"              "modifier_vassal_shield"
+	                "Aura_Radius"       "%radius"
+	                "Aura_Teams"        "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+	                "Aura_Types"        "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	                "Aura_Flags"        "DOTA_UNIT_TARGET_FLAG_NONE"
+	                "Aura_ApplyToCaster" "1"
+	            }
+	        }
+	}
+
+    //=====================================================================================================
+	// HAWKEYE: Detonator Dart
+	//=====================================================================================================
+	"hawkeye_detonator_dart"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AoERadius"						"375"
+		"AbilityTextureName"			"custom/hawkeye_detonator_dart"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"650"
+		"AbilityCastPoint"				"0.4"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"60 55 50"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"90"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// All about the damage
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"325 400 475"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"ticks"						"6"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"initial_damage"			"30 40 50"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"tick_time"					"1.00 0.80 0.60"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"1.00 0.80 0.60"
+			}
+		}
+		
+		"precache"
+			{
+			"particle"  "particles/units/heroes/hero_phoenix/phoenix_supernova_reborn.vpcf"
+			"particle"  "particles/units/heroes/hero_hawkeye/detonator_dart.vpcf"
+			"particle" "particles\units\heroes\hero_gyrocopter\gyrocopter_base_attack.vpcf"
+			"soundfile" "soundevents\game_sounds_heroes\game_sounds_gyrocopter.vsndevts"
+			"soundfile" "soundevents\hero_tek.vsndevts"
+			}
+			
+		"OnSpellStart"
+			{
+			"TrackingProjectile"
+				{
+				"Target" "TARGET"
+				"EffectName" "particles\units\heroes\hero_sniper\sniper_base_attack.vpcf"
+				"Dodgeable" "0"
+				"ProvidesVision" "0"
+				"VisionRadius" "0"
+				"MoveSpeed" "2300"
+				"SourceAttachment" "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+				}
+			}
+		"OnProjectileHitUnit"
+			{
+			"ApplyModifier"
+				{
+				"Target" "TARGET"
+				"ModifierName" "modifier_detonator_dart"
+				}
+			"Damage"
+			{
+				"Target"		"TARGET"
+				"Type"			"DAMAGE_TYPE_MAGICAL"
+				"Damage"		"%initial_damage"
+			}
+			}
+		
+		"Modifiers"
+			{
+				"modifier_detonator_dart"
+				{
+					"Passive"			"0"
+					"IsHidden"			"0"
+					"IsDebuff"			"1"
+				
+					"EffectName"		"particles/units/heroes/hero_hawkeye/detonator_dart.vpcf"
+					"EffectAttachType"	"follow_origin"
+	
+					"ThinkInterval" "%tick_time"
+	
+					"OnIntervalThink"
+					{
+						"RunScript"
+						{
+							"ScriptFile"	"abilities/dusk/hawkeye_abilities.lua"
+							"Function"		"DetonateTick"
+							"damage"		"%damage"
+							"radius"		"%radius"
+						}
+					}
+	
+					"OnCreated"
+					{
+						"RunScript"
+						{
+							"ScriptFile"	"abilities/dusk/hawkeye_abilities.lua"
+							"Function"		"DetonateCountdown"
+							"ticks"			"%ticks"
+						}
+					}
+	
+					"OnOwnerDied"
+					{
+						"RunScript"
+						{
+							"ScriptFile"	"abilities/dusk/hawkeye_abilities.lua"
+							"Function"		"DetonateCountdown"
+							"ticks"			"%ticks"
+							"explode"		"1"
+						}
+					}
+				}
+			}
+	}
+	//=====================================================================================================
+	// HAWKEYE: Double Tap
+	//=====================================================================================================
+	"hawkeye_double_tap"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"AnimationPlaybackRate"			"2.25"
+		"AbilityTextureName"			"custom/hawkeye_double_tap"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1600"
+		"AbilityCastPoint"				"0.75"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"26 24 22 20"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"75"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// All about the damage
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"base_damage"				"30 40 50 60"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"12"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"range"						"1600"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"shot_speed_scepter"		"4000"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"range_scepter"				"2000"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"mult"						"0.50 0.60 0.70 0.80"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"mult_scepter"				"2.00"
+			}
+		}
+		
+		"precache"
+			{
+			"soundfile" "soundevents\game_sounds_heroes\game_sounds_sniper.vsndevts"
+			}
+		"OnUpgrade"
+			{
+			"LevelUpAbility"
+				{
+				"Target" "CASTER"
+				"AbilityName" "hawkeye_double_tap_visuals"
+				}
+			"LevelUpAbility"
+				{
+				"Target" "CASTER"
+				"AbilityName" "hawkeye_double_tap_second_shot"
+				}
+			}
+			
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"				"CASTER"
+				"EffectName"			"Ability.AssassinateLoad"
+			}
+		}
+			
+		"OnSpellStart"
+			{
+			"RunScript"
+				{
+				"ScriptFile" "abilities/dusk/hawkeye_abilities.lua"
+				"Function" "hawkeye_double_tap"
+				"mult" "%mult"
+				"mult_scepter" "%mult_scepter"
+				}
+			"FireSound"
+				{
+				"Target"				"CASTER"
+				"EffectName"			"Ability.Assassinate"
+				}
+			"FireSound"
+				{
+				"Target" "CASTER"
+				"EffectName"			"Hero_Sniper.AssassinateProjectile"
+				}
+			}
+		"OnProjectileHitUnit"
+			{
+			"RunScript"
+				{
+				"ScriptFile" "abilities/dusk/hawkeye_abilities.lua"
+				"Function" "hawkeye_double_tap_hit"
+				"mult" "%mult"
+				}
+			"FireSound"
+				{
+				"Target"
+							{
+							"Center" "TARGET"
+							"Flags" "DOTA_UNIT_TARGET_FLAG_DEAD"	
+							}
+				"EffectName"			"Hero_Sniper.AssassinateDamage"
+				}
+			"DeleteOnHit" "0"
+			}
+		
+		"Modifiers"
+			{		
+			"hawkeye_double_tap_second_shot_effect_mod"
+				{
+				"Duration" "8"
+				"IsBuff" "1"
+				"OnDestroy"
+					{
+					"RunScript"
+						{
+						"ScriptFile" "abilities/dusk/hawkeye_abilities.lua"
+						"Function" "hawkeye_double_tap_reset"
+						}
+					}
+				}
+			}
+	}
+	//=====================================================================================================
+	// HAWKEYE: Double Tap Second Shot
+	//=====================================================================================================
+	"hawkeye_double_tap_second_shot"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AnimationPlaybackRate"			"1.0"
+		"AbilityTextureName"			"custom/hawkeye_double_tap_second_shot"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"2.00"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// All about the damage
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"mult"						"0.30 0.40 0.50 0.60"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"mult_scepter"				"1.00 1.10 1.20 1.30"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"base_damage"				"50"
+			}
+		}
+		
+		"precache"
+			{
+			"soundfile" "soundevents\game_sounds_heroes\game_sounds_sniper.vsndevts"
+			"particle"	"particles/units/heroes/hero_sniper/sniper_crosshair.vpcf"
+			"soundfile" "soundevents\hero_hawkeye.vsndevts"
+			}
+			
+		"OnAbilityPhaseStart"
+		{
+			"FireSound"
+			{
+				"Target"				"CASTER"
+				"EffectName"			"Ability.AssassinateLoad"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_stop_commands"
+				"Target" 		"CASTER"
+			}
+			"RunScript"
+			{
+				"ScriptFile" "abilities/dusk/hawkeye_abilities.lua"
+				"Function" "hawkeye_double_tap_2_check"
+				"mult" "%mult"
+				"mult_scepter" "%mult_scepter"
+			}
+		}
+			
+		"OnSpellStart"
+			{
+			"RunScript"
+				{
+				"ScriptFile" "abilities/dusk/hawkeye_abilities.lua"
+				"Function" "hawkeye_double_tap_2"
+				"mult" "%mult"
+				"mult_scepter" "%mult_scepter"
+				}
+			"FireSound"
+				{
+				"Target"				"CASTER"
+				"EffectName"			"Hero_Sniper.AssassinateProjectile"
+				}
+			}
+		"OnProjectileHitUnit"
+			{
+			"RunScript"
+				{
+				"ScriptFile" "abilities/dusk/hawkeye_abilities.lua"
+				"Function" "hawkeye_double_tap_hit_2"
+				"mult" "%mult"
+				}
+			"FireSound"
+				{
+				"Target"
+							{
+							"Center" "TARGET"
+							"Flags" "DOTA_UNIT_TARGET_FLAG_DEAD"
+							}
+				"EffectName"			"Hero_Sniper.AssassinateDamage"
+				}
+			}
+		
+		"Modifiers"
+			{
+	
+				"modifier_show_target"
+		        {
+		            "IsHidden"              "0"
+		            "IsPurgeble"            "0"
+		            "IsDebuff"              "1"
+		            "Duration"              "2.00"
+		            
+		            "EffectName"            "particles/units/heroes/hero_sniper/sniper_crosshair.vpcf"
+		            "EffectAttachType"      "follow_overhead"
+	
+		            "States"
+		            {
+		            	"MODIFIER_STATE_PROVIDES_VISION"		"MODIFIER_STATE_VALUE_ENABLED"
+		            }
+		        }
+	
+		        "modifier_stop_commands"
+		        {
+		        	"Passive"			"0"
+		        	"IsHidden"			"1"
+		        	"IsDebuff"			"0"
+		        	"Duration"			"2.00"
+		        
+		        	"States"
+		        	{
+		        		"MODIFIER_STATE_COMMAND_RESTRICTED"		"MODIFIER_STATE_VALUE_ENABLED"
+		        	}
+		        }
+			}
+	}
+	//=====================================================================================================
+	// HAWKEYE: Double Tap Visuals
+	//=====================================================================================================
+	"hawkeye_double_tap_visuals"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"tusk_ice_shards"
+		
+		"MaxLevel" "1"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"4500"
+		"AbilityCastPoint"				"1.0"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30 25 20"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"350 325 300"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// All about the damage
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+		}
+		
+		"precache"
+			{
+			"particle" "particles\units\heroes\hero_sniper\sniper_assassinate.vpcf"
+			"soundfile" "soundevents\game_sounds_heroes\game_sounds_sniper.vsndevts"
+			}
+			
+		"OnProjectileHitUnit"
+			{
+			"RunScript"
+				{
+				"ScriptFile" "abilities/dusk/hawkeye_abilities.lua"
+				"Function" "hawkeye_double_tap_end"
+				}
+			}
+		
+		"Modifiers"
+			{
+			}
+	}
+	//=====================================================================================================
+	// HAWKEYE: Hit 'n' Run
+	//=====================================================================================================
+	"hawkeye_hit_n_run"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation"			"ACT_DOTA_FLAIL"
+		"AbilityTextureName"			"custom/hawkeye_hit_n_run"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.3"
+		
+		"AbilityDamage" 				"10 20 30 40"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"20"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"80"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// All about the damage
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"8"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"325"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"slow"						"-12 -24 -36 -48"
+			}
+		}
+		
+		"precache"
+			{
+				"soundfile"					"soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
+				"particle"					"particles/units/heroes/hero_sniper/sniper_shrapnel.vpcf"
+				"particle"					"particles/units/heroes/hero_sniper/sniper_shrapnel_launch.vpcf"
+				"particle"					"particles/econ/items/sniper/sniper_charlie/sniper_shrapnel_charlie.vpcf"
+				"particle"					"particles/units/heroes/hero_centaur/centaur_warstomp.vpcf"
+			}
+			
+		"OnSpellStart"
+			{
+			"RunScript"
+				{
+				"ScriptFile" "abilities/dusk/hawkeye_abilities.lua"
+				"Function" "hawkeye_hit_n_run"
+				}
+			"CreateThinker"
+				{
+				"ModifierName" "hawkeye_shrapnel_effects_mod"
+				"Target" "CASTER"
+				}
+			}
+		
+		"Modifiers"
+			{
+			"hawkeye_shrapnel_effects_mod"
+				{
+				"Aura"					"hawkeye_shrapnel_damage_slow_mod"
+				"Aura_Radius"			"%radius"
+				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL"
+				"Aura_Flags"			"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				"Duration"				"%duration"
+				"OnCreated"
+					{
+					"FireSound"
+					{
+						"Target"				"TARGET"
+						"EffectName"			"Hero_Sniper.ShrapnelShatter"
+					}
+				
+					"AttachEffect"
+					{
+						"Target"				"TARGET"
+						"EffectName"			"particles/units/heroes/hero_sniper/sniper_shrapnel.vpcf"
+						"EffectAttachType"		"follow_origin"
+						"EffectRadius"			"%radius"
+					}
+					
+					"AttachEffect"
+					{
+						"Target"				"TARGET"
+						"EffectName"			"particles/econ/items/sniper/sniper_charlie/sniper_shrapnel_charlie.vpcf"
+						"EffectAttachType"		"follow_origin"
+						"EffectRadius"			"%radius"
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"internal/util.lua"
+						"Function"		"stopSound"
+						"sound"			"Hero_Sniper.ShrapnelShatter"
+						"unit"			"TARGET"
+					}
+					}
+				}
+			"hawkeye_shrapnel_damage_slow_mod"
+				{
+				"IsDebuff" "1"
+				"ThinkInterval" "1"
+				"OnIntervalThink"
+					{
+					"Damage"
+						{
+						"Damage" "%AbilityDamage"
+						"Target" "TARGET"
+						"Type" "DAMAGE_TYPE_MAGICAL"
+						}
+					}
+				"Properties"
+					{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow"
+					}
+				}
+			}
+	}
+	//=====================================================================================================
+	// HAWKEYE: Ricochet
+	//=====================================================================================================
+	"hawkeye_ricochet"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityTextureName"			"custom/hawkeye_ricochet"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"650"
+		"AbilityCastPoint"				"0.15"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"10 8 6 4"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// All about the damage
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"hits"						"4"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_reduction"			"-80 -75 -70 -65"
+			}
+		}
+		
+		"precache"
+			{
+			"particle" "particles\item_fx\desolator_projectile.vpcf"
+			"particle" "particles\units\heroes\hero_ancient_apparition\ancient_apparition_cold_feet_frozen.vpcf"
+			"soundfile" "soundevents\game_sounds_heroes\game_sounds_tusk.vsndevts"
+			}
+			
+		"OnSpellStart"
+			{
+			"RunScript"
+				{
+				"ScriptFile" "abilities/dusk/hawkeye_abilities.lua"
+				"Function" "hawkeye_rapid_fire"
+				"hits" "%hits"
+				}
+			}
+		
+		"Modifiers"
+			{
+			"hawkeye_ricochet_mod"
+				{
+				}
+			"modifier_rapidfire_damage_reduction"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+			
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE" "%damage_reduction"
+				}
+	
+				"States"
+				{
+					"MODIFIER_STATE_COMMAND_RESTRICTED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+			"hawkeye_ricochet_no_bounce"
+				{
+				"IsHidden" "1"
+				"Duration" "1"
+				}
+			}
+	}
+
+    "makemeleecreeps_lua"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"AbilityTextureName"			"custom/spawnmeleecreep"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ScriptFile"					"abilities/definitely not dota/makemeleecreeps_lua"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"45 36 36 24"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		"AbilitySpecial"
+		{
+		    "01"
+		    {
+		        "var_type"  "FIELD_INTEGER"
+		        "maxmeleecreeps"    "2 3 4 5"
+		    }
+
+		}
+
+	}
+
+	"makerangedcreeps_lua"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"AbilityTextureName"			"custom/spawnrangedcreep"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ScriptFile"					"abilities/definitely not dota/makerangedcreeps_lua"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"45 36 36 24"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		"AbilitySpecial"
+		{
+		    "01"
+		    {
+		        "var_type"  "FIELD_INTEGER"
+		        "maxrangedcreeps"    "1 1 2 3"
+		    }
+
+		}
+
+	}
+
+
+	"makecatapults_lua"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"AbilityTextureName"			"custom/spawnseigecreep"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ScriptFile"					"abilities/definitely not dota/makecatapults_lua"
+		"MaxLevel"						"3"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"90 63 40"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		"AbilitySpecial"
+		{
+		    "01"
+		    {
+		        "var_type"  "FIELD_INTEGER"
+		        "maxcatapults"    "1 1 2"
+		    }
+
+		}
+
+	}
+
+	"phase_datadriven"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"             		"ability_datadriven"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"custom/hero_phase"
+		"MaxLevel"						"1"		
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+		"Modifiers"
+		{
+			"modifier_phase_datadriven"
+			{
+				"Passive"           "1"
+				"IsPurgable"        "0"
+				"IsHidden"          "1"
+				
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+	//=================================================================================================================
+	// Necrolyte's Sadist from Dota IMBA
+	//=================================================================================================================
+	"necrolyte_sadist_lod"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"custom/necrolyte_sadist_lod"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1200"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"mana_regen"		"2 4 6 12"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"health_regen"		"1 2 3 6"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"hero_multiplier"	"10"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"regen_duration"	"6"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_imba_sadist"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"IsBuff"			"1"
+				"IsPurgable"		"0"
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"lib/util_imba.lua"
+						"Function"			"IllusionPassiveRemover"
+
+						"modifier"			"modifier_imba_sadist"
+					}
+				}
+
+				"OnKill"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/dota imba/hero_necrolyte.lua"
+						"Function"			"SadistKill"
+
+						"regen_modifier"	"modifier_imba_sadist_regen"
+					}
+				}
+
+			}
+
+			"modifier_imba_sadist_stack"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsBuff"			"1"
+				"IsPurgable"		"0"
+
+				"Duration"			"%regen_duration"
+			}
+
+			"modifier_imba_sadist_regen"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsBuff"			"1"
+				"IsPurgable"		"0"
+
+				"Duration"			"%regen_duration"
+
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/dota imba/hero_necrolyte.lua"
+						"Function"			"ApplySadist"
+
+						"stack_modifier"	"modifier_imba_sadist_stack"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/dota imba/hero_necrolyte.lua"
+						"Function"			"RemoveSadist"
+
+						"stack_modifier"	"modifier_imba_sadist_stack"
+					}
+				}
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"		"%mana_regen"
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%health_regen"
+				}
+			}
+		}
+	}
+
 	//-------------------
 	// Dummy stuff
 	//-------------------

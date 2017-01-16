@@ -368,13 +368,17 @@
 
     "lodOptionDesGottaGoFast"                               "Movespeed Multiplier"
     "lodOptionGottaGoFastOff"                               "Normal Movespeed"
+    "lodOptionGottaGoQuickOn"                                "+15% movespeed."
     "lodOptionGottaGoFastOn"                                "+50% movespeed, 1000ms limit."
     "lodOptionGottaGoREALLYFast"                            "All heroes have 1000ms and cannot be slowed."
-    "lodOptionAboutGottaGoFast"                             "Gotta Go Fast: Increases the movement speed of all heroes by 50%, and raises the movespeed cap from 550 to 1000.\n Gotta Go FASTER: All heroes have 1000ms and cannot be slowed."
+    "lodOptionGottaGoSlow"                                "-25% movespeed."
+    "lodOptionAboutGottaGoFast"                             "Gotta Go Quick: Increases the movement speed of all heroes by 15%.\nGotta Go Fast: Increases the movement speed of all heroes by 50%, and raises the movespeed cap from 550 to 1000.\n Gotta Go FASTER: All heroes have 1000ms and cannot be slowed.\nGotta Go Slow: Decreases the movement speed of all heroes by 25%."
     "lodMutatorGottaGoFast"                                 "Gotta Go Fast?"
     "lodMutatorGottaGoFastOff"                              "Gotta Go Fast?"
+    "lodMutatorGottaGoQuickOn"                               "Gotta Go Quick"
     "lodMutatorGottaGoFastOn"                               "Gotta Go Fast!"
     "lodMutatorGottaGoREALLYFast"                           "Gotta Go FASTER!"
+    "lodMutatorGottaGoSlow"                               "Gotta Go Slow??"
 
     "lodOptionDesExtraAbility"                                   "Free Extra Ability"
     "lodOptionAboutExtraAbility"                                 "All players gain a free extra ability."
@@ -383,7 +387,6 @@
     "lodOptionDesGlobalCast"                               "Enable Global Cast Range"
     "lodOptionAboutGlobalCast"                                 "Makes most spells have global cast range. Some spells are disabled (like Fissure) for technial reasons."
     "lodMutatorGlobalCast"                                 "Global Cast Range"
-    
 
     "lodOptionMemesRedux"                                  "Memes Redux"
     "lodOptionDesMemesRedux"                               "Enable Memes"
@@ -393,6 +396,7 @@
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"
     "lodOptionDesAdvancedNeutralAbilities"          "Allow Neutral Abilities"
     "lodOptionDesAdvancedCustomSkills"              "Allow Custom Abilities"
+    "lodOptionDesAdvancedIMBASkills"              "Allow Dota IMBA Abilities"
     "lodOptionDesAdvancedOPAbilities"               "Ban OP Abilities"
     "lodOptionDesCrazyWTF"                          "Enable WTF Mode"
     "lodOptionDesIngameBuilder"                     "Enable Ingame Hero Builder"
@@ -470,11 +474,11 @@
     "balance_mode_points"                           "Points Remaining: {d:points}"
 
     "acceptHosting"                                 "Ok, I understand"
-    "lodHostingMessage"                             "<font color='#ffffff'>Thanks for playing Redux and having patience while we recover from the <font color='#FF4C4C'>7.00 patch</font>. Most issues have been fixed, but some still remain. Please keep an eye out for them. Merry Christmas and a have a Happy New Year!<br><br> <font color='#70EA72'>Redux 4.5 update:</font><br>- Added much more time for draft rounds (15 to 50 seconds)<br>- Added Memes Redux mutator (let us know of any funny meme sound events to add)<br>- Remove Bacckpack blocker and two other weird items from showing in the shop<br>- Fixed Restrict Bot Abilities bugging out"
+    "lodHostingMessage"                             "<font color='#ffffff'>Thanks for playing Redux and having patience while we recover from the <font color='#FF4C4C'>7.00 patch</font>. Most issues have been fixed, but some still remain. Please keep an eye out for them. Merry Christmas and a have a Happy New Year!<br><br> <font color='#70EA72'>Redux 4.9 update:</font><br>- Removed Divided We Stand because of a terrible respawn bug<br>- When strong creeps are enabled, they will change their models to mega creeps once they become very strong<br>- Fixed Sniper always getting Assassinate<br>- Added a basic perk for Storm Spirit<br>- Fixed towers not getting extra abilites (again)"
     "lodPickingMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked.<br><br><font color='#70EA72'>Remeber to pick a hero before time runs out or else you will get stuck with a random hero.</font>"
     "lodBanningMessage"                             "<font color='#70EA72'>This is the banning phase</font>. You can ban heroes and abilities to prevent players from selecting them in this match.<br><br> If you dont want to ban or have finished banning, <font color='#70EA72'>press the 'Finish Banning' button</font> to confirm your ready and to speed up the game."
     "lodBalanceMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked. <br><br><font color='#70EA72'>Points Mode is on.</font> In Points Mode you have limited points to spend on abilities. Abilities are priced by how powerful they are and abilities with no price tags are free. Have fun!"
-   "lodHostingNoobMessage"                            "<font color='#ffffff'>Thanks for playing Redux and having patience while we recover from the <font color='#FF4C4C'>7.00 patch</font>. Most issues have been fixed, but some still remain. Please keep an eye out for them. Merry Christmas and a have a Happy New Year!<br><br> <font color='#70EA72'>Redux 4.5 update:</font><br>- Added much more time for draft rounds (15 to 50 seconds)<br>- Added Memes Redux mutator (let us know of any funny meme sound events to add)<br>- Remove Bacckpack blocker and two other weird items from showing in the shop<br>- Fixed Restrict Bot Abilities bugging out"
+   "lodHostingNoobMessage"                            "<font color='#ffffff'>Thanks for playing Redux and having patience while we recover from the <font color='#FF4C4C'>7.00 patch</font>. Most issues have been fixed, but some still remain. Please keep an eye out for them. Merry Christmas and a have a Happy New Year!<br><br> <font color='#70EA72'>Redux 4.9 update:</font><br>- Removed Divided We Stand because of a terrible respawn bug<br>- When strong creeps are enabled, they will change their models to mega creeps once they become very strong<br>- Fixed Sniper always getting Assassinate<br>- Added a basic perk for Storm Spirit<br>- Fixed towers not getting extra abilites (again)"
     "lodOptionVoting"                               "Cast your vote to select the options."
 
 
@@ -513,6 +517,7 @@
     "lodOptionAboutAdvancedHeroAbilities"           "Players are allowed to select hero abilities."
     "lodOptionAboutAdvancedNeutralAbilities"        "Players are allowed to select neutral abilities."
     "lodOptionAboutAdvancedCustomSkills"            "Players are allowed to select custom Redux abilities."
+    "lodOptionAboutAdvancedIMBASkills"            "Players use DOTA IMBA abilities. No other abilities are allowed with this selection."
     "lodOptionAboutAdvancedHidePicks"               "Players will not be able to see the heroes and abilities selected by the enemy team."
     "lodOptionAboutAdvancedUniqueSkills"            "This option prevents two players from selecting the same abilities.\nUnique Team Skills: Players from the same team can not pick the same abilities.\nGlobal Unique Skills: Only one player can have each ability."
     "lodOptionAboutAdvancedUniqueHeroes"            "Players will not be able to select the same hero."
@@ -532,6 +537,9 @@
 
     "build_cherub_title"                            "Cherub"
     "build_cherub_desc"                             "An original hero from the custom game Hero Concepts (The Next Generation)."
+
+    "build_hawkeye_title"                            "Hawkeye"
+    "build_hawkeye_desc"                             "An original hero from the custom game Dusk."
 
     "build_dagger_harrasment_title"                 "Long Dagger Harassment"
     "build_dagger_harrasment_desc"                  "Use hit and run tactics to wear enemies down."
@@ -635,7 +643,7 @@
     "hintFurion"                         "The cooldowns of all Teleportation abilities are reduced by 50% for Nature's Prophet."
     "hintChen"                         "When Chen sends creeps home to the fountain by casting Test of Faith (Teleport) they will receive an extra ability."
     "hintUrsa"                         "Ursa does 15% extra damage to neutrals, including Roshan."
-    //"hintStormSpirit"                         "Storm Spirit restores mana when Storm Spirit travels at high speeds. (WIP) "
+    "hintStormSpirit"                         "At the start of the game, Storm Spirit gains a free level of Overload, whether he has it or not."
     "hintMorphling"                         "Morphling gains 50% bonus movement speed in water."
     "hintTimbersaw"                         "Timbersaw gains health, mana, and experience points whenever a nearby tree is cut down."
     "hintTideHunter"                         "When Tidehunter dies, Ravage's cooldown will be refreshed."
@@ -801,6 +809,7 @@
     "lodCategory_neutral"                           "Neutral Abilities"
     "lodCategory_OP"                                "Over Powered Abilities"
     "lodCategory_custom"                            "Custom Abilities"
+    "lodCategory_dotaimba"                          "Dota IMBA Abilities"
 
     // Error messages
     "lodFailedToFindHero"                           "Please select a valid hero."
@@ -1008,7 +1017,7 @@
     "unique_mechanic_clinkz"                        "Clinkz will receive a free level in his first non-ultimate <font color=\'#ffd966\'>Autocast</font> ability at the start of the game."
     "unique_mechanic_rattletrap"                        "Clockwerk fires a random flare to any part of the map every 15 seconds. Scales with <font color=\'#ffd966\'>Rocket Flare</font>."
     "unique_mechanic_crystal_maiden"    "Crystal Maiden gains +2 movement speed for each level put in <font color=\'#ffd966\'>Support</font> abilities."
-    "unique_mechanic_dark_seer"             "Dark Seer self-casts<font color=\'#ffd966\'>Surge</font> and <font color=\'#ffd966\'>Ion Shell</font> when casting them on allies."
+    "unique_mechanic_dark_seer"             "Dark Seer self-casts <font color=\'#ffd966\'>Surge</font> and <font color=\'#ffd966\'>Ion Shell</font> when casting them on allies."
     "unique_mechanic_dazzle"                        "<font color=\'#ffd966\'>Shallow Grave</font> has double cast range and 50% cooldown reduction when picked by Dazzle."
     "unique_mechanic_death_prophet"                        "Any <font color=\'#ffd966\'>Silence</font> applied by Death Prophet also applies Mute."
     //"unique_mechanic_disruptor"                        ""
@@ -1032,7 +1041,7 @@
     "unique_mechanic_kunkka"                        "When Kunkka casts a <font color=\'#ffd966\'>Water</font> spell he has a 50% chance to refill his bottle."
     "unique_mechanic_legion_commander"              "When Legion Commander casts <font color=\'#ffd966\'>Duel</font>, she will gain spell immunity for the duration of the duel."
     "unique_mechanic_leshrac"                        "At the start of the game, Leshrac gains a free level of <font color=\'#ffd966\'>Octarine Vampirism</font>, whether he has it or not."
-    "unique_mechanic_lich"          "Lich heals himselffor the mana gained when casting <font color=\'#ffd966\'>Sacrifice</font>."
+    "unique_mechanic_lich"          "Lich heals himself for the mana gained when casting <font color=\'#ffd966\'>Sacrifice</font>."
     "unique_mechanic_life_stealer"                  "When Life Stealer casts <font color=\'#ffd966\'>Infest</font>, its cooldown will be reduced to 30 seconds."
     "unique_mechanic_lina"                          "Lina's intelligence increases by 3 for each level put in <font color=\'#ffd966\'>Fire</font> abilities."
     "unique_mechanic_lion"           "For Lion, killing a hero with a spell refunds the mana cost of that spell and lowers its cooldown by 75%."
@@ -1072,9 +1081,9 @@
     "unique_mechanic_slardar"                       "<font color=\'#ffd966\'>Skull Basher</font> and  <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero.Any other bash will grant Slardar 1 gold."
     "unique_mechanic_slark"                        "Slark gains +3 agility for each level put in an <font color=\'#ffd966\'>Mobility</font>/<font color=\'#ffd966\'>Escape</font> skill."
     "unique_mechanic_sniper"                        "<font color=\'#ffd966\'>Shrapnel</font> will have global cast range if used by Sniper."
-    "unique_mechanic_spectre"           "Spectre gains phasedmovement when casting abilities."
+    "unique_mechanic_spectre"           "Spectre gains phased movement when casting abilities."
     "unique_mechanic_spirit_breaker"                "<font color=\'#ffd966\'>Skull Basher</font> and  <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero.When Spirit Breaker bashes, he also applies <font color=\'#ffd966\'>Break</font>."
-    //"unique_mechanic_storm_spirit"                              "Storm gains mana based on distance when moving at high speeds."
+    "unique_mechanic_storm_spirit"                 "At the start of the game, Storm Spirit gains a free level of <font color=\'#ffd966\'>Overload</font>, whether he has it or not.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
     "unique_mechanic_sven"                        "At the start of the game, Sven gains a free level of <font color=\'#ffd966\'>Great Cleave</font>, whether he has it or not."
     "unique_mechanic_techies"                        "<font color=\'#ffd966\'>Traps</font> and <font color=\'#ffd966\'>Explosives</font> will have 50% of their mana refunded and cooldowns reduced by 50% when used by Techies."
     "unique_mechanic_templar_assassin"          "Templar Assassin turns invisible for 10 seconds after not moving for 5 seconds. Invisibility breaks upon moving or attacking."
@@ -1094,12 +1103,12 @@
     "unique_mechanic_viper"                        "<font color=\'#ffd966\'>Poison</font> effects applied by Viper also lower the target's armor by 2."
     "unique_mechanic_visage"                        "<font color=\'#ffd966\'>Summon Familiars</font> will refund 100% of manacost and have its cooldown reduced by 50%."
     "unique_mechanic_warlock"                        "Warlock starts the game with 2 free <font color=\'#ffd966\'>Observer Wards</font>."
-    "unique_mechanic_weaver"                        "If Weaver will automatically cast Time Lapse upon taking fatal damage."
+    "unique_mechanic_weaver"                        "If Weaver will automatically cast <font color='#ffd966'>Time Lapse</font> upon taking fatal damage."
     "unique_mechanic_windrunner"                        "If Windranger has no passives, all her active spells will refund 20% mana and have 20% reduced cooldowns."
     "unique_mechanic_winter_wyvern"         "When Winter Wyvern's health and mana are above 90% she gains flying status after a 5 second delay."
     "unique_mechanic_witch_doctor"           "<font color=\'#ffd966\'>Healing</font> abilities have 25% extra effectiveness when used by Witch Doctor."
     "unique_mechanic_skeleton_king"                        "Wraith King can buyback with a 50% reduced cooldown, refunding 50% of the buyback cost and removing the gold penalty."
-    "unique_mechanic_zuus"                        "When Bloodseeker casts <font color='#ffd966'>Rupture</font>, 100% of the mana cost will be refunded and cooldown reduced by 20%."
+    "unique_mechanic_zuus"                        "Zeus refunds 20% of the manacost of any <font color='#ffd966'>Lightning</font> spells he casts."
 
     /////////////////
     // Cheats
@@ -1196,9 +1205,10 @@
     "warning_earth_spirit_magnetize" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Stone Remnant.</font>"
     "warning_earth_spirit_rolling_boulder" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Stone Remnant.</font>"
     "warning_monkey_king_mischief" "<font color=\'#FF4949\'>Hero Requirement:</font> You have to play as <font color=\'#70EA72\'>Monkey King</font> for tree disguise models to work."
-    "warning_imba_jakiro_fire_breath" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Frost Breath.</font>"
 
     "credit_aether_range_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
+    "credit_sandking_caustic_finale_redux"           "<font color=\'#7D7D7D\'>Credits: Fixed by Firetoad | github.com/fcalife</font>"
+    "credit_necrolyte_sadist_lod"           "<font color=\'#7D7D7D\'>Credits: Fixed by Firetoad | github.com/fcalife</font>"
     "credit_undying_decay_agi"           "<font color=\'#7D7D7D\'>Sponsored by Budster16"
     "credit_undying_decay_int"           "<font color=\'#7D7D7D\'>Sponsored by Budster16"
     "credit_octarine_vampirism_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
@@ -1234,7 +1244,7 @@
     "credit_garden_purple_lotus_base"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
     "credit_imba_omniknight_degen_aura"         "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_omniknight_purification"        "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
-    "credit_imba_dazzle_shallow_grave_passive"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+    "credit_imba_dazzle_shallow_grave"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_tower_atrophy"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_tower_aegis"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_tower_berserk"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
@@ -1328,6 +1338,9 @@
     "credit_ebf_troll_warlord_multistrike"           "<font color=\'#7D7D7D\'>Imported from <font color='#892b86'>E</font><font color='#922b73'>P</font><font color='#9c2a61'>I</font><font color='#a52a4e'>C</font><font color='#a62648'> </font><font color='#a72343'>B</font><font color='#a81f3d'>O</font><font color='#b42a30'>S</font><font color='#c03423'>S</font><font color='#d43f32'> </font><font color='#e94942'>F</font><font color='#fd5451'>I</font><font color='#fd8a3e'>G</font><font color='#fec02a'>H</font><font color='#fef617'>T</font>"
     "credit_ebf_clinkz_trickshot_passive"           "<font color=\'#7D7D7D\'>Imported from <font color='#892b86'>E</font><font color='#922b73'>P</font><font color='#9c2a61'>I</font><font color='#a52a4e'>C</font><font color='#a62648'> </font><font color='#a72343'>B</font><font color='#a81f3d'>O</font><font color='#b42a30'>S</font><font color='#c03423'>S</font><font color='#d43f32'> </font><font color='#e94942'>F</font><font color='#fd5451'>I</font><font color='#fd8a3e'>G</font><font color='#fec02a'>H</font><font color='#fef617'>T</font>"
 
+    "credit_makemeleecreeps_lua"           "<font color=\'#7D7D7D\'>Imported from <font color=\'#803935\'>Definitely Not Dota</font></font>"
+    "credit_makerangedcreeps_lua"           "<font color=\'#7D7D7D\'>Imported from <font color=\'#803935\'>Definitely Not Dota</font></font>"
+    "credit_makecatapults_lua"           "<font color=\'#7D7D7D\'>Imported from <font color=\'#803935\'>Definitely Not Dota</font></font>"
 
     /////////////////
     // CUSTOM ABILITIES
@@ -1881,6 +1894,13 @@
     "DOTA_Tooltip_ability_silencer_global_break_Description"                                   "Silencer stops all sound, <font color='#70EA72'>preventing enemy heroes from using most of their passives.</font>"
     "DOTA_Tooltip_ability_silencer_global_break_duration"                                      "DURATION:"
 
+    // global disarm
+    "DOTA_Tooltip_modifier_silencer_global_disarm"                                              "Global Disarm"
+    "DOTA_Tooltip_modifier_silencer_global_disarm_Description"                                  "Disarmed by Global Disarm"
+    "DOTA_Tooltip_ability_silencer_global_disarm"                                               "Global Disarm"
+    "DOTA_Tooltip_ability_silencer_global_disarm_Description"                                   "Silencer disarms all enemy heros, <font color='#70EA72'>preventing enemy heroes from attacking.</font>"
+    "DOTA_Tooltip_ability_silencer_global_disarm_duration"                                      "DURATION:"
+
     "DOTA_Tooltip_ability_global_stun"                                      "Global Stomp"
     "DOTA_Tooltip_ability_global_stun_Description"                          "The Centaur Conqueror's powerful hooves stomp the earth, stunning and damaging all living enemies. Heroes recover more quickly."
     //"DOTA_Tooltip_ability_global_stun_radius"                             "RADIUS:"
@@ -2046,6 +2066,58 @@
     "DOTA_Tooltip_modifier_marksmanship_str_effect_datadriven"                          "Marksmanship STR"
     "DOTA_Tooltip_modifier_marksmanship_str_effect_datadriven_Description"              "Bonus Strength. Deactivated by nearby enemy heroes."
 
+    //--------------------
+    //HAWKEYE
+    //--------------------
+    "DOTA_Tooltip_ability_hawkeye_ricochet" "Rapidfire"
+    "DOTA_Tooltip_ability_hawkeye_ricochet_description" "Fires multiple shots in succession at the target unit.  This ability preserves UAMs, attack effects, procs, and crits. Reduces the damage by a percentage.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
+    "DOTA_Tooltip_ability_hawkeye_ricochet_Note0" "Issues an attack order on the targeted unit."
+    "DOTA_Tooltip_ability_hawkeye_ricochet_hits" "SHOTS:"
+    "DOTA_Tooltip_ability_hawkeye_ricochet_damage_reduction" "%DAMAGE REDUCTION:"
+    
+    "DOTA_Tooltip_ability_hawkeye_detonator_dart" "Detonator Dart"
+    "DOTA_Tooltip_ability_hawkeye_detonator_dart_description" "Hawkeye pins an enemy with one of his powerful explosive devices.  After a short delay, the unit explodes, dealing large damage in a significant area.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
+    "DOTA_Tooltip_ability_hawkeye_detonator_dart_Note0" "If the unit dies, the explosion occurs regardless of the countdown."
+    "DOTA_Tooltip_ability_hawkeye_detonator_dart_damage" "EXPLOSION DAMAGE:"
+    "DOTA_Tooltip_ability_hawkeye_detonator_dart_initial_damage" "INITIAL DAMAGE:"
+    "DOTA_Tooltip_ability_hawkeye_detonator_dart_duration" "DELAY:"
+    
+    "DOTA_Tooltip_ability_hawkeye_hit_n_run" "Hit 'n' Run"
+    "DOTA_Tooltip_ability_hawkeye_hit_n_run_description" "With a spring in his step, Hawkeye leaps out of harms way using the explosive soles on his boots.  Leaves behind an area of damaging and slowing shrapnel to deter his more eager foes.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
+    "DOTA_Tooltip_ability_hawkeye_hit_n_run_Note0" "Does not interrupt channelled abilities."
+    "DOTA_Tooltip_ability_hawkeye_hit_n_run_slow" "%SLOW:"
+    
+    "DOTA_Tooltip_ability_hawkeye_double_tap" "Single Tap"
+    "DOTA_Tooltip_ability_hawkeye_double_tap_description" "After 1 second of charging, Hawkeye fires a projectile that travels a great distance, dealing base damage and damage based on a multiplier of his attack damage while piercing through enemies.  The first Hero enemy hit that isn't killed is marked for his second, more potent shot, which deals Pure damage.  After the shot collides with its targets, Hawkeye has a few moments to take the second shot.\n\nUpgradable by Aghanim's Scepter.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
+    "DOTA_Tooltip_ability_hawkeye_double_tap_aghanim_description" "Increases range, shot speed, reduces Single Tap damage, but increases the damage of Double Tap."
+    "DOTA_Tooltip_ability_hawkeye_double_tap_mult" "MULTIPLIER:"
+    "DOTA_Tooltip_ability_hawkeye_double_tap_range" "RANGE:"
+    "DOTA_Tooltip_ability_hawkeye_double_tap_base_damage" "BASE DAMAGE:"
+    "DOTA_Tooltip_ability_hawkeye_double_tap_range_scepter" "SCEPTER RANGE:"
+    "DOTA_Tooltip_ability_hawkeye_double_tap_shot_speed_scepter" "SHOT SPEED:"
+    
+    "DOTA_Tooltip_ability_hawkeye_double_tap_second_shot" "Double Tap"
+    "DOTA_Tooltip_ability_hawkeye_double_tap_second_shot_description" "Hawkeye fires a second shot, this time at the first enemy unfortunate enough to be hit by the initial shot.  Deals base damage plus bonus damage based on a multiplier of his attack damage, but hits a single target instead.\n\nUpgradable by Aghanim's Scepter.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
+    "DOTA_Tooltip_ability_hawkeye_double_tap_second_shot_mult" "MULTIPLIER:"
+    "DOTA_Tooltip_ability_hawkeye_double_tap_second_shot_base_damage" "BASE DAMAGE:"
+    "DOTA_Tooltip_ability_hawkeye_double_tap_second_shot_mult_scepter" "SCEPTER MULTIPLIER:"
+    
+    "DOTA_Tooltip_hawkeye_ricochet_mod"                                               "Hawkeye Ricochet Mod"
+    "DOTA_Tooltip_hawkeye_ricochet_mod_description"                                   ""
+
+    "DOTA_Tooltip_modifier_detonator_dart"      "Detonator Dart
+
+    "DOTA_Tooltip_hawkeye_detonator_dart_mod"                                         "Detonator Dart"
+
+    "DOTA_Tooltip_hawkeye_shrapnel_effects_mod"                                       "None"
+    "DOTA_Tooltip_hawkeye_shrapnel_effects_mod_description"                           ""
+
+    "DOTA_Tooltip_hawkeye_shrapnel_damage_slow_mod"                                   "Hit 'n' Run Shrapnel"
+    "DOTA_Tooltip_hawkeye_shrapnel_damage_slow_mod_description"                       "Taking damage and being slowed."
+
+    "DOTA_Tooltip_hawkeye_double_tap_second_shot_effect_mod"                          "Double Tap"
+    "DOTA_Tooltip_hawkeye_double_tap_second_shot_effect_mod_description"              "Take your best shot."
+
     //Bot Controller
     "DOTA_Tooltip_ability_imba_tower_ai_controller"                                 "Bot AI Helper"
     "DOTA_Tooltip_ability_imba_tower_ai_controller_Description"                     "<font color='#70EA72'>This ability is designed to help bots deal with multiple towers. The logic is roughly as follows:</font>\n1. If an enemy bot is nearby AND tower is not invunerable AND there is no nearby allies = <font color='#70EA72'>Force enemy bot to attack tower</font>
@@ -2190,7 +2262,7 @@
     "DOTA_Tooltip_ability_destroy_flower_Description"    "Destroys this flower if it has not been damaged in the last 3 seconds."
 
 
-    // Modifiers
+    // Modifiers 
     "DOTA_Tooltip_modifier_creep_power"      "Creep Power"
     "DOTA_Tooltip_modifier_creep_power_Description"      "Damage, armor and magic resistance increased."
 
@@ -2352,17 +2424,17 @@
     "DOTA_Tooltip_modifier_imba_degen_aura_stacks_Description"                          "Damage progressively reduced"
 
     //IMBA Nothl Protection
-    "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_passive"                                    "Nothl Protection IMBA"
-    "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_passive_Description"                        "<font color='#70EA72'>If Dazzle is mortally wounded, Nothl Protection will trigger automatically.</font> No matter how close to death, Dazzle cannot die while under its protection. Nothl Protection needs to cool down for some time after activation."
-    "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_passive_Note0"                              "Damage which would not kill the target is not counted for Gravely mistaken."
-    "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_passive_Lore"                               "Only a seasoned acolyte of the Shadow can properly perform the rite of preventing death."
+    "DOTA_Tooltip_ability_imba_dazzle_shallow_grave"                                    "Nothl Protection IMBA"
+    "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_Description"                        "<font color='#70EA72'>If Dazzle is mortally wounded, Nothl Protection will trigger automatically.</font> No matter how close to death, Dazzle cannot die while under its protection. Nothl Protection needs to cool down for some time after activation."
+    "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_Note0"                              "Damage which would not kill the target is not counted for Gravely mistaken."
+    "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_Lore"                               "Only a seasoned acolyte of the Shadow can properly perform the rite of preventing death."
     "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_passive_duration"                   "DURATION:"
 
-    "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_passive_one"                                    "Nothl Protection IMBA"
-    "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_passive_one_Description"                        "<font color='#70EA72'>If Dazzle is mortally wounded, Nothl Protection will trigger automatically.</font> No matter how close to death, Dazzle cannot die while under its protection. Nothl Protection needs to cool down for some time after activation."
-    "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_passive_one_Note0"                              "Damage which would not kill the target is not counted for Gravely mistaken."
-    "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_passive_one_Lore"                               "Only a seasoned acolyte of the Shadow can properly perform the rite of preventing death."
-    "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_passive_one_duration"                   "DURATION:"
+    "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_one"                                    "Nothl Protection IMBA"
+    "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_one_Description"                        "<font color='#70EA72'>If Dazzle is mortally wounded, Nothl Protection will trigger automatically.</font> No matter how close to death, Dazzle cannot die while under its protection. Nothl Protection needs to cool down for some time after activation."
+    "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_one_Note0"                              "Damage which would not kill the target is not counted for Gravely mistaken."
+    "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_one_Lore"                               "Only a seasoned acolyte of the Shadow can properly perform the rite of preventing death."
+    "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_one_passive_duration"                   "DURATION:"
 
     "DOTA_Tooltip_modifier_imba_shallow_grave"                                          "Shallow Grave"
     "DOTA_Tooltip_modifier_imba_shallow_grave_Description"                              "Protected from death for the duration"
@@ -2983,7 +3055,9 @@
     "DOTA_Tooltip_modifier_npc_dota_hero_spirit_breaker_perk_break"  "Break"
     "DOTA_Tooltip_modifier_npc_dota_hero_spirit_breaker_perk_break_Description"  "Passives Disabled. Applied from Spirit Breaker's Bash effects."
 
-    /// MISSING STORM SPIRIT PERK
+    /// STORM SPIRIT PERK
+    "DOTA_Tooltip_modifier_npc_dota_hero_storm_spirit_perk" "Storm Spirit Perk"
+    "DOTA_Tooltip_modifier_npc_dota_hero_storm_spirit_perk_Description" "At the start of the game, Storm Spirit gains a free level of Overload, whether he has it or not.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
     /// SVEN​
     "DOTA_Tooltip_modifier_npc_dota_hero_sven_perk" "Sven Perk"
@@ -3397,6 +3471,16 @@
     "DOTA_Tooltip_ability_dark_ranger_black_arrow_outgoing_damage"  "%ILLUSION OUTGOING DAMAGE:"
     "DOTA_Tooltip_ability_dark_ranger_black_arrow_incoming_damage"  "%ILLUSION INCOMING DAMAGE:"
     
+    "DOTA_Tooltip_ability_vassal_shield"                                              "Shield"
+    "DOTA_Tooltip_ability_vassal_shield_description"                                  "Shields nearby allies, causing them to take less damage, and block a small amount of Physical damage.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
+    "DOTA_Tooltip_ability_vassal_shield_damage_reduction"                             "%DAMAGE REDUCTION:"
+    "DOTA_Tooltip_ability_vassal_shield_block"                                        "DAMAGE BLOCK:"
+    "DOTA_Tooltip_ability_vassal_shield_radius"                                       "RADIUS:"
+
+    "DOTA_Tooltip_modifier_vassal_shield"                                             "Shielded"
+    "DOTA_Tooltip_modifier_vassal_shield_description"                                 "Taking less damage from sources."
+
+
     "DOTA_Tooltip_ability_gemini_voidal_flare" "Voidal Flare"
     "DOTA_Tooltip_ability_gemini_voidal_flare_description" "The Voidwalker fires a flare of dark energy at the target, annihilating any magical effects, damaging them, and stunning them for a short time.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
     "DOTA_Tooltip_ability_gemini_voidal_flare_Note0" "This ability purges all buffs and debuffs from the target as a strong dispel spell."
@@ -3849,6 +3933,12 @@
     "DOTA_Tooltip_modifier_ursa_enrage_old"                         "Ursa Enrage (Pre 6.83)"
     "DOTA_Tooltip_modifier_ursa_enrage_old_Description"             "This unit is enraged, it gets bonus damage based on it's current health"
 
+    "DOTA_Tooltip_modifier_gottagoquick_effect"                      "Gotta Go Quick"
+    "DOTA_Tooltip_modifier_gottagoquick_effect_Description"          "Movement speed increased by 15%d%."
+
+    "DOTA_Tooltip_modifier_gottagoslow_effect"                      "Gotta Go Slow??"
+    "DOTA_Tooltip_modifier_gottagoslow_effect_Description"          "Movement speed decreased by 25%d%."
+
     "DOTA_Tooltip_modifier_gottagofast_effect"                      "Gotta Go Fast!"
     "DOTA_Tooltip_modifier_gottagofast_effect_Description"          "Movement speed increased by 50%d%, movespeed limit increased to 1000."
 
@@ -3910,6 +4000,8 @@
 
     "DOTA_Tooltip_ability_item_backPackBlocker" "Bot BackPack Blocker"
 
+    "DOTA_Tooltip_ability_item_devDagger" "Toolsmode Blink Dagger"
+
     "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod"                            "Jingu Mastery"
     "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_Description"                "Monkey King's attacks awaken the Jingu Bang's power. Upon the fourth hit on the same enemy hero, Monkey King earns four charged attacks that have bonus damage and lifesteal."
     "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_Lore"                       "Always sensitive to the moods of its master, the Jingu Bang radiates power when Sun Wukong's combat fervor is on full display."
@@ -3962,8 +4054,8 @@
     "DOTA_Tooltip_ability_titan_command_aura_bonus_regen"                             "BONUS REGEN:"
 
     "DOTA_Tooltip_modifier_command_aura_fx"                                           "Command Aura"
-    "DOTA_Tooltip_modifier_command_aura_fx_Description"                              "Receiving bonus armor and health regeneration."
-    
+    "DOTA_Tooltip_modifier_command_aura_fx_Description"                               "Receiving bonus armor and health regeneration." 
+
     "DOTA_Tooltip_ability_sniper_assassinate_redux" "Assassinate"
     "DOTA_Tooltip_ability_sniper_assassinate_redux_Description" "Sniper locks onto a target enemy unit and, after a while, fires a devastating shot that deals damage at long range, and mini-stuns the target.\n\n Upgradeable by Aghanim's Scepter"
     "DOTA_Tooltip_ability_sniper_assassinate_redux_aghanim_description" "Turns Assassinate into a ground target AoE ability, that after the channel period launches a critical strike and procs headshot on units in the AoE. Only affects visible heroes."
@@ -3982,7 +4074,39 @@
 
     "DOTA_Tooltip_modifier_imba_sadist_stack"                                           "Sadist"
     "DOTA_Tooltip_modifier_imba_sadist_stack_Description"                               "Regenerating health and mana"
-    
+
+    "DOTA_Tooltip_ability_sandking_caustic_finale_redux"                                 "Caustic Finale"
+    "DOTA_Tooltip_ability_sandking_caustic_finale_redux_Description"                     "Sand King poisons his enemies with every attack. When the poison debuff expires, enemies' body explodes, slowing and dealing damage to all nearby enemies."
+    "DOTA_Tooltip_ability_sandking_caustic_finale_redux_Lore"                            "An injection from Crixalis makes one as brittle as the sands of his home."
+    "DOTA_Tooltip_ability_sandking_caustic_finale_redux_Note0"                           "Also activates if the affected unit dies, or if the debuff is purged."
+    "DOTA_Tooltip_ability_sandking_caustic_finale_redux_Note1"                           "Damaging an unit already affected by Caustic Finale does not refresh the debuff."
+    "DOTA_Tooltip_ability_sandking_caustic_finale_redux_radius"                          "EXPLOSION RADIUS:"
+    "DOTA_Tooltip_ability_sandking_caustic_finale_redux_damage"                          "EXPLOSION DAMAGE:"
+    "DOTA_Tooltip_ability_sandking_caustic_finale_redux_debuff_duration"                 "DEBUFF DURATION:"
+    "DOTA_Tooltip_ability_sandking_caustic_finale_redux_ms_slow"                         "%MOVEMENT SPEED SLOW:"
+    "DOTA_Tooltip_ability_sandking_caustic_finale_redux_slow_duration"                   "SLOW DURATION:"
+
+    "DOTA_Tooltip_modifier_imba_caustic_finale"                                         "Caustic Finale"
+    "DOTA_Tooltip_modifier_imba_caustic_finale_Description"                             "O-oh."
+
+    "DOTA_Tooltip_modifier_imba_caustic_finale_slow"                                    "Caustic Finale"
+    "DOTA_Tooltip_modifier_imba_caustic_finale_slow_Description"                        "Move speed slowed"
+
+    "DOTA_Tooltip_ability_makerangedcreeps_lua"                     "Spawn Ranged Creeps"
+    "DOTA_Tooltip_ability_makerangedcreeps_lua_Description"                     "Spawns controllable ranged troops."
+    "DOTA_Tooltip_ability_makerangedcreeps_lua_maxrangedcreeps"                          "MAX RANGE CREEPS:"
+
+    "DOTA_Tooltip_ability_makemeleecreeps_lua"                      "Spawn Melee Creeps"
+    "DOTA_Tooltip_ability_makemeleecreeps_lua_Description"                     "Spawns controllable melee troops."
+    "DOTA_Tooltip_ability_makemeleecreeps_lua_maxmeleecreeps"                          "MAX Melee CREEPS:"
+
+    "DOTA_Tooltip_ability_makecatapults_lua"                        "Spawn Siege Creeps"
+    "DOTA_Tooltip_ability_makecatapults_lua_Description"                     "Spawns controllable catapults."
+    "DOTA_Tooltip_ability_makecatapults_lua_maxcatapults"                          "MAX CATAPULTS:"
+
+    "DOTA_Tooltip_ability_phase_datadriven"                     "Phase"
+    "DOTA_Tooltip_ability_phase_datadriven_Description"                     "Allows you to pass through units, don't get tripped up!"
+
     //=================================================================================================================
         // Hero ability descriptions
         //=================================================================================================================

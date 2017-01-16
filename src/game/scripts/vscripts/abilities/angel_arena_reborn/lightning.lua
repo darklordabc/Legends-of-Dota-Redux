@@ -43,6 +43,7 @@ function lightning_repeat( params )
     ParticleManager:SetParticleControl(lightning, 0, loc + Vector(0, 0, 1000))
     ParticleManager:SetParticleControl(lightning, 1, loc)
     ParticleManager:SetParticleControl(lightning, 2, loc)
+    ParticleManager:ReleaseParticleIndex(lightning)
     EmitSoundOn("Hero_Leshrac.Lightning_Storm", params.initial_target)
 
     local damageTable = {

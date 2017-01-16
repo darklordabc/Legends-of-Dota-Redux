@@ -341,8 +341,10 @@ var basicOptions = {
                             'lodMutatorGottaGoFastOff': 0,
                         },
                         states: {
-                            'lodMutatorGottaGoFastOn': 1,
-                            'lodMutatorGottaGoREALLYFast': 2
+                            'lodMutatorGottaGoQuickOn': 1,
+                            'lodMutatorGottaGoFastOn': 2,
+                            'lodMutatorGottaGoREALLYFast': 3,
+                            'lodMutatorGottaGoSlow': 4
                         }
                     },
                     {
@@ -918,6 +920,22 @@ var advancedOptions = {
                 ]
             },
             {
+                name: 'lodOptionAdvancedImbaAbilities',
+                des: 'lodOptionDesAdvancedIMBASkills',
+                about: 'lodOptionAboutAdvancedIMBASkills',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
                 name: 'lodOptionAdvancedHidePicks',
                 des: 'lodOptionDesAdvancedHidePicks',
                 about: 'lodOptionAboutAdvancedHidePicks',
@@ -1264,12 +1282,20 @@ var advancedOptions = {
                         value: 0
                     },
                     {
-                        text: 'lodOptionGottaGoFastOn',
+                        text: 'lodOptionGottaGoQuickOn',
                         value: 1
                     },
                     {
-                        text: 'lodOptionGottaGoREALLYFast',
+                        text: 'lodOptionGottaGoFastOn',
                         value: 2
+                    },
+                    {
+                        text: 'lodOptionGottaGoREALLYFast',
+                        value: 3
+                    },
+                    {
+                        text: 'lodOptionGottaGoSlow',
+                        value: 4
                     },
                 ]
             },

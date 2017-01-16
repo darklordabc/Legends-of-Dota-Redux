@@ -38,7 +38,8 @@ local ingame = require('ingame')
 local localStorage = require("ModDotaLib.LocalStorage")
 require('lib/wearables')
 
-require('lib/util_aar')
+-- This should alone be used if duels are on.
+--require('lib/util_aar')
 
 require('chat')
 require('dedicated')
@@ -474,6 +475,9 @@ function Pregame:loadDefaultSettings()
 
     -- Enable Custom Abilities
     self:setOption('lodOptionAdvancedCustomSkills', 0, true)
+
+    -- Enable IMBA abilities
+    self:setOption('lodOptionAdvancedImbaAbilities', 0, true)
 
     -- Disable OP abilities
     self:setOption('lodOptionAdvancedOPAbilities', 1, true)
@@ -1007,7 +1011,7 @@ function Pregame:spawnAllHeroes(onSpawned)
         self.spawnDelay = 0
     end
 
-    self.playerQueue = function ()
+    self.playerQueue = function (hero)
         PauseGame(true)
         self.spawnQueueID = self.spawnQueueID + 1
 
@@ -1028,6 +1032,10 @@ function Pregame:spawnAllHeroes(onSpawned)
             self.playerQueue()
             return
         end
+        -- if not hero then
+        --     self.playerQueue()
+        --     return
+        -- end
 
         -- Keep spawning
         Timers:CreateTimer(function()
@@ -1035,22 +1043,21 @@ function Pregame:spawnAllHeroes(onSpawned)
         end, DoUniqueString('playerSpawn'), self.spawnDelay)
     end
 
-    self.playerQueue()
+    self.playerQueue(true)
 end
 
 -- Spawns a given player
 function Pregame:spawnPlayer(playerID, callback)
-    -- Is there a player in this slot?
-    if PlayerResource:GetConnectionState(playerID) >= 1 then
-        -- Only spawn a hero for a given player ONCE
-        if self.spawnedHeroesFor[playerID] then return end
-        self.spawnedHeroesFor[playerID] = true
-
-        self.currentlySpawning = true
-
-        -- Actually spawn the player
-        self:actualSpawnPlayer(playerID, callback)
+    local player = PlayerResource:GetPlayer(playerID)
+    if player then
+        CustomGameEventManager:Send_ServerToPlayer(player,"lodCreatedHero",{})
     end
+
+    if self.spawnedHeroesFor[playerID] then return end
+
+    self.currentlySpawning = true
+
+    self:actualSpawnPlayer(playerID, callback)
 end
 
 function Pregame:actualSpawnPlayer(playerID, callback)
@@ -1060,9 +1067,9 @@ function Pregame:actualSpawnPlayer(playerID, callback)
     -- Try to spawn this player using safe stuff
     local status, err = pcall(function()
         -- Don't allow a player to get two heroes
-        if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil and not PlayerResource:GetSelectedHeroEntity(playerID).dummy then
-            return
-        end
+        -- if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil and not PlayerResource:GetSelectedHeroEntity(playerID).dummy then
+        --     return
+        -- end
 
         -- Grab their build
         local build = self.selectedSkills[playerID]
@@ -1073,20 +1080,23 @@ function Pregame:actualSpawnPlayer(playerID, callback)
             local heroName = self.selectedHeroes[playerID] or self:getRandomHero()
 
             function spawnTheHero()
+                local hero
                 local status2,err2 = pcall(function()
 
                     -- Create the hero and validate it
                     --print(heroName)
                     if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil then
                         UTIL_Remove(PlayerResource:GetSelectedHeroEntity(playerID))
+                        hero = PlayerResource:ReplaceHeroWith(playerID,heroName,625 + OptionManager:GetOption('bonusGold'),0)
+                    else
+                        hero = CreateHeroForPlayer(heroName,player) 
+                        hero = PlayerResource:ReplaceHeroWith(playerID,heroName,625 + OptionManager:GetOption('bonusGold'),0)
                     end
-
-                    local hero = PlayerResource:ReplaceHeroWith(playerID,heroName,625 + OptionManager:GetOption('bonusGold'),0)
-
-                    CustomGameEventManager:Send_ServerToPlayer(player,"lodCreatedHero",{})
 
                     -- CreateUnitByName(heroName,Vector(0,0,0),true,player,player,player:GetTeamNumber())
                     if hero ~= nil and IsValidEntity(hero) then
+                        self.spawnedHeroesFor[playerID] = true
+
                         SkillManager:ApplyBuild(hero, build or {})
 
                         buildBackups[playerID] = build
@@ -1119,17 +1129,20 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                 if not status2 then
                     SendToServerConsole('say "Post this to the LoD comments section: '..err2:gsub('"',"''")..'"')
                 end
+
+                return hero
             end
 
             self.currentlySpawning = false
 
+
             PrecacheUnitByNameAsync(heroName, function()
                 this.cachedPlayerHeroes[playerID] = true
 
-                spawnTheHero()
+                local hero = spawnTheHero()
 
                 if callback then
-                    callback()
+                    callback(hero)
                 end
             end, playerID)
         else
@@ -2307,6 +2320,21 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
+        -- Advanced -- Enable IMBA Abilities
+        lodOptionAdvancedImbaAbilities = function(value)
+        -- If you use IMBA abilities, you cannot use any other major category of abilities.
+            if value == 1 then 
+                self:setOption('lodOptionAdvancedHeroAbilities', 0, true)
+                self:setOption('lodOptionAdvancedNeutralAbilities', 0, true)
+                self:setOption('lodOptionAdvancedCustomSkills', 0, true)
+            else
+                self:setOption('lodOptionAdvancedHeroAbilities', 1, true)
+                self:setOption('lodOptionAdvancedNeutralAbilities', 1, true)
+            end
+
+            return value == 0 or value == 1
+        end,
+
         -- Advanced -- Enable OP Abilities
         lodOptionAdvancedOPAbilities = function(value)
             return value == 0 or value == 1
@@ -2394,7 +2422,7 @@ function Pregame:initOptionSelector()
 
         -- Other -- Gotta Go Fast!
         lodOptionGottaGoFast = function(value)
-            return value == 0 or value == 1 or value == 2 or value == 3
+            return value == 0 or value == 1 or value == 2 or value == 3 or value == 4
         end, 
 
         -- Other -- Ingame Builder
@@ -2646,6 +2674,8 @@ function Pregame:isAllowed( abilityName )
         allowed = self.optionStore['lodOptionAdvancedNeutralAbilities'] == 1
     elseif cat == 'custom' then
         allowed = self.optionStore['lodOptionAdvancedCustomSkills'] == 1
+    elseif cat == 'dotaimba' then
+        allowed = self.optionStore['lodOptionAdvancedImbaAbilities'] == 1
     elseif cat == 'OP' then
         allowed = self.optionStore['lodOptionAdvancedOPAbilities'] == 0
     end
@@ -3095,6 +3125,8 @@ function Pregame:processOptions()
         OptionManager:SetOption('useFatOMeter', this.optionStore['lodOptionCrazyFatOMeter'])
         OptionManager:SetOption('allowIngameHeroBuilder', this.optionStore['lodOptionIngameBuilder'] == 1)
         --OptionManager:SetOption('botBonusPoints', this.optionStore['lodOptionBotsBonusPoints'] == 1)
+        
+        OptionManager:SetOption('botsUniqueSkills', this.optionStore['lodOptionBotsUniqueSkills'])
         OptionManager:SetOption('ingameBuilderPenalty', this.optionStore['lodOptionIngameBuilderPenalty'])
         OptionManager:SetOption('322', this.optionStore['lodOption322'])
         OptionManager:SetOption('extraAbility', this.optionStore['lodOptionExtraAbility'])
@@ -3325,6 +3357,7 @@ function Pregame:processOptions()
                     ['Other: Memes Redux'] = this.optionStore['lodOptionMemesRedux'],
                     ['Towers: Enable Stronger Towers'] = this.optionStore['lodOptionGameSpeedStrongTowers'],
                     ['Towers: Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],
+                    ['Bots: Unique Skills'] = this.optionStore['lodOptionBotsUniqueSkills'],
                 })
 
                 -- Draft arrays
@@ -3690,33 +3723,7 @@ function Pregame:onPlayerAskForHero(eventSourceIndex, args)
 
     -- Has this player already asked for their hero?
     if self.heroesSpawned then
-        -- Do they have a hero?
-
-        if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil then
-            return
-        end
-
-        CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(playerID),"lodSpawningQueue",{queue = 0})
-
-        -- Attempt to spawn a hero (this is validated inside to prevent multiple heroes)
         self:spawnPlayer(playerID)
-
-        self.spawnedHeroesFor[playerID] = true
-
-        -- if not self.requestHeroAgain then
-        --  self.requestHeroAgain = {}
-        -- end
-
-        -- if self.requestHeroAgain[playerID] then
-        --  if Time() > self.requestHeroAgain[playerID] then
-        --      self.requestHeroAgain[playerID] = nil
-        --      self.currentlySpawning = false
-        --      self.spawnedHeroesFor[playerID] = false
-        --  end
-        -- else
-        --  -- Allocate 3 seconds then allow them to spawn a hero
-        --  self.requestHeroAgain[playerID] = Time() + 3
-        -- end
     end
 end
 
@@ -4605,6 +4612,8 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
             allowed = self.optionStore['lodOptionAdvancedNeutralAbilities'] == 1
         elseif cat == 'custom' then
             allowed = self.optionStore['lodOptionAdvancedCustomSkills'] == 1
+        elseif cat == 'dotaimba' then
+            allowed = self.optionStore['lodOptionAdvancedImbaAbilities'] == 1
         elseif cat == 'OP' then
             allowed = self.optionStore['lodOptionAdvancedOPAbilities'] == 0
         end
@@ -5799,6 +5808,48 @@ function Pregame:hookBotStuff()
                 if lowestAb ~= nil then
                     lowestAb:SetLevel(lowestLevel + 1)
                 end
+
+                -- Leveling the talents for bots
+                if keys.level == 10 then
+                    for i=1,23 do
+                        local abName = hero:GetAbilityByIndex(i):GetAbilityName()
+                        if abName and string.find(abName, "special_bonus") then
+                            local random = RandomInt(0,1)
+                            hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                            break
+                        end
+                    end
+                elseif keys.level == 15 then
+                    for i=1,23 do
+                        local abName = hero:GetAbilityByIndex(i):GetAbilityName()
+                        if abName and string.find(abName, "special_bonus") then
+                            local random = RandomInt(2,3)
+                            hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                            break
+                        end
+                    end
+
+                elseif keys.level == 20 then
+                    for i=1,23 do
+                        local abName = hero:GetAbilityByIndex(i):GetAbilityName()
+                        if abName and string.find(abName, "special_bonus") then
+                            local random = RandomInt(4,5)
+                            hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                            break
+                        end
+                    end
+
+                elseif keys.level == 25 then
+                    for i=1,23 do
+                        local abName = hero:GetAbilityByIndex(i):GetAbilityName()
+                        if abName and string.find(abName, "special_bonus") then
+                            local random = RandomInt(6,7)
+                            hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                            break
+                        end
+                    end 
+                end
+
             end
         end
     end, nil)
@@ -5827,7 +5878,7 @@ function Pregame:fixSpawningIssues()
 
     local disabledPerks = {
         npc_dota_hero_disruptor = true,
-        npc_dota_hero_storm_spirit = true,
+        --npc_dota_hero_storm_spirit = true,
         npc_dota_hero_wisp = true
     }
 
@@ -5909,10 +5960,10 @@ function Pregame:fixSpawningIssues()
                             spawnedUnit:RemoveModifierByName('modifier_silencer_int_steal')
                         end
                         -- Change sniper assassinate to our custom version to work with aghs
-                        if spawnedUnit:HasAbility("sniper_assassinate") and not util:isPlayerBot(playerID) then
-                            spawnedUnit:AddAbility("sniper_assassinate_redux")
-                            spawnedUnit:SwapAbilities("sniper_assassinate","sniper_assassinate_redux",false,true)
-                            spawnedUnit:RemoveAbility("sniper_assassinate")
+                        if spawnedUnit:HasAbility("sniper_assassinate") and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("sniper_assassinate"):IsHidden() then
+                                spawnedUnit:AddAbility("sniper_assassinate_redux")
+                                spawnedUnit:SwapAbilities("sniper_assassinate","sniper_assassinate_redux",false,true)
+                                spawnedUnit:RemoveAbility("sniper_assassinate")
                         end
                         -- Custom Flesh Heap fixes
                         for abilitySlot=0,6 do
@@ -6065,6 +6116,17 @@ function Pregame:fixSpawningIssues()
 
                 -- Handle the free courier stuff
                 --handleFreeCourier(spawnedUnit)
+
+                -- Toolsmode developer stuff to help test
+                if IsInToolsMode() then
+                    -- If setting is 1, everyone gets free scepter modifier, if its 2, only human players get the upgrade
+                    if not util:isPlayerBot(playerID) then
+                        local devDagger = spawnedUnit:FindItemByName("item_devDagger")
+                        if not devDagger then
+                            spawnedUnit:AddItemByName('item_devDagger')
+                        end
+                     end
+                end
 
                 -- Handle free scepter stuff, Gyro will not benefit
                 if OptionManager:GetOption('freeScepter') ~= 0 then
@@ -6277,11 +6339,33 @@ function Pregame:fixSpawningIssues()
                 -- Increasing creep power over time
                 if this.optionStore['lodOptionCreepPower'] > 0 then
                     local level = math.ceil((WAVE or 1) / (this.optionStore['lodOptionCreepPower'] / 30))
-
                     local ability = spawnedUnit:AddAbility("lod_creep_power")
                     ability:UpgradeAbility(false)
 
-                    spawnedUnit:SetModifierStackCount("modifier_creep_power",spawnedUnit,level)
+                    -- After level 14, creeps evolve model to represent their upgraded power
+                    local levelToUpgrade = 14
+
+                    Timers:CreateTimer(function()
+                        if IsValidEntity(spawnedUnit) then
+                            spawnedUnit:SetModifierStackCount("modifier_creep_power",spawnedUnit,level)
+                            if level > levelToUpgrade then
+                                if spawnedUnit:GetModelName() == "models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee.vmdl" then
+                                    spawnedUnit:SetModel("models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee_mega.vmdl")
+                                    spawnedUnit:SetOriginalModel("models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee_mega.vmdl")
+                                elseif spawnedUnit:GetModelName() == "models/creeps/lane_creeps/creep_bad_ranged/lane_dire_ranged.vmdl" then
+                                    spawnedUnit:SetModel("models/creeps/lane_creeps/creep_bad_ranged/lane_dire_ranged_mega.vmdl")
+                                    spawnedUnit:SetOriginalModel("models/creeps/lane_creeps/creep_bad_ranged/lane_dire_ranged_mega.vmdl")
+                                elseif spawnedUnit:GetModelName() == "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee.vmdl" then
+                                    spawnedUnit:SetModel("models/creeps/lane_creeps/creep_radiant_melee/radiant_melee_mega.vmdl")
+                                    spawnedUnit:SetOriginalModel("models/creeps/lane_creeps/creep_radiant_melee/radiant_melee_mega.vmdl")
+                                elseif spawnedUnit:GetModelName() == "models/creeps/lane_creeps/creep_radiant_ranged/radiant_ranged.vmdl" then
+                                    spawnedUnit:SetModel("models/creeps/lane_creeps/creep_radiant_ranged/radiant_ranged_mega.vmdl")
+                                    spawnedUnit:SetOriginalModel("models/creeps/lane_creeps/creep_radiant_ranged/radiant_ranged_mega.vmdl")
+                                end
+                            end
+                        end
+                    end, DoUniqueString('evolveCreep'), .5)
+                    
                 end
             end
         end

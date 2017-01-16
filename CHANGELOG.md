@@ -2,25 +2,48 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 4.7 - Development Version
+## 5.0 - Development Version
+### Bug Fixing/New Features
+- Fixed strong creeps evolving models too quickly
+- Fixed an issue where if you disconnected during hero spawn and reconnected you were stuck as wisp.
+
+### Balance
+- 
+
+## 4.9 - Steam Version
+### Bug Fixing/New Features
+- Removed Divided We Stand because of a terrible respawn bug
+- When strong creeps are enabled, they will change their models to mega creeps once they become very strong
+- Fixed Sniper always getting Assassinate
+- Added a basic perk for Storm Spirit
+- Fixed towers not getting extra abilites (again)
+- Fixed creep models upgrading too quickly
+
+## 4.8 
+### Balance
+- Added Global Disarm
+- Added 4 abilities from Dusk, Hawkeye hero
+- Added Shield Ability for Towers, From Dusk Mod
+- Added Dire Safe Lane abilities from 'Definitely Not Dota'
+
+## 4.7 
 ### Bug Fixing/New Features
 - Added Talent information to the hero popup infobox
 - Fixed Upgraded Version of Assassinate
 - Returned being able to view abilities in scoreboard feature (now also Talents!)
 - Fixed Mirana starfall not doing damage on secondary star
+- Added two extra settings for 'Gotta Go Fast' Mutator
 
 ### Balance
 - Necrolyte Perk gives a free level of Heartstopper Aura, not Sadist (that ability is gone)
+- Added Caustic Finale (Thanks to Dota IMBA and FireToad)
 
-## 4.6 - Steam Version
+## 4.6 
 ### Bug Fixing/New Features
 - Added back pre 7.00 Sadist (Thanks to Dota IMBA)
 - Fixed points showing in the ingame hero builder even when balance mode was off
 - Fixed display of skills being broken in banning mode, during boosting draft gamemode
 - Fixed tooltips for abiltiies not showing in menu phase
-
-### Balance
-- 
 
 ## 4.5 
 ### Bug Fixing/New Features
@@ -28,18 +51,12 @@ All notable changes to this project will be documented in this file.
 - Added Memes Redux mutator (let us know of any funny meme sound events to add) 
 - Remove Bacckpack blocker and two other weird items from showing in the shop
 
-### Balance
-- 
-
 ## 4.4 
 ### Bug Fixing/New Features
 - Fixed Dazzle always getting shallow grave
 - Improved Bot AI, so that when they are in defensive mode, they are not stupid anymore.
 - Upgraded concussive break to add its new aghs component
 - Added Global Cast Range mutator
-
-### Balance
-- 
 
 ## 4.3 
 ### Bug Fixing/New Features
@@ -70,9 +87,6 @@ All notable changes to this project will be documented in this file.
 - Bots will now stay in defensive behaviour for the first 8 minutes of the game, even if they are high levels. This is to prevent immediedtly pushing at level 6. 
 
 ## 4.1 
-### Bug Fixing/New Features
-- 
-
 ### Balance
 - Removed Betrayal and True randoms because they are unstable
 - Bots now use unique team skills by default, its a bit lame for all bots to have invisiblity
@@ -84,7 +98,6 @@ All notable changes to this project will be documented in this file.
 ## 4.0 
 ### Bug Fixing/New Features
 - Added hotfix to stop crazy respawn times and crazy experiencg gain. 
-
 
 ### Balance
 - Removed the sound that repeated on Abyssal Vortex. 
@@ -125,9 +138,6 @@ All notable changes to this project will be documented in this file.
 - Fixed Hotkeys for Rubick, IO and probably a few other heros
 - Added the 7.00 Map as an optional Map, play custom_700 to play it, is has bots enabled. If this works fine with bots, we will phase out the old map and use this exclusively. 
 
-### Balance
-
-
 ## 3.6 
 ### Bug Fixing/New Features
 - First round of fixes to recover from 7.0. Many issues remain.
@@ -135,7 +145,6 @@ All notable changes to this project will be documented in this file.
 - Fixed abilities in being in a random order.
 - Added Sliders and Monkey Business Mutators
 - Temporarily disabled non-custom maps because of a voting bug
-
 
 ### Balance
 - Added Flesh Heap Bonus Vision
@@ -146,7 +155,6 @@ All notable changes to this project will be documented in this file.
 - Flesh heaps can now stack collects from far distances, if you are the killer 
 
 ## 3.5 
-
 ### Bug Fixing/New Features
 - You can now use emoticons during the chat box. Only available during gamesetup phase.
 - Order of Arenas is now shuffled. Fixed some Arenas not showing up at all. 
@@ -160,7 +168,6 @@ All notable changes to this project will be documented in this file.
 - Added 3 more flesh heap varities (attack rannge, movement speed and spell amp)
 
 ## 3.4 
-
 ### Bug Fixing/New Features
 - Single/Mirror draft has been improved: You can now be randomly given neutral and custom abilities. Default viewer is the skills menu now and the icons are enlarged. 
 
@@ -169,7 +176,6 @@ All notable changes to this project will be documented in this file.
 - Added Unstable Rift, Voidal Flare and Abyssal Vortex from Dusk (to be merged from draft improvement branch)
 
 ## 3.3 
-
 ### Bug Fixing/New Features
 - Changed style of some buttons to be less diverse
 - Fixed getting stuck in ban phase
@@ -181,7 +187,6 @@ All notable changes to this project will be documented in this file.
 - Added Force Dash OP, Octarine Vampirism OP, Global Stomp
 
 ## 3.2 
-
 ### Bug Fixing/New Features
 - Game will no longer zoom in/out when mouse wheel scrolling on GUI elements
 - Now if you select a primary attribute but not a hero, you will be given a random hero of that attribute
@@ -202,7 +207,6 @@ All notable changes to this project will be documented in this file.
 
 
 ## 3.1 The Return
-
 ### Bug Fixing/New Features
 - Bots receiving extra levels into attribute bonus is now an optional setting (default on)
 - Added scroll bar to mutator/game-mode list to accommodate more mutators and gamemodes
@@ -221,19 +225,16 @@ All notable changes to this project will be documented in this file.
 - Added Chen's Perk
 
 ## 3.0 
-
 ### Bug Fixing/New Features
 - Fixed SD Perk removing too many stats when selling infused raindrop
 - AA Perk hurting allies should be fixed
 - Added hint about discord chatroom
 - Fixed cheat menuing bugging when you try to use same cheat a second time
 
-
 ### Balance
 - Fixed Thirst
 
 ## 2.9 
-
 ### Balance
 - Arcane Barrage has been rebalanced.
 - Toggle rifle now drastically reduce movement speed and has higher cooldown
@@ -245,7 +246,6 @@ All notable changes to this project will be documented in this file.
 - Armoured Centipede is no longer a channeled spell and has a lowered cooldown
 
 ## 2.8 
-
 ### Bug Fixing/New Features
 - Fixed caching of new abilities selected by ingame hero builder
 
@@ -256,7 +256,6 @@ All notable changes to this project will be documented in this file.
 - Thirst is now counted as an OP ability and cost more in balance mode until it can be fixed
 
 ## 2.7 
-
 ### Bug Fixing/New Features
 - Fixed the game trying to give players their perks every-time they spawn, even when they already have it.
 - Beast-master and CM Perk bonus will not be removed on death any-more. 
@@ -269,15 +268,11 @@ All notable changes to this project will be documented in this file.
 
 ## 2.6 
 
-### Bug Fixing/New Features
-- 
-
 ### Balance
 - Towers will not have the bot controller ability unless the game has extra tower settings. 
 - Disable Cyclone Trap for now because its buggy
 
 ## 2.5 
-
 ### Bug Fixing/New Features
 - Added a constant mutator to reflect what the current gamemode is. Can only be changed in Custom Settings.
 - LOD and OP bans are now combined into OP bans
@@ -287,9 +282,7 @@ All notable changes to this project will be documented in this file.
 - Returned Imba Towers to their previous powers but added them to single player banlist.
 - Added Rifle and Nether Ritual and Cluster Rockets versions to single player abilities
 
-
 ## 2.4 
-
 ### Bug Fixing/New Features
 - Rebranded Balance Mode to Points Mode. People seemed to have a visceral reaction to the idea of balancing. 
 
@@ -298,7 +291,6 @@ All notable changes to this project will be documented in this file.
 - Increased damage reduction on rifle
 
 ## 2.3 
-
 ### Bug Fixing/New Features
 - Removed "SILENCE!" from the target of global break. This is not best solution, but had to reduce that sound. 
 - Abaddon's perk is hidden if he has shield charges. Two buffs for a perk is just clutter.
@@ -316,9 +308,7 @@ All notable changes to this project will be documented in this file.
 - The Saint's Rage no longer damages buildings
 - Betaryal and Test of Faith is now a troll combo
 
-
 ## 2.2 Steam Version
-
 ### Bug Fixing/New Features
 - Added unique modifier tag to black arrow and added black arrow to the attack modifier category in skill menu
 - Fixed the constant switching back to the "Builds" page
@@ -330,7 +320,6 @@ All notable changes to this project will be documented in this file.
 - Rifle has more movement speed reduction and higher cooldown
 
 ## 2.1 
-
 ### Bug Fixing/New Features
 - Fixed Mastery of Deception creating illusions of Roshan that drop aegis
 - Fixed another Shadow Demon Perk bug
@@ -339,7 +328,6 @@ All notable changes to this project will be documented in this file.
 - Bots now get items instantly to their inventory
 
 ## 2.0 
-
 ### Bug Fixing/New Features
 - If the game is single player, the ingame hero builder will always be enabled
 - Extra towers now have proper names
@@ -351,7 +339,6 @@ All notable changes to this project will be documented in this file.
 - Deafing Blast (Retro Dota) no longer also silences and mutes. But its duration has been increased by one second.  
 
 ## 1.9 
-
 ### Bug Fixing/New Features
 - Fix Shadow Demon Perk Abuse
 - Fix Phoenix Perk Abuse 
@@ -370,7 +357,6 @@ All notable changes to this project will be documented in this file.
 - Most Imba abilities will not work on buildings anymore.
 
 ## 1.8 
-
 ### Bug Fixing/New Features
 - Fixed Naix Perk
 - Chat Chat being unusable in menu
@@ -379,7 +365,6 @@ All notable changes to this project will be documented in this file.
 - Bots now deal with additional towers by force attacking them
 
 ## 1.7 
-
 ### Bug Fixing/New Features
 - Partially fixed the bug where buyback cooldowns were restarted everytime you respawn. Now the bug only occurs when the setting is NOT 420 (default).
 - Fixed techies perk not having 50% reduction in cooldown for explosives/traps
@@ -407,14 +392,12 @@ All notable changes to this project will be documented in this file.
 - Added Int and Str version of marksmanship
 
 ## 1.6 - Steam Version
-
 ### Bug Fixing/New Features
 - Fix Lina's perk not giving 3 int
 - Fixed Bots getting stuck sometimes near runespots at 0:00 mark
 - Added tracking of hero stats
 
 ## 1.5 
-
 ### Bug Fixing/New Features
 - Host timer will not count-down if the game is single player.
 - Players can now give host powers to other players by clicking on their name
@@ -429,7 +412,6 @@ All notable changes to this project will be documented in this file.
 - Minor tweaks to bot skills priority
 
 ## 1.4 
-
 ### Bug Fixing/New Features
 - Added chinese localization (might not be in-game yet)
 - Added flags to the credits page
@@ -444,7 +426,6 @@ All notable changes to this project will be documented in this file.
 
 
 ## 1.3 
-
 ### Bug Fixing
 - Added a cheat menu to top right corner. Sv_cheats 1 must be enabled to use it. Host a custom lobby with password and cheats enabled to use. 
 - Added color Bars to the top panel of heros
@@ -455,7 +436,6 @@ All notable changes to this project will be documented in this file.
 - Enemy abilities are now revealed during the review stage
 
 ## 1.2
-
 ### Bug Fixing
 - Added sounds for when you select a build
 - Replaced all_pick_4 with 3_vs_3
@@ -464,7 +444,6 @@ All notable changes to this project will be documented in this file.
 - Added back-end ability stats tracking
 - Bots no longer stay in base if they havent seen a player.  
 
-
 ### Balance
 - Changed the hero for many of the preset builds
 - Added Chen preset build
@@ -472,9 +451,7 @@ All notable changes to this project will be documented in this file.
 - Added a cheat menu icon to the top right of the screen
 - Abilities show in the scoreboard at the start of the game now
 
-
 ## 1.1
-
 ### Bug Fixing
 - Removed settings code. Saving and loading is now the only options for importing and exporting configuration 
 - Added load screens
@@ -496,9 +473,7 @@ All notable changes to this project will be documented in this file.
 - Bots will now pick the best available abilities for their specific hero. E.g. BristleBack and Axe will pick tank skills before DPS skills
 - Added Mana Ward (Alt Verison of Jugg's Healing Ward)
 
-
 ## 1.0
-
 ### Bug Fixing
 - Fixed announcer sounds going to all players
 - Replaced number scheme in changelog
@@ -529,7 +504,6 @@ All notable changes to this project will be documented in this file.
 - Creeps automatically get lvl 1 power level if stronger towers are voted for
 
 ## 2016-08-14
-
 ### Bug Fixing
 - In Balance Mode, the default screen is now the skill picking screen and there is a notification that explains the mode a little bit
 - Fixed omniguard. 
@@ -545,7 +519,6 @@ All notable changes to this project will be documented in this file.
 - Increased all_pick vote time to 25 seconds to accomdate all the new votes
 
 ## 2016-08-12
-
 ### Bug Fixing
 - Drastically lowered cooldown on random abilities, may be OP
 
@@ -553,7 +526,6 @@ All notable changes to this project will be documented in this file.
 - Added Omniguard
 
 ## 2016-08-11
-
 ### Bug Fixing
 - Added option in custom games to change Buyback cooldown
 - Reduced default buyback cooldown by 50% in all_pick maps
@@ -564,7 +536,6 @@ All notable changes to this project will be documented in this file.
 - Added Omniguard
 
 ## 2016-08-08
-
 ### Bug Fixing
 - Add new hint about removing abilities 
 - Improved Shards of Truesight: Movement speed bonus increased. Cooldown lowers by level. Spell cast is instant Manacost fixed at 100
@@ -575,7 +546,6 @@ All notable changes to this project will be documented in this file.
 - Balanced Burrow. Has 4 levels. Lower damage reduction and regen at lower levels
 
 ## 2016-08-06
-
 ### Bug Fixing
 - Global Break now shows duration
 - Fixed Agi and Int Flesh Heaps (Hopefully)

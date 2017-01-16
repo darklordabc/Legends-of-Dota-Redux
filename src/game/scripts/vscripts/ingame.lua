@@ -102,68 +102,37 @@ function Ingame:init()
     GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(Ingame, 'FilterDamage'),self)
 
     -- Listen if abilities are being used.
-    ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(Ingame, 'OnAbilityUsed'), self)
+    --ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(Ingame, 'OnAbilityUsed'), self)
 
     ListenToGameEvent('dota_item_purchased', Dynamic_Wrap(Ingame, 'OnPlayerPurchasedItem'), self)
     
     -- Listen to correct the changed abilitypoints
     ListenToGameEvent('dota_player_gained_level', Dynamic_Wrap(Ingame, 'OnHeroLeveledUp'), self)
+
+    ListenToGameEvent("player_reconnected", Dynamic_Wrap(Ingame, 'OnPlayerReconnect'), self)
     
     -- Set it to no team balance
     self:setNoTeamBalanceNeeded()
 end   
+
+function Ingame:OnPlayerReconnect(keys)
+    Timers:CreateTimer(function ()
+        local player = PlayerResource:GetPlayer(keys.PlayerID)
+        CustomGameEventManager:Send_ServerToPlayer(player, "lodAttemptReconnect",{})
+    end, DoUniqueString('reconnect'), 4.0)
+end
 
 function Ingame:OnHeroLeveledUp(keys)
     -- Give abilitypoints to spend on the levels the game doesn't give.
     local pID = keys.player -1    
     local player = PlayerResource:GetPlayer(pID)
     local hero = player:GetAssignedHero()
-
-    -- Leveling the talents for bots
-    if util:isPlayerBot(pID) and keys.level == 10 then
-        for i=1,23 do
-            local abName = hero:GetAbilityByIndex(i):GetAbilityName()
-            if abName and string.find(abName, "special_bonus") then
-                local random = RandomInt(0,1)
-                hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
-                break
-            end
-        end
-    elseif util:isPlayerBot(pID) and keys.level == 15 then
-        for i=1,23 do
-            local abName = hero:GetAbilityByIndex(i):GetAbilityName()
-            if abName and string.find(abName, "special_bonus") then
-                local random = RandomInt(2,3)
-                hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
-                break
-            end
-        end
-
-    elseif util:isPlayerBot(pID) and keys.level == 20 then
-        for i=1,23 do
-            local abName = hero:GetAbilityByIndex(i):GetAbilityName()
-            if abName and string.find(abName, "special_bonus") then
-                local random = RandomInt(4,5)
-                hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
-                break
-            end
-        end
-
-    elseif util:isPlayerBot(pID) and keys.level == 25 then
-        for i=1,23 do
-            local abName = hero:GetAbilityByIndex(i):GetAbilityName()
-            if abName and string.find(abName, "special_bonus") then
-                local random = RandomInt(6,7)
-                hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
-                break
-            end
-        end 
-    end
-
+    
     local markedLevels = {[17]=true,[19]=true,[21]=true,[22]=true,[23]=true,[24]=true}
     if markedLevels[keys.level] then
         hero:SetAbilityPoints(hero:GetAbilityPoints() + 1)
     end
+
 end
 
 
@@ -267,6 +236,9 @@ dc_table = {};
 -- Called when the game starts
 function Ingame:onStart()
     local this = self
+
+    
+
 
     -- Force bots to take a defensive pose until the first tower has been destroyed. This is top stop bots from straight away pushing lanes when they hit level 6
     Timers:CreateTimer(function ()
@@ -408,6 +380,26 @@ function Ingame:onStart()
             end
         end, nil)
     end
+
+
+    -- Level the heroes if starting level requires that
+    local startingLevel = OptionManager:GetOption('startingLevel')
+    if startingLevel > 1 then
+        for i=0,DOTA_MAX_TEAM_PLAYERS-1 do
+            if PlayerResource:GetPlayer(i) then
+                local spawnedUnit = PlayerResource:GetPlayer(i):GetAssignedHero()
+                -- Do we need to level up?
+            
+                -- Level it up
+                for i=1,startingLevel-1 do
+                    spawnedUnit:HeroLevelUp(false)
+                end
+            end
+        end
+    end
+
+    -- Fix EXP
+    --spawnedUnit:AddExperience(constants.XP_PER_LEVEL_TABLE[startingLevel], false, false)
 end
 
 function Ingame:fixRuneBug()
@@ -1112,22 +1104,23 @@ function Ingame:BountyRunePickupFilter(filterTable)
     return true
 end
 
-function Ingame:OnAbilityUsed(event)
-    local PlayerID = event.PlayerID
-    local abilityname = event.abilityname
-    local hero = PlayerResource:GetSelectedHeroEntity(PlayerID)
-    local ability = hero:FindAbilityByName(abilityname)
-    if not ability then return end
-    if ability.randomRoot then
-        local randomMain = hero:FindAbilityByName(ability.randomRoot)
-        print(ability.randomRoot)
-        if not randomMain then return end
-        if abilityname == randomMain.randomAb then
-            randomMain:OnChannelFinish(true)
-            randomMain:OnAbilityPhaseStart()
-        end
-    end
-end
+-- This function relates to true random which isnt in the game anymore
+--function Ingame:OnAbilityUsed(event)
+--    local PlayerID = event.PlayerID
+--    local abilityname = event.abilityname
+--    local hero = PlayerResource:GetSelectedHeroEntity(PlayerID)
+--    local ability = hero:FindAbilityByName(abilityname)
+--    if not ability then return end
+--    if ability.randomRoot then
+--        local randomMain = hero:FindAbilityByName(ability.randomRoot)
+--        print(ability.randomRoot)
+--        if not randomMain then return end
+--        if abilityname == randomMain.randomAb then
+--            randomMain:OnChannelFinish(true)
+--            randomMain:OnAbilityPhaseStart()
+--        end
+--    end
+--end
 
 -- Buyback cooldowns
 function Ingame:checkBuybackStatus()

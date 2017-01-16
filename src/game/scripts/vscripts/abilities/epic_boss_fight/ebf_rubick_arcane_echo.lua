@@ -208,6 +208,7 @@ function SpellEcho(keys)
 							caster:StartGesture(ACT_DOTA_CAST_ABILITY_5)
                             echo:OnSpellStart()
 							ability:StartCooldown(cooldown)
+              ParticleManager:ReleaseParticleIndex(echo_effect)
                         end, DoUniqueString('ebf_rubick_spell_echo'))
 	end
 end

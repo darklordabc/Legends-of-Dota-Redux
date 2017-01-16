@@ -59,6 +59,7 @@ function modifier_bloodseeker_blood_bath_t:OnDeath(keys)
       SendOverheadEventMessage(unit,OVERHEAD_ALERT_HEAL,unit,heal,nil)
       local healParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_bloodseeker/bloodseeker_bloodbath.vpcf", PATTACH_ABSORIGIN_FOLLOW, unit)
       ParticleManager:SetParticleControl(healParticle, 1, Vector(radius, radius, radius))
+      ParticleManager:ReleaseParticleIndex(healParticle)
     end
   end
 end

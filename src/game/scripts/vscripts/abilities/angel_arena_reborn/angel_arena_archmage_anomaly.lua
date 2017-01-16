@@ -30,6 +30,7 @@ function modifier_angel_arena_archmage_anomaly_thinker:OnCreated( kv )
 		ParticleManager:SetParticleControl( self.FXIndex, 4, self:GetParent():GetOrigin() )
 		ParticleManager:SetParticleControl( self.FXIndex, 6, self:GetParent():GetOrigin() )
 		ParticleManager:SetParticleControl( self.FXIndex, 10, self:GetParent():GetOrigin() )
+		ParticleManager:ReleaseParticleIndex(self.FXIndex)
 	end
 	self.AlreadyHit = {}
 	self.blackList = {["shadow_shaman_shackles"] = true}
