@@ -8487,7 +8487,7 @@
         "DOTA_Tooltip_ability_alchemist_chemical_rage_imba_bonus_mana_regen"             "BONUS MANA REGEN:"
         "DOTA_Tooltip_ability_alchemist_chemical_rage_imba_bonus_movespeed"              "BONUS MOVE SPEED:"
         
-        //Ancient Apparition
+        //Ancient Apparition IMBA
         "DOTA_Tooltip_ability_ancient_apparition_cold_feet_imba"                             "Cold Feet IMBA"
         "DOTA_Tooltip_ability_ancient_apparition_cold_feet_imba_Description"                 "Places a frozen hex on an enemy unit that deals damage over time, but can be dispelled by moving away from the initial cast point.  If the enemy unit doesn't move outside of the given range, it will be stunned and frozen in place after 4 seconds."
         "DOTA_Tooltip_ability_ancient_apparition_cold_feet_imba_Lore"                        "Kaldr's presence draws those around him into a frozen void, threatening to lock them in an icy prison for eternity."
@@ -8515,4 +8515,37 @@
         "DOTA_Tooltip_ability_ancient_apparition_chilling_touch_imba_bonus_damage"           "DAMAGE:"
         "DOTA_Tooltip_ability_ancient_apparition_chilling_touch_imba_attack_speed_pct"       "ATTACK SPEED:"
         "DOTA_Tooltip_ability_ancient_apparition_chilling_touch_imba_radius"                 "RADIUS:"
+        
+        //Arc Warden IMBA
+        "DOTA_Tooltip_ability_arc_warden_flux_imba"              "Flux IMBA"
+        "DOTA_Tooltip_ability_arc_warden_flux_imba_Description"      "Infuses a lone enemy unit with swirling, volatile energy, slowing its movement speed and dealing damage over time. The effect is muted if another enemy unit is near the target."
+        "DOTA_Tooltip_ability_arc_warden_flux_imba_Lore"         "An infinitesimal fraction of the power which imprisoned the Ancients."
+        "DOTA_Tooltip_ability_arc_warden_flux_imba_duration"         "DURATION:"
+        "DOTA_Tooltip_ability_arc_warden_flux_imba_damage_per_second"    "DAMAGE PER SECOND:"
+        "DOTA_Tooltip_ability_arc_warden_flux_imba_search_radius"        "ALLY SEARCH RADIUS:"
+        "DOTA_Tooltip_ability_arc_warden_flux_imba_move_speed_slow_pct"  "%MOVEMENT SPEED SLOW:"
+        "DOTA_Tooltip_ability_arc_warden_flux_imba_cast_range_tooltip"   "CAST RANGE:"
+        
+        "DOTA_Tooltip_ability_arc_warden_magnetic_field_imba"        "Magnetic Field IMBA"
+        "DOTA_Tooltip_ability_arc_warden_magnetic_field_imba_Description"    "Generates a circular distortion field of magnetic energy that protects allied heroes and buildings within it by evading attacks coming from outside the field."
+        "DOTA_Tooltip_ability_arc_warden_magnetic_field_imba_Lore"       "Time and space are of little consequence to one as old as Zet."
+        "DOTA_Tooltip_ability_arc_warden_magnetic_field_imba_radius"     "RADIUS:"
+        "DOTA_Tooltip_ability_arc_warden_magnetic_field_imba_duration"   "DURATION:"
+        "DOTA_Tooltip_ability_arc_warden_magnetic_field_imba_attack_speed_bonus" "ATTACK SPEED BONUS:"
+        "DOTA_Tooltip_ability_arc_warden_magnetic_field_imba_evasion_chance" "%EVASION BONUS:"
+        
+        "DOTA_Tooltip_ability_arc_warden_spark_wraith_imba"          "Spark Wraith IMBA"
+        "DOTA_Tooltip_ability_arc_warden_spark_wraith_imba_Description"  "Summons a Spark Wraith that slowly materializes and patrols a targeted area until an enemy comes within its range. Once a target has been found the wraith fuses with them, dealing magical damage and slowing the unit.\n\nDISPEL TYPE: Basic Dispel"
+        "DOTA_Tooltip_ability_arc_warden_spark_wraith_imba_Lore"     "Lesser fragments of Zet's original self."
+        "DOTA_Tooltip_ability_arc_warden_spark_wraith_imba_radius"       "SEARCH RADIUS:"
+        "DOTA_Tooltip_ability_arc_warden_spark_wraith_imba_activation_delay" "ACTIVATION DELAY:"
+        "DOTA_Tooltip_ability_arc_warden_spark_wraith_imba_duration"     "DURATION:"
+        "DOTA_Tooltip_ability_arc_warden_spark_wraith_imba_wraith_speed" "WRAITH SPEED:"
+        "DOTA_Tooltip_ability_arc_warden_spark_wraith_imba_spark_damage" "DAMAGE:"
+        "DOTA_Tooltip_ability_arc_warden_spark_wraith_imba_ministun_duration"    "PURGE DURATION:"
+        
+        "DOTA_Tooltip_ability_arc_warden_tempest_double_imba"        "Tempest Double IMBA"
+        "DOTA_Tooltip_ability_arc_warden_tempest_double_imba_Description"    "Briefly refocusing its fractured elements into a single form, the Arc Warden is able to create a perfect electrical duplication of itself. The duplicate can use all of Arc Warden's current items and spells, except consumables and items that drop on death. The duplicate has seperate item and ability cooldowns."
+        "DOTA_Tooltip_ability_arc_warden_tempest_double_imba_Lore"       "Warped by the power of its peers, Arc Warden becomes what it despises most: disharmony."
+        "DOTA_Tooltip_ability_arc_warden_tempest_double_imba_duration"   "DURATION:"
 }
