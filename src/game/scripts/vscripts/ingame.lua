@@ -102,7 +102,7 @@ function Ingame:init()
     GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(Ingame, 'FilterDamage'),self)
 
     -- Listen if abilities are being used.
-    --ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(Ingame, 'OnAbilityUsed'), self)
+    ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(Ingame, 'OnAbilityUsed'), self)
 
     ListenToGameEvent('dota_item_purchased', Dynamic_Wrap(Ingame, 'OnPlayerPurchasedItem'), self)
     
@@ -1105,11 +1105,35 @@ function Ingame:BountyRunePickupFilter(filterTable)
 end
 
 -- This function relates to true random which isnt in the game anymore
---function Ingame:OnAbilityUsed(event)
---    local PlayerID = event.PlayerID
---    local abilityname = event.abilityname
---    local hero = PlayerResource:GetSelectedHeroEntity(PlayerID)
---    local ability = hero:FindAbilityByName(abilityname)
+-- This function now fixes imba spells that should swap
+function Ingame:OnAbilityUsed(event)
+    local PlayerID = event.PlayerID
+    local abilityname = event.abilityname
+    local hero = PlayerResource:GetSelectedHeroEntity(PlayerID)
+    local ability = hero:FindAbilityByName(abilityname)
+    if not ability then return end
+    local subAbilities = LoadKeyValues('scripts/kv/abilityReps.kv')
+
+    for k,v in pairs(subAbilities) do
+        
+        local ab = hero:FindAbilityByName(k)
+        if ability == hero:FindAbilityByName(k) then
+            local level = ability:GetLevel()
+            hero:SwapAbilities(k,v,false,true)
+            hero:FindAbilityByName(v):SetLevel(level)
+            hero:FindAbilityByName(v):SetHidden(false)
+            Timers:CreateTimer(function ()
+                hero:SwapAbilities(k,v,true,false)
+                hero:FindAbilityByName(v):SetHidden(true)
+            end, 'switch_spells_back', ability:GetSpecialValueFor("duration") or 5)
+            break
+        elseif ability == hero:FindAbilityByName(v) then
+            hero:SwapAbilities(k,v,true,false)
+            hero:FindAbilityByName(v):SetHidden(true)
+            break
+        end
+    end
+
 --    if not ability then return end
 --    if ability.randomRoot then
 --        local randomMain = hero:FindAbilityByName(ability.randomRoot)
@@ -1120,7 +1144,7 @@ end
 --            randomMain:OnAbilityPhaseStart()
 --        end
 --    end
---end
+end
 
 -- Buyback cooldowns
 function Ingame:checkBuybackStatus()
