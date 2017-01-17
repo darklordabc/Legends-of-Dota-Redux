@@ -862,7 +862,8 @@ function Ingame:handleRespawnModifier()
                 return end
                 local playerID = hero:GetPlayerID()
                 local mainHero = PlayerResource:GetSelectedHeroEntity(playerID)
-                if hero == mainHero then
+                if hero == mainHero or (hero:HasAbility("meepo_divided_we_stand") and hero:GetUnitName() == mainHero:GetUnitName() and hero:IsClone()) then
+                    hero = mainHero
                     Timers:CreateTimer(function()
                         if IsValidEntity(hero) and not hero:IsAlive() then
                             local timeLeft = hero:GetRespawnTime()
