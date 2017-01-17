@@ -8486,5 +8486,33 @@
         "DOTA_Tooltip_ability_alchemist_chemical_rage_imba_bonus_health_regen"           "BONUS HEALTH REGEN:"
         "DOTA_Tooltip_ability_alchemist_chemical_rage_imba_bonus_mana_regen"             "BONUS MANA REGEN:"
         "DOTA_Tooltip_ability_alchemist_chemical_rage_imba_bonus_movespeed"              "BONUS MOVE SPEED:"
-
+        
+        //Ancient Apparition
+        "DOTA_Tooltip_ability_ancient_apparition_cold_feet_imba"                             "Cold Feet IMBA"
+        "DOTA_Tooltip_ability_ancient_apparition_cold_feet_imba_Description"                 "Places a frozen hex on an enemy unit that deals damage over time, but can be dispelled by moving away from the initial cast point.  If the enemy unit doesn't move outside of the given range, it will be stunned and frozen in place after 4 seconds."
+        "DOTA_Tooltip_ability_ancient_apparition_cold_feet_imba_Lore"                        "Kaldr's presence draws those around him into a frozen void, threatening to lock them in an icy prison for eternity."
+        "DOTA_Tooltip_ability_ancient_apparition_cold_feet_imba_Note0"                       "Total possible damage: 150/200/250/300."
+        "DOTA_Tooltip_ability_ancient_apparition_cold_feet_imba_Note1"                       "Deals damage every 0.8 seconds."
+        "DOTA_Tooltip_ability_ancient_apparition_cold_feet_imba_damage"                      "DAMAGE PER TICK:"
+        "DOTA_Tooltip_ability_ancient_apparition_cold_feet_imba_stun_duration"               "STUN DURATION:"
+        "DOTA_Tooltip_ability_ancient_apparition_cold_feet_imba_break_distance"              "BREAK DISTANCE:"
+        "DOTA_Tooltip_ability_ancient_apparition_cold_feet_imba_cast_range_tooltip"          "CAST RANGE:"
+        
+        "DOTA_Tooltip_ability_ancient_apparition_ice_vortex_imba"                            "Ice Vortex IMBA"
+        "DOTA_Tooltip_ability_ancient_apparition_ice_vortex_imba_Description"                "Creates a vortex of icy energy that slows movement speed and increases magic damage done in its range.  Lasts 30 seconds."
+        "DOTA_Tooltip_ability_ancient_apparition_ice_vortex_imba_Lore"                       "Frozen, caustic winds are at the whim of Kaldr, chilling the field of battle."
+        "DOTA_Tooltip_ability_ancient_apparition_ice_vortex_imba_Note0"                      "Doesn't affect Spell Immune units."
+        "DOTA_Tooltip_ability_ancient_apparition_ice_vortex_imba_movement_speed_pct"         "%SLOW:"
+        "DOTA_Tooltip_ability_ancient_apparition_ice_vortex_imba_spell_resist_pct"           "%INCREASED MAGIC DAMAGE:"
+        "DOTA_Tooltip_ability_ancient_apparition_ice_vortex_imba_radius"                     "RADIUS:"
+        
+        "DOTA_Tooltip_ability_ancient_apparition_chilling_touch_imba"                        "Chilling Touch IMBA"
+        "DOTA_Tooltip_ability_ancient_apparition_chilling_touch_imba_Description"            "A frigid gust enchants allied heroes, granting them bonus magical damage for a given number of physical attacks, while <font color='#FF7800'>increasing</font> their attack speed. Ancient Apparition always receives the buff. Lasts 30 seconds."
+        "DOTA_Tooltip_ability_ancient_apparition_chilling_touch_imba_Lore"                   "The Ancient Apparition's eternal knowledge brings a frigid enchantment to his allies."
+        "DOTA_Tooltip_ability_ancient_apparition_chilling_touch_imba_Note0"                  "Extra damage is its own instance of damage."
+        "DOTA_Tooltip_ability_ancient_apparition_chilling_touch_imba_Note1"                  "Only works against heroes and creeps."
+        "DOTA_Tooltip_ability_ancient_apparition_chilling_touch_imba_max_attacks"            "MAX ATTACKS:"
+        "DOTA_Tooltip_ability_ancient_apparition_chilling_touch_imba_bonus_damage"           "DAMAGE:"
+        "DOTA_Tooltip_ability_ancient_apparition_chilling_touch_imba_attack_speed_pct"       "ATTACK SPEED:"
+        "DOTA_Tooltip_ability_ancient_apparition_chilling_touch_imba_radius"                 "RADIUS:"
 }

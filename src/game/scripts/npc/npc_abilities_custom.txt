@@ -55533,7 +55533,7 @@
 	//=================================================================================================================
 	// Ancient Apparition: Cold Feet
 	//=================================================================================================================
-	"ancient_apparition_cold_feet"
+	"ancient_apparition_cold_feet_imba"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -55600,7 +55600,7 @@
 	//=================================================================================================================
 	// Ancient Apparition: Ice Vortex
 	//=================================================================================================================
-	"ancient_apparition_ice_vortex"
+	"ancient_apparition_ice_vortex_imba"
 	{
 	// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -55654,11 +55654,11 @@
 	//=================================================================================================================
 	// Ancient Apparition: Chilling Touch
 	//=================================================================================================================
-	"ancient_apparition_chilling_touch"
+	"ancient_apparition_chilling_touch_imba"
 	{
-
 		// General
 		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass" 					"ancient_apparition_chilling_touch"
 		"ID"							"5347"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
@@ -55706,5 +55706,194 @@
 				"attack_speed_pct"		"10 20 30 40"
 			}
 		}	
+	}
+
+
+	//=================================================================================================================
+	// Arc Warden: Flux
+	//=================================================================================================================
+	"arc_warden_flux_imba"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"5677"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"FightRecapLevel"				"1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"700 800 900 1000"
+		"AbilityCastPoint"				"0.2"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"18 17 16 15"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"6.0 7.0 8.0 9.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_per_second"		"30 40 50 60"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"search_radius"			"180"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"think_interval"		"0.5"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"move_speed_slow_pct"	"50"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range_tooltip"	"700 800 900 1000"
+			}
+		}	
+	}
+
+	//=================================================================================================================
+	// Arc Warden: Magnetic Field
+	//=================================================================================================================
+	"arc_warden_magnetic_field_imba"
+	{
+		"AbilityCastPoint"				"0.2"
+
+		"AbilityCooldown"				"30 25 20 15"
+
+		"AbilityManaCost"				"110"
+		
+		"AbilityCastRange"				"1000"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"275"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"5.5 6.0 6.5 7.0"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attack_speed_bonus"		"50 70 90 110"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"evasion_chance"			"100"
+			}
+		}
+	}
+		
+	//=================================================================================================================
+	// Arc Warden: Spark Wraith
+	//=================================================================================================================
+	"arc_warden_spark_wraith_imba"
+	{
+		"AbilityCastRange"					"2000"
+		"AbilityCastPoint"					"0.2"
+		
+		"AbilityCooldown"					"2.5"
+
+		"AbilityManaCost"					"80"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"500"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"activation_delay"			"2.0"
+			}			
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"90"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"wraith_speed"				"500"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"spark_damage"				"150 210 270 330"
+				"LinkedSpecialBonus"		"special_bonus_unique_arc_warden"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"think_interval"			"0.2"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"wraith_vision_radius"		"500"
+			}  
+			"08"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"wraith_vision_duration"	"4.0"
+			}
+			"09"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"ministun_duration"			"1.0"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Arc warden: Tempest Double
+	//=================================================================================================================
+	"arc_warden_tempest_double_imba"
+	{
+		"MaxLevel"						"4"
+
+		"RequiredLevel"					"1"
+
+		"AbilityCooldown"				"60 50 40 30"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"24.0"
+			}
+		}
 	}	  
 }
