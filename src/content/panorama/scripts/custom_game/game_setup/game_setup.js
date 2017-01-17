@@ -2874,8 +2874,10 @@ function buildBasicOptionsCategories() {
                 circleWrapper.AddClass('circleWrapper');
             }
 
-            var optionMutatorImage = $.CreatePanel('Image', optionMutator, 'optionModeImage_' + i);
-            optionMutatorImage.SetImage('file://{images}/custom_game/mutators/mutator_' + name + '.png');
+            var optionMutatorImage = $.CreatePanel('Panel', optionMutator, 'optionModeImage_' + i);
+            // optionMutatorImage.SetImage('file://{images}/custom_game//' +  + '.png');
+            optionMutatorImage.style.backgroundImage = "url('file://{images}/custom_game/mutators/mutator_" + name + ".png');";
+            optionMutatorImage.AddClass("mutatorImage");
 
             // When the mutators changes
             optionMutator.SetPanelEvent('onactivate', function(e) {
@@ -3139,7 +3141,7 @@ function buildAdvancedOptionsCategories( mutatorList ) {
 
     var setMutator = function(field, state) {
         mutatorList[field].label.text = $.Localize(state);
-        mutatorList[field].image.SetImage('file://{images}/custom_game/mutators/mutator_' + state + '.png');
+        mutatorList[field].image.backgroundImage = "url('file://{images}/custom_game/mutators/mutator_" + state + ".png');";
     }
 
     var checkMutators = function(field, hostPanel) {
