@@ -2839,7 +2839,7 @@
 
     /// HUSKAR​
     "DOTA_Tooltip_modifier_npc_dota_hero_huskar_perk"   "Huskar Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_huskar_perk_Description"   "Huskar regenerates 1hp/s for every 10% of health he is missing.<br><br><font color=\'#7D7D7D\'>By TideSofDarK | github.com/TideSofDarK</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_huskar_perk_Description"   "Huskar regenerates 1hp/s for every 10%d% of health he is missing.<br><br><font color=\'#7D7D7D\'>By TideSofDarK | github.com/TideSofDarK</font>"
 
     /// INVOKER​
     "DOTA_Tooltip_modifier_npc_dota_hero_invoker_perk"  "Invoker Perk"
