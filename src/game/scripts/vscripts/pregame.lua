@@ -2307,16 +2307,29 @@ function Pregame:initOptionSelector()
 
         -- Advanced -- Enable Hero Abilities
         lodOptionAdvancedHeroAbilities = function(value)
+            -- Disables IMBA Abilities
+            if value == 1 then 
+                self:setOption('lodOptionAdvancedImbaAbilities', 0, true)
+            end
+
             return value == 0 or value == 1
         end,
 
         -- Advanced -- Enable Neutral Abilities
         lodOptionAdvancedNeutralAbilities = function(value)
+            if value == 1 then 
+                self:setOption('lodOptionAdvancedImbaAbilities', 0, true)
+            end
+
             return value == 0 or value == 1
         end,
 
         -- Advanced -- Enable Custom Abilities
         lodOptionAdvancedCustomSkills = function(value)
+            if value == 1 then 
+                self:setOption('lodOptionAdvancedImbaAbilities', 0, true)
+            end
+
             return value == 0 or value == 1
         end,
 
