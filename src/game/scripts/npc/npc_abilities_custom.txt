@@ -56018,8 +56018,6 @@
 	//=================================================================================================================
 	// Batrider: Flamebreak
 	//=================================================================================================================
-	// PROBLEM: Units don't show any effect when being burned. Don't know what particle to precache
-	//
 	"batrider_flamebreak_imba"
 	{
 		// General
