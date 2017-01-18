@@ -474,11 +474,11 @@
     "balance_mode_points"                           "Points Remaining: {d:points}"
 
     "acceptHosting"                                 "Ok, I understand"
-    "lodHostingMessage"                             "<font color='#ffffff'>Thanks for playing Redux and having patience while we recover from the <font color='#FF4C4C'>7.00 patch</font>. Most issues have been fixed, but some still remain. Please keep an eye out for them. Merry Christmas and a have a Happy New Year!<br><br> <font color='#70EA72'>Redux 5.0 update:</font><br><font color='#FF7800'>Imported 25 Dota IMBA Heroes</font>. These IMBA abilities are still being tested and a few will have bugs or issues, <font color='#70EA72'>please test them and report any strange things, like missing particles, missing sounds etc</font>.<br><br>To play with the <font color='#FF7800'>Dota IMBA</font> abilities, you have to choose Custom Gamemode and enable them in 'Advanced Selection' menu. Note, you can not choose any other type of abilities when playing with IMBA abilities."
+    "lodHostingMessage"                             "<font color='#ffffff'>Thanks for playing Redux and having patience while we recover from the <font color='#FF4C4C'>7.00 patch</font>. Most issues have been fixed, but some still remain. Please keep an eye out for them. Merry Christmas and a have a Happy New Year!<br><br> <font color='#70EA72'>Redux 5.0 hotfix:</font><br>- Imported more <font color='#FF7800'>Dota IMBA</font> Heroes.<br>- Bug fixies, including talents displaying the wrong text."
     "lodPickingMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked.<br><br><font color='#70EA72'>Remeber to pick a hero before time runs out or else you will get stuck with a random hero.</font>"
     "lodBanningMessage"                             "<font color='#70EA72'>This is the banning phase</font>. You can ban heroes and abilities to prevent players from selecting them in this match.<br><br> If you dont want to ban or have finished banning, <font color='#70EA72'>press the 'Finish Banning' button</font> to confirm your ready and to speed up the game."
     "lodBalanceMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked. <br><br><font color='#70EA72'>Points Mode is on.</font> In Points Mode you have limited points to spend on abilities. Abilities are priced by how powerful they are and abilities with no price tags are free. Have fun!"
-   "lodHostingNoobMessage"                            "<font color='#ffffff'>Thanks for playing Redux and having patience while we recover from the <font color='#FF4C4C'>7.00 patch</font>. Most issues have been fixed, but some still remain. Please keep an eye out for them. Merry Christmas and a have a Happy New Year!<br><br> <font color='#70EA72'>Redux 5.0 update:</font><br><font color='#FF7800'>Imported 25 Dota IMBA Heroes</font>. These IMBA abilities are still being tested and a few will have bugs or issues, <font color='#70EA72'>please test them and report any strange things, like missing particles, missing sounds etc</font>.<br><br>To play with the <font color='#FF7800'>Dota IMBA</font> abilities, you have to choose Custom Gamemode and enable them in 'Advanced Selection' menu. Note, you can not choose any other type of abilities when playing with IMBA abilities."
+   "lodHostingNoobMessage"                            "<font color='#ffffff'>Thanks for playing Redux and having patience while we recover from the <font color='#FF4C4C'>7.00 patch</font>. Most issues have been fixed, but some still remain. Please keep an eye out for them. Merry Christmas and a have a Happy New Year!<br><br> <font color='#70EA72'>Redux 5.0 hotfix:</font><br>- Imported more <font color='#FF7800'>Dota IMBA</font> Heroes.<br>- Bug fixies, including talents displaying the wrong text."
     "lodOptionVoting"                               "Cast your vote to select the options."
 
 
@@ -6910,4 +6910,46 @@
         "DOTA_Tooltip_ability_rattletrap_hookshot_imba_damage"                               "DAMAGE:"
         "DOTA_Tooltip_ability_rattletrap_hookshot_imba_cooldown_scepter"                     "SCEPTER COOLDOWN:"
         "DOTA_Tooltip_ability_rattletrap_hookshot_imba_aghanim_description"                  "Decreases cooldown."
+
+        //DARK SEER IMBA
+        "DOTA_Tooltip_ability_dark_seer_vacuum_imba"                                         "Vacuum IMBA"
+        "DOTA_Tooltip_ability_dark_seer_vacuum_imba_Description"                             "Dark Seer creates a vacuum over the target area that sucks in enemy units, disrupting them and dealing damage."
+        "DOTA_Tooltip_ability_dark_seer_vacuum_imba_Lore"                                    "Ish'Kafel modifies the center of gravity to a place of his choosing."
+        "DOTA_Tooltip_ability_dark_seer_vacuum_imba_Note0"                                   "This ability interrupts channeling."
+        "DOTA_Tooltip_ability_dark_seer_vacuum_imba_Note1"                                   "Pulls units over 0.5 seconds before dealing damage."
+        "DOTA_Tooltip_ability_dark_seer_vacuum_imba_Note2"                                   "Doesn't pull invulnerable units."
+        "DOTA_Tooltip_ability_dark_seer_vacuum_imba_Note3"                                   "Trees near the center of the vacuum will be destroyed."
+        "DOTA_Tooltip_ability_dark_seer_vacuum_imba_radius"                                  "RADIUS:"
+        "DOTA_Tooltip_ability_dark_seer_vacuum_imba_damage"                                  "DAMAGE:"
+        
+        "DOTA_Tooltip_ability_dark_seer_ion_shell_imba"                                      "Ion Shell IMBA"
+        "DOTA_Tooltip_ability_dark_seer_ion_shell_imba_Description"                          "Surrounds the target unit with a bristling shield that damages enemy units in an area around it."
+        "DOTA_Tooltip_ability_dark_seer_ion_shell_imba_Lore"                                 "The Dark Seer slices holes into the 'Land Behind the Wall,' causing prismatic energy to seep forth."
+        "DOTA_Tooltip_ability_dark_seer_ion_shell_imba_Note0"                                "Deals small amounts of damage in 0.1 intervals."
+        "DOTA_Tooltip_ability_dark_seer_ion_shell_imba_Note1"                                "Doesn't damage the target it is cast on."
+        "DOTA_Tooltip_ability_dark_seer_ion_shell_imba_Note2"                                "If cast on a unit that already has Ion Shell, the new Shell replaces the old one."
+        "DOTA_Tooltip_ability_dark_seer_ion_shell_imba_radius"                               "RADIUS:"
+        "DOTA_Tooltip_ability_dark_seer_ion_shell_imba_duration"                             "DURATION:"
+        "DOTA_Tooltip_ability_dark_seer_ion_shell_imba_damage_per_second"                    "DAMAGE PER SECOND:"
+        
+        "DOTA_Tooltip_ability_dark_seer_surge_imba"                                          "Surge IMBA"
+        "DOTA_Tooltip_ability_dark_seer_surge_imba_Description"                              "Charges a target friendly unit with power, giving it a brief burst of maximum movement speed."
+        "DOTA_Tooltip_ability_dark_seer_surge_imba_Lore"                                     "Ish'Kafel once used his speed of mind to navigate the maze between the walls."
+        "DOTA_Tooltip_ability_dark_seer_surge_imba_Note0"                                    "Units with Surge cannot be slowed unless the Surge effect is removed."
+        "DOTA_Tooltip_ability_dark_seer_surge_imba_duration"                                 "DURATION:"
+        
+        "DOTA_Tooltip_ability_dark_seer_wall_of_replica_imba"                                "Wall of Replica IMBA"
+        "DOTA_Tooltip_ability_dark_seer_wall_of_replica_imba_Description"                    "Raises a wall of warping light that slows and creates replicas of any enemy hero who crosses it. Enemy replicas serve at the Dark Seer's will. Replicas last until they are destroyed, or until the wall's duration ends.\n\nUpgradable by Aghanim's Scepter."
+        "DOTA_Tooltip_ability_dark_seer_wall_of_replica_imba_Lore"                           "The Dark Seer, while unable to return to his natural realm, can channel part of the prismatic wall with powerful strength of mind, sowing confusion amongst enemy ranks."
+        "DOTA_Tooltip_ability_dark_seer_wall_of_replica_imba_Note0"                          "Doesn't create illusions from other illusions, or Meepo clones."
+        "DOTA_Tooltip_ability_dark_seer_wall_of_replica_imba_Note1"                          "Creates a wall 1000 units long, perpendicular to the line between Dark Seer and the target point."
+        "DOTA_Tooltip_ability_dark_seer_wall_of_replica_imba_duration"                       "WALL DURATION:"
+        "DOTA_Tooltip_ability_dark_seer_wall_of_replica_imba_tooltip_outgoing"               "%REPLICA DAMAGE:"
+        "DOTA_Tooltip_ability_dark_seer_wall_of_replica_imba_tooltip_replica_total_damage_incoming"      "%REPLICA DAMAGE TAKEN:"
+        "DOTA_Tooltip_ability_dark_seer_wall_of_replica_imba_range_tooltip"                  "CAST RANGE:"
+        "DOTA_Tooltip_ability_dark_seer_wall_of_replica_imba_tooltip_outgoing_scepter"       "%SCEPTER REPLICA DAMAGE:"
+        "DOTA_Tooltip_ability_dark_seer_wall_of_replica_imba_movement_slow"                  "%MOVEMENT SLOW:"
+        "DOTA_Tooltip_ability_dark_seer_wall_of_replica_imba_slow_duration"                  "SLOW DURATION:"
+
+        "DOTA_Tooltip_ability_dark_seer_wall_of_replica_imba_aghanim_description"            "Increases the damage dealt by illusions."
 }
