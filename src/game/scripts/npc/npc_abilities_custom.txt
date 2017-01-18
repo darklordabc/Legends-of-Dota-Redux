@@ -1772,7 +1772,7 @@
 
 			"RunScript"
 			{
-				"ScriptFile"			"hero/hero_lich.lua"
+				"ScriptFile"			"abilities/dota imba/hero_lich.lua"
 				"Function"				"ChainFrostStart"
 				
 				"Target"				"TARGET"	
@@ -1817,7 +1817,7 @@
 
 			"RunScript"
 			{
-				"ScriptFile"			"hero/hero_lich.lua"
+				"ScriptFile"			"abilities/dota imba/hero_lich.lua"
 				"Function"				"ChainFrost"
 
 				"particle_name"			"particles/units/heroes/hero_lich/lich_chain_frost.vpcf"
