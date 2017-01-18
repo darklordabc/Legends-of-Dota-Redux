@@ -21,6 +21,12 @@ function setHeroName( name, tooltipFunct, info ) {
 		var movie = $.CreatePanel( 'DOTAHeroMovie', $.GetContextPanel(), 'heroMovie' );
 		$.GetContextPanel().MoveChildBefore(movie, $('#heroImage'));
     	$('#heroMovie').heroname = name;
+
+    	var parent = $.GetContextPanel().GetParent();
+    	while(parent.GetParent() != null)
+        	parent = parent.GetParent();
+
+        parent.FindChildTraverse("TitleTextTooltip").FindChildTraverse("Contents").style.maxWidth = "325px;";
 	});
 
 	$.GetContextPanel().SetPanelEvent('onmouseout', function(){
