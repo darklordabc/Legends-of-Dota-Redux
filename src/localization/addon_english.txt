@@ -4312,7 +4312,7 @@
         "DOTA_Tooltip_ability_imba_bounty_hunter_wind_walk_move_speed"                      "%MOVE SPEED:"
 
         "DOTA_Tooltip_ability_imba_bounty_hunter_shadow_jaunt"                              "Shadow Jaunt"
-        "DOTA_Tooltip_ability_imba_bounty_hunter_shadow_jaunt_Description"                  "Jumps to a target's position, immediately striking it if it's an enemy.\n<font color='#FF7800'>In for the kill:</font> If jumping to a tracked target, refreshes the cooldown of all your other abilities.\n\n<font color='#00FF40'>Shadow Jaunt can have up to %max_charges% charges, which take %charge_cooldown% seconds to replenish.</font>"
+        "DOTA_Tooltip_ability_imba_bounty_hunter_shadow_jaunt_Description"                  "Jumps to a target's position, immediately striking it if it's an enemy.\n<font color='#FF7800'>In for the kill:</font> If jumping to a tracked target, refreshes the cooldown of all your other abilities."
         "DOTA_Tooltip_ability_imba_bounty_hunter_shadow_jaunt_Lore"                         "You can run, but you can't hide."
         "DOTA_Tooltip_ability_imba_bounty_hunter_shadow_jaunt_range"                        "JAUNT RANGE:"
 
