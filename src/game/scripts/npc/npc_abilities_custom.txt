@@ -56607,5 +56607,288 @@
 				"cooldown_scepter"			"20"
 			}
 		}
+	}
+
+	//=================================================================================================================
+	// Ability: Bloodseeker's Bloodrage
+	//=================================================================================================================
+	"bloodseeker_bloodrage_imba"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"					"bloodseeker_bloodrage"
+		"ID"					"5015"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"FightRecapLevel"				"1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"					"0.1"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"					"1"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"		
+		
+		// Cast Range
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.1"	// Primarily about the damage
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_bloodseeker.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"9 10 11 12"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_increase_pct"		"25 30 35 40"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"health_bonus_pct"			"25 30 35 40"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"health_bonus_creep_pct"	"25"
+			}
+		}
+	}
+	
+	//=================================================================================================================
+	// Ability: Bloodseeker's Blood Rite/Bath
+	//=================================================================================================================
+	"bloodseeker_blood_bath_imba"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"					"bloodseeker_blood_bath"
+		"ID"					"5016"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"					"1500"
+		"AbilityCastPoint"					"0.3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"					"21 18 15 12"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"					"100"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_bloodseeker.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"650 700 750 800"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"silence_duration"			"3 4 5 6"
+			}			
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"120 180 240 300"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"delay"						"1.8"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"delay_plus_castpoint_tooltip"	"2.1"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Bloodseeker's Thirst
+	//=================================================================================================================
+	"bloodseeker_thirst_imba"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"					"bloodseeker_thirst"
+		"ID"					"5017"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_bloodseeker.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"min_bonus_pct"				"100"
+			}			
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_movement_speed"		"16 24 32 40"
+			}			
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_damage"				"18 30 42 54"
+			}		
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"max_bonus_pct"				"50"
+			}	
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"visibility_threshold_pct"	"50"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"invis_threshold_pct"		"30"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Bloodseeker's Rupture
+	//=================================================================================================================
+	"bloodseeker_rupture_imba"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------	
+		"BaseClass"					"bloodseeker_rupture"
+		"ID"					"5018"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
+		"FightRecapLevel"				"2"
+
+		"HasScepterUpgrade"			"1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.35"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"50 40 30"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"150"	
+		
+		// Cast Range
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+			
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// Only does damage
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_bloodseeker.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"12.0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"movement_damage_pct"		"50 70 90"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_cap_amount"			"2000"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"damage_cap_interval"		"0.25"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cast_range_tooltip"		"1000"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"max_charges_scepter"		"3"
+			}
+			"07"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"charge_restore_time_scepter"	"30"
+			}
+		}
 	}	  
 }
