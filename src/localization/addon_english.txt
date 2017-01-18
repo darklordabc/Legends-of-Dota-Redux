@@ -8793,4 +8793,40 @@
         "DOTA_Tooltip_ability_chaos_knight_phantasm_imba_incoming_damage_tooltip"    "%PHANTASM DAMAGE TAKEN:"
         "DOTA_Tooltip_ability_chaos_knight_phantasm_imba_outgoing_damage_tooltip"    "%PHANTASM DAMAGE:" 
         "DOTA_Tooltip_ability_chaos_knight_phantasm_imba_aghanim_description"        "Reduces cooldown by 20 seconds and allows Phantoms to be cast on an allied hero. 1200 Cast Range"
+
+        //CHEN IMBA
+        "DOTA_Tooltip_ability_chen_penitence_imba"                               "Penitence IMBA"
+        "DOTA_Tooltip_ability_chen_penitence_imba_Description"                   "Forces an enemy unit to move slower and take more damage from attacks and spells."
+        "DOTA_Tooltip_ability_chen_penitence_imba_Lore"                          "Although Chen's brand of animal enthrallment isn't quite strong enough to control the minds of enemy heroes, it still tests their resolve in combat."
+        "DOTA_Tooltip_ability_chen_penitence_imba_duration"                      "DURATION:"
+        "DOTA_Tooltip_ability_chen_penitence_imba_bonus_movement_speed"          "%MOVEMENT SLOW:"
+        "DOTA_Tooltip_ability_chen_penitence_imba_bonus_damage_taken"            "%BONUS DAMAGE:"
+        
+        "DOTA_Tooltip_ability_chen_test_of_faith_imba"                           "Test of Faith IMBA"
+        "DOTA_Tooltip_ability_chen_test_of_faith_imba_Description"               "Deals random damage to test an enemy unit's faith."
+        "DOTA_Tooltip_ability_chen_test_of_faith_imba_Lore"                      "Knights of the Fold possess a fanatical form of magic that is considered quite unwieldy by most other users of arcane arts."
+        "DOTA_Tooltip_ability_chen_test_of_faith_imba_damage_min"                "DAMAGE MIN:"
+        "DOTA_Tooltip_ability_chen_test_of_faith_imba_damage_max"                "DAMAGE MAX:"
+        
+        "DOTA_Tooltip_ability_chen_test_of_faith_teleport_imba"                  "Test of Faith Telport IMBA"
+        "DOTA_Tooltip_ability_chen_test_of_faith_teleport_imba_Description"      "Teleports an allied or enemy unit back to its base. Creeps are teleported instantly, while Heroes have a delay before teleporting. If cast on Chen, all units controlled by Chen through Holy Persuasion will be teleported to him after a delay."
+        "DOTA_Tooltip_ability_chen_test_of_faith_teleport_imba_Lore"             ""
+        "DOTA_Tooltip_ability_chen_test_of_faith_teleport_imba_hero_teleport_delay"  "HERO/SELF TP DELAY:"
+        
+        "DOTA_Tooltip_ability_chen_holy_persuasion_imba"                         "Holy Persuasion IMBA"
+        "DOTA_Tooltip_ability_chen_holy_persuasion_imba_Description"             "Chen takes control of an enemy or neutral creep. If the persuaded creep's base health is naturally below the health minimum, its base health will be raised to the health minimum.\n\nUpgradable by Aghanim's Scepter, allowing Chen to persuade Ancient Creeps. The number of Ancient Creeps that can be persuaded is based on the level of Hand of God."
+        "DOTA_Tooltip_ability_chen_holy_persuasion_imba_aghanim_description"                         "Holy Persuasion can target Ancient Creeps, maximum one per level of Hand of God."
+        "DOTA_Tooltip_ability_chen_holy_persuasion_imba_Lore"                    "Although they may not be knights, Chen incorporates beasts into the Fold in the same way he himself was converted."
+        "DOTA_Tooltip_ability_chen_holy_persuasion_imba_Note0"                   "You may only cast this ability on Ancient Creeps with Aghanim's Scepter."
+        "DOTA_Tooltip_ability_chen_holy_persuasion_imba_Note1"                   "When persuading a new creep above your max unit count, the oldest persuaded unit will die."
+        "DOTA_Tooltip_ability_chen_holy_persuasion_imba_Note2"                   "The health of creeps that are currently persuaded will not be increased further if more levels are added to the skill."
+        "DOTA_Tooltip_ability_chen_holy_persuasion_imba_max_units"               "MAX UNITS:"
+        "DOTA_Tooltip_ability_chen_holy_persuasion_imba_health_min"          "HEALTH MINIMUM:"
+        
+        "DOTA_Tooltip_ability_chen_hand_of_god_imba"                             "Hand of God IMBA"
+        "DOTA_Tooltip_ability_chen_hand_of_god_imba_Description"                 "Heals all allied heroes on the map as well as all units under Chen's control.\n\nUpgradable by Aghanim's Scepter."
+        "DOTA_Tooltip_ability_chen_hand_of_god_imba_Lore"                        "Using the mental link with his thralls, Chen calls down restoration and well-being to those who share his fanaticism."
+        "DOTA_Tooltip_ability_chen_hand_of_god_imba_Note0"                       "Heals Spell Immune units."
+        "DOTA_Tooltip_ability_chen_hand_of_god_imba_heal_amount"                 "HEAL:"
+        "DOTA_Tooltip_ability_chen_hand_of_god_imba_ancient_creeps_scepter"          "SCEPTER HOLY PERSUASION ANCIENTS:"
 }
