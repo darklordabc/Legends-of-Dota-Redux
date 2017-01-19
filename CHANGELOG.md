@@ -2,16 +2,23 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 5.0 - Development Version
+## 5.1 - Development Version
+### Bug Fixing/New Features
+-  
+
+### Balance
+- 
+
+## 5.0 - Steam Version
 ### Bug Fixing/New Features
 - Fixed strong creeps evolving models too quickly
 - Fixed an issue where if you disconnected during hero spawn and reconnected you were stuck as wisp.
 - Added IMBA Category of abilities, will slowly add more IMBA abilities, only available in custom gamemode. 
 
 ### Balance
-- Added IMBA Necro, PA, Kunkka, Jugg, Lion, Warlock, Lich, Sven. These abilities will have issues, needs testing. Please report errors/issues/missing particles.
+- Added IMBA Necro, PA, Kunkka, Jugg, Lion, Warlock, Lich, Sven (and more). These abilities will have issues, needs testing. Please report errors/issues/missing particles.
 
-## 4.9 - Steam Version
+## 4.9 
 ### Bug Fixing/New Features
 - Removed Divided We Stand because of a terrible respawn bug
 - When strong creeps are enabled, they will change their models to mega creeps once they become very strong
