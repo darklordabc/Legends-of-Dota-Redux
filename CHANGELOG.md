@@ -4,7 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## 5.1 - Development Version
 ### Bug Fixing/New Features
--  
+- Fixed Gotta Go Quick mutator making heros slower
+- Fixed incorrect tooltip in free ability mutator
+- Fixed Global cast range mutator not actually being global, reset aether lens values to usual numbers.
 
 ### Balance
 - 

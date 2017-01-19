@@ -36871,7 +36871,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "cast_range_bonus"          "99999 99999 99999 99999"
+                "cast_range_bonus"          "150 200 250 300"
             }
             "02"
 			{
@@ -36950,7 +36950,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "cast_range_bonus"          "2000"
+                "cast_range_bonus"          "20000"
             }
         }
         "OnOwnerSpawned"
