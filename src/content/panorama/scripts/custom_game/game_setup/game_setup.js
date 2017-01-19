@@ -3141,7 +3141,7 @@ function buildAdvancedOptionsCategories( mutatorList ) {
 
     var setMutator = function(field, state) {
         mutatorList[field].label.text = $.Localize(state);
-        mutatorList[field].image.backgroundImage = "url('file://{images}/custom_game/mutators/mutator_" + state + ".png');";
+        mutatorList[field].image.style.backgroundImage = "url('file://{images}/custom_game/mutators/mutator_" + state + ".png');";
     }
 
     var checkMutators = function(field, hostPanel) {
@@ -4021,6 +4021,9 @@ function OnPhaseChanged(table_name, key, data) {
 
             // Message for banning phase
             if(currentPhase == PHASE_BANNING) {
+                // Enable tabs
+                $("#tabsSelector").visible = true;
+
                 // Setup selection
                 setSelectedHelperHero(undefined, false)
 
@@ -4045,6 +4048,9 @@ function OnPhaseChanged(table_name, key, data) {
 
             // Message for players selecting skills
             if(currentPhase == PHASE_SELECTION) { 
+                // Enable tabs
+                $("#tabsSelector").visible = true;
+                
                 // Update selection
                 // if (currentSelectedHero) {
                     setSelectedHelperHero();
@@ -5002,6 +5008,8 @@ function loadPlayerBans() {
 
     // Show banned abilities by default
     $('#buttonShowBanned').checked = false;
+
+    $("#tabsSelector").visible = false;
 
     var columnSwitch = true;
     // Show all tier values by default
