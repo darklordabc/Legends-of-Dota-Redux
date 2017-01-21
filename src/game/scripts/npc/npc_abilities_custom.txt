@@ -60107,6 +60107,473 @@
 		}
 	}
 
+	//=================================================================================================================
+	// Earth Spirit: Boulder Smash
+	//=================================================================================================================
+	"earth_spirit_boulder_smash_imba"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"					"earth_spirit_boulder_smash"
+		"ID"							"5608"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetFlag"			"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"FightRecapLevel"				"1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"300"
+		"AbilityCastPoint"				"0.01"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"13.0 11.0 9.0 7.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"70 80 90 100"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"225"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rock_search_aoe"		"160"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rock_damage"			"80 160 240 320"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"			"2.25"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"1600"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"unit_distance"			"1400.0"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"rock_distance"			"3000.0"
+			}			
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"remnant_smash_radius_tooltip"			"160"
+			}			
+		}
+	}
+
+
+	//=================================================================================================================
+	// Earth Spirit: Rolling Boulder
+	//=================================================================================================================
+	"earth_spirit_rolling_boulder_imba"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"					"earth_spirit_rolling_boulder"
+		"ID"							"5609"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"3000"
+		"AbilityCastPoint"				"0.01"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"7.0 6.0 5.0 4.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"35 40 45 50"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"225"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"1600"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rock_speed"			"2400"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"distance"				"1200.0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"rock_distance"			"2400.0"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"delay"					"0.5"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"80 140 200 260"
+				"LinkedSpecialBonus"	"special_bonus_unique_earth_spirit"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"move_slow"				"80"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"slow_duration"			"2.5"
+			}
+		}
+	}
+
+	
+	//=================================================================================================================
+	// Earth Spirit: Geomagnetic Grip
+	//=================================================================================================================
+	"earth_spirit_geomagnetic_grip_imba"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"					"earth_spirit_geomagnetic_grip"
+		"ID"							"5610"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"FightRecapLevel"				"1"
+
+		"HasScepterUpgrade"			"1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1800"
+		"AbilityCastPoint"				"0.01"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"13 11 9 7"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"70 80 90 100"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"250"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"miss_rate"				"75"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"miss_duration"			"2.5 3 3.5 4"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pull_units_per_second_heroes"		"1400"
+			}				
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rock_damage"			"75 150 225 300"
+			}				
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"pull_units_per_second"	"1400"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"speed"					"1400"
+			}	
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"total_pull_distance"	"1800"
+			}			
+		}
+	}
+
+	//=================================================================================================================
+	// Earth Spirit: Stone Caller
+	//=================================================================================================================
+	"earth_spirit_stone_caller_imba"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"					"earth_spirit_stone_caller"
+		"ID"							"5611"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"MaxLevel"						"1"
+
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1600"
+		"AbilityCastPoint"				"0.0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_charges"			"6"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"charge_restore_time"	"10.0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"120.0"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Earth Spirit: Petrify ( scepter ability )
+	//=================================================================================================================
+	"earth_spirit_petrify_imba"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"					"earth_spirit_petrify"
+		"ID"							"5648"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_CUSTOM"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CUSTOM"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"MaxLevel"						"1"
+		"FightRecapLevel"				"1"
+		"IsGrantedByScepter"			"1"
+
+		"HasScepterUpgrade"			"1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"			"700"
+		"AbilityCastPoint"				"0.2"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"			"30"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"			"100"
+		
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"3"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"damage"			"350"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"aoe"				"500"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Earth Spirit: Magnetize
+	//=================================================================================================================
+	"earth_spirit_magnetize_imba"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"					"earth_spirit_magnetize"
+		"ID"							"5612"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"FightRecapLevel"				"2"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600 675 750"
+		"AbilityCastPoint"				"0.01"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"80 65 50"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_radius"			"600 675 750"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_per_second"		"60 90 120"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_duration"		"7.0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rock_search_radius"	"600"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"rock_explosion_radius"	"600"
+			}			
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"damage_interval"		"1.0"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"rock_explosion_delay"	"8.0"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"silence_duration"		"5.0"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"slow_duration"			"2.0"
+			}
+		}
+	}
+
 
 
 }
