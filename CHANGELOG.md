@@ -2,16 +2,21 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 5.1 - Development Version
+## 5.2 - Development Version
 ### Bug Fixing/New Features
-- Fixed Gotta Go Quick mutator making heros slower
-- Fixed incorrect tooltip in free ability mutator
-- Fixed Global cast range mutator not actually being global, reset aether lens values to usual numbers.
+- 
 
 ### Balance
 - 
 
-## 5.0 - Steam Version
+## 5.1 - Steam Version- Development Version
+### Bug Fixing/New Features
+- Fixed Gotta Go Quick mutator making heros slower
+- Fixed incorrect tooltip in free ability mutator
+- Fixed Global cast range mutator not actually being global, reset aether lens values to usual numbers.
+- Added more Dota IMBA heroes
+
+## 5.0 
 ### Bug Fixing/New Features
 - Fixed strong creeps evolving models too quickly
 - Fixed an issue where if you disconnected during hero spawn and reconnected you were stuck as wisp.
