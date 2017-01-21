@@ -6952,4 +6952,38 @@
         "DOTA_Tooltip_ability_dark_seer_wall_of_replica_imba_slow_duration"                  "SLOW DURATION:"
 
         "DOTA_Tooltip_ability_dark_seer_wall_of_replica_imba_aghanim_description"            "Increases the damage dealt by illusions."
+
+        //DEATH PROPHET IMBA
+        "DOTA_Tooltip_ability_death_prophet_carrion_swarm_imba"                              "Crypt Swarm IMBA"
+        "DOTA_Tooltip_ability_death_prophet_carrion_swarm_imba_Description"                  "Sends a swarm of winged beasts to savage enemy units in front of Death Prophet."
+        "DOTA_Tooltip_ability_death_prophet_carrion_swarm_imba_Lore"                         "Krobelus' many trips to the grave gather a flock of the damned."
+        "DOTA_Tooltip_ability_death_prophet_carrion_swarm_imba_Note0"                        "Can hit units up to 1110 range away."
+        "DOTA_Tooltip_ability_death_prophet_carrion_swarm_imba_range"                        "RANGE:"
+        
+        "DOTA_Tooltip_ability_death_prophet_silence_imba"                                    "Silence IMBA"
+        "DOTA_Tooltip_ability_death_prophet_silence_imba_Description"                        "Prevents enemy units in a target area from casting spells."
+        "DOTA_Tooltip_ability_death_prophet_silence_imba_Lore"                               "Peering into the veil of her opponent's demise, Krobelus sees a silent future."
+        "DOTA_Tooltip_ability_death_prophet_silence_imba_Note0"                              "Doesn't prevent usage of items."
+        "DOTA_Tooltip_ability_death_prophet_silence_imba_radius"                             "RADIUS:"
+        "DOTA_Tooltip_ability_death_prophet_silence_imba_duration"                           "DURATION:"
+        
+        "DOTA_Tooltip_ability_death_prophet_spirit_siphon_imba"                              "Spirit Siphon IMBA"
+        "DOTA_Tooltip_ability_death_prophet_spirit_siphon_imba_Description"                  "Creates a spirit link between Death Prophet and an enemy unit, draining %damage% + %damage_pct%%% Max HP per second and slowing the enemy's movement speed by %movement_slow%%%."
+        "DOTA_Tooltip_ability_death_prophet_spirit_siphon_imba_Note0"                        "Cannot cast multiple on same target."
+        "DOTA_Tooltip_ability_death_prophet_spirit_siphon_imba_damage"                       "BASE DAMAGE:"
+        "DOTA_Tooltip_ability_death_prophet_spirit_siphon_imba_damage_pct"                   "%MAX HP AS DAMAGE:"
+        "DOTA_Tooltip_ability_death_prophet_spirit_siphon_imba_movement_slow"                "%ENEMY SLOW:"
+        "DOTA_Tooltip_ability_death_prophet_spirit_siphon_imba_haunt_duration"                "DURATION:"
+        "DOTA_Tooltip_ability_death_prophet_spirit_siphon_imba_max_charges"                  "MAX CHARGES:"
+        "DOTA_Tooltip_ability_death_prophet_spirit_siphon_imba_charge_restore_time"          "CHARGE RESTORE TIME:"
+        
+        "DOTA_Tooltip_ability_death_prophet_exorcism_imba"                                   "Exorcism IMBA"
+        "DOTA_Tooltip_ability_death_prophet_exorcism_imba_Description"                       "Unleashes evil spirits to drain the life of nearby enemy units and structures. At the end of the spell's duration, Death Prophet is healed in proportion to the damage dealt.  Lasts 35 seconds."
+        "DOTA_Tooltip_ability_death_prophet_exorcism_imba_Lore"                              "Over time, the banshee remnants of her previous lives return to haunt the present."
+        "DOTA_Tooltip_ability_death_prophet_exorcism_imba_Note0"                             "Radius represents the area in which the spirits will acquire targets around Death Prophet."
+        "DOTA_Tooltip_ability_death_prophet_exorcism_imba_Note1"                             "Spirit damage isn't reduced by damage block abilities."
+        "DOTA_Tooltip_ability_death_prophet_exorcism_imba_radius"                            "RADIUS:"
+        "DOTA_Tooltip_ability_death_prophet_exorcism_imba_spirits"                           "SPIRITS:"
+        "DOTA_Tooltip_ability_death_prophet_exorcism_imba_heal_percent"                      "%LIFE DRAIN:"
+        "DOTA_Tooltip_ability_death_prophet_exorcism_imba_average_damage"                    "SPIRIT DAMAGE:"
 }
