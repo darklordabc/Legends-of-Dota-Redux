@@ -7259,4 +7259,37 @@
         "DOTA_Tooltip_ability_ember_spirit_flame_guard_imba_damage_per_second"       "DAMAGE PER SECOND:"
         "DOTA_Tooltip_ability_ember_spirit_flame_guard_imba_Note0"                   "Magic damage reduction is calculated before any reductions."
         "DOTA_Tooltip_ability_ember_spirit_flame_guard_imba_Lore"                    "An enemy should never be allowed to approach without difficulty."
+
+        //ENCHANTRESS IMBA
+        "DOTA_Tooltip_ability_enchantress_untouchable_imba"                                  "Untouchable IMBA"
+        "DOTA_Tooltip_ability_enchantress_untouchable_imba_Description"                      "Enchantress beguiles her enemies, slowing their attacks when she is attacked."
+        "DOTA_Tooltip_ability_enchantress_untouchable_imba_Lore"                             "After attacking Aiushtha, most opponents are overwhelmed with guilt having attacked such a natural beauty."
+        "DOTA_Tooltip_ability_enchantress_untouchable_imba_Note0"                            "All units who directly attack or cast spells on Enchantress will get slowed."
+        "DOTA_Tooltip_ability_enchantress_untouchable_imba_Note1"                            "The slow is applied on the attacking unit when the attack starts, not when damage is applied."
+        "DOTA_Tooltip_ability_enchantress_untouchable_imba_slow_attack_speed"                "ATTACK SLOW:"
+        
+        "DOTA_Tooltip_ability_enchantress_enchant_imba"                                      "Enchant IMBA"
+        "DOTA_Tooltip_ability_enchantress_enchant_imba_Description"                          "Enchantress charms an enemy. If the enemy is a hero, they are slowed. If the enemy is a creep, she brings it under her control. If cast on a creep already under her control, she refreshes its enchant duration."
+        "DOTA_Tooltip_ability_enchantress_enchant_imba_Lore"                                 "A true steward of the forest, Aiushtha befriends all within it - from lowly trolls to powerful centaurs."
+        "DOTA_Tooltip_ability_enchantress_enchant_imba_Note0"                                "Illusions can be converted."
+        "DOTA_Tooltip_ability_enchantress_enchant_imba_slow_movement_speed"                  "%HERO MOVE SLOW:"
+        "DOTA_Tooltip_ability_enchantress_enchant_imba_tooltip_duration"                     "HERO SLOW DURATION:"
+        "DOTA_Tooltip_ability_enchantress_enchant_imba_dominate_duration"                    "CREEP ENCHANT DURATION:"
+        
+        "DOTA_Tooltip_ability_enchantress_natures_attendants_imba"                           "Nature's Attendants IMBA"
+        "DOTA_Tooltip_ability_enchantress_natures_attendants_imba_Description"               "A cloud of wisps heals Enchantress and any friendly units nearby. Lasts 11 seconds."
+        "DOTA_Tooltip_ability_enchantress_natures_attendants_imba_Lore"                      "Whimsical spirits of the woods possess a healing power that is quite subtle, but gains strength in numbers."
+        "DOTA_Tooltip_ability_enchantress_natures_attendants_imba_Note0"                     "Units with full HP will not be selected for the heal."
+        "DOTA_Tooltip_ability_enchantress_natures_attendants_imba_Note1"                     "Can heal units with spell immunity."
+        "DOTA_Tooltip_ability_enchantress_natures_attendants_imba_wisp_count"                "WISPS:"
+        "DOTA_Tooltip_ability_enchantress_natures_attendants_imba_heal"                      "HEAL PER SECOND:"
+        "DOTA_Tooltip_ability_enchantress_natures_attendants_imba_radius"                    "RADIUS:"
+        
+        "DOTA_Tooltip_ability_enchantress_impetus_imba"                                      "Impetus IMBA"
+        "DOTA_Tooltip_ability_enchantress_impetus_imba_Description"                          "Places an enchantment on each attack while activated, causing it to deal additional damage based on how far away the target is.  The farther the target, the greater the damage dealt.\n\nUpgradable by Aghanim's Scepter."
+        "DOTA_Tooltip_ability_enchantress_impetus_imba_Lore"                                 "While Aiushtha favors peaceful means, she is capable of a magical onslaught from a distance, her spears gaining energy from the natural life around her."
+        "DOTA_Tooltip_ability_enchantress_impetus_imba_Note0"                                "The damage is capped at 1750 distance."
+        "DOTA_Tooltip_ability_enchantress_impetus_imba_Note1"                                "Distance to target is measured when the projectile hits."
+        "DOTA_Tooltip_ability_enchantress_impetus_imba_distance_damage_pct"                  "%DISTANCE DAMAGE:"
+        "DOTA_Tooltip_ability_enchantress_impetus_imba_bonus_attack_range_scepter"           "SCEPTER BONUS RANGE:"
 }
