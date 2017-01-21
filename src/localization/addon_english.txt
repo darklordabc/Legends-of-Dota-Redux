@@ -7057,4 +7057,35 @@
         "DOTA_Tooltip_ability_doom_bringer_doom_imba_damage"                     "DAMAGE PER SECOND:"
         "DOTA_Tooltip_ability_doom_bringer_doom_imba_duration_scepter"           "SCEPTER DURATION:"
         "DOTA_Tooltip_ability_doom_bringer_doom_imba_aghanim_description"        "Increases Doom's duration, and will suspend its duration while the affected unit is within 900 range. Also causes it to remove positive buffs from the target when cast, and break most passive abilities while active."
+
+        //DRAGON KNIGHT IMBA
+        "DOTA_Tooltip_ability_dragon_knight_breathe_fire_imba"                               "Breathe Fire IMBA"
+        "DOTA_Tooltip_ability_dragon_knight_breathe_fire_imba_Description"                   "Unleashes a breath of fire in front of Dragon Knight that burns enemies and reduces the damage their attacks deal."
+        "DOTA_Tooltip_ability_dragon_knight_breathe_fire_imba_reduction"     "%DAMAGE REDUCTION:"
+        "DOTA_Tooltip_ability_dragon_knight_breathe_fire_imba_duration"                          "REDUCTION DURATION:"
+        "DOTA_Tooltip_ability_dragon_knight_breathe_fire_imba_Lore"                          "Knight Davion's breath has become that of the mighty Eldwurm Slyrak, remembered for burning numerous other knights to a crisp."
+        "DOTA_Tooltip_ability_dragon_knight_breathe_fire_imba_Note0"                         "Affects mechanical units."
+        "DOTA_Tooltip_ability_dragon_knight_breathe_fire_imba_Note1"                         "Hits units up to 900 away."
+        
+        "DOTA_Tooltip_ability_dragon_knight_dragon_tail_imba"                                "Dragon Tail IMBA"
+        "DOTA_Tooltip_ability_dragon_knight_dragon_tail_imba_Description"                    "Dragon Knight smites an enemy unit in melee range with his shield, stunning it while dealing minor damage.  When in Elder Dragon_imba Form, the cast range increases to 400."
+        "DOTA_Tooltip_ability_dragon_knight_dragon_tail_imba_Lore"                           "Davion's combination of dragon talents and knightly skills makes him a vicious opponent in melee combat."
+        "DOTA_Tooltip_ability_dragon_knight_dragon_tail_imba_stun_duration"                  "STUN DURATION:"
+        
+        "DOTA_Tooltip_ability_dragon_knight_dragon_blood_imba"                               "Dragon Blood IMBA"
+        "DOTA_Tooltip_ability_dragon_knight_dragon_blood_imba_Description"                   "The life blood of the Dragon improves health regeneration and strengthens armor."
+        "DOTA_Tooltip_ability_dragon_knight_dragon_blood_imba_Lore"                          "Slyrak's blood still courses through Davion's veins, giving him twice the vitality of an ordinary knight."
+        "DOTA_Tooltip_ability_dragon_knight_dragon_blood_imba_bonus_health_regen"            "HEALTH REGEN:"
+        "DOTA_Tooltip_ability_dragon_knight_dragon_blood_imba_bonus_armor"                   "ARMOR:"
+        
+        "DOTA_Tooltip_ability_dragon_knight_elder_dragon_form_imba"                          "Elder Dragon Form IMBA"
+        "DOTA_Tooltip_ability_dragon_knight_elder_dragon_form_imba_Description"              "Dragon Knight takes the form of one of three powerful elder dragons, increasing his speed, and Dragon Tail's range, while granting him new powers.\n<font color=\"#9acd32\">LEVEL 1 Green Dragon</font> - Corrosive Breath: attacks deal 20 poison damage per second for 5 seconds. Works on structures.\n<font color=\"#ff0000\">LEVEL 2 Red Dragon</font> - Splash Attack: attacks damage all enemy units in a 300 radius, with Corrosive Breath added to the targets.\n<font color=\"#87ceeb\">LEVEL 3 Blue Dragon</font> - Frost Breath: slows movement speed by 30%% and attack speed by 20 of enemy units in Splash Attack range for 3 seconds, with Corrosive Breath added to the targets."
+        "DOTA_Tooltip_ability_dragon_knight_elder_dragon_form_imba_Lore"                     "The dormant dragon power springs forth from within Davion, combining the powers of a legendary knight with a legendary Eldwurm."
+        "DOTA_Tooltip_ability_dragon_knight_elder_dragon_form_imba_Note0"                    "Corrosive Breath poison damage is lethal."
+        "DOTA_Tooltip_ability_dragon_knight_elder_dragon_form_imba_Note1"                    "Splash Attack deals 100/75/50% damage in a 150/225/300 radius. Splash damage does not affect buildings."
+        "DOTA_Tooltip_ability_dragon_knight_elder_dragon_form_imba_Note2"                    "Frost Breath stacks with Unique Attack Modifiers."
+        "DOTA_Tooltip_ability_dragon_knight_elder_dragon_form_imba_Note3"                    "Manta Style's cooldown time will be based on whether Dragon Knight was in his ranged or melee form when the item was used."
+        "DOTA_Tooltip_ability_dragon_knight_elder_dragon_form_imba_duration"                 "DURATION:"
+        "DOTA_Tooltip_ability_dragon_knight_elder_dragon_form_imba_bonus_movement_speed"     "BONUS MOVE SPEED:"
+        "DOTA_Tooltip_ability_dragon_knight_elder_dragon_form_imba_bonus_attack_range"       "BONUS ATTACK RANGE:"
 }
