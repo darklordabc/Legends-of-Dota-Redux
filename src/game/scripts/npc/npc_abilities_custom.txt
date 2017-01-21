@@ -58971,7 +58971,7 @@
 		{
 			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts"
 		}
-		
+
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -59026,6 +59026,266 @@
 			{
 				"var_type"				"FIELD_FLOAT"
 				"ghost_spawn_rate"		"0.3"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Disruptor: Thunder Strike
+	//=================================================================================================================
+	"disruptor_thunder_strike_imba"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"					"disruptor_thunder_strike"
+		"ID"							"5458"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"FightRecapLevel"				"1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.05 0.05 0.05 0.05"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"12 11 10 9"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"130 130 130 130"
+		
+		// Cast Range
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1100"
+
+		// Damage.
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"18 27 36 45"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_disruptor.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"325"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"strikes"				"10"
+				"LinkedSpecialBonus"	"special_bonus_unique_disruptor"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"strike_interval"		"1.0"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Disruptor: Glimpse
+	//=================================================================================================================
+	"disruptor_glimpse_imba"
+	{	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"					"disruptor_glimpse"
+		"ID"							"5459"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"FightRecapLevel"				"1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.05 0.05 0.05 0.05"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30.0 25.0 20.0 15.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100 80 60 40"
+		
+		// Cast Range
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"25000"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_disruptor.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"backtrack_time"		"4.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range"			"25000"
+			}
+		}
+	}	
+
+	//=================================================================================================================
+	// Disruptor: Kinetic Field
+	//=================================================================================================================
+	"disruptor_kinetic_field_imba"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"					"disruptor_kinetic_field"
+		"ID"							"5460"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.05 0.05 0.05 0.05"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"13 12 11 10"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"70 70 70 70"
+		
+		// Cast Range
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"900 900 900 900"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_disruptor.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"450"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"formation_time"			"0.0"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"3.25 4.0 4.75 5.5"
+			}
+		}
+	}	
+
+	//=================================================================================================================
+	// Disruptor: Static Storm
+	//=================================================================================================================
+	"disruptor_static_storm_imba"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"					"disruptor_static_storm"
+		"ID"							"5461"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"FightRecapLevel"				"2"
+
+		"HasScepterUpgrade"			"1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.05 0.05 0.05 0.05"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"90 80 70"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"125 175 225"
+		
+		// Cast Range
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"800 800 800 800"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_disruptor.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"750"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"pulses"					"24"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_max"				"240 320 400"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"6.0"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration_scepter"			"15.0"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"pulses_scepter"			"60"
 			}
 		}
 	}

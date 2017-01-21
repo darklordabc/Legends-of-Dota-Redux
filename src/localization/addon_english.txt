@@ -6986,4 +6986,37 @@
         "DOTA_Tooltip_ability_death_prophet_exorcism_imba_spirits"                           "SPIRITS:"
         "DOTA_Tooltip_ability_death_prophet_exorcism_imba_heal_percent"                      "%LIFE DRAIN:"
         "DOTA_Tooltip_ability_death_prophet_exorcism_imba_average_damage"                    "SPIRIT DAMAGE:"
+
+        //DISRUPTOR IMBA
+        "DOTA_Tooltip_ability_disruptor_thunder_strike_imba"                         "Thunder Strike IMBA"
+        "DOTA_Tooltip_ability_disruptor_thunder_strike_imba_Description"             "Repeatedly strikes the targeted unit with lightning.  Each strike damages nearby enemy units in a small radius.  Provides vision of its target."
+        "DOTA_Tooltip_ability_disruptor_thunder_strike_imba_Lore"                    "Disruptor's charged coils occasionally overload, and a singed armor plate or tuft of fur is the enemy's result."
+        "DOTA_Tooltip_ability_disruptor_thunder_strike_imba_radius"                  "RADIUS:"
+        "DOTA_Tooltip_ability_disruptor_thunder_strike_imba_strikes"                 "STRIKES:"
+        "DOTA_Tooltip_ability_disruptor_thunder_strike_imba_strike_interval"         "STRIKE INTERVAL:"
+        
+        "DOTA_Tooltip_ability_disruptor_glimpse_imba"                                "Glimpse IMBA"
+        "DOTA_Tooltip_ability_disruptor_glimpse_imba_Description"                    "Teleports the target hero back to where it was 4 seconds ago.  Instantly kills illusions."
+        "DOTA_Tooltip_ability_disruptor_glimpse_imba_Lore"                           "Playing with electricity can have unexpected results."
+        "DOTA_Tooltip_ability_disruptor_glimpse_imba_Note0"                          "The travel time is a function of the distance the target will travel."
+        "DOTA_Tooltip_ability_disruptor_glimpse_imba_cast_range"                     "CAST RANGE:"
+        
+        "DOTA_Tooltip_ability_disruptor_kinetic_field_imba"                          "Kinetic Field IMBA"
+        "DOTA_Tooltip_ability_disruptor_kinetic_field_imba_Description"              "After a short formation time, creates a circular barrier of kinetic energy that enemies can't pass."
+        "DOTA_Tooltip_ability_disruptor_kinetic_field_imba_Lore"                     "The stryder is immune to the gale-force winds that will consume its adversaries."
+        "DOTA_Tooltip_ability_disruptor_kinetic_field_imba_Note0"                    "Spell Immune units can travel through the field."
+        "DOTA_Tooltip_ability_disruptor_kinetic_field_imba_formation_time"           "FORMATION DELAY:"
+        "DOTA_Tooltip_ability_disruptor_kinetic_field_imba_duration"                 "DURATION:"
+        "DOTA_Tooltip_ability_disruptor_kinetic_field_imba_radius"                   "RADIUS:"
+        
+        "DOTA_Tooltip_ability_disruptor_static_storm_imba"                           "Static Storm IMBA"
+        "DOTA_Tooltip_ability_disruptor_static_storm_imba_Description"               "Creates a damaging static storm that also silences all enemy units in the area for the duration.  The damage starts off weak, but increases in power over the duration.\n\nUpgradable by Aghanim's Scepter."
+        "DOTA_Tooltip_ability_disruptor_static_storm_imba_Lore"                      "A summer squall in Druud is a hardship that only an Oglodi can survive."
+        "DOTA_Tooltip_ability_disruptor_static_storm_imba_radius"                    "RADIUS:"
+        "DOTA_Tooltip_ability_disruptor_static_storm_imba_damage_max"                "MAX DAMAGE PER SECOND:"
+        "DOTA_Tooltip_ability_disruptor_static_storm_imba_duration"                  "DURATION:"
+        "DOTA_Tooltip_ability_disruptor_static_storm_imba_pulses"                    "PULSES:"
+        "DOTA_Tooltip_ability_disruptor_static_storm_imba_duration_scepter"          "SCEPTER DURATION:"
+        "DOTA_Tooltip_ability_disruptor_static_storm_imba_pulses_scepter"            "SCEPTER PULSES:"
+        "DOTA_Tooltip_ability_disruptor_static_storm_imba_aghanim_description"       "Mutes items and increases duration."
 }
