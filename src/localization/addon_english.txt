@@ -7607,5 +7607,37 @@
         "DOTA_Tooltip_ability_furion_wrath_of_nature_imba_damage_scepter"                    "SCEPTER DAMAGE:"
         "DOTA_Tooltip_ability_furion_wrath_of_nature_imba_buffer_tooltip_scepter"            "SCEPTER TREANT SPAWN TIMER:"
         "DOTA_Tooltip_ability_furion_wrath_of_nature_imba_aghanim_description"               "Increases damage. If a unit is killed by Wrath of Nature, or within 4 seconds thereafter, a Nature's Call treant will spawn. These treants' health and damage are based on the current level of Nature's Call. If a hero is killed, a Greater Treant will be created, which has 3 times as much health and damage."
+
+        // ORACLE IMBA
+        "DOTA_Tooltip_ability_oracle_fortunes_end_imba"                          "Fortune's End IMBA"
+        "DOTA_Tooltip_ability_oracle_fortunes_end_imba_Description"              "CHANNELED - Gathers Oracle's power into a bolt of scouring energy that, when released, damages, stops movement, and purges enemies of buffs in an area around the target. If target is an ally it will only purge. Can be channeled for up to %max_channel_time_tooltip% seconds. The stop duration is equal to the time spent channeling.\n\nDISPEL TYPE: Basic Dispel"
+        "DOTA_Tooltip_ability_oracle_fortunes_end_imba_Lore"                     "The astral orb crackles with power while raw energy lances out, temporarily disrupting an enemy's connection to their own body."
+        "DOTA_Tooltip_ability_oracle_fortunes_end_imba_damage"                   "DAMAGE:"
+        "DOTA_Tooltip_ability_oracle_fortunes_end_imba_radius"                   "RADIUS:"
+        "DOTA_Tooltip_ability_oracle_fortunes_end_imba_minimum_purge_duration"   "MIN STOP DURATION:"
+        "DOTA_Tooltip_ability_oracle_fortunes_end_imba_maximum_purge_duration"   "MAX STOP DURATION:"
+        
+        "DOTA_Tooltip_ability_oracle_fates_edict_imba"                           "Fate's Edict IMBA"
+        "DOTA_Tooltip_ability_oracle_fates_edict_imba_Description"               "Oracle enraptures a target, disarming them and granting them %magic_damage_resistance_pct_tooltip%%% magic damage resistance. Can be cast on allies and enemies."
+        "DOTA_Tooltip_ability_oracle_fates_edict_imba_Lore"                      "An unbreakable prophecy resounds: a chosen ally shall briefly suffer no magics.  Other kinds of suffering however..."
+        "DOTA_Tooltip_ability_oracle_fates_edict_imba_duration"                  "DURATION:"
+        
+        "DOTA_Tooltip_ability_oracle_purifying_flames_imba"                      "Purifying Flames IMBA"
+        "DOTA_Tooltip_ability_oracle_purifying_flames_imba_Description"          "Burns away impurities, dealing heavy magic damage to the target before causing them to regenerate health over time. The amount of health regenerated over its duration exceeds the amount of initial damage. Can be cast on enemies and allies.\n\nUpgradable by Aghanim's Scepter."
+        "DOTA_Tooltip_ability_oracle_purifying_flames_imba_Lore"                 "Like a hall of mirrors might amplify the light of a single candle, the shattered walls of the universe can transform the light of prophecy into a burning torch."
+        "DOTA_Tooltip_ability_oracle_purifying_flames_imba_aghanim_description"  "Reduces cooldown and improves cast point."
+        "DOTA_Tooltip_ability_oracle_purifying_flames_imba_damage"               "DAMAGE:"
+        "DOTA_Tooltip_ability_oracle_purifying_flames_imba_heal_per_second"      "HEAL PER SECOND:"
+        "DOTA_Tooltip_ability_oracle_purifying_flames_imba_total_heal_tooltip"       "TOTAL HEAL:"
+        "DOTA_Tooltip_ability_oracle_purifying_flames_imba_duration"             "DURATION:"
+        "DOTA_Tooltip_ability_oracle_purifying_flames_imba_cooldown_scepter"     "SCEPTER COOLDOWN:"
+        "DOTA_Tooltip_ability_oracle_purifying_flames_imba_Note0"                        "The healing from Purifying Flames can be stacked with itself."
+        
+        "DOTA_Tooltip_ability_oracle_false_promise_imba"                         "False Promise IMBA"
+        "DOTA_Tooltip_ability_oracle_false_promise_imba_Description"             "Temporarily alters an ally's destiny, delaying any healing or damage taken until False Promise ends. Any healing that is delayed by False Promise is doubled. Removes most negative status effects and disables on initial cast.\n\nDISPEL TYPE: Strong Dispel"
+        "DOTA_Tooltip_ability_oracle_false_promise_imba_Lore"                    "Foes and false prophets oft make lies of men's fates."
+        "DOTA_Tooltip_ability_oracle_false_promise_imba_duration"                "DURATION:"
+        "DOTA_Tooltip_ability_oracle_false_promise_imba_Note0"                   "Delayed damage and healing will take armor and magic resistance reductions into account when received."
+        "DOTA_Tooltip_ability_oracle_false_promise_imba_Note1"                   "The delayed damage and healing takes effect as soon as the target becomes vulnerable."
     
 }
