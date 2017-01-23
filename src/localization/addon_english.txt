@@ -1278,7 +1278,6 @@
     "credit_angel_arena_magic_fire"          "<font color=\'#7D7D7D\'>Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
     "credit_angel_arena_night_vampire"           "<font color=\'#7D7D7D\'>Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
     "credit_angel_arena_revenge"          "<font color=\'#7D7D7D\'>Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
-    "credit_angel_arena_rifle"           "<font color=\'#7D7D7D\'>Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
     "credit_angel_arena_rifle_OP"           "<font color=\'#7D7D7D\'>Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
     "credit_angel_arena_roots"           "<font color=\'#7D7D7D\'>Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
     "credit_angel_arena_shot"           "<font color=\'#7D7D7D\'>Imported from <font color='#ffffff'>Angel <font color='#FF4949'>Arena</font> Reborn.</font></font>"
@@ -3295,18 +3294,6 @@
     "DOTA_Tooltip_ability_angel_arena_roots_radius"                 "RADIUS:"
     "DOTA_Tooltip_ability_angel_arena_roots_damage"                 "DAMAGE:"
     "DOTA_Tooltip_ability_angel_arena_roots_armor_reduction"        "ARMOR REDUCE:"
-
-    "DOTA_Tooltip_ability_angel_arena_rifle"                            "Toggle Rifle"
-    "DOTA_Tooltip_ability_angel_arena_rifle_Description"                "Toggle between Rifle Mode or Machine-Gun mode. While in Machine-Gun mode, some items will be disabled (such as bash)."
-    "DOTA_Tooltip_ability_angel_arena_rifle_gun_base_attack_time"       "GUN BASE ATTACK:"
-    "DOTA_Tooltip_ability_angel_arena_rifle_gun_range_tooltip"          "GUN RANGE:"
-    "DOTA_Tooltip_ability_angel_arena_rifle_gun_bonus_attack"           "%GUN ATTACK PENALTY:"
-    "DOTA_Tooltip_ability_angel_arena_rifle_gun_bonus_movespeed"        "GUN MOVEMENT SLOW:"
-
-    "DOTA_Tooltip_ability_angel_arena_rifle_rifle_base_attack_time"     "RIFLE BASE ATTACK:"
-    "DOTA_Tooltip_ability_angel_arena_rifle_rifle_range_tooltip"        "RIFLE RANGE:"
-    "DOTA_Tooltip_ability_angel_arena_rifle_rifle_bonus_movespeed"      "RIFLE MOVESPEED BONUS:"
-    "DOTA_Tooltip_ability_angel_arena_rifle_bonus_attack"               "RIFLE BONUS DAMAGE:"
 
     "DOTA_Tooltip_ability_angel_arena_rifle_OP"                         "Toggle Rifle OP"
     "DOTA_Tooltip_ability_angel_arena_rifle_OP_Description"             "Toggle between Rifle Mode or Machine-Gun mode. While in Machine-Gun mode, some items will be disabled (such as bash). <font color='#70EA72'>Has less movement and damage penalty.</font>"
