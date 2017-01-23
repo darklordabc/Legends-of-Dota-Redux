@@ -7538,5 +7538,39 @@
         "DOTA_Tooltip_ability_medusa_stone_gaze_imba_bonus_physical_damage"          "%BONUS PHYSICAL DAMAGE:"
         "DOTA_Tooltip_ability_medusa_stone_gaze_imba_duration"                       "DURATION:"
         "DOTA_Tooltip_ability_medusa_stone_gaze_imba_stone_duration"                 "STONE DURATION:"
+
+        //NAGA SIREN
+        "DOTA_Tooltip_ability_naga_siren_mirror_image_imba"                          "Mirror Image IMBA"
+        "DOTA_Tooltip_ability_naga_siren_mirror_image_imba_Description"              "Creates images of Naga Siren under her control.\n\nDISPEL TYPE: Basic Dispel"
+        "DOTA_Tooltip_ability_naga_siren_mirror_image_imba_Lore"                     "Slithice, while being strong in her own right, is notoriously hard to track down."
+        "DOTA_Tooltip_ability_naga_siren_mirror_image_imba_Note0"                    "Naga Siren is invulnerable for 0.3 seconds when casting, allowing her to dodge stuns and damage."
+        "DOTA_Tooltip_ability_naga_siren_mirror_image_imba_Note1"                    "Upon casting, most effects are removed from Naga Siren."
+        "DOTA_Tooltip_ability_naga_siren_mirror_image_imba_illusion_duration"        "IMAGE DURATION:"
+        "DOTA_Tooltip_ability_naga_siren_mirror_image_imba_outgoing_damage_tooltip"  "%IMAGE DAMAGE:"
+        "DOTA_Tooltip_ability_naga_siren_mirror_image_imba_tooltip_incoming_damage_total_pct"            "%IMAGE DAMAGE TAKEN:"
+        
+        "DOTA_Tooltip_ability_naga_siren_ensnare_imba"                               "Ensnare IMBA"
+        "DOTA_Tooltip_ability_naga_siren_ensnare_imba_Description"                   "Interrupts the target and traps them in place, preventing movement or blinking."
+        "DOTA_Tooltip_ability_naga_siren_ensnare_imba_Lore"                          "The only way to escape the onslaught of a Slithereen is to never oppose one in the first place."
+        "DOTA_Tooltip_ability_naga_siren_ensnare_imba_Note0"                         "Works on Spell Immune units."
+        "DOTA_Tooltip_ability_naga_siren_ensnare_imba_duration"                      "DURATION:"
+        
+        "DOTA_Tooltip_ability_naga_siren_rip_tide_imba"                              "Rip Tide IMBA"
+        "DOTA_Tooltip_ability_naga_siren_rip_tide_imba_Description"                  "The Naga Siren and her images hit all nearby units with a damaging wave of water that lowers armor for 8 seconds."
+        "DOTA_Tooltip_ability_naga_siren_rip_tide_imba_Lore"                         "A torrent from the Deep Ones crushes the defenses of the Siren's enemies."
+        "DOTA_Tooltip_ability_naga_siren_rip_tide_imba_Note0"                        "Naga's illusions will also cast Rip Tide, but enemies in multiple areas of effect will only be hit once."
+        "DOTA_Tooltip_ability_naga_siren_rip_tide_imba_armor_reduction"              "ARMOR REDUCTION:"
+        "DOTA_Tooltip_ability_naga_siren_rip_tide_imba_duration"                     "DURATION:"
+        
+        "DOTA_Tooltip_ability_naga_siren_song_of_the_siren_imba"                     "Song of the Siren IMBA"
+        "DOTA_Tooltip_ability_naga_siren_song_of_the_siren_imba_Description"         "All enemies in range of the Naga Siren are put into a magical stasis where they cannot act or be attacked. Using Song of the Siren again will end the duration early.\n\nUpgradable by Aghanim's Scepter."
+        "DOTA_Tooltip_ability_naga_siren_song_of_the_siren_imba_Lore"                "Slithice's powerful voice enchants leagues of opponents, while calling her Slithereen kin in a time of need."
+        "DOTA_Tooltip_ability_naga_siren_song_of_the_siren_imba_Note0"               "Units affected by Song of the Siren are invulnerable and cannot take damage from any source."
+        "DOTA_Tooltip_ability_naga_siren_song_of_the_siren_imba_Note1"               "Doesn't affect Spell Immune units."
+        "DOTA_Tooltip_ability_naga_siren_song_of_the_siren_imba_Note2"               "The area of the song follows Naga, so if she moves far enough away from affected units, they will wake up."
+        "DOTA_Tooltip_ability_naga_siren_song_of_the_siren_imba_aghanim_description"     "Song of the Siren regenerates all nearby allies for 10% of their health per second."
+        "DOTA_Tooltip_ability_naga_siren_song_of_the_siren_imba_duration"            "DURATION:"
+        "DOTA_Tooltip_ability_naga_siren_song_of_the_siren_imba_radius"              "RADIUS:"
+        "DOTA_Tooltip_ability_naga_siren_song_of_the_siren_imba_regen_rate_tooltip_scepter" "%SCEPTER HEALTH REGEN:"
     
 }
