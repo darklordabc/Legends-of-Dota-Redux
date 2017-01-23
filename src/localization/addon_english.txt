@@ -7382,5 +7382,40 @@
         "DOTA_Tooltip_ability_keeper_of_the_light_blinding_light_imba_knockback_distance"        "KNOCKBACK DISTANCE:"
         "DOTA_Tooltip_ability_keeper_of_the_light_blinding_light_imba_miss_duration"         "DURATION:"
         "DOTA_Tooltip_ability_keeper_of_the_light_blinding_light_imba_miss_rate"         "%MISS CHANCE:"
+
+        //LEGION COMMANDER IMBA
+        "DOTA_Tooltip_ability_legion_commander_overwhelming_odds_imba"               "Overwhelming Odds IMBA"
+        "DOTA_Tooltip_ability_legion_commander_overwhelming_odds_imba_Description"   "Turns the enemies' numbers against them, dealing damage and granting you bonus movement speed per unit or per hero.  Deals bonus damage to illusions and summoned units as a percent of their current health."
+        "DOTA_Tooltip_ability_legion_commander_overwhelming_odds_imba_Lore"          "The archers of Stonehall are ready at Tresdin's command."
+        "DOTA_Tooltip_ability_legion_commander_overwhelming_odds_imba_radius"        "RADIUS:"
+        "DOTA_Tooltip_ability_legion_commander_overwhelming_odds_imba_damage"        "BASE DAMAGE:"
+        "DOTA_Tooltip_ability_legion_commander_overwhelming_odds_imba_damage_per_unit" "DAMAGE PER CREEP:"
+        "DOTA_Tooltip_ability_legion_commander_overwhelming_odds_imba_damage_per_hero" "DAMAGE PER HERO:"        
+        "DOTA_Tooltip_ability_legion_commander_overwhelming_odds_imba_illusion_dmg_pct"  "%ILLUSION DAMAGE:"
+        "DOTA_Tooltip_ability_legion_commander_overwhelming_odds_imba_bonus_speed_creeps"    "%BONUS SPEED (CREEPS):"
+        "DOTA_Tooltip_ability_legion_commander_overwhelming_odds_imba_bonus_speed_heroes"    "%BONUS SPEED (HEROES):"
+        "DOTA_Tooltip_ability_legion_commander_overwhelming_odds_imba_duration"      "SPEED DURATION:"
+        
+        "DOTA_Tooltip_ability_legion_commander_press_the_attack_imba"                "Press The Attack IMBA"
+        "DOTA_Tooltip_ability_legion_commander_press_the_attack_imba_Description"    "Removes debuffs and disables from the target friendly unit, and grants bonus attack speed and health regen for a short time.\n\nDISPEL TYPE: Strong Dispel"
+        "DOTA_Tooltip_ability_legion_commander_press_the_attack_imba_Lore"           "The rallying horn of the Bronze Legion is able to inspire any heart."
+        "DOTA_Tooltip_ability_legion_commander_press_the_attack_imba_duration"       "DURATION:"
+        "DOTA_Tooltip_ability_legion_commander_press_the_attack_imba_attack_speed"   "BONUS ATTACK SPEED:"
+        "DOTA_Tooltip_ability_legion_commander_press_the_attack_imba_hp_regen"       "HP REGEN:"
+        
+        "DOTA_Tooltip_ability_legion_commander_moment_of_courage_imba"               "Moment of Courage IMBA"
+        "DOTA_Tooltip_ability_legion_commander_moment_of_courage_imba_Description"   "When attacked, Legion Commander has a chance to immediately counterattack with bonus lifesteal."
+        "DOTA_Tooltip_ability_legion_commander_moment_of_courage_imba_Lore"          "Tresdin knows that an enemy's most vulnerable moment often follows their fiercest stroke."
+        "DOTA_Tooltip_ability_legion_commander_moment_of_courage_imba_trigger_chance"  "%COUNTERATTACK CHANCE:"
+        "DOTA_Tooltip_ability_legion_commander_moment_of_courage_imba_hp_leech_percent" "%LIFESTEAL:"
+        
+        "DOTA_Tooltip_ability_legion_commander_duel_imba"                            "Duel IMBA"
+        "DOTA_Tooltip_ability_legion_commander_duel_imba_Description"                "Legion Commander and the target enemy hero are forced to attack each other for a short duration.  Neither hero can use items or abilities.  If either hero dies during the duration, the hero winning the Duel gains permanent bonus damage.\n\nUpgradable by Aghanim's Scepter."
+        "DOTA_Tooltip_ability_legion_commander_duel_imba_duration"                   "DURATION:"
+        "DOTA_Tooltip_ability_legion_commander_duel_imba_reward_damage"              "BONUS DAMAGE:"
+        "DOTA_Tooltip_ability_legion_commander_duel_imba_duration_scepter"           "SCEPTER DURATION:"
+        "DOTA_Tooltip_ability_legion_commander_duel_imba_aghanim_description"        "Increases Duel duration and makes Legion Commander and her opponent only take damage from each other."
+        "DOTA_Tooltip_ability_legion_commander_duel_imba_Note0"                      "Duels will end if the units are pushed 2000 units apart."
+        "DOTA_Tooltip_ability_legion_commander_duel_imba_Lore"                       "To face a soldier of Stonehall in single combat is a challenge few can resist."
     
 }
