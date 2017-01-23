@@ -7572,5 +7572,40 @@
         "DOTA_Tooltip_ability_naga_siren_song_of_the_siren_imba_duration"            "DURATION:"
         "DOTA_Tooltip_ability_naga_siren_song_of_the_siren_imba_radius"              "RADIUS:"
         "DOTA_Tooltip_ability_naga_siren_song_of_the_siren_imba_regen_rate_tooltip_scepter" "%SCEPTER HEALTH REGEN:"
+
+        //FURION IMBA
+        "DOTA_Tooltip_ability_furion_sprout_imba"                                            "Sprout IMBA"
+        "DOTA_Tooltip_ability_furion_sprout_imba_Description"                                "Sprouts a ring of trees around a unit, trapping it in place."
+        "DOTA_Tooltip_ability_furion_sprout_imba_Lore"                                       "Verdant overgrowth is a common ailment reported by Nature's Prophet's attackers."
+        "DOTA_Tooltip_ability_furion_sprout_imba_Note0"                                      "Sprout can be cast on any unit, or the ground."
+        "DOTA_Tooltip_ability_furion_sprout_imba_Note1"                                      "Trees created by Sprout have the same interactions with abilities as regular trees."
+        "DOTA_Tooltip_ability_furion_sprout_imba_duration"                                   "DURATION:"
+        "DOTA_Tooltip_ability_furion_sprout_imba_cast_range_tooltip"                     "CAST RANGE:"
+        
+        "DOTA_Tooltip_ability_furion_teleportation_imba"                                     "Teleportation IMBA"
+        "DOTA_Tooltip_ability_furion_teleportation_imba_Description"                         "Teleports to any point on the map."
+        "DOTA_Tooltip_ability_furion_teleportation_imba_Lore"                                "The Prophet keeps his sentinel over the forest, protecting it when in need."
+        "DOTA_Tooltip_ability_furion_teleportation_imba_Note0"                               "Teleport takes 3 seconds to cast."
+        "DOTA_Tooltip_ability_furion_teleportation_imba_Note1"                               "Mana and cooldown take effect when the cast is completed.  Nature's Prophet will not use any mana or waste the cooldown if the spell is interrupted while casting."
+        "DOTA_Tooltip_ability_furion_teleportation_imba_Note2"                               "When the cast begins, an effect is created at the target location, which is visible to allies and enemies."
+       
+        "DOTA_Tooltip_ability_furion_force_of_nature_imba"                                   "Nature's Call IMBA"
+        "DOTA_Tooltip_ability_furion_force_of_nature_imba_Description"                       "Converts an area of trees into Treants. Treants have %treant_health_tooltip% health and deal %treant_min_dmg_tooltip%-%treant_max_dmg_tooltip% damage."
+        "DOTA_Tooltip_ability_furion_force_of_nature_imba_Lore"                              "Verodicia bestowed the Prophet with the ability to summon the Treant Guard, a mythical sentient army of the wild."
+        "DOTA_Tooltip_ability_furion_force_of_nature_imba_Note0"                             "Nature's Call can only create as many treants as there are trees in the target area."
+        "DOTA_Tooltip_ability_furion_force_of_nature_imba_duration"                          "TREANT DURATION:"
+        "DOTA_Tooltip_ability_furion_force_of_nature_imba_max_treants"                       "TREANT COUNT:"
+        
+        "DOTA_Tooltip_ability_furion_wrath_of_nature_imba"                                   "Wrath of Nature IMBA"
+        "DOTA_Tooltip_ability_furion_wrath_of_nature_imba_Description"                       "Damaging energy bounces around the map, striking enemies close to the cast point that are in vision. Each enemy hit beyond the first adds damage.\n\nUpgradable by Aghanim's Scepter."
+        "DOTA_Tooltip_ability_furion_wrath_of_nature_imba_Lore"                              "Nature's Prophet calls Verodicia's fury to strike down those who might ravage the wilderness."
+        "DOTA_Tooltip_ability_furion_wrath_of_nature_imba_Note0"                             "Wrath of Nature will not hit units out of vision."
+        "DOTA_Tooltip_ability_furion_wrath_of_nature_imba_Note1"                             "Can be cast through the minimap; the nearest valid target will be selected."
+        "DOTA_Tooltip_ability_furion_wrath_of_nature_imba_max_targets"                       "MAX TARGETS:"
+        "DOTA_Tooltip_ability_furion_wrath_of_nature_imba_damage"                            "DAMAGE:"
+        "DOTA_Tooltip_ability_furion_wrath_of_nature_imba_damage_percent_add"                "%ADDED DAMAGE PER BOUNCE:"
+        "DOTA_Tooltip_ability_furion_wrath_of_nature_imba_damage_scepter"                    "SCEPTER DAMAGE:"
+        "DOTA_Tooltip_ability_furion_wrath_of_nature_imba_buffer_tooltip_scepter"            "SCEPTER TREANT SPAWN TIMER:"
+        "DOTA_Tooltip_ability_furion_wrath_of_nature_imba_aghanim_description"               "Increases damage. If a unit is killed by Wrath of Nature, or within 4 seconds thereafter, a Nature's Call treant will spawn. These treants' health and damage are based on the current level of Nature's Call. If a hero is killed, a Greater Treant will be created, which has 3 times as much health and damage."
     
 }
