@@ -9,6 +9,9 @@ All notable changes to this project will be documented in this file.
 ### Balance
 - Disabled Shadow Demon's perk because its abuseable. 
 - Removed angel arena rifle from the game. It should not of been added
+- Increased price of Panda's demolosih 
+- Added Essence Aura to OP Ban list, added balanced Redux version. 
+- Reenabled Global Disarm
 
 ## 5.1 - Steam Version- Development Version
 ### Bug Fixing/New Features
