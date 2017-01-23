@@ -63812,7 +63812,323 @@
 		}
 	}
 
+	//=================================================================================================================
+	// Ability: Phantom Lancer's Spirit Lance
+	//=================================================================================================================
+	"phantom_lancer_spirit_lance_imba"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"					"phantom_lancer_spirit_lance"
+		"ID"					"5065"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"FightRecapLevel"				"1"
+		"HasScepterUpgrade"				"1"
 
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"7.0 7.0 7.0 7.0"
+
+		// Damage.
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"100 150 200 250"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"125 130 135 140"		
+		
+		// Cast Range
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"750"
+		
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_phantom_lancer.vsndevts"
+			"particle" "particles/units/heroes/hero_phantom_lancer/phantomlancer_spiritlance_projectile.vpcf"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"lance_speed"				"1000"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"3.25"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"movement_speed_pct"		"-10 -20 -30 -40"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"illusion_duration"			"8.0"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"illusion_damage_out_pct"	"-80 -70 -60 -50"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"tooltip_illusion_damage"	"20 30 40 50"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"illusion_damage_in_pct"	"100"
+			}
+			"08"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"tooltip_illusion_total_damage_in_pct"	"200"
+			}			
+			"09"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"fake_lance_distance"		"750"
+			}
+			"10"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"scepter_radius"			"600"
+			}
+			"11"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"scepter_jumps"				"5"
+			}
+			"12"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"lance_speed_bounces"		"900"
+			}
+		}		
+	}
+
+	//=================================================================================================================
+	// Ability: Phantom Lancer's Doppelwalk
+	//=================================================================================================================
+	"phantom_lancer_doppelwalk_imba"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"					"phantom_lancer_doppelwalk"
+		"ID"					"5066"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"FightRecapLevel"				"1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"					"700 800 900 1000"
+		"AbilityCastPoint"				"0.1"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"					"20 16 12 8"
+			
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_phantom_lancer.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"illusion_1_damage_out_pct"	"-70"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"illusion_1_damage_in_pct"	"0"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"illusion_2_damage_out_pct"	"-70"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"illusion_2_damage_in_pct"	"0"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"target_aoe"				"325"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"search_radius"				"1000"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"delay"						"1"
+			}			
+			"08"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"illusion_duration"			"12"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Phantom Lancer's Juxtapose
+	//=================================================================================================================
+	"phantom_lancer_juxtapose_imba"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"					"phantom_lancer_juxtapose"
+		"ID"					"5067"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_phantom_lancer.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"max_illusions"				"5 7 9"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"proc_chance_pct"			"50 75 100"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"illusion_proc_chance_pct"	"10 15 20"
+			}			
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"illusion_duration"			"8"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"illusion_damage_out_pct"	"-50"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"tooltip_illusion_damage"	"50"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"illusion_damage_in_pct"	"400"
+			}
+			"08"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"tooltip_total_illusion_damage_in_pct"	"500"
+			}
+			"09"
+			{
+				"var_type"								"FIELD_INTEGER"
+				"illusion_from_illusion_duration"		"4"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Phantom Lancer's Phantom Rush / Phantom Edge
+	//=================================================================================================================
+	"phantom_lancer_phantom_edge_imba"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"					"phantom_lancer_phantom_edge"
+		"ID"					"5068"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"					"16 8 4 2"
+		
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"						"soundevents/game_sounds_heroes/game_sounds_phantom_lancer.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"min_distance"				"200"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"max_distance"				"800 1200 1600 2000"
+				"LinkedSpecialBonus"		"special_bonus_unique_phantom_lancer"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_speed"				"900 1000 1100 1200"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_agility"				"12 18 24 30"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"agility_duration"			"3"
+			}
+		}
+	}
 
 
 
