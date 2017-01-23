@@ -7480,5 +7480,26 @@
         "DOTA_Tooltip_ability_life_stealer_open_wounds_imba_slow_tooltip"                    "%MAX SLOW:"
         "DOTA_Tooltip_ability_life_stealer_open_wounds_imba_duration"                        "DURATION:"
         "DOTA_Tooltip_ability_life_stealer_open_wounds_imba_tooltip_range"                   "CAST RANGE:"
+
+        //LUNA IMBA
+        "DOTA_Tooltip_ability_luna_lucent_beam_imba"                                         "Lucent Beam IMBA"
+        "DOTA_Tooltip_ability_luna_lucent_beam_imba_Description"                             "Calls a beam of lunar energy down upon an enemy, damaging and briefly stunning them."
+        "DOTA_Tooltip_ability_luna_lucent_beam_imba_Lore"                                    "Selemene smites those who encroach upon the Nightsilver Woods."
+        "DOTA_Tooltip_ability_luna_lucent_beam_imba_stun_duration"                           "STUN DURATION:"
+        "DOTA_Tooltip_ability_luna_lucent_beam_imba_beam_damage"                             "BEAM DAMAGE:"
+        
+        "DOTA_Tooltip_ability_luna_moon_glaive_imba"                                         "Moon Glaive IMBA"
+        "DOTA_Tooltip_ability_luna_moon_glaive_imba_Description"                             "Empowers Luna's glaive, causing her attacks to bounce between enemy units. Deals less damage with each bounce."
+        "DOTA_Tooltip_ability_luna_moon_glaive_imba_Lore"                                    "Carefully sharpened, Luna's boomerang-like weapon cuts a wide swath through enemy numbers."
+        "DOTA_Tooltip_ability_luna_moon_glaive_imba_range"                                   "BOUNCE RADIUS:"
+        "DOTA_Tooltip_ability_luna_moon_glaive_imba_bounces"                                 "BOUNCES:"
+        "DOTA_Tooltip_ability_luna_moon_glaive_imba_damage_reduction_percent"                "%DAMAGE REDUCTION PER BOUNCE:"
+        
+        "DOTA_Tooltip_ability_luna_lunar_blessing_imba"                                      "Lunar Blessing IMBA"
+        "DOTA_Tooltip_ability_luna_lunar_blessing_imba_Lore"                                 "The Goddess of the Moon smiles upon her kin."
+        "DOTA_Tooltip_ability_luna_lunar_blessing_imba_Description"                          "Increases the damage dealt by attacks from Luna and nearby allied heroes. Luna is also blessed with increased vision range at night."
+        "DOTA_Tooltip_ability_luna_lunar_blessing_imba_radius"                               "BLESSING RADIUS:"
+        "DOTA_Tooltip_ability_luna_lunar_blessing_imba_bonus_damage"                         "BONUS DAMAGE:"
+        "DOTA_Tooltip_ability_luna_lunar_blessing_imba_bonus_night_vision"                   "BONUS NIGHT VISION:"
     
 }
