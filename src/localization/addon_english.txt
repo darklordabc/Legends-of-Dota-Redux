@@ -7453,5 +7453,32 @@
         "DOTA_Tooltip_ability_leshrac_pulse_nova_imba_damage"                                "DAMAGE:"
         "DOTA_Tooltip_ability_leshrac_pulse_nova_imba_damage_scepter"                        "SCEPTER DAMAGE:"
         "DOTA_Tooltip_ability_leshrac_pulse_nova_imba_aghanim_description"                   "Increases damage per second."
+
+        //LIFESTEALER IMBA
+        "DOTA_Tooltip_ability_life_stealer_rage_imba"                                        "Rage IMBA"
+        "DOTA_Tooltip_ability_life_stealer_rage_imba_Description"                            "Launch into a maddened rage, becoming Spell Immune, 100% resistant to magic damage, and gaining increased attack speed.\n\nDISPEL TYPE: Basic Dispel"
+        "DOTA_Tooltip_ability_life_stealer_rage_imba_Lore"                                   "The madness and brutality of N'aix makes him a vicious and unrelenting foe in combat."
+        "DOTA_Tooltip_ability_life_stealer_rage_imba_Note0"                                      "Upon casting, many buffs and debuffs will be removed."
+        "DOTA_Tooltip_ability_life_stealer_rage_imba_attack_speed_bonus"                     "ATTACK SPEED BONUS:"
+        "DOTA_Tooltip_ability_life_stealer_rage_imba_duration"                               "DURATION:"
+        
+        "DOTA_Tooltip_ability_life_stealer_feast_imba"                                       "Feast IMBA"
+        "DOTA_Tooltip_ability_life_stealer_feast_imba_Description"                           "Lifestealer's attacks damage enemies and heal himself for a percentage of his target's current health."        
+        "DOTA_Tooltip_ability_life_stealer_feast_imba_Lore"                                  "After escaping from his cell in Devarque, N'aix subsisted on flesh and bones of those unfortunate to cross his path." 
+        "DOTA_Tooltip_ability_life_stealer_feast_imba_Note0"                                 "Does not affect Roshan."
+        "DOTA_Tooltip_ability_life_stealer_feast_imba_Note1"                                 "Affects Spell Immune units."
+        "DOTA_Tooltip_ability_life_stealer_feast_imba_Note2"                                 "The heal is independent of the damage."
+        "DOTA_Tooltip_ability_life_stealer_feast_imba_Note3"                                 "Stacks additively with other sources of Lifesteal."
+        "DOTA_Tooltip_ability_life_stealer_feast_imba_hp_leech_percent"                      "%LIFE LEECH:"
+        
+        "DOTA_Tooltip_ability_life_stealer_open_wounds_imba"                                 "Open Wounds IMBA"
+        "DOTA_Tooltip_ability_life_stealer_open_wounds_imba_Description"                     "Lifestealer rends an enemy unit, slowing the victim's movement speed and allowing all allies to regain health for a percentage of the damage they deal to that unit. All damage dealt will steal life, including damage from spells. The victim recovers movement speed over the duration."
+        "DOTA_Tooltip_ability_life_stealer_open_wounds_imba_Lore"                            "Fresh wounds and the scent of blood often draw out the scavengers to finish the job."
+        "DOTA_Tooltip_ability_life_stealer_open_wounds_imba_Note0"                           "Open Wounds slows over 8 different steps: 70% / 70% / 60% / 50% / 30% / 10% / 10% / 10%, with the slow decreasing one step per second."
+        "DOTA_Tooltip_ability_life_stealer_open_wounds_imba_Note1"                           "Stacks additively with other sources of Lifesteal."
+        "DOTA_Tooltip_ability_life_stealer_open_wounds_imba_heal_percent"                    "%LIFE LEECH:"
+        "DOTA_Tooltip_ability_life_stealer_open_wounds_imba_slow_tooltip"                    "%MAX SLOW:"
+        "DOTA_Tooltip_ability_life_stealer_open_wounds_imba_duration"                        "DURATION:"
+        "DOTA_Tooltip_ability_life_stealer_open_wounds_imba_tooltip_range"                   "CAST RANGE:"
     
 }
