@@ -1073,7 +1073,7 @@
     "unique_mechanic_riki"                  "Riki's health regeneration is increased by 4 while invisible."
     "unique_mechanic_rubick"                        "Rubick gains 1 free level of <font color=\'#ffd966\'>Null Field</font>, whether he has it or not. "
     "unique_mechanic_sand_king"                        "Refund 30% of the manacost of <font color=\'#ffd966\'>Channeled</font> abilities. "
-    "unique_mechanic_shadow_demon"                        "When Shadow Demon buys an item that is limited by stock, he gains a permanent +1 to all attributes."
+    //"unique_mechanic_shadow_demon"                        "When Shadow Demon buys an item that is limited by stock, he gains a permanent +1 to all attributes."
     "unique_mechanic_nevermore"             "At the start of the game, Shadow Fiend gains a free level of <font color=\'#ffd966\'>Necromastery</font>, whether he has it or not."
     "unique_mechanic_shadow_shaman"             "Shadow Shaman refunds the manacost of <font color=\'#ffd966\'>Hex</font> spells and reduces their cooldowns by 20%."
     "unique_mechanic_silencer"                        "<font color=\'#ffd966\'>Silence</font> effects applied by Silencer last 25% longer."

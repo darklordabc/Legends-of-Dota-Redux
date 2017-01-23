@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 - 
 
 ### Balance
-- 
+- Disabled Shadow Demon's perk because its abuseable. 
 
 ## 5.1 - Steam Version- Development Version
 ### Bug Fixing/New Features
