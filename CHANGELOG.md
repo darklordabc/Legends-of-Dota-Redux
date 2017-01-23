@@ -2,10 +2,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 5.2 - Development Version
+## 5.3 - Development Version
 ### Bug Fixing/New Features
 - 
 
+### Balance
+-
+
+## 5.2 - Steam Version
 ### Balance
 - Disabled Shadow Demon's perk because its abuseable. 
 - Removed angel arena rifle from the game. It should not of been added
@@ -13,7 +17,7 @@ All notable changes to this project will be documented in this file.
 - Added Essence Aura to OP Ban list, added balanced Redux version. 
 - Reenabled Global Disarm
 
-## 5.1 - Steam Version- Development Version
+## 5.1 
 ### Bug Fixing/New Features
 - Fixed Gotta Go Quick mutator making heros slower
 - Fixed incorrect tooltip in free ability mutator
