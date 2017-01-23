@@ -1751,7 +1751,20 @@
     "DOTA_Tooltip_modifier_essence_aura_effect_lod"                      "Essence Aura"
     "DOTA_Tooltip_modifier_essence_aura_effect_lod_Description"          "After casting a spell, you have a chance to restore a percentage of your mana pool."
 
-    // Essence Aura
+    // Essence Aura Redux
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_redux"                      "Essence Aura Redux"
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_redux_Description"          "Whenever nearby allied Heroes or Outworld Devourer itself casts a spell, it gains a chance to restore a percentage of its mana pool.  Outworld Devourer also passively gains a bonus to its base mana pool.  Several skills with no cooldown and toggled spells cannot trigger Essence Aura. <font color='#70EA72'>Less chance to trigger</font>."
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_redux_Lore"                 "The crystals of the Outworld produce arcane power, and the Harbinger channels it into the world of mortals."
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_redux_Note0"                "Other than Arcane Orb, most skills without cooldowns cannot trigger Essence Aura."
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_redux_radius"               "RADIUS:"
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_redux_bonus_mana"           "BASE MANA:"
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_redux_restore_amount"           "%RESTORED MANA:"
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_redux_restore_chance"       "%RESTORE CHANCE:"
+
+    "DOTA_Tooltip_modifier_essence_aura_effect_lod"                      "Essence Aura"
+    "DOTA_Tooltip_modifier_essence_aura_effect_lod_Description"          "After casting a spell, you have a chance to restore a percentage of your mana pool."
+
+    // Essence Aura Health
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health"                      "Essence Aura Health"
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health_Description"          "Whenever nearby allied Heroes or Outworld Devourer itself casts a spell, it gains a chance to restore a percentage of its <font color='#70EA72'>health</font> pool.  Outworld Devourer also passively gains a bonus to its base <font color='#70EA72'>health</font> pool.  Several skills with no cooldown and toggled spells cannot trigger Essence Aura."
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health_Lore"                 "The crystals of the Outworld produce arcane power, and the Harbinger channels it into the world of mortals."
