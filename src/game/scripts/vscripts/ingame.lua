@@ -1128,15 +1128,6 @@ function Ingame:checkBuybackStatus()
     function(keys)
         local unit = EntIndexToHScript(keys.entindex)
 
-        -- Spellfix: Give Eyes in the Forest a notification for nearby enemies.
-        if unit:GetName() == "npc_dota_treant_eyes" then
-            Timers:CreateTimer(function()
-                unit:AddAbility("treant_eyes_in_the_forest_notification")
-                local noticeAura = unit:FindAbilityByName("treant_eyes_in_the_forest_notification")
-                noticeAura:SetLevel(1)
-            end, DoUniqueString('eyesFix'), 0.5)
-        end
-
         if IsValidEntity(unit) then
             if unit:IsHero() and OptionManager:GetOption('buybackCooldownConstant') ~= 420 then
                 Timers:CreateTimer(

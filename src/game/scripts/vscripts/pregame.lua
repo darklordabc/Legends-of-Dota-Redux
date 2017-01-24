@@ -5901,6 +5901,16 @@ function Pregame:fixSpawningIssues()
 
         -- Ensure it's a valid unit
         if IsValidEntity(spawnedUnit) then
+
+            -- Spellfix: Give Eyes in the Forest a notification for nearby enemies.
+            if spawnedUnit:GetName() == "npc_dota_treant_eyes" then
+                Timers:CreateTimer(function()
+                    spawnedUnit:AddAbility("treant_eyes_in_the_forest_notification")
+                    local noticeAura = spawnedUnit:FindAbilityByName("treant_eyes_in_the_forest_notification")
+                    noticeAura:SetLevel(1)
+                end, DoUniqueString('eyesFix'), 0.5)
+            end
+
             if Wearables:HasDefaultWearables( spawnedUnit:GetUnitName() ) then
                 Wearables:AttachWearableList( spawnedUnit, Wearables:GetDefaultWearablesList( spawnedUnit:GetUnitName() ) )
             end
