@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 5.3 - Development Version
 ### Bug Fixing/New Features
 - Various prices tweaks in points mode
+- Fixed healing aura ability
 
 ### Balance
 - Rapid Fire and Infernal blade now a troll combo (cause infernal blade abuseable bug)

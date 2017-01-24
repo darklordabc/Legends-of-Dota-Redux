@@ -4738,6 +4738,11 @@
         "DOTA_Tooltip_ability_imba_juggernaut_healing_ward_passive_heal_radius"             "HEALING RADIUS:"
         "DOTA_Tooltip_ability_imba_juggernaut_healing_ward_passive_heal_per_sec"            "%HEALING PER SECOND:"
 
+        "DOTA_Tooltip_ability_imba_juggernaut_healing_ward_passive_redux"                         "Healing Aura"
+        "DOTA_Tooltip_ability_imba_juggernaut_healing_ward_passive_redux_Description"             "Heals all nearby allied units."
+        "DOTA_Tooltip_ability_imba_juggernaut_healing_ward_passive_redux_heal_radius"             "HEALING RADIUS:"
+        "DOTA_Tooltip_ability_imba_juggernaut_healing_ward_passive_redux_heal_per_sec"            "%HEALING PER SECOND:"
+
         "DOTA_Tooltip_ability_imba_juggernaut_healing_ward_upgrade"                         "Fortify Ward"
         "DOTA_Tooltip_ability_imba_juggernaut_healing_ward_upgrade_Description"             "Transform this ward into a Healing Totem, becoming immobile, but gaining +%radius_bonus_totem% healing radius, +%heal_bonus_totem%%% healing per second, and +%health_bonus_totem% health."
 
