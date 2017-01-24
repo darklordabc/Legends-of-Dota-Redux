@@ -32723,6 +32723,51 @@
 				}
 			}
 	}
+
+	"treant_eyes_in_the_forest_notification"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityTextureName"			"treant_eyes_in_the_forest"
+		"MaxLevel"						"1"
+	
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"1000"
+			}
+		}
+				
+		"Modifiers"
+			{
+				"modifier_eyes_in_the_forest_notification"
+				{
+					"Passive"			"1"
+					"IsHidden"			"1"
+					"IsDebuff"			"0"
+				
+					"Aura"          	"modifier_eyes_in_the_forest_notification_eff"
+					"Aura_Radius"   	"%radius"
+					"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Aura_Types"    	"DOTA_UNIT_TARGET_HERO"
+					"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+					"Aura_ApplyToCaster" "0"
+				}
+				"modifier_eyes_in_the_forest_notification_eff"
+				{
+					"Passive"			"0"
+					"IsHidden"			"0"
+					"IsDebuff"			"1"
+				}
+			}
+	}
 	
 	"monkey_king_jingu_mastery_lod"
 	{
@@ -34716,10 +34761,129 @@
         "BaseClass"                     "ability_datadriven"
         "AbilityTextureName"            "custom/crystal_maiden_brilliance_aura_lod"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_BOTH"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
         "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_2"
         "AbilityCastPoint"              "0.3"
+
+        // Time
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "10.0"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "40 45 50 55"
+
+        // Ability Actions
+        //-------------------------------------------------------------------------------------------------------------
+        "OnSpellStart"
+        {
+            "ApplyModifier"
+            {
+                "Target"                "TARGET"
+                "Duration"              "%buff_duration"
+                "ModifierName"          "modifier_holdout_arcane_aura_buff"
+            }
+
+
+            "FireSound"
+            {
+                "EffectName"            "hero_Crystal.freezingField.explosion"
+                "Target"                "CASTER"
+            }
+        }
+
+        // Modifiers
+        //-------------------------------------------------------------------------------------------------------------
+        "Modifiers"
+        {
+            "modifier_holdout_arcane_aura_aura"
+            {
+                "Passive"               "1"
+                "IsHidden"              "1"
+                "Aura"                  "modifier_holdout_arcane_aura_aura_effect"
+                "Aura_Radius"           "99999"
+                "Aura_Teams"            "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+                "Aura_Types"            "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+                "Aura_ApplyToCaster"    "0"
+            }
+
+            "modifier_holdout_arcane_aura_aura_effect"
+            {
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"         "%mana_regen"
+                }
+            }
+
+            "modifier_holdout_arcane_aura_self_aura_effect"
+            {
+                "Passive"                                           "1"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"         "%self_mana_regen"
+                }
+            }
+
+
+            "modifier_holdout_arcane_aura_buff"
+            {
+                "StatusEffectName"                                  "status_effect_frost"
+
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "EffectName"                    "maiden_holdout_arcane_buff"
+                        "EffectAttachType"              "follow_origin"
+                        "Target"                        "TARGET"
+                    }
+                }
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"       "%mana_regen_pct"
+                }
+            }
+        }
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "mana_regen"        "1.0 1.5 2.0 2.5"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "mana_regen_pct"    "200 250 300 350"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "buff_duration"     "25.0"
+            }
+            "04"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "self_mana_regen"       "2.0 3.0 4.0 5.0"
+            }
+        }
+    }
+
+    //=================================================================================================================
+    // Holdout: Arcane Aura
+    //=================================================================================================================
+    "holdout_arcane_aura"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "custom/crystal_maiden_brilliance_aura_lod"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
 
         // Time
         //-------------------------------------------------------------------------------------------------------------
@@ -54939,7 +55103,7 @@
             "01"
             {
                 "var_type"                            "FIELD_FLOAT"
-                "flesh_heap_spell_amp_buff_amount"    "0.3 0.6 0.9 1.2"
+                "flesh_heap_spell_amp_buff_amount"    "100"
             }
             "02"
             {

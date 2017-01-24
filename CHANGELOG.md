@@ -9,6 +9,8 @@ All notable changes to this project will be documented in this file.
 ### Balance
 - Rapid Fire and Infernal blade now a troll combo (cause infernal blade abuseable bug)
 - Added Chakra Magic (Cooldown Reduction only)
+- Added more Dota IMBA heroes. 
+- Eyes in the Forest will now give debuff notification to enemies within 1000 range
 
 ## 5.2 - Steam Version
 ### Balance
