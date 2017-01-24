@@ -191,6 +191,11 @@
     "lodMutatorCreepPowerHigh"                      "High Creeps"
     "lodMutatorCreepPowerExtreme"                   "Extreme Creeps"
 
+    "lodMutatorCreepNoMultiply"                     "Multiply Neutrals"
+    "lodMutatorCreepDouble"                         "2x Neutrals"
+    "lodMutatorCreepTriple"                         "3x Neutrals"
+    "lodMutatorCreepQuadruple"                      "4x Neutrals"
+
     "lodMutatorAllPick"                             "All Pick"
     "lodMutatorAllPickFast"                         "All Pick Fast"
     "lodMutatorMirrorDraft"                         "Mirror Draft"
@@ -352,6 +357,11 @@
     "lodOptionHigh"                                 "High - Every Minute"
     "lodOptionExtreme"                              "Extreme - Every 30 Seconds"
 
+    "lodOptionNoNeutralMultiply"                    "1x (Default)"
+    "lodOptionDouble"                               "2x"
+    "lodOptionTriple"                               "3x"
+    "lodOptionQuadruple"                            "4x"
+
     "lodOptionDuels"                                "Duels"
     "lodOptionDesDuels"                             "Duels"
     "lodOptionAboutDuels"                           "Teams face each other every 5 minutes on randomly selected arenas. Duel System imported from 'Angel Arena Reborn' custom game."
@@ -405,6 +415,7 @@
     "lodOptionDesGameSpeedFreeCourier"              "Free Starting Courier"
     "lodOptionDesGameSpeedStrongTowers"             "Enable Stronger Towers"
     "lodOptionDesCreepPower"                        "Increase Lane Creep Power Over Time"
+    "lodOptionDesNeutralMultiply"                   "Multiply Neutral Camps"
     "lodOptionDesCrazyNoCamping"                    "Prevent Fountain Camping"
     "lodOptionDesCrazyUniversalShop"                "Universal Shop"
     "lodOptionDesCrazyAllVision"                    "All Vision"
@@ -513,6 +524,7 @@
     "lodOptionAboutGameSpeedFreeCourier"            "Each team will get a free courier."
     "lodOptionAboutGameSpeedStrongTowers"           "Towers will have powerful abilities that upgrade each time a tower on their side dies. After 3 upgrades, a tower will receive a new ability. Ticking this automatically sets Lane Creep Power to 'Normal'"
     "lodOptionAboutCreepPower"                      "Increases lane creep's damage, armor, magic resistance and bounty every selected time interval. 'Normal' is recommended if you enable Stronger Towers."
+    "lodOptionAboutNeutralMultiply"                 "Doubles, Triples or Quadruples the amount of neutral creeps that spawn. Does not increase the SPEED of spawning, only the AMOUNT that spawn."
     "lodOptionAboutCrazyEasymode"                   "Players will gain gold and experience much faster."
     "lodOptionAboutAdvancedHeroAbilities"           "Players are allowed to select hero abilities."
     "lodOptionAboutAdvancedNeutralAbilities"        "Players are allowed to select neutral abilities."
