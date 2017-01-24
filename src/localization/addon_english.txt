@@ -1205,6 +1205,7 @@
     "warning_earth_spirit_magnetize" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Stone Remnant.</font>"
     "warning_earth_spirit_rolling_boulder" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Stone Remnant.</font>"
     "warning_monkey_king_mischief" "<font color=\'#FF4949\'>Hero Requirement:</font> You have to play as <font color=\'#70EA72\'>Monkey King</font> for tree disguise models to work."
+    "warning_pudge_flesh_heap_spell_amp" "<font color=\'#FF4949\'>Warning:</font> Will not show an increase in the tooltip information, but spell damge will be increased. Purple text popups will appear above hero when you do large spell damage.\n"
 
     "credit_aether_range_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
     "credit_sandking_caustic_finale_redux"           "<font color=\'#7D7D7D\'>Credits: Fixed by Firetoad | github.com/fcalife</font>"
@@ -5836,29 +5837,29 @@
         // Regular ability overrides
         //=================================================================================================================
 
-        "DOTA_Tooltip_ability_arc_warden_tempest_double_Description"                        "Briefly refocusing its fractured elements into a single form, the Arc Warden is able to create a perfect electrical duplication of itself. The duplicate can use all of Arc Warden's current items and spells, except for <font color='#FF0000'>any consumables, Gem of True Sight, Soul of Truth, Moon Shards, Divine Rapiers, or Refresher Orb.</font> The duplicate has seperate item and ability cooldowns."
+        //"DOTA_Tooltip_ability_arc_warden_tempest_double_Description"                        "Briefly refocusing its fractured elements into a single form, the Arc Warden is able to create a perfect electrical duplication of itself. The duplicate can use all of Arc Warden's current items and spells, except for <font color='#FF0000'>any consumables, Gem of True Sight, Soul of Truth, Moon Shards, Divine Rapiers, or Refresher Orb.</font> The duplicate has seperate item and ability cooldowns."
         
-        "DOTA_Tooltip_ability_ancient_apparition_chilling_touch_Description"                "A frigid gust enchants allied heroes, granting them bonus magical damage for a given number of physical attacks, while <font color='#FF7800'>increasing</font> their attack speed. Ancient Apparition always receives the buff. Lasts 30 seconds."
+       // "DOTA_Tooltip_ability_ancient_apparition_chilling_touch_Description"                "A frigid gust enchants allied heroes, granting them bonus magical damage for a given number of physical attacks, while <font color='#FF7800'>increasing</font> their attack speed. Ancient Apparition always receives the buff. Lasts 30 seconds."
 
-        "DOTA_Tooltip_ability_chen_test_of_faith_teleport_Description"                      "Teleports an allied or enemy unit back to its base. Creeps are teleported instantly, while Heroes have a delay before teleporting. If cast on Chen, all units controlled by Chen through Holy Persuasion will be teleported to him after a delay."
+        //"DOTA_Tooltip_ability_chen_test_of_faith_teleport_Description"                      "Teleports an allied or enemy unit back to its base. Creeps are teleported instantly, while Heroes have a delay before teleporting. If cast on Chen, all units controlled by Chen through Holy Persuasion will be teleported to him after a delay."
 
-        "DOTA_Tooltip_ability_gyrocopter_flak_cannon_Description"                           "Gyrocopter's attacks hit all enemy units in an area around it for a limited number of attacks.  Only the main target of attacks will receive attack bonuses such as Critical Strike. Lasts 9/12/15/18 seconds."
+       // "DOTA_Tooltip_ability_gyrocopter_flak_cannon_Description"                           "Gyrocopter's attacks hit all enemy units in an area around it for a limited number of attacks.  Only the main target of attacks will receive attack bonuses such as Critical Strike. Lasts 9/12/15/18 seconds."
 
-        "DOTA_Tooltip_ability_naga_siren_mirror_image_Description"                          "Creates 2/3/4/5 images of Naga Siren under her control."
+       // "DOTA_Tooltip_ability_naga_siren_mirror_image_Description"                          "Creates 2/3/4/5 images of Naga Siren under her control."
 
-        "DOTA_Tooltip_ability_skywrath_mage_mystic_flare_Description"                       "Skywrath Mage uses his ultimate magical ability to conjure a precise and violent mystical field that lays waste to his adversaries. Deals massive damage distributed evenly among any Heroes in the area over %duration% seconds.\n\n<font color='#FF7800'>This ability's radius decreases as it is upgraded. Carefully consider if you want to level it up before doing so.</font>\n\nUpgradable by Aghanim's Scepter."
+        //"DOTA_Tooltip_ability_skywrath_mage_mystic_flare_Description"                       "Skywrath Mage uses his ultimate magical ability to conjure a precise and violent mystical field that lays waste to his adversaries. Deals massive damage distributed evenly among any Heroes in the area over %duration% seconds.\n\n<font color='#FF7800'>This ability's radius decreases as it is upgraded. Carefully consider if you want to level it up before doing so.</font>\n\nUpgradable by Aghanim's Scepter."
 
-        "DOTA_Tooltip_ability_slardar_sprint_Description"                                   "Slardar slithers ahead, moving significantly faster and passing through units, while also becoming more resistant to damage."
-        "DOTA_Tooltip_ability_slardar_sprint_bonus_damage"                                  "%REDUCED DAMAGE TAKEN:"
+        //"DOTA_Tooltip_ability_slardar_sprint_Description"                                   "Slardar slithers ahead, moving significantly faster and passing through units, while also becoming more resistant to damage."
+       // "DOTA_Tooltip_ability_slardar_sprint_bonus_damage"                                  "%REDUCED DAMAGE TAKEN:"
 
-        "DOTA_Tooltip_ability_weaver_time_lapse_aghanim_description"                        "Reduces cooldown, and allows Weaver to cast Time Lapse on allies <font color='#FF7800'>and enemies</font>."
+        //"DOTA_Tooltip_ability_weaver_time_lapse_aghanim_description"                        "Reduces cooldown, and allows Weaver to cast Time Lapse on allies <font color='#FF7800'>and enemies</font>."
 
-        "DOTA_Tooltip_ability_windrunner_focusfire_focusfire_damage_reduction_scepter"      "%SCEPTER DAMAGE INCREASE:"
-        "DOTA_Tooltip_ability_windrunner_focusfire_aghanim_description"                     "Reduces cooldown and <font color='#FF7800'>increases damage dealt to the target.</font>"
+        //"DOTA_Tooltip_ability_windrunner_focusfire_focusfire_damage_reduction_scepter"      "%SCEPTER DAMAGE INCREASE:"
+       // "DOTA_Tooltip_ability_windrunner_focusfire_aghanim_description"                     "Reduces cooldown and <font color='#FF7800'>increases damage dealt to the target.</font>"
 
-        "DOTA_Tooltip_ability_winter_wyvern_splinter_blast_Description"                     "Launches a ball of brittle ice toward an enemy <font color='#FF7800'>or ally</font>. The ice shatters on impact, leaving the primary target completely unaffected, while hurling damaging splinters into nearby enemies in a %split_radius% radius. Enemies struck by these splinters are slowed by %movespeed_slow_tooltip%%%."
+        //"DOTA_Tooltip_ability_winter_wyvern_splinter_blast_Description"                     "Launches a ball of brittle ice toward an enemy <font color='#FF7800'>or ally</font>. The ice shatters on impact, leaving the primary target completely unaffected, while hurling damaging splinters into nearby enemies in a %split_radius% radius. Enemies struck by these splinters are slowed by %movespeed_slow_tooltip%%%."
 
-        "DOTA_Tooltip_ability_zuus_lightning_bolt_Description"                              "Calls down a bolt of lightning to strike an enemy unit, causing damage and a mini-stun. When cast, Lightning Bolt briefly provides unobstructed vision and True Sight around the target in a <font color='#FF7800'>1200</font> radius. Can be cast on the ground, affecting the closest enemy hero in %spread_aoe% range.\n<font color='#FF7800'>Cast range increases by 100 with each level in this ability.</font>"
+       // "DOTA_Tooltip_ability_zuus_lightning_bolt_Description"                              "Calls down a bolt of lightning to strike an enemy unit, causing damage and a mini-stun. When cast, Lightning Bolt briefly provides unobstructed vision and True Sight around the target in a <font color='#FF7800'>1200</font> radius. Can be cast on the ground, affecting the closest enemy hero in %spread_aoe% range.\n<font color='#FF7800'>Cast range increases by 100 with each level in this ability.</font>"
 
         //=================================================================================================================
         // Hero ability modifiers
