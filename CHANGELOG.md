@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 ### Bug Fixing/New Features
 - Various prices tweaks in points mode
 - Fixed healing aura ability
+- Added Perk for Disruptor
 
 ### Balance
 - Rapid Fire and Infernal blade now a troll combo (cause infernal blade abuseable bug)

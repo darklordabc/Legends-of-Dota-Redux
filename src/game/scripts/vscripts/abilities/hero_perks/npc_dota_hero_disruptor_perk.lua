@@ -12,6 +12,43 @@ if npc_dota_hero_disruptor_perk ~= "" then npc_dota_hero_disruptor_perk = class(
 --------------------------------------------------------------------------------------------------------
 if modifier_npc_dota_hero_disruptor_perk ~= "" then modifier_npc_dota_hero_disruptor_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
+if IsServer() then
+    function modifier_npc_dota_hero_disruptor_perk:OnCreated()
+        self:StartIntervalThink(1.0)
+        self:OnIntervalThink()
+    end
+
+    function modifier_npc_dota_hero_disruptor_perk:OnIntervalThink()
+        local hero = self:GetParent()
+        local maxMana = hero:GetMaxMana()
+        local mana = hero:GetMana()
+
+        local stacks = 10 - math.floor((mana / maxMana) * 10)
+
+        self:SetStackCount(stacks)
+    end
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_disruptor_perk:DeclareFunctions()
+    local funcs = {
+        MODIFIER_PROPERTY_MANA_REGEN_CONSTANT
+    }
+
+    return funcs
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_disruptor_perk:GetModifierConstantManaRegen()
+    return 0.5 * self:GetStackCount()
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_disruptor_perk:IsPurgable()
+  return false
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_disruptor_perk:GetAttributes()
+  return MODIFIER_ATTRIBUTE_PERMANENT + MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_disruptor_perk:IsPassive()
   return true
 end
@@ -20,35 +57,10 @@ function modifier_npc_dota_hero_disruptor_perk:IsHidden()
   return false
 end
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_disruptor_perk:IsPurgable()
-	return false
-end
---------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_disruptor_perk:RemoveOnDeath()
-	return false
-end
-function modifier_npc_dota_hero_disruptor_perk:OnCreated()
-  local cooldownReduction = 30
-
-  self.cooldownReduction = 1 - (cooldownReduction * 0.01)
+  return true
 end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_disruptor_perk:DeclareFunctions()
-  local funcs = {
-    MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
-  }
-  return funcs
-end
-
-function modifier_npc_dota_hero_disruptor_perk:OnAbilityFullyCast(keys)
-  if IsServer() then
-    if keys.ability:HasAbilityFlag("blocking") and keys.unit == self:GetParent() then
-      local cooldown = keys.ability:GetCooldownTimeRemaining()
-      keys.ability:EndCooldown()
-      keys.ability:StartCooldown(cooldown*cooldownReduction)
-    end
-  end
-end
 

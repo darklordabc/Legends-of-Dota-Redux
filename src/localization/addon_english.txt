@@ -747,7 +747,7 @@
     "hintClockwerk"                         "Clockwerk fires a random flare to any part of the map every 15 seconds. Scales with Rocket Flare."
     "hintDazzle"                            "Shallow Grave has double cast range and 50% cooldown reduction when picked by Dazzle."
     "hintDP"                            "Any Silence from Death Prophet is also a mute."
-    //"hintDisruptor"                           "TO BE DECIDED"
+    "hintDisruptor"                           "Disruptor regenerates .5 mp/s for every 10% of mana he is missing."
 
     // Hero builder
     "finishBanning"                                 "Finish Banning"
@@ -1020,7 +1020,7 @@
     "unique_mechanic_dark_seer"             "Dark Seer self-casts <font color=\'#ffd966\'>Surge</font> and <font color=\'#ffd966\'>Ion Shell</font> when casting them on allies."
     "unique_mechanic_dazzle"                        "<font color=\'#ffd966\'>Shallow Grave</font> has double cast range and 50% cooldown reduction when picked by Dazzle."
     "unique_mechanic_death_prophet"                        "Any <font color=\'#ffd966\'>Silence</font> applied by Death Prophet also applies Mute."
-    //"unique_mechanic_disruptor"                        ""
+    "unique_mechanic_disruptor"                        "Disruptor regenerates .5 mp/s for every 10% of mana he is missing."
     "unique_mechanic_doom_bringer"          "Doom applies Breakwhen casting <font color=\'#ffd966\'>Doom</font>."
     "unique_mechanic_dragon_knight"             "While Dragon Knight is in <font color=\'#ffd966\'>Elder Dragon Form</font>, all of Dragon Knight's abilities apply Dragon Form debuffs. This includes towers."
     "unique_mechanic_drow_ranger"                        "<font color=\'#ffd966\'>Gust</font> also disarms enemies when cast by Drow Ranger."
@@ -2807,7 +2807,7 @@
 
     /// DISRUPTOR​
     "DOTA_Tooltip_modifier_npc_dota_hero_disruptor_perk"    "Disruptor Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_disruptor_perk_Description"    "Reduces the cooldown of Movement-Blocking abilities by 30% when cast by Disruptor.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_disruptor_perk_Description"    "Disruptor regenerates .5 mp/s for every 10%d% of mana he is missing.<br><br><font color=\'#7D7D7D\'>By TideSofDarK | github.com/TideSofDarK</font>"
 
     /// DOOM​
     "DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_perk" "Doom Perk"
