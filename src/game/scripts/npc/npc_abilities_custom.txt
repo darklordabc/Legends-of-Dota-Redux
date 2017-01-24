@@ -33647,6 +33647,62 @@
         }
     }
 
+    //=================================================================================================================
+	// Keeper of the Light: Chakra Magic (Cooldown)
+	//=================================================================================================================
+	"keeper_of_the_light_chakra_magic_cooldown"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"                         "keeper_of_the_light_chakra_magic"
+		"ID"							"5473"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilityTextureName"                "custom/keeper_of_the_light_chakra_magic_cooldown"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"900 900 900 900"
+		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"17 16 15 14"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50 100 150 200"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"3.0"	// Value much higher than cost.
+
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_restore"			"0"
+			}			
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown_reduction"	"10 20 30 40"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"			"15"
+			}
+		}
+	}
+
     // Note: This ability is completely handled in Lua!
     "ogre_magi_multicast_lod"
     {

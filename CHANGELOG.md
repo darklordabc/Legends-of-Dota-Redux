@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 
 ### Balance
 - Rapid Fire and Infernal blade now a troll combo (cause infernal blade abuseable bug)
+- Added Chakra Magic (Cooldown Reduction only)
 
 ## 5.2 - Steam Version
 ### Balance

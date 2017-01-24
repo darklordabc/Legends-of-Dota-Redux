@@ -7683,5 +7683,11 @@
         "DOTA_Tooltip_ability_phantom_lancer_juxtapose_imba_tooltip_illusion_damage"         "%ILLUSION DAMAGE:"
         "DOTA_Tooltip_ability_phantom_lancer_juxtapose_imba_tooltip_total_illusion_damage_in_pct"            "%ILLUSION DAMAGE TAKEN:"
         "DOTA_Tooltip_ability_phantom_lancer_juxtapose_imba_Note0"           "Illusions created by Juxtapose will attack the target that the ability was triggered upon."
+
+        "DOTA_Tooltip_ability_keeper_of_the_light_chakra_magic_cooldown"                 "Chakra Magic (Cooldown)"
+        "DOTA_Tooltip_ability_keeper_of_the_light_chakra_magic_cooldown_Description"     "Reduces the cooldown of the next spell the target unit casts. <font color=\'#70EA72\'>Does not give or restore any mana</font>."
+        "DOTA_Tooltip_ability_keeper_of_the_light_chakra_magic_cooldown_Lore"            "In the same vein, Ezalor bestows his harmony among others."
+        "DOTA_Tooltip_ability_keeper_of_the_light_chakra_magic_cooldown_cooldown_reduction"  "ALLY COOLDOWN REDUCTION:"
+        "DOTA_Tooltip_ability_keeper_of_the_light_chakra_magic_cooldown_duration"    "COOLDOWN REDUCTION DURATION:"
     
 }
