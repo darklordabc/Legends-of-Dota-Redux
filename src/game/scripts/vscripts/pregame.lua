@@ -2808,6 +2808,8 @@ function Pregame:buildDraftArrays()
             end
         end
 
+        abilityDraftCount = math.min(util:getTableLength(possibleSkills), abilityDraftCount)
+
         -- Select random skills
         local abilityDraft = {}
         local count = 0
