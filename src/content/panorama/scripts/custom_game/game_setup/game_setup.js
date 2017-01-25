@@ -3229,12 +3229,12 @@ function buildAdvancedOptionsCategories( mutatorList ) {
         if (!mutatorList[field].cachedImage.style.backgroundImage) {
             mutatorList[field].image.style.backgroundImage = "url('file://{images}/custom_game/mutators/mutator_" + state + ".png');";
         } else {
-            mutatorList[field].image.visible = true;
-            mutatorList[field].cachedImage.visible = false;
-
             var tempImage = mutatorList[field].image;
             mutatorList[field].image = mutatorList[field].cachedImage;
             mutatorList[field].cachedImage = tempImage;  
+
+            mutatorList[field].image.visible = true;
+            mutatorList[field].cachedImage.visible = false;
         }
 
         mutatorList[field].cachedImage.style.backgroundImage = "url('file://{images}/custom_game/mutators/mutator_" + mutatorList[field].getNextItem(true) + ".png');";
