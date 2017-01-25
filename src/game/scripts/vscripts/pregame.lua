@@ -2263,7 +2263,7 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 120 or value == 60 or value == 30
         end,
 
-        -- Game Speed - Multiple Neutrals
+        -- Game Speed - Multiply Neutrals
         lodOptionNeutralMultiply = function(value)
             return value == 1 or value == 2 or value == 3 or value == 4
         end,
@@ -2713,7 +2713,7 @@ function Pregame:isAllowed( abilityName )
     return true
 end
 
--- Multiple neutral creep camps
+-- Multiply neutral creep camps
 function Pregame:MultiplyNeutralUnit( unit, mult )
     if mult < 1 then
         UTIL_Remove( unit )

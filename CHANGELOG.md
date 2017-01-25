@@ -1,8 +1,14 @@
 
 # Change Log
 All notable changes to this project will be documented in this file.
+## 5.4 - Development Version
+### Bug Fixing/New Features
+- 
 
-## 5.3 - Development Version
+### Balance
+- 
+
+## 5.3 - Steam Version
 ### Bug Fixing/New Features
 - Various prices tweaks in points mode
 - Fixed healing aura ability
@@ -15,7 +21,7 @@ All notable changes to this project will be documented in this file.
 - Added more Dota IMBA heroes. 
 - Eyes in the Forest will now give debuff notification to enemies within 1000 range
 
-## 5.2 - Steam Version
+## 5.2 
 ### Balance
 - Disabled Shadow Demon's perk because its abuseable. 
 - Removed angel arena rifle from the game. It should not of been added
