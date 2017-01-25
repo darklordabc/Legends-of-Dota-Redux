@@ -55066,7 +55066,7 @@
             "01"
             {
                 "var_type"                            "FIELD_FLOAT"
-                "flesh_heap_spell_amp_buff_amount"    "100"
+                "flesh_heap_spell_amp_buff_amount"    "0.3 0.6 0.9 1.2"
             }
             "02"
             {
