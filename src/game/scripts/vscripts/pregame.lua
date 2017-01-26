@@ -453,8 +453,11 @@ function Pregame:loadDefaultSettings()
     self:setOption('lodOptionGameSpeedStrongTowers', 0, true)
     self:setOption('lodOptionCreepPower', 0)
 
+
     -- Do not increase creep power
     self:setOption('lodOptionCreepPower', 0, true)
+    self:setOption('lodOptionNeutralMultiply', 1, true)
+
 
     -- Start with a free courier
     self:setOption('lodOptionGameSpeedFreeCourier', 1, true)
@@ -2260,6 +2263,11 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 120 or value == 60 or value == 30
         end,
 
+        -- Game Speed - Multiply Neutrals
+        lodOptionNeutralMultiply = function(value)
+            return value == 1 or value == 2 or value == 3 or value == 4
+        end,
+
         -- Game Speed - Free Courier
         lodOptionGameSpeedFreeCourier = function(value)
             return value == 0 or value == 1
@@ -2705,6 +2713,25 @@ function Pregame:isAllowed( abilityName )
     return true
 end
 
+-- Multiply neutral creep camps
+function Pregame:MultiplyNeutralUnit( unit, mult )
+    if mult < 1 then
+        UTIL_Remove( unit )
+    else
+        local unitName = unit:GetUnitName()
+        
+        if unitName == "npc_dota_roshan" then
+            return
+        end
+        
+        local loc = unit:GetAbsOrigin()
+            
+        for i = 2, mult do
+            CreateUnitByName( unitName, loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
+        end
+    end
+end
+
 -- Generates draft arrays
 function Pregame:buildDraftArrays()
     -- Only build draft arrays once
@@ -3135,6 +3162,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('strongTowers', this.optionStore['lodOptionGameSpeedStrongTowers'] == 1)
         OptionManager:SetOption('towerCount', this.optionStore['lodOptionGameSpeedTowersPerLane'])
         OptionManager:SetOption('creepPower', this.optionStore['lodOptionCreepPower'])
+        OptionManager:SetOption('neutralMultiply', this.optionStore['lodOptionNeutralMultiply'])
         OptionManager:SetOption('useFatOMeter', this.optionStore['lodOptionCrazyFatOMeter'])
         OptionManager:SetOption('allowIngameHeroBuilder', this.optionStore['lodOptionIngameBuilder'] == 1)
         --OptionManager:SetOption('botBonusPoints', this.optionStore['lodOptionBotsBonusPoints'] == 1)
@@ -3337,6 +3365,7 @@ function Pregame:processOptions()
                     ['Bans: Max Hero Bans'] = this.optionStore['lodOptionBanningMaxHeroBans'],
                     ['Bans: Use LoD BanList'] = this.optionStore['lodOptionBanningUseBanList'],
                     ['Creeps: Increase Creep Power Over Time'] = this.optionStore['lodOptionCreepPower'],
+                    ['Creeps: Multiply Neutral Camps'] = this.optionStore['lodOptionNeutralMultiply'],
                     ['Game Speed: Bonus Starting Gold'] = this.optionStore['lodOptionGameSpeedStartingGold'],
                     ['Game Speed: Buyback Cooldown Constant'] = this.optionStore['lodOptionBuybackCooldownTimeConstant'],
                     ['Game Speed: Gold Modifier'] = math.floor(this.optionStore['lodOptionGameSpeedGoldModifier']),
@@ -5890,8 +5919,8 @@ function Pregame:fixSpawningIssues()
     }
 
     local disabledPerks = {
-        npc_dota_hero_disruptor = true,
-        --npc_dota_hero_storm_spirit = true,
+        --npc_dota_hero_disruptor = true,
+        npc_dota_hero_shadow_demon = true,
         npc_dota_hero_wisp = true
     }
 
@@ -5901,6 +5930,24 @@ function Pregame:fixSpawningIssues()
 
         -- Ensure it's a valid unit
         if IsValidEntity(spawnedUnit) then
+            print(spawnedUnit:GetName())
+            print(string.find(spawnedUnit:GetName(),"cache"))
+
+            if spawnedUnit:GetTeamNumber() == DOTA_TEAM_NEUTRALS and not self.noRecurse and this.optionStore['lodOptionNeutralMultiply'] > 1 and spawnedUnit:GetName() == "npc_dota_creep_neutral" then
+                self.noRecurse = true
+                self:MultiplyNeutralUnit( spawnedUnit, this.optionStore['lodOptionNeutralMultiply'] )
+                self.noRecurse = nil
+            end
+
+            -- Spellfix: Give Eyes in the Forest a notification for nearby enemies.
+            if spawnedUnit:GetName() == "npc_dota_treant_eyes" then
+                Timers:CreateTimer(function()
+                    spawnedUnit:AddAbility("treant_eyes_in_the_forest_notification")
+                    local noticeAura = spawnedUnit:FindAbilityByName("treant_eyes_in_the_forest_notification")
+                    noticeAura:SetLevel(1)
+                end, DoUniqueString('eyesFix'), 0.5)
+            end
+
             if Wearables:HasDefaultWearables( spawnedUnit:GetUnitName() ) then
                 Wearables:AttachWearableList( spawnedUnit, Wearables:GetDefaultWearablesList( spawnedUnit:GetUnitName() ) )
             end

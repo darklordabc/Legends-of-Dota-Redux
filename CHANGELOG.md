@@ -1,17 +1,51 @@
 
 # Change Log
 All notable changes to this project will be documented in this file.
+## 5.4 - Development Version
+### Bug Fixing/New Features
+- 
 
-## 5.0 - Development Version
+### Balance
+- 
+
+## 5.3 - Steam Version
+### Bug Fixing/New Features
+- Various prices tweaks in points mode
+- Fixed healing aura ability
+- Added Perk for Disruptor
+- Added Multiply Neutral camps mutators
+
+### Balance
+- Rapid Fire and Infernal blade now a troll combo (cause infernal blade abuseable bug)
+- Added Chakra Magic (Cooldown Reduction only)
+- Added more Dota IMBA heroes. 
+- Eyes in the Forest will now give debuff notification to enemies within 1000 range
+
+## 5.2 
+### Balance
+- Disabled Shadow Demon's perk because its abuseable. 
+- Removed angel arena rifle from the game. It should not of been added
+- Increased price of Panda's demolosih 
+- Added Essence Aura to OP Ban list, added balanced Redux version. 
+- Reenabled Global Disarm
+
+## 5.1 
+### Bug Fixing/New Features
+- Fixed Gotta Go Quick mutator making heros slower
+- Fixed incorrect tooltip in free ability mutator
+- Fixed Global cast range mutator not actually being global, reset aether lens values to usual numbers.
+- Added more Dota IMBA heroes
+
+## 5.0 
 ### Bug Fixing/New Features
 - Fixed strong creeps evolving models too quickly
 - Fixed an issue where if you disconnected during hero spawn and reconnected you were stuck as wisp.
 - Added IMBA Category of abilities, will slowly add more IMBA abilities, only available in custom gamemode. 
 
 ### Balance
-- Added IMBA Necro, PA, Kunkka, Jugg, Lion, Warlock, Lich, Sven. These abilities will have issues, needs testing. Please report errors/issues/missing particles.
+- Added IMBA Necro, PA, Kunkka, Jugg, Lion, Warlock, Lich, Sven (and more). These abilities will have issues, needs testing. Please report errors/issues/missing particles.
 
-## 4.9 - Steam Version
+## 4.9 
 ### Bug Fixing/New Features
 - Removed Divided We Stand because of a terrible respawn bug
 - When strong creeps are enabled, they will change their models to mega creeps once they become very strong

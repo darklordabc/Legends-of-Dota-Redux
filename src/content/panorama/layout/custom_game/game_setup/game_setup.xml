@@ -311,6 +311,11 @@
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorCreepPowerHigh.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorCreepPowerExtreme.png"></Image>
 
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorCreepNoMultiply.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorCreepDouble.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorCreepTriple.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorCreepQuadruple.png"></Image>
+
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMaxLevel1.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMaxLevel2.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMaxLevel3.png"></Image>

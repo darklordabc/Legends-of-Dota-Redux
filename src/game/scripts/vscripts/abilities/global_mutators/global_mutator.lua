@@ -182,7 +182,7 @@ function modifier_gottagoquick_effect:DeclareFunctions()
 end
 ----------------------------------------------------------------------------------------------------------
 function modifier_gottagoquick_effect:GetModifierMoveSpeedBonus_Percentage()
-	return -15
+	return 15
 end
 
 

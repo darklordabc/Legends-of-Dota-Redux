@@ -146,6 +146,17 @@ var basicOptions = {
                         }
                     },
                     {
+                        name: 'lodOptionNeutralMultiply',
+                        default: {
+                            'lodMutatorCreepNoMultiply': 1
+                        },
+                        states: {
+                            'lodMutatorCreepDouble': 2,
+                            'lodMutatorCreepTriple': 3,
+                            'lodMutatorCreepQuadruple': 4
+                        }
+                    },
+                    {
                         about: 'lodMutatorDoubleTowers',
                         values: {
                             enabled: {
@@ -861,6 +872,30 @@ var advancedOptions = {
                     {
                         text: 'lodOptionExtreme',
                         value: 30
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionNeutralMultiply',
+                des: 'lodOptionDesNeutralMultiply',
+                about: 'lodOptionAboutNeutralMultiply',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionNoNeutralMultiply',
+                        value: 1
+                    },
+                    {
+                        text: 'lodOptionDouble',
+                        value: 2
+                    },
+                    {
+                        text: 'lodOptionTriple',
+                        value: 3
+                    },
+                    {
+                        text: 'lodOptionQuadruple',
+                        value: 4
                     }
                 ]
             },
