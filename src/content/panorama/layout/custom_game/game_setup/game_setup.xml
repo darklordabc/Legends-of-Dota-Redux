@@ -18,6 +18,10 @@
                 <Label id="lodBoosterPackLabel" html="true" text="00:00" />
             </Panel>
         </snippet>
+        <snippet name="MutatorImage">
+            <Panel class="mutatorImage">
+            </Panel>
+        </snippet>
     </snippets>
     <Panel class="lodOptionsInterface" hittest="false">
         <Panel class="lodOptionsInterface" id="lodOptionsRoot">

@@ -2874,11 +2874,176 @@ function buildBasicOptionsCategories() {
                 circleWrapper.AddClass('circleWrapper');
             }
 
-            var optionMutatorImage = $.CreatePanel('Image', optionMutator, 'optionModeImage_' + i);
-            optionMutatorImage.SetImage('file://{images}/custom_game/mutators/mutator_' + name + '.png');
+            var images = {};
+            function addImage(state) {
+                if (!images[state]) {
+                    var optionMutatorImage = $.CreatePanel('Panel', optionMutator, state);
+                    optionMutatorImage.BLoadLayoutSnippet("MutatorImage")
+                    optionMutatorImage.style.backgroundImage = "url('file://{images}/custom_game/mutators/mutator_" + state + ".png');";
+                    // optionMutatorImage.visible = false;
+                    images[state] = optionMutatorImage;
+                }
+            }
+            if (item.states) {
+                var states = Object.keys(item.states);
+                for (var i = 0; i < states.length; i++) {
+                    addImage(states[i])
+                }
+            }
+            addImage(item.about)
+            if (item.default) {
+                for (var i = 0; i < Object.keys(item.default).length; i++) {
+                    addImage(Object.keys(item.default)[i])
+                }
+            }
 
-            // When the mutators changes
-            optionMutator.SetPanelEvent('onactivate', function(e) {
+            function getNextItem(returnString) {
+                var nextItem;
+                var found = false;
+                var i = 0;
+
+                for(var state in item.states) {
+                    if(typeof item.states[state] === 'object') {
+                        for(var option in item.states[state]) {
+                            if(item.states[state][option] === optionValueList[option]) {
+                                found = true;
+                            } else {
+                                found = false;
+                                break;
+                            }
+                        }
+
+                        if(found) {
+                            if(item.states[Object.keys(item.states)[i+1]] !== undefined) {
+                                nextItem = item.states[Object.keys(item.states)[i+1]];
+                                break;
+                            } else {
+                                if(item.default !== undefined) {
+                                    nextItem = item.default;
+                                } else {
+                                    nextItem = item.states[Object.keys(item.states)[0]];
+                                }
+                            }
+                        } else {
+                            nextItem = item.states[Object.keys(item.states)[0]];
+                        }
+                     } else if(item.states[state] === optionValueList[item.name]) {
+                        if(item.states[Object.keys(item.states)[i+1]] !== undefined) {
+                            nextItem = item.states[Object.keys(item.states)[i+1]];
+                        } else {
+                            if(item.default !== undefined) {
+                                nextItem = item.default[Object.keys(item.default)[0]];
+                            } else {
+                                nextItem = item.states[Object.keys(item.states)[0]];
+                            }
+                        }
+
+                        break;
+                    } 
+
+                    i++;
+                }
+
+                if(nextItem === undefined) {
+                    nextItem = item.states[Object.keys(item.states)[0]];
+                }
+
+                if (returnString) {
+                    var stateName;
+                    var found;
+                    if(optionMutator.default !== undefined) {
+                        if(Object.keys(optionMutator.default).length > 1) {
+                            var match;
+                            for (var option in optionMutator.default) {
+                                if(optionMutator.default[option] === optionValueList[option]) {
+                                    match = true;
+                                } else {
+                                    match = false;
+                                    break;
+                                }
+                            }
+
+                            if(match) {
+                                found = false;
+                            }
+                        } else {
+                            for (var defaultState in optionMutator.default) break;
+                            if(optionMutator.default[defaultState] === optionValueList[item.name]) {
+                                found = false;
+                            }
+                        }
+                    }
+                    for(var state in optionMutator.states) {
+                        if(typeof optionMutator.states[state] === 'object') {
+                            var matches = 0;
+                            for(var option in optionMutator.states[state]) {
+                                if(optionMutator.states[state][option] === optionValueList[option]) {
+                                    matches++;
+                                }
+
+                                if(matches === Object.keys(optionMutator.states[state]).length) {
+                                    found = true;
+                                    break;
+                                } else {
+                                    found = false;
+                                }
+                            }
+
+                            if(found) {
+                                stateName = state;
+                                break;
+                            }
+                        } else if(optionMutator.states[state] === optionValueList[item.name]) {
+                            stateName = Object.keys(optionMutator.states).filter(function(key) {return optionMutator.states[key] === optionValueList[item.name]
+                            })[0];
+
+                            found = true;
+                            break;
+                        } else {
+                            found = false;
+                        }
+                    }
+                    if (!stateName) {
+                        stateName = optionMutator.default;
+                        if (Object.keys(stateName).length == 1) { //
+                            for (var s in stateName) {
+                                stateName = s;
+                                break;
+                            }
+                        } else if (typeof(stateName) !== "string") {
+                            stateName = optionMutator.about;
+                        }
+                    }
+                    
+                    return stateName;
+                }
+
+                return nextItem;
+            }
+            optionMutator.getNextItem = getNextItem;
+
+            optionMutator.getNextState = (function (state) {
+                if(item.about) {
+                    return item.about;
+                } else {
+                    var states = Object.keys(item.states);
+                    var flag = false;
+                    for (var i = 0; i < states.length; i++) {
+                        if (flag == true) {
+                            return states[i];
+                        }
+                        if (states[i] == state) {
+                            flag = true;
+                        }
+                    }
+                    if (flag && Object.keys(item.default)[0]) {
+                        return Object.keys(item.default)[0];
+                    }
+                    return states[0];
+                }
+            })
+
+            var onActivate = (function(e) {
                 var fieldValue = optionMutator.GetAttributeInt('fieldValue', -1);
                 if (item.name == "lodOptionCommonGamemode" && !allowCustomSettings) {
                     return;
@@ -2896,55 +3061,7 @@ function buildBasicOptionsCategories() {
                         setOption(option, value)
                     }
                 } else if (item.states !== undefined) {
-                    var nextItem;
-                    var found = false;
-                    var i = 0;
-
-                    for(var state in item.states) {
-                        if(typeof item.states[state] === 'object') {
-                            for(var option in item.states[state]) {
-                                if(item.states[state][option] === optionValueList[option]) {
-                                    found = true;
-                                } else {
-                                    found = false;
-                                    break;
-                                }
-                            }
-
-                            if(found) {
-                                if(item.states[Object.keys(item.states)[i+1]] !== undefined) {
-                                    nextItem = item.states[Object.keys(item.states)[i+1]];
-                                    break;
-                                } else {
-                                    if(item.default !== undefined) {
-                                        nextItem = item.default;
-                                    } else {
-                                        nextItem = item.states[Object.keys(item.states)[0]];
-                                    }
-                                }
-                            } else {
-                                nextItem = item.states[Object.keys(item.states)[0]];
-                            }
-                         } else if(item.states[state] === optionValueList[item.name]) {
-                            if(item.states[Object.keys(item.states)[i+1]] !== undefined) {
-                                nextItem = item.states[Object.keys(item.states)[i+1]];
-                            } else {
-                                if(item.default !== undefined) {
-                                    nextItem = item.default[Object.keys(item.default)[0]];
-                                } else {
-                                    nextItem = item.states[Object.keys(item.states)[0]];
-                                }
-                            }
-
-                            break;
-                        } 
-
-                        i++;
-                    }
-
-                    if(nextItem === undefined) {
-                        nextItem = item.states[Object.keys(item.states)[0]];
-                    }
+                    var nextItem = getNextItem();
 
                     if(typeof nextItem === 'object') {
                         for(var option in nextItem) {
@@ -2960,7 +3077,10 @@ function buildBasicOptionsCategories() {
                         setOption(item.name, 1);
                     }
                 }
-            });
+            })
+
+            // When the mutators changes
+            optionMutator.SetPanelEvent('onactivate', onActivate);
 
             var infoLabel = $.CreatePanel('Label', optionMutator, 'optionMutatorLabel_' + i);
             infoLabel.AddClass('mutatorLabel');
@@ -2979,7 +3099,7 @@ function buildBasicOptionsCategories() {
                 }
             } else if (item.states) {
                 optionMutator.SetAttributeString('states', '');
-                optionMutator.image = optionMutatorImage;
+                optionMutator.images = images;
                 optionMutator.label = infoLabel;
                 optionMutator.states = {};
                 for(var state in item.states) {
@@ -3139,7 +3259,24 @@ function buildAdvancedOptionsCategories( mutatorList ) {
 
     var setMutator = function(field, state) {
         mutatorList[field].label.text = $.Localize(state);
-        mutatorList[field].image.SetImage('file://{images}/custom_game/mutators/mutator_' + state + '.png');
+
+        for (var s in mutatorList[field].images) {
+            mutatorList[field].images[s].visible = s == state;
+        }
+
+        // if (!mutatorList[field].f) {
+        //     mutatorList[field].f = true;
+            
+        // } else {
+        //     var tempImage = mutatorList[field].image;
+        //     mutatorList[field].image = mutatorList[field].cachedImage;
+        //     mutatorList[field].cachedImage = tempImage;  
+
+        //     mutatorList[field].image.visible = true;
+        //     mutatorList[field].cachedImage.visible = false;
+        // }
+
+        // mutatorList[field].cachedImage.style.backgroundImage = "url('file://{images}/custom_game/mutators/mutator_" + mutatorList[field].getNextState(state) + ".png');";
     }
 
     var checkMutators = function(field, hostPanel) {
@@ -4019,6 +4156,9 @@ function OnPhaseChanged(table_name, key, data) {
 
             // Message for banning phase
             if(currentPhase == PHASE_BANNING) {
+                // Enable tabs
+                $("#tabsSelector").visible = true;
+
                 // Setup selection
                 setSelectedHelperHero(undefined, false)
 
@@ -4043,6 +4183,9 @@ function OnPhaseChanged(table_name, key, data) {
 
             // Message for players selecting skills
             if(currentPhase == PHASE_SELECTION) { 
+                // Enable tabs
+                $("#tabsSelector").visible = true;
+                
                 // Update selection
                 // if (currentSelectedHero) {
                     setSelectedHelperHero();
@@ -5000,6 +5143,8 @@ function loadPlayerBans() {
 
     // Show banned abilities by default
     $('#buttonShowBanned').checked = false;
+
+    $("#tabsSelector").visible = false;
 
     var columnSwitch = true;
     // Show all tier values by default
