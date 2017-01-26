@@ -57,6 +57,10 @@ end
 --------------------------------------------------------------------------------------------------------
 if modifier_npc_dota_hero_vengefulspirit_perk_debuff ~= "" then modifier_npc_dota_hero_vengefulspirit_perk_debuff = class({}) end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_vengefulspirit_perk_debuff:IsPurgable()
+	return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_vengefulspirit_perk_debuff:RemoveOnDeath()
 	return false
 end
