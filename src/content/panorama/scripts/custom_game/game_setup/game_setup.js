@@ -3003,9 +3003,30 @@ function buildBasicOptionsCategories() {
             }
             optionMutator.getNextItem = getNextItem;
 
+            optionMutator.getNextState = (function (state) {
+                if(item.about) {
+                    return item.about;
+                } else {
+                    var states = Object.keys(item.states);
+                    var flag = false;
+                    for (var i = 0; i < states.length; i++) {
+                        if (flag == true) {
+                            return states[i];
+                        }
+                        if (states[i] == state) {
+                            flag = true;
+                        }
+                    }
+                    if (flag && Object.keys(item.default)[0]) {
+                        return Object.keys(item.default)[0];
+                    }
+                    return states[0];
+                }
+            })
+
             var cachedOptionMutatorImage = $.CreatePanel('Panel', optionMutator, 'cachedOptionModeImage_' + i);
             cachedOptionMutatorImage.BLoadLayoutSnippet("MutatorImage")
-            // cachedOptionMutatorImage.style.backgroundImage = "url('file://{images}/custom_game/mutators/mutator_" + getNextItem() + ".png');";
+            cachedOptionMutatorImage.style.backgroundImage = "url('file://{images}/custom_game/mutators/mutator_" + optionMutator.getNextState(name) + ".png');";
             cachedOptionMutatorImage.visible = false;
 
             var onActivate = (function(e) {
@@ -3226,7 +3247,8 @@ function buildAdvancedOptionsCategories( mutatorList ) {
     var setMutator = function(field, state) {
         mutatorList[field].label.text = $.Localize(state);
 
-        if (!mutatorList[field].cachedImage.style.backgroundImage) {
+        if (!mutatorList[field].f) {
+            mutatorList[field].f = true;
             mutatorList[field].image.style.backgroundImage = "url('file://{images}/custom_game/mutators/mutator_" + state + ".png');";
         } else {
             var tempImage = mutatorList[field].image;
@@ -3237,7 +3259,7 @@ function buildAdvancedOptionsCategories( mutatorList ) {
             mutatorList[field].cachedImage.visible = false;
         }
 
-        mutatorList[field].cachedImage.style.backgroundImage = "url('file://{images}/custom_game/mutators/mutator_" + mutatorList[field].getNextItem(true) + ".png');";
+        mutatorList[field].cachedImage.style.backgroundImage = "url('file://{images}/custom_game/mutators/mutator_" + mutatorList[field].getNextState(state) + ".png');";
     }
 
     var checkMutators = function(field, hostPanel) {
