@@ -4794,6 +4794,10 @@ function UpdateTimer() {
         }
     }
 
+    if ($.GetContextPanel().isIngameBuilder) {
+        placeInto.text = "ⁿ/ₐ";
+    }
+
     $.Schedule(0.1, UpdateTimer);
 }
 
