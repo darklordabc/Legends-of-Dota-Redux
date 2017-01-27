@@ -949,6 +949,11 @@ function Pregame:onThink()
             this:addExtraTowers()
         end, DoUniqueString('createtowers'), 0.2)
 
+        -- Neutral Multiplier Mutator
+        Timers:CreateTimer(function()
+            this:multiplyNeutrals()
+        end, DoUniqueString('neutralMultiplier'), 0.2)
+
         -- Prevent fountain camping
         Timers:CreateTimer(function()
             this:preventCamping()
@@ -2714,10 +2719,7 @@ function Pregame:isAllowed( abilityName )
 end
 
 -- Multiply neutral creep camps
-function Pregame:MultiplyNeutralUnit( unit, mult )
-    if mult < 1 then
-        UTIL_Remove( unit )
-    else
+function Pregame:MultiplyNeutralUnit( unit, killer, mult, lastHits )
         local unitName = unit:GetUnitName()
         
         if unitName == "npc_dota_roshan" then
@@ -2725,11 +2727,102 @@ function Pregame:MultiplyNeutralUnit( unit, mult )
         end
         
         local loc = unit:GetAbsOrigin()
-            
-        for i = 2, mult do
-            CreateUnitByName( unitName, loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
+        local givenSpecialAbility = false
+
+        for i = 2, 4 do
+            clone = CreateUnitByName( unitName, loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
+            clone:AddAbility("clone_token_ability")
+            if not givenSpecialAbility then
+                
+                if lastHits >= 10 then
+                    
+                    --rollChance = math.min(25, (lastHits / 4) )
+                    level = math.min(10, (math.floor(lastHits / 25)) )
+                    modelSize = level/14 + 1
+
+                    --print("Level of ability")
+                    --print(level)
+                    ----print("Roll Chance")
+                    --print(rollChance)
+                    --print("Model Size")
+                    --print(modelSize)
+                    if level > 0 then
+
+                        if RollPercentage(10) then
+                            givenSpecialAbility = true
+                            clone:SetModelScale(modelSize)
+
+                            clone:AddAbility("neutral_regen_aura")
+                            clone:AddAbility("neutral_extra_health")
+                            
+                            local healingWard = clone:FindAbilityByName("neutral_regen_aura")
+                            local extraHealth = clone:FindAbilityByName("neutral_extra_health")
+                            
+                            healingWard:SetLevel(level)  
+                            extraHealth:SetLevel(level)  
+                        end
+
+                    end
+                end
+
+            end
+         --   end
+         --    if true then
+         --       if RollPercentage(5) then
+         --           clone:AddAbility("neutral_extra_health")
+         --           local ability1 = clone:FindAbilityByName("neutral_extra_health")
+         --           ability1:SetLevel(1)
+         --           clone:AddAbility("status_effect_granite")
+         --           local ability2 = clone:FindAbilityByName("status_effect_granite")
+         --           ability2:SetLevel(1)
+         --       end
+         --   end
+         --   if true then
+         --       if RollPercentage(5) then
+         --           clone:AddAbility("spawnlord_master_freeze")
+         --           local ability = clone:FindAbilityByName("spawnlord_master_freeze")
+         --           ability:SetLevel(1)
+         --       end
+         --   end
+         --   if true then
+         --       if RollPercentage(100) then
+         --           clone:AddAbility("omniknight_degen_aura")
+         --           local ability = clone:FindAbilityByName("omniknight_degen_aura")
+         --           ability:SetLevel(4)
+         --           clone:AddAbility("status_effect_degen")
+         --           local ability2 = clone:FindAbilityByName("status_effect_degen")
+         --           ability2:SetLevel(1)
+         --       end
+         --   end
+         --   if true then
+         --       if RollPercentage(5) then
+         --           clone:AddAbility("antimage_mana_break")
+         --           local ability = clone:FindAbilityByName("antimage_mana_break")
+         --           ability:SetLevel(4)
+         --           clone:AddAbility("status_effect_manaburn")
+         --           local ability2 = clone:FindAbilityByName("status_effect_manaburn")
+         --           ability2:SetLevel(1)
+         --       end
+         --   end
+         --   if true then
+         --       if RollPercentage(5) then
+         --           
+         --           clone:AddAbility("ursa_fury_swipes")
+         --           local ability1 = clone:FindAbilityByName("ursa_fury_swipes")
+         --           ability1:SetLevel(4)
+         --           
+         --           clone:AddAbility("status_effect_furyswipes")
+         --           local ability2 = clone:FindAbilityByName("status_effect_furyswipes")
+         --           ability2:SetLevel(1)
+         --           clone:AddNewModifier(killer, killer, "modifier_axe_berserkers_call", {duration = duration})
+         --           clone:AddNewModifier(killer, killer, "modifier_dark_seer_surge", {duration = duration})
+         --
+         --           clone:AddAbility("phantom_lancer_phantom_edge")
+         --           local ability3 = clone:FindAbilityByName("phantom_lancer_phantom_edge")
+         --           ability3:SetLevel(4)
+         --       end
+         --   end
         end
-    end
 end
 
 -- Generates draft arrays
@@ -5321,7 +5414,19 @@ function Pregame:addExtraTowers()
         ListenToGameEvent('entity_hurt', function(keys)
             -- Grab the entity that was hurt
             local ent = EntIndexToHScript(keys.entindex_killed)
+            local attacker = EntIndexToHScript( keys.entindex_attacker )
 
+            -- Neutral Multiplier: Checks if hurt npc is neutral, dead, and if it doesnt have the clone token ability, and their is a valid attacker
+            if IsValidEntity(attacker) then
+                if ent:GetTeamNumber() == DOTA_TEAM_NEUTRALS and ent:GetHealth() <= 0 and ent:GetName() == "npc_dota_creep_neutral" and ent:FindAbilityByName("clone_token_ability") == nil then
+                                   
+                    local lastHits = PlayerResource:GetLastHits(attacker:GetOwner():GetPlayerID())
+                    print(lastHits)
+                    self:MultiplyNeutralUnit( ent, attacker, this.optionStore['lodOptionNeutralMultiply'], lastHits )
+
+                end
+            end
+            
             -- Check for tower connections
             if ent:GetHealth() <= 0 and this.towerConnectors[ent] then
                 local tower = this.towerConnectors[ent]
@@ -5334,6 +5439,28 @@ function Pregame:addExtraTowers()
             end
         end, nil)
     end
+end
+
+function Pregame:multiplyNeutrals()
+        ListenToGameEvent('entity_hurt', function(keys)
+            local this = self
+            
+            -- Grab the entity that was hurt
+            local ent = EntIndexToHScript(keys.entindex_killed)
+            local attacker = EntIndexToHScript( keys.entindex_attacker )
+
+            -- Neutral Multiplier: Checks if hurt npc is neutral, dead, and if it doesnt have the clone token ability, and their is a valid attacker
+            if IsValidEntity(attacker) then
+                if ent:GetTeamNumber() == DOTA_TEAM_NEUTRALS and ent:GetHealth() <= 0 and ent:GetName() == "npc_dota_creep_neutral" and ent:FindAbilityByName("clone_token_ability") == nil then
+                                   
+                    local lastHits = PlayerResource:GetLastHits(attacker:GetOwner():GetPlayerID())
+                    print(lastHits)
+                    self:MultiplyNeutralUnit( ent, attacker, this.optionStore['lodOptionNeutralMultiply'], lastHits )
+
+                end
+            end
+            
+        end, nil)
 end
 
 -- Prevents Fountain Camping
@@ -5932,14 +6059,6 @@ function Pregame:fixSpawningIssues()
 
         -- Ensure it's a valid unit
         if IsValidEntity(spawnedUnit) then
-            print(spawnedUnit:GetName())
-            print(string.find(spawnedUnit:GetName(),"cache"))
-
-            if spawnedUnit:GetTeamNumber() == DOTA_TEAM_NEUTRALS and not self.noRecurse and this.optionStore['lodOptionNeutralMultiply'] > 1 and spawnedUnit:GetName() == "npc_dota_creep_neutral" then
-                self.noRecurse = true
-                self:MultiplyNeutralUnit( spawnedUnit, this.optionStore['lodOptionNeutralMultiply'] )
-                self.noRecurse = nil
-            end
 
             -- Spellfix: Give Eyes in the Forest a notification for nearby enemies.
             if spawnedUnit:GetName() == "npc_dota_treant_eyes" then
