@@ -5415,17 +5415,6 @@ function Pregame:addExtraTowers()
             -- Grab the entity that was hurt
             local ent = EntIndexToHScript(keys.entindex_killed)
             local attacker = EntIndexToHScript( keys.entindex_attacker )
-
-            -- Neutral Multiplier: Checks if hurt npc is neutral, dead, and if it doesnt have the clone token ability, and their is a valid attacker
-            if IsValidEntity(attacker) then
-                if ent:GetTeamNumber() == DOTA_TEAM_NEUTRALS and ent:GetHealth() <= 0 and ent:GetName() == "npc_dota_creep_neutral" and ent:FindAbilityByName("clone_token_ability") == nil then
-                                   
-                    local lastHits = PlayerResource:GetLastHits(attacker:GetOwner():GetPlayerID())
-                    print(lastHits)
-                    self:MultiplyNeutralUnit( ent, attacker, this.optionStore['lodOptionNeutralMultiply'], lastHits )
-
-                end
-            end
             
             -- Check for tower connections
             if ent:GetHealth() <= 0 and this.towerConnectors[ent] then
@@ -5444,7 +5433,7 @@ end
 function Pregame:multiplyNeutrals()
         ListenToGameEvent('entity_hurt', function(keys)
             local this = self
-            
+
             -- Grab the entity that was hurt
             local ent = EntIndexToHScript(keys.entindex_killed)
             local attacker = EntIndexToHScript( keys.entindex_attacker )
@@ -5454,7 +5443,7 @@ function Pregame:multiplyNeutrals()
                 if ent:GetTeamNumber() == DOTA_TEAM_NEUTRALS and ent:GetHealth() <= 0 and ent:GetName() == "npc_dota_creep_neutral" and ent:FindAbilityByName("clone_token_ability") == nil then
                                    
                     local lastHits = PlayerResource:GetLastHits(attacker:GetOwner():GetPlayerID())
-                    print(lastHits)
+                    --print(lastHits)
                     self:MultiplyNeutralUnit( ent, attacker, this.optionStore['lodOptionNeutralMultiply'], lastHits )
 
                 end

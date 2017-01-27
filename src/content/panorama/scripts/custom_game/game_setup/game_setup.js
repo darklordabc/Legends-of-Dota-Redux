@@ -4795,7 +4795,7 @@ function UpdateTimer() {
     }
 
     if ($.GetContextPanel().isIngameBuilder) {
-        placeInto.text = "ⁿ/ₐ";
+        placeInto.text = "∞";
     }
 
     $.Schedule(0.1, UpdateTimer);
