@@ -34,6 +34,8 @@ function showIngameBuilder() {
         heroBuilderPanel.FindChildTraverse("balanceModePointsHeroes").SetHasClass("balanceModeDisabled", balanceMode == false);
         heroBuilderPanel.FindChildTraverse("balanceModePointsSkills").SetHasClass("balanceModeDisabled", balanceMode == false);
 
+        heroBuilderPanel.FindChildTraverse("tabsSelector").visible = true;
+
         heroBuilderPanel.showBuilderTab('pickingPhaseMainTab');
 
         // Hide the hero selection when spawn hero is pressed
