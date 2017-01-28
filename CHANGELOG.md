@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 - Fixed Mutators blinking slightly
 - Fixed Heros tooltips not formating right
 - Reworked how multiply neutrals work because previous way too intensive and unreliable. 
+- CK Bots will no longer get bonus random gold
 
 ### Balance
 - Readded Divided We Stand, should now longer cause long respawn times
