@@ -8,6 +8,10 @@ All notable changes to this project will be documented in this file.
 - Reworked how multiply neutrals work because previous way too intensive and unreliable. 
 - CK Bots will no longer get bonus random gold
 - Fixed Mastery of Deception working on buildings
+- Perks for Spirit Breaker, Slardar, Ancient Apparitions have been disabled from game until they can be fixed
+- Fixed Clockwerk perk dissapering on death
+- Multipying Neutrals will now spawn deadly baby roshans if you have too high a last hits score.
+- Temporarily disabled Blizzard until it can be fixed
 
 ### Balance
 - Readded Divided We Stand, should now longer cause long respawn times
