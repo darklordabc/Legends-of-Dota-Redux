@@ -8,6 +8,8 @@ function illusions( event )
 	local attacker = event.attacker
 	
 	if attacker:IsHero() then return end
+
+	if attacker:IsBuilding() then return end
 	
 	if caster:IsIllusion() then 
 		return 
