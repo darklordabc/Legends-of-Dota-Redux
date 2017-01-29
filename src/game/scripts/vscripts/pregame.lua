@@ -2780,6 +2780,31 @@ function Pregame:MultiplyNeutralUnit( unit, killer, mult, lastHits )
 
                     end
 
+                    -- Baby Rosh Attack Special, only for melee clones
+                    if level == 10 and not givenSpecialAbility then
+
+                        if RollPercentage(10) then
+                            givenSpecialAbility = true
+                            clone:SetModelScale(modelSize)
+
+                            clone:SetModel("models/creeps/baby_rosh_halloween/baby_rosh_radiant/baby_rosh_radiant.vmdl")
+                            clone:SetOriginalModel("models/creeps/baby_rosh_halloween/baby_rosh_radiant/baby_rosh_radiant.vmdl")
+
+                            clone:AddAbility("ursa_fury_swipes")
+                            clone:AddAbility("neutral_extra_health")
+                            clone:AddNewModifier(clone, clone, "modifier_dark_seer_surge", {duration = duration})
+                            clone:AddNewModifier(killer, killer, "modifier_axe_berserkers_call", {duration = duration})
+                            
+                            local swipes = clone:FindAbilityByName("ursa_fury_swipes")
+                            local extraHealth = clone:FindAbilityByName("neutral_extra_health")
+                            
+                            swipes:SetLevel(4)  
+                            extraHealth:SetLevel(10)  
+
+                        end
+
+                    end
+
             end
          --   end
          --    if true then
