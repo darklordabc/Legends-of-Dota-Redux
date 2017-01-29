@@ -2722,14 +2722,14 @@ end
 function Pregame:MultiplyNeutralUnit( unit, killer, mult, lastHits )
         local unitName = unit:GetUnitName()
         
-        if unitName == "npc_dota_roshan" then
+        if unitName == "npc_dota_roshan" or unitName == "npc_dota_neutral_mud_golem_split" or unitName == "npc_dota_dark_troll_warlord_skeleton_warrior" then
             return
         end
         
         local loc = unit:GetAbsOrigin()
         local givenSpecialAbility = false
 
-        for i = 2, 4 do
+        for i = 2, mult do
             clone = CreateUnitByName( unitName, loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
             clone:AddAbility("clone_token_ability")
             if not givenSpecialAbility then
@@ -5433,6 +5433,7 @@ end
 function Pregame:multiplyNeutrals()
         ListenToGameEvent('entity_hurt', function(keys)
             local this = self
+            if this.optionStore['lodOptionNeutralMultiply'] == 1 then return end
 
             -- Grab the entity that was hurt
             local ent = EntIndexToHScript(keys.entindex_killed)
