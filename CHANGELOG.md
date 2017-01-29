@@ -1,7 +1,15 @@
 
 # Change Log
 All notable changes to this project will be documented in this file.
-## 5.4 - Development Version
+
+## 5.5 - Development Version
+### Bug Fixing/New Features
+- Re-Enabled Gyrocopter
+
+### Balance
+- 
+
+## 5.4 - Steam Version
 ### Bug Fixing/New Features
 - Fixed Mutators blinking slightly
 - Fixed Heros tooltips not formating right
@@ -16,7 +24,7 @@ All notable changes to this project will be documented in this file.
 ### Balance
 - Readded Divided We Stand, should now longer cause long respawn times
 
-## 5.3 - Steam Version
+## 5.3 
 ### Bug Fixing/New Features
 - Various prices tweaks in points mode
 - Fixed healing aura ability
