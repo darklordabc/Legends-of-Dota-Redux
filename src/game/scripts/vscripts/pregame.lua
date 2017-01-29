@@ -2732,12 +2732,13 @@ function Pregame:MultiplyNeutralUnit( unit, killer, mult, lastHits )
         for i = 2, mult do
             clone = CreateUnitByName( unitName, loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
             clone:AddAbility("clone_token_ability")
+            --Clones die after 120 seconds, this is a safety measure to prevent too many units being alive
+            clone:AddNewModifier(clone, nil, "modifier_kill", {duration = 120})
             if not givenSpecialAbility then
                 
-                if lastHits >= 10 then
-                    
                     --rollChance = math.min(25, (lastHits / 4) )
                     level = math.min(10, (math.floor(lastHits / 25)) )
+                    --level = 1
                     modelSize = level/14 + 1
 
                     --print("Level of ability")
@@ -2746,7 +2747,21 @@ function Pregame:MultiplyNeutralUnit( unit, killer, mult, lastHits )
                     --print(rollChance)
                     --print("Model Size")
                     --print(modelSize)
-                    if level > 0 then
+
+                    -- Double Damage Special
+                    if RollPercentage(5) then
+                        givenSpecialAbility = true
+
+                        clone:AddAbility("status_effect_damage")
+                        clone:AddNewModifier(clone, nil, "modifier_rune_doubledamage", {duration = duration})
+             
+                        local effect = clone:FindAbilityByName("status_effect_damage")
+                        effect:SetLevel(1)
+                    end
+
+
+                    -- Healing Aura and Extra Health Special
+                    if level > 0 and not givenSpecialAbility then
 
                         if RollPercentage(10) then
                             givenSpecialAbility = true
@@ -2760,10 +2775,10 @@ function Pregame:MultiplyNeutralUnit( unit, killer, mult, lastHits )
                             
                             healingWard:SetLevel(level)  
                             extraHealth:SetLevel(level)  
+
                         end
 
                     end
-                end
 
             end
          --   end
