@@ -6080,6 +6080,7 @@ function Pregame:fixSpawningIssues()
     local disabledPerks = {
         --npc_dota_hero_disruptor = true,
         npc_dota_hero_shadow_demon = true,
+        npc_dota_hero_spirit_breaker = true,
         npc_dota_hero_wisp = true
     }
 

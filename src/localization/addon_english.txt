@@ -1094,7 +1094,7 @@
     "unique_mechanic_slark"                        "Slark gains +3 agility for each level put in an <font color=\'#ffd966\'>Mobility</font>/<font color=\'#ffd966\'>Escape</font> skill."
     "unique_mechanic_sniper"                        "<font color=\'#ffd966\'>Shrapnel</font> will have global cast range if used by Sniper."
     "unique_mechanic_spectre"           "Spectre gains phased movement when casting abilities."
-    "unique_mechanic_spirit_breaker"                "<font color=\'#ffd966\'>Skull Basher</font> and  <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero.When Spirit Breaker bashes, he also applies <font color=\'#ffd966\'>Break</font>."
+    //"unique_mechanic_spirit_breaker"                "<font color=\'#ffd966\'>Skull Basher</font> and  <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero.When Spirit Breaker bashes, he also applies <font color=\'#ffd966\'>Break</font>."
     "unique_mechanic_storm_spirit"                 "At the start of the game, Storm Spirit gains a free level of <font color=\'#ffd966\'>Overload</font>, whether he has it or not.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
     "unique_mechanic_sven"                        "At the start of the game, Sven gains a free level of <font color=\'#ffd966\'>Great Cleave</font>, whether he has it or not."
     "unique_mechanic_techies"                        "<font color=\'#ffd966\'>Traps</font> and <font color=\'#ffd966\'>Explosives</font> will have 50% of their mana refunded and cooldowns reduced by 50% when used by Techies."
