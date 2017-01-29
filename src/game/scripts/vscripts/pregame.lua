@@ -5479,6 +5479,8 @@ function Pregame:multiplyNeutrals()
             local ent = EntIndexToHScript(keys.entindex_killed)
             local attacker = EntIndexToHScript( keys.entindex_attacker )
 
+            if not attacker then return end
+
             -- Neutral Multiplier: Checks if hurt npc is neutral, dead, and if it doesnt have the clone token ability, and their is a valid attacker
             if IsValidEntity(attacker) then
                 if ent:GetTeamNumber() == DOTA_TEAM_NEUTRALS and ent:GetHealth() <= 0 and ent:GetName() == "npc_dota_creep_neutral" and ent:FindAbilityByName("clone_token_ability") == nil then
@@ -6081,6 +6083,8 @@ function Pregame:fixSpawningIssues()
         --npc_dota_hero_disruptor = true,
         npc_dota_hero_shadow_demon = true,
         npc_dota_hero_spirit_breaker = true,
+        npc_dota_hero_spirit_slardar = true,
+        npc_dota_hero_ancient_apparition = true,
         npc_dota_hero_wisp = true
     }
 

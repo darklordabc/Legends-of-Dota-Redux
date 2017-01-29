@@ -1011,7 +1011,7 @@
 
     "unique_mechanic_abaddon"           "For Abaddon, <font color=\'#ffd966\'>Mist Coil</font> self-heals instead of damages and <font color=\'#ffd966\'>Aphotic Shield</font> receives 2 charges."
     "unique_mechanic_alchemist"                     "Alchemist will receives 2 bonus gold every 10 seconds. He can also gift <font color=\'#ffd966\'>Aghanim's Scepter</font> to allies."
-    "unique_mechanic_ancient_apparition"            "Ancient Apparition disables the health regeneration of targets when an <font color=\'#ffd966\'>Ice</font> ability debuff is applied."
+    //"unique_mechanic_ancient_apparition"            "Ancient Apparition disables the health regeneration of targets when an <font color=\'#ffd966\'>Ice</font> ability debuff is applied."
     "unique_mechanic_antimage"           "After Anti-Mage uses a <font color=\'#ffd966\'>Blink</font>, he will silence enemies within 200 radius for 2 seconds."
     "unique_mechanic_arc_warden"                        "Arc Warden may use a consumable item on himself every 90 seconds without consuming the item. "
     "unique_mechanic_axe"                        "<font color=\'#ffd966\'>Culling Blade</font> kills will chop the remaining cooldown times of Axe's abilities in half, or by 30 seconds if the remaining cooldown exceeds 1 minute."
@@ -1090,7 +1090,7 @@
     "unique_mechanic_shadow_shaman"             "Shadow Shaman refunds the manacost of <font color=\'#ffd966\'>Hex</font> spells and reduces their cooldowns by 20%."
     "unique_mechanic_silencer"                        "<font color=\'#ffd966\'>Silence</font> effects applied by Silencer last 25% longer."
     "unique_mechanic_skywrath_mage"                        "Skywrath Mage refunds 15% of the manacost of spells with a cooldown of 7 seconds or less."
-    "unique_mechanic_slardar"                       "<font color=\'#ffd966\'>Skull Basher</font> and  <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero.Any other bash will grant Slardar 1 gold."
+    //"unique_mechanic_slardar"                       "<font color=\'#ffd966\'>Skull Basher</font> and  <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero.Any other bash will grant Slardar 1 gold."
     "unique_mechanic_slark"                        "Slark gains +3 agility for each level put in an <font color=\'#ffd966\'>Mobility</font>/<font color=\'#ffd966\'>Escape</font> skill."
     "unique_mechanic_sniper"                        "<font color=\'#ffd966\'>Shrapnel</font> will have global cast range if used by Sniper."
     "unique_mechanic_spectre"           "Spectre gains phased movement when casting abilities."
