@@ -187,7 +187,7 @@ function Fervor(keys)
 							Timers:CreateTimer(caster:GetAttacksPerSecond() / 2,
 							function()
 								caster.stuntattack = true
-								caster:PerformAttack(target, true, true, true, false, true)	
+								caster:PerformAttack(target, true, true, true, false, true, false, true)	
 							end, DoUniqueString('ebf_troll_warlord_multistrike'))
 							ability.prng = 0
 						end
@@ -204,7 +204,7 @@ function Fervor(keys)
 							Timers:CreateTimer(caster:GetAttacksPerSecond() / 2,
 							function()
 								caster.stuntattack = true
-								caster:PerformAttack(target, true, true, true, false, true)	
+								caster:PerformAttack(target, true, true, true, false, true, false, true)	
 							end, DoUniqueString('ebf_troll_warlord_multistrike'))
 							ability.prng = 0
 						end
@@ -221,7 +221,7 @@ function Fervor(keys)
 					caster.stuntattack = true
 					caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, (2*caster:GetAttacksPerSecond()))
 					Timers:CreateTimer(0.2,function()
-								caster:PerformAttack(target, true, true, true, false, true)
+								caster:PerformAttack(target, true, true, true, false, true, false, true)
 								ability.prng = 0
 							end)
 				else

@@ -116,7 +116,7 @@ function sniper_assassinate_redux:OnProjectileHit(hTarget,vLocation)
     local oldLocation =  caster:GetAbsOrigin()
     caster:SetAbsOrigin(target:GetAbsOrigin())
     --SendOverheadEventMessage(caster,OVERHEAD_ALERT_CRITICAL,target,caster:GetAttackDamage() *self:GetSpecialValueFor("scepter_crit_bonus") * 0.01 ,nil)
-    caster:PerformAttack(target,true,true,true,true,false)
+    caster:PerformAttack(target,true,true,true,true,false, false, true)
     caster:SetAbsOrigin(oldLocation)
   end
   target:RemoveModifierByName("modifier_sniper_assassinate_target_redux")
