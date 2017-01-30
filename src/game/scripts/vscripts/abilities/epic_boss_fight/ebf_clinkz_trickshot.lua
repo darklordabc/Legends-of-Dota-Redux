@@ -17,7 +17,7 @@ function StrafeAttack(keys)
 	for _, unit in pairs( units ) do
 		caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, 3)
 		if counter > 0 then
-			caster:PerformAttack(unit, true, true, true, false, true)
+			caster:PerformAttack(unit, true, true, true, false, true, false, true)
 			counter = counter - 1
 		end
 	end

@@ -280,7 +280,7 @@ function hawkeye_ricochet_propagate(event)
     ability = event.ability
     } ]]
     --ApplyDamage(damage_table)
-    caster:PerformAttack(v,true,true,true,false,true)
+    caster:PerformAttack(v,true,true,true,false,true, false, true)
   end
   
   Orders:IssueAttackOrder(caster,target)
@@ -336,7 +336,7 @@ function hawkeye_rapid_fire(event)
   
   for i=0, hits-1 do
     Timers:CreateTimer(0.15*i,function()
-      caster:PerformAttack(target,true,true,true,false,true)
+      caster:PerformAttack(target,true,true,true,false,true, false, true)
     end)
   end
   
