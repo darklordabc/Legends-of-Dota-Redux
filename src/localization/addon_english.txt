@@ -7714,5 +7714,17 @@
         "DOTA_Tooltip_ability_keeper_of_the_light_chakra_magic_cooldown_Lore"            "In the same vein, Ezalor bestows his harmony among others."
         "DOTA_Tooltip_ability_keeper_of_the_light_chakra_magic_cooldown_cooldown_reduction"  "ALLY COOLDOWN REDUCTION:"
         "DOTA_Tooltip_ability_keeper_of_the_light_chakra_magic_cooldown_duration"    "COOLDOWN REDUCTION DURATION:"
+
+        "DOTA_Tooltip_ability_brewmaster_earth_pulverize_redux"                           "Demolish"
+        "DOTA_Tooltip_ability_brewmaster_earth_pulverize_redux_Lore"                      ""
+        "DOTA_Tooltip_ability_brewmaster_earth_pulverize_redux_Description"               "Deals bonus damage to buildings."
+        "DOTA_Tooltip_ability_brewmaster_earth_pulverize_redux_bonus_building_damage"     "%BONUS BUILDING DAMAGE:"
+
+        "DOTA_Tooltip_ability_brewmaster_storm_wind_walk_redux"                           "Wind Walk"
+        "DOTA_Tooltip_ability_brewmaster_storm_wind_walk_redux_Lore"                      ""
+        "DOTA_Tooltip_ability_brewmaster_storm_wind_walk_redux_Description"               "Provides temporary invisibility.  Bonus movement speed and attack damage when invisible."
+        "DOTA_Tooltip_ability_brewmaster_storm_wind_walk_redux_bonus_damage"              "BONUS DAMAGE:"
+        "DOTA_Tooltip_ability_brewmaster_storm_wind_walk_redux_bonus_movement_speeed"     "BONUS MOVEMENT SPEED:"
+        "DOTA_Tooltip_ability_brewmaster_storm_wind_walk_redux_duration"                  "DURATION:"
     
 }
