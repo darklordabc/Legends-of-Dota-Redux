@@ -15,8 +15,10 @@ function Explosion(event)
 
 	local targets = FindUnitsInRadius(caster:GetTeam() ,caster:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, 0, FIND_ANY_ORDER, false)
 	for _,unit in pairs(targets) do 
-		ApplyDamage({victim = unit, attacker = caster, damage = damage, damage_type = DAMAGE_TYPE_MAGICAL, ability = ability})
-		ability:ApplyDataDrivenModifier(caster,unit,"modifier_akron_explosion_burn", nil)
+		if not unit:IsBuilding() then
+			ApplyDamage({victim = unit, attacker = caster, damage = damage, damage_type = DAMAGE_TYPE_MAGICAL, ability = ability})
+			ability:ApplyDataDrivenModifier(caster,unit,"modifier_akron_explosion_burn", nil)
+		end
 	end
 	ability:ApplyDataDrivenModifier(caster,caster,"modifier_akron_explosion_burn", nil)
 	
