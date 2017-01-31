@@ -470,6 +470,9 @@ function Pregame:loadDefaultSettings()
     -- Turn easy mode off
     --self:setOption('lodOptionCrazyEasymode', 0, true)
 
+    -- Enable IMBA abilities
+    self:setOption('lodOptionAdvancedImbaAbilities', 0, true)
+
     -- Enable hero abilities
     self:setOption('lodOptionAdvancedHeroAbilities', 1, true)
 
@@ -478,9 +481,6 @@ function Pregame:loadDefaultSettings()
 
     -- Enable Custom Abilities
     self:setOption('lodOptionAdvancedCustomSkills', 0, true)
-
-    -- Enable IMBA abilities
-    self:setOption('lodOptionAdvancedImbaAbilities', 0, true)
 
     -- Disable OP abilities
     self:setOption('lodOptionAdvancedOPAbilities', 1, true)
