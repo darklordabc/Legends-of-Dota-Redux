@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 
 ### Balance
 - Fixed Healing Aura not being correctly considered an OP Single Player ability
+- Gyrocopter can no longer use Infernal blade because of an abuseable interaction with his scepter side-gunner ability
 
 ## 5.4 - Steam Version
 ### Bug Fixing/New Features

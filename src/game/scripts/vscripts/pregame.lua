@@ -6181,6 +6181,12 @@ function Pregame:fixSpawningIssues()
                                 spawnedUnit:SwapAbilities("sniper_assassinate","sniper_assassinate_redux",false,true)
                                 spawnedUnit:RemoveAbility("sniper_assassinate")
                         end
+                        -- Change sniper assassinate to our custom version to work with aghs
+                        if this.optionStore['lodOptionBanningUseBanList'] == 1 and spawnedUnit:HasAbility("doom_bringer_infernal_blade") and spawnedUnit:GetUnitName() == "npc_dota_hero_gyrocopter" and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("doom_bringer_infernal_blade"):IsHidden() then
+                                spawnedUnit:AddAbility("chaos_knight_chaos_strike_gyro")
+                                spawnedUnit:SwapAbilities("doom_bringer_infernal_blade","chaos_knight_chaos_strike_gyro",false,true)
+                                spawnedUnit:RemoveAbility("doom_bringer_infernal_blade")
+                        end
                         -- Custom Flesh Heap fixes
                         for abilitySlot=0,6 do
                             local abilityTemp = spawnedUnit:GetAbilityByIndex(abilitySlot)

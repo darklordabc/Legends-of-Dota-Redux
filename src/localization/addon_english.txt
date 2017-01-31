@@ -1159,6 +1159,7 @@
     "warning_life_stealer_infest"               "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Consume</font> and <font color=\'#70EA72\'>Control</font>."
     "warning_zuus_cloud"               "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Lighting Bolt</font>, for Nimbus to strike enemies."
     "warning_night_stalker_darkness"                "<font color=\'#FF4949\'>Hero Requirement:</font> You have to play as <font color=\'#70EA72\'>Night Stalker</font> to get the unobstructed vision bonus from Aghanim's Scepter."
+    "warning_doom_bringer_infernal_blade"                "<font color=\'#FF4949\'>Hero Requirement:</font> <font color=\'#70EA72\'>Gyrocopter</font> cannot use this ability unless 'Single Player' abilities are allowed."
     "warning_lone_druid_true_form"              "<font color=\'#FF4949\'>Hero Requirement:</font> Requires picking a hero with more than 400 range or else you will be unable to attack."
     "troll_warlord_berserkers_rage"              "<font color=\'#FF4949\'>Hero Requirement:</font> Requires picking a hero with more than 350 range or else you will be unable to attack."
     "warning_puck_illusory_orb"                 "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Ethereal Jaunt</font>."
@@ -7726,5 +7727,12 @@
         "DOTA_Tooltip_ability_brewmaster_storm_wind_walk_redux_bonus_damage"              "BONUS DAMAGE:"
         "DOTA_Tooltip_ability_brewmaster_storm_wind_walk_redux_bonus_movement_speeed"     "BONUS MOVEMENT SPEED:"
         "DOTA_Tooltip_ability_brewmaster_storm_wind_walk_redux_duration"                  "DURATION:"
+
+        "DOTA_Tooltip_ability_chaos_knight_chaos_strike_gyro"                "Infernal Blade Replacement"
+        "DOTA_Tooltip_ability_chaos_knight_chaos_strike_gyro_Description"    "Gyrocopter cannot use Infernal blade unless 'Single Player' abilities are enabled. There is a bug where infernal blade never goes on cooldown if Gryo attacks via using his side-gunner that is enabled with Aghs. This is a replacement ability, which is based on Chaos Knight's Chaos Strike."
+        "DOTA_Tooltip_ability_chaos_knight_chaos_strike_gyro_Lore"           "Gyrocopter OP power bludgeons those who he passes, crushing the thickest of armors ... until an evil wizard nerfed him."
+        "DOTA_Tooltip_ability_chaos_knight_chaos_strike_gyro_crit_chance"    "%CRITICAL CHANCE:"
+        "DOTA_Tooltip_ability_chaos_knight_chaos_strike_gyro_crit_damage"    "%CRITICAL DAMAGE:"
+        "DOTA_Tooltip_ability_chaos_knight_chaos_strike_gyro_lifesteal"  "%CRITICAL LIFESTEAL:"
     
 }
