@@ -208,10 +208,10 @@ function Network:banHero(heroName)
 end
 
 function Network:enableIngameHeroEditor()
-
-    local options = {}
     -- Push it
-    CustomGameEventManager:Send_ServerToAllClients('lodEnableIngameBuilder', options)
+    CustomNetTables:SetTableValue('options', 'lodEnableIngameBuilder', {
+        state = true
+    })
 end
 
 -- Pushes that a hero is banned
