@@ -5530,7 +5530,7 @@ function Pregame:darkMoonDrops()
                     local chance = 5
 
                     -- If its a hero that got killed, it has much higher chance to spawn items
-                    if ent:IsRealHero() then
+                    if ent:IsRealHero() or ent:IsBuilding() or ent:GetUnitName() == "npc_dota_roshan" then
                         chance = 50
                     end
 
