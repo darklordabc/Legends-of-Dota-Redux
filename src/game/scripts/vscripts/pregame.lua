@@ -534,6 +534,9 @@ function Pregame:loadDefaultSettings()
     -- NO MEMES UncleNox
     self:setOption("lodOptionMemesRedux", 0)
 
+    -- No Item Drops
+    self:setOption("lodOptionDarkMoon", 0)
+
 end
 
 -- Gets stats for the given player
@@ -953,6 +956,11 @@ function Pregame:onThink()
         Timers:CreateTimer(function()
             this:multiplyNeutrals()
         end, DoUniqueString('neutralMultiplier'), 0.2)
+
+        -- Dark Moon Drops
+        Timers:CreateTimer(function()
+            this:darkMoonDrops()
+        end, DoUniqueString('darkMoonDrop'), 0.2)
 
         -- Prevent fountain camping
         Timers:CreateTimer(function()
@@ -2467,9 +2475,13 @@ function Pregame:initOptionSelector()
             return true
         end,
 
+        -- Other - Item Drops
+        lodOptionDarkMoon = function(value)
+            return value == 0 or value == 1
+        end,
+
          -- Other -- Memes Redux
         lodOptionMemesRedux = function(value)
-            
             -- When the player activates this potion, they have a chance to hear a meme sound. Becomes more unlikely the more they hear.
             if value == 1 then
 
@@ -2483,6 +2495,8 @@ function Pregame:initOptionSelector()
 
             return value == 0 or value == 1
         end, 
+
+        
     }
 
     -- Callbacks
@@ -3310,6 +3324,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('refreshCooldownsOnDeath', this.optionStore['lodOptionRefreshCooldownsOnDeath'])
         OptionManager:SetOption('gottaGoFast', this.optionStore['lodOptionGottaGoFast'])
         OptionManager:SetOption('memesRedux', this.optionStore['lodOptionMemesRedux'])
+        OptionManager:SetOption('darkMoon', this.optionStore['lodOptionDarkMoon'])
 
         -- Enforce max level
         if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -3532,6 +3547,7 @@ function Pregame:processOptions()
                     ['Other: Refresh Cooldowns On Death'] = this.optionStore['lodOptionRefreshCooldownsOnDeath'],
                     ['Other: Gotta Go Fast!'] = this.optionStore['lodOptionGottaGoFast'],
                     ['Other: Memes Redux'] = this.optionStore['lodOptionMemesRedux'],
+                    ['Other: Item Drops'] = this.optionStore['lodOptionDarkMoon'],
                     ['Towers: Enable Stronger Towers'] = this.optionStore['lodOptionGameSpeedStrongTowers'],
                     ['Towers: Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],
                     ['Bots: Unique Skills'] = this.optionStore['lodOptionBotsUniqueSkills'],
@@ -5479,7 +5495,7 @@ function Pregame:multiplyNeutrals()
             local ent = EntIndexToHScript(keys.entindex_killed)
             local attacker = EntIndexToHScript( keys.entindex_attacker )
 
-            if not attacker then return end
+            if not attacker or not attacker:IsRealHero() then return end
 
             -- Neutral Multiplier: Checks if hurt npc is neutral, dead, and if it doesnt have the clone token ability, and their is a valid attacker
             if IsValidEntity(attacker) then
@@ -5488,6 +5504,119 @@ function Pregame:multiplyNeutrals()
                     local lastHits = PlayerResource:GetLastHits(attacker:GetOwner():GetPlayerID())
                     --print(lastHits)
                     self:MultiplyNeutralUnit( ent, attacker, this.optionStore['lodOptionNeutralMultiply'], lastHits )
+
+                end
+            end
+            
+        end, nil)
+end
+
+function Pregame:darkMoonDrops()
+        ListenToGameEvent('entity_hurt', function(keys)
+            local this = self
+            if this.optionStore['lodOptionDarkMoon'] == 0 then return end
+
+            -- Grab the entity that was hurt
+            local ent = EntIndexToHScript(keys.entindex_killed)
+            local attacker = EntIndexToHScript( keys.entindex_attacker )
+
+            if not attacker or not attacker:IsRealHero() then return end
+
+            -- Neutral Multiplier: Checks if hurt npc is neutral, dead, and if it doesnt have the clone token ability, and their is a valid attacker
+            if IsValidEntity(attacker) then
+                if ent:GetHealth() <= 0 then
+                    local giveBotGold = false
+
+                    local chance = 5
+
+                    -- If its a hero that got killed, it has much higher chance to spawn items
+                    if ent:IsRealHero() then
+                        chance = 50
+                    end
+
+                    if RollPercentage( chance ) then
+                        if util:isPlayerBot(attacker:GetOwner():GetPlayerID()) then 
+                            -- Bots wont use the TP scrolls, so compenstate them with free gold bag
+                            giveBotGold = true
+                        else
+                            local newItem = CreateItem( "item_tpscroll", nil, nil )
+                            newItem:SetPurchaseTime( 0 )
+                            if newItem:IsPermanent() and newItem:GetShareability() == ITEM_FULLY_SHAREABLE then
+                                item:SetStacksWithOtherOwners( true )
+                            end
+                            local drop = CreateItemOnPositionSync( ent:GetAbsOrigin(), newItem )
+                            drop.Holdout_IsLootDrop = true
+                            
+                            local dropTarget = ent:GetAbsOrigin() + RandomVector( RandomFloat( 50, 350 ) )
+
+                            
+                            newItem:LaunchLoot( false, 300, 0.75, dropTarget )
+                        end     
+                    end
+
+                    if RollPercentage( chance ) then
+                        local newItem = CreateItem( "item_health_potion", nil, nil )
+                        newItem:SetPurchaseTime( 0 )
+                        if newItem:IsPermanent() and newItem:GetShareability() == ITEM_FULLY_SHAREABLE then
+                            item:SetStacksWithOtherOwners( true )
+                        end
+                        local drop = CreateItemOnPositionSync( ent:GetAbsOrigin(), newItem )
+                        drop.Holdout_IsLootDrop = true
+                        
+                        local dropTarget = ent:GetAbsOrigin() + RandomVector( RandomFloat( 50, 350 ) )
+
+                        if util:isPlayerBot(attacker:GetOwner():GetPlayerID()) then 
+                            dropTarget = attacker:GetAbsOrigin()
+                        end
+
+                        newItem:LaunchLoot( true, 300, 0.75, dropTarget )
+                    end
+                    
+
+                    if RollPercentage( chance ) then
+                        local newItem = CreateItem( "item_mana_potion", nil, nil )
+                        newItem:SetPurchaseTime( 0 )
+                        if newItem:IsPermanent() and newItem:GetShareability() == ITEM_FULLY_SHAREABLE then
+                            item:SetStacksWithOtherOwners( true )
+                        end
+                        local drop = CreateItemOnPositionSync( ent:GetAbsOrigin(), newItem )
+                        drop.Holdout_IsLootDrop = true
+                        
+                        local dropTarget = ent:GetAbsOrigin() + RandomVector( RandomFloat( 50, 350 ) )
+
+                        if util:isPlayerBot(attacker:GetOwner():GetPlayerID()) then 
+                            dropTarget = attacker:GetAbsOrigin()
+                        end
+
+                        newItem:LaunchLoot( true, 300, 0.75, dropTarget )
+                    end
+                    
+
+                    if RollPercentage( chance ) or giveBotGold then
+                        local newItem = CreateItem( "item_bag_of_gold", nil, nil )
+                        
+                        local nGoldAmountBase = 20
+                        local nGoldAmountExtra = 20 + attacker:GetLevel()*2
+                        local nGoldFinal = RandomInt(nGoldAmountBase, nGoldAmountExtra)
+                        nGoldFinal = nGoldFinal * 10
+
+                        -- If this is compenstation for TP scroll give it price of TP scroll
+                        if giveBotGold then 
+                            nGoldFinal = 50 * 10
+                        end
+
+                        newItem:SetPurchaseTime( 0 )
+                        newItem:SetCurrentCharges( nGoldFinal )
+                            
+                        local drop = CreateItemOnPositionSync( ent:GetAbsOrigin(), newItem )
+                        local dropTarget = ent:GetAbsOrigin() + RandomVector( RandomFloat( 50, 250 ) )
+                       
+                        if util:isPlayerBot(attacker:GetOwner():GetPlayerID()) then 
+                            dropTarget = attacker:GetAbsOrigin()
+                        end
+
+                        newItem:LaunchLoot( true, 300, 0.75, dropTarget )
+                    end
 
                 end
             end

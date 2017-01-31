@@ -387,6 +387,11 @@ var basicOptions = {
                          extraInfo: 'lodOptionAboutMemesRedux',
                         about: 'lodMutatorMemesRedux'
                     },
+                    {
+                         name: 'lodOptionDarkMoon',
+                         extraInfo: 'lodOptionAboutDarkMoon',
+                        about: 'lodMutatorDarkMoon'
+                    },
                     //{
                    //     name: 'lodOptionMonkeyBusiness',        
                    //     extraInfo: 'lodOptionAboutMonkeyBusiness',
@@ -790,6 +795,22 @@ var advancedOptions = {
                 name: 'lodOptionGameSpeedSharedEXP',
                 des: 'lodOptionDesGameSpeedSharedEXP',
                 about: 'lodOptionAboutGameSpeedSharedEXP',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionRefreshCooldownsOnDeath',
+                des: 'lodOptionDesRefreshCooldownsOnDeath',
+                about: 'lodOptionAboutRefreshCooldownsOnDeath',
                 sort: 'toggle',
                 values: [
                     {
@@ -1275,22 +1296,6 @@ var advancedOptions = {
 				]
 			},
             {
-                name: 'lodOptionRefreshCooldownsOnDeath',
-                des: 'lodOptionDesRefreshCooldownsOnDeath',
-                about: 'lodOptionAboutRefreshCooldownsOnDeath',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
-            {
                 name: 'lodOption322',
                 des: 'lodOptionDes322',
                 about: 'lodOptionAbout322',
@@ -1414,6 +1419,22 @@ var advancedOptions = {
                 name: 'lodOptionMemesRedux',
                 des: 'lodOptionDesMemesRedux',
                 about: 'lodOptionAboutMemesRedux',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionDarkMoon',
+                des: 'lodOptionDesDarkMoon',
+                about: 'lodOptionAboutDarkMoon',
                 sort: 'toggle',
                 values: [
                     {
