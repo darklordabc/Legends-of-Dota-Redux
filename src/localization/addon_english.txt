@@ -4094,7 +4094,7 @@
     "DOTA_Tooltip_modifier_imba_sadist_stack_Description"                               "Regenerating health and mana"
 
     "DOTA_Tooltip_ability_sandking_caustic_finale_redux"                                 "Caustic Finale"
-    "DOTA_Tooltip_ability_sandking_caustic_finale_redux_Description"                     "Sand King poisons his enemies with every attack. When the poison debuff expires, enemies' body explodes, slowing and dealing damage to all nearby enemies."
+    "DOTA_Tooltip_ability_sandking_caustic_finale_redux_Description"                     "Sand King poisons his enemies with every attack. When the poison debuff expires, enemies' body explodes, slowing and dealing damage to all nearby enemies. When the debuff expires without the unit dying, 50% of the explosion damage is applied within the radius around it."
     "DOTA_Tooltip_ability_sandking_caustic_finale_redux_Lore"                            "An injection from Crixalis makes one as brittle as the sands of his home."
     "DOTA_Tooltip_ability_sandking_caustic_finale_redux_Note0"                           "Also activates if the affected unit dies, or if the debuff is purged."
     "DOTA_Tooltip_ability_sandking_caustic_finale_redux_Note1"                           "Damaging an unit already affected by Caustic Finale does not refresh the debuff."

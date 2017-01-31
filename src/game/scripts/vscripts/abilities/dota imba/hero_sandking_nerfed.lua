@@ -213,7 +213,7 @@ function CausticFinale( keys )
 	local modifier_prevent = keys.modifier_prevent
 
 	-- If the target is an ally, or already has the debuff, or has the prevention debuff, do nothing
-	if target:GetTeam() == caster:GetTeam() or target:HasModifier(modifier_debuff) or target:HasModifier(modifier_prevent) or target:IsIllusion() then
+	if target:GetTeam() == caster:GetTeam() or target:HasModifier(modifier_debuff) or target:HasModifier(modifier_prevent) or target:IsIllusion() or target:IsBuilding() then
 		return nil
 	end
 
@@ -236,6 +236,11 @@ function CausticFinaleEnd( keys )
 	local radius = ability:GetLevelSpecialValueFor("radius", ability_level)
 	local damage = ability:GetLevelSpecialValueFor("damage", ability_level)
 	local target_pos = target:GetAbsOrigin()
+
+	-- If the unit did not die with the effect, it only deals half damage
+	if target:GetHealth() > 0 then
+		damage = damage / 2
+	end
 
 	-- Play sound
 	target:EmitSound(sound_explode)
