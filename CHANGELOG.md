@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - Fixed several instances of 'performattack' being wrong: Hawkeye, Trickshots, some attacking issues with imba abilities, tower abilities not attacking right,
 - Gave 7 levels to Brewmasters Wind Walk and Pulverize Ability
 - Added Dark Moon Item Drops Mutator
+- Added extra setting for no invisibility mutator, now u can block shadow blades
 
 ### Balance
 - Fixed Healing Aura not being correctly considered an OP Single Player ability

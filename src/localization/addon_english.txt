@@ -104,6 +104,9 @@
     "lodOptionNo"                                   "No"
     "lodOptionYesHumansOnly"                                  "Yes (Humans Only)"
 
+    "lodOptionSkills"                                  "Yes (Skills Only)"
+    "lodOptionSkillsAndItems"                          "Yes (Skills and Items)"
+
     // Option text
     "lodOptionsPresetGamemode"                      "Preset Gamemode"
     "lodOptionBalancedAllPick"                      "Balanced All Pick"
@@ -118,6 +121,7 @@
     "lodOptionPresetMutators"                       "Optional Mutators"
     "lodMutatorGameMode"                            "Game Mode"
     "lodMutatorBanningBanInvis"                     "No Invisible"
+    "lodMutatorBanningBanInvis2"                    "No Invisible Items Too"
     "lodMutatorUpgradedUlts"                        "Free Scepter"
     "lodMutatorUpgradedUltsNoBots"                  "Free Scepter (Humans Only)"
     "lodMutatorFreeAbility"                         "Free Ability"
@@ -303,7 +307,7 @@
 
     "lodOptionDesBanningBlockTrollCombos"           "Block Troll Combos"
     "lodOptionDesBanningUseBanList"                 "Ban Single Player Abilities (SUPER OP)"
-    "lodOptionDesBanningBanInvis"                   "Ban Invisibility Skills"
+    "lodOptionDesBanningBanInvis"                   "Ban Invisibility"
     "lodOptionDesBanningBalanceMode"                "Use Points Mode Ban List"
 
     "lodOptionDesGameSpeedStartingLevel"            "Starting Level"

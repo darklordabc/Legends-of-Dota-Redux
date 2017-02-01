@@ -181,9 +181,16 @@ var basicOptions = {
                                 'lodOptionAdvancedOPAbilities': 0
                             }
                         }
-                    },{
-                        name: 'lodOptionBanningBanInvis',
-                        about: 'lodMutatorBanningBanInvis'
+                    },
+                    {
+                       name: 'lodOptionBanningBanInvis',
+                        default: {
+                            'lodMutatorBanningBanInvis': 0
+                        },
+                        states: {
+                            'lodMutatorBanningBanInvis': 1,
+                            'lodMutatorBanningBanInvis2': 2
+                        }
                     },
                     {
                         name: 'lodOptionBanningHostBanning',
@@ -630,15 +637,19 @@ var advancedOptions = {
                 name: 'lodOptionBanningBanInvis',
                 des: 'lodOptionDesBanningBanInvis',
                 about: 'lodOptionAboutBanningBanInvis',
-                sort: 'toggle',
+                sort: 'dropdown',
                 values: [
                     {
                         text: 'lodOptionNo',
                         value: 0
                     },
                     {
-                        text: 'lodOptionYes',
+                        text: 'lodOptionSkills',
                         value: 1
+                    },
+                    {
+                        text: 'lodOptionSkillsAndItems',
+                        value: 2
                     }
                 ]
             },

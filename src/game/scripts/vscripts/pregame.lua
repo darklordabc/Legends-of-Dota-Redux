@@ -2134,7 +2134,7 @@ function Pregame:initOptionSelector()
 
         -- Common ban all invis
         lodOptionBanningBanInvis = function(value)
-            return value == 0 or value == 1
+            return value == 0 or value == 1 or value == 2 
         end,
 
         -- Common -- Disable Perks
@@ -3325,6 +3325,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('gottaGoFast', this.optionStore['lodOptionGottaGoFast'])
         OptionManager:SetOption('memesRedux', this.optionStore['lodOptionMemesRedux'])
         OptionManager:SetOption('darkMoon', this.optionStore['lodOptionDarkMoon'])
+        OptionManager:SetOption('banInvis', this.optionStore['lodOptionBanningBanInvis'])
 
         -- Enforce max level
         if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
