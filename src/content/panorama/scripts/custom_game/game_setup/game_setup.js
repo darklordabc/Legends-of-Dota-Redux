@@ -761,6 +761,21 @@ function OnGetDraftArray(table_name, key, data) {
                     }
                 }
             }
+
+            if (Object.keys(data.draftArray).length == 10) {
+                $("#boosterDraftBoosters").visible = false;
+            } else {
+                for (var i = 0; i < Object.keys(data.draftArray).length; i++) {
+                    try {
+                        if (boosterDraftInitiated) {
+                            $("#boosterDraftBoosters").Children()[9-i].DeleteAsync(0.0);
+                            $("#boosterDraftBoosters").Children()[8-i].SetHasClass("current", true);
+                        }
+                    } catch (err) {}
+                }
+            }
+
+            $("#tabsSelector").visible = true;
         }
     } else {
         var draftID = data.draftID;
@@ -798,17 +813,6 @@ function OnGetDraftArray(table_name, key, data) {
         // Init booster draft
         if (isBoosterDraftGamemode()) {
             showBuilderTab('pickingPhaseSkillTab');
-
-            try {
-                if (boosterDraftInitiated) {
-                    $("#boosterDraftBoosters").Children()[$("#boosterDraftBoosters").Children().length-1].DeleteAsync(0.0);
-                }
-                if ($("#boosterDraftBoosters").Children().length >= 2) {
-                    $("#boosterDraftBoosters").Children()[$("#boosterDraftBoosters").Children().length-2].SetHasClass("current", true);
-                } else {
-                    $("#boosterDraftBoosters").visible = false;
-                }
-            } catch (err) {}
 
             if (!boosterDraftInitiated && !data.boosterDraftDone) {
                 $("#boosterDraftPile").visible = true;
@@ -2446,6 +2450,15 @@ function OnSkillTabShown(tabName) {
                 //abcon.SetHasClass('disallowedSkill', true);
 
                 makeSkillSelectable(abcon);
+
+                if (currentPhase == PHASE_SELECTION && isDraftGamemode()) {
+                    if (label) {
+                        label.SetHasClass('skillCostLarge', true);
+                        label.SetHasClass('skillCostSmall', false);
+                    }
+                    abcon.AddClass("hide");
+                    abcon.AddClass("lodDraftAbility");
+                }
 
                 // Store a reference to it
                 abilityStore[abName] = abcon;
@@ -4099,11 +4112,13 @@ function updateVotingPercentage(votes, labels) {
 }
 
 function isDraftGamemode() {
-    return optionValueList['lodOptionCommonGamemode'] == 5 || optionValueList['lodOptionCommonGamemode'] == 3 || optionValueList['lodOptionCommonGamemode'] == 6
+    var netTableValue = CustomNetTables.GetTableValue("options", "lodOptionCommonGamemode").v;
+    return netTableValue == 5 || netTableValue == 3 || netTableValue == 6 || optionValueList['lodOptionCommonGamemode'] == 5 || optionValueList['lodOptionCommonGamemode'] == 3 || optionValueList['lodOptionCommonGamemode'] == 6
 }
 
 function isBoosterDraftGamemode() {
-    return optionValueList['lodOptionCommonGamemode'] == 6;
+    var netTableValue = CustomNetTables.GetTableValue("options", "lodOptionCommonGamemode").v;
+    return netTableValue == 6 || optionValueList['lodOptionCommonGamemode'] == 6;
 }
 
 // A phase was changed
@@ -4219,14 +4234,18 @@ function OnPhaseChanged(table_name, key, data) {
                 }
 
                 if (isDraftGamemode()) {
-                    for (var abName in abilityStore) {
-                        var label = abilityStore[abName].GetChild(0);
-                        if (label) {
-                            label.SetHasClass('skillCostLarge', true);
-                            label.SetHasClass('skillCostSmall', false);
+                    $.Msg($("#pickingPhaseSkillTabContentSkills").Children().length);
+                    for (var k in $("#pickingPhaseSkillTabContentSkills").Children()) {
+                        var panel = $("#pickingPhaseSkillTabContentSkills").Children()[k];
+                        if (panel.BHasClass("lodMiniAbility")) {
+                            var label = panel.GetChild(0);
+                            if (label) {
+                                label.SetHasClass('skillCostLarge', true);
+                                label.SetHasClass('skillCostSmall', false);
+                            }
+                            panel.AddClass("hide");
+                            panel.AddClass("lodDraftAbility");
                         }
-                        abilityStore[abName].AddClass("hide");
-                        abilityStore[abName].AddClass("lodDraftAbility");
                     }
                 }
             }

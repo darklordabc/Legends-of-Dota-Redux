@@ -24,6 +24,7 @@
         </snippet>
     </snippets>
     <Panel class="lodOptionsInterface" hittest="false">
+        
         <Panel class="lodOptionsInterface" id="lodOptionsRoot">
             <Panel id="chat" />
 
