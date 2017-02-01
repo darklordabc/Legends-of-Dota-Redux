@@ -152,6 +152,7 @@
     "lodMutatorDisablePerks"                        "Disable Perks"
     "lodMutatorDuel"                                "Duels"
     "lodMutatorBoosterDraft"                        "Booster Draft"
+    "lodMutatorDoubleCreeps"                        "Double Lane Creeps"
 
     "lodMutatorFastBuybackCooldown1"                "Fast Respawn"
     "lodMutatorFastBuybackCooldown2"                "Faster Respawn"
@@ -927,6 +928,9 @@
     "lodOptionRestrictRadiant"                      "Only Radiant Bots"
     "lodOptionRestrictDire"                         "Only Dire Bots"
     "lodOptionRestrictBoth"                         "Both Teams"
+
+    "lodOptionAboutLaneMultiply"                    "When Lane Creeps come in contact with an enemy, they will clone a double to help fight. Does not clone siege units."
+    "lodOptionDesLaneMultiply"                      "Double Lane Creeps"
 
     "statsPlayerName"                               "Player Name"
     "statsTotalGames"                               "Total Games"

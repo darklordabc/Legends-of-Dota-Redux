@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - Gave 7 levels to Brewmasters Wind Walk and Pulverize Ability
 - Added Dark Moon Item Drops Mutator
 - Added extra setting for no invisibility mutator, now u can block shadow blades
+- Added Double Lane Creeps mutator
 
 ### Balance
 - Fixed Healing Aura not being correctly considered an OP Single Player ability

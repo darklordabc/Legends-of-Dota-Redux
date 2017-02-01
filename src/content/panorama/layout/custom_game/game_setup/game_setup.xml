@@ -381,6 +381,7 @@
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorAllVision.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorHidePicks.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorShareEXP.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorDoubleCreeps.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorDisablePerks.png"></Image>
                                     
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorNoFatOMeter.png"></Image>

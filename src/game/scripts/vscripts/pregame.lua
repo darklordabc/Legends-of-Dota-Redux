@@ -457,6 +457,7 @@ function Pregame:loadDefaultSettings()
     -- Do not increase creep power
     self:setOption('lodOptionCreepPower', 0, true)
     self:setOption('lodOptionNeutralMultiply', 1, true)
+    self:setOption('lodOptionLaneMultiply', 0, true)
 
 
     -- Start with a free courier
@@ -956,6 +957,11 @@ function Pregame:onThink()
         Timers:CreateTimer(function()
             this:multiplyNeutrals()
         end, DoUniqueString('neutralMultiplier'), 0.2)
+
+        -- Double Lane Creeps Multiplier Mutator
+        Timers:CreateTimer(function()
+            this:multiplyLaneCreeps()
+        end, DoUniqueString('laneCreepMultiplierTimer'), 0.2)
 
         -- Dark Moon Drops
         Timers:CreateTimer(function()
@@ -2280,6 +2286,11 @@ function Pregame:initOptionSelector()
         lodOptionNeutralMultiply = function(value)
             return value == 1 or value == 2 or value == 3 or value == 4
         end,
+        
+        -- Game Speed - Multiply Lane Creeps
+        lodOptionLaneMultiply = function(value)
+            return value == 0 or value == 1
+        end,
 
         -- Game Speed - Free Courier
         lodOptionGameSpeedFreeCourier = function(value)
@@ -2879,6 +2890,22 @@ function Pregame:MultiplyNeutralUnit( unit, killer, mult, lastHits )
         end
 end
 
+-- Multiply neutral creep camps
+function Pregame:MultiplyLaneUnit( unit, mult )
+        local unitName = unit:GetUnitName()
+           
+        local loc = unit:GetAbsOrigin()
+
+        for i = 2, mult do
+            clone = CreateUnitByName( unitName, loc, true, nil, nil, unit:GetTeam() )
+            clone:AddAbility("clone_token_ability")
+            --Clones die after 120 seconds, this is a safety measure to prevent too many units being alive
+            clone:AddNewModifier(clone, nil, "modifier_kill", {duration = 30})
+            clone:SetInitialGoalEntity(unit:GetInitialGoalEntity())
+        end
+end
+
+
 -- Generates draft arrays
 function Pregame:buildDraftArrays()
     -- Only build draft arrays once
@@ -3312,6 +3339,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('towerCount', this.optionStore['lodOptionGameSpeedTowersPerLane'])
         OptionManager:SetOption('creepPower', this.optionStore['lodOptionCreepPower'])
         OptionManager:SetOption('neutralMultiply', this.optionStore['lodOptionNeutralMultiply'])
+        OptionManager:SetOption('laneMultiply', this.optionStore['lodOptionLaneMultiply'])
         OptionManager:SetOption('useFatOMeter', this.optionStore['lodOptionCrazyFatOMeter'])
         OptionManager:SetOption('allowIngameHeroBuilder', this.optionStore['lodOptionIngameBuilder'] == 1)
         --OptionManager:SetOption('botBonusPoints', this.optionStore['lodOptionBotsBonusPoints'] == 1)
@@ -3517,6 +3545,7 @@ function Pregame:processOptions()
                     ['Bans: Use LoD BanList'] = this.optionStore['lodOptionBanningUseBanList'],
                     ['Creeps: Increase Creep Power Over Time'] = this.optionStore['lodOptionCreepPower'],
                     ['Creeps: Multiply Neutral Camps'] = this.optionStore['lodOptionNeutralMultiply'],
+                    ['Creeps: Multiply Lane Creeps'] = this.optionStore['lodOptionLaneMultiply'],
                     ['Game Speed: Bonus Starting Gold'] = this.optionStore['lodOptionGameSpeedStartingGold'],
                     ['Game Speed: Buyback Cooldown Constant'] = this.optionStore['lodOptionBuybackCooldownTimeConstant'],
                     ['Game Speed: Gold Modifier'] = math.floor(this.optionStore['lodOptionGameSpeedGoldModifier']),
@@ -5509,6 +5538,34 @@ function Pregame:multiplyNeutrals()
                 end
             end
             
+        end, nil)
+end
+
+function Pregame:multiplyLaneCreeps()
+        ListenToGameEvent('entity_hurt', function(keys)
+            local this = self
+            if this.optionStore['lodOptionLaneMultiply'] == 0 then return end
+
+            -- Grab the entity that was hurt
+            local ent = EntIndexToHScript(keys.entindex_killed)
+            local attacker = EntIndexToHScript( keys.entindex_attacker )
+
+            -- Neutral Multiplier: Checks if hurt npc is neutral, dead, and if it doesnt have the clone token ability, and their is a valid attacker
+            if IsValidEntity(ent) and IsValidEntity(attacker) then
+                if ent:GetName() == "npc_dota_creep_lane" and ent:FindAbilityByName("clone_token_ability") == nil then
+                    
+                    ent:AddAbility("clone_token_ability")
+                    self:MultiplyLaneUnit( ent, 2 )
+
+                end
+                if attacker:GetName() == "npc_dota_creep_lane" and attacker:FindAbilityByName("clone_token_ability") == nil then
+                    
+                    attacker:AddAbility("clone_token_ability")
+                    self:MultiplyLaneUnit( attacker, 2 )
+
+                end
+            end
+
         end, nil)
 end
 
