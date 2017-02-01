@@ -4779,7 +4779,6 @@ function UpdateTimer() {
         else if (currentPhase == PHASE_REVIEW) {
             // Show vs
             $("#reviewPhaseVS").AddClass('show');
-			$("#tipPanel").AddClass('hidden');
 
             // Show abilities
             var radiantPlayers = Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_GOODGUYS);
