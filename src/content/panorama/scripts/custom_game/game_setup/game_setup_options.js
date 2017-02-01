@@ -74,7 +74,7 @@ var basicOptions = {
                     },{
                         name: 'lodOptionGameSpeedMaxLevel',
                         states: {
-                            'lodMutatorMaxLevel1': 25,
+                            'lodMutatorMaxLevel1': 28,
                             'lodMutatorMaxLevel2': 50,
                             'lodMutatorMaxLevel3': 100
                         }

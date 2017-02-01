@@ -425,8 +425,8 @@ function Pregame:loadDefaultSettings()
     -- Starting level is lvl 1
     self:setOption('lodOptionGameSpeedStartingLevel', 1, true)
 
-    -- Max level is 25
-    self:setOption('lodOptionGameSpeedMaxLevel', 25, true)
+    -- Max level is 28
+    self:setOption('lodOptionGameSpeedMaxLevel', 28, true)
 
     -- Don't mess with gold rate
     self:setOption('lodOptionGameSpeedStartingGold', 0, true)
