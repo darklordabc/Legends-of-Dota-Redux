@@ -24,6 +24,10 @@
         </snippet>
     </snippets>
     <Panel class="lodOptionsInterface" hittest="false">
+		<Panel class="workingPanel" id="tipPanel">
+			<Image id="LoDLoadingTipImage" />
+			<Label id="LoDLoadingTipText" />
+		</Panel>
         <Panel class="lodOptionsInterface" id="lodOptionsRoot">
             <Panel id="chat" />
 

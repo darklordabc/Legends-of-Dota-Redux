@@ -685,25 +685,24 @@ Button:enabled:hover {
 }
 
 #tipPanel {
-    width: fill-parent-flow(0.7);
-    height: 70px;
-
-    margin-left: 4px;
-    horizontal-align: right;    
-
+    width: 57.5%;
+    height: 150px;
+	margin-bottom: 18px;
+    margin-right: 138px;
+    horizontal-align: right;
+	vertical-align: bottom;
     flow-children: right;
 }
 
 #tipPanel Label {
 	height: 100%;
-    margin: 4px;
+    margin: 8px;
     color: #FFFFFF;
 
     vertical-align: center;
 
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 18px;
+    font-size: 28px;
+    line-height: 28px;
 }
 
 #tipPanel Image {
