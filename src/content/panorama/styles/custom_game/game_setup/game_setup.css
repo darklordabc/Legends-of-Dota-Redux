@@ -685,6 +685,13 @@ Button:enabled:hover {
 }
 
 #tipPanel {
+	opacity: 0;
+
+    transition-property: opacity;
+    transition-delay: 1s;
+    transition-duration: 2s;
+    transition-timing-function: ease-in-out;
+	
     width: 57.5%;
     height: 150px;
 	margin-bottom: 18px;
@@ -692,6 +699,10 @@ Button:enabled:hover {
     horizontal-align: right;
 	vertical-align: bottom;
     flow-children: right;
+}
+
+#tipPanel.show {
+    opacity: 1.0;    
 }
 
 #tipPanel Label {

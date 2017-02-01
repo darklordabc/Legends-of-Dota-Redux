@@ -4968,6 +4968,7 @@ function gamemodesScroll(direction) {
 function showMainPanel() {
     if ($('#mainSelectionRoot').BReadyForDisplay()) {
         $('#mainSelectionRoot').AddClass('show');
+        $('#tipPanel').AddClass('show');
         return;
     }
 
