@@ -1002,6 +1002,8 @@ function onBacktrackButton() {
     masterRoot.SetHasClass('phase_option_selection_selected', selectedPhase == PHASE_OPTION_SELECTION || reviewingOptions);
     masterRoot.SetHasClass('review_selection', reviewingOptions);
     masterRoot.SetHasClass('phase_selection_selected', selectedPhase == PHASE_SELECTION && !reviewingOptions);
+	
+	$('#backtrackBtnTxt').text = $.Localize((reviewingOptions)? 'reviewReturn': 'reviewOptions');
 }
 
 // Sets up the hero builder tab
@@ -4648,6 +4650,7 @@ function SetSelectedPhase(newPhase, noSound) {
     masterRoot.SetHasClass('phase_all_random_selected', selectedPhase == PHASE_RANDOM_SELECTION);
     masterRoot.SetHasClass('phase_drafting_selected', selectedPhase == PHASE_DRAFTING);
     masterRoot.SetHasClass('phase_review_selected', selectedPhase == PHASE_REVIEW);
+	$('#backtrackBtn').SetHasClass('hidden', selectedPhase != PHASE_SELECTION);
 }
 
 // Return X:XX time (M:SS)

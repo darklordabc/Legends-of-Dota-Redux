@@ -91,7 +91,7 @@
                                 <Label text="Stage name" id="lodStageName" />
 							
 								<Button id="backtrackBtn" class="hidden" onactivate="onBacktrackButton()">
-									<Label text="PRESS ME" />
+									<Label id="backtrackBtnTxt" text="reviewOptions" />
 								</Button>
                             </Panel>
                         </Panel>

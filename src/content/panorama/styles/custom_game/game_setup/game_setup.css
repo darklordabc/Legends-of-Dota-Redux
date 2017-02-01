@@ -695,7 +695,7 @@ Button:enabled:hover {
 }
 
 #backtrackBtn.hidden {
-	
+	visibility: collapse;
 }
 
 #lodStageName {
