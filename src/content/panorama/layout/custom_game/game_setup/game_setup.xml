@@ -697,7 +697,6 @@
                                             <Label text="#DOTA_Hero_Selection_INT" class="pickingHeroListCategory"/>
                                             <Panel id="intHeroContainer" class="pickingHeroListHeroes"/>
                                         </Panel>
-
                                     </Panel>
 
                                     <Panel id="pickingPhaseSkillTabContent" class="pickingPhaseTabContent">
