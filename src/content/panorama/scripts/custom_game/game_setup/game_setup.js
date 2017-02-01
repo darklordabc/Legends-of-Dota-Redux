@@ -4807,6 +4807,7 @@ function UpdateTimer() {
 function onAcceptPopup() {
     $('#lodPopupMessage').visible = false;
     $('#lodOptionsRoot').SetHasClass("darkened", false);
+    $('#tipPanel').SetHasClass("darkened", false);
 }
 
 // Shows a popup message to a player
@@ -4814,6 +4815,7 @@ function showPopupMessage(msg) {
     $('#lodPopupMessageLabel').text = $.Localize(msg);
     $('#lodPopupMessage').visible = true;
     $('#lodOptionsRoot').SetHasClass("darkened", true);
+    $('#tipPanel').SetHasClass("darkened", true);
 
     for (var k in $("#lodPopupMessageImage").Children()) {
         $("#lodPopupMessageImage").Children()[k].visible = false;

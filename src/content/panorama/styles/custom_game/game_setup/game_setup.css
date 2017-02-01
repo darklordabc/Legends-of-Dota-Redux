@@ -698,6 +698,11 @@ Button:enabled:hover {
     flow-children: right;
 }
 
+#tipPanel.darkened {
+    brightness: 0.2;
+    blur: gaussian( 2.5 );
+}
+
 #tipPanel.hidden {
 	visibility:collapse;
 }
