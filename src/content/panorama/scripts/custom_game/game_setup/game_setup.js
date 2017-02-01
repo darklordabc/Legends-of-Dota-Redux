@@ -4651,6 +4651,7 @@ function SetSelectedPhase(newPhase, noSound) {
     masterRoot.SetHasClass('phase_drafting_selected', selectedPhase == PHASE_DRAFTING);
     masterRoot.SetHasClass('phase_review_selected', selectedPhase == PHASE_REVIEW);
 	$('#backtrackBtn').SetHasClass('hidden', selectedPhase != PHASE_SELECTION);
+	$('#backtrackBtnTxt').text = $.Localize('reviewOptions');
 }
 
 // Return X:XX time (M:SS)
