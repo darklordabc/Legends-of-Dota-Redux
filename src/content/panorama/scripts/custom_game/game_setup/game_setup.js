@@ -996,6 +996,14 @@ function onLockBuildButtonPressed() {
     GameEvents.SendCustomGameEventToServer('lodReady', {});
 }
 
+function onBacktrackButton() {
+	reviewingOptions = !reviewingOptions;
+	var masterRoot = $.GetContextPanel();
+    masterRoot.SetHasClass('phase_option_selection_selected', selectedPhase == PHASE_OPTION_SELECTION || reviewingOptions);
+    masterRoot.SetHasClass('review_selection', reviewingOptions);
+    masterRoot.SetHasClass('phase_selection_selected', selectedPhase == PHASE_SELECTION && !reviewingOptions);
+}
+
 // Sets up the hero builder tab
 function setupBuilderTabs() {
     var mainPanel = $('#tabsSelector');

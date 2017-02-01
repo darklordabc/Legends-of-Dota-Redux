@@ -679,6 +679,25 @@ Button:enabled:hover {
     vertical-align: center;
 }
 
+.stageNameDesc Button {
+	width: 300px;
+	height: 40px;
+	margin-right: 20px;
+	horizontal-align: right;
+	vertical-align: center;
+}
+
+#backtrackBtn  Label {
+	horizontal-align: center;
+	vertical-align: center;
+	
+	font-size: 20px;
+}
+
+#backtrackBtn.hidden {
+	
+}
+
 #lodStageName {
     vertical-align: center;
     font-size: 25px;
@@ -2730,7 +2749,7 @@ Button:enabled:hover {
 
 
 .review_selection #optionSelection{
-	height: 81.5%;
+	height: 808px;
 	margin-bottom: -200px;
 }
 

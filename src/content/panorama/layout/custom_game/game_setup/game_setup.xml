@@ -89,6 +89,10 @@
                                 <Image scaling="stretch-to-fit-preserve-aspect" src="s2r://panorama/images/control_icons/clock_psd.vtex" />
                                 <Label text="0:00" id="lodTimeRemaining" />
                                 <Label text="Stage name" id="lodStageName" />
+							
+								<Button id="backtrackBtn" class="hidden" onactivate="onBacktrackButton()">
+									<Label text="PRESS ME" />
+								</Button>
                             </Panel>
                         </Panel>
 
