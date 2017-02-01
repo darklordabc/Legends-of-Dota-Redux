@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
 - Gyrocopter can no longer use Infernal blade because of an abuseable interaction with his scepter side-gunner ability
 - Caustic finale now only does half damage if unit is not dead, doesnt affect buildings
 - Living bomb no longer hurts buildings
+- Changed default level to 28
 
 ## 5.4 - Steam Version
 ### Bug Fixing/New Features
