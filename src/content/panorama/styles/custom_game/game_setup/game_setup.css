@@ -701,6 +701,10 @@ Button:enabled:hover {
     flow-children: right;
 }
 
+#tipPanel.hidden {
+	visibility:collapse;
+}
+
 #tipPanel.show {
     opacity: 1.0;    
 }
