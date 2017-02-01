@@ -685,12 +685,9 @@ Button:enabled:hover {
 }
 
 #tipPanel {
-	opacity: 0;
-
-    transition-property: opacity;
-    transition-delay: 1s;
-    transition-duration: 2s;
-    transition-timing-function: ease-in-out;
+    transform: translatex( 5000px );
+    transition-property: transform;
+    transition-duration: 5.00s;
 	
     width: 57.5%;
     height: 150px;
@@ -706,7 +703,9 @@ Button:enabled:hover {
 }
 
 #tipPanel.show {
-    opacity: 1.0;    
+    transform: translatex( 0px );
+    transition-property: transform;
+    transition-duration: 5.00s;   
 }
 
 #tipPanel Label {
