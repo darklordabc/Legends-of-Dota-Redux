@@ -2986,6 +2986,10 @@ Button:enabled:hover {
     flow-children: down;
 }
 
+.review_selection #importAndExportRoot {
+	visibility: collapse;
+}
+
 #bansImportAndExportEntryRoot {
     flow-children: right;
 }
@@ -3032,6 +3036,10 @@ Button:enabled:hover {
 #lockOptionPanel {
     align: right center;
     flow-children: down;
+}
+
+.review_selection  #lockOptionPanel {
+	visibility: collapse;
 }
 
 .optionSwitch {
@@ -3087,6 +3095,10 @@ Button:enabled:hover {
 }
 
 .phase_option_selection #optionButtons {
+    visibility: visible;
+}
+
+.review_selection #optionButtons {
     visibility: visible;
 }
 

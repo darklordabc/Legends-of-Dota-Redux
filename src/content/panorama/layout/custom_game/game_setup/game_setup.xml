@@ -466,7 +466,8 @@
                                     <Panel class="ExpandDownArrow" />
                                     <Label text="#to_basic_options" />
                                     <Panel class="ExpandDownArrow" />
-                                </Panel>                    
+                                </Panel>               
+								
                                 <Panel id="lockOptionPanel">
                                     <Label id="lockTeamsFirst" text="lockTeamsFirst" />
                                     <Button id="lockOptionsButton" class="PlayButton" onactivate="onLockOptionsPressed()">
