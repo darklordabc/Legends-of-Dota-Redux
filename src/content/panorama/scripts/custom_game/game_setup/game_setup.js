@@ -180,6 +180,7 @@ var showTier = {};
 
 // Contains current tab name
 var currentTab = '';
+var reviewingOptions = false;
 
 // Search filters
 var tabsSearchFilter = {};
@@ -4631,10 +4632,11 @@ function SetSelectedPhase(newPhase, noSound) {
 
     // Update CSS
     var masterRoot = $.GetContextPanel();
-    masterRoot.SetHasClass('phase_option_selection_selected', selectedPhase == PHASE_OPTION_SELECTION);
+    masterRoot.SetHasClass('phase_option_selection_selected', selectedPhase == PHASE_OPTION_SELECTION || reviewingOptions);
+    masterRoot.SetHasClass('review_selection', reviewingOptions);
     masterRoot.SetHasClass('phase_option_voting_selected', selectedPhase == PHASE_OPTION_VOTING);
     masterRoot.SetHasClass('phase_banning_selected', selectedPhase == PHASE_BANNING);
-    masterRoot.SetHasClass('phase_selection_selected', selectedPhase == PHASE_SELECTION);
+    masterRoot.SetHasClass('phase_selection_selected', selectedPhase == PHASE_SELECTION && !reviewingOptions);
     masterRoot.SetHasClass('phase_all_random_selected', selectedPhase == PHASE_RANDOM_SELECTION);
     masterRoot.SetHasClass('phase_drafting_selected', selectedPhase == PHASE_DRAFTING);
     masterRoot.SetHasClass('phase_review_selected', selectedPhase == PHASE_REVIEW);
