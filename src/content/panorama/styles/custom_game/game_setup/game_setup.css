@@ -661,10 +661,8 @@ Button:enabled:hover {
 }
 
 .stageNameDesc {
-    width: fill-parent-flow(0.3);
-    height: 100%;
-
-    margin-right: 4px;
+    width: 100%;
+    height: 70px;
 
     border: 2px solid #32383677;
 
@@ -2701,7 +2699,7 @@ Button:enabled:hover {
 
 #optionSelection {
     width: 100%;
-    height: 100%;
+    height: 75%;
 
     visibility: collapse;
     horizontal-align: middle;

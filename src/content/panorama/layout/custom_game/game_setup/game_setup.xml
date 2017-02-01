@@ -86,11 +86,6 @@
                                 <Label text="0:00" id="lodTimeRemaining" />
                                 <Label text="Stage name" id="lodStageName" />
                             </Panel>
-
-                            <Panel class="workingPanel" id="tipPanel">
-                                <Image id="LoDLoadingTipImage" />
-                                <Label id="LoDLoadingTipText" />
-                            </Panel>
                         </Panel>
 
                         <Panel id="optionVoting" class="workingPanel">
