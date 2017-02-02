@@ -324,11 +324,11 @@
 }
 
 #theRadiant {
-    horizontal-align: left;
+    /*horizontal-align: left;*/
 }
 
 #theDire {
-    horizontal-align: right;
+    /*horizontal-align: right;*/
 }
 
 #theDireContainer {
@@ -339,7 +339,33 @@
     flow-children: down;
     font-size: 24px;
     width: 130px;
-    min-height: 110px;
+    min-height: 50px;
+
+    /*margin-top: 85px;*/
+
+    border: 2px solid #32383677;
+
+    background-color: gradient( linear, 0% 0%, 0% 25%, from( #232326 ), to( #1c1d20 ) );
+    box-shadow: #00000099 -4px -4px 8px 8px;
+}
+
+.theTeamName {
+    width: 100%;
+    text-align: center;
+
+    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+    font-size: 18px;
+    font-weight: bold;
+    horizontal-align: center;
+
+    border: 2px solid #32383677;
+
+    color: white;
+    /*box-shadow: #00000099 -4px -4px 8px 8px;*/
+}
+
+.theTeamName:hover {
+    brightness: 1.2;
 }
 
 .theTeamContainer {
@@ -359,13 +385,13 @@
 }
 
 .radiantGlow {
-    horizontal-align: left;
-    color: #00FF00;
+    /*horizontal-align: left;*/
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #a9db80), to( #96c56f ) );
 }
 
 .direGlow {
-    horizontal-align: right;
-    color: #FF0000;
+    /*horizontal-align: right;*/
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #f62b2b), to( #d20202 ) );
 }
 
 /*
