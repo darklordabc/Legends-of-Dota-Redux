@@ -888,6 +888,10 @@ Button:enabled:hover {
     visibility: collapse;
 }
 
+.ignore_custom_message #option_default_info {
+	visibility: collapse;
+}
+
 #option_default_info Label {
     height: 200px;
     padding: 30px;
@@ -3230,6 +3234,30 @@ Button:enabled:hover {
 
 .disallow_custom_settings .optionButtonCustomRequired .OptionButtonLabel {
     color: #333333;
+}
+
+.ignore_custom_message .optionButtonCustomRequired .OptionButtonLabel {
+    color: #999999;
+}
+
+.ignore_custom_message .optionButtonCustomRequired .optionSlotPanelLabel {
+	color: #999999;
+}
+
+.allow_custom_settings .optionButtonCustomRequired .OptionButtonLabel {
+	color: #ffffff;
+}
+
+.allow_custom_settings .optionButtonCustomRequired .optionSlotPanelLabel {
+	color: #ffffff;
+}
+
+.review_selection .optionButtonCustomRequired .OptionButtonLabel {
+    color: #ffffff;
+}
+
+.review_selection .optionButtonCustomRequired .optionSlotPanelLabel {
+	color: #ffffff;
 }
 
 .disallow_bots .optionButtonBotRequired .OptionButtonLabel {

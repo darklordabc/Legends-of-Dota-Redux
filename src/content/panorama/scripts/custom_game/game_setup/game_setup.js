@@ -3722,6 +3722,7 @@ function buildAdvancedOptionsCategories( mutatorList ) {
 
             // The function to run when it is activated
             function whenActivated() {
+				$.GetContextPanel().AddClass('ignore_custom_message');
                 // Disactivate all other ones
                 for(var key in allOptionLinks) {
                     var data = allOptionLinks[key];
@@ -4362,6 +4363,7 @@ function OnOptionChanged(table_name, key, data) {
         case 'lodOptionGamemode':
             // Check if we are allowing custom settings
             allowCustomSettings = data.v == -1;
+			$.GetContextPanel().RemoveClass('ignore_custom_message');
             $.GetContextPanel().SetHasClass('allow_custom_settings', allowCustomSettings || reviewingOptions);
             $.GetContextPanel().SetHasClass('disallow_custom_settings', !allowCustomSettings && !reviewingOptions);        
             break;
