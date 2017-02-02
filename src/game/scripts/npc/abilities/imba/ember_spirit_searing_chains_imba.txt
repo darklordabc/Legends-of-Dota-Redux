@@ -1,0 +1,52 @@
+"DOTAAbilities" {
+	"ember_spirit_searing_chains_imba" {
+		"BaseClass" "ember_spirit_searing_chains"
+		"ID" "5603"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType" "SPELL_DISPELLABLE_YES"
+		"FightRecapLevel" "1"
+		"AbilityCastRange" "400"
+		"AbilityCastPoint" "0"
+		"AbilityCooldown" "14.0 12.0 10.0 8.0"
+		"AbilityManaCost" "110"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "3.0"
+				"LinkedSpecialBonus" "special_bonus_unique_ember_spirit_2"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "400"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"chains_damage" "35 40 45 50"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"total_damage_tooltip" "105 160 225 300"
+			}
+
+			"05" {
+				"var_type" "FIELD_FLOAT"
+				"tick_interval" "0.5"
+			}
+
+			"06" {
+				"var_type" "FIELD_INTEGER"
+				"unit_count" "2 4 6 8"
+			}
+		}
+	}
+}

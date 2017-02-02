@@ -1,0 +1,55 @@
+"DOTAAbilities" {
+	"berserker_madness" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "custom/berserker_madness"
+		"AbilityCooldown" "80"
+		"AbilityManacost" "125 150 175"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel" "3"
+		"RequiredLevel" "5"
+		"LevelsBetweenUpgrades" "4"
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_ursa/ursa_enrage_buff.vpcf"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"bonus_all_stats" "30 60 90"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "8.0 9.0 10.0"
+			}
+		}
+
+		"OnSpellStart" {
+			"ApplyModifier" {
+				"Target" {
+					"Center" "CASTER"
+					"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+				"ModifierName" "modifier_berserker_madness"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_berserker_madness" {
+				"Duration" "%duration"
+				"IsBuff" "1"
+				"Attributes" "MODIFIER_ATTRIBUTE_PERMANENT"
+
+				"Properties" {
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_all_stats"
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%bonus_all_stats"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%bonus_all_stats"
+				}
+				"EffectName" "particles/units/heroes/hero_ursa/ursa_enrage_buff.vpcf"
+				"EffectAttachType" "follow_origin"
+			}
+		}
+	}
+}

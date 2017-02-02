@@ -1,0 +1,189 @@
+"DOTAAbilities" {
+	"cherub_explosive_spore" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName" "custom/cherub_explosive_spore"
+		"AbilityProcsMagicStick" "1"
+		"AbilityCooldown" "5.0"
+		"AbilityManaCost" "90 105 130 155"
+		"AbilityCastPoint" "0.3"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "350"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"delay" "10.0"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"damage" "100 175 250 325"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"lifesteal_hero" "40"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"lifesteal_creep" "10"
+			}
+
+			"06" {
+				"var_type" "FIELD_INTEGER"
+				"spore_health" "150"
+			}
+
+			"07" {
+				"var_type" "FIELD_INTEGER"
+				"spore_movespeed" "400"
+			}
+
+			"08" {
+				"var_type" "FIELD_FLOAT"
+				"heal_hero" "40 70 100 130"
+			}
+
+			"09" {
+				"var_type" "FIELD_FLOAT"
+				"heal_creep" "10 17.5 25 32.5"
+			}
+
+			"10" {
+				"var_type" "FIELD_INTEGER"
+				"spawn_distance" "250"
+			}
+		}
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
+			"particle" "particles/cherub_explosive_spore.vpcf"
+		}
+
+		"OnSpellStart" {
+			"SpawnUnit" {
+				"UnitName" "explosive_spore"
+				"UnitCount" "1"
+				"SpawnRadius" "10"
+				"Duration" "10.03"
+
+				"Target" {
+					"Center" "CASTER"
+
+					"ScriptSelectPoints" {
+						"ScriptFile" "abilities/cherub_explosive_spore.lua"
+						"Function" "GetSummonPoints"
+						"Target" "CASTER"
+						"Count" "1"
+						"distance" "%spawn_distance"
+					}
+				}
+
+				"OnSpawn" {
+					"FireSound" {
+						"EffectName" "Hero_Broodmother.SpawnSpiderlings"
+						"Target" "TARGET"
+					}
+
+					"ApplyModifier" {
+						"ModifierName" "modifier_explosive_spore"
+						"Target" "TARGET"
+					}
+
+					"RunScript" {
+						"ScriptFile" "abilities/cherub_explosive_spore.lua"
+						"Function" "SetForwardVector"
+					}
+				}
+				"GrantsGold" "1"
+				"GrantsXP" "1"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_explosive_spore" {
+				"Passive" "0"
+				"IsHidden" "0"
+				"IsDebuff" "0"
+
+				"States" {
+					"MODIFIER_STATE_FLYING" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_DISARMED" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+
+				"OnDeath" {
+					"CreateThinker" {
+						"ModifierName" "modifier_spore_thinker"
+						"Target" "UNIT"
+					}
+
+					"FireEffect" {
+						"EffectName" "particles/units/heroes/hero_techies/techies_land_mine_explode.vpcf"
+						"EffectAttachType" "follow_hitloc"
+
+						"Target" {
+							"Center" "UNIT"
+							"Flags" "DOTA_UNIT_TARGET_FLAG_DEAD"
+						}
+					}
+				}
+
+				"OnDestroy" {
+					"ActOnTargets" {
+						"Target" {
+							"Center" "TARGET"
+							"Radius" "%radius"
+							"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" "DOTA_UNIT_TARGET_HERO"
+							"Flags" "DOTA_UNIT_TARGET_FLAG_NONE"
+						}
+
+						"Action" {
+							"RunScript" {
+								"ScriptFile" "lib/popups.lua"
+								"Function" "PopupSporeDamage"
+								"Damage" "%damage"
+							}
+
+							"Damage" {
+								"Target" "TARGET"
+								"Type" "DAMAGE_TYPE_MAGICAL"
+								"Damage" "%damage"
+							}
+
+							"Heal" {
+								"Target" "CASTER"
+								"HealAmount" "%heal_hero"
+							}
+						}
+					}
+				}
+			}
+
+			"modifier_spore_thinker" {
+				"Duration" "0.03"
+
+				"OnCreated" {
+					"FireSound" {
+						"EffectName" "Hero_Techies.LandMine.Detonate"
+
+						"Target" {
+							"Center" "TARGET"
+							"Flags" "DOTA_UNIT_TARGET_FLAG_DEAD"
+						}
+					}
+				}
+			}
+		}
+	}
+}

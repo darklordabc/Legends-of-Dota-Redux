@@ -1,0 +1,53 @@
+"DOTAAbilities" {
+	"disruptor_static_storm_imba" {
+		"BaseClass" "disruptor_static_storm"
+		"ID" "5461"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType" "SPELL_DISPELLABLE_NO"
+		"FightRecapLevel" "2"
+		"HasScepterUpgrade" "1"
+		"AbilityCastPoint" "0.05 0.05 0.05 0.05"
+		"AbilityCooldown" "90 80 70"
+		"AbilityManaCost" "125 175 225"
+		"AbilityCastRange" "800 800 800 800"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_disruptor.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "750"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"pulses" "24"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"damage_max" "240 320 400"
+			}
+
+			"04" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "6.0"
+			}
+
+			"05" {
+				"var_type" "FIELD_FLOAT"
+				"duration_scepter" "15.0"
+			}
+
+			"06" {
+				"var_type" "FIELD_INTEGER"
+				"pulses_scepter" "60"
+			}
+		}
+	}
+}

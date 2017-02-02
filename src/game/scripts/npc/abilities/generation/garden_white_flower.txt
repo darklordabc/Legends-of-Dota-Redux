@@ -1,0 +1,28 @@
+"DOTAAbilities" {
+	"garden_white_flower" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName" "custom/cherub_flower_white"
+		"MaxLevel" "3"
+		"AOERadius" "700"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"range" "700"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"damage" "44 52 60"
+			}
+		}
+
+		"OnSpellStart" {
+			"RunScript" {
+				"ScriptFile" "abilities/cherub_flower_garden.lua"
+				"Function" "PlantWhite"
+			}
+		}
+	}
+}

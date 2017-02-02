@@ -1,0 +1,25 @@
+"DOTAAbilities" {
+	"imba_nevermore_requiem_aux" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"MaxLevel" "1"
+		"AbilityTextureName" "nevermore_requiem"
+		"AbilityCastRange" "0"
+		"AbilityCastPoint" "0.0"
+		"AbilityCooldown" "0.0"
+		"AbilityManaCost" "0"
+
+		"OnProjectileHitUnit" {
+			"DeleteOnHit" "0"
+
+			"RunScript" {
+				"ScriptFile" "abilities/dota imba/hero_nevermore.lua"
+				"Function" "RequiemProjectileHitInward"
+				"modifier_enemy" "modifier_imba_requiem_enemy_debuff"
+				"modifier_enemy_screen" "modifier_imba_requiem_black_screen"
+				"modifier_raze_no_cooldown" "modifier_imba_shadowraze_no_cooldown"
+				"ability_main" "imba_nevermore_requiem"
+			}
+		}
+	}
+}

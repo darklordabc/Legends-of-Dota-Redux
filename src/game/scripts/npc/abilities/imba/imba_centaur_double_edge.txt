@@ -1,0 +1,64 @@
+"DOTAAbilities" {
+	"imba_centaur_double_edge" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel" "1"
+		"AbilityTextureName" "centaur_double_edge"
+		"AbilityCooldown" "4"
+		"AbilityManaCost" "0"
+		"AbilityCastRange" "150"
+		"AbilityCastPoint" "0.36"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_centaur.vsndevts"
+			"particle" "particles/units/heroes/hero_centaur/centaur_double_edge.vpcf"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"edge_damage" "180 270 360 450"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "275"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"str_percentage" "100"
+			}
+		}
+
+		"OnSpellStart" {
+			"FireSound" {
+				"Target" "CASTER"
+				"EffectName" "Hero_Centaur.DoubleEdge"
+			}
+
+			"RunScript" {
+				"ScriptFile" "abilities/dota imba/hero_centaur.lua"
+				"Function" "DoubleEdge"
+				"modifier_caster" "modifier_imba_double_edge_prevent_deny"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_imba_double_edge_prevent_deny" {
+				"Passive" "0"
+				"IsHidden" "1"
+				"IsBuff" "1"
+				"IsPurgable" "0"
+
+				"Properties" {
+					"MODIFIER_PROPERTY_MIN_HEALTH" "1"
+				}
+			}
+		}
+	}
+}

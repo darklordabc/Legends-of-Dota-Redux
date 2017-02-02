@@ -1,0 +1,41 @@
+"DOTAAbilities" {
+	"angel_arena_magic_fire" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel" "1"
+		"AbilityTextureName" "custom/angel_arena_magic_fire"
+		"AbilityCastRange" "600 600 600 600"
+		"AbilityCastPoint" "0.4 0.4 0.4 0.4"
+		"AbilityCooldown" "30.0 25.0 20.0 15.0"
+		"AbilityManaCost" "150 170 190 210"
+		"MaxLevel" "4"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"damage" "180 320 420 540"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"damage_pct" "1.0 2.0 3.0 4.0"
+			}
+		}
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn_msg.vpcf"
+		}
+
+		"OnSpellStart" {
+			"RunScript" {
+				"ScriptFile" "abilities/angel_arena_reborn/magic_fire.lua"
+				"Function" "mana_burn_function"
+				"dmg_pct" "%damage_pct"
+			}
+		}
+	}
+}

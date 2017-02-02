@@ -1,0 +1,10 @@
+"DOTAAbilities" {
+	"lone_druid_spirit_bear_return_lod" {
+		"BaseClass" "lone_druid_spirit_bear_return"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"MaxLevel" "3"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCooldown" "250 200 150"
+		"AbilityManaCost" "300 300 300"
+	}
+}

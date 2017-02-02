@@ -1,0 +1,52 @@
+"DOTAAbilities" {
+	"huskar_inner_vitality_imba" {
+		"BaseClass" "huskar_inner_vitality"
+		"ID" "5271"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO"
+		"SpellDispellableType" "SPELL_DISPELLABLE_YES"
+		"AbilityCastRange" "800"
+		"AbilityCastPoint" "0.2"
+		"AbilityCooldown" "22 18 14 10"
+		"AbilityDuration" "16 16 16 16"
+		"AbilityManaCost" "170 170 170 170"
+		"AbilityModifierSupportValue" "0.0"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_huskar.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"heal" "20 25 30 35"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"attrib_bonus" "0.25"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"hurt_attrib_bonus" "0.4 0.6 0.8 1.0"
+			}
+
+			"04" {
+				"var_type" "FIELD_FLOAT"
+				"hurt_percent" "0.40"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"tooltip_attrib_bonus" "25"
+			}
+
+			"06" {
+				"var_type" "FIELD_INTEGER"
+				"tooltip_hurt_attrib_bonus" "40 60 80 100"
+			}
+		}
+	}
+}

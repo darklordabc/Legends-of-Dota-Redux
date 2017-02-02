@@ -1,0 +1,28 @@
+"DOTAAbilities" {
+	"destroy_flower" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName" "batrider_firefly"
+
+		"OnSpellStart" {
+			"RunScript" {
+				"ScriptFile" "abilities/cherub_flower_garden.lua"
+				"Function" "DestroyGarden"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_destroy_disable" {
+				"Passive" "1"
+				"IsHidden" "1"
+
+				"OnTakeDamage" {
+					"RunScript" {
+						"ScriptFile" "abilities/cherub_flower_garden.lua"
+						"Function" "DamageCooldown"
+					}
+				}
+			}
+		}
+	}
+}

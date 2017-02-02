@@ -1,0 +1,42 @@
+"DOTAAbilities" {
+	"angel_arena_razor_power_OP" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName" "custom/angel_arena_razor_power_OP"
+		"MaxLevel" "4"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "400"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"damage_percent" "80 85 90 100"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_passive_razor_power" {
+				"Passive" "1"
+				"IsHidden" "1"
+
+				"OnAttackLanded" {
+					"RunScript" {
+						"Target" {
+							"Center" "TARGET"
+							"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+						}
+						"ScriptFile" "abilities/angel_arena_reborn/holy_book.lua"
+						"Function" "HolyBook_attack"
+						"Radius" "%radius"
+						"Damage" "%attack_damage"
+					}
+				}
+			}
+		}
+	}
+}

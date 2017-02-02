@@ -1,0 +1,131 @@
+"DOTAAbilities" {
+	"imba_warlock_rain_of_chaos" {
+		"BaseClass" "ability_datadriven"
+		"AbilityTextureName" "warlock_rain_of_chaos"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel" "2"
+		"AbilityCastPoint" "0.5"
+		"AbilityCastRange" "1200"
+		"AOERadius" "%stun_radius"
+		"AbilityCooldown" "120"
+		"AbilityManaCost" "200 300 400"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_warlock.vsndevts"
+			"particle" "particles/hero/warlock/warlock_rain_of_chaos_start_small.vpcf"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"stun_radius" "600"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"stun_duration" "1.0"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"effect_delay" "0.5"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"duration" "65"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"base_health" "900"
+			}
+
+			"06" {
+				"var_type" "FIELD_INTEGER"
+				"health_per_level" "50 75 100"
+			}
+
+			"07" {
+				"var_type" "FIELD_INTEGER"
+				"base_damage" "90 150 220"
+			}
+
+			"08" {
+				"var_type" "FIELD_FLOAT"
+				"secondary_delay" "0.97"
+			}
+
+			"09" {
+				"var_type" "FIELD_FLOAT"
+				"stun_scepter" "1.0"
+			}
+		}
+
+		"OnAbilityPhaseStart" {
+			"RunScript" {
+				"ScriptFile" "abilities/dota imba/hero_warlock.lua"
+				"Function" "ChaoticOfferingPreCast"
+				"sound_precast" "Hero_Warlock.RainOfChaos_buildup"
+				"particle_precast" "particles/units/heroes/hero_warlock/warlock_rain_of_chaos_staff.vpcf"
+			}
+		}
+
+		"OnSpellStart" {
+			"RunScript" {
+				"ScriptFile" "abilities/dota imba/hero_warlock.lua"
+				"Function" "ChaoticOffering"
+				"Target" "POINT"
+				"sound_cast" "Hero_Warlock.RainOfChaos"
+				"particle_initial" "particles/units/heroes/hero_warlock/warlock_rain_of_chaos_start.vpcf"
+				"particle_secondary" "particles/units/heroes/hero_warlock/warlock_rain_of_chaos.vpcf"
+				"particle_golem" "particles/units/heroes/hero_warlock/golem_ambient.vpcf"
+				"particle_golem_4" "particles/econ/items/warlock/warlock_golem_obsidian/golem_ambient_obsidian.vpcf"
+				"particle_golem_5" "particles/econ/items/warlock/warlock_golem_dark_curator/golem_ambient_dark_curator.vpcf"
+				"modifier_golem" "modifier_imba_rain_of_chaos_golem_innate"
+				"modifier_main_golem" "modifier_imba_rain_of_chaos_main_golem_marker"
+				"particle_small_1" "particles/hero/warlock/warlock_rain_of_chaos_start_small.vpcf"
+				"particle_small_2" "particles/hero/warlock/warlock_rain_of_chaos_small.vpcf"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_imba_rain_of_chaos_golem_innate" {
+				"Passive" "0"
+				"IsHidden" "1"
+				"IsBuff" "1"
+				"IsPurgable" "0"
+
+				"Properties" {
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "%base_damage"
+				}
+			}
+
+			"modifier_imba_rain_of_chaos_main_golem_marker" {
+				"Passive" "0"
+				"IsHidden" "1"
+				"IsBuff" "1"
+				"IsPurgable" "0"
+				"ThinkInterval" "1.0"
+
+				"OnIntervalThink" {
+					"RunScript" {
+						"ScriptFile" "abilities/dota imba/hero_warlock.lua"
+						"Function" "ChaoticOfferingItemUpdate"
+					}
+				}
+
+				"OnDestroy" {
+					"RunScript" {
+						"ScriptFile" "abilities/dota imba/hero_warlock.lua"
+						"Function" "ChaoticOfferingGolemDeath"
+					}
+				}
+			}
+		}
+	}
+}

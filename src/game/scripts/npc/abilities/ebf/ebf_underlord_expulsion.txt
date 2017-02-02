@@ -1,0 +1,236 @@
+"DOTAAbilities" {
+	"ebf_underlord_expulsion" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName" "custom/underlord_expulsion"
+		"HasScepterUpgrade" "1"
+
+		"precache" {
+			"particle" "particles/underlord_expulsion_explosion.vpcf"
+		}
+		"AbilityCastRange" "900"
+		"AbilityCooldown" "45"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"search_radius" "900"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"damage_radius" "450 600 750"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"explosion_interval" "0.25"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"damage_per_sec" "80 120 160"
+			}
+
+			"05" {
+				"var_type" "FIELD_FLOAT"
+				"heal_per_sec" "40 60 80"
+			}
+
+			"06" {
+				"var_type" "FIELD_FLOAT"
+				"base_duration" "6.66"
+			}
+
+			"07" {
+				"var_type" "FIELD_FLOAT"
+				"bonus_duration_per_aura_affected_scepter" "0.25"
+			}
+
+			"08" {
+				"var_type" "FIELD_FLOAT"
+				"bonus_damage_per_aura_affected_scepter" "6 10 14"
+			}
+
+			"09" {
+				"var_type" "FIELD_FLOAT"
+				"bonus_heal_per_aura_affected_scepter" "3 5 7"
+			}
+		}
+
+		"OnSpellStart" {
+			"RemoveModifier" {
+				"ModifierName" "modifier_underlord_expulsion_explosion_particle"
+				"Target" "CASTER"
+			}
+
+			"ApplyModifier" {
+				"ModifierName" "modifier_underlord_expulsion_explosion_particle"
+				"Target" "CASTER"
+			}
+
+			"ActOnTargets" {
+				"Target" {
+					"Center" "CASTER"
+					"Radius" "%search_radius"
+					"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				}
+
+				"Action" {
+					"RunScript" {
+						"ScriptFile" "abilities/epic_boss_fight/ebf_underlord_expulsion"
+						"Function" "ApplyExplosion"
+					}
+				}
+			}
+		}
+
+		"Modifiers" {
+			"modifier_underlord_expulsion_explosion_particle" {
+				"IsHidden" "1"
+				"Duration" "0.5"
+
+				"OnCreated" {
+					"AttachEffect" {
+						"EffectName" "particles/underlord_expulsion_aura.vpcf"
+						"EffectAttachType" "follow_origin"
+						"Target" "TARGET"
+
+						"ControlPoints" {
+							"00" "0 0 0"
+							"01" "%search_radius 0 0"
+						}
+					}
+				}
+			}
+
+			"modifier_underlord_expulsion_explosion" {
+				"EffectName" "particles/underlord_expulsion_debuff.vpcf"
+				"IsDebuff" "1"
+
+				"OnCreated" {
+					"AttachEffect" {
+						"EffectName" "particles/underlord_expulsion_aura.vpcf"
+						"EffectAttachType" "follow_origin"
+						"Target" "TARGET"
+
+						"ControlPoints" {
+							"00" "0 0 0"
+							"01" "%damage_radius 0 0"
+						}
+					}
+				}
+				"ThinkInterval" "%explosion_interval"
+
+				"OnIntervalThink" {
+					"ActOnTargets" {
+						"Target" {
+							"Center" "TARGET"
+							"Radius" "%damage_radius"
+							"Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+							"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+						}
+
+						"Action" {
+							"ApplyModifier" {
+								"ModifierName" "modifier_underlord_expulsion_explosion_heal"
+								"Target" "TARGET"
+								"Duration" "%explosion_interval"
+							}
+						}
+					}
+				}
+			}
+
+			"modifier_underlord_expulsion_explosion_damage" {
+				"IsHidden" "1"
+				"Duration" "%explosion_interval"
+
+				"OnCreated" {
+					"RunScript" {
+						"ScriptFile" "abilities/epic_boss_fight/ebf_underlord_expulsion"
+						"Function" "ExplosionDamage"
+					}
+
+					"FireEffect" {
+						"EffectName" "particles/underlord_expulsion_explosion.vpcf"
+						"EffectAttachType" "follow_origin"
+						"Target" "TARGET"
+
+						"ControlPoints" {
+							"00" "0 0 0"
+							"01" "350 0 0"
+						}
+					}
+				}
+				"ThinkInterval" "%explosion_interval"
+
+				"OnIntervalThink" {
+					"RunScript" {
+						"ScriptFile" "abilities/epic_boss_fight/ebf_underlord_expulsion"
+						"Function" "ExplosionDamage"
+					}
+
+					"FireEffect" {
+						"EffectName" "particles/underlord_expulsion_explosion.vpcf"
+						"EffectAttachType" "follow_origin"
+						"Target" "TARGET"
+
+						"ControlPoints" {
+							"00" "0 0 0"
+							"01" "350 0 0"
+						}
+					}
+				}
+			}
+
+			"modifier_underlord_expulsion_explosion_heal" {
+				"IsHidden" "1"
+				"Duration" "%explosion_interval"
+
+				"OnCreated" {
+					"RunScript" {
+						"ScriptFile" "abilities/epic_boss_fight/ebf_underlord_expulsion"
+						"Function" "ExplosionHeal"
+					}
+
+					"FireEffect" {
+						"EffectName" "particles/underlord_expulsion_explosion.vpcf"
+						"EffectAttachType" "follow_origin"
+						"Target" "TARGET"
+
+						"ControlPoints" {
+							"00" "0 0 150"
+							"01" "0 0 0"
+						}
+					}
+				}
+				"ThinkInterval" "%explosion_interval"
+
+				"OnIntervalThink" {
+					"RunScript" {
+						"ScriptFile" "abilities/epic_boss_fight/ebf_underlord_expulsion"
+						"Function" "ExplosionHeal"
+					}
+
+					"FireEffect" {
+						"EffectName" "particles/underlord_expulsion_explosion.vpcf"
+						"EffectAttachType" "follow_origin"
+						"Target" "TARGET"
+
+						"ControlPoints" {
+							"00" "0 0 0"
+							"01" "350 0 0"
+						}
+					}
+				}
+			}
+		}
+	}
+}

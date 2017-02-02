@@ -1,0 +1,50 @@
+"DOTAAbilities" {
+	"leshrac_lightning_storm_imba" {
+		"BaseClass" "leshrac_lightning_storm"
+		"ID" "5243"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType" "SPELL_DISPELLABLE_YES"
+		"FightRecapLevel" "1"
+		"AbilityCastRange" "900"
+		"AbilityCastPoint" "0.3"
+		"AbilityCooldown" "2.5"
+		"AbilityManaCost" "90"
+		"AbilityDamage" "80 120 160 200"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"jump_count" "20"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "750"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"jump_delay" "0.1"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"slow_movement_speed" "-80"
+			}
+
+			"05" {
+				"var_type" "FIELD_FLOAT"
+				"slow_duration" "1.0"
+				"LinkedSpecialBonus" "special_bonus_unique_leshrac_2"
+			}
+		}
+	}
+}

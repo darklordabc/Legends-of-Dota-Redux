@@ -1,0 +1,9 @@
+"DOTAAbilities" {
+	"angel_arena_duels" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/angel_arena_reborn/duels.lua"
+		"MaxLevel" "1"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName" "rubick_empty1"
+	}
+}

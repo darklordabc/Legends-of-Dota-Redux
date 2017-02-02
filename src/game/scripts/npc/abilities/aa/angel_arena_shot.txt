@@ -1,0 +1,91 @@
+"DOTAAbilities" {
+	"angel_arena_shot" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName" "custom/angel_arena_shot"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"MaxLevel" "4"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"chance" "10 12 13 14"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"lifesteal" "6 8 10 12"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"damage" "35 60 90 140"
+			}
+
+			"04" {
+				"var_type" "FIELD_FLOAT"
+				"damage_percent" "0.4 0.5 0.6 0.7"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_shot_passive" {
+				"Passive" "1"
+				"IsHidden" "1"
+
+				"OnAttackStart" {
+					"RemoveModifier" {
+						"ModifierName" "modifier_shot_lifesteal_true_strike"
+						"Target" "CASTER"
+					}
+
+					"Random" {
+						"Chance" "%chance"
+						"PseudoRandom" "DOTA_PSEUDO_RANDOM_JUGG_CRIT"
+
+						"OnSuccess" {
+							"ApplyModifier" {
+								"ModifierName" "modifier_shot_lifesteal_true_strike"
+								"Target" "CASTER"
+							}
+						}
+					}
+				}
+			}
+
+			"modifier_shot_lifesteal_true_strike" {
+				"IsHidden" "1"
+
+				"States" {
+					"MODIFIER_STATE_CANNOT_MISS" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+
+				"OnAttackLanded" {
+					"Lifesteal" {
+						"Target" "CASTER"
+						"LifestealPercent" "%lifesteal"
+					}
+
+					"RemoveModifier" {
+						"ModifierName" "modifier_shot_lifesteal_true_strike"
+						"Target" "CASTER"
+					}
+
+					"Damage" {
+						"Target" "TARGET"
+						"Type" "DAMAGE_TYPE_MAGICAL"
+						"Damage" "%damage"
+					}
+
+					"RunScript" {
+						"Target" "TARGET"
+						"ScriptFile" "abilities/angel_arena_reborn/shot.lua"
+						"Function" "DamageOfCurrentHealth"
+						"DamagePercent" "%damage_percent"
+					}
+				}
+			}
+		}
+	}
+}

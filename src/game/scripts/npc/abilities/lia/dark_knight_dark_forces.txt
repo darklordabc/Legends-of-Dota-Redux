@@ -1,0 +1,97 @@
+"DOTAAbilities" {
+	"dark_knight_dark_forces" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName" "custom/dark_knight_dark_forces"
+		"MaxLevel" "4"
+		"AbilityCastPoint" "0.0"
+		"AbilityCooldown" "14"
+		"AbilityManaCost" "60 100 140 180"
+		"AbilityCastRange" "150"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "150"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"mana_percentage" "10 15 20 25"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"coil_radius" "240"
+			}
+
+			"04" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "5"
+			}
+		}
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
+			"particle" "particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf"
+		}
+
+		"OnSpellStart" {
+			"ApplyModifier" {
+				"ModifierName" "modifier_dark_knight_dark_forces"
+
+				"Target" {
+					"Center" "CASTER"
+					"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+				"Duration" "%duration"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_dark_knight_dark_forces" {
+				"Passive" "0"
+				"IsHidden" "0"
+				"Attributes" "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"ThinkInterval" "0.5"
+
+				"OnIntervalThink" {
+					"FireSound" {
+						"EffectName" "Hero_Nevermore.Shadowraze"
+						"Target" "CASTER"
+					}
+
+					"RunScript" {
+						"ScriptFile" "abilities/life_in_arena/DarkForces.lua"
+						"Function" "DarkForcesThinker"
+					}
+				}
+			}
+
+			"modifier_dark_knight_dark_forces_thinker" {
+				"OnCreated" {
+					"RunScript" {
+						"ScriptFile" "abilities/life_in_arena/DarkForces.lua"
+						"Function" "DarkForces"
+
+						"Target" {
+							"Center" "TARGET"
+							"Radius" "%coil_radius"
+							"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+							"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+						}
+					}
+
+					"AttachEffect" {
+						"EffectName" "particles/nevermore_shadowraze_editfirst.vpcf"
+						"EffectAttachType" "follow_origin"
+						"Target" "TARGET"
+					}
+				}
+			}
+		}
+	}
+}

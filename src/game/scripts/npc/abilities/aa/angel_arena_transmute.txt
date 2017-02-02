@@ -1,0 +1,52 @@
+"DOTAAbilities" {
+	"angel_arena_transmute" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS | DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName" "custom/angel_arena_transmute"
+		"MaxLevel" "3"
+		"AbilityCastRange" "200"
+		"AbilityCastPoint" "1.0 1.0 1.0"
+		"AbilityCooldown" "120.0"
+		"AbilityManaCost" "500"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"hp_percent" "20 30 40"
+			}
+		}
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_clinkz/clinkz_death_pact_buff.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
+		}
+
+		"OnSpellStart" {
+			"FireEffect" {
+				"EffectName" "particles/units/heroes/hero_clinkz/clinkz_death_pact.vpcf"
+				"EffectAttachType" "follow_origin"
+				"Target" "TARGET"
+
+				"ControlPointEntities" {
+					"TARGET" "attach_origin"
+					"CASTER" "attach_origin"
+				}
+			}
+
+			"FireSound" {
+				"EffectName" "Hero_Clinkz.DeathPact"
+				"Target" "TARGET"
+			}
+
+			"RunScript" {
+				"ScriptFile" "abilities/angel_arena_reborn/transmute.lua"
+				"Function" "Transmute"
+				"health_to_gold" "%hp_percent"
+			}
+		}
+	}
+}

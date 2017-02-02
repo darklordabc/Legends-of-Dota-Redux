@@ -1,0 +1,85 @@
+"DOTAAbilities" {
+	"imba_nevermore_shadowraze2" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"OnLearnbar" "0"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel" "1"
+		"AbilityTextureName" "nevermore_shadowraze2"
+		"AbilityCastPoint" "0.5"
+		"AbilityCastAnimation" "ACT_DOTA_RAZE_2"
+		"AbilityCastRange" "700"
+		"AbilityCooldown" "10.0"
+		"AbilityManaCost" "90"
+
+		"precache" {
+			"particle" "particles/hero/nevermore/nevermore_shadowraze_250.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "250"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"distance" "450"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"combo_modifier_duration" "3"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"raze_damage" "100 175 250 325"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"soul_damage_bonus" "3"
+			}
+
+			"06" {
+				"var_type" "FIELD_INTEGER"
+				"raze_amount" "5"
+			}
+		}
+
+		"OnUpgrade" {
+			"RunScript" {
+				"ScriptFile" "abilities/dota imba/hero_nevermore.lua"
+				"Function" "ShadowrazeLeveled"
+				"near_raze" "imba_nevermore_shadowraze1"
+				"medium_raze" "imba_nevermore_shadowraze2"
+				"far_raze" "imba_nevermore_shadowraze3"
+			}
+		}
+
+		"OnSpellStart" {
+			"RunScript" {
+				"ScriptFile" "abilities/dota imba/hero_nevermore.lua"
+				"Function" "Shadowraze2Cast"
+				"modifier_combo" "modifier_imba_shadowraze_combo"
+				"modifier_souls_count" "modifier_imba_necromastery_souls_dummy"
+				"modifier_souls_temp" "modifier_imba_necromastery_souls_temp"
+				"modifier_raze_no_cooldown" "modifier_imba_shadowraze_no_cooldown"
+				"modifier_raze_refresh_cooldown" "modifier_imba_shadowraze_refresh_cooldown"
+				"particle_raze" "particles/hero/nevermore/nevermore_shadowraze_250.vpcf"
+				"sound_raze" "Hero_Nevermore.Shadowraze"
+				"near_raze" "imba_nevermore_shadowraze1"
+				"medium_raze" "imba_nevermore_shadowraze2"
+				"far_raze" "imba_nevermore_shadowraze3"
+				"presence_of_the_dark_lord" "imba_nevermore_dark_lord"
+				"necromastery" "imba_nevermore_necromastery"
+				"modifier_dark_lord_raze" "modifier_imba_dark_lord_raze"
+			}
+		}
+	}
+}

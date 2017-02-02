@@ -1,0 +1,75 @@
+"DOTAAbilities" {
+	"angel_arena_grace" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC "
+		"SpellImmunityType" "SPELL_IMMUNITY_ALLIES_YES"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName" "custom/angel_arena_grace"
+		"MaxLevel" "3"
+		"AbilityCastRange" "1000"
+		"AbilityCastPoint" "0.2"
+		"AbilityCooldown" "40.0"
+		"AbilityManaCost" "200 250 300"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"heal" "500 800 1000"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "300"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"damage_reduce" "-56"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"duration" "4"
+			}
+		}
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
+			"particle" "particles/units/heroes/hero_omniknight/omniknight_purification_cast.vpcf"
+		}
+
+		"OnSpellStart" {
+			"FireSound" {
+				"EffectName" "Hero_Omniknight.Purification"
+				"Target" "TARGET"
+			}
+
+			"FireEffect" {
+				"Target" "TARGET"
+				"EffectName" "particles/units/heroes/hero_omniknight/omniknight_purification_cast.vpcf"
+				"EffectAttachType" "follow_origin"
+			}
+
+			"Heal" {
+				"Target" "TARGET"
+				"HealAmount" "%heal"
+			}
+
+			"ApplyModifier" {
+				"Target" "TARGET"
+				"ModifierName" "modifier_grace_damage_reduce"
+				"Duration" "%duration"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_grace_damage_reduce" {
+				"Properties" {
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "%damage_reduce"
+				}
+			}
+		}
+	}
+}

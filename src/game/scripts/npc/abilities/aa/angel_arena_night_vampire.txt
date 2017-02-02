@@ -1,0 +1,47 @@
+"DOTAAbilities" {
+	"angel_arena_night_vampire" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName" "custom/angel_arena_night_vampire"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel" "3"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"bonus_day" "5 8 10"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"bonus_night" "10 20 30"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"base_attack_time" "1.65 1.6 1.55"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_night_vampire_passive" {
+				"isBuff" "1"
+				"IsHidden" "1"
+				"Passive" "1"
+
+				"Properties" {
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT" "%base_attack_time"
+				}
+
+				"OnKill" {
+					"RunScript" {
+						"ScriptFile" "abilities/angel_arena_reborn/night_vampire.lua"
+						"Function" "OnKilled"
+						"bonus_day" "%bonus_day"
+						"bonus_night" "%bonus_night"
+					}
+				}
+			}
+		}
+	}
+}

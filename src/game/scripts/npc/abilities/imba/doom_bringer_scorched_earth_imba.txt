@@ -1,0 +1,41 @@
+"DOTAAbilities" {
+	"doom_bringer_scorched_earth_imba" {
+		"BaseClass" "doom_bringer_scorched_earth"
+		"ID" "5340"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType" "SPELL_DISPELLABLE_NO"
+		"FightRecapLevel" "1"
+		"AbilityCastPoint" "0.0 0.0 0.0 0.0"
+		"AbilityCastRange" "666 766 866 966"
+		"AbilityCooldown" "24"
+		"AbilityManaCost" "66"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_doombringer.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"damage_per_second" "24 36 48 60"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "666 766 866 966"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"bonus_movement_speed_pct" "24"
+			}
+
+			"04" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "10.0 12.0 14.0 16.0"
+			}
+		}
+	}
+}

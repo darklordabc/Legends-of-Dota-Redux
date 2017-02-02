@@ -1,0 +1,30 @@
+"DOTAAbilities" {
+	"chen_hand_of_god_imba" {
+		"BaseClass" "chen_hand_of_god"
+		"ID" "5331"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"SpellImmunityType" "SPELL_IMMUNITY_ALLIES_YES"
+		"FightRecapLevel" "2"
+		"AbilityCastPoint" "0.2"
+		"AbilityCooldown" "150 120 90"
+		"AbilityManaCost" "200"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_chen.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"heal_amount" "99999"
+				"LinkedSpecialBonus" "special_bonus_unique_chen_2"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"ancient_creeps_scepter" "1 2 3"
+			}
+		}
+	}
+}

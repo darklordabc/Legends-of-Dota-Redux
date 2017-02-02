@@ -1,0 +1,133 @@
+"DOTAAbilities" {
+	"imba_troll_warlord_battle_trance" {
+		"BaseClass" "ability_datadriven"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"SpellImmunityType" "SPELL_IMMUNITY_ALLIES_YES"
+		"FightRecapLevel" "2"
+		"AbilityTextureName" "troll_warlord_battle_trance"
+		"AbilityCastRange" "0"
+		"AbilityCastPoint" "0.0"
+		"AbilityCastAnimation" "ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCooldown" "30"
+		"AbilityManaCost" "75"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_troll_warlord.vsndevts"
+			"particle" "particles/units/heroes/hero_troll_warlord/troll_warlord_battletrance_buff.vpcf"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"bonus_as" "60 120 180"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"buff_duration" "5"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"trance_as" "10"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"trance_duration" "3"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"bat_scepter" "10 15 20"
+			}
+
+			"06" {
+				"var_type" "FIELD_FLOAT"
+				"total_duration" "7.9"
+			}
+		}
+
+		"OnSpellStart" {
+			"RunScript" {
+				"ScriptFile" "abilities/dota imba/hero_troll_warlord.lua"
+				"Function" "BattleTrance"
+				"modifier_buff" "modifier_imba_battle_trance"
+				"modifier_trance" "modifier_imba_battle_trance_trance"
+				"modifier_scepter" "modifier_imba_battle_trance_scepter"
+				"particle_cast" "particles/units/heroes/hero_troll_warlord/troll_warlord_battletrance_cast.vpcf"
+				"sound_cast" "Hero_TrollWarlord.BattleTrance.Cast"
+				"sound_global" "Hero_TrollWarlord.BattleTrance.Cast.Team"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_imba_battle_trance" {
+				"Passive" "0"
+				"IsHidden" "1"
+				"IsBuff" "1"
+				"IsPurgable" "0"
+				"EffectName" "particles/units/heroes/hero_troll_warlord/troll_warlord_battletrance_buff.vpcf"
+				"EffectAttachType" "follow_origin"
+				"Duration" "%buff_duration"
+
+				"Properties" {
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_as"
+				}
+			}
+
+			"modifier_imba_battle_trance_trance" {
+				"Passive" "0"
+				"IsHidden" "1"
+				"IsBuff" "1"
+				"IsPurgable" "0"
+				"Duration" "%total_duration"
+
+				"OnAttackLanded" {
+					"RunScript" {
+						"ScriptFile" "abilities/dota imba/hero_troll_warlord.lua"
+						"Function" "BattleTranceAttack"
+						"modifier_buff" "modifier_imba_battle_trance"
+						"modifier_stacks" "modifier_imba_battle_trance_stacks"
+					}
+				}
+			}
+
+			"modifier_imba_battle_trance_scepter" {
+				"Passive" "0"
+				"IsHidden" "1"
+				"IsBuff" "1"
+				"IsPurgable" "0"
+				"Duration" "%buff_duration"
+
+				"OnCreated" {
+					"RunScript" {
+						"ScriptFile" "abilities/dota imba/hero_troll_warlord.lua"
+						"Function" "BattleTranceBatStart"
+					}
+				}
+
+				"OnDestroy" {
+					"RunScript" {
+						"ScriptFile" "abilities/dota imba/hero_troll_warlord.lua"
+						"Function" "BattleTranceBatEnd"
+					}
+				}
+			}
+
+			"modifier_imba_battle_trance_stacks" {
+				"Passive" "0"
+				"IsHidden" "0"
+				"IsBuff" "1"
+				"IsPurgable" "1"
+				"Duration" "%trance_duration"
+
+				"Properties" {
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%trance_as"
+				}
+			}
+		}
+	}
+}

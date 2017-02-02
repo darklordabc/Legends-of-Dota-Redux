@@ -1,0 +1,40 @@
+"DOTAAbilities" {
+	"leshrac_split_earth_imba" {
+		"BaseClass" "leshrac_split_earth"
+		"ID" "5241"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType" "SPELL_DISPELLABLE_YES_STRONG"
+		"FightRecapLevel" "1"
+		"AbilityCastRange" "750"
+		"AbilityCastPoint" "0.55"
+		"AbilityCooldown" "9"
+		"AbilityManaCost" "100 120 140 160"
+		"AbilityDamage" "120 190 260 330"
+		"AbilityDuration" "2"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_FLOAT"
+				"delay" "0.25"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "300"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"duration" "2"
+			}
+		}
+	}
+}

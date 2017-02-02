@@ -1,0 +1,30 @@
+"DOTAAbilities" {
+	"life_stealer_rage_imba" {
+		"BaseClass" "life_stealer_rage"
+		"ID" "5249"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"SpellDispellableType" "SPELL_DISPELLABLE_NO"
+		"AbilityCastPoint" "0"
+		"AbilityCastRange" "0"
+		"AbilityCooldown" "16"
+		"AbilityManaCost" "50"
+		"AbilityDuration" "4.5 5.5 6.5 7.5"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"attack_speed_bonus" "100"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "4.5 5.5 6.5 7.5"
+				"LinkedSpecialBonus" "special_bonus_unique_lifestealer"
+			}
+		}
+	}
+}

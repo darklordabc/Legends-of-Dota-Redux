@@ -1,0 +1,116 @@
+"DOTAAbilities" {
+	"holdout_scourge_venomous_gale" {
+		"BaseClass" "ability_datadriven"
+		"AbilityTextureName" "venomancer_venomous_gale"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation" "ACT_DOTA_ATTACK"
+		"AbilityCastRange" "700"
+		"AbilityCastPoint" "0.0 0.0 0.0 0.0"
+		"AbilityCooldown" "22.0 22.0 22.0 22.0"
+		"AbilityManaCost" "0"
+
+		"OnSpellStart" {
+			"LinearProjectile" {
+				"Target" "POINT"
+				"EffectName" "venomancer_venomous_gale"
+				"MoveSpeed" "%speed"
+				"StartRadius" "%radius"
+				"EndRadius" "%radius"
+				"TargetTeams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"TargetTypes" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+				"TargetFlags" "DOTA_UNIT_TARGET_FLAG_NONE"
+				"HasFrontalCone" "0"
+				"ProvidesVision" "1"
+				"VisionRadius" "400"
+			}
+
+			"FireSound" {
+				"EffectName" "Hero_Venomancer.VenomousGale"
+			}
+		}
+
+		"OnProjectileHitUnit" {
+			"DeleteOnHit" "false"
+
+			"Damage" {
+				"Target" "TARGET"
+				"Type" "DAMAGE_TYPE_MAGICAL"
+				"Damage" "%strike_damage"
+			}
+
+			"ApplyModifier" {
+				"ModifierName" "modifier_holdout_scourge_gale"
+				"Duration" "%duration"
+				"Target" "TARGET"
+			}
+
+			"FireSound" {
+				"EffectName" "Hero_Venomancer.VenomousGaleImpact"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_holdout_scourge_gale" {
+				"IsDebuff" "1"
+				"ThinkInterval" "%tick_interval"
+
+				"OnIntervalThink" {
+					"Damage" {
+						"Target" "TARGET"
+						"Type" "DAMAGE_TYPE_MAGICAL"
+						"Damage" "%tick_damage"
+					}
+				}
+
+				"AttachEffect" {
+					"EffectName" "venomancer_gale_poison_debuff"
+					"EffectAttachType" "follow_origin"
+					"Target" "TARGET"
+				}
+				"Duration" "%duration"
+
+				"Properties" {
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%movement_slow"
+				}
+			}
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "9.0"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"strike_damage" "25"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"tick_damage" "0 15 30 45"
+			}
+
+			"04" {
+				"var_type" "FIELD_FLOAT"
+				"tick_interval" "3.0 3.0 3.0 3.0"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"movement_slow" "-10"
+			}
+
+			"06" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "125 125 125 125"
+			}
+
+			"07" {
+				"var_type" "FIELD_INTEGER"
+				"speed" "1200 1200 1200 1200"
+			}
+		}
+	}
+}

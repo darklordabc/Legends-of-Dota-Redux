@@ -1,0 +1,126 @@
+"DOTAAbilities" {
+	"frost_lord_ice" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityTextureName" "custom/frost_lord_ice"
+
+		"precache" {
+			"particle" "particles/econ/items/effigies/status_fx_effigies/status_effect_effigy_frosty_dire.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_lich.vsndevts"
+		}
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel" "3"
+		"RequiredLevel" "5"
+		"LevelsBetweenUpgrades" "4"
+		"AbilityCastRange" "500"
+		"AbilityCastPoint" "0.3"
+		"AbilityCooldown" "140"
+		"AbilityManaCost" "225 275 325"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"damage" "100 250 400"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"movement_slow" "-50"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"slow_duration" "4"
+			}
+
+			"04" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "3 4 5"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "500"
+			}
+
+			"06" {
+				"var_type" "FIELD_INTEGER"
+				"damage_radius" "190"
+			}
+		}
+
+		"OnSpellStart" {
+			"CreateThinker" {
+				"ModifierName" "modifier_frost_lord_ice"
+				"Target" "POINT"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_frost_lord_ice" {
+				"ThinkInterval" "1"
+
+				"OnIntervalThink" {
+					"ActOnTargets" {
+						"Target" {
+							"Center" "TARGET"
+							"Radius" "%radius"
+							"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+							"Random" "1"
+							"MaxTargets" "1"
+						}
+
+						"Action" {
+							"RunScript" {
+								"ScriptFile" "abilities/life_in_arena/Ice.lua"
+								"Function" "Ice"
+								"Target" "TARGET"
+							}
+
+							"FireEffect" {
+								"EffectName" "particles/units/heroes/hero_lich/lich_frost_nova.vpcf"
+								"EffectAttachType" "follow_origin"
+								"Target" "TARGET"
+							}
+
+							"FireSound" {
+								"EffectName" "Ability.FrostNova"
+								"Target" "CASTER"
+							}
+						}
+					}
+				}
+				"Duration" "%duration"
+
+				"OnCreated" {
+					"AttachEffect" {
+						"EffectName" "particles/units/heroes/hero_ancient_apparition/ancient_ice_vortex.vpcf"
+						"EffectAttachType" "follow_origin"
+						"Target" "TARGET"
+
+						"ControlPoints" {
+							"00" "0 0 0"
+							"01" "%radius 1 1"
+							"15" "25 150 25"
+							"16" "1 0 0"
+						}
+					}
+				}
+			}
+
+			"modifier_modifier_frost_lord_ice_damage" {
+				"IsDebuff" "1"
+				"StatusEffectName" "particles/econ/items/effigies/status_fx_effigies/status_effect_effigy_frosty_dire.vpcf"
+				"StatusEffectPriority" "10"
+				"Duration" "%slow_duration"
+
+				"Properties" {
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%movement_slow"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,39 @@
+"DOTAAbilities" {
+	"enchantress_natures_attendants_imba" {
+		"BaseClass" "enchantress_natures_attendants"
+		"ID" "5269"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"SpellDispellableType" "SPELL_DISPELLABLE_NO"
+		"AbilityCastPoint" "0.2"
+		"AbilityCooldown" "30.0"
+		"AbilityDuration" "11.0"
+		"AbilityManaCost" "125 140 155 170"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_enchantress.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_FLOAT"
+				"heal_interval" "1.0"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"heal" "16.0 24.0 32.0 40.0"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "600"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"wisp_count" "4 6 8 10"
+				"LinkedSpecialBonus" "special_bonus_unique_enchantress_2"
+			}
+		}
+	}
+}

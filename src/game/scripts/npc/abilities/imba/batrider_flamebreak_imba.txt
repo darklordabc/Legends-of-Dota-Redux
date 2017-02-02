@@ -1,0 +1,76 @@
+"DOTAAbilities" {
+	"batrider_flamebreak_imba" {
+		"BaseClass" "batrider_flamebreak"
+		"ID" "5321"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType" "SPELL_DISPELLABLE_YES"
+		"FightRecapLevel" "1"
+		"AbilityCastRange" "25000"
+		"AbilityCastPoint" "0.1"
+		"AbilityCooldown" "12.0"
+		"AbilityManaCost" "110 120 130 140"
+		"AbilityModifierSupportValue" "1.0"
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_batrider/batrider_flamebreak.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_batrider.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"damage_per_second" "20 30 40 50"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"damage_duration" "7"
+				"CalculateSpellDamageTooltip" "0"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"damage_total_tooltip" "140 210 280 350"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"explosion_radius" "550"
+				"LinkedSpecialBonus" "special_bonus_unique_batrider_2"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"collision_radius" "100"
+			}
+
+			"06" {
+				"var_type" "FIELD_FLOAT"
+				"stun_duration" "0.5"
+			}
+
+			"07" {
+				"var_type" "FIELD_INTEGER"
+				"speed" "1300"
+			}
+
+			"08" {
+				"var_type" "FIELD_FLOAT"
+				"knockback_max_distance" "600"
+				"LinkedSpecialBonus" "special_bonus_unique_batrider_2"
+			}
+
+			"09" {
+				"var_type" "FIELD_INTEGER"
+				"knockback_height" "100"
+			}
+
+			"10" {
+				"var_type" "FIELD_FLOAT"
+				"knockback_duration" "0.3"
+			}
+		}
+	}
+}

@@ -1,0 +1,50 @@
+"DOTAAbilities" {
+	"imba_tower_force" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName" "custom/imba_force_tower"
+		"MaxLevel" "3"
+		"AbilitySharedWithTeammates" "1"
+		"AbilityCastRange" "600 800 1000"
+		"AbilityCooldown" "5"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"force_aoe" "600 800 1000"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"force_distance" "300 350 400"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"force_duration" "0.2 0.3 0.4"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"min_creeps" "4"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_imba_tower_force" {
+				"Passive" "1"
+				"IsHidden" "1"
+				"ThinkInterval" "0.5"
+
+				"OnIntervalThink" {
+					"RunScript" {
+						"ScriptFile" "abilities/tower_abilities.lua"
+						"Function" "Force"
+						"sound_force" "DOTA_Item.ForceStaff.Activate"
+					}
+				}
+			}
+		}
+	}
+}

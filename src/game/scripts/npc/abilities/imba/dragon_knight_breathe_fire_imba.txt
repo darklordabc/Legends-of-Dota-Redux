@@ -1,0 +1,56 @@
+"DOTAAbilities" {
+	"dragon_knight_breathe_fire_imba" {
+		"BaseClass" "dragon_knight_breathe_fire"
+		"ID" "5226"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType" "SPELL_DISPELLABLE_YES"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel" "1"
+		"AbilityCastRange" "750"
+		"AbilityCastPoint" "0.0 0.0 0.0 0.0"
+		"AbilityCooldown" "11.0"
+		"AbilityDamage" "120 200 280 360"
+		"AbilityManaCost" "100"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+			"particle" "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"start_radius" "175"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"end_radius" "325"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"range" "750"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"speed" "1050"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"reduction" "-50"
+			}
+
+			"06" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "12"
+			}
+		}
+	}
+}

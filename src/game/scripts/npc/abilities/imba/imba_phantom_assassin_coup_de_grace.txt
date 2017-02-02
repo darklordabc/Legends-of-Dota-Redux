@@ -1,0 +1,147 @@
+"DOTAAbilities" {
+	"imba_phantom_assassin_coup_de_grace" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName" "phantom_assassin_coup_de_grace"
+
+		"precache" {
+			"soundfile" "soundevents/imba_soundevents.vsndevts"
+			"particle" "particles/hero/phantom_assassin/screen_blood_splatter.vpcf"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"crit_bonus" "250 350 450"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"crit_chance" "15"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"crit_increase" "2"
+			}
+
+			"04" {
+				"var_type" "FIELD_FLOAT"
+				"crit_increase_duration" "3.0"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"crit_chance_scepter" "2"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_imba_coup_de_grace" {
+				"Passive" "1"
+				"IsHidden" "1"
+
+				"OnAttackStart" {
+					"RemoveModifier" {
+						"ModifierName" "modifier_imba_coup_de_grace_kill"
+						"Target" "CASTER"
+					}
+
+					"RunScript" {
+						"ScriptFile" "abilities/dota imba/hero_phantom_assassin.lua"
+						"Function" "CoupDeGrace"
+						"Target" "TARGET"
+						"stack_modifier" "modifier_imba_coup_de_grace_stacks"
+						"crit_modifier" "modifier_imba_coup_de_grace_crit"
+						"kill_modifier" "modifier_imba_coup_de_grace_kill"
+					}
+				}
+			}
+
+			"modifier_imba_coup_de_grace_crit" {
+				"IsHidden" "1"
+				"IsPurgable" "0"
+
+				"Properties" {
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" "%crit_bonus"
+				}
+
+				"OnAttackLanded" {
+					"RemoveModifier" {
+						"ModifierName" "modifier_imba_coup_de_grace_crit"
+						"Target" "CASTER"
+					}
+
+					"FireEffect" {
+						"EffectName" "particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf"
+						"EffectAttachType" "start_at_customorigin"
+
+						"ControlPointEntities" {
+							"TARGET" "follow_origin"
+						}
+					}
+
+					"FireSound" {
+						"EffectName" "Hero_PhantomAssassin.CoupDeGrace"
+
+						"Target" {
+							"Center" "TARGET"
+							"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+							"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+						}
+					}
+				}
+			}
+
+			"modifier_imba_coup_de_grace_kill" {
+				"IsHidden" "1"
+				"IsPurgable" "0"
+
+				"OnCreated" {
+					"RunScript" {
+						"ScriptFile" "lib/util_imba.lua"
+						"Function" "IllusionPassiveRemover"
+						"modifier" "modifier_imba_coup_de_grace_kill"
+					}
+				}
+
+				"Properties" {
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" "%crit_bonus"
+				}
+
+				"OnAttackLanded" {
+					"RemoveModifier" {
+						"ModifierName" "modifier_imba_coup_de_grace_kill"
+						"Target" "CASTER"
+					}
+
+					"RunScript" {
+						"ScriptFile" "abilities/dota imba/hero_phantom_assassin.lua"
+						"Function" "CoupDeGraceKill"
+						"sound_kill" "Hero_PhantomAssassin.CoupDeGrace"
+					}
+
+					"FireEffect" {
+						"EffectName" "particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf"
+						"EffectAttachType" "start_at_customorigin"
+
+						"ControlPointEntities" {
+							"TARGET" "follow_origin"
+						}
+					}
+				}
+			}
+
+			"modifier_imba_coup_de_grace_stacks" {
+				"IsBuff" "1"
+				"IsHidden" "0"
+				"Passive" "0"
+				"IsPurgable" "0"
+				"Duration" "%crit_increase_duration"
+			}
+		}
+	}
+}

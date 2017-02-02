@@ -1,0 +1,78 @@
+"DOTAAbilities" {
+	"angel_arena_cripple" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityTextureName" "custom/angel_arena_cripple"
+		"MaxLevel" "4"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"
+			"particle" "particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
+		}
+		"AbilityCastRange" "500 550 600 650"
+		"AbilityCastPoint" "0.5 0.5 0.5 0.5"
+		"AbilityCooldown" "20.0 19.0 18.0 17.0"
+		"AbilityDuration" "5.0 6.0 7.0 8.0"
+		"AbilityManaCost" "120 130 140 150"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "5.0 6.0 7.0 8.0"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"damage" "55 56 58 60"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"attack_reduce" "-50 -80 -120 -180"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"slow_percent" "-10 -12 -15 -18"
+			}
+		}
+
+		"OnSpellStart" {
+			"FireSound" {
+				"EffectName" "Hero_Bane.Enfeeble.Cast"
+				"Target" "TARGET"
+			}
+
+			"ApplyModifier" {
+				"ModifierName" "modifier_cripple"
+				"Target" "TARGET"
+				"Duration" "%duration"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_cripple" {
+				"EffectName" "particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
+				"EffectAttachType" "follow_overhead"
+				"IsDebuff" "1"
+				"IsPurgable" "1"
+				"ThinkInterval" "1.0"
+
+				"OnIntervalThink" {
+					"Damage" {
+						"Target" "TARGET"
+						"Type" "DAMAGE_TYPE_MAGICAL"
+						"Damage" "%damage"
+					}
+				}
+
+				"Properties" {
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow_percent"
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%attack_reduce"
+				}
+			}
+		}
+	}
+}

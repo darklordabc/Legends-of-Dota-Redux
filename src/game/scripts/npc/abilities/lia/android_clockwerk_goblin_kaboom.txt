@@ -1,0 +1,117 @@
+"DOTAAbilities" {
+	"android_clockwerk_goblin_kaboom" {
+		"BaseClass" "ability_datadriven"
+		"AbilityTextureName" "custom/golem_explosion"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"MaxLevel" "3"
+		"AbilityCastRange" "100"
+		"AbilityCastPoint" "0.0"
+		"AbilityDamage" "30 60 80"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"small_radius" "100"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"big_radius" "250"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"big_radius_dmg" "0.5"
+			}
+		}
+
+		"OnOwnerDied" {
+			"FireEffect" {
+				"Target" {
+					"Center" "CASTER"
+					"Flags" "DOTA_UNIT_TARGET_FLAG_DEAD"
+				}
+				"EffectName" "particles/units/heroes/hero_techies/techies_suicide.vpcf"
+				"EffectAttachType" "follow_origin"
+			}
+
+			"FireSound" {
+				"EffectName" "Hero_Techies.Suicide"
+
+				"Target" {
+					"Center" "CASTER"
+					"Flags" "DOTA_UNIT_TARGET_FLAG_DEAD"
+				}
+			}
+
+			"Damage" {
+				"Target" {
+					"Center" "CASTER"
+					"Radius" "%big_radius"
+					"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				}
+				"Damage" "%AbilityDamage * %big_radius_dmg"
+				"Type" "DAMAGE_TYPE_MAGICAL"
+			}
+
+			"RunScript" {
+				"ScriptFile" "heroes/Android/PocketFactory.lua"
+				"Function" "CauseDamageDecor"
+				"attack_damage" "%AbilityDamage"
+
+				"Target" {
+					"Center" "CASTER"
+					"Radius" "150"
+					"Teams" "DOTA_UNIT_TARGET_TEAM_BOTH"
+					"Types" "DOTA_UNIT_TARGET_BUILDING"
+				}
+			}
+		}
+
+		"OnSpellStart" {
+			"FireEffect" {
+				"Target" "CASTER"
+				"EffectName" "particles/units/heroes/hero_techies/techies_suicide.vpcf"
+				"EffectAttachType" "follow_origin"
+			}
+
+			"FireSound" {
+				"EffectName" "Hero_Techies.Suicide"
+				"Target" "CASTER"
+			}
+
+			"Damage" {
+				"Target" "CASTER"
+				"Damage" "99999"
+				"Type" "DAMAGE_TYPE_PURE"
+			}
+
+			"RunScript" {
+				"ScriptFile" "heroes/Android/PocketFactory.lua"
+				"Function" "CauseDamageDecor"
+				"attack_damage" "%AbilityDamage"
+
+				"Target" {
+					"Center" "CASTER"
+					"Radius" "150"
+					"Teams" "DOTA_UNIT_TARGET_TEAM_BOTH"
+					"Types" "DOTA_UNIT_TARGET_BUILDING"
+				}
+			}
+		}
+
+		"Modifiers" {
+			"modifier_summoned" {
+				"IsHidden" "1"
+
+				"States" {
+					"MODIFIER_STATE_DOMINATED" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+}

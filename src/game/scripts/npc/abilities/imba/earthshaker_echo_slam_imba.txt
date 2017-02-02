@@ -1,0 +1,42 @@
+"DOTAAbilities" {
+	"earthshaker_echo_slam_imba" {
+		"BaseClass" "earthshaker_echo_slam"
+		"ID" "5026"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel" "2"
+		"AbilityCastPoint" "0 0 0 0"
+		"AbilityCastRange" "900"
+		"AbilityCooldown" "150.0 130.0 110.0"
+		"AbilityDamage" "160 215 270"
+		"AbilityManaCost" "150 200 250"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"echo_slam_damage_range" "900"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"echo_slam_echo_search_range" "900"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"echo_slam_echo_range" "900"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"echo_slam_echo_damage" "70 110 150"
+			}
+		}
+	}
+}

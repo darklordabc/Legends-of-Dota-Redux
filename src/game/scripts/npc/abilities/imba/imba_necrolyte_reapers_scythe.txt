@@ -1,0 +1,108 @@
+"DOTAAbilities" {
+	"imba_necrolyte_reapers_scythe" {
+		"BaseClass" "ability_datadriven"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel" "2"
+		"AbilityTextureName" "necrolyte_reapers_scythe"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts"
+			"particle" "particles/generic_gameplay/generic_stunned.vpcf"
+		}
+		"AbilityCastPoint" "0.4"
+		"AbilityCooldown" "100 85 70"
+		"AbilityManaCost" "170 340 500"
+		"AbilityCastRange" "600"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"damage" "12 16 20"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"stun_duration" "1.5"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"animation_delay" "0.8"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"respawn_base" "10 15 20"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"respawn_stack" "3"
+			}
+
+			"06" {
+				"var_type" "FIELD_INTEGER"
+				"stacks_scepter" "10"
+			}
+
+			"07" {
+				"var_type" "FIELD_INTEGER"
+				"sadist_aoe_scepter" "900"
+			}
+		}
+
+		"OnSpellStart" {
+			"FireSound" {
+				"EffectName" "Hero_Necrolyte.ReapersScythe.Target"
+				"Target" "TARGET"
+			}
+
+			"RunScript" {
+				"ScriptFile" "abilities/dota imba/hero_necrolyte.lua"
+				"Function" "ReapersScythe"
+				"Target" "TARGET"
+				"reap_particle" "particles/units/heroes/hero_necrolyte/necrolyte_scythe_orig.vpcf"
+				"scythe_particle" "particles/units/heroes/hero_necrolyte/necrolyte_scythe_model.vpcf"
+				"modifier_debuff" "modifier_imba_reapers_scythe"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_imba_reapers_scythe" {
+				"Passive" "0"
+				"IsHidden" "0"
+				"IsDebuff" "1"
+				"IsPurgable" "0"
+				"Duration" "%stun_duration"
+				"OverrideAnimation" "ACT_DOTA_DISABLED"
+				"EffectName" "particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType" "follow_overhead"
+
+				"OnCreated" {
+					"AttachEffect" {
+						"EffectName" "particles/units/heroes/hero_necrolyte/necrolyte_scythe.vpcf"
+						"EffectAttachType" "follow_origin"
+						"Target" "TARGET"
+					}
+				}
+
+				"OnDeath" {
+					"RunScript" {
+						"ScriptFile" "abilities/dota imba/hero_necrolyte.lua"
+						"Function" "ReapersScytheKill"
+					}
+				}
+
+				"States" {
+					"MODIFIER_STATE_STUNNED" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+}

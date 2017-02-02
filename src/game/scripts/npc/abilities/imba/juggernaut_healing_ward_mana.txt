@@ -1,0 +1,90 @@
+"DOTAAbilities" {
+	"juggernaut_healing_ward_mana" {
+		"BaseClass" "ability_datadriven"
+		"AbilityTextureName" "custom/healing_ward_icon"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AoERadius" "500"
+		"AbilityCastRange" "350"
+		"AbilityCastPoint" "0.3 0.3 0.3 0.3"
+		"AbilityCooldown" "60.0 60.0 60.0 60.0"
+		"AbilityDuration" "25.0 25.0 25.0 25.0"
+		"AbilityManaCost" "120 125 130 135"
+
+		"precache" {
+			"particle" "particles/juggernaut_healing_wardmana.vpcf"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"healing_ward_mana_restore_pct" "2 3 4 5"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "500"
+			}
+		}
+
+		"OnSpellStart" {
+			"SpawnUnit" {
+				"UnitName" "npc_dota_juggernaut_healing_ward"
+				"Target" "POINT"
+				"Duration" "%AbilityDuration"
+				"UnitCount" "1"
+				"UnitLimit" "0"
+				"GrantsGold" "1"
+				"GrantsXP" "1"
+				"SpawnRadius" "1"
+
+				"OnSpawn" {
+					"ApplyModifier" {
+						"ModifierName" "modifier_healing_ward_mana_aura"
+						"Target" "TARGET"
+						"Duration" "%AbilityDuration"
+					}
+
+					"RunScript" {
+						"ScriptFile" "abilities/juggernaut_healing_ward_mana.lua"
+						"Function" "onHealingWardSpawn"
+					}
+				}
+			}
+		}
+
+		"Modifiers" {
+			"modifier_healing_ward_mana_aura" {
+				"Passive" "0"
+				"IsHidden" "0"
+				"IsDebuff" "0"
+				"Aura" "modifier_healing_ward_mana_aura_effect"
+				"Aura_Radius" "%radius"
+				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags" "DOTA_UNIT_TARGET_FLAG_NONE"
+				"Aura_ApplyToCaster" "1"
+
+				"States" {
+					"MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MAGIC_IMMUNE" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+
+			"modifier_healing_ward_mana_aura_effect" {
+				"Passive" "0"
+				"IsHidden" "0"
+				"IsDebuff" "0"
+				"EffectName" "particles/juggernaut_ward_mana.vpcf"
+				"EffectAttachType" "follow_origin"
+				"ThinkInterval" "0.04"
+
+				"OnIntervalThink" {
+					"RunScript" {
+						"ScriptFile" "abilities/juggernaut_healing_ward_mana.lua"
+						"Function" "healingWardMana"
+					}
+				}
+			}
+		}
+	}
+}
