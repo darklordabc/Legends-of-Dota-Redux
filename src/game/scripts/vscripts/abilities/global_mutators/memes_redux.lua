@@ -105,7 +105,7 @@ function InitiateMemes()
 
   -- Gotta Go Fast
   Timers:CreateTimer(function ()
-    if OptionManager:GetOption('gottaGoFast') == 1 then
+    if OptionManager:GetOption('gottaGoFast') == 1 or OptionManager:GetOption('gottaGoFast') == 2 then
       for _,hero in pairs(HeroList:GetAllHeroes()) do
         if hero:IsMoving() then
           EmitGlobalSound("Memes.GottaGoFast")
@@ -114,7 +114,7 @@ function InitiateMemes()
           return 0.3
         end
       end
-    elseif OptionManager:GetOption('gottaGoFast') == 2 then
+    elseif OptionManager:GetOption('gottaGoFast') == 3 then
       for _,hero in pairs(HeroList:GetAllHeroes()) do
         if hero:IsMoving() then
           EmitGlobalSound("Memes.GottaGoFASTER")
