@@ -36,7 +36,7 @@ function showIngameBuilder() {
 
         heroBuilderPanel.FindChildTraverse("tabsSelector").visible = true;
 
-        heroBuilderPanel.FindChildTraverse("chat").visible = false;
+        // heroBuilderPanel.FindChildTraverse("chat").visible = false;
 
         heroBuilderPanel.showBuilderTab('pickingPhaseMainTab');
 
