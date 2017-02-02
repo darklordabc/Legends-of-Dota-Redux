@@ -1,0 +1,33 @@
+"DOTAAbilities" {
+	"garden_pink_blossom" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName" "custom/cherub_flower_pink"
+		"MaxLevel" "3"
+		"AOERadius" "500"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "500"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"targets" "3"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"heal_amount" "14 22 30"
+			}
+		}
+
+		"OnSpellStart" {
+			"RunScript" {
+				"ScriptFile" "abilities/cherub_flower_garden.lua"
+				"Function" "PlantPink"
+			}
+		}
+	}
+}

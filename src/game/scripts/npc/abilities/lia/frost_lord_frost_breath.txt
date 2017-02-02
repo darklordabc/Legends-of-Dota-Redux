@@ -1,0 +1,114 @@
+"DOTAAbilities" {
+	"frost_lord_frost_breath" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName" "ancient_apparition_chilling_touch"
+		"MaxLevel" "3"
+		"RequiredLevel" "1"
+		"LevelsBetweenUpgrades" "2"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
+			"particle" "particles/status_fx/status_effect_frost_lich.vpcf"
+		}
+		"AbilityCastRange" "%range"
+		"AbilityCastPoint" "0.0 0.0 0.0 0.0"
+		"AbilityCooldown" "14"
+		"AbilityManaCost" "90 110 130"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"damage" "70 140 210"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"damage_per_second" "9 18 36"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"start_radius" "150"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"end_radius" "150"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"range" "650 700 750"
+			}
+
+			"06" {
+				"var_type" "FIELD_INTEGER"
+				"speed" "950"
+			}
+
+			"07" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "4 5 6"
+			}
+		}
+
+		"OnSpellStart" {
+			"LinearProjectile" {
+				"Target" "POINT"
+				"EffectName" "particles/units/heroes/hero_jakiro/jakiro_dual_breath_ice.vpcf"
+				"MoveSpeed" "%speed"
+				"StartRadius" "%start_radius"
+				"StartPosition" "attach_origin"
+				"EndRadius" "%end_radius"
+				"FixedDistance" "%range"
+				"TargetTeams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"TargetTypes" "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNITY_TARGET_MECHANICAL"
+				"TargetFlags" "DOTA_UNIT_TARGET_FLAG_NONE"
+				"HasFrontalCone" "1"
+				"ProvidesVision" "0"
+			}
+
+			"FireSound" {
+				"EffectName" "Hero_Jakiro.DualBreath"
+				"Target" "CASTER"
+			}
+		}
+
+		"OnProjectileHitUnit" {
+			"DeleteOnHit" "0"
+
+			"Damage" {
+				"Target" "TARGET"
+				"Type" "DAMAGE_TYPE_MAGICAL"
+				"Damage" "%damage"
+			}
+
+			"ApplyModifier" {
+				"ModifierName" "modifier_frost_lord_frost_breath"
+				"Target" "TARGET"
+				"Duration" "%duration"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_frost_lord_frost_breath" {
+				"Passive" "0"
+				"IsHidden" "0"
+				"IsDebuff" "0"
+				"ThinkInterval" "1.0"
+
+				"OnIntervalThink" {
+					"Damage" {
+						"Target" "TARGET"
+						"Type" "DAMAGE_TYPE_MAGICAL"
+						"Damage" "%damage_per_second"
+					}
+				}
+			}
+		}
+	}
+}

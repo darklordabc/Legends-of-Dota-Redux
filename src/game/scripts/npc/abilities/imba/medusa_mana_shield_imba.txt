@@ -1,0 +1,25 @@
+"DOTAAbilities" {
+	"medusa_mana_shield_imba" {
+		"BaseClass" "medusa_mana_shield"
+		"ID" "5506"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"SpellDispellableType" "SPELL_DISPELLABLE_NO"
+		"AbilityCastPoint" "0.0"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_medusa.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"damage_per_mana" "2 3 4 5"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"absorption_tooltip" "60"
+			}
+		}
+	}
+}

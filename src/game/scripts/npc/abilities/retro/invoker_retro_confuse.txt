@@ -1,0 +1,80 @@
+"DOTAAbilities" {
+	"invoker_retro_confuse" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "custom/invoker_retro_confuse"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastAnimation" "ACT_DOTA_CAST_FORGE_SPIRIT"
+		"FightRecapLevel" "1"
+		"MaxLevel" "4"
+		"AbilityProcsMagicStick" "1"
+		"AbilityCooldown" "15"
+		"AbilityManaCost" "100"
+		"AbilityCastRange" "700 1000 1200 1500"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"duration" "5 10 15 20"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"cast_range" "700 1000 1200 1500"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"incoming_damage_percent" "150 140 130 120"
+			}
+
+			"04" {
+				"var_type" "FIELD_FLOAT"
+				"pip_current" "1"
+			}
+		}
+
+		"OnSpellStart" {
+			"RunScript" {
+				"ScriptFile" "abilities/retro_dota/invoker_retro_confuse.lua"
+				"Function" "invoker_retro_confuse_on_spell_start"
+				"Target" "POINT"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_invoker_retro_confuse_illusion" {
+				"Passive" "0"
+				"IsHidden" "1"
+
+				"States" {
+					"MODIFIER_STATE_COMMAND_RESTRICTED" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_STUNNED" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+
+			"modifier_invoker_retro_confuse_ghost" {
+				"Passive" "0"
+				"IsHidden" "1"
+
+				"States" {
+					"MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_TEAM_MOVE_TO" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_TEAM_SELECT" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_COMMAND_RESTRICTED" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ATTACK_IMMUNE" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MAGIC_IMMUNE" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_OUT_OF_GAME" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+}

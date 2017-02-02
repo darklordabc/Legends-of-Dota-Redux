@@ -1,0 +1,43 @@
+"DOTAAbilities" {
+	"imba_mirana_cosmic_dust" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName" "custom/mirana_princess_of_the_night"
+		"AbilityCastPoint" "0.0"
+		"AbilityCastRange" "900"
+		"AbilityCooldown" "8.0"
+		"AbilityManaCost" "0"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "900"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"hit_delay" "0.57"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"damage" "90 160 230 300"
+			}
+		}
+
+		"OnSpellStart" {
+			"RunScript" {
+				"ScriptFile" "abilities/dota imba/hero_mirana.lua"
+				"Function" "CosmicDust"
+				"ambient_sound" "Ability.Starfall"
+				"hit_sound" "Ability.StarfallImpact"
+				"ambient_particle" "particles/units/heroes/hero_mirana/mirana_starfall_circle.vpcf"
+				"hit_particle" "particles/units/heroes/hero_mirana/mirana_starfall_attack.vpcf"
+			}
+		}
+	}
+}

@@ -1,0 +1,81 @@
+"DOTAAbilities" {
+	"garden_teleport" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName" "custom/garden_teleport"
+		"MaxLevel" "1"
+		"AbilityCastRange" "0"
+		"AbilityCastPoint" "3"
+		"AbilityCooldown" "20"
+		"AbilityManaCost" "0"
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_furion/furion_teleport_e.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_furion.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"range" "1500"
+			}
+		}
+
+		"OnAbilityPhaseStart" {
+			"ApplyModifier" {
+				"ModifierName" "modifier_teleportation"
+				"Target" "CASTER"
+				"Duration" "3"
+			}
+
+			"FireSound" {
+				"EffectName" "Hero_Furion.Teleport_Grow"
+				"Target" "CASTER"
+			}
+
+			"RunScript" {
+				"ScriptFile" "abilities/garden_teleport.lua"
+				"Function" "CreateTeleportParticles"
+				"Target" "POINT"
+			}
+		}
+
+		"OnSpellStart" {
+			"FireSound" {
+				"EffectName" "Hero_Enchantress.EnchantCast"
+				"Target" "CASTER"
+			}
+
+			"RunScript" {
+				"ScriptFile" "abilities/garden_teleport.lua"
+				"Function" "Teleport"
+				"Target" "POINT"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_teleportation" {
+				"IsHidden" "0"
+				"EffectName" "particles/units/heroes/hero_furion/furion_teleport.vpcf"
+				"EffectAttachType" "follow_origin"
+
+				"OnOrder" {
+					"FireSound" {
+						"EffectName" "Hero_Furion.Teleport_Disappear"
+						"Target" "CASTER"
+					}
+
+					"RunScript" {
+						"ScriptFile" "abilities/garden_teleport.lua"
+						"Function" "EndTeleport"
+					}
+
+					"RemoveModifier" {
+						"ModifierName" "modifier_teleportation"
+						"Target" "CASTER"
+					}
+				}
+			}
+		}
+	}
+}

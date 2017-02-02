@@ -1,0 +1,121 @@
+"DOTAAbilities" {
+	"garden_purple_lotus_base" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELED | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityCastRange" "300"
+		"AbilityCooldown" "5.0"
+		"AbilityChannelTime" "2.0"
+		"AbilityTextureName" "custom/cherub_flower_purple"
+		"MaxLevel" "4"
+		"AnimationPlaybackRate" "0.2"
+		"AOERadius" "400"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "400"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"resistance" "20 30 40 50"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"flower_health" "250 400 550 700"
+			}
+		}
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_enchantress.vsndevts"
+		}
+
+		"OnSpellStart" {
+			"ApplyModifier" {
+				"ModifierName" "modifier_garden_channel"
+				"Target" "CASTER"
+			}
+
+			"FireEffect" {
+				"EffectName" "particles/units/heroes/hero_enchantress/enchantress_death_enchant_flower.vpcf"
+				"EffectAttachType" "start_at_customorigin"
+				"TargetPoint" "POINT"
+			}
+		}
+
+		"OnChannelInterrupted" {
+			"RemoveModifier" {
+				"ModifierName" "modifier_garden_channel"
+				"Target" "CASTER"
+			}
+		}
+
+		"OnChannelSucceeded" {
+			"RunScript" {
+				"ScriptFile" "abilities/cherub_flower_garden.lua"
+				"Function" "PlantPurpleBase"
+				"Target" "POINT"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_garden_channel" {
+				"Duration" "2.0"
+				"ThinkInterval" "0.1"
+
+				"OnIntervalThink" {
+					"RunScript" {
+						"ScriptFile" "abilities/cherub_flower_garden.lua"
+						"Function" "GardenCheck"
+					}
+				}
+			}
+
+			"modifier_purple_flower" {
+				"Aura" "modifier_purple_flower_aura"
+				"Aura_Radius" "%radius"
+				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL"
+				"Aura_Flags" "DOTA_UNIT_TARGET_FLAG_NONE"
+				"IsHidden" "1"
+				"IsPurgable" "0"
+
+				"States" {
+					"MODIFIER_STATE_ROOTED" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_DISARMED" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+
+				"OnCreated" {
+					"RunScript" {
+						"ScriptFile" "abilities/cherub_flower_garden.lua"
+						"Function" "PlantSetHealth"
+					}
+
+					"FireSound" {
+						"EffectName" "Hero_Enchantress.EnchantCast"
+						"Target" "TARGET"
+					}
+				}
+
+				"OnDeath" {
+					"RunScript" {
+						"ScriptFile" "abilities/cherub_flower_garden.lua"
+						"Function" "OnDestroyPurple"
+					}
+				}
+			}
+
+			"modifier_purple_flower_aura" {
+				"IsHidden" "0"
+				"IsPurgable" "0"
+				"IsBuff" "1"
+				"TextureName" "antimage_spell_shield"
+
+				"Properties" {
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%resistance"
+				}
+			}
+		}
+	}
+}

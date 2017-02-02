@@ -1,0 +1,55 @@
+"DOTAAbilities" {
+	"batrider_flaming_lasso_imba" {
+		"BaseClass" "batrider_flaming_lasso"
+		"ID" "5323"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType" "SPELL_DISPELLABLE_YES_STRONG"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel" "2"
+		"HasScepterUpgrade" "1"
+		"AbilityCastPoint" "0.1"
+		"AbilityCastRange" "300"
+		"AbilityCooldown" "70.0 50.0 30.0"
+		"AbilityManaCost" "225"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_batrider.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "3.0 3.75 4.5"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"drag_distance" "300"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"break_distance" "3000"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"grab_radius" "600"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"grab_radius_scepter" "600"
+			}
+
+			"06" {
+				"var_type" "FIELD_FLOAT"
+				"damage_scepter" "100 150 200"
+			}
+		}
+	}
+}

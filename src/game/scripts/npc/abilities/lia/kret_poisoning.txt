@@ -1,0 +1,63 @@
+"DOTAAbilities" {
+	"kret_poisoning" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName" "custom/kret_poisoning"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"MaxLevel" "4"
+		"RequiredLevel" "1"
+		"LevelsBetweenUpgrades" "2"
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_abaddon/abaddon_death_coil_explosion_f.vpcf"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"chanceVal" "33"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"adsorbVal" "25 50 100 150"
+			}
+		}
+
+		"OnRespawn" {
+			"ApplyModifier" "modifier_kret_poisoning"
+		}
+
+		"Modifiers" {
+			"modifier_kret_poisoning" {
+				"Passive" "1"
+				"IsHidden" "1"
+				"IsPurgable" "0"
+
+				"OnAttacked" {
+					"Random" {
+						"Chance" "%chanceVal"
+						"PseudoRandom" "DOTA_PSEUDO_RANDOM_FACELESS_BASH"
+
+						"OnSuccess" {
+							"RunScript" {
+								"ScriptFile" "abilities/life_in_arena/poisoning.lua"
+								"Function" "SetAdsorbFromKret"
+								"adsorbVal" "%adsorbVal"
+							}
+
+							"AttachEffect" {
+								"EffectName" "particles/units/heroes/hero_abaddon/abaddon_death_coil_explosion_f.vpcf"
+								"EffectAttachType" "follow_origin"
+								"Target" "ATTACKER"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

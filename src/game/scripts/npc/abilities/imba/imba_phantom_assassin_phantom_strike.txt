@@ -1,0 +1,99 @@
+"DOTAAbilities" {
+	"imba_phantom_assassin_phantom_strike" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY | DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName" "phantom_assassin_phantom_strike"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
+			"particle" "particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf"
+		}
+		"AbilityCastRange" "1400"
+		"AbilityCastPoint" "0.2"
+		"CastFilterRejectCaster" "1"
+		"AbilityCooldown" "10 8 6 4"
+		"AbilityManaCost" "50"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"bonus_attack_speed" "130 150 170 190"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"buff_duration" "3.0"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"tooltip_range" "1400"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"projectile_speed" "5000"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"projectile_width" "125"
+			}
+		}
+
+		"OnSpellStart" {
+			"RunScript" {
+				"ScriptFile" "abilities/dota imba/hero_phantom_assassin.lua"
+				"Function" "PhantomStrike"
+				"Target" "TARGET"
+				"modifier_phantom_strike" "modifier_imba_phantom_strike"
+				"modifier_stacks" "modifier_imba_coup_de_grace_stacks"
+				"sound_start" "Hero_PhantomAssassin.Strike.Start"
+				"sound_end" "Hero_PhantomAssassin.Strike.End"
+				"particle_end" "particles/units/heroes/hero_phantom_assassin/phantom_assassin_phantom_strike_end.vpcf"
+			}
+		}
+
+		"OnProjectileHitUnit" {
+			"DeleteOnHit" "0"
+
+			"FireEffect" {
+				"EffectName" "particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf"
+				"EffectAttachType" "start_at_customorigin"
+
+				"ControlPointEntities" {
+					"TARGET" "follow_origin"
+				}
+			}
+
+			"FireSound" {
+				"EffectName" "Hero_PhantomAssassin.Attack"
+				"Target" "TARGET"
+			}
+
+			"RunScript" {
+				"ScriptFile" "abilities/dota imba/hero_phantom_assassin.lua"
+				"Function" "PhantomStrikeHit"
+				"ability_crit" "imba_phantom_assassin_coup_de_grace"
+				"modifier_stacks" "modifier_imba_coup_de_grace_stacks"
+				"modifier_crit" "modifier_imba_coup_de_grace_crit"
+				"sound_kill" "Hero_PhantomAssassin.CoupDeGrace"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_imba_phantom_strike" {
+				"IsBuff" "1"
+				"Duration" "%buff_duration"
+
+				"Properties" {
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_attack_speed"
+				}
+			}
+		}
+	}
+}

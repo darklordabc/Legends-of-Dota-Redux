@@ -1,0 +1,31 @@
+"DOTAAbilities" {
+	"imba_sniper_take_aim_normal" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName" "custom/sniper_take_aim_normal"
+		"AbilityCastRange" "650 800 950 1100"
+		"AbilityCastPoint" "0.0"
+		"AbilityCooldown" "8.0 7.0 6.0 5.0"
+		"AbilitySharedCooldown" "imba_sniper_take_aim"
+		"AbilityManaCost" "0"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"range" "100 250 400 550"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_imba_take_aim_normal" {
+				"Passive" "1"
+				"IsPurgable" "0"
+				"IsHidden" "1"
+
+				"Properties" {
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS" "%range"
+				}
+			}
+		}
+	}
+}

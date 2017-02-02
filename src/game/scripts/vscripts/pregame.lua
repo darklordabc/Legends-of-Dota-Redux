@@ -457,6 +457,7 @@ function Pregame:loadDefaultSettings()
     -- Do not increase creep power
     self:setOption('lodOptionCreepPower', 0, true)
     self:setOption('lodOptionNeutralMultiply', 1, true)
+    self:setOption('lodOptionLaneMultiply', 0, true)
 
 
     -- Start with a free courier
@@ -956,6 +957,11 @@ function Pregame:onThink()
         Timers:CreateTimer(function()
             this:multiplyNeutrals()
         end, DoUniqueString('neutralMultiplier'), 0.2)
+
+        -- Double Lane Creeps Multiplier Mutator
+        Timers:CreateTimer(function()
+            this:multiplyLaneCreeps()
+        end, DoUniqueString('laneCreepMultiplierTimer'), 0.2)
 
         -- Dark Moon Drops
         Timers:CreateTimer(function()
@@ -2134,7 +2140,7 @@ function Pregame:initOptionSelector()
 
         -- Common ban all invis
         lodOptionBanningBanInvis = function(value)
-            return value == 0 or value == 1
+            return value == 0 or value == 1 or value == 2 
         end,
 
         -- Common -- Disable Perks
@@ -2279,6 +2285,11 @@ function Pregame:initOptionSelector()
         -- Game Speed - Multiply Neutrals
         lodOptionNeutralMultiply = function(value)
             return value == 1 or value == 2 or value == 3 or value == 4
+        end,
+        
+        -- Game Speed - Multiply Lane Creeps
+        lodOptionLaneMultiply = function(value)
+            return value == 0 or value == 1
         end,
 
         -- Game Speed - Free Courier
@@ -2734,150 +2745,94 @@ end
 
 -- Multiply neutral creep camps
 function Pregame:MultiplyNeutralUnit( unit, killer, mult, lastHits )
-        local unitName = unit:GetUnitName()
-        
-        if unitName == "npc_dota_roshan" or unitName == "npc_dota_neutral_mud_golem_split" or unitName == "npc_dota_dark_troll_warlord_skeleton_warrior" then
-            return
+    local unitName = unit:GetUnitName()
+    
+    if unitName == "npc_dota_roshan" or unitName == "npc_dota_neutral_mud_golem_split" or unitName == "npc_dota_dark_troll_warlord_skeleton_warrior" then
+        return
+    end
+    
+    local loc = unit:GetAbsOrigin()
+
+    for i = 2, mult do
+        clone = CreateUnitByName( unitName, loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
+        clone:AddNewModifier(clone, nil, "modifier_kill", {duration = 120})
+        clone:AddAbility("clone_token_ability")
+
+        -- SPECIAL BONUSES IF PLAYERS LAST HIT TOO MUCH
+        -- Double Damage Bonus
+        if RollPercentage(5) then
+            clone:AddNewModifier(clone, nil, "modifier_rune_doubledamage", {duration = duration})
         end
-        
+
+        -- Healing Aura and Extra Health Bonus
+        if lastHits > 25 and RollPercentage(10) then 
+            level = math.min(10, (math.floor(lastHits / 25)) )
+            modelSize = level/14 + 1
+            clone:SetModelScale(modelSize)
+            
+            clone:AddAbility("neutral_regen_aura")
+            local healingWard = clone:FindAbilityByName("neutral_regen_aura")
+            healingWard:SetLevel(level) 
+
+            clone:AddAbility("neutral_extra_health")
+            local extraHealth = clone:FindAbilityByName("neutral_extra_health")
+            extraHealth:SetLevel(level) 
+             
+        end
+
+        -- Lucifier Attack
+        if lastHits > 125 and RollPercentage(15) then
+            local lucifier = CreateUnitByName( "npc_dota_lucifers_claw_doomling", loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
+            
+            lucifier:AddAbility("spawnlord_master_freeze")
+            local bash = lucifier:FindAbilityByName("spawnlord_master_freeze")
+            bash:SetLevel(1)
+
+            lucifier:AddNewModifier(lucifier, nil, "modifier_phased", {Duration = 2})
+
+            Timers:CreateTimer(function()
+                lucifier:MoveToTargetToAttack(killer)
+            end, DoUniqueString('attackPlayer'), 0.5)
+        end
+
+        -- Araknarok Attack
+        if lastHits > 220 and RollPercentage(15) then
+            local araknarok = CreateUnitByName( "npc_dota_araknarok_spiderling", loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
+            
+            araknarok:AddAbility("broodmother_incapacitating_bite")
+            local poison = araknarok:FindAbilityByName("broodmother_incapacitating_bite")
+            poison:SetLevel(4)
+
+            araknarok:AddAbility("imba_tower_essence_drain")
+            local lifedrain = araknarok:FindAbilityByName("imba_tower_essence_drain")
+            lifedrain:SetLevel(4)
+
+            araknarok:SetHullRadius(55)
+            
+            araknarok:AddNewModifier(araknarok, nil, "modifier_phased", {Duration = 2})
+            
+            Timers:CreateTimer(function()
+                araknarok:MoveToTargetToAttack(killer)
+            end, DoUniqueString('attackPlayer'), 0.5)
+        end
+    end      
+end
+
+-- Multiply neutral creep camps
+function Pregame:MultiplyLaneUnit( unit, mult )
+        local unitName = unit:GetUnitName()
+           
         local loc = unit:GetAbsOrigin()
-        local givenSpecialAbility = false
 
         for i = 2, mult do
-            clone = CreateUnitByName( unitName, loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
+            clone = CreateUnitByName( unitName, loc, true, nil, nil, unit:GetTeam() )
             clone:AddAbility("clone_token_ability")
             --Clones die after 120 seconds, this is a safety measure to prevent too many units being alive
-            clone:AddNewModifier(clone, nil, "modifier_kill", {duration = 120})
-            if not givenSpecialAbility then
-                
-                    --rollChance = math.min(25, (lastHits / 4) )
-                    level = math.min(10, (math.floor(lastHits / 25)) )
-                    --level = 1
-                    modelSize = level/14 + 1
-
-                    --print("Level of ability")
-                    --print(level)
-                    ----print("Roll Chance")
-                    --print(rollChance)
-                    --print("Model Size")
-                    --print(modelSize)
-
-                    -- Double Damage Special
-                    if RollPercentage(5) then
-                        givenSpecialAbility = true
-
-                        clone:AddAbility("status_effect_damage")
-                        clone:AddNewModifier(clone, nil, "modifier_rune_doubledamage", {duration = duration})
-             
-                        local effect = clone:FindAbilityByName("status_effect_damage")
-                        effect:SetLevel(1)
-                    end
-
-
-                    -- Healing Aura and Extra Health Special
-                    if level > 0 and not givenSpecialAbility then
-
-                        if RollPercentage(10) then
-                            givenSpecialAbility = true
-                            clone:SetModelScale(modelSize)
-
-                            clone:AddAbility("neutral_regen_aura")
-                            clone:AddAbility("neutral_extra_health")
-                            
-                            local healingWard = clone:FindAbilityByName("neutral_regen_aura")
-                            local extraHealth = clone:FindAbilityByName("neutral_extra_health")
-                            
-                            healingWard:SetLevel(level)  
-                            extraHealth:SetLevel(level)  
-
-                        end
-
-                    end
-
-                    -- Baby Rosh Attack Special, only for melee clones
-                    if level == 10 and not givenSpecialAbility then
-
-                        if RollPercentage(10) then
-                            givenSpecialAbility = true
-                            clone:SetModelScale(modelSize)
-
-                            clone:SetModel("models/creeps/baby_rosh_halloween/baby_rosh_radiant/baby_rosh_radiant.vmdl")
-                            clone:SetOriginalModel("models/creeps/baby_rosh_halloween/baby_rosh_radiant/baby_rosh_radiant.vmdl")
-
-                            clone:AddAbility("ursa_fury_swipes")
-                            clone:AddAbility("neutral_extra_health")
-                            clone:AddNewModifier(clone, clone, "modifier_dark_seer_surge", {duration = duration})
-                            clone:AddNewModifier(killer, killer, "modifier_axe_berserkers_call", {duration = duration})
-                            
-                            local swipes = clone:FindAbilityByName("ursa_fury_swipes")
-                            local extraHealth = clone:FindAbilityByName("neutral_extra_health")
-                            
-                            swipes:SetLevel(4)  
-                            extraHealth:SetLevel(10)  
-
-                        end
-
-                    end
-
-            end
-         --   end
-         --    if true then
-         --       if RollPercentage(5) then
-         --           clone:AddAbility("neutral_extra_health")
-         --           local ability1 = clone:FindAbilityByName("neutral_extra_health")
-         --           ability1:SetLevel(1)
-         --           clone:AddAbility("status_effect_granite")
-         --           local ability2 = clone:FindAbilityByName("status_effect_granite")
-         --           ability2:SetLevel(1)
-         --       end
-         --   end
-         --   if true then
-         --       if RollPercentage(5) then
-         --           clone:AddAbility("spawnlord_master_freeze")
-         --           local ability = clone:FindAbilityByName("spawnlord_master_freeze")
-         --           ability:SetLevel(1)
-         --       end
-         --   end
-         --   if true then
-         --       if RollPercentage(100) then
-         --           clone:AddAbility("omniknight_degen_aura")
-         --           local ability = clone:FindAbilityByName("omniknight_degen_aura")
-         --           ability:SetLevel(4)
-         --           clone:AddAbility("status_effect_degen")
-         --           local ability2 = clone:FindAbilityByName("status_effect_degen")
-         --           ability2:SetLevel(1)
-         --       end
-         --   end
-         --   if true then
-         --       if RollPercentage(5) then
-         --           clone:AddAbility("antimage_mana_break")
-         --           local ability = clone:FindAbilityByName("antimage_mana_break")
-         --           ability:SetLevel(4)
-         --           clone:AddAbility("status_effect_manaburn")
-         --           local ability2 = clone:FindAbilityByName("status_effect_manaburn")
-         --           ability2:SetLevel(1)
-         --       end
-         --   end
-         --   if true then
-         --       if RollPercentage(5) then
-         --           
-         --           clone:AddAbility("ursa_fury_swipes")
-         --           local ability1 = clone:FindAbilityByName("ursa_fury_swipes")
-         --           ability1:SetLevel(4)
-         --           
-         --           clone:AddAbility("status_effect_furyswipes")
-         --           local ability2 = clone:FindAbilityByName("status_effect_furyswipes")
-         --           ability2:SetLevel(1)
-         --           clone:AddNewModifier(killer, killer, "modifier_axe_berserkers_call", {duration = duration})
-         --           clone:AddNewModifier(killer, killer, "modifier_dark_seer_surge", {duration = duration})
-         --
-         --           clone:AddAbility("phantom_lancer_phantom_edge")
-         --           local ability3 = clone:FindAbilityByName("phantom_lancer_phantom_edge")
-         --           ability3:SetLevel(4)
-         --       end
-         --   end
+            clone:AddNewModifier(clone, nil, "modifier_kill", {duration = 30})
+            clone:SetInitialGoalEntity(unit:GetInitialGoalEntity())
         end
 end
+
 
 -- Generates draft arrays
 function Pregame:buildDraftArrays()
@@ -3312,6 +3267,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('towerCount', this.optionStore['lodOptionGameSpeedTowersPerLane'])
         OptionManager:SetOption('creepPower', this.optionStore['lodOptionCreepPower'])
         OptionManager:SetOption('neutralMultiply', this.optionStore['lodOptionNeutralMultiply'])
+        OptionManager:SetOption('laneMultiply', this.optionStore['lodOptionLaneMultiply'])
         OptionManager:SetOption('useFatOMeter', this.optionStore['lodOptionCrazyFatOMeter'])
         OptionManager:SetOption('allowIngameHeroBuilder', this.optionStore['lodOptionIngameBuilder'] == 1)
         --OptionManager:SetOption('botBonusPoints', this.optionStore['lodOptionBotsBonusPoints'] == 1)
@@ -3325,6 +3281,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('gottaGoFast', this.optionStore['lodOptionGottaGoFast'])
         OptionManager:SetOption('memesRedux', this.optionStore['lodOptionMemesRedux'])
         OptionManager:SetOption('darkMoon', this.optionStore['lodOptionDarkMoon'])
+        OptionManager:SetOption('banInvis', this.optionStore['lodOptionBanningBanInvis'])
 
         -- Enforce max level
         if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -3516,6 +3473,7 @@ function Pregame:processOptions()
                     ['Bans: Use LoD BanList'] = this.optionStore['lodOptionBanningUseBanList'],
                     ['Creeps: Increase Creep Power Over Time'] = this.optionStore['lodOptionCreepPower'],
                     ['Creeps: Multiply Neutral Camps'] = this.optionStore['lodOptionNeutralMultiply'],
+                    ['Creeps: Multiply Lane Creeps'] = this.optionStore['lodOptionLaneMultiply'],
                     ['Game Speed: Bonus Starting Gold'] = this.optionStore['lodOptionGameSpeedStartingGold'],
                     ['Game Speed: Buyback Cooldown Constant'] = this.optionStore['lodOptionBuybackCooldownTimeConstant'],
                     ['Game Speed: Gold Modifier'] = math.floor(this.optionStore['lodOptionGameSpeedGoldModifier']),
@@ -4545,7 +4503,11 @@ end
 
 function Pregame:PlayAlert(playerID)
     local sound = self:getRandomSound("game_error_alert")
-    EmitAnnouncerSoundForPlayer(sound, playerID)
+    if OptionManager:GetOption("memesRedux") == 1 then
+        EmitAnnouncerSoundForPlayer("Memes.Denied", playerID)
+    else
+        EmitAnnouncerSoundForPlayer(sound, playerID)
+    end
 end
 
 -- Player wants to select a random ability
@@ -5009,7 +4971,22 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                 -- Network it
                 network:setSelectedAbilities(playerID, build)
                 if OptionManager:GetOption("memesRedux") == 1 then
-                     EmitGlobalSound("Memes.SnipeHit")
+                    if abilityName == "alchemist_goblins_greed" or abilityName == "angel_arena_transmute" then
+                        EmitGlobalSound("Memes.Rich")
+                    elseif abilityName == "ebf_clinkz_trickshot_passive" or abilityName == "imba_tower_multihit" or
+                        abilityName == "imba_tower_essence_drain" or
+                        abilityName == "angel_arena_rifle_OP" or
+                        abilityName == "garden_red_flower_base_OP" or
+                        abilityName == "imba_juggernaut_healing_ward_passive_redux" or
+                        abilityName == "imba_tower_salvo" or
+                        abilityName == "imba_tower_fervor" or
+                        abilityName == "imba_tower_split" or
+                        abilityName == "imba_tower_machinegun" or
+                        abilityName == "imba_tower_sniper" then
+                        EmitGlobalSound("Memes.BombTheShit")
+                    else
+                        EmitGlobalSound("Memes.SnipeHit")
+                    end
                 end
             end
         end
@@ -5508,6 +5485,34 @@ function Pregame:multiplyNeutrals()
                 end
             end
             
+        end, nil)
+end
+
+function Pregame:multiplyLaneCreeps()
+        ListenToGameEvent('entity_hurt', function(keys)
+            local this = self
+            if this.optionStore['lodOptionLaneMultiply'] == 0 then return end
+
+            -- Grab the entity that was hurt
+            local ent = EntIndexToHScript(keys.entindex_killed)
+            local attacker = EntIndexToHScript( keys.entindex_attacker )
+
+            -- Neutral Multiplier: Checks if hurt npc is neutral, dead, and if it doesnt have the clone token ability, and their is a valid attacker
+            if IsValidEntity(ent) and IsValidEntity(attacker) then
+                if ent:GetName() == "npc_dota_creep_lane" and ent:FindAbilityByName("clone_token_ability") == nil then
+                    
+                    ent:AddAbility("clone_token_ability")
+                    self:MultiplyLaneUnit( ent, 2 )
+
+                end
+                if attacker:GetName() == "npc_dota_creep_lane" and attacker:FindAbilityByName("clone_token_ability") == nil then
+                    
+                    attacker:AddAbility("clone_token_ability")
+                    self:MultiplyLaneUnit( attacker, 2 )
+
+                end
+            end
+
         end, nil)
 end
 

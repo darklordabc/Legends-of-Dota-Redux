@@ -1,0 +1,86 @@
+"DOTAAbilities" {
+	"firelord_fire_trap" {
+		"BaseClass" "ability_datadriven"
+		"AbilityTextureName" "custom/firelord_fire_trap"
+		"MaxLevel" "4"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityCastAnimation" "ACT_DOTA_CAST_ABILITY_2"
+		"AbilityCastRange" "600"
+		"AbilityCastPoint" "0"
+		"AbilityCooldown" "25"
+		"AbilityManaCost" "50 100 150 200"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"duration" "60"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"detonation_radius" "250 300 350 400"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"stun_duration" "2 3 5 7"
+			}
+
+			"04" {
+				"var_type" "FIELD_FLOAT"
+				"stun_hero_duration" "1 2 3 3.5"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"activation_delay" "3"
+			}
+
+			"06" {
+				"var_type" "FIELD_INTEGER"
+				"detection_radius" "250 275 300 325"
+			}
+		}
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
+			"particle" "particles/firelord_fire_trap_explode_custom.vpcf"
+		}
+
+		"OnSpellStart" {
+			"RunScript" {
+				"ScriptFile" "abilities/life_in_arena/FireTrap.lua"
+				"Function" "StasisStart"
+				"Target" "POINT"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_stasis_ward" {
+				"IsHidden" "1"
+				"Duration" "%activation_delay"
+
+				"OnDestroy" {
+					"RunScript" {
+						"ScriptFile" "abilities/life_in_arena/FireTrap.lua"
+						"Function" "StasisSetup"
+					}
+				}
+			}
+
+			"modifier_stasis_ward_trigger" {
+				"IsHidden" "1"
+				"ThinkInterval" "0.1"
+
+				"OnIntervalThink" {
+					"RunScript" {
+						"ScriptFile" "abilities/life_in_arena/FireTrap.lua"
+						"Function" "StasisThink"
+					}
+				}
+			}
+		}
+	}
+}

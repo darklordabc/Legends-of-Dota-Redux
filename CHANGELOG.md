@@ -2,7 +2,20 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 5.5 - Development Version
+## 5.6 - Development Version
+### Bug Fixing/New Features
+- Added extra setting for no invisibility mutator, now u can block shadow blades
+- Added Double Lane Creeps mutator
+- Added Function to review host settings during skill pick phase
+- Hint Panel has been expanded
+
+### Balance
+- Gyrocopter can no longer use Infernal blade because of an abuseable interaction with his scepter side-gunner ability
+- Caustic finale now only does half damage if unit is not dead, doesnt affect buildings
+- Changed default level to 28
+- Modified the bonus creeps that spawn on Multiply Neutrals mutator
+
+## 5.5 - Steam Version
 ### Bug Fixing/New Features
 - Re-Enabled Gyrocopter
 - Fixed several instances of 'performattack' being wrong: Hawkeye, Trickshots, some attacking issues with imba abilities, tower abilities not attacking right,
@@ -11,12 +24,9 @@ All notable changes to this project will be documented in this file.
 
 ### Balance
 - Fixed Healing Aura not being correctly considered an OP Single Player ability
-- Gyrocopter can no longer use Infernal blade because of an abuseable interaction with his scepter side-gunner ability
-- Caustic finale now only does half damage if unit is not dead, doesnt affect buildings
 - Living bomb no longer hurts buildings
-- Changed default level to 28
 
-## 5.4 - Steam Version
+## 5.4 
 ### Bug Fixing/New Features
 - Fixed Mutators blinking slightly
 - Fixed Heros tooltips not formating right

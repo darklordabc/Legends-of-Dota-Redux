@@ -1,0 +1,34 @@
+"DOTAAbilities" {
+	"broodmother_insatiable_hunger_imba" {
+		"BaseClass" "broodmother_insatiable_hunger"
+		"ID" "5282"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"SpellDispellableType" "SPELL_DISPELLABLE_NO"
+		"FightRecapLevel" "2"
+		"AbilityCastPoint" "0.0"
+		"AbilityCooldown" "30.0"
+		"AbilityManaCost" "100"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"bonus_damage" "100 150 200"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"lifesteal_pct" "150"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "15.0"
+			}
+		}
+	}
+}

@@ -1,0 +1,158 @@
+"DOTAAbilities" {
+	"imba_clinkz_death_pact" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS | DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName" "clinkz_death_pact"
+		"AbilityCastRange" "600"
+		"AbilityCastPoint" "0.3"
+		"CastFilterRejectCaster" "1"
+		"AbilityCooldown" "45 35 25"
+		"AbilityManaCost" "100"
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_clinkz/clinkz_death_pact_buff.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"duration_creep" "35"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"duration_hero" "15"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"damage_hero" "10"
+			}
+
+			"04" {
+				"var_type" "FIELD_FLOAT"
+				"health_mult_hero" "1.5 2.0 2.5"
+			}
+
+			"05" {
+				"var_type" "FIELD_FLOAT"
+				"damage_mult_hero" "3.0 4.0 5.0"
+			}
+
+			"06" {
+				"var_type" "FIELD_FLOAT"
+				"health_mult_creep" "2.5 3.5 4.5"
+			}
+
+			"07" {
+				"var_type" "FIELD_FLOAT"
+				"damage_mult_creep" "4.0 6.0 8.0"
+			}
+
+			"08" {
+				"var_type" "FIELD_INTEGER"
+				"bonus_health_scepter" "3 4 5"
+			}
+
+			"09" {
+				"var_type" "FIELD_INTEGER"
+				"bonus_damage_scepter" "4 6 8"
+			}
+		}
+
+		"OnSpellStart" {
+			"RunScript" {
+				"ScriptFile" "abilities/dota imba/hero_clinkz.lua"
+				"Function" "DeathPact"
+				"sound_cast" "Hero_Clinkz.DeathPact.Cast"
+				"sound_target" "Hero_Clinkz.DeathPact"
+				"particle_cast" "particles/units/heroes/hero_clinkz/clinkz_death_pact.vpcf"
+				"modifier_damage" "modifier_imba_death_pact_caster_damage"
+				"modifier_health" "modifier_imba_death_pact_caster_health"
+				"modifier_target" "modifier_imba_death_pact_target"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_imba_death_pact_caster_damage" {
+				"Passive" "0"
+				"IsHidden" "0"
+				"IsBuff" "1"
+				"IsPurgable" "0"
+				"Attributes" "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+
+				"OnDestroy" {
+					"RunScript" {
+						"ScriptFile" "abilities/dota imba/hero_clinkz.lua"
+						"Function" "DeathPactEnd"
+					}
+				}
+
+				"Properties" {
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "1"
+				}
+			}
+
+			"modifier_imba_death_pact_caster_health" {
+				"Passive" "0"
+				"IsHidden" "1"
+				"IsBuff" "1"
+				"IsPurgable" "0"
+				"Attributes" "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+
+				"OnDestroy" {
+					"RunScript" {
+						"ScriptFile" "abilities/dota imba/hero_clinkz.lua"
+						"Function" "DeathPactEnd"
+					}
+				}
+
+				"Properties" {
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "1"
+				}
+			}
+
+			"modifier_imba_death_pact_caster_permanent" {
+				"Passive" "0"
+				"IsHidden" "0"
+				"IsBuff" "1"
+				"IsPurgable" "0"
+				"Attributes" "MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+
+				"OnDeath" {
+					"RunScript" {
+						"ScriptFile" "abilities/dota imba/hero_clinkz.lua"
+						"Function" "DeathPactDeath"
+						"modifier_pact" "modifier_imba_death_pact_caster_permanent"
+					}
+				}
+
+				"Properties" {
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%bonus_damage_scepter"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%bonus_health_scepter"
+				}
+			}
+
+			"modifier_imba_death_pact_target" {
+				"Passive" "0"
+				"IsHidden" "0"
+				"IsDebuff" "1"
+				"IsPurgable" "0"
+				"Duration" "%duration_hero"
+
+				"OnDeath" {
+					"RunScript" {
+						"ScriptFile" "abilities/dota imba/hero_clinkz.lua"
+						"Function" "DeathPactKill"
+						"modifier_bonus" "modifier_imba_death_pact_caster_permanent"
+					}
+				}
+			}
+		}
+	}
+}

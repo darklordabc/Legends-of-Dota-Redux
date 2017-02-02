@@ -1,0 +1,51 @@
+"DOTAAbilities" {
+	"keeper_of_the_light_blinding_light_imba" {
+		"BaseClass" "keeper_of_the_light_blinding_light"
+		"ID" "5476"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType" "SPELL_DISPELLABLE_YES"
+		"MaxLevel" "3"
+		"AbilityCastRange" "1000"
+		"AbilityCastPoint" "0.2"
+		"AbilityCooldown" "18.0 14.0 10.0"
+		"AbilityManaCost" "50"
+		"AbilityModifierSupportValue" "1.0"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_keeper_of_the_light.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "900"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"miss_duration" "4.0 5.0 6.0"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"miss_rate" "80"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"knockback_distance" "500"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"knockback_height" "55"
+			}
+
+			"06" {
+				"var_type" "FIELD_FLOAT"
+				"knockback_duration" "0.4"
+			}
+		}
+	}
+}

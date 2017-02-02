@@ -1,0 +1,38 @@
+"DOTAAbilities" {
+	"bristleback_bristleback_imba" {
+		"BaseClass" "bristleback_bristleback"
+		"ID" "5550"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_bristleback.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"side_damage_reduction" "22 28 34 40"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"back_damage_reduction" "27 36 45 54"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"side_angle" "110"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"back_angle" "70"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"quill_release_threshold" "210"
+			}
+		}
+	}
+}

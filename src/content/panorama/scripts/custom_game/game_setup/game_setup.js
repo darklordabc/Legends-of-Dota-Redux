@@ -180,6 +180,7 @@ var showTier = {};
 
 // Contains current tab name
 var currentTab = '';
+var reviewingOptions = false;
 
 // Search filters
 var tabsSearchFilter = {};
@@ -997,6 +998,16 @@ function onLockBuildButtonPressed() {
 
     // Tell the server we clicked it
     GameEvents.SendCustomGameEventToServer('lodReady', {});
+}
+
+function onBacktrackButton() {
+	reviewingOptions = !reviewingOptions;
+	var masterRoot = $.GetContextPanel();
+    masterRoot.SetHasClass('phase_option_selection_selected', selectedPhase == PHASE_OPTION_SELECTION || reviewingOptions);
+    masterRoot.SetHasClass('review_selection', reviewingOptions);
+    masterRoot.SetHasClass('phase_selection_selected', selectedPhase == PHASE_SELECTION && !reviewingOptions);
+	
+	$('#backtrackBtnTxt').text = $.Localize((reviewingOptions)? 'reviewReturn': 'reviewOptions');
 }
 
 // Sets up the hero builder tab
@@ -3724,6 +3735,7 @@ function buildAdvancedOptionsCategories( mutatorList ) {
 
             // The function to run when it is activated
             function whenActivated() {
+				$.GetContextPanel().AddClass('ignore_custom_message');
                 // Disactivate all other ones
                 for(var key in allOptionLinks) {
                     var data = allOptionLinks[key];
@@ -4252,6 +4264,7 @@ function OnPhaseChanged(table_name, key, data) {
 
             // Message for players selecting skills
             if(currentPhase == PHASE_REVIEW) {
+				$("#tipPanel").AddClass('hidden');
                 // Load all hero images
                 for(var playerID in activeReviewPanels) {
                     activeReviewPanels[playerID].OnReviewPhaseStart();
@@ -4369,8 +4382,9 @@ function OnOptionChanged(table_name, key, data) {
         case 'lodOptionGamemode':
             // Check if we are allowing custom settings
             allowCustomSettings = data.v == -1;
-            $.GetContextPanel().SetHasClass('allow_custom_settings', allowCustomSettings);
-            $.GetContextPanel().SetHasClass('disallow_custom_settings', !allowCustomSettings);        
+			$.GetContextPanel().RemoveClass('ignore_custom_message');
+            $.GetContextPanel().SetHasClass('allow_custom_settings', allowCustomSettings || reviewingOptions);
+            $.GetContextPanel().SetHasClass('disallow_custom_settings', !allowCustomSettings && !reviewingOptions);        
             break;
 
         // Check for allowed categories changing
@@ -4648,14 +4662,20 @@ function SetSelectedPhase(newPhase, noSound) {
         $('#lodStageName').text = $.Localize(phases[selectedPhase].name);
 
     // Update CSS
+	if (selectedPhase != PHASE_SELECTION) {
+		reviewingOptions = false;
+	}
     var masterRoot = $.GetContextPanel();
-    masterRoot.SetHasClass('phase_option_selection_selected', selectedPhase == PHASE_OPTION_SELECTION);
+    masterRoot.SetHasClass('phase_option_selection_selected', selectedPhase == PHASE_OPTION_SELECTION || reviewingOptions);
+    masterRoot.SetHasClass('review_selection', reviewingOptions);
     masterRoot.SetHasClass('phase_option_voting_selected', selectedPhase == PHASE_OPTION_VOTING);
     masterRoot.SetHasClass('phase_banning_selected', selectedPhase == PHASE_BANNING);
-    masterRoot.SetHasClass('phase_selection_selected', selectedPhase == PHASE_SELECTION);
+    masterRoot.SetHasClass('phase_selection_selected', selectedPhase == PHASE_SELECTION && !reviewingOptions);
     masterRoot.SetHasClass('phase_all_random_selected', selectedPhase == PHASE_RANDOM_SELECTION);
     masterRoot.SetHasClass('phase_drafting_selected', selectedPhase == PHASE_DRAFTING);
     masterRoot.SetHasClass('phase_review_selected', selectedPhase == PHASE_REVIEW);
+	$('#backtrackBtn').SetHasClass('hidden', selectedPhase != PHASE_SELECTION);
+	$('#backtrackBtnTxt').text = $.Localize('reviewOptions');
 }
 
 // Return X:XX time (M:SS)
@@ -4824,6 +4844,7 @@ function UpdateTimer() {
 function onAcceptPopup() {
     $('#lodPopupMessage').visible = false;
     $('#lodOptionsRoot').SetHasClass("darkened", false);
+    $('#tipPanel').SetHasClass("darkened", false);
 }
 
 // Shows a popup message to a player
@@ -4831,6 +4852,7 @@ function showPopupMessage(msg) {
     $('#lodPopupMessageLabel').text = $.Localize(msg);
     $('#lodPopupMessage').visible = true;
     $('#lodOptionsRoot').SetHasClass("darkened", true);
+    $('#tipPanel').SetHasClass("darkened", true);
 
     for (var k in $("#lodPopupMessageImage").Children()) {
         $("#lodPopupMessageImage").Children()[k].visible = false;
@@ -4987,6 +5009,7 @@ function gamemodesScroll(direction) {
 function showMainPanel() {
     if ($('#mainSelectionRoot').BReadyForDisplay()) {
         $('#mainSelectionRoot').AddClass('show');
+        $('#tipPanel').AddClass('show');
         return;
     }
 

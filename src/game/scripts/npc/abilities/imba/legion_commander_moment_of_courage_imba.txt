@@ -1,0 +1,29 @@
+"DOTAAbilities" {
+	"legion_commander_moment_of_courage_imba" {
+		"BaseClass" "legion_commander_moment_of_courage"
+		"ID" "5597"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCooldown" "1.5 1.0 0.5 0.0"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"trigger_chance" "25"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"buff_duration" "1.0"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"hp_leech_percent" "100"
+			}
+		}
+	}
+}

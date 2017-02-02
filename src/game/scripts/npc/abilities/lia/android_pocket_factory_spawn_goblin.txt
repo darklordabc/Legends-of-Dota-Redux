@@ -1,0 +1,35 @@
+"DOTAAbilities" {
+	"android_pocket_factory_spawn_goblin" {
+		"BaseClass" "ability_datadriven"
+		"AbilityTextureName" "rattletrap_power_cogs"
+		"MaxLevel" "1"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityCooldown" "2.0"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"goblin_duration" "10"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"spawn_ratio" "2.0"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_spawn_goblin" {
+				"Passive" "1"
+				"IsHidden" "1"
+
+				"OnCreated" {
+					"RunScript" {
+						"ScriptFile" "abilities/life_in_arena/PocketFactory.lua"
+						"Function" "StartGoblinSpawn"
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,51 @@
+"DOTAAbilities" {
+	"android_pocket_factory_spawn_goblin3" {
+		"BaseClass" "ability_datadriven"
+		"AbilityTextureName" "faceless_void_time_lock"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"bash_chance" "12"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"stun_hero_duration" "0.5"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_bash" {
+				"Passive" "1"
+				"IsHidden" "1"
+
+				"OnAttackLanded" {
+					"Random" {
+						"Chance" "%bash_chance"
+						"PseudoRandom" "DOTA_PSEUDO_RANDOM_FACELESS_BASH"
+
+						"OnSuccess" {
+							"FireSound" {
+								"EffectName" "Roshan.Bash"
+								"Target" "TARGET"
+							}
+
+							"ApplyModifier" {
+								"ModifierName" "modifier_stunned"
+
+								"Target" {
+									"Center" "TARGET"
+									"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+								}
+								"Duration" "%stun_hero_duration"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

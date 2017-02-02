@@ -1,0 +1,145 @@
+"DOTAAbilities" {
+	"imba_abaddon_death_coil" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"SpellImmunityType" "SPELL_IMMUNITY_ALLIES_YES"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel" "1"
+		"AbilityTextureName" "abaddon_death_coil"
+		"AbilityCastRange" "800"
+		"AbilityCastPoint" "0.25"
+		"AbilityCooldown" "4.5"
+		"AbilityManaCost" "50 60 70 80"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"projectile_speed" "1250"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"self_heal" "75 100 125 150"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"target_damage" "100 150 200 250"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"heal_amount" "100 150 200 250"
+			}
+
+			"05" {
+				"var_type" "FIELD_FLOAT"
+				"debuff_duration" "2.5"
+			}
+
+			"06" {
+				"var_type" "FIELD_FLOAT"
+				"buff_duration" "4.5"
+			}
+
+			"07" {
+				"var_type" "FIELD_INTEGER"
+				"slow_base" "-10"
+			}
+
+			"08" {
+				"var_type" "FIELD_INTEGER"
+				"slow_stack" "-10"
+			}
+
+			"09" {
+				"var_type" "FIELD_INTEGER"
+				"move_speed_pct" "15"
+			}
+
+			"10" {
+				"var_type" "FIELD_INTEGER"
+				"attack_speed" "20"
+			}
+
+			"11" {
+				"var_type" "FIELD_INTEGER"
+				"projectile_speed" "2000"
+			}
+		}
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts"
+			"particle" "particles/units/heroes/hero_abaddon/abaddon_death_coil.vpcf"
+		}
+
+		"OnSpellStart" {
+			"RunScript" {
+				"ScriptFile" "abilities/dota imba/hero_abaddon.lua"
+				"Function" "DeathCoil"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_imba_frostmourne_debuff_base" {
+				"IsDebuff" "1"
+				"IsHidden" "1"
+				"IsPurgable" "1"
+				"Duration" "%debuff_duration"
+				"EffectName" "particles/units/heroes/hero_abaddon/abaddon_frost_slow.vpcf"
+				"EffectAttachType" "follow_origin"
+				"TextureName" "abaddon_frostmourne"
+
+				"Properties" {
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow_base"
+				}
+
+				"OnAttacked" {
+					"RunScript" {
+						"ScriptFile" "abilities/dota imba/hero_abaddon.lua"
+						"Function" "FrostMourneAttacked"
+					}
+				}
+			}
+
+			"modifier_imba_frostmourne_debuff" {
+				"IsDebuff" "1"
+				"IsPurgable" "1"
+				"Duration" "%debuff_duration"
+				"TextureName" "abaddon_frostmourne"
+
+				"Properties" {
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow_stack"
+				}
+			}
+
+			"modifier_imba_frostmourne_buff_base" {
+				"IsHidden" "1"
+				"IsBuff" "1"
+				"IsPurgable" "1"
+				"Duration" "%buff_duration"
+				"EffectName" "particles/units/heroes/hero_abaddon/abaddon_frost_buff.vpcf"
+				"EffectAttachType" "follow_origin"
+				"TextureName" "abaddon_frostmourne"
+
+				"Properties" {
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%move_speed_pct"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%attack_speed"
+				}
+			}
+
+			"modifier_imba_frostmourne_buff" {
+				"IsBuff" "1"
+				"IsPurgable" "1"
+				"Duration" "%buff_duration"
+				"TextureName" "abaddon_frostmourne"
+
+				"Properties" {
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%attack_speed"
+				}
+			}
+		}
+	}
+}

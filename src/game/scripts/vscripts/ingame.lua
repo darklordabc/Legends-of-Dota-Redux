@@ -189,6 +189,20 @@ function Ingame:OnPlayerPurchasedItem(keys)
             end
         end
     end
+
+    if OptionManager:GetOption('banInvis') == 2 then
+        local hero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()    
+        for i=0,11 do
+            local item = hero:GetItemInSlot(i)
+            if item ~= nil then
+                if item:GetName() == "item_invis_sword" or item:GetName() == "item_silver_edge" then
+                    hero:ModifyGold(item:GetCost(), false, 0)
+                    hero:RemoveItem(item)
+                    break
+                end
+            end
+        end  
+    end
             
         
     if OptionManager:GetOption('sharedXP') == 1 and keys.itemname == "item_tome_of_knowledge" then

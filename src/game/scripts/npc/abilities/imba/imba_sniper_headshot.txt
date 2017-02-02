@@ -1,0 +1,155 @@
+"DOTAAbilities" {
+	"imba_sniper_headshot" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName" "sniper_headshot"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
+			"particle" "particles/units/heroes/hero_sniper/sniper_assassinate.vpcf"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_FLOAT"
+				"near_duration" "0.2"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"normal_duration" "0.6"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"far_duration" "3.0"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"proc_chance" "40"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"normal_move_slow" "-100"
+			}
+
+			"06" {
+				"var_type" "FIELD_INTEGER"
+				"normal_attack_slow" "-100"
+			}
+
+			"07" {
+				"var_type" "FIELD_INTEGER"
+				"normal_damage" "25 50 75 100"
+			}
+
+			"08" {
+				"var_type" "FIELD_INTEGER"
+				"far_damage" "60 100 140 180"
+			}
+
+			"09" {
+				"var_type" "FIELD_INTEGER"
+				"far_aoe" "300"
+			}
+
+			"10" {
+				"var_type" "FIELD_INTEGER"
+				"far_armor" "-4 -6 -8 -10"
+			}
+
+			"11" {
+				"var_type" "FIELD_INTEGER"
+				"far_knockback" "80 100 120 140"
+			}
+
+			"12" {
+				"var_type" "FIELD_FLOAT"
+				"knockback_speed" "700"
+			}
+
+			"13" {
+				"var_type" "FIELD_INTEGER"
+				"far_shot_speed" "2500"
+			}
+
+			"14" {
+				"var_type" "FIELD_INTEGER"
+				"far_proc_chance" "30"
+			}
+		}
+
+		"OnProjectileHitUnit" {
+			"DeleteOnHit" "1"
+
+			"ApplyModifier" {
+				"ModifierName" "modifier_imba_headshot_far_debuff"
+				"Target" "TARGET"
+			}
+
+			"Damage" {
+				"Target" "TARGET"
+				"Type" "DAMAGE_TYPE_PHYSICAL"
+				"Damage" "%far_damage"
+			}
+
+			"RunScript" {
+				"ScriptFile" "abilities/dota imba/hero_sniper.lua"
+				"Function" "HeadshotKnockback"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_imba_headshot" {
+				"Passive" "1"
+				"IsHidden" "1"
+				"IsPurgable" "0"
+
+				"OnAttackLanded" {
+					"Random" {
+						"Chance" "%proc_chance"
+
+						"OnSuccess" {
+							"RunScript" {
+								"ScriptFile" "abilities/dota imba/hero_sniper.lua"
+								"Function" "Headshot"
+								"modifier_near" "modifier_imba_take_aim_near"
+								"modifier_far" "modifier_imba_take_aim_far"
+								"modifier_normal_debuff" "modifier_imba_headshot_normal_debuff"
+							}
+						}
+					}
+				}
+			}
+
+			"modifier_imba_headshot_normal_debuff" {
+				"IsDebuff" "1"
+				"IsPurgable" "0"
+				"IsHidden" "0"
+				"Duration" "%normal_duration"
+				"EffectName" "particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf"
+				"EffectAttachType" "follow_overhead"
+
+				"Properties" {
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%normal_attack_slow"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%normal_move_slow"
+				}
+			}
+
+			"modifier_imba_headshot_far_debuff" {
+				"IsDebuff" "1"
+				"IsPurgable" "0"
+				"IsHidden" "0"
+				"Duration" "%far_duration"
+
+				"Properties" {
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%far_armor"
+				}
+			}
+		}
+	}
+}

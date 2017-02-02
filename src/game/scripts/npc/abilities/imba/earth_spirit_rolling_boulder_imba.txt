@@ -1,0 +1,65 @@
+"DOTAAbilities" {
+	"earth_spirit_rolling_boulder_imba" {
+		"BaseClass" "earth_spirit_rolling_boulder"
+		"ID" "5609"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastRange" "3000"
+		"AbilityCastPoint" "0.01"
+		"AbilityCooldown" "7.0 6.0 5.0 4.0"
+		"AbilityManaCost" "35 40 45 50"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "225"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"speed" "1600"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"rock_speed" "2400"
+			}
+
+			"04" {
+				"var_type" "FIELD_FLOAT"
+				"distance" "1200.0"
+			}
+
+			"05" {
+				"var_type" "FIELD_FLOAT"
+				"rock_distance" "2400.0"
+			}
+
+			"06" {
+				"var_type" "FIELD_FLOAT"
+				"delay" "0.5"
+			}
+
+			"07" {
+				"var_type" "FIELD_INTEGER"
+				"damage" "80 140 200 260"
+				"LinkedSpecialBonus" "special_bonus_unique_earth_spirit"
+			}
+
+			"08" {
+				"var_type" "FIELD_INTEGER"
+				"move_slow" "80"
+			}
+
+			"09" {
+				"var_type" "FIELD_FLOAT"
+				"slow_duration" "2.5"
+			}
+		}
+	}
+}

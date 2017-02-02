@@ -57,6 +57,10 @@
     "lodStageRandomSelection"                 "Случайный Набор Навыков"
     "lodStageReview"                          "Обзор"
     "lodStageIngame"                          "В игре"
+	
+	// Review Options Button
+	"reviewOptions"                           "Review Option Selection"
+	"reviewReturn"                            "Return to Hero Builder"
 
     // Chat channels
     "channelAll"                              "Всем"

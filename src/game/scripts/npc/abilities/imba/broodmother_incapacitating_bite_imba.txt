@@ -1,0 +1,29 @@
+"DOTAAbilities" {
+	"broodmother_incapacitating_bite_imba" {
+		"BaseClass" "broodmother_incapacitating_bite"
+		"ID" "5281"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellDispellableType" "SPELL_DISPELLABLE_YES"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_broodmother.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"miss_chance" "40 60 80 100"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"bonus_movespeed" "-30 -35 -40 -45"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "2.5"
+			}
+		}
+	}
+}
