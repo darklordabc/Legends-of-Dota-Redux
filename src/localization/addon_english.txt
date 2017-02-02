@@ -59,7 +59,7 @@
     "lodStageIngame"                          "Ingame"
 	
 	// Review Options Button
-	"reviewOptions"                           "Review Option Selection"
+	"reviewOptions"                           "Review Host Settings"
 	"reviewReturn"                            "Return to Hero Builder"
 
     // Chat channels
