@@ -8,6 +8,9 @@ All notable changes to this project will be documented in this file.
 - Added Double Lane Creeps mutator
 - Added Function to review host settings during skill pick phase
 - Hint Panel has been expanded
+- Fixed reconnecting during boost draft mode
+- Fixed ingame builder buttoner dissapearing after reconnect
+- Spectator mode should be fixed (request testing)
 
 ### Balance
 - Gyrocopter can no longer use Infernal blade because of an abuseable interaction with his scepter side-gunner ability
