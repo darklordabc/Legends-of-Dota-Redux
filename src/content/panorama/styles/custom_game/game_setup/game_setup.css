@@ -884,6 +884,10 @@ Button:enabled:hover {
     visibility: collapse;
 }
 
+.review_selection #option_default_info {
+    visibility: collapse;
+}
+
 #option_default_info Label {
     height: 200px;
     padding: 30px;

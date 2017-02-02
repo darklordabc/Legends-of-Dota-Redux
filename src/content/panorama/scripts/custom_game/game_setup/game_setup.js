@@ -4362,8 +4362,8 @@ function OnOptionChanged(table_name, key, data) {
         case 'lodOptionGamemode':
             // Check if we are allowing custom settings
             allowCustomSettings = data.v == -1;
-            $.GetContextPanel().SetHasClass('allow_custom_settings', allowCustomSettings);
-            $.GetContextPanel().SetHasClass('disallow_custom_settings', !allowCustomSettings);        
+            $.GetContextPanel().SetHasClass('allow_custom_settings', allowCustomSettings || reviewingOptions);
+            $.GetContextPanel().SetHasClass('disallow_custom_settings', !allowCustomSettings && !reviewingOptions);        
             break;
 
         // Check for allowed categories changing
