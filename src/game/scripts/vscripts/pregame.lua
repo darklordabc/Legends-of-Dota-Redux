@@ -2745,149 +2745,77 @@ end
 
 -- Multiply neutral creep camps
 function Pregame:MultiplyNeutralUnit( unit, killer, mult, lastHits )
-        local unitName = unit:GetUnitName()
-        
-        if unitName == "npc_dota_roshan" or unitName == "npc_dota_neutral_mud_golem_split" or unitName == "npc_dota_dark_troll_warlord_skeleton_warrior" then
-            return
+    local unitName = unit:GetUnitName()
+    
+    if unitName == "npc_dota_roshan" or unitName == "npc_dota_neutral_mud_golem_split" or unitName == "npc_dota_dark_troll_warlord_skeleton_warrior" then
+        return
+    end
+    
+    local loc = unit:GetAbsOrigin()
+
+    for i = 2, mult do
+        clone = CreateUnitByName( unitName, loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
+        clone:AddNewModifier(clone, nil, "modifier_kill", {duration = 120})
+        clone:AddAbility("clone_token_ability")
+
+        -- SPECIAL BONUSES IF PLAYERS LAST HIT TOO MUCH
+        -- Double Damage Bonus
+        if RollPercentage(5) then
+            clone:AddNewModifier(clone, nil, "modifier_rune_doubledamage", {duration = duration})
         end
-        
-        local loc = unit:GetAbsOrigin()
-        local givenSpecialAbility = false
 
-        for i = 2, mult do
-            clone = CreateUnitByName( unitName, loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
-            clone:AddAbility("clone_token_ability")
-            --Clones die after 120 seconds, this is a safety measure to prevent too many units being alive
-            clone:AddNewModifier(clone, nil, "modifier_kill", {duration = 120})
-            if not givenSpecialAbility then
-                
-                    --rollChance = math.min(25, (lastHits / 4) )
-                    level = math.min(10, (math.floor(lastHits / 25)) )
-                    --level = 1
-                    modelSize = level/14 + 1
+        -- Healing Aura and Extra Health Bonus
+        if lastHits > 25 and RollPercentage(10) then 
+            level = math.min(10, (math.floor(lastHits / 25)) )
+            modelSize = level/14 + 1
+            clone:SetModelScale(modelSize)
+            
+            clone:AddAbility("neutral_regen_aura")
+            local healingWard = clone:FindAbilityByName("neutral_regen_aura")
+            healingWard:SetLevel(level) 
 
-                    --print("Level of ability")
-                    --print(level)
-                    ----print("Roll Chance")
-                    --print(rollChance)
-                    --print("Model Size")
-                    --print(modelSize)
-
-                    -- Double Damage Special
-                    if RollPercentage(5) then
-                        givenSpecialAbility = true
-
-                        clone:AddAbility("status_effect_damage")
-                        clone:AddNewModifier(clone, nil, "modifier_rune_doubledamage", {duration = duration})
+            clone:AddAbility("neutral_extra_health")
+            local extraHealth = clone:FindAbilityByName("neutral_extra_health")
+            extraHealth:SetLevel(level) 
              
-                        local effect = clone:FindAbilityByName("status_effect_damage")
-                        effect:SetLevel(1)
-                    end
-
-
-                    -- Healing Aura and Extra Health Special
-                    if level > 0 and not givenSpecialAbility then
-
-                        if RollPercentage(10) then
-                            givenSpecialAbility = true
-                            clone:SetModelScale(modelSize)
-
-                            clone:AddAbility("neutral_regen_aura")
-                            clone:AddAbility("neutral_extra_health")
-                            
-                            local healingWard = clone:FindAbilityByName("neutral_regen_aura")
-                            local extraHealth = clone:FindAbilityByName("neutral_extra_health")
-                            
-                            healingWard:SetLevel(level)  
-                            extraHealth:SetLevel(level)  
-
-                        end
-
-                    end
-
-                    -- Baby Rosh Attack Special, only for melee clones
-                    if level == 10 and not givenSpecialAbility then
-
-                        if RollPercentage(10) then
-                            givenSpecialAbility = true
-                            clone:SetModelScale(modelSize)
-
-                            clone:SetModel("models/creeps/baby_rosh_halloween/baby_rosh_radiant/baby_rosh_radiant.vmdl")
-                            clone:SetOriginalModel("models/creeps/baby_rosh_halloween/baby_rosh_radiant/baby_rosh_radiant.vmdl")
-
-                            clone:AddAbility("ursa_fury_swipes")
-                            clone:AddAbility("neutral_extra_health")
-                            clone:AddNewModifier(clone, clone, "modifier_dark_seer_surge", {duration = duration})
-                            clone:AddNewModifier(killer, killer, "modifier_axe_berserkers_call", {duration = duration})
-                            
-                            local swipes = clone:FindAbilityByName("ursa_fury_swipes")
-                            local extraHealth = clone:FindAbilityByName("neutral_extra_health")
-                            
-                            swipes:SetLevel(4)  
-                            extraHealth:SetLevel(10)  
-
-                        end
-
-                    end
-
-            end
-         --   end
-         --    if true then
-         --       if RollPercentage(5) then
-         --           clone:AddAbility("neutral_extra_health")
-         --           local ability1 = clone:FindAbilityByName("neutral_extra_health")
-         --           ability1:SetLevel(1)
-         --           clone:AddAbility("status_effect_granite")
-         --           local ability2 = clone:FindAbilityByName("status_effect_granite")
-         --           ability2:SetLevel(1)
-         --       end
-         --   end
-         --   if true then
-         --       if RollPercentage(5) then
-         --           clone:AddAbility("spawnlord_master_freeze")
-         --           local ability = clone:FindAbilityByName("spawnlord_master_freeze")
-         --           ability:SetLevel(1)
-         --       end
-         --   end
-         --   if true then
-         --       if RollPercentage(100) then
-         --           clone:AddAbility("omniknight_degen_aura")
-         --           local ability = clone:FindAbilityByName("omniknight_degen_aura")
-         --           ability:SetLevel(4)
-         --           clone:AddAbility("status_effect_degen")
-         --           local ability2 = clone:FindAbilityByName("status_effect_degen")
-         --           ability2:SetLevel(1)
-         --       end
-         --   end
-         --   if true then
-         --       if RollPercentage(5) then
-         --           clone:AddAbility("antimage_mana_break")
-         --           local ability = clone:FindAbilityByName("antimage_mana_break")
-         --           ability:SetLevel(4)
-         --           clone:AddAbility("status_effect_manaburn")
-         --           local ability2 = clone:FindAbilityByName("status_effect_manaburn")
-         --           ability2:SetLevel(1)
-         --       end
-         --   end
-         --   if true then
-         --       if RollPercentage(5) then
-         --           
-         --           clone:AddAbility("ursa_fury_swipes")
-         --           local ability1 = clone:FindAbilityByName("ursa_fury_swipes")
-         --           ability1:SetLevel(4)
-         --           
-         --           clone:AddAbility("status_effect_furyswipes")
-         --           local ability2 = clone:FindAbilityByName("status_effect_furyswipes")
-         --           ability2:SetLevel(1)
-         --           clone:AddNewModifier(killer, killer, "modifier_axe_berserkers_call", {duration = duration})
-         --           clone:AddNewModifier(killer, killer, "modifier_dark_seer_surge", {duration = duration})
-         --
-         --           clone:AddAbility("phantom_lancer_phantom_edge")
-         --           local ability3 = clone:FindAbilityByName("phantom_lancer_phantom_edge")
-         --           ability3:SetLevel(4)
-         --       end
-         --   end
         end
+
+        -- Lucifier Attack
+        if lastHits > 125 and RollPercentage(15) then
+            local lucifier = CreateUnitByName( "npc_dota_lucifers_claw_doomling", loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
+            
+            lucifier:AddAbility("spawnlord_master_freeze")
+            local bash = lucifier:FindAbilityByName("spawnlord_master_freeze")
+            bash:SetLevel(1)
+
+            lucifier:AddNewModifier(lucifier, nil, "modifier_phased", {Duration = 2})
+
+            Timers:CreateTimer(function()
+                lucifier:MoveToTargetToAttack(killer)
+            end, DoUniqueString('attackPlayer'), 0.5)
+        end
+
+        -- Araknarok Attack
+        if lastHits > 220 and RollPercentage(15) then
+            local araknarok = CreateUnitByName( "npc_dota_araknarok_spiderling", loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
+            
+            araknarok:AddAbility("broodmother_incapacitating_bite")
+            local poison = araknarok:FindAbilityByName("broodmother_incapacitating_bite")
+            poison:SetLevel(4)
+
+            araknarok:AddAbility("imba_tower_essence_drain")
+            local lifedrain = araknarok:FindAbilityByName("imba_tower_essence_drain")
+            lifedrain:SetLevel(4)
+
+            araknarok:SetHullRadius(55)
+            
+            araknarok:AddNewModifier(araknarok, nil, "modifier_phased", {Duration = 2})
+            
+            Timers:CreateTimer(function()
+                araknarok:MoveToTargetToAttack(killer)
+            end, DoUniqueString('attackPlayer'), 0.5)
+        end
+    end      
 end
 
 -- Multiply neutral creep camps

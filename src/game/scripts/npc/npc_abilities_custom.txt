@@ -727,7 +727,6 @@
 #base "abilities\unpickable\neutral_extra_health.txt"
 #base "abilities\unpickable\neutral_regen_aura.txt"
 #base "abilities\unpickable\phase_datadriven.txt"
-#base "abilities\unpickable\status_effect_damage.txt"
 #base "abilities\unpickable\treant_eyes_in_the_forest_notification.txt"
 
 "DOTAAbilities" {
