@@ -1,0 +1,79 @@
+"DOTAAbilities" {
+	"force_dash_lod_OP" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES | DOTA_UNIT_TARGET_FLAG_CHECK_DISABLE_HELP"
+		"AbilityTextureName" "custom/force_dash_lod_OP"
+		"AbilityCooldown" "20 18 16 14"
+		"AbilityManaCost" "75"
+		"AbilityCastRange" "650 800 950 1100"
+		"AbilityCastPoint" "0.01"
+
+		"precache" {
+			"particle" "particles/status_fx/status_effect_forcestaff.vpcf"
+			"sound" "sounds/items/force_staff.vsnd"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"distance" "1000 1450 1750 2000"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "0.4"
+			}
+		}
+
+		"OnSpellStart" {
+			"FireSound" {
+				"EffectName" "DOTA_Item.ForceStaff.Activate"
+				"Target" "TARGET"
+			}
+
+			"RunScript" {
+				"ScriptFile" "abilities/force_dash_lod.lua"
+				"Function" "ForceDash"
+				"modifier" "modifier_force_dash"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_force_dash" {
+				"IsHidden" "1"
+				"EffectName" "particles/force_dash/force_dash.vpcf"
+				"EffectAttachType" "follow_origin"
+				"StatusEffectName" "particles/status_fx/status_effect_forcestaff.vpcf"
+				"StatusEffectPriority" "10"
+				"OverrideAnimation" "ACT_DOTA_FLAIL"
+
+				"OnCreated" {
+					"ApplyMotionController" {
+						"Target" {
+							"Center" "TARGET"
+							"Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+						}
+						"ScriptFile" "abilities/force_dash_lod.lua"
+						"HorizontalControlFunction" "ForceMotion"
+					}
+
+					"DestroyTrees" {
+						"Target" "TARGET"
+						"Radius" "150"
+					}
+				}
+				"ThinkInterval" "0.05"
+
+				"OnIntervalThink" {
+					"DestroyTrees" {
+						"Target" "TARGET"
+						"Radius" "150"
+					}
+				}
+			}
+		}
+	}
+}

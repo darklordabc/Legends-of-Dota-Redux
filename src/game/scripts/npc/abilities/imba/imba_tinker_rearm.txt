@@ -1,0 +1,76 @@
+"DOTAAbilities" {
+	"imba_tinker_rearm" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName" "tinker_rearm"
+		"AbilityCastPoint" "0.5"
+		"AbilityCooldown" "2.5 1.5 0.75"
+		"AbilityManaCost" "100 200 300"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_tinker.vsndevts"
+			"particle" "particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_FLOAT"
+				"cooldown_tooltip" "2.5 1.5 0.75"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"stack_duration" "3.0"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"mana_penalty" "-2.0"
+			}
+		}
+
+		"OnSpellStart" {
+			"RunScript" {
+				"ScriptFile" "abilities/dota imba/hero_tinker.lua"
+				"Function" "Rearm"
+				"particle_rearm" "particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
+				"sound_cast" "Hero_Tinker.Rearm"
+				"modifier_stack" "modifier_imba_rearm_stack"
+				"modifier_mana" "modifier_imba_rearm_mana_penalty"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_imba_rearm_stack" {
+				"Passive" "0"
+				"IsBuff" "1"
+				"IsHidden" "0"
+				"IsPurgable" "0"
+				"Duration" "%stack_duration"
+				"ThinkInterval" "0.2"
+
+				"OnIntervalThink" {
+					"RunScript" {
+						"ScriptFile" "abilities/dota imba/hero_tinker.lua"
+						"Function" "RearmStacksCheck"
+						"modifier_stack" "modifier_imba_rearm_stack"
+						"modifier_mana" "modifier_imba_rearm_mana_penalty"
+					}
+				}
+			}
+
+			"modifier_imba_rearm_mana_penalty" {
+				"Passive" "0"
+				"IsDebuff" "1"
+				"IsHidden" "1"
+				"IsPurgable" "0"
+				"Duration" "%stack_duration"
+
+				"Properties" {
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%mana_penalty"
+				}
+			}
+		}
+	}
+}

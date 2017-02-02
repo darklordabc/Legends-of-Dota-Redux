@@ -1,0 +1,26 @@
+"DOTAAbilities" {
+	"ebf_mana_fiend_essence_amp" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName" "custom/mana_fiend_essence_amp"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_templar_assassin.vsndevts"
+			"particle" "particles/essence_amp_crit.vpcf"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"crit_chance" "25"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"crit_amp" "160 200 240"
+			}
+		}
+	}
+}

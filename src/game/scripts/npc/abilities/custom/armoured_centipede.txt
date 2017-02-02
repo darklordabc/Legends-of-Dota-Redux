@@ -1,0 +1,43 @@
+"DOTAAbilities" {
+	"armoured_centipede" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel" "2"
+		"MaxLevel" "3"
+		"AbilityTextureName" "custom/armoured_centipede"
+
+		"precache" {
+			"Model" "models/items/venomancer/centipede_ward/centipede_ward.vmdl"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_bloodseeker.vsndevts"
+			"particle" "particles/units/heroes/hero_alchemist/alchemist_unstable_concoction_projectile.vpcf"
+		}
+		"AbilityCastRange" "700"
+		"AbilityCastPoint" "0.35 0.35 0.35"
+		"AbilityCooldown" "60"
+		"AbilityManaCost" "200 200 200"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"damage" "60 80 100"
+			}
+		}
+
+		"OnSpellStart" {
+			"RunScript" {
+				"ScriptFile" "abilities/death_ward.lua"
+				"Function" "CreateWard"
+			}
+
+			"FireSound" {
+				"EffectName" "hero_bloodseeker.rupture"
+				"Target" "CASTER"
+			}
+		}
+	}
+}

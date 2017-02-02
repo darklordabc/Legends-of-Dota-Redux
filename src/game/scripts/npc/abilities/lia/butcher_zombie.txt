@@ -1,0 +1,32 @@
+"DOTAAbilities" {
+	"butcher_zombie" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/life_in_arena/butcher_zombie.lua"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityTextureName" "custom/butcher_zombie"
+		"MaxLevel" "4"
+		"AbilityCooldown" "0"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"zombie_hp_tooltip" "200"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"zombie_damage_tooltip" "14 28 42 56"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"zombie_cooldown" "15"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"zombie_lifetime" "30 40 50 60"
+			}
+		}
+	}
+}

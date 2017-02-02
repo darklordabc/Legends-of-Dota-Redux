@@ -1,0 +1,35 @@
+"DOTAAbilities" {
+	"angel_arena_archmage_anomaly" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/angel_arena_reborn/angel_arena_archmage_anomaly"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName" "custom/angel_arena_archmage_anomaly"
+
+		"precache" {
+			"particle" "particles/econ/items/faceless_void/faceless_void_mace_of_aeons/fv_chronosphere_aeons.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_warlock.vsndevts"
+		}
+		"AbilityCastRange" "700"
+		"AOERadius" "450"
+		"AbilityCastPoint" "0.3"
+		"AbilityCooldown" "60"
+		"AbilityManaCost" "300 350 400"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "450"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"duration" "8 10 12"
+			}
+		}
+	}
+}

@@ -1,0 +1,27 @@
+"DOTAAbilities" {
+	"imba_tower_ai_controller" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName" "life_stealer_control"
+		"MaxLevel" "1"
+		"AbilitySharedWithTeammates" "1"
+		"AbilityCastRange" "1200"
+		"AbilityCooldown" "1"
+
+		"Modifiers" {
+			"modifier_imba_tower_hex_aura" {
+				"Passive" "1"
+				"IsHidden" "1"
+				"IsBuff" "1"
+				"ThinkInterval" "0.5"
+
+				"OnIntervalThink" {
+					"RunScript" {
+						"ScriptFile" "abilities/tower_abilities.lua"
+						"Function" "AIControl"
+					}
+				}
+			}
+		}
+	}
+}

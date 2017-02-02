@@ -1,0 +1,113 @@
+"DOTAAbilities" {
+	"dark_ranger_black_arrow" {
+		"BaseClass" "ability_datadriven"
+		"AbilityTextureName" "custom/dark_ranger_black_arrow"
+		"MaxLevel" "4"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityCastRange" "550"
+		"AbilityManaCost" "8"
+		"AbilityDamage" "10 20 30 40"
+
+		"precache" {
+			"particle" "particles/status_fx/status_effect_gods_strength.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_medusa.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "3"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"lifetime" "4 5 6 7"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"mana" "8"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"outgoing_damage" "50"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"incoming_damage" "100"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_dark_ranger_black_arrow" {
+				"Passive" "1"
+				"IsHidden" "1"
+
+				"Orb" {
+					"Priority" "DOTA_ORB_PRIORITY_ABILITY"
+					"ProjectileName" "particles/units/heroes/hero_vengeful/vengeful_magic_missle.vpcf"
+					"CastAttack" "1"
+				}
+
+				"OnOrbFire" {
+					"SpendMana" {
+						"Mana" "%AbilityManaCost"
+					}
+				}
+
+				"OnOrbImpact" {
+					"RunScript" {
+						"ScriptFile" "abilities/life_in_arena/BlackArrow.lua"
+						"Function" "AddModifier"
+						"Target" "TARGET"
+					}
+
+					"FireSound" {
+						"EffectName" "Hero_Medusa.MysticSnake.Target"
+						"Target" "CASTER"
+					}
+
+					"Damage" {
+						"Type" "DAMAGE_TYPE_PHYSICAL"
+						"Damage" "%AbilityDamage"
+
+						"Target" {
+							"Center" "TARGET"
+							"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+						}
+					}
+				}
+			}
+
+			"modifier_dark_ranger_black_arrow_spawn" {
+				"Duration" "%duration"
+
+				"OnDeath" {
+					"RunScript" {
+						"ScriptFile" "abilities/life_in_arena/BlackArrow.lua"
+						"Function" "BlackArrow"
+
+						"Target" {
+							"Center" "UNIT"
+							"Flags" "DOTA_UNIT_TARGET_FLAG_DEAD"
+						}
+					}
+				}
+			}
+
+			"modifier_dark_ranger_black_arrow_unit" {
+				"IsHidden" "1"
+
+				"Properties" {
+					"MODIFIER_PROPERTY_IS_ILLUSION" "1"
+				}
+			}
+		}
+	}
+}

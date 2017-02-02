@@ -1,0 +1,62 @@
+"DOTAAbilities" {
+	"imba_juggernaut_healing_ward_passive_redux" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityTextureName" "juggernaut_healing_ward"
+		"AbilityCastRange" "500"
+		"AbilityCooldown" "0.0"
+		"AbilityManaCost" "0"
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_broodmother/broodmother_spiderlings_debuff.vpcf"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"heal_radius" "500"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"heal_per_sec" "2 3 4 5"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"health" "3 3 6 9"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_imba_healing_ward" {
+				"Passive" "1"
+				"IsBuff" "1"
+				"IsHidden" "1"
+				"IsPurgable" "0"
+				"EffectName" "particles/units/heroes/hero_broodmother/broodmother_spiderlings_debuff.vpcf"
+				"EffectAttachType" "follow_origin"
+				"Aura" "modifier_imba_healing_ward_buff"
+				"Aura_Radius" "%heal_radius"
+				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_ApplyToCaster" "1"
+			}
+
+			"modifier_imba_healing_ward_buff" {
+				"Passive" "0"
+				"IsBuff" "1"
+				"IsHidden" "0"
+				"IsPurgable" "0"
+				"EffectName" "particles/units/heroes/hero_juggernaut/juggernaut_ward_heal.vpcf"
+				"EffectAttachType" "follow_origin"
+
+				"Properties" {
+					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "%heal_per_sec"
+				}
+			}
+		}
+	}
+}

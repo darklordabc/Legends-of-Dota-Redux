@@ -1,0 +1,74 @@
+"DOTAAbilities" {
+	"angel_arena_hola_heal" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel" "3"
+		"AbilityTextureName" "custom/angel_arena_hola_heal"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
+			"particle" "particles/units/heroes/hero_earthshaker/earthshaker_echoslam_start_c.vpcf"
+		}
+		"AbilityCastPoint" "0.3 0.3 0.3"
+		"AbilityCooldown" "20.0"
+		"AbilityManaCost" "400 500 600"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "700"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"heal" "600 1000 1400"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"damage" "400 600 800"
+			}
+
+			"04" {
+				"var_type" "FIELD_FLOAT"
+				"heal_percent" "2.0 3.0 4.0"
+			}
+		}
+
+		"OnSpellStart" {
+			"FireSound" {
+				"EffectName" "Hero_EarthShaker.EchoSlam"
+				"Target" "CASTER"
+			}
+
+			"FireEffect" {
+				"EffectName" "particles/econ/items/earthshaker/egteam_set/hero_earthshaker_egset/earthshaker_echoslam_start_f_egset.vpcf"
+				"EffectAttachType" "follow_origin"
+				"Target" "CASTER"
+				"Radius" "%radius"
+			}
+
+			"ActOnTargets" {
+				"Target" {
+					"Center" "CASTER"
+					"Radius" "%radius"
+					"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				}
+
+				"Action" {
+					"Damage" {
+						"Target" {
+							"Center" "TARGET"
+						}
+						"Type" "DAMAGE_TYPE_MAGICAL"
+						"Damage" "%damage"
+					}
+				}
+			}
+		}
+	}
+}

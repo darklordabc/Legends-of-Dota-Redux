@@ -1,0 +1,39 @@
+"DOTAAbilities" {
+	"ebf_rubick_arcane_echo" {
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass" "ability_datadriven"
+		"AbilityTextureName" "custom/rubick_spell_echo"
+
+		"precache" {
+			"particle" "particles/rubick_spell_echo.vpcf"
+		}
+		"AbilityCooldown" "12.0 10.0 8.0 6.0"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_FLOAT"
+				"delay" "0.5"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"damage_reduction" "50"
+			}
+		}
+
+		"Modifiers" {
+			"rubick_spell_echo_passive" {
+				"IsHidden" "1"
+				"Passive" "1"
+
+				"OnAbilityExecuted" {
+					"RunScript" {
+						"ScriptFile" "abilities/epic_boss_fight/ebf_rubick_arcane_echo"
+						"Function" "SpellEcho"
+						"Target" "POINT"
+					}
+				}
+			}
+		}
+	}
+}

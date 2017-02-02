@@ -1,0 +1,20 @@
+"DOTAAbilities" {
+	"neutral_extra_health" {
+		"BaseClass" "granite_golem_hp_aura"
+		"ID" "5656"
+		"MaxLevel" "4"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_FLOAT"
+				"bonus_hp" "50 70 90 110 130 150 170 190 210 240"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "900"
+			}
+		}
+	}
+}

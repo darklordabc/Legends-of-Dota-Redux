@@ -1,0 +1,30 @@
+"DOTAAbilities" {
+	"disruptor_kinetic_field_OP" {
+		"BaseClass" "disruptor_kinetic_field"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel" "1"
+		"AbilityTextureName" "custom/disruptor_kinetic_field_OP"
+		"AbilityCastPoint" "0.05 0.05 0.05 0.05"
+		"AbilityCooldown" "13 12 11 10"
+		"AbilityManaCost" "70 70 70 70"
+		"AbilityCastRange" "99999"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "600"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"formation_time" "0.1 0.1 0.1 0.1"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "5.0 6.0 7.0 8.0"
+			}
+		}
+	}
+}

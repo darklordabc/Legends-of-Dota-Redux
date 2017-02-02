@@ -1,0 +1,25 @@
+"DOTAAbilities" {
+	"lod_creep_power" {
+		"BaseClass" "ability_lua"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName" "custom/lod_creep_power"
+		"ScriptFile" "abilities/lod_creep_power.lua"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"coef" "8"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"damage_per_level" "5"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"resist_per_level" "0.7"
+			}
+		}
+	}
+}

@@ -1,0 +1,124 @@
+"DOTAAbilities" {
+	"holdout_guardian_angel" {
+		"BaseClass" "ability_datadriven"
+		"AbilityTextureName" "custom/omniknight_guardian_angel"
+		"ItemBaseLevel" "0"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCooldown" "120.0 120.0 120.0"
+		"AbilityCastPoint" "0.5 0.5 0.5"
+		"AbilityManaCost" "250 350 450"
+
+		"precache" {
+			"particlefile" "particles/econ/generic/generic_buff_1.pcf"
+		}
+
+		"OnSpellStart" {
+			"ApplyModifier" {
+				"Target" {
+					"Center" "CASTER"
+					"Radius" "%radius"
+					"Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Types" "DOTA_UNIT_TARGET_HERO"
+				}
+				"ModifierName" "modifier_holdout_guardian_angel_buff"
+			}
+
+			"SpawnUnit" {
+				"UnitName" "npc_dota_summoned_guardian_angel"
+				"UnitCount" "1"
+				"SpawnRadius" "100"
+
+				"Target" {
+					"Center" "CASTER"
+					"Radius" "%radius"
+					"Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Types" "DOTA_UNIT_TARGET_HERO"
+					"Flags" "DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS"
+				}
+				"Duration" "%duration"
+
+				"OnSpawn" {
+					"ApplyModifier" {
+						"Target" "TARGET"
+						"ModifierName" "modifier_holdout_guardian_angel_summoned_buff"
+					}
+				}
+			}
+
+			"FireSound" {
+				"EffectName" "Hero_Omniknight.GuardianAngel.Cast"
+				"Target" "CASTER"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_holdout_guardian_angel_buff" {
+				"OnCreated" {
+					"AttachEffect" {
+						"Target" "TARGET"
+						"EffectName" "omniknight_guardian_angel_ally"
+						"EffectAttachType" "follow_origin"
+					}
+				}
+				"Duration" "%duration"
+
+				"Properties" {
+					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL" "1"
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%health_regen"
+				}
+			}
+
+			"modifier_holdout_guardian_angel_summoned_buff" {
+				"StatusEffectName" "status_effect_ghost"
+
+				"OnCreated" {
+					"AttachEffect" {
+						"Target" "TARGET"
+						"EffectName" "generic_buff_1"
+						"EffectAttachType" "follow_origin"
+						"EffectColorA" "250 250 250"
+						"EffectAlphaScale" "2"
+					}
+
+					"FireSound" {
+						"EffectName" "Hero_Omniknight.GuardianAngel"
+						"Target" "TARGET"
+					}
+				}
+
+				"Properties" {
+					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL" "1"
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "%angel_damage"
+				}
+
+				"States" {
+					"MODIFIER_STATE_MAGIC_IMMUNE" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "10.0 11.0 12.0"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"health_regen" "25 25 25"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "10000"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"angel_damage" "150 250 350"
+			}
+		}
+	}
+}

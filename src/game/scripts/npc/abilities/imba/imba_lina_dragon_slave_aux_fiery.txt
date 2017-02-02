@@ -1,0 +1,47 @@
+"DOTAAbilities" {
+	"imba_lina_dragon_slave_aux_fiery" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName" "lina_dragon_slave"
+		"AbilityCastPoint" "0"
+		"AbilityCooldown" "0"
+		"AbilityManaCost" "0"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"secondary_speed" "1800"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"secondary_start_width" "150"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"secondary_end_width" "275"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"secondary_distance" "1100"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"secondary_damage" "60 90 120 150"
+			}
+		}
+
+		"OnProjectileHitUnit" {
+			"DeleteOnHit" "0"
+
+			"Damage" {
+				"Target" "TARGET"
+				"Type" "DAMAGE_TYPE_MAGICAL"
+				"Damage" "%secondary_damage"
+			}
+		}
+	}
+}

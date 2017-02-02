@@ -1,0 +1,136 @@
+"DOTAAbilities" {
+	"imba_obsidian_destroyer_arcane_orb" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_PURE"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName" "obsidian_destroyer_arcane_orb"
+		"AbilityCastRange" "600"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_obsidian_destroyer.vsndevts"
+			"particle" "particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_essence_effect.vpcf"
+		}
+		"AbilityManaCost" "100 110 120 130"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"mana_pool_damage_pct" "7 8 9 10"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"int_buff_duration" "50"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"int_debuff_duration" "30"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"int_gain" "3 4 5 6"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_imba_arcane_orb" {
+				"Passive" "1"
+				"IsHidden" "1"
+
+				"Orb" {
+					"Priority" "DOTA_ORB_PRIORITY_ABILITY"
+					"ProjectileName" "particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_arcane_orb.vpcf"
+					"CastAttack" "1"
+				}
+
+				"OnOrbFire" {
+					"SpendMana" {
+						"Mana" "%AbilityManaCost"
+					}
+
+					"FireSound" {
+						"EffectName" "Hero_ObsidianDestroyer.ArcaneOrb"
+						"Target" "TARGET"
+					}
+
+					"RunScript" {
+						"ScriptFile" "abilities/dota imba/hero_outhouse_decorator.lua"
+						"Function" "ArcaneOrbRestoreMana"
+						"Target" "CASTER"
+						"ability_name" "imba_obsidian_destroyer_essence_aura"
+						"particle_name" "particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_essence_effect.vpcf"
+						"sound_name" "Hero_ObsidianDestroyer.EssenceAura"
+					}
+
+					"FireEffect" {
+						"EffectName" "particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_essence_effect.vpcf"
+						"EffectAttachType" "follow_origin"
+						"Target" "CASTER"
+					}
+				}
+
+				"OnOrbImpact" {
+					"RunScript" {
+						"ScriptFile" "abilities/dota imba/hero_outhouse_decorator.lua"
+						"Function" "ArcaneOrb"
+						"Target" "TARGET"
+						"int_gain_modifier" "modifier_imba_obsidian_destroyer_int_gain"
+						"int_loss_modifier" "modifier_imba_obsidian_destroyer_int_steal"
+					}
+				}
+			}
+
+			"modifier_imba_obsidian_destroyer_int_gain_counter" {
+				"Duration" "%int_buff_duration"
+				"IsPurgable" "0"
+				"IsHidden" "0"
+				"TextureName" "custom/obsidian_destroyer_int_gain"
+				"Attributes" "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+			}
+
+			"modifier_imba_obsidian_destroyer_int_gain" {
+				"Duration" "%int_buff_duration"
+				"IsPurgable" "0"
+				"IsHidden" "1"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+
+				"OnCreated" {
+					"RunScript" {
+						"ScriptFile" "abilities/dota imba/hero_outhouse_decorator.lua"
+						"Function" "IntGainCounterUp"
+						"int_gain_counter" "modifier_imba_obsidian_destroyer_int_gain_counter"
+					}
+				}
+
+				"OnDestroy" {
+					"RunScript" {
+						"ScriptFile" "abilities/dota imba/hero_outhouse_decorator.lua"
+						"Function" "IntGainCounterDown"
+						"int_gain_counter" "modifier_imba_obsidian_destroyer_int_gain_counter"
+					}
+				}
+
+				"Properties" {
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%int_gain"
+				}
+			}
+
+			"modifier_imba_obsidian_destroyer_int_steal" {
+				"Duration" "%int_debuff_duration"
+				"IsPurgable" "0"
+				"IsDebuff" "1"
+				"IsHidden" "0"
+				"TextureName" "custom/obsidian_destroyer_int_steal"
+
+				"Properties" {
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "-1"
+				}
+			}
+		}
+	}
+}

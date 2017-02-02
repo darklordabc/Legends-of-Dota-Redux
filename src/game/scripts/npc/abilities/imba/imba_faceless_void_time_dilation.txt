@@ -1,0 +1,111 @@
+"DOTAAbilities" {
+	"imba_faceless_void_time_dilation" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "faceless_void_time_dilation"
+		"AbilityCastRange" "725"
+		"AbilityCastPoint" "0.1"
+		"AbilityCooldown" "30 26 22 18"
+		"AbilityManaCost" "0"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_faceless_void.vsndevts"
+			"particle" "particles/units/heroes/hero_faceless_void/faceless_void_chrono_speed.vpcf"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"cooldown_increase" "6 8 10 12"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"cooldown_start" "1"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "725"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"move_slow" "-10"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"attack_slow" "-20"
+			}
+
+			"06" {
+				"var_type" "FIELD_INTEGER"
+				"move_bonus" "5"
+			}
+
+			"07" {
+				"var_type" "FIELD_INTEGER"
+				"attack_bonus" "5 10 15 20"
+			}
+		}
+
+		"OnSpellStart" {
+			"RunScript" {
+				"ScriptFile" "abilities/dota imba/hero_faceless_void.lua"
+				"Function" "TimeDilation"
+				"sound_cast" "Hero_FacelessVoid.TimeDilation.Cast"
+				"sound_hit" "Hero_FacelessVoid.TimeDilation.Target"
+				"particle_cast" "particles/units/heroes/hero_faceless_void/faceless_void_timedialate.vpcf"
+				"particle_hit" "particles/units/heroes/hero_faceless_void/faceless_void_backtrack.vpcf"
+				"modifier_slow" "modifier_imba_time_dilation_slow"
+				"modifier_buff" "modifier_imba_time_dilation_buff"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_imba_time_dilation_slow" {
+				"Passive" "0"
+				"IsHidden" "0"
+				"IsDebuff" "1"
+				"IsPurgable" "1"
+				"Duration" "%cooldown_increase"
+
+				"OnCreated" {
+					"RunScript" {
+						"ScriptFile" "abilities/dota imba/hero_faceless_void.lua"
+						"Function" "TimeDilationParticle"
+						"particle_debuff" "particles/units/heroes/hero_faceless_void/faceless_void_dialatedebuf.vpcf"
+					}
+				}
+
+				"OnDestroy" {
+					"RunScript" {
+						"ScriptFile" "abilities/dota imba/hero_faceless_void.lua"
+						"Function" "TimeDilationParticleEnd"
+					}
+				}
+
+				"Properties" {
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%attack_slow"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%move_slow"
+				}
+			}
+
+			"modifier_imba_time_dilation_buff" {
+				"Passive" "0"
+				"IsHidden" "0"
+				"IsBuff" "1"
+				"IsPurgable" "1"
+				"Duration" "%cooldown_increase"
+				"EffectName" "particles/units/heroes/hero_faceless_void/faceless_void_chrono_speed.vpcf"
+				"EffectAttachType" "follow_origin"
+
+				"Properties" {
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%attack_bonus"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%move_bonus"
+				}
+			}
+		}
+	}
+}

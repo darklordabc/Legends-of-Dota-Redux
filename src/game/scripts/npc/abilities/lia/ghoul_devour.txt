@@ -1,0 +1,103 @@
+"DOTAAbilities" {
+	"ghoul_devour" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS | DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName" "custom/ghoul_devour"
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_life_stealer/life_stealer_infested_unit.vpcf"
+		}
+		"MaxLevel" "4"
+		"RequiredLevel" "1"
+		"LevelsBetweenUpgrades" "2"
+		"AbilityCastRange" "80"
+		"AbilityCastPoint" "0.0"
+		"AbilityCooldown" "40.0"
+		"AbilityManaCost" "20 30 40 50"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_FLOAT"
+				"instant_heal" "50 100 150 200"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"heal_per_second" "10 20 30 40"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"heal_duration" "10"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"movement_slow" "-5 -10 -20 -30"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"attack_slow" "-5 -10 -20 -30"
+			}
+
+			"06" {
+				"var_type" "FIELD_FLOAT"
+				"slow_duration" "4.0"
+			}
+		}
+
+		"OnSpellStart" {
+			"FireSound" {
+				"EffectName" "Hero_LifeStealer.Infest"
+				"Target" "TARGET"
+			}
+
+			"FireEffect" {
+				"EffectName" "particles/units/heroes/hero_life_stealer/life_stealer_infest_emerge_bloody.vpcf"
+				"EffectAttachType" "follow_origin"
+				"Target" "TARGET"
+			}
+
+			"RunScript" {
+				"ScriptFile" "abilities/life_in_arena/Devour.lua"
+				"Function" "Devour"
+				"instant_heal" "%instant_heal"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_ghoul_devour_heal" {
+				"Passive" "0"
+				"IsHidden" "0"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Duration" "%heal_duration"
+				"ThinkInterval" "1.0"
+
+				"OnIntervalThink" {
+					"Heal" {
+						"Target" "CASTER"
+						"HealAmount" "%heal_per_second"
+					}
+				}
+			}
+
+			"modifier_ghoul_devour_slow" {
+				"IsDebuff" "1"
+				"Duration" "%slow_duration"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+				"EffectName" "particles/units/heroes/hero_life_stealer/life_stealer_infested_unit.vpcf"
+				"EffectAttachType" "follow_overhead"
+
+				"Properties" {
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%movement_slow"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%attack_slow"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,34 @@
+"DOTAAbilities" {
+	"rattletrap_rocket_flare_perk" {
+		"BaseClass" "rattletrap_rocket_flare"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityCastPoint" "0"
+		"AbilityCastRange" "0"
+		"MaxLevel" "5"
+		"AbilityCooldown" "0"
+		"AbilityManaCost" "0"
+		"AbilityDamage" "40 80 120 160 200"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "575 575 575 575 575"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "10.0 10.0 10.0 10.0 10.0"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"speed" "1500 1500 1500 1500 1500"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"vision_radius" "600"
+			}
+		}
+	}
+}

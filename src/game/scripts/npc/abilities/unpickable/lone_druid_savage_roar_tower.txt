@@ -1,0 +1,28 @@
+"DOTAAbilities" {
+	"lone_druid_savage_roar_tower" {
+		"BaseClass" "lone_druid_savage_roar"
+		"ID" "5687"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastPoint" "0.1"
+		"AbilityCooldown" "0"
+		"AbilityManaCost" "0"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "325"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"bonus_speed" "20"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "4"
+			}
+		}
+	}
+}

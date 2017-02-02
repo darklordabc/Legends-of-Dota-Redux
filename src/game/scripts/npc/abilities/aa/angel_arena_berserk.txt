@@ -1,0 +1,70 @@
+"DOTAAbilities" {
+	"angel_arena_berserk" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_PURE"
+		"AbilityTextureName" "custom/angel_arena_berserk"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
+		}
+		"AbilityCooldown" "30.0 29.0 28.0 27.0"
+		"AbilityCastPoint" "0.0 0.0 0.0 0.0"
+		"AbilityManaCost" "30 40 50 60"
+		"MaxLevel" "4"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "30.0 30.0 30.0 30.0"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"bonus_attack_speed" "60 70 80 90"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"bonus_damage" "20 18 16 15"
+			}
+
+			"04" {
+				"var_type" "FIELD_FLOAT"
+				"damage_pct" "0.1 0.2 0.3 0.4"
+			}
+		}
+
+		"OnSpellStart" {
+			"FireSound" {
+				"Target" "CASTER"
+				"EffectName" "Hero_Clinkz.Strafe"
+			}
+
+			"ApplyModifier" {
+				"Target" "CASTER"
+				"ModifierName" "modifier_berserk"
+				"Duration" "%duration"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_berserk" {
+				"isBuff" "1"
+
+				"Properties" {
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_attack_speed"
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "%bonus_damage"
+				}
+
+				"OnAttackLanded" {
+					"RunScript" {
+						"ScriptFile" "abilities/angel_arena_reborn/berserk.lua"
+						"Function" "OnAttack"
+						"Damage" "%damage_pct"
+					}
+				}
+			}
+		}
+	}
+}

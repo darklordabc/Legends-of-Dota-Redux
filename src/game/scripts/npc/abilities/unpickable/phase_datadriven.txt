@@ -1,0 +1,20 @@
+"DOTAAbilities" {
+	"phase_datadriven" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName" "custom/hero_phase"
+		"MaxLevel" "1"
+
+		"Modifiers" {
+			"modifier_phase_datadriven" {
+				"Passive" "1"
+				"IsPurgable" "0"
+				"IsHidden" "1"
+
+				"States" {
+					"MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+}

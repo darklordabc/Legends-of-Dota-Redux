@@ -1,0 +1,28 @@
+"DOTAAbilities" {
+	"garden_yellow_daisy" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName" "custom/cherub_flower_yellow"
+		"MaxLevel" "3"
+		"AOERadius" "400"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "500"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"attackspeed_bonus" "35 45 60"
+			}
+		}
+
+		"OnSpellStart" {
+			"RunScript" {
+				"ScriptFile" "abilities/cherub_flower_garden.lua"
+				"Function" "PlantYellow"
+			}
+		}
+	}
+}

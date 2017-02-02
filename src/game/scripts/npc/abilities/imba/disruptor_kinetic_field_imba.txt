@@ -1,0 +1,34 @@
+"DOTAAbilities" {
+	"disruptor_kinetic_field_imba" {
+		"BaseClass" "disruptor_kinetic_field"
+		"ID" "5460"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel" "1"
+		"AbilityCastPoint" "0.05 0.05 0.05 0.05"
+		"AbilityCooldown" "13 12 11 10"
+		"AbilityManaCost" "70 70 70 70"
+		"AbilityCastRange" "900 900 900 900"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_disruptor.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "450"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"formation_time" "0.0"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "3.25 4.0 4.75 5.5"
+			}
+		}
+	}
+}

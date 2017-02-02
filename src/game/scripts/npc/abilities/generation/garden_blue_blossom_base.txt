@@ -1,0 +1,115 @@
+"DOTAAbilities" {
+	"garden_blue_blossom_base" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELED | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityCastRange" "300"
+		"AbilityCooldown" "5.0"
+		"AbilityChannelTime" "2.0"
+		"AnimationPlaybackRate" "0.2"
+		"AbilityTextureName" "custom/cherub_flower_blue"
+		"MaxLevel" "4"
+		"AOERadius" "500"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "500"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"restore_amount" "14 18 22 26"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"flower_health" "250 400 550 700"
+			}
+		}
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_enchantress.vsndevts"
+		}
+
+		"OnSpellStart" {
+			"ApplyModifier" {
+				"ModifierName" "modifier_garden_channel"
+				"Target" "CASTER"
+			}
+
+			"FireEffect" {
+				"EffectName" "particles/units/heroes/hero_enchantress/enchantress_death_enchant_flower.vpcf"
+				"EffectAttachType" "start_at_customorigin"
+				"TargetPoint" "POINT"
+			}
+		}
+
+		"OnChannelInterrupted" {
+			"RemoveModifier" {
+				"ModifierName" "modifier_garden_channel"
+				"Target" "CASTER"
+			}
+		}
+
+		"OnChannelSucceeded" {
+			"RunScript" {
+				"ScriptFile" "abilities/cherub_flower_garden.lua"
+				"Function" "PlantBlueBase"
+				"Target" "POINT"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_garden_channel" {
+				"Duration" "2.0"
+				"ThinkInterval" "0.1"
+
+				"OnIntervalThink" {
+					"RunScript" {
+						"ScriptFile" "abilities/cherub_flower_garden.lua"
+						"Function" "GardenCheck"
+					}
+				}
+			}
+
+			"modifier_blue_flower" {
+				"IsHidden" "1"
+				"IsPurgable" "0"
+
+				"States" {
+					"MODIFIER_STATE_ROOTED" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_DISARMED" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+
+				"OnCreated" {
+					"RunScript" {
+						"ScriptFile" "abilities/cherub_flower_garden.lua"
+						"Function" "PlantSetHealth"
+					}
+
+					"FireSound" {
+						"EffectName" "Hero_Enchantress.EnchantCast"
+						"Target" "TARGET"
+					}
+				}
+				"ThinkInterval" "5.0"
+
+				"OnIntervalThink" {
+					"RunScript" {
+						"ScriptFile" "abilities/cherub_flower_garden.lua"
+						"Function" "BlueFlowerRestoreMana"
+						"ReplenishRadius" "700"
+						"ReplenishAmount" "%restore_amount"
+					}
+				}
+
+				"OnDeath" {
+					"RunScript" {
+						"ScriptFile" "abilities/cherub_flower_garden.lua"
+						"Function" "OnDestroyBlue"
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,72 @@
+"DOTAAbilities" {
+	"illusionist_whiff_of_deception" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName" "custom/illusionist_whiff_of_deception"
+		"AbilityCooldown" "8"
+		"AbilityCastRange" "300"
+		"AbilityManaCost" "50"
+		"MaxLevel" "3"
+		"RequiredLevel" "1"
+		"LevelsBetweenUpgrades" "2"
+		"AbilityCastPoint" "0.2"
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_arc_warden/arc_warden_flux_cast.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_arc_warden.vsndevts"
+		}
+
+		"OnSpellStart" {
+			"RunScript" {
+				"ScriptFile" "abilities/life_in_arena/illusionist_whiff_of_deception.lua"
+				"Function" "startd"
+
+				"Target" {
+					"Center" "CASTER"
+					"Radius" "%radius"
+					"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+					"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+				}
+			}
+
+			"FireSound" {
+				"EffectName" "Hero_ArcWarden.Flux.Cast"
+				"Target" "CASTER"
+			}
+
+			"FireEffect" {
+				"EffectName" "particles/units/heroes/hero_arc_warden/arc_warden_flux_cast.vpcf"
+				"EffectAttachType" "follow_origin"
+				"Target" "CASTER"
+			}
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "300"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"value_p" "0.8 0.9 1.0"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_illusionist_whiff_of_deception" {
+				"IsHidden" "1"
+				"IsPurgable" "0"
+
+				"OnDestroy" {
+					"RunScript" {
+						"ScriptFile" "abilities/life_in_arena/illusionist_whiff_of_deception.lua"
+						"Function" "remove_count"
+					}
+				}
+			}
+		}
+	}
+}

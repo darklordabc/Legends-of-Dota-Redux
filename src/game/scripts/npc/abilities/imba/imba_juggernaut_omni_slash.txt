@@ -1,0 +1,92 @@
+"DOTAAbilities" {
+	"imba_juggernaut_omni_slash" {
+		"BaseClass" "ability_datadriven"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityTextureName" "juggernaut_omni_slash"
+		"AbilityCastRange" "350"
+		"AbilityCastPoint" "0.3"
+		"AbilityCooldown" "120 110 100"
+		"AbilityManaCost" "150 225 300"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+			"particle" "particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_tgt.vpcf"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"bonus_damage" "55 90 125"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"jump_amount" "3 6 9"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"bounce_range" "600"
+			}
+
+			"04" {
+				"var_type" "FIELD_FLOAT"
+				"bounce_delay" "0.40 0.33 0.25"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"agi_per_jump" "20"
+			}
+
+			"06" {
+				"var_type" "FIELD_INTEGER"
+				"bounce_range_scepter" "1000"
+			}
+
+			"07" {
+				"var_type" "FIELD_INTEGER"
+				"cooldown_scepter" "70"
+			}
+		}
+
+		"OnSpellStart" {
+			"RunScript" {
+				"ScriptFile" "abilities/dota imba/hero_juggernaut.lua"
+				"Function" "Omnislash"
+				"modifier_caster" "modifier_imba_omni_slash_caster"
+				"modifier_scepter" "modifier_imba_omni_slash_caster_scepter"
+				"sound_cast" "Hero_Juggernaut.OmniSlash"
+				"sound_hit" "Hero_Juggernaut.OmniSlash.Damage"
+				"particle_trail" "particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_trail.vpcf"
+				"particle_hit" "particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_tgt.vpcf"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_imba_omni_slash_caster" {
+				"Passive" "0"
+				"IsHidden" "0"
+				"IsBuff" "1"
+				"IsPurgable" "0"
+				"StatusEffectName" "particles/status_fx/status_effect_omnislash.vpcf"
+				"StatusEffectPriority" "10"
+
+				"States" {
+					"MODIFIER_STATE_MAGIC_IMMUNE" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+
+				"Properties" {
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%bonus_damage"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-100"
+				}
+			}
+		}
+	}
+}

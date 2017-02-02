@@ -1,0 +1,86 @@
+"DOTAAbilities" {
+	"phantom_lancer_spirit_lance_imba" {
+		"BaseClass" "phantom_lancer_spirit_lance"
+		"ID" "5065"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType" "SPELL_DISPELLABLE_YES"
+		"FightRecapLevel" "1"
+		"HasScepterUpgrade" "1"
+		"AbilityCastPoint" "0.3 0.3 0.3 0.3"
+		"AbilityCooldown" "7.0 7.0 7.0 7.0"
+		"AbilityDamage" "100 150 200 250"
+		"AbilityManaCost" "125 130 135 140"
+		"AbilityCastRange" "750"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_phantom_lancer.vsndevts"
+			"particle" "particles/units/heroes/hero_phantom_lancer/phantomlancer_spiritlance_projectile.vpcf"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"lance_speed" "1000"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "3.25"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"movement_speed_pct" "-10 -20 -30 -40"
+			}
+
+			"04" {
+				"var_type" "FIELD_FLOAT"
+				"illusion_duration" "8.0"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"illusion_damage_out_pct" "-80 -70 -60 -50"
+			}
+
+			"06" {
+				"var_type" "FIELD_INTEGER"
+				"tooltip_illusion_damage" "20 30 40 50"
+			}
+
+			"07" {
+				"var_type" "FIELD_INTEGER"
+				"illusion_damage_in_pct" "100"
+			}
+
+			"08" {
+				"var_type" "FIELD_INTEGER"
+				"tooltip_illusion_total_damage_in_pct" "200"
+			}
+
+			"09" {
+				"var_type" "FIELD_INTEGER"
+				"fake_lance_distance" "750"
+			}
+
+			"10" {
+				"var_type" "FIELD_INTEGER"
+				"scepter_radius" "600"
+			}
+
+			"11" {
+				"var_type" "FIELD_INTEGER"
+				"scepter_jumps" "5"
+			}
+
+			"12" {
+				"var_type" "FIELD_INTEGER"
+				"lance_speed_bounces" "900"
+			}
+		}
+	}
+}
