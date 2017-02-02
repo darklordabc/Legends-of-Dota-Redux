@@ -5206,7 +5206,7 @@ function loadPlayerBans() {
     // Play appear animation when panel ready
     showMainPanel();
 
-    // $('#chat').BLoadLayout('file://{resources}/layout/custom_game/game_setup/chat.xml', false, false);
+    $('#chat').BLoadLayout('file://{resources}/layout/custom_game/game_setup/chat.xml', false, false);
 
     // Workarounds
     var parent = $.GetContextPanel().GetParent();
