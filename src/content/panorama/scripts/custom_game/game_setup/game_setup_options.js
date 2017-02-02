@@ -74,7 +74,7 @@ var basicOptions = {
                     },{
                         name: 'lodOptionGameSpeedMaxLevel',
                         states: {
-                            'lodMutatorMaxLevel1': 25,
+                            'lodMutatorMaxLevel1': 28,
                             'lodMutatorMaxLevel2': 50,
                             'lodMutatorMaxLevel3': 100
                         }
@@ -157,6 +157,10 @@ var basicOptions = {
                         }
                     },
                     {
+                        name: 'lodOptionLaneMultiply',
+                        about: 'lodMutatorDoubleCreeps'
+                    }, 
+                    {
                         about: 'lodMutatorDoubleTowers',
                         values: {
                             enabled: {
@@ -181,9 +185,16 @@ var basicOptions = {
                                 'lodOptionAdvancedOPAbilities': 0
                             }
                         }
-                    },{
-                        name: 'lodOptionBanningBanInvis',
-                        about: 'lodMutatorBanningBanInvis'
+                    },
+                    {
+                       name: 'lodOptionBanningBanInvis',
+                        default: {
+                            'lodMutatorBanningBanInvis': 0
+                        },
+                        states: {
+                            'lodMutatorBanningBanInvis': 1,
+                            'lodMutatorBanningBanInvis2': 2
+                        }
                     },
                     {
                         name: 'lodOptionBanningHostBanning',
@@ -630,15 +641,19 @@ var advancedOptions = {
                 name: 'lodOptionBanningBanInvis',
                 des: 'lodOptionDesBanningBanInvis',
                 about: 'lodOptionAboutBanningBanInvis',
-                sort: 'toggle',
+                sort: 'dropdown',
                 values: [
                     {
                         text: 'lodOptionNo',
                         value: 0
                     },
                     {
-                        text: 'lodOptionYes',
+                        text: 'lodOptionSkills',
                         value: 1
+                    },
+                    {
+                        text: 'lodOptionSkillsAndItems',
+                        value: 2
                     }
                 ]
             },
@@ -917,6 +932,22 @@ var advancedOptions = {
                     {
                         text: 'lodOptionQuadruple',
                         value: 4
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionLaneMultiply',
+                des: 'lodOptionDesLaneMultiply',
+                about: 'lodOptionAboutLaneMultiply',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
                     }
                 ]
             },

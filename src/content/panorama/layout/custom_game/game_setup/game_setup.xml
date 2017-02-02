@@ -295,6 +295,7 @@
                                     <Image class="optionImageCached" src="file://{images}/custom_game/options/option6.png"></Image>
 
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBanningBanInvis.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBanningBanInvis2.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorUpgradedUlts.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorUpgradedUltsNoBots.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorFastStart.png"></Image>
@@ -383,6 +384,7 @@
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorAllVision.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorHidePicks.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorShareEXP.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorDoubleCreeps.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorDisablePerks.png"></Image>
                                     
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorNoFatOMeter.png"></Image>

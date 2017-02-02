@@ -7226,6 +7226,169 @@
 		"HasInventory"				"0"
 	}
 
+	"npc_dota_lucifers_claw_doomling"
+	{
+		// General
+		//----------------------------------------------------------------
+		"BaseClass"					"npc_dota_creature"
+		"Model"						"models/heroes/doom/doom.vmdl"
+		"SoundSet"					"Hero_DoomBringer"					// Name of sound set.
+		"IdleSoundLoop"				"Hero_DoomBringer.IdleLoop"
+		"Level"						"4"
+		"ModelScale" 					"0.7"
+		"IsNeutralUnitType"			"0"
+		"IsSummoned"				"0"
+		"IsAncient"					"0"
+		"ConsideredHero"			"0"
+				
+		// Abilities
+		//----------------------------------------------------------------
+		
+		"Ability1"					""
+		"Ability2"					""
+		"Ability3"					""
+		"Ability4"					""
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"0"
+		"MagicalResistance"				"0"
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"100"
+		"AttackDamageMax"			"125"
+		"AttackRate"				"1.35"		// Speed of attack.
+		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+		"AttackRange"				"150"		// Range within a target can be attacked.
+		"ProjectileModel"			""			// Particle system model for projectile.
+		"ProjectileSpeed"			"0"			// Speed of projectile.
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"150"
+		"BountyGoldMin"				"50"
+		"BountyGoldMax"				"70"
+
+		// Bounds
+		//----------------------------------------------------------------
+		"RingRadius"				"60"
+		"HealthBarOffset"			"190"
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"450"		// Speed
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"2000"		// Base health.
+		"StatusHealthRegen"			"2.0"		// Health regeneration rate.
+		"StatusMana"				"500"			// Base mana.
+		"StatusManaRegen"			"2.0"		// Mana regeneration rate.
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"
+		"VisionNighttimeRange"		"1000"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"Creature"
+		{
+			"AttachWearables"
+			{
+				"Wearable1" { "ItemDef" "4446" } // Pyre
+				"Wearable2" { "ItemDef" "8098" } // Scales of Incandescent Liturgy
+				"Wearable3" { "ItemDef" "8099" } // Wings of Incandescent Liturgy
+				"Wearable4" { "ItemDef" "8100" } // Sternites of Incandescent Liturgy
+				"Wearable5" { "ItemDef" "8101" } // Visage of Incandescent Liturgy
+				"Wearable6" { "ItemDef" "8102" } // Spaulders of Incandescent Liturgy
+				"Wearable7" { "ItemDef" "8103" } // Tail of Incandescent Liturgy
+			}
+		}
+	}
+
+	"npc_dota_araknarok_spiderling"
+	{
+		// General
+		//----------------------------------------------------------------
+		"BaseClass"					"npc_dota_creature"
+		"Model"						"models/items/broodmother/spiderling/araknarok_broodmother_araknarok_spiderling/araknarok_broodmother_araknarok_spiderling.vmdl"
+		"SoundSet"					"n_creep_Melee"					// Name of sound set.
+		"Level"						"4"
+		"ModelScale" 					"0.9"
+		"IsNeutralUnitType"			"0"
+		"IsSummoned"				"0"
+		"IsAncient"					"0"
+		"ConsideredHero"			"0"
+				
+		// Abilities
+		//----------------------------------------------------------------
+		
+		"Ability1"					""
+		"Ability2"					""
+		"Ability3"					""
+		"Ability4"					""
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"12"
+		"MagicalResistance"				"0"
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"30"
+		"AttackDamageMax"			"40"
+		"AttackRate"				"1.35"		// Speed of attack.
+		"AttackAnimationPoint"		"0.3"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"800"		// Range within a target can be acquired.
+		"AttackRange"				"100"		// Range within a target can be attacked.
+		"ProjectileModel"			""			// Particle system model for projectile.
+		"ProjectileSpeed"			"0"			// Speed of projectile.
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"200"
+		"BountyGoldMin"				"120"
+		"BountyGoldMax"				"80"
+
+		// Bounds
+		//----------------------------------------------------------------
+		"RingRadius"				"60"
+		"HealthBarOffset"			"190"
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"450"		// Speed
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"2100"		// Base health.
+		"StatusHealthRegen"			"2.0"		// Health regeneration rate.
+		"StatusMana"				"500"			// Base mana.
+		"StatusManaRegen"			"2.0"		// Mana regeneration rate.
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"
+		"VisionNighttimeRange"		"1000"
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_NEUTRALS"							// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+
+	}
+
 
 	
 	

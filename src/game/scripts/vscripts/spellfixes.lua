@@ -81,6 +81,21 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
     if ply then
         local hero = ply:GetAssignedHero()
         if hero then
+            -- Check if they tried to illegally use shadow items, if they did, punish them by not refunding the full price
+            if OptionManager:GetOption('banInvis') == 2 and (keys.abilityname == "item_invis_sword" or keys.abilityname == "item_silver_edge") then
+                for i=0,11 do
+                    local item = hero:GetItemInSlot(i)
+                    if item ~= nil then
+                        if item:GetName() == "item_invis_sword" or item:GetName() == "item_silver_edge" then
+                            local punishAmount = 2000
+                            hero:ModifyGold(item:GetCost() - punishAmount , false, 0)
+                            hero:RemoveItem(item)
+                            break
+                        end
+                    end
+                end
+            end  
+
             -- Check if they have multicast
             local multicastMadness = OptionManager:GetOption('multicastMadness')
             if canMulticast(keys.abilityname) then

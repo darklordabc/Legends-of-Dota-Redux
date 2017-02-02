@@ -108,6 +108,9 @@
     "lodOptionNo"                                   "No"
     "lodOptionYesHumansOnly"                                  "Yes (Humans Only)"
 
+    "lodOptionSkills"                                  "Yes (Skills Only)"
+    "lodOptionSkillsAndItems"                          "Yes (Skills and Items)"
+
     // Option text
     "lodOptionsPresetGamemode"                      "Preset Gamemode"
     "lodOptionBalancedAllPick"                      "Balanced All Pick"
@@ -122,6 +125,7 @@
     "lodOptionPresetMutators"                       "Optional Mutators"
     "lodMutatorGameMode"                            "Game Mode"
     "lodMutatorBanningBanInvis"                     "No Invisible"
+    "lodMutatorBanningBanInvis2"                    "No Invisible Items Too"
     "lodMutatorUpgradedUlts"                        "Free Scepter"
     "lodMutatorUpgradedUltsNoBots"                  "Free Scepter (Humans Only)"
     "lodMutatorFreeAbility"                         "Free Ability"
@@ -152,6 +156,7 @@
     "lodMutatorDisablePerks"                        "Disable Perks"
     "lodMutatorDuel"                                "Duels"
     "lodMutatorBoosterDraft"                        "Booster Draft"
+    "lodMutatorDoubleCreeps"                        "Double Lane Creeps"
 
     "lodMutatorFastBuybackCooldown1"                "Fast Respawn"
     "lodMutatorFastBuybackCooldown2"                "Faster Respawn"
@@ -206,7 +211,7 @@
     "lodMutatorAllRandom"                           "All Random"
     "lodMutatorSingleDraft"                         "Single Draft"
 
-    "lodMutatorMaxLevel1"                           "Max Level 25"
+    "lodMutatorMaxLevel1"                           "Max Level 28"
     "lodMutatorMaxLevel2"                           "Max Level 50"
     "lodMutatorMaxLevel3"                           "Max Level 100"
 
@@ -307,7 +312,7 @@
 
     "lodOptionDesBanningBlockTrollCombos"           "Block Troll Combos"
     "lodOptionDesBanningUseBanList"                 "Ban Single Player Abilities (SUPER OP)"
-    "lodOptionDesBanningBanInvis"                   "Ban Invisibility Skills"
+    "lodOptionDesBanningBanInvis"                   "Ban Invisibility"
     "lodOptionDesBanningBalanceMode"                "Use Points Mode Ban List"
 
     "lodOptionDesGameSpeedStartingLevel"            "Starting Level"
@@ -927,6 +932,9 @@
     "lodOptionRestrictRadiant"                      "Only Radiant Bots"
     "lodOptionRestrictDire"                         "Only Dire Bots"
     "lodOptionRestrictBoth"                         "Both Teams"
+
+    "lodOptionAboutLaneMultiply"                    "When Lane Creeps come in contact with an enemy, they will clone a double to help fight. Does not clone siege units."
+    "lodOptionDesLaneMultiply"                      "Double Lane Creeps"
 
     "statsPlayerName"                               "Player Name"
     "statsTotalGames"                               "Total Games"
@@ -3757,6 +3765,9 @@
     "android_pocket_factory_building1"  "Pocket Factory"
     "android_pocket_factory_building2"  "Pocket Factory"
     "android_pocket_factory_building3"  "Pocket Factory"
+
+    "npc_dota_araknarok_spiderling"  "Araknarok Tank"
+    "npc_dota_lucifers_claw_doomling"  "Lucifiers Claw Doomling"
 
     "DOTA_Tooltip_ability_serpent_queen_ball_lightning" "Charged Bolt"
     "DOTA_Tooltip_ability_serpent_queen_ball_lightning_Description" "Releases a swarm of electric bolts that follow the caster, damaging enemies on impact."
