@@ -4503,7 +4503,11 @@ end
 
 function Pregame:PlayAlert(playerID)
     local sound = self:getRandomSound("game_error_alert")
-    EmitAnnouncerSoundForPlayer(sound, playerID)
+    if OptionManager:GetOption("memesRedux") == 1 then
+        EmitAnnouncerSoundForPlayer("Memes.Denied", playerID)
+    else
+        EmitAnnouncerSoundForPlayer(sound, playerID)
+    end
 end
 
 -- Player wants to select a random ability
@@ -4967,7 +4971,22 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                 -- Network it
                 network:setSelectedAbilities(playerID, build)
                 if OptionManager:GetOption("memesRedux") == 1 then
-                     EmitGlobalSound("Memes.SnipeHit")
+                    if abilityName == "alchemist_goblins_greed" or abilityName == "angel_arena_transmute" then
+                        EmitGlobalSound("Memes.Rich")
+                    elseif abilityName == "ebf_clinkz_trickshot_passive" or abilityName == "imba_tower_multihit" or
+                        abilityName == "imba_tower_essence_drain" or
+                        abilityName == "angel_arena_rifle_OP" or
+                        abilityName == "garden_red_flower_base_OP" or
+                        abilityName == "imba_juggernaut_healing_ward_passive_redux" or
+                        abilityName == "imba_tower_salvo" or
+                        abilityName == "imba_tower_fervor" or
+                        abilityName == "imba_tower_split" or
+                        abilityName == "imba_tower_machinegun" or
+                        abilityName == "imba_tower_sniper" then
+                        EmitGlobalSound("Memes.BombTheShit")
+                    else
+                        EmitGlobalSound("Memes.SnipeHit")
+                    end
                 end
             end
         end

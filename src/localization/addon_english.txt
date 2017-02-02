@@ -57,6 +57,10 @@
     "lodStageRandomSelection"                 "All Random Build Selection"
     "lodStageReview"                          "Review"
     "lodStageIngame"                          "Ingame"
+	
+	// Review Options Button
+	"reviewOptions"                           "Review Host Settings"
+	"reviewReturn"                            "Return to Hero Builder"
 
     // Chat channels
     "channelAll"                              "All"

@@ -24,6 +24,10 @@
         </snippet>
     </snippets>
     <Panel class="lodOptionsInterface" hittest="false">
+		<Panel class="workingPanel" id="tipPanel">
+			<Image id="LoDLoadingTipImage" />
+			<Label id="LoDLoadingTipText" />
+		</Panel>
         <Panel class="lodOptionsInterface" id="lodOptionsRoot">
             <Panel id="chat" />
 
@@ -85,11 +89,10 @@
                                 <Image scaling="stretch-to-fit-preserve-aspect" src="s2r://panorama/images/control_icons/clock_psd.vtex" />
                                 <Label text="0:00" id="lodTimeRemaining" />
                                 <Label text="Stage name" id="lodStageName" />
-                            </Panel>
-
-                            <Panel class="workingPanel" id="tipPanel">
-                                <Image id="LoDLoadingTipImage" />
-                                <Label id="LoDLoadingTipText" />
+							
+								<Button id="backtrackBtn" class="hidden" onactivate="onBacktrackButton()">
+									<Label id="backtrackBtnTxt" text="reviewOptions" />
+								</Button>
                             </Panel>
                         </Panel>
 
@@ -465,7 +468,8 @@
                                     <Panel class="ExpandDownArrow" />
                                     <Label text="#to_basic_options" />
                                     <Panel class="ExpandDownArrow" />
-                                </Panel>                    
+                                </Panel>               
+								
                                 <Panel id="lockOptionPanel">
                                     <Label id="lockTeamsFirst" text="lockTeamsFirst" />
                                     <Button id="lockOptionsButton" class="PlayButton" onactivate="onLockOptionsPressed()">
@@ -700,7 +704,6 @@
                                             <Label text="#DOTA_Hero_Selection_INT" class="pickingHeroListCategory"/>
                                             <Panel id="intHeroContainer" class="pickingHeroListHeroes"/>
                                         </Panel>
-
                                     </Panel>
 
                                     <Panel id="pickingPhaseSkillTabContent" class="pickingPhaseTabContent">

@@ -135,6 +135,13 @@
                             "value6"        "sounds/sing-bemad.vsnd"
                             "value7"        "sounds/slacks-discussion.vsnd"
                             "value8"        "sounds/t-historydota.vsnd"
+                            "value9"        "sounds/bigchina.vsnd"
+                            "value10"        "sounds/bullshit.vsnd"
+                            "value11"        "sounds/china.vsnd"
+                            "value12"        "sounds/coats.vsnd"
+                            "value13"        "sounds/english.vsnd"
+                            "value14"        "sounds/lowenergy.vsnd"
+                            "value15"        "sounds/mexicanpeople.vsnd"
                         }
                     }
                     "volume"            {   "value"     "4.00000"  }
@@ -579,6 +586,111 @@
     }
 }
 
+"Memes.Rich"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                            "value0"        "sounds/6-rich.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "6.00000"   }
+                    "pitch_rand_min"    {   "value"     "-0.00000"  }
+                    "pitch_rand_max"    {   "value"     "0.000000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "100.00000" }
+                    "distance_max"      {   "value"     "1600.000"  }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Memes.BombTheShit"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                            "value0"        "sounds/bombtheshit.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "4.00000"   }
+                    "pitch_rand_min"    {   "value"     "-0.00000"  }
+                    "pitch_rand_max"    {   "value"     "0.000000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "100.00000" }
+                    "distance_max"      {   "value"     "1600.000"  }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Memes.Denied"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                            "value0"        "sounds/problem.vsnd"
+                            "value1"        "sounds/wrong.vsnd"
+                            "value2"        "sounds/hardtime.vsnd"
+                            "value3"        "sounds/sitdown.vsnd"
+                            "value4"        "sounds/failed.vsnd"
+                            "value5"        "sounds/aloser.vsnd"
+                            "value6"        "sounds/idontcare.vsnd"
+                            "value7"        "sounds/i-dont-think-so"
+                            "value8"        "sounds/bigchina.vsnd"
+                            "value9"        "sounds/holdit.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "6.00000"   }
+                    "pitch_rand_min"    {   "value"     "-0.00000"  }
+                    "pitch_rand_max"    {   "value"     "0.000000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "100.00000" }
+                    "distance_max"      {   "value"     "1600.000"  }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
 "Memes.NoScope"
 {
     "operator_stacks"
@@ -942,6 +1054,38 @@
     }
 }
 
+"Memes.WorldIsAMess"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                            "value0"        "sounds/worldisamess.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "2.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.00000"  }
+                    "pitch_rand_max"    {   "value"     "0.000000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "100.00000" }
+                    "distance_max"      {   "value"     "1600.000"  }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
 "Memes.BKB"
 {
     "operator_stacks"
@@ -1164,6 +1308,9 @@
                             "value12"        "sounds/WAOW.vsnd"
                             "value13"        "sounds/ppd-gg.vsnd"
                             "value14"        "sounds/ku-gman.vsnd"
+                            "value15"        "sounds/bigchina.vsnd"
+                            "value16"        "sounds/english.vsnd"
+                            "value17"        "sounds/mexicanpeople.vsnd"
                         }
                     }
                     "volume"            {   "value"     "4.00000"  }

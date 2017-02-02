@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file.
 ### Bug Fixing/New Features
 - Added extra setting for no invisibility mutator, now u can block shadow blades
 - Added Double Lane Creeps mutator
+- Added Function to review host settings during skill pick phase
+- Hint Panel has been expanded
 
 ### Balance
 - Gyrocopter can no longer use Infernal blade because of an abuseable interaction with his scepter side-gunner ability

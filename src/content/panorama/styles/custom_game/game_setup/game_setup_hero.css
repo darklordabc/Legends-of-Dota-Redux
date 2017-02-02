@@ -1,6 +1,6 @@
 .heroRoot {
-    width: 95px;
-    height: width-percentage(132%);
+    width: 90px;
+    height: width-percentage(125%);
 
     margin: -20px -37px -13px 0px;
     clip: rect(0%, 75%, 100%, 25%);
