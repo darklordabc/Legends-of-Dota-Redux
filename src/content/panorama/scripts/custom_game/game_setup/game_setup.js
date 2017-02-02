@@ -4641,6 +4641,9 @@ function SetSelectedPhase(newPhase, noSound) {
         $('#lodStageName').text = $.Localize(phases[selectedPhase].name);
 
     // Update CSS
+	if (selectedPhase != PHASE_SELECTION) {
+		reviewingOptions = false;
+	}
     var masterRoot = $.GetContextPanel();
     masterRoot.SetHasClass('phase_option_selection_selected', selectedPhase == PHASE_OPTION_SELECTION || reviewingOptions);
     masterRoot.SetHasClass('review_selection', reviewingOptions);
