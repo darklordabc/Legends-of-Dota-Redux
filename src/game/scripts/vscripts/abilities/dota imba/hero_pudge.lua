@@ -146,7 +146,7 @@ function MeatHook( keys )
 	caster:EmitSound(sound_extend)
 
 	-- Create and set up the Hook dummy unit
-	local hook_dummy = CreateUnitByName("npc_dummy_blank", start_loc + Vector(0, 0, 150), false, caster, caster, caster:GetTeam())
+	local hook_dummy = CreateUnitByName("npc_dummy_unit", start_loc + Vector(0, 0, 150), false, caster, caster, caster:GetTeamNumber())
 	hook_dummy:AddNewModifier(caster, nil, "modifier_phased", {})
 	ability:ApplyDataDrivenModifier(caster, hook_dummy, modifier_dummy, {})
 	hook_dummy:SetForwardVector(caster:GetForwardVector())

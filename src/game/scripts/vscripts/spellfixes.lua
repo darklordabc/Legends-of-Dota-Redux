@@ -87,7 +87,7 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
                     local item = hero:GetItemInSlot(i)
                     if item ~= nil then
                         if item:GetName() == "item_invis_sword" or item:GetName() == "item_silver_edge" then
-                            local punishAmount = 2000
+                            local punishAmount = 500
                             hero:ModifyGold(item:GetCost() - punishAmount , false, 0)
                             hero:RemoveItem(item)
                             break

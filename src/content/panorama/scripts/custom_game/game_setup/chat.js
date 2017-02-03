@@ -5,7 +5,7 @@ var lastMessageTime = 0;
 // Last sended message time
 var lastSendedMessageTime = 0;
 // Send timeout
-var sendTimeout = 3;
+var sendTimeout = 0.1;
 
 var channels = { 
 	'all': {
