@@ -65,7 +65,7 @@
 #base "abilities\dota\chaos_knight_chaos_strike_gyro.txt"
 #base "abilities\dota\dazzle_shallow_grave_perk.txt"
 #base "abilities\dota\doom_bringer_devour_lod.txt"
-#base "abilities\dota\dota\monkey_king_jingu_mastery_lod.txt"
+#base "abilities\dota\monkey_king_jingu_mastery_lod.txt"
 #base "abilities\dota\earthshaker_aftershock_lod.txt"
 #base "abilities\dota\huskar_berserkers_blood_lod.txt"
 #base "abilities\dota\invoker_alacrity_lod.txt"
