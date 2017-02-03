@@ -32,6 +32,7 @@
 #base "abilities\custom\force_dash_lod_OP.txt"
 #base "abilities\custom\global_stun.txt"
 #base "abilities\custom\holdout_arcane_aura.txt"
+#base "abilities\custom\spawnlord_master_freeze_creep.txt"
 #base "abilities\custom\holdout_culling_blade.txt"
 #base "abilities\custom\holdout_gladiators_unite.txt"
 #base "abilities\custom\holdout_gods_strength.txt"
