@@ -854,6 +854,13 @@ function Ingame:handleRespawnModifier()
         local respawnModifierPercentage = OptionManager:GetOption('respawnModifierPercentage')
         local respawnModifierConstant = OptionManager:GetOption('respawnModifierConstant')
 
+        if GameRules:GetDOTATime(false,false) > 2400 and respawnModifierPercentage < 50 then
+            GameRules:SendCustomMessage("Games has been going for too long, respawn times have increased to 50%. Developers are still fine tuning this mechanic.", 0, 0)
+            OptionManager:SetOption('respawnModifierPercentage', 50)
+            respawnModifierPercentage = 50
+        end
+
+
         --if respawnModifierPercentage == 100 and respawnModifierConstant == 0 then return end
 
         -- Grab the killed entity (it isn't nessessarily a hero!)
