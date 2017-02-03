@@ -5552,6 +5552,14 @@ function Pregame:darkMoonDrops()
                             local drop = CreateItemOnPositionSync( ent:GetAbsOrigin(), newItem )
                             drop.Holdout_IsLootDrop = true
                             
+                            Timers:CreateTimer(function()
+                                if not drop:IsNull() then 
+                                    UTIL_Remove(drop)
+                                end
+                                print("tried to remove")
+                            end, DoUniqueString('removeitem'), 30)
+
+                            
                             local dropTarget = ent:GetAbsOrigin() + RandomVector( RandomFloat( 50, 350 ) )
 
                             
