@@ -3132,7 +3132,606 @@
 	  //----------------------------------------------------------------
 	  "AttackDesire" "1.5" // How much bots want to attack them vs other non-hero things
 	}
+	
+	////////
+	// LIFE IN ARENA
+	////////
+	
+	"dummy_unit"
+	{
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"VisionDaytimeRange"		"0"	
+		"VisionNighttimeRange"		"0"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+		"AbilityLayout"				"4"
+		"Ability1"					"dummy_passive"
+	}
+	
+	"dummy_unit_vulnerable"
+	{
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"VisionDaytimeRange"		"0"	
+		"VisionNighttimeRange"		"0"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+		"AbilityLayout"				"4"
+		"Ability1"					"dummy_passive_vulnerable"
+	}
+	
+	"dummy_unit_building"
+	{
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"VisionDaytimeRange"		"0"	
+		"VisionNighttimeRange"		"0"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+		"BoundsHullName"			"DOTA_HULL_SIZE_BARRACKS"
+		"AbilityLayout"				"4"
+		"Ability1"					"dummy_passive"
+	}
+	
+	"dummy_unit_anomaly"
+	{
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"VisionDaytimeRange"		"0"	
+		"VisionNighttimeRange"		"0"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+		"AbilityLayout"				"4"
+		"Ability1"					"dummy_passive"
+	}
+	
+	"dummy_unit_pure_light"
+	{
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"VisionDaytimeRange"		"0"	
+		"VisionNighttimeRange"		"0"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+		"AbilityLayout"				"4"
+		"Ability1"					"dummy_passive"
+		"Ability2"					"pure_light_ability"
+	}
+	
+	"npc_dummy_blank"
+	{
+		// General
+		//
+		"BaseClass" "npc_dota_base_additive" // Class of entity of link to.
+		"Model" "models/development/invisiblebox.vmdl" // Model.
+		"SoundSet" "Creep_Good_Range" // Name of sound set.
+		"Level" "0"
+		"UnitLabel" "healing_ward"
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1" "" // Ability 1.
+		"Ability2" "" // Ability 2.
+		"Ability3" "" // Ability 3.
+		"Ability4" "" // Ability 4.
+		"Ability5" "" // Ability 5.
+		"Ability6" "" // Ability 6 - Extra.
+		"Ability7" "" // Ability 7 - Extra.
+		"Ability8" "" // Ability 8 - Extra.
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical" "0" // Physical protection.
+		"MagicalResistance" "0" // Magical protection.
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities" "DOTA_UNIT_CAP_NO_ATTACK" // Type of attack - melee, ranged, etc.
+		"AttackDamageMin" "0" // Damage range min.
+		"AttackDamageMax" "0" // Damage range max.
+		"AttackDamageType" "DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate" "1" // Speed of attack.
+		"AttackAnimationPoint" "0.5" // Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange" "800" // Range within a target can be acquired.
+		"AttackRange" "500" // Range within a target can be attacked.
+		"ProjectileModel" "" // Particle system model for projectile.
+		"ProjectileSpeed" "900" // Speed of projectile.
+		// Attributes
+		//----------------------------------------------------------------
+		"AttributePrimary" "DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength" "0" // Base strength
+		"AttributeStrengthGain" "0" // Strength bonus per level.
+		"AttributeBaseIntelligence" "0" // Base intelligence
+		"AttributeIntelligenceGain" "0" // Intelligence bonus per level.
+		"AttributeBaseAgility" "0" // Base agility
+		"AttributeAgilityGain" "0" // Agility bonus per level.
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP" "0" // Experience earn.
+		"BountyGoldMin" "0" // Gold earned min.
+		"BountyGoldMax" "0" // Gold earned max.
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName" "DOTA_HULL_SIZE_HERO" // Hull type used for navigation/locomotion.
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities" "DOTA_UNIT_CAP_MOVE_GROUND" // Type of locomotion - ground, air
+		"MovementSpeed" "450" // Speed
+		"MovementTurnRate" "10" // Turning rate.
+		"FollowRange" "250" // Distance to keep when following
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth" "1" // Base health.
+		"StatusHealthRegen" "0" // Health regeneration rate.
+		"StatusMana" "0" // Base mana.
+		"StatusManaRegen" "0" // Mana regeneration rate.
+		// Team
+		//----------------------------------------------------------------
+		"TeamName" "DOTA_TEAM_GOODGUYS" // Team name.
+		"CombatClassAttack" "DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend" "DOTA_COMBAT_CLASS_DEFEND_SOFT"
+		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange" "0" // Range of vision during day light.
+		"VisionNighttimeRange" "0" // Range of vision at night time.
+		// Bots
+		//----------------------------------------------------------------
+		"AttackDesire" "1.5" // How much bots want to attack them vs other non-hero things
+	}
+	
+	"android_pocket_factory_building1"
+	{
+		// General
+		//----------------------------------------------------------------
+		"BaseClass"			"npc_dota_building"
+		"Model"				"models/props_structures/good_barracks_melee001.vmdl"
+		"ModelScale"		"0.8"
+		"Level"				"4"
+		"SoundSet"			"Creep_Good_Melee"
+		"MinimapIcon"		"minimap_racks90"
+		"HealthBarOffset"	"250"
 		
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"			"" //"tinker_pocket_factory_spawn_goblin" learn in lua	 //Reference: ARal
+		
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"			"5"
+		"MagicalResistance"		"0"
+		
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageMin"			"0"			// Damage range min.
+		"AttackDamageMax"			"0"			// Damage range max.
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"				"0"			// Speed of attack.
+		"AttackAnimationPoint"		"0"			// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"0"			// Range within a target can be acquired.
+		"AttackRange"				"0"			// Range within a target can be attacked.
+		"ProjectileModel"			""			// Particle system model for projectile.
+		"ProjectileSpeed"			"0"			// Speed of projectile.
+		
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyGoldMin"			"0.0"
+		"BountyGoldMax"			"0.0"
+		
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"			"0"
+		"MovementTurnRate"		"0"
+		
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"			"500"
+		"StatusMana"			"0"
+		"StatsManaRegen"		"0"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"800"
+		"VisionNighttimeRange"		"600"
+		
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"				"DOTA_TEAM_BADGUYS"
+		"CombatClassAttack"		"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"		"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"AttackType"    "siege"
+		"ArmorType"     "fortified"
+	
+		"BoundsHullName"		"DOTA_HULL_SIZE_BARRACKS"
+		"RingRadius"			"180"
+		
+		// Creature Data
+		//----------------------------------------------------------------
+	}
+	
+	"android_pocket_factory_building2"
+	{
+		// General
+		//----------------------------------------------------------------
+		"BaseClass"			"npc_dota_building"
+		"Model"				"models/props_structures/good_barracks_melee001.vmdl"
+		"ModelScale"		"0.8"
+		"Level"				"5"
+		"SoundSet"			"Creep_Good_Melee"
+		"MinimapIcon"		"minimap_racks90"
+		"HealthBarOffset"	"250"
+		
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"			"" //"tinker_pocket_factory_spawn_goblin" learn in lua	 //Reference: ARal
+		
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"			"5"
+		"MagicalResistance"		"0"
+		
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageMin"			"0"			// Damage range min.
+		"AttackDamageMax"			"0"			// Damage range max.
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"				"0"			// Speed of attack.
+		"AttackAnimationPoint"		"0"			// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"0"			// Range within a target can be acquired.
+		"AttackRange"				"0"			// Range within a target can be attacked.
+		"ProjectileModel"			""			// Particle system model for projectile.
+		"ProjectileSpeed"			"0"			// Speed of projectile.
+		
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyGoldMin"			"0.0"
+		"BountyGoldMax"			"0.0"
+		
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"			"0"
+		"MovementTurnRate"		"0"
+		
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"			"1000"
+		"StatusMana"			"0"
+		"StatsManaRegen"		"0"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"800"
+		"VisionNighttimeRange"		"600"
+		
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"				"DOTA_TEAM_BADGUYS"
+		"CombatClassAttack"		"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"		"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"AttackType"    "siege"
+		"ArmorType"     "fortified"
+		
+		"BoundsHullName"		"DOTA_HULL_SIZE_BARRACKS"
+		"RingRadius"			"180"
+		
+		// Creature Data
+		//----------------------------------------------------------------
+	}
+	
+	"android_pocket_factory_building3"
+	{
+		// General
+		//----------------------------------------------------------------
+		"BaseClass"			"npc_dota_building"
+		"Model"				"models/props_structures/good_barracks_melee001.vmdl"
+		"ModelScale"		"0.8"
+		"Level"				"6"
+		"SoundSet"			"Creep_Good_Melee"
+		"MinimapIcon"		"minimap_racks90"
+		"HealthBarOffset"	"250"
+		
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"			"" //"tinker_pocket_factory_spawn_goblin" learn in lua	 //Reference: ARal
+		
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"			"5"
+		"MagicalResistance"		"0"
+		
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageMin"			"0"			// Damage range min.
+		"AttackDamageMax"			"0"			// Damage range max.
+		"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"				"0"			// Speed of attack.
+		"AttackAnimationPoint"		"0"			// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"0"			// Range within a target can be acquired.
+		"AttackRange"				"0"			// Range within a target can be attacked.
+		"ProjectileModel"			""			// Particle system model for projectile.
+		"ProjectileSpeed"			"0"			// Speed of projectile.
+		
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyGoldMin"			"0.0"
+		"BountyGoldMax"			"0.0"
+		
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"			"0"
+		"MovementTurnRate"		"0"
+		
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"			"1500"
+		"StatusMana"			"0"
+		"StatsManaRegen"		"0"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"800"
+		"VisionNighttimeRange"		"600"
+		
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"				"DOTA_TEAM_BADGUYS"
+		"CombatClassAttack"		"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"		"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"AttackType"    "siege"
+		"ArmorType"     "fortified"
+		
+		"BoundsHullName"		"DOTA_HULL_SIZE_BARRACKS"
+		"RingRadius"			"180"
+		
+		// Creature Data
+		//----------------------------------------------------------------
+	}
+	
+	"android_clockwerk_goblin1"
+	{
+		// General
+		//----------------------------------------------------------------
+		"BaseClass"			"npc_dota_creature"
+		"Model"				"models/heroes/rattletrap/rattletrap.vmdl"
+		"ModelScale"		"0.7"
+		"Level"				"0"
+		
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"			"" //tinker_clockwerk_goblin_kaboom, learned in lua	 //Reference: Asd3
+		"Ability2"			"android_pocket_factory_spawn_goblin1"
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"			"1"
+		"MagicalResistance"		"0"
+		
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"		"10.0"
+		"AttackDamageMax"		"10.0"
+		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"			"0.8"
+		"AttackAnimationPoint"		"0.33"
+		"AttackAcquisitionRange"	"5000"
+		"AttackRange"			"90"
+		
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyGoldMin"			"0.0"
+		"BountyGoldMax"			"0.0"
+		
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"			"270"
+		"MovementTurnRate"		"0.5"
+		
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"			"125"
+		"StatusHealthRegen"		"2"
+		"StatusMana"			"0"
+		"StatsManaRegen"		"0"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"900"
+		"VisionNighttimeRange"		"800"
+		
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"				"DOTA_TEAM_BADGUYS"
+		"CombatClassAttack" "DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend" "DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"AttackType"    "normal"
+		"ArmorType"     "heavy"
+		
+		"BoundsHullName"		"DOTA_HULL_SIZE_REGULAR"
+		"HealthBarOffset"		"140"
+		
+		// Creature Data
+		//----------------------------------------------------------------
+	
+		"Creature"
+		{
+			"AttachWearables"
+			{
+				"Wearable1"		{	"ItemDef"		"6481"		} //"Mortar Forge Claw"
+				"Wearable1"		{	"ItemDef"		"6482"		} //"Mortar Forge Helm"
+				"Wearable1"		{	"ItemDef"		"6484"		} //"Mortar Forge Rocket Cannon"
+				"Wearable1"		{	"ItemDef"		"6485"		} //"Mortar Forge Steam Exoskeleton"
+			}
+		}
+	}
+	
+	"android_clockwerk_goblin2"
+	{
+		// General
+		//----------------------------------------------------------------
+		"BaseClass"			"npc_dota_creature"
+		"Model"				"models/heroes/rattletrap/rattletrap.vmdl"
+		"ModelScale"		"0.8"
+		"Level"				"0"
+		
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"			"" //tinker_clockwerk_goblin_kaboom, learned in lua	 //Reference: Asd3
+		"Ability2"			"android_pocket_factory_spawn_goblin2"
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"			"3"
+		"MagicalResistance"		"0"
+		
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"		"43.0"
+		"AttackDamageMax"		"43.0"
+		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"			"0.7"
+		"AttackAnimationPoint"		"0.33"
+		"AttackAcquisitionRange"	"5000"
+		"AttackRange"			"90"
+		
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyGoldMin"			"0.0"
+		"BountyGoldMax"			"0.0"
+		
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"			"270"
+		"MovementTurnRate"		"0.5"
+		
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"			"400"
+		"StatusHealthRegen"		"2"
+		"StatusMana"			"0"
+		"StatsManaRegen"		"0"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"900"
+		"VisionNighttimeRange"		"800"
+		
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"			"DOTA_TEAM_BADGUYS"
+		"CombatClassAttack" "DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend" "DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"AttackType"    "normal"
+		"ArmorType"     "heavy"
+		
+		"BoundsHullName"		"DOTA_HULL_SIZE_REGULAR"
+		"HealthBarOffset"		"140"
+		
+		// Creature Data
+		//----------------------------------------------------------------
+	
+		"Creature"
+		{
+			"AttachWearables"
+			{
+				"Wearable1"		{	"ItemDef"		"6481"		} //"Mortar Forge Claw"
+				"Wearable1"		{	"ItemDef"		"6482"		} //"Mortar Forge Helm"
+				"Wearable1"		{	"ItemDef"		"6484"		} //"Mortar Forge Rocket Cannon"
+				"Wearable1"		{	"ItemDef"		"6485"		} //"Mortar Forge Steam Exoskeleton"
+			}
+		}
+	}
+	
+	"android_clockwerk_goblin3"
+	{
+		// General
+		//----------------------------------------------------------------
+		"BaseClass"			"npc_dota_creature"
+		"Model"				"models/heroes/rattletrap/rattletrap.vmdl"
+		"ModelScale"		"0.9"
+		"Level"				"0"
+		
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"			"" //tinker_clockwerk_goblin_kaboom, learned in lua	 //Reference: Asd3
+		"Ability2"			"android_pocket_factory_spawn_goblin3"
+	
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"			"5"
+		"MagicalResistance"		"0"
+		
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"		"76.0"
+		"AttackDamageMax"		"76.0"
+		"AttackDamageType"		"DAMAGE_TYPE_ArmorPhysical"
+		"AttackRate"			"0.6"
+		"AttackAnimationPoint"		"0.33"
+		"AttackAcquisitionRange"	"5000"
+		"AttackRange"			"90"
+		
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyGoldMin"			"0.0"
+		"BountyGoldMax"			"0.0"
+		
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"			"270"
+		"MovementTurnRate"		"0.5"
+		
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"			"700"
+		"StatusHealthRegen"		"2"
+		"StatusMana"			"0"
+		"StatsManaRegen"		"0"
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1800"
+		"VisionNighttimeRange"		"10"
+		
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"			"DOTA_TEAM_BADGUYS"
+		"CombatClassAttack" "DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend" "DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"AttackType"    "normal"
+		"ArmorType"     "heavy"
+		
+		"BoundsHullName"		"DOTA_HULL_SIZE_REGULAR"
+		"HealthBarOffset"		"140"
+		
+		// Creature Data
+		//----------------------------------------------------------------
+	
+		"Creature"
+		{
+			"AttachWearables"
+			{
+				"Wearable1"		{	"ItemDef"		"6481"		} //"Mortar Forge Claw"
+				"Wearable1"		{	"ItemDef"		"6482"		} //"Mortar Forge Helm"
+				"Wearable1"		{	"ItemDef"		"6484"		} //"Mortar Forge Rocket Cannon"
+				"Wearable1"		{	"ItemDef"		"6485"		} //"Mortar Forge Steam Exoskeleton"
+			}
+		}
+	}
+	
 	//Retro Dota
 	"npc_dota_invoker_retro_scout_unit"
 	{										
