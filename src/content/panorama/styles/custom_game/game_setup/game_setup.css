@@ -195,8 +195,12 @@
 #unassignedTeamContainer {
     horizontal-align: center;
     text-align: center;
-    flow-children: down;
+    flow-children: right;
     visibility: collapse;
+}
+
+#unassignedTeamLabel {
+	margin-right: 20px;
 }
 
 .phase_option_selection.phase_option_selection_selected #unassignedTeamContainer {
