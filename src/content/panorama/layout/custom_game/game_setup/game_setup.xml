@@ -57,7 +57,7 @@
 
                 <Panel id="mainContainer">
                     <Panel id="theRadiant" class="theTeamTopLevel" onactivate="onJoinRadiantPressed()">
-                        <Label class="radiantGlow" text="theRadiant" />
+                        <Label class="radiantGlow theTeamName" text="theRadiant" />
                         <Panel id="theRadiantContainer" class="theTeamContainer">
                             <Panel id="theRadiantContainerTop" class="theTeamContainerSub" />
                             <Panel id="theRadiantContainerBot" class="theTeamContainerSub" />
@@ -933,7 +933,7 @@
                     </Panel>
 
                     <Panel id="theDire" class="theTeamTopLevel" onactivate="onJoinDirePressed()">
-                        <Label class="direGlow" text="theDire" />
+                        <Label class="direGlow theTeamName" text="theDire" />
                         <Panel id="theDireContainer" class="theTeamContainer">
                             <Panel id="theDireContainerTop" class="theTeamContainerSub" />
                             <Panel id="theDireContainerBot" class="theTeamContainerSub" />

@@ -2752,6 +2752,9 @@ function Pregame:MultiplyNeutralUnit( unit, killer, mult, lastHits )
     end
     
     local loc = unit:GetAbsOrigin()
+    
+    -- Don't spawn too many special units per split, it overwhelms players easily
+    local alreadySpawned = false
 
     for i = 2, mult do
         clone = CreateUnitByName( unitName, loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
@@ -2781,35 +2784,42 @@ function Pregame:MultiplyNeutralUnit( unit, killer, mult, lastHits )
         end
 
         -- Lucifier Attack
-        if lastHits > 125 and RollPercentage(15) then
+        if not alreadySpawned and lastHits > 100 and RollPercentage(15) then
+            alreadySpawned = true
             local lucifier = CreateUnitByName( "npc_dota_lucifers_claw_doomling", loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
             
-            lucifier:AddAbility("spawnlord_master_freeze")
-            local bash = lucifier:FindAbilityByName("spawnlord_master_freeze")
-            bash:SetLevel(1)
+            lucifier:AddAbility("spawnlord_master_freeze_creep")
+            local bash = lucifier:FindAbilityByName("spawnlord_master_freeze_creep")
+            local bashlevel = math.min(4, (math.floor((lastHits-100) / 20)) )
+            bash:SetLevel(bashlevel)
 
             lucifier:AddNewModifier(lucifier, nil, "modifier_phased", {Duration = 2})
+            lucifier:AddNewModifier(lucifier, nil, "modifier_kill", {duration = 45})
 
             Timers:CreateTimer(function()
                 lucifier:MoveToTargetToAttack(killer)
             end, DoUniqueString('attackPlayer'), 0.5)
         end
 
-        -- Araknarok Attack
-        if lastHits > 220 and RollPercentage(15) then
+        -- Araknarok Tank
+        if not alreadySpawned and lastHits > 200 and RollPercentage(15) then
+            alreadySpawned = true
             local araknarok = CreateUnitByName( "npc_dota_araknarok_spiderling", loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
             
             araknarok:AddAbility("broodmother_incapacitating_bite")
             local poison = araknarok:FindAbilityByName("broodmother_incapacitating_bite")
-            poison:SetLevel(4)
+            local poisonlevel = math.min(4, (math.floor((lastHits-200) / 20)) )
+            poison:SetLevel(poisonlevel)
 
             araknarok:AddAbility("imba_tower_essence_drain")
             local lifedrain = araknarok:FindAbilityByName("imba_tower_essence_drain")
-            lifedrain:SetLevel(4)
+            local drainlevel = math.min(3, (math.floor((lastHits-200) / 26)) )
+            lifedrain:SetLevel(drainlevel)
 
             araknarok:SetHullRadius(55)
             
             araknarok:AddNewModifier(araknarok, nil, "modifier_phased", {Duration = 2})
+            araknarok:AddNewModifier(araknarok, nil, "modifier_kill", {duration = 45})
             
             Timers:CreateTimer(function()
                 araknarok:MoveToTargetToAttack(killer)
@@ -3358,7 +3368,7 @@ function Pregame:processOptions()
         end
 
         -- Banning invis skills
-        if not disableBanLists and this.optionStore['lodOptionBanningBanInvis'] == 1 then
+        if not disableBanLists and this.optionStore['lodOptionBanningBanInvis'] > 0 then
             for abilityName,v in pairs(this.invisSkills) do
                 this:banAbility(abilityName)
             end
@@ -5469,8 +5479,10 @@ function Pregame:multiplyNeutrals()
             if this.optionStore['lodOptionNeutralMultiply'] == 1 then return end
 
             -- Grab the entity that was hurt
-            local ent = EntIndexToHScript(keys.entindex_killed)
-            local attacker = EntIndexToHScript( keys.entindex_attacker )
+            local ent = EntIndexToHScript(keys.entindex_killed)         
+            if keys.entindex_attacker ~= nil then
+                attacker = EntIndexToHScript( keys.entindex_attacker )
+            end
 
             if not attacker or not attacker:IsRealHero() then return end
 
@@ -5495,7 +5507,9 @@ function Pregame:multiplyLaneCreeps()
 
             -- Grab the entity that was hurt
             local ent = EntIndexToHScript(keys.entindex_killed)
-            local attacker = EntIndexToHScript( keys.entindex_attacker )
+            if keys.entindex_attacker ~= nil then
+                attacker = EntIndexToHScript( keys.entindex_attacker )
+            end
 
             -- Neutral Multiplier: Checks if hurt npc is neutral, dead, and if it doesnt have the clone token ability, and their is a valid attacker
             if IsValidEntity(ent) and IsValidEntity(attacker) then
@@ -5523,7 +5537,9 @@ function Pregame:darkMoonDrops()
 
             -- Grab the entity that was hurt
             local ent = EntIndexToHScript(keys.entindex_killed)
-            local attacker = EntIndexToHScript( keys.entindex_attacker )
+            if keys.entindex_attacker ~= nil then
+                attacker = EntIndexToHScript( keys.entindex_attacker )
+            end
 
             if not attacker or not attacker:IsRealHero() then return end
 
@@ -5551,6 +5567,14 @@ function Pregame:darkMoonDrops()
                             end
                             local drop = CreateItemOnPositionSync( ent:GetAbsOrigin(), newItem )
                             drop.Holdout_IsLootDrop = true
+                            
+                            Timers:CreateTimer(function()
+                                if not drop:IsNull() then 
+                                    UTIL_Remove(drop)
+                                end
+                                print("tried to remove")
+                            end, DoUniqueString('removeitem'), 30)
+
                             
                             local dropTarget = ent:GetAbsOrigin() + RandomVector( RandomFloat( 50, 350 ) )
 

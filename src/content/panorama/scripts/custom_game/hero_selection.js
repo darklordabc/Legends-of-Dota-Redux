@@ -16,27 +16,29 @@ function rollBackChanges() {
 }
 
 (function() {
-    GameEvents.Subscribe("lodAttemptReconnect", function (args) {
-        GameEvents.SendCustomGameEventToServer('lodSpawnHero', {});
-    })
-    GameEvents.Subscribe("lodCreatedHero", function (args) {
-        queue = 0;
+    if (!Players.IsSpectator(Players.GetLocalPlayer())) {
+        GameEvents.Subscribe("lodAttemptReconnect", function (args) {
+            GameEvents.SendCustomGameEventToServer('lodSpawnHero', {});
+        })
+        GameEvents.Subscribe("lodCreatedHero", function (args) {
+            queue = 0;
 
-        rollBackChanges();
-    })
+            rollBackChanges();
+        })
 
-    hud.FindChildTraverse("lower_hud").visible = false;
-    hud.FindChildTraverse("topbar").visible = false;
+        hud.FindChildTraverse("lower_hud").visible = false;
+        hud.FindChildTraverse("topbar").visible = false;
 
-    GameEvents.Subscribe("lodSpawningQueue", function (args) {
-        queue = (Players.GetLocalPlayer() - args.queue);
+        GameEvents.Subscribe("lodSpawningQueue", function (args) {
+            queue = (Players.GetLocalPlayer() - args.queue);
 
-        if (queue < 0) {
-            label.text = $.Localize("DOTA_Hud_Paused");
-        } else if (queue == 0) {
-            label.text = "Spawning";
-        } else {
-            label.text = "Queued for spawn: " + queue;
-        }
-    });
+            if (queue < 0) {
+                label.text = $.Localize("DOTA_Hud_Paused");
+            } else if (queue == 0) {
+                label.text = "Spawning";
+            } else {
+                label.text = "Queued for spawn: " + queue;
+            }
+        });
+    }
 })();

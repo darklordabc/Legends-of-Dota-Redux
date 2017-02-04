@@ -26,10 +26,21 @@ function onBtnOpenHeroBuilderPressed() {
     GameEvents.SendCustomGameEventToServer('lodOnIngameBuilder', { playerID: Players.GetLocalPlayer() });
 }
 
+function enableIngameBuilder() {
+   $('#heroBuilder').visible = true;
+}
+
 (function() {
-    GameEvents.Subscribe('lodEnableIngameBuilder', function() {
-        $('#heroBuilder').visible = true;
+    CustomNetTables.SubscribeNetTableListener('options', function (tableName, key, value) {
+        if (key == 'lodEnableIngameBuilder' && value.state == true) {
+            enableIngameBuilder()
+        }
     });
 
+    var data = CustomNetTables.GetTableValue('options', 'lodEnableIngameBuilder');
+    if (data && data.state == true) {
+        enableIngameBuilder()
+    }
+    
     GameEvents.Subscribe('lodShowCheatPanel', setupCheats);
 })();

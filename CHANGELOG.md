@@ -2,12 +2,23 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 5.6 - Development Version
+## 5.7 - Development Version
+### Bug Fixing/New Features
+- Fixed Jingu Mastery being unselectable
+- Fixed Bots picking invis abilities when invis ban mode 2 is choosen
+
+### Balance
+- Added respawn time increaser, at 40 minutes respawn times will become minimum 50% of original respawn times. 
+
+## 5.6 - Steam Version
 ### Bug Fixing/New Features
 - Added extra setting for no invisibility mutator, now u can block shadow blades
 - Added Double Lane Creeps mutator
 - Added Function to review host settings during skill pick phase
 - Hint Panel has been expanded
+- Fixed reconnecting during boost draft mode
+- Fixed ingame builder buttoner dissapearing after reconnect
+- Spectator mode should be fixed (request testing)
 
 ### Balance
 - Gyrocopter can no longer use Infernal blade because of an abuseable interaction with his scepter side-gunner ability
@@ -15,7 +26,7 @@ All notable changes to this project will be documented in this file.
 - Changed default level to 28
 - Modified the bonus creeps that spawn on Multiply Neutrals mutator
 
-## 5.5 - Steam Version
+## 5.5 
 ### Bug Fixing/New Features
 - Re-Enabled Gyrocopter
 - Fixed several instances of 'performattack' being wrong: Hawkeye, Trickshots, some attacking issues with imba abilities, tower abilities not attacking right,
