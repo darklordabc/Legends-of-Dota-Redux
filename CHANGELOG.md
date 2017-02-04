@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 5.7 - Development Version
 ### Bug Fixing/New Features
 - Fixed Jingu Mastery being unselectable
+- Fixed Bots picking invis abilities when invis ban mode 2 is choosen
 
 ### Balance
 - Added respawn time increaser, at 40 minutes respawn times will become minimum 50% of original respawn times. 

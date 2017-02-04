@@ -3368,7 +3368,7 @@ function Pregame:processOptions()
         end
 
         -- Banning invis skills
-        if not disableBanLists and this.optionStore['lodOptionBanningBanInvis'] == 1 then
+        if not disableBanLists and this.optionStore['lodOptionBanningBanInvis'] > 0 then
             for abilityName,v in pairs(this.invisSkills) do
                 this:banAbility(abilityName)
             end
