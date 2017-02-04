@@ -738,9 +738,9 @@ Button:enabled:hover {
     transition-property: transform;
     transition-duration: 5.00s;
 	
-    width: 57.5%;
-    height: 150px;
-	margin-bottom: 18px;
+    width: 42.5%;
+    height: 113px;
+	margin-bottom: 66px;
     margin-right: 138px;
     horizontal-align: right;
 	vertical-align: bottom;
@@ -764,13 +764,13 @@ Button:enabled:hover {
 
 #tipPanel Label {
 	height: 100%;
-    margin: 8px;
+    margin: 6px;
     color: #FFFFFF;
 
     vertical-align: center;
 
-    font-size: 28px;
-    line-height: 28px;
+    font-size: 21px;
+    line-height: 21px;
 }
 
 #tipPanel Image {
