@@ -322,7 +322,7 @@ function Pregame:init()
     end
 
     -- Custom -- set preset
-    if mapName == 'custom' or mapName == 'custom_bot' or mapName == 'custom_700' or mapName == '10_vs_10' then
+    if mapName == 'custom' or mapName == 'custom_bot' or mapName == 'dota_180' or mapName == 'custom_700' or mapName == '10_vs_10' then
         self:setOption('lodOptionGamemode', 1)
     end
 
@@ -337,7 +337,7 @@ function Pregame:init()
     self:setOption('lodOptionBanningMaxHeroBans', 0)
 
     -- Bot match
-    if mapName == 'custom_bot' or mapName == 'custom_700' or mapName == '10_vs_10' then
+    if mapName == 'custom_bot' or mapName == 'custom_700' or mapName == 'dota_180' or mapName == '10_vs_10' then
         self.enabledBots = true
     end
 
@@ -5457,7 +5457,7 @@ function Pregame:addExtraTowers()
         ListenToGameEvent('entity_hurt', function(keys)
             -- Grab the entity that was hurt
             local ent = EntIndexToHScript(keys.entindex_killed)
-            local attacker = EntIndexToHScript( keys.entindex_attacker )
+            --local attacker = EntIndexToHScript( keys.entindex_attacker )
             
             -- Check for tower connections
             if ent:GetHealth() <= 0 and this.towerConnectors[ent] then
