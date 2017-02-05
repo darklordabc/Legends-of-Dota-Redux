@@ -1043,6 +1043,10 @@ function setupBuilderTabs() {
         }
     });
 
+    if (currentPhase == PHASE_SELECTION) {
+        showBuilderTab("pickingPhaseMainTab");
+    }
+
     // Show the main tab only
     // #warning
     // showBuilderTab('pickingPhaseSkillsTab');
@@ -4228,6 +4232,8 @@ function OnPhaseChanged(table_name, key, data) {
                     }
                     
                     isBuildsDonwloaded = true;
+                } else {
+                    showBuilderTab('pickingPhaseHeroTab');
                 }
 
                 // Should we show the host message popup?
@@ -5189,8 +5195,6 @@ function loadPlayerBans() {
 
     // Show banned abilities by default
     $('#buttonShowBanned').checked = false;
-
-    $("#tabsSelector").visible = false;
 
     var columnSwitch = true;
     // Show all tier values by default

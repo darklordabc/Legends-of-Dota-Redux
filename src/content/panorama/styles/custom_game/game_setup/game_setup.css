@@ -3410,6 +3410,8 @@ Button:enabled:hover {
     padding: 0 16px 0 16px;
 
     flow-children: right;
+
+    visibility: collapse;
 }
 
 #tabsSearch {
