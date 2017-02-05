@@ -740,7 +740,7 @@ Button:enabled:hover {
 	
     width: 42.5%;
     height: 113px;
-	margin-bottom: 66px;
+	margin-bottom: 20px;
     margin-right: 138px;
     horizontal-align: right;
 	vertical-align: bottom;
@@ -2774,7 +2774,7 @@ Button:enabled:hover {
 
 #optionSelection {
     width: 100%;
-    height: 75%;
+    height: 775px;
 
     visibility: collapse;
     horizontal-align: middle;
