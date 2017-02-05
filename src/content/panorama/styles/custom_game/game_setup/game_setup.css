@@ -1500,7 +1500,7 @@ Button:enabled:hover {
 #pickingPhase {
     visibility: collapse;
     flow-children: down;
-	height: 808px;
+	height: 850px;
 }
 
 .phase_selection_selected #pickingPhase {
@@ -2787,7 +2787,7 @@ Button:enabled:hover {
 
 
 .review_selection #optionSelection{
-	height: 808px;
+	height: 850px;
 	margin-bottom: -200px;
 }
 
