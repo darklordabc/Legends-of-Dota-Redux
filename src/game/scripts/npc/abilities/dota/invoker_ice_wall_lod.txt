@@ -1,0 +1,53 @@
+"DOTAAbilities" {
+	"invoker_ice_wall_lod" {
+		"BaseClass" "invoker_ice_wall"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"MaxLevel" "4"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"RequiredLevel" "1"
+		"AbilityCooldown" "25"
+		"AbilityManaCost" "175"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "3.0 6.0 9.0 12.0"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"slow" "-20 -60 -100 -140"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"slow_duration" "2.0"
+			}
+
+			"04" {
+				"var_type" "FIELD_FLOAT"
+				"damage_per_second" "6 18 30 42"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"wall_place_distance" "200"
+			}
+
+			"06" {
+				"var_type" "FIELD_INTEGER"
+				"num_wall_elements" "15"
+			}
+
+			"07" {
+				"var_type" "FIELD_INTEGER"
+				"wall_element_spacing" "80"
+			}
+
+			"08" {
+				"var_type" "FIELD_INTEGER"
+				"wall_element_radius" "105"
+			}
+		}
+	}
+}

@@ -1,0 +1,20 @@
+"DOTAAbilities" {
+	"riki_permanent_invisibility_lod" {
+		"BaseClass" "riki_permanent_invisibility"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName" "riki_permanent_invisibility_lod"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_FLOAT"
+				"fade_time" "0.0 0.0 0.0"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"fade_delay" "3.0 2.0 1.0"
+			}
+		}
+	}
+}

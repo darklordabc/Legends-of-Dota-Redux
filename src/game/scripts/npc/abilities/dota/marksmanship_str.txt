@@ -1,0 +1,88 @@
+"DOTAAbilities" {
+	"marksmanship_str" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName" "custom/marksmanship_str"
+		"AbilityCastRange" "%radius"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"marksmanship_strength_bonus" "40 60 80"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "400"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"think_interval" "0.1"
+			}
+		}
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_drow/drow_marksmanship_start.vpcf"
+		}
+
+		"OnUpgrade" {
+			"RemoveModifier" {
+				"ModifierName" "modifier_marksmanship_str_effect_datadriven"
+				"Target" "CASTER"
+			}
+
+			"ApplyModifier" {
+				"ModifierName" "modifier_marksmanship_str_effect_datadriven"
+				"Target" "CASTER"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_marksmanship_str_passive_datadriven" {
+				"Passive" "1"
+				"IsHidden" "1"
+				"IsPurgable" "0"
+				"ThinkInterval" "%think_interval"
+
+				"OnIntervalThink" {
+					"RunScript" {
+						"ScriptFile" "abilities/marksmanship_str.lua"
+						"Function" "marksmanship_detection"
+					}
+				}
+			}
+
+			"modifier_marksmanship_str_effect_datadriven" {
+				"IsPurgable" "0"
+
+				"OnCreated" {
+					"FireEffect" {
+						"Target" "CASTER"
+						"EffectName" "particles/units/heroes/hero_drow/drow_marksmanship_start.vpcf"
+						"EffectAttachType" "start_at_customorigin"
+
+						"ControlPointEntities" {
+							"CASTER" "attach_attack1"
+						}
+					}
+
+					"AttachEffect" {
+						"Target" "CASTER"
+						"EffectName" "particles/units/heroes/hero_drow/drow_marksmanship.vpcf"
+						"EffectAttachType" "follow_origin"
+
+						"ControlPoints" {
+							"02" "150 150 150"
+						}
+					}
+				}
+
+				"Properties" {
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%marksmanship_strength_bonus"
+				}
+			}
+		}
+	}
+}

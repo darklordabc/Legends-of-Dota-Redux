@@ -1,0 +1,43 @@
+"DOTAAbilities" {
+	"riki_backstab_lod" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName" "custom/riki_backstab_lod"
+
+		"precache" {
+			"soundfile" "sounds/weapons/hero/riki/riki_attack1.vsnd"
+			"particle" "particles/units/heroes/hero_riki/riki_backstab.vpcf"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"agility_damage" "50 75 100 125"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"backstab_angle" "105"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_backstab_datadriven" {
+				"Passive" "1"
+				"IsHidden" "1"
+
+				"OnAttackLanded" {
+					"RunScript" {
+						"ScriptFile" "abilities/riki_backstab_lod.lua"
+						"Function" "CheckBackstab"
+						"particle" "particles/units/heroes/hero_riki/riki_backstab.vpcf"
+						"sound" "Hero_Riki.Backstab"
+						"sound2" "Hero_Riki.Attack"
+					}
+				}
+			}
+		}
+	}
+}

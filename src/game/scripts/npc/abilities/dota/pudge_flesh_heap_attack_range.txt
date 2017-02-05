@@ -1,0 +1,25 @@
+"DOTAAbilities" {
+	"pudge_flesh_heap_attack_range" {
+		"BaseClass" "ability_lua"
+		"AbilityTextureName" "custom/flesh_heap_attack_range"
+		"ScriptFile" "abilities/pudge_flesh_heap_attack_range.lua"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastRange" "450"
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_FLOAT"
+				"flesh_heap_attack_range_buff_amount" "10 15 20 25"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"flesh_heap_range" "450"
+			}
+		}
+	}
+}

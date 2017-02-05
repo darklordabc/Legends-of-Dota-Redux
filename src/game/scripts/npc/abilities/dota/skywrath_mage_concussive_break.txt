@@ -1,0 +1,54 @@
+"DOTAAbilities" {
+	"skywrath_mage_concussive_break" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/skywrath_concussive_break.lua"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel" "1"
+		"AbilityTextureName" "custom/skywrath_mage_concussive_break"
+		"HasScepterUpgrade" "1"
+		"AbilityCastPoint" "0.0 0.0 0.0 0.0"
+		"AbilityCastRange" "1600"
+		"AbilityCooldown" "18.0 16.0 14.0 12.0"
+		"AbilityManaCost" "95 95 95 95"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"launch_radius" "1600"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"slow_radius" "250"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"speed" "800 800 800 800"
+			}
+
+			"04" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "4.0"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"shot_vision" "400"
+			}
+
+			"06" {
+				"var_type" "FIELD_INTEGER"
+				"movement_speed_pct" "-30 -35 -40 -45"
+			}
+		}
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts"
+			"particle" "particles/items3_fx/silver_edge_slow.vpcf"
+		}
+	}
+}
