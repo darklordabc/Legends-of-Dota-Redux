@@ -322,7 +322,7 @@ function Pregame:init()
     end
 
     -- Custom -- set preset
-    if mapName == 'custom' or mapName == 'custom_bot' or mapName == 'dota_180' or mapName == 'custom_700' or mapName == '10_vs_10' then
+    if mapName == 'custom' or mapName == 'custom_bot' or mapName == 'custom_700' or mapName == '10_vs_10' then
         self:setOption('lodOptionGamemode', 1)
     end
 
@@ -337,7 +337,7 @@ function Pregame:init()
     self:setOption('lodOptionBanningMaxHeroBans', 0)
 
     -- Bot match
-    if mapName == 'custom_bot' or mapName == 'custom_700' or mapName == 'dota_180' or mapName == '10_vs_10' then
+    if mapName == 'custom_bot' or mapName == 'custom_700' or mapName == '10_vs_10' then
         self.enabledBots = true
     end
 
@@ -425,8 +425,8 @@ function Pregame:loadDefaultSettings()
     -- Starting level is lvl 1
     self:setOption('lodOptionGameSpeedStartingLevel', 1, true)
 
-    -- Max level is 28
-    self:setOption('lodOptionGameSpeedMaxLevel', 28, true)
+    -- Max level is 25
+    self:setOption('lodOptionGameSpeedMaxLevel', 25, true)
 
     -- Don't mess with gold rate
     self:setOption('lodOptionGameSpeedStartingGold', 0, true)
@@ -453,12 +453,8 @@ function Pregame:loadDefaultSettings()
     self:setOption('lodOptionGameSpeedStrongTowers', 0, true)
     self:setOption('lodOptionCreepPower', 0)
 
-
     -- Do not increase creep power
     self:setOption('lodOptionCreepPower', 0, true)
-    self:setOption('lodOptionNeutralMultiply', 1, true)
-    self:setOption('lodOptionLaneMultiply', 0, true)
-
 
     -- Start with a free courier
     self:setOption('lodOptionGameSpeedFreeCourier', 1, true)
@@ -471,9 +467,6 @@ function Pregame:loadDefaultSettings()
     -- Turn easy mode off
     --self:setOption('lodOptionCrazyEasymode', 0, true)
 
-    -- Enable IMBA abilities
-    self:setOption('lodOptionAdvancedImbaAbilities', 0, true)
-
     -- Enable hero abilities
     self:setOption('lodOptionAdvancedHeroAbilities', 1, true)
 
@@ -482,6 +475,9 @@ function Pregame:loadDefaultSettings()
 
     -- Enable Custom Abilities
     self:setOption('lodOptionAdvancedCustomSkills', 0, true)
+
+    -- Enable IMBA abilities
+    self:setOption('lodOptionAdvancedImbaAbilities', 0, true)
 
     -- Disable OP abilities
     self:setOption('lodOptionAdvancedOPAbilities', 1, true)
@@ -534,9 +530,6 @@ function Pregame:loadDefaultSettings()
 
     -- NO MEMES UncleNox
     self:setOption("lodOptionMemesRedux", 0)
-
-    -- No Item Drops
-    self:setOption("lodOptionDarkMoon", 0)
 
 end
 
@@ -953,21 +946,6 @@ function Pregame:onThink()
             this:addExtraTowers()
         end, DoUniqueString('createtowers'), 0.2)
 
-        -- Neutral Multiplier Mutator
-        Timers:CreateTimer(function()
-            this:multiplyNeutrals()
-        end, DoUniqueString('neutralMultiplier'), 0.2)
-
-        -- Double Lane Creeps Multiplier Mutator
-        Timers:CreateTimer(function()
-            this:multiplyLaneCreeps()
-        end, DoUniqueString('laneCreepMultiplierTimer'), 0.2)
-
-        -- Dark Moon Drops
-        Timers:CreateTimer(function()
-            this:darkMoonDrops()
-        end, DoUniqueString('darkMoonDrop'), 0.2)
-
         -- Prevent fountain camping
         Timers:CreateTimer(function()
             this:preventCamping()
@@ -1333,6 +1311,7 @@ function Pregame:networkHeroes()
                 for i=1,24 do
                     local abName = heroValues['Ability' .. i]
                     if abName ~= 'attribute_bonus' then
+                        --print(i,abName)
                         table.insert(self.botHeroes[heroName], abName)
                     end
                 end
@@ -2140,7 +2119,7 @@ function Pregame:initOptionSelector()
 
         -- Common ban all invis
         lodOptionBanningBanInvis = function(value)
-            return value == 0 or value == 1 or value == 2 
+            return value == 0 or value == 1
         end,
 
         -- Common -- Disable Perks
@@ -2282,16 +2261,6 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 120 or value == 60 or value == 30
         end,
 
-        -- Game Speed - Multiply Neutrals
-        lodOptionNeutralMultiply = function(value)
-            return value == 1 or value == 2 or value == 3 or value == 4
-        end,
-        
-        -- Game Speed - Multiply Lane Creeps
-        lodOptionLaneMultiply = function(value)
-            return value == 0 or value == 1
-        end,
-
         -- Game Speed - Free Courier
         lodOptionGameSpeedFreeCourier = function(value)
             return value == 0 or value == 1
@@ -2339,29 +2308,16 @@ function Pregame:initOptionSelector()
 
         -- Advanced -- Enable Hero Abilities
         lodOptionAdvancedHeroAbilities = function(value)
-            -- Disables IMBA Abilities
-            if value == 1 then 
-                self:setOption('lodOptionAdvancedImbaAbilities', 0, true)
-            end
-
             return value == 0 or value == 1
         end,
 
         -- Advanced -- Enable Neutral Abilities
         lodOptionAdvancedNeutralAbilities = function(value)
-            if value == 1 then 
-                self:setOption('lodOptionAdvancedImbaAbilities', 0, true)
-            end
-
             return value == 0 or value == 1
         end,
 
         -- Advanced -- Enable Custom Abilities
         lodOptionAdvancedCustomSkills = function(value)
-            if value == 1 then 
-                self:setOption('lodOptionAdvancedImbaAbilities', 0, true)
-            end
-
             return value == 0 or value == 1
         end,
 
@@ -2486,13 +2442,9 @@ function Pregame:initOptionSelector()
             return true
         end,
 
-        -- Other - Item Drops
-        lodOptionDarkMoon = function(value)
-            return value == 0 or value == 1
-        end,
-
          -- Other -- Memes Redux
         lodOptionMemesRedux = function(value)
+            
             -- When the player activates this potion, they have a chance to hear a meme sound. Becomes more unlikely the more they hear.
             if value == 1 then
 
@@ -2506,8 +2458,6 @@ function Pregame:initOptionSelector()
 
             return value == 0 or value == 1
         end, 
-
-        
     }
 
     -- Callbacks
@@ -2743,107 +2693,6 @@ function Pregame:isAllowed( abilityName )
     return true
 end
 
--- Multiply neutral creep camps
-function Pregame:MultiplyNeutralUnit( unit, killer, mult, lastHits )
-    local unitName = unit:GetUnitName()
-    
-    if unitName == "npc_dota_roshan" or unitName == "npc_dota_neutral_mud_golem_split" or unitName == "npc_dota_dark_troll_warlord_skeleton_warrior" then
-        return
-    end
-    
-    local loc = unit:GetAbsOrigin()
-    
-    -- Don't spawn too many special units per split, it overwhelms players easily
-    local alreadySpawned = false
-
-    for i = 2, mult do
-        clone = CreateUnitByName( unitName, loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
-        clone:AddNewModifier(clone, nil, "modifier_kill", {duration = 120})
-        clone:AddAbility("clone_token_ability")
-
-        -- SPECIAL BONUSES IF PLAYERS LAST HIT TOO MUCH
-        -- Double Damage Bonus
-        if RollPercentage(5) then
-            clone:AddNewModifier(clone, nil, "modifier_rune_doubledamage", {duration = duration})
-        end
-
-        -- Healing Aura and Extra Health Bonus
-        if lastHits > 25 and RollPercentage(10) then 
-            level = math.min(10, (math.floor(lastHits / 25)) )
-            modelSize = level/14 + 1
-            clone:SetModelScale(modelSize)
-            
-            clone:AddAbility("neutral_regen_aura")
-            local healingWard = clone:FindAbilityByName("neutral_regen_aura")
-            healingWard:SetLevel(level) 
-
-            clone:AddAbility("neutral_extra_health")
-            local extraHealth = clone:FindAbilityByName("neutral_extra_health")
-            extraHealth:SetLevel(level) 
-             
-        end
-
-        -- Lucifier Attack
-        if not alreadySpawned and lastHits > 100 and RollPercentage(15) then
-            alreadySpawned = true
-            local lucifier = CreateUnitByName( "npc_dota_lucifers_claw_doomling", loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
-            
-            lucifier:AddAbility("spawnlord_master_freeze_creep")
-            local bash = lucifier:FindAbilityByName("spawnlord_master_freeze_creep")
-            local bashlevel = math.min(4, (math.floor((lastHits-100) / 20)) )
-            bash:SetLevel(bashlevel)
-
-            lucifier:AddNewModifier(lucifier, nil, "modifier_phased", {Duration = 2})
-            lucifier:AddNewModifier(lucifier, nil, "modifier_kill", {duration = 45})
-
-            Timers:CreateTimer(function()
-                lucifier:MoveToTargetToAttack(killer)
-            end, DoUniqueString('attackPlayer'), 0.5)
-        end
-
-        -- Araknarok Tank
-        if not alreadySpawned and lastHits > 200 and RollPercentage(15) then
-            alreadySpawned = true
-            local araknarok = CreateUnitByName( "npc_dota_araknarok_spiderling", loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
-            
-            araknarok:AddAbility("broodmother_incapacitating_bite")
-            local poison = araknarok:FindAbilityByName("broodmother_incapacitating_bite")
-            local poisonlevel = math.min(4, (math.floor((lastHits-200) / 20)) )
-            poison:SetLevel(poisonlevel)
-
-            araknarok:AddAbility("imba_tower_essence_drain")
-            local lifedrain = araknarok:FindAbilityByName("imba_tower_essence_drain")
-            local drainlevel = math.min(3, (math.floor((lastHits-200) / 26)) )
-            lifedrain:SetLevel(drainlevel)
-
-            araknarok:SetHullRadius(55)
-            
-            araknarok:AddNewModifier(araknarok, nil, "modifier_phased", {Duration = 2})
-            araknarok:AddNewModifier(araknarok, nil, "modifier_kill", {duration = 45})
-            
-            Timers:CreateTimer(function()
-                araknarok:MoveToTargetToAttack(killer)
-            end, DoUniqueString('attackPlayer'), 0.5)
-        end
-    end      
-end
-
--- Multiply neutral creep camps
-function Pregame:MultiplyLaneUnit( unit, mult )
-        local unitName = unit:GetUnitName()
-           
-        local loc = unit:GetAbsOrigin()
-
-        for i = 2, mult do
-            clone = CreateUnitByName( unitName, loc, true, nil, nil, unit:GetTeam() )
-            clone:AddAbility("clone_token_ability")
-            --Clones die after 120 seconds, this is a safety measure to prevent too many units being alive
-            clone:AddNewModifier(clone, nil, "modifier_kill", {duration = 30})
-            clone:SetInitialGoalEntity(unit:GetInitialGoalEntity())
-        end
-end
-
-
 -- Generates draft arrays
 function Pregame:buildDraftArrays()
     -- Only build draft arrays once
@@ -2919,8 +2768,6 @@ function Pregame:buildDraftArrays()
                 end
             end
         end
-
-        abilityDraftCount = math.min(util:getTableLength(possibleSkills), abilityDraftCount)
 
         -- Select random skills
         local abilityDraft = {}
@@ -3276,8 +3123,6 @@ function Pregame:processOptions()
         OptionManager:SetOption('strongTowers', this.optionStore['lodOptionGameSpeedStrongTowers'] == 1)
         OptionManager:SetOption('towerCount', this.optionStore['lodOptionGameSpeedTowersPerLane'])
         OptionManager:SetOption('creepPower', this.optionStore['lodOptionCreepPower'])
-        OptionManager:SetOption('neutralMultiply', this.optionStore['lodOptionNeutralMultiply'])
-        OptionManager:SetOption('laneMultiply', this.optionStore['lodOptionLaneMultiply'])
         OptionManager:SetOption('useFatOMeter', this.optionStore['lodOptionCrazyFatOMeter'])
         OptionManager:SetOption('allowIngameHeroBuilder', this.optionStore['lodOptionIngameBuilder'] == 1)
         --OptionManager:SetOption('botBonusPoints', this.optionStore['lodOptionBotsBonusPoints'] == 1)
@@ -3290,8 +3135,6 @@ function Pregame:processOptions()
         OptionManager:SetOption('refreshCooldownsOnDeath', this.optionStore['lodOptionRefreshCooldownsOnDeath'])
         OptionManager:SetOption('gottaGoFast', this.optionStore['lodOptionGottaGoFast'])
         OptionManager:SetOption('memesRedux', this.optionStore['lodOptionMemesRedux'])
-        OptionManager:SetOption('darkMoon', this.optionStore['lodOptionDarkMoon'])
-        OptionManager:SetOption('banInvis', this.optionStore['lodOptionBanningBanInvis'])
 
         -- Enforce max level
         if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -3368,7 +3211,7 @@ function Pregame:processOptions()
         end
 
         -- Banning invis skills
-        if not disableBanLists and this.optionStore['lodOptionBanningBanInvis'] > 0 then
+        if not disableBanLists and this.optionStore['lodOptionBanningBanInvis'] == 1 then
             for abilityName,v in pairs(this.invisSkills) do
                 this:banAbility(abilityName)
             end
@@ -3482,8 +3325,6 @@ function Pregame:processOptions()
                     ['Bans: Max Hero Bans'] = this.optionStore['lodOptionBanningMaxHeroBans'],
                     ['Bans: Use LoD BanList'] = this.optionStore['lodOptionBanningUseBanList'],
                     ['Creeps: Increase Creep Power Over Time'] = this.optionStore['lodOptionCreepPower'],
-                    ['Creeps: Multiply Neutral Camps'] = this.optionStore['lodOptionNeutralMultiply'],
-                    ['Creeps: Multiply Lane Creeps'] = this.optionStore['lodOptionLaneMultiply'],
                     ['Game Speed: Bonus Starting Gold'] = this.optionStore['lodOptionGameSpeedStartingGold'],
                     ['Game Speed: Buyback Cooldown Constant'] = this.optionStore['lodOptionBuybackCooldownTimeConstant'],
                     ['Game Speed: Gold Modifier'] = math.floor(this.optionStore['lodOptionGameSpeedGoldModifier']),
@@ -3515,7 +3356,6 @@ function Pregame:processOptions()
                     ['Other: Refresh Cooldowns On Death'] = this.optionStore['lodOptionRefreshCooldownsOnDeath'],
                     ['Other: Gotta Go Fast!'] = this.optionStore['lodOptionGottaGoFast'],
                     ['Other: Memes Redux'] = this.optionStore['lodOptionMemesRedux'],
-                    ['Other: Item Drops'] = this.optionStore['lodOptionDarkMoon'],
                     ['Towers: Enable Stronger Towers'] = this.optionStore['lodOptionGameSpeedStrongTowers'],
                     ['Towers: Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],
                     ['Bots: Unique Skills'] = this.optionStore['lodOptionBotsUniqueSkills'],
@@ -4513,11 +4353,7 @@ end
 
 function Pregame:PlayAlert(playerID)
     local sound = self:getRandomSound("game_error_alert")
-    if OptionManager:GetOption("memesRedux") == 1 then
-        EmitAnnouncerSoundForPlayer("Memes.Denied", playerID)
-    else
-        EmitAnnouncerSoundForPlayer(sound, playerID)
-    end
+    EmitAnnouncerSoundForPlayer(sound, playerID)
 end
 
 -- Player wants to select a random ability
@@ -4981,22 +4817,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                 -- Network it
                 network:setSelectedAbilities(playerID, build)
                 if OptionManager:GetOption("memesRedux") == 1 then
-                    if abilityName == "alchemist_goblins_greed" or abilityName == "angel_arena_transmute" then
-                        EmitGlobalSound("Memes.Rich")
-                    elseif abilityName == "ebf_clinkz_trickshot_passive" or abilityName == "imba_tower_multihit" or
-                        abilityName == "imba_tower_essence_drain" or
-                        abilityName == "angel_arena_rifle_OP" or
-                        abilityName == "garden_red_flower_base_OP" or
-                        abilityName == "imba_juggernaut_healing_ward_passive_redux" or
-                        abilityName == "imba_tower_salvo" or
-                        abilityName == "imba_tower_fervor" or
-                        abilityName == "imba_tower_split" or
-                        abilityName == "imba_tower_machinegun" or
-                        abilityName == "imba_tower_sniper" then
-                        EmitGlobalSound("Memes.BombTheShit")
-                    else
-                        EmitGlobalSound("Memes.SnipeHit")
-                    end
+                     EmitGlobalSound("Memes.SnipeHit")
                 end
             end
         end
@@ -5457,8 +5278,7 @@ function Pregame:addExtraTowers()
         ListenToGameEvent('entity_hurt', function(keys)
             -- Grab the entity that was hurt
             local ent = EntIndexToHScript(keys.entindex_killed)
-            --local attacker = EntIndexToHScript( keys.entindex_attacker )
-            
+
             -- Check for tower connections
             if ent:GetHealth() <= 0 and this.towerConnectors[ent] then
                 local tower = this.towerConnectors[ent]
@@ -5471,186 +5291,6 @@ function Pregame:addExtraTowers()
             end
         end, nil)
     end
-end
-
-function Pregame:multiplyNeutrals()
-        ListenToGameEvent('entity_hurt', function(keys)
-            local this = self
-            if this.optionStore['lodOptionNeutralMultiply'] == 1 then return end
-
-            -- Grab the entity that was hurt
-            local ent = EntIndexToHScript(keys.entindex_killed)         
-            if keys.entindex_attacker ~= nil then
-                attacker = EntIndexToHScript( keys.entindex_attacker )
-            end
-
-            if not attacker or not attacker:IsRealHero() then return end
-
-            -- Neutral Multiplier: Checks if hurt npc is neutral, dead, and if it doesnt have the clone token ability, and their is a valid attacker
-            if IsValidEntity(attacker) then
-                if ent:GetTeamNumber() == DOTA_TEAM_NEUTRALS and ent:GetHealth() <= 0 and ent:GetName() == "npc_dota_creep_neutral" and ent:FindAbilityByName("clone_token_ability") == nil then
-                                   
-                    local lastHits = PlayerResource:GetLastHits(attacker:GetOwner():GetPlayerID())
-                    --print(lastHits)
-                    self:MultiplyNeutralUnit( ent, attacker, this.optionStore['lodOptionNeutralMultiply'], lastHits )
-
-                end
-            end
-            
-        end, nil)
-end
-
-function Pregame:multiplyLaneCreeps()
-        ListenToGameEvent('entity_hurt', function(keys)
-            local this = self
-            if this.optionStore['lodOptionLaneMultiply'] == 0 then return end
-
-            -- Grab the entity that was hurt
-            local ent = EntIndexToHScript(keys.entindex_killed)
-            if keys.entindex_attacker ~= nil then
-                attacker = EntIndexToHScript( keys.entindex_attacker )
-            end
-
-            -- Neutral Multiplier: Checks if hurt npc is neutral, dead, and if it doesnt have the clone token ability, and their is a valid attacker
-            if IsValidEntity(ent) and IsValidEntity(attacker) then
-                if ent:GetName() == "npc_dota_creep_lane" and ent:FindAbilityByName("clone_token_ability") == nil then
-                    
-                    ent:AddAbility("clone_token_ability")
-                    self:MultiplyLaneUnit( ent, 2 )
-
-                end
-                if attacker:GetName() == "npc_dota_creep_lane" and attacker:FindAbilityByName("clone_token_ability") == nil then
-                    
-                    attacker:AddAbility("clone_token_ability")
-                    self:MultiplyLaneUnit( attacker, 2 )
-
-                end
-            end
-
-        end, nil)
-end
-
-function Pregame:darkMoonDrops()
-        ListenToGameEvent('entity_hurt', function(keys)
-            local this = self
-            if this.optionStore['lodOptionDarkMoon'] == 0 then return end
-
-            -- Grab the entity that was hurt
-            local ent = EntIndexToHScript(keys.entindex_killed)
-            if keys.entindex_attacker ~= nil then
-                attacker = EntIndexToHScript( keys.entindex_attacker )
-            end
-
-            if not attacker or not attacker:IsRealHero() then return end
-
-            -- Neutral Multiplier: Checks if hurt npc is neutral, dead, and if it doesnt have the clone token ability, and their is a valid attacker
-            if IsValidEntity(attacker) then
-                if ent:GetHealth() <= 0 then
-                    local giveBotGold = false
-
-                    local chance = 5
-
-                    -- If its a hero that got killed, it has much higher chance to spawn items
-                    if ent:IsRealHero() or ent:IsBuilding() or ent:GetUnitName() == "npc_dota_roshan" then
-                        chance = 50
-                    end
-
-                    if RollPercentage( chance ) then
-                        if util:isPlayerBot(attacker:GetOwner():GetPlayerID()) then 
-                            -- Bots wont use the TP scrolls, so compenstate them with free gold bag
-                            giveBotGold = true
-                        else
-                            local newItem = CreateItem( "item_tpscroll", nil, nil )
-                            newItem:SetPurchaseTime( 0 )
-                            if newItem:IsPermanent() and newItem:GetShareability() == ITEM_FULLY_SHAREABLE then
-                                item:SetStacksWithOtherOwners( true )
-                            end
-                            local drop = CreateItemOnPositionSync( ent:GetAbsOrigin(), newItem )
-                            drop.Holdout_IsLootDrop = true
-                            
-                            Timers:CreateTimer(function()
-                                if not drop:IsNull() then 
-                                    UTIL_Remove(drop)
-                                end
-                                print("tried to remove")
-                            end, DoUniqueString('removeitem'), 30)
-
-                            
-                            local dropTarget = ent:GetAbsOrigin() + RandomVector( RandomFloat( 50, 350 ) )
-
-                            
-                            newItem:LaunchLoot( false, 300, 0.75, dropTarget )
-                        end     
-                    end
-
-                    if RollPercentage( chance ) then
-                        local newItem = CreateItem( "item_health_potion", nil, nil )
-                        newItem:SetPurchaseTime( 0 )
-                        if newItem:IsPermanent() and newItem:GetShareability() == ITEM_FULLY_SHAREABLE then
-                            item:SetStacksWithOtherOwners( true )
-                        end
-                        local drop = CreateItemOnPositionSync( ent:GetAbsOrigin(), newItem )
-                        drop.Holdout_IsLootDrop = true
-                        
-                        local dropTarget = ent:GetAbsOrigin() + RandomVector( RandomFloat( 50, 350 ) )
-
-                        if util:isPlayerBot(attacker:GetOwner():GetPlayerID()) then 
-                            dropTarget = attacker:GetAbsOrigin()
-                        end
-
-                        newItem:LaunchLoot( true, 300, 0.75, dropTarget )
-                    end
-                    
-
-                    if RollPercentage( chance ) then
-                        local newItem = CreateItem( "item_mana_potion", nil, nil )
-                        newItem:SetPurchaseTime( 0 )
-                        if newItem:IsPermanent() and newItem:GetShareability() == ITEM_FULLY_SHAREABLE then
-                            item:SetStacksWithOtherOwners( true )
-                        end
-                        local drop = CreateItemOnPositionSync( ent:GetAbsOrigin(), newItem )
-                        drop.Holdout_IsLootDrop = true
-                        
-                        local dropTarget = ent:GetAbsOrigin() + RandomVector( RandomFloat( 50, 350 ) )
-
-                        if util:isPlayerBot(attacker:GetOwner():GetPlayerID()) then 
-                            dropTarget = attacker:GetAbsOrigin()
-                        end
-
-                        newItem:LaunchLoot( true, 300, 0.75, dropTarget )
-                    end
-                    
-
-                    if RollPercentage( chance ) or giveBotGold then
-                        local newItem = CreateItem( "item_bag_of_gold", nil, nil )
-                        
-                        local nGoldAmountBase = 20
-                        local nGoldAmountExtra = 20 + attacker:GetLevel()*2
-                        local nGoldFinal = RandomInt(nGoldAmountBase, nGoldAmountExtra)
-                        nGoldFinal = nGoldFinal * 10
-
-                        -- If this is compenstation for TP scroll give it price of TP scroll
-                        if giveBotGold then 
-                            nGoldFinal = 50 * 10
-                        end
-
-                        newItem:SetPurchaseTime( 0 )
-                        newItem:SetCurrentCharges( nGoldFinal )
-                            
-                        local drop = CreateItemOnPositionSync( ent:GetAbsOrigin(), newItem )
-                        local dropTarget = ent:GetAbsOrigin() + RandomVector( RandomFloat( 50, 250 ) )
-                       
-                        if util:isPlayerBot(attacker:GetOwner():GetPlayerID()) then 
-                            dropTarget = attacker:GetAbsOrigin()
-                        end
-
-                        newItem:LaunchLoot( true, 300, 0.75, dropTarget )
-                    end
-
-                end
-            end
-            
-        end, nil)
 end
 
 -- Prevents Fountain Camping
@@ -6238,11 +5878,8 @@ function Pregame:fixSpawningIssues()
     }
 
     local disabledPerks = {
-        --npc_dota_hero_disruptor = true,
-        npc_dota_hero_shadow_demon = true,
-        npc_dota_hero_spirit_breaker = true,
-        npc_dota_hero_spirit_slardar = true,
-        npc_dota_hero_ancient_apparition = true,
+        npc_dota_hero_disruptor = true,
+        --npc_dota_hero_storm_spirit = true,
         npc_dota_hero_wisp = true
     }
 
@@ -6252,16 +5889,6 @@ function Pregame:fixSpawningIssues()
 
         -- Ensure it's a valid unit
         if IsValidEntity(spawnedUnit) then
-
-            -- Spellfix: Give Eyes in the Forest a notification for nearby enemies.
-            if spawnedUnit:GetName() == "npc_dota_treant_eyes" then
-                Timers:CreateTimer(function()
-                    spawnedUnit:AddAbility("treant_eyes_in_the_forest_notification")
-                    local noticeAura = spawnedUnit:FindAbilityByName("treant_eyes_in_the_forest_notification")
-                    noticeAura:SetLevel(1)
-                end, DoUniqueString('eyesFix'), 0.5)
-            end
-
             if Wearables:HasDefaultWearables( spawnedUnit:GetUnitName() ) then
                 Wearables:AttachWearableList( spawnedUnit, Wearables:GetDefaultWearablesList( spawnedUnit:GetUnitName() ) )
             end
@@ -6339,12 +5966,6 @@ function Pregame:fixSpawningIssues()
                                 spawnedUnit:SwapAbilities("sniper_assassinate","sniper_assassinate_redux",false,true)
                                 spawnedUnit:RemoveAbility("sniper_assassinate")
                         end
-                        -- Change sniper assassinate to our custom version to work with aghs
-                        if this.optionStore['lodOptionBanningUseBanList'] == 1 and spawnedUnit:HasAbility("doom_bringer_infernal_blade") and spawnedUnit:GetUnitName() == "npc_dota_hero_gyrocopter" and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("doom_bringer_infernal_blade"):IsHidden() then
-                                spawnedUnit:AddAbility("chaos_knight_chaos_strike_gyro")
-                                spawnedUnit:SwapAbilities("doom_bringer_infernal_blade","chaos_knight_chaos_strike_gyro",false,true)
-                                spawnedUnit:RemoveAbility("doom_bringer_infernal_blade")
-                        end
                         -- Custom Flesh Heap fixes
                         for abilitySlot=0,6 do
                             local abilityTemp = spawnedUnit:GetAbilityByIndex(abilitySlot)
@@ -6411,7 +6032,7 @@ function Pregame:fixSpawningIssues()
                                     end
                                 elseif heroName == "npc_dota_hero_wisp" or heroName == "npc_dota_hero_rubick" then
                                      if string.find(spawnedUnit:GetAbilityByIndex(0):GetAbilityName(),"special_bonus") then
-                                        print("0index talent")
+                                        --print("0index talent")
                                         spawnedUnit.tempAbil = spawnedUnit:GetAbilityByIndex(0):GetAbilityName()
                                         spawnedUnit:RemoveAbility(spawnedUnit.tempAbil)
                                     end
@@ -6424,7 +6045,7 @@ function Pregame:fixSpawningIssues()
                                     end
                                 else
                                     if string.find(spawnedUnit:GetAbilityByIndex(0):GetAbilityName(),"special_bonus") then
-                                        print("0index talent")
+                                        --print("0index talent")
                                         spawnedUnit.tempAbil = spawnedUnit:GetAbilityByIndex(0):GetAbilityName()
                                         spawnedUnit:RemoveAbility(spawnedUnit.tempAbil)
                                     end
@@ -6441,15 +6062,23 @@ function Pregame:fixSpawningIssues()
                         spawnedUnit.hasTalent = true
                     end
 
-                    --for i = 0, spawnedUnit:GetAbilityCount() do
-                   --     if spawnedUnit:GetAbilityByIndex(i) then
+                    for i = 0, spawnedUnit:GetAbilityCount() do
+                        if spawnedUnit:GetAbilityByIndex(i) then
                             --print("removed") 
-                      --      local ability = spawnedUnit:GetAbilityByIndex(i)
-                         --   if ability then
-                             --   print("Ability " .. i .. ": " .. ability:GetAbilityName() .. ", Level " .. ability:GetLevel())
-                          --  end
-                       -- end
-                    --end
+                            local ability = spawnedUnit:GetAbilityByIndex(i)
+                            if ability then
+                                --print("Ability " .. i .. ": " .. ability:GetAbilityName() .. ", Level " .. ability:GetLevel())
+
+                                -- Loop over all the abilities and see if there is no duplicate talent
+                                for j=i+1,23 do
+                                    local abil = spawnedUnit:GetAbilityByIndex(j)
+                                    if abil and IsValidEntity(abil) and IsValidEntity(ability) and abil:GetAbilityName() == ability:GetAbilityName() then
+                                        spawnedUnit:RemoveAbility(abil:GetAbilityName())
+                                    end
+                                end
+                            end
+                        end
+                    end
                 end, DoUniqueString('addTalents'), 1.5)
                 
 
