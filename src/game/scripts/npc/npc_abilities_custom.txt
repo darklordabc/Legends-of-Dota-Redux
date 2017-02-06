@@ -157,6 +157,7 @@
 #base "abilities\generation\zulf_jet_stream.txt"
 #base "abilities\generation\zulf_typhoon.txt"
 #base "abilities\generation\zulf_typhoon_OP.txt"
+#base "abilities\spelllab\spell_lab_symbiotic.txt"
 #base "abilities\imba\alchemist_acid_spray_imba.txt"
 #base "abilities\imba\alchemist_chemical_rage_imba.txt"
 #base "abilities\imba\alchemist_goblins_greed_imba.txt"

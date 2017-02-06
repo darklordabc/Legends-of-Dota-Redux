@@ -7760,6 +7760,16 @@
         "DOTA_Tooltip_ability_spawnlord_master_freeze_creep_duration"     "PETRIFY DURATION:"
         "DOTA_Tooltip_ability_spawnlord_master_freeze_creep_damage"       "PETRIFY DPS:"
 
+        "DOTA_Tooltip_ability_spell_lab_symbiotic"                                      "Arcane Symbiosis"
+        "DOTA_Tooltip_ability_spell_lab_symbiotic_Description" "You bind yourself to target allied hero. You may attack and cast spells as normal but you share manapool. If your symbiotic host dies, you die as well.\nMana pool is shared as percentages.\nWhen host takes damage ending symbiosis is put on 3s cooldown.\nHost hero is granted bonus to all stats."
+        "DOTA_Tooltip_ability_spell_lab_symbiotic_bonus" "+$all"
+        "DOTA_Tooltip_spell_lab_symbiotic_modifier" "Arcance Symbiosis"
+        "DOTA_Tooltip_spell_lab_symbiotic_modifier_Description" "You share mana pool with a host hero."
+        "DOTA_Tooltip_spell_lab_symbiotic_target"   "Arcance Symbiosis: Host"
+        "DOTA_Tooltip_spell_lab_symbiotic_target_Description" "You share mana pool with a symbiot hero.\nGrants bonus stats."
+        "DOTA_Error_spell_lab_symbiotic_no_self_target" "No self cast."
+        "DOTA_Error_spell_lab_symbiotic_no_inception" "Can't cast while being host."
+
         "DOTA_Tooltip_ability_item_bag_of_gold"                             "Bag of Gold"
         "DOTA_Tooltip_Ability_item_health_potion"                           "Health Potion"
         "DOTA_Tooltip_Ability_item_mana_potion"                             "Mana Potion"   
