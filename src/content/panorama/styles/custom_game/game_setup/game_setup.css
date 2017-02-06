@@ -794,6 +794,9 @@ Button:enabled:hover {
     flow-children: right;
 }
 
+.ingame_menu #backtrackBtn.hidden {
+	visibility: visible;
+}
 
 .ingame_menu #tipPanel Label {
 	font-size: 16px;
