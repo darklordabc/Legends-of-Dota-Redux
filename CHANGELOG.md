@@ -6,9 +6,10 @@ All notable changes to this project will be documented in this file.
 ### Bug Fixing/New Features
 - Fixed Jingu Mastery being unselectable
 - Fixed Bots picking invis abilities when invis ban mode 2 is choosen
-- Added new inverted map
+- Added new OPTIONAL inverted map
 - Made changes to the ingame builder, you can view game settings from that builder now
 - Fixed reconnecting breaking the skill picking menu
+- Fixed Riki, Techies and Gyro's talents being unlearnable
 
 ### Balance
 - Added respawn time increaser, at 40 minutes respawn times will become minimum 50% of original respawn times. 
