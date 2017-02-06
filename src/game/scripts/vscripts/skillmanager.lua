@@ -64,11 +64,7 @@ end
 
 local manualActivate = {
     keeper_of_the_light_blinding_light_lod = true,
-    keeper_of_the_light_recall_lod = true,
-    keeper_of_the_light_blinding_light_imba = true,
-    keeper_of_the_light_recall_imba = true,
-    imba_queenofpain_delightful_torment = true,
-    imba_bounty_hunter_shadow_jaunt = true
+    keeper_of_the_light_recall_lod = true
 }
 
 local towerClasses = {
@@ -81,7 +77,8 @@ local towerClasses = {
 -- Auto set this to max level
 local autoSkill = {
     nyx_assassin_unburrow = true,
-    earth_spirit_stone_caller = true
+    earth_spirit_stone_caller = true,
+    --imba_bane_nightmare_end = true,
 }
 
 local heroIDToName = {}
@@ -262,13 +259,14 @@ function skillManager:RemoveAllSkills(hero)
     -- Remove all old skills
     for k,v in pairs(currentSkillList[hero]) do
         if hero:HasAbility(v) then
-            --if PlayerResource:IsFakeClient(hero:GetPlayerID()) then
+            if PlayerResource:IsFakeClient(hero:GetPlayerID()) then
                 hero:FindAbilityByName(v):SetHidden(true)
-           -- else
-           --     if not string.find(v, string.sub(hero:GetUnitName(), 15)) then  -- npc_dota_hero_xx
-            --        hero:RemoveAbility(v)
-            --    end
-            --end
+            else
+                if not string.find(v, string.sub(hero:GetUnitName(), 15)) then  -- npc_dota_hero_xx
+                    hero:RemoveAbility(v)
+                     
+                end
+            end
 		end
     end
 
