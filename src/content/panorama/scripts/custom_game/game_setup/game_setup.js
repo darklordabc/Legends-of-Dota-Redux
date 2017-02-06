@@ -1007,6 +1007,7 @@ function onBacktrackButton() {
     masterRoot.SetHasClass('review_selection', reviewingOptions);
     masterRoot.SetHasClass('phase_selection_selected', (selectedPhase == PHASE_SELECTION || selectedPhase == PHASE_INGAME) && !reviewingOptions);
 	
+	$('#backtrackBtnTxt').text = $.Localize((reviewingOptions)? 'reviewReturn': 'reviewOptions');
 }
 
 // Sets up the hero builder tab
