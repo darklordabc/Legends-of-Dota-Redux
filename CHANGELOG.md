@@ -2,7 +2,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 5.7 - Development Version
+## 5.8 - Development Version
+### Bug Fixing/New Features
+- 
+
+### Balance
+- 
+
+## 5.7 - Steam Version
 ### Bug Fixing/New Features
 - Fixed Jingu Mastery being unselectable
 - Fixed Bots picking invis abilities when invis ban mode 2 is choosen
@@ -10,11 +17,13 @@ All notable changes to this project will be documented in this file.
 - Made changes to the ingame builder, you can view game settings from that builder now
 - Fixed reconnecting breaking the skill picking menu
 - Fixed Riki, Techies and Gyro's talents being unlearnable
+- Improved how exp is given for killing enemy heros after level 25, jumping to lvl 100 bug should be gone
+- If you kill a bot 10 times, and its an all bot team, they will spawn back with helpers, this helper mechanic is experimental right now
 
 ### Balance
 - Added respawn time increaser, at 40 minutes respawn times will become minimum 50% of original respawn times. 
 
-## 5.6 - Steam Version
+## 5.6 
 ### Bug Fixing/New Features
 - Added extra setting for no invisibility mutator, now u can block shadow blades
 - Added Double Lane Creeps mutator
