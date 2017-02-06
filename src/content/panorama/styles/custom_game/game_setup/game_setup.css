@@ -3474,7 +3474,19 @@ Button:enabled:hover {
     vertical-align: middle;
 }
 
+.ingame_menu #theRadiant, .ingame_menu #theDire {
+    visibility: collapse;
+}
+
+.ingame_menu .mainWorkspace {
+	padding-left: 138px;
+	padding-right: 138px;
+}
+
 .ingame_menu #tipPanel {
 	visibility: collapse;
 }
 
+.ingame_menu #backtrackBtn.hidden {
+	visibility: visible;
+}
