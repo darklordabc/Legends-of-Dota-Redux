@@ -6267,6 +6267,15 @@ function Pregame:fixSpawningIssues()
             end
             -- Detect spawn dummy
             if spawnedUnit:IsRealHero() then
+
+                -- hotfix experiment: If you kill a bot ten times, they respawn with help
+                if spawnedUnit:GetDeaths() == 10 and util:isPlayerBot(spawnedUnit:GetPlayerID()) and util:GetActiveHumanPlayerCountForTeam(spawnedUnit:GetTeam()) == 0 then
+                    for i=1,5 do
+                        local botHelper = CreateUnitByName("npc_dota_lucifers_claw_doomling", spawnedUnit:GetAbsOrigin(), true, spawnedUnit, spawnedUnit, spawnedUnit:GetTeamNumber())
+                        botHelper:SetControllableByPlayer(spawnedUnit:GetPlayerID(), true)
+                    end
+                end
+
                 self.spawnedArray = self.spawnedArray or {}
 
                 if not self.spawnedArray[spawnedUnit:GetPlayerID()] then

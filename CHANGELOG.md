@@ -10,6 +10,8 @@ All notable changes to this project will be documented in this file.
 - Made changes to the ingame builder, you can view game settings from that builder now
 - Fixed reconnecting breaking the skill picking menu
 - Fixed Riki, Techies and Gyro's talents being unlearnable
+- Improved how exp is given for killing enemy heros after level 25, jumping to lvl 100 bug should be gone
+- If you kill a bot 10 times, and its an all bot team, they will spawn back with helpers, this helper mechanic is experimental right now
 
 ### Balance
 - Added respawn time increaser, at 40 minutes respawn times will become minimum 50% of original respawn times. 
