@@ -7988,6 +7988,149 @@
 
 	}
 
+	"npc_dota_creature_big_bear"
+	{										
+		// General
+		//----------------------------------------------------------------
+		"Model"						"models\items\lone_druid\true_form\iron_claw_true_form\iron_claw_true_form.vmdl"	// Model.
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"LoneDruid_SpiritBear"
+		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_lone_druid.vsndevts"
+		"Level"						"4"
+		"ModelScale" 				"1.3"
+	    "ConsideredHero"             "1"
+	    "MinimapIcon"				"minimap_roshancamp"
+	
+		// Abilities
+		//----------------------------------------------------------------
+		"AbilityLayout"				"6"
+		"Ability1"					"ursa_fury_swipes"			// Ability 1
+		"Ability2"					""			// Ability 2
+		"Ability3"					"polar_furbolg_ursa_warrior_thunder_clap"			// Ability 3
+		"Ability4"					""			// Ability 4
+	
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"13"		// Physical protection.
+	
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"180"		// Damage range min.
+		"AttackDamageMax"			"200"		// Damage range max.
+		"AttackRate"				"1.7"		// Speed of attack.
+		"AttackAnimationPoint"		"0.43"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"5000"		// Range within a target can be acquired.
+		"AttackRange"				"150"		// Range within a target can be attacked.
+		"ProjectileModel"			""			// Particle system model for projectile.
+		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+	
+		// Bounds
+		//----------------------------------------------------------------
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"
+		"RingRadius"				"180"
+		"HealthBarOffset"			"240"
+	
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"160"		// Experience earn.
+		"BountyGoldMin"				"150"		// Gold earned min.
+		"BountyGoldMax"				"150"		// Gold earned max.
+	
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"380"		// Speed.
+		"MovementTurnRate"			"0.6"		// Turning rate.
+	
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"4500"		// Base health.
+		"StatusHealthRegen"			"12"			// Health regeneration rate.
+		"StatusMana"				"3000"		// Base mana.
+		"StatusManaRegen"			"10"		// Mana regeneration rate.
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1400"		// Range of vision during day light.
+		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+	
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_BADGUYS"							// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"vscripts"					"UnitAI.lua"
+	
+		//Precache
+		//---------------------------------------------------------------------
+		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_ursa.vsndevts"
+		"precache"
+		{
+			"particle_folder"		"particles/units/heroes/hero_ursa"
+		}
+
+		"HasInventory"  "1"
+
+		// Creature Data
+		//----------------------------------------------------------------------------------------------------------------------
+		"Creature"
+		{
+			"CanRespawn"				"0"
+			"DisableResistance"			"80.0"
+			
+			"States"
+			{
+				"Invade"
+				{
+					"Name"				"Invade"
+					"Aggression"		"100.0"
+					"Avoidance"			"0.0"
+					"Support"			"0.0"
+				}
+			}
+	
+			"DefaultState"				"Invade"
+			
+			"AttachWearables"
+			{
+				"Wearable1"
+				{
+					"ItemDef"			"85"
+				}
+				"Wearable2"
+				{
+					"ItemDef"			"86"
+				}
+				"Wearable3"
+				{
+					"ItemDef"			"87"
+				}
+				"Wearable4"
+				{
+					"ItemDef"			"88"
+				}
+			}
+
+			"OffensiveAbilities"
+            {
+                "Ability1"
+                {
+                    "Name"        "polar_furbolg_ursa_warrior_thunder_clap"
+                    "MinimumTargets"	"1"
+                }
+            }
+
+            "EquippedItems"
+            {
+                "MoonShard"    {    "Item"    "item_moon_shard"    }
+                "Plate"   {   "Item"        "item_platemail"  }
+                "Relic" {   "Item"  "item_relic"}
+            }
+		}
+	}
+
 
 	
 	

@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ## 5.8 - Development Version
 ### Bug Fixing/New Features
-- 
+- Fixed starfall aghs not doing damage
 
 ### Balance
 - 

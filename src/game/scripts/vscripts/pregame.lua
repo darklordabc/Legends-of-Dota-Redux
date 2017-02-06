@@ -2784,46 +2784,79 @@ function Pregame:MultiplyNeutralUnit( unit, killer, mult, lastHits )
         end
 
         -- Lucifier Attack
-        if not alreadySpawned and lastHits > 100 and RollPercentage(15) then
-            alreadySpawned = true
-            local lucifier = CreateUnitByName( "npc_dota_lucifers_claw_doomling", loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
-            
-            lucifier:AddAbility("spawnlord_master_freeze_creep")
-            local bash = lucifier:FindAbilityByName("spawnlord_master_freeze_creep")
-            local bashlevel = math.min(4, (math.floor((lastHits-100) / 20)) )
-            bash:SetLevel(bashlevel)
+        if not alreadySpawned and lastHits >= 100 then
+            if killer.hadLucifier ~= true or RollPercentage(5) then
+                killer.hadLucifier = true
 
-            lucifier:AddNewModifier(lucifier, nil, "modifier_phased", {Duration = 2})
-            lucifier:AddNewModifier(lucifier, nil, "modifier_kill", {duration = 45})
+                alreadySpawned = true
+                local lucifier = CreateUnitByName( "npc_dota_lucifers_claw_doomling", loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
+                
+                lucifier:AddAbility("spawnlord_master_freeze_creep")
+                local bash = lucifier:FindAbilityByName("spawnlord_master_freeze_creep")
+                local bashlevel = math.min(4, (math.floor((lastHits-100) / 20)) )
+                bash:SetLevel(bashlevel)
 
-            Timers:CreateTimer(function()
-                lucifier:MoveToTargetToAttack(killer)
-            end, DoUniqueString('attackPlayer'), 0.5)
+                lucifier:AddNewModifier(lucifier, nil, "modifier_phased", {Duration = 2})
+                lucifier:AddNewModifier(lucifier, nil, "modifier_kill", {duration = 45})
+
+                Timers:CreateTimer(function()
+                    lucifier:MoveToTargetToAttack(killer)
+                end, DoUniqueString('attackPlayer'), 0.5)
+            end
         end
 
         -- Araknarok Tank
-        if not alreadySpawned and lastHits > 200 and RollPercentage(15) then
-            alreadySpawned = true
-            local araknarok = CreateUnitByName( "npc_dota_araknarok_spiderling", loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
-            
-            araknarok:AddAbility("broodmother_incapacitating_bite")
-            local poison = araknarok:FindAbilityByName("broodmother_incapacitating_bite")
-            local poisonlevel = math.min(4, (math.floor((lastHits-200) / 20)) )
-            poison:SetLevel(poisonlevel)
+        if not alreadySpawned and lastHits >= 200 then
+            if killer.hadAraknarok ~= true or RollPercentage(5) then
+                killer.hadAraknarok = true
 
-            araknarok:AddAbility("imba_tower_essence_drain")
-            local lifedrain = araknarok:FindAbilityByName("imba_tower_essence_drain")
-            local drainlevel = math.min(3, (math.floor((lastHits-200) / 26)) )
-            lifedrain:SetLevel(drainlevel)
+                alreadySpawned = true
+                local araknarok = CreateUnitByName( "npc_dota_araknarok_spiderling", loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
+                
+                araknarok:AddAbility("broodmother_incapacitating_bite")
+                local poison = araknarok:FindAbilityByName("broodmother_incapacitating_bite")
+                local poisonlevel = math.min(4, (math.floor((lastHits-200) / 20)) )
+                poison:SetLevel(poisonlevel)
 
-            araknarok:SetHullRadius(55)
-            
-            araknarok:AddNewModifier(araknarok, nil, "modifier_phased", {Duration = 2})
-            araknarok:AddNewModifier(araknarok, nil, "modifier_kill", {duration = 45})
-            
-            Timers:CreateTimer(function()
-                araknarok:MoveToTargetToAttack(killer)
-            end, DoUniqueString('attackPlayer'), 0.5)
+                araknarok:AddAbility("imba_tower_essence_drain")
+                local lifedrain = araknarok:FindAbilityByName("imba_tower_essence_drain")
+                local drainlevel = math.min(3, (math.floor((lastHits-200) / 26)) )
+                lifedrain:SetLevel(drainlevel)
+
+                araknarok:SetHullRadius(55)
+                
+                araknarok:AddNewModifier(araknarok, nil, "modifier_phased", {Duration = 2})
+                araknarok:AddNewModifier(araknarok, nil, "modifier_kill", {duration = 45})
+                
+                Timers:CreateTimer(function()
+                    araknarok:MoveToTargetToAttack(killer)
+                end, DoUniqueString('attackPlayer'), 0.5)
+            end
+        end
+
+        -- Daddy Bear Boss
+        if not alreadySpawned and lastHits > 250 then
+            if killer.hadDaddyBear ~= true then
+                killer.hadDaddyBear = true
+
+                alreadySpawned = true
+
+                team = DOTA_TEAM_NEUTRALS
+                if killer:GetTeam() == DOTA_TEAM_BADGUYS then
+                    team = DOTA_TEAM_GOODGUYS
+                elseif killer:GetTeam() == DOTA_TEAM_GOODGUYS then
+                    team = DOTA_TEAM_BADGUYS
+                end
+
+                local daddyBear = CreateUnitByName( "npc_dota_creature_big_bear", loc, true, nil, nil, team )
+                           
+                daddyBear:AddNewModifier(araknarok, nil, "modifier_phased", {Duration = 2})
+                daddyBear:AddNewModifier(araknarok, nil, "modifier_kill", {duration = 200})
+                
+                Timers:CreateTimer(function()
+                    daddyBear:MoveToTargetToAttack(killer)
+                end, DoUniqueString('attackPlayer'), 0.5)
+            end
         end
     end      
 end
@@ -5491,6 +5524,7 @@ function Pregame:multiplyNeutrals()
                 if ent:GetTeamNumber() == DOTA_TEAM_NEUTRALS and ent:GetHealth() <= 0 and ent:GetName() == "npc_dota_creep_neutral" and ent:FindAbilityByName("clone_token_ability") == nil then
                                    
                     local lastHits = PlayerResource:GetLastHits(attacker:GetOwner():GetPlayerID())
+                    local lastHits = PlayerResource:GetLastHits(attacker:GetOwner():GetPlayerID()) + 1
                     --print(lastHits)
                     self:MultiplyNeutralUnit( ent, attacker, this.optionStore['lodOptionNeutralMultiply'], lastHits )
 

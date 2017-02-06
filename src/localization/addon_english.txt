@@ -7773,4 +7773,6 @@
         "DOTA_Tooltip_ability_item_bag_of_gold"                             "Bag of Gold"
         "DOTA_Tooltip_Ability_item_health_potion"                           "Health Potion"
         "DOTA_Tooltip_Ability_item_mana_potion"                             "Mana Potion"   
+
+        "npc_dota_creature_big_bear"        "Daddy Bear"
 }
