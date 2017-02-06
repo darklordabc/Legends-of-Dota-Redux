@@ -6441,15 +6441,23 @@ function Pregame:fixSpawningIssues()
                         spawnedUnit.hasTalent = true
                     end
 
-                    --for i = 0, spawnedUnit:GetAbilityCount() do
-                   --     if spawnedUnit:GetAbilityByIndex(i) then
+                    for i = 0, spawnedUnit:GetAbilityCount() do
+                        if spawnedUnit:GetAbilityByIndex(i) then
                             --print("removed") 
-                      --      local ability = spawnedUnit:GetAbilityByIndex(i)
-                         --   if ability then
-                             --   print("Ability " .. i .. ": " .. ability:GetAbilityName() .. ", Level " .. ability:GetLevel())
-                          --  end
-                       -- end
-                    --end
+                            local ability = spawnedUnit:GetAbilityByIndex(i)
+                            if ability then
+                                --print("Ability " .. i .. ": " .. ability:GetAbilityName() .. ", Level " .. ability:GetLevel())
+
+                                -- Loop over all the abilities and see if there is no duplicate talent
+                                for j=i+1,23 do
+                                    local abil = spawnedUnit:GetAbilityByIndex(j)
+                                    if abil and IsValidEntity(abil) and IsValidEntity(ability) and abil:GetAbilityName() == ability:GetAbilityName() then
+                                        spawnedUnit:RemoveAbility(abil:GetAbilityName())
+                                    end
+                                end
+                            end
+                        end
+                    end
                 end, DoUniqueString('addTalents'), 1.5)
                 
 
