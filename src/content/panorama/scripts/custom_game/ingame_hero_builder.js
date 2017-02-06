@@ -24,6 +24,8 @@ function showIngameBuilder() {
         // heroBuilderPanel.SetHasClass('phase_ingame', true);
         heroBuilderPanel.SetHasClass('phase_selection_selected', true);
         heroBuilderPanel.SetHasClass('phase_selection', true);
+		heroBuilderPanel.SetHasClass('ingame_menu', true);
+		heroBuilderPanel.SetHasClass('review_selection', false);
 
         heroBuilderPanel.balanceMode = balanceMode;
         heroBuilderPanel.FindChildTraverse("balanceModeFilter").SetHasClass("balanceModeDisabled", true);
@@ -51,7 +53,7 @@ function showIngameBuilder() {
         $('#heroBuilderDisplay').visible = !$('#heroBuilderDisplay').visible;
     }
 
-    heroBuilderPanel.doActualTeamUpdate();
+    //heroBuilderPanel.doActualTeamUpdate();
 }
 
 (function() {

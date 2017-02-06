@@ -195,8 +195,12 @@
 #unassignedTeamContainer {
     horizontal-align: center;
     text-align: center;
-    flow-children: down;
+    flow-children: right;
     visibility: collapse;
+}
+
+#unassignedTeamLabel {
+	margin-right: 20px;
 }
 
 .phase_option_selection.phase_option_selection_selected #unassignedTeamContainer {
@@ -734,9 +738,9 @@ Button:enabled:hover {
     transition-property: transform;
     transition-duration: 5.00s;
 	
-    width: 57.5%;
-    height: 150px;
-	margin-bottom: 18px;
+    width: 42.5%;
+    height: 113px;
+	margin-bottom: 20px;
     margin-right: 138px;
     horizontal-align: right;
 	vertical-align: bottom;
@@ -760,13 +764,13 @@ Button:enabled:hover {
 
 #tipPanel Label {
 	height: 100%;
-    margin: 8px;
+    margin: 6px;
     color: #FFFFFF;
 
     vertical-align: center;
 
-    font-size: 28px;
-    line-height: 28px;
+    font-size: 21px;
+    line-height: 21px;
 }
 
 #tipPanel Image {
@@ -1496,7 +1500,7 @@ Button:enabled:hover {
 #pickingPhase {
     visibility: collapse;
     flow-children: down;
-	height: 808px;
+	height: 850px;
 }
 
 .phase_selection_selected #pickingPhase {
@@ -2770,7 +2774,7 @@ Button:enabled:hover {
 
 #optionSelection {
     width: 100%;
-    height: 75%;
+    height: 775px;
 
     visibility: collapse;
     horizontal-align: middle;
@@ -2783,7 +2787,7 @@ Button:enabled:hover {
 
 
 .review_selection #optionSelection{
-	height: 808px;
+	height: 850px;
 	margin-bottom: -200px;
 }
 
@@ -3468,4 +3472,25 @@ Button:enabled:hover {
 #pickingPhaseTabBar .heroBuildMenuButton Label {
     horizontal-align: center;
     vertical-align: middle;
-}    
+}
+
+.ingame_menu #theRadiant, .ingame_menu #theDire {
+    visibility: collapse;
+}
+
+.ingame_menu .mainWorkspace {
+	padding-left: 138px;
+	padding-right: 138px;
+}
+
+.ingame_menu #tipPanel {
+	visibility: collapse;
+}
+
+.ingame_menu #backtrackBtn.hidden {
+	visibility: visible;
+}
+
+.ingame_menu #optionSelection, .ingame_menu #pickingPhase{
+	height: 825px;
+}

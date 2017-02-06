@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 - Fixed Jingu Mastery being unselectable
 - Fixed Bots picking invis abilities when invis ban mode 2 is choosen
 - Added new inverted map
+- Made changes to the ingame builder, you can view game settings from that builder now
 
 ### Balance
 - Added respawn time increaser, at 40 minutes respawn times will become minimum 50% of original respawn times. 
