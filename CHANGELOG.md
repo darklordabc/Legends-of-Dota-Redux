@@ -2,7 +2,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 5.7 - Development Version
+## 5.8 - Development Version
+### Bug Fixing/New Features
+- 
+
+### Balance
+- 
+
+## 5.7 - Steam Version
 ### Bug Fixing/New Features
 - Fixed Jingu Mastery being unselectable
 - Fixed Bots picking invis abilities when invis ban mode 2 is choosen
@@ -16,7 +23,7 @@ All notable changes to this project will be documented in this file.
 ### Balance
 - Added respawn time increaser, at 40 minutes respawn times will become minimum 50% of original respawn times. 
 
-## 5.6 - Steam Version
+## 5.6 
 ### Bug Fixing/New Features
 - Added extra setting for no invisibility mutator, now u can block shadow blades
 - Added Double Lane Creeps mutator
