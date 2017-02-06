@@ -35,6 +35,31 @@ function Debug:init()
         end
     end, 'player say', 0)
 
+    Convars:RegisterCommand('level_exp_table', function(c, team)
+        local cmdPlayer = Convars:GetCommandClient()
+        if cmdPlayer then
+            local playerID = cmdPlayer:GetPlayerID()
+            if playerID ~= nil and playerID ~= -1 then
+                local hero = cmdPlayer:GetAssignedHero()
+                local function GetXPForLevel( x )
+                    if x == 1 then
+                        return 100
+                    elseif x < 8 then
+                        return 20 * (x + 4)
+                    elseif x == 8 then
+                        return 330
+                    else
+                        return GetXPForLevel( x - 1 ) + 110
+                    end
+                end
+                for i=1,100 do
+                    print(i, GetXPForLevel( i ))
+                end
+                print("Current Bounty: ", hero:GetDeathXP())
+            end
+        end
+    end, 'level_exp_table', 0)
+
     Convars:RegisterCommand('print_abilities', function(c, team)
         local cmdPlayer = Convars:GetCommandClient()
         if cmdPlayer then
