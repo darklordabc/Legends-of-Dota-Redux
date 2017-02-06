@@ -1,0 +1,27 @@
+"DOTAAbilities" {
+	"invoker_wex_lod" {
+		"BaseClass" "invoker_wex"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"MaxLevel" "4"
+		"RequiredLevel" "1"
+		"AbilityCooldown" "0"
+		"AbilityManaCost" "0"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"attack_speed_per_instance" "2 6 10 14"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"move_speed_per_instance" "1 3 5 7"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"bonus_agility" "2 6 10 14"
+			}
+		}
+	}
+}

@@ -1,0 +1,25 @@
+"DOTAAbilities" {
+	"pudge_flesh_heap_int" {
+		"BaseClass" "ability_lua"
+		"AbilityTextureName" "custom/flesh_heap_int"
+		"ScriptFile" "abilities/pudge_flesh_heap_int.lua"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastRange" "450"
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_FLOAT"
+				"flesh_heap_intelligence_buff_amount" "1.0 1.5 2 2.5"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"flesh_heap_range" "450"
+			}
+		}
+	}
+}

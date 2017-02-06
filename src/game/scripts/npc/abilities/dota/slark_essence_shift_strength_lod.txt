@@ -1,0 +1,98 @@
+"DOTAAbilities" {
+	"slark_essence_shift_strength_lod" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityTextureName" "custom/slark_essence_shift_strength_lod"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"ranged_chance" "65"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"str_gain" "3"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"stat_loss" "-1"
+			}
+
+			"04" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "15 30 60 120"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_slark_essence_shift_strength_datadriven" {
+				"Passive" "1"
+				"IsHidden" "1"
+
+				"OnAttackLanded" {
+					"RunScript" {
+						"ScriptFile" "abilities/slark_essence_shift_strength_lod.lua"
+						"Function" "modifier_slark_essence_shift_strength_datadriven_on_attack_landed"
+						"StatLoss" "%stat_loss"
+					}
+				}
+			}
+
+			"modifier_slark_essence_shift_strength_datadriven_buff_counter" {
+				"Duration" "%duration"
+				"Passive" "0"
+				"IsHidden" "0"
+
+				"Properties" {
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%str_gain"
+				}
+			}
+
+			"modifier_slark_essence_shift_strength_datadriven_debuff_counter" {
+				"Duration" "%duration"
+				"Passive" "0"
+				"IsHidden" "0"
+				"IsBuff" "0"
+				"IsDebuff" "1"
+				"IsPurgable" "0"
+
+				"Properties" {
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "%stat_loss"
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "%stat_loss"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%stat_loss"
+				}
+			}
+
+			"modifier_slark_essence_shift_strength_datadriven_buff" {
+				"Duration" "%duration"
+				"Passive" "0"
+				"IsHidden" "1"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"OnDestroy" {
+					"RunScript" {
+						"ScriptFile" "abilities/slark_essence_shift_strength_lod.lua"
+						"Function" "modifier_slark_essence_shift_strength_datadriven_buff_on_destroy"
+					}
+				}
+			}
+
+			"modifier_slark_essence_shift_strength_datadriven_debuff" {
+				"Duration" "%duration"
+				"Passive" "0"
+				"IsHidden" "1"
+				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"OnDestroy" {
+					"RunScript" {
+						"ScriptFile" "abilities/slark_essence_shift_strength_lod.lua"
+						"Function" "modifier_slark_essence_shift_strength_datadriven_debuff_on_destroy"
+					}
+				}
+			}
+		}
+	}
+}

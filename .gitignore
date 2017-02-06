@@ -214,7 +214,8 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 
-dota/
+dota/game/
+dota/content/
 
 #Script generator (your settings file)
 script_generator/settings.json

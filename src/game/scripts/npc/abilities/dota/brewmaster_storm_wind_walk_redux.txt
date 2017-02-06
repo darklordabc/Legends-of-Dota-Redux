@@ -1,0 +1,38 @@
+"DOTAAbilities" {
+	"brewmaster_storm_wind_walk_redux" {
+		"BaseClass" "brewmaster_storm_wind_walk"
+		"ID" "54105410"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"SpellDispellableType" "SPELL_DISPELLABLE_NO"
+		"AbilityCooldown" "60 50 40 30 20 10 5"
+		"MaxLevel" "7"
+		"LevelsBetweenUpgrades" "2"
+		"AbilityManaCost" "75"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"bonus_damage" "50 80 110 140 160 190 220"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"bonus_movement_speeed" "5 10 15 20 30 40 50"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "5.0 8.0 10.0 12.0 14.0 16.0 20.0"
+			}
+
+			"04" {
+				"var_type" "FIELD_FLOAT"
+				"fade_time" "0.6 0.6 0.6 0.6"
+			}
+		}
+	}
+}
