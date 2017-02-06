@@ -784,6 +784,27 @@ Button:enabled:hover {
     border-bottom-left-radius: 5px;    
 }
 
+.ingame_menu #tipPanel {
+	width: 42.45%;
+	height: 70px;
+	transition-property: position;
+    transition-duration: 0.01s; 
+	margin-top: 8px;
+	vertical-align: top;
+    flow-children: right;
+}
+
+
+.ingame_menu #tipPanel Label {
+	font-size: 16px;
+    line-height: 16px;
+}
+
+.ingame_menu .stageNameDesc {
+    width: 49.95%;
+    height: 70px;
+}
+
 #stageButtonOptionSelection {
     flow-children: right;
 }
