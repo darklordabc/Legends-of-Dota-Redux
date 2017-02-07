@@ -2840,7 +2840,7 @@ function Pregame:MultiplyNeutralUnit( unit, killer, mult, lastHits )
 
         -- Small Bear Boss
         if not alreadySpawned and lastHits >= 50 then
-            if killer.hadSmallBear ~= true then
+            if killer.hadSmallBear ~= true or RollPercentage(1) then
                 killer.hadSmallBear = true
 
                 alreadySpawned = true
