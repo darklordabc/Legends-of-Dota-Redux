@@ -3469,9 +3469,18 @@ function Pregame:processOptions()
         end
 
         if OptionManager:GetOption('maxHeroLevel') ~= 25 then
-            GameRules:GetGameModeEntity():SetCustomXPRequiredToReachNextLevel(constants.XP_PER_LEVEL_TABLE)
-            GameRules:GetGameModeEntity():SetCustomHeroMaxLevel(OptionManager:GetOption('maxHeroLevel'))
-            GameRules:GetGameModeEntity():SetUseCustomHeroLevels(true)
+            local newTable = {}
+            
+            for i,v in ipairs(constants.XP_PER_LEVEL_TABLE) do
+                if i <= OptionManager:GetOption('maxHeroLevel') then
+                    table.insert(newTable, v)
+                    print(i, v)
+                end
+            end
+
+            GameRules:GetGameModeEntity():SetUseCustomHeroLevels ( true )
+            GameRules:GetGameModeEntity():SetCustomHeroMaxLevel ( OptionManager:GetOption('maxHeroLevel') )
+            GameRules:GetGameModeEntity():SetCustomXPRequiredToReachNextLevel(newTable)
         end
 
         if OptionManager:GetOption('322') == 1 then
