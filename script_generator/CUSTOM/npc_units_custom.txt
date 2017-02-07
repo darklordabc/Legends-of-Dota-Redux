@@ -8328,6 +8328,141 @@
         		}
 	}
 
+	"npc_bot_spirit_sven"
+	{										
+		// General
+		//----------------------------------------------------------------
+		"Model"						"models/heroes/sven/sven.vmdl"
+		"BaseClass"					"npc_dota_creature"
+		"SoundSet"					"Hero_Sven"
+		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
+		"Level"						"4"
+		"ModelScale" 				"1"
+		"CanBeDominated"			"0"
+
+		"precache"
+		{
+			"particle_folder"		"particles/units/heroes/hero_sven"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
+		}
+	
+		// Abilities
+		//----------------------------------------------------------------
+		"Ability1"					"sven_storm_bolt"			// Ability 1
+		"Ability2"					"sven_great_cleave"			// Ability 2
+		"Ability3"					""			// Ability 3
+		"Ability4"					""			// Ability 4
+	
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"				"17"			// Physical protection.
+	
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"			"155"		// Damage range min.
+		"AttackDamageMax"			"172"		// Damage range max.	
+		"AttackRate"				"1.7"		// Speed of attack.
+		"AttackAnimationPoint"		"0.4"		// Normalized time in animation cycle to attack.
+		"AttackAcquisitionRange"	"500"		// Range within a target can be acquired.
+		"AttackRange"				"150"		// Range within a target can be attacked.
+		"ProjectileModel"			""			// Particle system model for projectile.
+		"ProjectileSpeed"			"0"			// Speed of projectile.		   
+	
+		// Bounds
+		//----------------------------------------------------------------
+		"RingRadius"				"70"
+		"HealthBarOffset"			"215"
+	
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"60"		// Experience earn.
+		"BountyGoldMin"				"55"		// Gold earned min.
+		"BountyGoldMax"				"65"		// Gold earned max.
+	
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"				"280"		// Speed.
+		"MovementTurnRate"			"0.6"		// Turning rate.
+	
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"1200"		// Base health.
+		"StatusHealthRegen"			"1"			// Health regeneration rate.
+		"StatusMana"				"1500"		// Base mana.
+		"StatusManaRegen"			"0.0"		// Mana regeneration rate.		 
+		
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"1400"		// Range of vision during day light.
+		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+	
+		"BoundsHullName"			"DOTA_HULL_SIZE_HUGE"	
+		
+		"GameSoundsFile"			"soundevents/game_sounds_heroes/game_sounds_lone_druid.vsndevts"
+		"VoiceFile"					"soundevents/voscripts/game_sounds_vo_lone_druid.vsndevts"
+	
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_BADGUYS"							// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"vscripts"				"dota2horde/UnitAI.lua"
+
+		// Creature Data
+        		//----------------------------------------------------------------------------------------------------------------------
+        		"Creature"
+        		{
+	        		"AttachWearables"
+					{
+						"Wearable1"		{	"ItemDef"		"16"		} //head
+						"Wearable2"		{	"ItemDef"		"17"		} //sword
+						"Wearable3" 	{	"ItemDef"		"18" 		} //belt
+						"Wearable4"		{	"ItemDef"		"19"		} //gauntlet
+						"Wearable5"		{	"ItemDef"		"20"		} //shoulder
+
+					}
+        			//Basic AI State
+        			//-----------------------------------------------------------------
+        			"DefaultState"				"Invade"
+        			"States"
+        			{
+        				"Invade"
+        				{
+        					"Name"				"Invade"
+        					"Aggression"		"100.0"
+        					"Avoidance"			"00.0"
+        					"Support"			"0.0"
+        					"RoamDistance"		"500.0"
+        				}
+        			}
+
+        			//Level Up
+        			"HPGain"					"35"
+        			"DamageGain"				"5"
+        			"ArmorGain"					"0.25"
+        			"HPRegenGain"				"1"
+        			"MagicResistGain"			"0.1"
+        			"MoveSpeedGain"				"3"
+        			"BountyGain"				"5"
+        			"XPGain"					"25"
+        			"DisableClumpingBehavior"   "1"
+
+        			"OffensiveAbilities"
+        			{
+        				"Ability1"
+        				{
+        					"Name"				"sven_storm_bolt"
+        					"Damage"			"1"
+        					"Debuff"			"1"
+        				}
+        			}
+        		}
+	}
+
+
 
 	
 	

@@ -43,7 +43,7 @@ function BehaviorAttackAncient:Begin()
 	local targetTeam =  DOTA_UNIT_TARGET_TEAM_ENEMY --ability:GetAbilityTargetTeam()
 	local targetType = DOTA_UNIT_TARGET_HERO -- ability:GetAbilityTargetType()
 	local targetFlag = DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS -- ability:GetAbilityTargetFlags()
-	local units = FindUnitsInRadius(thisEntity:GetTeamNumber(), thisEntity:GetAbsOrigin(), thisEntity, 3000, targetTeam, targetType, targetFlag, FIND_CLOSEST, false)
+	local units = FindUnitsInRadius(thisEntity:GetTeamNumber(), thisEntity:GetAbsOrigin(), thisEntity, 20000, targetTeam, targetType, targetFlag, FIND_CLOSEST, false)
 	for k, v in pairs( units ) do
 		self.order =
 		{

@@ -6354,11 +6354,27 @@ function Pregame:fixSpawningIssues()
             if spawnedUnit:IsRealHero() then
 
                 -- hotfix experiment: If you kill a bot ten times, they respawn with help
-                if spawnedUnit:GetDeaths() == 10 and util:isPlayerBot(spawnedUnit:GetPlayerID()) and util:GetActiveHumanPlayerCountForTeam(spawnedUnit:GetTeam()) == 0 then
-                    for i=1,5 do
-                        local botHelper = CreateUnitByName("npc_dota_lucifers_claw_doomling", spawnedUnit:GetAbsOrigin(), true, spawnedUnit, spawnedUnit, spawnedUnit:GetTeamNumber())
-                        botHelper:SetControllableByPlayer(spawnedUnit:GetPlayerID(), true)
+                if util:isPlayerBot(spawnedUnit:GetPlayerID()) and util:GetActiveHumanPlayerCountForTeam(spawnedUnit:GetTeam()) == 0 then
+                    if spawnedUnit:GetDeaths() > 10 and RollPercentage(10) then
+                        Timers:CreateTimer(function()
+                            local botHelper = CreateUnitByName("npc_dota_creature_small_spirit_bear", spawnedUnit:GetAbsOrigin(), true, nil, nil, spawnedUnit:GetTeamNumber())
+                        end, DoUniqueString('makeMonster1'), 1)    
                     end
+                    if spawnedUnit:GetDeaths() > 20 and RollPercentage(10) then
+                        Timers:CreateTimer(function()
+                            local botHelper = CreateUnitByName("npc_bot_spirit_sven", spawnedUnit:GetAbsOrigin(), true, nil, nil, spawnedUnit:GetTeamNumber())
+                        end, DoUniqueString('makeMonster2'), 1)    
+                    end    
+                    if spawnedUnit:GetDeaths() > 15 and RollPercentage(10) then
+                        Timers:CreateTimer(function()
+                            local botHelper = CreateUnitByName("npc_dota_creature_large_spirit_bear", spawnedUnit:GetAbsOrigin(), true, nil, nil, spawnedUnit:GetTeamNumber())
+                        end, DoUniqueString('makeMonster3'), 1)    
+                    end  
+                    if spawnedUnit:GetDeaths() > 25 and RollPercentage(10) then
+                        Timers:CreateTimer(function()
+                            local botHelper = CreateUnitByName("npc_dota_creature_big_bear", spawnedUnit:GetAbsOrigin(), true, nil, nil, spawnedUnit:GetTeamNumber())
+                        end, DoUniqueString('makeMonster4'), 1)    
+                    end 
                 end
 
                 self.spawnedArray = self.spawnedArray or {}
