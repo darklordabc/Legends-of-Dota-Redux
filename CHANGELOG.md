@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 ## 5.8 - Development Version
 ### Bug Fixing/New Features
 - Fixed starfall aghs not doing damage
+- Fixed Ultimates always appearing as "R" even tho they are not in the R ability slot, this may cause issues if players have custom key bindings.
+- Fixed Maxlevel always defaulting to 100, if its not on 25
 
 ### Balance
 - 
