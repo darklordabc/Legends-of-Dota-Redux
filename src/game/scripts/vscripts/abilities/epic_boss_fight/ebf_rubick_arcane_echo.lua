@@ -15,7 +15,7 @@ end
 function Timers:start()
   Timers = self
   self.timers = {}
-  
+
   local ent = Entities:CreateByClassname("info_target") -- Entities:FindByClassname(nil, 'CWorld')
   ent:SetThink("Think", self, "timers", TIMERS_THINK)
 end
@@ -51,7 +51,7 @@ function Timers:Think()
     if now >= v.endTime then
       -- Remove from timers list
       Timers.timers[k] = nil
-      
+
       -- Run the callback
       local status, nextCall = pcall(v.callback, GameRules:GetGameModeEntity(), v)
 
@@ -129,7 +129,7 @@ function Timers:CreateTimer(name, args)
     args.endTime = now + args.endTime
   end
 
-  Timers.timers[name] = args 
+  Timers.timers[name] = args
 
   return name
 end
@@ -182,7 +182,8 @@ function SpellEcho(keys)
 					 ["phoenix_sun_ray"] = true,
 					 ["phoenix_sun_ray_toggle_move"] = true,
 					 ["phoenix_supernova"] = true,
-					 ["phoenix_launch_fire_spirit"] = true
+					 ["phoenix_launch_fire_spirit"] = true,
+					 ["spell_lab_symbiotic"] = true
 					}
 	if echo and caster:IsRealHero() and not no_echo[ echo:GetName() ] then
 		local cooldown = ability:GetTrueCooldown()
