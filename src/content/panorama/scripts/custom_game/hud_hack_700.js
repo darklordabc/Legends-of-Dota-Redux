@@ -58,7 +58,7 @@ var styles = {
 };
 
 function hackHotkeys() {
-    $.Schedule(0.1, hackHotkeys);
+    $.Schedule(0.5, hackHotkeys);
     var defaultLetters = ['Q', 'W', 'E', 'D', 'F', 'R'];
     for (var i = 0; i <= 5; i++) {
         var ability = hud.FindChildTraverse("Ability"+i)
