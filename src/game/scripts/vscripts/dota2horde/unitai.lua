@@ -2,6 +2,8 @@
 Unit AI
 ]]
 require( "dota2horde/ai_core" )
+local util = require('util')
+
 
 behaviorSystem = {} -- create the global so we can assign to it
 
@@ -44,18 +46,24 @@ function BehaviorAttackAncient:Begin()
 	local targetType = DOTA_UNIT_TARGET_HERO -- ability:GetAbilityTargetType()
 	local targetFlag = DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS -- ability:GetAbilityTargetFlags()
 	local units = FindUnitsInRadius(thisEntity:GetTeamNumber(), thisEntity:GetAbsOrigin(), thisEntity, 20000, targetTeam, targetType, targetFlag, FIND_CLOSEST, false)
+	local mainTarget = nil
+	local foundHuman = false
 	for k, v in pairs( units ) do
-		self.order =
+		if not util:isPlayerBot(v:GetOwner():GetPlayerID()) then
+			mainTarget = v
+			break
+		end	
+		if mainTarget == nil then
+			mainTarget = v
+		end	
+	end
+
+	self.order =
 		{
 			OrderType = DOTA_UNIT_ORDER_ATTACK_MOVE,
 			UnitIndex = thisEntity:entindex(),
-			Position = v:GetOrigin()
+			Position = mainTarget:GetOrigin()
 		}
-		break
-	end
-
-		
-
 end
 
 BehaviorAttackAncient.Continue = BehaviorAttackAncient.Begin
