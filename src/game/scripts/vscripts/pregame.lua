@@ -3510,6 +3510,7 @@ function Pregame:processOptions()
                     ['Advanced: Allow Custom Skills'] = this.optionStore['lodOptionAdvancedCustomSkills'],
                     ['Advanced: Allow Hero Abilities'] = this.optionStore['lodOptionAdvancedHeroAbilities'],
                     ['Advanced: Allow Neutral Abilities'] = this.optionStore['lodOptionAdvancedNeutralAbilities'],
+                    ['Advanced: Allow IMBA Abilities'] = this.optionStore['lodOptionAdvancedImbaAbilities'],
                     ['Advanced: Hide Enemy Picks'] = this.optionStore['lodOptionAdvancedHidePicks'],
                     ['Advanced: Start With Free Courier'] = this.optionStore['lodOptionGameSpeedFreeCourier'],
                     ['Advanced: Unique Heroes'] = this.optionStore['lodOptionAdvancedUniqueHeroes'],
