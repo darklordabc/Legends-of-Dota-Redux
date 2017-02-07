@@ -132,7 +132,24 @@ function Ingame:OnHeroLeveledUp(keys)
     if markedLevels[keys.level] then
         hero:SetAbilityPoints(hero:GetAbilityPoints() + 1)
     end
+    
+    local function GetXPForLevel( x )
+        if x == 1 then
+            return 100
+        elseif x < 8 then
+            return 20 * (x + 4)
+        elseif x == 8 then
+            return 330
+        else
+            return GetXPForLevel( x - 1 ) + 110
+        end
+    end
 
+    local level = hero:GetLevel()
+
+
+    hero:SetCustomDeathXP(GetXPForLevel( level ))
+    -- print(hero:GetUnitName(), level, hero:GetDeathXP(), GetXPForLevel( level ))
 end
 
 
@@ -1071,8 +1088,9 @@ end
 function Ingame:FilterModifyExperience(filterTable)
     local expModifier = OptionManager:GetOption('expModifier')
     --hotfix start: to stop the insane amount of EXP
-    if filterTable.experience > 1000 then
-        filterTable.experience = 440   
+    if math.abs(filterTable.experience) > 100000 then
+        filterTable.experience = 0   
+        return false
     end 
     --hotfix end
     --print("experience gained")

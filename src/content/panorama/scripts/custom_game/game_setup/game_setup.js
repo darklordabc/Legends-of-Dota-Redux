@@ -1005,7 +1005,7 @@ function onBacktrackButton() {
 	var masterRoot = $.GetContextPanel();
     masterRoot.SetHasClass('phase_option_selection_selected', selectedPhase == PHASE_OPTION_SELECTION || reviewingOptions);
     masterRoot.SetHasClass('review_selection', reviewingOptions);
-    masterRoot.SetHasClass('phase_selection_selected', selectedPhase == PHASE_SELECTION && !reviewingOptions);
+    masterRoot.SetHasClass('phase_selection_selected', (selectedPhase == PHASE_SELECTION || selectedPhase == PHASE_INGAME) && !reviewingOptions);
 	
 	$('#backtrackBtnTxt').text = $.Localize((reviewingOptions)? 'reviewReturn': 'reviewOptions');
 }
@@ -1042,6 +1042,10 @@ function setupBuilderTabs() {
             panelTab.visible = false;
         }
     });
+
+    if (currentPhase == PHASE_SELECTION) {
+        showBuilderTab("pickingPhaseMainTab");
+    }
 
     // Show the main tab only
     // #warning
@@ -4228,6 +4232,8 @@ function OnPhaseChanged(table_name, key, data) {
                     }
                     
                     isBuildsDonwloaded = true;
+                } else {
+                    showBuilderTab('pickingPhaseHeroTab');
                 }
 
                 // Should we show the host message popup?
@@ -5189,8 +5195,6 @@ function loadPlayerBans() {
 
     // Show banned abilities by default
     $('#buttonShowBanned').checked = false;
-
-    $("#tabsSelector").visible = false;
 
     var columnSwitch = true;
     // Show all tier values by default
