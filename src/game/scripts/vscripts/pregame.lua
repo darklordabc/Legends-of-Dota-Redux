@@ -2767,20 +2767,24 @@ function Pregame:MultiplyNeutralUnit( unit, killer, mult, lastHits )
             clone:AddNewModifier(clone, nil, "modifier_rune_doubledamage", {duration = duration})
         end
 
-        -- Healing Aura and Extra Health Bonus
-        if lastHits > 25 and RollPercentage(10) then 
+        -- Healing Aura Bonus 
+        if lastHits > 25 and RollPercentage(15) then 
             level = math.min(10, (math.floor(lastHits / 25)) )
-            modelSize = level/14 + 1
-            clone:SetModelScale(modelSize)
             
             clone:AddAbility("neutral_regen_aura")
             local healingWard = clone:FindAbilityByName("neutral_regen_aura")
             healingWard:SetLevel(level) 
+        end
+
+        -- Extra Health Bonus
+        if lastHits > 25 and RollPercentage(15) then 
+            level = math.min(10, (math.floor(lastHits / 25)) )
+            modelSize = level/14 + 1
+            clone:SetModelScale(modelSize) 
 
             clone:AddAbility("neutral_extra_health")
             local extraHealth = clone:FindAbilityByName("neutral_extra_health")
-            extraHealth:SetLevel(level) 
-             
+            extraHealth:SetLevel(level)     
         end
 
         -- Lucifier Attack
@@ -2834,8 +2838,44 @@ function Pregame:MultiplyNeutralUnit( unit, killer, mult, lastHits )
             end
         end
 
+        -- Small Bear Boss
+        if not alreadySpawned and lastHits >= 50 then
+            if killer.hadSmallBear ~= true then
+                killer.hadSmallBear = true
+
+                alreadySpawned = true
+
+                local smallBear = CreateUnitByName( "npc_dota_creature_small_spirit_bear", loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
+                           
+                smallBear:AddNewModifier(araknarok, nil, "modifier_phased", {Duration = 2})
+                smallBear:AddNewModifier(araknarok, nil, "modifier_kill", {duration = 200})
+                
+                Timers:CreateTimer(function()
+                    smallBear:MoveToTargetToAttack(killer)
+                end, DoUniqueString('attackPlayer'), 0.5)
+            end
+        end
+
+        -- Large Bear Boss
+        if not alreadySpawned and lastHits > 150 then
+            if killer.hadLargeBear ~= true then
+                killer.hadLargeBear = true
+
+                alreadySpawned = true
+
+                local largeBear = CreateUnitByName( "npc_dota_creature_large_spirit_bear", loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
+                           
+                largeBear:AddNewModifier(araknarok, nil, "modifier_phased", {Duration = 2})
+                largeBear:AddNewModifier(araknarok, nil, "modifier_kill", {duration = 200})
+                
+                Timers:CreateTimer(function()
+                    largeBear:MoveToTargetToAttack(killer)
+                end, DoUniqueString('attackPlayer'), 0.5)
+            end
+        end
+
         -- Daddy Bear Boss
-        if not alreadySpawned and lastHits > 250 then
+        if not alreadySpawned and lastHits >= 300 then
             if killer.hadDaddyBear ~= true then
                 killer.hadDaddyBear = true
 
@@ -2858,6 +2898,7 @@ function Pregame:MultiplyNeutralUnit( unit, killer, mult, lastHits )
                 end, DoUniqueString('attackPlayer'), 0.5)
             end
         end
+      
     end      
 end
 
