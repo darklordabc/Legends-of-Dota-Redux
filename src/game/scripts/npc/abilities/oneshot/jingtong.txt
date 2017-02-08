@@ -1,0 +1,29 @@
+"DOTAAbilities" {
+	"jingtong"	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"invoker_invoke"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"HotKeyOverride"	"C"
+		"Modifiers"
+		{
+			"modifier_jingtong"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"IsBuff"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE"	"%reduce"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"reduce"	"3 7 11 15"
+			}
+		}
+	}
+}

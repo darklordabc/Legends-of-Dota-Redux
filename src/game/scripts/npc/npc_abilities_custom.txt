@@ -22,6 +22,7 @@
 #base "abilities\aa\angel_arena_summon_hawk.txt"
 #base "abilities\aa\angel_arena_transmute.txt"
 #base "abilities\aa\berserker_madness.txt"
+#base "abilities\oneshot\jingtong.txt"
 #base "abilities\custom\aether_range_lod.txt"
 #base "abilities\custom\aether_range_lod_global.txt"
 #base "abilities\custom\aether_range_lod_OP.txt"
