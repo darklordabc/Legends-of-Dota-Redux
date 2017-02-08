@@ -7807,7 +7807,7 @@
         "DOTA_Tooltip_ability_jingtong_reduce"  "%Cooldown Time Reduce:"
 
         "DOTA_Tooltip_ability_shiguanghuisu"    "Time Backtrack"
-        "DOTA_Tooltip_ability_shiguanghuisu_Description"    "Return to the position 3 seconds ago,as well as your Health."
+        "DOTA_Tooltip_ability_shiguanghuisu_Description"    "Teleport to the position you were at 3 seconds ago, also restores your health amount from 3 seconds ago."
         "DOTA_Tooltip_ability_shiguanghuisu_Lore"   ""
 
         "DOTA_Tooltip_ability_benneng"  "Hunter's Instinct"
