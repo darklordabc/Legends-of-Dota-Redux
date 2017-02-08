@@ -2767,20 +2767,24 @@ function Pregame:MultiplyNeutralUnit( unit, killer, mult, lastHits )
             clone:AddNewModifier(clone, nil, "modifier_rune_doubledamage", {duration = duration})
         end
 
-        -- Healing Aura and Extra Health Bonus
-        if lastHits > 25 and RollPercentage(10) then 
+        -- Healing Aura Bonus 
+        if lastHits > 25 and RollPercentage(15) then 
             level = math.min(10, (math.floor(lastHits / 25)) )
-            modelSize = level/14 + 1
-            clone:SetModelScale(modelSize)
             
             clone:AddAbility("neutral_regen_aura")
             local healingWard = clone:FindAbilityByName("neutral_regen_aura")
             healingWard:SetLevel(level) 
+        end
+
+        -- Extra Health Bonus
+        if lastHits > 25 and RollPercentage(15) then 
+            level = math.min(10, (math.floor(lastHits / 25)) )
+            modelSize = level/14 + 1
+            clone:SetModelScale(modelSize) 
 
             clone:AddAbility("neutral_extra_health")
             local extraHealth = clone:FindAbilityByName("neutral_extra_health")
-            extraHealth:SetLevel(level) 
-             
+            extraHealth:SetLevel(level)     
         end
 
         -- Lucifier Attack
@@ -2834,8 +2838,44 @@ function Pregame:MultiplyNeutralUnit( unit, killer, mult, lastHits )
             end
         end
 
+        -- Small Bear Boss
+        if not alreadySpawned and lastHits >= 50 then
+            if killer.hadSmallBear ~= true or RollPercentage(1) then
+                killer.hadSmallBear = true
+
+                alreadySpawned = true
+
+                local smallBear = CreateUnitByName( "npc_dota_creature_small_spirit_bear", loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
+                           
+                smallBear:AddNewModifier(araknarok, nil, "modifier_phased", {Duration = 2})
+                smallBear:AddNewModifier(araknarok, nil, "modifier_kill", {duration = 200})
+                
+                Timers:CreateTimer(function()
+                    smallBear:MoveToTargetToAttack(killer)
+                end, DoUniqueString('attackPlayer'), 0.5)
+            end
+        end
+
+        -- Large Bear Boss
+        if not alreadySpawned and lastHits > 150 then
+            if killer.hadLargeBear ~= true then
+                killer.hadLargeBear = true
+
+                alreadySpawned = true
+
+                local largeBear = CreateUnitByName( "npc_dota_creature_large_spirit_bear", loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
+                           
+                largeBear:AddNewModifier(araknarok, nil, "modifier_phased", {Duration = 2})
+                largeBear:AddNewModifier(araknarok, nil, "modifier_kill", {duration = 200})
+                
+                Timers:CreateTimer(function()
+                    largeBear:MoveToTargetToAttack(killer)
+                end, DoUniqueString('attackPlayer'), 0.5)
+            end
+        end
+
         -- Daddy Bear Boss
-        if not alreadySpawned and lastHits > 250 then
+        if not alreadySpawned and lastHits >= 300 then
             if killer.hadDaddyBear ~= true then
                 killer.hadDaddyBear = true
 
@@ -2858,6 +2898,7 @@ function Pregame:MultiplyNeutralUnit( unit, killer, mult, lastHits )
                 end, DoUniqueString('attackPlayer'), 0.5)
             end
         end
+      
     end      
 end
 
@@ -3510,6 +3551,7 @@ function Pregame:processOptions()
                     ['Advanced: Allow Custom Skills'] = this.optionStore['lodOptionAdvancedCustomSkills'],
                     ['Advanced: Allow Hero Abilities'] = this.optionStore['lodOptionAdvancedHeroAbilities'],
                     ['Advanced: Allow Neutral Abilities'] = this.optionStore['lodOptionAdvancedNeutralAbilities'],
+                    ['Advanced: Allow IMBA Abilities'] = this.optionStore['lodOptionAdvancedImbaAbilities'],
                     ['Advanced: Hide Enemy Picks'] = this.optionStore['lodOptionAdvancedHidePicks'],
                     ['Advanced: Start With Free Courier'] = this.optionStore['lodOptionGameSpeedFreeCourier'],
                     ['Advanced: Unique Heroes'] = this.optionStore['lodOptionAdvancedUniqueHeroes'],
@@ -4128,7 +4170,6 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
                 return
             end
             SkillManager:ApplyBuild(hero, newBuild)
-            print(3587)
             local player = PlayerResource:GetPlayer(playerID)
             network:hideHeroBuilder(player)
             network:setSelectedAbilities(playerID, self.selectedSkills[playerID])
@@ -6312,11 +6353,27 @@ function Pregame:fixSpawningIssues()
             if spawnedUnit:IsRealHero() then
 
                 -- hotfix experiment: If you kill a bot ten times, they respawn with help
-                if spawnedUnit:GetDeaths() == 10 and util:isPlayerBot(spawnedUnit:GetPlayerID()) and util:GetActiveHumanPlayerCountForTeam(spawnedUnit:GetTeam()) == 0 then
-                    for i=1,5 do
-                        local botHelper = CreateUnitByName("npc_dota_lucifers_claw_doomling", spawnedUnit:GetAbsOrigin(), true, spawnedUnit, spawnedUnit, spawnedUnit:GetTeamNumber())
-                        botHelper:SetControllableByPlayer(spawnedUnit:GetPlayerID(), true)
+                if util:isPlayerBot(spawnedUnit:GetPlayerID()) and util:GetActiveHumanPlayerCountForTeam(spawnedUnit:GetTeam()) == 0 then
+                    if spawnedUnit:GetDeaths() > 10 and RollPercentage(10) then
+                        Timers:CreateTimer(function()
+                            local botHelper = CreateUnitByName("npc_dota_creature_small_spirit_bear", spawnedUnit:GetAbsOrigin(), true, nil, nil, spawnedUnit:GetTeamNumber())
+                        end, DoUniqueString('makeMonster1'), 1)    
                     end
+                    if spawnedUnit:GetDeaths() > 20 and RollPercentage(10) then
+                        Timers:CreateTimer(function()
+                            local botHelper = CreateUnitByName("npc_bot_spirit_sven", spawnedUnit:GetAbsOrigin(), true, nil, nil, spawnedUnit:GetTeamNumber())
+                        end, DoUniqueString('makeMonster2'), 1)    
+                    end    
+                    if spawnedUnit:GetDeaths() > 15 and RollPercentage(10) then
+                        Timers:CreateTimer(function()
+                            local botHelper = CreateUnitByName("npc_dota_creature_large_spirit_bear", spawnedUnit:GetAbsOrigin(), true, nil, nil, spawnedUnit:GetTeamNumber())
+                        end, DoUniqueString('makeMonster3'), 1)    
+                    end  
+                    if spawnedUnit:GetDeaths() > 25 and RollPercentage(10) then
+                        Timers:CreateTimer(function()
+                            local botHelper = CreateUnitByName("npc_dota_creature_big_bear", spawnedUnit:GetAbsOrigin(), true, nil, nil, spawnedUnit:GetTeamNumber())
+                        end, DoUniqueString('makeMonster4'), 1)    
+                    end 
                 end
 
                 self.spawnedArray = self.spawnedArray or {}
@@ -6336,7 +6393,7 @@ function Pregame:fixSpawningIssues()
                 local mainHero = PlayerResource:GetSelectedHeroEntity(playerID)
 
                 -- Fix meepo clones and illusions
-                if mainHero and mainHero ~= spawnedUnit then
+                if mainHero and mainHero ~= spawnedUnit and self.spawnedHeroesFor[playerID] then
                     -- Apply the build
                     local build = this.selectedSkills[playerID] or {}
                     SkillManager:ApplyBuild(spawnedUnit, build)
@@ -6552,12 +6609,21 @@ function Pregame:fixSpawningIssues()
                 -- Toolsmode developer stuff to help test
                 if IsInToolsMode() then
                     -- If setting is 1, everyone gets free scepter modifier, if its 2, only human players get the upgrade
-                    if not util:isPlayerBot(playerID) then
-                        local devDagger = spawnedUnit:FindItemByName("item_devDagger")
-                        if not devDagger then
-                            spawnedUnit:AddItemByName('item_devDagger')
-                        end
-                     end
+                    Timers:CreateTimer(function()
+                            if IsValidEntity(spawnedUnit) then
+                                if not util:isPlayerBot(playerID) then
+                                    local devDagger = spawnedUnit:FindItemByName("item_devDagger")
+                                    local normalDagger = spawnedUnit:FindItemByName("item_blink")
+                                    if not devDagger and not normalDagger then
+                                        spawnedUnit:AddItemByName('item_devDagger')
+                                    elseif not devDagger and normalDagger then
+                                        normalDagger:RemoveSelf()
+                                        spawnedUnit:AddItemByName('item_devDagger')
+                                    end
+
+                                end
+                            end
+                    end, DoUniqueString('giveDagger'), 1)            
                 end
 
                 -- Handle free scepter stuff, Gyro will not benefit
@@ -6754,12 +6820,14 @@ function Pregame:fixSpawningIssues()
                     -- Do we need to level up?
                     if startingLevel > 1 then
                         -- Level it up
-                        --for i=1,startingLevel-1 do
-                        --    spawnedUnit:HeroLevelUp(false)
-                        --end
+                        for i=1,startingLevel-1 do
+                           spawnedUnit:HeroLevelUp(false)
+                        end
+
+                        local exp = constants.XP_PER_LEVEL_TABLE[startingLevel]
 
                         -- Fix EXP
-                        spawnedUnit:AddExperience(constants.XP_PER_LEVEL_TABLE[startingLevel], false, false)
+                        spawnedUnit:AddExperience(exp, false, false)
                     end
 
                     -- Any bonus gold?

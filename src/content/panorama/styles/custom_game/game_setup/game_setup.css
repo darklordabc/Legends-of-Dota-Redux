@@ -3480,16 +3480,16 @@ Button:enabled:hover {
     visibility: collapse;
 }
 
-.ingame_menu .mainWorkspace {
-	padding-left: 138px;
-	padding-right: 138px;
+.ingame_menu #mainSelectionRoot {
+	margin-left: 130px;
+	margin-right: 130px;
 }
 
 .ingame_menu #tipPanel {
 	visibility: collapse;
 }
 
-.ingame_menu #backtrackBtn.hidden {
+.builder_enabled #backtrackBtn.hidden {
 	visibility: visible;
 }
 

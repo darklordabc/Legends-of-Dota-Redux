@@ -18,7 +18,7 @@
 .menuButton {
     width: 24px;
     height: 24px;
-
+	opacity: 0.8;
     background-color: gradient(linear, 0% 0%, 0% 100%, from(#40404068), color-stop( 0.3, #33333360), to(#18181855));
 
     vertical-align: center;
@@ -30,4 +30,10 @@
     border-radius: 5px;
 
     wash-color: #00000030;
+	tooltip-position: top right;
+}
+
+.menuButton:hover {
+	opacity: 1.0;
+	background-color: #555555;
 }

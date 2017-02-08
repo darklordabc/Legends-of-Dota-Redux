@@ -1,0 +1,81 @@
+"DOTAAbilities" {
+	"sight"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/sight"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"HotKeyOverride"	"F"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"22 20 18 16"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"1200"
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"TARGET"
+				"ModifierName"	"modifier_sight"
+			}
+			"RunScript"
+			{
+				"Target"	"TARGET"
+				"ScriptFile"	"scripts/vscripts/abilities/beast_ninja.lua"
+				"Function"	"sight"
+				"radius_d"	"%radius_d"
+				"radius_n"	"%radius_n"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_sight"
+			{
+				"Duration"	"%duration"
+				"OnCreated"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_tower_truesight_aura"
+					}
+				}
+				"OnDestroy"
+				{
+					"RemoveModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_tower_truesight_aura"
+					}
+				}
+				"OnDeath"
+				{
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_tower_truesight_aura"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"radius_d"	"1200"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"radius_n"	"800"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"4 5 6 7"
+			}
+		}
+	}
+}

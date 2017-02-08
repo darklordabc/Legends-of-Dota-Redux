@@ -456,6 +456,12 @@
     "lodMutatorIngameBuilder3"                      "Build Switcher 30s penalty"
     "lodMutatorIngameBuilder4"                      "Build Switcher Free"
 
+	// Minimap Menu and In-Game Hero Builder
+    "minimapMenuCredits"                            "Credits"
+    "minimapMenuCheats"                             "Cheats"
+    "minimapMenuReviewGameOptions"                  "Review Game Settings"
+    "minimapMenuHeroBuilder"                        "Hero Builder"
+	
     "ingameBuilderNotification"                     "<font color='#00DD0B'>Ingame Build Switch is Enabled. Click on the change build icon in the bottom left corner to change your abilities/hero/primaray stat.</font>"
     "ingameBuilderReminder"                     "<font color='#00DD0B'>Don't forget. Ingame Build Switch is Enabled. Click on the change build icon in the bottom left corner to change your abilities/hero/primaray stat.</font>"
     "tempDuelBlock"                     "<font color='#FF0000'>Duels are temporarily disabled due to a crash issue. They will be reenabled soon. Sorry about that.</font>"
@@ -499,11 +505,11 @@
     "balance_mode_points"                           "Points Remaining: {d:points}"
 
     "acceptHosting"                                 "Ok, I understand"
-    "lodHostingMessage"                             "<font color='#ffffff'>Thanks for playing Redux, and specific <font color='#70EA72'>thank you to the players who have taken the time to report issues on Discord, Github or Steam Forums</font>. The efforts of these few reporters is essential to the improvement of Redux and is greately appreciated by the dev team.<br><br> <font color='#70EA72'>Redux 5.6:</font><br>- Fixed Jingu Mastery being unselectable<br>- Fixed Bots picking invis abilities when invis ban mode 2 is choosen<br>- Added new OPTIONAL inverted map<br>- Made changes to the ingame builder, you can view game settings from that builder now<br>- Fixed reconnecting breaking the skill picking menu<br>- Fixed Riki, Techies and Gyro's talents being unlearnable<br>- Improved how exp is given for killing enemy heros after level 25, jumping to lvl 100 bug should be gone<br>- If you kill a bot 10 times, and its an all bot team, they will spawn back with helpers, this helper mechanic is experimental right now<br>- Added respawn time increaser, at 40 minutes respawn times will become minimum 50% of original respawn times."
+    "lodHostingMessage"                             "<font color='#ffffff'><font color='#FF4949'>If you are experiencing crashes after picking abilities try disabling VULKAN optional setting.</font><br><br> <font color='#70EA72'>Redux 5.8:</font></font><br>- Fixed starfall aghs not doing damage<br>- Fixed Ultimates always appearing as 'R' even though they are not in the R ability slot, this may cause issues if players have custom key bindings<br>- Fixed Maxlevel always defaulting to 100, if its not on 25<br>- Added Review Game Settings button above minimap, so players can see settings during the game<br>- Fixed starting level being affected by EXP modifier<br>- Fixed hero switcher giving extra exp/levels"
     "lodPickingMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked.<br><br><font color='#70EA72'>Remeber to pick a hero before time runs out or else you will get stuck with a random hero.</font>"
     "lodBanningMessage"                             "<font color='#70EA72'>This is the banning phase</font>. You can ban heroes and abilities to prevent players from selecting them in this match.<br><br> If you dont want to ban or have finished banning, <font color='#70EA72'>press the 'Finish Banning' button</font> to confirm your ready and to speed up the game."
     "lodBalanceMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked. <br><br><font color='#70EA72'>Points Mode is on.</font> In Points Mode you have limited points to spend on abilities. Abilities are priced by how powerful they are and abilities with no price tags are free. Have fun!"
-   "lodHostingNoobMessage"                            "<font color='#ffffff'>Thanks for playing Redux, and specific <font color='#70EA72'>thank you to the players who have taken the time to report issues on Discord, Github or Steam Forums</font>. The efforts of these few reporters is essential to the improvement of Redux and is greately appreciated by the dev team.<br><br> <font color='#70EA72'>Redux 5.6:</font><br>- Fixed Jingu Mastery being unselectable<br>- Fixed Bots picking invis abilities when invis ban mode 2 is choosen<br>- Added new OPTIONAL inverted map<br>- Made changes to the ingame builder, you can view game settings from that builder now<br>- Fixed reconnecting breaking the skill picking menu<br>- Fixed Riki, Techies and Gyro's talents being unlearnable<br>- Improved how exp is given for killing enemy heros after level 25, jumping to lvl 100 bug should be gone<br>- If you kill a bot 10 times, and its an all bot team, they will spawn back with helpers, this helper mechanic is experimental right now<br>- Added respawn time increaser, at 40 minutes respawn times will become minimum 50% of original respawn times."
+   "lodHostingNoobMessage"                            "<font color='#ffffff'><font color='#FF4949'>If you are experiencing crashes after picking abilities try disabling VULKAN optional setting.</font><br><br> <font color='#70EA72'>Redux 5.8:</font></font><br>- Fixed starfall aghs not doing damage<br>- Fixed Ultimates always appearing as 'R' even though they are not in the R ability slot, this may cause issues if players have custom key bindings<br>- Fixed Maxlevel always defaulting to 100, if its not on 25<br>- Added Review Game Settings button above minimap, so players can see settings during the game<br>- Fixed starting level being affected by EXP modifier<br>- Fixed hero switcher giving extra exp/levels"
     "lodOptionVoting"                               "Cast your vote to select the options."
 
 
@@ -1238,6 +1244,11 @@
     "warning_pudge_flesh_heap_spell_amp" "<font color=\'#FF4949\'>Warning:</font> Will not show an increase in the tooltip information, but spell damge will be increased. Purple text popups will appear above hero when you do large spell damage.\n"
     "warning_treant_eyes_in_the_forest" "<font color=\'#FF4949\'>Warning:</font> Enemies will have a debuff notification when within 1000 range of an enchanted tree."
 
+    "credit_sight"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
+    "credit_zhanhun"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
+    "credit_benneng"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
+    "credit_shiguanghuisu"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
+    "credit_jingtong"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
     "credit_aether_range_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
     "credit_sandking_caustic_finale_redux"           "<font color=\'#7D7D7D\'>Credits: Fixed by Firetoad | github.com/fcalife</font>"
     "credit_necrolyte_sadist_lod"           "<font color=\'#7D7D7D\'>Credits: Fixed by Firetoad | github.com/fcalife</font>"
@@ -3207,7 +3218,7 @@
 
     /// WRAITH KING​
     "DOTA_Tooltip_modifier_npc_dota_hero_skeleton_king_perk"    "Wraith King Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_skeleton_king_perk_Description"    "Wraith King starts the game with an Aegis of the Immortal."
+    "DOTA_Tooltip_modifier_npc_dota_hero_skeleton_king_perk_Description"    "Wraith King can buyback with a 50% reduced cooldown, refunding 50% of the buyback cost and removing the gold penalty."
 
     /// ZEUS​
     "DOTA_Tooltip_modifier_npc_dota_hero_zuus_perk" "Zeus Perk"
@@ -7774,5 +7785,38 @@
         "DOTA_Tooltip_Ability_item_health_potion"                           "Health Potion"
         "DOTA_Tooltip_Ability_item_mana_potion"                             "Mana Potion"   
 
+        "DOTA_Tooltip_ability_sight"    "Nature's Spy"
+        "DOTA_Tooltip_ability_sight_Description"    "Give a friendly unit flying vision and true sight."
+        "DOTA_Tooltip_ability_sight_duration"   "Duration:"
+        "DOTA_Tooltip_ability_sight_radius_d"   "Daytime vision radius:"
+        "DOTA_Tooltip_ability_sight_radius_n"   "Nighttime vison radius:"
+        "DOTA_Tooltip_modifier_sight"   "Nature's Spy"
+        "DOTA_Tooltip_modifier_sight_Description"   "flying vision and true sight"
+
         "npc_dota_creature_big_bear"        "Daddy Bear"
+        "npc_bot_spirit_sven"        "Sven Bot Helper"
+        "npc_dota_creature_small_spirit_bear"        "Bear"
+        "npc_dota_creature_large_spirit_bear"        "Attack Bear"
+
+        "DOTA_Tooltip_ability_zhanhun"  "Wind soul"
+        "DOTA_Tooltip_ability_zhanhun_Description"  "Each time you cast a spell, all of your abilities' cooldown will reduce a bit."
+        "DOTA_Tooltip_ability_zhanhun_reduce_per"   "CD reduction:"
+        
+        "DOTA_Tooltip_ability_jingtong" "Elemental Mystery"
+        "DOTA_Tooltip_ability_jingtong_Description" "Years of practices let ninja reduce all the cooldown time of his skills."
+        "DOTA_Tooltip_ability_jingtong_reduce"  "%Cooldown Time Reduce:"
+
+        "DOTA_Tooltip_ability_shiguanghuisu"    "Time Backtrack"
+        "DOTA_Tooltip_ability_shiguanghuisu_Description"    "Teleport to the position you were at 3 seconds ago, also restores your health amount from 3 seconds ago."
+        "DOTA_Tooltip_ability_shiguanghuisu_Lore"   ""
+
+        "DOTA_Tooltip_ability_benneng"  "Hunter's Instinct"
+        "DOTA_Tooltip_ability_benneng_Description"  "When you kill a unit you have chance to gain sight on an enemy hero."
+        "DOTA_Tooltip_ability_benneng_chance"   "Chance:"
+        "DOTA_Tooltip_ability_benneng_duration" "Duration:"
+        "DOTA_Tooltip_benneng_beibu"    "You are in someone's sight"
+
+
+
+
 }

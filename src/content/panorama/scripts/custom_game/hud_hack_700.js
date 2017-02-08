@@ -1,6 +1,10 @@
 "use strict";
 $.$ = GameUI.CustomUIConfig().$;
 
+var hud = $.GetContextPanel().GetParent();
+while(hud.id != "Hud")
+    hud = hud.GetParent();
+
 var styles = {
     // Scoreboard
     '#scoreboard #RadiantTeamContainer': {
@@ -53,8 +57,21 @@ var styles = {
     }
 };
 
+function hackHotkeys() {
+    $.Schedule(0.5, hackHotkeys);
+    var defaultLetters = ['Q', 'W', 'E', 'D', 'F', 'R'];
+    for (var i = 0; i <= 5; i++) {
+        var ability = hud.FindChildTraverse("Ability"+i)
+        if (ability && ability.FindChildTraverse("HotkeyText").text == 'R' && i != 5) {
+            ability.FindChildTraverse("HotkeyText").text = defaultLetters[i];
+        }
+    }
+}
+
 // When this panel loads
 (function(){
     for(var selector of Object.keys(styles))
         $.$(selector).css(styles[selector]);
+
+    hackHotkeys();
 })();

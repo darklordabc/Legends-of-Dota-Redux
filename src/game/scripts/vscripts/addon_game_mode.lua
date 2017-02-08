@@ -40,6 +40,7 @@ function Precache(context)
     PrecacheResource("soundfile","soundevents/game_sounds_heroes/game_sounds_monkey_king.vsndevts",context)
     PrecacheResource("soundfile","soundevents/memes_redux_sounds.vsndevts",context)
     PrecacheUnitByNameSync("npc_dota_lucifers_claw_doomling", context)
+    PrecacheUnitByNameSync("npc_bot_spirit_sven", context)
 
     precacheObstacles(context)
 end

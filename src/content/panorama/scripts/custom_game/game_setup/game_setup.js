@@ -180,7 +180,7 @@ var showTier = {};
 
 // Contains current tab name
 var currentTab = '';
-var reviewingOptions = false;
+util.reviewOptions = false;
 
 // Search filters
 var tabsSearchFilter = {};
@@ -1001,13 +1001,18 @@ function onLockBuildButtonPressed() {
 }
 
 function onBacktrackButton() {
-	reviewingOptions = !reviewingOptions;
-	var masterRoot = $.GetContextPanel();
-    masterRoot.SetHasClass('phase_option_selection_selected', selectedPhase == PHASE_OPTION_SELECTION || reviewingOptions);
-    masterRoot.SetHasClass('review_selection', reviewingOptions);
-    masterRoot.SetHasClass('phase_selection_selected', (selectedPhase == PHASE_SELECTION || selectedPhase == PHASE_INGAME) && !reviewingOptions);
+	util.reviewOptions = !util.reviewOptions;
 	
-	$('#backtrackBtnTxt').text = $.Localize((reviewingOptions)? 'reviewReturn': 'reviewOptions');
+	fixBacktrackUI();
+}
+
+function fixBacktrackUI() {
+	var masterRoot = $.GetContextPanel();
+    masterRoot.SetHasClass('phase_option_selection_selected', selectedPhase == PHASE_OPTION_SELECTION || util.reviewOptions);
+    masterRoot.SetHasClass('review_selection', util.reviewOptions);
+    masterRoot.SetHasClass('phase_selection_selected', (selectedPhase == PHASE_SELECTION || selectedPhase == PHASE_INGAME) && !util.reviewOptions);
+	
+	$('#backtrackBtnTxt').text = $.Localize((util.reviewOptions)? 'reviewReturn': 'reviewOptions');
 }
 
 // Sets up the hero builder tab
@@ -4389,8 +4394,8 @@ function OnOptionChanged(table_name, key, data) {
             // Check if we are allowing custom settings
             allowCustomSettings = data.v == -1;
 			$.GetContextPanel().RemoveClass('ignore_custom_message');
-            $.GetContextPanel().SetHasClass('allow_custom_settings', allowCustomSettings || reviewingOptions);
-            $.GetContextPanel().SetHasClass('disallow_custom_settings', !allowCustomSettings && !reviewingOptions);        
+            $.GetContextPanel().SetHasClass('allow_custom_settings', allowCustomSettings || util.reviewOptions);
+            $.GetContextPanel().SetHasClass('disallow_custom_settings', !allowCustomSettings && !util.reviewOptions);        
             break;
 
         // Check for allowed categories changing
@@ -4669,14 +4674,14 @@ function SetSelectedPhase(newPhase, noSound) {
 
     // Update CSS
 	if (selectedPhase != PHASE_SELECTION) {
-		reviewingOptions = false;
+		util.reviewOptions = false;
 	}
     var masterRoot = $.GetContextPanel();
-    masterRoot.SetHasClass('phase_option_selection_selected', selectedPhase == PHASE_OPTION_SELECTION || reviewingOptions);
-    masterRoot.SetHasClass('review_selection', reviewingOptions);
+    masterRoot.SetHasClass('phase_option_selection_selected', selectedPhase == PHASE_OPTION_SELECTION || util.reviewOptions);
+    masterRoot.SetHasClass('review_selection', util.reviewOptions);
     masterRoot.SetHasClass('phase_option_voting_selected', selectedPhase == PHASE_OPTION_VOTING);
     masterRoot.SetHasClass('phase_banning_selected', selectedPhase == PHASE_BANNING);
-    masterRoot.SetHasClass('phase_selection_selected', selectedPhase == PHASE_SELECTION && !reviewingOptions);
+    masterRoot.SetHasClass('phase_selection_selected', selectedPhase == PHASE_SELECTION && !util.reviewOptions);
     masterRoot.SetHasClass('phase_all_random_selected', selectedPhase == PHASE_RANDOM_SELECTION);
     masterRoot.SetHasClass('phase_drafting_selected', selectedPhase == PHASE_DRAFTING);
     masterRoot.SetHasClass('phase_review_selected', selectedPhase == PHASE_REVIEW);
@@ -5175,6 +5180,11 @@ function loadPlayerBans() {
        trollCombos[ab1][ab2] = true;
        trollCombos[ab2][ab1] = true;
     });
+	
+	// Backtrack Review Option Button
+    util.reviewOptionsChange = function(review) {
+        fixBacktrackUI();
+    };
 
     // Hook tab changes
     hookTabChange('pickingPhaseHeroTab', OnHeroTabShown);
