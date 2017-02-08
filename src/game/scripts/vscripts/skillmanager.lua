@@ -442,20 +442,21 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
                 end     
             end     
             -- Grab exp / level     
-            local currentLevel = hero:GetLevel()        
-            local expNeeded = constants.XP_PER_LEVEL_TABLE[currentLevel] or 0
+            local currentLevel = constants.XP_PER_LEVEL_TABLE[hero:GetLevel()]
 
             -- Replace the hero
             inSwap = true
-            hero = PlayerResource:ReplaceHeroWith(playerID, build.hero, 0, hero:GetCurrentXP())
+            hero = PlayerResource:ReplaceHeroWith(playerID, build.hero, 0, 0)
             inSwap = false
 
             -- Ensure swap is successful
             if not IsValidEntity(hero) then return end
+            -- Level it up
+            -- for i=1,currentLevel-1 do
+            --    hero:HeroLevelUp(false)
+            -- end
             -- Add EXP      
-            if expNeeded > 0 then       
-                hero:AddExperience(expNeeded, false, false)     
-            end
+            hero:AddExperience(currentLevel, false, false) 
 
             -- Replace gold
             PlayerResource:SetGold(playerID, ug, false)
