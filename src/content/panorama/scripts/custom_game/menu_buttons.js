@@ -23,15 +23,15 @@ function onBtnOpenChangelog() {
 
 // Play wants to open the hero builder
 function onBtnOpenHeroBuilderPressed() {
-	GameUI.CustomUIConfig().Util.reviewOptionsChange(false);
 	GameUI.CustomUIConfig().Util.reviewOptions = false;
+	GameUI.CustomUIConfig().Util.reviewOptionsChange();
     GameEvents.SendCustomGameEventToServer('lodOnIngameBuilder', { playerID: Players.GetLocalPlayer() });
 }
 
 // Play wants to open the option viewer
 function onBtnOpenOptionReviewPressed() {
-	GameUI.CustomUIConfig().Util.reviewOptionsChange(true);
 	GameUI.CustomUIConfig().Util.reviewOptions = true;
+	GameUI.CustomUIConfig().Util.reviewOptionsChange();
     GameEvents.SendCustomGameEventToServer('lodOnIngameBuilder', { playerID: Players.GetLocalPlayer() });
 }
 

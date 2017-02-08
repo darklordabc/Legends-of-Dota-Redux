@@ -1002,6 +1002,11 @@ function onLockBuildButtonPressed() {
 
 function onBacktrackButton() {
 	util.reviewOptions = !util.reviewOptions;
+	
+	fixBacktrackUI();
+}
+
+function fixBacktrackUI() {
 	var masterRoot = $.GetContextPanel();
     masterRoot.SetHasClass('phase_option_selection_selected', selectedPhase == PHASE_OPTION_SELECTION || util.reviewOptions);
     masterRoot.SetHasClass('review_selection', util.reviewOptions);
@@ -5178,9 +5183,7 @@ function loadPlayerBans() {
 	
 	// Backtrack Review Option Button
     util.reviewOptionsChange = function(review) {
-        if (util.reviewOptions != review) {
-			onBacktrackButton();
-		}
+        fixBacktrackUI();
     };
 
     // Hook tab changes

@@ -50,10 +50,8 @@ function showIngameBuilder() {
 
         // Make it visible
         $('#heroBuilderDisplay').visible = true;      
-
-		if (!util.reviewOptions) {
-			util.reviewOptionsChange(true);
-		}
+		
+		util.reviewOptionsChange();
     } else {
         $('#heroBuilderDisplay').visible = !$('#heroBuilderDisplay').visible;
     }
