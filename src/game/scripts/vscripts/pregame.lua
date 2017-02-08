@@ -4169,7 +4169,6 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
                 network:hideHeroBuilder(player)
                 return
             end
-            print("asdasd12312321")
             SkillManager:ApplyBuild(hero, newBuild)
             local player = PlayerResource:GetPlayer(playerID)
             network:hideHeroBuilder(player)
@@ -6819,7 +6818,6 @@ function Pregame:fixSpawningIssues()
                         local exp = constants.XP_PER_LEVEL_TABLE[startingLevel]
 
                         -- Fix EXP
-                        print(exp * 3)
                         spawnedUnit:AddExperience(exp, false, false)
                     end
 
