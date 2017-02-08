@@ -4169,8 +4169,8 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
                 network:hideHeroBuilder(player)
                 return
             end
+            print("asdasd12312321")
             SkillManager:ApplyBuild(hero, newBuild)
-            print(3587)
             local player = PlayerResource:GetPlayer(playerID)
             network:hideHeroBuilder(player)
             network:setSelectedAbilities(playerID, self.selectedSkills[playerID])
@@ -6394,7 +6394,7 @@ function Pregame:fixSpawningIssues()
                 local mainHero = PlayerResource:GetSelectedHeroEntity(playerID)
 
                 -- Fix meepo clones and illusions
-                if mainHero and mainHero ~= spawnedUnit then
+                if mainHero and mainHero ~= spawnedUnit and self.spawnedHeroesFor[playerID] then
                     -- Apply the build
                     local build = this.selectedSkills[playerID] or {}
                     SkillManager:ApplyBuild(spawnedUnit, build)
@@ -6812,12 +6812,15 @@ function Pregame:fixSpawningIssues()
                     -- Do we need to level up?
                     if startingLevel > 1 then
                         -- Level it up
-                        --for i=1,startingLevel-1 do
-                        --    spawnedUnit:HeroLevelUp(false)
-                        --end
+                        for i=1,startingLevel-1 do
+                           spawnedUnit:HeroLevelUp(false)
+                        end
+
+                        local exp = constants.XP_PER_LEVEL_TABLE[startingLevel]
 
                         -- Fix EXP
-                        spawnedUnit:AddExperience(constants.XP_PER_LEVEL_TABLE[startingLevel], false, false)
+                        print(exp * 3)
+                        spawnedUnit:AddExperience(exp, false, false)
                     end
 
                     -- Any bonus gold?
