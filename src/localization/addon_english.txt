@@ -1244,6 +1244,11 @@
     "warning_pudge_flesh_heap_spell_amp" "<font color=\'#FF4949\'>Warning:</font> Will not show an increase in the tooltip information, but spell damge will be increased. Purple text popups will appear above hero when you do large spell damage.\n"
     "warning_treant_eyes_in_the_forest" "<font color=\'#FF4949\'>Warning:</font> Enemies will have a debuff notification when within 1000 range of an enchanted tree."
 
+    "credit_sight"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
+    "credit_zhanhun"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
+    "credit_benneng"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
+    "credit_shiguanghuisu"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
+    "credit_jingtong"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
     "credit_aether_range_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
     "credit_sandking_caustic_finale_redux"           "<font color=\'#7D7D7D\'>Credits: Fixed by Firetoad | github.com/fcalife</font>"
     "credit_necrolyte_sadist_lod"           "<font color=\'#7D7D7D\'>Credits: Fixed by Firetoad | github.com/fcalife</font>"
@@ -7780,12 +7785,38 @@
         "DOTA_Tooltip_Ability_item_health_potion"                           "Health Potion"
         "DOTA_Tooltip_Ability_item_mana_potion"                             "Mana Potion"   
 
+        "DOTA_Tooltip_ability_sight"    "Nature's Spy"
+        "DOTA_Tooltip_ability_sight_Description"    "Give a friendly unit flying vision and true sight."
+        "DOTA_Tooltip_ability_sight_duration"   "Duration:"
+        "DOTA_Tooltip_ability_sight_radius_d"   "Daytime vision radius:"
+        "DOTA_Tooltip_ability_sight_radius_n"   "Nighttime vison radius:"
+        "DOTA_Tooltip_modifier_sight"   "Nature's Spy"
+        "DOTA_Tooltip_modifier_sight_Description"   "flying vision and true sight"
+
         "npc_dota_creature_big_bear"        "Daddy Bear"
         "npc_bot_spirit_sven"        "Sven Bot Helper"
         "npc_dota_creature_small_spirit_bear"        "Bear"
         "npc_dota_creature_large_spirit_bear"        "Attack Bear"
 
+        "DOTA_Tooltip_ability_zhanhun"  "Wind soul"
+        "DOTA_Tooltip_ability_zhanhun_Description"  "Each time you cast a spell, all of your abilities' cooldown will reduce a bit."
+        "DOTA_Tooltip_ability_zhanhun_reduce_per"   "CD reduction:"
+        
         "DOTA_Tooltip_ability_jingtong" "Elemental Mystery"
         "DOTA_Tooltip_ability_jingtong_Description" "Years of practices let ninja reduce all the cooldown time of his skills."
         "DOTA_Tooltip_ability_jingtong_reduce"  "%Cooldown Time Reduce:"
+
+        "DOTA_Tooltip_ability_shiguanghuisu"    "Time Backtrack"
+        "DOTA_Tooltip_ability_shiguanghuisu_Description"    "Return to the position 3 seconds ago,as well as your Health."
+        "DOTA_Tooltip_ability_shiguanghuisu_Lore"   ""
+
+        "DOTA_Tooltip_ability_benneng"  "Hunter's Instinct"
+        "DOTA_Tooltip_ability_benneng_Description"  "When you kill a unit you have chance to gain sight on an enemy hero."
+        "DOTA_Tooltip_ability_benneng_chance"   "Chance:"
+        "DOTA_Tooltip_ability_benneng_duration" "Duration:"
+        "DOTA_Tooltip_benneng_beibu"    "You are in someone's sight"
+
+
+
+
 }
