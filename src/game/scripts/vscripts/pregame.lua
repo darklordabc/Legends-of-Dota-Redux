@@ -6610,12 +6610,21 @@ function Pregame:fixSpawningIssues()
                 -- Toolsmode developer stuff to help test
                 if IsInToolsMode() then
                     -- If setting is 1, everyone gets free scepter modifier, if its 2, only human players get the upgrade
-                    if not util:isPlayerBot(playerID) then
-                        local devDagger = spawnedUnit:FindItemByName("item_devDagger")
-                        if not devDagger then
-                            spawnedUnit:AddItemByName('item_devDagger')
-                        end
-                     end
+                    Timers:CreateTimer(function()
+                            if IsValidEntity(spawnedUnit) then
+                                if not util:isPlayerBot(playerID) then
+                                    local devDagger = spawnedUnit:FindItemByName("item_devDagger")
+                                    local normalDagger = spawnedUnit:FindItemByName("item_blink")
+                                    if not devDagger and not normalDagger then
+                                        spawnedUnit:AddItemByName('item_devDagger')
+                                    elseif not devDagger and normalDagger then
+                                        normalDagger:RemoveSelf()
+                                        spawnedUnit:AddItemByName('item_devDagger')
+                                    end
+
+                                end
+                            end
+                    end, DoUniqueString('giveDagger'), 1)            
                 end
 
                 -- Handle free scepter stuff, Gyro will not benefit

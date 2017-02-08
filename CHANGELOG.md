@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 - Fixed starfall aghs not doing damage
 - Fixed Ultimates always appearing as "R" even tho they are not in the R ability slot, this may cause issues if players have custom key bindings.
 - Fixed Maxlevel always defaulting to 100, if its not on 25
+- Added Review Game Settings button above minimap, so players can see settings during the game
 
 ### Balance
 - 
