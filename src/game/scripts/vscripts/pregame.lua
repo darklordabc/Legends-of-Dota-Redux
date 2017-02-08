@@ -6203,10 +6203,10 @@ function Pregame:hookBotStuff()
     ListenToGameEvent('dota_player_gained_level', function(keys)
         local playerID = keys.player - 1
         local level = keys.level
-
+        local hero = PlayerResource:GetPlayer(playerID):GetAssignedHero()
         -- Is this player a bot?
         if PlayerResource:GetConnectionState(playerID) == 1 then
-            local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+            
             if IsValidEntity(hero) then
                 local build = this.selectedSkills[playerID]
 
@@ -6258,40 +6258,52 @@ function Pregame:hookBotStuff()
                 -- Leveling the talents for bots
                 if keys.level == 10 then
                     for i=1,23 do
-                        local abName = hero:GetAbilityByIndex(i):GetAbilityName()
-                        if abName and string.find(abName, "special_bonus") then
-                            local random = RandomInt(0,1)
-                            hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
-                            break
+                        local ab = hero:GetAbilityByIndex(i)
+                        if ab then 
+                            local abName = ab:GetAbilityName()
+                            if abName and string.find(abName, "special_bonus") then
+                                local random = RandomInt(0,1)
+                                hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                                break
+                            end
                         end
                     end
                 elseif keys.level == 15 then
                     for i=1,23 do
-                        local abName = hero:GetAbilityByIndex(i):GetAbilityName()
-                        if abName and string.find(abName, "special_bonus") then
-                            local random = RandomInt(2,3)
-                            hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
-                            break
+                        local ab = hero:GetAbilityByIndex(i)
+                        if ab then 
+                            local abName = ab:GetAbilityName()
+                            if abName and string.find(abName, "special_bonus") then
+                                local random = RandomInt(0,1)
+                                hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                                break
+                            end
                         end
                     end
 
                 elseif keys.level == 20 then
                     for i=1,23 do
-                        local abName = hero:GetAbilityByIndex(i):GetAbilityName()
-                        if abName and string.find(abName, "special_bonus") then
-                            local random = RandomInt(4,5)
-                            hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
-                            break
+                        local ab = hero:GetAbilityByIndex(i)
+                        if ab then 
+                            local abName = ab:GetAbilityName()
+                            if abName and string.find(abName, "special_bonus") then
+                                local random = RandomInt(0,1)
+                                hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                                break
+                            end
                         end
                     end
 
                 elseif keys.level == 25 then
                     for i=1,23 do
-                        local abName = hero:GetAbilityByIndex(i):GetAbilityName()
-                        if abName and string.find(abName, "special_bonus") then
-                            local random = RandomInt(6,7)
-                            hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
-                            break
+                        local ab = hero:GetAbilityByIndex(i)
+                        if ab then 
+                            local abName = ab:GetAbilityName()
+                            if abName and string.find(abName, "special_bonus") then
+                                local random = RandomInt(0,1)
+                                hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                                break
+                            end
                         end
                     end 
                 end
@@ -6817,7 +6829,7 @@ function Pregame:fixSpawningIssues()
                     -- We have given bonuses
                     givenBonuses[playerID] = true
 
-                    local startingLevel = OptionManager:GetOption('startingLevel')
+                    --[[local startingLevel = OptionManager:GetOption('startingLevel')
                     -- Do we need to level up?
                     if startingLevel > 1 then
                         -- Level it up
@@ -6827,7 +6839,7 @@ function Pregame:fixSpawningIssues()
 
                         -- Fix EXP
                         spawnedUnit:AddExperience(constants.XP_PER_LEVEL_TABLE[startingLevel], false, false)
-                    end
+                    end]]
 
                     -- Any bonus gold?
                     if OptionManager:GetOption('bonusGold') > 0 then
