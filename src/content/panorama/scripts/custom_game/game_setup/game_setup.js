@@ -5175,6 +5175,13 @@ function loadPlayerBans() {
        trollCombos[ab1][ab2] = true;
        trollCombos[ab2][ab1] = true;
     });
+	
+	// Backtrack Review Option Button
+    util.reviewOptionsChange = function(review) {
+        if (util.reviewOptions != review) {
+			onBacktrackButton();
+		}
+    };
 
     // Hook tab changes
     hookTabChange('pickingPhaseHeroTab', OnHeroTabShown);
