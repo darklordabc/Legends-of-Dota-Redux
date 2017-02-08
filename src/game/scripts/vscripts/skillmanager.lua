@@ -501,7 +501,7 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
             currentSkillList[hero] = nil
 
             -- Reset ability points
-            hero:SetAbilityPoints(currentLevel)
+            hero:SetAbilityPoints(hero:GetLevel())
 
             if build.setAttr then
                 local toSet = 0
