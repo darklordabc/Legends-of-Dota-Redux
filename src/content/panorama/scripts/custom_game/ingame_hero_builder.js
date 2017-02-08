@@ -26,6 +26,7 @@ function showIngameBuilder() {
         heroBuilderPanel.SetHasClass('phase_selection', true);
 		heroBuilderPanel.SetHasClass('ingame_menu', true);
 		heroBuilderPanel.SetHasClass('review_selection', false);
+		heroBuilderPanel.SetHasClass('builder_enabled', util.builderEnabled);
 
         heroBuilderPanel.balanceMode = balanceMode;
         heroBuilderPanel.FindChildTraverse("balanceModeFilter").SetHasClass("balanceModeDisabled", true);
@@ -48,7 +49,9 @@ function showIngameBuilder() {
         });
 
         // Make it visible
-        $('#heroBuilderDisplay').visible = true;       
+        $('#heroBuilderDisplay').visible = true;      
+		
+		util.reviewOptionsChange();
     } else {
         $('#heroBuilderDisplay').visible = !$('#heroBuilderDisplay').visible;
     }
