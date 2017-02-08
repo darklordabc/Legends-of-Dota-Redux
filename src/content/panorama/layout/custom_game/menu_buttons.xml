@@ -8,11 +8,11 @@
         <include src="file://{resources}/scripts/custom_game/menu_buttons.js" />
     </scripts>
     <Panel class="menuButtonsRoot" hittest="false">
-		<Button id="optionReview" class="menuButton" onactivate="onBtnOpenOptionReviewPressed()" hittest="true">
+		<Button id="optionReview" class="menuButton" onactivate="onBtnOpenOptionReviewPressed()" onmouseover="DOTAShowTextTooltip(#ingameReviewGameOptions)" onmouseout="DOTAHideTextTooltip()" hittest="true">
             <Image class="menuButtonsIcon" src="file://{images}/custom_game/changebuild.png"/>
         </Button>
 	
-        <Button id="heroBuilder" class="menuButton" onactivate="onBtnOpenHeroBuilderPressed()" hittest="true">
+        <Button id="heroBuilder" class="menuButton" onactivate="onBtnOpenHeroBuilderPressed()" onmouseover="DOTAShowTextTooltip(#ingameHeroBuilder)" onmouseout="DOTAHideTextTooltip()" hittest="true">
             <Image class="menuButtonsIcon" src="file://{images}/custom_game/changebuild.png"/>
         </Button>
 
