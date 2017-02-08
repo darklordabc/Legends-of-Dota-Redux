@@ -2,7 +2,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 5.8 - Development Version
+## 5.9 - Development Version
+### Bug Fixing/New Features
+- Added 5 abilities from 'One Shot One Kill' custom game
+
+### Balance
+- 
+
+## 5.8 - Steam Version
 ### Bug Fixing/New Features
 - Fixed starfall aghs not doing damage
 - Fixed Ultimates always appearing as "R" even tho they are not in the R ability slot, this may cause issues if players have custom key bindings.
@@ -11,10 +18,7 @@ All notable changes to this project will be documented in this file.
 - Fixed starting level being affected by EXP modifier
 - Using hero swithcer no longer gives exp/levels
 
-### Balance
-- 
-
-## 5.7 - Steam Version
+## 5.7 
 ### Bug Fixing/New Features
 - Fixed Jingu Mastery being unselectable
 - Fixed Bots picking invis abilities when invis ban mode 2 is choosen
