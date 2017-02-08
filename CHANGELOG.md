@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 5.9 - Development Version
 ### Bug Fixing/New Features
 - Added 5 abilities from 'One Shot One Kill' custom game
+- Added Neutral Abilities: Mana Aura, Cloak Aura, Wardrums
 
 ### Balance
 - 
