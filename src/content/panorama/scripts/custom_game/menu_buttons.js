@@ -26,6 +26,11 @@ function onBtnOpenHeroBuilderPressed() {
     GameEvents.SendCustomGameEventToServer('lodOnIngameBuilder', { playerID: Players.GetLocalPlayer() });
 }
 
+// Play wants to open the option viewer
+function onBtnOpenOptionReviewPressed() {
+    GameEvents.SendCustomGameEventToServer('lodOnIngameBuilder', { playerID: Players.GetLocalPlayer() });
+}
+
 function enableIngameBuilder() {
    $('#heroBuilder').visible = true;
 }
