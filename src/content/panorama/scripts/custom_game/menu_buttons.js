@@ -36,10 +36,12 @@ function onBtnOpenOptionReviewPressed() {
 }
 
 function enableIngameBuilder() {
-   $('#heroBuilder').visible = true;
+	GameUI.CustomUIConfig().Util.builderEnabled = true;
+	$('#heroBuilder').visible = true;
 }
 
 (function() {
+	GameUI.CustomUIConfig().Util.builderEnabled = false;
     CustomNetTables.SubscribeNetTableListener('options', function (tableName, key, value) {
         if (key == 'lodEnableIngameBuilder' && value.state == true) {
             enableIngameBuilder()

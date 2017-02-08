@@ -3489,7 +3489,7 @@ Button:enabled:hover {
 	visibility: collapse;
 }
 
-.ingame_menu #backtrackBtn.hidden {
+.builder_enabled #backtrackBtn.hidden {
 	visibility: visible;
 }
 
