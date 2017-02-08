@@ -1,4 +1,4 @@
-"addon"
+﻿"addon"
 {
     // The name of the game
     "ADDON_GAME_NAME"                               "Dota 2 Redux"
@@ -1010,6 +1010,10 @@
     "teamSwitch_disconnected"                       "DISCONNECTED"
     "teamSwitch_notification"                       "Team switch voting will start in 10 seconds. One team has a 2+ player advantage, and a player from that team has nominated to leave their team and switch sides to help balance the game. If at least 1 person declines the vote the vote will not pass."
     "teamSwitch_cooldown"                           "Team switching is still on cooldown."
+
+    // In-Game Hero Builder
+    "ingameReviewGameOptions"                       "Review Game Settings"
+    "ingameHeroBuilder"                             "Hero Builder"
 
     // Duel
 
