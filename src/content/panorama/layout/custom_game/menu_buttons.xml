@@ -9,7 +9,7 @@
     </scripts>
     <Panel class="menuButtonsRoot" hittest="false">
 		<Button id="optionReview" class="menuButton" onactivate="onBtnOpenOptionReviewPressed()" onmouseover="DOTAShowTextTooltip(#minimapMenuReviewGameOptions)" onmouseout="DOTAHideTextTooltip()" hittest="true">
-            <Image class="menuButtonsIcon" src="file://{images}/custom_game/changebuild.png"/>
+            <Image class="menuButtonsIcon" src="file://{images}/custom_game/changelog.png"/>
         </Button>
 	
         <Button id="heroBuilder" class="menuButton" onactivate="onBtnOpenHeroBuilderPressed()" onmouseover="DOTAShowTextTooltip(#minimapMenuHeroBuilder)" onmouseout="DOTAHideTextTooltip()" hittest="true">
@@ -17,10 +17,10 @@
         </Button>
 
         <Button class="menuButton" onactivate='onBtnOpenChangelog()' onmouseover="DOTAShowTextTooltip(#minimapMenuCredits)" onmouseout="DOTAHideTextTooltip()" >
-            <Image class="menuButtonsIcon" src="file://{images}/custom_game/changelog.png"/>
+            <Image class="menuButtonsIcon" src="file://{images}/custom_game/info.png"/>
         </Button>
 
-        <Button class="menuButton" onactivate="toggleCheats()" onmouseover="DOTAShowTextTooltip(#minimapCheats)" onmouseout="DOTAHideTextTooltip()" >
+        <Button class="menuButton" onactivate="toggleCheats()" onmouseover="DOTAShowTextTooltip(#minimapMenuCheats)" onmouseout="DOTAHideTextTooltip()" >
             <Image class="menuButtonsIcon" src="file://{images}/custom_game/cheats.png"/>
         </Button>
     </Panel>
