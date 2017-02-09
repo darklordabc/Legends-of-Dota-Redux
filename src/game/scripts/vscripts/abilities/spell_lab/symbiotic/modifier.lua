@@ -9,6 +9,7 @@ function spell_lab_symbiotic_modifier:OnCreated( kv )
     self.scale = self:GetParent():GetModelScale()
     self:GetParent():SetModelScale(0.001)
 	end
+	--self.hasScepter = self:GetParent():HasScepter()
 end
 
 function spell_lab_symbiotic_modifier:SetHost (hTarget,hMod)
@@ -34,7 +35,8 @@ function spell_lab_symbiotic_modifier:DeclareFunctions()
     MODIFIER_EVENT_ON_SET_LOCATION,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
 		MODIFIER_EVENT_ON_DEATH,
-    MODIFIER_PROPERTY_INVISIBILITY_LEVEL
+    MODIFIER_PROPERTY_INVISIBILITY_LEVEL,
+		MODIFIER
 	}
 	return funcs
 end
@@ -60,7 +62,7 @@ function spell_lab_symbiotic_modifier:CheckState()
   [MODIFIER_STATE_NOT_ON_MINIMAP] = true,
   [MODIFIER_STATE_NO_HEALTH_BAR] = true,
   [MODIFIER_STATE_FROZEN] = true,
-  --[MODIFIER_STATE_DISARMED] = true,
+  [MODIFIER_STATE_DISARMED] = not self:GetParent():HasScepter(),
   [MODIFIER_STATE_OUT_OF_GAME] = true,
   [MODIFIER_STATE_TRUESIGHT_IMMUNE] = true,
   [MODIFIER_STATE_INVISIBLE] = true
@@ -111,6 +113,7 @@ end
 
 function spell_lab_symbiotic_modifier:OnIntervalThink()
 	if IsServer() then
+		if not self:GetParent():IsAlive() then self:Terminate(nil) end
     if self.hHost == nil then return end
     local hParent = self:GetParent()
     local mana = (self.hHost:GetMana() / self.hHost:GetMaxMana()) * hParent:GetMaxMana()

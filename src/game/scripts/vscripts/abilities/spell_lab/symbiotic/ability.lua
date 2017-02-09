@@ -14,7 +14,6 @@ function spell_lab_symbiotic:GetBehavior()
 end
 
 function spell_lab_symbiotic:OnSpellStart()
-
 	if self:GetCaster():HasModifier("spell_lab_symbiotic_modifier") then
 		self:EndSymbiosis()
 	else

@@ -17,16 +17,18 @@ end
 
 function spell_lab_symbiotic_target:InitSymbiot (hModifier)
 	if IsServer() then
-    self.symbiot = hModifier;
+		self.symbiot = hModifier
 	end
 end
 
 function spell_lab_symbiotic_target:DeclareFunctions()
 	local funcs = {
-    MODIFIER_EVENT_ON_DEATH,
+    MODIFIER_EVENT_ON_DEATH--[[]]--
+		,
     MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
     MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
     MODIFIER_PROPERTY_STATS_INTELLECT_BONUS
+		--]]--
 	}
 	return funcs
 end
