@@ -30,6 +30,7 @@
 #base "abilities\custom\aether_range_lod.txt"
 #base "abilities\custom\aether_range_lod_global.txt"
 #base "abilities\custom\aether_range_lod_OP.txt"
+#base "abilities\custom\arcane_mastery.txt"
 #base "abilities\custom\armoured_centipede.txt"
 #base "abilities\custom\disruptor_glimpse_OP.txt"
 #base "abilities\custom\disruptor_kinetic_field_OP.txt"
