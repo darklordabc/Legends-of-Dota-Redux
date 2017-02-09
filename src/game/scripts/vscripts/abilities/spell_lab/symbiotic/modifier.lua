@@ -11,12 +11,16 @@ function spell_lab_symbiotic_modifier:OnCreated( kv )
 	end
 end
 
-function spell_lab_symbiotic_modifier:SetHost (hTarget)
+function spell_lab_symbiotic_modifier:SetHost (hTarget,hMod)
   self.hHost = hTarget
+	self.hMod = hMod
 end
 
 function spell_lab_symbiotic_modifier:OnDestroy()
 	if IsServer() then
+	  if self.hMod ~= nil then
+	    self.hMod:Destroy()
+	  end
     self:GetParent():SetModelScale(self.scale)
 		EmitSoundOnLocationWithCaster( self:GetParent():GetOrigin(), "Hero_Bane.Nightmare.End", self:GetParent() )
 	end
@@ -29,6 +33,7 @@ function spell_lab_symbiotic_modifier:DeclareFunctions()
     MODIFIER_EVENT_ON_SPENT_MANA,
     MODIFIER_EVENT_ON_SET_LOCATION,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
+		MODIFIER_EVENT_ON_DEATH,
     MODIFIER_PROPERTY_INVISIBILITY_LEVEL
 	}
 	return funcs
@@ -63,6 +68,13 @@ function spell_lab_symbiotic_modifier:CheckState()
 	return state
 end
 
+function spell_lab_symbiotic_modifier:OnDeath (kv)
+	if IsServer() then
+	  if kv.unit ~= self:GetParent() then return end
+		self:Destroy()
+	end
+end
+
 function spell_lab_symbiotic_modifier:OnTakeDamage (kv)
 	if IsServer() then
 		if kv.unit ~= self.hHost then return end
@@ -93,10 +105,6 @@ end
 function spell_lab_symbiotic_modifier:Terminate (attacker)
   if attacker then
     self:GetParent():Kill(self:GetAbility(),attacker)
-  end
-  if self.hHost ~= nil then
-    local hMod = self.hHost:FindModifierByName("spell_lab_symbiotic_target")
-    hMod:Destroy()
   end
   self:Destroy()
 end
