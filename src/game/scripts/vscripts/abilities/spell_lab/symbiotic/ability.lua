@@ -47,7 +47,7 @@ function spell_lab_symbiotic:StartSymbiosis(hTarget)
 	EmitSoundOnLocationWithCaster( self:GetCaster():GetOrigin(), "Hero_Bane.Nightmare", self:GetCaster() )
 	local hModifier = hTarget:AddNewModifier( self:GetCaster(), self, "spell_lab_symbiotic_target", {} )
 	local hSymbiot = self:GetCaster():AddNewModifier( self:GetCaster(), self, "spell_lab_symbiotic_modifier", {} )
-	hSymbiot:SetHost(hTarget)
+	hSymbiot:SetHost(hTarget,hModifier)
 	hModifier:InitSymbiot(hSymbiot)
 end
 
