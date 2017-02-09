@@ -25,7 +25,7 @@
 							"RunScript"
 							{
 								"Target"	"CASTER"
-								"ScriptFile"	"scripts/vscripts/abilities/beast_ninja.lua"
+								"ScriptFile"	"scripts/vscripts/abilities/oneshotonekill/beast_ninja.lua"
 								"Function"	"benneng"
 							}
 						}

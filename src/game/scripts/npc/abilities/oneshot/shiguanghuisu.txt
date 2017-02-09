@@ -18,7 +18,7 @@
 			"RunScript"
 			{
 				"Target"	"CASTER"
-				"ScriptFile"	"scripts/vscripts/abilities/time_ninja.lua"
+				"ScriptFile"	"scripts/vscripts/abilities/oneshotonekill/time_ninja.lua"
 				"Function"	"huisu"
 			}
 			"FireSound"
@@ -32,7 +32,7 @@
 			"RunScript"
 			{
 				"Target"	"CASTER"
-				"ScriptFile"	"scripts/vscripts/abilities/time_ninja.lua"
+				"ScriptFile"	"scripts/vscripts/abilities/oneshotonekill/time_ninja.lua"
 				"Function"	"huisu_interval"
 			}
 		}

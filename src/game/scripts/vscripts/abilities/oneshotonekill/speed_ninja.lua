@@ -1,7 +1,7 @@
 function zhanhun( keys )
 	local caster = keys.caster
 	local reduce = keys.reduce
-	for i = 0,5 do
+	for i = 0,10 do
 		local ability = caster:GetAbilityByIndex(i)
 		if ability:GetLevel()>0 and not ability:IsCooldownReady() then
 			local remain = ability:GetCooldownTimeRemaining()
