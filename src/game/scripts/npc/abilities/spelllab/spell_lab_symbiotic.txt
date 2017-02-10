@@ -22,7 +22,7 @@
   			"01"
   			{
   				"var_type"                  "FIELD_INTEGER"
-  				"bonus"						"15 30 45"
+  				"bonus"						"5 10 15"
   			}
   		}
   		"precache"

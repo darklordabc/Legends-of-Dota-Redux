@@ -7773,8 +7773,9 @@
         "DOTA_Tooltip_ability_spawnlord_master_freeze_creep_damage"       "PETRIFY DPS:"
 
         "DOTA_Tooltip_ability_spell_lab_symbiotic"                                      "Arcane Symbiosis"
-        "DOTA_Tooltip_ability_spell_lab_symbiotic_Description" "You bind yourself to target allied hero. You may attack and cast spells as normal but you share manapool. If your symbiotic host dies, you die as well.\nMana pool is shared as percentages.\nWhen host takes damage ending symbiosis is put on 3s cooldown.\nHost hero is granted bonus to all stats."
+        "DOTA_Tooltip_ability_spell_lab_symbiotic_Description" "You bind yourself to target allied hero. You may cast spells as normal but you share manapool. If your symbiotic host dies, you die as well.\nMana pool is shared as percentages.\nWhen host takes damage ending symbiosis is put on 3s cooldown.\nHost hero is granted bonus to all stats."
         "DOTA_Tooltip_ability_spell_lab_symbiotic_bonus" "+$all"
+		"DOTA_Tooltip_ability_spell_lab_symbiotic_Aghanim_Description"	"Allows you to attack while in symbiosis."
         "DOTA_Tooltip_spell_lab_symbiotic_modifier" "Arcance Symbiosis"
         "DOTA_Tooltip_spell_lab_symbiotic_modifier_Description" "You share mana pool with a host hero."
         "DOTA_Tooltip_spell_lab_symbiotic_target"   "Arcance Symbiosis: Host"
