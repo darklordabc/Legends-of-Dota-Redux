@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file.
 - Added Neutral Abilities: Mana Aura, Cloak Aura, Wardrums
 
 ### Balance
-- 
+- Increased cooldown and manacost to trickshot active
 
 ## 5.8 - Steam Version
 ### Bug Fixing/New Features
