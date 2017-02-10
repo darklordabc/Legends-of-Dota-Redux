@@ -631,4 +631,69 @@
 			}
 		}
 	}
+
+	"alchemist_alchemise"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/alchemist_alchemise"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"350"
+		"AbilityCastPoint"				"0.4"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30"
+	
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// All about the damage
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+		"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"transmute_gold"				"80 105 130 155"
+			}
+		}
+		
+		"precache"
+			{
+			"particle" "particles/items2_fx/hand_of_midas.vpcf"
+			"particle" "particles/units/heroes/hero_alchemist/alchemist_lasthit_coins.vpcf"
+			"particle" "particles/units/heroes/hero_alchemist/alchemist_lasthit_msg_gold.vpcf"
+			"soundfile" "soundevents/game_sounds_items.vsndevts"
+			}
+			
+		"OnSpellStart"
+			{
+			"RunScript"
+				{
+				"ScriptFile" "abilities/dusk/alchemist_abilities.lua"
+				"Function" "alchemist_alchemise_transmute_target"
+				"gold" "%transmute_gold"
+				}
+			}
+		
+		"Modifiers"
+			{
+			}
+	}
 }

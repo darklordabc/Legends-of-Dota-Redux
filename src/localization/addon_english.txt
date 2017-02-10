@@ -7862,4 +7862,10 @@
         "DOTA_Tooltip_ability_crimson_blood_sorcery_Lore"                                   "A wound repaired instantly."
         "DOTA_Tooltip_ability_crimson_blood_sorcery_mult"                                   "EFFICIENCY:"
 
+        "DOTA_Tooltip_ability_alchemist_alchemise"                                        "Alchemise"
+        "DOTA_Tooltip_ability_alchemist_alchemise_description"                            "Transmutes the target enemy unit into gold, granting the Alchemist a large boost to his bank balance."
+        "DOTA_Tooltip_ability_alchemist_alchemise_bonus_gold"                             "GOLD PER SECOND:"
+        "DOTA_Tooltip_ability_alchemist_alchemise_transmute_gold"                         "TRANSMUTE GOLD:"
+
+
 }
