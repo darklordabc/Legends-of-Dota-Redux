@@ -1250,6 +1250,7 @@
     "credit_shiguanghuisu"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
     "credit_jingtong"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
     "credit_arcane_mastery"           "<font color=\'#7D7D7D\'>Credits: TheRisen41 | github.com/TheRisen41</font>"
+    "credit_spell_lab_symbiotic"           "<font color=\'#7D7D7D\'>Credits: OtsoTurpeinen | github.com/OtsoTurpeinen</font>"
     "credit_aether_range_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
     "credit_sandking_caustic_finale_redux"           "<font color=\'#7D7D7D\'>Credits: Fixed by Firetoad | github.com/fcalife</font>"
     "credit_necrolyte_sadist_lod"           "<font color=\'#7D7D7D\'>Credits: Fixed by Firetoad | github.com/fcalife</font>"
@@ -7773,7 +7774,7 @@
         "DOTA_Tooltip_ability_spawnlord_master_freeze_creep_damage"       "PETRIFY DPS:"
 
         "DOTA_Tooltip_ability_spell_lab_symbiotic"                                      "Arcane Symbiosis"
-        "DOTA_Tooltip_ability_spell_lab_symbiotic_Description" "You bind yourself to target allied hero. You may cast spells as normal but you share manapool. If your symbiotic host dies, you die as well.\nMana pool is shared as percentages.\nWhen host takes damage ending symbiosis is put on 3s cooldown.\nHost hero is granted bonus to all stats."
+        "DOTA_Tooltip_ability_spell_lab_symbiotic_Description" "You bind yourself to target allied hero. You may cast spells as normal but you share manapool. If your symbiotic host dies, you die as well.\nMana pool is shared as percentages.\nWhen host takes damage ending symbiosis is put on 3s cooldown.\nHost hero is granted bonus to all stats.\n\n Upgradeable by Aghanim's Scepter"
         "DOTA_Tooltip_ability_spell_lab_symbiotic_bonus" "+$all"
 		"DOTA_Tooltip_ability_spell_lab_symbiotic_Aghanim_Description"	"Allows you to attack while in symbiosis."
         "DOTA_Tooltip_spell_lab_symbiotic_modifier" "Arcance Symbiosis"
