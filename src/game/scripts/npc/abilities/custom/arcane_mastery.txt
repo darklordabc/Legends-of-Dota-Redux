@@ -12,6 +12,8 @@
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"MaxLevel"						"3"
 		
+		"AbilityProcsMagicStick"		"1"
+		
 		"precache"
 		{
 			"soundfile"			"soundevents/custom_arcane_mastery.vsndevts"
@@ -34,7 +36,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"manaRegen"					"100 200 300"
+				"manaRegen"					"200 300 400"
 			}
 			"04"
 			{
