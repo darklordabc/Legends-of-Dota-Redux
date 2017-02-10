@@ -7857,4 +7857,9 @@
         "DOTA_Tooltip_paragon_tranquil_seal_mod_enemy"                                    "Tranquil Seal"
         "DOTA_Tooltip_paragon_tranquil_seal_mod_enemy_Description"                        "Dealing and receiving no damage."
 
+        "DOTA_Tooltip_ability_crimson_blood_sorcery"                                        "Ancient Pact"
+        "DOTA_Tooltip_ability_crimson_blood_sorcery_description"                            "Crimson calls upon the arts of his elders to trade his Mana for health, healing as much as possible, with great efficiency allowing the mana cost to be lower than the health healed."
+        "DOTA_Tooltip_ability_crimson_blood_sorcery_Lore"                                   "A wound repaired instantly."
+        "DOTA_Tooltip_ability_crimson_blood_sorcery_mult"                                   "EFFICIENCY:"
+
 }
