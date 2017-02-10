@@ -59,8 +59,8 @@
     "lodStageIngame"                          "В игре"
 	
 	// Review Options Button
-	"reviewOptions"                           "Review Option Selection"
-	"reviewReturn"                            "Return to Hero Builder"
+	"reviewOptions"                           "Вернуться к настройкам"
+	"reviewReturn"                            "Вернуться к созданию героя"
 
     // Chat channels
     "channelAll"                              "Всем"
@@ -84,8 +84,9 @@
     "importAndExport_no_changes"                    "Изменений не обнаружено!"
 
     // Booster Draft tips
-    "boosterDraftTip1"                              "Every player gets set of abilities called \'booster\'. Once player picked some ability remaining abilities goes to next player. There are 10 round which means that you will draft 10 abilities and will be able to build your hero from that pool. If round ends and you have no selected ability then most powerful one will be autopicked."
-    "lodBoosterDraftMessage"                        "Every player gets set of abilities called <font color='#70EA72'>booster</font>. Once player picked some ability remaining abilities goes to next player. There are 10 round which means that you will draft 10 abilities and will be able to build your hero from that pool. If round ends and you have no selected ability then most powerful one will be autopicked."
+    "boosterDraftTip1"                              "Каждый игрок получает набор способностей, так называемый \'бустер\'. Игрок выбирает одну способность, дальше выбирает следующий игрок. Это продолжается 10 раундов, за которые вы должны выбрать 10 способностей, и создать своего героя из этого набора. Если раунд закончился, а вы не выбрали способность, она выбирается автоматически.
+"
+    "lodBoosterDraftMessage"                        "Каждый игрок получает набор способностей, так называемый <font color='#70EA72'>Бустер</font>. Игрок выбирает одну способность, дальше выбирает следующий игрок. Это продолжается 10 раундов, за которые вы должны выбрать 10 способностей, и создать своего героя из этого набора. Если раунд закончился, а вы не выбрали способность, она выбирается автоматически."
 
     // Categories for option selection
     "filter_by_category"                            "Фильтровать по категории:"
@@ -120,7 +121,7 @@
     "lodMutatorBanningBanInvis"                     "Без Невидимости"
     "lodMutatorFastBuybackCooldown"                 "Быстрое Воскрешение"
     "lodMutatorUpgradedUlts"                        "Бесплатный Аганим"
-    "lodMutatorSliders"                             "Sliders"
+    "lodMutatorSliders"                             "Ползунки"
     "lodMutatorMonkeyBusiness"                      "Monkey Business"
     "lodMutatorFastStart"                           "Быстрый Старт"
     "lodMutatorStrongTowers"                        "Сильные Башни"
@@ -134,7 +135,7 @@
     "lodMutatorStrongCreeps"                        "Сильные Крипы"
     "lodMutatorShareEXP"                            "Общий опыт"
     "lodMutatorWTF"                                 "WTF Мод"
-    "lodMutatorDisablePerks"                        "Disable Perks"
+    "lodMutatorDisablePerks"                        "Отключить перки"
     "lodMutatorHidePicks"                           "Скрыть пики оппонентов"
     "lodMutatorAllVision"                           "Открытая Карта"
     "lodMutatorDuel"                                "Дуэли"
@@ -179,7 +180,7 @@
     "lodMutatorCreepPowerExtreme"                   "Экстремальные Крипы"
 
     "lodMutatorAllPick"                             "All Pick"
-    "lodMutatorAllPickFast"                         "All Pick Fast"
+    "lodMutatorAllPickFast"                         "All Pick Быстрый"
     "lodMutatorMirrorDraft"                         "Mirror Draft"
     "lodMutatorAllRandom"                           "All Random"
     "lodMutatorSingleDraft"                         "Single Draft"
@@ -196,7 +197,7 @@
     "lodOptionAboutTraditionalAllPick"              "Выбирайте из всех доступных способностей."
     "lodOptionAboutSingleDraft"                     "Выбирайте способности из случайно выбранных персонажей."
     "lodOptionAboutMirrorDraft"                     "Выбирайте способности из зеркально выбранных персонажей."
-    "lodOptionAboutBoosterDraft"                    "Each player gets a pack of abilities, picks an ability than passes the pack to the next player."
+    "lodOptionAboutBoosterDraft"                    "Каждый выбирает пак способностей сам, выбирает способность, затем передаёт этот же пак следующему игроку."
     "lodOptionAboutAllRandom"                       "Выбирайте из случайного набора способностей."
     "lodOptionAboutBalancedCustom"                  "Создайте свой игровой мод."
 
@@ -343,40 +344,40 @@
     "lodOptionDesDuels"                             "Дуэли"
     "lodOptionAboutDuels"                           "Система дуэлей из кастомки Angel Arena Reborn"
 
-    "lodOptionRefreshCooldownsOnDeath"              "Refresh Cooldowns On Death"
-    "lodOptionDesRefreshCooldownsOnDeath"           "Refresh Cooldowns On Death"
-    "lodOptionAboutRefreshCooldownsOnDeath"         "Refreshes most cooldowns upon dying. Does not refresh Techies Suicide."
-    "lodMutatorRefreshCooldownsOnDeath"             "Refresh Cooldowns On Death"
+    "lodOptionRefreshCooldownsOnDeath"              "Сбрасывать кулдауны после смерти"
+    "lodOptionDesRefreshCooldownsOnDeath"           "Сбрасывать кулдауны после смерти"
+    "lodOptionAboutRefreshCooldownsOnDeath"         "Сбрасывать кулдауны после смерти, кроме суицида течиса"
+    "lodMutatorRefreshCooldownsOnDeath"             "Сбрасывать кулдауны после смерти"
 
     "lodOption322"                                  "322"
-    "lodOptionDes322"                               "Enable 322"
-    "lodOptionAbout322"                             "Heroes gain 322 gold upon dying instead of losing gold."
+    "lodOptionDes322"                               "включить 322"
+    "lodOptionAbout322"                             "После смерти герой получает 322 золота, вместо того, чтобы потерять его."
     "lodMutator322"                                 "322"
 
-    "lodOptionDesGottaGoFast"                               "Movespeed Multiplier"
-    "lodOptionGottaGoFastOff"                               "Normal Movespeed"
-    "lodOptionGottaGoQuickOn"                                "+20% movespeed."
-    "lodOptionGottaGoFastOn"                                "+50% movespeed, 1000ms limit."
-    "lodOptionGottaGoREALLYFast"                            "All heroes have 1000ms and cannot be slowed."
-    "lodOptionAboutGottaGoFast"                             "Gotta Go Fast: Increases the movement speed of all heroes by 50%, and raises the movespeed cap from 550 to 1000.\n Gotta Go FASTER: All heroes have 1000ms and cannot be slowed."
-    "lodMutatorGottaGoFast"                                 "Gotta Go Fast?"
-    "lodMutatorGottaGoFastOff"                              "Gotta Go Fast?"
-    "lodMutatorGottaGoFastOn"                               "Gotta Go Fast!"
-    "lodMutatorGottaGoREALLYFast"                           "Gotta Go FASTER!"
+    "lodOptionDesGottaGoFast"                               "Огромная скорость передвижения"
+    "lodOptionGottaGoFastOff"                               "Нормальная скорость передвижения"
+    "lodOptionGottaGoQuickOn"                                "+20% к скорости передвижения."
+    "lodOptionGottaGoFastOn"                                "+50% к скорости передвижения, 1000-это макс. лимит."
+    "lodOptionGottaGoREALLYFast"                            "Все герои имеют скорость 1000 и не могут быть замедленны."
+    "lodOptionAboutGottaGoFast"                             "Ебашь со всех ног: Увеличивает скорость передвижения на 50% и повышает скорость передвижения с 550 до 1000.\n ЕБАШЬ СО ВСЕХ НОГ!: Все герои имеют скорость 1000 и не могут быть замедлены."
+    "lodMutatorGottaGoFast"                                 "Ебашь со всех ног?"
+    "lodMutatorGottaGoFastOff"                              "Ебашь со всех ног?"
+    "lodMutatorGottaGoFastOn"                               "Ебашь со всех ног!"
+    "lodMutatorGottaGoREALLYFast"                           "ЕБАШЬ СО ВСЕХ НОГ!"
 
-    "lodOptionDesSliders"                                   "Enable Free Teleport Ability"
-    "lodOptionAboutSliders"                                 "All players gain Unstable Rift teleportation ability."
+    "lodOptionDesSliders"                                   "EДобавить способность "бесплатную телепортацию""
+    "lodOptionAboutSliders"                                 "Все имеют прерываемый телепорт"
 
     "lodOptionDesMonkeyBusiness"                                   "Enable Free Mischief Ability"
     "lodOptionAboutMonkeyBusiness"                                 "All players gain Monkey King's Mischief ability."
 
-    "lodOptionDesAdvancedHeroAbilities"             "Разрешить способности нероев"
+    "lodOptionDesAdvancedHeroAbilities"             "Разрешить способности героев"
     "lodOptionDesAdvancedNeutralAbilities"          "Разрешить способности нейтралов"
     "lodOptionDesAdvancedCustomSkills"              "Разрешить новые способности"
     "lodOptionDesAdvancedOPAbilities"               "Запретить сверхсильные способности"
     "lodOptionDesCrazyWTF"                          "Включить WTF мод"
     "lodOptionDesIngameBuilder"                     "Enable Ingame Hero Builder"
-    "lodOptionDesIngameBuilderPenalty"              "Build Change Death Penalty (sec.)"
+    "lodOptionDesIngameBuilderPenalty"              "Изменить время респавна (сек.)"
     "lodOptionDesGameSpeedUpgradedUlts"             "Аганим со старта"
     "lodOptionDesGameSpeedFreeCourier"              "Бесплатный курьер"
     "lodOptionDesGameSpeedStrongTowers"             "Разрешить усиленные башни"
@@ -391,25 +392,26 @@
     "lodOptionDesAdvancedUniqueHeroes"              "Уникальные герои"
     "lodOptionDesAdvancedSelectPrimaryAttr"         "Разрешить выбор основного атрибута героя"
     "lodOptionDesBanningMaxHeroBans"                "Максимум банов героев"
-    "lodOptionDesDisablePerks"                      "Disable Perks"
+    "lodOptionDesDisablePerks"                      "Отключить способности"
 
     "lodOptionDesCrazyFatOMeter"                    "Включить Fat-O-Meter"
     "lodOptionNoFatOMeter"                          "Выключено"
     "lodOptionFarmFatOMeter"                        "По общей ценности"
     "lodOptionKDAFatOMeter"                         "По KDA"
-    "lodOptionIngameOff"                            "Ability Switching Disabled"
-    "lodOptionIngamePenalty1"                       "Ability Switching, 60 second death penalty"
-    "lodOptionIngameOn"                             "Ability Switching, No Penalty"
+    "lodOptionIngameOff"                            "Смена способностей отключена"
+    "lodOptionIngamePenalty1"                       "Смена способностей включена, но вы отправитесь в таверну на 60 сек.
+    "lodOptionIngameOn"                             "Смена способностей включена, штрафные санкции осутствуют."
     "lodOptionAboutCrazyFatOMeter"                  "Эта опция позволит игрокам увеличиваться в размерах и становиться мощнее\По общей ценности: Игроки увеличиваются в размерах по мере того как они становятся богаче\nПо KDA: Игроки увеличиваются в размерах, убивая вражеских героев и изменяя их KDA\n\nСоздано Cool Robbit."
 
-    "lodMutatorIngameBuilder1"                      "Build Switcher"
-    "lodMutatorIngameBuilder2"                      "Build Switcher 60s penalty"
-    "lodMutatorIngameBuilder3"                      "Build Switcher 30s penalty"
-    "lodMutatorIngameBuilder4"                      "Build Switcher Free"
+    "lodMutatorIngameBuilder1"                      "Смена БИЛДа"
+    "lodMutatorIngameBuilder2"                      "Смена БИЛДа 60 сек в таверне"
+    "lodMutatorIngameBuilder3"                      "Смена БИЛДа 30 сек в таверне"
+    "lodMutatorIngameBuilder4"                      "Смена БИЛДа без санкций"
 
-    "ingameBuilderNotification"                     "<font color='#00DD0B'>Ingame Build Switch is Enabled. Click on the change build icon in the top right corner to change your abilities/hero/primaray stat.</font>"
-    "ingameBuilderReminder"                     "<font color='#00DD0B'>Don't forget. Ingame Build Switch is Enabled. Click on the change build icon in the top right corner to change your abilities/hero/primaray stat.</font>"
-    "tempDuelBlock"                     "<font color='#FF0000'>Duels are temporarily disabled due to a crash issue. They will be reenabled soon. Sorry about that.</font>"
+    "ingameBuilderNotification"                     "<font color='#00DD0B'>Внутриигровая смена БИЛДа включена. Нажмите на иконку смены БИЛДа в верхнем правом углу, чтобы сменить вашу способность/героя/основную хар-ку.</font>"
+    "ingameBuilderReminder"                     "<font color='#00DD0B'>Не забывайте, Внутриигровая смена БИЛДа включена. Нажмите на иконку смены БИЛДа в верхнем правом углу, чтобы сменить вашу способность/героя/основную хар-ку.</font>"
+    "tempDuelBlock"                     "<font color='#FF0000'>Дуэли временно отключены по техническим причинам. Просим прощения!
+</font>"
 
     "lodUniqueSkillsOff"                            "Выключено"
     "lodUniqueSkillsTeam"                           "Уникальные спосбности в команде"
@@ -460,7 +462,7 @@
     "lodPickAHero"                                  "ВЫБЕРИ ГЕРОЯ!"
 
     // Info
-    "lodOptionAboutPresetGamemode"                  "Выберите из предопределённых игровых модов.\nЭту опцию можно изменить, только если вы играете на 'custom' карте.\n\nAll Pick: Выбор из всех доступных способностей.\nMirror Draft: Выбор из ограниченного числа героев. одному из оппонентов достанется идентичный набор для выбора.\nAll Random: Выберите из случайного набора билдов.\nCustom: Создайте пользовательскую версию игры."
+    "lodOptionAboutPresetGamemode"                  "Выберите из предопределённых игровых модов.\nЭту опцию можно изменить, только если вы играете на кастомной карте.\n\nAll Pick: Выбор из всех доступных способностей.\nMirror Draft: Выбор из ограниченного числа героев. одному из оппонентов достанется идентичный набор для выбора.\nAll Random: Выберите из случайного набора билдов.\nCustom: Создайте пользовательскую версию игры."
     "lodOptionAboutPresetBanning"                   "Используйте предопределённый мод банов.\n\nBalanced bans: Набор раздражающих способностей будет забанен.\nFast Ban Phase: Сверхсильные способности будут забанены, а также игроки смогут забанить по 1 герою и 3 способности.\nFull Ban Phase: Баны баланса будут использованы, а также игроки смогут забанить до 10 способностей и 2 героев каждый.\nNo Bans: Сверхсильные способности будут забанены, а игроки не смогут забанить что-либо ещё"
     "lodOptionAboutPresetSlots"                     "У героя будет (4 - 6) способностей."
     "lodOptionAboutPresetUlts"                      "У героя будет (0 - 6) ультов"
@@ -502,7 +504,7 @@
     "lodOptionAboutCrazyMulticast"                  "Каждая активная способность будет использована еще как минимум раз (мультикаст)"
     "lodOptionAboutCrazyWTF"                        "Способности и вещи не имеют времени перезарядки и не расходуют ману"
     "lodOptionAboutIngameBuilder"                   "Enable an ingame hero builder that allows you to change your skills during gameplay."
-    "lodOptionAboutIngameBuilderPenalty"            "This sets how long the switching player will be dead for. If its zero, player's can switch builds without dying. Dead players cannot use the build switcher."
+    "lodOptionAboutIngameBuilderPenalty"            "Это определяет, как долго игрок будет в таверне. Если значение равно нулю, игрок может сменить БИЛД без смерти. Мертвый игрок не может сменить БИЛД."
     "lodOptionAboutDisablePerks"                    "Hero Perks will not be assigned to heroes."
 
     //Builds
