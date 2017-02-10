@@ -36,7 +36,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"manaRegen"					"200 300 400"
+				"manaRegen"					"1 2 3"
 			}
 			"04"
 			{
@@ -98,7 +98,7 @@
 				{
 					"MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE"	"%spellDamageIncrease"
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"	"%bonusMoveSpeed"
-					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"		"%manaRegen"
+					"MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE"		"%manaRegen"
 				}
 				"OnHeroKilled"
 				{

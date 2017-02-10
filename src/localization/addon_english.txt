@@ -7818,15 +7818,15 @@
         "DOTA_Tooltip_benneng_beibu"    "You are in someone's sight"
 
         "DOTA_Tooltip_ability_arcane_mastery"   "ARCANE MASTERY"
-        "DOTA_Tooltip_ability_arcane_mastery_Description"   "Amplifies your Spell Damage, Mana Regeneration and Movement speed for a period of time. Killing an enemy Hero while under this effect will reduce the cooldowns of all your other abilities."
+        "DOTA_Tooltip_ability_arcane_mastery_Description"   "Amplifies your Spell Damage and Movement speed and restores a percentage of your max mana per second for a period of time. Killing an enemy Hero while under this effect will reduce the cooldowns of all your other abilities."
         "DOTA_Tooltip_ability_arcane_mastery_spellDamageIncrease"   "%SPELL DAMAGE INCREASE:"
         "DOTA_Tooltip_ability_arcane_mastery_duration"   "DURATION:"
         "DOTA_Tooltip_ability_arcane_mastery_bonusMoveSpeed"   "BONUS MOVESPEED:"
-        "DOTA_Tooltip_ability_arcane_mastery_manaRegen"   "%BONUS MANA REGEN:"
+        "DOTA_Tooltip_ability_arcane_mastery_manaRegen"   "%MANA RESTORED PER SECOND:"
         "DOTA_Tooltip_ability_arcane_mastery_cooldownReduction"   "COOLDOWN REDUCTION PER KILL:"
 
         "DOTA_Tooltip_modifier_custom_arcane_mastery"   "ARCANE MASTERY"
-        "DOTA_Tooltip_modifier_custom_arcane_mastery_Description"   "Increased Spell Damage, Mana Regeneration and Movement speed. Killing an enemy will reduce the cooldowns of all your other abilities."
+        "DOTA_Tooltip_modifier_custom_arcane_mastery_Description"   "Increased Spell Damage and Movement speed. Restores a percentage of your max mana per second. Killing an enemy will reduce the cooldowns of all your other abilities."
 
 
 
