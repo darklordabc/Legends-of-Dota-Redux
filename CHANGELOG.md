@@ -6,9 +6,11 @@ All notable changes to this project will be documented in this file.
 ### Bug Fixing/New Features
 - Added 5 abilities from 'One Shot One Kill' custom game
 - Added Neutral Abilities: Mana Aura, Cloak Aura, Wardrums
+- Improved Russian Translation (thanks to Акулоёб)
+- Added Arcane Mastery (by TheRisen41)
 
 ### Balance
-- 
+- Increased cooldown and manacost to trickshot active
 
 ## 5.8 - Steam Version
 ### Bug Fixing/New Features

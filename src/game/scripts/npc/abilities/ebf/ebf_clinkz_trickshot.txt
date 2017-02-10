@@ -5,9 +5,9 @@
 		"FightRecapLevel" "1"
 		"AbilityTextureName" "custom/ebf_clinkz_trickshot"
 		"HasScepterUpgrade" "1"
-		"AbilityCooldown" "25.0"
+		"AbilityCooldown" "35.0"
 		"AbilityCastPoint" "0.0 0.0 0.0 0.0"
-		"AbilityManaCost" "150 140 130 120"
+		"AbilityManaCost" "150"
 
 		"AbilitySpecial" {
 			"01" {

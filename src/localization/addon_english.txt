@@ -7817,24 +7817,13 @@
         "DOTA_Tooltip_ability_benneng_duration" "Duration:"
         "DOTA_Tooltip_benneng_beibu"    "You are in someone's sight"
 
-        "DOTA_Tooltip_ability_arcane_mastery"   "ARCANE MASTERY"
-        "DOTA_Tooltip_ability_arcane_mastery_Description"   "Amplifies your Spell Damage and Movement speed and restores a percentage of your max mana per second for a period of time. Killing an enemy Hero while under this effect will reduce the cooldowns of all your other abilities."
-        "DOTA_Tooltip_ability_arcane_mastery_spellDamageIncrease"   "%SPELL DAMAGE INCREASE:"
-        "DOTA_Tooltip_ability_arcane_mastery_duration"   "DURATION:"
-        "DOTA_Tooltip_ability_arcane_mastery_bonusMoveSpeed"   "BONUS MOVESPEED:"
-        "DOTA_Tooltip_ability_arcane_mastery_manaRegen"   "%MANA RESTORED PER SECOND:"
-        "DOTA_Tooltip_ability_arcane_mastery_cooldownReduction"   "COOLDOWN REDUCTION PER KILL:"
-
-        "DOTA_Tooltip_modifier_custom_arcane_mastery"   "ARCANE MASTERY"
-        "DOTA_Tooltip_modifier_custom_arcane_mastery_Description"   "Increased Spell Damage and Movement speed. Restores a percentage of your max mana per second. Killing an enemy will reduce the cooldowns of all your other abilities."
-
-        "DOTA_Tooltip_ability_example_ability"                                      "Detonation"
-        "DOTA_Tooltip_ability_example_ability_description"              "Detonator channels a charge and releases an explosion around the caster if the channel is successful, dealing damage and knocking back all enemies in range of the explosion"
-        "DOTA_Tooltip_ability_example_ability_Lore"                             ""
-        "DOTA_Tooltip_ability_example_ability_duration"                         "DURATION:"
-        "DOTA_Tooltip_ability_example_ability_radius"                           "RADIUS:"
-        "DOTA_Tooltip_ability_example_ability_distance"                         "KNOCKBACK DISTANCE:"
-        "DOTA_Tooltip_ability_example_ability_height"                           "KNOCKBACK HEIGHT:"
+        "DOTA_Tooltip_ability_self_explosion"                                      "Detonation"
+        "DOTA_Tooltip_ability_self_explosion_description"              "Detonator channels a charge and releases an explosion around the caster if the channel is successful, dealing damage and knocking back all enemies in range of the explosion"
+        "DOTA_Tooltip_ability_self_explosion_Lore"                             ""
+        "DOTA_Tooltip_ability_self_explosion_duration"                         "DURATION:"
+        "DOTA_Tooltip_ability_self_explosion_radius"                           "RADIUS:"
+        "DOTA_Tooltip_ability_self_explosion_distance"                         "KNOCKBACK DISTANCE:"
+        "DOTA_Tooltip_ability_self_explosion_height"                           "KNOCKBACK HEIGHT:"
 
         "DOTA_Tooltip_ability_ancient_defensive_wave"                                     "Giga Graviton"
         "DOTA_Tooltip_ability_ancient_defensive_wave_description"                         "Every 7s, the Ancient unleashes a pulse of devastating energy that instantly kills all creeps in a large radius, and deals Pure damage equal to 12% of all nearby enemy Heroes' Max Health. Only activates when under 33%% of its Max Health."
@@ -7863,11 +7852,39 @@
         "DOTA_Tooltip_ability_paragon_tranquility_seal_Lore"                            "Sometimes the simplest of seals are the most effective."
         "DOTA_Tooltip_ability_paragon_tranquility_seal_duration"                        "DURATION:"
 
-
         "DOTA_Tooltip_paragon_tranquil_seal_mod_ally"                                     "Tranquil Seal"
         "DOTA_Tooltip_paragon_tranquil_seal_mod_ally_Description"                         "Dealing and receiving no damage."
 
         "DOTA_Tooltip_paragon_tranquil_seal_mod_enemy"                                    "Tranquil Seal"
         "DOTA_Tooltip_paragon_tranquil_seal_mod_enemy_Description"                        "Dealing and receiving no damage."
+
+        "DOTA_Tooltip_ability_crimson_blood_sorcery"                                        "Ancient Pact"
+        "DOTA_Tooltip_ability_crimson_blood_sorcery_description"                            "Crimson calls upon the arts of his elders to trade his Mana for health, healing as much as possible, with great efficiency allowing the mana cost to be lower than the health healed."
+        "DOTA_Tooltip_ability_crimson_blood_sorcery_Lore"                                   "A wound repaired instantly."
+        "DOTA_Tooltip_ability_crimson_blood_sorcery_mult"                                   "EFFICIENCY:"
+
+        "DOTA_Tooltip_ability_alchemist_alchemise"                                        "Alchemise"
+        "DOTA_Tooltip_ability_alchemist_alchemise_description"                            "Transmutes the target enemy unit into gold, granting the Alchemist a large boost to his bank balance."
+        "DOTA_Tooltip_ability_alchemist_alchemise_bonus_gold"                             "GOLD PER SECOND:"
+        "DOTA_Tooltip_ability_alchemist_alchemise_transmute_gold"                         "TRANSMUTE GOLD:"
+
+        "DOTA_Tooltip_ability_alchemist_motherloads"                                      "MOTHERLOADS!!"
+        "DOTA_Tooltip_ability_alchemist_motherloads_description"                          "The Alchemist blesses a target ally with a strange magick, causing them to gain bonus gold from any units they kill based on the unit's bounty.  Denies also grant gold."
+        "DOTA_Tooltip_ability_alchemist_motherloads_Note0"                                "The unit still grants its normal bounty as well as the bonus gold."
+        "DOTA_Tooltip_ability_alchemist_motherloads_percent"                              "%BOUNTY INCREASE:"
+
+        "DOTA_Tooltip_alchemist_motherloads_bonus_gold_mod"                                    "MOTHERLOADS!!"
+        "DOTA_Tooltip_alchemist_motherloads_bonus_gold_mod_Description"                        "Gaining bonus bounty."
+
+        "DOTA_Tooltip_ability_arcane_mastery"   "ARCANE MASTERY"
+        "DOTA_Tooltip_ability_arcane_mastery_Description"   "Amplifies your Spell Damage and Movement speed and restores a percentage of your max mana per second for a period of time. Killing an enemy Hero while under this effect will reduce the cooldowns of all your other abilities."
+        "DOTA_Tooltip_ability_arcane_mastery_spellDamageIncrease"   "%SPELL DAMAGE INCREASE:"
+        "DOTA_Tooltip_ability_arcane_mastery_duration"   "DURATION:"
+        "DOTA_Tooltip_ability_arcane_mastery_bonusMoveSpeed"   "BONUS MOVESPEED:"
+        "DOTA_Tooltip_ability_arcane_mastery_manaRegen"   "%MANA RESTORED PER SECOND:"
+        "DOTA_Tooltip_ability_arcane_mastery_cooldownReduction"   "COOLDOWN REDUCTION PER KILL:"
+
+        "DOTA_Tooltip_modifier_custom_arcane_mastery"   "ARCANE MASTERY"
+        "DOTA_Tooltip_modifier_custom_arcane_mastery_Description"   "Increased Spell Damage and Movement speed. Restores a percentage of your max mana per second. Killing an enemy will reduce the cooldowns of all your other abilities."
 
 }
