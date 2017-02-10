@@ -1,0 +1,119 @@
+"DOTAAbilities" {
+	"arcane_mastery"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityTextureName"			"custom/custom_arcane_mastery"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		
+		"AbilityCastPoint"				"0.4"
+		"AbilityCooldown"				"60"
+		"AbilityManaCost"				"100 125 150"
+				
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel"						"3"
+		
+		"AbilityProcsMagicStick"		"1"
+		
+		"precache"
+		{
+			"soundfile"			"soundevents/custom_arcane_mastery.vsndevts"
+			"particle"			"particles/custom_arcane_mastery/arcane_mastery_main.vpcf"
+			"particle"			"particles/custom_arcane_mastery/arcane_mastery_kill_effect.vpcf"
+			"particle"			"particles/custom_arcane_mastery/status_effect_template.vpcf"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"20"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"spellDamageIncrease"		"20 30 40"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"manaRegen"					"1 2 3"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cooldownReduction"			"5 6 7"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonusMoveSpeed"			"40"
+			}
+		}
+		"OnAbilityPhaseStart"
+		{
+			"FireEffect"
+			{
+				"EffectName"				"particles/custom_arcane_mastery/arcane_mastery_phase.vpcf"
+				"EffectAttachType"			"follow_origin"
+			}
+			"FireSound"
+			{
+				"EffectName"		"Custom.Arcane_Mastery_Phase"
+				"target"			"CASTER"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"		"abilities/arcane_mastery.lua"
+				"Function"			"onSpellStart"
+			}
+			"FireSound"
+			{
+				"EffectName"		"Custom.Arcane_Mastery"
+				"target"			"CASTER"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_custom_arcane_mastery"
+			{
+				"Passive"					"0"
+				"IsHidden"					"0"
+				"IsPurgable"				"0"
+				
+				"EffectName"				"particles/custom_arcane_mastery/arcane_mastery_main.vpcf"
+				"EffectAttachtype"			"follow_origin"
+				
+
+				
+				"StatusEffectName"			"particles/custom_arcane_mastery/status_effect_template.vpcf"
+				"StatusEffectPriority"  	"15"
+
+				
+				"Duration"					"%duration"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE"	"%spellDamageIncrease"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"	"%bonusMoveSpeed"
+					"MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE"		"%manaRegen"
+				}
+				"OnHeroKilled"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/arcane_mastery.lua"
+						"Function"			"onHeroKill"
+					}
+					"FireEffect"
+					{
+						"EffectName"		"particles/custom_arcane_mastery/arcane_mastery_kill_effect.vpcf"
+						"EffectAttachType"	"follow_origin"
+					}
+				}
+			}
+		}
+	}
+}
