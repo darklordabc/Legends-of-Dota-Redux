@@ -452,10 +452,12 @@ function Pregame:loadDefaultSettings()
     -- Do not make stronger towers
     self:setOption('lodOptionGameSpeedStrongTowers', 0, true)
     self:setOption('lodOptionCreepPower', 0)
+    self:setOption('lodOptionNeutralCreepPower', 0)
 
 
     -- Do not increase creep power
     self:setOption('lodOptionCreepPower', 0, true)
+    self:setOption('lodOptionNeutralCreepPower', 0, true)
     self:setOption('lodOptionNeutralMultiply', 1, true)
     self:setOption('lodOptionLaneMultiply', 0, true)
 
@@ -2282,6 +2284,11 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 120 or value == 60 or value == 30
         end,
 
+        -- Game Speed - Increase Creep Power
+        lodOptionNeutralCreepPower = function(value)
+            return value == 0 or value == 120 or value == 60 or value == 30
+        end,
+
         -- Game Speed - Multiply Neutrals
         lodOptionNeutralMultiply = function(value)
             return value == 1 or value == 2 or value == 3 or value == 4
@@ -3350,6 +3357,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('strongTowers', this.optionStore['lodOptionGameSpeedStrongTowers'] == 1)
         OptionManager:SetOption('towerCount', this.optionStore['lodOptionGameSpeedTowersPerLane'])
         OptionManager:SetOption('creepPower', this.optionStore['lodOptionCreepPower'])
+        OptionManager:SetOption('neutralCreepPower', this.optionStore['lodOptionNeutralCreepPower'])
         OptionManager:SetOption('neutralMultiply', this.optionStore['lodOptionNeutralMultiply'])
         OptionManager:SetOption('laneMultiply', this.optionStore['lodOptionLaneMultiply'])
         OptionManager:SetOption('useFatOMeter', this.optionStore['lodOptionCrazyFatOMeter'])
@@ -3566,6 +3574,7 @@ function Pregame:processOptions()
                     ['Bans: Max Hero Bans'] = this.optionStore['lodOptionBanningMaxHeroBans'],
                     ['Bans: Use LoD BanList'] = this.optionStore['lodOptionBanningUseBanList'],
                     ['Creeps: Increase Creep Power Over Time'] = this.optionStore['lodOptionCreepPower'],
+                    ['Creeps: Increase Neutral Creep Power Over Time'] = this.optionStore['lodOptionNeutralCreepPower'],
                     ['Creeps: Multiply Neutral Camps'] = this.optionStore['lodOptionNeutralMultiply'],
                     ['Creeps: Multiply Lane Creeps'] = this.optionStore['lodOptionLaneMultiply'],
                     ['Game Speed: Bonus Starting Gold'] = this.optionStore['lodOptionGameSpeedStartingGold'],
@@ -6865,6 +6874,44 @@ function Pregame:fixSpawningIssues()
                             end
                         end
                     end, DoUniqueString('evolveCreep'), .5)
+                    
+                end
+            elseif spawnedUnit:GetTeam() == DOTA_TEAM_NEUTRALS then
+                -- Increasing creep power over time
+                if this.optionStore['lodOptionNeutralCreepPower'] > 0 then
+
+                    local dotaTime = GameRules:GetDOTATime(false, false)
+                    local level = math.ceil(dotaTime / this.optionStore['lodOptionNeutralCreepPower'])
+                    local ability = spawnedUnit:AddAbility("lod_neutral_power")
+                    ability:UpgradeAbility(false)
+                    Timers:CreateTimer(function()
+                            if IsValidEntity(spawnedUnit) then
+                                spawnedUnit:SetModifierStackCount("modifier_neutral_power",spawnedUnit,level)
+                            end
+                    end, DoUniqueString('setCounters'), .5)
+                    
+                    if level > 0 then
+
+                        local extraHealth = 100 * level
+                        local newHealth = spawnedUnit:GetMaxHealth() + extraHealth
+                        
+                        local extraGold = 5 * level
+                        local extraDamage = 5 * level       
+                        local extraExp = 5 * level                
+
+                        spawnedUnit:SetDeathXP(spawnedUnit:GetDeathXP() + extraExp)
+
+                        spawnedUnit:SetMaxHealth(newHealth)
+                        spawnedUnit:SetBaseMaxHealth(newHealth)
+                        spawnedUnit:SetHealth(newHealth)
+
+                        spawnedUnit:SetMinimumGoldBounty(spawnedUnit:GetMinimumGoldBounty() + extraGold)
+                        spawnedUnit:SetMaximumGoldBounty(spawnedUnit:GetMaximumGoldBounty() + extraGold)
+
+                        spawnedUnit:SetBaseDamageMin(spawnedUnit:GetBaseDamageMin() + extraDamage)
+                        spawnedUnit:SetBaseDamageMax(spawnedUnit:GetBaseDamageMax() + extraDamage) 
+
+                    end
                     
                 end
             end

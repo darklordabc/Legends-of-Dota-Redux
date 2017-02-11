@@ -146,6 +146,17 @@ var basicOptions = {
                         }
                     },
                     {
+                        name: 'lodOptionNeutralCreepPower',
+                        default: {
+                            'lodMutatorNeutralCreepNoPower': 0
+                        },
+                        states: {
+                            'lodMutatorNeutralCreepPowerNormal': 120,
+                            'lodMutatorNeutralCreepPowerHigh': 60,
+                            'lodMutatorNeutralCreepPowerExtreme': 30
+                        }
+                    },
+                    {
                         name: 'lodOptionNeutralMultiply',
                         default: {
                             'lodMutatorCreepNoMultiply': 1
@@ -891,6 +902,30 @@ var advancedOptions = {
                 name: 'lodOptionCreepPower',
                 des: 'lodOptionDesCreepPower',
                 about: 'lodOptionAboutCreepPower',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionNoCreepPower',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionNormal',
+                        value: 120
+                    },
+                    {
+                        text: 'lodOptionHigh',
+                        value: 60
+                    },
+                    {
+                        text: 'lodOptionExtreme',
+                        value: 30
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionNeutralCreepPower',
+                des: 'lodOptionDesNeutralCreepPower',
+                about: 'lodOptionAboutNeutralCreepPower',
                 sort: 'dropdown',
                 values: [
                     {

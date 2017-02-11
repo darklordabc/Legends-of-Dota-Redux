@@ -737,6 +737,7 @@
 #base "abilities\unpickable\global_mutator.txt"
 #base "abilities\unpickable\lod_creep_power.txt"
 #base "abilities\unpickable\lod_creep_power_hp.txt"
+#base "abilities\unpickable\lod_neutral_power.txt"
 #base "abilities\unpickable\lod_dummy_unit.txt"
 #base "abilities\unpickable\lone_druid_savage_roar_tower.txt"
 #base "abilities\unpickable\neutral_extra_health.txt"

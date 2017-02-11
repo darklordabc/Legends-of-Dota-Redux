@@ -10,6 +10,8 @@ All notable changes to this project will be documented in this file.
 - Added Arcane Mastery (by TheRisen41)
 - Added Arcane Symbiosis (by OtsoTurpeinen)
 - Fixed magnus perk bug
+- Added 7 new abilities from Dusk custom game
+- Added Neutral Creep Power mutator
 
 ### Balance
 - Increased cooldown and manacost to trickshot active
