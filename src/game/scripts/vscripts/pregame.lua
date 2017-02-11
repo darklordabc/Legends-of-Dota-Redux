@@ -6898,7 +6898,8 @@ function Pregame:fixSpawningIssues()
                         local extraGold = 5 * level
                         local extraDamage = 5 * level       
                         local extraExp = 5 * level         
-                        local extraModelScale = 0.02 * level     
+                        local extraModelScale = 0.02 * level   
+                        local extraHealthRegen = 0.1 * level
 
                         spawnedUnit:SetModelScale(spawnedUnit:GetModelScale() + extraModelScale)
 
@@ -6907,6 +6908,7 @@ function Pregame:fixSpawningIssues()
                         spawnedUnit:SetMaxHealth(newHealth)
                         spawnedUnit:SetBaseMaxHealth(newHealth)
                         spawnedUnit:SetHealth(newHealth)
+                        spawnedUnit:SetBaseHealthRegen(spawnedUnit:GetBaseHealthRegen() + extraHealthRegen)
 
                         spawnedUnit:SetMinimumGoldBounty(spawnedUnit:GetMinimumGoldBounty() + extraGold)
                         spawnedUnit:SetMaximumGoldBounty(spawnedUnit:GetMaximumGoldBounty() + extraGold)
