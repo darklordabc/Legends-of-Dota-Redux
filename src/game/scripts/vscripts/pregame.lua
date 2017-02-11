@@ -6897,7 +6897,10 @@ function Pregame:fixSpawningIssues()
                         
                         local extraGold = 5 * level
                         local extraDamage = 5 * level       
-                        local extraExp = 5 * level                
+                        local extraExp = 5 * level         
+                        local extraModelScale = 0.02 * level     
+
+                        spawnedUnit:SetModelScale(spawnedUnit:GetModelScale() + extraModelScale)
 
                         spawnedUnit:SetDeathXP(spawnedUnit:GetDeathXP() + extraExp)
 
