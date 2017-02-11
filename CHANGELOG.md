@@ -8,6 +8,8 @@ All notable changes to this project will be documented in this file.
 - Added Neutral Abilities: Mana Aura, Cloak Aura, Wardrums
 - Improved Russian Translation (thanks to Акулоёб)
 - Added Arcane Mastery (by TheRisen41)
+- Added Arcane Symbiosis (by OtsoTurpeinen)
+- Fixed magnus perk bug
 
 ### Balance
 - Increased cooldown and manacost to trickshot active
