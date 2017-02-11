@@ -7790,9 +7790,9 @@
 
         "DOTA_Tooltip_ability_sight"    "Nature's Spy"
         "DOTA_Tooltip_ability_sight_Description"    "Give a friendly unit flying vision and true sight."
-        "DOTA_Tooltip_ability_sight_duration"   "Duration:"
-        "DOTA_Tooltip_ability_sight_radius_d"   "Daytime vision radius:"
-        "DOTA_Tooltip_ability_sight_radius_n"   "Nighttime vison radius:"
+        "DOTA_Tooltip_ability_sight_duration"   "DURATION:"
+        "DOTA_Tooltip_ability_sight_radius_d"   "DAYTIME VISION:"
+        "DOTA_Tooltip_ability_sight_radius_n"   "NIGHTTIME VISION:"
         "DOTA_Tooltip_modifier_sight"   "Nature's Spy"
         "DOTA_Tooltip_modifier_sight_Description"   "flying vision and true sight"
 
@@ -7803,11 +7803,11 @@
 
         "DOTA_Tooltip_ability_zhanhun"  "Wind soul"
         "DOTA_Tooltip_ability_zhanhun_Description"  "Each time you cast a spell, all of your abilities' cooldown will reduce a bit."
-        "DOTA_Tooltip_ability_zhanhun_reduce_per"   "CD reduction:"
+        "DOTA_Tooltip_ability_zhanhun_reduce_per"   "COOLDOWN REDUCTION:"
         
         "DOTA_Tooltip_ability_jingtong" "Elemental Mystery"
         "DOTA_Tooltip_ability_jingtong_Description" "Years of practices let ninja reduce all the cooldown time of his skills."
-        "DOTA_Tooltip_ability_jingtong_reduce"  "%Cooldown Time Reduce:"
+        "DOTA_Tooltip_ability_jingtong_reduce"  "%COOLDOWN REDUCTION:"
 
         "DOTA_Tooltip_ability_shiguanghuisu"    "Time Backtrack"
         "DOTA_Tooltip_ability_shiguanghuisu_Description"    "Teleport to the position you were at 3 seconds ago, also restores your health amount from 3 seconds ago."
@@ -7815,8 +7815,8 @@
 
         "DOTA_Tooltip_ability_benneng"  "Hunter's Instinct"
         "DOTA_Tooltip_ability_benneng_Description"  "When you kill a unit you have chance to gain sight on an enemy hero."
-        "DOTA_Tooltip_ability_benneng_chance"   "Chance:"
-        "DOTA_Tooltip_ability_benneng_duration" "Duration:"
+        "DOTA_Tooltip_ability_benneng_chance"   "CHANCE:"
+        "DOTA_Tooltip_ability_benneng_duration" "DURATION:"
         "DOTA_Tooltip_benneng_beibu"    "You are in someone's sight"
 
         "DOTA_Tooltip_ability_self_explosion"                                      "Detonation"
