@@ -1,6 +1,9 @@
 function StrafeAttack(keys)
 	local caster = keys.caster
 	local radius = caster:GetAttackRange()
+	if caster:IsRangedAttacker() == false then 
+		radius = radius + 50
+	end
 	local counter = 1
 	if caster:HasScepter() then
 		counter = keys.ability:GetSpecialValueFor("targets_scepter")

@@ -141,6 +141,7 @@
 #base "abilities\dusk\self_explosion.txt" 
 #base "abilities\ebf\ebf_clinkz_trickshot.txt"
 #base "abilities\ebf\ebf_clinkz_trickshot_passive.txt"
+#base "abilities\ebf\ebf_clinkz_trickshot_passive_ranged.txt"
 #base "abilities\ebf\ebf_mana_fiend_essence_amp.txt"
 #base "abilities\ebf\ebf_rubick_arcane_echo.txt"
 #base "abilities\ebf\ebf_rubick_arcane_echo_one.txt"

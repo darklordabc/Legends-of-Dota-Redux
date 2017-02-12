@@ -398,6 +398,15 @@ var basicOptions = {
                             'lodMutatorAether': 10,
                             'lodMutatorGreed': 11,
                             'lodMutatorNether': 12,
+                            'lodMutatorShift': 13,
+                            'lodMutatorMulticast': 14,
+                            'lodMutatorCoup': 15,
+                            'lodMutatorPermaInvis': 16,
+                            'lodMutatorMultishot': 17,
+                            'lodMutatorRespawn': 18,
+                            'lodMutatorTrickshot': 19,
+                            'lodMutatorBorrowed': 20,
+                            'lodMutatorTesla': 21,
                         }
                     },
                     {
@@ -1462,6 +1471,42 @@ var advancedOptions = {
                     {
                         text: 'DOTA_Tooltip_ability_angel_arena_nether_ritual',
                         value: 12
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_slark_essence_shift',
+                        value: 13
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_ogre_magi_multicast',
+                        value: 14
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_phantom_assassin_coup_de_grace',
+                        value: 15
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_riki_permanent_invisibility',
+                        value: 16
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_imba_tower_multihit',
+                        value: 17
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_skeleton_king_reincarnation',
+                        value: 18
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_ebf_clinkz_trickshot_passive',
+                        value: 19
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_abaddon_borrowed_time',
+                        value: 20
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_summoner_tesla_coil',
+                        value: 21
                     }
                 ]
             },

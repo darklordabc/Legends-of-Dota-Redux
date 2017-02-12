@@ -559,7 +559,7 @@ function Multihit( keys )
 	end
 	
 	if caster:PassivesDisabled() then return end
-	cooldown = caster:GetSecondsPerAttack()
+	cooldown = caster:GetSecondsPerAttack() - 0.1
 	
 	-- Parameters
 	local bonus_attacks = ability:GetLevelSpecialValueFor("bonus_attacks", ability_level)

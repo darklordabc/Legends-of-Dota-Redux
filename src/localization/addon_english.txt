@@ -141,6 +141,17 @@
     "lodMutatorEcho"                                "Arcane Echo"
     "lodMutatorAether"                              "Aether Range"
     "lodMutatorNether"                              "Nether Ritual"
+
+    "lodMutatorShift"                              "Essence Shift"
+    "lodMutatorMulticast"                              "Multicast"
+    "lodMutatorCoup"                              "Coup De Grace"
+    "lodMutatorPermaInvis"                              "Perma Invis"
+    "lodMutatorMultishot"                              "Combo Tower"
+    "lodMutatorRespawn"                              "Reincarnation"
+    "lodMutatorTrickshot"                              "Trickshot Passive"
+    "lodMutatorBorrowed"                              "Borrowed Time"
+    "lodMutatorTesla"                              "Tesla Coil"
+
     "lodMutatorFastStart"                           "Fast Start"
     "lodMutatorStrongTowers"                        "Strong Towers"
     "lodMutatorDoubleTowers"                        "Extra Towers"
@@ -3913,6 +3924,13 @@
     "DOTA_Tooltip_ability_ebf_clinkz_trickshot_passive_Lore"  "An archer great enough to defeat demons has some tricks up his sleeve."
     "DOTA_Tooltip_ability_ebf_clinkz_trickshot_passive_double_interval" "ATTACK RATE:"
     "DOTA_Tooltip_ability_ebf_clinkz_trickshot_passive_targets_scepter"  "MAX TARGETS SCEPTER:"
+
+    "DOTA_Tooltip_ability_ebf_clinkz_trickshot_passive_ranged"                                      "Trickshot Passive (Ranged)"
+    "DOTA_Tooltip_ability_ebf_clinkz_trickshot_passive_ranged_Description" "Clinkz automatically shoots arrows to the nearest target. <font color='#70EA72'>Ranged version has twice as long attack interval.</font>\n\nUpgradable by Aghanim's Scepter"
+    "DOTA_Tooltip_ability_ebf_clinkz_trickshot_passive_ranged_aghanim_description" "Increases target count."
+    "DOTA_Tooltip_ability_ebf_clinkz_trickshot_passive_ranged_Lore"  "An archer great enough to defeat demons has some tricks up his sleeve."
+    "DOTA_Tooltip_ability_ebf_clinkz_trickshot_passive_ranged_double_interval" "ATTACK RATE:"
+    "DOTA_Tooltip_ability_ebf_clinkz_trickshot_passive_ranged_targets_scepter"  "MAX TARGETS SCEPTER:"
 
     "DOTA_Tooltip_modifier_strafe_passive"                             "Trickshot Passive"
     "DOTA_Tooltip_modifier_strafe_passive_Description"                 "Will auto-attack nearby units."

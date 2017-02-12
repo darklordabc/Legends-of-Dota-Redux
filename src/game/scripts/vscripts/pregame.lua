@@ -107,6 +107,7 @@ function Pregame:init()
     self:sendContributors()
 
     self.chanceToHearMeme = 1
+    self.freeAbility = nil
 
     -- Init thinker
     GameRules:GetGameModeEntity():SetThink('onThink', self, 'PregameThink', 0.25)
@@ -2469,7 +2470,7 @@ function Pregame:initOptionSelector()
 
         -- Other - Extra ability
         lodOptionExtraAbility = function(value)
-            return value == 0 or value == 1 or value == 2 or value == 3 or value == 4  or value == 5 or value == 6 or value == 7 or value == 8 or value == 9 or value == 10  or value == 11 or value == 12
+            return value == 0 or value == 1 or value == 2 or value == 3 or value == 4  or value == 5 or value == 6 or value == 7 or value == 8 or value == 9 or value == 10  or value == 11 or value == 12 or value == 13 or value == 14 or value == 15 or value == 16 or value == 17 or value == 18  or value == 19 or value == 20 or value == 21
         end,
 
         -- Other -- Gotta Go Fast!
@@ -3472,30 +3473,73 @@ function Pregame:processOptions()
         
         -- All extra ability mutator stuff
         if this.optionStore['lodOptionExtraAbility'] == 1 then
+            self.freeAbility = "gemini_unstable_rift_one"
             this:banAbility("gemini_unstable_rift")
         elseif this.optionStore['lodOptionExtraAbility'] == 2 then
+            self.freeAbility = "imba_dazzle_shallow_grave_passive_one"
             this:banAbility("imba_dazzle_shallow_grave_passive")
         elseif this.optionStore['lodOptionExtraAbility'] == 3 then
+            self.freeAbility = "imba_tower_forest_one"
             this:banAbility("imba_tower_forest")
         elseif this.optionStore['lodOptionExtraAbility'] == 4 then
+            self.freeAbility = "ebf_rubick_arcane_echo_one"
             this:banAbility("ebf_rubick_arcane_echo")
             this:banAbility("ebf_rubick_arcane_echo_OP")
         elseif this.optionStore['lodOptionExtraAbility'] == 6 then
+            self.freeAbility = "ursa_fury_swipes"
             this:banAbility("ursa_fury_swipes")
             this:banAbility("ursa_fury_swipes_lod")
         elseif this.optionStore['lodOptionExtraAbility'] == 7 then
+            self.freeAbility = "spirit_breaker_greater_bash"
             this:banAbility("spirit_breaker_greater_bash")
         elseif this.optionStore['lodOptionExtraAbility'] == 8 then
+            self.freeAbility = "death_prophet_witchcraft"
             this:banAbility("death_prophet_witchcraft")
         elseif this.optionStore['lodOptionExtraAbility'] == 9 then
+            self.freeAbility = "sniper_take_aim"
             this:banAbility("sniper_take_aim")
-        elseif this.optionStore['lodOptionExtraAbility'] == 10 then
+        --If global cast range mutator is on, dont added this ability as it overrides it
+        elseif this.optionStore['lodOptionExtraAbility'] == 10 and OptionManager:GetOption('globalCastRange') == 0 then
+            self.freeAbility = "aether_range_lod"
             this:banAbility("aether_range_lod")
             this:banAbility("aether_range_lod_op")
         elseif this.optionStore['lodOptionExtraAbility'] == 11 then
+            self.freeAbility = "alchemist_goblins_greed"
             this:banAbility("alchemist_goblins_greed")
         elseif this.optionStore['lodOptionExtraAbility'] == 12 then
+            self.freeAbility = "angel_arena_nether_ritual"
             this:banAbility("angel_arena_nether_ritual")
+        elseif this.optionStore['lodOptionExtraAbility'] == 13 then
+            this:banAbility("slark_essence_shift")
+            this:banAbility("slark_essence_shift_intellect_lod")
+            this:banAbility("slark_essence_shift_strength_lod")
+            this:banAbility("slark_essence_shift_agility_lod")
+        elseif this.optionStore['lodOptionExtraAbility'] == 14 then
+            self.freeAbility = "ogre_magi_multicast_lod"
+            this:banAbility("ogre_magi_multicast_lod")
+            this:banAbility("ogre_magi_multicast")
+        elseif this.optionStore['lodOptionExtraAbility'] == 15 then
+            self.freeAbility = "phantom_assassin_coup_de_grace"
+            this:banAbility("phantom_assassin_coup_de_grace")
+        elseif this.optionStore['lodOptionExtraAbility'] == 16 then
+            self.freeAbility = "riki_permanent_invisibility"
+            this:banAbility("riki_permanent_invisibility")
+        elseif this.optionStore['lodOptionExtraAbility'] == 17 then
+            self.freeAbility = "imba_tower_multihit"
+            this:banAbility("imba_tower_multihit")
+        elseif this.optionStore['lodOptionExtraAbility'] == 18 then
+            self.freeAbility = "skeleton_king_reincarnation"
+            this:banAbility("skeleton_king_reincarnation")
+        elseif this.optionStore['lodOptionExtraAbility'] == 19 then
+            self.freeAbility = "ebf_clinkz_trickshot_passive"
+            this:banAbility("ebf_clinkz_trickshot_passive")
+            this:banAbility("ebf_clinkz_trickshot")
+        elseif this.optionStore['lodOptionExtraAbility'] == 20 then
+            self.freeAbility = "abaddon_borrowed_time"
+            this:banAbility("abaddon_borrowed_time")
+        elseif this.optionStore['lodOptionExtraAbility'] == 21 then
+            self.freeAbility = "summoner_tesla_coil"
+            this:banAbility("summoner_tesla_coil")
         end
 
         -- If Global Cast Range is enabled, disable certain abilities that are troublesome with global cast range
@@ -6668,42 +6712,55 @@ function Pregame:fixSpawningIssues()
                 -- Give out the free extra abilities
                 if OptionManager:GetOption('extraAbility') > 0 then
                     Timers:CreateTimer(function()
-                        local abilityToGive                   
-                        if OptionManager:GetOption('extraAbility') == 1 and not util:isPlayerBot(playerID) then abilityToGive = "gemini_unstable_rift_one" 
-                        elseif OptionManager:GetOption('extraAbility') == 2 then abilityToGive = "imba_dazzle_shallow_grave_passive_one" 
-                        elseif OptionManager:GetOption('extraAbility') == 3 then abilityToGive = "imba_tower_forest_one" 
-                        elseif OptionManager:GetOption('extraAbility') == 4 then abilityToGive = "ebf_rubick_arcane_echo_one" 
-                        elseif OptionManager:GetOption('extraAbility') == 5 then 
+                        local fleshHeapToGive = nil 
+                        local essenceshiftToGive = nil    
+                        local rangedTrickshot = nil 
+
+                        if OptionManager:GetOption('extraAbility') == 5 then 
+
                             local random = RandomInt(1,7)  
                             local givenAbility = false
                             -- Randomly choose which flesh heap to give them
-                            if random == 1 and not spawnedUnit:HasAbility('pudge_flesh_heap')  then abilityToGive = "pudge_flesh_heap" ; givenAbility = true
-                            elseif random == 2 and not spawnedUnit:HasAbility('pudge_flesh_heap_int') then abilityToGive = "pudge_flesh_heap_int" ; givenAbility = true
-                            elseif random == 3 and not spawnedUnit:HasAbility('pudge_flesh_heap_agility') then abilityToGive = "pudge_flesh_heap_agility" ; givenAbility = true
-                            elseif random == 4 and not spawnedUnit:HasAbility('pudge_flesh_heap_move_speed') then abilityToGive = "pudge_flesh_heap_move_speed" ; givenAbility = true
-                            elseif random == 5 and not spawnedUnit:HasAbility('pudge_flesh_heap_spell_amp') then abilityToGive = "pudge_flesh_heap_spell_amp" ; givenAbility = true
-                            elseif random == 6 and not spawnedUnit:HasAbility('pudge_flesh_heap_attack_range') then abilityToGive = "pudge_flesh_heap_attack_range" ; givenAbility = true
-                            elseif random == 7 and not spawnedUnit:HasAbility('pudge_flesh_heap_bonus_vision') then abilityToGive = "pudge_flesh_heap_bonus_vision" ; givenAbility = true
+                            if random == 1 and not spawnedUnit:HasAbility('pudge_flesh_heap') then fleshHeapToGive = "pudge_flesh_heap" ; givenAbility = true
+                            elseif random == 2 and not spawnedUnit:HasAbility('pudge_flesh_heap_int') then fleshHeapToGive = "pudge_flesh_heap_int" ; givenAbility = true
+                            elseif random == 3 and not spawnedUnit:HasAbility('pudge_flesh_heap_agility') then fleshHeapToGive = "pudge_flesh_heap_agility" ; givenAbility = true
+                            elseif random == 4 and not spawnedUnit:HasAbility('pudge_flesh_heap_move_speed') then fleshHeapToGive = "pudge_flesh_heap_move_speed" ; givenAbility = true
+                            elseif random == 5 and not spawnedUnit:HasAbility('pudge_flesh_heap_spell_amp') then fleshHeapToGive = "pudge_flesh_heap_spell_amp" ; givenAbility = true
+                            elseif random == 6 and not spawnedUnit:HasAbility('pudge_flesh_heap_attack_range') then fleshHeapToGive = "pudge_flesh_heap_attack_range" ; givenAbility = true
+                            elseif random == 7 and not spawnedUnit:HasAbility('pudge_flesh_heap_bonus_vision') then fleshHeapToGive = "pudge_flesh_heap_bonus_vision" ; givenAbility = true
                             end
                             -- If they randomly picked a flesh heap they already had, go through this list and try to give them one until they get one
                             if not givenAbility then
-                                if not spawnedUnit:HasAbility('pudge_flesh_heap') then abilityToGive = "pudge_flesh_heap" 
-                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_int') and givenAbility == false then abilityToGive = "pudge_flesh_heap_int" 
-                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_agility') and givenAbility == false then abilityToGive = "pudge_flesh_heap_agility" 
-                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_move_speed') and givenAbility == false then abilityToGive = "pudge_flesh_heap_move_speed" 
-                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_spell_amp') and givenAbility == false then abilityToGive = "pudge_flesh_heap_spell_amp" 
-                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_attack_range') and givenAbility == false then abilityToGive = "pudge_flesh_heap_attack_range" 
-                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_bonus_vision') and givenAbility == false then abilityToGive = "pudge_flesh_heap_bonus_vision" 
+                                if not spawnedUnit:HasAbility('pudge_flesh_heap') then fleshHeapToGive = "pudge_flesh_heap" 
+                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_int') then fleshHeapToGive = "pudge_flesh_heap_int" 
+                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_agility') then fleshHeapToGive = "pudge_flesh_heap_agility" 
+                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_move_speed') then fleshHeapToGive = "pudge_flesh_heap_move_speed" 
+                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_spell_amp') then fleshHeapToGive = "pudge_flesh_heap_spell_amp" 
+                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_attack_range') then fleshHeapToGive = "pudge_flesh_heap_attack_range" 
+                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_bonus_vision') then fleshHeapToGive = "pudge_flesh_heap_bonus_vision" 
                                 end
                             end
-                        elseif OptionManager:GetOption('extraAbility') == 6 then abilityToGive = "ursa_fury_swipes" 
-                        elseif OptionManager:GetOption('extraAbility') == 7 then abilityToGive = "spirit_breaker_greater_bash" 
-                        elseif OptionManager:GetOption('extraAbility') == 8 then abilityToGive = "death_prophet_witchcraft" 
-                        elseif OptionManager:GetOption('extraAbility') == 9 then abilityToGive = "sniper_take_aim" 
-                        --If global cast range mutator is on, dont added this ability as it overrides it
-                        elseif OptionManager:GetOption('extraAbility') == 10 and OptionManager:GetOption('globalCastRange') == 0 then abilityToGive = "aether_range_lod"          
-                        elseif OptionManager:GetOption('extraAbility') == 11 then abilityToGive = "alchemist_goblins_greed" 
-                        elseif OptionManager:GetOption('extraAbility') == 12 then abilityToGive = "angel_arena_nether_ritual" 
+                        end
+
+                        if OptionManager:GetOption('extraAbility') == 13 then 
+                            -- Give an essence shift based on heros primary attribute
+                            if spawnedUnit:GetPrimaryAttribute() == 0 then essenceshiftToGive = "slark_essence_shift_strength_lod"
+                            elseif spawnedUnit:GetPrimaryAttribute() == 1 then essenceshiftToGive = "slark_essence_shift_agility_lod"
+                            elseif spawnedUnit:GetPrimaryAttribute() == 2 then essenceshiftToGive = "slark_essence_shift_intellect_lod"
+                            end
+                        end
+
+                         if OptionManager:GetOption('extraAbility') == 19 then 
+                            -- Give an essence shift based on heros primary attribute
+                            if spawnedUnit:IsRangedAttacker() then rangedTrickshot = "ebf_clinkz_trickshot_passive_ranged"
+                            end
+                        end
+
+                        local abilityToGive = self.freeAbility
+
+                        if fleshHeapToGive then abilityToGive = fleshHeapToGive 
+                        elseif essenceshiftToGive then abilityToGive = essenceshiftToGive 
+                        elseif rangedTrickshot then abilityToGive = rangedTrickshot 
                         end
 
                         spawnedUnit:AddAbility(abilityToGive)

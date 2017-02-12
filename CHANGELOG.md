@@ -2,6 +2,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 6.0 - Development Version
+### Bug Fixing/New Features
+- Added 9 more settings to free ability mutator
+
+### Balance
+- 
+
 ## 5.9 - Development Version
 ### Bug Fixing/New Features
 - Added 5 abilities from 'One Shot One Kill' custom game

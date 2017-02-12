@@ -360,7 +360,16 @@
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMonkeyBusiness.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorFreeAbility.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorFleashHeaps.png"></Image>
-
+                                    
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMulticast.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorTesla.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorTrickshot.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBorrowed.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorRespawn.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorPermaInvis.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMultishot.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorCoup.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorShift.png"></Image>
 
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMaxUlts1.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMaxUlts2.png"></Image>
