@@ -6667,110 +6667,49 @@ function Pregame:fixSpawningIssues()
 
                 -- Give out the free extra abilities
                 if OptionManager:GetOption('extraAbility') > 0 then
-                    Timers:CreateTimer(function()                   
-                        if OptionManager:GetOption('extraAbility') == 1 then
-                            if not util:isPlayerBot(playerID) then
-                                local extraAbility = spawnedUnit:AddAbility("gemini_unstable_rift_one")
-                                extraAbility:UpgradeAbility(true)
-                            end
-                        elseif OptionManager:GetOption('extraAbility') == 2 then
-                            local extraAbility = spawnedUnit:AddAbility("imba_dazzle_shallow_grave_passive_one")
-                            extraAbility:UpgradeAbility(true)
-                        elseif OptionManager:GetOption('extraAbility') == 3 then
-                            local extraAbility = spawnedUnit:AddAbility("imba_tower_forest_one")
-                            extraAbility:UpgradeAbility(true)
-                        elseif OptionManager:GetOption('extraAbility') == 4 then
-                            local extraAbility = spawnedUnit:AddAbility("ebf_rubick_arcane_echo_one")
-                            extraAbility:UpgradeAbility(true)
-                        elseif OptionManager:GetOption('extraAbility') == 5 then
+                    Timers:CreateTimer(function()
+                        local abilityToGive                   
+                        if OptionManager:GetOption('extraAbility') == 1 and not util:isPlayerBot(playerID) then abilityToGive = "gemini_unstable_rift_one" 
+                        elseif OptionManager:GetOption('extraAbility') == 2 then abilityToGive = "imba_dazzle_shallow_grave_passive_one" 
+                        elseif OptionManager:GetOption('extraAbility') == 3 then abilityToGive = "imba_tower_forest_one" 
+                        elseif OptionManager:GetOption('extraAbility') == 4 then abilityToGive = "ebf_rubick_arcane_echo_one" 
+                        elseif OptionManager:GetOption('extraAbility') == 5 then 
                             local random = RandomInt(1,7)  
                             local givenAbility = false
                             -- Randomly choose which flesh heap to give them
-                            if random == 1 and not spawnedUnit:HasAbility('pudge_flesh_heap')  then
-                                local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap")
-                                extraAbility:SetLevel(4)
-                                givenAbility = true
-                            elseif random == 2 and not spawnedUnit:HasAbility('pudge_flesh_heap_int') then
-                                local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_int")
-                                extraAbility:SetLevel(4)
-                                givenAbility = true
-                            elseif random == 3 and not spawnedUnit:HasAbility('pudge_flesh_heap_agility') then
-                                local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_agility")
-                                extraAbility:SetLevel(4)
-                                givenAbility = true
-                            elseif random == 4 and not spawnedUnit:HasAbility('pudge_flesh_heap_move_speed') then
-                                local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_move_speed")
-                                extraAbility:SetLevel(4)
-                                givenAbility = true
-                            elseif random == 5 and not spawnedUnit:HasAbility('pudge_flesh_heap_spell_amp') then
-                                local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_spell_amp")
-                                extraAbility:SetLevel(4)
-                                givenAbility = true
-                            elseif random == 6 and not spawnedUnit:HasAbility('pudge_flesh_heap_attack_range') then
-                                local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_attack_range")
-                                extraAbility:SetLevel(4)
-                                givenAbility = true
-                            elseif random == 7 and not spawnedUnit:HasAbility('pudge_flesh_heap_bonus_vision') then
-                                local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_bonus_vision")
-                                extraAbility:SetLevel(4)
-                                givenAbility = true
+                            if random == 1 and not spawnedUnit:HasAbility('pudge_flesh_heap')  then abilityToGive = "pudge_flesh_heap" ; givenAbility = true
+                            elseif random == 2 and not spawnedUnit:HasAbility('pudge_flesh_heap_int') then abilityToGive = "pudge_flesh_heap_int" ; givenAbility = true
+                            elseif random == 3 and not spawnedUnit:HasAbility('pudge_flesh_heap_agility') then abilityToGive = "pudge_flesh_heap_agility" ; givenAbility = true
+                            elseif random == 4 and not spawnedUnit:HasAbility('pudge_flesh_heap_move_speed') then abilityToGive = "pudge_flesh_heap_move_speed" ; givenAbility = true
+                            elseif random == 5 and not spawnedUnit:HasAbility('pudge_flesh_heap_spell_amp') then abilityToGive = "pudge_flesh_heap_spell_amp" ; givenAbility = true
+                            elseif random == 6 and not spawnedUnit:HasAbility('pudge_flesh_heap_attack_range') then abilityToGive = "pudge_flesh_heap_attack_range" ; givenAbility = true
+                            elseif random == 7 and not spawnedUnit:HasAbility('pudge_flesh_heap_bonus_vision') then abilityToGive = "pudge_flesh_heap_bonus_vision" ; givenAbility = true
                             end
                             -- If they randomly picked a flesh heap they already had, go through this list and try to give them one until they get one
                             if not givenAbility then
-                                if not spawnedUnit:HasAbility('pudge_flesh_heap') then
-                                    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap")
-                                    extraAbility:SetLevel(4)
-                                    givenAbility = true
-                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_int') and givenAbility == false then
-                                    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_int")
-                                    extraAbility:SetLevel(4)
-                                    givenAbility = true
-                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_agility') and givenAbility == false then
-                                    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_agility")
-                                    extraAbility:SetLevel(4)
-                                    givenAbility = true
-                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_move_speed') and givenAbility == false then
-                                    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_move_speed")
-                                    extraAbility:SetLevel(4)
-                                    givenAbility = true
-                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_spell_amp') and givenAbility == false then
-                                    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_spell_amp")
-                                    extraAbility:SetLevel(4)
-                                    givenAbility = true
-                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_attack_range') and givenAbility == false then
-                                    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_attack_range")
-                                    extraAbility:SetLevel(4)
-                                    givenAbility = true
-                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_bonus_vision') and givenAbility == false then
-                                    local extraAbility = spawnedUnit:AddAbility("pudge_flesh_heap_bonus_vision")
-                                    extraAbility:SetLevel(4)
-                                    givenAbility = true
+                                if not spawnedUnit:HasAbility('pudge_flesh_heap') then abilityToGive = "pudge_flesh_heap" 
+                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_int') and givenAbility == false then abilityToGive = "pudge_flesh_heap_int" 
+                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_agility') and givenAbility == false then abilityToGive = "pudge_flesh_heap_agility" 
+                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_move_speed') and givenAbility == false then abilityToGive = "pudge_flesh_heap_move_speed" 
+                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_spell_amp') and givenAbility == false then abilityToGive = "pudge_flesh_heap_spell_amp" 
+                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_attack_range') and givenAbility == false then abilityToGive = "pudge_flesh_heap_attack_range" 
+                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_bonus_vision') and givenAbility == false then abilityToGive = "pudge_flesh_heap_bonus_vision" 
                                 end
                             end
-                        elseif OptionManager:GetOption('extraAbility') == 6 then
-                            local extraAbility = spawnedUnit:AddAbility("ursa_fury_swipes")
-                            extraAbility:SetLevel(4)
-                        elseif OptionManager:GetOption('extraAbility') == 7 then
-                            local extraAbility = spawnedUnit:AddAbility("spirit_breaker_greater_bash")
-                            extraAbility:SetLevel(4)
-                        elseif OptionManager:GetOption('extraAbility') == 8 then
-                            local extraAbility = spawnedUnit:AddAbility("death_prophet_witchcraft")
-                            extraAbility:SetLevel(4)
-                        elseif OptionManager:GetOption('extraAbility') == 9 then
-                            local extraAbility = spawnedUnit:AddAbility("sniper_take_aim")
-                            extraAbility:SetLevel(4)
-                        elseif OptionManager:GetOption('extraAbility') == 10 then
-                            --If global cast range mutator is on, dont added this ability as it overrides it
-                            if OptionManager:GetOption('globalCastRange') == 0 then
-                                local extraAbility = spawnedUnit:AddAbility("aether_range_lod")
-                                extraAbility:SetLevel(4)
-                            end
-                        elseif OptionManager:GetOption('extraAbility') == 11 then
-                            local extraAbility = spawnedUnit:AddAbility("alchemist_goblins_greed")
-                            extraAbility:SetLevel(4)
-                        elseif OptionManager:GetOption('extraAbility') == 12 then
-                            local extraAbility = spawnedUnit:AddAbility("angel_arena_nether_ritual")
-                            extraAbility:SetLevel(3)
+                        elseif OptionManager:GetOption('extraAbility') == 6 then abilityToGive = "ursa_fury_swipes" 
+                        elseif OptionManager:GetOption('extraAbility') == 7 then abilityToGive = "spirit_breaker_greater_bash" 
+                        elseif OptionManager:GetOption('extraAbility') == 8 then abilityToGive = "death_prophet_witchcraft" 
+                        elseif OptionManager:GetOption('extraAbility') == 9 then abilityToGive = "sniper_take_aim" 
+                        --If global cast range mutator is on, dont added this ability as it overrides it
+                        elseif OptionManager:GetOption('extraAbility') == 10 and OptionManager:GetOption('globalCastRange') == 0 then abilityToGive = "aether_range_lod"          
+                        elseif OptionManager:GetOption('extraAbility') == 11 then abilityToGive = "alchemist_goblins_greed" 
+                        elseif OptionManager:GetOption('extraAbility') == 12 then abilityToGive = "angel_arena_nether_ritual" 
+                        end
+
+                        spawnedUnit:AddAbility(abilityToGive)
+                        local givenAbility = spawnedUnit:FindAbilityByName(abilityToGive)
+                        if givenAbility then
+                            givenAbility:SetLevel(givenAbility:GetMaxLevel())
                         end
 
                     end, DoUniqueString('addExtra'), RandomInt(1,3) )
