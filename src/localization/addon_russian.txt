@@ -726,7 +726,7 @@
     "lockBuild"                                     "Заблокировать билд"
     "moreTime"                                      "Больше времени"
     "continueFast"                                  "Готово"
-    "loading"                                       "Loading..."
+    "loading"                                       "Загрузка..."
     "selectBuild"                                   "Выбрать билд"
     "selectHero"                                    "Выбрать героя"
     "banHero"                                       "Забанить героя"
@@ -770,10 +770,10 @@
     "lod_cat_attack_modifier"                       "Модификаторы атаки"
     "lod_cat_stun"                                  "Станы, связки и корни"
     "lod_cat_isUlt"                                 "Ульты"
-    "lod_cat_summon"                                "Summon"
-    "lod_cat_silence"                  "Silence"
-    "lod_cat_disarm_break"                  "Disarm and Break"
-    "lod_cat_illusion"                      "Illusion"
+    "lod_cat_summon"                                "Саммоны"
+    "lod_cat_silence"                  "Сайленс"
+    "lod_cat_disarm_break"                  "Обезоруживание and стан"
+    "lod_cat_illusion"                      "Иллюзия"
 
     // Categories
     "lodCategory_main"                              "Способности героев"
@@ -819,16 +819,16 @@
     "lodFailedWrongPhaseSelection"                  "Вы можете выбирать способности только во время фазы выбора."
     "lodFailedPlayerIsReady"                        "Вам нужно разблокировать билд чтоб изменить его."
     "lodFailedBalanceMode"                          "'{ab}' превышает ваши оставшиеся очки на {points} очков."
-    "lodBoosterDraftRound"                          "Booster Draft: Round {round}"
+    "lodBoosterDraftRound"                          "Booster Draft: Раунд {round}"
     "lodBoosterDraftStart"                          "Booster Draft: Drafting Phase"
     "lodBoosterDraftEnd"                            "Booster Draft: Building Phase"
-    "lodBoosterDraftWait"                           "Booster Draft: Waiting for Next Set"
+    "lodBoosterDraftWait"                           "Booster Draft: Ожидание следующего набора"
 
     // Success Messages
     "lodSuccessBanAbility"                          "'Способность {abilityName}' забанена."
     "lodSuccessBanHero"                             "'Герой {heroName}' забанен."
-    "lodSuccessSavedBans"                           "'{entries}' bans were saved to local storage."
-    "lodSuccessLoadBans"                            "'{entries}' bans were loaded from local storage."
+    "lodSuccessSavedBans"                           "'{entries}' Баны сохранены в локальное хранилище"
+    "lodSuccessLoadBans"                            "'{entries}' Баны загружены с локального хранилища"
 
     // Upgrade Towers Notifications 
     "radiantTowersUpgraded"                         "<font color='#70EA72'>Башни сил света были улучшены.</font>"
@@ -846,12 +846,12 @@
     "lodFastStart"                                  "Включить Быстрый Старт"
     "lodBalanceMode"                                "Выключить Баланс Мод"
     "lodStrongTower"                                "Включить Усиленные Башни"
-    "lodDuels"                                      "Enable Duels"
+    "lodDuels"                                      "Включить дуэли"
 
     "textFSTooltip"                                 "Все стартуют с 6го уровня и получают 1000 дополнительного золота."
     "textBMTooltip"                                 "В Баланс моде, игроки имеют 120 очков для траты на способности. Мощные способности стоят больше, чем слабые, а самые слабые способности можно взять без траты очков"
     "textSTTooltip"                                 "Даёт башням мощные способности, которые улучшаются каждый раз когда башня на этой стороне разрушена. После трёх улучшений башня получит новую способность"
-    "textDTooltip"                              "Teams face each other every 5 minutes on randomly selected arenas."
+    "textDTooltip"                              "Команды сталкиваются лицом к лицу каждые пять мину на рандомной арене."
 
     "bots_lod"                                      "Боты"
 
@@ -870,15 +870,15 @@
     "lodOptionDesBotsUnfairBalance"                 "Преимущество ботов в опыте"
     "lodOptionAboutUnfairBalance"                   "Боты получат опыт, чтобы соответствовать игроку с самым высоким уровнем в матче."
 
-    "lodOptionDesBotsRestrict"                      "Restrict skills to default (Bots)"
-    "lodOptionAboutBotsRestrict"                    "This option prevents bots from selecting non-default abilities. Bots will only have 4 abilities."
-    "lodOptionRestrictNo"                           "No"
-    "lodOptionRestrictRadiant"                      "Only Radiant"
-    "lodOptionRestrictDire"                         "Only Dire"
-    "lodOptionRestrictBoth"                         "Both Teams"
+    "lodOptionDesBotsRestrict"                      "Ограничить скиллы до стандартных (ботам)"
+    "lodOptionAboutBotsRestrict"                    "Эта опция ограничит ботам выбор среди нестандартных способностей. Боты имею только четыре скилла."
+    "lodOptionRestrictNo"                           "Нет"
+    "lodOptionRestrictRadiant"                      "Только Свет"
+    "lodOptionRestrictDire"                         "Только Тьма"
+    "lodOptionRestrictBoth"                         "Обе команды"
 
-    "lodOptionDesBotsBonusPoints"                  "Bonus Attribute Points"
-    "lodOptionAboutBotsBonusPoints"                "This option will allow bots to level up their Attribute Bonus ability without using a skill point. They will upgrade it at every level, resulting in them having much more stats than the regular player."
+    "lodOptionDesBotsBonusPoints"                  "Бонусные очки атрибутов"
+    "lodOptionAboutBotsBonusPoints"                "Эта опция позволит ботам прокачивать их бонусы к атрибутам без использования очков скилла. Они качают их каждый лвл, в результате боты будут иметь больше статов, чем обычный игрок."
   
     "statsPlayerName"                               "Имя игрока"
     "statsTotalGames"                               "Всего игр"
@@ -906,7 +906,7 @@
     "lodMainFeatures"                               "Основные особенности"
     "lodLeaveComment"                               "Оставить комментарий для наших разработчиков."
     "GitHubReference"                               "Альтернативно присылайте на наш Github."
-    "msgFromDev"                                    "Message from a developer"
+    "msgFromDev"                                    "Сообщение от разработчика"
 
     //Hero Stats
 
