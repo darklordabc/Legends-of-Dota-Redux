@@ -707,6 +707,7 @@
 #base "abilities\tower\imba_tower_force.txt"
 #base "abilities\tower\imba_tower_forest.txt"
 #base "abilities\tower\imba_tower_forest_one.txt"
+#base "abilities\tower\imba_tower_forest_generator.txt"
 #base "abilities\tower\imba_tower_grievous_wounds.txt"
 #base "abilities\tower\imba_tower_hex_aura.txt"
 #base "abilities\tower\imba_tower_laser.txt"

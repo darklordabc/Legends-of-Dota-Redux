@@ -3559,6 +3559,8 @@ function Pregame:processOptions()
         -- Enable All Vision
         if this.optionStore['lodOptionCrazyAllVision'] == 1 then
             Convars:SetBool('dota_all_vision', true)
+            SendToServerConsole('dota_spawn_neutrals')
+            
         end
 
         if OptionManager:GetOption('maxHeroLevel') ~= 25 then
@@ -6840,8 +6842,14 @@ function Pregame:fixSpawningIssues()
                         PlayerResource:SetGold(playerID, OptionManager:GetOption('bonusGold'), true)
                     end
                 end
-            elseif string.match(spawnedUnit:GetUnitName(), "creep") or string.match(spawnedUnit:GetUnitName(), "siege") then
+            elseif spawnedUnit:GetTeam() == DOTA_TEAM_NEUTRALS then
                 -- Increasing creep power over time
+                --if this.optionStore['lodOptionExtraAbility'] == 3 then
+                    spawnedUnit:AddAbility("imba_tower_forest_generator")
+                    local treeAbility = spawnedUnit:FindAbilityByName("imba_tower_forest_generator")
+                    treeAbility:SetLevel(1)
+                --end
+            elseif string.match(spawnedUnit:GetUnitName(), "creep") or string.match(spawnedUnit:GetUnitName(), "siege") then
                 if this.optionStore['lodOptionCreepPower'] > 0 then
                     local level = math.ceil((WAVE or 1) / (this.optionStore['lodOptionCreepPower'] / 30))
                     local ability = spawnedUnit:AddAbility("lod_creep_power")

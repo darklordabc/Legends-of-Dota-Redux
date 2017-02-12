@@ -885,24 +885,48 @@ function Forest( keys )
 	
 	if caster:PassivesDisabled() then return end
 
+	
+
 	-- Parameters
 	local tree_radius = ability:GetLevelSpecialValueFor("tree_radius", ability_level)
 	local tree_duration = ability:GetLevelSpecialValueFor("tree_duration", ability_level)
 
-	-- Play sound
-	caster:EmitSound(sound_tree)
+	-- Tree generator for black forest mutator
+	if ability:GetAbilityName() == "imba_tower_forest_generator" then
+		local tree_loc = caster:GetAbsOrigin() + RandomVector(100):Normalized() * RandomInt(600, tree_radius)
+		
+		local nearbyUnits = FindUnitsInRadius(caster:GetTeamNumber(), tree_loc, nil, 600, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_BUILDING + DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
+		local nearbytrees = GridNav:GetAllTreesAroundPoint( tree_loc, 200, false )
+		
+		if #nearbyUnits == 0 and #nearbytrees == 0 then
+			caster:EmitSound(sound_tree)
+			CreateTempTree(tree_loc, tree_duration)
+		end
 
-	-- Create a tree on a random location
-	local tree_loc = caster:GetAbsOrigin() + RandomVector(100):Normalized() * RandomInt(100, tree_radius)
-	CreateTempTree(tree_loc, tree_duration)
+		-- Put the ability on cooldown
+		if (GameRules:GetDOTATime(false, false)) == 0 then
+			ability:StartCooldown(1)
+		else
+			ability:StartCooldown(ability:GetCooldown(ability_level))
+		end
 
-	local unitsInRadius = FindUnitsInRadius(caster:GetTeamNumber(), tree_loc, nil, 256, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
-	for _, unit in pairs(unitsInRadius) do
-		FindClearSpaceForUnit(unit,unit:GetAbsOrigin(),true)
+	else
+		-- Play sound
+		caster:EmitSound(sound_tree)
+
+		-- Create a tree on a random location
+		local tree_loc = caster:GetAbsOrigin() + RandomVector(100):Normalized() * RandomInt(100, tree_radius)
+		CreateTempTree(tree_loc, tree_duration)
+
+		local unitsInRadius = FindUnitsInRadius(caster:GetTeamNumber(), tree_loc, nil, 256, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
+		for _, unit in pairs(unitsInRadius) do
+			FindClearSpaceForUnit(unit,unit:GetAbsOrigin(),true)
+		end
+
+		-- Put the ability on cooldown
+		ability:StartCooldown(ability:GetCooldown(ability_level))	
 	end
 
-	-- Put the ability on cooldown
-	ability:StartCooldown(ability:GetCooldown(ability_level))
 end
 
 function Glaives( keys )
