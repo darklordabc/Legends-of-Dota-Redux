@@ -885,6 +885,7 @@ function Forest( keys )
 	
 	if caster:PassivesDisabled() then return end
 
+
 	
 
 	-- Parameters
@@ -893,30 +894,199 @@ function Forest( keys )
 
 	-- Tree generator for black forest mutator
 	if ability:GetAbilityName() == "imba_tower_forest_generator" then
-		local tree_loc = caster:GetAbsOrigin() + RandomVector(100):Normalized() * RandomInt(600, tree_radius)
-		
-		local nearbyUnits = FindUnitsInRadius(caster:GetTeamNumber(), tree_loc, nil, 600, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_BUILDING + DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
-		local nearbytrees = GridNav:GetAllTreesAroundPoint( tree_loc, 200, false )
-		
-		if #nearbyUnits == 0 and #nearbytrees == 0 then
-			caster:EmitSound(sound_tree)
-			CreateTempTree(tree_loc, tree_duration)
+		local randomX = RandomInt(-7136, 7136)
+        local randomY = RandomInt(-7136, 7136)
+        local tree_loc = Vector(randomX, randomY, 384)
+        local groundHeight = GetGroundHeight(tree_loc, caster)
+        --local ground = GetGroundPosition(tree_loc, caster)
+        local validGround = nil
+        local treeBufferDistance = 200
+        
+
+        if groundHeight == 384 or groundHeight == 128 or groundHeight == 256 then 
+			validGround = true
 		end
+
+		if validGround ~= true then return nil end
+
+		if groundHeight == 128 then treeBufferDistance = 300 end 
+
+		--local tree_loc = caster:GetAbsOrigin() + RandomVector(100):Normalized() * RandomInt(600, tree_radius)
+		local nearbyUnits = FindUnitsInRadius(caster:GetTeamNumber(), tree_loc, nil, 300, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_BUILDING + DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, FIND_ANY_ORDER, false)
+		local nearbytrees = GridNav:GetAllTreesAroundPoint( tree_loc, treeBufferDistance, false )
+		local nearbyTowers = Entities:FindAllByClassnameWithin("npc_dota_tower",tree_loc, 600)
+        local nearbyCamp = Entities:FindByNameNearest("neutralcamp_*", tree_loc, 500)
+        local nearbyAncients = Entities:FindByNameNearest("*_fort*", tree_loc, 2000)
+
+        --print(ground.z)
+        
+
+        
+	
+		--print(groundHeight)
+
+        if #nearbyUnits == 0 and validGround and not nearbyAncients and not nearbyCamp and #nearbytrees == 0 and #nearbyTowers == 0 and GridNav:IsTraversable(tree_loc) and not GridNav:IsBlocked(tree_loc) then
+		
+			CreateTempTree(tree_loc, tree_duration)
+			local nearbyUnits = Entities:FindAllInSphere(tree_loc, 50)
+
+			
+			for _, unit in pairs(nearbyUnits) do
+				if unit:GetClassname() == "dota_temp_tree" then
+					-- Figure out what side of the map is the tree on
+					local treeSide = nil
+					local goodancients = Entities:FindAllByName("dota_goodguys_fort")
+					local distancetoGoodAncient = CalcDistanceBetweenEntityOBB( goodancients[1], unit )
+
+					local badancients = Entities:FindAllByName("dota_badguys_fort")
+					distancetoBadAncient = CalcDistanceBetweenEntityOBB( badancients[1], unit )
+
+					if distancetoGoodAncient < 7300 then
+						treeSide = "radiant"
+					elseif distancetoBadAncient < 7300 then
+						treeSide = "dire"
+					end
+
+					if treeSide == nil then
+						local closestneutralcamp = Entities:FindByNameNearest("neutralcamp_*", unit:GetAbsOrigin(), 6000)
+						local nameOfCamp = closestneutralcamp:GetName()
+						if nameOfCamp:match("_good_") then treeSide = "radiant" 
+						elseif nameOfCamp:match("_evil_") then treeSide = "dire" 
+						end
+					end
+
+					--CalcDistanceBetweenEntityOBB( handle_1, handle_2 )
+					--local elevation = unit:GetAbsOrigin().z
+					--local swamptree = nil
+					--if elevation ~= 384 and elevation ~= 128 and elevation ~= 256 then 
+					--	GridNav:DestroyTreesAroundPoint( unit:GetAbsOrigin(), 200, false )
+					--	break
+					--end
+					
+					local chance = RandomInt(1, 14)
+
+					if treeSide == "dire" then
+						chance = RandomInt(1, 6)
+					end
+					if treeSide == "radiant" then
+						chance = RandomInt(7, 14)
+					end
+					
+					-- If the treespot is in the water river area, spawn only leafless trees
+					local elevation = unit:GetAbsOrigin()
+					print(groundHeight)
+					if groundHeight == 128 then 
+						chance = RandomInt(1, 4)
+					end
+					--chance = 5
+					if chance == 1 then -- Dire leafless tree
+						unit:SetModel("models/props_tree/dire_tree001.vmdl")
+						unit:SetModelScale(1)
+					elseif chance == 2 then -- Dire leafless tree	
+						unit:SetModel("models/props_tree/dire_tree002.vmdl")
+						unit:SetModelScale(1)
+					elseif chance == 3 then -- Dire leafless tree
+						unit:SetModel("models/props_tree/dire_tree004b_sfm.vmdl")
+						unit:SetModelScale(1)
+					elseif chance == 4 then -- Dire leafless tree
+						unit:SetModel("models/props_tree/dire_tree007_sfm.vmdl")
+						unit:SetModelScale(.5)
+					elseif chance == 5 then
+						unit:SetModel("models/props_tree/dire_tree003.vmdl")
+						unit:SetRenderColor(160, 160, 160)
+						unit:SetModelScale(1.2)
+					elseif chance == 6 then
+						unit:SetModel("models/props_tree/dire_tree005.vmdl")
+						unit:SetRenderColor(160, 160, 160)
+						unit:SetModelScale(1)	
+					elseif chance == 7 then
+						unit:SetModel("models/props_tree/tree_oak_01_sfm.vmdl")
+						unit:SetModelScale(0.50)	
+					elseif chance == 8 then
+						unit:SetModel("models/props_tree/tree_oak_00.vmdl")
+						unit:SetModelScale(1)
+					elseif chance == 9 then
+						unit:SetModel("models/props_tree/tree_oak_01b_sfm.vmdl")
+						unit:SetModelScale(.8)
+						--unit:SetModelScale(0.50)
+					elseif chance == 10 then
+						unit:SetModel("models/props_tree/tree_oak_02_sfm.vmdl")
+						unit:SetModelScale(.35)
+					elseif chance == 11 then
+						unit:SetModel("models/props_tree/tree_pine_01_sfm.vmdl")
+						unit:SetModelScale(.50)
+					elseif chance == 12 then
+						unit:SetModel("models/props_tree/tree_pine_02_sfm.vmdl")
+						unit:SetModelScale(.40)
+					elseif chance == 13 then
+						unit:SetModel("models/props_tree/tree_pine_03b_sfm.vmdl")
+						unit:SetModelScale(1)
+					elseif chance == 14 then
+						-- Autumn brown tree
+						unit:SetModel("models/props_tree/tree_oak_01_sfm.vmdl")
+						unit:SetRenderColor(255,192,203)
+						unit:SetModelScale(0.50)
+					end
+				end
+			end
+		end
+
 
 		-- Put the ability on cooldown
 		if (GameRules:GetDOTATime(false, false)) == 0 then
-			ability:StartCooldown(1)
+			ability:StartCooldown(.1)
 		else
-			ability:StartCooldown(ability:GetCooldown(ability_level))
+			ability:StartCooldown(.1)
 		end
 
 	else
+		
+
+
+
+		--if treeSide == "dire" then print("Dire Side") end
+		--if treeSide == "radiant" then print("Radiant Side") end
+		--if treeSide == nil then print("Unknown Side") end
+
+		
+		--local closestneutralcamp = Entities:FindByNameNearest("neutralcamp_*", caster:GetAbsOrigin(), 6000)
+		--print(closestneutralcamp:GetName())
+		--print(goodancients)
+		local nearbyUnits = Entities:FindAllInSphere(caster:GetAbsOrigin(), 50)
+        
+			for _, unit in pairs(nearbyUnits) do
+				print(unit:GetEntityIndex())
+			end
+
+
+		--print(goodancients[1]:GetName())
+
+		--print("Distance to good ancient:")
+		--local distance = CalcDistanceBetweenEntityOBB( goodancients[1], caster )
+		--print(distance)
+		
+		--print("Distance to bad ancient:")
+		
+		--print(distance)
+		
+
+		--print(caster:GetAbsOrigin())
+		local x = caster:GetAbsOrigin().z
+		if x == math.floor(x) then
+		--print("has decmials")
+		end
+		local nearbyTowers = Entities:FindAllByClassnameWithin("npc_dota_tower",caster:GetAbsOrigin(), 500)
+		local nearbyUnits = Entities:FindAllInSphere(caster:GetAbsOrigin(), 3000)
+
+		
+		--print(#nearbyTowers)
+	
 		-- Play sound
 		caster:EmitSound(sound_tree)
 
 		-- Create a tree on a random location
 		local tree_loc = caster:GetAbsOrigin() + RandomVector(100):Normalized() * RandomInt(100, tree_radius)
-		CreateTempTree(tree_loc, tree_duration)
+		--CreateTempTree(tree_loc, tree_duration)
 
 		local unitsInRadius = FindUnitsInRadius(caster:GetTeamNumber(), tree_loc, nil, 256, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
 		for _, unit in pairs(unitsInRadius) do
@@ -924,7 +1094,7 @@ function Forest( keys )
 		end
 
 		-- Put the ability on cooldown
-		ability:StartCooldown(ability:GetCooldown(ability_level))	
+		ability:StartCooldown(3)	
 	end
 
 end

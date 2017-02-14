@@ -97,6 +97,18 @@ function Debug:init()
         end
     end, 'print_abilities', 0)
 
+        Convars:RegisterCommand('destroy_all_trees', function(c, team)
+        local cmdPlayer = Convars:GetCommandClient()
+        if cmdPlayer then
+            local playerID = cmdPlayer:GetPlayerID()
+            if playerID ~= nil and playerID ~= -1 then
+                local hero = cmdPlayer:GetAssignedHero()
+                GridNav:DestroyTreesAroundPoint( hero:GetAbsOrigin(), 99999, false )
+                print("Destroyed all trees")
+            end
+        end
+    end, 'destroy_all_trees', 0)
+
     Convars:RegisterCommand('kill_team', function(c, team)
         for _,v in pairs(Entities:FindAllByName("npc_dota_hero*")) do
             if IsValidEntity(v) and v:IsNull() == false and v.GetPlayerOwnerID and not v:IsClone() and not v:HasModifier("modifier_arc_warden_tempest_double") then
