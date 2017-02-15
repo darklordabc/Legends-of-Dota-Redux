@@ -894,149 +894,152 @@ function Forest( keys )
 
 	-- Tree generator for black forest mutator
 	if ability:GetAbilityName() == "imba_tower_forest_generator" then
-		local randomX = RandomInt(-7136, 7136)
-        local randomY = RandomInt(-7136, 7136)
-        local tree_loc = Vector(randomX, randomY, 384)
-        local groundHeight = GetGroundHeight(tree_loc, caster)
-        --local ground = GetGroundPosition(tree_loc, caster)
-        local validGround = nil
-        local treeBufferDistance = 200
-        
+		-- FOREST CALIBRATION SETTINGS
+		local treeBufferDistance = 195 --How far trees should be apart
+		local treeBufferDistanceRiver = 300
+		local nearbyUnitsRadius = 300
+		local nearbyTowersRadius = 600
+		local nearbyNeutralCampRadius = 500
+		local nearbyAncientRadius = 1000
+		local nearbyShrineRadius = 400
+		local nearbyShrineRadius = 400
+		local totalTreeLimit = 3000
+		-- END SETTINGS
 
-        if groundHeight == 384 or groundHeight == 128 or groundHeight == 256 then 
-			validGround = true
+        local tree_loc = Vector(RandomInt(-7136, 7136), RandomInt(-7136, 7136), 384)
+        
+        tree_loc.z = GetGroundHeight(tree_loc, caster)     
+        
+        if tree_loc.z ~= 384 and tree_loc.z ~= 128 and tree_loc.z ~= 256 then 
+			return nil
 		end
 
-		if validGround ~= true then return nil end
+		print(tree_loc.z)
+		if tree_loc.z == 128 then treeBufferDistance = treeBufferDistanceRiver end -- If in river area, spreadout trees more
 
-		if groundHeight == 128 then treeBufferDistance = 300 end 
+		-- Condition checks
+		local nearbyUnits = FindUnitsInRadius(caster:GetTeamNumber(), tree_loc, nil, nearbyUnitsRadius, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_BUILDING + DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, FIND_ANY_ORDER, false)
+		if #nearbyUnits > 0 then return nil end
 
-		--local tree_loc = caster:GetAbsOrigin() + RandomVector(100):Normalized() * RandomInt(600, tree_radius)
-		local nearbyUnits = FindUnitsInRadius(caster:GetTeamNumber(), tree_loc, nil, 300, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_BUILDING + DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, FIND_ANY_ORDER, false)
-		local nearbytrees = GridNav:GetAllTreesAroundPoint( tree_loc, treeBufferDistance, false )
-		local nearbyTowers = Entities:FindAllByClassnameWithin("npc_dota_tower",tree_loc, 600)
-        local nearbyCamp = Entities:FindByNameNearest("neutralcamp_*", tree_loc, 500)
-        local nearbyAncients = Entities:FindByNameNearest("*_fort*", tree_loc, 2000)
+		local nearbyTowers = Entities:FindAllByClassnameWithin("npc_dota_tower",tree_loc, nearbyTowersRadius)
+        if #nearbyTowers > 0 then return nil end
 
-        --print(ground.z)
+        local nearbyCamp = Entities:FindByNameNearest("neutralcamp_*", tree_loc, nearbyNeutralCampRadius)
+        if nearbyCamp then return nil end
+
+        local nearbyAncients = Entities:FindByNameNearest("*_fort*", tree_loc, nearbyAncientRadius)
+        if nearbyAncients then return nil end
+
+        local nearbyShrines = Entities:FindAllByClassnameWithin("npc_dota_healer",tree_loc, nearbyShrineRadius)
+        if #nearbyShrines > 0 then return nil end
+
+        local nearbytrees = GridNav:GetAllTreesAroundPoint( tree_loc, treeBufferDistance, false )
+        if #nearbytrees > 0 then return nil end
+
+        local allTrees = Entities:FindAllByClassnameWithin("dota_temp_tree",tree_loc, 99999)
+		if #allTrees >= totalTreeLimit then return nil end
         
-
+        if GridNav:IsTraversable(tree_loc) == false or GridNav:IsBlocked(tree_loc) then return nil end
+ 
+        --print(#allTrees)
         
-	
-		--print(groundHeight)
-
-        if #nearbyUnits == 0 and validGround and not nearbyAncients and not nearbyCamp and #nearbytrees == 0 and #nearbyTowers == 0 and GridNav:IsTraversable(tree_loc) and not GridNav:IsBlocked(tree_loc) then
+		CreateTempTree(tree_loc, tree_duration)
 		
-			CreateTempTree(tree_loc, tree_duration)
-			local nearbyUnits = Entities:FindAllInSphere(tree_loc, 50)
+		local nearbyUnits = Entities:FindAllInSphere(tree_loc, 1)
+		for _, unit in pairs(nearbyUnits) do
+			if unit:GetClassname() == "dota_temp_tree" then
+				-- Figure out what side of the map is the tree on
+				local treeSide = nil
+				local goodancients = Entities:FindAllByName("dota_goodguys_fort")
+				local distancetoGoodAncient = CalcDistanceBetweenEntityOBB( goodancients[1], unit )
 
-			
-			for _, unit in pairs(nearbyUnits) do
-				if unit:GetClassname() == "dota_temp_tree" then
-					-- Figure out what side of the map is the tree on
-					local treeSide = nil
-					local goodancients = Entities:FindAllByName("dota_goodguys_fort")
-					local distancetoGoodAncient = CalcDistanceBetweenEntityOBB( goodancients[1], unit )
+				local badancients = Entities:FindAllByName("dota_badguys_fort")
+				distancetoBadAncient = CalcDistanceBetweenEntityOBB( badancients[1], unit )
 
-					local badancients = Entities:FindAllByName("dota_badguys_fort")
-					distancetoBadAncient = CalcDistanceBetweenEntityOBB( badancients[1], unit )
+				-- If its close enough to an ancient its safe to assume its on the dire/radiant side
+				if distancetoGoodAncient < 7300 then
+					treeSide = "radiant"
+				elseif distancetoBadAncient < 7300 then
+					treeSide = "dire"
+				end
 
-					if distancetoGoodAncient < 7300 then
-						treeSide = "radiant"
-					elseif distancetoBadAncient < 7300 then
-						treeSide = "dire"
-					end
-
-					if treeSide == nil then
-						local closestneutralcamp = Entities:FindByNameNearest("neutralcamp_*", unit:GetAbsOrigin(), 6000)
-						local nameOfCamp = closestneutralcamp:GetName()
-						if nameOfCamp:match("_good_") then treeSide = "radiant" 
-						elseif nameOfCamp:match("_evil_") then treeSide = "dire" 
-						end
-					end
-
-					--CalcDistanceBetweenEntityOBB( handle_1, handle_2 )
-					--local elevation = unit:GetAbsOrigin().z
-					--local swamptree = nil
-					--if elevation ~= 384 and elevation ~= 128 and elevation ~= 256 then 
-					--	GridNav:DestroyTreesAroundPoint( unit:GetAbsOrigin(), 200, false )
-					--	break
-					--end
-					
-					local chance = RandomInt(1, 14)
-
-					if treeSide == "dire" then
-						chance = RandomInt(1, 6)
-					end
-					if treeSide == "radiant" then
-						chance = RandomInt(7, 14)
-					end
-					
-					-- If the treespot is in the water river area, spawn only leafless trees
-					local elevation = unit:GetAbsOrigin()
-					print(groundHeight)
-					if groundHeight == 128 then 
-						chance = RandomInt(1, 4)
-					end
-					--chance = 5
-					if chance == 1 then -- Dire leafless tree
-						unit:SetModel("models/props_tree/dire_tree001.vmdl")
-						unit:SetModelScale(1)
-					elseif chance == 2 then -- Dire leafless tree	
-						unit:SetModel("models/props_tree/dire_tree002.vmdl")
-						unit:SetModelScale(1)
-					elseif chance == 3 then -- Dire leafless tree
-						unit:SetModel("models/props_tree/dire_tree004b_sfm.vmdl")
-						unit:SetModelScale(1)
-					elseif chance == 4 then -- Dire leafless tree
-						unit:SetModel("models/props_tree/dire_tree007_sfm.vmdl")
-						unit:SetModelScale(.5)
-					elseif chance == 5 then
-						unit:SetModel("models/props_tree/dire_tree003.vmdl")
-						unit:SetRenderColor(160, 160, 160)
-						unit:SetModelScale(1.2)
-					elseif chance == 6 then
-						unit:SetModel("models/props_tree/dire_tree005.vmdl")
-						unit:SetRenderColor(160, 160, 160)
-						unit:SetModelScale(1)	
-					elseif chance == 7 then
-						unit:SetModel("models/props_tree/tree_oak_01_sfm.vmdl")
-						unit:SetModelScale(0.50)	
-					elseif chance == 8 then
-						unit:SetModel("models/props_tree/tree_oak_00.vmdl")
-						unit:SetModelScale(1)
-					elseif chance == 9 then
-						unit:SetModel("models/props_tree/tree_oak_01b_sfm.vmdl")
-						unit:SetModelScale(.8)
-						--unit:SetModelScale(0.50)
-					elseif chance == 10 then
-						unit:SetModel("models/props_tree/tree_oak_02_sfm.vmdl")
-						unit:SetModelScale(.35)
-					elseif chance == 11 then
-						unit:SetModel("models/props_tree/tree_pine_01_sfm.vmdl")
-						unit:SetModelScale(.50)
-					elseif chance == 12 then
-						unit:SetModel("models/props_tree/tree_pine_02_sfm.vmdl")
-						unit:SetModelScale(.40)
-					elseif chance == 13 then
-						unit:SetModel("models/props_tree/tree_pine_03b_sfm.vmdl")
-						unit:SetModelScale(1)
-					elseif chance == 14 then
-						-- Autumn brown tree
-						unit:SetModel("models/props_tree/tree_oak_01_sfm.vmdl")
-						unit:SetRenderColor(255,192,203)
-						unit:SetModelScale(0.50)
+				-- If we couldnt determine side by measuing distance to ancients resort to measuing nearest neutral camps
+				if treeSide == nil then
+					local closestneutralcamp = Entities:FindByNameNearest("neutralcamp_*", unit:GetAbsOrigin(), 6000)
+					local nameOfCamp = closestneutralcamp:GetName()
+					if nameOfCamp:match("_good_") then treeSide = "radiant" 
+					elseif nameOfCamp:match("_evil_") then treeSide = "dire" 
 					end
 				end
+				
+				local chance 
+				if treeSide == "dire" then
+					chance = RandomInt(1, 6)
+				end
+				if treeSide == "radiant" then
+					chance = RandomInt(7, 13)
+				end
+				-- If the treespot is in the water river area, spawn only leafless trees
+				if tree_loc.z == 128 then 
+					chance = RandomInt(1, 4)
+				end
+
+				Trees =
+				{
+				   [1] = {"models/props_tree/dire_tree001.vmdl", 1},
+				   [2] = {"models/props_tree/dire_tree002.vmdl", 1},
+				   [3] = {"models/props_tree/dire_tree004b_sfm.vmdl", 1},
+				   [4] = {"models/props_tree/dire_tree007_sfm.vmdl", .5},
+				   [5] = {"models/props_tree/dire_tree003.vmdl", 1.2},
+				   [6] = {"models/props_tree/dire_tree005.vmdl", 1},
+				   [7] = {"models/props_tree/tree_oak_01_sfm.vmdl", 0.5},
+				   [8] = {"models/props_tree/tree_oak_00.vmdl", 1},
+				   [9] = {"models/props_tree/tree_oak_01b_sfm.vmdl", 0.8},
+				   [10] = {"models/props_tree/tree_oak_02_sfm.vmdl", 0.35},
+				   [11] = {"models/props_tree/tree_pine_01_sfm.vmdl", 0.5},
+				   [12] = {"models/props_tree/tree_pine_02_sfm.vmdl", 0.4},
+				   [13] = {"models/props_tree/tree_pine_03b_sfm.vmdl", 1},
+				}
+
+				unit:SetModel(Trees[chance][1])
+				unit:SetModelScale(Trees[chance][2])
+
+				if RollPercentage(25) then
+					local size = RandomFloat(.8, 1.6)
+					--print(size)
+					unit:SetModelScale(unit:GetModelScale() * size)
+				end
+
+				if RollPercentage(1) then
+					unit:SetModelScale(unit:GetModelScale() * 3)
+				end
+				
+				if chance == 5 or chance == 6 then
+					unit:SetRenderColor(160, 160, 160)
+				end
+
+				if chance == 7 or chance == 12 or chance == 11 or chance == 13 then
+					local colorChance = RandomInt(1, 4)
+					if colorChance == 2 then 
+						unit:SetRenderColor(255,192,203)
+					elseif colorChance == 3 then					
+						unit:SetRenderColor(255,215,0)
+					elseif colorChance == 3 then					
+						unit:SetRenderColor(162, 163, 3)
+					end
+					
+				end
+
 			end
 		end
+		
 
 
 		-- Put the ability on cooldown
 		if (GameRules:GetDOTATime(false, false)) == 0 then
-			ability:StartCooldown(.1)
+			ability:StartCooldown(20)
 		else
-			ability:StartCooldown(.1)
+			ability:StartCooldown(20)
 		end
 
 	else
@@ -1052,12 +1055,13 @@ function Forest( keys )
 		--local closestneutralcamp = Entities:FindByNameNearest("neutralcamp_*", caster:GetAbsOrigin(), 6000)
 		--print(closestneutralcamp:GetName())
 		--print(goodancients)
+		--CreateEnt
 		local nearbyUnits = Entities:FindAllInSphere(caster:GetAbsOrigin(), 50)
         
 			for _, unit in pairs(nearbyUnits) do
-				print(unit:GetEntityIndex())
+				print(unit:GetClassname())
 			end
-
+			--CreateByClassname
 
 		--print(goodancients[1]:GetName())
 
