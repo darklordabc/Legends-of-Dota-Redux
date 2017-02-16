@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - Fixed Aegis tower ability not giving extra HP
 - Last resort is now ultimate ability, increased cooldown
 - Gryo's perk has been disabled until we can figure out whats wrong with side-gunner
+- Shallow Grave IMBA and Purificaion IMBA no longer cause invisible model if dieing during Supernova egg
 
 ### Balance
 - Increased cooldown and manacost of Symbiote 
@@ -19,6 +20,7 @@ All notable changes to this project will be documented in this file.
 - Wind Soul will no longer proc for toggles and spells with less than 3 seconds max cooldown
 - Most IMBA tower abilities dont work with illusions anymore
 - Juxtapose now has 50% less chance to proc for ranged heros
+
 
 ## 5.9 - Development Version
 ### Bug Fixing/New Features

@@ -8,6 +8,11 @@ function ShallowGravePassive( keys )
     local modifier_passive = keys.modifier_passive
     local modifier_cooldown = keys.modifier_cooldown
 
+    --print(caster:HasModifier("modifier_phoenix_supernova_hiding"))
+    if caster:HasModifier("modifier_phoenix_supernova_hiding") then
+        ability:StartCooldown(2)
+    end
+
     if ability:IsCooldownReady() then
         ability:ApplyDataDrivenModifier(caster, caster, modifier_passive, {})
     else

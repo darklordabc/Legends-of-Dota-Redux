@@ -71,6 +71,13 @@ function PurificationDeath( keys )
 end
 
 function DisplayManager(keys)
+    local caster = keys.caster
+    local ability = keys.ability
+    
+    if caster:HasModifier("modifier_phoenix_supernova_hiding") then
+        ability:StartCooldown(2)
+    end
+
     if keys.caster:HasModifier(keys.modifier_display) and not keys.ability:IsCooldownReady() then
         keys.caster:RemoveModifierByName(keys.modifier_display)
     elseif not keys.caster:HasModifier(keys.modifier_display) and keys.ability:IsCooldownReady() then
