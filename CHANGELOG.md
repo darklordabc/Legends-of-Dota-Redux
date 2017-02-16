@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 - Increased cooldown and manacost of Symbiote 
 - Roshan bash is now troll combo with juxtaposition
 - Vengeful Spirit perk now drains 1 stat per death, not 2
+- IMBA Purification no longer procs for illusions
 
 ## 5.9 - Development Version
 ### Bug Fixing/New Features

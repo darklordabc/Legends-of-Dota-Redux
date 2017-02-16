@@ -7,6 +7,8 @@ function PurificationDeath( keys )
     local ability = keys.ability
     local ability_level = ability:GetLevel() - 1
 
+    if not caster:IsRealHero() then return nil end
+    
     -- If fatal damage was not dealt, do nothing
     if caster:GetHealth() >= 2 or not ability:IsCooldownReady() then
         return nil

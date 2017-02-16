@@ -7,6 +7,8 @@ function Purification( keys )
 	local ability_level = ability:GetLevel() - 1
 	local target = keys.target
 
+	if not caster:IsRealHero() then return nil end
+
 	-- Effects
 	local cast_sound = keys.cast_sound
 	local aoe_particle = keys.aoe_particle
