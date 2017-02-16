@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Vengeful Spirit
---		Perk: When Vengeful Spirit is slain by an enemy hero, she permanently reduces the hero's attributes by 2. 
+--		Perk: When Vengeful Spirit is slain by an enemy hero, she permanently reduces the hero's attributes by 1. 
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_vengefulspirit_perk", "abilities/hero_perks/npc_dota_hero_vengefulspirit_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -26,7 +26,7 @@ function modifier_npc_dota_hero_vengefulspirit_perk:RemoveOnDeath()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_vengefulspirit_perk:OnCreated(keys)
-	self.stealAmount = 2
+	self.stealAmount = 1
 	return true
 end
 --------------------------------------------------------------------------------------------------------

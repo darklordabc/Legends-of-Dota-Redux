@@ -728,7 +728,7 @@
     "hintWD"                         "Healing abilities have 25% extra effectiveness when used by Witch Doctor."
     "hintClinkz"                         "Clinkz will receive a free level in his first non-ultimate Autocast ability at the start of the game."
     "hintOgreMagi"                         "When Ogre Magi casts a spell, there is a 2% chance to refund the manacost of that spell and refresh its cooldown."
-    "hintVS"                         "When Vengeful Spirit is slain by an enemy hero, she permanently reduces the hero's attributes by 2."
+    "hintVS"                         "When Vengeful Spirit is slain by an enemy hero, she permanently reduces the hero's attributes by 1."
     "hintVisage"                         "For Visage, Summon Familiars will refund 100% of manacost and have its cooldown reduced by 50%."
     "hintNaga"                         "Illusion creating abilities will have 50% of their mana refunded and cooldowns reduced by 20%, when used by Naga."
     "hintBH"                         "Bounty Hunter deals 10% more damage to Tracked enemies."
@@ -1151,7 +1151,7 @@
     "unique_mechanic_abyssal_underlord"                        "Underlord gains +1 to all stats for each level put in a <font color=\'#ffd966\'>Custom</font> ability."
     "unique_mechanic_undying"                        "Undying gains +1 strength per creep death or +4 strength per hero death in a 900 radius for 30 seconds."
     "unique_mechanic_ursa"                   "Ursa deals 15% more damage to neutrals and Roshan."
-    "unique_mechanic_vengefulspirit"                        "When Vengeful Spirit is slain by an enemy hero, she permanently reduces the hero's attributes by 2."
+    "unique_mechanic_vengefulspirit"                        "When Vengeful Spirit is slain by an enemy hero, she permanently reduces the hero's attributes by 1."
     "unique_mechanic_venomancer"                        "Increases the duration of all <font color=\'#ffd966\'>Poison</font> effects Venomancer applies by 25%."
     "unique_mechanic_viper"                        "<font color=\'#ffd966\'>Poison</font> effects applied by Viper also lower the target's armor by 2."
     "unique_mechanic_visage"                        "<font color=\'#ffd966\'>Summon Familiars</font> will refund 100% of manacost and have its cooldown reduced by 50%."
@@ -3204,7 +3204,7 @@
 
     /// VENGEFUL SPIRIT​
     "DOTA_Tooltip_modifier_npc_dota_hero_vengefulspirit_perk"   "Vengeful Spirit Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_vengefulspirit_perk_Description"   "When Vengeful Spirit is slain by an enemy hero, she permanently reduces the hero's attributes by 2.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_vengefulspirit_perk_Description"   "When Vengeful Spirit is slain by an enemy hero, she permanently reduces the hero's attributes by 1.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
     "DOTA_Tooltip_modifier_npc_dota_hero_vengefulspirit_perk_debuff"               "Stat Reduction"
     "DOTA_Tooltip_modifier_npc_dota_hero_vengefulspirit_perk_debuff_Description"   "Vengeful Spirit's Perk. Reduces all attributes by %dMODIFIER_PROPERTY_STATS_INTELLECT_BONUS%. The amount increases eact time you kill Vengeful Spirit."
 
