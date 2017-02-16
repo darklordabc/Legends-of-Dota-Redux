@@ -574,6 +574,7 @@
 #base "abilities\neutrals\warlock_golem_permanent_immolation_lod.txt"
 #base "abilities\perks\npc_dota_hero_abaddon_perk.txt"
 #base "abilities\perks\npc_dota_hero_abyssal_underlord_perk.txt"
+#base "abilities\perks\npc_dota_hero_monkey_king_perk.txt"
 #base "abilities\perks\npc_dota_hero_alchemist_perk.txt"
 #base "abilities\perks\npc_dota_hero_ancient_apparition_perk.txt"
 #base "abilities\perks\npc_dota_hero_antimage_perk.txt"

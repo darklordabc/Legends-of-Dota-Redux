@@ -425,6 +425,9 @@ var tipsPerks = [{
     }*/, {
         img: 'file://{images}/custom_game/hints/hint_DP.png',
         txt: '#hintDP'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_monkey_king.png',
+        txt: '#hintMonkeyKing'
     }
 ];
 

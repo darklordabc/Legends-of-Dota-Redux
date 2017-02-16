@@ -665,7 +665,7 @@
     "hintInfestHacks"                               "Pudge's Rot and Witch Doctor's Voodoo Restoration won't damage you or cost mana when you infest another hero."
     "hintSuggestBuild"                              "Do you know a good build? Submit it and it may be added to the recommended builds sections."
     "hintBreakPassives"                             "Silver Edge, Doom and Demonic Purge are the only ways to disable enemy passives - which can be very useful against passive-heavy heroes, such as Tanks."
-    "hintInnateAbilities"                           "Night Stalker, Gyrocopter and Keeper of the Light will benefit from Aghanim's Scepter Upgrade, irrespective of their chosen abilities."
+    "hintInnateAbilities"                           "Night Stalker, Keeper of the Light will benefit from Aghanim's Scepter Upgrade, irrespective of their chosen abilities."
     "hintReport"                                    "Found a bug? Report it. Most bugs are only fixed after a player has reported them. Use the Steam Workshop page or use the in-game comment form."
     "hintWarnings"                                  "Many Abilities will have red warnings at the bottom of their descriptions. It is important to read these as they explain bugs, hero requirements or other abilities that are needed."
     "hintNeutralBuffs"                              "Many neutral abilities have been buffed or rebalanced. Most have been given four levels instead of their usual one."
@@ -695,6 +695,7 @@
     "hintUrsa"                         "Ursa does 15% extra damage to neutrals, including Roshan."
     "hintStormSpirit"                         "At the start of the game, Storm Spirit gains a free level of Overload, whether he has it or not."
     "hintMorphling"                         "Morphling gains 50% bonus movement speed in water."
+    "hintMonkeyKing"                         "Monkey King starts the game with Mischief."
     "hintTimbersaw"                         "Timbersaw gains health, mana, and experience points whenever a nearby tree is cut down."
     "hintTideHunter"                         "When Tidehunter dies, Ravage's cooldown will be refreshed."
     "hintBloodSeeker"                         "When Blood Seeker casts Rupture, 100% of the mana cost will be refunded and cooldown reduced by 20%."
@@ -1105,7 +1106,9 @@
     "unique_mechanic_medusa"                        "Medusa gains +0.5 mana regeneration per active <font color=\'#ffd966\'>Toggle</font> effect."
     "unique_mechanic_meepo"                 "Meepo's damage is increased by 5% for every other Meepo on his team. Takes 25% max health as damage whenever a Meepo dies."
     "unique_mechanic_mirana"                        "When Mirana casts <font color=\'#ffd966\'>Skillshots</font>, they will have 50% mana refunded and cooldowns reduced by 20%."
+    "unique_mechanic_zuus"                        "Monkey King starts the game with <font color=\'#ffd966\'>Mischief</font>."
     "unique_mechanic_morphling"                              "Morphling gains 50% bonus movement speed in water."
+    "unique_mechanic_monkey_king"                              "Monkey King starts the game with <font color=\'#ffd966\'>Mischief</font>."
     "unique_mechanic_naga_siren"                        "<font color=\'#ffd966\'>Illusion</font> creating abilities will have 50% of their mana refunded and cooldowns reduced by 20%."
     "unique_mechanic_furion"                        "The cooldowns of all <font color=\'#ffd966\'>Teleportation</font> abilities are reduced by 50% for Nature's Prophet."
     "unique_mechanic_necrolyte"                        "At the start of the game, Necrophos gains a free level of <font color=\'#ffd966\'>Heartstopper Aura</font>, whether he has it or not."
@@ -3004,6 +3007,10 @@
     /// MIRANA​
     "DOTA_Tooltip_modifier_npc_dota_hero_mirana_perk"   "Mirana Perk"
     "DOTA_Tooltip_modifier_npc_dota_hero_mirana_perk_Description"   "When Mirana casts Skillshots, they will have 50%d% mana refunded and cooldowns reduced by 20%d%.<br><br><font color=\'#7D7D7D\'>By Wouterz90 | github.com/Wouterz90</font>"
+
+    /// MONKEY KING
+    "DOTA_Tooltip_modifier_npc_dota_hero_monkey_king_perk"    "Monkey King Perk"
+    "DOTA_Tooltip_modifier_npc_dota_hero_monkey_king_perk_Description"    "Monkey King starts the game with Mischief."
 
     /// MORPHLING​
     "DOTA_Tooltip_modifier_npc_dota_hero_morphling_perk"    "Morphling Perk"

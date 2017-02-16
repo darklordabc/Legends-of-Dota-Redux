@@ -10,6 +10,8 @@ All notable changes to this project will be documented in this file.
 - Gryo's perk has been disabled until we can figure out whats wrong with side-gunner
 - Shallow Grave IMBA and Purificaion IMBA no longer cause invisible model if dieing during Supernova egg
 - Fixed Sniper's global Shrapnel not causing damage
+- More load screen images
+- Adder Perk for Monkey King
 
 ### Balance
 - Increased cooldown and manacost of Symbiote 
