@@ -1261,6 +1261,7 @@
     "warning_monkey_king_mischief" "<font color=\'#FF4949\'>Hero Requirement:</font> You have to play as <font color=\'#70EA72\'>Monkey King</font> for tree disguise models to work."
     "warning_pudge_flesh_heap_spell_amp" "<font color=\'#FF4949\'>Warning:</font> Will not show an increase in the tooltip information, but spell damge will be increased. Purple text popups will appear above hero when you do large spell damage.\n"
     "warning_treant_eyes_in_the_forest" "<font color=\'#FF4949\'>Warning:</font> Enemies will have a debuff notification when within 1000 range of an enchanted tree."
+    "warning_angel_arena_transmute" "<font color=\'#FF4949\'>Warning:</font> This ability has strange coding, cooldown manipulation abilities will not work on it.\n"
 
     "credit_sight"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
     "credit_zhanhun"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
