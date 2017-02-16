@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - Last resort is now ultimate ability, increased cooldown
 - Gryo's perk has been disabled until we can figure out whats wrong with side-gunner
 - Shallow Grave IMBA and Purificaion IMBA no longer cause invisible model if dieing during Supernova egg
+- Fixed Sniper's global Shrapnel not causing damage
 
 ### Balance
 - Increased cooldown and manacost of Symbiote 
