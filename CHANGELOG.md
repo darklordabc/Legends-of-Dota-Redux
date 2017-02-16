@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file.
 - Vengeful Spirit perk now drains 1 stat per death, not 2
 - IMBA Purification no longer procs for illusions
 - Incresaed cooldown of trickshot active, and increased interval between attacks
+- Chaos Knight no longer gets random gold when using hero switcher
 
 ## 5.9 - Development Version
 ### Bug Fixing/New Features
