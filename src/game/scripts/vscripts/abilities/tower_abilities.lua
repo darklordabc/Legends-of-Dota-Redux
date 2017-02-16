@@ -107,6 +107,8 @@ function Laser( keys )
 	end
 	
 	if caster:PassivesDisabled() then return end
+
+	if not caster:IsRealHero() and not caster:IsBuilding() then return nil end
 	
 	-- Parameters
 	local blind_aoe = ability:GetLevelSpecialValueFor("blind_aoe", ability_level)
@@ -178,6 +180,7 @@ function Multishot( keys )
 	local target = keys.target
 	local ability = keys.ability
 	if caster:PassivesDisabled() then return end
+	if not caster:IsRealHero() and not caster:IsBuilding() then return nil end
 	-- Parameters
 	local tower_range = caster:GetAttackRange() + 128
 	
@@ -204,6 +207,8 @@ function HexAura( keys )
 	end
 	
 	if caster:PassivesDisabled() then return end
+
+	if not caster:IsRealHero() and not caster:IsBuilding() then return nil end
 	
 	-- Parameters
 	local hex_aoe = ability:GetLevelSpecialValueFor("hex_aoe", ability_level)
@@ -253,6 +258,8 @@ function ManaBurn( keys )
 	local sound_burn = keys.sound_burn
 	
 	if caster:PassivesDisabled() then return end
+
+	if not caster:IsRealHero() and not caster:IsBuilding() then return nil end
 	
 	-- If the target has no mana, do nothing
 	if target:GetMaxMana() <= 0 then
@@ -284,6 +291,8 @@ function ManaFlare( keys )
 	local sound_burn = keys.sound_burn
 
 	if caster:PassivesDisabled() then return end
+
+	if not caster:IsRealHero() and not caster:IsBuilding() then return nil end
 	
 	-- If the ability is on cooldown, do nothing
 	if not ability:IsCooldownReady() then
@@ -336,6 +345,8 @@ function Permabash( keys )
 	
 	if caster:PassivesDisabled() then return end	
 
+	if not caster:IsRealHero() and not caster:IsBuilding() then return nil end
+
 	-- Parameters
 	local bash_damage = ability:GetLevelSpecialValueFor("bash_damage", ability_level)
 	local bash_duration = ability:GetLevelSpecialValueFor("bash_duration", ability_level)
@@ -367,6 +378,8 @@ function Chronotower( keys )
 	end
 	
 	if caster:PassivesDisabled() then return end
+
+	if not caster:IsRealHero() and not caster:IsBuilding() then return nil end
 	
 	-- Parameters
 	local stun_radius = ability:GetLevelSpecialValueFor("stun_radius", ability_level)
@@ -409,6 +422,8 @@ function GrievousWounds( keys )
 	
 	if caster:PassivesDisabled() then return end
 
+	if not caster:IsRealHero() and not caster:IsBuilding() then return nil end
+
 
 	-- Parameters
 	local damage_increase = ability:GetLevelSpecialValueFor("damage_increase", ability_level)
@@ -440,6 +455,8 @@ function EssenceDrain( keys )
 	local modifier_stacks = keys.modifier_stacks
 	
 	if caster:PassivesDisabled() then return end
+
+	if not caster:IsRealHero() and not caster:IsBuilding() then return nil end
 
 
 	-- Parameters
@@ -513,6 +530,8 @@ function Fervor( keys )
 	local modifier_fervor = keys.modifier_fervor
 	
 	if caster:PassivesDisabled() then return end
+
+	if not caster:IsRealHero() and not caster:IsBuilding() then return nil end
 	
 	-- Parameters
 	local max_stacks = ability:GetLevelSpecialValueFor("max_stacks", ability_level)
@@ -535,6 +554,8 @@ function Berserk( keys )
 	local modifier_berserk = keys.modifier_berserk
 
 	if caster:PassivesDisabled() then return end
+
+	if not caster:IsRealHero() and not caster:IsBuilding() then return nil end
 	
 	-- Parameters
 	local hp_per_stack = ability:GetLevelSpecialValueFor("hp_per_stack", ability_level)
@@ -559,6 +580,9 @@ function Multihit( keys )
 	end
 	
 	if caster:PassivesDisabled() then return end
+
+	if not caster:IsRealHero() and not caster:IsBuilding() then return nil end
+
 	cooldown = caster:GetSecondsPerAttack() - 0.1
 	
 	-- Parameters
@@ -616,6 +640,8 @@ function SelfRepair( keys )
 		return nil
 	end
 
+	if not caster:IsRealHero() and not caster:IsBuilding() then return nil end
+
 	-- Parameters
 	local regen_delay = ability:GetLevelSpecialValueFor("regen_delay", ability_level)
 	
@@ -659,6 +685,8 @@ function Spacecow( keys )
 	end
 	
 	if caster:PassivesDisabled() then return end
+
+	if not caster:IsRealHero() and not caster:IsBuilding() then return nil end
 
 	-- Parameters
 	local knockback_damage = ability:GetLevelSpecialValueFor("knockback_damage", ability_level)
@@ -706,6 +734,8 @@ function Reality( keys )
 	end
 	
 	if caster:PassivesDisabled() then return end
+
+	if not caster:IsRealHero() and not caster:IsBuilding() then return nil end
 	
 	-- Parameters
 	local reality_aoe = ability:GetLevelSpecialValueFor("reality_aoe", ability_level)
@@ -747,6 +777,8 @@ function Force( keys )
 	end
 
 	if caster:PassivesDisabled() then return end	
+
+	if not caster:IsRealHero() and not caster:IsBuilding() then return nil end
 		
 	-- Parameters
 	local force_aoe = ability:GetLevelSpecialValueFor("force_aoe", ability_level)
@@ -805,6 +837,8 @@ function Nature( keys )
 	end
 
 	if caster:PassivesDisabled() then return end
+
+	if not caster:IsRealHero() and not caster:IsBuilding() then return nil end
 	
 	-- Parameters
 	local root_radius = ability:GetLevelSpecialValueFor("root_radius", ability_level)
@@ -847,6 +881,8 @@ function Mindblast( keys )
 	end
 
 	if caster:PassivesDisabled() then return end
+
+	if not caster:IsRealHero() and not caster:IsBuilding() then return nil end
 	
 	-- Parameters
 	local silence_radius = ability:GetLevelSpecialValueFor("silence_radius", ability_level)
@@ -882,6 +918,8 @@ function Forest( keys )
 	if not ability:IsCooldownReady() then
 		return nil
 	end
+
+	if not caster:IsRealHero() and not caster:IsBuilding() then return nil end
 	
 	if caster:PassivesDisabled() then return end
 
@@ -1118,6 +1156,8 @@ function Glaives( keys )
 	
 	if caster:PassivesDisabled() then return end
 
+	if not caster:IsRealHero() and not caster:IsBuilding() then return nil end
+
 	-- Parameters
 	local knockback_damage = ability:GetLevelSpecialValueFor("knockback_damage", ability_level)
 	local knockback_distance = ability:GetLevelSpecialValueFor("knockback_distance", ability_level)
@@ -1160,6 +1200,8 @@ function Split( keys )
 	local scepter = HasScepter(caster)
 	
 	if caster:PassivesDisabled() then return end
+
+	if not caster:IsRealHero() and not caster:IsBuilding() then return nil end
 	
 
 	-- Parameters
@@ -1238,6 +1280,8 @@ function Cannon( keys )
 	local particle_explosion = keys.particle_explosion
 	
 	if caster:PassivesDisabled() then return end
+
+	if not caster:IsRealHero() and not caster:IsBuilding() then return nil end
 	
 
 	-- Parameters
