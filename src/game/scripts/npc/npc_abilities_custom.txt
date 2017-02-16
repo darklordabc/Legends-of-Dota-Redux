@@ -121,6 +121,7 @@
 #base "abilities\dota\undying_decay_int.txt"
 #base "abilities\dota\ursa_enrage_old.txt"
 #base "abilities\dota\ursa_fury_swipes_lod.txt"
+#base "abilities\dota\phantom_lancer_juxtapose_ranged.txt"
 #base "abilities\dusk\gemini_abyssal_vortex.txt"
 #base "abilities\dusk\gemini_unstable_rift.txt"
 #base "abilities\dusk\gemini_unstable_rift_one.txt"

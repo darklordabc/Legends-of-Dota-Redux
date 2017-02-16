@@ -18,6 +18,7 @@ All notable changes to this project will be documented in this file.
 - Chaos Knight no longer gets random gold when using hero switcher
 - Wind Soul will no longer proc for toggles and spells with less than 3 seconds max cooldown
 - Most IMBA tower abilities dont work with illusions anymore
+- Juxtapose now has 50% less chance to proc for ranged heros
 
 ## 5.9 - Development Version
 ### Bug Fixing/New Features

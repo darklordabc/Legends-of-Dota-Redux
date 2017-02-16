@@ -6503,7 +6503,13 @@ function Pregame:fixSpawningIssues()
                                 spawnedUnit:SwapAbilities("sniper_assassinate","sniper_assassinate_redux",false,true)
                                 spawnedUnit:RemoveAbility("sniper_assassinate")
                         end
-                        -- Change sniper assassinate to our custom version to work with aghs
+                        -- Change juxtapose to juxtapose ranged, for ranged heros
+                        if spawnedUnit:HasAbility("phantom_lancer_juxtapose") and spawnedUnit:IsRangedAttacker() then
+                                spawnedUnit:AddAbility("phantom_lancer_juxtapose_ranged")
+                                spawnedUnit:SwapAbilities("phantom_lancer_juxtapose","phantom_lancer_juxtapose_ranged",false,true)
+                                spawnedUnit:RemoveAbility("phantom_lancer_juxtapose")
+                        end
+                        -- Change infernal blade on gyro to critical strike
                         if this.optionStore['lodOptionBanningUseBanList'] == 1 and spawnedUnit:HasAbility("doom_bringer_infernal_blade") and spawnedUnit:GetUnitName() == "npc_dota_hero_gyrocopter" and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("doom_bringer_infernal_blade"):IsHidden() then
                                 spawnedUnit:AddAbility("chaos_knight_chaos_strike_gyro")
                                 spawnedUnit:SwapAbilities("doom_bringer_infernal_blade","chaos_knight_chaos_strike_gyro",false,true)
