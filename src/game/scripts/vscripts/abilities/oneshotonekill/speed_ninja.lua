@@ -1,6 +1,13 @@
 function zhanhun( keys )
 	local caster = keys.caster
 	local reduce = keys.reduce
+	
+	local ability = keys.event_ability
+	local abilityCooldown = ability:GetCooldown(ability:GetLevel())
+
+	--Does not proc for abilities with zero cooldown or very little cooldown
+	if abilityCooldown < 3 then return nil end
+
 	for i = 0,10 do
 		local ability = caster:GetAbilityByIndex(i)
 		if ability:GetLevel()>0 and not ability:IsCooldownReady() then
