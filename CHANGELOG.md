@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 - Added 9 more settings to free ability mutator
 - Fixed Aegis tower ability not giving extra HP
 - Last resort is now ultimate ability, increased cooldown
+- Increased cooldown and manacost of Symbiote 
 
 ### Balance
 - 
