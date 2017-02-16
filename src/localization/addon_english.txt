@@ -611,6 +611,15 @@
     "build_techies_title"                           "Techies Demolitions"
     "build_techies_desc"                            "Make use of Techies Perk to dramatically reduce cost of Explosives and Traps."
 
+    "build_rideDide_title"                           "Ride or Die"
+    "build_rideDide_desc"                            "Get inside your best buddy and play as one player. Communication is key."
+
+    "build_keeperNight_title"                           "Keeper of the Night"
+    "build_keeperNight_desc"                            "Rush aghs as quickly as possible."
+
+    "build_keeperKick_title"                           "Kicker of the Light"
+    "build_keeperKick_desc"                            "Just put all KoTLs (Kickers of The Light) into your main one, run around the map and Walrus Kick everyone."
+
     "build_hunter_in_the_night_title"               "Hunter in the night"
     "build_hunter_in_the_night_desc"                "When NS gets Aghanim's Scepter he can see unobstructed at night."
 
