@@ -913,18 +913,18 @@ function Forest( keys )
 	local ability = keys.ability
 	local ability_level = ability:GetLevel() - 1
 	local sound_tree = keys.sound_tree
+	local abilityName = ability:GetName()
 
 	-- If the ability is on cooldown, do nothing
 	if not ability:IsCooldownReady() then
 		return nil
 	end
 
-	if not caster:IsRealHero() and not caster:IsBuilding() then return nil end
+	if not caster:IsRealHero() and not caster:IsBuilding() and abilityName ~= "imba_tower_forest_generator" then return nil end
 	
 	if caster:PassivesDisabled() then return end
 
 
-	
 
 	-- Parameters
 	local tree_radius = ability:GetLevelSpecialValueFor("tree_radius", ability_level)
@@ -932,8 +932,9 @@ function Forest( keys )
 
 	-- Tree generator for black forest mutator
 	if ability:GetAbilityName() == "imba_tower_forest_generator" then
+		
 		-- FOREST CALIBRATION SETTINGS
-		local treeBufferDistance = 195 --How far trees should be apart
+		local treeBufferDistance = 205 --How far trees should be apart
 		local treeBufferDistanceRiver = 300
 		local nearbyUnitsRadius = 300
 		local nearbyTowersRadius = 600
@@ -941,18 +942,20 @@ function Forest( keys )
 		local nearbyAncientRadius = 1000
 		local nearbyShrineRadius = 400
 		local nearbyShrineRadius = 400
-		local totalTreeLimit = 3000
+		--local totalTreeLimit = 2000
 		-- END SETTINGS
 
         local tree_loc = Vector(RandomInt(-7136, 7136), RandomInt(-7136, 7136), 384)
-        
         tree_loc.z = GetGroundHeight(tree_loc, caster)     
+
+        --local allTrees = Entities:FindAllByClassnameWithin("dota_temp_tree",tree_loc, 99999)
+		--print(#allTrees)
         
         if tree_loc.z ~= 384 and tree_loc.z ~= 128 and tree_loc.z ~= 256 then 
 			return nil
 		end
 
-		print(tree_loc.z)
+		--print(tree_loc.z)
 		if tree_loc.z == 128 then treeBufferDistance = treeBufferDistanceRiver end -- If in river area, spreadout trees more
 
 		-- Condition checks
@@ -974,161 +977,20 @@ function Forest( keys )
         local nearbytrees = GridNav:GetAllTreesAroundPoint( tree_loc, treeBufferDistance, false )
         if #nearbytrees > 0 then return nil end
 
-        local allTrees = Entities:FindAllByClassnameWithin("dota_temp_tree",tree_loc, 99999)
-		if #allTrees >= totalTreeLimit then return nil end
-        
         if GridNav:IsTraversable(tree_loc) == false or GridNav:IsBlocked(tree_loc) then return nil end
  
-        --print(#allTrees)
-        
-		CreateTempTree(tree_loc, tree_duration)
-		
-		local nearbyUnits = Entities:FindAllInSphere(tree_loc, 1)
-		for _, unit in pairs(nearbyUnits) do
-			if unit:GetClassname() == "dota_temp_tree" then
-				-- Figure out what side of the map is the tree on
-				local treeSide = nil
-				local goodancients = Entities:FindAllByName("dota_goodguys_fort")
-				local distancetoGoodAncient = CalcDistanceBetweenEntityOBB( goodancients[1], unit )
-
-				local badancients = Entities:FindAllByName("dota_badguys_fort")
-				distancetoBadAncient = CalcDistanceBetweenEntityOBB( badancients[1], unit )
-
-				-- If its close enough to an ancient its safe to assume its on the dire/radiant side
-				if distancetoGoodAncient < 7300 then
-					treeSide = "radiant"
-				elseif distancetoBadAncient < 7300 then
-					treeSide = "dire"
-				end
-
-				-- If we couldnt determine side by measuing distance to ancients resort to measuing nearest neutral camps
-				if treeSide == nil then
-					local closestneutralcamp = Entities:FindByNameNearest("neutralcamp_*", unit:GetAbsOrigin(), 6000)
-					local nameOfCamp = closestneutralcamp:GetName()
-					if nameOfCamp:match("_good_") then treeSide = "radiant" 
-					elseif nameOfCamp:match("_evil_") then treeSide = "dire" 
-					end
-				end
-				
-				local chance 
-				if treeSide == "dire" then
-					chance = RandomInt(1, 6)
-				end
-				if treeSide == "radiant" then
-					chance = RandomInt(7, 13)
-				end
-				-- If the treespot is in the water river area, spawn only leafless trees
-				if tree_loc.z == 128 then 
-					chance = RandomInt(1, 4)
-				end
-
-				Trees =
-				{
-				   [1] = {"models/props_tree/dire_tree001.vmdl", 1},
-				   [2] = {"models/props_tree/dire_tree002.vmdl", 1},
-				   [3] = {"models/props_tree/dire_tree004b_sfm.vmdl", 1},
-				   [4] = {"models/props_tree/dire_tree007_sfm.vmdl", .5},
-				   [5] = {"models/props_tree/dire_tree003.vmdl", 1.2},
-				   [6] = {"models/props_tree/dire_tree005.vmdl", 1},
-				   [7] = {"models/props_tree/tree_oak_01_sfm.vmdl", 0.5},
-				   [8] = {"models/props_tree/tree_oak_00.vmdl", 1},
-				   [9] = {"models/props_tree/tree_oak_01b_sfm.vmdl", 0.8},
-				   [10] = {"models/props_tree/tree_oak_02_sfm.vmdl", 0.35},
-				   [11] = {"models/props_tree/tree_pine_01_sfm.vmdl", 0.5},
-				   [12] = {"models/props_tree/tree_pine_02_sfm.vmdl", 0.4},
-				   [13] = {"models/props_tree/tree_pine_03b_sfm.vmdl", 1},
-				}
-
-				unit:SetModel(Trees[chance][1])
-				unit:SetModelScale(Trees[chance][2])
-
-				if RollPercentage(25) then
-					local size = RandomFloat(.8, 1.6)
-					--print(size)
-					unit:SetModelScale(unit:GetModelScale() * size)
-				end
-
-				if RollPercentage(1) then
-					unit:SetModelScale(unit:GetModelScale() * 3)
-				end
-				
-				if chance == 5 or chance == 6 then
-					unit:SetRenderColor(160, 160, 160)
-				end
-
-				if chance == 7 or chance == 12 or chance == 11 or chance == 13 then
-					local colorChance = RandomInt(1, 4)
-					if colorChance == 2 then 
-						unit:SetRenderColor(255,192,203)
-					elseif colorChance == 3 then					
-						unit:SetRenderColor(255,215,0)
-					elseif colorChance == 3 then					
-						unit:SetRenderColor(162, 163, 3)
-					end
-					
-				end
-
-			end
-		end
-		
-
-
-		-- Put the ability on cooldown
-		if (GameRules:GetDOTATime(false, false)) == 0 then
-			ability:StartCooldown(20)
-		else
-			ability:StartCooldown(20)
-		end
+		createTempTreePretty(tree_loc, tree_duration)
 
 	else
 		
-
-
-
-		--if treeSide == "dire" then print("Dire Side") end
-		--if treeSide == "radiant" then print("Radiant Side") end
-		--if treeSide == nil then print("Unknown Side") end
-
-		
-		--local closestneutralcamp = Entities:FindByNameNearest("neutralcamp_*", caster:GetAbsOrigin(), 6000)
-		--print(closestneutralcamp:GetName())
-		--print(goodancients)
-		--CreateEnt
 		local nearbyUnits = Entities:FindAllInSphere(caster:GetAbsOrigin(), 50)
-        
-			for _, unit in pairs(nearbyUnits) do
-				print(unit:GetClassname())
-			end
-			--CreateByClassname
-
-		--print(goodancients[1]:GetName())
-
-		--print("Distance to good ancient:")
-		--local distance = CalcDistanceBetweenEntityOBB( goodancients[1], caster )
-		--print(distance)
-		
-		--print("Distance to bad ancient:")
-		
-		--print(distance)
-		
-
-		--print(caster:GetAbsOrigin())
-		local x = caster:GetAbsOrigin().z
-		if x == math.floor(x) then
-		--print("has decmials")
-		end
-		local nearbyTowers = Entities:FindAllByClassnameWithin("npc_dota_tower",caster:GetAbsOrigin(), 500)
-		local nearbyUnits = Entities:FindAllInSphere(caster:GetAbsOrigin(), 3000)
-
-		
-		--print(#nearbyTowers)
 	
 		-- Play sound
 		caster:EmitSound(sound_tree)
 
 		-- Create a tree on a random location
 		local tree_loc = caster:GetAbsOrigin() + RandomVector(100):Normalized() * RandomInt(100, tree_radius)
-		--CreateTempTree(tree_loc, tree_duration)
+		createTempTreePretty(tree_loc, tree_duration)
 
 		local unitsInRadius = FindUnitsInRadius(caster:GetTeamNumber(), tree_loc, nil, 256, DOTA_UNIT_TARGET_TEAM_BOTH, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
 		for _, unit in pairs(unitsInRadius) do
@@ -1136,9 +998,101 @@ function Forest( keys )
 		end
 
 		-- Put the ability on cooldown
-		ability:StartCooldown(3)	
+		ability:StartCooldown(ability:GetCooldown(ability_level))	
 	end
 
+end
+
+function createTempTreePretty( tree_loc, duration )
+	CreateTempTree(tree_loc, duration)
+			
+	local nearbyUnits = Entities:FindAllInSphere(tree_loc, 1)
+	for _, unit in pairs(nearbyUnits) do
+		if unit:GetClassname() == "dota_temp_tree" then
+			-- Figure out what side of the map is the tree on
+			local treeSide = nil
+			local goodancients = Entities:FindAllByName("dota_goodguys_fort")
+			local distancetoGoodAncient = CalcDistanceBetweenEntityOBB( goodancients[1], unit )
+
+			local badancients = Entities:FindAllByName("dota_badguys_fort")
+			distancetoBadAncient = CalcDistanceBetweenEntityOBB( badancients[1], unit )
+
+			-- If its close enough to an ancient its safe to assume its on the dire/radiant side
+			if distancetoGoodAncient < 7300 then
+				treeSide = "radiant"
+			elseif distancetoBadAncient < 7300 then
+				treeSide = "dire"
+			end
+
+			-- If we couldnt determine side by measuing distance to ancients resort to measuing nearest neutral camps
+			if treeSide == nil then
+				local closestneutralcamp = Entities:FindByNameNearest("neutralcamp_*", unit:GetAbsOrigin(), 6000)
+				local nameOfCamp = closestneutralcamp:GetName()
+				if nameOfCamp:match("_good_") then treeSide = "radiant" 
+				elseif nameOfCamp:match("_evil_") then treeSide = "dire" 
+				end
+			end
+			
+			local chance 
+			if treeSide == "dire" then
+				chance = RandomInt(1, 6)
+			end
+			if treeSide == "radiant" then
+				chance = RandomInt(7, 13)
+			end
+			-- If the treespot is in the water river area, spawn only leafless trees
+			if tree_loc.z == 128 then 
+				chance = RandomInt(1, 4)
+			end
+
+			Trees =
+			{
+			   [1] = {"models/props_tree/dire_tree001.vmdl", 1},
+			   [2] = {"models/props_tree/dire_tree002.vmdl", 1},
+			   [3] = {"models/props_tree/dire_tree004b_sfm.vmdl", 1},
+			   [4] = {"models/props_tree/dire_tree007_sfm.vmdl", .5},
+			   [5] = {"models/props_tree/dire_tree003.vmdl", 1.2},
+			   [6] = {"models/props_tree/dire_tree005.vmdl", 1},
+			   [7] = {"models/props_tree/tree_oak_01_sfm.vmdl", 0.5},
+			   [8] = {"models/props_tree/tree_oak_00.vmdl", 1},
+			   [9] = {"models/props_tree/tree_oak_01b_sfm.vmdl", 0.8},
+			   [10] = {"models/props_tree/tree_oak_02_sfm.vmdl", 0.35},
+			   [11] = {"models/props_tree/tree_pine_01_sfm.vmdl", 0.5},
+			   [12] = {"models/props_tree/tree_pine_02_sfm.vmdl", 0.4},
+			   [13] = {"models/props_tree/tree_pine_03b_sfm.vmdl", 1},
+			}
+
+			unit:SetModel(Trees[chance][1])
+			unit:SetModelScale(Trees[chance][2])
+
+			if RollPercentage(25) then
+				local size = RandomFloat(.8, 1.6)
+				--print(size)
+				unit:SetModelScale(unit:GetModelScale() * size)
+			end
+
+			if RollPercentage(1) then
+				unit:SetModelScale(unit:GetModelScale() * 3)
+			end
+			
+			if chance == 5 or chance == 6 then
+				unit:SetRenderColor(160, 160, 160)
+			end
+
+			if chance == 7 or chance == 12 or chance == 11 or chance == 13 then
+				local colorChance = RandomInt(1, 4)
+				if colorChance == 2 then 
+					unit:SetRenderColor(255,192,203)
+				elseif colorChance == 3 then					
+					unit:SetRenderColor(255,215,0)
+				elseif colorChance == 3 then					
+					unit:SetRenderColor(162, 163, 3)
+				end
+				
+			end
+
+		end
+	end
 end
 
 function Glaives( keys )

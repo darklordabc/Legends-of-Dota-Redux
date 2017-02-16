@@ -11,7 +11,8 @@ All notable changes to this project will be documented in this file.
 - Shallow Grave IMBA and Purificaion IMBA no longer cause invisible model if dieing during Supernova egg
 - Fixed Sniper's global Shrapnel not causing damage
 - More load screen images
-- Adder Perk for Monkey King
+- Added Perk for Monkey King
+- Added black forest mutator
 
 ### Balance
 - Increased cooldown and manacost of Symbiote 

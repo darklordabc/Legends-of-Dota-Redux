@@ -455,13 +455,11 @@ function Pregame:loadDefaultSettings()
     self:setOption('lodOptionCreepPower', 0)
     self:setOption('lodOptionNeutralCreepPower', 0)
 
-
     -- Do not increase creep power
     self:setOption('lodOptionCreepPower', 0, true)
     self:setOption('lodOptionNeutralCreepPower', 0, true)
     self:setOption('lodOptionNeutralMultiply', 1, true)
     self:setOption('lodOptionLaneMultiply', 0, true)
-
 
     -- Start with a free courier
     self:setOption('lodOptionGameSpeedFreeCourier', 1, true)
@@ -540,6 +538,9 @@ function Pregame:loadDefaultSettings()
 
     -- No Item Drops
     self:setOption("lodOptionDarkMoon", 0)
+
+    -- No Dark Forest
+    self:setOption('lodOptionBlackForest', 0, true)
 
 end
 
@@ -2499,6 +2500,11 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
+         -- Other - Black Forest
+        lodOptionBlackForest = function(value)
+            return value == 0 or value == 1
+        end,
+
          -- Other -- Memes Redux
         lodOptionMemesRedux = function(value)
             -- When the player activates this potion, they have a chance to hear a meme sound. Becomes more unlikely the more they hear.
@@ -3374,6 +3380,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('gottaGoFast', this.optionStore['lodOptionGottaGoFast'])
         OptionManager:SetOption('memesRedux', this.optionStore['lodOptionMemesRedux'])
         OptionManager:SetOption('darkMoon', this.optionStore['lodOptionDarkMoon'])
+        OptionManager:SetOption('blackForest', this.optionStore['lodOptionBlackForest'])
         OptionManager:SetOption('banInvis', this.optionStore['lodOptionBanningBanInvis'])
 
         -- Enforce max level
@@ -3559,8 +3566,18 @@ function Pregame:processOptions()
         -- Enable All Vision
         if this.optionStore['lodOptionCrazyAllVision'] == 1 then
             Convars:SetBool('dota_all_vision', true)
-            SendToServerConsole('dota_spawn_neutrals')
-            
+            SendToServerConsole('dota_spawn_neutrals')  
+        end
+
+        if this.optionStore['lodOptionBlackForest'] == 1 then
+            --Convars:SetBool('dota_all_vision', true)
+            SendToServerConsole('dota_spawn_neutrals')  
+            local dummy = CreateUnitByName( "dummy_unit", Vector(0,0,0), false, nil, nil, 1 )
+            dummy:AddNewModifier(caster, nil, "modifier_kill", {duration = 120})
+            dummy:AddAbility("imba_tower_forest_generator")
+            local treeAbility = dummy:FindAbilityByName("imba_tower_forest_generator")
+            treeAbility:SetLevel(1)
+
         end
 
         if OptionManager:GetOption('maxHeroLevel') ~= 25 then
@@ -3655,6 +3672,7 @@ function Pregame:processOptions()
                     ['Other: Gotta Go Fast!'] = this.optionStore['lodOptionGottaGoFast'],
                     ['Other: Memes Redux'] = this.optionStore['lodOptionMemesRedux'],
                     ['Other: Item Drops'] = this.optionStore['lodOptionDarkMoon'],
+                    ['Other: Black Forest'] = this.optionStore['lodOptionBlackForest'],
                     ['Towers: Enable Stronger Towers'] = this.optionStore['lodOptionGameSpeedStrongTowers'],
                     ['Towers: Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],
                     ['Bots: Unique Skills'] = this.optionStore['lodOptionBotsUniqueSkills'],
@@ -6848,13 +6866,6 @@ function Pregame:fixSpawningIssues()
                         PlayerResource:SetGold(playerID, OptionManager:GetOption('bonusGold'), true)
                     end
                 end
-            elseif spawnedUnit:GetTeam() == DOTA_TEAM_NEUTRALS then
-                -- Increasing creep power over time
-                --if this.optionStore['lodOptionExtraAbility'] == 3 then
-                    spawnedUnit:AddAbility("imba_tower_forest_generator")
-                    local treeAbility = spawnedUnit:FindAbilityByName("imba_tower_forest_generator")
-                    treeAbility:SetLevel(1)
-                --end
             elseif string.match(spawnedUnit:GetUnitName(), "creep") or string.match(spawnedUnit:GetUnitName(), "siege") then
                 if this.optionStore['lodOptionCreepPower'] > 0 then
                     local level = math.ceil((WAVE or 1) / (this.optionStore['lodOptionCreepPower'] / 30))

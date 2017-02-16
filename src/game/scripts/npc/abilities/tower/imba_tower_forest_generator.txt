@@ -26,7 +26,7 @@
 			"modifier_imba_tower_forest" {
 				"Passive" "1"
 				"IsHidden" "1"
-				"ThinkInterval" "1.0"
+				"ThinkInterval" "0.005"
 
 				"OnIntervalThink" {
 					"RunScript" {

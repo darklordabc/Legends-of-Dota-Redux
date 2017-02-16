@@ -423,11 +423,11 @@ var basicOptions = {
                          extraInfo: 'lodOptionAboutDarkMoon',
                         about: 'lodMutatorDarkMoon'
                     },
-                    //{
-                   //     name: 'lodOptionMonkeyBusiness',        
-                   //     extraInfo: 'lodOptionAboutMonkeyBusiness',
-                   //     about: 'lodMutatorMonkeyBusiness',
-                   // },
+                    {
+                        name: 'lodOptionBlackForest',
+                        extraInfo: 'lodOptionAboutBlackForest',
+                        about: 'lodMutatorBlackForest'
+                    },
                 ]
             }
         ]
@@ -1150,6 +1150,102 @@ var advancedOptions = {
                     }
                 ]
             },
+            {
+                name: 'lodOptionExtraAbility',
+                des: 'lodOptionDesExtraAbility',
+                about: 'lodOptionAboutExtraAbility',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_gemini_unstable_rift',
+                        value: 1
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_imba_dazzle_shallow_grave_passive',
+                        value: 2
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_imba_tower_forest',
+                        value: 3
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_ebf_rubick_arcane_echo',
+                        value: 4
+                    },
+                    {
+                        text: 'lodMutatorFleashHeaps',
+                        value: 5
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_ursa_fury_swipes',
+                        value: 6
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_spirit_breaker_greater_bash',
+                        value: 7
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_death_prophet_witchcraft',
+                        value: 8
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_sniper_take_aim',
+                        value: 9
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_aether_range_lod',
+                        value: 10
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_alchemist_goblins_greed',
+                        value: 11
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_angel_arena_nether_ritual',
+                        value: 12
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_slark_essence_shift',
+                        value: 13
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_ogre_magi_multicast',
+                        value: 14
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_phantom_assassin_coup_de_grace',
+                        value: 15
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_riki_permanent_invisibility',
+                        value: 16
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_imba_tower_multihit',
+                        value: 17
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_skeleton_king_reincarnation',
+                        value: 18
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_ebf_clinkz_trickshot_passive',
+                        value: 19
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_abaddon_borrowed_time',
+                        value: 20
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_summoner_tesla_coil',
+                        value: 21
+                    }
+                ]
+            },
         ]
     },
 
@@ -1415,102 +1511,6 @@ var advancedOptions = {
                 ]
             },
             {
-                name: 'lodOptionExtraAbility',
-                des: 'lodOptionDesExtraAbility',
-                about: 'lodOptionAboutExtraAbility',
-                sort: 'dropdown',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_gemini_unstable_rift',
-                        value: 1
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_imba_dazzle_shallow_grave_passive',
-                        value: 2
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_imba_tower_forest',
-                        value: 3
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_ebf_rubick_arcane_echo',
-                        value: 4
-                    },
-                    {
-                        text: 'lodMutatorFleashHeaps',
-                        value: 5
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_ursa_fury_swipes',
-                        value: 6
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_spirit_breaker_greater_bash',
-                        value: 7
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_death_prophet_witchcraft',
-                        value: 8
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_sniper_take_aim',
-                        value: 9
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_aether_range_lod',
-                        value: 10
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_alchemist_goblins_greed',
-                        value: 11
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_angel_arena_nether_ritual',
-                        value: 12
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_slark_essence_shift',
-                        value: 13
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_ogre_magi_multicast',
-                        value: 14
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_phantom_assassin_coup_de_grace',
-                        value: 15
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_riki_permanent_invisibility',
-                        value: 16
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_imba_tower_multihit',
-                        value: 17
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_skeleton_king_reincarnation',
-                        value: 18
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_ebf_clinkz_trickshot_passive',
-                        value: 19
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_abaddon_borrowed_time',
-                        value: 20
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_summoner_tesla_coil',
-                        value: 21
-                    }
-                ]
-            },
-            {
                 name: 'lodOptionGlobalCast',
                 des: 'lodOptionDesGlobalCast',
                 about: 'lodOptionAboutGlobalCast',
@@ -1546,6 +1546,22 @@ var advancedOptions = {
                 name: 'lodOptionDarkMoon',
                 des: 'lodOptionDesDarkMoon',
                 about: 'lodOptionAboutDarkMoon',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionBlackForest',
+                des: 'lodOptionDesBlackForest',
+                about: 'lodOptionAboutBlackForest',
                 sort: 'toggle',
                 values: [
                     {

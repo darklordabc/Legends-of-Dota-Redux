@@ -385,6 +385,9 @@ function Ingame:onStart()
         end
         
         ListenToGameEvent('game_rules_state_change', function(keys)
+
+            if OptionManager:GetOption('useFatOMeter') == 0 then return end
+
             local newState = GameRules:State_Get()
             
             if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
@@ -453,7 +456,7 @@ end
 --General Fat-O-Meter thinker. Runs infrequently (i.e. once every 10 seconds minimum, more likely 30-60). dt is measured in seconds, not ticks.
 function Ingame:FatOMeterThinker(dt)
     local this = self
-    if OptionManager:GetOption('useFatOMeter') == 0 then return end
+    --if OptionManager:GetOption('useFatOMeter') == 0 then return end
     local maxPlayers = 24
     
     --FAT-O-METER GOLD MODE--
