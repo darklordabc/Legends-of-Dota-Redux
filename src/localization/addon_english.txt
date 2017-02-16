@@ -1435,8 +1435,8 @@
     "DOTA_Tooltip_tiny_grow_lod_scepter_Description"        "Granting %dMODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE% bonus damage, %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT% attack speed loss, %dMODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT% bonus movespeed %dMODIFIER_PROPERTY_ATTACK_RANGE_BONUS% bonus range and cleave damage."
 
     //SNIPER
-    "DOTA_Tooltip_ability_sniper_shrapnel_perk"                                          "Shrapnel"
-    "DOTA_Tooltip_ability_sniper_shrapnel_perk_Description"                              "Consumes a charge to launch a ball of shrapnel that showers the target area in explosive pellets. Enemies are subject to damage and slowed movement. Reveals the targeted area. Shrapnel charges restore every %charge_restore_time% seconds."
+    "DOTA_Tooltip_ability_sniper_shrapnel_perk"                                          "Shrapnel Global"
+    "DOTA_Tooltip_ability_sniper_shrapnel_perk_Description"                              "Consumes a charge to launch a ball of shrapnel that showers the target area in explosive pellets. Enemies are subject to damage and slowed movement. Reveals the targeted area. Shrapnel charges restore every %charge_restore_time% seconds. <font color='#70EA72'>Has global cast range.</font>"
     "DOTA_Tooltip_ability_sniper_shrapnel_perk_Lore"                                     "Kardel's modular rifle also fires incendiary rounds, useful for assaulting entrenched locations."
     "DOTA_Tooltip_ability_sniper_shrapnel_perk_Note0"                                    "Damage is dealt 11 times, immediately at spell effect then every second."
     "DOTA_Tooltip_ability_sniper_shrapnel_perk_Note1"                                    "Does not damage buildings."
