@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 - Added 9 more settings to free ability mutator
 - Fixed Aegis tower ability not giving extra HP
 - Last resort is now ultimate ability, increased cooldown
-- 
+- Gryo's perk has been disabled until we can figure out whats wrong with side-gunner
 
 ### Balance
 - Increased cooldown and manacost of Symbiote 
