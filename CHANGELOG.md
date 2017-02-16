@@ -16,6 +16,7 @@ All notable changes to this project will be documented in this file.
 - IMBA Purification no longer procs for illusions
 - Incresaed cooldown of trickshot active, and increased interval between attacks
 - Chaos Knight no longer gets random gold when using hero switcher
+- Wind Soul will no longer proc for toggles and spells with less than 3 seconds max cooldown
 
 ## 5.9 - Development Version
 ### Bug Fixing/New Features
