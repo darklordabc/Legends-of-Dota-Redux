@@ -154,13 +154,13 @@ var tipsPerks = [{
     }, {
         img: 'file://{images}/custom_game/hints/hint_phoenix.png',
         txt: '#hintPhoenix'
-    }, {
+    }/*, {
         img: 'file://{images}/custom_game/hints/hint_ancient_apparition.png',
         txt: '#hintAncientApparition'
     }, {
         img: 'file://{images}/custom_game/hints/hint_shadow_shaman.png',
         txt: '#hintShadowShaman'
-    }, {
+    }*/, {
         img: 'file://{images}/custom_game/hints/hint_doom.png',
         txt: '#hintDoom'
     }, {
@@ -334,16 +334,17 @@ var tipsPerks = [{
     }, {
         img: 'file://{images}/custom_game/hints/hint_skywrath.png',
         txt: '#hintSkywrath'
-    }, {
+    }/*, {
         img: 'file://{images}/custom_game/hints/hint_slardar.png',
         txt: '#hintSlardar'
-    }, {
+    }*/, {
         img: 'file://{images}/custom_game/hints/hint_sniper.png',
         txt: '#hintSniper'
-    }, {
+    }/*
+    , {
         img: 'file://{images}/custom_game/hints/hint_spirit_breaker.png',
         txt: '#hintSpiritBreaker'
-    }, {
+    }*/, {
         img: 'file://{images}/custom_game/hints/hint_sven.png',
         txt: '#hintSven'
     }, {
@@ -403,10 +404,10 @@ var tipsPerks = [{
     }, {
         img: 'file://{images}/custom_game/hints/hint_earth_shaker.png',
         txt: '#hintEarthShaker'
-    }, {
+    }/*, {
         img: 'file://{images}/custom_game/hints/hint_gyro.png',
         txt: '#hintGyro'
-    }, {
+    }*/, {
         img: 'file://{images}/custom_game/hints/hint_bristle_back.png',
         txt: '#hintBristleBack'
     }, {
