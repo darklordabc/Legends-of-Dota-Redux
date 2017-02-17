@@ -2,7 +2,7 @@ function ScepterCheck( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 	local target = keys.target
-	
+	print("not working")
 	EmitSoundOn("Hero_Undying.Decay.Transfer", target)
 	EmitSoundOn("Hero_Undying.Decay.Target", target)
 	local scepterNameModifier = ""
@@ -11,6 +11,9 @@ function ScepterCheck( keys )
 		scepterNameModifier = "_scepter"
 		stacks = keys.scepterstacks
 	end
+	
+	ApplyDamage({victim = target, attacker = caster, damage = ability:GetSpecialValueFor("decay_damage"), damage_type = ability:GetAbilityDamageType(), ability = ability})
+	
 	ability:ApplyDataDrivenModifier(caster, caster, keys.modifierAlly..scepterNameModifier, {duration = ability:GetSpecialValueFor("decay_duration")})
 	ability:ApplyDataDrivenModifier(caster, caster, keys.modifierCounter, {duration = ability:GetSpecialValueFor("decay_duration")})
 	caster:SetModifierStackCount(keys.modifierCounter, caster, caster:GetModifierStackCount(keys.modifierCounter, caster) + stacks)
