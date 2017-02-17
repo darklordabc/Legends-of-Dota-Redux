@@ -1,7 +1,7 @@
 
 # Change Log
 All notable changes to this project will be documented in this file.
-TEST
+
 ## 6.1 - Development Version
 ### Bug Fixing/New Features
 - 
