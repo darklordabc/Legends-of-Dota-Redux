@@ -26,6 +26,7 @@ function spell_lab_symbiotic:CastFilterResultTarget( hTarget )
 	local nTargetID = hTarget:GetPlayerOwnerID()
 	if self:GetCaster() == hTarget then return UF_FAIL_CUSTOM end
 		if self:GetCaster():HasModifier("spell_lab_symbiotic_target") then return UF_FAIL_CUSTOM end
+			if hTarget:HasAbility("life_stealer_infest") then return UF_FAIL_CUSTOM end
 	if IsServer() and not hTarget:IsOpposingTeam(self:GetCaster():GetTeamNumber()) and PlayerResource:IsDisableHelpSetForPlayerID(nTargetID,nCasterID) then
 		return UF_FAIL_DISABLE_HELP
 	end
@@ -39,6 +40,7 @@ end
 
 function spell_lab_symbiotic:GetCustomCastErrorTarget(hTarget)
 if self:GetCaster() == hTarget then return "#DOTA_Error_spell_lab_symbiotic_no_self_target" end
+	if hTarget:HasAbility("life_stealer_infest") then return "#DOTA_Error_spell_lab_symbiotic_no_infest_target" end
 	if self:GetCaster():HasModifier("spell_lab_symbiotic_target") then return "#DOTA_Error_spell_lab_symbiotic_no_inception" end
 end
 function spell_lab_symbiotic:StartSymbiosis(hTarget)
@@ -54,4 +56,5 @@ end
 function spell_lab_symbiotic:EndSymbiosis()
 	local hSymbiot = self:GetCaster():FindModifierByName("spell_lab_symbiotic_modifier")
 	hSymbiot:Terminate(nil)
+	self:EndCooldown()
 end

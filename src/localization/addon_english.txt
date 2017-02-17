@@ -7840,6 +7840,7 @@
         "DOTA_Tooltip_spell_lab_symbiotic_target_Description" "You share mana pool with a symbiot hero.\nGrants bonus stats."
         "DOTA_Error_spell_lab_symbiotic_no_self_target" "No self cast."
         "DOTA_Error_spell_lab_symbiotic_no_inception" "Can't cast while being host."
+        "DOTA_Error_spell_lab_symbiotic_no_infest_target" "Can't cast at Hero with ability: Infest"
 
         "DOTA_Tooltip_ability_item_bag_of_gold"                             "Bag of Gold"
         "DOTA_Tooltip_Ability_item_health_potion"                           "Health Potion"

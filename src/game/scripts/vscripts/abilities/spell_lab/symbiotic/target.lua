@@ -15,9 +15,10 @@ function spell_lab_symbiotic_target:OnDestroy()
 	end
 end
 
-function spell_lab_symbiotic_target:InitSymbiot (hModifier)
+function spell_lab_symbiotic_target:InitSymbiot (hModifier,hSymbiot)
 	if IsServer() then
-		self.symbiot = hModifier
+		self.hSymbiot = hSymbiot
+		self.hMod = hModifier
 	end
 end
 
@@ -40,8 +41,8 @@ end
 function spell_lab_symbiotic_target:OnDeath (kv)
 	if IsServer() then
   if kv.unit ~= self:GetParent() then return end
-  if self.symbiot ~= nil then
-    self.symbiot:Terminate(kv.attacker)
+  if self.hMod ~= nil then
+    self.hMod:Terminate(kv.attacker)
   end
 end
 end

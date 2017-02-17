@@ -5,7 +5,7 @@ end
 function spell_lab_symbiotic_modifier:OnCreated( kv )
 	if IsServer() then
     --self.hHost = kv.target:GetParent()
-    self:StartIntervalThink(0.003)
+    self:StartIntervalThink(0.03)
     self.scale = self:GetParent():GetModelScale()
     self:GetParent():SetModelScale(0.001)
 	end
@@ -32,11 +32,11 @@ function spell_lab_symbiotic_modifier:DeclareFunctions()
     --MODIFIER_PROPERTY_MODEL_CHANGE,
   --  MODIFIER_PROPERTY_MODEL_SCALE,
     MODIFIER_EVENT_ON_SPENT_MANA,
+		MODIFIER_EVENT_ON_MANA_GAINED,
     MODIFIER_EVENT_ON_SET_LOCATION,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
 		MODIFIER_EVENT_ON_DEATH,
-    MODIFIER_PROPERTY_INVISIBILITY_LEVEL,
-		MODIFIER
+    MODIFIER_PROPERTY_INVISIBILITY_LEVEL
 	}
 	return funcs
 end
@@ -103,6 +103,9 @@ function spell_lab_symbiotic_modifier:OnSpentMana (kv)
     self.hHost:SetMana(mana);
 	end
 end
+function spell_lab_symbiotic_modifier:OnManaGained (kv)
+	self:OnSpentMana(kv)
+end
 
 function spell_lab_symbiotic_modifier:Terminate (attacker)
   if attacker then
@@ -116,8 +119,6 @@ function spell_lab_symbiotic_modifier:OnIntervalThink()
 		if not self:GetParent():IsAlive() then self:Terminate(nil) end
     if self.hHost == nil then return end
     local hParent = self:GetParent()
-    local mana = (self.hHost:GetMana() / self.hHost:GetMaxMana()) * hParent:GetMaxMana()
-    hParent:SetMana(mana)
     local pos = self.hHost:GetAbsOrigin()
     local up = Vector(0,0,300)
     hParent:SetAbsOrigin(pos+up)
