@@ -1279,9 +1279,6 @@
     "warning_pudge_flesh_heap_spell_amp" "<font color=\'#FF4949\'>Warning:</font> Will not show an increase in the tooltip information, but spell damge will be increased. Purple text popups will appear above hero when you do large spell damage.\n"
     "warning_treant_eyes_in_the_forest" "<font color=\'#FF4949\'>Warning:</font> Enemies will have a debuff notification when within 1000 range of an enchanted tree."
     "warning_angel_arena_transmute" "<font color=\'#FF4949\'>Warning:</font> This ability has strange coding, cooldown manipulation abilities will not work on it.\n"
-    "warning_phantom_lancer_juxtapose" "<font color=\'#FF4949\'>Warning:</font> If in Points Mode or if OP Abiliites are banned: <font color=\'#70EA72\'>Chance to trigger is 50% less for ranged heros</font>."
-
-    
 
     "credit_sight"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
     "credit_zhanhun"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
@@ -7951,7 +7948,7 @@
 
         "DOTA_Tooltip_ability_phantom_lancer_juxtapose_ranged"                                 "Juxtapose Ranged"
 
-        "DOTA_Tooltip_ability_phantom_lancer_juxtapose_ranged_Description"                     "Phantom Lancer has a chance to fracture his presence, creating an illusion of himself. Illusions also have a chance to fracture further. Illusions created from Phantom Lancer last for %illusion_duration% seconds, while illusions created from other illusions last %illusion_from_illusion_duration% seconds. <font color='#70EA72'>If in Points Mode or if OP Abiliites are banned: Chance to trigger is 50% less for ranged heros.</font>"
+        "DOTA_Tooltip_ability_phantom_lancer_juxtapose_ranged_Description"                     "Phantom Lancer has a chance to fracture his presence, creating an illusion of himself. Illusions also have a chance to fracture further. Illusions created from Phantom Lancer last for %illusion_duration% seconds, while illusions created from other illusions last %illusion_from_illusion_duration% seconds. <font color='#70EA72'>Has 50% less chance to trigger</font>."
 
         "DOTA_Tooltip_ability_phantom_lancer_juxtapose_ranged_Lore"                            "Each of Azwraith's lance attacks feels like two from a normal warrior; or three; or four..."
         "DOTA_Tooltip_ability_phantom_lancer_juxtapose_ranged_max_illusions"                   "MAX ILLUSIONS:"
@@ -7960,5 +7957,15 @@
         "DOTA_Tooltip_ability_phantom_lancer_juxtapose_ranged_tooltip_illusion_damage"         "%ILLUSION DAMAGE:"
         "DOTA_Tooltip_ability_phantom_lancer_juxtapose_ranged_tooltip_total_illusion_damage_in_pct"            "%ILLUSION DAMAGE TAKEN:"
         "DOTA_Tooltip_ability_phantom_lancer_juxtapose_ranged_Note0"           "Illusions created by Juxtapose will attack the target that the ability was triggered upon."
+
+        "DOTA_Tooltip_ability_phantom_lancer_juxtapose_melee"                                 "Juxtapose Redux"
+        "DOTA_Tooltip_ability_phantom_lancer_juxtapose_melee_Description"                     "Phantom Lancer has a chance to fracture his presence, creating an illusion of himself. Illusions also have a chance to fracture further. Illusions created from Phantom Lancer last for %illusion_duration% seconds, while illusions created from other illusions last %illusion_from_illusion_duration% seconds. <font color='#70EA72'>Has a 50% less chance to trigger for Ranged Heros</font>."
+        "DOTA_Tooltip_ability_phantom_lancer_juxtapose_melee_Lore"                            "Each of Azwraith's lance attacks feels like two from a normal warrior; or three; or four..."
+        "DOTA_Tooltip_ability_phantom_lancer_juxtapose_melee_max_illusions"                   "MAX ILLUSIONS:"
+        "DOTA_Tooltip_ability_phantom_lancer_juxtapose_melee_proc_chance_pct"                 "%HERO TRIGGER CHANCE:"
+        "DOTA_Tooltip_ability_phantom_lancer_juxtapose_melee_illusion_proc_chance_pct"                    "%ILLUSION TRIGGER CHANCE:"     
+        "DOTA_Tooltip_ability_phantom_lancer_juxtapose_melee_tooltip_illusion_damage"         "%ILLUSION DAMAGE:"
+        "DOTA_Tooltip_ability_phantom_lancer_juxtapose_melee_tooltip_total_illusion_damage_in_pct"            "%ILLUSION DAMAGE TAKEN:"
+        "DOTA_Tooltip_ability_phantom_lancer_juxtapose_melee_Note0"           "Illusions created by Juxtapose will attack the target that the ability was triggered upon."
 
 }
