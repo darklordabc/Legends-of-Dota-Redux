@@ -23,11 +23,11 @@
 
 			"02" {
 				"var_type" "FIELD_INTEGER"
-				"int_steal" "4"
+				"agi_steal" "4"
 			}
 			"03" {
 				"var_type" "FIELD_INTEGER"
-				"int_steal" "-4"
+				"agi_steal_enemy" "-4"
 			}
 			"04" {
 				"var_type" "FIELD_FLOAT"
@@ -35,11 +35,11 @@
 			}
 			"05" {
 				"var_type" "FIELD_INTEGER"
-				"int_steal_enemy_scepter" "10"
+				"agi_steal_scepter" "10"
 			}
 			"06" {
 				"var_type" "FIELD_INTEGER"
-				"int_steal_enemy_scepter" "-10"
+				"agi_steal_enemy_scepter" "-10"
 			}
 
 			"07" {
