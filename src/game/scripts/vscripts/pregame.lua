@@ -6385,7 +6385,8 @@ function Pregame:fixSpawningIssues()
 
     local notOnIllusions = {
         lone_druid_spirit_bear = true,
-        necronomicon_warrior_last_will_lod = true
+        necronomicon_warrior_last_will_lod = true,
+        roshan_bash = true,
     }
 
     local botAIModifier = {
@@ -6480,6 +6481,7 @@ function Pregame:fixSpawningIssues()
                                         local ab = spawnedUnit:FindAbilityByName(abilityName)
                                         if ab then
                                             ab:SetLevel(0)
+                                            ab:RemoveSelf()
                                         end
                                     end
                                 end
