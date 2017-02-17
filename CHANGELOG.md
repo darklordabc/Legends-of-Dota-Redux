@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 ### Balance
 - Juxtapose is now only nerfed if OP abilities or Points mode is on, reduced price of Juxtapose in points mode accordingly. 
 - Roshan bash no longer works with illusions (therefore no longer troll combo with illusion abilities)
+- Temporarily disabled decays and expulsion, until they can be fixed
 
 ## 6.0 - Steam Version
 ### Bug Fixing/New Features
