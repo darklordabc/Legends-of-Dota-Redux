@@ -2,7 +2,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 6.0 - Development Version
+## 6.1 - Development Version
+### Bug Fixing/New Features
+- 
+
+### Balance
+- Juxtapose is now only nerfed if OP abilities or Points mode is on, reduced price of Juxtapose in points mode accordingly. 
+
+## 6.0 - Steam Version
 ### Bug Fixing/New Features
 - Added 9 more settings to free ability mutator
 - Fixed Aegis tower ability not giving extra HP

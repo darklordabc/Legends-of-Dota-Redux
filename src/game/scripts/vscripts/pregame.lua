@@ -6522,7 +6522,7 @@ function Pregame:fixSpawningIssues()
                                 spawnedUnit:RemoveAbility("sniper_assassinate")
                         end
                         -- Change juxtapose to juxtapose ranged, for ranged heros
-                        if spawnedUnit:HasAbility("phantom_lancer_juxtapose") and spawnedUnit:IsRangedAttacker() then
+                        if (this.optionStore['lodOptionAdvancedOPAbilities'] == 1 or this.optionStore['lodOptionBalanceMode'] == 1) and spawnedUnit:HasAbility("phantom_lancer_juxtapose") and spawnedUnit:IsRangedAttacker() then
                                 spawnedUnit:AddAbility("phantom_lancer_juxtapose_ranged")
                                 spawnedUnit:SwapAbilities("phantom_lancer_juxtapose","phantom_lancer_juxtapose_ranged",false,true)
                                 spawnedUnit:RemoveAbility("phantom_lancer_juxtapose")
