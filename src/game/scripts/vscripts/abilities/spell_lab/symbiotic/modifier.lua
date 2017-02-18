@@ -5,7 +5,7 @@ end
 function spell_lab_symbiotic_modifier:OnCreated( kv )
 	if IsServer() then
     --self.hHost = kv.target:GetParent()
-    self:StartIntervalThink(0.03)
+    self:StartIntervalThink(0.003)
     self.scale = self:GetParent():GetModelScale()
     self:GetParent():SetModelScale(0.001)
 	end
@@ -32,11 +32,12 @@ function spell_lab_symbiotic_modifier:DeclareFunctions()
     --MODIFIER_PROPERTY_MODEL_CHANGE,
   --  MODIFIER_PROPERTY_MODEL_SCALE,
     MODIFIER_EVENT_ON_SPENT_MANA,
-		MODIFIER_EVENT_ON_MANA_GAINED,
     MODIFIER_EVENT_ON_SET_LOCATION,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,
 		MODIFIER_EVENT_ON_DEATH,
-    MODIFIER_PROPERTY_INVISIBILITY_LEVEL
+    MODIFIER_PROPERTY_INVISIBILITY_LEVEL,
+		MODIFIER_EVENT_ON_ATTACK_LANDED,
+		MODIFIER_EVENT_ON_ABILITY_EXECUTED
 	}
 	return funcs
 end
@@ -89,22 +90,33 @@ function spell_lab_symbiotic_modifier:OnSetLocation (kv)
 	if IsServer() then
 		if kv.unit ~= self:GetParent() then return end
     --DeepPrintTable(kv)
-    if self.hHost ~= nil then
-      FindClearSpaceForUnit(self.hHost,self:GetParent():GetOrigin(),true)
-    end
+		local nCasterID = self:GetCaster():GetPlayerOwnerID()
+		local nTargetID = self:GetParent():GetPlayerOwnerID()
+		if PlayerResource:IsDisableHelpSetForPlayerID(nTargetID,nCasterID) then
+			if self:GetAbility():IsCooldownReady() then
+				self:Terminate(nil)
+			end
+		else
+	    if self.hHost ~= nil and not self.hHost:HasModifier("modifier_life_stealer_infest") then
+	      FindClearSpaceForUnit(self.hHost,self:GetParent():GetOrigin(),true)
+	    end
+		end
   end
 end
 function spell_lab_symbiotic_modifier:OnSpentMana (kv)
 	if IsServer() then
 		if kv.unit ~= self:GetParent() then return end
     if self.hHost == nil then return end
-    local hParent = self:GetParent()
-    local mana = (hParent:GetMana() / hParent:GetMaxMana()) * self.hHost:GetMaxMana()
-    self.hHost:SetMana(mana);
+		local nCasterID = self:GetCaster():GetPlayerOwnerID()
+		local nTargetID = self:GetParent():GetPlayerOwnerID()
+		if PlayerResource:IsDisableHelpSetForPlayerID(nTargetID,nCasterID) and self:GetAbility():IsCooldownReady() then
+			self:Terminate(nil)
+		else
+	    local hParent = self:GetParent()
+	    local mana = (hParent:GetMana() / hParent:GetMaxMana()) * self.hHost:GetMaxMana()
+	    self.hHost:SetMana(mana);
+		end
 	end
-end
-function spell_lab_symbiotic_modifier:OnManaGained (kv)
-	self:OnSpentMana(kv)
 end
 
 function spell_lab_symbiotic_modifier:Terminate (attacker)
@@ -114,11 +126,30 @@ function spell_lab_symbiotic_modifier:Terminate (attacker)
   self:Destroy()
 end
 
+function spell_lab_symbiotic_modifier:OnAttackLanded (kv)
+	if IsServer() then
+		if kv.attacker ~= self:GetParent() then return end
+    if self.hHost == nil then return end
+		self.hMod:Show(self:GetAbility():GetSpecialValueFor("vis_duration"))
+	end
+end
+
+function spell_lab_symbiotic_modifier:OnAbilityExecuted (kv)
+	if IsServer() then
+		if kv.unit ~= self:GetParent() then return end
+    if self.hHost == nil then return end
+		self.hMod:Show(self:GetAbility():GetSpecialValueFor("vis_duration"))
+	end
+end
+
+
 function spell_lab_symbiotic_modifier:OnIntervalThink()
 	if IsServer() then
 		if not self:GetParent():IsAlive() then self:Terminate(nil) end
     if self.hHost == nil then return end
     local hParent = self:GetParent()
+    local mana = (self.hHost:GetMana() / self.hHost:GetMaxMana()) * hParent:GetMaxMana()
+    hParent:SetMana(mana)
     local pos = self.hHost:GetAbsOrigin()
     local up = Vector(0,0,300)
     hParent:SetAbsOrigin(pos+up)

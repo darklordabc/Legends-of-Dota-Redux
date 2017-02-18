@@ -23,7 +23,27 @@
   			"01"
   			{
   				"var_type"                  "FIELD_INTEGER"
-  				"bonus"						"5 10 15"
+  				"bonus"						"5 8 11"
+  			}
+  			"02"
+  			{
+  				"var_type"                  "FIELD_INTEGER"
+  				"mana_regen"						"70 100 130"
+  			}
+  			"03"
+  			{
+  				"var_type"                  "FIELD_FLOAT"
+  				"vis_duration"						"3.0 2.5 2.0"
+  			}
+  			"04"
+  			{
+  				"var_type"                  "FIELD_FLOAT"
+  				"magic_armor"						"-10.0 -12.5 -15.0"
+  			}
+  			"05"
+  			{
+  				"var_type"                  "FIELD_FLOAT"
+  				"physical_armor"						"-5.0 -6.5 -8.0"
   			}
   		}
   		"precache"

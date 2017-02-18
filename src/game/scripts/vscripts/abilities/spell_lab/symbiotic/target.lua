@@ -15,12 +15,12 @@ function spell_lab_symbiotic_target:OnDestroy()
 	end
 end
 
-function spell_lab_symbiotic_target:InitSymbiot (hModifier,hSymbiot)
+function spell_lab_symbiotic_target:InitSymbiot (hModifier)
 	if IsServer() then
-		self.hSymbiot = hSymbiot
-		self.hMod = hModifier
+		self.symbiot = hModifier
 	end
 end
+
 
 function spell_lab_symbiotic_target:DeclareFunctions()
 	local funcs = {
@@ -28,7 +28,10 @@ function spell_lab_symbiotic_target:DeclareFunctions()
 		,
     MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
     MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
-    MODIFIER_PROPERTY_STATS_INTELLECT_BONUS
+    MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
+		MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE,
+		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS
 		--]]--
 	}
 	return funcs
@@ -41,13 +44,18 @@ end
 function spell_lab_symbiotic_target:OnDeath (kv)
 	if IsServer() then
   if kv.unit ~= self:GetParent() then return end
-  if self.hMod ~= nil then
-    self.hMod:Terminate(kv.attacker)
+  if self.symbiot ~= nil then
+    self.symbiot:Terminate(kv.attacker)
   end
 end
 end
 function spell_lab_symbiotic_target:GetAttributes()
 	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_MULTIPLE + MODIFIER_ATTRIBUTE_PERMANENT
+end
+function spell_lab_symbiotic_target:Show (time)
+	if self:GetParent():IsInvisible() then
+		self:GetParent():AddNewModifier(self:GetCaster(),self:GetAbility(),"modifier_item_dustofappearance",{duration = time})
+	end
 end
 
 function spell_lab_symbiotic_target:AllowIllusionDuplicate()
@@ -67,5 +75,22 @@ end
 function spell_lab_symbiotic_target:GetModifierBonusStats_Intellect()
 	if self:GetAbility() then
 		return self:GetAbility():GetSpecialValueFor("bonus")
+	end
+end
+
+function spell_lab_symbiotic_target:GetModifierPercentageManaRegen ()
+	if self:GetAbility() then
+		return self:GetAbility():GetSpecialValueFor("mana_regen")
+	end
+end
+
+function spell_lab_symbiotic_target:GetModifierPhysicalArmorBonus ()
+	if self:GetAbility() then
+		return self:GetAbility():GetSpecialValueFor("physical_armor")
+	end
+end
+function spell_lab_symbiotic_target:GetModifierMagicalResistanceBonus ()
+	if self:GetAbility() then
+		return self:GetAbility():GetSpecialValueFor("magic_armor")
 	end
 end
