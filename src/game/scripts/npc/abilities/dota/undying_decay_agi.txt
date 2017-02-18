@@ -25,20 +25,30 @@
 				"var_type" "FIELD_INTEGER"
 				"agi_steal" "4"
 			}
-
 			"03" {
+				"var_type" "FIELD_INTEGER"
+				"agi_steal_enemy" "-4"
+			}
+			"04" {
 				"var_type" "FIELD_FLOAT"
 				"decay_duration" "45.0"
 			}
-
-			"04" {
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"agi_steal_scepter" "10"
+			}
+			"06" {
 				"var_type" "FIELD_INTEGER"
 				"agi_steal_enemy_scepter" "-10"
 			}
 
-			"05" {
+			"07" {
 				"var_type" "FIELD_INTEGER"
 				"stat_scale_up" "2"
+			}
+			"08" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "325"
 			}
 		}
 

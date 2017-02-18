@@ -31,6 +31,7 @@ function ExplosionDamage(keys)
 		end
 		local damage = damage + affectedEnemies * ability:GetSpecialValueFor("bonus_damage_per_aura_affected_scepter")
 	end
+	print("check")
 	local damage_tick = damage * ability:GetSpecialValueFor("explosion_interval")
 	ApplyDamage({victim = target, attacker = caster, damage = damage_tick, damage_type = ability:GetAbilityDamageType(), ability = ability})
 end
@@ -39,7 +40,7 @@ function ExplosionHeal(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	
+	print("check2")
 	local heal = ability:GetSpecialValueFor("heal_per_sec")
 	if caster:HasScepter() then
 		local affectedEnemies = 0

@@ -145,6 +145,22 @@
 							}
 						}
 					}
+					"ActOnTargets" {
+						"Target" {
+							"Center" "TARGET"
+							"Radius" "%damage_radius"
+							"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+						}
+
+						"Action" {
+							"ApplyModifier" {
+								"ModifierName" "modifier_underlord_expulsion_explosion_damage"
+								"Target" "TARGET"
+								"Duration" "%explosion_interval"
+							}
+						}
+					}
 				}
 			}
 
