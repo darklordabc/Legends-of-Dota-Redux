@@ -6399,7 +6399,7 @@ function Pregame:fixSpawningIssues()
         --npc_dota_hero_disruptor = true,
         npc_dota_hero_shadow_demon = true,
         npc_dota_hero_spirit_breaker = true,
-        npc_dota_hero_spirit_slardar = true,
+        --npc_dota_hero_spirit_slardar = true,
         npc_dota_hero_ancient_apparition = true,
         npc_dota_hero_wisp = true
     }

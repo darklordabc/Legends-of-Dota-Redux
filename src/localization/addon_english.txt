@@ -783,7 +783,7 @@
     "hintShadowDemon"                         "When Shadow Demon buys an item that is limited by stock, he gains a permanent +1 to all attributes. "
     "hintSilencer"                         "Silence effects applied by Silencer last 25% longer."
     "hintSkywrath"                         "Skywrath Mage refunds 15% of the manacost of spells with a cooldown of 7 seconds or less."
-    "hintSlardar"                         "When Slardar bashes, he gains 1 gold."
+    "hintSlardar"                         "Slardar has an innate Sprint active ability."
     "hintSniper"                         "When Sniper uses Shrapnel it will have a global cast range."
     "hintSpiritBreaker"                   "When Spirit Breaker bashes, he also applies Break."
     "hintSven"                         "At the start of the game, Sven gains a free level of Great Cleave, whether he has it or not."
@@ -1148,12 +1148,12 @@
     "unique_mechanic_shadow_shaman"             "Shadow Shaman refunds the manacost of <font color=\'#ffd966\'>Hex</font> spells and reduces their cooldowns by 20%."
     "unique_mechanic_silencer"                        "<font color=\'#ffd966\'>Silence</font> effects applied by Silencer last 25% longer."
     "unique_mechanic_skywrath_mage"                        "Skywrath Mage refunds 15% of the manacost of spells with a cooldown of 7 seconds or less."
-    //"unique_mechanic_slardar"                       "<font color=\'#ffd966\'>Skull Basher</font> and  <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero.Any other bash will grant Slardar 1 gold."
+    "unique_mechanic_slardar"                       "<font color=\'#ffd966\'>Skull Basher</font> and  <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero. Slardar has an innate <font color=\'#ffd966\'>Sprint</font> active ability."
     "unique_mechanic_slark"                        "Slark gains +3 agility for each level put in an <font color=\'#ffd966\'>Mobility</font>/<font color=\'#ffd966\'>Escape</font> skill."
     "unique_mechanic_sniper"                        "<font color=\'#ffd966\'>Shrapnel</font> will have global cast range if used by Sniper."
     "unique_mechanic_spectre"           "Spectre gains phased movement when casting abilities."
     //"unique_mechanic_spirit_breaker"                "<font color=\'#ffd966\'>Skull Basher</font> and  <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero.When Spirit Breaker bashes, he also applies <font color=\'#ffd966\'>Break</font>."
-    "unique_mechanic_storm_spirit"                 "At the start of the game, Storm Spirit gains a free level of <font color=\'#ffd966\'>Overload</font>, whether he has it or not.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
+    "unique_mechanic_storm_spirit"                 "At the start of the game, Storm Spirit gains a free level of <font color=\'#ffd966\'>Overload</font>, whether he has it or not."
     "unique_mechanic_sven"                        "At the start of the game, Sven gains a free level of <font color=\'#ffd966\'>Great Cleave</font>, whether he has it or not."
     "unique_mechanic_techies"                        "<font color=\'#ffd966\'>Traps</font> and <font color=\'#ffd966\'>Explosives</font> will have 50% of their mana refunded and cooldowns reduced by 50% when used by Techies."
     "unique_mechanic_templar_assassin"          "Templar Assassin turns invisible for 10 seconds after not moving for 5 seconds. Invisibility breaks upon moving or attacking."
@@ -1429,6 +1429,15 @@
     //Scepter Buff Modifer
     "DOTA_Tooltip_modifier_item_ultimate_scepter_consumed" "Free Aghanim's Scepter"
     "DOTA_Tooltip_modifier_item_ultimate_scepter_consumed_Description" "Permanently granted 'Ultimate Upgrade' benefit from Aghanim's Scepter. Certain ultimates and abilities will be upgraded."
+
+    // Slard Sprint Perk
+    "DOTA_Tooltip_modifier_item_phase_boots_datadriven_active"  "Slardar Sprint Perk"
+    "DOTA_Tooltip_modifier_item_phase_boots_datadriven_active_Description"  "Gaining extra movement speed."
+
+    "DOTA_Tooltip_ability_item_sprint" "Sprint"
+    "DOTA_Tooltip_ability_item_sprint_Description" "Slardar's perk gives the active ability to sprint for a short time."
+    "DOTA_Tooltip_ability_item_sprint_phase_movement_speed"            "%BONUS MOVEMENT SPEED:"
+    "DOTA_Tooltip_ability_item_sprint_phase_duration"                  "PHASE DURATION:"
 
     // tiny
     "DOTA_Tooltip_ability_tiny_grow_lod"                                                "Grow"
@@ -3141,7 +3150,7 @@
 
     /// SLARDAR​
     "DOTA_Tooltip_modifier_npc_dota_hero_slardar_perk"  "Slardar Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_slardar_perk_Description"  "Slardar gets 1 gold whenever he bashes a unit.<br><br><font color=\'#7D7D7D\'>By Wouterz90 | github.com/Wouterz90</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_slardar_perk_Description"  "Slardar has an innate Sprint active ability."
 
     /// SLARK​
     "DOTA_Tooltip_modifier_npc_dota_hero_slark_perk"    "Slark Perk"
