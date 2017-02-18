@@ -413,7 +413,9 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
             local items = {}
             for i=0,11 do
                 local item = hero:GetItemInSlot(i)
-                if item then
+
+                -- Sprint is a item only for Slardar, do not replace
+                if item and item:GetName() ~= "item_sprint" then
                     items[i] = {
                         class = item:GetClassname(),
                         charges = item:GetCurrentCharges(),
