@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 ### Bug Fixing/New Features
 - Fixed Necronomicon archer's speed aura
 - Re-enabled Expulsion and the custom Decays
+- Tweaked the mechanism of increasing respawn rates. Now increases 10% after 40 minutes, and keeps increasing 10% per 10 minutes after that. 
 
 ### Balance
 - Juxtapose is now only nerfed if OP abilities or Points mode is on, reduced price of Juxtapose in points mode accordingly. 
