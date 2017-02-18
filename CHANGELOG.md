@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 6.1 - Development Version
 ### Bug Fixing/New Features
 - Fixed Necronomicon archer's speed aura
+- Re-enabled Expulsion and the custom Decays
 
 ### Balance
 - Juxtapose is now only nerfed if OP abilities or Points mode is on, reduced price of Juxtapose in points mode accordingly. 

@@ -3972,6 +3972,9 @@
     "DOTA_Tooltip_ability_ebf_underlord_expulsion_bonus_damage_per_aura_affected_scepter"                          "SCEPTER BONUS DAMAGE PER UNIT:"
     "DOTA_Tooltip_ability_ebf_underlord_expulsion_bonus_heal_per_aura_affected_scepter"                          "SCEPTER BONUS HEAL PER UNIT:"
 
+    "DOTA_Tooltip_modifier_underlord_expulsion_explosion"   "Abyssal Expulsion."
+    "DOTA_Tooltip_modifier_underlord_expulsion_explosion_Description"   "Being burned by Abyssal Expulsion."
+
     "DOTA_Tooltip_ability_ebf_troll_warlord_multistrike"                                "Multistrike"
     "DOTA_Tooltip_ability_ebf_troll_warlord_multistrike_Description"                    "The Troll Warlord's fury lets him hit multiple times in a single swing, the chance of him multistriking goes up per stack. \nStopping attacking will reset your stacks after a %stack_duration% second grace period."
     "DOTA_Tooltip_ability_ebf_troll_warlord_multistrike_Note0"                            "Stacks stack additively."
@@ -4087,6 +4090,18 @@
     
     "DOTA_Tooltip_modifier_decay_bonus_agility_steal_scepter"                         "Agility Decay (Scepter)"
     "DOTA_Tooltip_modifier_decay_bonus_agility_steal_scepter_Description"             "Lost 10 agility."
+
+    "DOTA_Tooltip_modifier_decay_bonus_int_buff"                         "Agility Decay"
+    "DOTA_Tooltip_modifier_decay_bonus_int_buff_Description"             "Gained 4 intelligence."
+    
+    "DOTA_Tooltip_modifier_decay_bonus_intelligence_steal"                         "Intelligence Decay"
+    "DOTA_Tooltip_modifier_decay_bonus_intelligence_steal_Description"             "Lost 4 intelligence."
+    
+    "DOTA_Tooltip_modifier_decay_bonus_intelligence_buff_scepter"                         "Intelligence Decay (Scepter)"
+    "DOTA_Tooltip_modifier_decay_bonus_intelligence_buff_scepter_Description"             "Gained 10 intelligence."
+    
+    "DOTA_Tooltip_modifier_decay_bonus_intelligence_steal_scepter"                         "Intelligence Decay (Scepter)"
+    "DOTA_Tooltip_modifier_decay_bonus_intelligence_steal_scepter_Description"             "Lost 10 intelligence."
     
     "DOTA_Tooltip_ability_undying_decay_int" "Decay (Intelligence)"
     "DOTA_Tooltip_ability_undying_decay_int_Description" "Undying steals <font color='#70EA72'>intelligence</font> from all enemy heroes in an area, dealing base damage as he claims the enemy's <font color='#70EA72'>intelligence</font> for himself.\n\n Upgradeable by Aghanim's Scepter"
@@ -7873,7 +7888,7 @@
 
         "DOTA_Tooltip_ability_benneng"  "Hunter's Instinct"
         "DOTA_Tooltip_ability_benneng_Description"  "When you kill a unit you have chance to gain sight on an enemy hero."
-        "DOTA_Tooltip_ability_benneng_chance"   "CHANCE:"
+        "DOTA_Tooltip_ability_benneng_chance"   "%CHANCE:"
         "DOTA_Tooltip_ability_benneng_duration" "DURATION:"
         "DOTA_Tooltip_benneng_beibu"    "You are in someone's sight"
 
