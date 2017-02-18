@@ -1610,7 +1610,8 @@
     "DOTA_Tooltip_ability_necronomicon_archer_aoe_lod"                                  "Attack Speed and Movement Aura"
     "DOTA_Tooltip_ability_necronomicon_archer_aoe_lod_lod_Description"                  "Increases movement and attack speed of nearby units."
     "DOTA_Tooltip_ability_necronomicon_archer_aoe_lod_radius"                           "RADIUS:"
-    "DOTA_Tooltip_ability_necronomicon_archer_aoe_lod_speed_bonus"                      "%SPEED BONUS:"
+    "DOTA_Tooltip_ability_necronomicon_archer_aoe_lod_ms_bonus"                      "%MOVE SPEED BONUS:"
+    "DOTA_Tooltip_ability_necronomicon_archer_aoe_lod_as_bonus"                      "ATTACK SPEED BONUS:"
 
     // Omni Knight
     "DOTA_Tooltip_ability_holdout_guardian_angel"                               "Wings of Omniscience"
