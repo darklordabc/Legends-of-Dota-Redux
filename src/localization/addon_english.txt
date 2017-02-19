@@ -792,7 +792,7 @@
     "hintTerrorblade"                         "Terrorblade Illusions deal 15% more damage, but also take 15% more damage. "
     "hintTinker"                         "When Tinker uses Scientific spells, there is a 7% chance for them to be instantly refreshed."
     "hintTiny"                         "Tiny does 10% increased damage to buildings."
-    "hintTreant"                         "Treant self-casts Living Armor and Nature's Guise when casting them on allies."
+    "hintTreant"                         "Treant receives 3 charges of Living Armour."
     "hintTrollWarlord"                         "Rage effects on Troll Warlord have 20% longer duration."
     "hintUnderlord"                         "Underlord gains +1 to all stats for each level put in a custom ability."
     "hintUndying"                         "Undying gains +1 strength per creep death or +4 strength per hero death in a 900 radius for 30 seconds."
@@ -1162,7 +1162,7 @@
     "unique_mechanic_shredder"                      "Timbersaw gains health, mana, and experience points whenever a nearby tree is cut down."
     "unique_mechanic_tinker"                        "When Tinker uses <font color=\'#ffd966\'>Scientific</font> spells, there is a 7% chance for them to be instantly refreshed."
     "unique_mechanic_tiny"                        "Tiny deals 10% more damage to buildings."
-    "unique_mechanic_treant"                        "Treant self-casts <font color=\'#ffd966\'>Living Armor</font> and <font color=\'#ffd966\'>Nature's Guise</font> when casting them on allies."
+    "unique_mechanic_treant"                        "Treant receives 3 charges of <font color=\'#ffd966\'>Living Armor</font>."
     "unique_mechanic_troll_warlord"                 "<font color=\'#ffd966\'>Skull Basher</font> and  <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero. <font color=\'#ffd966\'>Rage</font> effects on Troll Warlord have 20% longer duration."
     "unique_mechanic_tusk"           "<font color=\'#ffd966\'>Walrus Kick</font> and <font color=\'#ffd966\'>Walrus Punch</font> will refund their manacost when used by Tusk."
     "unique_mechanic_abyssal_underlord"                        "Underlord gains +1 to all stats for each level put in a <font color=\'#ffd966\'>Custom</font> ability."
@@ -3212,7 +3212,7 @@
 
     /// TREANT PROTECTOR​
     "DOTA_Tooltip_modifier_npc_dota_hero_treant_perk"   "Treant Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_treant_perk_Description"   "Treant self-casts Living Armor and Nature's Guise when casting them on allies."
+    "DOTA_Tooltip_modifier_npc_dota_hero_treant_perk_Description"   "Treant receives 3 charges of Living Armor."
 
     /// TROLL WARLORD​
     "DOTA_Tooltip_modifier_npc_dota_hero_troll_warlord_perk"  "Troll Warlord Perk"
@@ -7998,5 +7998,81 @@
         "DOTA_Tooltip_ability_phantom_lancer_juxtapose_melee_tooltip_illusion_damage"         "%ILLUSION DAMAGE:"
         "DOTA_Tooltip_ability_phantom_lancer_juxtapose_melee_tooltip_total_illusion_damage_in_pct"            "%ILLUSION DAMAGE TAKEN:"
         "DOTA_Tooltip_ability_phantom_lancer_juxtapose_melee_Note0"           "Illusions created by Juxtapose will attack the target that the ability was triggered upon."
+
+        //// OVERFLOW
+
+        "DOTA_Tooltip_Ability_blink_support"                                              "Blink Support"
+        "DOTA_Tooltip_Ability_blink_support_Description"                                  "Short distance teleportation that allows you to move yourself and your allies in and out of combat.\n\n Upgradeable by Aghanim's Scepter"
+        "DOTA_Tooltip_Ability_blink_support_aghanim_description"  "Reduces cooldown."
+        "DOTA_Tooltip_Ability_blink_support_max_blink"                                    "MAX BLINK DISTANCE:"
+        "DOTA_Tooltip_Ability_blink_support_help_range"                                   "HELP RANGE:"
+        "DOTA_Tooltip_Ability_blink_support_help_duration"                                "HELP DURATION:"
+        "DOTA_Tooltip_Ability_blink_support_cooldown_scepter"                             "COOLDOWN SCEPTER:"
+
+        "DOTA_Tooltip_Ability_dark_blade"                                                 "Dark Spell Blade"
+        "DOTA_Tooltip_Ability_dark_blade_Description"                                     "Bouncing magic that curses the victim's resistance to magic damage on every bounce. Victims recieve safe time that makes them immune to bounce from this instance of spell.\n\n Upgradeable by Aghanim's Scepter"
+        "DOTA_Tooltip_Ability_dark_blade_aghanim_description"                               "Lowers Safe Time and Doubles the Curse in night time."
+        "DOTA_Tooltip_Ability_dark_blade_damage"                                          "DAMAGE:"
+        "DOTA_Tooltip_Ability_dark_blade_aoe_range"                                       "JUMP RADIUS:"
+        "DOTA_Tooltip_Ability_dark_blade_chain_fade"                                      "SAFE TIME:"
+        "DOTA_Tooltip_Ability_dark_blade_magic_armor"                                     "MAGIC RESISTANCE REDUCTION:"
+        "DOTA_Tooltip_Ability_dark_blade_curse_duration"                                  "CURSE DURATION:"
+        "DOTA_Tooltip_Ability_dark_blade_fade_scepter"                                    "SCEPTER SAFE TIME:"
+        
+        "DOTA_Tooltip_Ability_light_blade"                                                "Burning Spell Blade"
+        "DOTA_Tooltip_Ability_light_blade_Description"                                    "Bouncing magic that deals <font color='#FF7800'>Fire Damage</font> to enemies. Victims recieve safe time that makes them immune to bounce from this instance of spell.\n\n Upgradeable by Aghanim's Scepter"
+        "DOTA_Tooltip_Ability_light_blade_aghanim_description"                              "Lowers Safe Time and Bonus damage in day time."
+        "DOTA_Tooltip_Ability_light_blade_damage"                                         "<font color='#FF7800'>FIRE DAMAGE</font>:"
+        "DOTA_Tooltip_Ability_light_blade_aoe_range"                                      "JUMP RADIUS:"
+        "DOTA_Tooltip_Ability_light_blade_chain_fade"                                     "SAFE TIME:"
+        "DOTA_Tooltip_Ability_light_blade_fade_scepter"                                   "SCEPTER SAFE TIME:"
+        "DOTA_Tooltip_Ability_light_blade_bonus_scepter"                                   "SCEPTER BONUS DAMAGE:"
+        
+        "DOTA_Tooltip_modifier_dark_blade_curse"                    "Curse: Dark Spell Blade"
+        "DOTA_Tooltip_modifier_dark_blade_curse_Description"        "Reduced magic resistance."
+        
+        "DOTA_Tooltip_element_fire"                 "Fire Damage"
+        "DOTA_Tooltip_element_fire_Description"         "2 Damage per stack every 0.5 seconds. Stack reduced by 1 after the damage."
+
+        "DOTA_Tooltip_Ability_metamorphosis"                                              "Roshanify"
+        "DOTA_Tooltip_Ability_metamorphosis_Description"                                  "For the limited duration you take form of Mighty Roshan! Provides base damage bonus and chance to stun on every attack. You do move a bit slower though.\n\n Upgradeable by Aghanim's Scepter"
+        "DOTA_Tooltip_Ability_metamorphosis_aghanim_description"                                "Improves Base Damage bonus."
+        "DOTA_Tooltip_Ability_metamorphosis_base_damage"                                  "BASE DAMAGE BONUS:"
+        "DOTA_Tooltip_Ability_metamorphosis_stun_chance"                                  "BASH CHANCE:"
+        "DOTA_Tooltip_Ability_metamorphosis_stun_duration"                                "BASH DURATION:"
+        "DOTA_Tooltip_Ability_metamorphosis_attack_range"                                 "ATTACK RANGE:"
+        "DOTA_Tooltip_Ability_metamorphosis_move_speed"                                   "MOVE SPEED PENALTY:"
+        "DOTA_Tooltip_Ability_metamorphosis_tool_tip_duration"                            "DURATION:"
+        "DOTA_Tooltip_Ability_metamorphosis_base_damage_scepter"                        "SCEPTER DAMAGE:"
+        
+        "DOTA_Tooltip_metamorphosis_mod"                                             "Morphed into Roshan"
+        "DOTA_Tooltip_metamorphosis_mod_Description"                                 "May Roshan be with you."
+
+        "DOTA_Tooltip_generic_lua_stun"                                             "Stun"
+        "DOTA_Tooltip_generic_lua_stun_Description"                                 "Stunned"
+
+        "DOTA_Tooltip_Ability_seer"                                                       "Seer"
+        "DOTA_Tooltip_Ability_seer_Description"                                           "While channelling gain vision of all enemy heroes.\nDoes not include enemies who are invisible or dead at the start of the channel.\n\n Upgradeable by Aghanim's Scepter"
+        "DOTA_Tooltip_Ability_seer_aghanim_description"                             "Hides the modifier of being seen by seer."
+        "DOTA_Tooltip_seer_mod"                                             "Spotted!"
+        "DOTA_Tooltip_seer_mod_Description"                                 "Enemy Seer can see you."
+
+        "DOTA_Tooltip_Ability_spectral_form"                                              "Spectral Form"
+        "DOTA_Tooltip_Ability_spectral_form_Description"                                  "You wrap the etheral around you becoming difficult to physically strike but weak against magic. While spectral you regenerate health and mana. Also you basic attack deals magic damage instead of physical.\n\n Upgradeable by Aghanim's Scepter"
+        "DOTA_Tooltip_Ability_spectral_form_aghanim_description"                                "Applies the buff to allies in radius."
+        "DOTA_Tooltip_Ability_spectral_form_health_regen"                                 "HEALTH REGEN:"
+        "DOTA_Tooltip_Ability_spectral_form_mana_regen"                                   "MANA REGEN:"
+        "DOTA_Tooltip_Ability_spectral_form_evasion"                                      "%EVASION"
+        "DOTA_Tooltip_Ability_spectral_form_magic_weak"                                   "%MAGIC WEAKNESS:"
+        "DOTA_Tooltip_Ability_spectral_form_duration"                                     "DURATION:"
+        "DOTA_Tooltip_Ability_spectral_form_radius_scepter"                     "SCEPTER RADIUS:"
+        
+        "DOTA_Tooltip_spectral_form_mod"                                              "Spectral Form"
+        "DOTA_Tooltip_spectral_form_mod_Description"                                  "You wrap the etheral around you."
+
+        "DOTA_Tooltip_Ability_military"                                                   "Military Training"
+        "DOTA_Tooltip_Ability_military_Description"                                       "You are part of the military, there for you get paid. Depending on your devotion to the training regimen you get paid on every hero level up.\nGold gain is multiplied by your hero level.\nAs fruit of the training you also strike faster."
+        "DOTA_Tooltip_Ability_military_attack_speed"                                      "ATTACK SPEED BONUS:"
+        "DOTA_Tooltip_Ability_military_gold"                                              "GOLD PER LEVEL UP:"
 
 }

@@ -1,0 +1,40 @@
+"DOTAAbilities" {
+	"seer"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_lua"
+		"ScriptFile"					"abilities/overflow/seer.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"HasScepterUpgrade" "1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.69 0.69 0.69 0.69"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"custom/seer"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityChannelTime"      "10.0"
+
+		// Time
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"60.0 40.0 20.0"
+		"AbilityDuration"				"10.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"140"
+
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_dark_seer/dark_seer_loadout.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts"
+		}
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+		}
+	}
+}

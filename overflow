@@ -1,0 +1,513 @@
+ovefrlow shit 
+
+"overflow" {
+                  "blink_support" "1"
+                  "dark_blade"      "1"
+                  "light_blade"     "1"
+                  "metamorphosis"   "1"
+                  "seer"      "1"
+                  "spectral_form"   "1"
+                  "military"  "1"
+            }
+
+              "DOTA_Tooltip_Ability_blink_support"                                              "Blink Support"
+        "DOTA_Tooltip_Ability_blink_support_Description"                                  "Short distance teleportation that allows you to move yourself and your allies in and out of combat.\n\n Upgradeable by Aghanim's Scepter"
+        "DOTA_Tooltip_Ability_blink_support_aghanim_description"  "Reduces cooldown."
+        "DOTA_Tooltip_Ability_blink_support_max_blink"                                    "MAX BLINK DISTANCE:"
+        "DOTA_Tooltip_Ability_blink_support_help_range"                                   "HELP RANGE:"
+        "DOTA_Tooltip_Ability_blink_support_help_duration"                                "HELP DURATION:"
+        "DOTA_Tooltip_Ability_blink_support_cooldown_scepter"                             "COOLDOWN SCEPTER:"
+
+
+
+
+        "DOTA_Tooltip_Ability_dark_blade"                                                 "Dark Spell Blade"
+        "DOTA_Tooltip_Ability_dark_blade_Description"                                     "Bouncing magic that curses the victim's resistance to magic damage on every bounce. Victims recieve safe time that makes them immune to bounce from this instance of spell.\n\n Upgradeable by Aghanim's Scepter"
+        "DOTA_Tooltip_Ability_dark_blade_aghanim_description"                               "Lowers Safe Time and Doubles the Curse in night time."
+        "DOTA_Tooltip_Ability_dark_blade_damage"                                          "DAMAGE:"
+        "DOTA_Tooltip_Ability_dark_blade_aoe_range"                                       "JUMP RADIUS:"
+        "DOTA_Tooltip_Ability_dark_blade_chain_fade"                                      "SAFE TIME:"
+        "DOTA_Tooltip_Ability_dark_blade_magic_armor"                                     "MAGIC RESISTANCE REDUCTION:"
+        "DOTA_Tooltip_Ability_dark_blade_curse_duration"                                  "CURSE DURATION:"
+        "DOTA_Tooltip_Ability_dark_blade_fade_scepter"                                    "SCEPTER SAFE TIME:"
+        
+        "DOTA_Tooltip_Ability_light_blade"                                                "Burning Spell Blade"
+        "DOTA_Tooltip_Ability_light_blade_Description"                                    "Bouncing magic that deals <font color='#FF7800'>Fire Damage</font> to enemies. Victims recieve safe time that makes them immune to bounce from this instance of spell.\n\n Upgradeable by Aghanim's Scepter"
+        "DOTA_Tooltip_Ability_light_blade_aghanim_description"                              "Lowers Safe Time and Bonus damage in day time."
+        "DOTA_Tooltip_Ability_light_blade_damage"                                         "<font color='#FF7800'>FIRE DAMAGE</font>:"
+        "DOTA_Tooltip_Ability_light_blade_aoe_range"                                      "JUMP RADIUS:"
+        "DOTA_Tooltip_Ability_light_blade_chain_fade"                                     "SAFE TIME:"
+        "DOTA_Tooltip_Ability_light_blade_fade_scepter"                                   "SCEPTER SAFE TIME:"
+        "DOTA_Tooltip_Ability_light_blade_bonus_scepter"                                   "SCEPTER BONUS DAMAGE:"
+        
+        "DOTA_Tooltip_modifier_dark_blade_curse"                    "Curse: Dark Spell Blade"
+        "DOTA_Tooltip_modifier_dark_blade_curse_Description"        "Reduced magic resistance."
+        
+        "DOTA_Tooltip_element_fire"                 "Fire Damage"
+        "DOTA_Tooltip_element_fire_Description"         "2 Damage per stack every 0.5 seconds. Stack reduced by 1 after the damage."
+
+        "DOTA_Tooltip_Ability_metamorphosis"                                              "Roshanify"
+        "DOTA_Tooltip_Ability_metamorphosis_Description"                                  "For the limited duration you take form of Mighty Roshan! Provides base damage bonus and chance to stun on every attack. You do move a bit slower though.\n\n Upgradeable by Aghanim's Scepter"
+        "DOTA_Tooltip_Ability_metamorphosis_aghanim_description"                                "Improves Base Damage bonus."
+        "DOTA_Tooltip_Ability_metamorphosis_base_damage"                                  "BASE DAMAGE BONUS:"
+        "DOTA_Tooltip_Ability_metamorphosis_stun_chance"                                  "BASH CHANCE:"
+        "DOTA_Tooltip_Ability_metamorphosis_stun_duration"                                "BASH DURATION:"
+        "DOTA_Tooltip_Ability_metamorphosis_attack_range"                                 "ATTACK RANGE:"
+        "DOTA_Tooltip_Ability_metamorphosis_move_speed"                                   "MOVE SPEED PENALTY:"
+        "DOTA_Tooltip_Ability_metamorphosis_tool_tip_duration"                            "DURATION:"
+        "DOTA_Tooltip_Ability_metamorphosis_base_damage_scepter"                        "SCEPTER DAMAGE:"
+        
+        "DOTA_Tooltip_metamorphosis_mod"                                             "Morphed into Roshan"
+        "DOTA_Tooltip_metamorphosis_mod_Description"                                 "May Roshan be with you."
+
+        "DOTA_Tooltip_generic_lua_stun"                                             "Stun"
+        "DOTA_Tooltip_generic_lua_stun_Description"                                 "Stunned"
+
+        "DOTA_Tooltip_Ability_seer"                                                       "Seer"
+        "DOTA_Tooltip_Ability_seer_Description"                                           "While channelling gain vision of all enemy heroes.\nDoes not include enemies who are invisible or dead at the start of the channel.\n\n Upgradeable by Aghanim's Scepter"
+        "DOTA_Tooltip_Ability_seer_aghanim_description"                             "Hides the modifier of being seen by seer."
+        "DOTA_Tooltip_seer_mod"                                             "Spotted!"
+        "DOTA_Tooltip_seer_mod_Description"                                 "Enemy Seer can see you."
+
+        "DOTA_Tooltip_Ability_spectral_form"                                              "Spectral Form"
+        "DOTA_Tooltip_Ability_spectral_form_Description"                                  "You wrap the etheral around you becoming difficult to physically strike but weak against magic. While spectral you regenerate health and mana. Also you basic attack deals magic damage instead of physical.\n\n Upgradeable by Aghanim's Scepter"
+        "DOTA_Tooltip_Ability_spectral_form_aghanim_description"                                "Applies the buff to allies in radius."
+        "DOTA_Tooltip_Ability_spectral_form_health_regen"                                 "HEALTH REGEN:"
+        "DOTA_Tooltip_Ability_spectral_form_mana_regen"                                   "MANA REGEN:"
+        "DOTA_Tooltip_Ability_spectral_form_evasion"                                      "%EVASION"
+        "DOTA_Tooltip_Ability_spectral_form_magic_weak"                                   "%MAGIC WEAKNESS:"
+        "DOTA_Tooltip_Ability_spectral_form_duration"                                     "DURATION:"
+        "DOTA_Tooltip_Ability_spectral_form_radius_scepter"                     "SCEPTER RADIUS:"
+        
+        "DOTA_Tooltip_spectral_form_mod"                                              "Spectral Form"
+        "DOTA_Tooltip_spectral_form_mod_Description"                                  "You wrap the etheral around you."
+
+        "DOTA_Tooltip_Ability_military"                                                   "Military Training"
+        "DOTA_Tooltip_Ability_military_Description"                                       "You are part of the military, there for you get paid. Depending on your devotion to the training regimen you get paid on every hero level up.\nGold gain is multiplied by your hero level.\nAs fruit of the training you also strike faster."
+        "DOTA_Tooltip_Ability_military_attack_speed"                                      "ATTACK SPEED BONUS:"
+    "DOTA_Tooltip_Ability_military_gold"                                              "GOLD PER LEVEL UP:"
+
+     "blink_support"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/blink_support/blink_support.lua"
+		"AbilityTextureName"			"custom/blink_support"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_FLAG_CHECK_DISABLE_HELP"
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"10.0"
+		"AbilityManaCost"				"175"
+		"HasScepterUpgrade" "1"
+        //
+		"precache"
+		{
+			"particle" "particles/blink_staff.vpcf"
+			"particle" "particles/units/heroes/hero_wisp/wisp_tether.vpcf"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_blink"				"900 1000 1100 1200"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"blink_clamp"			"800 900 1000 1100"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"help_range"			"1600 1800 2000 2200"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"help_duration"			"5.0"
+			}
+
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown_scepter"		"7.0"
+			}
+		}
+	}
+
+	"dark_blade"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"					"ability_lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"							// Changes dynamically with scepter
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"				"custom/dark_blade"
+		"ScriptFile"					"lua_abilities/dark_blade/dark_blade"
+		"HasScepterUpgrade" "1"
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1200"
+		"AbilityCastPoint"				"0.45"
+
+		// Time
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"100.0 80.0 60.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"200 250 300"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// Modifier just delays damage
+
+		"precache"
+		{
+			"particle"          "particles/lina_spell_laguna_chain.vpcf"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_nightstalker.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"50 75 100"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"aoe_range"					"740 880 1020"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"damage_delay"				"0.25"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"chain_fade"				"0.30"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"magic_armor"				"-5"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"curse_duration"			"7.0"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"scepter_delay"				"0.1"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"fade_scepter"				"0.05"
+			}
+		}
+	}
+
+	"light_blade"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"					"ability_lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"							// Changes dynamically with scepter
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"				"custom/light_blade"
+		"ScriptFile"					"lua_abilities/light_blade/light_blade"
+		"HasScepterUpgrade" "1"
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1200"
+		"AbilityCastPoint"				"0.45"
+
+		// Time
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"100.0 80.0 60.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"200 250 300"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// Modifier just delays damage
+
+		"precache"
+		{
+			"particle"          "particles/lina_spell_laguna_chain.vpcf"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_phoenix.vsndevts"
+		}
+
+		// Special
+		//------------------------------------	-------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"5 10 15"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"aoe_range"					"600 740 880"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"damage_delay"				"0.25"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"chain_fade"				"0.35"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_scepter"				"5"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"fade_scepter"				"0.05"
+			}
+		}
+	}
+
+	"metamorphosis"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_lua"
+		"ScriptFile"					"lua_abilities/ultimates/metamorph/metamorphosis.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"HasScepterUpgrade" "1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.69 0.69 0.69"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"custom/metamorphosis"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+
+		// Time
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"120.0"
+		"AbilityDuration"				"30.0 45.0 60.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		"precache"
+		{
+			"model"	"models/creeps/roshan/roshan.vmdl"
+			"particle"	"particles/neutral_fx/roshan_spawn.vpcf"
+			"soundfile"	"soundevents/game_sounds_roshan_halloween.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts"
+			"soundfile"	"soundevents/game_sounds_creeps.vsndevts"
+		}
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"base_damage"	"100 150 200"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"stun_chance"	"100"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"stun_duration"	"1.0"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attack_range"	"125"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"move_speed"	"-25"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"tool_tip_duration"	"30.0 45.0 60.0"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"base_damage_scepter"	"200 250 300"
+			}
+		}
+	}
+
+	"seer"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_lua"
+		"ScriptFile"					"lua_abilities/ultimates/seer/seer.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"HasScepterUpgrade" "1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.69 0.69 0.69 0.69"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"custom/seer"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityChannelTime"      "10.0"
+
+		// Time
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"60.0 40.0 20.0"
+		"AbilityDuration"				"10.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"140"
+
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_dark_seer/dark_seer_loadout.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts"
+		}
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+		}
+	}
+
+	"spectral_form"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_lua"
+		"ScriptFile"					"lua_abilities/ultimates/spectral/spectral.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.1"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"custom/spectral_form"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+
+		// Time
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"60.0 40.0 20.0"
+		"AbilityDuration"				"15.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"140"
+
+		"precache"
+		{
+			"particle"	"particles/items_fx/ghost.vpcf"
+			"particle"	"particles/status_fx/status_effect_ghost.vpcf"
+			"particle"	"particles/units/heroes/hero_sven/sven_gods_strength_hero_effect.vpcf"
+			"soundfile"	"soundevents/game_sounds_creeps.vsndevts"
+		}
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"health_regen"	"30 40 50"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"mana_regen"	"30 40 50"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"evasion"	"100"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"magic_weak"	"-100 -75 -50"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius_scepter"	"500"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"	"15"
+			}
+		}
+	}
+
+	"military"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_lua"
+		"ScriptFile"					"lua_abilities/passives/military/passive.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"custom/military"
+		"MaxLevel"	"7"
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			//"model"	"models/heroes/spectre/spectre.vmdl"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attack_speed"			"5 10 15 20 25 30 35"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"gold"		"40 80 120 160 200 240 280"
+			}
+		}
+	}

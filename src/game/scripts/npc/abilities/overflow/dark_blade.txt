@@ -1,0 +1,87 @@
+"DOTAAbilities" {
+	"dark_blade"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"					"ability_lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"							// Changes dynamically with scepter
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"2"
+		"AbilityTextureName"				"custom/dark_blade"
+		"ScriptFile"					"abilities/overflow/dark_blade/dark_blade.lua"
+		"HasScepterUpgrade" "1"
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1200"
+		"AbilityCastPoint"				"0.45"
+
+		// Time
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"100.0 80.0 60.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"200 250 300"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// Modifier just delays damage
+
+		"precache"
+		{
+			"particle"          "particles/lina_spell_laguna_chain.vpcf"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_nightstalker.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"50 75 100"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"aoe_range"					"740 880 1020"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"damage_delay"				"0.25"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"chain_fade"				"0.30"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"magic_armor"				"-5"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"curse_duration"			"7.0"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"scepter_delay"				"0.1"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"fade_scepter"				"0.05"
+			}
+		}
+	}
+}
