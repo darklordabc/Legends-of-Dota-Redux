@@ -15,6 +15,10 @@ end
 function spell_lab_symbiotic_modifier:SetHost (hTarget,hMod)
   self.hHost = hTarget
 	self.hMod = hMod
+	--local pos = self.hHost:GetAbsOrigin()
+	--local up = Vector(0,0,300)
+	--self:GetParent():SetAbsOrigin(pos+up)
+	--self:GetParent():SetParent(self.hHost,"symbiotic_attachment")
 end
 
 function spell_lab_symbiotic_modifier:OnDestroy()
@@ -23,6 +27,7 @@ function spell_lab_symbiotic_modifier:OnDestroy()
 	    self.hMod:Destroy()
 	  end
     self:GetParent():SetModelScale(self.scale)
+		--self:GetParent():SetParent(nil,"symbiotic_attachment")
 		EmitSoundOnLocationWithCaster( self:GetParent():GetOrigin(), "Hero_Bane.Nightmare.End", self:GetParent() )
 	end
 end
@@ -96,7 +101,7 @@ function spell_lab_symbiotic_modifier:OnSetLocation (kv)
 			if self:GetAbility():IsCooldownReady() then
 				self:Terminate(nil)
 			end
-		else-
+		else
 	    if self.hHost ~= nil and not self.hHost:HasModifier("modifier_life_stealer_infest") then
 				ProjectileManager:ProjectileDodge(self.hHost)
 	      FindClearSpaceForUnit(self.hHost,self:GetParent():GetOrigin(),true)
