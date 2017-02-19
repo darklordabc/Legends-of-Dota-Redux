@@ -1,0 +1,50 @@
+"DOTAAbilities" {
+	"blink_support"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/overflow/blink_support/blink_support.lua"
+		"AbilityTextureName"			"custom/blink_support"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_FLAG_CHECK_DISABLE_HELP"
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCooldown"				"10.0"
+		"AbilityManaCost"				"175"
+		"HasScepterUpgrade" "1"
+        //
+		"precache"
+		{
+			"particle" "particles/blink_staff.vpcf"
+			"particle" "particles/units/heroes/hero_wisp/wisp_tether.vpcf"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_blink"				"900 1000 1100 1200"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"blink_clamp"			"800 900 1000 1100"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"help_range"			"1600 1800 2000 2200"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"help_duration"			"5.0"
+			}
+
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown_scepter"		"7.0"
+			}
+		}
+	}
+}

@@ -1,0 +1,77 @@
+"DOTAAbilities" {
+	"metamorphosis"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_lua"
+		"ScriptFile"					"abilities/overflow/metamorphosis.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"HasScepterUpgrade" "1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.69 0.69 0.69"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"custom/metamorphosis"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+
+		// Time
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"120.0"
+		"AbilityDuration"				"30.0 45.0 60.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		"precache"
+		{
+			"model"	"models/creeps/roshan/roshan.vmdl"
+			"particle"	"particles/neutral_fx/roshan_spawn.vpcf"
+			"soundfile"	"soundevents/game_sounds_roshan_halloween.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts"
+			"soundfile"	"soundevents/game_sounds_creeps.vsndevts"
+		}
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"base_damage"	"100 150 200"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"stun_chance"	"100"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"stun_duration"	"1.0"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attack_range"	"125"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"move_speed"	"-25"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"tool_tip_duration"	"30.0 45.0 60.0"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"base_damage_scepter"	"200 250 300"
+			}
+		}
+	}
+}
