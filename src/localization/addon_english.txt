@@ -527,11 +527,11 @@
     "balance_mode_points"                           "Points Remaining: {d:points}"
 
     "acceptHosting"                                 "Ok, I understand"
-    "lodHostingMessage"                             "<font color='#ffffff'>Thanks for playing Legends of Dota: Redux. <font color='#FF4949'>If you are experiencing crashes after picking abilities try disabling steam's VULKAN optional setting.</font> To disable it, in steam, right click 'dota 2', click properties, click dlc tab, and untick 'Vulkan support'. The developers of Vulkan API have been informed of this crashing and have already fixed the problem, the fix will be uploaded soon.<br><br> <font color='#70EA72'>Redux 6.0:</font></font><br>- Added 9 more settings to free ability mutator<br>- Fixed Aegis tower ability not giving extra HP<br>- Last resort is now ultimate ability, increased cooldown<br>- Gryo's perk has been disabled until we can figure out whats wrong with side-gunner<br>- Shallow Grave IMBA and Purificaion IMBA no longer cause invisible model if dieing during Supernova egg<br>- Fixed Sniper's global Shrapnel not causing damage<br>- More load screen images<br>- Added Perk for Monkey King<br>- Added Black Forest mutator<br>- Increased cooldown and manacost of Symbiote <br>- Roshan bash is now troll combo with juxtaposition<br>- Vengeful Spirit perk now drains 1 stat per death, not 2<br>- IMBA Purification no longer procs for illusions<br>- Incresaed cooldown of trickshot active, and increased interval between attacks<br>- Chaos Knight no longer gets random gold when using hero switcher<br>- Wind Soul will no longer proc for toggles and spells with less than 3 seconds max cooldown<br>- Most IMBA tower abilities dont work with illusions anymore<br>- Juxtapose now has 50% less chance to proc for ranged heros"
+    "lodHostingMessage"                             "<font color='#ffffff'>Thanks for playing Legends of Dota: Redux. <font color='#FF4949'>If you are experiencing crashes after picking abilities try disabling steam's VULKAN optional setting.</font> To disable it, in steam, right click 'dota 2', click properties, click dlc tab, and untick 'Vulkan support'. The developers of Vulkan API have been informed of this crashing and have already fixed the problem, the fix will be uploaded soon.<br><br> <font color='#70EA72'>Redux 6.0 HOTFIX:</font></font><br>- Juxtapose is now only nerfed if OP abilities or Points mode is on, reduced price of Juxtapose in points mode accordingly. <br>- Roshan bash no longer works with illusions (therefore no longer troll combo with illusion abilities)<br>- Temporarily disabled decays and expulsion, until they can be fixed"
     "lodPickingMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked.<br><br><font color='#70EA72'>Remeber to pick a hero before time runs out or else you will get stuck with a random hero.</font>"
     "lodBanningMessage"                             "<font color='#70EA72'>This is the banning phase</font>. You can ban heroes and abilities to prevent players from selecting them in this match.<br><br> If you dont want to ban or have finished banning, <font color='#70EA72'>press the 'Finish Banning' button</font> to confirm your ready and to speed up the game."
     "lodBalanceMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked. <br><br><font color='#70EA72'>Points Mode is on.</font> In Points Mode you have limited points to spend on abilities. Abilities are priced by how powerful they are and abilities with no price tags are free. Have fun!"
-   "lodHostingNoobMessage"                            "<font color='#ffffff'>Thanks for playing Legends of Dota: Redux. <font color='#FF4949'>If you are experiencing crashes after picking abilities try disabling steam's VULKAN optional setting.</font> To disable it, in steam, right click 'dota 2', click properties, click dlc tab, and untick 'Vulkan support'. The developers of Vulkan API have been informed of this crashing and have already fixed the problem, the fix will be uploaded soon.<br><br> <font color='#70EA72'>Redux 6.0:</font></font><br>- Added 9 more settings to free ability mutator<br>- Fixed Aegis tower ability not giving extra HP<br>- Last resort is now ultimate ability, increased cooldown<br>- Gryo's perk has been disabled until we can figure out whats wrong with side-gunner<br>- Shallow Grave IMBA and Purificaion IMBA no longer cause invisible model if dieing during Supernova egg<br>- Fixed Sniper's global Shrapnel not causing damage<br>- More load screen images<br>- Added Perk for Monkey King<br>- Added Black Forest mutator<br>- Increased cooldown and manacost of Symbiote <br>- Roshan bash is now troll combo with juxtaposition<br>- Vengeful Spirit perk now drains 1 stat per death, not 2<br>- IMBA Purification no longer procs for illusions<br>- Incresaed cooldown of trickshot active, and increased interval between attacks<br>- Chaos Knight no longer gets random gold when using hero switcher<br>- Wind Soul will no longer proc for toggles and spells with less than 3 seconds max cooldown<br>- Most IMBA tower abilities dont work with illusions anymore<br>- Juxtapose now has 50% less chance to proc for ranged heros"
+   "lodHostingNoobMessage"                            "<font color='#ffffff'>Thanks for playing Legends of Dota: Redux. <font color='#FF4949'>If you are experiencing crashes after picking abilities try disabling steam's VULKAN optional setting.</font> To disable it, in steam, right click 'dota 2', click properties, click dlc tab, and untick 'Vulkan support'. The developers of Vulkan API have been informed of this crashing and have already fixed the problem, the fix will be uploaded soon.<br><br> <font color='#70EA72'>Redux 6.0 HOTFIX:</font></font><br>- Juxtapose is now only nerfed if OP abilities or Points mode is on, reduced price of Juxtapose in points mode accordingly. <br>- Roshan bash no longer works with illusions (therefore no longer troll combo with illusion abilities)<br>- Temporarily disabled decays and expulsion, until they can be fixed"
     "lodOptionVoting"                               "Cast your vote to select the options."
 
 
@@ -783,7 +783,7 @@
     "hintShadowDemon"                         "When Shadow Demon buys an item that is limited by stock, he gains a permanent +1 to all attributes. "
     "hintSilencer"                         "Silence effects applied by Silencer last 25% longer."
     "hintSkywrath"                         "Skywrath Mage refunds 15% of the manacost of spells with a cooldown of 7 seconds or less."
-    "hintSlardar"                         "When Slardar bashes, he gains 1 gold."
+    "hintSlardar"                         "Slardar has an innate Sprint active ability."
     "hintSniper"                         "When Sniper uses Shrapnel it will have a global cast range."
     "hintSpiritBreaker"                   "When Spirit Breaker bashes, he also applies Break."
     "hintSven"                         "At the start of the game, Sven gains a free level of Great Cleave, whether he has it or not."
@@ -1148,12 +1148,12 @@
     "unique_mechanic_shadow_shaman"             "Shadow Shaman refunds the manacost of <font color=\'#ffd966\'>Hex</font> spells and reduces their cooldowns by 20%."
     "unique_mechanic_silencer"                        "<font color=\'#ffd966\'>Silence</font> effects applied by Silencer last 25% longer."
     "unique_mechanic_skywrath_mage"                        "Skywrath Mage refunds 15% of the manacost of spells with a cooldown of 7 seconds or less."
-    //"unique_mechanic_slardar"                       "<font color=\'#ffd966\'>Skull Basher</font> and  <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero.Any other bash will grant Slardar 1 gold."
+    "unique_mechanic_slardar"                       "<font color=\'#ffd966\'>Skull Basher</font> and  <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero. Slardar has an innate <font color=\'#ffd966\'>Sprint</font> active ability."
     "unique_mechanic_slark"                        "Slark gains +3 agility for each level put in an <font color=\'#ffd966\'>Mobility</font>/<font color=\'#ffd966\'>Escape</font> skill."
     "unique_mechanic_sniper"                        "<font color=\'#ffd966\'>Shrapnel</font> will have global cast range if used by Sniper."
     "unique_mechanic_spectre"           "Spectre gains phased movement when casting abilities."
     //"unique_mechanic_spirit_breaker"                "<font color=\'#ffd966\'>Skull Basher</font> and  <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero.When Spirit Breaker bashes, he also applies <font color=\'#ffd966\'>Break</font>."
-    "unique_mechanic_storm_spirit"                 "At the start of the game, Storm Spirit gains a free level of <font color=\'#ffd966\'>Overload</font>, whether he has it or not.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
+    "unique_mechanic_storm_spirit"                 "At the start of the game, Storm Spirit gains a free level of <font color=\'#ffd966\'>Overload</font>, whether he has it or not."
     "unique_mechanic_sven"                        "At the start of the game, Sven gains a free level of <font color=\'#ffd966\'>Great Cleave</font>, whether he has it or not."
     "unique_mechanic_techies"                        "<font color=\'#ffd966\'>Traps</font> and <font color=\'#ffd966\'>Explosives</font> will have 50% of their mana refunded and cooldowns reduced by 50% when used by Techies."
     "unique_mechanic_templar_assassin"          "Templar Assassin turns invisible for 10 seconds after not moving for 5 seconds. Invisibility breaks upon moving or attacking."
@@ -1267,7 +1267,7 @@
     "warning_illusionist_agility_paws" "<font color=\'#FF4949\'>Warning:</font> Bonus agility can only come from using <font color=\'#70EA72\'>Mastery of Deception</font> and/or <font color=\'#70EA72\'>Mastery of Illusions</font>.\n"
     "warning_bristleback_bristleback" "<font color=\'#FF4949\'>Warning:</font> Quill release will not do any damage unless you have at least 1 level in <font color=\'#70EA72\'>Quill Spray</font>.\n"
     "warning_ebf_rubick_arcane_echo" "<font color=\'#FF4949\'>Warning:</font> This ability is still in the process of being balanced. Post balance suggestions on Steam page or by in-game comment system.\n"
-    "warning_roshan_bash" "Roshan has a chance to stun on attack.\n\n<font color=\'#FF4949\'>Warning:</font> This ability works on illusions. Hence, it is a troll combo with any non-ultimate self-illusion creating ability.\n"
+    "warning_roshan_bash" "Roshan has a chance to stun on attack.\n"
     "warning_roshan_spell_block" "<font color=\'#FF4949\'>Warning:</font> Also blocks friendly spells."
     //"warning_roshan_spell_block_lod" "<font color=\'#FF4949\'>Warning:</font> Also blocks friendly spells."
     //"warning_linkens_guard_lod" "<font color=\'#FF4949\'>Warning:</font> Also blocks friendly spells."
@@ -1429,6 +1429,15 @@
     //Scepter Buff Modifer
     "DOTA_Tooltip_modifier_item_ultimate_scepter_consumed" "Free Aghanim's Scepter"
     "DOTA_Tooltip_modifier_item_ultimate_scepter_consumed_Description" "Permanently granted 'Ultimate Upgrade' benefit from Aghanim's Scepter. Certain ultimates and abilities will be upgraded."
+
+    // Slard Sprint Perk
+    "DOTA_Tooltip_modifier_item_phase_boots_datadriven_active"  "Slardar Sprint Perk"
+    "DOTA_Tooltip_modifier_item_phase_boots_datadriven_active_Description"  "Gaining extra movement speed."
+
+    "DOTA_Tooltip_ability_item_sprint" "Sprint"
+    "DOTA_Tooltip_ability_item_sprint_Description" "Slardar's perk gives the active ability to sprint for a short time."
+    "DOTA_Tooltip_ability_item_sprint_phase_movement_speed"            "%BONUS MOVEMENT SPEED:"
+    "DOTA_Tooltip_ability_item_sprint_phase_duration"                  "PHASE DURATION:"
 
     // tiny
     "DOTA_Tooltip_ability_tiny_grow_lod"                                                "Grow"
@@ -1610,7 +1619,8 @@
     "DOTA_Tooltip_ability_necronomicon_archer_aoe_lod"                                  "Attack Speed and Movement Aura"
     "DOTA_Tooltip_ability_necronomicon_archer_aoe_lod_lod_Description"                  "Increases movement and attack speed of nearby units."
     "DOTA_Tooltip_ability_necronomicon_archer_aoe_lod_radius"                           "RADIUS:"
-    "DOTA_Tooltip_ability_necronomicon_archer_aoe_lod_speed_bonus"                      "%SPEED BONUS:"
+    "DOTA_Tooltip_ability_necronomicon_archer_aoe_lod_ms_bonus"                      "%MOVE SPEED BONUS:"
+    "DOTA_Tooltip_ability_necronomicon_archer_aoe_lod_as_bonus"                      "ATTACK SPEED BONUS:"
 
     // Omni Knight
     "DOTA_Tooltip_ability_holdout_guardian_angel"                               "Wings of Omniscience"
@@ -3140,7 +3150,7 @@
 
     /// SLARDAR​
     "DOTA_Tooltip_modifier_npc_dota_hero_slardar_perk"  "Slardar Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_slardar_perk_Description"  "Slardar gets 1 gold whenever he bashes a unit.<br><br><font color=\'#7D7D7D\'>By Wouterz90 | github.com/Wouterz90</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_slardar_perk_Description"  "Slardar has an innate Sprint active ability."
 
     /// SLARK​
     "DOTA_Tooltip_modifier_npc_dota_hero_slark_perk"    "Slark Perk"
@@ -3971,6 +3981,9 @@
     "DOTA_Tooltip_ability_ebf_underlord_expulsion_bonus_damage_per_aura_affected_scepter"                          "SCEPTER BONUS DAMAGE PER UNIT:"
     "DOTA_Tooltip_ability_ebf_underlord_expulsion_bonus_heal_per_aura_affected_scepter"                          "SCEPTER BONUS HEAL PER UNIT:"
 
+    "DOTA_Tooltip_modifier_underlord_expulsion_explosion"   "Abyssal Expulsion."
+    "DOTA_Tooltip_modifier_underlord_expulsion_explosion_Description"   "Being burned by Abyssal Expulsion."
+
     "DOTA_Tooltip_ability_ebf_troll_warlord_multistrike"                                "Multistrike"
     "DOTA_Tooltip_ability_ebf_troll_warlord_multistrike_Description"                    "The Troll Warlord's fury lets him hit multiple times in a single swing, the chance of him multistriking goes up per stack. \nStopping attacking will reset your stacks after a %stack_duration% second grace period."
     "DOTA_Tooltip_ability_ebf_troll_warlord_multistrike_Note0"                            "Stacks stack additively."
@@ -4086,6 +4099,18 @@
     
     "DOTA_Tooltip_modifier_decay_bonus_agility_steal_scepter"                         "Agility Decay (Scepter)"
     "DOTA_Tooltip_modifier_decay_bonus_agility_steal_scepter_Description"             "Lost 10 agility."
+
+    "DOTA_Tooltip_modifier_decay_bonus_int_buff"                         "Agility Decay"
+    "DOTA_Tooltip_modifier_decay_bonus_int_buff_Description"             "Gained 4 intelligence."
+    
+    "DOTA_Tooltip_modifier_decay_bonus_intelligence_steal"                         "Intelligence Decay"
+    "DOTA_Tooltip_modifier_decay_bonus_intelligence_steal_Description"             "Lost 4 intelligence."
+    
+    "DOTA_Tooltip_modifier_decay_bonus_intelligence_buff_scepter"                         "Intelligence Decay (Scepter)"
+    "DOTA_Tooltip_modifier_decay_bonus_intelligence_buff_scepter_Description"             "Gained 10 intelligence."
+    
+    "DOTA_Tooltip_modifier_decay_bonus_intelligence_steal_scepter"                         "Intelligence Decay (Scepter)"
+    "DOTA_Tooltip_modifier_decay_bonus_intelligence_steal_scepter_Description"             "Lost 10 intelligence."
     
     "DOTA_Tooltip_ability_undying_decay_int" "Decay (Intelligence)"
     "DOTA_Tooltip_ability_undying_decay_int_Description" "Undying steals <font color='#70EA72'>intelligence</font> from all enemy heroes in an area, dealing base damage as he claims the enemy's <font color='#70EA72'>intelligence</font> for himself.\n\n Upgradeable by Aghanim's Scepter"
@@ -7878,7 +7903,7 @@
 
         "DOTA_Tooltip_ability_benneng"  "Hunter's Instinct"
         "DOTA_Tooltip_ability_benneng_Description"  "When you kill a unit you have chance to gain sight on an enemy hero."
-        "DOTA_Tooltip_ability_benneng_chance"   "CHANCE:"
+        "DOTA_Tooltip_ability_benneng_chance"   "%CHANCE:"
         "DOTA_Tooltip_ability_benneng_duration" "DURATION:"
         "DOTA_Tooltip_benneng_beibu"    "You are in someone's sight"
 
@@ -7954,9 +7979,7 @@
 
         "DOTA_Tooltip_ability_phantom_lancer_juxtapose_ranged"                                 "Juxtapose Ranged"
 
-        "DOTA_Tooltip_ability_phantom_lancer_juxtapose_ranged_Description"                     "Phantom Lancer has a chance to fracture his presence, creating an illusion of himself. Illusions also have a chance to fracture further. Illusions created from Phantom Lancer last for %illusion_duration% seconds, while illusions created from other illusions last %illusion_from_illusion_duration% seconds. <font color='#70EA72'>Chance to trigger is 50% less for ranged heros.</font>"
-
-        "DOTA_Tooltip_ability_phantom_lancer_juxtapose_Description"                     "Phantom Lancer has a chance to fracture his presence, creating an illusion of himself. Illusions also have a chance to fracture further. Illusions created from Phantom Lancer last for %illusion_duration% seconds, while illusions created from other illusions last %illusion_from_illusion_duration% seconds. <font color='#70EA72'>Chance to trigger is 50% less for ranged heros.</font>"
+        "DOTA_Tooltip_ability_phantom_lancer_juxtapose_ranged_Description"                     "Phantom Lancer has a chance to fracture his presence, creating an illusion of himself. Illusions also have a chance to fracture further. Illusions created from Phantom Lancer last for %illusion_duration% seconds, while illusions created from other illusions last %illusion_from_illusion_duration% seconds. <font color='#70EA72'>Has 50% less chance to trigger</font>."
 
         "DOTA_Tooltip_ability_phantom_lancer_juxtapose_ranged_Lore"                            "Each of Azwraith's lance attacks feels like two from a normal warrior; or three; or four..."
         "DOTA_Tooltip_ability_phantom_lancer_juxtapose_ranged_max_illusions"                   "MAX ILLUSIONS:"
@@ -7965,5 +7988,15 @@
         "DOTA_Tooltip_ability_phantom_lancer_juxtapose_ranged_tooltip_illusion_damage"         "%ILLUSION DAMAGE:"
         "DOTA_Tooltip_ability_phantom_lancer_juxtapose_ranged_tooltip_total_illusion_damage_in_pct"            "%ILLUSION DAMAGE TAKEN:"
         "DOTA_Tooltip_ability_phantom_lancer_juxtapose_ranged_Note0"           "Illusions created by Juxtapose will attack the target that the ability was triggered upon."
+
+        "DOTA_Tooltip_ability_phantom_lancer_juxtapose_melee"                                 "Juxtapose Redux"
+        "DOTA_Tooltip_ability_phantom_lancer_juxtapose_melee_Description"                     "Phantom Lancer has a chance to fracture his presence, creating an illusion of himself. Illusions also have a chance to fracture further. Illusions created from Phantom Lancer last for %illusion_duration% seconds, while illusions created from other illusions last %illusion_from_illusion_duration% seconds. <font color='#70EA72'>Has a 50% less chance to trigger for Ranged Heros</font>."
+        "DOTA_Tooltip_ability_phantom_lancer_juxtapose_melee_Lore"                            "Each of Azwraith's lance attacks feels like two from a normal warrior; or three; or four..."
+        "DOTA_Tooltip_ability_phantom_lancer_juxtapose_melee_max_illusions"                   "MAX ILLUSIONS:"
+        "DOTA_Tooltip_ability_phantom_lancer_juxtapose_melee_proc_chance_pct"                 "%HERO TRIGGER CHANCE:"
+        "DOTA_Tooltip_ability_phantom_lancer_juxtapose_melee_illusion_proc_chance_pct"                    "%ILLUSION TRIGGER CHANCE:"     
+        "DOTA_Tooltip_ability_phantom_lancer_juxtapose_melee_tooltip_illusion_damage"         "%ILLUSION DAMAGE:"
+        "DOTA_Tooltip_ability_phantom_lancer_juxtapose_melee_tooltip_total_illusion_damage_in_pct"            "%ILLUSION DAMAGE TAKEN:"
+        "DOTA_Tooltip_ability_phantom_lancer_juxtapose_melee_Note0"           "Illusions created by Juxtapose will attack the target that the ability was triggered upon."
 
 }

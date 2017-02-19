@@ -49,6 +49,9 @@ function Ingame:init()
     self.playerColors[18]  = { 58.43 * 2.55, 58.82 * 2.55, 59.21 * 2.55 }
     self.playerColors[19]  = { 49.41 * 2.55, 74.90 * 2.55, 94.51 * 2.55 }
 
+    -- 40 minutes
+    self.timeToIncreaseRespawnRate = 2400
+
     -- Setup standard rules
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
 
@@ -156,6 +159,7 @@ end
 
 function Ingame:OnPlayerPurchasedItem(keys)
     -- Bots will get items auto-delievered to them
+    self:checkIfRespawnRate()
     if util:isPlayerBot(keys.PlayerID) then
         local hero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()      
             for slot =  DOTA_STASH_SLOT_1, DOTA_STASH_SLOT_6 do
@@ -268,9 +272,6 @@ dc_table = {};
 function Ingame:onStart()
     local this = self
 
-    
-
-
     -- Force bots to take a defensive pose until the first tower has been destroyed. This is top stop bots from straight away pushing lanes when they hit level 6
     Timers:CreateTimer(function ()
                GameRules:GetGameModeEntity():SetBotsInLateGame(false)
@@ -289,21 +290,7 @@ function Ingame:onStart()
             end, 'disable_all_vision_fix', 1.2)
             
     end
-    
-    -- ---Bot Quickfix: Bots sometimes get stuck at runespot at 0:00 gametime. This orders all bots to attack move to center of map, will unjam the stuck bots. 
-    
-    -- Timers:CreateTimer(function ()   
-    --  local maxPlayerID = 24
-    --  for playerID=0,maxPlayerID-1 do         
-    --      if util:isPlayerBot(playerID) then
-    --          local hero = PlayerResource:GetSelectedHeroEntity(playerID) 
-    --          if hero then
-    --              hero:MoveToPositionAggressive(Vector(0, 0, 0))
-    --          end
-    --      end
-    --  end     
- --        end, 'unstick_bots', 96.0)
-        
+           
     --Attempt to enable cheats
     Convars:SetBool("sv_cheats", true)
     local isCheatsEnabled = Convars:GetBool("sv_cheats")
@@ -415,25 +402,6 @@ function Ingame:onStart()
         end, nil)
     end
 
-
-    -- Level the heroes if starting level requires that
-    -- local startingLevel = OptionManager:GetOption('startingLevel')
-    -- if startingLevel > 1 then
-    --     for i=0,DOTA_MAX_TEAM_PLAYERS-1 do
-    --         if PlayerResource:GetPlayer(i) then
-    --             local spawnedUnit = PlayerResource:GetPlayer(i):GetAssignedHero()
-    --             -- Do we need to level up?
-            
-    --             -- Level it up
-    --             for i=1,startingLevel-1 do
-    --                 spawnedUnit:HeroLevelUp(false)
-    --             end
-    --         end
-    --     end
-    -- end
-
-    -- Fix EXP
-    --spawnedUnit:AddExperience(constants.XP_PER_LEVEL_TABLE[startingLevel], false, false)
 end
 
 function Ingame:fixRuneBug()
@@ -867,6 +835,22 @@ function Ingame:checkBalanceTeams()
     end
 end
 
+-- Increases respawn rate if the game has been going longer than 40 minutes, increases every 10 minutes after that
+function Ingame:checkIfRespawnRate()
+    local respawnModifierPercentage = OptionManager:GetOption('respawnModifierPercentage')
+    if GameRules:GetDOTATime(false,false) > self.timeToIncreaseRespawnRate and respawnModifierPercentage < 50  then
+        local newRespawnRate = respawnModifierPercentage + 10
+        if newRespawnRate > 50 then
+            newRespawnRate = 50
+        end
+        GameRules:SendCustomMessage("Games has been going for too long, respawn rates have increased by 10%. New respawn rate is " .. newRespawnRate .. "%", 0, 0)
+        OptionManager:SetOption('respawnModifierPercentage', newRespawnRate)
+
+        self.timeToIncreaseRespawnRate = self.timeToIncreaseRespawnRate + 600
+    end
+
+end
+
 -- Respawn modifier
 function Ingame:handleRespawnModifier()
     ListenToGameEvent('entity_killed', function(keys)
@@ -874,12 +858,7 @@ function Ingame:handleRespawnModifier()
         local respawnModifierPercentage = OptionManager:GetOption('respawnModifierPercentage')
         local respawnModifierConstant = OptionManager:GetOption('respawnModifierConstant')
 
-        if GameRules:GetDOTATime(false,false) > 2400 and respawnModifierPercentage < 50 then
-            GameRules:SendCustomMessage("Games has been going for too long, respawn times have increased to 50%. Developers are still fine tuning this mechanic.", 0, 0)
-            OptionManager:SetOption('respawnModifierPercentage', 50)
-            respawnModifierPercentage = 50
-        end
-
+        self:checkIfRespawnRate()
 
         --if respawnModifierPercentage == 100 and respawnModifierConstant == 0 then return end
 

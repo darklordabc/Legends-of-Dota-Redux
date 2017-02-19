@@ -33,7 +33,7 @@ function modifier_angel_arena_archmage_anomaly_thinker:OnCreated( kv )
 		ParticleManager:ReleaseParticleIndex(self.FXIndex)
 	end
 	self.AlreadyHit = {}
-	self.blackList = {["shadow_shaman_shackles"] = true}
+	self.blackList = {["shadow_shaman_shackles"] = true, ["enigma_demonic_conversion"] = true}
 	EmitSoundOn("Hero_Warlock.ShadowWord", self:GetParent())
 end
 

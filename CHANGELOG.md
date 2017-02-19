@@ -2,7 +2,20 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 6.0 - Development Version
+## 6.1 - Development Version
+### Bug Fixing/New Features
+- Fixed Necronomicon archer's speed aura
+- Re-enabled Expulsion and the custom Decays
+- Tweaked the mechanism of increasing respawn rates. Now increases 10% after 40 minutes, and keeps increasing 10% per 10 minutes after that. 
+- Demonic conversion no longer works with Anomaly
+- Changed Slardar's Perk
+
+### Balance
+- Juxtapose is now only nerfed if OP abilities or Points mode is on, reduced price of Juxtapose in points mode accordingly. 
+- Roshan bash no longer works with illusions (therefore no longer troll combo with illusion abilities)
+- Temporarily disabled decays and expulsion, until they can be fixed
+
+## 6.0 - Steam Version
 ### Bug Fixing/New Features
 - Added 9 more settings to free ability mutator
 - Fixed Aegis tower ability not giving extra HP

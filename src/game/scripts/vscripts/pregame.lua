@@ -6385,7 +6385,8 @@ function Pregame:fixSpawningIssues()
 
     local notOnIllusions = {
         lone_druid_spirit_bear = true,
-        necronomicon_warrior_last_will_lod = true
+        necronomicon_warrior_last_will_lod = true,
+        roshan_bash = true,
     }
 
     local botAIModifier = {
@@ -6398,7 +6399,7 @@ function Pregame:fixSpawningIssues()
         --npc_dota_hero_disruptor = true,
         npc_dota_hero_shadow_demon = true,
         npc_dota_hero_spirit_breaker = true,
-        npc_dota_hero_spirit_slardar = true,
+        --npc_dota_hero_spirit_slardar = true,
         npc_dota_hero_ancient_apparition = true,
         npc_dota_hero_wisp = true
     }
@@ -6480,6 +6481,7 @@ function Pregame:fixSpawningIssues()
                                         local ab = spawnedUnit:FindAbilityByName(abilityName)
                                         if ab then
                                             ab:SetLevel(0)
+                                            ab:RemoveSelf()
                                         end
                                     end
                                 end
@@ -6522,10 +6524,10 @@ function Pregame:fixSpawningIssues()
                                 spawnedUnit:RemoveAbility("sniper_assassinate")
                         end
                         -- Change juxtapose to juxtapose ranged, for ranged heros
-                        if spawnedUnit:HasAbility("phantom_lancer_juxtapose") and spawnedUnit:IsRangedAttacker() then
+                        if spawnedUnit:HasAbility("phantom_lancer_juxtapose_melee") and spawnedUnit:IsRangedAttacker() then
                                 spawnedUnit:AddAbility("phantom_lancer_juxtapose_ranged")
-                                spawnedUnit:SwapAbilities("phantom_lancer_juxtapose","phantom_lancer_juxtapose_ranged",false,true)
-                                spawnedUnit:RemoveAbility("phantom_lancer_juxtapose")
+                                spawnedUnit:SwapAbilities("phantom_lancer_juxtapose_melee","phantom_lancer_juxtapose_ranged",false,true)
+                                spawnedUnit:RemoveAbility("phantom_lancer_juxtapose_melee")
                         end
                         -- Change infernal blade on gyro to critical strike
                         if this.optionStore['lodOptionBanningUseBanList'] == 1 and spawnedUnit:HasAbility("doom_bringer_infernal_blade") and spawnedUnit:GetUnitName() == "npc_dota_hero_gyrocopter" and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("doom_bringer_infernal_blade"):IsHidden() then

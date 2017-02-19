@@ -197,7 +197,7 @@ var backList = [
     { img: "nyx-dota-2-beetle-art-650x366.jpg" },
     { img: "shaman_s.jpg" },
     { img: "Doom-Dota-2-Art-2.jpg" },
-    { img: "dota-2-wraith-king-ostarion-abaddon-dazzle-chaos-knight-shadow-priest-meepo-pudge-butcher-geomancer-lucifer-doom-akasha-queen-of-pain-.jpg" },
+    { img: "dota-2-wraith-king-ostarion.jpg" },
     { img: "886423153.jpg" },
     { img: "dota-2-wallpapers-dota-2-art-spiritbreaker-vs-phantom-assassin-5347782.jpg" },
     { img: "6866984-dota-2.jpg" },
