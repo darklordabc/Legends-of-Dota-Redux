@@ -9,6 +9,8 @@ All notable changes to this project will be documented in this file.
 - Tweaked the mechanism of increasing respawn rates. Now increases 10% after 40 minutes, and keeps increasing 10% per 10 minutes after that. 
 - Demonic conversion no longer works with Anomaly
 - Changed Slardar's and Treant's Perk
+- You can now right click mutators to cycle backwards
+- Builds will now auto-hide if there is more than 1 ability unavailable from it
 
 ### Balance
 - Juxtapose is now only nerfed if OP abilities or Points mode is on, reduced price of Juxtapose in points mode accordingly. 
