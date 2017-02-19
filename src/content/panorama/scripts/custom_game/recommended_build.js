@@ -105,6 +105,9 @@ function updateFilters(getSkillFilterInfo, getHeroFilterInfo) {
     // Grab the build
     var build = buildData.build;
 
+    // Unavaliable skill count
+    var unavalCount = 0;
+
     // Filter each ability
     for(var slotID = 1; slotID < 7; ++slotID) {
         // Grab the slot
@@ -120,6 +123,9 @@ function updateFilters(getSkillFilterInfo, getHeroFilterInfo) {
         slot.SetHasClass('takenSkill', filterInfo.taken);
         slot.SetHasClass('notDraftable', filterInfo.cantDraft);
         slot.SetHasClass('trollCombo', filterInfo.trollCombo);
+
+        if (filterInfo.disallowed || filterInfo.banned || filterInfo.taken || filterInfo.cantDraft || filterInfo.trollCombo)
+            unavalCount++;
 
         if (GameUI.AbilityCosts.balanceModeEnabled) {
             // Set the label to the cost of the ability
@@ -139,6 +145,10 @@ function updateFilters(getSkillFilterInfo, getHeroFilterInfo) {
             }
         }
     }
+
+    // Hide build if more than 1 unavaliable skill
+    if (unavalCount > 1)
+        $.GetContextPanel().SetHasClass('disabled', true);
 
     // Update hero
     var heroFilterInfo = getHeroFilterInfo(buildData.hero);

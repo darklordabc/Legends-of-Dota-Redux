@@ -2394,6 +2394,10 @@ Button:enabled:hover {
     flow-children: down;
 }
 
+.recommendedBuild.disabled {
+    visibility: collapse;
+}
+
 .recommendedBuildContainer {
     flow-children: right;
 }
