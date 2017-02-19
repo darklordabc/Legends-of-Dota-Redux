@@ -96,8 +96,9 @@ function spell_lab_symbiotic_modifier:OnSetLocation (kv)
 			if self:GetAbility():IsCooldownReady() then
 				self:Terminate(nil)
 			end
-		else
+		else-
 	    if self.hHost ~= nil and not self.hHost:HasModifier("modifier_life_stealer_infest") then
+				ProjectileManager:ProjectileDodge(self.hHost)
 	      FindClearSpaceForUnit(self.hHost,self:GetParent():GetOrigin(),true)
 	    end
 		end
