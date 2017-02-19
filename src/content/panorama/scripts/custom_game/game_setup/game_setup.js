@@ -3091,7 +3091,7 @@ function buildBasicOptionsCategories() {
                             if(item.default !== undefined) {
                                 nextItem = item.default[Object.keys(item.default)[Object.keys(item.default).length - 1]];
                             } else {
-                                nextItem = item.states[Object.keys(item.states)[Object.keys(item.default).length - 1]];
+                                nextItem = item.states[Object.keys(item.states)[Object.keys(item.states).length - 1]];
                             }
                         }
 
