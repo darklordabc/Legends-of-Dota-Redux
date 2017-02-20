@@ -13,13 +13,13 @@
 		"AbilityCastRange" "800"
 		"AbilityCastPoint" "0.5"
 		"AbilityCooldown" "20"
-		"AbilityManaCost" "200"
+		"AbilityManaCost" "150"
 		"AOERadius" "%radius"
 
 		"AbilitySpecial" {
 			"01" {
 				"var_type" "FIELD_INTEGER"
-				"wave_damage" "60 120 160 200"
+				"wave_damage" "80 140 180 220"
 			}
 
 			"02" {
@@ -67,8 +67,7 @@
 		}
 
 		"Modifiers" {
-			"modifier_blizzard_thinker" {
-				"Duration" "%wave_count*%wave_interval+0.7"
+			"modifier_blizzard_thinker" {				
 				"ThinkInterval" "%wave_interval"
 
 				"OnIntervalThink" {
