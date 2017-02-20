@@ -67,8 +67,7 @@
 		}
 
 		"Modifiers" {
-			"modifier_blizzard_thinker" {
-				"Duration" "%wave_count*%wave_interval+0.7"
+			"modifier_blizzard_thinker" {				
 				"ThinkInterval" "%wave_interval"
 
 				"OnIntervalThink" {
