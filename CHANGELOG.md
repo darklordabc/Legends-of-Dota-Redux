@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 - 
 
 ### Balance
-- 
+- Symbiote is now troll combo with 3 or 4 self-harming abilities, like Detonation and techies sucicide
 
 ## 6.1 - Steam Version
 ### Bug Fixing/New Features
