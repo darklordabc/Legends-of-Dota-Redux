@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 ### Balance
 - Symbiote is now troll combo with 3 or 4 self-harming abilities, like Detonation and techies sucicide
 - Added Balanced Version of Jingu Mastery. Original added to OP list, increased price in points mode.
+- Added Balanced Version of Chemical Rage. Original added to OP list, increased price in points mode.
 
 ## 6.1 - Steam Version
 ### Bug Fixing/New Features
