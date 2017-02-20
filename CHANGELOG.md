@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 6.3 - Development Version
 ### Bug Fixing/New Features
 - Battle Cry can now be skilled without True Form
+- Fixed and Re-Enabled Blizzard
 
 ### Balance
 - 
