@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 - Changed Slardar's and Treant's Perk
 - You can now right click mutators to cycle backwards
 - Builds will now auto-hide if there is more than 1 ability unavailable from it
+- Added Brewmasters Wind Walk to Invis tag
 
 ### Balance
 - Juxtapose is now only nerfed if OP abilities or Points mode is on, reduced price of Juxtapose in points mode accordingly. 
