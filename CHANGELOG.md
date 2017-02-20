@@ -2,7 +2,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 6.2 - Development Version
+## 6.3 - Development Version
+### Bug Fixing/New Features
+- Battle Cry can now be skilled without True Form
+
+### Balance
+- 
+
+## 6.2 - Steam Version
 ### Bug Fixing/New Features
 - 
 
@@ -14,7 +21,7 @@ All notable changes to this project will be documented in this file.
 - Fixed perks for Spirit Breaker, Ancient Apparition, Abaddon, Shadow Demon
 - Fixed bots getting stuck at ward spots. Semi-fixed bots getting fixed trying to collect stash. 
 
-## 6.1 - Steam Version
+## 6.1 
 ### Bug Fixing/New Features
 - Fixed Necronomicon archer's speed aura
 - Re-enabled Expulsion and the custom Decays

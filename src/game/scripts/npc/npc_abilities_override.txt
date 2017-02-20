@@ -25,6 +25,13 @@
 		"MaxLevel" "4"
 		"AbilityManaCost"	"120 80 40 0"
 	}
+
+	"lone_druid_true_form_battle_cry"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_TYPE_ULTIMATE"
+	}
 	
 	"lone_druid_spirit_bear_entangle"
 	{
