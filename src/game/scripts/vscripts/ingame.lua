@@ -51,6 +51,7 @@ function Ingame:init()
 
     -- 40 minutes
     self.timeToIncreaseRespawnRate = 2400
+    self.timeToIncreaseRepawnInterval = 600
 
     -- Setup standard rules
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
@@ -837,6 +838,7 @@ end
 
 -- Increases respawn rate if the game has been going longer than 40 minutes, increases every 10 minutes after that
 function Ingame:checkIfRespawnRate()
+    if util:isSinglePlayerMode() then return end
     local respawnModifierPercentage = OptionManager:GetOption('respawnModifierPercentage')
     if GameRules:GetDOTATime(false,false) > self.timeToIncreaseRespawnRate and respawnModifierPercentage < 50  then
         local newRespawnRate = respawnModifierPercentage + 10
@@ -846,7 +848,7 @@ function Ingame:checkIfRespawnRate()
         GameRules:SendCustomMessage("Games has been going for too long, respawn rates have increased by 10%. New respawn rate is " .. newRespawnRate .. "%", 0, 0)
         OptionManager:SetOption('respawnModifierPercentage', newRespawnRate)
 
-        self.timeToIncreaseRespawnRate = self.timeToIncreaseRespawnRate + 600
+        self.timeToIncreaseRespawnRate = self.timeToIncreaseRespawnRate + self.timeToIncreaseRepawnInterval
     end
 
 end
