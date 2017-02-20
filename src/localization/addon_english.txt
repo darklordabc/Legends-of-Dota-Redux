@@ -4131,6 +4131,17 @@
 
     "DOTA_Tooltip_ability_item_devDagger" "Toolsmode Blink Dagger"
 
+   "DOTA_Tooltip_ability_alchemist_chemical_rage_redux"                               "Chemical Rage Redux"
+    "DOTA_Tooltip_ability_alchemist_chemical_rage_redux_Description"                  "Alchemist causes his Ogre to enter a chemically induced rage, reducing base attack cooldown and increasing movement speed and regeneration. <font color='#70EA72'>Has 40% shorter duration.</font>"
+    "DOTA_Tooltip_ability_alchemist_chemical_rage_redux_aghanim_description"          "Alchemist melts down Aghanim's Scepter to grant an allied hero all Aghanim's Scepter upgrades."
+    "DOTA_Tooltip_ability_alchemist_chemical_rage_redux_Lore"                         "The brew Razzil gave to the Ogre during their prison bust has become a useful potion in the midst of combat."
+    "DOTA_Tooltip_ability_alchemist_chemical_rage_redux_Note0"                        "Has a 0.35 second transformation time, which can be used to dodge projectiles and stuns."
+    "DOTA_Tooltip_ability_alchemist_chemical_rage_redux_duration"                     "DURATION:"
+    "DOTA_Tooltip_ability_alchemist_chemical_rage_redux_base_attack_time"             "BASE ATTACK TIME:"
+    "DOTA_Tooltip_ability_alchemist_chemical_rage_redux_bonus_health_regen"           "BONUS HEALTH REGEN:"
+    "DOTA_Tooltip_ability_alchemist_chemical_rage_redux_bonus_mana_regen"             "BONUS MANA REGEN:"
+    "DOTA_Tooltip_ability_alchemist_chemical_rage_redux_bonus_movespeed"              "BONUS MOVE SPEED:"
+
     "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod"                            "Jingu Mastery"
     "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_Description"                "Monkey King's attacks awaken the Jingu Bang's power. Upon the fourth hit on the same enemy hero, Monkey King earns four charged attacks that have bonus damage and lifesteal."
     "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_Lore"                       "Always sensitive to the moods of its master, the Jingu Bang radiates power when Sun Wukong's combat fervor is on full display."

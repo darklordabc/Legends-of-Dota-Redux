@@ -71,6 +71,7 @@
 #base "abilities\dnd\makecatapults_lua.txt"
 #base "abilities\dnd\makemeleecreeps_lua.txt"
 #base "abilities\dnd\makerangedcreeps_lua.txt"
+#base "abilities\dota\alchemist_chemical_rage_redux.txt"
 #base "abilities\dota\bloodseeker_blood_bath2.txt"
 #base "abilities\dota\bloodseeker_thirst_lod.txt"
 #base "abilities\dota\brewmaster_earth_pulverize_redux.txt"
