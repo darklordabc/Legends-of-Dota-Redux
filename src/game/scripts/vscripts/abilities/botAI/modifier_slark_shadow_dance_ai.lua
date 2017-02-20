@@ -27,7 +27,7 @@ function modifier_slark_shadow_dance_ai:OnTakeDamage()
 	local caster = self:GetParent()
 	local ability = caster:FindAbilityByName("slark_shadow_dance")
 	
-	if caster:GetHealth() < 400 and ability and ability:IsFullyCastable() and caster:IsRealHero()  then
+	if caster:GetHealth() < 400 and ability and ability:IsFullyCastable() and caster:IsRealHero() and not (caster:IsStunned() or caster:IsSilenced())  then
 		local cooldown = ability:GetCooldown( ability:GetLevel() )
 		caster:CastAbilityImmediately(ability, caster:GetPlayerOwnerID())
 		ability:StartCooldown( cooldown )
