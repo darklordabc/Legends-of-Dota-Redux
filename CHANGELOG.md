@@ -6,8 +6,9 @@ All notable changes to this project will be documented in this file.
 ### Bug Fixing/New Features
 - Battle Cry can now be skilled without True Form
 
+
 ### Balance
-- 
+- Gave Borrowed Time a manacost 
 
 ## 6.2 - Steam Version
 ### Bug Fixing/New Features
