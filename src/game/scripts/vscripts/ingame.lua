@@ -258,7 +258,7 @@ function Ingame:FilterExecuteOrder(filterTable)
         -- How It Works: Every time bot creates an order, this checks their position, if they are in the same last position as last order,
         -- increase counter. If counter gets too high, it means they have been stuck in same position for a long time, do action to help them.
         
-        if util:isPlayerBot(unit:GetPlayerID()) then
+        if unit and unit:IsRealHero() and util:isPlayerBot(unit:GetPlayerID()) then
             if not unit.OldPosition then
                 unit.OldPosition = unit:GetAbsOrigin()
                 unit.StuckCounter = 0
@@ -288,7 +288,7 @@ function Ingame:FilterExecuteOrder(filterTable)
                         end
                     end
                 end
-                
+
                 -- Its well and truly borked, kill it and hope for the best.
                 if unit.StuckCounter > 300 and fixed == false then
                     unit:Kill(nil, nil)
