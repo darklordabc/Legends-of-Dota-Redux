@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file.
 
 ### Balance
 - Symbiote is now troll combo with 3 or 4 self-harming abilities, like Detonation and techies sucicide
-- Added Balanced Version of Chemical Rage, Jingu Mastery, Borrowed Time. Originals added to OP list, increased price in points mode.
+- Added balanced versions of Chemical Rage, Jingu Mastery, Borrowed Time, Tempest Double. In most cases, originals added to OP list, increased price in points mode.
 - Attack Range Flesh Heap gives 5 less range per stack.
 - Bots will no longer used Shadow Dance or Chemical Rage if they are stunned/silenced
 - Fixed perks for Spirit Breaker, Ancient Apparition, Abaddon, Shadow Demon

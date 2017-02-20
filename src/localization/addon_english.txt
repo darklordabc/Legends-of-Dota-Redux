@@ -4131,6 +4131,11 @@
 
     "DOTA_Tooltip_ability_item_devDagger" "Toolsmode Blink Dagger"
 
+    "DOTA_Tooltip_ability_arc_warden_tempest_double_redux"        "Tempest Double Redux"
+    "DOTA_Tooltip_ability_arc_warden_tempest_double_redux_Description"    "Briefly refocusing its fractured elements into a single form, the Arc Warden is able to create a perfect electrical duplication of itself. The duplicate can use all of Arc Warden's current items and spells, except consumables and items that drop on death. The duplicate has seperate item and ability cooldowns. <font color='#70EA72'>Has 50% longer cooldown.</font>"
+    "DOTA_Tooltip_ability_arc_warden_tempest_double_redux_Lore"       "Warped by the power of its peers, Arc Warden becomes what it despises most: disharmony."
+    "DOTA_Tooltip_ability_arc_warden_tempest_double_redux_duration"   "DURATION:"
+
    "DOTA_Tooltip_ability_alchemist_chemical_rage_redux"                               "Chemical Rage Redux"
     "DOTA_Tooltip_ability_alchemist_chemical_rage_redux_Description"                  "Alchemist causes his Ogre to enter a chemically induced rage, reducing base attack cooldown and increasing movement speed and regeneration. <font color='#70EA72'>Has 40% shorter duration.</font>"
     "DOTA_Tooltip_ability_alchemist_chemical_rage_redux_aghanim_description"          "Alchemist melts down Aghanim's Scepter to grant an allied hero all Aghanim's Scepter upgrades."

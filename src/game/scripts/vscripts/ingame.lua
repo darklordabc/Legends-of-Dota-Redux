@@ -520,7 +520,7 @@ function Ingame:FatOMeterAnimate(dt)
             hero:SetModelScale(default + target)
         
             --Meepo/Arc Warden ult checker
-            if hero:HasAbility('meepo_divided_we_stand') or hero:HasAbility('arc_warden_tempest_double') then
+            if hero:HasAbility('meepo_divided_we_stand') or hero:HasAbility('arc_warden_tempest_double') or hero:HasAbility('arc_warden_tempest_double_redux') then
                 local clones = Entities:FindAllByName(hero:GetClassname())
 
                 for k,heroClone in pairs(clones) do
