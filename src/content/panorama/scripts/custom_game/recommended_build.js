@@ -147,8 +147,7 @@ function updateFilters(getSkillFilterInfo, getHeroFilterInfo) {
     }
 
     // Hide build if more than 1 unavaliable skill
-    if (unavalCount > 1)
-        $.GetContextPanel().SetHasClass('disabled', true);
+    $.GetContextPanel().SetHasClass('disabled', unavalCount > 1);
 
     // Update hero
     var heroFilterInfo = getHeroFilterInfo(buildData.hero);
