@@ -37,7 +37,8 @@ function modifier_light_blade:OnDestroy()
 		--}
 		local nFireDamage = hAbility:GetSpecialValueFor( "damage" )
 		local nScepterBonus = hAbility:GetSpecialValueFor( "bonus_scepter" )
-		if self:GetCaster():HasScepter() and GameRules:IsDayTime() then nFireDamage = nFireDamage + nScepterBonus end
+		day = GameRules:IsDaytime()
+		if self:GetCaster():HasScepter() and day then nFireDamage = nFireDamage + nScepterBonus end
 		self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "element_fire", {
 			stacks = nFireDamage
 		})

@@ -16,6 +16,13 @@ function CheckJingu(keys)
 	local caster = keys.caster
 	local ability = keys.ability
 	local target = keys.target
+
+	if ability:GetName() ~= "monkey_king_jingu_mastery_lod" then
+		if not ability:IsCooldownReady() then
+	        return nil
+	    end
+	end
+
 	if caster:HasModifier("modifier_jingu_mastery_activated") or not target:IsRealHero() or not caster:IsRealHero() or caster:PassivesDisabled() then return
 	else
 		local jinguStack = target:FindModifierByName("modifier_jingu_mastery_hitcount")
@@ -26,7 +33,7 @@ function CheckJingu(keys)
 			
 		end
 		jinguStack:SetStackCount(jinguStack:GetStackCount() + 1)
-		print(jinguStack:GetStackCount())
+		--print(jinguStack:GetStackCount())
 		if not target.OverHeadJingu then 
 			target.OverHeadJingu = ParticleManager:CreateParticle(keys.particle, PATTACH_OVERHEAD_FOLLOW, target)
 			ParticleManager:SetParticleControl(target.OverHeadJingu, 0, target:GetAbsOrigin())
@@ -38,6 +45,11 @@ function CheckJingu(keys)
 			ability:ApplyDataDrivenModifier(caster, caster, "modifier_jingu_mastery_activated_damage", {})
 			jinguBuff:SetStackCount(ability:GetTalentSpecialValueFor("charges"))
 			jinguStack:Destroy()
+
+			if ability:GetName() ~= "monkey_king_jingu_mastery_lod" then
+				ability:StartCooldown(3)
+			end
+			
 		end
 	end
 end

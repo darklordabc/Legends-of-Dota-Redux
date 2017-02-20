@@ -6529,6 +6529,12 @@ function Pregame:fixSpawningIssues()
                                 spawnedUnit:SwapAbilities("phantom_lancer_juxtapose_melee","phantom_lancer_juxtapose_ranged",false,true)
                                 spawnedUnit:RemoveAbility("phantom_lancer_juxtapose_melee")
                         end
+                        -- Change Jingu to Jingu ranged, for ranged heros
+                        if spawnedUnit:HasAbility("monkey_king_jingu_mastery_lod_melee") and spawnedUnit:IsRangedAttacker() then
+                                spawnedUnit:AddAbility("monkey_king_jingu_mastery_lod_ranged")
+                                spawnedUnit:SwapAbilities("monkey_king_jingu_mastery_lod_melee","monkey_king_jingu_mastery_lod_ranged",false,true)
+                                spawnedUnit:RemoveAbility("monkey_king_jingu_mastery_lod_melee")
+                        end
                         -- Change infernal blade on gyro to critical strike
                         if this.optionStore['lodOptionBanningUseBanList'] == 1 and spawnedUnit:HasAbility("doom_bringer_infernal_blade") and spawnedUnit:GetUnitName() == "npc_dota_hero_gyrocopter" and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("doom_bringer_infernal_blade"):IsHidden() then
                                 spawnedUnit:AddAbility("chaos_knight_chaos_strike_gyro")
