@@ -527,11 +527,11 @@
     "balance_mode_points"                           "Points Remaining: {d:points}"
 
     "acceptHosting"                                 "Ok, I understand"
-    "lodHostingMessage"                             "<font color='#ffffff'>Thanks for playing Legends of Dota: Redux. <font color='#FF4949'>If you are experiencing crashes after picking abilities try disabling steam's VULKAN optional setting.</font> To disable it, in steam, right click 'dota 2', click properties, click dlc tab, and untick 'Vulkan support'. The developers of Vulkan API have been informed of this crashing and have already fixed the problem, the fix will be uploaded soon.<br><br> <font color='#70EA72'>Redux 6.0 HOTFIX:</font></font><br>- Juxtapose is now only nerfed if OP abilities or Points mode is on, reduced price of Juxtapose in points mode accordingly. <br>- Roshan bash no longer works with illusions (therefore no longer troll combo with illusion abilities)<br>- Temporarily disabled decays and expulsion, until they can be fixed"
+    "lodHostingMessage"                             "<font color='#ffffff'>Thanks for playing Legends of Dota: Redux. <font color='#FF4949'>If you are experiencing crashes after picking abilities try disabling steam's VULKAN optional setting.</font> To disable it, in steam, right click 'dota 2', click properties, click dlc tab, and untick 'Vulkan support'. The developers of Vulkan API have been informed of this crashing and have already fixed the problem, the fix will be uploaded soon.<br><br> <font color='#70EA72'>Redux 6.1:</font></font><br>- Fixed Necronomicon archer's speed aura<br>- Re-enabled Expulsion and the custom Decays<br>- Tweaked the mechanism of increasing respawn rates. Now increases 10% after 40 minutes, and keeps increasing 10% per 10 minutes after that (not on during single player). <br>- Demonic conversion no longer works with Anomaly<br>- Changed Slardar's and Treant's Perk<br>- You can now right click mutators to cycle backwards<br>- Builds will now auto-hide if there is more than 1 ability unavailable from it<br>- Added Brewmasters Wind Walk to Invis tag<br>- Added 7 abilities from Overflow<br>- Juxtapose is now only nerfed if OP abilities or Points mode is on, reduced price of Juxtapose in points mode accordingly. <br>- Roshan bash no longer works with illusions (therefore no longer troll combo with illusion abilities). <br>- Symbiote has been tweaked so that symbiotes have a armor and magic resistant cost to the host"
     "lodPickingMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked.<br><br><font color='#70EA72'>Remeber to pick a hero before time runs out or else you will get stuck with a random hero.</font>"
     "lodBanningMessage"                             "<font color='#70EA72'>This is the banning phase</font>. You can ban heroes and abilities to prevent players from selecting them in this match.<br><br> If you dont want to ban or have finished banning, <font color='#70EA72'>press the 'Finish Banning' button</font> to confirm your ready and to speed up the game."
     "lodBalanceMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked. <br><br><font color='#70EA72'>Points Mode is on.</font> In Points Mode you have limited points to spend on abilities. Abilities are priced by how powerful they are and abilities with no price tags are free. Have fun!"
-   "lodHostingNoobMessage"                            "<font color='#ffffff'>Thanks for playing Legends of Dota: Redux. <font color='#FF4949'>If you are experiencing crashes after picking abilities try disabling steam's VULKAN optional setting.</font> To disable it, in steam, right click 'dota 2', click properties, click dlc tab, and untick 'Vulkan support'. The developers of Vulkan API have been informed of this crashing and have already fixed the problem, the fix will be uploaded soon.<br><br> <font color='#70EA72'>Redux 6.0 HOTFIX:</font></font><br>- Juxtapose is now only nerfed if OP abilities or Points mode is on, reduced price of Juxtapose in points mode accordingly. <br>- Roshan bash no longer works with illusions (therefore no longer troll combo with illusion abilities)<br>- Temporarily disabled decays and expulsion, until they can be fixed"
+   "lodHostingNoobMessage"                            "<font color='#ffffff'>Thanks for playing Legends of Dota: Redux. <font color='#FF4949'>If you are experiencing crashes after picking abilities try disabling steam's VULKAN optional setting.</font> To disable it, in steam, right click 'dota 2', click properties, click dlc tab, and untick 'Vulkan support'. The developers of Vulkan API have been informed of this crashing and have already fixed the problem, the fix will be uploaded soon.<br><br> <font color='#70EA72'>Redux 6.1:</font></font><br>- Fixed Necronomicon archer's speed aura<br>- Re-enabled Expulsion and the custom Decays<br>- Tweaked the mechanism of increasing respawn rates. Now increases 10% after 40 minutes, and keeps increasing 10% per 10 minutes after that (not on during single player). <br>- Demonic conversion no longer works with Anomaly<br>- Changed Slardar's and Treant's Perk<br>- You can now right click mutators to cycle backwards<br>- Builds will now auto-hide if there is more than 1 ability unavailable from it<br>- Added Brewmasters Wind Walk to Invis tag<br>- Added 7 abilities from Overflow<br>- Juxtapose is now only nerfed if OP abilities or Points mode is on, reduced price of Juxtapose in points mode accordingly. <br>- Roshan bash no longer works with illusions (therefore no longer troll combo with illusion abilities). <br>- Symbiote has been tweaked so that symbiotes have a armor and magic resistant cost to the host"
     "lodOptionVoting"                               "Cast your vote to select the options."
 
 
@@ -1280,13 +1280,14 @@
     "warning_treant_eyes_in_the_forest" "<font color=\'#FF4949\'>Warning:</font> Enemies will have a debuff notification when within 1000 range of an enchanted tree."
     "warning_angel_arena_transmute" "<font color=\'#FF4949\'>Warning:</font> This ability has strange coding, cooldown manipulation abilities will not work on it.\n"
 
+    "credit_spell_lab_symbiotic"           "<font color=\'#7D7D7D\'>Credits: OtsoTurpeinen | github.com/OtsoTurpeinen</font>"
     "credit_sight"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
     "credit_zhanhun"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
     "credit_benneng"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
     "credit_shiguanghuisu"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
     "credit_jingtong"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
     "credit_arcane_mastery"           "<font color=\'#7D7D7D\'>Credits: TheRisen41 | github.com/TheRisen41</font>"
-    "credit_spell_lab_symbiotic"           "<font color=\'#7D7D7D\'>Credits: OtsoTurpeinen | github.com/OtsoTurpeinen</font>"
+
     "credit_aether_range_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
     "credit_sandking_caustic_finale_redux"           "<font color=\'#7D7D7D\'>Credits: Fixed by Firetoad | github.com/fcalife</font>"
     "credit_necrolyte_sadist_lod"           "<font color=\'#7D7D7D\'>Credits: Fixed by Firetoad | github.com/fcalife</font>"
@@ -2215,7 +2216,7 @@
     "DOTA_Tooltip_hawkeye_ricochet_mod"                                               "Hawkeye Ricochet Mod"
     "DOTA_Tooltip_hawkeye_ricochet_mod_description"                                   ""
 
-    "DOTA_Tooltip_modifier_detonator_dart"      "Detonator Dart
+    "DOTA_Tooltip_modifier_detonator_dart"      "Detonator Dart"
 
     "DOTA_Tooltip_hawkeye_detonator_dart_mod"                                         "Detonator Dart"
 
@@ -2230,10 +2231,7 @@
 
     //Bot Controller
     "DOTA_Tooltip_ability_imba_tower_ai_controller"                                 "Bot AI Helper"
-    "DOTA_Tooltip_ability_imba_tower_ai_controller_Description"                     "<font color='#70EA72'>This ability is designed to help bots deal with multiple towers. The logic is roughly as follows:</font>\n1. If an enemy bot is nearby AND tower is not invunerable AND there is no nearby allies = <font color='#70EA72'>Force enemy bot to attack tower</font>
-\n2. If an enemy bot is nearby AND enemy bot health is below 300 AND there is no nearby allies = <font color='#70EA72'>Teleport bot back to their base </font>
-\n3. If an enemy bot is nearby AND tower is invunerable = <font color='#70EA72'>Scare enemy bot away</font>
-\n\nEnemy bots that are teleported back to their base, receive the following compenstation for being displaced from battle: <font color='#70EA72'>100 gold and experience, full HP and MP on return and maximum movespeed for a period of time. </font>"
+    "DOTA_Tooltip_ability_imba_tower_ai_controller_Description"                     "<font color='#70EA72'>This ability is designed to help bots deal with multiple towers. The logic is roughly as follows:</font>\n1. If an enemy bot is nearby AND tower is not invunerable AND there is no nearby allies = <font color='#70EA72'>Force enemy bot to attack tower</font>\n2. If an enemy bot is nearby AND enemy bot health is below 300 AND there is no nearby allies = <font color='#70EA72'>Teleport bot back to their base </font>\n3. If an enemy bot is nearby AND tower is invunerable = <font color='#70EA72'>Scare enemy bot away</font>\n\nEnemy bots that are teleported back to their base, receive the following compenstation for being displaced from battle: <font color='#70EA72'>100 gold and experience, full HP and MP on return and maximum movespeed for a period of time. </font>"
     "DOTA_Tooltip_ability_imba_tower_ai_controller_Lore"                                "ASSUMING DIRECT CONTROL"
 
 
@@ -7220,7 +7218,7 @@
         "DOTA_Tooltip_ability_dragon_knight_dragon_blood_imba_bonus_armor"                   "ARMOR:"
         
         "DOTA_Tooltip_ability_dragon_knight_elder_dragon_form_imba"                          "Elder Dragon Form IMBA"
-        "DOTA_Tooltip_ability_dragon_knight_elder_dragon_form_imba_Description"              "Dragon Knight takes the form of one of three powerful elder dragons, increasing his speed, and Dragon Tail's range, while granting him new powers.\n<font color=\"#9acd32\">LEVEL 1 Green Dragon</font> - Corrosive Breath: attacks deal 20 poison damage per second for 5 seconds. Works on structures.\n<font color=\"#ff0000\">LEVEL 2 Red Dragon</font> - Splash Attack: attacks damage all enemy units in a 300 radius, with Corrosive Breath added to the targets.\n<font color=\"#87ceeb\">LEVEL 3 Blue Dragon</font> - Frost Breath: slows movement speed by 30%% and attack speed by 20 of enemy units in Splash Attack range for 3 seconds, with Corrosive Breath added to the targets."
+        "DOTA_Tooltip_ability_dragon_knight_elder_dragon_form_imba_Description"              "Dragon Knight takes the form of one of three powerful elder dragons, increasing his speed, and Dragon Tail's range, while granting him new powers.\n<font color=\'#9acd32\''>LEVEL 1 Green Dragon</font> - Corrosive Breath: attacks deal 20 poison damage per second for 5 seconds. Works on structures.\n<font color=\'#ff0000\''>LEVEL 2 Red Dragon</font> - Splash Attack: attacks damage all enemy units in a 300 radius, with Corrosive Breath added to the targets.\n<font color=\'#87ceeb\''>LEVEL 3 Blue Dragon</font> - Frost Breath: slows movement speed by 30%% and attack speed by 20 of enemy units in Splash Attack range for 3 seconds, with Corrosive Breath added to the targets."
         "DOTA_Tooltip_ability_dragon_knight_elder_dragon_form_imba_Lore"                     "The dormant dragon power springs forth from within Davion, combining the powers of a legendary knight with a legendary Eldwurm."
         "DOTA_Tooltip_ability_dragon_knight_elder_dragon_form_imba_Note0"                    "Corrosive Breath poison damage is lethal."
         "DOTA_Tooltip_ability_dragon_knight_elder_dragon_form_imba_Note1"                    "Splash Attack deals 100/75/50% damage in a 150/225/300 radius. Splash damage does not affect buildings."
@@ -8002,7 +8000,7 @@
         //// OVERFLOW
 
         "DOTA_Tooltip_Ability_blink_support"                                              "Blink Support"
-        "DOTA_Tooltip_Ability_blink_support_Description"                                  "Short distance teleportation that allows you to move yourself and your allies in and out of combat.\n\n Upgradeable by Aghanim's Scepter"
+        "DOTA_Tooltip_Ability_blink_support_Description"                                  "Short distance teleportation that allows you to move yourself and your allies in and out of combat.\n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: OtsoTurpeinen | github.com/OtsoTurpeinen</font>\n"
         "DOTA_Tooltip_Ability_blink_support_aghanim_description"  "Reduces cooldown."
         "DOTA_Tooltip_Ability_blink_support_max_blink"                                    "MAX BLINK DISTANCE:"
         "DOTA_Tooltip_Ability_blink_support_help_range"                                   "HELP RANGE:"
@@ -8010,7 +8008,7 @@
         "DOTA_Tooltip_Ability_blink_support_cooldown_scepter"                             "COOLDOWN SCEPTER:"
 
         "DOTA_Tooltip_Ability_dark_blade"                                                 "Dark Spell Blade"
-        "DOTA_Tooltip_Ability_dark_blade_Description"                                     "Bouncing magic that curses the victim's resistance to magic damage on every bounce. Victims recieve safe time that makes them immune to bounce from this instance of spell.\n\n Upgradeable by Aghanim's Scepter"
+        "DOTA_Tooltip_Ability_dark_blade_Description"                                     "Bouncing magic that curses the victim's resistance to magic damage on every bounce. Victims recieve safe time that makes them immune to bounce from this instance of spell.\n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: OtsoTurpeinen | github.com/OtsoTurpeinen</font>\n"
         "DOTA_Tooltip_Ability_dark_blade_aghanim_description"                               "Lowers Safe Time and Doubles the Curse in night time."
         "DOTA_Tooltip_Ability_dark_blade_damage"                                          "DAMAGE:"
         "DOTA_Tooltip_Ability_dark_blade_aoe_range"                                       "JUMP RADIUS:"
@@ -8020,7 +8018,7 @@
         "DOTA_Tooltip_Ability_dark_blade_fade_scepter"                                    "SCEPTER SAFE TIME:"
         
         "DOTA_Tooltip_Ability_light_blade"                                                "Burning Spell Blade"
-        "DOTA_Tooltip_Ability_light_blade_Description"                                    "Bouncing magic that deals <font color='#FF7800'>Fire Damage</font> to enemies. Victims recieve safe time that makes them immune to bounce from this instance of spell.\n\n Upgradeable by Aghanim's Scepter"
+        "DOTA_Tooltip_Ability_light_blade_Description"                                    "Bouncing magic that deals <font color='#FF7800'>Fire Damage</font> to enemies. Victims recieve safe time that makes them immune to bounce from this instance of spell.\n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: OtsoTurpeinen | github.com/OtsoTurpeinen</font>\n"
         "DOTA_Tooltip_Ability_light_blade_aghanim_description"                              "Lowers Safe Time and Bonus damage in day time."
         "DOTA_Tooltip_Ability_light_blade_damage"                                         "<font color='#FF7800'>FIRE DAMAGE</font>:"
         "DOTA_Tooltip_Ability_light_blade_aoe_range"                                      "JUMP RADIUS:"
@@ -8035,7 +8033,7 @@
         "DOTA_Tooltip_element_fire_Description"         "2 Damage per stack every 0.5 seconds. Stack reduced by 1 after the damage."
 
         "DOTA_Tooltip_Ability_metamorphosis"                                              "Roshanify"
-        "DOTA_Tooltip_Ability_metamorphosis_Description"                                  "For the limited duration you take form of Mighty Roshan! Provides base damage bonus and chance to stun on every attack. You do move a bit slower though.\n\n Upgradeable by Aghanim's Scepter"
+        "DOTA_Tooltip_Ability_metamorphosis_Description"                                  "For the limited duration you take form of Mighty Roshan! Provides base damage bonus and chance to stun on every attack. You do move a bit slower though.\n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: OtsoTurpeinen | github.com/OtsoTurpeinen</font>\n"
         "DOTA_Tooltip_Ability_metamorphosis_aghanim_description"                                "Improves Base Damage bonus."
         "DOTA_Tooltip_Ability_metamorphosis_base_damage"                                  "BASE DAMAGE BONUS:"
         "DOTA_Tooltip_Ability_metamorphosis_stun_chance"                                  "BASH CHANCE:"
@@ -8052,13 +8050,13 @@
         "DOTA_Tooltip_generic_lua_stun_Description"                                 "Stunned"
 
         "DOTA_Tooltip_Ability_seer"                                                       "Seer"
-        "DOTA_Tooltip_Ability_seer_Description"                                           "While channelling gain vision of all enemy heroes.\nDoes not include enemies who are invisible or dead at the start of the channel.\n\n Upgradeable by Aghanim's Scepter"
+        "DOTA_Tooltip_Ability_seer_Description"                                           "While channelling gain vision of all enemy heroes.\nDoes not include enemies who are invisible or dead at the start of the channel.\n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: OtsoTurpeinen | github.com/OtsoTurpeinen</font>\n"
         "DOTA_Tooltip_Ability_seer_aghanim_description"                             "Hides the modifier of being seen by seer."
         "DOTA_Tooltip_seer_mod"                                             "Spotted!"
         "DOTA_Tooltip_seer_mod_Description"                                 "Enemy Seer can see you."
 
         "DOTA_Tooltip_Ability_spectral_form"                                              "Spectral Form"
-        "DOTA_Tooltip_Ability_spectral_form_Description"                                  "You wrap the etheral around you becoming difficult to physically strike but weak against magic. While spectral you regenerate health and mana. Also you basic attack deals magic damage instead of physical.\n\n Upgradeable by Aghanim's Scepter"
+        "DOTA_Tooltip_Ability_spectral_form_Description"                                  "You wrap the etheral around you becoming difficult to physically strike but weak against magic. While spectral you regenerate health and mana. Also you basic attack deals magic damage instead of physical.\n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: OtsoTurpeinen | github.com/OtsoTurpeinen</font>\n"
         "DOTA_Tooltip_Ability_spectral_form_aghanim_description"                                "Applies the buff to allies in radius."
         "DOTA_Tooltip_Ability_spectral_form_health_regen"                                 "HEALTH REGEN:"
         "DOTA_Tooltip_Ability_spectral_form_mana_regen"                                   "MANA REGEN:"
@@ -8071,7 +8069,7 @@
         "DOTA_Tooltip_spectral_form_mod_Description"                                  "You wrap the etheral around you."
 
         "DOTA_Tooltip_Ability_military"                                                   "Military Training"
-        "DOTA_Tooltip_Ability_military_Description"                                       "You are part of the military, there for you get paid. Depending on your devotion to the training regimen you get paid on every hero level up.\nGold gain is multiplied by your hero level.\nAs fruit of the training you also strike faster."
+        "DOTA_Tooltip_Ability_military_Description"                                       "You are part of the military, there for you get paid. Depending on your devotion to the training regimen you get paid on every hero level up.\nAs fruit of the training you also strike faster.\n\n<font color=\'#7D7D7D\'>Credits: OtsoTurpeinen | github.com/OtsoTurpeinen</font>\n"
         "DOTA_Tooltip_Ability_military_attack_speed"                                      "ATTACK SPEED BONUS:"
         "DOTA_Tooltip_Ability_military_gold"                                              "GOLD PER LEVEL UP:"
 

@@ -2,7 +2,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 6.1 - Development Version
+## 6.2 - Development Version
+### Bug Fixing/New Features
+- 
+
+### Balance
+- 
+
+## 6.1 - Steam Version
 ### Bug Fixing/New Features
 - Fixed Necronomicon archer's speed aura
 - Re-enabled Expulsion and the custom Decays
@@ -12,13 +19,14 @@ All notable changes to this project will be documented in this file.
 - You can now right click mutators to cycle backwards
 - Builds will now auto-hide if there is more than 1 ability unavailable from it
 - Added Brewmasters Wind Walk to Invis tag
+- Added 7 abilities from Overflow
+- Symbiote has been tweaked so that symbiotes have a armor and magic resistant cost to the host
 
 ### Balance
 - Juxtapose is now only nerfed if OP abilities or Points mode is on, reduced price of Juxtapose in points mode accordingly. 
 - Roshan bash no longer works with illusions (therefore no longer troll combo with illusion abilities)
-- Temporarily disabled decays and expulsion, until they can be fixed
 
-## 6.0 - Steam Version
+## 6.0 
 ### Bug Fixing/New Features
 - Added 9 more settings to free ability mutator
 - Fixed Aegis tower ability not giving extra HP

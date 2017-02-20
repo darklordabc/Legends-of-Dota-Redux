@@ -4,7 +4,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"				"ability_lua"
-		"ScriptFile"					"abilities/overflow/seer.lua"
+		"ScriptFile"					"abilities/overflow/seer/seer.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"HasScepterUpgrade" "1"
 

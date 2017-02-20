@@ -4,7 +4,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"				"ability_lua"
-		"ScriptFile"					"abilities/overflow/metamorphosis.lua"
+		"ScriptFile"					"abilities/overflow/metamorphosis/metamorphosis.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"HasScepterUpgrade" "1"
 
@@ -45,7 +45,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"stun_chance"	"100"
+				"stun_chance"	"10 15 20"
 			}
 			"03"
 			{
