@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 - Added Balanced Version of Jingu Mastery. Original added to OP list, increased price in points mode.
 - Added Balanced Version of Chemical Rage. Original added to OP list, increased price in points mode.
 - Attack Range Flesh Heap gives 5 less range per stack.
+- Bots will no longer used Shadow Dance or Chemical Rage if they are stunned/silenced
 
 ## 6.1 - Steam Version
 ### Bug Fixing/New Features
