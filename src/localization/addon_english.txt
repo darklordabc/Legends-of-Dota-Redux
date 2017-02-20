@@ -4142,6 +4142,17 @@
     "DOTA_Tooltip_ability_alchemist_chemical_rage_redux_bonus_mana_regen"             "BONUS MANA REGEN:"
     "DOTA_Tooltip_ability_alchemist_chemical_rage_redux_bonus_movespeed"              "BONUS MOVE SPEED:"
 
+    "DOTA_Tooltip_ability_abaddon_borrowed_time_redux"                "Borrowed Time Redux"
+    "DOTA_Tooltip_ability_abaddon_borrowed_time_redux_Description"    "When activated, all damage dealt to you will heal instead of harm. Most negative buffs will also be removed. If the ability is not on cooldown, it will automatically activate if your health falls below %hp_threshold%. <font color='#70EA72'>25% shorter duration and 25% longer cooldown.</font>\n\nUpgradable by Aghanim's Scepter.\n\nDISPEL TYPE: Strong Dispel"
+    "DOTA_Tooltip_ability_abaddon_borrowed_time_redux_Lore"           "The most unnatural of all the gifts of the Font of Avernus, this power defies mortal understanding.  What should hurt, instead heals; and what should kill gives strength anew."
+    "DOTA_Tooltip_ability_abaddon_borrowed_time_redux_hp_threshold"   "HEALTH THRESHOLD:"
+    "DOTA_Tooltip_ability_abaddon_borrowed_time_redux_duration"       "DURATION:"
+    "DOTA_Tooltip_ability_abaddon_borrowed_time_redux_duration_scepter"       "SCEPTER DURATION:"
+    "DOTA_Tooltip_ability_abaddon_borrowed_time_redux_redirect_pct_tooltip_scepter"   "%SCEPTER DAMAGE REDIRECT:"
+    "DOTA_Tooltip_ability_abaddon_borrowed_time_redux_redirect_range_tooltip_scepter"     "SCEPTER REDIRECT RANGE:"
+    "DOTA_Tooltip_ability_abaddon_borrowed_time_redux_aghanim_description"    "Increases duration. While Borrowed Time is active, a percentage of all damage taken by allied Heroes in a radius will be redirected to Abaddon."
+    "DOTA_Tooltip_ability_abaddon_borrowed_time_redux_Note0"      "Borrowed Time can be activated while Abaddon is disabled, but not while silenced."
+
     "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod"                            "Jingu Mastery"
     "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_Description"                "Monkey King's attacks awaken the Jingu Bang's power. Upon the fourth hit on the same enemy hero, Monkey King earns four charged attacks that have bonus damage and lifesteal."
     "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_Lore"                       "Always sensitive to the moods of its master, the Jingu Bang radiates power when Sun Wukong's combat fervor is on full display."
