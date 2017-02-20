@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 - Attack Range Flesh Heap gives 5 less range per stack.
 - Bots will no longer used Shadow Dance or Chemical Rage if they are stunned/silenced
 - Fixed perks for Spirit Breaker, Ancient Apparition, Abaddon, Shadow Demon
+- Fixed bots getting stuck at ward spots. Semi-fixed bots getting fixed trying to collect stash. 
 
 ## 6.1 - Steam Version
 ### Bug Fixing/New Features

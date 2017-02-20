@@ -253,6 +253,57 @@ function Ingame:FilterExecuteOrder(filterTable)
     local issuer = filterTable["issuer_player_id_const"]
     for n,unit_index in pairs(units) do
         local unit = EntIndexToHScript(unit_index)
+
+        -- BOT STUCK FIX
+        -- How It Works: Every time bot creates an order, this checks their position, if they are in the same last position as last order,
+        -- increase counter. If counter gets too high, it means they have been stuck in same position for a long time, do action to help them.
+        
+        if util:isPlayerBot(unit:GetPlayerID()) then
+            if not unit.OldPosition then
+                unit.OldPosition = unit:GetAbsOrigin()
+                unit.StuckCounter = 0
+            elseif unit:GetAbsOrigin() == unit.OldPosition then
+                unit.StuckCounter = unit.StuckCounter + 1
+                local fixed = false
+
+                -- Stuck at observer ward fix
+                if unit.StuckCounter > 50 then
+                    for i=0,11 do
+                        local item = unit:GetItemInSlot(i)
+                        if item and item:GetName() == "item_ward_observer" then
+                            unit:ModifyGold(item:GetCost() * item:GetCurrentCharges(), true, 0)
+                            unit:RemoveItem(item)
+                            fixed = true           
+                        end
+                    end 
+                end
+
+                -- Stuck at shop trying to get stash items, remove stash items. THIS IS A BAND-AID FIX. IMPROVE AT SOME POINT
+                if unit.StuckCounter > 150 and fixed == false then
+                    for slot =  DOTA_STASH_SLOT_1, DOTA_STASH_SLOT_6 do
+                        item = unit:GetItemInSlot(slot)
+                        if item ~= nil then
+                            item:RemoveSelf()
+                            fixed = true
+                        end
+                    end
+                end
+                
+                -- Its well and truly borked, kill it and hope for the best.
+                if unit.StuckCounter > 300 and fixed == false then
+                    unit:Kill(nil, nil)
+                    fixed = true
+                end
+
+                if fixed == true then unit.StuckCounter = 0 end
+
+            else
+               unit.OldPosition = unit:GetAbsOrigin()
+               unit.StuckCounter = 0
+            end
+        end
+        -- END BOT STUCK FIX
+
         if unit:GetTeamNumber() ~= PlayerResource:GetCustomTeamAssignment(issuer) and PlayerResource:GetConnectionState(issuer) ~= 0 then 
             return false
         end
