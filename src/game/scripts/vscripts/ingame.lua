@@ -1425,7 +1425,7 @@ function Ingame:FilterDamage( filterTable )
     end
 
      -- Hero perks
-    if OptionManager:GetOption('disablePerks') == 0 then
+    if not OptionManager:GetOption('disablePerks') then
         filterTable = heroPerksDamageFilter(filterTable)
     end
 
