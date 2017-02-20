@@ -14,6 +14,7 @@ require('abilities/hero_perks/npc_dota_hero_obsidian_destroyer_perk')
 require('abilities/hero_perks/npc_dota_hero_death_prophet_perk')
 require('abilities/hero_perks/npc_dota_hero_drow_ranger_perk')
 require('abilities/hero_perks/npc_dota_hero_abaddon_perk')
+require('abilities/hero_perks/npc_dota_hero_slardar_perk')
 
 function heroPerksProjectileFilter(filterTable)
   local targetIndex = filterTable["entindex_target_const"]
@@ -71,7 +72,6 @@ function heroPerksModifierFilter(filterTable)
     npc_dota_hero_spirit_breaker_perk = true,
     npc_dota_hero_troll_warlord_perk = true,
   }
-
   local targetPerk = caster:FindAbilityByName(caster:GetName() .. "_perk")
   if not targetPerk then return true end
   if not targetPerks_modifier[targetPerk:GetName()] then return true end

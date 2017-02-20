@@ -257,7 +257,7 @@ function Ingame:FilterExecuteOrder(filterTable)
             return false
         end
     end
-    if OptionManager:GetOption('disablePerks') == 0 then
+    if not OptionManager:GetOption('disablePerks') then
         filterTable = heroPerksOrderFilter(filterTable)
     end
 
@@ -1450,7 +1450,7 @@ function Ingame:FilterModifiers( filterTable )
     local ability = EntIndexToHScript( ability_index )
 
      -- Hero perks
-    if OptionManager:GetOption('disablePerks') == 0 then
+    if not OptionManager:GetOption('disablePerks') then
         filterTable = heroPerksModifierFilter(filterTable)
     end
 

@@ -40,3 +40,6 @@ function modifier_npc_dota_hero_slardar_perk:OnCreated()
     end, DoUniqueString('give_slard_sprint'), .5)
   end
 end
+
+function perkSlardar(filterTable)
+end

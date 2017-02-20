@@ -6397,10 +6397,10 @@ function Pregame:fixSpawningIssues()
 
     local disabledPerks = {
         --npc_dota_hero_disruptor = true,
-        npc_dota_hero_shadow_demon = true,
-        npc_dota_hero_spirit_breaker = true,
+        -- npc_dota_hero_shadow_demon = true,
+        -- npc_dota_hero_spirit_breaker = true,
         --npc_dota_hero_spirit_slardar = true,
-        npc_dota_hero_ancient_apparition = true,
+        -- npc_dota_hero_ancient_apparition = true,
         npc_dota_hero_wisp = true
     }
 
@@ -6580,7 +6580,6 @@ function Pregame:fixSpawningIssues()
 
                  -- Add hero perks
                 Timers:CreateTimer(function()
-                    --print(self.perksDisabled)
                     local nameTest = spawnedUnit:GetName()
                     if IsValidEntity(spawnedUnit) and not self.perksDisabled and not spawnedUnit.hasPerk and not disabledPerks[nameTest] then
                        local perkName = spawnedUnit:GetName() .. "_perk"

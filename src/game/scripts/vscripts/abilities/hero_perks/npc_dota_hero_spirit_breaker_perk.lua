@@ -8,6 +8,10 @@ LinkLuaModifier( "modifier_npc_dota_hero_spirit_breaker_perk", "abilities/hero_p
 LinkLuaModifier( "modifier_npc_dota_hero_spirit_breaker_perk_break", "abilities/hero_perks/npc_dota_hero_spirit_breaker_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
 if npc_dota_hero_spirit_breaker_perk ~= "" then npc_dota_hero_spirit_breaker_perk = class({}) end
+
+function npc_dota_hero_spirit_breaker_perk:GetIntrinsicModifierName()
+    return "modifier_npc_dota_hero_spirit_breaker_perk"
+end
 --------------------------------------------------------------------------------------------------------
 --		Modifier: modifier_npc_dota_hero_spirit_breaker_perk				
 --------------------------------------------------------------------------------------------------------
@@ -42,6 +46,10 @@ function modifier_npc_dota_hero_spirit_breaker_perk_break:CheckState()
   return state
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_spirit_breaker_perk_break:IsPurgable(  )
+  return false
+end
+--------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_spirit_breaker_perk_break:IsHidden()
   return false
 end
@@ -62,7 +70,7 @@ function perkSpaceCow(filterTable)  --ModifierGainedFilter
   local ability = EntIndexToHScript( ability_index )
   if ability then
     if caster:HasModifier("modifier_npc_dota_hero_spirit_breaker_perk") then
-      if ability:HasAbilityFlag("bash") and parent ~= caster then
+      if ability:HasAbilityFlag("bash") and parent:GetTeamNumber() ~= caster:GetTeamNumber() then
         local modifierDuration = filterTable["duration"]
         local modifier = parent:AddNewModifier(caster, nil,"modifier_npc_dota_hero_spirit_breaker_perk_break",{duration = modifierDuration})
         local breakParticle = ParticleManager:CreateParticle("particles/items3_fx/silver_edge.vpcf", PATTACH_ABSORIGIN_FOLLOW, parent)
