@@ -8,7 +8,7 @@
 		"AbilitySpecial" {
 			"01" {
 				"var_type" "FIELD_INTEGER"
-				"ranged_chance" "100"
+				"ranged_chance" "80"
 			}
 
 			"02" {
