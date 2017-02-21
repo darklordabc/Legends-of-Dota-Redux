@@ -6,6 +6,9 @@ All notable changes to this project will be documented in this file.
 ### Bug Fixing/New Features
 - Battle Cry can now be skilled without True Form
 - Fixed and Re-Enabled Blizzard
+- Potentially fixed Creep Power being stuck at 1
+- Having more than 1 Flesh Heap is now a troll combo (sorry)
+- Temporarily disabled Memes redux as it causes players to be unable to move
 
 ### Balance
 - 
