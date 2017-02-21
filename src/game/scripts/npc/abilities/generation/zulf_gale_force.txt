@@ -34,7 +34,7 @@
 
 		"OnSpellStart" {
 			"ApplyModifier" {
-				"ModifierName" "modifier_gale_force_disarm"
+				"ModifierName" "modifier_gale_force"
 				"Target" "CASTER"
 				"Duration" "%duration"
 			}
@@ -72,26 +72,6 @@
 				"Duration" "%duration"
 				"EffectName" "particles/zulf_gale_force.vpcf"
 				"EffectAttachType" "attach_origin"
-				"ThinkInterval" "0.2"
-
-				"OnIntervalThink" {
-					"ActOnTargets" {
-						"Target" {
-							"Center" "CASTER"
-							"Radius" "%radius"
-							"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
-							"Flags" "DOTA_UNIT_TARGET_FLAG_NONE"
-						}
-
-						"Action" {
-							"RunScript" {
-								"ScriptFile" "abilities/zulf_gale_force.lua"
-								"Function" "ApplyDamageAgility"
-							}
-						}
-					}
-				}
 			}
 
 			"modifier_gale_force_disarm" {
@@ -103,6 +83,15 @@
 
 				"States" {
 					"MODIFIER_STATE_DISARMED" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+
+				"ThinkInterval" "0.2"
+				"OnIntervalThink" {
+					"RunScript"  {
+						"ScriptFile" "abilities/zulf_gale_force.lua"
+						"Function" "ApplyDamageAgility"
+						"Target" "TARGET"
+					}
 				}
 			}
 		}
