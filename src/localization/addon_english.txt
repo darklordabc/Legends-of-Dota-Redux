@@ -8082,10 +8082,10 @@
         "DOTA_Tooltip_Ability_metamorphosis_Description"                                  "For the limited duration you take form of Mighty Roshan! Provides base damage bonus and chance to stun on every attack. You do move a bit slower though.\n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: OtsoTurpeinen | github.com/OtsoTurpeinen</font>\n"
         "DOTA_Tooltip_Ability_metamorphosis_aghanim_description"                                "Improves Base Damage bonus."
         "DOTA_Tooltip_Ability_metamorphosis_base_damage"                                  "BASE DAMAGE BONUS:"
-        "DOTA_Tooltip_Ability_metamorphosis_stun_chance"                                  "BASH CHANCE:"
+        "DOTA_Tooltip_Ability_metamorphosis_stun_chance"                                  "%BASH CHANCE:"
         "DOTA_Tooltip_Ability_metamorphosis_stun_duration"                                "BASH DURATION:"
         "DOTA_Tooltip_Ability_metamorphosis_attack_range"                                 "ATTACK RANGE:"
-        "DOTA_Tooltip_Ability_metamorphosis_move_speed"                                   "MOVE SPEED PENALTY:"
+        "DOTA_Tooltip_Ability_metamorphosis_move_speed"                                   "MAX MOVE SPEED:"
         "DOTA_Tooltip_Ability_metamorphosis_tool_tip_duration"                            "DURATION:"
         "DOTA_Tooltip_Ability_metamorphosis_base_damage_scepter"                        "SCEPTER DAMAGE:"
         

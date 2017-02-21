@@ -45,7 +45,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"stun_chance"	"10 15 20"
+				"stun_chance"	"5 10 15"
 			}
 			"03"
 			{
@@ -60,7 +60,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"move_speed"	"-25"
+				"move_speed"	"270"
 			}
 			"06"
 			{

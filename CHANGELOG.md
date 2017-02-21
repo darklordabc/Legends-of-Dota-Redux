@@ -2,7 +2,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 6.3 - Development Version
+## 6.4 - Development Version
+### Bug Fixing/New Features
+- Roshanify now has max move speed of 270 and lower bash chance.
+
+### Balance
+- 
+
+## 6.3 - Steam Version
 ### Bug Fixing/New Features
 - Battle Cry can now be skilled without True Form
 - Fixed and Re-Enabled Blizzard
@@ -10,13 +17,7 @@ All notable changes to this project will be documented in this file.
 - Having more than 1 Flesh Heap is now a troll combo (sorry)
 - Temporarily disabled Memes redux as it causes players to be unable to move
 
-### Balance
-- 
-
-## 6.2 - Steam Version
-### Bug Fixing/New Features
-- 
-
+## 6.2
 ### Balance
 - Symbiote is now troll combo with 3 or 4 self-harming abilities, like Detonation and techies sucicide
 - Added balanced versions of Chemical Rage, Jingu Mastery, Borrowed Time, Tempest Double. In most cases, originals added to OP list, increased price in points mode.
