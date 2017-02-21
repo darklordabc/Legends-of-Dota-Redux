@@ -46,6 +46,7 @@ function heroPerksOrderFilter(filterTable)
     -- Perk for Shadow Demon
   perkShadowDemon(filterTable)
 
+  return filterTable
 end
 
 function heroPerksModifierFilter(filterTable)
@@ -53,7 +54,7 @@ function heroPerksModifierFilter(filterTable)
   local caster_index = filterTable["entindex_caster_const"]
   local ability_index = filterTable["entindex_ability_const"]
   if not parent_index or not caster_index or not ability_index then
-      return true
+      return filterTable
   end
   local parent = EntIndexToHScript( parent_index )
   local caster = EntIndexToHScript( caster_index )
@@ -73,8 +74,8 @@ function heroPerksModifierFilter(filterTable)
     npc_dota_hero_troll_warlord_perk = true,
   }
   local targetPerk = caster:FindAbilityByName(caster:GetName() .. "_perk")
-  if not targetPerk then return true end
-  if not targetPerks_modifier[targetPerk:GetName()] then return true end
+  if not targetPerk then return filterTable end
+  if not targetPerks_modifier[targetPerk:GetName()] then return filterTable end
   -- Perk for Dragon Knight
   PerkDragonKnight(filterTable)
   -- Perk for Ancient Apparition
