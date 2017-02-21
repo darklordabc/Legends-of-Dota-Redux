@@ -2510,15 +2510,16 @@ function Pregame:initOptionSelector()
             -- When the player activates this potion, they have a chance to hear a meme sound. Becomes more unlikely the more they hear.
             if value == 1 then
 
-                local shouldPlay = RandomInt(1, self.chanceToHearMeme)
-                if shouldPlay == 1 then
-                    EmitGlobalSound("Memes.RandomSample")
-                    self.chanceToHearMeme = self.chanceToHearMeme + 1
-                end
+                -- COMMENTED OUT BELOW UNTIL CAN FIX
+                --local shouldPlay = RandomInt(1, self.chanceToHearMeme)
+                --if shouldPlay == 1 then
+                --    EmitGlobalSound("Memes.RandomSample")
+                --    self.chanceToHearMeme = self.chanceToHearMeme + 1
+                --end
                 
             end
-
-            return value == 0 or value == 1
+            -- MADE BOTH ZERO BELOW UNTIL WE CAN FIX
+            return value == 0 or value == 0
         end, 
 
         
