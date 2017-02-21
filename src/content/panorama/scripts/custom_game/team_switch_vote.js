@@ -2,6 +2,12 @@
 
 var util = GameUI.CustomUIConfig().Util;
 
+var hud = $.GetContextPanel().GetParent();
+while(hud.id != "Hud")
+    hud = hud.GetParent();
+
+var pausedLabel = hud.FindChildTraverse("PausedLabel").GetParent();
+
 GameEvents.Subscribe("vote_dialog", show_vote_dialog);
 GameEvents.Subscribe("player_declined", player_declined);
 GameEvents.Subscribe("player_accepted", player_accepted);
@@ -20,6 +26,8 @@ function show_vote_dialog(swap_info) {
 
     $('#vote_dialog').RemoveClass('dialog_hidden');
     $('#choice').RemoveClass('hiddenoccupy')
+
+    pausedLabel.visible = false;
 
     apply_transition_from_start('#vote_timer', '10s', 'shrink');
     handler = $.Schedule(10, function() { $('#vote_dialog').AddClass('dialog_hidden');
@@ -46,6 +54,7 @@ function player_declined() {
     halt_transition('#vote_timer', 'shrink');
     $.Schedule(2, function() {
         vote_dialog.AddClass('dialog_hidden');
+        pausedLabel.visible = true;
     })
     $.Schedule(4, function() {
         vote_dialog.RemoveClass('declined');
@@ -63,6 +72,7 @@ function player_accepted() {
     halt_transition('#vote_timer', 'shrink');
     $.Schedule(2, function() {
         vote_dialog.AddClass('dialog_hidden');
+        pausedLabel.visible = true;
     })
     $.Schedule(4, function() {
         vote_dialog.RemoveClass('accepted');
