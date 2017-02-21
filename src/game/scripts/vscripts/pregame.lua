@@ -6876,16 +6876,23 @@ function Pregame:fixSpawningIssues()
                 end
             elseif string.match(spawnedUnit:GetUnitName(), "creep") or string.match(spawnedUnit:GetUnitName(), "siege") then
                 if this.optionStore['lodOptionCreepPower'] > 0 then
-                    local level = math.ceil((WAVE or 1) / (this.optionStore['lodOptionCreepPower'] / 30))
-                    local ability = spawnedUnit:AddAbility("lod_creep_power")
-                    ability:UpgradeAbility(false)
+                    local dotaTime = GameRules:GetDOTATime(false, false)
+                    local level = math.ceil(dotaTime / this.optionStore['lodOptionCreepPower'])
+
+                    Timers:CreateTimer(function()
+                        if IsValidEntity(spawnedUnit) then
+                            local ability = spawnedUnit:AddAbility("lod_creep_power")
+                            ability:UpgradeAbility(false)
+                            spawnedUnit:SetModifierStackCount("modifier_creep_power",spawnedUnit,level)
+                        end
+                    end, DoUniqueString('giveCreepPower'), 2)
 
                     -- After level 14, creeps evolve model to represent their upgraded power
                     local levelToUpgrade = 14
 
                     Timers:CreateTimer(function()
                         if IsValidEntity(spawnedUnit) then
-                            spawnedUnit:SetModifierStackCount("modifier_creep_power",spawnedUnit,level)
+                            
                             if level > levelToUpgrade then
                                 if spawnedUnit:GetModelName() == "models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee.vmdl" then
                                     spawnedUnit:SetModel("models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee_mega.vmdl")
