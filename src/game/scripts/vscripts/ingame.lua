@@ -67,8 +67,11 @@ function Ingame:init()
         CustomNetTables:SetTableValue("phase_ingame","balance_players",{swapInProgress = 1})
 
         GameRules:SendCustomMessage("#teamSwitch_notification", 0, 0)
+
+        local code = DoUniqueString("team_switch")
+        self.teamSwitchCode = code
         Timers:CreateTimer(function ()
-            this:swapPlayers(args.x, args.y)
+            this:swapPlayers(args.x, args.y, code)
         end, 'switch_warning', 5)
     end)
 
@@ -696,7 +699,7 @@ function otherTeam(team)
     return -1
 end
 
-function Ingame:swapPlayers(x, y)
+function Ingame:swapPlayers(x, y, code)
     CustomNetTables:SetTableValue("phase_ingame","balance_players",{swapInProgress = 1})
 
     local player_count = PlayerResource:GetPlayerCount()
@@ -714,19 +717,24 @@ function Ingame:swapPlayers(x, y)
     local h;
     h = CustomGameEventManager:RegisterListener( 'accept', function ()
         accepted = accepted + 1
-        if accepted >= cp_count then
-            Timers:CreateTimer(function ()
+        if accepted >= cp_count  then
+            -- Timers:CreateTimer(function ()
+            if self.teamSwitchCode == code then
                 self:accepted(x,y)
-                CustomGameEventManager:UnregisterListener(h)
-                CustomGameEventManager:Send_ServerToAllClients('player_accepted', {});
-            end, 'accepted', 0)
+            end
+            
+            CustomGameEventManager:UnregisterListener(h)
+            CustomGameEventManager:Send_ServerToAllClients('player_accepted', {});
+            -- end, 'accepted', 0)
         end
     end)
     
     PauseGame(true);
 
     Timers:CreateTimer(function ()
-        self:accepted(x,y)
+        if self.teamSwitchCode == code then
+            self:accepted(x,y)
+        end   
         CustomGameEventManager:UnregisterListener(h)
     end, 'accepted', 10)
 
@@ -764,11 +772,15 @@ function Ingame:accepted(x, y)
         end
     end
 
+    self.teamSwitchCode = ""
+
     Timers:CreateTimer(function () PauseGame(false) end, DoUniqueString(''), 2)
 end
 
 function Ingame:declined(event_source_index)
     CustomGameEventManager:Send_ServerToAllClients('player_declined', {});
+    CustomNetTables:SetTableValue("phase_ingame","balance_players",{swapInProgress = 0})
+    self.teamSwitchCode = ""
     Timers:CreateTimer(function () PauseGame(false) end, 'accepted', 2)
 end
 
