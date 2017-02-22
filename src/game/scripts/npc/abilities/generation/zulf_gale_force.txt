@@ -37,13 +37,14 @@
 			{
 				"var_type" "FIELD_INTEGER"
 				"radius" "300 325 350 375"
-			}
+			}		
 
 			"04"
 			{
 				"var_type"	"FIELD_FLOAT"
 				"delay"		"1.5"
 			}
+
 
 			"05"
 			{

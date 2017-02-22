@@ -67,8 +67,11 @@ function Ingame:init()
         CustomNetTables:SetTableValue("phase_ingame","balance_players",{swapInProgress = 1})
 
         GameRules:SendCustomMessage("#teamSwitch_notification", 0, 0)
+
+        local code = DoUniqueString("team_switch")
+        self.teamSwitchCode = code
         Timers:CreateTimer(function ()
-            this:swapPlayers(args.x, args.y)
+            this:swapPlayers(args.x, args.y, code)
         end, 'switch_warning', 5)
     end)
 
@@ -249,22 +252,22 @@ function Ingame:OnPlayerPurchasedItem(keys)
 end
 
 function Ingame:FilterExecuteOrder(filterTable)
+
     local units = filterTable["units"]
     local issuer = filterTable["issuer_player_id_const"]
-    for n,unit_index in pairs(units) do
-        local unit = EntIndexToHScript(unit_index)
+    local unit = EntIndexToHScript(units["0"])
 
-        -- BOT STUCK FIX
-        -- How It Works: Every time bot creates an order, this checks their position, if they are in the same last position as last order,
-        -- increase counter. If counter gets too high, it means they have been stuck in same position for a long time, do action to help them.
-        
-        if unit and unit:IsRealHero() and util:isPlayerBot(unit:GetPlayerID()) then
+    -- BOT STUCK FIX
+    -- How It Works: Every time bot creates an order, this checks their position, if they are in the same last position as last order,
+    -- increase counter. If counter gets too high, it means they have been stuck in same position for a long time, do action to help them.
+    
+    if unit then
+        if unit:IsRealHero() and util:isPlayerBot(unit:GetPlayerID()) then
             if not unit.OldPosition then
                 unit.OldPosition = unit:GetAbsOrigin()
                 unit.StuckCounter = 0
             elseif unit:GetAbsOrigin() == unit.OldPosition then
                 unit.StuckCounter = unit.StuckCounter + 1
-                local fixed = false
 
                 -- Stuck at observer ward fix
                 if unit.StuckCounter > 50 then
@@ -273,7 +276,7 @@ function Ingame:FilterExecuteOrder(filterTable)
                         if item and item:GetName() == "item_ward_observer" then
                             unit:ModifyGold(item:GetCost() * item:GetCurrentCharges(), true, 0)
                             unit:RemoveItem(item)
-                            fixed = true           
+                            return true         
                         end
                     end 
                 end
@@ -284,7 +287,7 @@ function Ingame:FilterExecuteOrder(filterTable)
                         item = unit:GetItemInSlot(slot)
                         if item ~= nil then
                             item:RemoveSelf()
-                            fixed = true
+                            return true
                         end
                     end
                 end
@@ -292,29 +295,29 @@ function Ingame:FilterExecuteOrder(filterTable)
                 -- Its well and truly borked, kill it and hope for the best.
                 if unit.StuckCounter > 300 and fixed == false then
                     unit:Kill(nil, nil)
-                    fixed = true
+                    return true
                 end
-
-                if fixed == true then unit.StuckCounter = 0 end
 
             else
                unit.OldPosition = unit:GetAbsOrigin()
                unit.StuckCounter = 0
             end
         end
-        -- END BOT STUCK FIX
-
-        if unit:GetTeamNumber() ~= PlayerResource:GetCustomTeamAssignment(issuer) and PlayerResource:GetConnectionState(issuer) ~= 0 then 
-            return false
-        end
     end
+    -- END BOT STUCK FIX
+
+    if unit:GetTeamNumber() ~= PlayerResource:GetCustomTeamAssignment(issuer) and PlayerResource:GetConnectionState(issuer) ~= 0 then 
+        return false
+    end
+    
     if not OptionManager:GetOption('disablePerks') then
         filterTable = heroPerksOrderFilter(filterTable)
     end
 
-    if OptionManager:GetOption('memesRedux') == 1 then
-        filterTable = memesOrderFilter(filterTable)
-    end
+    -- UNCOMMENT WHEN FIXED MEMES REDUX
+    --if OptionManager:GetOption('memesRedux') == 1 then
+    --    filterTable = memesOrderFilter(filterTable)
+    --end
     return true
 end    
 
@@ -696,7 +699,7 @@ function otherTeam(team)
     return -1
 end
 
-function Ingame:swapPlayers(x, y)
+function Ingame:swapPlayers(x, y, code)
     CustomNetTables:SetTableValue("phase_ingame","balance_players",{swapInProgress = 1})
 
     local player_count = PlayerResource:GetPlayerCount()
@@ -714,19 +717,24 @@ function Ingame:swapPlayers(x, y)
     local h;
     h = CustomGameEventManager:RegisterListener( 'accept', function ()
         accepted = accepted + 1
-        if accepted >= cp_count then
-            Timers:CreateTimer(function ()
+        if accepted >= cp_count  then
+            -- Timers:CreateTimer(function ()
+            if self.teamSwitchCode == code then
                 self:accepted(x,y)
-                CustomGameEventManager:UnregisterListener(h)
-                CustomGameEventManager:Send_ServerToAllClients('player_accepted', {});
-            end, 'accepted', 0)
+            end
+            
+            CustomGameEventManager:UnregisterListener(h)
+            CustomGameEventManager:Send_ServerToAllClients('player_accepted', {});
+            -- end, 'accepted', 0)
         end
     end)
     
     PauseGame(true);
 
     Timers:CreateTimer(function ()
-        self:accepted(x,y)
+        if self.teamSwitchCode == code then
+            self:accepted(x,y)
+        end   
         CustomGameEventManager:UnregisterListener(h)
     end, 'accepted', 10)
 
@@ -764,11 +772,15 @@ function Ingame:accepted(x, y)
         end
     end
 
+    self.teamSwitchCode = ""
+
     Timers:CreateTimer(function () PauseGame(false) end, DoUniqueString(''), 2)
 end
 
 function Ingame:declined(event_source_index)
     CustomGameEventManager:Send_ServerToAllClients('player_declined', {});
+    CustomNetTables:SetTableValue("phase_ingame","balance_players",{swapInProgress = 0})
+    self.teamSwitchCode = ""
     Timers:CreateTimer(function () PauseGame(false) end, 'accepted', 2)
 end
 
