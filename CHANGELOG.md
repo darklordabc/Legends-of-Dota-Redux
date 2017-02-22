@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 6.4 - Development Version
 ### Bug Fixing/New Features
 - Roshanify now has max move speed of 270 and lower bash chance.
+- Fixed Gale Force not causing damage
 
 ### Balance
 - 
