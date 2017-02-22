@@ -107,7 +107,7 @@ function heroPerksDamageFilter(filterTable)
     local attacker_index = filterTable["entindex_attacker_const"]
     local ability_index = filterTable["entindex_inflictor_const"]
     if not victim_index or not attacker_index then
-        return true
+        return filterTable
     end
     local parent = EntIndexToHScript( victim_index )
     local caster = EntIndexToHScript( attacker_index )
@@ -118,8 +118,8 @@ function heroPerksDamageFilter(filterTable)
     npc_dota_hero_bane_perk = true
   }
   local targetPerk = caster:FindAbilityByName(caster:GetName() .. "_perk")
-  if not targetPerk then return true end
-  if not targetPerks_damage[targetPerk:GetName()] then return true end
+  if not targetPerk then return filterTable end
+  if not targetPerks_damage[targetPerk:GetName()] then return filterTable end
   -- Perk for Abaddon
   PerkAbaddon(filterTable)
    -- Perk for Pudge
