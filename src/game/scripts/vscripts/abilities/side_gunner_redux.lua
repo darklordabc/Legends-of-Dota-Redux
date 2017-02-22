@@ -23,7 +23,7 @@ function Shot( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 
-	local attackRange = caster:GetAttackRange()
+	local attackRange = ability:GetSpecialValueFor("range")
 	local projectileSpeed = caster:GetProjectileSpeed()
 
 	local units = FindUnitsInRadius(caster:GetTeamNumber(),caster:GetAbsOrigin(),nil,attackRange,DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
@@ -50,6 +50,7 @@ function Shot( keys )
 			caster:RemoveModifierByName("modifier_side_gunner_redux")
 
 			ability:ApplyDataDrivenModifier(caster,caster,"modifier_side_gunner_redux_cd",{})
+			ability:StartCooldown(ability:GetSpecialValueFor("interval"))
 
 		    Timers:CreateTimer( ability:GetSpecialValueFor("interval"), function()
 		    	if caster:IsNull() then return end

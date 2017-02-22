@@ -5,6 +5,8 @@
 		"AbilityTextureName" "custom/side_gunner_redux"
 		"AbilityCooldown" "10"
 
+		"AOERadius"	"365 390 415 440"
+
 		"precache"
 		{
 			"particle"  "particles/units/heroes/hero_gyrocopter/gyro_base_attack.vpcf"
@@ -16,7 +18,7 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"interval"			"8.0 7.0 6.0 5.0"
+				"interval"			"6.0 4.5 3.0 1.5"
 			}
 			"02"
 			{
