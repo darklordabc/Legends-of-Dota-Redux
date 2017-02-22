@@ -34,6 +34,7 @@
 #base "abilities\overflow\military.txt"
 #base "abilities\overflow\seer.txt"
 #base "abilities\overflow\spectral_form.txt"
+#base "abilities\custom\side_gunner_redux.txt"
 #base "abilities\custom\aether_range_lod.txt"
 #base "abilities\custom\aether_range_lod_global.txt"
 #base "abilities\custom\aether_range_lod_OP.txt"
