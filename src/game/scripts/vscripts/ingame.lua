@@ -314,10 +314,9 @@ function Ingame:FilterExecuteOrder(filterTable)
         filterTable = heroPerksOrderFilter(filterTable)
     end
 
-    -- UNCOMMENT WHEN FIXED MEMES REDUX
-    --if OptionManager:GetOption('memesRedux') == 1 then
-    --    filterTable = memesOrderFilter(filterTable)
-    --end
+    if OptionManager:GetOption('memesRedux') == 1 then
+        filterTable = memesOrderFilter(filterTable)
+    end
     return true
 end    
 

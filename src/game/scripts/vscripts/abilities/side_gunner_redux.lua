@@ -33,7 +33,7 @@ function Shot( keys )
 	local units = FindUnitsInRadius(caster:GetTeamNumber(),caster:GetAbsOrigin(),nil,attackRange,DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)
 
 	for k,v in pairs(units) do
-		if v and caster:CanEntityBeSeenByMyTeam(v) and not v:IsInvulnerable() then
+	if v and caster:CanEntityBeSeenByMyTeam(v) and not v:IsInvulnerable() then
 			local projectileInfo = 
 		    {
 		        EffectName = "particles/units/heroes/hero_gyrocopter/gyro_base_attack.vpcf",
