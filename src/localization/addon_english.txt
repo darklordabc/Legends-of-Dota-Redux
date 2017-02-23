@@ -4147,6 +4147,12 @@
     "DOTA_Tooltip_ability_alchemist_chemical_rage_redux_bonus_mana_regen"             "BONUS MANA REGEN:"
     "DOTA_Tooltip_ability_alchemist_chemical_rage_redux_bonus_movespeed"              "BONUS MOVE SPEED:"
 
+    "DOTA_Tooltip_ability_alchemist_transmuted_scepter" 							  "Transmuted cepter" 
+    "DOTA_Tooltip_ability_alchemist_transmuted_scepter_Description" 	    		  "Forges a replica of Aghnaim Scepter that can be embedded into the hero's weapon. Casting Transmuted Scepter on any allied hero, including yourself, grants the Aghnaim's Scepter bonuses permanently."
+    "DOTA_Tooltip_ability_alchemist_transmuted_scepter_Lore" 					      "There is almost nothing that a master Alchemist cannot transmute - not even a legendary staff."
+    "DOTA_Tooltip_modifier_alchemist_transmuted_scepter"	  						  "Transmuted Scepter"
+    "DOTA_Tooltip_modifier_alchemist_transmuted_scepter_Description" 				  "Permanently gaining Aghnaim's Scepter's bonuses."
+
     "DOTA_Tooltip_ability_abaddon_borrowed_time_redux"                "Borrowed Time Redux"
     "DOTA_Tooltip_ability_abaddon_borrowed_time_redux_Description"    "When activated, all damage dealt to you will heal instead of harm. Most negative buffs will also be removed. If the ability is not on cooldown, it will automatically activate if your health falls below %hp_threshold%. <font color='#70EA72'>25% shorter duration and 25% longer cooldown.</font>\n\nUpgradable by Aghanim's Scepter.\n\nDISPEL TYPE: Strong Dispel"
     "DOTA_Tooltip_ability_abaddon_borrowed_time_redux_Lore"           "The most unnatural of all the gifts of the Font of Avernus, this power defies mortal understanding.  What should hurt, instead heals; and what should kill gives strength anew."
