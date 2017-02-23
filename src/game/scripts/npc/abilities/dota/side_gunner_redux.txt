@@ -4,7 +4,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName" "custom/side_gunner_redux"
 
-		"AOERadius"	"365 390 415 440"
+		"AOERadius"	"600"
 
 		"precache"
 		{
@@ -27,7 +27,7 @@
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"range"				"365 390 415 440"
+				"range"				"600"
 			}
 		}
 
