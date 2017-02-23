@@ -1288,6 +1288,7 @@
     "credit_jingtong"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
     "credit_arcane_mastery"           "<font color=\'#7D7D7D\'>Credits: TheRisen41 | github.com/TheRisen41</font>"
 
+    "credit_alchemist_aghnaim_magic_redux"           "<font color=\'#7D7D7D\'>Credits: Shushishtok | github.com/Shushishtok</font>"
     "credit_aether_range_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
     "credit_sandking_caustic_finale_redux"           "<font color=\'#7D7D7D\'>Credits: Fixed by Firetoad | github.com/fcalife</font>"
     "credit_necrolyte_sadist_lod"           "<font color=\'#7D7D7D\'>Credits: Fixed by Firetoad | github.com/fcalife</font>"

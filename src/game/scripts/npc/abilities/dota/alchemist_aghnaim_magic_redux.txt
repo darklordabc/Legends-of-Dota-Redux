@@ -7,10 +7,10 @@
 		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO"
 		"AbilityUnitTargetFlags"				"DOTA_UNIT_TARGET_FLAG_NONE"
 
-		"AbilityTextureName" 					"custom/aghs_spell_2"		
-		"AbilityCastRange"						"600 900 1200 1500"
-		"AbilityManaCost"						"60 90 120 150"
-		"AbilityCooldown"						"30 60 90 120"
+		"AbilityTextureName" 					"custom/alchemist_aghnaim_magic_redux"		
+		"AbilityCastRange"						"250"
+		"AbilityManaCost"						"120 150 180 210"
+		"AbilityCooldown"						"120 90 60 30"
 		"AbilityCastPoint"						"0.3"		
 		"ScriptFile"							"abilities/alchemist_aghnaim_magic"
 
