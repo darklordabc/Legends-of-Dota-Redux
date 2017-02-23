@@ -5,7 +5,7 @@
 		"AbilityTextureName" "custom/side_gunner_redux"
 		"AbilityCooldown" "10"
 
-		"AOERadius"	"365 390 415 440"
+		"AOERadius"	"600"
 
 		"precache"
 		{
@@ -18,12 +18,17 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"interval"			"6.0 4.5 3.0 1.5"
+				"interval"			"5 4 3 2"
 			}
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"range"		"365 390 415 440"
+				"range"		"600"
+			}
+			"03" 
+			{
+				"var_type" "FIELD_INTEGER"
+				"scepter_interval" "4 3 2 1"
 			}
 		}
 
