@@ -1549,7 +1549,15 @@
     "DOTA_Tooltip_ability_alchemist_chemical_rage_lod_bonus_health_regen"           "BONUS HEALTH REGEN:"
     "DOTA_Tooltip_ability_alchemist_chemical_rage_lod_bonus_mana_regen"             "BONUS MANA REGEN:"
     "DOTA_Tooltip_ability_alchemist_chemical_rage_lod_bonus_movespeed"              "BONUS MOVE SPEED:"
-    "DOTA_Tooltip_ability_alchemist_chemical_rage_lod_notes"                        "Notes:\n\nHas a 0.35 seconds transformation time."
+    "DOTA_Tooltip_ability_alchemist_chemical_rage_lod_notes"                        "Notes:\n\nHas a 0.35 seconds transformation    time."
+
+    "DOTA_Tooltip_ability_alchemist_aghnaim_magic_redux"                            "Aghnaim Magic"
+    "DOTA_Tooltip_ability_alchemist_aghnaim_magic_redux_Description"                "Alchemist can transmute the magical energies of himself or his allies, causing them to get Aghnaim's Scepter's benefit for a duration."
+    "DOTA_Tooltip_ability_alchemist_aghnaim_magic_redux_Lore"                       "Gold is not the only thing a true Alchemist can transmute."
+    "DOTA_Tooltip_ability_alchemist_aghnaim_magic_redux_Note0"                      "Aghnaim Magic is useable on the caster as well as allied heroes."
+    "DOTA_Tooltip_ability_alchemist_aghnaim_magic_redux_duration"                   "DURATION:"
+    "Dota_Tooltip_modifier_alchemist_aghnaim_magic_redux"                           "Temporary Scepter"
+    "Dota_Tooltip_modifier_alchemist_aghnaim_magic_redux_Description"               "Temporarily gaining Aghnaim's Scepter's upgrades."
 
     // Ogre Magi
     "DOTA_Tooltip_ability_ogre_magi_multicast_lod"                                  "Multicast Redux"
