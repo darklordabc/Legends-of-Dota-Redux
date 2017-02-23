@@ -7891,7 +7891,9 @@
         "DOTA_Tooltip_ability_side_gunner_redux_Description"    "The Side Gunner performs an instant attack in the set interval. Its target is chosen completely randomly."
         "DOTA_Tooltip_ability_side_gunner_redux_Lore"           ""
         "DOTA_Tooltip_ability_side_gunner_redux_interval"    "INTERVAL:"
+        "DOTA_Tooltip_ability_side_gunner_redux_interval_scepter"    "INTERVAL WITH SCEPTER:"
         "DOTA_Tooltip_ability_side_gunner_redux_range"          "RANGE:"
+        "DOTA_Tooltip_ability_side_gunner_redux_aghanim_description"  "Reduces interval by 1 on each level."
 
         "DOTA_Tooltip_ability_chaos_knight_chaos_strike_gyro"                "Infernal Blade Replacement"
         "DOTA_Tooltip_ability_chaos_knight_chaos_strike_gyro_Description"    "Gyrocopter cannot use Infernal blade unless 'Single Player' abilities are enabled. There is a bug where infernal blade never goes on cooldown if Gryo attacks via using his side-gunner that is enabled with Aghs. This is a replacement ability, which is based on Chaos Knight's Chaos Strike."

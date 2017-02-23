@@ -17,13 +17,18 @@
 		{
 			"01"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"interval"			"6.0 4.5 3.0 1.5"
+				"var_type"			"FIELD_FLOAT"
+				"interval"			"6.5 5.0 3.5 2.0"
 			}
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"range"		"365 390 415 440"
+				"interval_scepter"	"5.5 4.0 2.5 1.0"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"range"				"365 390 415 440"
 			}
 		}
 
@@ -70,7 +75,6 @@
 				}
 			}
 			"modifier_side_gunner_redux_cd" {
-				"Duration" "%interval"
 				"Passive" "0"
 				"IsHidden" "0"
 			}
