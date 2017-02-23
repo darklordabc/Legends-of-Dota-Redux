@@ -1112,7 +1112,7 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                     -- Create the hero and validate it
                     --print(heroName)
                     if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil then
-                        UTIL_Remove(PlayerResource:GetSelectedHeroEntity(playerID))
+                        -- UTIL_Remove(PlayerResource:GetSelectedHeroEntity(playerID))
                         hero = PlayerResource:ReplaceHeroWith(playerID,heroName,625 + OptionManager:GetOption('bonusGold'),0)
                     else
                         hero = CreateHeroForPlayer(heroName,player) 
@@ -2510,16 +2510,15 @@ function Pregame:initOptionSelector()
             -- When the player activates this potion, they have a chance to hear a meme sound. Becomes more unlikely the more they hear.
             if value == 1 then
 
-                -- COMMENTED OUT BELOW UNTIL CAN FIX
-                --local shouldPlay = RandomInt(1, self.chanceToHearMeme)
-                --if shouldPlay == 1 then
-                --    EmitGlobalSound("Memes.RandomSample")
-                --    self.chanceToHearMeme = self.chanceToHearMeme + 1
-                --end
+                local shouldPlay = RandomInt(1, self.chanceToHearMeme)
+                if shouldPlay == 1 then
+                    EmitGlobalSound("Memes.RandomSample")
+                    self.chanceToHearMeme = self.chanceToHearMeme + 1
+                end
                 
             end
-            -- MADE BOTH ZERO BELOW UNTIL WE CAN FIX
-            return value == 0 or value == 0
+
+            return value == 0 or value == 1
         end, 
 
         
@@ -4382,7 +4381,7 @@ function Pregame:onPlayerSaveBans(eventSourceIndex, args)
     local count = (self.optionStore['lodOptionBanningMaxBans'] + self.optionStore['lodOptionBanningMaxHeroBans'])
 
     if count == 0 and self.optionStore['lodOptionBanningHostBanning'] > 0 then
-        count = 50
+        count = util:getTableLength(self.playerBansList[playerID]) 
     end
 
     local id = 0
@@ -4416,7 +4415,7 @@ function Pregame:onPlayerLoadBans(eventSourceIndex, args)
     local count = (self.optionStore['lodOptionBanningMaxBans'] + self.optionStore['lodOptionBanningMaxHeroBans'])
 
     if count == 0 and self.optionStore['lodOptionBanningHostBanning'] > 0 then
-        count = 50
+        count = 1000
     end
 
     for i=1,count do
@@ -4435,7 +4434,7 @@ function Pregame:onPlayerLoadBans(eventSourceIndex, args)
                 end
                 id = id + 1
             end
-            if i == count then
+            if not success or i == count then
                 CustomGameEventManager:Send_ServerToPlayer(player,"lodNotification",{text = "lodSuccessLoadBans", params = {['entries'] = id}})
             end
         end)
