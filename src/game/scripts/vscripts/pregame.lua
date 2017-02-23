@@ -1112,7 +1112,7 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                     -- Create the hero and validate it
                     --print(heroName)
                     if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil then
-                        UTIL_Remove(PlayerResource:GetSelectedHeroEntity(playerID))
+                        -- UTIL_Remove(PlayerResource:GetSelectedHeroEntity(playerID))
                         hero = PlayerResource:ReplaceHeroWith(playerID,heroName,625 + OptionManager:GetOption('bonusGold'),0)
                     else
                         hero = CreateHeroForPlayer(heroName,player) 
