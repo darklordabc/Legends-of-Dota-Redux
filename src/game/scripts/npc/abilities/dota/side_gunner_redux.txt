@@ -3,6 +3,7 @@
 		"BaseClass" "ability_datadriven"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName" "custom/side_gunner_redux"
+		"HasScepterUpgrade"			"1"
 
 		"AOERadius"	"600"
 
