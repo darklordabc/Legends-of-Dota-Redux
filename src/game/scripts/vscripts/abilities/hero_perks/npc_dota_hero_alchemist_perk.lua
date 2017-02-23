@@ -33,7 +33,7 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_alchemist_perk:OnCreated()
   local intervalTime = 10
-  self.goldAmount = 2
+  self.goldAmount = 3
   self:StartIntervalThink(intervalTime)
 end
 
