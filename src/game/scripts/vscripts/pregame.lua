@@ -1123,7 +1123,9 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                     if hero ~= nil and IsValidEntity(hero) then
                         self.spawnedHeroesFor[playerID] = true
 
+                        self:onPlayerSaveStats(playerID, build)
                         SkillManager:ApplyBuild(hero, build or {})
+
 
                         buildBackups[playerID] = build
 
@@ -4371,6 +4373,35 @@ function Pregame:checkForReady()
         -- No one is ready, freeze time at max
         self:setEndOfPhase(Time() + maxTime, maxTime)
     end
+end
+
+-- Track local stats
+function Pregame:onPlayerSaveStats(playerID, abilities)
+    -- Grab data
+    local player = PlayerResource:GetPlayer(playerID)
+
+    local i = 1
+    local function statsQueue()
+        local abName = abilities[i]
+
+        if abName then
+            localStorage:getKey(playerID, "redux_stats", abName, function (sequenceNumber, success, value)
+                -- local value = 0
+                if success then
+                    value = (tonumber(value) or 0) + 1
+                else
+                    value = 1
+                end
+                localStorage:setKey(playerID, "redux_stats", abName, value, function (sequenceNumber, success)
+                    if i < 23 then
+                        i = i + 1
+                        statsQueue()
+                    end
+                end)
+            end)
+        end
+    end
+    statsQueue()
 end
 
 -- Player wants to ban an ability
