@@ -16,7 +16,7 @@ function alchemist_transmuted_scepter:OnSpellStart()
    local particle_midas_fx = ParticleManager:CreateParticle(particle_midas, PATTACH_ABSORIGIN_FOLLOW, caster) 
   ParticleManager:SetParticleControlEnt(particle_midas_fx, 1, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), false)
 
-   --ParticleManager:ReleaseParticleIndex(particle_midas_fx)
+   ParticleManager:ReleaseParticleIndex(particle_midas_fx)
 
    target:AddNewModifier(caster, ability, "modifier_alchemist_transmuted_scepter", {})
  end 
