@@ -6,9 +6,10 @@
     "AbilityUnitTargetTeam"          "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
     "AbilityUnitTargetType"          "DOTA_UNIT_TARGET_HERO"
     "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_NONE"
+    "MaxLevel"   "1"
 
     "AbilityTextureName"           "custom/alchemist_transmuted_scepter"    
-    "AbilityCastRange"            "600 900 1200 1500"
+    "AbilityCastRange"            "200"
     "AbilityGoldCost"            "4200"
     "AbilityCooldown"            "5"
     "AbilityCastPoint"            "0.3"    
