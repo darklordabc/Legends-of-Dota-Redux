@@ -212,7 +212,7 @@ function memesModifierFilter(filterTable)
   local caster_index = filterTable["entindex_caster_const"]
   local ability_index = filterTable["entindex_ability_const"]
   if not parent_index or not caster_index or not ability_index then
-      return true
+      return filterTable
   end
   local parent = EntIndexToHScript( parent_index )
   local caster = EntIndexToHScript( caster_index )
@@ -247,7 +247,7 @@ function memesDamageFilter(filterTable)
   local attacker_index = filterTable["entindex_attacker_const"]
   local ability_index = filterTable["entindex_inflictor_const"]
   if not victim_index or not attacker_index then
-      return true
+      return filterTable
   end
   local parent = EntIndexToHScript( victim_index )
   local caster = EntIndexToHScript( attacker_index )

@@ -1112,7 +1112,7 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                     -- Create the hero and validate it
                     --print(heroName)
                     if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil then
-                        UTIL_Remove(PlayerResource:GetSelectedHeroEntity(playerID))
+                        -- UTIL_Remove(PlayerResource:GetSelectedHeroEntity(playerID))
                         hero = PlayerResource:ReplaceHeroWith(playerID,heroName,625 + OptionManager:GetOption('bonusGold'),0)
                     else
                         hero = CreateHeroForPlayer(heroName,player) 
@@ -4382,7 +4382,7 @@ function Pregame:onPlayerSaveBans(eventSourceIndex, args)
     local count = (self.optionStore['lodOptionBanningMaxBans'] + self.optionStore['lodOptionBanningMaxHeroBans'])
 
     if count == 0 and self.optionStore['lodOptionBanningHostBanning'] > 0 then
-        count = 50
+        count = util:getTableLength(self.playerBansList[playerID]) 
     end
 
     local id = 0
@@ -4416,7 +4416,7 @@ function Pregame:onPlayerLoadBans(eventSourceIndex, args)
     local count = (self.optionStore['lodOptionBanningMaxBans'] + self.optionStore['lodOptionBanningMaxHeroBans'])
 
     if count == 0 and self.optionStore['lodOptionBanningHostBanning'] > 0 then
-        count = 50
+        count = 1000
     end
 
     for i=1,count do
@@ -4435,7 +4435,7 @@ function Pregame:onPlayerLoadBans(eventSourceIndex, args)
                 end
                 id = id + 1
             end
-            if i == count then
+            if not success or i == count then
                 CustomGameEventManager:Send_ServerToPlayer(player,"lodNotification",{text = "lodSuccessLoadBans", params = {['entries'] = id}})
             end
         end)
