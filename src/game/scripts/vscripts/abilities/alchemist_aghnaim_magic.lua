@@ -9,7 +9,7 @@ function alchemist_aghnaim_magic_redux:OnSpellStart()
 
  	local duration = ability:GetSpecialValueFor("duration")
 
- 	target:AddNewModifier(caster, ability, "modifier_alchemist_aghnaim_magic_redux", {duration = duration}})
+ 	target:AddNewModifier(caster, ability, "modifier_alchemist_aghnaim_magic_redux", {duration = duration})
  end 
 
 
