@@ -4380,6 +4380,10 @@ function Pregame:onPlayerSaveStats(playerID, abilities)
     -- Grab data
     local player = PlayerResource:GetPlayer(playerID)
 
+    if PlayerResource:GetSteamAccountID(playerID) == 0 then
+        return
+    end
+
     local i = 1
     local function statsQueue()
         local abName = abilities[i]

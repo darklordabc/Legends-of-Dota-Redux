@@ -831,6 +831,7 @@
     "clearFilters"                                  "Clear Filters"
     "groupHeroAbilities"                            "Group Hero Abilities"
     "showBannedSkills"                              "Show Banned Skills"
+    "showMostUsedSkills"                            "Show Most Used Skills"
     "showDisallowedSkills"                          "Show Disallowed Skills"
 
     "txtRecommendedBuilds"                          "Recommended Builds:"
