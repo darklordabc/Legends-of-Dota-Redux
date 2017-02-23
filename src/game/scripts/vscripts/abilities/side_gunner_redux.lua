@@ -23,6 +23,10 @@ function Shot( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 
+	if caster:PassivesDisabled() then
+		return false
+	end
+
 	local attackRange = ability:GetSpecialValueFor("range")
 	local projectileSpeed = caster:GetProjectileSpeed()
 	local interval = ability:GetSpecialValueFor("interval")
