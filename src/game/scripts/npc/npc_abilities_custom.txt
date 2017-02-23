@@ -73,6 +73,7 @@
 #base "abilities\dnd\makerangedcreeps_lua.txt"
 #base "abilities\dota\side_gunner_redux.txt"
 #base "abilities\dota\alchemist_chemical_rage_redux.txt"
+#base "abilities\dota\alchemist_transmuted_scepter.txt"
 #base "abilities\dota\arc_warden_tempest_double_redux.txt"
 #base "abilities\dota\abaddon_borrowed_time_redux.txt"
 #base "abilities\dota\bloodseeker_blood_bath2.txt"
