@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - Fixed local bans being broken if players banned more than 50 abilities
 - Fixed Memes Redux
 - Possibly fixed team switch, please confirm to devs if its still broken
+- Added Side Gunner as a separate ability (no longer connected to Gyro hero)
 
 ### Balance
 - 
