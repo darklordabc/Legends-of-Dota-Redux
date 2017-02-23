@@ -3,7 +3,6 @@
 		"BaseClass" "ability_datadriven"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName" "custom/side_gunner_redux"
-		"AbilityCooldown" "10"
 
 		"AOERadius"	"365 390 415 440"
 
