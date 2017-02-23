@@ -1,0 +1,26 @@
+"DOTAAbilities" {
+	"alchemist_aghnaim_magic_redux" 
+	{
+		"BaseClass" 							"ability_lua"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"				
+		"AbilityUnitTargetTeam"					"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"					"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetFlags"				"DOTA_UNIT_TARGET_FLAG_NONE"
+
+		"AbilityTextureName" 					"alchemist_chemical_rage"
+		"AbilityCastRange"						"600 900 1200 1500"
+		"AbilityManaCost"						"60 90 120 150"
+		"AbilityCooldown"						"30 60 90 120"
+		"AbilityCastPoint"						"0.3"		
+		"ScriptFile"							"abilities/alchemist_aghnaim_magic"
+
+		"AbilitySpecial" 
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"30 60 90 120"
+			}
+		}		
+	}
+}
