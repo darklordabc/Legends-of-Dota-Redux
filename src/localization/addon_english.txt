@@ -868,6 +868,7 @@
     "lod_cat_silence"                  "Silence"
     "lod_cat_disarm_break"                  "Disarm and Break"
     "lod_cat_illusion"                  "Illusion"
+    "lod_cat_dota_custom"                  "Dota Related Customs"
 
     // Categories
     "lodCategory_main"                              "Hero Abilities"
@@ -5300,15 +5301,15 @@
         "DOTA_Tooltip_ability_imba_nyx_assassin_vendetta_bonus_damage"                      "BASE BONUS DAMAGE:"
         "DOTA_Tooltip_ability_imba_nyx_assassin_vendetta_damage_storage"                    "STORED DAMAGE LIMIT:"
         
-        "DOTA_Tooltip_ability_nyx_assassin_burrow"                                          "Burrow IMBA"
-        "DOTA_Tooltip_ability_nyx_assassin_burrow_Description"                              "Nyx Assasssin buries himself beneath the battlefield over %burrow_delay% seconds, becoming stationary, unable to attack, and invisible, but gaining increased health and mana regeneration, %damage_reduction%%% damage reduction, and bonuses to all his abilities:\n<font color='#00FF40'>Spiked Carapace</font> instantly stuns nearby enemies when cast.\n<font color='#00FF40'>Mana Burn</font> and <font color='#00FF40'>Impale</font>'s ranges are increased by %impale_burn_range_increase_pct_tooltip%%%.\n<font color='#00FF40'>Vendetta</font> can be activated to unburrow instantly, while staying invisible."
-        "DOTA_Tooltip_ability_nyx_assassin_burrow_Lore"                                     "Some castes of zealot scarab are known to create small burrows to lie in wait, ready to ambush their prey."
-        "DOTA_Tooltip_ability_nyx_assassin_burrow_Note0"                                    "Casting Vendetta will cancel Burrow."
-        "DOTA_Tooltip_ability_nyx_assassin_burrow_health_regen_rate"                        "%BURROW HEALTH/MANA REGEN:"
-        "DOTA_Tooltip_ability_nyx_assassin_burrow_damage_reduction"                         "BURROW DAMAGE REDUCTION:"
-        "DOTA_Tooltip_ability_nyx_assassin_burrow_mana_burn_burrow_range_tooltip"           "BURROW MANA BURN RANGE:"
-        "DOTA_Tooltip_ability_nyx_assassin_burrow_impale_burrow_range_tooltip"              "BURROW IMPALE RANGE:"
-        "DOTA_Tooltip_ability_nyx_assassin_burrow_carapace_burrow_range_tooltip"            "BURROW SPIKED CARAPACE RANGE:"     
+        "DOTA_Tooltip_ability_imba_nyx_assassin_burrow"                                          "Burrow IMBA"
+        "DOTA_Tooltip_ability_imba_nyx_assassin_burrow_Description"                              "Nyx Assasssin buries himself beneath the battlefield over %burrow_delay% seconds, becoming stationary, unable to attack, and invisible, but gaining increased health and mana regeneration, %damage_reduction%%% damage reduction, and bonuses to all his abilities:\n<font color='#00FF40'>Spiked Carapace</font> instantly stuns nearby enemies when cast.\n<font color='#00FF40'>Mana Burn</font> and <font color='#00FF40'>Impale</font>'s ranges are increased by %impale_burn_range_increase_pct_tooltip%%%.\n<font color='#00FF40'>Vendetta</font> can be activated to unburrow instantly, while staying invisible."
+        "DOTA_Tooltip_ability_imba_nyx_assassin_burrow_Lore"                                     "Some castes of zealot scarab are known to create small burrows to lie in wait, ready to ambush their prey."
+        "DOTA_Tooltip_ability_imba_nyx_assassin_burrow_Note0"                                    "Casting Vendetta will cancel Burrow."
+        "DOTA_Tooltip_ability_imba_nyx_assassin_burrow_health_regen_rate"                        "%BURROW HEALTH/MANA REGEN:"
+        "DOTA_Tooltip_ability_imba_nyx_assassin_burrow_damage_reduction"                         "BURROW DAMAGE REDUCTION:"
+        "DOTA_Tooltip_ability_imba_nyx_assassin_burrow_mana_burn_burrow_range_tooltip"           "BURROW MANA BURN RANGE:"
+        "DOTA_Tooltip_ability_imba_nyx_assassin_burrow_impale_burrow_range_tooltip"              "BURROW IMPALE RANGE:"
+        "DOTA_Tooltip_ability_imba_nyx_assassin_burrow_carapace_burrow_range_tooltip"            "BURROW SPIKED CARAPACE RANGE:"     
 
         "DOTA_Tooltip_ability_imba_obsidian_destroyer_arcane_orb"                           "Arcane Orb IMBA"
         "DOTA_Tooltip_ability_imba_obsidian_destroyer_arcane_orb_Description"               "Adds pure damage to basic attacks, based on the caster's total mana.\n<font color='#FF7800'>Occam's razor:</font> Instantly destroys illusions and summoned units.\n<font color='#FF7800'>Ill omens:</font> Each attack steals intelligence from enemy heroes."
