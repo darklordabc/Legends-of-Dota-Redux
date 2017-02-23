@@ -14,5 +14,13 @@
     "AbilityCooldown"            "5"
     "AbilityCastPoint"            "0.3"    
     "ScriptFile"              "abilities/alchemist_transmuted_scepter"      
+
+    "precache"
+	{	
+		"particle" 			  "particles/econ/items/alchemist/alchemist_midas_knuckles/alch_hand_of_midas.vpcf"
+		"soundfile"			  "soundevents/game_sounds_heroes/game_sounds_alchemist.vsndevts"
+	}
+    
   }
 }
+
