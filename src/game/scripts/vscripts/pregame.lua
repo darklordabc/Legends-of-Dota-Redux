@@ -1275,6 +1275,8 @@ function Pregame:networkHeroes()
 
     self.invisSkills = flags.invis
 
+    self.dotaCustom = flags.dota_custom
+
     -- Store the inverse flags list
     self.flagsInverse = flagsInverse
 
@@ -3455,6 +3457,20 @@ function Pregame:processOptions()
             end
         else
             SpellFixes:SetOPMode(true)
+        end
+
+        -- Banning invis skills
+        if not disableBanLists and this.optionStore['lodOptionBanningBanInvis'] > 0 then
+            for abilityName,v in pairs(this.invisSkills) do
+                this:banAbility(abilityName)
+            end
+        end
+
+        -- Dota Modified Abilities
+        if not disableBanLists and this.optionStore['lodOptionAdvancedCustomSkills'] ~= 1 then
+            for abilityName,v in pairs(this.dotaCustom) do
+                this:banAbility(abilityName)
+            end
         end
 
         -- Banning invis skills
