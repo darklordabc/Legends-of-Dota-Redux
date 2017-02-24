@@ -1114,9 +1114,9 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                     if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil then
                         -- UTIL_Remove(PlayerResource:GetSelectedHeroEntity(playerID))
                         local wisp = PlayerResource:GetSelectedHeroEntity(playerID)
-                        wisp:MakeIllusion()
                         wisp:SetRespawnsDisabled(true)
                         hero = PlayerResource:ReplaceHeroWith(playerID,heroName,625 + OptionManager:GetOption('bonusGold'),0)
+                        UTIL_Remove(wisp)
                     else
                         hero = CreateHeroForPlayer(heroName,player) 
                         hero = PlayerResource:ReplaceHeroWith(playerID,heroName,625 + OptionManager:GetOption('bonusGold'),0)
