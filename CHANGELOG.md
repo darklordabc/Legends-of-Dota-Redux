@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
 - Alchemist no longer has innate ability to give aghs, his perk gives 3 gold per 10 seconds instead of 2 to compenstate.
 - Disabling custom abilities now disables the modified original abilities, like the different flesh heaps
 - Hopefully busted the ghost wisps from appearing
+- Divided We Stand is troll combo with Arcane Symbiosis until we can fix the FPS drop problem
 
 ### Balance
 - 
