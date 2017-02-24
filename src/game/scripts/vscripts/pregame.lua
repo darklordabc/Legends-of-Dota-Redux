@@ -6465,6 +6465,14 @@ function Pregame:fixSpawningIssues()
         -- Ensure it's a valid unit
         if IsValidEntity(spawnedUnit) then
 
+            -- Temporay Wisp Hotfix
+            if spawnedUnit:GetUnitName() == "npc_dota_hero_wisp" and util:isPlayerBot(spawnedUnit:GetPlayerID()) then
+                spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_stunned", {duration = duration})
+                spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_invulnerable", {duration = duration})
+                spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_phased", {duration = duration})
+                --spawnedUnit:AddNoDraw()
+            end
+
             -- Spellfix: Give Eyes in the Forest a notification for nearby enemies.
             if spawnedUnit:GetName() == "npc_dota_treant_eyes" then
                 Timers:CreateTimer(function()
