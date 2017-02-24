@@ -51,6 +51,7 @@ function Ingame:init()
 
     -- 40 minutes
     self.timeToIncreaseRespawnRate = 2400
+    self.timeToIncreaseRepawnInterval = 600
 
     -- Setup standard rules
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
@@ -66,8 +67,11 @@ function Ingame:init()
         CustomNetTables:SetTableValue("phase_ingame","balance_players",{swapInProgress = 1})
 
         GameRules:SendCustomMessage("#teamSwitch_notification", 0, 0)
+
+        local code = DoUniqueString("team_switch")
+        self.teamSwitchCode = code
         Timers:CreateTimer(function ()
-            this:swapPlayers(args.x, args.y)
+            this:swapPlayers(args.x, args.y, code)
         end, 'switch_warning', 5)
     end)
 
@@ -248,15 +252,74 @@ function Ingame:OnPlayerPurchasedItem(keys)
 end
 
 function Ingame:FilterExecuteOrder(filterTable)
+
     local units = filterTable["units"]
     local issuer = filterTable["issuer_player_id_const"]
-    for n,unit_index in pairs(units) do
-        local unit = EntIndexToHScript(unit_index)
-        if unit:GetTeamNumber() ~= PlayerResource:GetCustomTeamAssignment(issuer) and PlayerResource:GetConnectionState(issuer) ~= 0 then 
+    local unit = EntIndexToHScript(units["0"])
+    local ability = EntIndexToHScript(filterTable.entindex_ability)
+    local target = EntIndexToHScript(filterTable.entindex_target)
+
+    -- Block Alchemists Innate, heroes should not have innate abilities
+    if ability and target then
+        if string.match(target:GetName(), "npc_dota_hero_") and ability:GetName() == "item_ultimate_scepter" and unit:GetUnitName() == "npc_dota_hero_alchemist" then
             return false
         end
     end
-    if OptionManager:GetOption('disablePerks') == 0 then
+
+    -- BOT STUCK FIX
+    -- How It Works: Every time bot creates an order, this checks their position, if they are in the same last position as last order,
+    -- increase counter. If counter gets too high, it means they have been stuck in same position for a long time, do action to help them.
+    
+    if unit then
+        if unit:IsRealHero() and util:isPlayerBot(unit:GetPlayerID()) then
+            if not unit.OldPosition then
+                unit.OldPosition = unit:GetAbsOrigin()
+                unit.StuckCounter = 0
+            elseif unit:GetAbsOrigin() == unit.OldPosition then
+                unit.StuckCounter = unit.StuckCounter + 1
+
+                -- Stuck at observer ward fix
+                if unit.StuckCounter > 50 then
+                    for i=0,11 do
+                        local item = unit:GetItemInSlot(i)
+                        if item and item:GetName() == "item_ward_observer" then
+                            unit:ModifyGold(item:GetCost() * item:GetCurrentCharges(), true, 0)
+                            unit:RemoveItem(item)
+                            return true         
+                        end
+                    end 
+                end
+
+                -- Stuck at shop trying to get stash items, remove stash items. THIS IS A BAND-AID FIX. IMPROVE AT SOME POINT
+                if unit.StuckCounter > 150 and fixed == false then
+                    for slot =  DOTA_STASH_SLOT_1, DOTA_STASH_SLOT_6 do
+                        item = unit:GetItemInSlot(slot)
+                        if item ~= nil then
+                            item:RemoveSelf()
+                            return true
+                        end
+                    end
+                end
+
+                -- Its well and truly borked, kill it and hope for the best.
+                if unit.StuckCounter > 300 and fixed == false then
+                    unit:Kill(nil, nil)
+                    return true
+                end
+
+            else
+               unit.OldPosition = unit:GetAbsOrigin()
+               unit.StuckCounter = 0
+            end
+        end
+    end
+    -- END BOT STUCK FIX
+
+    if unit:GetTeamNumber() ~= PlayerResource:GetCustomTeamAssignment(issuer) and PlayerResource:GetConnectionState(issuer) ~= 0 then 
+        return false
+    end
+    
+    if not OptionManager:GetOption('disablePerks') then
         filterTable = heroPerksOrderFilter(filterTable)
     end
 
@@ -519,7 +582,7 @@ function Ingame:FatOMeterAnimate(dt)
             hero:SetModelScale(default + target)
         
             --Meepo/Arc Warden ult checker
-            if hero:HasAbility('meepo_divided_we_stand') or hero:HasAbility('arc_warden_tempest_double') then
+            if hero:HasAbility('meepo_divided_we_stand') or hero:HasAbility('arc_warden_tempest_double') or hero:HasAbility('arc_warden_tempest_double_redux') then
                 local clones = Entities:FindAllByName(hero:GetClassname())
 
                 for k,heroClone in pairs(clones) do
@@ -644,7 +707,7 @@ function otherTeam(team)
     return -1
 end
 
-function Ingame:swapPlayers(x, y)
+function Ingame:swapPlayers(x, y, code)
     CustomNetTables:SetTableValue("phase_ingame","balance_players",{swapInProgress = 1})
 
     local player_count = PlayerResource:GetPlayerCount()
@@ -662,19 +725,24 @@ function Ingame:swapPlayers(x, y)
     local h;
     h = CustomGameEventManager:RegisterListener( 'accept', function ()
         accepted = accepted + 1
-        if accepted >= cp_count then
-            Timers:CreateTimer(function ()
+        if accepted >= cp_count  then
+            -- Timers:CreateTimer(function ()
+            if self.teamSwitchCode == code then
                 self:accepted(x,y)
-                CustomGameEventManager:UnregisterListener(h)
-                CustomGameEventManager:Send_ServerToAllClients('player_accepted', {});
-            end, 'accepted', 0)
+            end
+            
+            CustomGameEventManager:UnregisterListener(h)
+            CustomGameEventManager:Send_ServerToAllClients('player_accepted', {});
+            -- end, 'accepted', 0)
         end
     end)
     
     PauseGame(true);
 
     Timers:CreateTimer(function ()
-        self:accepted(x,y)
+        if self.teamSwitchCode == code then
+            self:accepted(x,y)
+        end   
         CustomGameEventManager:UnregisterListener(h)
     end, 'accepted', 10)
 
@@ -712,11 +780,15 @@ function Ingame:accepted(x, y)
         end
     end
 
+    self.teamSwitchCode = ""
+
     Timers:CreateTimer(function () PauseGame(false) end, DoUniqueString(''), 2)
 end
 
 function Ingame:declined(event_source_index)
     CustomGameEventManager:Send_ServerToAllClients('player_declined', {});
+    CustomNetTables:SetTableValue("phase_ingame","balance_players",{swapInProgress = 0})
+    self.teamSwitchCode = ""
     Timers:CreateTimer(function () PauseGame(false) end, 'accepted', 2)
 end
 
@@ -837,6 +909,7 @@ end
 
 -- Increases respawn rate if the game has been going longer than 40 minutes, increases every 10 minutes after that
 function Ingame:checkIfRespawnRate()
+    if util:isSinglePlayerMode() then return end
     local respawnModifierPercentage = OptionManager:GetOption('respawnModifierPercentage')
     if GameRules:GetDOTATime(false,false) > self.timeToIncreaseRespawnRate and respawnModifierPercentage < 50  then
         local newRespawnRate = respawnModifierPercentage + 10
@@ -846,7 +919,7 @@ function Ingame:checkIfRespawnRate()
         GameRules:SendCustomMessage("Games has been going for too long, respawn rates have increased by 10%. New respawn rate is " .. newRespawnRate .. "%", 0, 0)
         OptionManager:SetOption('respawnModifierPercentage', newRespawnRate)
 
-        self.timeToIncreaseRespawnRate = self.timeToIncreaseRespawnRate + 600
+        self.timeToIncreaseRespawnRate = self.timeToIncreaseRespawnRate + self.timeToIncreaseRepawnInterval
     end
 
 end
@@ -1423,7 +1496,7 @@ function Ingame:FilterDamage( filterTable )
     end
 
      -- Hero perks
-    if OptionManager:GetOption('disablePerks') == 0 then
+    if not OptionManager:GetOption('disablePerks') then
         filterTable = heroPerksDamageFilter(filterTable)
     end
 
@@ -1448,7 +1521,7 @@ function Ingame:FilterModifiers( filterTable )
     local ability = EntIndexToHScript( ability_index )
 
      -- Hero perks
-    if OptionManager:GetOption('disablePerks') == 0 then
+    if not OptionManager:GetOption('disablePerks') then
         filterTable = heroPerksModifierFilter(filterTable)
     end
 

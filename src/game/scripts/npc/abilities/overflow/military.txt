@@ -4,7 +4,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"				"ability_lua"
-		"ScriptFile"					"abilities/overflow/passive.lua"
+		"ScriptFile"					"abilities/overflow/military/passive.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"			"custom/military"
 		"MaxLevel"	"7"

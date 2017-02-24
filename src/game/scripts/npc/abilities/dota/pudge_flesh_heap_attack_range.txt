@@ -13,7 +13,7 @@
 		"AbilitySpecial" {
 			"01" {
 				"var_type" "FIELD_FLOAT"
-				"flesh_heap_attack_range_buff_amount" "10 15 20 25"
+				"flesh_heap_attack_range_buff_amount" "5 10 15 20"
 			}
 
 			"02" {

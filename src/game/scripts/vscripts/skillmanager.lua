@@ -81,6 +81,7 @@ local towerClasses = {
 -- Auto set this to max level
 local autoSkill = {
     nyx_assassin_unburrow = true,
+    alchemist_transmuted_scepter = true,
     earth_spirit_stone_caller = true
 }
 

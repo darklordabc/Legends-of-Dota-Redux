@@ -7,6 +7,10 @@
 LinkLuaModifier( "modifier_npc_dota_hero_ancient_apparition_perk", "abilities/hero_perks/npc_dota_hero_ancient_apparition_perk.lua", LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
 if npc_dota_hero_ancient_apparition_perk ~= "" then npc_dota_hero_ancient_apparition_perk = class({}) end
+
+function npc_dota_hero_ancient_apparition_perk:GetIntrinsicModifierName()
+    return "modifier_npc_dota_hero_ancient_apparition_perk"
+end
 --------------------------------------------------------------------------------------------------------
 --		Modifier: modifier_npc_dota_hero_ancient_apparition_perk				
 --------------------------------------------------------------------------------------------------------
@@ -59,6 +63,7 @@ function perkAncientApparition(filterTable)
   local parent_index = filterTable["entindex_parent_const"]
   local caster_index = filterTable["entindex_caster_const"]
   local ability_index = filterTable["entindex_ability_const"]
+  local modifier_name = filterTable["name_const"]
   if not parent_index or not caster_index or not ability_index then
     return true
   end
@@ -69,9 +74,9 @@ function perkAncientApparition(filterTable)
     if caster:HasModifier("modifier_npc_dota_hero_ancient_apparition_perk") then
       if ability:HasAbilityFlag("ice") then
         local modifierDuration = filterTable["duration"]
-	if target:GetTeamNumber() ~= caster:GetTeamNumber() then
+        if parent:GetTeamNumber() ~= caster:GetTeamNumber() then
           parent:AddNewModifier(caster,nil,"modifier_npc_dota_hero_ancient_apparition_perk_heal_freeze",{duration = modifierDuration})
-	end
+        end
       end
     end  
   end

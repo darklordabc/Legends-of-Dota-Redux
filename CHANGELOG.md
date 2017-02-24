@@ -2,20 +2,58 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 6.1 - Development Version
+## 6.4 - Development Version
+### Bug Fixing/New Features
+- Roshanify now has max move speed of 270 and lower bash chance.
+- Fixed Gale Force not causing damage
+- Fixed local bans being broken if players banned more than 50 abilities
+- Fixed Memes Redux
+- Possibly fixed team switch, please confirm to devs if its still broken
+- Added Side Gunner as a separate ability (no longer connected to Gyro hero)
+- Added Aghnaim Magic and Transmuted Scepter abilities. 
+- Alchemist no longer has innate ability to give aghs, his perk gives 3 gold per 10 seconds instead of 2 to compenstate.
+- Disabling custom abilities now disables the modified original abilities, like the different flesh heaps
+- Hopefully busted the ghost wisps from appearing
+- Divided We Stand is troll combo with Arcane Symbiosis until we can fix the FPS drop problem
+
+### Balance
+- 
+
+## 6.3 - Steam Version
+### Bug Fixing/New Features
+- Battle Cry can now be skilled without True Form
+- Fixed and Re-Enabled Blizzard
+- Potentially fixed Creep Power being stuck at 1
+- Having more than 1 Flesh Heap is now a troll combo (sorry)
+- Temporarily disabled Memes redux as it causes players to be unable to move
+
+## 6.2
+### Balance
+- Symbiote is now troll combo with 3 or 4 self-harming abilities, like Detonation and techies sucicide
+- Added balanced versions of Chemical Rage, Jingu Mastery, Borrowed Time, Tempest Double. In most cases, originals added to OP list, increased price in points mode.
+- Attack Range Flesh Heap gives 5 less range per stack.
+- Bots will no longer used Shadow Dance or Chemical Rage if they are stunned/silenced
+- Fixed perks for Spirit Breaker, Ancient Apparition, Abaddon, Shadow Demon
+- Fixed bots getting stuck at ward spots. Semi-fixed bots getting fixed trying to collect stash. 
+
+## 6.1 
 ### Bug Fixing/New Features
 - Fixed Necronomicon archer's speed aura
 - Re-enabled Expulsion and the custom Decays
 - Tweaked the mechanism of increasing respawn rates. Now increases 10% after 40 minutes, and keeps increasing 10% per 10 minutes after that. 
 - Demonic conversion no longer works with Anomaly
 - Changed Slardar's and Treant's Perk
+- You can now right click mutators to cycle backwards
+- Builds will now auto-hide if there is more than 1 ability unavailable from it
+- Added Brewmasters Wind Walk to Invis tag
+- Added 7 abilities from Overflow
+- Symbiote has been tweaked so that symbiotes have a armor and magic resistant cost to the host
 
 ### Balance
 - Juxtapose is now only nerfed if OP abilities or Points mode is on, reduced price of Juxtapose in points mode accordingly. 
 - Roshan bash no longer works with illusions (therefore no longer troll combo with illusion abilities)
-- Temporarily disabled decays and expulsion, until they can be fixed
 
-## 6.0 - Steam Version
+## 6.0 
 ### Bug Fixing/New Features
 - Added 9 more settings to free ability mutator
 - Fixed Aegis tower ability not giving extra HP

@@ -527,11 +527,11 @@
     "balance_mode_points"                           "Points Remaining: {d:points}"
 
     "acceptHosting"                                 "Ok, I understand"
-    "lodHostingMessage"                             "<font color='#ffffff'>Thanks for playing Legends of Dota: Redux. <font color='#FF4949'>If you are experiencing crashes after picking abilities try disabling steam's VULKAN optional setting.</font> To disable it, in steam, right click 'dota 2', click properties, click dlc tab, and untick 'Vulkan support'. The developers of Vulkan API have been informed of this crashing and have already fixed the problem, the fix will be uploaded soon.<br><br> <font color='#70EA72'>Redux 6.0 HOTFIX:</font></font><br>- Juxtapose is now only nerfed if OP abilities or Points mode is on, reduced price of Juxtapose in points mode accordingly. <br>- Roshan bash no longer works with illusions (therefore no longer troll combo with illusion abilities)<br>- Temporarily disabled decays and expulsion, until they can be fixed"
+    "lodHostingMessage"                             "<font color='#ffffff'>Thanks for playing Legends of Dota: Redux. <font color='#FF4949'>If you are experiencing crashes after picking abilities try disabling steam's VULKAN optional setting.</font> To disable it, in steam, right click 'dota 2', click properties, click dlc tab, and untick 'Vulkan support'. The developers of Vulkan API have been informed of this crashing and have already fixed the problem, the fix will be uploaded soon.<br><br> <font color='#70EA72'>Redux 6.4:</font></font><br>- Roshanify now has max move speed of 270 and lower bash chance.<br>- Fixed Gale Force not causing damage<br>- Fixed local bans being broken if players banned more than 50 abilities<br>- Fixed Memes Redux<br>- Possibly fixed team switch, please confirm to devs if its still broken<br>- Added Side Gunner as a separate ability (no longer connected to Gyro hero)<br>- Added Aghnaim Magic and Transmuted Scepter abilities. <br>- Alchemist no longer has innate ability to give aghs, his perk gives 3 gold per 10 seconds instead of 2 to compenstate.<br>- Disabling custom abilities now disables the modified original abilities, like the different flesh heaps<br>- Hopefully busted the ghost wisps from appearing<br>- Divided We Stand is troll combo with Arcane Symbiosis until we can fix the FPS drop problem"
     "lodPickingMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked.<br><br><font color='#70EA72'>Remeber to pick a hero before time runs out or else you will get stuck with a random hero.</font>"
     "lodBanningMessage"                             "<font color='#70EA72'>This is the banning phase</font>. You can ban heroes and abilities to prevent players from selecting them in this match.<br><br> If you dont want to ban or have finished banning, <font color='#70EA72'>press the 'Finish Banning' button</font> to confirm your ready and to speed up the game."
     "lodBalanceMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked. <br><br><font color='#70EA72'>Points Mode is on.</font> In Points Mode you have limited points to spend on abilities. Abilities are priced by how powerful they are and abilities with no price tags are free. Have fun!"
-   "lodHostingNoobMessage"                            "<font color='#ffffff'>Thanks for playing Legends of Dota: Redux. <font color='#FF4949'>If you are experiencing crashes after picking abilities try disabling steam's VULKAN optional setting.</font> To disable it, in steam, right click 'dota 2', click properties, click dlc tab, and untick 'Vulkan support'. The developers of Vulkan API have been informed of this crashing and have already fixed the problem, the fix will be uploaded soon.<br><br> <font color='#70EA72'>Redux 6.0 HOTFIX:</font></font><br>- Juxtapose is now only nerfed if OP abilities or Points mode is on, reduced price of Juxtapose in points mode accordingly. <br>- Roshan bash no longer works with illusions (therefore no longer troll combo with illusion abilities)<br>- Temporarily disabled decays and expulsion, until they can be fixed"
+   "lodHostingNoobMessage"                            "<font color='#ffffff'>Thanks for playing Legends of Dota: Redux. <font color='#FF4949'>If you are experiencing crashes after picking abilities try disabling steam's VULKAN optional setting.</font> To disable it, in steam, right click 'dota 2', click properties, click dlc tab, and untick 'Vulkan support'. The developers of Vulkan API have been informed of this crashing and have already fixed the problem, the fix will be uploaded soon.<br><br> <font color='#70EA72'>Redux 6.4:</font></font><br>- Roshanify now has max move speed of 270 and lower bash chance.<br>- Fixed Gale Force not causing damage<br>- Fixed local bans being broken if players banned more than 50 abilities<br>- Fixed Memes Redux<br>- Possibly fixed team switch, please confirm to devs if its still broken<br>- Added Side Gunner as a separate ability (no longer connected to Gyro hero)<br>- Added Aghnaim Magic and Transmuted Scepter abilities. <br>- Alchemist no longer has innate ability to give aghs, his perk gives 3 gold per 10 seconds instead of 2 to compenstate.<br>- Disabling custom abilities now disables the modified original abilities, like the different flesh heaps<br>- Hopefully busted the ghost wisps from appearing<br>- Divided We Stand is troll combo with Arcane Symbiosis until we can fix the FPS drop problem"
     "lodOptionVoting"                               "Cast your vote to select the options."
 
 
@@ -751,7 +751,7 @@
     "hintNyx"                         "Nyx Assassin gains 10% bonus movement speed when invisible."
     "hintSlark"                         "Slark gains +3 agility for each level put in an mobility/escape skill."
     "hintLuna"                         "Luna gains 1 free level of Lunar Blessing, whether she has it or not."
-    "hintAlchemist"                         "Alchemist will receives 2 bonus gold every 10 seconds. He can also gift Aghanim's Scepters."
+    "hintAlchemist"                         "Alchemist receives 3 bonus gold every 10 seconds."
     "hintArcWarden"                         "Arc Warden may use a consumable item on himself every 90 seconds without consuming the item."
     "hintAxe"                         "Culling Blade kills will chop the remaining cooldown times of Axe's abilities in half, or by 30 seconds if the remaining cooldown exceeds 1 minute."
     "hintBane"                         "Bane lifesteals 100% of all spell damage he deals to sleeping units. "
@@ -831,6 +831,7 @@
     "clearFilters"                                  "Clear Filters"
     "groupHeroAbilities"                            "Group Hero Abilities"
     "showBannedSkills"                              "Show Banned Skills"
+    "showMostUsedSkills"                            "Show Most Used Skills"
     "showDisallowedSkills"                          "Show Disallowed Skills"
 
     "txtRecommendedBuilds"                          "Recommended Builds:"
@@ -868,6 +869,7 @@
     "lod_cat_silence"                  "Silence"
     "lod_cat_disarm_break"                  "Disarm and Break"
     "lod_cat_illusion"                  "Illusion"
+    "lod_cat_dota_custom"                  "Dota Related Customs"
 
     // Categories
     "lodCategory_main"                              "Hero Abilities"
@@ -1066,8 +1068,8 @@
     ////////////////
 
     "unique_mechanic_abaddon"           "For Abaddon, <font color=\'#ffd966\'>Mist Coil</font> self-heals instead of damages and <font color=\'#ffd966\'>Aphotic Shield</font> receives 2 charges."
-    "unique_mechanic_alchemist"                     "Alchemist will receives 2 bonus gold every 10 seconds. He can also gift <font color=\'#ffd966\'>Aghanim's Scepter</font> to allies."
-    //"unique_mechanic_ancient_apparition"            "Ancient Apparition disables the health regeneration of targets when an <font color=\'#ffd966\'>Ice</font> ability debuff is applied."
+    "unique_mechanic_alchemist"                     "Alchemist receives 3 bonus gold every 10 seconds."
+    "unique_mechanic_ancient_apparition"            "Ancient Apparition disables the health regeneration of targets when an <font color=\'#ffd966\'>Ice</font> ability debuff is applied."
     "unique_mechanic_antimage"           "After Anti-Mage uses a <font color=\'#ffd966\'>Blink</font>, he will silence enemies within 200 radius for 2 seconds."
     "unique_mechanic_arc_warden"                        "Arc Warden may use a consumable item on himself every 90 seconds without consuming the item. "
     "unique_mechanic_axe"                        "<font color=\'#ffd966\'>Culling Blade</font> kills will chop the remaining cooldown times of Axe's abilities in half, or by 30 seconds if the remaining cooldown exceeds 1 minute."
@@ -1143,7 +1145,7 @@
     "unique_mechanic_riki"                  "Riki's health regeneration is increased by 4 while invisible."
     "unique_mechanic_rubick"                        "Rubick gains 1 free level of <font color=\'#ffd966\'>Null Field</font>, whether he has it or not. "
     "unique_mechanic_sand_king"                        "Refund 30% of the manacost of <font color=\'#ffd966\'>Channeled</font> abilities. "
-    //"unique_mechanic_shadow_demon"                        "When Shadow Demon buys an item that is limited by stock, he gains a permanent +1 to all attributes."
+    "unique_mechanic_shadow_demon"                        "When Shadow Demon buys an item that is limited by stock, he gains a permanent +1 to all attributes."
     "unique_mechanic_nevermore"             "At the start of the game, Shadow Fiend gains a free level of <font color=\'#ffd966\'>Necromastery</font>, whether he has it or not."
     "unique_mechanic_shadow_shaman"             "Shadow Shaman refunds the manacost of <font color=\'#ffd966\'>Hex</font> spells and reduces their cooldowns by 20%."
     "unique_mechanic_silencer"                        "<font color=\'#ffd966\'>Silence</font> effects applied by Silencer last 25% longer."
@@ -1152,7 +1154,7 @@
     "unique_mechanic_slark"                        "Slark gains +3 agility for each level put in an <font color=\'#ffd966\'>Mobility</font>/<font color=\'#ffd966\'>Escape</font> skill."
     "unique_mechanic_sniper"                        "<font color=\'#ffd966\'>Shrapnel</font> will have global cast range if used by Sniper."
     "unique_mechanic_spectre"           "Spectre gains phased movement when casting abilities."
-    //"unique_mechanic_spirit_breaker"                "<font color=\'#ffd966\'>Skull Basher</font> and  <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero.When Spirit Breaker bashes, he also applies <font color=\'#ffd966\'>Break</font>."
+    "unique_mechanic_spirit_breaker"                "<font color=\'#ffd966\'>Skull Basher</font> and  <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero.When Spirit Breaker bashes, he also applies <font color=\'#ffd966\'>Break</font>."
     "unique_mechanic_storm_spirit"                 "At the start of the game, Storm Spirit gains a free level of <font color=\'#ffd966\'>Overload</font>, whether he has it or not."
     "unique_mechanic_sven"                        "At the start of the game, Sven gains a free level of <font color=\'#ffd966\'>Great Cleave</font>, whether he has it or not."
     "unique_mechanic_techies"                        "<font color=\'#ffd966\'>Traps</font> and <font color=\'#ffd966\'>Explosives</font> will have 50% of their mana refunded and cooldowns reduced by 50% when used by Techies."
@@ -1223,10 +1225,9 @@
     "warning_puck_illusory_orb"                 "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Ethereal Jaunt</font>."
     "warning_luna_eclipse"                      "<font color=\'#FF4949\'>Warning:</font> This spell does no damage without <font color=\'#70EA72\'>Lucent Beam.</font>"
     "warning_lone_druid_spirit_bear"            "<font color=\'#FF4949\'>Hero Requirement:</font> Bear Icon will not appear on the left side of the screen unless you play as <font color=\'#70EA72\'>Lone Druid.</font>"
-    "warning_lone_druid_true_form_battle_cry"   "<font color=\'#FF4949\'>Warning:</font> Disabled, unless you have at least one point in <font color=\'#70EA72\'>True Form.</font></font>"
+    //"warning_lone_druid_true_form_battle_cry"   "<font color=\'#FF4949\'>Warning:</font> Disabled, unless you have at least one point in <font color=\'#70EA72\'>True Form.</font></font>"
     "warning_phoenix_supernova"                 "<font color=\'#FF4949\'>Warning:</font> Will only refresh non-ultimate abilities."
     "warning_techies_remote_mines"              "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Focused Detonate</font>."
-    "warning_alchemist_chemical_rage"           "<font color=\'#FF4949\'>Warning:</font> Ability to give Aghanim's Scepters to allies is inbuilt to the <font color=\'#70EA72\'>Alchemist</font> hero and not Chemical Rage."
     "warning_ember_spirit_fire_remnant"         "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Activate Fire Remnant.</font>"
     "warning_faceless_void_chronosphere"        "<font color=\'#FF4949\'>Warning:</font> Any other player that plays as the <font color=\'#70EA72\'>Faceless Void</font>, will be able to move within Chronosphere, including enemies. If you cast it, you can move through it as any hero."
     "warning_furion_wrath_of_nature"            "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter upgrade will not spawn Treants/ Greater Treants, unless you also have <font color=\'#70EA72\'>Nature's Call.</font>"
@@ -1280,13 +1281,16 @@
     "warning_treant_eyes_in_the_forest" "<font color=\'#FF4949\'>Warning:</font> Enemies will have a debuff notification when within 1000 range of an enchanted tree."
     "warning_angel_arena_transmute" "<font color=\'#FF4949\'>Warning:</font> This ability has strange coding, cooldown manipulation abilities will not work on it.\n"
 
+    "credit_spell_lab_symbiotic"           "<font color=\'#7D7D7D\'>Credits: OtsoTurpeinen | github.com/OtsoTurpeinen</font>"
     "credit_sight"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
     "credit_zhanhun"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
     "credit_benneng"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
     "credit_shiguanghuisu"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
     "credit_jingtong"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
     "credit_arcane_mastery"           "<font color=\'#7D7D7D\'>Credits: TheRisen41 | github.com/TheRisen41</font>"
-    "credit_spell_lab_symbiotic"           "<font color=\'#7D7D7D\'>Credits: OtsoTurpeinen | github.com/OtsoTurpeinen</font>"
+
+    "credit_alchemist_aghnaim_magic_redux"           "<font color=\'#7D7D7D\'>Credits: Shushishtok | github.com/Shushishtok</font>"
+    "credit_alchemist_transmuted_scepter"           "<font color=\'#7D7D7D\'>Credits: Shushishtok | github.com/Shushishtok</font>"
     "credit_aether_range_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
     "credit_sandking_caustic_finale_redux"           "<font color=\'#7D7D7D\'>Credits: Fixed by Firetoad | github.com/fcalife</font>"
     "credit_necrolyte_sadist_lod"           "<font color=\'#7D7D7D\'>Credits: Fixed by Firetoad | github.com/fcalife</font>"
@@ -1315,6 +1319,7 @@
     "credit_cherub_synthesis"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"  
     "credit_angel_arena_archmage_anomaly"           "<font color=\'#7D7D7D\'>Fixed by Yahnich | github.com/Yahnich</font>"
     "credit_monkey_king_jingu_mastery_lod"           "<font color=\'#7D7D7D\'>Fixed by Yahnich | github.com/Yahnich</font>"
+    "credit_monkey_king_jingu_mastery_lod_melee"           "<font color=\'#7D7D7D\'>Fixed by Yahnich | github.com/Yahnich</font>"
     "credit_cherub_explosive_spore"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
     "credit_cherub_flower_garden"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
     "credit_garden_white_flower_base"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
@@ -1547,7 +1552,15 @@
     "DOTA_Tooltip_ability_alchemist_chemical_rage_lod_bonus_health_regen"           "BONUS HEALTH REGEN:"
     "DOTA_Tooltip_ability_alchemist_chemical_rage_lod_bonus_mana_regen"             "BONUS MANA REGEN:"
     "DOTA_Tooltip_ability_alchemist_chemical_rage_lod_bonus_movespeed"              "BONUS MOVE SPEED:"
-    "DOTA_Tooltip_ability_alchemist_chemical_rage_lod_notes"                        "Notes:\n\nHas a 0.35 seconds transformation time."
+    "DOTA_Tooltip_ability_alchemist_chemical_rage_lod_notes"                        "Notes:\n\nHas a 0.35 seconds transformation    time."
+
+    "DOTA_Tooltip_ability_alchemist_aghnaim_magic_redux"                            "Aghnaim Magic"
+    "DOTA_Tooltip_ability_alchemist_aghnaim_magic_redux_Description"                "Alchemist can transmute the magical energies of himself or his allies, causing them to get Aghnaim's Scepter's benefit for a duration."
+    "DOTA_Tooltip_ability_alchemist_aghnaim_magic_redux_Lore"                       "Gold is not the only thing a true Alchemist can transmute."
+    "DOTA_Tooltip_ability_alchemist_aghnaim_magic_redux_Note0"                      "Aghnaim Magic is useable on the caster as well as allied heroes."
+    "DOTA_Tooltip_ability_alchemist_aghnaim_magic_redux_duration"                   "DURATION:"
+    "Dota_Tooltip_modifier_alchemist_aghnaim_magic_redux"                           "Temporary Scepter"
+    "Dota_Tooltip_modifier_alchemist_aghnaim_magic_redux_Description"               "Temporarily gaining Aghnaim's Scepter's upgrades."
 
     // Ogre Magi
     "DOTA_Tooltip_ability_ogre_magi_multicast_lod"                                  "Multicast Redux"
@@ -2215,7 +2228,7 @@
     "DOTA_Tooltip_hawkeye_ricochet_mod"                                               "Hawkeye Ricochet Mod"
     "DOTA_Tooltip_hawkeye_ricochet_mod_description"                                   ""
 
-    "DOTA_Tooltip_modifier_detonator_dart"      "Detonator Dart
+    "DOTA_Tooltip_modifier_detonator_dart"      "Detonator Dart"
 
     "DOTA_Tooltip_hawkeye_detonator_dart_mod"                                         "Detonator Dart"
 
@@ -2230,10 +2243,7 @@
 
     //Bot Controller
     "DOTA_Tooltip_ability_imba_tower_ai_controller"                                 "Bot AI Helper"
-    "DOTA_Tooltip_ability_imba_tower_ai_controller_Description"                     "<font color='#70EA72'>This ability is designed to help bots deal with multiple towers. The logic is roughly as follows:</font>\n1. If an enemy bot is nearby AND tower is not invunerable AND there is no nearby allies = <font color='#70EA72'>Force enemy bot to attack tower</font>
-\n2. If an enemy bot is nearby AND enemy bot health is below 300 AND there is no nearby allies = <font color='#70EA72'>Teleport bot back to their base </font>
-\n3. If an enemy bot is nearby AND tower is invunerable = <font color='#70EA72'>Scare enemy bot away</font>
-\n\nEnemy bots that are teleported back to their base, receive the following compenstation for being displaced from battle: <font color='#70EA72'>100 gold and experience, full HP and MP on return and maximum movespeed for a period of time. </font>"
+    "DOTA_Tooltip_ability_imba_tower_ai_controller_Description"                     "<font color='#70EA72'>This ability is designed to help bots deal with multiple towers. The logic is roughly as follows:</font>\n1. If an enemy bot is nearby AND tower is not invunerable AND there is no nearby allies = <font color='#70EA72'>Force enemy bot to attack tower</font>\n2. If an enemy bot is nearby AND enemy bot health is below 300 AND there is no nearby allies = <font color='#70EA72'>Teleport bot back to their base </font>\n3. If an enemy bot is nearby AND tower is invunerable = <font color='#70EA72'>Scare enemy bot away</font>\n\nEnemy bots that are teleported back to their base, receive the following compenstation for being displaced from battle: <font color='#70EA72'>100 gold and experience, full HP and MP on return and maximum movespeed for a period of time. </font>"
     "DOTA_Tooltip_ability_imba_tower_ai_controller_Lore"                                "ASSUMING DIRECT CONTROL"
 
 
@@ -2810,7 +2820,7 @@
 
     /// ALCHEMIST​
     "DOTA_Tooltip_modifier_npc_dota_hero_alchemist_perk"    "Alchemist Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_alchemist_perk_Description"    "Alchemist will receives 2 bonus gold every 10 seconds. He can also gift Aghanim's Scepters.<br><br><font color=\'#7D7D7D\'>By Wouterz90 | github.com/Wouterz90</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_alchemist_perk_Description"    "Alchemist receives 3 bonus gold every 10 seconds. <br><br><font color=\'#7D7D7D\'>By Wouterz90 | github.com/Wouterz90</font>"
 
     /// ANCIENT APPARITION​
     "DOTA_Tooltip_modifier_npc_dota_hero_ancient_apparition_perk"   "AA Perk"
@@ -4132,6 +4142,39 @@
 
     "DOTA_Tooltip_ability_item_devDagger" "Toolsmode Blink Dagger"
 
+    "DOTA_Tooltip_ability_arc_warden_tempest_double_redux"        "Tempest Double Redux"
+    "DOTA_Tooltip_ability_arc_warden_tempest_double_redux_Description"    "Briefly refocusing its fractured elements into a single form, the Arc Warden is able to create a perfect electrical duplication of itself. The duplicate can use all of Arc Warden's current items and spells, except consumables and items that drop on death. The duplicate has seperate item and ability cooldowns. <font color='#70EA72'>Has 50% longer cooldown.</font>"
+    "DOTA_Tooltip_ability_arc_warden_tempest_double_redux_Lore"       "Warped by the power of its peers, Arc Warden becomes what it despises most: disharmony."
+    "DOTA_Tooltip_ability_arc_warden_tempest_double_redux_duration"   "DURATION:"
+
+   "DOTA_Tooltip_ability_alchemist_chemical_rage_redux"                               "Chemical Rage Redux"
+    "DOTA_Tooltip_ability_alchemist_chemical_rage_redux_Description"                  "Alchemist causes his Ogre to enter a chemically induced rage, reducing base attack cooldown and increasing movement speed and regeneration. <font color='#70EA72'>Has 40% shorter duration.</font>"
+    "DOTA_Tooltip_ability_alchemist_chemical_rage_redux_aghanim_description"          "Alchemist melts down Aghanim's Scepter to grant an allied hero all Aghanim's Scepter upgrades."
+    "DOTA_Tooltip_ability_alchemist_chemical_rage_redux_Lore"                         "The brew Razzil gave to the Ogre during their prison bust has become a useful potion in the midst of combat."
+    "DOTA_Tooltip_ability_alchemist_chemical_rage_redux_Note0"                        "Has a 0.35 second transformation time, which can be used to dodge projectiles and stuns."
+    "DOTA_Tooltip_ability_alchemist_chemical_rage_redux_duration"                     "DURATION:"
+    "DOTA_Tooltip_ability_alchemist_chemical_rage_redux_base_attack_time"             "BASE ATTACK TIME:"
+    "DOTA_Tooltip_ability_alchemist_chemical_rage_redux_bonus_health_regen"           "BONUS HEALTH REGEN:"
+    "DOTA_Tooltip_ability_alchemist_chemical_rage_redux_bonus_mana_regen"             "BONUS MANA REGEN:"
+    "DOTA_Tooltip_ability_alchemist_chemical_rage_redux_bonus_movespeed"              "BONUS MOVE SPEED:"
+
+    "DOTA_Tooltip_ability_alchemist_transmuted_scepter" 							  "Transmuted Scepter" 
+    "DOTA_Tooltip_ability_alchemist_transmuted_scepter_Description" 	    		  "Forges a replica of Aghnaim Scepter that can be embedded into the hero's weapon. Casting Transmuted Scepter on any allied hero, including yourself, grants the Aghnaim's Scepter bonuses permanently. <font color='#FFDD2C'>This ability costs 4200 gold to cast.</font>"
+    "DOTA_Tooltip_ability_alchemist_transmuted_scepter_Lore" 					      "There is almost nothing that a master Alchemist cannot transmute - not even a legendary staff."
+    "DOTA_Tooltip_modifier_alchemist_transmuted_scepter"	  						  "Transmuted Scepter"
+    "DOTA_Tooltip_modifier_alchemist_transmuted_scepter_Description" 				  "Permanently gaining Aghnaim's Scepter's bonuses."
+
+    "DOTA_Tooltip_ability_abaddon_borrowed_time_redux"                "Borrowed Time Redux"
+    "DOTA_Tooltip_ability_abaddon_borrowed_time_redux_Description"    "When activated, all damage dealt to you will heal instead of harm. Most negative buffs will also be removed. If the ability is not on cooldown, it will automatically activate if your health falls below %hp_threshold%. <font color='#70EA72'>25% shorter duration and 25% longer cooldown.</font>\n\nUpgradable by Aghanim's Scepter.\n\nDISPEL TYPE: Strong Dispel"
+    "DOTA_Tooltip_ability_abaddon_borrowed_time_redux_Lore"           "The most unnatural of all the gifts of the Font of Avernus, this power defies mortal understanding.  What should hurt, instead heals; and what should kill gives strength anew."
+    "DOTA_Tooltip_ability_abaddon_borrowed_time_redux_hp_threshold"   "HEALTH THRESHOLD:"
+    "DOTA_Tooltip_ability_abaddon_borrowed_time_redux_duration"       "DURATION:"
+    "DOTA_Tooltip_ability_abaddon_borrowed_time_redux_duration_scepter"       "SCEPTER DURATION:"
+    "DOTA_Tooltip_ability_abaddon_borrowed_time_redux_redirect_pct_tooltip_scepter"   "%SCEPTER DAMAGE REDIRECT:"
+    "DOTA_Tooltip_ability_abaddon_borrowed_time_redux_redirect_range_tooltip_scepter"     "SCEPTER REDIRECT RANGE:"
+    "DOTA_Tooltip_ability_abaddon_borrowed_time_redux_aghanim_description"    "Increases duration. While Borrowed Time is active, a percentage of all damage taken by allied Heroes in a radius will be redirected to Abaddon."
+    "DOTA_Tooltip_ability_abaddon_borrowed_time_redux_Note0"      "Borrowed Time can be activated while Abaddon is disabled, but not while silenced."
+
     "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod"                            "Jingu Mastery"
     "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_Description"                "Monkey King's attacks awaken the Jingu Bang's power. Upon the fourth hit on the same enemy hero, Monkey King earns four charged attacks that have bonus damage and lifesteal."
     "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_Lore"                       "Always sensitive to the moods of its master, the Jingu Bang radiates power when Sun Wukong's combat fervor is on full display."
@@ -4140,6 +4183,24 @@
     "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_charges"                    "CHARGES:"
     "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_bonus_damage"               "BONUS DAMAGE:"
     "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_lifesteal"                  "%LIFESTEAL:"
+
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_melee"                            "Jingu Mastery Redux"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_melee_Description"                "Monkey King's attacks awaken the Jingu Bang's power. Upon the fourth hit on the same enemy hero, Monkey King earns four charged attacks that have bonus damage and lifesteal. <font color='#70EA72'>Has 50% less Bonus Damage and Lifesteal for Ranged Heros. Has small cooldown to prevent abuse.</font>"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_melee_Lore"                       "Always sensitive to the moods of its master, the Jingu Bang radiates power when Sun Wukong's combat fervor is on full display."
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_melee_required_hits"              "REQUIRED HITS:"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_melee_counter_duration"           "STACK DURATION:"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_melee_charges"                    "CHARGES:"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_melee_bonus_damage"               "BONUS DAMAGE:"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_melee_lifesteal"                  "%LIFESTEAL:"
+
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_ranged"                            "Jingu Mastery Ranged"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_ranged_Description"                "Monkey King's attacks awaken the Jingu Bang's power. Upon the fourth hit on the same enemy hero, Monkey King earns four charged attacks that have bonus damage and lifesteal. <font color='#70EA72'>Has 50% less Bonus Damage and Lifesteal for Ranged Heros. Has small cooldown to prevent abuse.</font>"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_ranged_Lore"                       "Always sensitive to the moods of its master, the Jingu Bang radiates power when Sun Wukong's combat fervor is on full display."
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_ranged_required_hits"              "REQUIRED HITS:"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_ranged_counter_duration"           "STACK DURATION:"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_ranged_charges"                    "CHARGES:"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_ranged_bonus_damage"               "BONUS DAMAGE:"
+    "DOTA_Tooltip_ability_monkey_king_jingu_mastery_lod_ranged_lifesteal"                  "%LIFESTEAL:"
     
     "DOTA_Tooltip_modifier_jingu_mastery_activated"                                 "Jingu Mastery"
     "DOTA_Tooltip_modifier_jingu_mastery_activated_Description"                     "Gaining bonus attack damage and lifesteal."
@@ -5247,15 +5308,15 @@
         "DOTA_Tooltip_ability_imba_nyx_assassin_vendetta_bonus_damage"                      "BASE BONUS DAMAGE:"
         "DOTA_Tooltip_ability_imba_nyx_assassin_vendetta_damage_storage"                    "STORED DAMAGE LIMIT:"
         
-        "DOTA_Tooltip_ability_nyx_assassin_burrow"                                          "Burrow IMBA"
-        "DOTA_Tooltip_ability_nyx_assassin_burrow_Description"                              "Nyx Assasssin buries himself beneath the battlefield over %burrow_delay% seconds, becoming stationary, unable to attack, and invisible, but gaining increased health and mana regeneration, %damage_reduction%%% damage reduction, and bonuses to all his abilities:\n<font color='#00FF40'>Spiked Carapace</font> instantly stuns nearby enemies when cast.\n<font color='#00FF40'>Mana Burn</font> and <font color='#00FF40'>Impale</font>'s ranges are increased by %impale_burn_range_increase_pct_tooltip%%%.\n<font color='#00FF40'>Vendetta</font> can be activated to unburrow instantly, while staying invisible."
-        "DOTA_Tooltip_ability_nyx_assassin_burrow_Lore"                                     "Some castes of zealot scarab are known to create small burrows to lie in wait, ready to ambush their prey."
-        "DOTA_Tooltip_ability_nyx_assassin_burrow_Note0"                                    "Casting Vendetta will cancel Burrow."
-        "DOTA_Tooltip_ability_nyx_assassin_burrow_health_regen_rate"                        "%BURROW HEALTH/MANA REGEN:"
-        "DOTA_Tooltip_ability_nyx_assassin_burrow_damage_reduction"                         "BURROW DAMAGE REDUCTION:"
-        "DOTA_Tooltip_ability_nyx_assassin_burrow_mana_burn_burrow_range_tooltip"           "BURROW MANA BURN RANGE:"
-        "DOTA_Tooltip_ability_nyx_assassin_burrow_impale_burrow_range_tooltip"              "BURROW IMPALE RANGE:"
-        "DOTA_Tooltip_ability_nyx_assassin_burrow_carapace_burrow_range_tooltip"            "BURROW SPIKED CARAPACE RANGE:"     
+        "DOTA_Tooltip_ability_imba_nyx_assassin_burrow"                                          "Burrow IMBA"
+        "DOTA_Tooltip_ability_imba_nyx_assassin_burrow_Description"                              "Nyx Assasssin buries himself beneath the battlefield over %burrow_delay% seconds, becoming stationary, unable to attack, and invisible, but gaining increased health and mana regeneration, %damage_reduction%%% damage reduction, and bonuses to all his abilities:\n<font color='#00FF40'>Spiked Carapace</font> instantly stuns nearby enemies when cast.\n<font color='#00FF40'>Mana Burn</font> and <font color='#00FF40'>Impale</font>'s ranges are increased by %impale_burn_range_increase_pct_tooltip%%%.\n<font color='#00FF40'>Vendetta</font> can be activated to unburrow instantly, while staying invisible."
+        "DOTA_Tooltip_ability_imba_nyx_assassin_burrow_Lore"                                     "Some castes of zealot scarab are known to create small burrows to lie in wait, ready to ambush their prey."
+        "DOTA_Tooltip_ability_imba_nyx_assassin_burrow_Note0"                                    "Casting Vendetta will cancel Burrow."
+        "DOTA_Tooltip_ability_imba_nyx_assassin_burrow_health_regen_rate"                        "%BURROW HEALTH/MANA REGEN:"
+        "DOTA_Tooltip_ability_imba_nyx_assassin_burrow_damage_reduction"                         "BURROW DAMAGE REDUCTION:"
+        "DOTA_Tooltip_ability_imba_nyx_assassin_burrow_mana_burn_burrow_range_tooltip"           "BURROW MANA BURN RANGE:"
+        "DOTA_Tooltip_ability_imba_nyx_assassin_burrow_impale_burrow_range_tooltip"              "BURROW IMPALE RANGE:"
+        "DOTA_Tooltip_ability_imba_nyx_assassin_burrow_carapace_burrow_range_tooltip"            "BURROW SPIKED CARAPACE RANGE:"     
 
         "DOTA_Tooltip_ability_imba_obsidian_destroyer_arcane_orb"                           "Arcane Orb IMBA"
         "DOTA_Tooltip_ability_imba_obsidian_destroyer_arcane_orb_Description"               "Adds pure damage to basic attacks, based on the caster's total mana.\n<font color='#FF7800'>Occam's razor:</font> Instantly destroys illusions and summoned units.\n<font color='#FF7800'>Ill omens:</font> Each attack steals intelligence from enemy heroes."
@@ -7220,7 +7281,7 @@
         "DOTA_Tooltip_ability_dragon_knight_dragon_blood_imba_bonus_armor"                   "ARMOR:"
         
         "DOTA_Tooltip_ability_dragon_knight_elder_dragon_form_imba"                          "Elder Dragon Form IMBA"
-        "DOTA_Tooltip_ability_dragon_knight_elder_dragon_form_imba_Description"              "Dragon Knight takes the form of one of three powerful elder dragons, increasing his speed, and Dragon Tail's range, while granting him new powers.\n<font color=\"#9acd32\">LEVEL 1 Green Dragon</font> - Corrosive Breath: attacks deal 20 poison damage per second for 5 seconds. Works on structures.\n<font color=\"#ff0000\">LEVEL 2 Red Dragon</font> - Splash Attack: attacks damage all enemy units in a 300 radius, with Corrosive Breath added to the targets.\n<font color=\"#87ceeb\">LEVEL 3 Blue Dragon</font> - Frost Breath: slows movement speed by 30%% and attack speed by 20 of enemy units in Splash Attack range for 3 seconds, with Corrosive Breath added to the targets."
+        "DOTA_Tooltip_ability_dragon_knight_elder_dragon_form_imba_Description"              "Dragon Knight takes the form of one of three powerful elder dragons, increasing his speed, and Dragon Tail's range, while granting him new powers.\n<font color=\'#9acd32\''>LEVEL 1 Green Dragon</font> - Corrosive Breath: attacks deal 20 poison damage per second for 5 seconds. Works on structures.\n<font color=\'#ff0000\''>LEVEL 2 Red Dragon</font> - Splash Attack: attacks damage all enemy units in a 300 radius, with Corrosive Breath added to the targets.\n<font color=\'#87ceeb\''>LEVEL 3 Blue Dragon</font> - Frost Breath: slows movement speed by 30%% and attack speed by 20 of enemy units in Splash Attack range for 3 seconds, with Corrosive Breath added to the targets."
         "DOTA_Tooltip_ability_dragon_knight_elder_dragon_form_imba_Lore"                     "The dormant dragon power springs forth from within Davion, combining the powers of a legendary knight with a legendary Eldwurm."
         "DOTA_Tooltip_ability_dragon_knight_elder_dragon_form_imba_Note0"                    "Corrosive Breath poison damage is lethal."
         "DOTA_Tooltip_ability_dragon_knight_elder_dragon_form_imba_Note1"                    "Splash Attack deals 100/75/50% damage in a 150/225/300 radius. Splash damage does not affect buildings."
@@ -7843,6 +7904,14 @@
         "DOTA_Tooltip_ability_brewmaster_storm_wind_walk_redux_bonus_movement_speeed"     "BONUS MOVEMENT SPEED:"
         "DOTA_Tooltip_ability_brewmaster_storm_wind_walk_redux_duration"                  "DURATION:"
 
+        "DOTA_Tooltip_ability_side_gunner_redux"                            "Side Gunner"
+        "DOTA_Tooltip_ability_side_gunner_redux_Description"    "The Side Gunner performs an instant attack in the set interval. Its target is chosen completely randomly."
+        "DOTA_Tooltip_ability_side_gunner_redux_Lore"           ""
+        "DOTA_Tooltip_ability_side_gunner_redux_interval"    "INTERVAL:"
+        "DOTA_Tooltip_ability_side_gunner_redux_interval_scepter"    "INTERVAL WITH SCEPTER:"
+        "DOTA_Tooltip_ability_side_gunner_redux_range"          "RANGE:"
+        "DOTA_Tooltip_ability_side_gunner_redux_aghanim_description"  "Reduces interval by 1 on each level."
+
         "DOTA_Tooltip_ability_chaos_knight_chaos_strike_gyro"                "Infernal Blade Replacement"
         "DOTA_Tooltip_ability_chaos_knight_chaos_strike_gyro_Description"    "Gyrocopter cannot use Infernal blade unless 'Single Player' abilities are enabled. There is a bug where infernal blade never goes on cooldown if Gryo attacks via using his side-gunner that is enabled with Aghs. This is a replacement ability, which is based on Chaos Knight's Chaos Strike."
         "DOTA_Tooltip_ability_chaos_knight_chaos_strike_gyro_Lore"           "Gyrocopter OP power bludgeons those who he passes, crushing the thickest of armors ... until an evil wizard nerfed him."
@@ -7919,6 +7988,9 @@
         "DOTA_Tooltip_ability_ancient_defensive_wave_description"                         "Every 7s, the Ancient unleashes a pulse of devastating energy that instantly kills all creeps in a large radius, and deals Pure damage equal to 12% of all nearby enemy Heroes' Max Health. Only activates when under 33%% of its Max Health."
         "DOTA_Tooltip_ability_ancient_defensive_wave_Note0"                               "Deals the damage to each creep at random within a 2.5s interval when the timer hits zero."
         "DOTA_Tooltip_ability_ancient_defensive_wave_radius"                              "RADIUS:"
+        
+        "DOTA_Tooltip_modifier_side_gunner_redux_cd"                                            "Side Gunner Cooldown"
+        "DOTA_Tooltip_modifier_side_gunner_redux_cd_Description"                                ""
 
         "DOTA_Tooltip_modifier_defensive_wave"                                            "Giga Graviton"
         "DOTA_Tooltip_modifier_defensive_wave_description"                                "Fires devastating beams at creeps and Heroes every 4s."
@@ -8002,7 +8074,7 @@
         //// OVERFLOW
 
         "DOTA_Tooltip_Ability_blink_support"                                              "Blink Support"
-        "DOTA_Tooltip_Ability_blink_support_Description"                                  "Short distance teleportation that allows you to move yourself and your allies in and out of combat.\n\n Upgradeable by Aghanim's Scepter"
+        "DOTA_Tooltip_Ability_blink_support_Description"                                  "Short distance teleportation that allows you to move yourself and your allies in and out of combat.\n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: OtsoTurpeinen | github.com/OtsoTurpeinen</font>\n"
         "DOTA_Tooltip_Ability_blink_support_aghanim_description"  "Reduces cooldown."
         "DOTA_Tooltip_Ability_blink_support_max_blink"                                    "MAX BLINK DISTANCE:"
         "DOTA_Tooltip_Ability_blink_support_help_range"                                   "HELP RANGE:"
@@ -8010,7 +8082,7 @@
         "DOTA_Tooltip_Ability_blink_support_cooldown_scepter"                             "COOLDOWN SCEPTER:"
 
         "DOTA_Tooltip_Ability_dark_blade"                                                 "Dark Spell Blade"
-        "DOTA_Tooltip_Ability_dark_blade_Description"                                     "Bouncing magic that curses the victim's resistance to magic damage on every bounce. Victims recieve safe time that makes them immune to bounce from this instance of spell.\n\n Upgradeable by Aghanim's Scepter"
+        "DOTA_Tooltip_Ability_dark_blade_Description"                                     "Bouncing magic that curses the victim's resistance to magic damage on every bounce. Victims recieve safe time that makes them immune to bounce from this instance of spell.\n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: OtsoTurpeinen | github.com/OtsoTurpeinen</font>\n"
         "DOTA_Tooltip_Ability_dark_blade_aghanim_description"                               "Lowers Safe Time and Doubles the Curse in night time."
         "DOTA_Tooltip_Ability_dark_blade_damage"                                          "DAMAGE:"
         "DOTA_Tooltip_Ability_dark_blade_aoe_range"                                       "JUMP RADIUS:"
@@ -8020,7 +8092,7 @@
         "DOTA_Tooltip_Ability_dark_blade_fade_scepter"                                    "SCEPTER SAFE TIME:"
         
         "DOTA_Tooltip_Ability_light_blade"                                                "Burning Spell Blade"
-        "DOTA_Tooltip_Ability_light_blade_Description"                                    "Bouncing magic that deals <font color='#FF7800'>Fire Damage</font> to enemies. Victims recieve safe time that makes them immune to bounce from this instance of spell.\n\n Upgradeable by Aghanim's Scepter"
+        "DOTA_Tooltip_Ability_light_blade_Description"                                    "Bouncing magic that deals <font color='#FF7800'>Fire Damage</font> to enemies. Victims recieve safe time that makes them immune to bounce from this instance of spell.\n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: OtsoTurpeinen | github.com/OtsoTurpeinen</font>\n"
         "DOTA_Tooltip_Ability_light_blade_aghanim_description"                              "Lowers Safe Time and Bonus damage in day time."
         "DOTA_Tooltip_Ability_light_blade_damage"                                         "<font color='#FF7800'>FIRE DAMAGE</font>:"
         "DOTA_Tooltip_Ability_light_blade_aoe_range"                                      "JUMP RADIUS:"
@@ -8035,13 +8107,13 @@
         "DOTA_Tooltip_element_fire_Description"         "2 Damage per stack every 0.5 seconds. Stack reduced by 1 after the damage."
 
         "DOTA_Tooltip_Ability_metamorphosis"                                              "Roshanify"
-        "DOTA_Tooltip_Ability_metamorphosis_Description"                                  "For the limited duration you take form of Mighty Roshan! Provides base damage bonus and chance to stun on every attack. You do move a bit slower though.\n\n Upgradeable by Aghanim's Scepter"
+        "DOTA_Tooltip_Ability_metamorphosis_Description"                                  "For the limited duration you take form of Mighty Roshan! Provides base damage bonus and chance to stun on every attack. You do move a bit slower though.\n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: OtsoTurpeinen | github.com/OtsoTurpeinen</font>\n"
         "DOTA_Tooltip_Ability_metamorphosis_aghanim_description"                                "Improves Base Damage bonus."
         "DOTA_Tooltip_Ability_metamorphosis_base_damage"                                  "BASE DAMAGE BONUS:"
-        "DOTA_Tooltip_Ability_metamorphosis_stun_chance"                                  "BASH CHANCE:"
+        "DOTA_Tooltip_Ability_metamorphosis_stun_chance"                                  "%BASH CHANCE:"
         "DOTA_Tooltip_Ability_metamorphosis_stun_duration"                                "BASH DURATION:"
         "DOTA_Tooltip_Ability_metamorphosis_attack_range"                                 "ATTACK RANGE:"
-        "DOTA_Tooltip_Ability_metamorphosis_move_speed"                                   "MOVE SPEED PENALTY:"
+        "DOTA_Tooltip_Ability_metamorphosis_move_speed"                                   "MAX MOVE SPEED:"
         "DOTA_Tooltip_Ability_metamorphosis_tool_tip_duration"                            "DURATION:"
         "DOTA_Tooltip_Ability_metamorphosis_base_damage_scepter"                        "SCEPTER DAMAGE:"
         
@@ -8052,13 +8124,13 @@
         "DOTA_Tooltip_generic_lua_stun_Description"                                 "Stunned"
 
         "DOTA_Tooltip_Ability_seer"                                                       "Seer"
-        "DOTA_Tooltip_Ability_seer_Description"                                           "While channelling gain vision of all enemy heroes.\nDoes not include enemies who are invisible or dead at the start of the channel.\n\n Upgradeable by Aghanim's Scepter"
+        "DOTA_Tooltip_Ability_seer_Description"                                           "While channelling gain vision of all enemy heroes.\nDoes not include enemies who are invisible or dead at the start of the channel.\n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: OtsoTurpeinen | github.com/OtsoTurpeinen</font>\n"
         "DOTA_Tooltip_Ability_seer_aghanim_description"                             "Hides the modifier of being seen by seer."
         "DOTA_Tooltip_seer_mod"                                             "Spotted!"
         "DOTA_Tooltip_seer_mod_Description"                                 "Enemy Seer can see you."
 
         "DOTA_Tooltip_Ability_spectral_form"                                              "Spectral Form"
-        "DOTA_Tooltip_Ability_spectral_form_Description"                                  "You wrap the etheral around you becoming difficult to physically strike but weak against magic. While spectral you regenerate health and mana. Also you basic attack deals magic damage instead of physical.\n\n Upgradeable by Aghanim's Scepter"
+        "DOTA_Tooltip_Ability_spectral_form_Description"                                  "You wrap the etheral around you becoming difficult to physically strike but weak against magic. While spectral you regenerate health and mana. Also you basic attack deals magic damage instead of physical.\n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: OtsoTurpeinen | github.com/OtsoTurpeinen</font>\n"
         "DOTA_Tooltip_Ability_spectral_form_aghanim_description"                                "Applies the buff to allies in radius."
         "DOTA_Tooltip_Ability_spectral_form_health_regen"                                 "HEALTH REGEN:"
         "DOTA_Tooltip_Ability_spectral_form_mana_regen"                                   "MANA REGEN:"
@@ -8071,7 +8143,7 @@
         "DOTA_Tooltip_spectral_form_mod_Description"                                  "You wrap the etheral around you."
 
         "DOTA_Tooltip_Ability_military"                                                   "Military Training"
-        "DOTA_Tooltip_Ability_military_Description"                                       "You are part of the military, there for you get paid. Depending on your devotion to the training regimen you get paid on every hero level up.\nGold gain is multiplied by your hero level.\nAs fruit of the training you also strike faster."
+        "DOTA_Tooltip_Ability_military_Description"                                       "You are part of the military, there for you get paid. Depending on your devotion to the training regimen you get paid on every hero level up.\nAs fruit of the training you also strike faster.\n\n<font color=\'#7D7D7D\'>Credits: OtsoTurpeinen | github.com/OtsoTurpeinen</font>\n"
         "DOTA_Tooltip_Ability_military_attack_speed"                                      "ATTACK SPEED BONUS:"
         "DOTA_Tooltip_Ability_military_gold"                                              "GOLD PER LEVEL UP:"
 

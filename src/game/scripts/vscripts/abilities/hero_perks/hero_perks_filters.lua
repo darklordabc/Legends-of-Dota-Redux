@@ -14,6 +14,7 @@ require('abilities/hero_perks/npc_dota_hero_obsidian_destroyer_perk')
 require('abilities/hero_perks/npc_dota_hero_death_prophet_perk')
 require('abilities/hero_perks/npc_dota_hero_drow_ranger_perk')
 require('abilities/hero_perks/npc_dota_hero_abaddon_perk')
+require('abilities/hero_perks/npc_dota_hero_slardar_perk')
 
 function heroPerksProjectileFilter(filterTable)
   local targetIndex = filterTable["entindex_target_const"]
@@ -45,6 +46,7 @@ function heroPerksOrderFilter(filterTable)
     -- Perk for Shadow Demon
   perkShadowDemon(filterTable)
 
+  return filterTable
 end
 
 function heroPerksModifierFilter(filterTable)
@@ -52,7 +54,7 @@ function heroPerksModifierFilter(filterTable)
   local caster_index = filterTable["entindex_caster_const"]
   local ability_index = filterTable["entindex_ability_const"]
   if not parent_index or not caster_index or not ability_index then
-      return true
+      return filterTable
   end
   local parent = EntIndexToHScript( parent_index )
   local caster = EntIndexToHScript( caster_index )
@@ -71,10 +73,9 @@ function heroPerksModifierFilter(filterTable)
     npc_dota_hero_spirit_breaker_perk = true,
     npc_dota_hero_troll_warlord_perk = true,
   }
-
   local targetPerk = caster:FindAbilityByName(caster:GetName() .. "_perk")
-  if not targetPerk then return true end
-  if not targetPerks_modifier[targetPerk:GetName()] then return true end
+  if not targetPerk then return filterTable end
+  if not targetPerks_modifier[targetPerk:GetName()] then return filterTable end
   -- Perk for Dragon Knight
   PerkDragonKnight(filterTable)
   -- Perk for Ancient Apparition
@@ -106,7 +107,7 @@ function heroPerksDamageFilter(filterTable)
     local attacker_index = filterTable["entindex_attacker_const"]
     local ability_index = filterTable["entindex_inflictor_const"]
     if not victim_index or not attacker_index then
-        return true
+        return filterTable
     end
     local parent = EntIndexToHScript( victim_index )
     local caster = EntIndexToHScript( attacker_index )
@@ -117,8 +118,8 @@ function heroPerksDamageFilter(filterTable)
     npc_dota_hero_bane_perk = true
   }
   local targetPerk = caster:FindAbilityByName(caster:GetName() .. "_perk")
-  if not targetPerk then return true end
-  if not targetPerks_damage[targetPerk:GetName()] then return true end
+  if not targetPerk then return filterTable end
+  if not targetPerks_damage[targetPerk:GetName()] then return filterTable end
   -- Perk for Abaddon
   PerkAbaddon(filterTable)
    -- Perk for Pudge

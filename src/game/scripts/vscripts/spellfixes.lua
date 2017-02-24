@@ -489,10 +489,9 @@ ListenToGameEvent('entity_hurt', function(keys)
         -- Ensure their health has dropped low enough
         if ent:GetHealth() <= minHP then
             -- Do they even have the ability in question?
-            local ab = ent:FindAbilityByName('abaddon_borrowed_time')
-            if ab then
-                -- Is the ability ready to use?
-                if ab:IsCooldownReady() then
+            local ab = ent:FindAbilityByName('abaddon_borrowed_time')    
+            local ab2 = ent:FindAbilityByName('abaddon_borrowed_time_redux')
+            if ab and ab:IsCooldownReady() then
                     -- Grab the level
                     local lvl = ab:GetLevel()
 
@@ -509,10 +508,31 @@ ListenToGameEvent('entity_hurt', function(keys)
                             redirect_range_tooltip_scepter = ab:GetSpecialValueFor('redirect_range_tooltip_scepter')
                         })
 							-- Apply the cooldown
-							local cd = ab:GetCooldown(lvl)
+							local cd = ab:GetCooldown(lvl-1)
                             ab:StartCooldown(cd)
+                    end    
+            elseif ab2 and ab2:IsCooldownReady() then  
+                    -- Grab the level
+                    local lvl = ab2:GetLevel()
+
+                    -- Is the skill even skilled?
+                    if lvl > 0 then
+                        -- Fix their health
+                        ent:SetHealth(2*minHP - ent:GetHealth())
+
+                        -- Add the modifier
+                        print(ab2:GetSpecialValueFor('duration'))
+                        ent:AddNewModifier(ent, ab2, 'modifier_abaddon_borrowed_time', {
+                            duration = ab2:GetSpecialValueFor('duration'),
+                            duration_scepter = ab2:GetSpecialValueFor('duration_scepter'),
+                            redirect = ab2:GetSpecialValueFor('redirect'),
+                            redirect_range_tooltip_scepter = ab2:GetSpecialValueFor('redirect_range_tooltip_scepter')
+                        })
+                            -- Apply the cooldown
+                            local cd = ab2:GetCooldown(lvl-1)
+                            ab2:StartCooldown(cd)
                     end
-                end
+                
             end
         end
     end

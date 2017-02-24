@@ -106,16 +106,16 @@ var tipsPerks = [{
     }, {
         img: 'file://{images}/custom_game/hints/hint_furion.png',
         txt: '#hintFurion'
-    }/*, {
+    }, {
         img: 'file://{images}/custom_game/hints/hint_chen.png',
         txt: '#hintChen'
-    }*/, {
+    }, {
         img: 'file://{images}/custom_game/hints/hint_ursa.png',
         txt: '#hintUrsa'
-    }/*, {
+    }, {
         img: 'file://{images}/custom_game/hints/hint_storm_spirit.png',
         txt: '#hintStormSpirit'
-    }*/, {
+    }, {
         img: 'file://{images}/custom_game/hints/hint_morphling.png',
         txt: '#hintMorphling'
     }, {
@@ -154,13 +154,13 @@ var tipsPerks = [{
     }, {
         img: 'file://{images}/custom_game/hints/hint_phoenix.png',
         txt: '#hintPhoenix'
-    }/*, {
+    }, {
         img: 'file://{images}/custom_game/hints/hint_ancient_apparition.png',
         txt: '#hintAncientApparition'
     }, {
         img: 'file://{images}/custom_game/hints/hint_shadow_shaman.png',
         txt: '#hintShadowShaman'
-    }*/, {
+    }, {
         img: 'file://{images}/custom_game/hints/hint_doom.png',
         txt: '#hintDoom'
     }, {
@@ -334,17 +334,17 @@ var tipsPerks = [{
     }, {
         img: 'file://{images}/custom_game/hints/hint_skywrath.png',
         txt: '#hintSkywrath'
-    }/*, {
+    }, {
         img: 'file://{images}/custom_game/hints/hint_slardar.png',
         txt: '#hintSlardar'
-    }*/, {
+    }, {
         img: 'file://{images}/custom_game/hints/hint_sniper.png',
         txt: '#hintSniper'
-    }/*
+    }
     , {
         img: 'file://{images}/custom_game/hints/hint_spirit_breaker.png',
         txt: '#hintSpiritBreaker'
-    }*/, {
+    }, {
         img: 'file://{images}/custom_game/hints/hint_sven.png',
         txt: '#hintSven'
     }, {
@@ -419,10 +419,10 @@ var tipsPerks = [{
     }, {
         img: 'file://{images}/custom_game/hints/hint_dazzle.png',
         txt: '#hintDazzle'
-    }/*, {
+    }, {
         img: 'file://{images}/custom_game/hints/hint_disruptor.png',
         txt: '#hintDisruptor'
-    }*/, {
+    }, {
         img: 'file://{images}/custom_game/hints/hint_DP.png',
         txt: '#hintDP'
     }, {

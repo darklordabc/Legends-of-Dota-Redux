@@ -3053,7 +3053,133 @@ function buildBasicOptionsCategories() {
 
                 return nextItem;
             }
+
+            function getPrevItem(returnString) {
+                var nextItem;
+                var found = false;
+                var i = 0;
+
+                for(var state in item.states) {
+                    if(typeof item.states[state] === 'object') {
+                        for(var option in item.states[state]) {
+                            if(item.states[state][option] === optionValueList[option]) {
+                                found = true;
+                            } else {
+                                found = false;
+                                break;
+                            }
+                        }
+
+                        if(found) {
+                            if(item.states[Object.keys(item.states)[i-1]] !== undefined) {
+                                nextItem = item.states[Object.keys(item.states)[i-1]];
+                                break;
+                            } else {
+                                if(item.default !== undefined) {
+                                    nextItem = item.default;
+                                } else {
+                                    nextItem = item.states[Object.keys(item.states)[Object.keys(item.states).length - 1]];
+                                }
+                            }
+                        } else {
+                            nextItem = item.states[Object.keys(item.states)[Object.keys(item.states).length - 1]];
+                        }
+                     } else if(item.states[state] === optionValueList[item.name]) {
+                        if(item.states[Object.keys(item.states)[i-1]] !== undefined) {
+                            nextItem = item.states[Object.keys(item.states)[i-1]];
+                        } else {
+                            if(item.default !== undefined) {
+                                nextItem = item.default[Object.keys(item.default)[Object.keys(item.default).length - 1]];
+                            } else {
+                                nextItem = item.states[Object.keys(item.states)[Object.keys(item.states).length - 1]];
+                            }
+                        }
+
+                        break;
+                    } 
+
+                    i++;
+                }
+
+                if(nextItem === undefined) {
+                    nextItem = item.states[Object.keys(item.states)[Object.keys(item.states).length - 1]];
+                }
+
+                if (returnString) {
+                    var stateName;
+                    var found;
+                    if(optionMutator.default !== undefined) {
+                        if(Object.keys(optionMutator.default).length > 1) {
+                            var match;
+                            for (var option in optionMutator.default) {
+                                if(optionMutator.default[option] === optionValueList[option]) {
+                                    match = true;
+                                } else {
+                                    match = false;
+                                    break;
+                                }
+                            }
+
+                            if(match) {
+                                found = false;
+                            }
+                        } else {
+                            for (var defaultState in optionMutator.default) break;
+                            if(optionMutator.default[defaultState] === optionValueList[item.name]) {
+                                found = false;
+                            }
+                        }
+                    }
+                    for(var state in optionMutator.states) {
+                        if(typeof optionMutator.states[state] === 'object') {
+                            var matches = 0;
+                            for(var option in optionMutator.states[state]) {
+                                if(optionMutator.states[state][option] === optionValueList[option]) {
+                                    matches++;
+                                }
+
+                                if(matches === Object.keys(optionMutator.states[state]).length) {
+                                    found = true;
+                                    break;
+                                } else {
+                                    found = false;
+                                }
+                            }
+
+                            if(found) {
+                                stateName = state;
+                                break;
+                            }
+                        } else if(optionMutator.states[state] === optionValueList[item.name]) {
+                            stateName = Object.keys(optionMutator.states).filter(function(key) {return optionMutator.states[key] === optionValueList[item.name]
+                            })[0];
+
+                            found = true;
+                            break;
+                        } else {
+                            found = false;
+                        }
+                    }
+                    if (!stateName) {
+                        stateName = optionMutator.default;
+                        if (Object.keys(stateName).length == 1) { //
+                            for (var s in stateName) {
+                                stateName = s;
+                                break;
+                            }
+                        } else if (typeof(stateName) !== "string") {
+                            stateName = optionMutator.about;
+                        }
+                    }
+                    
+                    return stateName;
+                }
+
+                return nextItem;
+            }
+
             optionMutator.getNextItem = getNextItem;
+            optionMutator.getPrevItem = getPrevItem;
 
             optionMutator.getNextState = (function (state) {
                 if(item.about) {
@@ -3112,8 +3238,45 @@ function buildBasicOptionsCategories() {
                 }
             })
 
+            var onContextMenu = (function(e) {
+                var fieldValue = optionMutator.GetAttributeInt('fieldValue', -1);
+                if (item.name == "lodOptionCommonGamemode" && !allowCustomSettings) {
+                    return;
+                }
+                if (item.values !== undefined) {
+                    var state;
+                    if(optionMutator.BHasClass('active')) {
+                        state = 'disabled';
+                    } else {
+                        state = 'enabled';
+                    }
+
+                    for (var option in item.values[state]) {
+                        var value = item.values[state][option];
+                        setOption(option, value)
+                    }
+                } else if (item.states !== undefined) {
+                    var nextItem = getPrevItem();
+
+                    if(typeof nextItem === 'object') {
+                        for(var option in nextItem) {
+                            setOption(option, nextItem[option]);
+                        }
+                    } else {
+                        setOption(item.name, nextItem);
+                    }
+                } else {
+                    if(optionMutator.BHasClass('active')) {
+                        setOption(item.name, 0);
+                    } else {
+                        setOption(item.name, 1);
+                    }
+                }
+            })
+
             // When the mutators changes
             optionMutator.SetPanelEvent('onactivate', onActivate);
+            optionMutator.SetPanelEvent('oncontextmenu', onContextMenu);
 
             var infoLabel = $.CreatePanel('Label', optionMutator, 'optionMutatorLabel_' + i);
             infoLabel.AddClass('mutatorLabel');

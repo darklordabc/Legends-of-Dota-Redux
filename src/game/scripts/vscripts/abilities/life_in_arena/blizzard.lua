@@ -1,4 +1,4 @@
-﻿if IsServer() then
+if IsServer() then
 	require('lib/timers')
 end
 --[[
@@ -10,9 +10,16 @@ function BlizzardStart( event )
 	-- Variables
 	local caster = event.caster
 	local point = event.target_points[1]
+	local ability = event.ability
 						--npc_dummy_blank
 	caster.blizzard_dummy = CreateUnitByName("dummy_unit", point, false, caster, caster, caster:GetTeam())
-	event.ability:ApplyDataDrivenModifier(caster, caster.blizzard_dummy, "modifier_blizzard_thinker", nil)
+	local wave_interval = ability:GetSpecialValueFor("wave_interval")
+	local wave_count = ability:GetSpecialValueFor("wave_count")	
+	local delay = 0.7
+
+	local duration = wave_count * wave_interval + 0.7
+
+	event.ability:ApplyDataDrivenModifier(caster, caster.blizzard_dummy, "modifier_blizzard_thinker", {duration = duration})
 end
 
 -- -- Create the particles with small delays between each other
@@ -53,5 +60,6 @@ function BlizzardEnd( event )
 	local caster = event.caster
 
 	caster.blizzard_dummy:RemoveSelf()
+	StopSoundOn("hero_Crystal.freezingField.wind", caster)
 	--caster:ReduceMana(1000)
 end

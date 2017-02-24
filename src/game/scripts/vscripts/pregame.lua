@@ -1112,8 +1112,11 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                     -- Create the hero and validate it
                     --print(heroName)
                     if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil then
-                        UTIL_Remove(PlayerResource:GetSelectedHeroEntity(playerID))
+                        -- UTIL_Remove(PlayerResource:GetSelectedHeroEntity(playerID))
+                        local wisp = PlayerResource:GetSelectedHeroEntity(playerID)
+                        wisp:SetRespawnsDisabled(true)
                         hero = PlayerResource:ReplaceHeroWith(playerID,heroName,625 + OptionManager:GetOption('bonusGold'),0)
+                        UTIL_Remove(wisp)
                     else
                         hero = CreateHeroForPlayer(heroName,player) 
                         hero = PlayerResource:ReplaceHeroWith(playerID,heroName,625 + OptionManager:GetOption('bonusGold'),0)
@@ -1123,7 +1126,9 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                     if hero ~= nil and IsValidEntity(hero) then
                         self.spawnedHeroesFor[playerID] = true
 
+                        self:onPlayerSaveStats(playerID, build)
                         SkillManager:ApplyBuild(hero, build or {})
+
 
                         buildBackups[playerID] = build
 
@@ -1274,6 +1279,8 @@ function Pregame:networkHeroes()
     end
 
     self.invisSkills = flags.invis
+
+    self.dotaCustom = flags.dota_custom
 
     -- Store the inverse flags list
     self.flagsInverse = flagsInverse
@@ -3464,6 +3471,20 @@ function Pregame:processOptions()
             end
         end
 
+        -- Dota Modified Abilities
+        if not disableBanLists and this.optionStore['lodOptionAdvancedCustomSkills'] ~= 1 then
+            for abilityName,v in pairs(this.dotaCustom) do
+                this:banAbility(abilityName)
+            end
+        end
+
+        -- Banning invis skills
+        if not disableBanLists and this.optionStore['lodOptionBanningBanInvis'] > 0 then
+            for abilityName,v in pairs(this.invisSkills) do
+                this:banAbility(abilityName)
+            end
+        end
+
         -- Disabling Hero Perks
         if this.optionStore['lodOptionDisablePerks'] == 1 then
             this.perksDisabled = true
@@ -4372,6 +4393,39 @@ function Pregame:checkForReady()
     end
 end
 
+-- Track local stats
+function Pregame:onPlayerSaveStats(playerID, abilities)
+    -- Grab data
+    local player = PlayerResource:GetPlayer(playerID)
+
+    if PlayerResource:GetSteamAccountID(playerID) == 0 then
+        return
+    end
+
+    local i = 1
+    local function statsQueue()
+        local abName = abilities[i]
+
+        if abName then
+            localStorage:getKey(playerID, "redux_stats", abName, function (sequenceNumber, success, value)
+                -- local value = 0
+                if success then
+                    value = (tonumber(value) or 0) + 1
+                else
+                    value = 1
+                end
+                localStorage:setKey(playerID, "redux_stats", abName, value, function (sequenceNumber, success)
+                    if i < 23 then
+                        i = i + 1
+                        statsQueue()
+                    end
+                end)
+            end)
+        end
+    end
+    statsQueue()
+end
+
 -- Player wants to ban an ability
 function Pregame:onPlayerSaveBans(eventSourceIndex, args)
     -- Grab data
@@ -4381,7 +4435,7 @@ function Pregame:onPlayerSaveBans(eventSourceIndex, args)
     local count = (self.optionStore['lodOptionBanningMaxBans'] + self.optionStore['lodOptionBanningMaxHeroBans'])
 
     if count == 0 and self.optionStore['lodOptionBanningHostBanning'] > 0 then
-        count = 50
+        count = util:getTableLength(self.playerBansList[playerID]) 
     end
 
     local id = 0
@@ -4415,7 +4469,7 @@ function Pregame:onPlayerLoadBans(eventSourceIndex, args)
     local count = (self.optionStore['lodOptionBanningMaxBans'] + self.optionStore['lodOptionBanningMaxHeroBans'])
 
     if count == 0 and self.optionStore['lodOptionBanningHostBanning'] > 0 then
-        count = 50
+        count = 1000
     end
 
     for i=1,count do
@@ -4434,7 +4488,7 @@ function Pregame:onPlayerLoadBans(eventSourceIndex, args)
                 end
                 id = id + 1
             end
-            if i == count then
+            if not success or i == count then
                 CustomGameEventManager:Send_ServerToPlayer(player,"lodNotification",{text = "lodSuccessLoadBans", params = {['entries'] = id}})
             end
         end)
@@ -6397,10 +6451,10 @@ function Pregame:fixSpawningIssues()
 
     local disabledPerks = {
         --npc_dota_hero_disruptor = true,
-        npc_dota_hero_shadow_demon = true,
-        npc_dota_hero_spirit_breaker = true,
+        -- npc_dota_hero_shadow_demon = true,
+        -- npc_dota_hero_spirit_breaker = true,
         --npc_dota_hero_spirit_slardar = true,
-        npc_dota_hero_ancient_apparition = true,
+        -- npc_dota_hero_ancient_apparition = true,
         npc_dota_hero_wisp = true
     }
 
@@ -6529,6 +6583,12 @@ function Pregame:fixSpawningIssues()
                                 spawnedUnit:SwapAbilities("phantom_lancer_juxtapose_melee","phantom_lancer_juxtapose_ranged",false,true)
                                 spawnedUnit:RemoveAbility("phantom_lancer_juxtapose_melee")
                         end
+                        -- Change Jingu to Jingu ranged, for ranged heros
+                        if spawnedUnit:HasAbility("monkey_king_jingu_mastery_lod_melee") and spawnedUnit:IsRangedAttacker() then
+                                spawnedUnit:AddAbility("monkey_king_jingu_mastery_lod_ranged")
+                                spawnedUnit:SwapAbilities("monkey_king_jingu_mastery_lod_melee","monkey_king_jingu_mastery_lod_ranged",false,true)
+                                spawnedUnit:RemoveAbility("monkey_king_jingu_mastery_lod_melee")
+                        end
                         -- Change infernal blade on gyro to critical strike
                         if this.optionStore['lodOptionBanningUseBanList'] == 1 and spawnedUnit:HasAbility("doom_bringer_infernal_blade") and spawnedUnit:GetUnitName() == "npc_dota_hero_gyrocopter" and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("doom_bringer_infernal_blade"):IsHidden() then
                                 spawnedUnit:AddAbility("chaos_knight_chaos_strike_gyro")
@@ -6574,7 +6634,6 @@ function Pregame:fixSpawningIssues()
 
                  -- Add hero perks
                 Timers:CreateTimer(function()
-                    --print(self.perksDisabled)
                     local nameTest = spawnedUnit:GetName()
                     if IsValidEntity(spawnedUnit) and not self.perksDisabled and not spawnedUnit.hasPerk and not disabledPerks[nameTest] then
                        local perkName = spawnedUnit:GetName() .. "_perk"
@@ -6870,16 +6929,23 @@ function Pregame:fixSpawningIssues()
                 end
             elseif string.match(spawnedUnit:GetUnitName(), "creep") or string.match(spawnedUnit:GetUnitName(), "siege") then
                 if this.optionStore['lodOptionCreepPower'] > 0 then
-                    local level = math.ceil((WAVE or 1) / (this.optionStore['lodOptionCreepPower'] / 30))
-                    local ability = spawnedUnit:AddAbility("lod_creep_power")
-                    ability:UpgradeAbility(false)
+                    local dotaTime = GameRules:GetDOTATime(false, false)
+                    local level = math.ceil(dotaTime / this.optionStore['lodOptionCreepPower'])
+
+                    Timers:CreateTimer(function()
+                        if IsValidEntity(spawnedUnit) then
+                            local ability = spawnedUnit:AddAbility("lod_creep_power")
+                            ability:UpgradeAbility(false)
+                            spawnedUnit:SetModifierStackCount("modifier_creep_power",spawnedUnit,level)
+                        end
+                    end, DoUniqueString('giveCreepPower'), 2)
 
                     -- After level 14, creeps evolve model to represent their upgraded power
                     local levelToUpgrade = 14
 
                     Timers:CreateTimer(function()
                         if IsValidEntity(spawnedUnit) then
-                            spawnedUnit:SetModifierStackCount("modifier_creep_power",spawnedUnit,level)
+                            
                             if level > levelToUpgrade then
                                 if spawnedUnit:GetModelName() == "models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee.vmdl" then
                                     spawnedUnit:SetModel("models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee_mega.vmdl")

@@ -1,6 +1,8 @@
-"DOTAAbilities" {
-	"zulf_gale_force" {
-		"BaseClass" "ability_datadriven"
+"DOTAAbilities"
+{
+	"zulf_gale_force"
+	{
+		"BaseClass"				"ability_lua"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
 		"AbilityTextureName" "custom/zulf_gale_force"
@@ -9,102 +11,47 @@
 		"AOERadius" "350"
 		"AbilityCooldown" "16 14 12 10"
 		"AbilityManaCost" "90 80 70 60"
+		"ScriptFile"	  "abilities/zulf_gale_force.lua"
 
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"duration" "4"
-			}
-
-			"02" {
-				"var_type" "FIELD_FLOAT"
-				"damage_per_agility" "0.9 1.1 1.3 1.5"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"radius" "300 325 350 375"
-			}
-		}
-
-		"precache" {
+		"precache" 
+		{
 			"particle" "particles/generic_gameplay/generic_disarm.vpcf"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
 		}
 
-		"OnSpellStart" {
-			"ApplyModifier" {
-				"ModifierName" "modifier_gale_force_disarm"
-				"Target" "CASTER"
-				"Duration" "%duration"
+		"AbilitySpecial"
+		{
+			"01" 
+			{
+				"var_type" "FIELD_INTEGER"
+				"duration" "4"
 			}
 
-			"FireSound" {
-				"EffectName" "Hero_Invoker.Tornado.Target"
-				"Target" "CASTER"
+			"02" 
+			{
+				"var_type" "FIELD_FLOAT"
+				"damage_per_agility" "0.9 1.1 1.3 1.5"
 			}
 
-			"DelayedAction" {
-				"Delay" "1.5"
+			"03" 
+			{
+				"var_type" "FIELD_INTEGER"
+				"radius" "300 325 350 375"
+			}		
 
-				"Action" {
-					"FireSound" {
-						"EffectName" "Hero_Invoker.Tornado.Target"
-						"Target" "CASTER"
-					}
-				}
-			}
-		}
-
-		"Modifiers" {
-			"modifier_gale_force" {
-				"Aura" "modifier_gale_force_disarm"
-				"Aura_Radius" "%radius"
-				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"Aura_Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
-
-				"States" {
-					"MODIFIER_STATE_DISARMED" "MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"Passive" "0"
-				"IsHidden" "1"
-				"IsBuff" "1"
-				"Duration" "%duration"
-				"EffectName" "particles/zulf_gale_force.vpcf"
-				"EffectAttachType" "attach_origin"
-				"ThinkInterval" "0.2"
-
-				"OnIntervalThink" {
-					"ActOnTargets" {
-						"Target" {
-							"Center" "CASTER"
-							"Radius" "%radius"
-							"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
-							"Flags" "DOTA_UNIT_TARGET_FLAG_NONE"
-						}
-
-						"Action" {
-							"RunScript" {
-								"ScriptFile" "abilities/zulf_gale_force.lua"
-								"Function" "ApplyDamageAgility"
-							}
-						}
-					}
-				}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"delay"		"1.5"
 			}
 
-			"modifier_gale_force_disarm" {
-				"Passive" "0"
-				"IsHidden" "0"
-				"IsDebuff" "1"
-				"EffectName" "particles/generic_gameplay/generic_disarm.vpcf"
-				"EffectAttachType" "follow_overhead"
 
-				"States" {
-					"MODIFIER_STATE_DISARMED" "MODIFIER_STATE_VALUE_ENABLED"
-				}
+			"05"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"interval"	"0.2"
 			}
 		}
 	}
+	
 }
