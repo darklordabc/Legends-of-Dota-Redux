@@ -10,6 +10,10 @@ All notable changes to this project will be documented in this file.
 - Fixed Memes Redux
 - Possibly fixed team switch, please confirm to devs if its still broken
 - Added Side Gunner as a separate ability (no longer connected to Gyro hero)
+- Added Aghnaim Magic and Transmuted Scepter abilities. 
+- Alchemist no longer has innate ability to give aghs, his perk gives 3 gold per 10 seconds instead of 2 to compenstate.
+- Disabling custom abilities now disables the modified original abilities, like the different flesh heaps
+- Hopefully busted the ghost wisps from appearing
 
 ### Balance
 - 
