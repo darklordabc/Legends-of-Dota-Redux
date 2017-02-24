@@ -14,6 +14,14 @@
 		"AbilityCastPoint"						"0.3"		
 		"ScriptFile"							"abilities/alchemist_aghnaim_magic"
 
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle" 							"particles/alchemist_aghnaim_magic_aghs.vpcf"
+			"soundfile"							"soundevents/game_sounds_heroes/game_sounds_alchemist.vsndevts"
+		}
+
 		"AbilitySpecial" 
 		{
 			"01"
