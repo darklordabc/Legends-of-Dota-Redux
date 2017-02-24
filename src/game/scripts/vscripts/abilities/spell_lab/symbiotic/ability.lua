@@ -26,9 +26,9 @@ function spell_lab_symbiotic:CastFilterResultTarget( hTarget )
 	local nTargetID = hTarget:GetPlayerOwnerID()
 	if self:GetCaster() == hTarget then return UF_FAIL_CUSTOM end
 		if self:GetCaster():HasModifier("spell_lab_symbiotic_target") then return UF_FAIL_CUSTOM end
-		if hTarget:IsCourier() then
-			return UF_SUCCESS
-		end
+		--if hTarget:IsCourier() then
+		--	return UF_SUCCESS
+		--end
 		--	if hTarget:HasAbility("life_stealer_infest") then return UF_FAIL_CUSTOM end
 	if IsServer() and not hTarget:IsOpposingTeam(self:GetCaster():GetTeamNumber()) and PlayerResource:IsDisableHelpSetForPlayerID(nTargetID,nCasterID) then
 		return UF_FAIL_DISABLE_HELP
