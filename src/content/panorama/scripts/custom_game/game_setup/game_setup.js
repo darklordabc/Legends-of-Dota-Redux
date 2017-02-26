@@ -3963,11 +3963,6 @@ function onShufflePressed() {
 
 // Player presses lock teams
 function onLockPressed() {
-    if(isHost()) {
-        showPopupMessage('lodHostingMessage');
-    } else {
-        showPopupMessage('lodHostingNoobMessage');
-    }
     // Don't allow a forced start if there are unassigned players
     if (Game.GetUnassignedPlayerIDs().length > 0)
         return;
@@ -3998,10 +3993,7 @@ function onLockOptionsPressed() {
     // Ensure teams are locked
     if(!Game.GetTeamSelectionLocked()) return;
 
-
-    if (Game.IsInToolsMode()) {
-        GameEvents.SendCustomGameEventToServer('lodOptionsLocked', {});
-    }  
+    GameEvents.SendCustomGameEventToServer('lodOptionsLocked', {});
 }
 
 // Player tries to join radiant
