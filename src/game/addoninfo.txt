@@ -1,6 +1,6 @@
 "AddonInfo"
 {
-	maps			"custom_700 custom_bot custom dota_180"
+	maps			"custom_702 custom_bot custom dota_180"
 	"IsPlayable"	"1"
     "version"       "3.1.2"
 
