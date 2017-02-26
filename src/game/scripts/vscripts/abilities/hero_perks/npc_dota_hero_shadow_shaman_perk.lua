@@ -68,7 +68,7 @@ function modifier_npc_dota_hero_shadow_shaman_perk:OnAbilityExecuted(keys)
             self:HexTarget(tTargets[i],ability)
           end
         end
-      elseif target and target:GetTeamNumber() ~= hero:GetTeamNumber() and math.random() < self.hexChance then
+      elseif target and target:GetTeamNumber() ~= hero:GetTeamNumber() and math.random() > self.hexChance then
         target:AddNewModifier(hero, ability, "modifier_shadow_shaman_voodoo", {duration = 3})
       end
       --[[
