@@ -8,8 +8,9 @@ Constants.PHASE_BANNING = 4             -- Banning stuff
 Constants.PHASE_SELECTION = 5           -- Selecting heroes
 Constants.PHASE_DRAFTING = 6            -- Place holder for drafting mode
 Constants.PHASE_RANDOM_SELECTION = 7    -- Random build selection phase (for All Random)
-Constants.PHASE_REVIEW = 8              -- Review Phase
-Constants.PHASE_INGAME = 9              -- Game has started
+Constants.PHASE_SPAWN_HEROES = 8		-- Spawn workaround
+Constants.PHASE_REVIEW = 9              -- Review Phase
+Constants.PHASE_INGAME = 10             -- Game has started
 
 -- Balance Mode Values
 Constants.TIER = {120, 100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 0}

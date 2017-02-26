@@ -114,7 +114,7 @@ function Pregame:init()
     GameRules:SetHeroSelectionTime(0)   -- Hero selection is done elsewhere, hero selection should be instant
     GameRules:GetGameModeEntity():SetBotThinkingEnabled(true)
 
-    GameRules:GetGameModeEntity():SetCustomGameForceHero("npc_dota_hero_wisp")
+    -- GameRules:GetGameModeEntity():SetCustomGameForceHero("npc_dota_hero_wisp")
 
     -- Rune fix
     local totalRunes = 0
@@ -677,6 +677,41 @@ function Pregame:startBoosterDraftRound( pID )
     end, DoUniqueString(tostring(pID).."boosterDraft"), duration + 1)
 end
 
+function Pregame:applyBuilds()
+    local maxPlayerID = 24
+    for playerID=0,maxPlayerID-1 do
+        local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+
+        if hero ~= nil and IsValidEntity(hero) then
+            local build = self.selectedSkills[playerID]
+
+            if build then
+                local status2,err2 = pcall(function()
+                    SkillManager:ApplyBuild(hero, build or {})
+
+                    if self.selectedPlayerAttr[playerID] ~= nil then
+                        local toSet = 0
+
+                        if self.selectedPlayerAttr[playerID] == 'str' then
+                            toSet = 0
+                        elseif self.selectedPlayerAttr[playerID] == 'agi' then
+                            toSet = 1
+                        elseif self.selectedPlayerAttr[playerID] == 'int' then
+                            toSet = 2
+                        end
+
+                        Timers:CreateTimer(function()
+                            if IsValidEntity(hero) then
+                                hero:SetPrimaryAttribute(toSet)
+                            end
+                        end, DoUniqueString('primaryAttrFix'), 0.1)
+                    end
+                end)
+            end
+        end
+    end
+end
+
 -- Thinker function to handle logic
 function Pregame:onThink()
     -- Grab the phase
@@ -930,7 +965,7 @@ function Pregame:onThink()
         -- Is it over?
         if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
             -- Change to picking phase
-            self:setPhase(constants.PHASE_INGAME)
+            self:setPhase(constants.PHASE_SPAWN_HEROES)
 
             -- Kill the selection screen
             GameRules:FinishCustomGameSetup()
@@ -939,15 +974,41 @@ function Pregame:onThink()
         return 0.1
     end
 
+    if ourPhase == constants.PHASE_SPAWN_HEROES then
+        -- Do things after a small delay
+        local this = self
+        
+        -- Hook bot stuff
+        self:hookBotStuff()
+
+        -- Spawn all humans
+        Timers:CreateTimer(function()
+            -- Spawn all players
+            this:spawnAllHeroes()
+        end, DoUniqueString('spawnbots'), 0.1)
+
+        -- Move to ingame
+        self:setPhase(constants.PHASE_INGAME)
+
+        return 0.1
+    end
+
     -- Once we get to this point, we will not fire again
 
     -- Game is starting, spawn heroes
     if ourPhase == constants.PHASE_INGAME then
+        if GameRules:State_Get() < DOTA_GAMERULES_STATE_PRE_GAME then
+            return 0.1
+        end
+
         -- Do things after a small delay
         local this = self
 
+        -- Fix builds
+        self:applyBuilds()
+
         -- Hook bot stuff
-        self:hookBotStuff()
+        -- self:hookBotStuff()
 
         -- Start tutorial mode so we can show tips to players
         Tutorial:StartTutorialMode()
@@ -977,18 +1038,12 @@ function Pregame:onThink()
             this:preventCamping()
         end, DoUniqueString('preventcamping'), 0.3)
 
-        -- Spawn all players
         Timers:CreateTimer(function()
-            this:spawnAllHeroes(function (  )
-                -- Init ingame stuff
-                Timers:CreateTimer(function()
-                    -- Load messages
-                    SU:LoadPlayersMessages()
+            -- Load messages
+            SU:LoadPlayersMessages()
 
-                    ingame:onStart()
-                end, DoUniqueString('preventcamping'), 0)
-            end)
-        end, DoUniqueString('spawnplayers'), 5.0)
+            ingame:onStart()
+        end, DoUniqueString('preventcamping'), 0)
     end
 end
 
@@ -1030,72 +1085,93 @@ function Pregame:spawnAllHeroes(onSpawned)
     local minPlayerID = 0
     local maxPlayerID = 24
 
-    self.spawnQueueID = -1
-    self.spawnDelay = 2.5
-
-    if IsInToolsMode() then
-        self.spawnDelay = 0
+    for playerID = minPlayerID,maxPlayerID-1 do
+        self:spawnPlayer(playerID)
     end
 
-    self.playerQueue = function (hero)
-        PauseGame(true)
-        self.spawnQueueID = self.spawnQueueID + 1
+    -- self.spawnQueueID = -1
+    -- self.spawnDelay = 2.5
 
-        -- Update queue info
-        CustomGameEventManager:Send_ServerToAllClients("lodSpawningQueue", {queue = self.spawnQueueID})
+    -- if IsInToolsMode() then
+    --     self.spawnDelay = 0
+    -- end
 
-        -- End pause if every player is checked
-        if self.spawnQueueID > 24 then
-            PauseGame(false)
-            self.spawnQueueID = nil
-            self.heroesSpawned = true
-            onSpawned()
-            return
-        end
+    -- self.playerQueue = function (hero)
+    --     PauseGame(true)
+    --     self.spawnQueueID = self.spawnQueueID + 1
 
-        -- Skip disconnected players
-        if PlayerResource:GetConnectionState(self.spawnQueueID) < 1 then
-            self.playerQueue()
-            return
-        end
-        -- if not hero then
-        --     self.playerQueue()
-        --     return
-        -- end
+    --     -- Update queue info
+    --     CustomGameEventManager:Send_ServerToAllClients("lodSpawningQueue", {queue = self.spawnQueueID})
 
-        -- Keep spawning
-        Timers:CreateTimer(function()
-            self:spawnPlayer(self.spawnQueueID, self.playerQueue)
-        end, DoUniqueString('playerSpawn'), self.spawnDelay)
-    end
+    --     -- End pause if every player is checked
+    --     if self.spawnQueueID > 24 then
+    --         PauseGame(false)
+    --         self.spawnQueueID = nil
+    --         self.heroesSpawned = true
+    --         onSpawned()
+    --         return
+    --     end
 
-    self.playerQueue(true)
+    --     -- Skip disconnected players
+    --     if PlayerResource:GetConnectionState(self.spawnQueueID) < 1 then
+    --         self.playerQueue()
+    --         return
+    --     end
+    --     -- if not hero then
+    --     --     self.playerQueue()
+    --     --     return
+    --     -- end
+
+    --     -- Keep spawning
+    --     Timers:CreateTimer(function()
+    --         self:spawnPlayer(self.spawnQueueID, self.playerQueue)
+    --     end, DoUniqueString('playerSpawn'), self.spawnDelay)
+    -- end
+
+    -- self.playerQueue(true)
 end
 
 -- Spawns a given player
 function Pregame:spawnPlayer(playerID, callback)
-    local player = PlayerResource:GetPlayer(playerID)
-    if player then
-        CustomGameEventManager:Send_ServerToPlayer(player,"lodCreatedHero",{})
+    if PlayerResource:GetConnectionState(playerID) >= 1 then
+        if self.spawnedHeroesFor[playerID] then return end
+        self.spawnedHeroesFor[playerID] = true
+
+        table.insert(self.spawnQueue, playerID)
+
+        self:actualSpawnPlayer()
     end
-
-    if self.spawnedHeroesFor[playerID] then return end
-
-    self.currentlySpawning = true
-
-    self:actualSpawnPlayer(playerID, callback)
 end
 
 function Pregame:actualSpawnPlayer(playerID, callback)
+    -- Is there someone to spawn?
+    if #self.spawnQueue <= 0 then return end
+
+    -- Only spawn ONE player at a time!
+    if self.currentlySpawning then return end
+    self.currentlySpawning = true
+
     -- Grab a reference to self
     local this = self
 
-    -- Try to spawn this player using safe stuff
+    -- Give a small delay, and then continue
+    Timers:CreateTimer(function()
+        -- Done spawning, start the next one
+        this.currentlySpawning = false
+
+        -- Continue actually spawning
+        this:actualSpawnPlayer()
+    end, DoUniqueString('continueSpawning'), 0.1)
+
+     -- Try to spawn this player using safe stuff
     local status, err = pcall(function()
+        -- Grab a player to spawn
+        local playerID = table.remove(this.spawnQueue, 1)
+
         -- Don't allow a player to get two heroes
-        -- if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil and not PlayerResource:GetSelectedHeroEntity(playerID).dummy then
-        --     return
-        -- end
+        if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil then
+            return
+        end
 
         -- Grab their build
         local build = self.selectedSkills[playerID]
@@ -1105,39 +1181,19 @@ function Pregame:actualSpawnPlayer(playerID, callback)
         if player ~= nil then
             local heroName = self.selectedHeroes[playerID] or self:getRandomHero()
 
-            function spawnTheHero()
-                local hero
+            local spawnTheHero = function()
                 local status2,err2 = pcall(function()
-
                     -- Create the hero and validate it
-                    --print(heroName)
-                    if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil then
-                        -- UTIL_Remove(PlayerResource:GetSelectedHeroEntity(playerID))
-                        local wisp = PlayerResource:GetSelectedHeroEntity(playerID)
-                        wisp:SetRespawnsDisabled(true)
-                        hero = PlayerResource:ReplaceHeroWith(playerID,heroName,625 + OptionManager:GetOption('bonusGold'),0)
-                        -- UTIL_Remove(wisp)
-                    else
-                        hero = CreateHeroForPlayer(heroName,player) 
-                        hero = PlayerResource:ReplaceHeroWith(playerID,heroName,625 + OptionManager:GetOption('bonusGold'),0)
-                    end
+                    local hero = CreateHeroForPlayer(heroName, player)
 
-                    -- CreateUnitByName(heroName,Vector(0,0,0),true,player,player,player:GetTeamNumber())
-                    if hero ~= nil and IsValidEntity(hero) then
-                        self.spawnedHeroesFor[playerID] = true
+                    UTIL_Remove(hero)
 
-                        self:onPlayerSaveStats(playerID, build)
+                    --[[if hero ~= nil and IsValidEntity(hero) then
                         SkillManager:ApplyBuild(hero, build or {})
-
-
-                        buildBackups[playerID] = build
-
                         -- Do they have a custom attribute set?
                         if self.selectedPlayerAttr[playerID] ~= nil then
                             -- Set it
-
                             local toSet = 0
-
                             if self.selectedPlayerAttr[playerID] == 'str' then
                                 toSet = 0
                             elseif self.selectedPlayerAttr[playerID] == 'agi' then
@@ -1145,7 +1201,6 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                             elseif self.selectedPlayerAttr[playerID] == 'int' then
                                 toSet = 2
                             end
-
                             -- Set a timer to fix stuff up
                             Timers:CreateTimer(function()
                                 if IsValidEntity(hero) then
@@ -1153,36 +1208,31 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                                 end
                             end, DoUniqueString('primaryAttrFix'), 0.1)
                         end
-                    end
+                    end]]
                 end)
 
                 -- Did the spawning of this hero fail?
                 if not status2 then
                     SendToServerConsole('say "Post this to the LoD comments section: '..err2:gsub('"',"''")..'"')
                 end
-
-                return hero
             end
 
-            self.currentlySpawning = false
+            if this.cachedPlayerHeroes[playerID] then
+                -- Directly spawn the hero
+                spawnTheHero()
+            else
+                -- Attempt to precache their hero
+                PrecacheUnitByNameAsync(heroName, function()
+                    -- We have now cached this player's hero
+                    this.cachedPlayerHeroes[playerID] = true
 
-
-            PrecacheUnitByNameAsync(heroName, function()
-                this.cachedPlayerHeroes[playerID] = true
-
-                local hero = spawnTheHero()
-
-                if callback then
-                    callback(hero)
-                end
-            end, playerID)
+                    -- Spawn it
+                    spawnTheHero()
+                end, playerID)
+            end
         else
             -- This player has not spawned!
             self.spawnedHeroesFor[playerID] = nil
-
-            if callback then
-                callback()
-            end
         end
     end)
 
@@ -6464,15 +6514,6 @@ function Pregame:fixSpawningIssues()
 
         -- Ensure it's a valid unit
         if IsValidEntity(spawnedUnit) then
-
-            -- Temporay Wisp Hotfix
-            if spawnedUnit:GetUnitName() == "npc_dota_hero_wisp" and util:isPlayerBot(spawnedUnit:GetPlayerID()) then
-                spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_stunned", {duration = duration})
-                spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_invulnerable", {duration = duration})
-                spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_phased", {duration = duration})
-                --spawnedUnit:AddNoDraw()
-            end
-
             -- Spellfix: Give Eyes in the Forest a notification for nearby enemies.
             if spawnedUnit:GetName() == "npc_dota_treant_eyes" then
                 Timers:CreateTimer(function()
@@ -6512,14 +6553,14 @@ function Pregame:fixSpawningIssues()
                     end 
                 end
 
-                self.spawnedArray = self.spawnedArray or {}
+                -- self.spawnedArray = self.spawnedArray or {}
 
-                if not self.spawnedArray[spawnedUnit:GetPlayerID()] then
-                    self.spawnedArray[spawnedUnit:GetPlayerID()] = true
-                    spawnedUnit.dummy = true
-                    spawnedUnit:AddNoDraw()
-                    return
-                end
+                -- if not self.spawnedArray[spawnedUnit:GetPlayerID()] then
+                --     self.spawnedArray[spawnedUnit:GetPlayerID()] = true
+                --     spawnedUnit.dummy = true
+                --     spawnedUnit:AddNoDraw()
+                --     return
+                -- end
             end
             -- Make sure it is a hero
             if spawnedUnit:IsHero() then

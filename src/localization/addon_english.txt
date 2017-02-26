@@ -55,6 +55,7 @@
     "lodStageBanning"                         "Banning"
     "lodStageSelection"                       "Hero Builder"
     "lodStageRandomSelection"                 "All Random Build Selection"
+    "lodStageSpawnHeroes"                     ""
     "lodStageReview"                          "Review"
     "lodStageIngame"                          "Ingame"
 	

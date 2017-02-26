@@ -10,8 +10,9 @@ var PHASE_BANNING = 4;          // Banning stuff
 var PHASE_SELECTION = 5;        // Selecting heroes
 var PHASE_DRAFTING = 6;         // Place holder for drafting mode
 var PHASE_RANDOM_SELECTION = 7; // Random build selection (For All Random)
-var PHASE_REVIEW = 8;           // Review Phase
-var PHASE_INGAME = 9;           // Game has started
+var PHASE_SPAWN_HEROES = 8;     // Random build selection (For All Random)
+var PHASE_REVIEW = 9;           // Review Phase
+var PHASE_INGAME = 10;          // Game has started
 
 var phases = {
     1: {
@@ -45,12 +46,17 @@ var phases = {
         desc: '',
         class: 'phase_all_random'
     },
-    8: {
+    // 8: {
+    //     name: '#lodStageSpawnHeroes',
+    //     desc: '',
+    //     class: 'phase_spawn_heroes'
+    // },
+    9: {
         name: '#lodStageReview',
         desc: '',
         class: 'phase_review'
     },
-    9: {
+    10: {
         name: '#lodStageIngame',
         desc: '',
         class: 'phase_ingame'
@@ -5409,11 +5415,11 @@ function loadPlayerBans() {
     $('#chat').BLoadLayout('file://{resources}/layout/custom_game/game_setup/chat.xml', false, false);
 
     // Workarounds
-    var parent = $.GetContextPanel().GetParent();
-    while(parent.id != "Hud")
-        parent = parent.GetParent();
+    // var parent = $.GetContextPanel().GetParent();
+    // while(parent.id != "Hud")
+    //     parent = parent.GetParent();
 
-    parent.FindChildTraverse("PreGame").visible = false;
-    parent.FindChildTraverse("PreGame").style.width = "0px;";
+    // parent.FindChildTraverse("PreGame").visible = false;
+    // parent.FindChildTraverse("PreGame").style.width = "0px;";
     // parent.FindChildTraverse("PreGame").MapLoadingOutroFinished();
 })();
