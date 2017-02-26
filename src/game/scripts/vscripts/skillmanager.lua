@@ -82,6 +82,7 @@ local towerClasses = {
 local autoSkill = {
     nyx_assassin_unburrow = true,
     alchemist_transmuted_scepter = true,
+    silencer_glaives_of_wisdom_steal = true,
     earth_spirit_stone_caller = true
 }
 

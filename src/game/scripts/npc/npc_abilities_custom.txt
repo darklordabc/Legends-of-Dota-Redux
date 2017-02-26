@@ -72,6 +72,7 @@
 #base "abilities\dnd\makemeleecreeps_lua.txt"
 #base "abilities\dnd\makerangedcreeps_lua.txt"
 #base "abilities\dota\side_gunner_redux.txt"
+#base "abilities\dota\silencer_glaives_of_wisdom_steal.txt"
 #base "abilities\dota\alchemist_chemical_rage_redux.txt"
 #base "abilities\dota\alchemist_transmuted_scepter.txt"
 #base "abilities\dota\alchemist_aghnaim_magic_redux.txt"

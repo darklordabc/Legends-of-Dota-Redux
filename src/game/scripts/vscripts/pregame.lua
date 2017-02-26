@@ -6578,9 +6578,9 @@ function Pregame:fixSpawningIssues()
                 Timers:CreateTimer(function()
                     if IsValidEntity(spawnedUnit) then
                         -- Silencer Fix
-                        if spawnedUnit:HasAbility('silencer_glaives_of_wisdom') then
+                        if spawnedUnit:HasAbility('silencer_glaives_of_wisdom_steal') then
                             if not spawnedUnit:HasModifier('modifier_silencer_int_steal') then
-                                spawnedUnit:AddNewModifier(spawnedUnit, nil, 'modifier_silencer_int_steal', {})
+                                spawnedUnit:AddNewModifier(spawnedUnit, spawnedUnit:FindAbilityByName("silencer_glaives_of_wisdom_steal"), 'modifier_silencer_int_steal', {})
                             end
                         else
                             spawnedUnit:RemoveModifierByName('modifier_silencer_int_steal')
