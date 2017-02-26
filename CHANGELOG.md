@@ -2,6 +2,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 6.5 - Development Version
+### Bug Fixing/New Features
+- Updated Map to 7.02
+
+### Balance
+- 
+
 ## 6.4 - Development Version
 ### Bug Fixing/New Features
 - Roshanify now has max move speed of 270 and lower bash chance.
@@ -15,9 +22,6 @@ All notable changes to this project will be documented in this file.
 - Disabling custom abilities now disables the modified original abilities, like the different flesh heaps
 - Hopefully busted the ghost wisps from appearing
 - Divided We Stand is troll combo with Arcane Symbiosis until we can fix the FPS drop problem
-
-### Balance
-- 
 
 ## 6.3 - Steam Version
 ### Bug Fixing/New Features
