@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - Intelligence Steal is now a separate 1 level ability, no longer inherent to Glaives of Wisdom. Glaives is no longer an OP ability, and its price has decresed in points mode.
 - Added 7 abilities from Overflow. 
 - Added 4 Super OP variant abilities. 
+- Kotl, NS and Gyro will now benefit from the 'Free Aghs' optional setting.
 
 ### Balance
 - 

@@ -6780,17 +6780,15 @@ function Pregame:fixSpawningIssues()
                     end, DoUniqueString('giveDagger'), 1)            
                 end
 
-                -- Handle free scepter stuff, Gyro will not benefit
+                -- Handle free scepter stuff 
                 if OptionManager:GetOption('freeScepter') ~= 0 then
                     -- If setting is 1, everyone gets free scepter modifier, if its 2, only human players get the upgrade
                     if OptionManager:GetOption('freeScepter') == 1 or (OptionManager:GetOption('freeScepter') == 2 and not util:isPlayerBot(playerID))  then
-                        if spawnedUnit:GetUnitName() ~= "npc_dota_hero_gyrocopter" and spawnedUnit:GetUnitName() ~= "npc_dota_hero_night_stalker" and spawnedUnit:GetUnitName() ~= "npc_dota_hero_keeper_of_the_light"  then
-                            spawnedUnit:AddNewModifier(spawnedUnit, nil, 'modifier_item_ultimate_scepter_consumed', {
-                                bonus_all_stats = 0,
-                                bonus_health = 0,
-                                bonus_mana = 0
-                            })
-                        end
+                        spawnedUnit:AddNewModifier(spawnedUnit, nil, 'modifier_item_ultimate_scepter_consumed', {
+                            bonus_all_stats = 0,
+                            bonus_health = 0,
+                            bonus_mana = 0
+                        })
                      end
                 end
 
