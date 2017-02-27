@@ -1,0 +1,49 @@
+"DOTAAbilities" {
+	"eldri_anti_magic"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_lua"
+		"ScriptFile"					"abilities/overflow/eldri_anti_magic/ability.lua"
+		"AbilityTextureName"			"custom/eldri_anti_magic"
+		"AbilityCastPoint"              "0.1"
+		"AbilityCooldown"               "30.0"
+		"AbilityManaCost"               "100"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		 "AbilityCastRange"              "400"
+		"AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_CUSTOM"
+		"AbilityUnitTargetType"         "DOTA_UNIT_TARGET_TREE"
+		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+		"soundfile"				"soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
+		"particle"	"particles/eldri_sentryvpcf.vpcf"
+		"particle"	"particles/black_laguna.vpcf"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"15.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"			"800"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"d_damage"			"50 75 100 125"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun_duration"				"1.0"
+			}
+		}
+	}
+}
