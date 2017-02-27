@@ -1195,7 +1195,12 @@ end
 -- Returns a random hero [will be unique]
 function Pregame:getRandomHero(filter)
     -- Build a list of heroes that have already been taken
+    -- Also remove heroes with paired abilities
     local takenHeroes = {}
+    for k,v in pairs(GameRules.perks["heroAbilityPairs"]) do
+        table.insert(takenHeroes, k)
+    end
+
     for k,v in pairs(self.selectedHeroes) do
         takenHeroes[v] = true
     end
