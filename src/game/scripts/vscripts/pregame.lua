@@ -6585,6 +6585,27 @@ function Pregame:fixSpawningIssues()
                         else
                             spawnedUnit:RemoveModifierByName('modifier_silencer_int_steal')
                         end
+
+                        -- Stalker Innate Auto-Level
+                        if spawnedUnit:HasAbility('night_stalker_innate_redux') then
+                            local stalkerInnate = spawnedUnit:FindAbilityByName('night_stalker_innate_redux')
+                            if stalkerInnate then
+                                if stalkerInnate:GetLevel() ~= 1 then
+                                    stalkerInnate:UpgradeAbility(false)
+                                end
+                            end
+                        end
+
+                        -- KOTL Innate Auto-Level
+                        if spawnedUnit:HasAbility('keeper_of_the_light_innate_redux') then
+                            local kotlInnate = spawnedUnit:FindAbilityByName('keeper_of_the_light_innate_redux')
+                            if kotlInnate then
+                                if kotlInnate:GetLevel() ~= 1 then
+                                    kotlInnate:UpgradeAbility(false)
+                                end
+                            end
+                        end
+                        
                         -- Change sniper assassinate to our custom version to work with aghs
                         if spawnedUnit:HasAbility("sniper_assassinate") and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("sniper_assassinate"):IsHidden() then
                                 spawnedUnit:AddAbility("sniper_assassinate_redux")
