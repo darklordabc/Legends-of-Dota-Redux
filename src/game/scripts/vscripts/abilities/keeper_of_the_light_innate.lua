@@ -24,6 +24,14 @@ function modifier_keeper_of_the_light_innate_redux:OnCreated()
   end
 end
 
+function modifier_keeper_of_the_light_innate_redux:IsHidden()
+  if caster:HasScepter() and caster:IsAlive() and GameRules:IsDaytime() then
+    return false
+  else
+    return true
+  end
+end
+
 function modifier_keeper_of_the_light_innate_redux:OnIntervalThink()
   local caster = self:GetParent()
   local ability = self:GetAbility()
