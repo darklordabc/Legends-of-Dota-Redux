@@ -19,7 +19,7 @@ function modifier_night_stalker_innate_redux:RemoveOnDeath()
 end
 
 function modifier_night_stalker_innate_redux:IsHidden()
-  if caster:HasScepter() and caster:IsAlive() and not GameRules:IsDaytime() then
+  if self:GetParent():HasScepter() and  self:GetParent():IsAlive() and not GameRules:IsDaytime() then
     return false
   else
     return true
