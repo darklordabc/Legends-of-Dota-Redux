@@ -7,8 +7,9 @@ All notable changes to this project will be documented in this file.
 - Updated Map to 7.02
 - Intelligence Steal is now a separate 1 level ability, no longer inherent to Glaives of Wisdom. Glaives is no longer an OP ability, and its price has decresed in points mode.
 
+
 ### Balance
-- 
+- Gave Borrowed Time a manacost 
 
 ## 6.4 - Development Version
 ### Bug Fixing/New Features
