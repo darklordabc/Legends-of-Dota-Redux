@@ -1548,6 +1548,25 @@ ListenToGameEvent('game_rules_state_change', function(keys)
     local newState = GameRules:State_Get()
     if newState == DOTA_GAMERULES_STATE_HERO_SELECTION then
         _instance:SetPlayerColors()
+    elseif newState == DOTA_GAMERULES_STATE_POST_GAME then
+        local maxPlayerID = 24
+        for playerID=0,maxPlayerID-1 do
+            local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+
+            if hero ~= nil and IsValidEntity(hero) then
+                localStorage:getKey(playerID, "redux_wins", "win_count", function (sequenceNumber, success, value)
+                    -- local value = 0
+                    if success then
+                        value = (tonumber(value) or 0) + 1
+                    else
+                        value = 1
+                    end
+                    localStorage:setKey(playerID, "redux_wins", "win_count", value, function (sequenceNumber, success)
+                        
+                    end)
+                end)
+            end
+        end
     end
 end, nil)
 
