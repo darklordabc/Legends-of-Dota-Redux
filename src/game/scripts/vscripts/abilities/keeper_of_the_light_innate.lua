@@ -24,18 +24,18 @@ function modifier_keeper_of_the_light_innate_redux:OnCreated()
   end
 end
 
+
 function modifier_keeper_of_the_light_innate_redux:IsHidden()
-  if self:GetParent():HasScepter() and self:GetParent():IsAlive() and GameRules:IsDaytime() then
-    return false
-  else
-    return true
-  end
+  return self:GetStackCount() == 1
 end
 
 function modifier_keeper_of_the_light_innate_redux:OnIntervalThink()
   local caster = self:GetParent()
   local ability = self:GetAbility()
-  if caster:HasScepter() and caster:IsRealHero() and caster:IsAlive() and GameRules:IsDaytime() then
+  if caster:HasScepter() and caster:IsAlive() and GameRules:IsDaytime() then
+    self:SetStackCount(0)
     AddFOWViewer(caster:GetTeamNumber(),caster:GetAbsOrigin(),ability:GetSpecialValueFor("vision_radius"),2/32,false)
+  else
+    self:SetStackCount(1)
   end
 end
