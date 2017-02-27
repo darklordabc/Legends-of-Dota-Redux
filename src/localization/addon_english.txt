@@ -723,7 +723,7 @@
     "hintCentaur"                         "Centaur Warrunner takes 75% damage from Self-Damaging spells."
     "hintPhoenix"                         "Phoenix passively triggers Supernova when taking lethal damage. Requires level 6 or higher."
     "hintAncientApparition"                         "Ancient Apparition disables the health regeneration of targets when an Ice ability debuff is applied."
-    "hintShadowShaman"                         "Shadow Shaman refunds the manacost of Hex spells and reduces their cooldowns by 20%."
+    "hintShadowShaman"                         "When Shadow Shaman is targeted by an enemy spell, they will get Hexed for 3 seconds. Has 60 second cooldown."
     "hintDoom"                         "Doom applies Break when casting Doom."
     "hintLich"                         "Lich heals himself for the mana gained when casting Sacrifice."
     "hintSpectre"                         "Spectre gains phased movement when casting abilities."
@@ -1146,7 +1146,7 @@
     "unique_mechanic_sand_king"                        "Refund 30% of the manacost of <font color=\'#ffd966\'>Channeled</font> abilities. "
     "unique_mechanic_shadow_demon"                        "When Shadow Demon buys an item that is limited by stock, he gains a permanent +1 to all attributes."
     "unique_mechanic_nevermore"             "At the start of the game, Shadow Fiend gains a free level of <font color=\'#ffd966\'>Necromastery</font>, whether he has it or not."
-    "unique_mechanic_shadow_shaman"             "When Shadow Shaman is targeted by a spell, Hex the caster for 3 seconds. Has 60 second cooldown."
+    "unique_mechanic_shadow_shaman"             "When Shadow Shaman is targeted by an enemy spell, they will get Hexed for 3 seconds. Has 60 second cooldown."
     "unique_mechanic_silencer"                        "<font color=\'#ffd966\'>Silence</font> effects applied by Silencer last 25% longer."
     "unique_mechanic_skywrath_mage"                        "Skywrath Mage refunds 15% of the manacost of spells with a cooldown of 7 seconds or less."
     "unique_mechanic_slardar"                       "<font color=\'#ffd966\'>Skull Basher</font> and  <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero. Slardar has an innate <font color=\'#ffd966\'>Sprint</font> active ability."
@@ -3152,7 +3152,7 @@
 
     /// SHADOW SHAMAN​
     "DOTA_Tooltip_modifier_npc_dota_hero_shadow_shaman_perk"    "Shadow Shaman Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_shadow_shaman_perk_Description"    "When Shadow Shaman is targeted by a spell, Hex the caster for 3 seconds. Has 60 second cooldown.<br><br><font color=\'#7D7D7D\'>By Otso Turpeinen | github.com/OtsoTurpeinen</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_shadow_shaman_perk_Description"    "When Shadow Shaman is targeted by an enemy spell, they will get Hexed for 3 seconds. Has 60 second cooldown. <br><br><font color=\'#7D7D7D\'>By Otso Turpeinen | github.com/OtsoTurpeinen</font>"
 
     /// SILENCER​
     "DOTA_Tooltip_modifier_npc_dota_hero_silencer_perk" "Silencer Perk"
