@@ -3985,6 +3985,21 @@ function Pregame:onPlayerSelectHero(eventSourceIndex, args)
     if hero and GameRules.perks["heroAbilityPairs"][hero] then
         self:onPlayerSelectAbility(0, {PlayerID = playerID, abilityName = GameRules.perks["heroAbilityPairs"][hero], slot=5})
     end
+
+    -- Check if the hero has banned skills that should be removed
+
+    for i=1,6 do
+
+        if self.bannedAbilities[self.selectedSkills[playerID][i]] then
+            self:removeSelectedAbility(playerID, i)
+        end
+    end
+    -- Add skill to hero if needed
+    local hero = args.heroName
+    if hero and GameRules.perks["heroAbilityPairs"][hero] then
+        self:onPlayerSelectAbility(0, {PlayerID = playerID, abilityName = GameRules.perks["heroAbilityPairs"][hero], slot=5})
+    end
+
 end
 
 -- Attempts to set a player's attribute
@@ -4915,8 +4930,19 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
         end
     end
 
+    if hero and GameRules.perks["heroAbilityPairs"][hero] == abilityName then
+            network:sendNotification(player, {
+                sort = 'lodDanger',
+                text = 'lodHeroAndAbilityAreLocked'
+            })
+            self:PlayAlert(playerID)
+            return
+        end
+
     -- Don't allow picking banned abilities
-    if self.bannedAbilities[abilityName] then
+    -- Unless they are paired
+    local hero = self.selectedHeroes[playerID]
+    if self.bannedAbilities[abilityName] and not (hero and GameRules.perks["heroAbilityPairs"][hero] == abilityName) then
         -- Invalid ability name
         network:sendNotification(player, {
             sort = 'lodDanger',
