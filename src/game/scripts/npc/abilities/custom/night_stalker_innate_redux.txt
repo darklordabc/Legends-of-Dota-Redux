@@ -1,5 +1,5 @@
-"night_stalker_innate_redux"
-	{
+"DOTAAbilities" {
+	"night_stalker_innate_redux"{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"                        "ability_lua"
@@ -24,3 +24,4 @@
 			}
 		}
 	}
+}

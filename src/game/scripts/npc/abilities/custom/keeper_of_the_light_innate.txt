@@ -1,5 +1,5 @@
-"keeper_of_the_light_innate_redux"
-	{
+"DOTAAbilities" {
+	"keeper_of_the_light_innate_redux"{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"                        "ability_lua"
@@ -24,4 +24,4 @@
 			}
 		}
 	}
-	
+}

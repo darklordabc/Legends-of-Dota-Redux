@@ -1842,6 +1842,11 @@
     "DOTA_Tooltip_ability_silencer_glaives_of_wisdom_steal_int_steal"     "STOLEN INTELLIGENCE:"
     "DOTA_Tooltip_ability_silencer_glaives_of_wisdom_steal_steal_range" "STEAL RADIUS:"
 
+    // Night Stalker unobstructed vision
+    "DOTA_Tooltip_ability_night_stalker_innate_redux"                        "Unobstructed Night Vision"
+    "DOTA_Tooltip_ability_night_stalker_innate_redux_Description"            "Will grant unobstructed vision at night time if you have Aghanim's Scepter upgrade."
+    "DOTA_Tooltip_ability_night_stalker_innate_redux_vision_radius"     "VISION RADIUS:"
+
     // Starfall
     "DOTA_Tooltip_ability_mirana_starfall_lod"                                          "Starstorm"
     "DOTA_Tooltip_ability_mirana_starfall_lod_Description"                              "Calls down a wave of meteors to damage nearby enemy units. The closest enemy unit to Mirana in a %starfall_secondary_radius% radius will be struck a second time for 75%% of the damage.\n\nUpgradable by Aghanim's Scepter."
