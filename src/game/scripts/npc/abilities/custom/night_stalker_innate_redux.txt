@@ -3,7 +3,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"                        "ability_lua"
-		"AbilityTextureName"                "night_stalker_hunter_in_the_night"
+		"AbilityTextureName"                "custom/night_stalker_innate_redux"
 		"ScriptFile"                        "abilities/night_stalker_innate.lua"
 		"AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"MaxLevel"												"1"

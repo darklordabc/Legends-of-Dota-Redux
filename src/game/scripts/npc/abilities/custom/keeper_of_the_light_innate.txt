@@ -3,7 +3,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"                        "ability_lua"
-		"AbilityTextureName"                "keeper_of_the_light_spirit_form"
+		"AbilityTextureName"                "custom/keeper_of_the_light_innate_redux"
 		"ScriptFile"                        "abilities/keeper_of_the_light_innate.lua"
 		"AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"MaxLevel"												"1"
