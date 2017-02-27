@@ -323,7 +323,7 @@ function Pregame:init()
     end
 
     -- Custom -- set preset
-    if mapName == 'custom' or mapName == 'custom_bot' or mapName == 'dota_180' or mapName == 'custom_700' or mapName == '10_vs_10' then
+    if mapName == 'custom' or mapName == 'custom_bot' or mapName == 'dota_180' or mapName == 'custom_702' or mapName == '10_vs_10' then
         self:setOption('lodOptionGamemode', 1)
     end
 
@@ -338,7 +338,7 @@ function Pregame:init()
     self:setOption('lodOptionBanningMaxHeroBans', 0)
 
     -- Bot match
-    if mapName == 'custom_bot' or mapName == 'custom_700' or mapName == 'dota_180' or mapName == '10_vs_10' then
+    if mapName == 'custom_bot' or mapName == 'custom_702' or mapName == 'dota_180' or mapName == '10_vs_10' then
         self.enabledBots = true
     end
 
@@ -1116,7 +1116,7 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                         local wisp = PlayerResource:GetSelectedHeroEntity(playerID)
                         wisp:SetRespawnsDisabled(true)
                         hero = PlayerResource:ReplaceHeroWith(playerID,heroName,625 + OptionManager:GetOption('bonusGold'),0)
-                        UTIL_Remove(wisp)
+                        -- UTIL_Remove(wisp)
                     else
                         hero = CreateHeroForPlayer(heroName,player) 
                         hero = PlayerResource:ReplaceHeroWith(playerID,heroName,625 + OptionManager:GetOption('bonusGold'),0)
@@ -6012,6 +6012,13 @@ function Pregame:generateBotBuilds()
     local brokenBots = {
         npc_dota_hero_tidehunter = true,
         npc_dota_hero_razor = true,
+        
+        -- Stoped working around Feburary, 24, 2017
+        npc_dota_hero_skywrath_mage = true,
+        npc_dota_hero_nevermore = true,
+        npc_dota_hero_pudge = true,
+        npc_dota_hero_phantom_assassin = true,
+
         --[[npc_dota_hero_sven = true,
         npc_dota_hero_skeleton_king = true,
         npc_dota_hero_lina = true,
@@ -6019,7 +6026,6 @@ function Pregame:generateBotBuilds()
         npc_dota_hero_dragon_knight = true,
         npc_dota_hero_bloodseeker = true,
         npc_dota_hero_lion = true,
-        npc_dota_hero_skywrath_mage = true,
         npc_dota_hero_tiny = true,
         npc_dota_hero_oracle = true,]]
     }
@@ -6572,9 +6578,9 @@ function Pregame:fixSpawningIssues()
                 Timers:CreateTimer(function()
                     if IsValidEntity(spawnedUnit) then
                         -- Silencer Fix
-                        if spawnedUnit:HasAbility('silencer_glaives_of_wisdom') then
+                        if spawnedUnit:HasAbility('silencer_glaives_of_wisdom_steal') then
                             if not spawnedUnit:HasModifier('modifier_silencer_int_steal') then
-                                spawnedUnit:AddNewModifier(spawnedUnit, nil, 'modifier_silencer_int_steal', {})
+                                spawnedUnit:AddNewModifier(spawnedUnit, spawnedUnit:FindAbilityByName("silencer_glaives_of_wisdom_steal"), 'modifier_silencer_int_steal', {})
                             end
                         else
                             spawnedUnit:RemoveModifierByName('modifier_silencer_int_steal')

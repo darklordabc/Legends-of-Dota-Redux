@@ -1,0 +1,10 @@
+"DOTAAbilities" {
+	"spell_reflect"
+    {
+    	"BaseClass"				"ability_lua"
+    	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    	"ScriptFile"					"abilities/overflow/spell_reflect/passive.lua"
+    	"AbilityTextureName"			"custom/spell_reflect"
+    	"AbilityCooldown"				"65.0 50.0 35.0 20.0"
+    }
+}

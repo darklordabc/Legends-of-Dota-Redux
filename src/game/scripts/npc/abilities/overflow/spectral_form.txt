@@ -6,6 +6,7 @@
 		"BaseClass"				"ability_lua"
 		"ScriptFile"					"abilities/overflow/spectral/spectral.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"HasScepterUpgrade"			"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
