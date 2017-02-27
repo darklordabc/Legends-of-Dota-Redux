@@ -3980,6 +3980,11 @@ function Pregame:onPlayerSelectHero(eventSourceIndex, args)
 
     -- Attempt to select the hero
     self:setSelectedHero(playerID, args.heroName)
+    -- Add skill to hero if needed
+    local hero = args.heroName
+    if hero and GameRules.perks["heroAbilityPairs"][hero] then
+        self:onPlayerSelectAbility(0, {PlayerID = playerID, abilityName = GameRules.perks["heroAbilityPairs"][hero], slot=5})
+    end
 end
 
 -- Attempts to set a player's attribute
@@ -5223,6 +5228,7 @@ end
 -- Player wants to remove an ability
 function Pregame:onPlayerRemoveAbility(eventSourceIndex, args)
     -- Grab data
+    
     local playerID = args.PlayerID
     local player = PlayerResource:GetPlayer(playerID)
 
@@ -5248,7 +5254,23 @@ function Pregame:onPlayerRemoveAbility(eventSourceIndex, args)
         return
     end
 
+    
+
+
     local slot = math.floor(tonumber(args.slot))
+    -- Is the ability locked to the hero?
+    local abName  = self.selectedSkills[playerID][slot]
+    local hero = self.selectedHeroes[playerID]
+
+    if hero and GameRules.perks["heroAbilityPairs"][hero] == abName then
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedPlayerIsReady'
+        })
+        self:PlayAlert(playerID)
+        return
+    end
+
 
     -- Attempt to remove the ability
     self:removeSelectedAbility(playerID, slot)
@@ -5256,6 +5278,7 @@ end
 
 -- Player wants to select a new ability
 function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
+    --PrintTable(args)
     -- Grab data
     local playerID = args.PlayerID
     local player = PlayerResource:GetPlayer(playerID)
