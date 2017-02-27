@@ -18,6 +18,14 @@ function modifier_night_stalker_innate_redux:RemoveOnDeath()
   return false
 end
 
+function modifier_night_stalker_innate_redux:IsHidden()
+  if caster:HasScepter() and caster:IsAlive() and not GameRules:IsDaytime() then
+    return false
+  else
+    return true
+  end
+end
+
 function modifier_night_stalker_innate_redux:OnCreated()
   if IsServer() then
     self:StartIntervalThink(1/32)
