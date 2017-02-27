@@ -25,7 +25,7 @@ function modifier_keeper_of_the_light_innate_redux:OnCreated()
 end
 
 function modifier_keeper_of_the_light_innate_redux:IsHidden()
-  if caster:HasScepter() and caster:IsAlive() and GameRules:IsDaytime() then
+  if self:GetParent():HasScepter() and self:GetParent():IsAlive() and GameRules:IsDaytime() then
     return false
   else
     return true
