@@ -1,0 +1,45 @@
+"DOTAAbilities" {
+	"grow_beard"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_lua"
+		"ScriptFile"					"abilities/overflow/grow_beard/ability.lua"
+		"AbilityTextureName"			"custom/grow_beard"
+		"AbilityCooldown"               "15.0"
+		"AbilityManaCost"               "0"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT"
+		"FightRecapLevel"               "1"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                  "FIELD_FLOAT"
+				"grow_time"					"15.0"
+			}
+			"02"
+			{
+				"var_type"                  "FIELD_INTEGER"
+				"gold"					"1 2 3 4"
+			}
+			"03"
+			{
+				"var_type"                  "FIELD_INTEGER"
+				"speed"					"-4"
+			}
+			"04"
+			{
+				"var_type"                  "FIELD_INTEGER"
+				"block"					"1 2 3 4"
+			}
+			"05"
+			{
+				"var_type"                  "FIELD_INTEGER"
+				"max"					"10"
+			}
+		}
+	}
+}

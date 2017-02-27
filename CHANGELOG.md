@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file.
 ### Bug Fixing/New Features
 - Updated Map to 7.02
 - Intelligence Steal is now a separate 1 level ability, no longer inherent to Glaives of Wisdom. Glaives is no longer an OP ability, and its price has decresed in points mode.
+- Added 7 abilities from Overflow. 
+- Added 4 Super OP variant abilities. 
 
 ### Balance
 - 

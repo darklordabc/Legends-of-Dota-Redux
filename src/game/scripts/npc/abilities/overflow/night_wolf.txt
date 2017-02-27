@@ -1,0 +1,51 @@
+"DOTAAbilities" {
+	"night_wolf"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_lua"
+		"ScriptFile"					"abilities/overflow/night_wolf/ultimate.lua"
+		"AbilityTextureName"			"custom/night_wolf"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCooldown"               "0.0"
+		"AbilityManaCost"               "0"
+		"HasScepterUpgrade"			"1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+		"model"	"models/heroes/lycan/lycan_wolf.vmdl"
+		"soundfile" "soundevents/game_sounds_heroes/game_sounds_lycan.vsndevts"
+		"particle"	"particles/units/heroes/hero_night_stalker/nightstalker_ulti.vpcf"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attack_range"			"165"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"move_speed"			"50 100 150"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attack_speed"			"25 50 75"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"max"						"20000"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_vision_scepter"				"500 700 900"
+			}
+		}
+	}
+}

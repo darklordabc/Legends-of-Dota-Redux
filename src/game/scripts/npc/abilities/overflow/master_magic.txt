@@ -1,0 +1,43 @@
+"DOTAAbilities" {
+	"master_magic"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_lua"
+		"ScriptFile"					"abilities/overflow/master_magic/ability.lua"
+		"AbilityTextureName"			"custom/master_magic"
+		"AbilityCooldown"               "100"
+		"AbilityManaCost"               "150 300 450"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"               "1"
+		"HasScepterUpgrade"			"1"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                  "FIELD_INTEGER"
+				"stacks"					"1 2 3"
+			}
+			"02"
+			{
+				"var_type"                  "FIELD_INTEGER"
+				"chance_scepter"			"25"
+			}
+			"03"
+			{
+				"var_type"                  "FIELD_FLOAT"
+				"duration"			"20.0"
+			}
+		}
+
+		"precache"
+		{
+			"soundfile"                 "soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts"
+			"particle"                  "particles/master_magic.vpcf"
+		}
+	}
+}
