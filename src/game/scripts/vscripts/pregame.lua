@@ -5265,7 +5265,7 @@ function Pregame:onPlayerRemoveAbility(eventSourceIndex, args)
     if hero and GameRules.perks["heroAbilityPairs"][hero] == abName then
         network:sendNotification(player, {
             sort = 'lodDanger',
-            text = 'lodFailedPlayerIsReady'
+            text = 'lodHeroAndAbilityAreLocked'
         })
         self:PlayAlert(playerID)
         return
