@@ -5308,6 +5308,21 @@ function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
     local slot = math.floor(tonumber(args.slot))
     local abilityName = args.abilityName
 
+    -- Is the ability locked to the hero?
+    if self.selectedSkills[playerID] then
+        local abName  = self.selectedSkills[playerID][slot]
+        local hero = self.selectedHeroes[playerID]
+
+        if hero and GameRules.perks["heroAbilityPairs"][hero] == abName then
+            network:sendNotification(player, {
+                sort = 'lodDanger',
+                text = 'lodHeroAndAbilityAreLocked'
+            })
+            self:PlayAlert(playerID)
+            return
+        end
+    end
+
     -- Attempt to set the ability
     self:setSelectedAbility(playerID, slot, abilityName)
 end
@@ -5332,7 +5347,7 @@ function Pregame:onPlayerSwapSlot(eventSourceIndex, args)
     local build = self.selectedSkills[playerID]
 
     -- Ensure they are not the same slot
-    if slot1 == slot2 then
+    --[[if slot1 == slot2 then
         -- Invalid ability name
         network:sendNotification(player, {
             sort = 'lodDanger',
@@ -5341,7 +5356,7 @@ function Pregame:onPlayerSwapSlot(eventSourceIndex, args)
         self:PlayAlert(playerID)
 
         return
-    end
+    end]]
 
     -- Ensure both the slots are valid
     if slot1 < 1 or slot1 > maxSlots or slot2 < 1 or slot2 > maxSlots then
@@ -5352,6 +5367,19 @@ function Pregame:onPlayerSwapSlot(eventSourceIndex, args)
         })
         self:PlayAlert(playerID)
 
+        return
+    end
+
+    local abName1  = self.selectedSkills[playerID][slot1]
+    local abName2 = self.selectedSkills[playerID][slot2]
+    local hero = self.selectedHeroes[playerID]
+
+    if hero and (GameRules.perks["heroAbilityPairs"][hero] == abName1 or GameRules.perks["heroAbilityPairs"][hero] == abName2) then
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodHeroAndAbilityAreLocked'
+        })
+        self:PlayAlert(playerID)
         return
     end
 
