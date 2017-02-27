@@ -1146,7 +1146,7 @@
     "unique_mechanic_sand_king"                        "Refund 30% of the manacost of <font color=\'#ffd966\'>Channeled</font> abilities. "
     "unique_mechanic_shadow_demon"                        "When Shadow Demon buys an item that is limited by stock, he gains a permanent +1 to all attributes."
     "unique_mechanic_nevermore"             "At the start of the game, Shadow Fiend gains a free level of <font color=\'#ffd966\'>Necromastery</font>, whether he has it or not."
-    "unique_mechanic_shadow_shaman"             "Shadow Shaman refunds the manacost of <font color=\'#ffd966\'>Hex</font> spells and reduces their cooldowns by 20%."
+    "unique_mechanic_shadow_shaman"             "When Shadow Shaman is targeted by a spell, Hex the caster for 3 seconds. Has 60 second cooldown."
     "unique_mechanic_silencer"                        "<font color=\'#ffd966\'>Silence</font> effects applied by Silencer last 25% longer."
     "unique_mechanic_skywrath_mage"                        "Skywrath Mage refunds 15% of the manacost of spells with a cooldown of 7 seconds or less."
     "unique_mechanic_slardar"                       "<font color=\'#ffd966\'>Skull Basher</font> and  <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero. Slardar has an innate <font color=\'#ffd966\'>Sprint</font> active ability."
@@ -3152,7 +3152,7 @@
 
     /// SHADOW SHAMAN​
     "DOTA_Tooltip_modifier_npc_dota_hero_shadow_shaman_perk"    "Shadow Shaman Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_shadow_shaman_perk_Description"    "All hexes get an instant refund in their manacosts and cooldowns get reduced by 20%d%.<br><br><font color=\'#7D7D7D\'>By Wouterz90 | github.com/Wouterz90</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_shadow_shaman_perk_Description"    "When Shadow Shaman is targeted by a spell, Hex the caster for 3 seconds. Has 60 second cooldown.<br><br><font color=\'#7D7D7D\'>By Otso Turpeinen | github.com/OtsoTurpeinen</font>"
 
     /// SILENCER​
     "DOTA_Tooltip_modifier_npc_dota_hero_silencer_perk" "Silencer Perk"
@@ -8086,7 +8086,7 @@
         //// OVERFLOW
 
         "DOTA_Tooltip_Ability_blink_support"                                              "Blink Support"
-        "DOTA_Tooltip_Ability_blink_support_Description"                                  "Short distance teleportation that allows you to move yourself and your allies in and out of combat.\n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: OtsoTurpeinen | github.com/OtsoTurpeinen</font>\n"
+        "DOTA_Tooltip_Ability_blink_support_Description"                                  "Short distance teleportation that allows you to move yourself and your allies in and out of combat.\n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>\n"
         "DOTA_Tooltip_Ability_blink_support_aghanim_description"  "Reduces cooldown."
         "DOTA_Tooltip_Ability_blink_support_max_blink"                                    "MAX BLINK DISTANCE:"
         "DOTA_Tooltip_Ability_blink_support_help_range"                                   "HELP RANGE:"
@@ -8094,7 +8094,7 @@
         "DOTA_Tooltip_Ability_blink_support_cooldown_scepter"                             "COOLDOWN SCEPTER:"
 
         "DOTA_Tooltip_Ability_dark_blade"                                                 "Dark Spell Blade"
-        "DOTA_Tooltip_Ability_dark_blade_Description"                                     "Bouncing magic that curses the victim's resistance to magic damage on every bounce. Victims recieve safe time that makes them immune to bounce from this instance of spell.\n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: OtsoTurpeinen | github.com/OtsoTurpeinen</font>\n"
+        "DOTA_Tooltip_Ability_dark_blade_Description"                                     "Bouncing magic that curses the victim's resistance to magic damage on every bounce. Victims recieve safe time that makes them immune to bounce from this instance of spell.\n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>\n"
         "DOTA_Tooltip_Ability_dark_blade_aghanim_description"                               "Lowers Safe Time and Doubles the Curse in night time."
         "DOTA_Tooltip_Ability_dark_blade_damage"                                          "DAMAGE:"
         "DOTA_Tooltip_Ability_dark_blade_aoe_range"                                       "JUMP RADIUS:"
@@ -8104,7 +8104,7 @@
         "DOTA_Tooltip_Ability_dark_blade_fade_scepter"                                    "SCEPTER SAFE TIME:"
         
         "DOTA_Tooltip_Ability_light_blade"                                                "Burning Spell Blade"
-        "DOTA_Tooltip_Ability_light_blade_Description"                                    "Bouncing magic that deals <font color='#FF7800'>Fire Damage</font> to enemies. Victims recieve safe time that makes them immune to bounce from this instance of spell.\n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: OtsoTurpeinen | github.com/OtsoTurpeinen</font>\n"
+        "DOTA_Tooltip_Ability_light_blade_Description"                                    "Bouncing magic that deals <font color='#FF7800'>Fire Damage</font> to enemies. Victims recieve safe time that makes them immune to bounce from this instance of spell.\n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>\n"
         "DOTA_Tooltip_Ability_light_blade_aghanim_description"                              "Lowers Safe Time and Bonus damage in day time."
         "DOTA_Tooltip_Ability_light_blade_damage"                                         "<font color='#FF7800'>FIRE DAMAGE</font>:"
         "DOTA_Tooltip_Ability_light_blade_aoe_range"                                      "JUMP RADIUS:"
@@ -8119,7 +8119,7 @@
         "DOTA_Tooltip_element_fire_Description"         "2 Damage per stack every 0.5 seconds. Stack reduced by 1 after the damage."
 
         "DOTA_Tooltip_Ability_metamorphosis"                                              "Roshanify"
-        "DOTA_Tooltip_Ability_metamorphosis_Description"                                  "For the limited duration you take form of Mighty Roshan! Provides base damage bonus and chance to stun on every attack. You do move a bit slower though.\n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: OtsoTurpeinen | github.com/OtsoTurpeinen</font>\n"
+        "DOTA_Tooltip_Ability_metamorphosis_Description"                                  "For the limited duration you take form of Mighty Roshan! Provides base damage bonus and chance to stun on every attack. You do move a bit slower though.\n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>\n"
         "DOTA_Tooltip_Ability_metamorphosis_aghanim_description"                                "Improves Base Damage bonus."
         "DOTA_Tooltip_Ability_metamorphosis_base_damage"                                  "BASE DAMAGE BONUS:"
         "DOTA_Tooltip_Ability_metamorphosis_stun_chance"                                  "%BASH CHANCE:"
@@ -8136,13 +8136,13 @@
         "DOTA_Tooltip_generic_lua_stun_Description"                                 "Stunned"
 
         "DOTA_Tooltip_Ability_seer"                                                       "Seer"
-        "DOTA_Tooltip_Ability_seer_Description"                                           "While channelling gain vision of all enemy heroes.\nDoes not include enemies who are invisible or dead at the start of the channel.\n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: OtsoTurpeinen | github.com/OtsoTurpeinen</font>\n"
+        "DOTA_Tooltip_Ability_seer_Description"                                           "While channelling gain vision of all enemy heroes.\nDoes not include enemies who are invisible or dead at the start of the channel.\n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>\n"
         "DOTA_Tooltip_Ability_seer_aghanim_description"                             "Hides the modifier of being seen by seer."
         "DOTA_Tooltip_seer_mod"                                             "Spotted!"
         "DOTA_Tooltip_seer_mod_Description"                                 "Enemy Seer can see you."
 
         "DOTA_Tooltip_Ability_spectral_form"                                              "Spectral Form"
-        "DOTA_Tooltip_Ability_spectral_form_Description"                                  "You wrap the etheral around you becoming difficult to physically strike but weak against magic. While spectral you regenerate health and mana. Also you basic attack deals magic damage instead of physical.\n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: OtsoTurpeinen | github.com/OtsoTurpeinen</font>\n"
+        "DOTA_Tooltip_Ability_spectral_form_Description"                                  "You wrap the etheral around you becoming difficult to physically strike but weak against magic. While spectral you regenerate health and mana. Also you basic attack deals magic damage instead of physical.\n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>\n"
         "DOTA_Tooltip_Ability_spectral_form_aghanim_description"                                "Applies the buff to allies in radius."
         "DOTA_Tooltip_Ability_spectral_form_health_regen"                                 "HEALTH REGEN:"
         "DOTA_Tooltip_Ability_spectral_form_mana_regen"                                   "MANA REGEN:"

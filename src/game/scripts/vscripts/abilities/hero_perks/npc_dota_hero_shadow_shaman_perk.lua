@@ -1,14 +1,14 @@
 --------------------------------------------------------------------------------------------------------
 --
 --    Hero: Shadow Shaman
---    Perk: All hexes get an instant refund in their manacosts and cooldowns get reduced by 20%
+--    Perk: When targeted by a spell, Hex the caster for 3 seconds. Has 60 second cooldown.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_shadow_shaman_perk", "abilities/hero_perks/npc_dota_hero_shadow_shaman_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
 if npc_dota_hero_shadow_shaman_perk ~= "" then npc_dota_hero_shadow_shaman_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
---    Modifier: modifier_npc_dota_hero_shadow_shaman_perk       
+--    Modifier: modifier_npc_dota_hero_shadow_shaman_perk
 --------------------------------------------------------------------------------------------------------
 if modifier_npc_dota_hero_shadow_shaman_perk ~= "" then modifier_npc_dota_hero_shadow_shaman_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
@@ -30,10 +30,16 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_shadow_shaman_perk:OnCreated()
   if IsServer() then
-    local cooldownPercentReduction = 20
-    self.cooldownReduction = 1 - (cooldownPercentReduction / 100)
+    self.cooldownTime = 60
+    self.hexDuration = 3
+
+    self.cooldownReady = true
   end
   return true
+end
+
+function modifier_npc_dota_hero_shadow_shaman_perk:DestroyOnExpire ()
+  return false
 end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
@@ -41,21 +47,31 @@ end
 
 function modifier_npc_dota_hero_shadow_shaman_perk:DeclareFunctions()
   local funcs = {
-    MODIFIER_EVENT_ON_ABILITY_FULLY_CAST
+    MODIFIER_PROPERTY_ABSORB_SPELL
   }
   return funcs
 end
 
-function modifier_npc_dota_hero_shadow_shaman_perk:OnAbilityFullyCast(keys)
+function modifier_npc_dota_hero_shadow_shaman_perk:GetAbsorbSpell(keys)
   if IsServer() then
-    local hero = self:GetCaster()
-    local target = keys.target
-    local ability = keys.ability
-    if hero == keys.unit and ability and ability:HasAbilityFlag("hex") then
-      local cooldown = ability:GetCooldownTimeRemaining() * self.cooldownReduction
-      ability:RefundManaCost()
-      ability:EndCooldown()
-      ability:StartCooldown(cooldown)
+    if self.cooldownReady and keys.ability:GetCaster():GetTeamNumber() ~= self:GetParent():GetTeamNumber() then
+      self:HexCaster(keys.ability:GetCaster(),keys.ability)
     end
+  end
+  return 0
+end
+
+function modifier_npc_dota_hero_shadow_shaman_perk:HexCaster (target,ability)
+  target:AddNewModifier(self:GetParent(),ability,"modifier_shadow_shaman_voodoo",{duration = self.hexDuration})
+  self:SetDuration(self.cooldownTime, true)
+  self:StartIntervalThink(self.cooldownTime)
+  self.cooldownReady = false
+end
+
+function modifier_npc_dota_hero_shadow_shaman_perk:OnIntervalThink ()
+  if IsServer() then
+    self.cooldownReady = true
+    self:SetDuration(-1,true)
+    self:StartIntervalThink(-1)
   end
 end
