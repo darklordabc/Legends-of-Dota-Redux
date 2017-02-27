@@ -913,6 +913,7 @@
     "lodFailedWrongPhaseBanning"                    "You can only ban abilities during the banning phase."
     "lodFailedWrongPhaseAllRandom"                  "You can only select your All Random build during the selection phase."
     "lodFailedWrongPhaseSelection"                  "You can only select abilities during the selection phase."
+    "lodHeroAndAbilityAreLocked" 		    "You can't remove this skill from this hero"
     "lodFailedPlayerIsReady"                        "You need to unlock your build in order to change your build."
     "lodFailedBalanceMode"                          "'{ab}' exceeds your points remaining by {points} points."
     "lodBoosterDraftRound"                          "Booster Draft: Round {round}"
