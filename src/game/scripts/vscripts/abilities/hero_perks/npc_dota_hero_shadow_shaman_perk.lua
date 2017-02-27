@@ -54,11 +54,11 @@ end
 
 function modifier_npc_dota_hero_shadow_shaman_perk:GetAbsorbSpell(keys)
   if IsServer() then
-    if self.cooldownReady and keys.caster:GetTeamNumber() ~= self:GetParent():GetTeamNumber() then
-      self:HexCaster(keys.caster,keys.ability)
+    if self.cooldownReady and keys.ability:GetCaster():GetTeamNumber() ~= self:GetParent():GetTeamNumber() then
+      self:HexCaster(keys.ability:GetCaster(),keys.ability)
     end
   end
-  return false
+  return 0
 end
 
 function modifier_npc_dota_hero_shadow_shaman_perk:HexCaster (target,ability)
