@@ -751,7 +751,7 @@
     "hintSlark"                         "Slark gains +3 agility for each level put in an mobility/escape skill."
     "hintLuna"                         "Luna gains 1 free level of Lunar Blessing, whether she has it or not."
     "hintAlchemist"                         "Alchemist receives 3 bonus gold every 10 seconds."
-    "hintArcWarden"                         "Arc Warden may use a consumable item on himself every 90 seconds without consuming the item."
+    "hintArcWarden"                         "Arc Warden may use a consumable item on himself every 90 seconds without consuming the item. Has double cooldown length if used on Tome of Knowledge."
     "hintAxe"                         "Culling Blade kills will chop the remaining cooldown times of Axe's abilities in half, or by 30 seconds if the remaining cooldown exceeds 1 minute."
     "hintBane"                         "Bane lifesteals 100% of all spell damage he deals to sleeping units. "
     "hintBeastMaster"                         "Beastmaster gains 3 Strength for every level put in Neutral abilities."
@@ -1070,7 +1070,7 @@
     "unique_mechanic_alchemist"                     "Alchemist receives 3 bonus gold every 10 seconds."
     "unique_mechanic_ancient_apparition"            "Ancient Apparition disables the health regeneration of targets when an <font color=\'#ffd966\'>Ice</font> ability debuff is applied."
     "unique_mechanic_antimage"           "After Anti-Mage uses a <font color=\'#ffd966\'>Blink</font>, he will silence enemies within 200 radius for 2 seconds."
-    "unique_mechanic_arc_warden"                        "Arc Warden may use a consumable item on himself every 90 seconds without consuming the item. "
+    "unique_mechanic_arc_warden"                        "Arc Warden may use a consumable item on himself every 90 seconds without consuming the item. Has double cooldown length if used on Tome of Knowledge."
     "unique_mechanic_axe"                        "<font color=\'#ffd966\'>Culling Blade</font> kills will chop the remaining cooldown times of Axe's abilities in half, or by 30 seconds if the remaining cooldown exceeds 1 minute."
     "unique_mechanic_bane"                        "Bane lifesteals 100% of all spell damage he deals to sleeping units. "
     "unique_mechanic_batrider"              "Batrider has 20% bonus movement speed while flying."
@@ -2840,9 +2840,9 @@
 
     /// ARC WARDEN​
     "DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk"               "Arc Warden Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk_Description"   "The next consumable item used on yourself will not consume the item. Requires 90 seconds to recharge.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk_Description"   "The next consumable item used on yourself will not consume the item. Requires 90 seconds to recharge. 180 seconds if used on Tome of Knowledge.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
     "DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk_downtime"      "Recharging"
-    "DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk_downtime_Description"   "Recharging Arc Warden's perk over 90 seconds."
+    "DOTA_Tooltip_modifier_npc_dota_hero_arc_warden_perk_downtime_Description"   "Recharging Arc Warden's perk over 90 seconds. 180 seconds if used on Tome of Knowledge."
 
     /// AXE​
     "DOTA_Tooltip_modifier_npc_dota_hero_axe_perk"  "Axe Perk"

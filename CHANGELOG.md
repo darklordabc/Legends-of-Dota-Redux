@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file.
 - Added 4 Super OP variant abilities. 
 
 ### Balance
-- 
+- Arc Warden's perk can now be used on Tome of Knowledge
 
 ## 6.4 - Development Version
 ### Bug Fixing/New Features
