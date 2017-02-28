@@ -7,11 +7,7 @@ if not skywrath_mage_concussive_break then
     end) 
   end
   skywrath_mage_concussive_break = class({}) 
-  
-  
 end
-
-
 
 modifier_skywrath_mage_concussive_break_break = class({})
 modifier_skywrath_mage_concussive_break_slow = class({})
@@ -31,9 +27,7 @@ function skywrath_mage_concussive_break:OnSpellStart()
   local targetType = DOTA_UNIT_TARGET_HERO -- ability:GetAbilityTargetType()
   local targetFlag = DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS -- ability:GetAbilityTargetFlags()
 
- 
 
- 
   -- pick up x nearest target heroes and create tracking projectile targeting the number of targets
   local units = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, ability:GetSpecialValueFor("launch_radius"), targetTeam, targetType, targetFlag, FIND_CLOSEST, false)
 
@@ -98,8 +92,8 @@ function skywrath_mage_concussive_break:OnSpellStart()
             return
           end
         end
-      break
       end
+      break
     end
   end
 end
