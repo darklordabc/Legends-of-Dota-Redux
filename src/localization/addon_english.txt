@@ -900,7 +900,7 @@
     "lodFailedNoValidAbilities"                     "Failed to find a random ability."
     "lodFailedToFindOption"                         "'{optionName}' is not a valid option."
     "lodFailedToSetOptionValue"                     "'{optionValue}' is not a valid value for '{optionName}'"
-    "lodOptionIsRestricted"                         "'{optionValue}' requires '{optionWins}' LoD Redux wins to be enabled"
+    "lodOptionIsRestricted"                         "'{optionName}' requires '{optionWins}' LoD Redux wins to be enabled"
     "lodFailedBanHeroNoBanning"                     "You can not ban any heroes."
     "lodFailedBanAbilityNoBanning"                  "You can not ban any abilities."
     "lodFailedSkillTaken"                           "'{ab}' has already been taken and unique skills is enabled."

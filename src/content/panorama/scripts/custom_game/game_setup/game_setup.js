@@ -5301,6 +5301,10 @@ function loadPlayerBans() {
         endOfTimer = data.endTime;
         freezeTimer = data.freezeTimer ? data.freezeTimer : -1;
     })
+
+    GameEvents.Subscribe('lodUncheckOption', function (data) {
+        $("#optionSelection").FindChildTraverse("option_panel_field_" + data.optionName).checked = false;
+    })
     
     // Search handler
     setTabsSearchHandler();
