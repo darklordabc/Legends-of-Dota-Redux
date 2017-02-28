@@ -35,6 +35,21 @@ function Debug:init()
         end
     end, 'player say', 0)
 
+    Convars:RegisterCommand('debug_win', function(c, team)
+        local cmdPlayer = Convars:GetCommandClient()
+        if cmdPlayer then
+            local playerID = cmdPlayer:GetPlayerID()
+            if playerID ~= nil and playerID ~= -1 then
+                local hero = cmdPlayer:GetAssignedHero()
+
+                if hero then
+                    GameRules:SetGameWinner(hero:GetTeamNumber())
+                    GameRules.winner = hero:GetTeamNumber()
+                end
+            end
+        end
+    end, 'debug_win', 0)
+
     Convars:RegisterCommand('level_exp_table', function(c, team)
         local cmdPlayer = Convars:GetCommandClient()
         if cmdPlayer then
