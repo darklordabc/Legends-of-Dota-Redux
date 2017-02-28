@@ -5,7 +5,7 @@ end
 function spell_lab_symbiotic_modifier:OnCreated( kv )
 	if IsServer() then
     --self.hHost = kv.target:GetParent()
-    self:StartIntervalThink(0.01)
+    self:StartIntervalThink(self:GetAbility():GetSpecialValueFor("update_rate"))
     self.scale = self:GetParent():GetModelScale()
     self:GetParent():SetModelScale(0.001)
 	end
@@ -17,8 +17,8 @@ function spell_lab_symbiotic_modifier:SetHost (hTarget,hMod)
 	self.hMod = hMod
 	--local pos = self.hHost:GetAbsOrigin()
 	--local up = Vector(0,0,300)
-	--self:GetParent():SetAbsOrigin(pos+up)
-	--self:GetParent():SetParent(self.hHost,"symbiotic_attachment")
+--	self:GetParent():SetAbsOrigin(pos+up)
+	--self:GetParent():SetParent(self.hHost,"overhead_follow")
 end
 
 function spell_lab_symbiotic_modifier:OnDestroy()
@@ -34,7 +34,7 @@ end
 
 function spell_lab_symbiotic_modifier:DeclareFunctions()
 	local funcs = {
-    --MODIFIER_PROPERTY_MODEL_CHANGE,
+    MODIFIER_PROPERTY_MODEL_CHANGE,
   --  MODIFIER_PROPERTY_MODEL_SCALE,
     MODIFIER_EVENT_ON_SPENT_MANA,
     MODIFIER_EVENT_ON_SET_LOCATION,
@@ -63,13 +63,13 @@ function spell_lab_symbiotic_modifier:CheckState()
 	local state = {
 	[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
 	[MODIFIER_STATE_MAGIC_IMMUNE] = true,
---[MODIFIER_STATE_INVULNERABLE] = true,
+[MODIFIER_STATE_INVULNERABLE] = true,
   [MODIFIER_STATE_UNSELECTABLE] = true,
   [MODIFIER_STATE_NOT_ON_MINIMAP] = true,
   [MODIFIER_STATE_NO_HEALTH_BAR] = true,
   [MODIFIER_STATE_FROZEN] = true,
   [MODIFIER_STATE_DISARMED] = not self:GetParent():HasScepter(),
- -- [MODIFIER_STATE_OUT_OF_GAME] = true,
+  [MODIFIER_STATE_OUT_OF_GAME] = true,
   [MODIFIER_STATE_TRUESIGHT_IMMUNE] = true,
   [MODIFIER_STATE_INVISIBLE] = true
 	}
@@ -115,12 +115,34 @@ function spell_lab_symbiotic_modifier:OnSpentMana (kv)
     if self.hHost == nil then return end
 		local nCasterID = self:GetCaster():GetPlayerOwnerID()
 		local nTargetID = self:GetParent():GetPlayerOwnerID()
-		if PlayerResource:IsDisableHelpSetForPlayerID(nTargetID,nCasterID) and self:GetAbility():IsCooldownReady() then
-			self:Terminate(nil)
+		if PlayerResource:IsDisableHelpSetForPlayerID(nTargetID,nCasterID) then
+			if self:GetAbility():IsCooldownReady() then
+				self:Terminate(nil)
+			end
 		else
 	    local hParent = self:GetParent()
-	    local mana = (hParent:GetMana() / hParent:GetMaxMana()) * self.hHost:GetMaxMana()
-	    self.hHost:SetMana(mana);
+			hParent:SetMana(hParent:GetMaxMana())
+			--DeepPrintTable(kv)
+			local mana = self.hHost:GetMana()
+			if self.hHost:GetMana() >= kv.cost then
+				self.hHost:SpendMana(kv.cost, kv.ability)
+			else
+				local hpcost = kv.cost - mana
+				local manacost = kv.cost - hpcost
+
+				local damage = {
+					victim = self.hHost,
+					attacker = self:GetParent(),
+					damage = hpcost,
+					damage_type = DAMAGE_TYPE_PURE,
+					ability = kv.ability
+				}
+					self.hHost:SpendMana(manacost, kv.ability)
+					ApplyDamage(damage)
+
+			end
+	   -- local mana = (hParent:GetMana() / hParent:GetMaxMana()) * self.hHost:GetMaxMana()
+	    --self.hHost:SetMana(mana);
 		end
 	end
 end
@@ -154,15 +176,15 @@ function spell_lab_symbiotic_modifier:OnIntervalThink()
 		if not self:GetParent():IsAlive() then self:Terminate(nil) end
     if self.hHost == nil then return end
     local hParent = self:GetParent()
-    local mana = (self.hHost:GetMana() / self.hHost:GetMaxMana()) * hParent:GetMaxMana()
-    hParent:SetMana(mana)
+    --local mana = (self.hHost:GetMana() / self.hHost:GetMaxMana()) * hParent:GetMaxMana()
+    --hParent:SetMana(mana)
     local pos = self.hHost:GetAbsOrigin()
     local up = Vector(0,0,300)
     hParent:SetAbsOrigin(pos+up)
 	end
 end
 
---function spell_lab_symbiotic_modifier:GetModifierModelChange() return "models/items/bane/slumbering_terror/slumbering_terror_nightmare_model.vmdl" end
+function spell_lab_symbiotic_modifier:GetModifierModelChange() return "models/items/bane/slumbering_terror/slumbering_terror_nightmare_model.vmdl" end
 function spell_lab_symbiotic_modifier:GetModifierInvisibilityLevel()
   return 1
 end

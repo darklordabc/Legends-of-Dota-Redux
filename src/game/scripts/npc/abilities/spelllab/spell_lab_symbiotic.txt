@@ -45,6 +45,11 @@
   				"var_type"                  "FIELD_FLOAT"
   				"physical_armor"						"-4.0"
   			}
+  			"06"
+  			{
+  				"var_type"                  "FIELD_FLOAT"
+  				"update_rate"						"0.03"
+  			}
   		}
   		"precache"
   		{
