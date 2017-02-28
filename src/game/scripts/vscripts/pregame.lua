@@ -3800,21 +3800,12 @@ function Pregame:setOption(optionName, optionValue, force, player)
         return
     end
 
-    if player and not IsInToolsMode() then
+    if player and IsInToolsMode() then
         local wins = tonumber(self.restrictions["Wins"][optionName]) or 0
         if wins and tonumber(self.playerWins[player:GetPlayerID()]) < wins then
             -- Tell the user they tried to modify restricted option
-            network:sendNotification(player, {
-                sort = 'lodDanger',
-                text = 'lodOptionIsRestricted',
-                params = {
-                    ['optionName'] = optionName,
-                    ['optionWins'] = wins
-                }
-            })
 
-
-            CustomGameEventManager:Send_ServerToAllClients("lodUncheckOption", {optionName = optionName, optionValue = self.optionStore[optionName]})
+            CustomGameEventManager:Send_ServerToAllClients("lodUncheckOption", {optionName = optionName, optionValue = wins})
             return
         end
     end

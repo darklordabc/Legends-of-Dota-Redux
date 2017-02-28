@@ -5304,6 +5304,8 @@ function loadPlayerBans() {
 
     GameEvents.Subscribe('lodUncheckOption', function (data) {
         $("#optionSelection").FindChildTraverse("option_panel_field_" + data.optionName).checked = false;
+
+        showPopupMessage($.Localize(data.optionName.replace("lodOption", "lodOptionDes")) + $.Localize("lodOptionIsRestricted") + data.optionValue);
     })
     
     // Search handler
