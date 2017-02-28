@@ -3988,7 +3988,7 @@ function Pregame:onPlayerSelectHero(eventSourceIndex, args)
     
 
     -- Check if the hero has banned skills that should be removed
-    if self.bannedAbilities and self.bannedAbilities[self.selectedSkills[playerID]] then
+    if self.bannedAbilities and self.selectedSkills[playerID] then
         for i=1,6 do
             if self.bannedAbilities[self.selectedSkills[playerID][i]] then
                 self:removeSelectedAbility(playerID, i)
