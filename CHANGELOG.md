@@ -5,10 +5,12 @@ All notable changes to this project will be documented in this file.
 ## 6.5 - Development Version
 ### Bug Fixing/New Features
 - Updated Map to 7.02
+- Kotl, NS and Gyro will now benefit from the 'Free Aghs' optional setting.
 - Intelligence Steal is now a separate 1 level ability, no longer inherent to Glaives of Wisdom. Glaives is no longer an OP ability, and its price has decresed in points mode.
+- Unobstructed Night vision and Unobstructed Day vision are now separate abilities. 
+- Kotl and Nightstalker are now forced to use one ability slot on having their innate vision bonus with Scepter.
 - Added 7 abilities from Overflow. 
 - Added 4 Super OP variant abilities. 
-- Kotl, NS and Gyro will now benefit from the 'Free Aghs' optional setting.
 - Replaced Shadow Shaman's perk.
 - Added some more hints.
 
