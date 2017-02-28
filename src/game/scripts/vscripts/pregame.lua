@@ -1195,7 +1195,12 @@ end
 -- Returns a random hero [will be unique]
 function Pregame:getRandomHero(filter)
     -- Build a list of heroes that have already been taken
+    -- Also remove heroes with paired abilities
     local takenHeroes = {}
+    for k,v in pairs(GameRules.perks["heroAbilityPairs"]) do
+        table.insert(takenHeroes, k)
+    end
+
     for k,v in pairs(self.selectedHeroes) do
         takenHeroes[v] = true
     end
@@ -3980,6 +3985,34 @@ function Pregame:onPlayerSelectHero(eventSourceIndex, args)
 
     -- Attempt to select the hero
     self:setSelectedHero(playerID, args.heroName)
+    
+
+    -- Check if the hero has banned skills that should be removed
+    if self.bannedAbilities and self.selectedSkills[playerID] then
+        for i=1,6 do
+            if self.bannedAbilities[self.selectedSkills[playerID][i]] then
+                self:removeSelectedAbility(playerID, i)
+            end
+        end
+    end
+    -- Add skill to hero if needed
+    local hero = args.heroName
+    if hero and GameRules.perks["heroAbilityPairs"][hero] then
+        -- Do not try to learn it twice
+        local hasAbil = false
+        if self.selectedSkills[playerID] then
+            for k,v in pairs (self.selectedSkills[playerID]) do
+                if v == GameRules.perks["heroAbilityPairs"][hero] then
+                    hasAbil = true
+                    break
+                end
+            end
+        end
+        if not hasAbil then
+            self:onPlayerSelectAbility(0, {PlayerID = playerID, abilityName = GameRules.perks["heroAbilityPairs"][hero], slot=5})
+        end
+    end
+
 end
 
 -- Attempts to set a player's attribute
@@ -4910,8 +4943,19 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
         end
     end
 
+    if hero and GameRules.perks["heroAbilityPairs"][hero] == abilityName then
+            network:sendNotification(player, {
+                sort = 'lodDanger',
+                text = 'lodHeroAndAbilityAreLocked'
+            })
+            self:PlayAlert(playerID)
+            return
+        end
+
     -- Don't allow picking banned abilities
-    if self.bannedAbilities[abilityName] then
+    -- Unless they are paired
+    local hero = self.selectedHeroes[playerID]
+    if self.bannedAbilities[abilityName] and not (hero and GameRules.perks["heroAbilityPairs"][hero] == abilityName) then
         -- Invalid ability name
         network:sendNotification(player, {
             sort = 'lodDanger',
@@ -5223,6 +5267,7 @@ end
 -- Player wants to remove an ability
 function Pregame:onPlayerRemoveAbility(eventSourceIndex, args)
     -- Grab data
+    
     local playerID = args.PlayerID
     local player = PlayerResource:GetPlayer(playerID)
 
@@ -5248,7 +5293,23 @@ function Pregame:onPlayerRemoveAbility(eventSourceIndex, args)
         return
     end
 
+    
+
+
     local slot = math.floor(tonumber(args.slot))
+    -- Is the ability locked to the hero?
+    local abName  = self.selectedSkills[playerID][slot]
+    local hero = self.selectedHeroes[playerID]
+
+    if hero and GameRules.perks["heroAbilityPairs"][hero] == abName then
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodHeroAndAbilityAreLocked'
+        })
+        self:PlayAlert(playerID)
+        return
+    end
+
 
     -- Attempt to remove the ability
     self:removeSelectedAbility(playerID, slot)
@@ -5256,6 +5317,7 @@ end
 
 -- Player wants to select a new ability
 function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
+    --PrintTable(args)
     -- Grab data
     local playerID = args.PlayerID
     local player = PlayerResource:GetPlayer(playerID)
@@ -5284,6 +5346,20 @@ function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
 
     local slot = math.floor(tonumber(args.slot))
     local abilityName = args.abilityName
+
+    -- Is the ability locked to the hero?
+    if self.selectedSkills[playerID] then
+        local abName  = self.selectedSkills[playerID][slot]
+        local hero = self.selectedHeroes[playerID]
+        if hero and abName and GameRules.perks["heroAbilityPairs"][hero] == abName then
+            network:sendNotification(player, {
+                sort = 'lodDanger',
+                text = 'lodHeroAndAbilityAreLocked'
+            })
+            self:PlayAlert(playerID)
+            return
+        end
+    end
 
     -- Attempt to set the ability
     self:setSelectedAbility(playerID, slot, abilityName)
@@ -5331,6 +5407,20 @@ function Pregame:onPlayerSwapSlot(eventSourceIndex, args)
 
         return
     end
+    -- Prevent abilities from being swapped
+    --[[
+    local abName1  = self.selectedSkills[playerID][slot1]
+    local abName2 = self.selectedSkills[playerID][slot2]
+    local hero = self.selectedHeroes[playerID]
+
+    if hero and (GameRules.perks["heroAbilityPairs"][hero] == abName1 or GameRules.perks["heroAbilityPairs"][hero] == abName2) then
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodHeroAndAbilityAreLocked'
+        })
+        self:PlayAlert(playerID)
+        return
+    end]]
 
     -- Perform the slot
     local tempSkill = build[slot1]
@@ -6585,6 +6675,27 @@ function Pregame:fixSpawningIssues()
                         else
                             spawnedUnit:RemoveModifierByName('modifier_silencer_int_steal')
                         end
+
+                        -- Stalker Innate Auto-Level
+                        if spawnedUnit:HasAbility('night_stalker_innate_redux') then
+                            local stalkerInnate = spawnedUnit:FindAbilityByName('night_stalker_innate_redux')
+                            if stalkerInnate then
+                                if stalkerInnate:GetLevel() ~= 1 then
+                                    stalkerInnate:UpgradeAbility(false)
+                                end
+                            end
+                        end
+
+                        -- KOTL Innate Auto-Level
+                        if spawnedUnit:HasAbility('keeper_of_the_light_innate_redux') then
+                            local kotlInnate = spawnedUnit:FindAbilityByName('keeper_of_the_light_innate_redux')
+                            if kotlInnate then
+                                if kotlInnate:GetLevel() ~= 1 then
+                                    kotlInnate:UpgradeAbility(false)
+                                end
+                            end
+                        end
+                        
                         -- Change sniper assassinate to our custom version to work with aghs
                         if spawnedUnit:HasAbility("sniper_assassinate") and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("sniper_assassinate"):IsHidden() then
                                 spawnedUnit:AddAbility("sniper_assassinate_redux")
@@ -6780,17 +6891,15 @@ function Pregame:fixSpawningIssues()
                     end, DoUniqueString('giveDagger'), 1)            
                 end
 
-                -- Handle free scepter stuff, Gyro will not benefit
+                -- Handle free scepter stuff 
                 if OptionManager:GetOption('freeScepter') ~= 0 then
                     -- If setting is 1, everyone gets free scepter modifier, if its 2, only human players get the upgrade
                     if OptionManager:GetOption('freeScepter') == 1 or (OptionManager:GetOption('freeScepter') == 2 and not util:isPlayerBot(playerID))  then
-                        if spawnedUnit:GetUnitName() ~= "npc_dota_hero_gyrocopter" and spawnedUnit:GetUnitName() ~= "npc_dota_hero_night_stalker" and spawnedUnit:GetUnitName() ~= "npc_dota_hero_keeper_of_the_light"  then
-                            spawnedUnit:AddNewModifier(spawnedUnit, nil, 'modifier_item_ultimate_scepter_consumed', {
-                                bonus_all_stats = 0,
-                                bonus_health = 0,
-                                bonus_mana = 0
-                            })
-                        end
+                        spawnedUnit:AddNewModifier(spawnedUnit, nil, 'modifier_item_ultimate_scepter_consumed', {
+                            bonus_all_stats = 0,
+                            bonus_health = 0,
+                            bonus_mana = 0
+                        })
                      end
                 end
 

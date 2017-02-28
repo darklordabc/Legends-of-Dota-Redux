@@ -766,7 +766,7 @@
     "hintHuskar"                         "Huskar regenerates 1hp/s for every 10% of health he is missing."
     "hintJakiro"                         "Fire and Ice spells cast sequentially will refund 40% mana and have 20% reduced cooldowns. "
     "hintJuggernaut"                         "Healing/Mana Ward will have 100% of their mana cost refunded."
-    "hintKOTL"                         "Aghanim's Scepter will give KOTL unobstructed day vision. If 'Free Scepter' option is enabled, this hero will not benefit from it."
+    "hintKOTL"                         "Aghanim's Scepter will give KOTL unobstructed day vision. This innate vision bonus consumes an ability slot."
     "hintKunkka"                         "When Kunkka casts a Water spell he has a 50% chance to refill his bottle."
     "hintLeshrac"                         "At the start of the game, Leshrac gains a free level of Octarine Vampirism, whether he has it or not."
     "hintLoneDruid"                         "Lone Druid transfers 50% of damage taken to his Spirit Bear if he has one and its within 1100 range."
@@ -807,7 +807,7 @@
     "hintWindranger"                         "If Windranger has no passives, all her active spells will refund 20% mana and have 20% reduced cooldowns."
     "hintWK"                         "Wraith King can buyback with a 50% reduced cooldown, refunding 50% of the buyback cost and removing the gold penalty."
     "hintZuus"                         "Zeus refunds 20% of the manacost of any Lightning spells he casts."
-    "hintNS"                         "Aghanim's Scepter will give Night Stalker unobstructed night vision. If 'Free Scepter' option is enabled, this hero will not benefit from it."
+    "hintNS"                         "Aghanim's Scepter will give Night Stalker unobstructed night vision. This innate vision bonus consumes an ability slot."
     "hintEarthShaker"                         "Earth abilities Earthshaker uses heal him for 2% of his health."
     //"hintGyro"                         "Aghanim's Scepter will give Gyrocopter a side gunner. If 'Free Scepter' option is enabled, this hero will not benefit from it."
     "hintBM"                            "Non-ultimate Summon abilities used by Broodmother will have 20% mana cost refunded and 20% cooldown reduction."
@@ -918,6 +918,7 @@
     "lodFailedWrongPhaseBanning"                    "You can only ban abilities during the banning phase."
     "lodFailedWrongPhaseAllRandom"                  "You can only select your All Random build during the selection phase."
     "lodFailedWrongPhaseSelection"                  "You can only select abilities during the selection phase."
+    "lodHeroAndAbilityAreLocked" 		    "You can't remove this skill from this hero"
     "lodFailedPlayerIsReady"                        "You need to unlock your build in order to change your build."
     "lodFailedBalanceMode"                          "'{ab}' exceeds your points remaining by {points} points."
     "lodBoosterDraftRound"                          "Booster Draft: Round {round}"
@@ -1111,7 +1112,7 @@
     //"unique_mechanic_wisp"                   "Any spell Io casts on a tethered Hero also gets cast on him."
     "unique_mechanic_jakiro"                        "<font color=\'#ffd966\'>Fire</font> and <font color=\'#ffd966\'>Ice</font> spells cast sequentially will refund 40% mana and have 20% reduced cooldowns. "
     "unique_mechanic_juggernaut"                        "<font color=\'#ffd966\'>Healing/Mana Ward</font> will have 100% of their mana cost refunded."
-    "unique_mechanic_keeper_of_the_light"           "<font color=\'#ffd966\'>Aghanim's Scepter</font> will give KOTL unobstructed day vision. If 'Free Scepter' option is enabled, this hero will not benefit from it."
+    "unique_mechanic_keeper_of_the_light"           "<font color=\'#ffd966\'>Aghanim's Scepter</font> will give KOTL unobstructed day vision. This innate vision bonus consumes an ability slot."
     "unique_mechanic_kunkka"                        "When Kunkka casts a <font color=\'#ffd966\'>Water</font> spell he has a 50% chance to refill his bottle."
     "unique_mechanic_legion_commander"              "When Legion Commander casts <font color=\'#ffd966\'>Duel</font>, she will gain spell immunity for the duration of the duel."
     "unique_mechanic_leshrac"                        "At the start of the game, Leshrac gains a free level of <font color=\'#ffd966\'>Octarine Vampirism</font>, whether he has it or not."
@@ -1132,7 +1133,7 @@
     "unique_mechanic_naga_siren"                        "<font color=\'#ffd966\'>Illusion</font> creating abilities will have 50% of their mana refunded and cooldowns reduced by 20%."
     "unique_mechanic_furion"                        "The cooldowns of all <font color=\'#ffd966\'>Teleportation</font> abilities are reduced by 50% for Nature's Prophet."
     "unique_mechanic_necrolyte"                        "At the start of the game, Necrophos gains a free level of <font color=\'#ffd966\'>Heartstopper Aura</font>, whether he has it or not."
-    "unique_mechanic_night_stalker"                 "<font color=\'#ffd966\'>Aghanim's Scepter</font> will give Night Stalker unobstructed night vision. If 'Free Scepter' option is enabled, this hero will not benefit from it."
+    "unique_mechanic_night_stalker"                 "<font color=\'#ffd966\'>Aghanim's Scepter</font> will give Night Stalker unobstructed night vision. This innate vision bonus consumes an ability slot."
     "unique_mechanic_nyx_assassin"                        "Nyx Assassin gains 10% bonus movement speed when invisible."
     "unique_mechanic_ogre_magi"                        "When Ogre Magi casts a spell, there is a 2% chance to refund the manacost of that spell and refresh its cooldown."
     "unique_mechanic_omniknight"                        "<font color=\'#ffd966\'>Light</font> spells refund 40% of their mana cost when cast by Omniknight."
@@ -1283,6 +1284,11 @@
     "warning_pudge_flesh_heap_spell_amp" "<font color=\'#FF4949\'>Warning:</font> Will not show an increase in the tooltip information, but spell damge will be increased. Purple text popups will appear above hero when you do large spell damage.\n"
     "warning_treant_eyes_in_the_forest" "<font color=\'#FF4949\'>Warning:</font> Enemies will have a debuff notification when within 1000 range of an enchanted tree."
     "warning_angel_arena_transmute" "<font color=\'#FF4949\'>Warning:</font> This ability has strange coding, cooldown manipulation abilities will not work on it.\n"
+    "warning_night_stalker_innate_redux" "<font color=\'#FF4949\'>Warning:</font> This ability requires <font color=\'#70EA72\'>Aghanim's Scepter</font> to have any effect."
+    "warning_keeper_of_the_light_innate_redux" "<font color=\'#FF4949\'>Warning:</font> This ability requires <font color=\'#70EA72\'>Aghanim's Scepter</font> to have any effect."
+
+
+    
 
     "credit_spell_lab_symbiotic"           "<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>"
     "credit_sight"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
@@ -1846,6 +1852,23 @@
     "DOTA_Tooltip_ability_silencer_glaives_of_wisdom_steal_Description"            "Silencer will permanently steal 2 intelligence from any enemy hero that dies within 925 range or is killed by the Silencer."
     "DOTA_Tooltip_ability_silencer_glaives_of_wisdom_steal_int_steal"     "STOLEN INTELLIGENCE:"
     "DOTA_Tooltip_ability_silencer_glaives_of_wisdom_steal_steal_range" "STEAL RADIUS:"
+
+    // Night Stalker unobstructed vision
+    "DOTA_Tooltip_ability_night_stalker_innate_redux"                        "Unobstructed Night Vision"
+    "DOTA_Tooltip_ability_night_stalker_innate_redux_Description"            "Will grant unobstructed vision at night time if you have Aghanim's Scepter upgrade."
+    "DOTA_Tooltip_ability_night_stalker_innate_redux_vision_radius"     "VISION RADIUS:"
+
+    "DOTA_Tooltip_modifier_night_stalker_innate_redux"                      "Night Vision"
+    "DOTA_Tooltip_modifier_night_stalker_innate_redux_Description"          "This Hero has unobstructed vision at day time."
+   
+
+    // KOTL unobstructed vision
+    "DOTA_Tooltip_ability_keeper_of_the_light_innate_redux"                        "Unobstructed Day Vision"
+    "DOTA_Tooltip_ability_keeper_of_the_light_innate_redux_Description"            "Will grant unobstructed vision at day time if you have Aghanim's Scepter upgrade."
+    "DOTA_Tooltip_ability_keeper_of_the_light_innate_redux_vision_radius"     "VISION RADIUS:"
+
+    "DOTA_Tooltip_modifier_keeper_of_the_light_innate_redux"                      "Day Vision"
+    "DOTA_Tooltip_modifier_keeper_of_the_light_innate_redux_Description"          "This Hero has unobstructed vision at night time."
 
     // Starfall
     "DOTA_Tooltip_ability_mirana_starfall_lod"                                          "Starstorm"
