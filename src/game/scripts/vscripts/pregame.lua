@@ -3985,24 +3985,32 @@ function Pregame:onPlayerSelectHero(eventSourceIndex, args)
 
     -- Attempt to select the hero
     self:setSelectedHero(playerID, args.heroName)
-    -- Add skill to hero if needed
-    local hero = args.heroName
-    if hero and GameRules.perks["heroAbilityPairs"][hero] then
-        self:onPlayerSelectAbility(0, {PlayerID = playerID, abilityName = GameRules.perks["heroAbilityPairs"][hero], slot=5})
-    end
+    
 
     -- Check if the hero has banned skills that should be removed
-
-    for i=1,6 do
-
-        if self.bannedAbilities[self.selectedSkills[playerID][i]] then
-            self:removeSelectedAbility(playerID, i)
+    if self.bannedAbilities and self.bannedAbilities[self.selectedSkills[playerID]] then
+        for i=1,6 do
+            if self.bannedAbilities[self.selectedSkills[playerID][i]] then
+                self:removeSelectedAbility(playerID, i)
+            end
         end
     end
     -- Add skill to hero if needed
     local hero = args.heroName
     if hero and GameRules.perks["heroAbilityPairs"][hero] then
-        self:onPlayerSelectAbility(0, {PlayerID = playerID, abilityName = GameRules.perks["heroAbilityPairs"][hero], slot=5})
+        -- Do not try to learn it twice
+        local hasAbil = false
+        if self.selectedSkills[playerID] then
+            for k,v in pairs (self.selectedSkills[playerID]) do
+                if v == GameRules.perks["heroAbilityPairs"][hero] then
+                    hasAbil = true
+                    break
+                end
+            end
+        end
+        if not hasAbil then
+            self:onPlayerSelectAbility(0, {PlayerID = playerID, abilityName = GameRules.perks["heroAbilityPairs"][hero], slot=5})
+        end
     end
 
 end
@@ -5343,8 +5351,7 @@ function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
     if self.selectedSkills[playerID] then
         local abName  = self.selectedSkills[playerID][slot]
         local hero = self.selectedHeroes[playerID]
-
-        if hero and GameRules.perks["heroAbilityPairs"][hero] == abName then
+        if hero and abName and GameRules.perks["heroAbilityPairs"][hero] == abName then
             network:sendNotification(player, {
                 sort = 'lodDanger',
                 text = 'lodHeroAndAbilityAreLocked'
@@ -5378,7 +5385,7 @@ function Pregame:onPlayerSwapSlot(eventSourceIndex, args)
     local build = self.selectedSkills[playerID]
 
     -- Ensure they are not the same slot
-    --[[if slot1 == slot2 then
+    if slot1 == slot2 then
         -- Invalid ability name
         network:sendNotification(player, {
             sort = 'lodDanger',
@@ -5387,7 +5394,7 @@ function Pregame:onPlayerSwapSlot(eventSourceIndex, args)
         self:PlayAlert(playerID)
 
         return
-    end]]
+    end
 
     -- Ensure both the slots are valid
     if slot1 < 1 or slot1 > maxSlots or slot2 < 1 or slot2 > maxSlots then
@@ -5400,7 +5407,8 @@ function Pregame:onPlayerSwapSlot(eventSourceIndex, args)
 
         return
     end
-
+    -- Prevent abilities from being swapped
+    --[[
     local abName1  = self.selectedSkills[playerID][slot1]
     local abName2 = self.selectedSkills[playerID][slot2]
     local hero = self.selectedHeroes[playerID]
@@ -5412,7 +5420,7 @@ function Pregame:onPlayerSwapSlot(eventSourceIndex, args)
         })
         self:PlayAlert(playerID)
         return
-    end
+    end]]
 
     -- Perform the slot
     local tempSkill = build[slot1]
