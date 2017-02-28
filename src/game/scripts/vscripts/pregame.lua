@@ -3800,7 +3800,7 @@ function Pregame:setOption(optionName, optionValue, force, player)
         return
     end
 
-    if player then
+    if player and not IsInToolsMode() then
         local wins = tonumber(self.restrictions["Wins"][optionName]) or 0
         if wins and tonumber(self.playerWins[player:GetPlayerID()]) < wins then
             -- Tell the user they tried to modify restricted option
