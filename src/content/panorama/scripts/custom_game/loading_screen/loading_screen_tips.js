@@ -85,6 +85,21 @@ var tipsGeneral = [{
     },{
         img: 'file://{images}/items/wind_lace.png',
         txt: '#hintBotTalents'
+    },{
+        img: 'file://{images}/custom_game/hints/hint_perks.png',
+        txt: '#hintPerks'
+    },{
+        img: 'file://{images}/custom_game/hints/hint_Booster.png',
+        txt: '#hintBooster'
+    },{
+        img: 'file://{images}/custom_game/hints/hint_CustomAbility.png',
+        txt: '#hintCustomAbility'
+    },{
+        img: 'file://{images}/custom_game/hints/hint_singleplayer.png',
+        txt: '#hintSinglePlayer'
+    },{
+        img: 'file://{images}/custom_game/hints/hint_ctrl.png',
+        txt: '#hintCtrl'
     },
 ];
 

@@ -812,6 +812,7 @@ end
         life_stealer_consume = true,
         winter_wyvern_arctic_burn = true,
         life_stealer_control = true,
+        eat_tree_eldri = true,
     }
 
     local abs = LoadKeyValues('scripts/npc/npc_abilities.txt')

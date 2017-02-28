@@ -5,7 +5,7 @@ end
 function spell_lab_symbiotic_modifier:OnCreated( kv )
 	if IsServer() then
     --self.hHost = kv.target:GetParent()
-    self:StartIntervalThink(0.003)
+    self:StartIntervalThink(0.01)
     self.scale = self:GetParent():GetModelScale()
     self:GetParent():SetModelScale(0.001)
 	end
@@ -63,13 +63,13 @@ function spell_lab_symbiotic_modifier:CheckState()
 	local state = {
 	[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
 	[MODIFIER_STATE_MAGIC_IMMUNE] = true,
-	[MODIFIER_STATE_INVULNERABLE] = true,
+--[MODIFIER_STATE_INVULNERABLE] = true,
   [MODIFIER_STATE_UNSELECTABLE] = true,
   [MODIFIER_STATE_NOT_ON_MINIMAP] = true,
   [MODIFIER_STATE_NO_HEALTH_BAR] = true,
   [MODIFIER_STATE_FROZEN] = true,
   [MODIFIER_STATE_DISARMED] = not self:GetParent():HasScepter(),
-  [MODIFIER_STATE_OUT_OF_GAME] = true,
+ -- [MODIFIER_STATE_OUT_OF_GAME] = true,
   [MODIFIER_STATE_TRUESIGHT_IMMUNE] = true,
   [MODIFIER_STATE_INVISIBLE] = true
 	}
