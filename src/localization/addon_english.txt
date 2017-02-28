@@ -8289,4 +8289,15 @@
         "DOTA_Tooltip_Ability_eat_tree_eldri_bonus"                                       "DAMAGE PER STACK:"
         "DOTA_Tooltip_Ability_eat_tree_eldri_regen"                                       "%HP REGEN PER STACK:"
         "DOTA_Tooltip_Ability_eat_tree_eldri_mana_cost_per_stack"                         "<font color='#00A3DB'>MANA COST PER STACK</font>:"
+
+        "DOTA_Tooltip_ability_nyx_assassin_burrow_redux"                      "Burrow Redux"
+        "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_Description"      "Nyx Assassin buries himself beneath the battlefield over a short duration. Once burrowed, Spiked Carapace instantly stuns nearby enemies when cast, the range of Mana Burn and Impale is increased, and Impale's cooldown is decreased. While burrowed, Nyx Assassin is stationary, unable to attack, and invisible. His health and mana regeneration are also increased, and he gains damage reduction from all damage sources."
+        "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_Lore"                     "Some castes of zealot scarab are known to create small burrows to lie in wait, ready to ambush their prey."
+        "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_Note0"        "Casting Vendetta will cancel burrow."
+        "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_health_regen_rate"        "%BURROW HEALTH/MANA REGEN:"
+        "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_damage_reduction"     "%BURROW DAMAGE REDUCTION:"
+        "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_mana_burn_burrow_range_tooltip"       "BURROW MANA BURN RANGE:"
+        "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_impale_burrow_range_tooltip" "BURROW IMPALE RANGE:"
+        "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_impale_burrow_cooldown_tooltip"       "BURROW IMPALE COOLDOWN:"
+        "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_carapace_burrow_range_tooltip"        "BURROW SPIKED CARAPACE RANGE:"     
 }
