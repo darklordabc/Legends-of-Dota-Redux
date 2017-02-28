@@ -98,6 +98,11 @@
 			<Image src="file://{images}/custom_game/hints/hint_dazzle.png" />
 			<Image src="file://{images}/custom_game/hints/hint_DP.png" />
 			<Image src="file://{images}/custom_game/hints/hint_monkey_king.png" />
+			<Image src="file://{images}/custom_game/hints/hint_ctrl.png" />
+			<Image src="file://{images}/custom_game/hints/hint_singleplayer.png" />
+			<Image src="file://{images}/custom_game/hints/hint_CustomAbility.png" />
+			<Image src="file://{images}/custom_game/hints/hint_perks.png" />
+			<Image src="file://{images}/custom_game/hints/hint_Booster.png" />
 			<Image src="file://{images}/custom_game/hints/hint_disruptor.png" />
 			<Image src="file://{images}/custom_game/hints/hint_earth_spirit.png" />
 			<Image src="file://{images}/custom_game/hints/hint_ember_spirit.png" />

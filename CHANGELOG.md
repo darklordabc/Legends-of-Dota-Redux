@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - Added 7 abilities from Overflow. 
 - Added 4 Super OP variant abilities. 
 - Replaced Shadow Shaman's perk.
+- Added some more hints.
 
 ### Balance
 - Arc Warden's perk can now be used on Tome of Knowledge

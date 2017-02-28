@@ -697,6 +697,11 @@
     "hintBotsDifficulty"                         "Bots too hard? Sick of them using OP abilities? Check out the bots menu in custom settings and remove their buffs, force them to use unique skills or make them use only their default 4 skills."
     "hintDuels"                         "Try playing with Duels! This is a game mechanic that has been borrowed from Angel Arena Reborn and ensures frequent hero fights."
     "hintBotTalents"                         "Bots receive 2 extra abilities, they will always choose the best available ability for their hero based on a predefined list. Bots will also level randomly selected talents, however, their talent picks are not shown in their talent trees. "
+    "hintCtrl"  "Hold Down Ctrl + Click the ability categories to show more than 1 category at a time. The game starts with more than 1 category selected already."
+    "hintSinglePlayer"  "'Single Player abilities' are designed for solo play against bots, these are extremely powerful and are not designed with balance in mind. Enabling them in multiplayer is NOT recommended, unless the other players agree." 
+    "hintCustomAbility"  "Redux features many new and interesting custom abilities. Some imported from other Dota 2 mods, some by individual developers and some specifically created for Redux. Be careful when enabling these, as they can be overwhelming for new players."
+    "hintBooster"  "Booster Draft is gamemode based on the popular draft method from MAGIC: THE GATHERING Card Game. Like Single Draft, It is for advanced players who want a fairer game."
+    "hintPerks"  "Every Hero in Redux has a special perk that is a unique advantage for that hero. These perks are designed to encourage players to use different heroes and not just pick the few heroes with the best stats. They can be disabled."  
 
     // Perk-related Hints
     "hintLina"                          "Lina's intelligence increases by 3 for each level put in Fire abilities"
