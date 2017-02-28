@@ -32,12 +32,12 @@ end
   --------------------------------------------------------------------------------------------------------
   function modifier_npc_dota_hero_chen_perk:DeclareFunctions()
     local funcs = {
-      MODIFIER_EVENT_ON_ABILITY_START,
+      MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
     }
     return funcs
   end
 
-  function modifier_npc_dota_hero_chen_perk:OnAbilityStart(keys)
+  function modifier_npc_dota_hero_chen_perk:OnAbilityFullyCast(keys)
     --if IsServer() then
       local hero = self:GetCaster()
       local target = keys.target
