@@ -112,7 +112,9 @@ function Pregame:init()
     -- Init thinker
     GameRules:GetGameModeEntity():SetThink('onThink', self, 'PregameThink', 0.25)
     GameRules:SetHeroSelectionTime(0)   -- Hero selection is done elsewhere, hero selection should be instant
-    GameRules:GetGameModeEntity():SetBotThinkingEnabled(true)
+    if not IsInToolsMode() then
+        GameRules:GetGameModeEntity():SetBotThinkingEnabled(true)
+    end
 
     -- GameRules:GetGameModeEntity():SetCustomGameForceHero("npc_dota_hero_wisp")
 
@@ -1190,16 +1192,9 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                 local status2,err2 = pcall(function()
                     -- Create the hero and validate it
                     
-                    if not util:isPlayerBot(playerID) then
-                        local hero = CreateHeroForPlayer(heroName, player)
+                    local hero = CreateHeroForPlayer(heroName, player)
 
-                        if not IsInToolsMode() then
-                            UTIL_Remove(hero)
-                        else
-                            hero:AddNoDraw()
-                            hero:AddNewModifier(hero,nil,"modifier_invulnerable",{})
-                        end
-                    end
+                    UTIL_Remove(hero)
 
                     --[[if hero ~= nil and IsValidEntity(hero) then
                         SkillManager:ApplyBuild(hero, build or {})
@@ -6030,8 +6025,6 @@ function Pregame:addBotPlayers()
 
             -- Push them onto the correct team
             PlayerResource:SetCustomTeamAssignment(playerID, DOTA_TEAM_GOODGUYS)
-
-            ply:MakeRandomHeroSelection()
         end
     end
 
@@ -6055,8 +6048,6 @@ function Pregame:addBotPlayers()
 
             -- Push them onto the correct team
             PlayerResource:SetCustomTeamAssignment(playerID, DOTA_TEAM_BADGUYS)
-
-            ply:MakeRandomHeroSelection()
         end
     end
 end
@@ -6715,6 +6706,10 @@ function Pregame:fixSpawningIssues()
                 -- Add talents
                 Timers:CreateTimer(function()
                     --print(self.perksDisabled)
+                    if spawnedUnit:IsNull() then
+                        return
+                    end
+                    
                     local nameTest = spawnedUnit:GetName()
                     if IsValidEntity(spawnedUnit) and not spawnedUnit.hasTalent then
                         for heroName,heroValues in pairs(allHeroes) do
