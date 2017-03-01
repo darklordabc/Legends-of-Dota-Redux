@@ -7095,39 +7095,10 @@ function Pregame:fixSpawningIssues()
                 -- Increasing creep power over time
                 print("Creep power option: " ..tostring(this.optionStore['lodOptionNeutralCreepPower']))
                 if this.optionStore['lodOptionNeutralCreepPower'] > 0 then
-                            if IsValidEntity(spawnedUnit) then
-                                print("adding modifier to creep")
-                                spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_neutral_power", {interval_time = this.optionStore['lodOptionNeutralCreepPower']})
-                            end                    
-                    
-                    -- if level > 0 then
-
-                    --     local extraHealth = 100 * level
-                    --     local newHealth = spawnedUnit:GetMaxHealth() + extraHealth
-                        
-                    --     local extraGold = 5 * level
-                    --     local extraDamage = 5 * level       
-                    --     local extraExp = 5 * level         
-                    --     local extraModelScale = 0.02 * level   
-                    --     local extraHealthRegen = 0.1 * level
-
-                    --     spawnedUnit:SetModelScale(spawnedUnit:GetModelScale() + extraModelScale)
-
-                    --     spawnedUnit:SetDeathXP(spawnedUnit:GetDeathXP() + extraExp)
-
-                    --     spawnedUnit:SetMaxHealth(newHealth)
-                    --     spawnedUnit:SetBaseMaxHealth(newHealth)
-                    --     spawnedUnit:SetHealth(newHealth)
-                    --     spawnedUnit:SetBaseHealthRegen(spawnedUnit:GetBaseHealthRegen() + extraHealthRegen)
-
-                    --     spawnedUnit:SetMinimumGoldBounty(spawnedUnit:GetMinimumGoldBounty() + extraGold)
-                    --     spawnedUnit:SetMaximumGoldBounty(spawnedUnit:GetMaximumGoldBounty() + extraGold)
-
-                    --     spawnedUnit:SetBaseDamageMin(spawnedUnit:GetBaseDamageMin() + extraDamage)
-                    --     spawnedUnit:SetBaseDamageMax(spawnedUnit:GetBaseDamageMax() + extraDamage) 
-
-                    -- end
-                    
+                    if IsValidEntity(spawnedUnit) then
+                        print("adding modifier to creep")
+                        spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_neutral_power", {interval_time = this.optionStore['lodOptionNeutralCreepPower']})
+                    end     
                 end
             end
         end
