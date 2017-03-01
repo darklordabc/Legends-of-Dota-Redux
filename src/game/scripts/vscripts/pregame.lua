@@ -49,6 +49,9 @@ LinkLuaModifier( "modifier_slark_shadow_dance_ai", "abilities/botAI/modifier_sla
 LinkLuaModifier( "modifier_alchemist_chemical_rage_ai", "abilities/botAI/modifier_alchemist_chemical_rage_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
 --LinkLuaModifier( "modifier_rattletrap_rocket_flare_ai", "abilities/botAI/modifier_rattletrap_rocket_flare_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+-- Creep power modifier
+LinkLuaModifier("modifier_neutral_power", "abilities/modifiers/modifier_neutral_power.lua", LUA_MODIFIER_MOTION_NONE)
+
 --[[
     Main pregame, selection related handler
 ]]
@@ -7090,45 +7093,40 @@ function Pregame:fixSpawningIssues()
                 end
             elseif spawnedUnit:GetTeam() == DOTA_TEAM_NEUTRALS then
                 -- Increasing creep power over time
+                print("Creep power option: " ..tostring(this.optionStore['lodOptionNeutralCreepPower']))
                 if this.optionStore['lodOptionNeutralCreepPower'] > 0 then
-
-                    local dotaTime = GameRules:GetDOTATime(false, false)
-                    local level = math.ceil(dotaTime / this.optionStore['lodOptionNeutralCreepPower'])
-                    local ability = spawnedUnit:AddAbility("lod_neutral_power")
-                    ability:UpgradeAbility(false)
-                    Timers:CreateTimer(function()
                             if IsValidEntity(spawnedUnit) then
-                                spawnedUnit:SetModifierStackCount("modifier_neutral_power",spawnedUnit,level)
-                            end
-                    end, DoUniqueString('setCounters'), .5)
+                                print("adding modifier to creep")
+                                spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_neutral_power", {interval_time = this.optionStore['lodOptionNeutralCreepPower']})
+                            end                    
                     
-                    if level > 0 then
+                    -- if level > 0 then
 
-                        local extraHealth = 100 * level
-                        local newHealth = spawnedUnit:GetMaxHealth() + extraHealth
+                    --     local extraHealth = 100 * level
+                    --     local newHealth = spawnedUnit:GetMaxHealth() + extraHealth
                         
-                        local extraGold = 5 * level
-                        local extraDamage = 5 * level       
-                        local extraExp = 5 * level         
-                        local extraModelScale = 0.02 * level   
-                        local extraHealthRegen = 0.1 * level
+                    --     local extraGold = 5 * level
+                    --     local extraDamage = 5 * level       
+                    --     local extraExp = 5 * level         
+                    --     local extraModelScale = 0.02 * level   
+                    --     local extraHealthRegen = 0.1 * level
 
-                        spawnedUnit:SetModelScale(spawnedUnit:GetModelScale() + extraModelScale)
+                    --     spawnedUnit:SetModelScale(spawnedUnit:GetModelScale() + extraModelScale)
 
-                        spawnedUnit:SetDeathXP(spawnedUnit:GetDeathXP() + extraExp)
+                    --     spawnedUnit:SetDeathXP(spawnedUnit:GetDeathXP() + extraExp)
 
-                        spawnedUnit:SetMaxHealth(newHealth)
-                        spawnedUnit:SetBaseMaxHealth(newHealth)
-                        spawnedUnit:SetHealth(newHealth)
-                        spawnedUnit:SetBaseHealthRegen(spawnedUnit:GetBaseHealthRegen() + extraHealthRegen)
+                    --     spawnedUnit:SetMaxHealth(newHealth)
+                    --     spawnedUnit:SetBaseMaxHealth(newHealth)
+                    --     spawnedUnit:SetHealth(newHealth)
+                    --     spawnedUnit:SetBaseHealthRegen(spawnedUnit:GetBaseHealthRegen() + extraHealthRegen)
 
-                        spawnedUnit:SetMinimumGoldBounty(spawnedUnit:GetMinimumGoldBounty() + extraGold)
-                        spawnedUnit:SetMaximumGoldBounty(spawnedUnit:GetMaximumGoldBounty() + extraGold)
+                    --     spawnedUnit:SetMinimumGoldBounty(spawnedUnit:GetMinimumGoldBounty() + extraGold)
+                    --     spawnedUnit:SetMaximumGoldBounty(spawnedUnit:GetMaximumGoldBounty() + extraGold)
 
-                        spawnedUnit:SetBaseDamageMin(spawnedUnit:GetBaseDamageMin() + extraDamage)
-                        spawnedUnit:SetBaseDamageMax(spawnedUnit:GetBaseDamageMax() + extraDamage) 
+                    --     spawnedUnit:SetBaseDamageMin(spawnedUnit:GetBaseDamageMin() + extraDamage)
+                    --     spawnedUnit:SetBaseDamageMax(spawnedUnit:GetBaseDamageMax() + extraDamage) 
 
-                    end
+                    -- end
                     
                 end
             end
