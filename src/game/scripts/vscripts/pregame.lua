@@ -7029,8 +7029,9 @@ function Pregame:fixSpawningIssues()
              end, DoUniqueString('removeTalentModifiers'), 2)
 
 
-                -- Only give bonuses once
-                if not givenBonuses[playerID] then
+                        
+            -- Only give bonuses once
+            if not givenBonuses[playerID] then
                     -- We have given bonuses
                     givenBonuses[playerID] = true
 
@@ -7092,14 +7093,13 @@ function Pregame:fixSpawningIssues()
                     
                 end
             elseif spawnedUnit:GetTeam() == DOTA_TEAM_NEUTRALS then
-                -- Increasing creep power over time
-                print("Creep power option: " ..tostring(this.optionStore['lodOptionNeutralCreepPower']))
+                -- Increasing creep power over time                
                 if this.optionStore['lodOptionNeutralCreepPower'] > 0 then
-                    if IsValidEntity(spawnedUnit) then                        
-                        spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_neutral_power", {interval_time = this.optionStore['lodOptionNeutralCreepPower']})
+                    if IsValidEntity(spawnedUnit) then                                                
+                                spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_neutral_power", {interval_time = this.optionStore['lodOptionNeutralCreepPower']})                                                                          
                     end     
                 end
-            end
+            end            
         end
     end, nil)
 end
