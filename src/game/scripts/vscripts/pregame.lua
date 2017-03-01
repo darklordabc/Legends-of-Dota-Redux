@@ -1189,13 +1189,16 @@ function Pregame:actualSpawnPlayer(playerID, callback)
             local spawnTheHero = function()
                 local status2,err2 = pcall(function()
                     -- Create the hero and validate it
-                    local hero = CreateHeroForPlayer(heroName, player)
+                    
+                    if not util:isPlayerBot(playerID) then
+                        local hero = CreateHeroForPlayer(heroName, player)
 
-                    if not IsInToolsMode() then
-                        UTIL_Remove(hero)
-                    else
-                        hero:AddNoDraw()
-                        hero:AddNewModifier(hero,nil,"modifier_invulnerable",{})
+                        if not IsInToolsMode() then
+                            UTIL_Remove(hero)
+                        else
+                            hero:AddNoDraw()
+                            hero:AddNewModifier(hero,nil,"modifier_invulnerable",{})
+                        end
                     end
 
                     --[[if hero ~= nil and IsValidEntity(hero) then
@@ -6027,6 +6030,8 @@ function Pregame:addBotPlayers()
 
             -- Push them onto the correct team
             PlayerResource:SetCustomTeamAssignment(playerID, DOTA_TEAM_GOODGUYS)
+
+            ply:MakeRandomHeroSelection()
         end
     end
 
@@ -6050,6 +6055,8 @@ function Pregame:addBotPlayers()
 
             -- Push them onto the correct team
             PlayerResource:SetCustomTeamAssignment(playerID, DOTA_TEAM_BADGUYS)
+
+            ply:MakeRandomHeroSelection()
         end
     end
 end
