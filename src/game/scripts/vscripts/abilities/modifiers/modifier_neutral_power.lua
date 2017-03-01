@@ -57,8 +57,7 @@ function modifier_neutral_power:GetAttributes()
 end
 
 function modifier_neutral_power:DeclareFunctions()	
-		local decFuncs = {MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,
-						 MODIFIER_PROPERTY_MODEL_SCALE,
+		local decFuncs = {MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,						 
 						 MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 						 MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE}
 		
@@ -70,14 +69,6 @@ function modifier_neutral_power:GetModifierBaseAttack_BonusDamage()
 	local damage_per_level = 5
 	
 	return damage_per_level * stacks
-end
-
-function modifier_neutral_power:GetModifierModelScale()
-	local stacks = self:GetStackCount()
-	local initial_scale = 1
-	local model_scale_per_level = 0.02
-
-	return initial_scale + model_scale_per_level * stacks
 end
 
 function modifier_neutral_power:GetModifierConstantHealthRegen()
@@ -104,13 +95,18 @@ function CalculateNewStats(unit, stacks, firstInstance)
 		local health_per_stack = 100	
 		local extra_gold_per_stack = 5
 		local extra_exp_per_stack = 5
+		local model_scale_per_stack = 0.02
 
 		-- Increase depending on initial call or interval
 		if firstInstance then
 			health_per_stack = health_per_stack * stacks
 			extra_gold_per_stack = extra_gold_per_stack * stacks
 			extra_exp_per_stack = extra_exp_per_stack * stacks
+			model_scale_per_stack = model_scale_per_stack * stacks
 		end
+
+		-- Modify Scale
+		unit:SetModelScale(unit:GetModelScale() + model_scale_per_stack)
 
 		-- Modify Health
 		unit:SetBaseMaxHealth(unit:GetBaseMaxHealth() + health_per_stack)	
