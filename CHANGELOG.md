@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
 - Replaced Shadow Shaman's perk.
 - Added some more hints.
 - Added more balanced version of Grow
+- Improved Neutral Creep power mutator, now dynmically updates instead of being fixed at creep spawn
 
 ### Balance
 - Arc Warden's perk can now be used on Tome of Knowledge
