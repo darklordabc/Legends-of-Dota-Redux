@@ -1193,6 +1193,7 @@ function Pregame:actualSpawnPlayer(playerID, callback)
 
                     if not IsInToolsMode() then
                         UTIL_Remove(hero)
+                    else
                         hero:AddNoDraw()
                         hero:AddNewModifier(hero,nil,"modifier_invulnerable",{})
                     end
