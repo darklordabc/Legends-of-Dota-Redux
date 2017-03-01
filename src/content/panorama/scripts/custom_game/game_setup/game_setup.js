@@ -10,9 +10,10 @@ var PHASE_BANNING = 4;          // Banning stuff
 var PHASE_SELECTION = 5;        // Selecting heroes
 var PHASE_DRAFTING = 6;         // Place holder for drafting mode
 var PHASE_RANDOM_SELECTION = 7; // Random build selection (For All Random)
-var PHASE_SPAWN_HEROES = 8;     // Random build selection (For All Random)
-var PHASE_REVIEW = 9;           // Review Phase
-var PHASE_INGAME = 10;          // Game has started
+var PHASE_REVIEW = 8;           // Review Phase
+var PHASE_SPAWN_HEROES = 9;     // Random build selection (For All Random)
+var PHASE_ITEM_PICKING = 10;    // Game has started
+var PHASE_INGAME = 11;          // Game has started
 
 var phases = {
     1: {
@@ -46,17 +47,22 @@ var phases = {
         desc: '',
         class: 'phase_all_random'
     },
-    // 8: {
-    //     name: '#lodStageSpawnHeroes',
-    //     desc: '',
-    //     class: 'phase_spawn_heroes'
-    // },
-    9: {
+    8: {
         name: '#lodStageReview',
         desc: '',
         class: 'phase_review'
     },
+    9: {
+        name: '#lodStageSpawnHeroes',
+        desc: '',
+        class: 'phase_spawn_heroes'
+    },
     10: {
+        name: '#lodStageItemPicking',
+        desc: '',
+        class: 'phase_item_picking'
+    },
+    11: {
         name: '#lodStageIngame',
         desc: '',
         class: 'phase_ingame'

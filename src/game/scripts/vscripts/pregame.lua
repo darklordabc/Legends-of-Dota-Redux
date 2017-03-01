@@ -988,7 +988,7 @@ function Pregame:onThink()
         end, DoUniqueString('spawnbots'), 0.1)
 
         -- Move to ingame
-        self:setPhase(constants.PHASE_INGAME)
+        self:setPhase(constants.PHASE_ITEM_PICKING)
 
         return 0.1
     end
@@ -996,7 +996,7 @@ function Pregame:onThink()
     -- Once we get to this point, we will not fire again
 
     -- Game is starting, spawn heroes
-    if ourPhase == constants.PHASE_INGAME then
+    if ourPhase == constants.PHASE_ITEM_PICKING then
         if GameRules:State_Get() < DOTA_GAMERULES_STATE_PRE_GAME then
             return 0.1
         end
@@ -1004,14 +1004,19 @@ function Pregame:onThink()
         -- Do things after a small delay
         local this = self
 
-        -- Fix builds
-        self:applyBuilds()
+        Timers:CreateTimer(function()
+            -- Fix builds
+            this:applyBuilds()
+
+            -- Move to ingame
+            this:setPhase(constants.PHASE_INGAME)
+
+            -- Start tutorial mode so we can show tips to players
+            Tutorial:StartTutorialMode()
+        end, DoUniqueString('preventcamping'), 1)
 
         -- Hook bot stuff
         -- self:hookBotStuff()
-
-        -- Start tutorial mode so we can show tips to players
-        Tutorial:StartTutorialMode()
 
         -- Add extra towers
         Timers:CreateTimer(function()
@@ -1043,7 +1048,7 @@ function Pregame:onThink()
             SU:LoadPlayersMessages()
 
             ingame:onStart()
-        end, DoUniqueString('preventcamping'), 0)
+        end, DoUniqueString('preventcamping'), 1)
     end
 end
 
@@ -1081,7 +1086,7 @@ function Pregame:onGetPlayerData(playerDataBySteamID)
 end
 
 -- Spawns all heroes (this should only be called once!)
-function Pregame:spawnAllHeroes(onSpawned)
+function Pregame:spawnAllHeroes()
     local minPlayerID = 0
     local maxPlayerID = 24
 
@@ -1186,7 +1191,11 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                     -- Create the hero and validate it
                     local hero = CreateHeroForPlayer(heroName, player)
 
-                    UTIL_Remove(hero)
+                    if not IsInToolsMode() then
+                        UTIL_Remove(hero)
+                        hero:AddNoDraw()
+                        hero:AddNewModifier(hero,nil,"modifier_invulnerable",{})
+                    end
 
                     --[[if hero ~= nil and IsValidEntity(hero) then
                         SkillManager:ApplyBuild(hero, build or {})
