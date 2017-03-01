@@ -7005,7 +7005,7 @@ function Pregame:fixSpawningIssues()
                 end
 
 
-            if util:isPlayerBot(playerID) then
+            --[[if util:isPlayerBot(playerID) then
                 Timers:CreateTimer(function()
                     if IsValidEntity(spawnedUnit) then
                             local item = spawnedUnit:AddItemByName('item_backPackBlocker')
@@ -7016,7 +7016,7 @@ function Pregame:fixSpawningIssues()
                             spawnedUnit:SwapItems(0, 8)
                     end
                 end, DoUniqueString('fillBotsBackPack'), 1)
-            end
+            end]]
             
             Timers:CreateTimer(function()
                 if IsValidEntity(spawnedUnit) then
