@@ -26,8 +26,6 @@ function modifier_neutral_power:OnCreated(kv)
 		-- Wait one game tick for proper team assignments, then ask if the modifier still exists
 		Timers:CreateTimer(0.03, function()
 			if not self:IsNull() then
-				print("new modifier was created")
-
 				self:SetStackCount(initial_stacks)			
 				CalculateNewStats(unit, initial_stacks, true)
 
