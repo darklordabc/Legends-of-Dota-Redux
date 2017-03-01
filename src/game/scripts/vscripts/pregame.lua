@@ -7095,8 +7095,7 @@ function Pregame:fixSpawningIssues()
                 -- Increasing creep power over time
                 print("Creep power option: " ..tostring(this.optionStore['lodOptionNeutralCreepPower']))
                 if this.optionStore['lodOptionNeutralCreepPower'] > 0 then
-                    if IsValidEntity(spawnedUnit) then
-                        print("adding modifier to creep")
+                    if IsValidEntity(spawnedUnit) then                        
                         spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_neutral_power", {interval_time = this.optionStore['lodOptionNeutralCreepPower']})
                     end     
                 end
