@@ -99,7 +99,7 @@ function modifier_angel_arena_archmage_anomaly_thinker:OnAbilityFullyCast(params
 			local enemies = FindUnitsInRadius(params.target:GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, self.aura_radius * 2, DOTA_UNIT_TARGET_TEAM_FRIENDLY, self.auraTargetType, self.auraTargetFlags, FIND_ANY_ORDER, false)
 			for _,enemy in pairs(enemies) do
 				if enemy:HasModifier("modifier_archmage_anomaly") then
-					if params.ability:GetCursorTarget() and not self.AlreadyHit[enemy] then
+					if params.ability:GetCursorTarget() and not self.AlreadyHit[enemy] and UF_SUCCESS == UnitFilter( enemy, params.ability:GetAbilityTargetTeam(), params.ability:GetAbilityTargetType(), params.ability:GetAbilityTargetFlags(), params.unit:GetTeam() ) then
 						params.unit:SetCursorCastTarget(enemy)
 						params.ability:OnSpellStart()
 						self.AlreadyHit[enemy] = true
