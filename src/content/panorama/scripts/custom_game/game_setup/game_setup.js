@@ -4348,11 +4348,7 @@ function OnPhaseChanged(table_name, key, data) {
                 // Should we show the host message popup?
                 if(!seenPopupMessages.hostWarning) {
                     seenPopupMessages.hostWarning = true;
-                    if(isHost()) {
-                        showPopupMessage('lodHostingMessage');
-                    } else {
-                        showPopupMessage('lodHostingNoobMessage');
-                    }
+                    showPopupMessage('lodWelcomeMessage');
                 }
             }
 

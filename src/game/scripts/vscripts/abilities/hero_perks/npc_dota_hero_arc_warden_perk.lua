@@ -61,8 +61,14 @@ function modifier_npc_dota_hero_arc_warden_perk:OnAbilityFullyCast(keys)
 	  local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_stormspirit/stormspirit_ball_lightning_end.vpcf", PATTACH_OVERHEAD_FOLLOW, hero)
 	  ParticleManager:SetParticleControl(particle, 0, hero:GetAbsOrigin())
 
+	  -- If Tome of Knowledge used, this perk has double cooldown length
+	  local cooldown = self.downtime
+	  if ability:GetAbilityName() == "item_tome_of_knowledge" then
+	  	cooldown = cooldown * 2
+	  end
+	  
 	  -- Adds modifier
-	  hero:AddNewModifier(hero, nil, "modifier_npc_dota_hero_arc_warden_perk_downtime", {Duration = self.downtime})
+	  hero:AddNewModifier(hero, nil, "modifier_npc_dota_hero_arc_warden_perk_downtime", {Duration = cooldown})
   	end
   end
 end

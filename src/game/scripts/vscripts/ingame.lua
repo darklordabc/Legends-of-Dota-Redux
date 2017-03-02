@@ -1215,14 +1215,13 @@ function Ingame:checkBuybackStatus()
         local unit = EntIndexToHScript(keys.entindex)
 
         if IsValidEntity(unit) then
-            if unit:IsHero() and OptionManager:GetOption('buybackCooldownConstant') ~= 420 then
+            if unit:IsRealHero() and OptionManager:GetOption('buybackCooldownConstant') ~= 420 then
                 Timers:CreateTimer(
                 function()
                     if IsValidEntity(unit) then
                         local buyBackLeft = unit:GetBuybackCooldownTime()
                         if buyBackLeft ~= 0 then
                             local maxCooldown = OptionManager:GetOption('buybackCooldownConstant')
-                            
                             if buyBackLeft > maxCooldown then
                                 unit:SetBuybackCooldownTime(maxCooldown)
                             end

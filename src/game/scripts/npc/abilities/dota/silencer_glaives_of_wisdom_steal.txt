@@ -1,0 +1,21 @@
+"DOTAAbilities" {
+	"silencer_glaives_of_wisdom_steal" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityTextureName" "custom/silencer_glaives_of_wisdom_steal"
+		"MaxLevel" "1"
+
+		"AbilitySpecial" {
+			"01" 
+			{
+				"var_type" "FIELD_INTEGER"
+				"int_steal" "2"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"steal_range"		"925"
+			}
+		}
+	}
+}
