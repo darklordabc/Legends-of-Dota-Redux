@@ -1,4 +1,6 @@
-"ability_consumable_item_container"
+"DOTAAbilities" 
+{
+	"ability_consumable_item_container"
 	{
 		"BaseClass"                        "ability_datadriven"
 		// Add an icon for this
@@ -6,3 +8,4 @@
 		"AbilityBehavior"                  "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"MaxLevel"												 "1"
 	}
+}
