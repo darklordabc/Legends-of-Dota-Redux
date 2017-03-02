@@ -413,4 +413,51 @@
             }
         }
     }
+    "item_assault_consumable"
+    {
+         "ID"                            "2112"                                                       // unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityCastRange"              "900"
+        "AbilityTextureName"            "item_assault"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "abilities/items/assault.lua"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "5250"
+        
+        // Special  
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_attack_speed"    "35"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_armor"           "10"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "aura_radius"           "900"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "aura_attack_speed"     "20"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "aura_armor"   "5"
+            }
+
+        }
+    }
 }
