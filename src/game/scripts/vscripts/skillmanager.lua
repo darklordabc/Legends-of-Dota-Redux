@@ -271,7 +271,7 @@ function skillManager:RemoveAllSkills(hero)
             --        hero:RemoveAbility(v)
             --    end
             --end
-		end
+	end
     end
 
     -- Build the skill list
