@@ -16,6 +16,7 @@ All notable changes to this project will be documented in this file.
 - Added some more hints.
 - Added more balanced version of Grow
 - Improved Neutral Creep power mutator, now dynmically updates instead of being fixed at creep spawn
+- Fixed being able to random skills that were not available in picking phase
 
 ### Balance
 - Arc Warden's perk can now be used on Tome of Knowledge

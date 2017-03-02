@@ -5530,6 +5530,11 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
         if self.doNotRandom[abilityName] then
             shouldAdd = false
         end
+        
+        -- check OP
+        if not self:isAllowed( abilityName ) then
+            shouldAdd = false
+        end
 
         if abilityName == 'sandking_caustic_finale' then
             shouldAdd = false
