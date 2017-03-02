@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 6.5 - Development Version
 ### Bug Fixing/New Features
 - Updated Map to 7.02
+- Changed spawn method to avoid crashes
 - Kotl, NS and Gyro will now benefit from the 'Free Aghs' optional setting.
 - Intelligence Steal is now a separate 1 level ability, no longer inherent to Glaives of Wisdom. Glaives is no longer an OP ability, and its price has decresed in points mode.
 - Unobstructed Night vision and Unobstructed Day vision are now separate abilities. 
@@ -13,6 +14,9 @@ All notable changes to this project will be documented in this file.
 - Added 4 Super OP variant abilities. 
 - Replaced Shadow Shaman's perk.
 - Added some more hints.
+- Added more balanced version of Grow
+- Improved Neutral Creep power mutator, now dynmically updates instead of being fixed at creep spawn
+- Fixed being able to random skills that were not available in picking phase
 
 ### Balance
 - Arc Warden's perk can now be used on Tome of Knowledge

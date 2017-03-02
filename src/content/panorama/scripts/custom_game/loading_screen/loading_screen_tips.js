@@ -100,6 +100,15 @@ var tipsGeneral = [{
     },{
         img: 'file://{images}/custom_game/hints/hint_ctrl.png',
         txt: '#hintCtrl'
+    },{
+        img: 'file://{images}/custom_game/hints/hint_RespawnTimes.png',
+        txt: '#hintRespawnTimes'
+    },{
+        img: 'file://{images}/custom_game/hints/hint_MultiplyNeutrals.png',
+        txt: '#hintMultiplyNeutrals'
+    },{
+        img: 'file://{images}/custom_game/hints/hint_Balancing.png',
+        txt: '#hintBalancing'
     },
 ];
 

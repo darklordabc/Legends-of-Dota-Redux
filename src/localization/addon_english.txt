@@ -55,6 +55,7 @@
     "lodStageBanning"                         "Banning"
     "lodStageSelection"                       "Hero Builder"
     "lodStageRandomSelection"                 "All Random Build Selection"
+    "lodStageSpawnHeroes"                     ""
     "lodStageReview"                          "Review"
     "lodStageIngame"                          "Ingame"
 	
@@ -702,6 +703,9 @@
     "hintCustomAbility"  "Redux features many new and interesting custom abilities. Some imported from other Dota 2 mods, some by individual developers and some specifically created for Redux. Be careful when enabling these, as they can be overwhelming for new players."
     "hintBooster"  "Booster Draft is gamemode based on the popular draft method from MAGIC: THE GATHERING Card Game. Like Single Draft, It is for advanced players who want a fairer game."
     "hintPerks"  "Every Hero in Redux has a special perk that is a unique advantage for that hero. These perks are designed to encourage players to use different heroes and not just pick the few heroes with the best stats. They can be disabled."  
+    "hintRespawnTimes"  "Respawn rates will increase after 40 minutes and will increase by 10% every 10 minutes, up to 50% respawn rate. This is to prevent games lasting too long and being unendable."
+    "hintMultiplyNeutrals"  "When 'Multiply Neutrals' is enabled, there is chance that cloned neutrals will spawn with special powerups. The chance and power of these powerup will increases as your last-hit count increases."
+    "hintBalancing"  "A balanced game is a fun game. But balance needs you! If you know a playstyle or ability which is too easy to win with (even if its your favourite), do your part, and report it to the developers."
 
     // Perk-related Hints
     "hintLina"                          "Lina's intelligence increases by 3 for each level put in Fire abilities"
@@ -1284,8 +1288,8 @@
     "warning_pudge_flesh_heap_spell_amp" "<font color=\'#FF4949\'>Warning:</font> Will not show an increase in the tooltip information, but spell damge will be increased. Purple text popups will appear above hero when you do large spell damage.\n"
     "warning_treant_eyes_in_the_forest" "<font color=\'#FF4949\'>Warning:</font> Enemies will have a debuff notification when within 1000 range of an enchanted tree."
     "warning_angel_arena_transmute" "<font color=\'#FF4949\'>Warning:</font> This ability has strange coding, cooldown manipulation abilities will not work on it.\n"
-    "warning_night_stalker_innate_redux" "<font color=\'#FF4949\'>Warning:</font> This ability requires <font color=\'#70EA72\'>Aghanim's Scepter</font> to have any effect."
-    "warning_keeper_of_the_light_innate_redux" "<font color=\'#FF4949\'>Warning:</font> This ability requires <font color=\'#70EA72\'>Aghanim's Scepter</font> to have any effect."
+    "warning_night_stalker_innate_redux" "<font color=\'#FF4949\'>Warning:</font> This ability requires <font color=\'#70EA72\'>Aghanim's Scepter</font> to have any effect.\n"
+    "warning_keeper_of_the_light_innate_redux" "<font color=\'#FF4949\'>Warning:</font> This ability requires <font color=\'#70EA72\'>Aghanim's Scepter</font> to have any effect.\n"
 
 
     
@@ -1297,6 +1301,9 @@
     "credit_shiguanghuisu"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
     "credit_jingtong"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
     "credit_arcane_mastery"           "<font color=\'#7D7D7D\'>Credits: TheRisen41 | github.com/TheRisen41</font>"
+
+    "credit_night_stalker_innate_redux"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_keeper_of_the_light_innate_redux"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
 
     "credit_alchemist_aghnaim_magic_redux"           "<font color=\'#7D7D7D\'>Credits: Shushishtok | github.com/Shushishtok</font>"
     "credit_alchemist_transmuted_scepter"           "<font color=\'#7D7D7D\'>Credits: Shushishtok | github.com/Shushishtok</font>"
@@ -1473,6 +1480,18 @@
 
     "DOTA_Tooltip_tiny_grow_lod_scepter"                    "Tiny Grow Scepter"
     "DOTA_Tooltip_tiny_grow_lod_scepter_Description"        "Granting %dMODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE% bonus damage, %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT% attack speed loss, %dMODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT% bonus movespeed %dMODIFIER_PROPERTY_ATTACK_RANGE_BONUS% bonus range and cleave damage."
+
+    "DOTA_Tooltip_ability_tiny_grow_lod_redux"                                                "Grow Redux"
+    "DOTA_Tooltip_ability_tiny_grow_lod_redux_Description"                                    "Tiny gains craggy mass that increases his power at the cost of his attack speed. Improves movement speed. <font color=\'#70EA72\'>Attack speed peanlty is doubled</font>.\n\nUpgradable by Aghanim's Scepter."
+    "DOTA_Tooltip_ability_tiny_grow_lod_redux_Lore"                                           "Watching a hill become a mountain is awe-inspiring - especially if the mountain begins laying waste to adversaries."
+    "DOTA_Tooltip_ability_tiny_grow_lod_redux_Note0"                                          "Cleave damage is reduced by armor type but not by armor value."
+    "DOTA_Tooltip_ability_tiny_grow_lod_redux_Note1"                                          "Cleave damage goes through spell immunity."
+    "DOTA_Tooltip_ability_tiny_grow_lod_redux_bonus_damage"                                   "BONUS DAMAGE:"
+    "DOTA_Tooltip_ability_tiny_grow_lod_redux_bonus_attack_speed"                             "ATTACK SPEED LOSS:"
+    "DOTA_Tooltip_ability_tiny_grow_lod_redux_bonus_movement_speed"                           "ADDED MOVE SPEED:"
+    "DOTA_Tooltip_ability_tiny_grow_lod_redux_bonus_range_scepter"                            "SCEPTER BONUS RANGE:"
+    "DOTA_Tooltip_ability_tiny_grow_lod_redux_bonus_cleave_damage_scepter"                    "%SCEPTER CLEAVE DAMAGE:"
+    "DOTA_Tooltip_ability_tiny_grow_lod_redux_aghanim_description"                            "Allows Tiny to equip a tree, increasing his attack range and granting a cleave attack."
 
     //SNIPER
     "DOTA_Tooltip_ability_sniper_shrapnel_perk"                                          "Shrapnel Global"
@@ -8277,4 +8296,15 @@
         "DOTA_Tooltip_Ability_eat_tree_eldri_bonus"                                       "DAMAGE PER STACK:"
         "DOTA_Tooltip_Ability_eat_tree_eldri_regen"                                       "%HP REGEN PER STACK:"
         "DOTA_Tooltip_Ability_eat_tree_eldri_mana_cost_per_stack"                         "<font color='#00A3DB'>MANA COST PER STACK</font>:"
+
+        "DOTA_Tooltip_ability_nyx_assassin_burrow_redux"                      "Burrow Redux"
+        "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_Description"      "Nyx Assassin buries himself beneath the battlefield over a short duration. Once burrowed, Spiked Carapace instantly stuns nearby enemies when cast, the range of Mana Burn and Impale is increased, and Impale's cooldown is decreased. While burrowed, Nyx Assassin is stationary, unable to attack, and invisible. His health and mana regeneration are also increased, and he gains damage reduction from all damage sources."
+        "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_Lore"                     "Some castes of zealot scarab are known to create small burrows to lie in wait, ready to ambush their prey."
+        "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_Note0"        "Casting Vendetta will cancel burrow."
+        "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_health_regen_rate"        "%BURROW HEALTH/MANA REGEN:"
+        "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_damage_reduction"     "%BURROW DAMAGE REDUCTION:"
+        "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_mana_burn_burrow_range_tooltip"       "BURROW MANA BURN RANGE:"
+        "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_impale_burrow_range_tooltip" "BURROW IMPALE RANGE:"
+        "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_impale_burrow_cooldown_tooltip"       "BURROW IMPALE COOLDOWN:"
+        "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_carapace_burrow_range_tooltip"        "BURROW SPIKED CARAPACE RANGE:"     
 }
