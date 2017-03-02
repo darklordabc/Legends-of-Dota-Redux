@@ -4308,6 +4308,9 @@ function updateVotingPercentage(votes, labels) {
 }
 
 function isDraftGamemode() {
+    if (!CustomNetTables.GetTableValue("options", "lodOptionCommonGamemode")) {
+        return false;
+    }
     var netTableValue = CustomNetTables.GetTableValue("options", "lodOptionCommonGamemode").v;
     return netTableValue == 5 || netTableValue == 3 || netTableValue == 6 || optionValueList['lodOptionCommonGamemode'] == 5 || optionValueList['lodOptionCommonGamemode'] == 3 || optionValueList['lodOptionCommonGamemode'] == 6
 }
