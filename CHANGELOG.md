@@ -19,6 +19,7 @@ All notable changes to this project will be documented in this file.
 - Fixed being able to random skills that were not available in picking phase
 - Divided We Stand is now counted as a single player ability
 - Reworked Arcane Symbiosis
+- Anonamly should now respect ability unit target conditions
 
 ### Balance
 - Arc Warden's perk can now be used on Tome of Knowledge
