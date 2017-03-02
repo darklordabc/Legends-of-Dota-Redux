@@ -115,9 +115,7 @@ function Pregame:init()
     -- Init thinker
     GameRules:GetGameModeEntity():SetThink('onThink', self, 'PregameThink', 0.25)
     GameRules:SetHeroSelectionTime(0)   -- Hero selection is done elsewhere, hero selection should be instant
-    if not IsInToolsMode() and not GameRules:IsCheatMode() then
-        GameRules:GetGameModeEntity():SetBotThinkingEnabled(true)
-    end
+    GameRules:GetGameModeEntity():SetBotThinkingEnabled(true)
 
     -- GameRules:GetGameModeEntity():SetCustomGameForceHero("npc_dota_hero_wisp")
 
@@ -1197,7 +1195,7 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                     
                     local hero = CreateHeroForPlayer(heroName, player)
 
-                    if not IsInToolsMode() or not GameRules:IsCheatMode() then
+                    if not IsInToolsMode() and not GameRules:IsCheatMode() then
                         UTIL_Remove(hero)
                     else
                         hero:AddNoDraw()
