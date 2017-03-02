@@ -4,6 +4,7 @@ end
 
 function spell_lab_symbiotic_target:OnCreated( kv )
 	if IsServer() then
+
 		self.nFXIndex = ParticleManager:CreateParticle("particles/spell_lab/symbiotic_overhead.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetParent() )
 		self:AddParticle( self.nFXIndex, false, false, -1, false, true )
 

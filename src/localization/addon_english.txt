@@ -7976,7 +7976,7 @@
         "DOTA_Tooltip_ability_spawnlord_master_freeze_creep_damage"       "PETRIFY DPS:"
 
         "DOTA_Tooltip_ability_spell_lab_symbiotic"                                      "Arcane Symbiosis"
-        "DOTA_Tooltip_ability_spell_lab_symbiotic_Description" "You bind yourself to target allied hero. You may cast spells as normal but you share manapool. If your symbiotic host dies, you die as well.\nMana pool is shared as percentages.\nWhen host takes damage ending symbiosis is put on 3s cooldown.\nHost hero is granted bonus to all stats and mana regen while reducing magic resistance and armor.\n\n Upgradeable by Aghanim's Scepter"
+        "DOTA_Tooltip_ability_spell_lab_symbiotic_Description" "You bind yourself to target allied hero. You may cast spells as normal but you share manapool. If host is out of mana your spells take spell cost from host's health. If your symbiotic host dies, you die as well.\nWhen host takes damage ending symbiosis is put on 3s cooldown.\nHost hero is granted bonus to all stats and mana regen while reducing magic resistance and armor.\n\n Upgradeable by Aghanim's Scepter"
         "DOTA_Tooltip_ability_spell_lab_symbiotic_Note0"           "Temporarily breaks invisibility of host when you cast spell or attack. 3s/2.5s/2s"
         
 		"DOTA_Tooltip_ability_spell_lab_symbiotic_bonus" "BONUS STAT:"
@@ -7988,7 +7988,7 @@
         "DOTA_Tooltip_spell_lab_symbiotic_modifier" "Arcance Symbiosis"
         "DOTA_Tooltip_spell_lab_symbiotic_modifier_Description" "You share mana pool with a host hero."
         "DOTA_Tooltip_spell_lab_symbiotic_target"   "Arcance Symbiosis: Host"
-        "DOTA_Tooltip_spell_lab_symbiotic_target_Description" "You share mana pool with a symbiot hero.\nGrants bonus stats and mana regen.\nReduces armor and magic resistance.\n\n<br><br>You may disable help from your symbiot to forcefully end the symbiosis when possible."
+        "DOTA_Tooltip_spell_lab_symbiotic_target_Description" "You share mana pool with a symbiot hero.\nIf you don't have mana symbiot's spells take their mana cost from your health.\nGrants bonus stats and mana regen.\nReduces armor and magic resistance.\n\n<br><br>You may disable help from your symbiot to forcefully end the symbiosis when possible."
         "DOTA_Error_spell_lab_symbiotic_no_self_target" "No self cast."
         "DOTA_Error_spell_lab_symbiotic_no_inception" "Can't cast while being host."
 
