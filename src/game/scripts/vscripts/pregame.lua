@@ -115,7 +115,7 @@ function Pregame:init()
     -- Init thinker
     GameRules:GetGameModeEntity():SetThink('onThink', self, 'PregameThink', 0.25)
     GameRules:SetHeroSelectionTime(0)   -- Hero selection is done elsewhere, hero selection should be instant
-    if not IsInToolsMode() then
+    if not IsInToolsMode() and not GameRules:IsCheatMode() then
         GameRules:GetGameModeEntity():SetBotThinkingEnabled(true)
     end
 
@@ -1197,7 +1197,13 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                     
                     local hero = CreateHeroForPlayer(heroName, player)
 
-                    UTIL_Remove(hero)
+                    if not IsInToolsMode() or not GameRules:IsCheatMode() then
+                        UTIL_Remove(hero)
+                    else
+                        hero:AddNoDraw()
+                        hero:AddNewModifier(hero,nil,"modifier_invulnerable",{})
+                        hero:SetAbsOrigin(Vector(-10000,-10000,-10000))
+                    end
 
                     --[[if hero ~= nil and IsValidEntity(hero) then
                         SkillManager:ApplyBuild(hero, build or {})
@@ -6623,7 +6629,7 @@ function Pregame:fixSpawningIssues()
     ListenToGameEvent('npc_spawned', function(keys)
         -- Grab the unit that spawned
         local spawnedUnit = EntIndexToHScript(keys.entindex)
-        
+
         if GameRules:State_Get() < DOTA_GAMERULES_STATE_STRATEGY_TIME then
             return false
         end
