@@ -70,6 +70,10 @@ function modifier_nyx_assassin_burrow_invis_override_redux:CheckState()
 	return state	
 end
 
+function modifier_nyx_assassin_burrow_invis_override_redux:IsHidden()
+	return true	
+end
+
 function modifier_nyx_assassin_burrow_invis_override_redux:GetPriority()
 	return MODIFIER_PRIORITY_SUPER_ULTRA
 end

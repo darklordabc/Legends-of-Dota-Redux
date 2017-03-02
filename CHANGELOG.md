@@ -14,7 +14,7 @@ All notable changes to this project will be documented in this file.
 - Added 4 Super OP variant abilities. 
 - Replaced Shadow Shaman's perk.
 - Added some more hints.
-- Added more balanced version of Grow
+- Added more balanced version of Grow and Burrow
 - Improved Neutral Creep power mutator, now dynmically updates instead of being fixed at creep spawn
 - Fixed being able to random skills that were not available in picking phase
 - Divided We Stand is now counted as a single player ability
