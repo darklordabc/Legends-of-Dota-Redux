@@ -17,6 +17,8 @@ All notable changes to this project will be documented in this file.
 - Added more balanced version of Grow
 - Improved Neutral Creep power mutator, now dynmically updates instead of being fixed at creep spawn
 - Fixed being able to random skills that were not available in picking phase
+- Divided We Stand is now counted as a single player ability
+- Reworked Arcane Symbiosis
 
 ### Balance
 - Arc Warden's perk can now be used on Tome of Knowledge
