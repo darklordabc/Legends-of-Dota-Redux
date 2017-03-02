@@ -58,7 +58,7 @@ function nyx_assassin_burrow_redux:GetAbilityTextureName()
 	if not caster:HasModifier(modifier_burrowed) then
 		return "custom/nyx_assassin_burrow_redux"
 	else
-		return "nyx_assassin_unburrow"
+		return "custom/nyx_assassin_unburrow_redux"
 	end	
 end
 
