@@ -6623,6 +6623,10 @@ function Pregame:fixSpawningIssues()
     ListenToGameEvent('npc_spawned', function(keys)
         -- Grab the unit that spawned
         local spawnedUnit = EntIndexToHScript(keys.entindex)
+        
+        if GameRules:State_Get() < DOTA_GAMERULES_STATE_STRATEGY_TIME then
+            return false
+        end
 
         -- Ensure it's a valid unit
         if IsValidEntity(spawnedUnit) then
@@ -6816,6 +6820,9 @@ function Pregame:fixSpawningIssues()
 
                  -- Add hero perks
                 Timers:CreateTimer(function()
+                    if spawnedUnit:IsNull() then
+                        return
+                    end
                     local nameTest = spawnedUnit:GetName()
                     if IsValidEntity(spawnedUnit) and not self.perksDisabled and not spawnedUnit.hasPerk and not disabledPerks[nameTest] then
                        local perkName = spawnedUnit:GetName() .. "_perk"
