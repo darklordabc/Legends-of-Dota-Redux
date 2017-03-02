@@ -4313,6 +4313,9 @@ function isDraftGamemode() {
 }
 
 function isBoosterDraftGamemode() {
+    if (!CustomNetTables.GetTableValue("options", "lodOptionCommonGamemode")) {
+        return false;
+    }
     var netTableValue = CustomNetTables.GetTableValue("options", "lodOptionCommonGamemode").v;
     return netTableValue == 6 || optionValueList['lodOptionCommonGamemode'] == 6;
 }
