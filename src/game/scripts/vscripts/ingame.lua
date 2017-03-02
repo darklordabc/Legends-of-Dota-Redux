@@ -17,7 +17,6 @@ GameRules.perks = LoadKeyValues('scripts/kv/perks.kv')
 
 -- Init Ingame stuff, sets up all ingame related features
 function Ingame:init()
-    local this = self
     -- Init everything
     self:handleRespawnModifier()
     self:initGoldBalancer()
@@ -28,10 +27,10 @@ function Ingame:init()
     self:AddTowerBotController()
     self:fixRuneBug()
 
-    -- Init global mutator
+    -- -- Init global mutator
     self:initGlobalMutator()
 
-    -- 10vs10 colors
+    -- -- 10vs10 colors
     self.playerColors = {}
     self.playerColors[0] = { 57, 117, 231 }
     self.playerColors[1]  = { 122, 241, 187 }
@@ -49,12 +48,25 @@ function Ingame:init()
     self.playerColors[18]  = { 58.43 * 2.55, 58.82 * 2.55, 59.21 * 2.55 }
     self.playerColors[19]  = { 49.41 * 2.55, 74.90 * 2.55, 94.51 * 2.55 }
 
-    -- 40 minutes
+    -- -- 40 minutes
     self.timeToIncreaseRespawnRate = 2400
     self.timeToIncreaseRepawnInterval = 600
 
     -- Setup standard rules
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
+
+    PrecacheUnitByNameAsync('npc_precache_npc_dota_hero_ogre_magi', function()
+        CreateUnitByName('npc_precache_npc_dota_hero_ogre_magi', Vector(-10000, -10000, 0), false, nil, nil, 0)
+    end)
+
+    PrecacheUnitByNameAsync('npc_precache_wraithnight', function()
+        CreateUnitByName('npc_precache_wraithnight', Vector(-10000, -10000, 0), false, nil, nil, 0)
+    end)
+
+    -- Precache the stuff that needs to always be precached
+    PrecacheUnitByNameAsync('npc_precache_always', function()
+        CreateUnitByName('npc_precache_always', Vector(-10000, -10000, 0), false, nil, nil, 0)
+    end)
 
     -- Balance Player
     CustomGameEventManager:RegisterListener('swapPlayers', function(_, args)
@@ -82,44 +94,6 @@ function Ingame:init()
     CustomGameEventManager:RegisterListener( 'ask_custom_team_info', function(eventSourceIndex, args)
         this:returnCustomTeams(eventSourceIndex, args)
     end)
-
-    -- Precache ogre magi stuff
-    PrecacheUnitByNameAsync('npc_precache_npc_dota_hero_ogre_magi', function()
-        CreateUnitByName('npc_precache_npc_dota_hero_ogre_magi', Vector(-10000, -10000, 0), false, nil, nil, 0)
-    end)
-
-    -- Precache survival resources
-    --[[PrecacheUnitByNameAsync('npc_precache_survival', function()
-        CreateUnitByName('npc_precache_survival', Vector(-10000, -10000, 0), false, nil, nil, 0)
-    end)]]
-
-    -- Precache wraithnight stuff
-    PrecacheUnitByNameAsync('npc_precache_wraithnight', function()
-        CreateUnitByName('npc_precache_wraithnight', Vector(-10000, -10000, 0), false, nil, nil, 0)
-    end)
-
-    -- Precache the stuff that needs to always be precached
-    PrecacheUnitByNameAsync('npc_precache_always', function()
-        CreateUnitByName('npc_precache_always', Vector(-10000, -10000, 0), false, nil, nil, 0)
-    end)
-
-    GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(Ingame, 'FilterExecuteOrder'), self)
-    GameRules:GetGameModeEntity():SetTrackingProjectileFilter(Dynamic_Wrap(Ingame, 'FilterProjectiles'), self)
-    GameRules:GetGameModeEntity():SetModifierGainedFilter(Dynamic_Wrap(Ingame, 'FilterModifiers'),self)  
-    GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(Ingame, 'FilterDamage'),self)
-
-    -- Listen if abilities are being used.
-    --ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(Ingame, 'OnAbilityUsed'), self)
-
-    ListenToGameEvent('dota_item_purchased', Dynamic_Wrap(Ingame, 'OnPlayerPurchasedItem'), self)
-    
-    -- Listen to correct the changed abilitypoints
-    ListenToGameEvent('dota_player_gained_level', Dynamic_Wrap(Ingame, 'OnHeroLeveledUp'), self)
-
-    ListenToGameEvent("player_reconnected", Dynamic_Wrap(Ingame, 'OnPlayerReconnect'), self)
-    
-    -- Set it to no team balance
-    self:setNoTeamBalanceNeeded()
 end   
 
 function Ingame:OnPlayerReconnect(keys)
@@ -465,6 +439,23 @@ function Ingame:onStart()
         end, nil)
     end
 
+    GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(Ingame, 'FilterExecuteOrder'), self)
+    GameRules:GetGameModeEntity():SetTrackingProjectileFilter(Dynamic_Wrap(Ingame, 'FilterProjectiles'), self)
+    GameRules:GetGameModeEntity():SetModifierGainedFilter(Dynamic_Wrap(Ingame, 'FilterModifiers'),self)  
+    GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(Ingame, 'FilterDamage'),self)
+
+    -- -- Listen if abilities are being used.
+    --ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(Ingame, 'OnAbilityUsed'), self)
+
+    ListenToGameEvent('dota_item_purchased', Dynamic_Wrap(Ingame, 'OnPlayerPurchasedItem'), self)
+    
+    -- -- Listen to correct the changed abilitypoints
+    ListenToGameEvent('dota_player_gained_level', Dynamic_Wrap(Ingame, 'OnHeroLeveledUp'), self)
+
+    ListenToGameEvent("player_reconnected", Dynamic_Wrap(Ingame, 'OnPlayerReconnect'), self)
+    
+    -- -- Set it to no team balance
+    self:setNoTeamBalanceNeeded()
 end
 
 function Ingame:fixRuneBug()
