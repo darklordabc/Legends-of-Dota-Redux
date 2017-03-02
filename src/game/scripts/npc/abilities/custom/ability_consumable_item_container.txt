@@ -7,5 +7,71 @@
 		"AbilityTextureName"               ""
 		"AbilityBehavior"                  "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"MaxLevel"												 "1"
+
+		"AbilitySpecial"
+    {
+    	// Assault
+      "01"
+      {
+          "var_type"              "FIELD_INTEGER"
+          "assault_bonus_attack_speed"    "35"
+      }
+      "02"
+      {
+          "var_type"              "FIELD_INTEGER"
+          "assault_bonus_armor"           "10"
+      }
+      "03"
+      {
+          "var_type"              "FIELD_INTEGER"
+          "assault_aura_radius"           "900"
+      }
+      "04"
+      {
+          "var_type"              "FIELD_INTEGER"
+          "assault_aura_attack_speed"     "20"
+      }
+      "05"
+      {
+          "var_type"              "FIELD_INTEGER"
+          "assault_aura_armor"   "5"
+      }
+      // Skadi
+      "06"
+	{
+				"var_type"				"FIELD_INTEGER"
+				"skadi_bonus_all_stats"		"25"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"skadi_bonus_health"			"225"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"skadi_bonus_mana"			"250"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"skadi_cold_movement_speed"	"-35"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"skadi_cold_attack_speed"		"-45"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"skadi_cold_duration_melee"	"5.0"
+			}
+			"12"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"skadi_cold_duration_ranged"	"2.5"
+			}
+    }
 	}
 }
