@@ -53,7 +53,9 @@ function modifier_item_assault_consumable:OnCreated()
   end
 end
 
-
+function modifier_item_assault_consumable:GetTexture()
+  return "item_assault"
+end
 function modifier_item_assault_consumable:OnIntervalThink()
   -- Uneven thinks are setting stack, uneven are for getting
   if not self.think then 
@@ -157,6 +159,9 @@ end
 
 LinkLuaModifier("modifier_item_assault_consumable_aura","abilities/items/assault.lua",LUA_MODIFIER_MOTION_NONE)
 modifier_item_assault_consumable_aura = class({})
+function modifier_item_assault_consumable_aura:GetTexture()
+  return "item_assault"
+end
 
 function modifier_item_assault_consumable_aura:OnCreated()
   -- Check if the ability is an item, if so use those values
