@@ -427,6 +427,10 @@
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
         "ItemCost"                      "5250"
+        "ItemShopTags"                  "attack_speed;armor;hard_to_tag"
+        "ItemQuality"                   "epic"
+        "ItemAliases"                   "ac;assault cuirass"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
         
         // Special  
         //-------------------------------------------------------------------------------------------------------------
@@ -435,31 +439,36 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "assault_bonus_attack_speed"    "35"
+                "bonus_attack_speed"    "30"
             }
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "assault_bonus_armor"           "10"
+                "bonus_armor"           "10"
             }
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "assault_aura_radius"           "900"
+                "aura_radius"           "900"
             }
             "04"
             {
                 "var_type"              "FIELD_INTEGER"
-                "assault_aura_attack_speed"     "20"
+                "aura_attack_speed"     "25"
             }
             "05"
             {
                 "var_type"              "FIELD_INTEGER"
-                "assault_aura_armor"   "5"
+                "aura_positive_armor"   "5"
             }
+            "06"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "aura_negative_armor"   "-5"
+            }           
         }
     }
-    
+
     "item_skadi_consumable"
     {
          "ID"                            "2160"                                                       // unique ID number for this item.  Do not change this once established or it will invalidate collected stats.

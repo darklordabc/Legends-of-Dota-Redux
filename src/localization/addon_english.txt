@@ -8306,5 +8306,15 @@
         "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_mana_burn_burrow_range_tooltip"       "BURROW MANA BURN RANGE:"
         "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_impale_burrow_range_tooltip" "BURROW IMPALE RANGE:"
         "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_impale_burrow_cooldown_tooltip"       "BURROW IMPALE COOLDOWN:"
-        "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_carapace_burrow_range_tooltip"        "BURROW SPIKED CARAPACE RANGE:"     
+        "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_carapace_burrow_range_tooltip"        "BURROW SPIKED CARAPACE RANGE:"  
+
+        "DOTA_Tooltip_ability_item_assault_consumable"                                     "Assault Cuirass"
+      "DOTA_Tooltip_ability_item_assault_consumable_Description"                           "Passive: Assault Aura - Grants attack speed and armor to nearby allied units and structures, and decreases the armor of nearby enemies.\n\nMultiple instances of Assault Aura do not stack.\n\n <font color=\'#70EA72\'>Consume the Assault Cuirass to permanently gain its effects.\n</font>"
+        "DOTA_Tooltip_ability_item_assault_consumable_Lore"                                "Forged in the depths of the nether reaches, this hellish mail provides an army with increased armor and attack speed."
+        "DOTA_Tooltip_ability_item_assault_consumable_bonus_attack_speed"                  "+$attack"
+        "DOTA_Tooltip_ability_item_assault_consumable_bonus_armor"                         "+$armor"
+        "DOTA_Tooltip_ability_item_assault_consumable_aura_attack_speed"                   "AURA ATTACK SPEED:"
+        "DOTA_Tooltip_ability_item_assault_consumable_aura_positive_armor"                 "AURA ALLY BONUS ARMOR:"
+        "DOTA_Tooltip_ability_item_assault_consumable_aura_negative_armor"                 "AURA ENEMY ARMOR REDUCTION:"
+
 }

@@ -48,7 +48,7 @@ function modifier_item_assault_consumable:IsPermanent()
 end
 
 function modifier_item_assault_consumable:GetAuraRadius()
-  return self:GetAbility():GetSpecialValueFor("assault_aura_radius")
+  return self:GetAbility():GetSpecialValueFor("aura_radius")
 end
 function modifier_item_assault_consumable:IsAura()
   return true
@@ -74,14 +74,14 @@ function modifier_item_assault_consumable:DeclareFunctions()
   return funcs
 end
 
-function modifier_item_assault_consumable:GetModifierPhysicalArmorBonus()
-  return self:GetAbility():GetSpecialValueFor("assault_bonus_armor")
-end
-
 function modifier_item_assault_consumable:GetModifierAttackSpeedBonus_Constant()
-  return self:GetAbility():GetSpecialValueFor("assault_bonus_attack_speed")
+  return self:GetAbility():GetSpecialValueFor("aura_attack_speed")
 end
 
+
+function modifier_item_assault_consumable:GetModifierPhysicalArmorBonus()
+  return self:GetAbility():GetSpecialValueFor("aura_positive_armor")
+end
 
 LinkLuaModifier("modifier_item_assault_consumable_aura","abilities/items/assault.lua",LUA_MODIFIER_MOTION_NONE)
 modifier_item_assault_consumable_aura = class({})
@@ -99,23 +99,23 @@ function modifier_item_assault_consumable_aura:DeclareFunctions()
 end 
 
 function modifier_item_assault_consumable_aura:GetModifierPhysicalArmorBonus()
-  if not self:GetAbility() or not self:GetAbility():GetSpecialValueFor("assault_aura_armor") then self:Destroy() return end
+  if not self:GetAbility() or not self:GetAbility():GetSpecialValueFor("aura_positive_armor") then self:Destroy() return end
   if self:GetCaster():GetTeamNumber() == self:GetParent():GetTeamNumber() then
     if not self:GetParent():IsBuilding() then
-      return self:GetAbility():GetSpecialValueFor("assault_aura_armor")
+      return self:GetAbility():GetSpecialValueFor("aura_positive_armor")
     else
       return 0
     end
   else
-    return -self:GetAbility():GetSpecialValueFor("assault_aura_armor")
+    return self:GetAbility():GetSpecialValueFor("aura_negative_armor")
   end
 end
 
 function modifier_item_assault_consumable_aura:GetModifierAttackSpeedBonus_Constant()
-  if not self:GetAbility() or not self:GetAbility():GetSpecialValueFor("assault_aura_attack_speed") then self:Destroy() return end
+  if not self:GetAbility() or not self:GetAbility():GetSpecialValueFor("aura_attack_speed") then self:Destroy() return end
   if self:GetCaster():GetTeamNumber() == self:GetParent():GetTeamNumber() then
     if not self:GetParent():IsBuilding() then
-      return self:GetAbility():GetSpecialValueFor("assault_aura_attack_speed")
+      return self:GetAbility():GetSpecialValueFor("aura_attack_speed")
     else
       return 0
     end
