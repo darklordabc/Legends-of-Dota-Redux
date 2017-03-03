@@ -6847,6 +6847,7 @@ function Pregame:fixSpawningIssues()
                     end
                     
                     local nameTest = spawnedUnit:GetName()
+                    -- TODO: This is been temporarily disabled by the "and false" until we can fix up the ability index problem
                     if IsValidEntity(spawnedUnit) and not spawnedUnit.hasTalent and false then
                         for heroName,heroValues in pairs(allHeroes) do
                             if heroName == nameTest then
