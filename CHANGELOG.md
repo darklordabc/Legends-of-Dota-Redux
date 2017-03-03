@@ -2,7 +2,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 6.5 - Development Version
+## 6.6 - Development Version
+- Removed the backpack blocking items from the bots, they dont seem to need them anymore. 
+
+## 6.5 - Steam Version
 ### Bug Fixing/New Features
 - Updated Map to 7.02
 - Changed spawn method to avoid crashes
@@ -24,7 +27,7 @@ All notable changes to this project will be documented in this file.
 ### Balance
 - Arc Warden's perk can now be used on Tome of Knowledge
 
-## 6.4 - Development Version
+## 6.4 
 ### Bug Fixing/New Features
 - Roshanify now has max move speed of 270 and lower bash chance.
 - Fixed Gale Force not causing damage
@@ -38,7 +41,7 @@ All notable changes to this project will be documented in this file.
 - Hopefully busted the ghost wisps from appearing
 - Divided We Stand is troll combo with Arcane Symbiosis until we can fix the FPS drop problem
 
-## 6.3 - Steam Version
+## 6.3 
 ### Bug Fixing/New Features
 - Battle Cry can now be skilled without True Form
 - Fixed and Re-Enabled Blizzard
