@@ -6847,7 +6847,7 @@ function Pregame:fixSpawningIssues()
                     end
                     
                     local nameTest = spawnedUnit:GetName()
-                    if IsValidEntity(spawnedUnit) and not spawnedUnit.hasTalent then
+                    if IsValidEntity(spawnedUnit) and not spawnedUnit.hasTalent and false then
                         for heroName,heroValues in pairs(allHeroes) do
                             if heroName == nameTest then
                                 if heroName == "npc_dota_hero_invoker"  then
