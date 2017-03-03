@@ -13,13 +13,23 @@ end
 
 
 function item_assault_consumable:ConsumeItem(hCaster)
+  
   local name = self:GetIntrinsicModifierName()
-  local ab = self:GetCaster():AddAbility("ability_consumable_item_container")
-  ab:SetHidden(true)
-  hCaster:RemoveItem(self)
-  hCaster:RemoveModifierByName(name)
-  local modifier = hCaster:AddNewModifier(hCaster,ab,name,{})
+  if not self:GetCaster():HasAbility("ability_consumable_item_container") then
+    local ab =  self:GetCaster():AddAbility("ability_consumable_item_container")
+    ab:SetLevel(1)
+    ab:SetHidden(true)
+  end
+  local ab = self:GetCaster():FindAbilityByName("ability_consumable_item_container")
+  if ab then
+    hCaster:RemoveItem(self)
+    hCaster:RemoveModifierByName(name)
+    local modifier = hCaster:AddNewModifier(hCaster,ab,name,{})
+  end
 end
+
+LinkLuaModifier("modifier_item_assault_consumable","abilities/items/assault.lua",LUA_MODIFIER_MOTION_NONE)
+modifier_item_assault_consumable = class({})
 
 function modifier_item_assault_consumable:GetTexture()
   return "item_assault"
@@ -49,7 +59,7 @@ function modifier_item_assault_consumable:GetAuraSearchTeam()
 end
 
 function modifier_item_assault_consumable:GetAuraSearchType()
-  return DOTA_UNIT_TARGET_HERO
+  return {DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_CREEP,DOTA_UNIT_TARGET_BUILDING}
 end
 
 function modifier_item_assault_consumable:GetModifierAura()
@@ -89,16 +99,26 @@ function modifier_item_assault_consumable_aura:DeclareFunctions()
 end 
 
 function modifier_item_assault_consumable_aura:GetModifierPhysicalArmorBonus()
+  if not self:GetAbility() or not self:GetAbility():GetSpecialValueFor("assault_aura_armor") then self:Destroy() return end
   if self:GetCaster():GetTeamNumber() == self:GetParent():GetTeamNumber() then
-    return self:GetAbility():GetSpecialValueFor("assault_aura_armor")
+    if not self:GetParent():IsBuilding() then
+      return self:GetAbility():GetSpecialValueFor("assault_aura_armor")
+    else
+      return 0
+    end
   else
     return -self:GetAbility():GetSpecialValueFor("assault_aura_armor")
   end
 end
 
 function modifier_item_assault_consumable_aura:GetModifierAttackSpeedBonus_Constant()
+  if not self:GetAbility() or not self:GetAbility():GetSpecialValueFor("assault_aura_attack_speed") then self:Destroy() return end
   if self:GetCaster():GetTeamNumber() == self:GetParent():GetTeamNumber() then
-    return self:GetAbility():GetSpecialValueFor("assault_aura_attack_speed")
+    if not self:GetParent():IsBuilding() then
+      return self:GetAbility():GetSpecialValueFor("assault_aura_attack_speed")
+    else
+      return 0
+    end
   else
     return 0
   end
