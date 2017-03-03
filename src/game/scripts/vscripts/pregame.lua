@@ -115,9 +115,7 @@ function Pregame:init()
     -- Init thinker
     GameRules:GetGameModeEntity():SetThink('onThink', self, 'PregameThink', 0.25)
     GameRules:SetHeroSelectionTime(0)   -- Hero selection is done elsewhere, hero selection should be instant
-    if not IsInToolsMode() then
-        GameRules:GetGameModeEntity():SetBotThinkingEnabled(true)
-    end
+    GameRules:GetGameModeEntity():SetBotThinkingEnabled(true)
 
     -- GameRules:GetGameModeEntity():SetCustomGameForceHero("npc_dota_hero_wisp")
 
@@ -1197,7 +1195,13 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                     
                     local hero = CreateHeroForPlayer(heroName, player)
 
-                    UTIL_Remove(hero)
+                    if not IsInToolsMode() and not GameRules:IsCheatMode() then
+                        UTIL_Remove(hero)
+                    else
+                        hero:AddNoDraw()
+                        hero:AddNewModifier(hero,nil,"modifier_invulnerable",{})
+                        hero:SetAbsOrigin(Vector(-10000,-10000,-10000))
+                    end
 
                     --[[if hero ~= nil and IsValidEntity(hero) then
                         SkillManager:ApplyBuild(hero, build or {})
@@ -6624,6 +6628,10 @@ function Pregame:fixSpawningIssues()
         -- Grab the unit that spawned
         local spawnedUnit = EntIndexToHScript(keys.entindex)
 
+        if GameRules:State_Get() < DOTA_GAMERULES_STATE_STRATEGY_TIME then
+            return false
+        end
+
         -- Ensure it's a valid unit
         if IsValidEntity(spawnedUnit) then
             -- Spellfix: Give Eyes in the Forest a notification for nearby enemies.
@@ -6816,6 +6824,9 @@ function Pregame:fixSpawningIssues()
 
                  -- Add hero perks
                 Timers:CreateTimer(function()
+                    if spawnedUnit:IsNull() then
+                        return
+                    end
                     local nameTest = spawnedUnit:GetName()
                     if IsValidEntity(spawnedUnit) and not self.perksDisabled and not spawnedUnit.hasPerk and not disabledPerks[nameTest] then
                        local perkName = spawnedUnit:GetName() .. "_perk"
@@ -6836,7 +6847,7 @@ function Pregame:fixSpawningIssues()
                     end
                     
                     local nameTest = spawnedUnit:GetName()
-                    if IsValidEntity(spawnedUnit) and not spawnedUnit.hasTalent then
+                    if IsValidEntity(spawnedUnit) and not spawnedUnit.hasTalent and false then
                         for heroName,heroValues in pairs(allHeroes) do
                             if heroName == nameTest then
                                 if heroName == "npc_dota_hero_invoker"  then
