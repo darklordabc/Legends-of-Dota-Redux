@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ## 6.6 - Development Version
 - Removed the backpack blocking items from the bots, they dont seem to need them anymore. 
+- Added OP Walrus Kick
 
 ## 6.5 - Steam Version
 ### Bug Fixing/New Features

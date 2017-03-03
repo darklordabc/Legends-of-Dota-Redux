@@ -88,6 +88,7 @@
 #base "abilities\dnd\makerangedcreeps_lua.txt"
 #base "abilities\dota\side_gunner_redux.txt"
 #base "abilities\dota\nyx_assassin_burrow_redux.txt"
+#base "abilities\dota\tusk_walrus_kick_op.txt"
 #base "abilities\dota\silencer_glaives_of_wisdom_steal.txt"
 #base "abilities\dota\alchemist_chemical_rage_redux.txt"
 #base "abilities\dota\alchemist_transmuted_scepter.txt"
