@@ -435,29 +435,85 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "bonus_attack_speed"    "35"
+                "assault_bonus_attack_speed"    "35"
             }
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "bonus_armor"           "10"
+                "assault_bonus_armor"           "10"
             }
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "aura_radius"           "900"
+                "assault_aura_radius"           "900"
             }
             "04"
             {
                 "var_type"              "FIELD_INTEGER"
-                "aura_attack_speed"     "20"
+                "assault_aura_attack_speed"     "20"
             }
             "05"
             {
                 "var_type"              "FIELD_INTEGER"
-                "aura_armor"   "5"
+                "assault_aura_armor"   "5"
             }
+        }
+    }
+    
+    "item_skadi_consumable"
+    {
+         "ID"                            "2160"                                                       // unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityTextureName"            "item_skadi"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "abilities/items/skadi.lua"
 
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "5675"
+        
+        // Special  
+        //-------------------------------------------------------------------------------------------------------------
+        // Skadi
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "skadi_bonus_all_stats"     "25"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "skadi_bonus_health"            "225"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "skadi_bonus_mana"          "250"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "skadi_cold_movement_speed" "-35"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "skadi_cold_attack_speed"       "-45"
+            }
+            "06"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "skadi_cold_duration_melee" "5.0"
+            }
+            "07"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "skadi_cold_duration_ranged"    "2.5"
+            }
         }
     }
 }
