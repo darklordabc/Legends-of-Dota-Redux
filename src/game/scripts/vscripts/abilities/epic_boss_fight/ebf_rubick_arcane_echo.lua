@@ -163,28 +163,8 @@ function SpellEcho(keys)
 	if echo:IsItem() then return end
 	if echo:GetChannelTime() > 0 then return end -- ignore channeled abilities because theyre obnoxious
 	local delay = ability:GetLevelSpecialValueFor("delay",ability:GetLevel()-1)
-	local no_echo = {["shredder_chakram"] = true,
-					 ["shredder_chakram_return"] = true,
-					 ["shredder_chakram_2"] = true,
-					 ["shredder_return_chakram_2"] = true,
-					 ["arc_warden_tempest_double"] = true,
-					 ["alchemist_unstable_concoction"] = true,
-					 ["alchemist_unstable_concoction_throw"] = true,
-					 ["vengefulspirit_nether_swap"] = true,
-					 ["juggernaut_omni_slash"] = true,
-					 ["rubick_telekinesis_land"] = true,
-					 ["antimage_blink"] = true,
-					 ["queenofpain_blink"] = true,
-					 ["phoenix_icarus_dive"] = true,
-					 ["phoenix_icarus_dive_stop"] = true,
-					 ["phoenix_fire_spirits"] = true,
-					 ["phoenix_sun_ray_stop"] = true,
-					 ["phoenix_sun_ray"] = true,
-					 ["phoenix_sun_ray_toggle_move"] = true,
-					 ["phoenix_supernova"] = true,
-					 ["phoenix_launch_fire_spirit"] = true,
-					 ["spell_lab_symbiotic"] = true
-					}
+  local tempBanList = LoadKeyValues('scripts/kv/bans.kv')
+  local no_echo = tempBanList.noSpellEcho
 	if echo and caster:IsRealHero() and not no_echo[ echo:GetName() ] then
 		local cooldown = ability:GetTrueCooldown()
 		Timers:CreateTimer(delay + echo:GetChannelTime(),
