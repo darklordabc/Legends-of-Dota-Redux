@@ -718,7 +718,7 @@
     "hintStormSpirit"                         "At the start of the game, Storm Spirit gains a free level of Overload, whether he has it or not."
     "hintMorphling"                         "Morphling gains 50% bonus movement speed in water."
     "hintMonkeyKing"                         "Monkey King starts the game with Mischief."
-    "hintTimbersaw"                         "Timbersaw gains health, mana, and experience points whenever a nearby tree is cut down."
+    "hintTimbersaw"                         "Timbersaw gains 1% of his max health and mana whenever a nearby tree is cut down."
     "hintTideHunter"                         "When Tidehunter dies, Ravage's cooldown will be refreshed."
     "hintBloodSeeker"                         "When Blood Seeker casts Rupture, 100% of the mana cost will be refunded and cooldown reduced by 20%."
     "hintRiki"                         "Riki's health regeneration is increased by 4 while invisible."
@@ -1170,7 +1170,7 @@
     "unique_mechanic_templar_assassin"          "Templar Assassin turns invisible for 10 seconds after not moving for 5 seconds. Invisibility breaks upon moving or attacking."
     "unique_mechanic_terrorblade"                        "Terrorblade Illusions deal 15% more damage, but also take 15% more damage."
     "unique_mechanic_tidehunter"                    "When Tidehunter dies, <font color=\'#ffd966\'>Ravage</font>'s cooldown will be refreshed."
-    "unique_mechanic_shredder"                      "Timbersaw gains health, mana, and experience points whenever a nearby tree is cut down."
+    "unique_mechanic_shredder"                      "Timbersaw gains 1% of his max health and mana whenever a nearby tree is cut down."
     "unique_mechanic_tinker"                        "When Tinker uses <font color=\'#ffd966\'>Scientific</font> spells, there is a 7% chance for them to be instantly refreshed."
     "unique_mechanic_tiny"                        "Tiny deals 10% more damage to buildings."
     "unique_mechanic_treant"                        "Treant receives 3 charges of <font color=\'#ffd966\'>Living Armor</font>."
@@ -3261,7 +3261,7 @@
 
     /// TIMBERSAW​
     "DOTA_Tooltip_modifier_npc_dota_hero_shredder_perk" "Timbersaw Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_shredder_perk_Description" "Timbersaw gains health, mana, and experience points whenever a nearby tree is cut down.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_shredder_perk_Description" "Timbersaw gains 1% of his max health and mana whenever a nearby tree is cut down.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
     /// TINKER​
     "DOTA_Tooltip_modifier_npc_dota_hero_tinker_perk"   "Tinker Perk"

@@ -35,9 +35,9 @@ function modifier_npc_dota_hero_shredder_perk:OnCreated(keys)
 		local treeY = keys.tree_y
 		local treeVector = Vector(treeX, treeY, 0)
 
-		local XPamount = 2
-		local HPamount = 5
-		local MPamount = 2
+		local XPamount = 0
+		local HPamount = caster:GetMaxHealth() * .01
+		local MPamount = caster:GetMaxMana() * .01
 
 		if caster and (caster:GetAbsOrigin() - treeVector):Length2D() <= 1200 then
 			caster:AddExperience(XPamount, 0, false, false)

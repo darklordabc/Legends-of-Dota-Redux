@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 6.6 - Development Version
 - Removed the backpack blocking items from the bots, they dont seem to need them anymore. 
 - Added OP Walrus Kick
+- Timbersaw's perk no longer gives EXP but now gives 1% of Timbersaws max health/mana. 
 
 ## 6.5 - Steam Version
 ### Bug Fixing/New Features
