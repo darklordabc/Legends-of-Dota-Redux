@@ -21,6 +21,7 @@
 #base "abilities\aa\angel_arena_storm.txt"
 #base "abilities\aa\angel_arena_summon_hawk.txt"
 #base "abilities\aa\angel_arena_transmute.txt"
+#base "abilities\aa\angel_arena_tome_lvlup.txt"
 #base "abilities\aa\berserker_madness.txt"
 #base "abilities\oneshot\jingtong.txt"
 #base "abilities\oneshot\jingtong_op.txt"

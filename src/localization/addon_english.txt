@@ -8316,4 +8316,9 @@
         "DOTA_Tooltip_ability_tusk_walrus_kick_op_move_slow"           "%MOVE SLOW:"
         "DOTA_Tooltip_ability_tusk_walrus_kick_op_slow_duration"       "SLOW DURATION:"
         "DOTA_Tooltip_ability_tusk_walrus_kick_op_damage"              "DAMAGE:"
+
+        "DOTA_TOOLTIP_ABILITY_angel_arena_tome_lvlup"              "Tome of Hero"
+        "DOTA_TOOLTIP_ABILITY_angel_arena_tome_lvlup_Description"  "Increases your hero's experience, at max level gives an entire Level Up.\n\n<font color=\'#7D7D7D\'>Imported from <font color='#f26868'>Angel Arena Reborn.</font></font>\n"
+        "DOTA_TOOLTIP_ABILITY_angel_arena_tome_lvlup_exp"  "%PERCENTAGE OF LVLUP:"
+        "DOTA_TOOLTIP_ABILITY_angel_arena_tome_lvlup_gold_cost_toolip"  "<font color=\'#FFDD2C\'>GOLD COST:</font>"
 }
