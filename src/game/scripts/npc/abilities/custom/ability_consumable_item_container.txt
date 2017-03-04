@@ -72,6 +72,46 @@
 				"var_type"				"FIELD_FLOAT"
 				"skadi_cold_duration_ranged"	"2.5"
 			}
+      "13"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "desolator_bonus_damage"          "50"
+      }
+      "14"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "desolator_corruption_armor"      "-7"
+      }
+      "15"
+      {
+        "var_type"              "FIELD_FLOAT"
+        "desolator_corruption_duration"   "15.0"
+      }
+      "16"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "heart_bonus_strength"        "45"
+      }
+      "17"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "heart_bonus_health"          "250"
+      }
+      "18"
+      {
+        "var_type"              "FIELD_FLOAT"
+        "heart_health_regen_rate"     "7"
+      }
+      "19"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "heart_cooldown_melee"        "5"
+      }
+      "20"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "heart_cooldown_ranged_tooltip"       "7"
+      }
     }
 	}
 }

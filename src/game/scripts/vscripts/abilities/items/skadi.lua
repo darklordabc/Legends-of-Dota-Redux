@@ -112,6 +112,10 @@ function modifier_item_skadi_consumable_slow:GetTexture()
   return "item_skadi"
 end
 function modifier_item_skadi_consumable_slow:GetModifierAttackSpeedBonus_Constant()
+  if not self:GetAbility() or not self:GetAbility():GetSpecialValueFor("skadi_cold_attack_speed") then
+    self:Destroy()
+    return 0
+  end
   return self:GetAbility():GetSpecialValueFor("skadi_cold_attack_speed")
 end
 

@@ -1,0 +1,99 @@
+item_desolator_consumable = class({})
+
+function item_desolator_consumable:GetIntrinsicModifierName()
+  return "modifier_item_desolator_consumable"
+end
+
+function item_desolator_consumable:OnSpellStart()
+
+  if self:GetCursorTarget() == self:GetCaster() then
+    self:ConsumeItem(self:GetCaster())
+  end
+end
+
+
+function item_desolator_consumable:ConsumeItem(hCaster)
+  
+  local name = self:GetIntrinsicModifierName()
+  if not self:GetCaster():HasAbility("ability_consumable_item_container") then
+    local ab = self:GetCaster():AddAbility("ability_consumable_item_container")
+    ab:SetLevel(1)
+    ab:SetHidden(true)
+  end
+  local ab = self:GetCaster():FindAbilityByName("ability_consumable_item_container")
+  if ab then
+    hCaster:RemoveItem(self)
+    hCaster:RemoveModifierByName(name)
+    local modifier = hCaster:AddNewModifier(hCaster,ab,name,{})
+  else
+    print("The item container could not be added!")
+  end
+end
+
+LinkLuaModifier("modifier_item_desolator_consumable","abilities/items/desolator.lua",LUA_MODIFIER_MOTION_NONE)
+modifier_item_desolator_consumable = class({})
+
+function modifier_item_desolator_consumable:GetTexture()
+  return "item_desolator"
+end
+function modifier_item_desolator_consumable:IsPassive()
+  return true
+end
+function modifier_item_desolator_consumable:RemoveOnDeath()
+  return false
+end
+function modifier_item_desolator_consumable:IsPurgable()
+  return false
+end
+function modifier_item_desolator_consumable:IsPermanent()
+  return true
+end
+
+
+function modifier_item_desolator_consumable:DeclareFunctions()
+  local funcs = {
+    MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+    MODIFIER_EVENT_ON_ATTACK_LANDED,
+  }
+  return funcs
+end
+
+function modifier_item_desolator_consumable:GetModifierPreAttack_BonusDamage()
+  return self:GetAbility():GetSpecialValueFor("desolator_bonus_damage")
+end
+
+
+function modifier_item_desolator_consumable:OnAttackLanded(keys)
+  if IsServer() and keys.attacker == self:GetCaster() and keys.target:GetTeamNumber() ~= self:GetParent():GetTeamNumber() then
+    local duration = self:GetAbility():GetSpecialValueFor("desolator_corruption_duration")
+    keys.target:AddNewModifier(self:GetCaster(),self:GetAbility(),"modifier_item_desolator_consumable_corruption",{duration = duration})
+  end
+end
+
+
+LinkLuaModifier("modifier_item_desolator_consumable_corruption","abilities/items/desolator.lua",LUA_MODIFIER_MOTION_NONE)
+modifier_item_desolator_consumable_corruption = class({})
+
+function modifier_item_desolator_consumable_corruption:DeclareFunctions()
+  local funcs = {
+    MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+  }
+  return funcs
+end
+
+function modifier_item_desolator_consumable_corruption:IsDebuff()
+  return true
+end
+
+function modifier_item_desolator_consumable_corruption:GetTexture()
+  return "item_desolator"
+end
+
+function modifier_item_desolator_consumable_corruption:GetModifierPhysicalArmorBonus()
+  if not self:GetAbility() or not self:GetAbility():GetSpecialValueFor("desolator_corruption_armor") then
+    self:Destroy()
+    return 0
+  end
+  return self:GetAbility():GetSpecialValueFor("desolator_corruption_armor")
+end
+
