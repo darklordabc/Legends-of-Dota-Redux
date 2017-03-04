@@ -34,8 +34,13 @@ LinkLuaModifier("modifier_item_heart_consumable","abilities/items/heart.lua",LUA
 modifier_item_heart_consumable = class({})
 
 function modifier_item_heart_consumable:GetTexture()
-  return "item_heart"
+  if self:GetRemainingTime() <= 0 then
+    return "item_heart"
+  else
+    return "custom/item_heart_disabled"
+  end
 end
+
 function modifier_item_heart_consumable:IsPassive()
   return true
 end
@@ -69,14 +74,8 @@ end
 
 function modifier_item_heart_consumable:GetModifierHealthRegenPercentage()
   if IsServer() then
-    if self:GetAbility():IsItem() then
-      if self:GetAbility():IsCooldownReady() then
-        return self:GetAbility():GetSpecialValueFor("heart_health_regen_rate")
-      end
-    else
-      if self:GetRemainingTime() <= 0 then
-        return self:GetAbility():GetSpecialValueFor("heart_health_regen_rate")
-      end
+    if self:GetRemainingTime() <= 0 then
+      return self:GetAbility():GetSpecialValueFor("heart_health_regen_rate")
     end
     return 0
   end
@@ -94,9 +93,9 @@ function modifier_item_heart_consumable:OnTakeDamage(keys)
     end
     if self:GetAbility():IsItem() then
       self:GetAbility():StartCooldown(cooldown)
-    else
-      self:SetDuration(cooldown,true)
     end
+    self:SetDuration(cooldown,true)
+    
   end
 end
 
