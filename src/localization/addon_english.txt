@@ -8348,4 +8348,35 @@
         "DOTA_TOOLTIP_ABILITY_angel_arena_tome_med_mana"  "PERMANENT BONUS MANA:"
         "DOTA_TOOLTIP_ABILITY_angel_arena_tome_med_gold_cost_toolip"  "<font color=\'#FFDD2C\'>GOLD COST:</font>"
 
+        "DOTA_TOOLTIP_ABILITY_angel_arena_tome_lvlup_op"              "Tome of Hero OP"
+        "DOTA_TOOLTIP_ABILITY_angel_arena_tome_lvlup_op_Description"  "Increases your hero's experience, at max level gives an entire Level Up.<font color='#70EA72'> Lower gold cost and cooldown</font>.\n\n<font color=\'#7D7D7D\'>Imported from <font color='#f26868'>Angel Arena Reborn.</font></font>\n"
+        "DOTA_TOOLTIP_ABILITY_angel_arena_tome_lvlup_op_exp"  "%PERCENTAGE OF LVLUP:"
+        "DOTA_TOOLTIP_ABILITY_angel_arena_tome_lvlup_op_gold_cost_toolip"  "<font color=\'#FFDD2C\'>GOLD COST:</font>"
+
+        "DOTA_TOOLTIP_ABILITY_angel_arena_tome_int_op"              "Tome of Intellect OP"
+        "DOTA_TOOLTIP_ABILITY_angel_arena_tome_int_op_Description"  "Permanently increases your hero's Intelligence.<font color='#70EA72'> Lower gold cost and cooldown</font>.\n\n<font color=\'#7D7D7D\'>Imported from <font color='#f26868'>Angel Arena Reborn.</font></font>\n"
+        "DOTA_TOOLTIP_ABILITY_angel_arena_tome_int_op_int"  "PERMANENT BONUS INTELLECT:"
+        "DOTA_TOOLTIP_ABILITY_angel_arena_tome_int_op_gold_cost_toolip"  "<font color=\'#FFDD2C\'>GOLD COST:</font>"
+
+        "DOTA_TOOLTIP_ABILITY_angel_arena_tome_str_op"              "Tome of Strength OP"
+        "DOTA_TOOLTIP_ABILITY_angel_arena_tome_str_op_Description"  "Permanently increases your hero's Strength.<font color='#70EA72'> Lower gold cost and cooldown</font>.\n\n<font color=\'#7D7D7D\'>Imported from <font color='#f26868'>Angel Arena Reborn.</font></font>\n"
+        "DOTA_TOOLTIP_ABILITY_angel_arena_tome_str_op_str"  "PERMANENT BONUS STRENGTH:"
+        "DOTA_TOOLTIP_ABILITY_angel_arena_tome_str_op_gold_cost_toolip"  "<font color=\'#FFDD2C\'>GOLD COST:</font>"
+
+        "DOTA_TOOLTIP_ABILITY_angel_arena_tome_agi_op"              "Tome of Agility OP"
+        "DOTA_TOOLTIP_ABILITY_angel_arena_tome_agi_op_Description"  "Permanently increases your hero's Agility.<font color='#70EA72'> Lower gold cost and cooldown</font>.\n\n<font color=\'#7D7D7D\'>Imported from <font color='#f26868'>Angel Arena Reborn.</font></font>\n"
+        "DOTA_TOOLTIP_ABILITY_angel_arena_tome_agi_op_agi"  "PERMANENT BONUS Agility:"
+        "DOTA_TOOLTIP_ABILITY_angel_arena_tome_agi_op_gold_cost_toolip"  "<font color=\'#FFDD2C\'>GOLD COST:</font>"
+
+        "DOTA_TOOLTIP_ABILITY_angel_arena_tome_gods_op"               "Tome of Gods OP"
+        "DOTA_TOOLTIP_ABILITY_angel_arena_tome_gods_op_Description"   "Permanently increases your hero's Strength, Agility, and Intelligence.<font color='#70EA72'> Lower gold cost and cooldown</font>.\n\n<font color=\'#7D7D7D\'>Imported from <font color='#f26868'>Angel Arena Reborn.</font></font>\n"
+        "DOTA_TOOLTIP_ABILITY_angel_arena_tome_gods_op_agi"  "PERMANENT BONUS AGI / STR / INT:"
+        "DOTA_TOOLTIP_ABILITY_angel_arena_tome_gods_op_gold_cost_toolip"  "<font color=\'#FFDD2C\'>GOLD COST:</font>"
+
+        "DOTA_TOOLTIP_ABILITY_angel_arena_tome_med_op"                "Medical Tractate OP"
+        "DOTA_TOOLTIP_ABILITY_angel_arena_tome_med_op_Description"    "Permanently increases your hero's Health and mana.<font color='#70EA72'> Lower gold cost and cooldown</font>.\n\n<font color=\'#7D7D7D\'>Imported from <font color='#f26868'>Angel Arena Reborn.</font></font>\n"
+        "DOTA_TOOLTIP_ABILITY_angel_arena_tome_med_op_health"  "PERMANENT BONUS HEALTH:"
+        "DOTA_TOOLTIP_ABILITY_angel_arena_tome_med_op_mana"  "PERMANENT BONUS MANA:"
+        "DOTA_TOOLTIP_ABILITY_angel_arena_tome_med_op_gold_cost_toolip"  "<font color=\'#FFDD2C\'>GOLD COST:</font>"
+
 }

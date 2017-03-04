@@ -18,7 +18,7 @@ function UpgradeStats(keys)
 	if agi then caster:ModifyAgility(agi) end
 	if int then caster:ModifyIntellect(int) end
 	
-	if keys.ability:GetName() == "angel_arena_tome_agi" then
+	if keys.ability:GetName() == "angel_arena_tome_agi" or keys.ability:GetName() == "angel_arena_tome_agi_op" then
 		if not caster.agiTomesUsed then
 			caster.agiTomesUsed = 1 
 		else
@@ -27,7 +27,7 @@ function UpgradeStats(keys)
 		SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, caster, caster.agiTomesUsed, nil)
 	end
 
-	if keys.ability:GetName() == "angel_arena_tome_str" then
+	if keys.ability:GetName() == "angel_arena_tome_str" or keys.ability:GetName() == "angel_arena_tome_str_op" then
 		if not caster.strTomesUsed then
 			caster.strTomesUsed = 1 
 		else
@@ -36,7 +36,7 @@ function UpgradeStats(keys)
 		SendOverheadEventMessage(nil, OVERHEAD_ALERT_CRITICAL, caster, caster.strTomesUsed, nil)
 	end
 
-	if keys.ability:GetName() == "angel_arena_tome_int" then
+	if keys.ability:GetName() == "angel_arena_tome_int" or keys.ability:GetName() == "angel_arena_tome_int_op" then
 		if not caster.intTomesUsed then
 			caster.intTomesUsed = 1 
 		else
@@ -45,7 +45,7 @@ function UpgradeStats(keys)
 		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, caster, caster.intTomesUsed, nil)
 	end
 
-	if keys.ability:GetName() == "angel_arena_tome_gods" then
+	if keys.ability:GetName() == "angel_arena_tome_gods" or keys.ability:GetName() == "angel_arena_tome_gods_op" then
 		if not caster.intTomesUsed then
 			caster.intTomesUsed = 1 
 		else
