@@ -234,8 +234,6 @@ src/game/particles/
 *.vsnd_c
 *.vseq_c
 
-scr/
-
 #Script generator (your settings file)
 script_generator/settings.json
 script_generator/BIN/
