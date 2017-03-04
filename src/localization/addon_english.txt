@@ -3988,6 +3988,7 @@
     "DOTA_Tooltip_ability_armoured_centipede"                   "Armored Centipede"
     "DOTA_Tooltip_ability_armoured_centipede_Description"       "Summon a mighty Centipede to help defend positions. Centipede gains extra defensive abilities per level."
     "DOTA_Tooltip_ability_armoured_centipede_damage"            "ATTACK DAMAGE:"
+    "DOTA_Tooltip_ability_armoured_centipede_duration"            "DURATION:"
 
     "npc_dota_armoured_centipede_ward_1"                                                           "Armored Centipede 1"
     "npc_dota_armoured_centipede_ward_2"                                                           "Armored Centipede 2"
@@ -8092,6 +8093,7 @@
         "DOTA_Tooltip_ability_alchemist_motherloads"                                      "MOTHERLOADS!!"
         "DOTA_Tooltip_ability_alchemist_motherloads_description"                          "The Alchemist blesses a target ally with a strange magick, causing them to gain bonus gold from any units they kill based on the unit's bounty.  Denies also grant gold."
         "DOTA_Tooltip_ability_alchemist_motherloads_Note0"                                "The unit still grants its normal bounty as well as the bonus gold."
+        "DOTA_Tooltip_ability_alchemist_motherloads_duration"   "DURATION:"
         "DOTA_Tooltip_ability_alchemist_motherloads_percent"                              "%BOUNTY INCREASE:"
 
         "DOTA_Tooltip_alchemist_motherloads_bonus_gold_mod"                                    "MOTHERLOADS!!"

@@ -26,6 +26,10 @@
 				"var_type" "FIELD_INTEGER"
 				"damage" "60 80 100"
 			}
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"duration" "16"
+			}
 		}
 
 		"OnSpellStart" {
