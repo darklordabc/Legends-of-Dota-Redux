@@ -29,6 +29,8 @@ function item_skadi_consumable:ConsumeItem(hCaster)
     hCaster:RemoveItem(self)
     hCaster:RemoveModifierByName(name)
     local modifier = hCaster:AddNewModifier(hCaster,ab,name,{})
+  else
+    print("The item container could not be added!")
   end
 end
 
