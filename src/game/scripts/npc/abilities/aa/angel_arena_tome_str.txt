@@ -1,39 +1,37 @@
 "DOTAAbilities" {
-	"angel_arena_tome_lvlup"
+	"angel_arena_tome_str"
     {       
         // General
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "ability_datadriven"
-        "ID"                            "1192"
+        "ID"                            "1194"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-        "AbilityCooldown"				"80"
-        "AbilityGoldCost"            "1000 1500 2000"
-        "AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-        "MaxLevel"                  "3"
+        "AbilityCooldown"               "80"
+        "AbilityGoldCost"            "200 400 600 800"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
-
-        "AbilityTextureName"            "custom/tome_lvlup"
+        
+        "AbilityTextureName"            "custom/tome_str_3"
 
 
         // Stats
         //-------------------------------------------------------------------------------------------------------------
         "AbilityCastPoint"              "0.0"
-
+        
         "AbilitySpecial" 
         {
-			"01" 
-			{
-				"var_type" "FIELD_FLOAT"
-				"exp" "50 75 100"
-			}
-			
-			"02" // This is for the tooltips
-			{
-				"var_type" "FIELD_FLOAT"
-				"gold_cost_toolip" "1000 1500 2000"
-			}
-		}
+            "01" 
+            {
+                "var_type" "FIELD_INTEGER"
+                "str" "1 2 3 5"
+            }
+            
+            "02" // This is for the tooltips
+            {
+                "var_type" "FIELD_FLOAT"
+                "gold_cost_toolip" "200 400 600 800"
+            }
+        }
 
         "OnSpellStart"
         {
@@ -41,8 +39,9 @@
             {
                 "Target"            "CASTER"
                 "ScriptFile"        "abilities/angel_arena_reborn/tome.lua"
-                "Function"          "tome_levelup"
-            }       
+                "Function"          "UpgradeStats"
+            }      
         }
+
     }
 }
