@@ -1237,12 +1237,14 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                 spawnTheHero()
             else
                 -- Attempt to precache their hero
-                PrecacheUnitByNameAsync(heroName, function()
+                -- PrecacheUnitByNameAsync(heroName, function()
                     -- We have now cached this player's hero
                     this.cachedPlayerHeroes[playerID] = true
 
                     -- Spawn it
                     spawnTheHero()
+                -- end, playerID)
+                PrecacheUnitByNameAsync(heroName, function()
                 end, playerID)
             end
         else
