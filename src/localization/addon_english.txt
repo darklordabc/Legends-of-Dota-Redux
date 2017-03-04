@@ -8307,4 +8307,11 @@
         "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_impale_burrow_range_tooltip" "BURROW IMPALE RANGE:"
         "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_impale_burrow_cooldown_tooltip"       "BURROW IMPALE COOLDOWN:"
         "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_carapace_burrow_range_tooltip"        "BURROW SPIKED CARAPACE RANGE:"     
+
+        "DOTA_Tooltip_ability_tusk_walrus_kick_op"                     "King Walrus Kick"
+        "DOTA_Tooltip_ability_tusk_walrus_kick_op_Description"         "Kicks the target unit back, damaging them and slowing their movement speed. <font color=\'#70EA72\'>Kick distance is much greater.</font> "
+        "DOTA_Tooltip_ability_tusk_walrus_kick_op_push_length"         "KICK PUSH DISTANCE:"
+        "DOTA_Tooltip_ability_tusk_walrus_kick_op_move_slow"           "%MOVE SLOW:"
+        "DOTA_Tooltip_ability_tusk_walrus_kick_op_slow_duration"       "SLOW DURATION:"
+        "DOTA_Tooltip_ability_tusk_walrus_kick_op_damage"              "DAMAGE:"
 }

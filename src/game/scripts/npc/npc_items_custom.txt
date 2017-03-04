@@ -44,14 +44,14 @@
         }
     }
 
-    "item_backPackBlocker"
-    {
-        "BaseClass"                     "item_datadriven"
-        "AbilityTextureName"            "item_winter_stocking"
-        "ItemPurchasable"              "0"
-        "ID"                            "2002"
-    }
-
+    //"item_backPackBlocker"
+    //{
+    //    "BaseClass"                     "item_datadriven"
+    //    "AbilityTextureName"            "item_winter_stocking"
+    //    "ItemPurchasable"              "0"
+    //    "ID"                            "2002"
+    //}
+    
     "item_sprint"
     {
     // General
