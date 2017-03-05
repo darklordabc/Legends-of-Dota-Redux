@@ -12,7 +12,7 @@
 		"AbilitySpecial" {
 			"01" {
 				"var_type" "FIELD_FLOAT"
-				"delay" "0.5"
+				"delay" "2.0 1.5 1.0 0.5"
 			}
 
 			"02" {
