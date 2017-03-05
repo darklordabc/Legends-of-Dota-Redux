@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 - Dazzle's perk now gives shallow grave global cast range, but no cooldown reduction.
 - Possibly Fixed Sniper getting Assassinate and Shaprnel when he didnt pick them.
 - Fixed tooltip on toggle rifle OP
+- If Free Scepter mutator is on, Aghmanin scepter giving abilities are banned (no need for them)
 
 ## 6.6 - Steam Version
 - Removed the backpack blocking items from the bots, they dont seem to need them anymore. 
