@@ -174,7 +174,7 @@ function generatePrecacheData(next) {
                     Enabled: data.Enabled
                 }
 
-                if(data.BotImplemented == 1 || ignoreSpecialAbilities[name]) {
+                if(true) { //data.BotImplemented == 1 || ignoreSpecialAbilities[name]
                     for(var i=10;i<=17;++i) {
                         if(heroes[name]['Ability' + i]) {
                             newKV[name+'_lod']['Ability' + i] = '';
