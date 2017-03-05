@@ -1,0 +1,61 @@
+"DOTAAbilities" {
+	"aabs_nightshadow"
+	{
+		"BaseClass"                     "ability_datadriven"
+		"ID"							"10043"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"            "custom/nightshadow"
+		
+		"precache" {
+			"soundfile" "sounds/weapons/hero/riki/riki_attack1.vsnd"
+			"particle" "particles/items_fx/electrical_arc_01_system.vpcf"
+		}
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"proc_chance"			"25"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown_reduction"			"0.25 0.5 0.75 1"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_item_nightshadow_unique"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"AllowIllusionDuplicate"     "0"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/angel_arena_blackstar/kv.lua"
+						"Function"		"IllusionModifierCleaner"
+						"modifier"		"modifier_item_nightshadow_unique"
+					}
+				}
+
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/angel_arena_blackstar/items_SYNS.lua"
+						"Function"				"CooldownReduction"
+						"particle" "particles/units/heroes/hero_leshrac/leshrac_lightning_impact.vpcf"
+						"cooldown_reducted"		"%cooldown_reduction"
+						"chance"				"%proc_chance"
+						"modifier"				"modifier_item_nightshadow_unique"
+					}
+				}
+			}
+		}
+	}
+}

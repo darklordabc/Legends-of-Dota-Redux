@@ -11,7 +11,7 @@
 		"AbilitySpecial" {
 			"01" {
 				"var_type" "FIELD_INTEGER"
-				"stat_reduction" "-15 -25 -35"
+				"stat_reduction" "-10 -20 -30"
 			}
 
 			"02" {
