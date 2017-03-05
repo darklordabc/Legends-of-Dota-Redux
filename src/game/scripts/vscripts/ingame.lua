@@ -3,6 +3,7 @@ local constants = require('constants')
 local network = require('network')
 local OptionManager = require('optionmanager')
 local Timers = require('easytimers')
+local localStorage = require("ModDotaLib.LocalStorage")
 require('lib/util_imba')
 require('abilities/hero_perks/hero_perks_filters')
 require('abilities/epic_boss_fight/ebf_mana_fiend_essence_amp')
@@ -1536,8 +1537,48 @@ local _instance = Ingame()
 
 ListenToGameEvent('game_rules_state_change', function(keys)
     local newState = GameRules:State_Get()
+
     if newState == DOTA_GAMERULES_STATE_HERO_SELECTION then
         _instance:SetPlayerColors()
+    elseif newState >= DOTA_GAMERULES_STATE_POST_GAME then
+        if not GameRules.savedWinCount then
+            local winners 
+
+            local forts = Entities:FindAllByClassname('npc_dota_fort')
+            for k, v in pairs(forts) do
+                -- Check it's HP level
+                if v:GetHealth() > 0 then
+                    local team = v:GetTeam()
+
+                    if winners == 0 then
+                        winners = team
+                    else
+                        winners = -1
+                    end
+                end
+            end
+
+            local maxPlayerID = 24
+            for playerID=0,maxPlayerID-1 do
+                local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+
+                if hero ~= nil and IsValidEntity(hero) and (hero:GetTeamNumber() == winners or hero:GetTeamNumber() == GameRules.winner) then
+                    localStorage:getKey(hero:GetPlayerOwnerID(), "redux_wins", "win_count", function (sequenceNumber, success, value)
+                        local value = value
+                        if success then
+                            value = (tonumber(value) or 0) + 1
+                        else
+                            value = 1
+                        end
+                        localStorage:setKey(hero:GetPlayerOwnerID(), "redux_wins", "win_count", value, function (sequenceNumber, success)
+                            
+                        end)
+                    end)
+                end
+            end
+
+            GameRules.savedWinCount = true
+        end
     end
 end, nil)
 

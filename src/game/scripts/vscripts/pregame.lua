@@ -94,6 +94,8 @@ function Pregame:init()
 
     self.soundList = util:swapTable(LoadKeyValues('scripts/kv/sounds.kv'))
 
+    self.restrictions = LoadKeyValues('scripts/kv/restrictions.kv')
+
     -- Who is ready?
     self.isReady = {}
     self.shouldFreezeHostTime = nil
@@ -776,6 +778,21 @@ function Pregame:onThink()
         OPTION SELECTION PHASE
     ]]
     if ourPhase == constants.PHASE_OPTION_SELECTION then
+
+        if not self.playerWins then
+            self.playerWins = {}
+            for i=0,23 do
+                local playerID = i
+                self.playerWins[playerID] = 0
+                localStorage:getKey(playerID, "redux_wins", "win_count", function (sequenceNumber, success, value)
+                    if success then
+                        self.playerWins[playerID] = value or 0
+                    else
+                        self.playerWins[playerID] = 0
+                    end
+                end)
+            end
+        end 
 
         --Run once
         if not self.Announce_option_selection then
@@ -1664,7 +1681,7 @@ function Pregame:onOptionChanged(eventSourceIndex, args)
         local optionValue = args.v
 
         -- Option values and names are validated at a later stage
-        self:setOption(optionName, optionValue)
+        self:setOption(optionName, optionValue, false, player)
     end
 end
 
@@ -3825,7 +3842,7 @@ function Pregame:processOptions()
 end
 
 -- Validates, and then sets an option
-function Pregame:setOption(optionName, optionValue, force)
+function Pregame:setOption(optionName, optionValue, force, player)
     -- option validator
 
     if not self.validOptions[optionName] then
@@ -3853,6 +3870,16 @@ function Pregame:setOption(optionName, optionValue, force)
         })
 
         return
+    end
+
+    if player and IsInToolsMode() then
+        local wins = tonumber(self.restrictions["Wins"][optionName]) or 0
+        if wins and tonumber(self.playerWins[player:GetPlayerID()]) < wins then
+            -- Tell the user they tried to modify restricted option
+
+            CustomGameEventManager:Send_ServerToAllClients("lodUncheckOption", {optionName = optionName, optionValue = wins})
+            return
+        end
     end
 
     -- Set the option

@@ -35,6 +35,37 @@ function Debug:init()
         end
     end, 'player say', 0)
 
+    Convars:RegisterCommand('debug_win', function(c, team)
+        local cmdPlayer = Convars:GetCommandClient()
+        if cmdPlayer then
+            local playerID = cmdPlayer:GetPlayerID()
+            if playerID ~= nil and playerID ~= -1 then
+                local hero = cmdPlayer:GetAssignedHero()
+
+                if hero then
+                    GameRules:SetGameWinner(hero:GetTeamNumber())
+                    GameRules.winner = hero:GetTeamNumber()
+                end
+            end
+        end
+    end, 'debug_win', 0)
+
+    Convars:RegisterCommand('print_stats', function(c, team)
+        local cmdPlayer = Convars:GetCommandClient()
+        if cmdPlayer then
+            local playerID = cmdPlayer:GetPlayerID()
+            if playerID ~= nil and playerID ~= -1 then
+                local hero = cmdPlayer:GetAssignedHero()
+
+                if hero then
+                    local player = hero:GetPlayerOwner()
+
+                    -- self:printTable(LoadKeyValues(""))
+                end
+            end
+        end
+    end, 'print_stats', 0)
+
     Convars:RegisterCommand('level_exp_table', function(c, team)
         local cmdPlayer = Convars:GetCommandClient()
         if cmdPlayer then
@@ -182,6 +213,44 @@ function Debug:init()
             end
         end
     end, 'test', 0)
+end
+
+function Debug:printTable(t, indent, done)
+  --print ( string.format ('PrintTable type %s', type(keys)) )
+  if type(t) ~= "table" then return end
+
+  done = done or {}
+  done[t] = true
+  indent = indent or 0
+
+  local l = {}
+  for k, v in pairs(t) do
+    table.insert(l, k)
+  end
+
+  table.sort(l)
+  for k, v in ipairs(l) do
+    -- Ignore FDesc
+    if v ~= 'FDesc' then
+      local value = t[v]
+
+      if type(value) == "table" and not done[value] then
+        done [value] = true
+        print(string.rep ("\t", indent)..tostring(v)..":")
+        self:printTable (value, indent + 2, done)
+      elseif type(value) == "userdata" and not done[value] then
+        done [value] = true
+        print(string.rep ("\t", indent)..tostring(v)..": "..tostring(value))
+        self:printTable ((getmetatable(value) and getmetatable(value).__index) or getmetatable(value), indent + 2, done)
+      else
+        if t.FDesc and t.FDesc[v] then
+          print(string.rep ("\t", indent)..tostring(t.FDesc[v]))
+        else
+          print(string.rep ("\t", indent)..tostring(v)..": "..tostring(value))
+        end
+      end
+    end
+  end
 end
 
 -- Makes the server say stuff
