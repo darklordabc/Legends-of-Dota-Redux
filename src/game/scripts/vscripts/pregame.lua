@@ -440,7 +440,7 @@ function Pregame:loadDefaultSettings()
     self:setOption('lodOptionGameSpeedSharedEXP', 0, true)
 
     -- Default respawn time
-    self:setOption('lodOptionGameSpeedRespawnTimePercentage', 100, true)
+    self:setOption('lodOptionGameSpeedRespawnTimePercentage', 70, true)
     self:setOption('lodOptionGameSpeedRespawnTimeConstant', 0, true)
 
     -- Buyback cooldown time
