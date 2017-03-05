@@ -10,7 +10,7 @@
     "76561197988355984" "Ash47"
     "76561197988355984_Description" "Core Coder and Designer"
     "76561198054179075" "darklordabc"
-    "76561198054179075_Description" "Redux Project Lead"
+    "76561198054179075_Description" "Redux Game Director"
     "76561198001376044" "TideSofDarK"
     "76561198001376044_Description" "UI/Spells/Perks Contributor"
     "76561198301701069" "Myrl"
@@ -37,6 +37,10 @@
     "76561197990183779_Description" "Creator of Fat-O-Meter Mutator"
     "76561198096463858" "jhqz103"
     "76561198096463858_Description" "Chinese Translator, Spells Contributor"
+    "76561197975484185" "drteaspoon"
+    "76561197975484185_Description" "Spells Contributor"
+    "76561198078268404" "TheRisen41"
+    "76561198078268404_Description" "Spells Contributor"
 
     // Teams
     "theRadiant"                                    "The Radiant"
@@ -528,7 +532,7 @@
     "balance_mode_points"                           "Points Remaining: {d:points}"
 
     "acceptHosting"                                 "Ok, I understand"
-    "lodWelcomeMessage"                             "<font color='#ffffff'><font color='#70EA72'>Thanks for playing Legends of Dota: Redux</font>. Unfortunately talents are still disabled as they were preventing spells from being castable, we will get them back asap, sorry about that.<br><br> <font color='#70EA72'>Redux 6.6:</font></font><br>- Removed the backpack blocking items from the bots, they dont seem to need them anymore. <br>- Added OP Walrus Kick<br>- Potential fix for gold loss at start of game<br>- Timbersaw's perk no longer gives EXP but now gives 1% of Timbersaws max health/mana. <br>- Added 6 Tomes from Angel Arena Reborn (as abilities not items). Also an additional 6 OP Variants. <br>- Roshanify becomes a passive while you hold the aegis of immortal<br>- You can now enable IMBA abilities and other abilities IF its a single player game. Note for players: IMBA has an upcoming major patch, no IMBA abilities will be added until after that megapatch, which may be a few weeks away.<br>- Added Arcane Art from Angel Arena: Black Star<br><br><font color='#ffffff'><font color='#FF4949'>Re-Enabled Talents, this may cause spells to be uncastable. Please report any problems to developers, we are in the process of trying to fix Talents.</font>"
+    "lodWelcomeMessage"                             "<font color='#ffffff'><font color='#70EA72'>Thanks for playing Legends of Dota: Redux</font>.<br><br> <font color='#FF4949'>Re-Enabled Talents, this may cause spells to be uncastable. Please report any problems to developers, we are in the process of trying to fix Talents. <font color='#70EA72'>Ingame hero builder is now always enabled as a hotfix</font>, once the game starts, open the builder (bottom right) and change one ability and click the lock button, you should respawn with fixed hotkets. This is a temporary fix.</font>"
     "lodPickingMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked.<br><br><font color='#70EA72'>Remeber to pick a hero before time runs out or else you will get stuck with a random hero.</font>"
     "lodBanningMessage"                             "<font color='#70EA72'>This is the banning phase</font>. You can ban heroes and abilities to prevent players from selecting them in this match.<br><br> If you dont want to ban or have finished banning, <font color='#70EA72'>press the 'Finish Banning' button</font> to confirm your ready and to speed up the game."
     "lodBalanceMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked. <br><br><font color='#70EA72'>Points Mode is on.</font> In Points Mode you have limited points to spend on abilities. Abilities are priced by how powerful they are and abilities with no price tags are free. Have fun!"
