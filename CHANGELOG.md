@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## 6.7 - Development Version
 - Disease Tower saps 5 less attributes
+- Anomaly now has fixed 6 second duration but lower manacost
+- Cask does not proc spell echo or anomaly cause its bugged
 
 ## 6.6 - Steam Version
 - Removed the backpack blocking items from the bots, they dont seem to need them anymore. 
