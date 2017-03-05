@@ -8177,6 +8177,7 @@
         "DOTA_Tooltip_Ability_metamorphosis_move_speed"                                   "MAX MOVE SPEED:"
         "DOTA_Tooltip_Ability_metamorphosis_tool_tip_duration"                            "DURATION:"
         "DOTA_Tooltip_Ability_metamorphosis_base_damage_scepter"                        "SCEPTER DAMAGE:"
+        "DOTA_Tooltip_Ability_metamorphosis_Note0"                      "Having Aegis of Immortal makes this ability passive."
         
         "DOTA_Tooltip_metamorphosis_mod"                                             "Morphed into Roshan"
         "DOTA_Tooltip_metamorphosis_mod_Description"                                 "May Roshan be with you."
