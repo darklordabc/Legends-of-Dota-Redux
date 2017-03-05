@@ -692,6 +692,8 @@ function Pregame:applyBuilds()
                 local status2,err2 = pcall(function()
                     SkillManager:ApplyBuild(hero, build or {})
 
+                    buildBackups[playerID] = build
+
                     if self.selectedPlayerAttr[playerID] ~= nil then
                         local toSet = 0
 
