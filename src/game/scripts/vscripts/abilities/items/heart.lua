@@ -95,7 +95,6 @@ function modifier_item_heart_consumable:OnTakeDamage(keys)
       self:GetAbility():StartCooldown(cooldown)
     end
     self:SetDuration(cooldown,true)
-    
   end
 end
 

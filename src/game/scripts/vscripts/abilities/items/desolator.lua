@@ -21,12 +21,11 @@ function item_desolator_consumable:ConsumeItem(hCaster)
     ab:SetHidden(true)
   end
   local ab = self:GetCaster():FindAbilityByName("ability_consumable_item_container")
-  if ab then
+  if ab and not ab.name then
     hCaster:RemoveItem(self)
     hCaster:RemoveModifierByName(name)
     local modifier = hCaster:AddNewModifier(hCaster,ab,name,{})
-  else
-    print("The item container could not be added!")
+    ab.name = true
   end
 end
 
@@ -36,9 +35,6 @@ modifier_item_desolator_consumable = class({})
 function modifier_item_desolator_consumable:GetTexture()
   return "item_desolator"
 end
-function modifier_item_desolator_consumable:IsPassive()
-  return true
-end
 function modifier_item_desolator_consumable:RemoveOnDeath()
   return false
 end
@@ -47,6 +43,9 @@ function modifier_item_desolator_consumable:IsPurgable()
 end
 function modifier_item_desolator_consumable:IsPermanent()
   return true
+end
+function modifier_item_desolator_consumable:GetAttributes()
+    return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
 
