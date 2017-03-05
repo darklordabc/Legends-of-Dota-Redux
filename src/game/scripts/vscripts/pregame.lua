@@ -1412,12 +1412,14 @@ function Pregame:networkHeroes()
         -- Ensure it is enabled
         if heroName ~= 'Version' and heroName ~= 'npc_dota_hero_base' and heroValues.Enabled == 1 then
             -- Store if we can select it as a bot
-            self.botHeroes[heroName] = {}
+            if heroValues.BotImplemented == 1 then
+                self.botHeroes[heroName] = {}
 
-            for i=1,24 do
-                local abName = heroValues['Ability' .. i]
-                if abName ~= 'attribute_bonus' then
-                    table.insert(self.botHeroes[heroName], abName)
+                for i=1,24 do
+                    local abName = heroValues['Ability' .. i]
+                    if abName ~= 'attribute_bonus' then
+                        table.insert(self.botHeroes[heroName], abName)
+                    end
                 end
             end
 
