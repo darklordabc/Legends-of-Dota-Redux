@@ -680,9 +680,11 @@ function Util:isSinglePlayerMode()
     for playerID=0,(maxPlayerID-1) do
         if not self:isPlayerBot(playerID) then
             count = count + 1
+            if count > 1 then return false end
         end
     end
-    return count == 1
+
+    return true
 end
 
 function CDOTA_BaseNPC:HasAbilityWithFlag(flag)

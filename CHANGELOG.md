@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - Timbersaw's perk no longer gives EXP but now gives 1% of Timbersaws max health/mana. 
 - Added 6 Tomes from Angel Arena Reborn (as abilities not items). Also an additional 6 OP Variants. 
 - Roshanify becomes a passive while you hold the aegis of immortal
+- You can now enable IMBA abilities and other abilities IF its a single player game. Note for players: IMBA has an upcoming major patch, no IMBA abilities will be added until after that megapatch, which may be a few weeks away.
 
 ## 6.5 - Steam Version
 ### Bug Fixing/New Features
