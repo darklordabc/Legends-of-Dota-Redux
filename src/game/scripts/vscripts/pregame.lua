@@ -3546,6 +3546,12 @@ function Pregame:processOptions()
             end
         end
 
+        -- Banning scepter giving abilities
+        if not disableBanLists and this.optionStore['lodOptionGameSpeedUpgradedUlts'] > 0 then
+            this:banAbility("alchemist_transmuted_scepter")
+            this:banAbility("alchemist_aghnaim_magic_redux")
+        end
+
         -- Dota Modified Abilities
         if not disableBanLists and this.optionStore['lodOptionAdvancedCustomSkills'] ~= 1 then
             for abilityName,v in pairs(this.dotaCustom) do
