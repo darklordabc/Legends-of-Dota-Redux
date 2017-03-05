@@ -6802,7 +6802,7 @@ function Pregame:fixSpawningIssues()
                             end
                         end
                     end
-                end, DoUniqueString('silencerFix'), 0.1)
+                end, DoUniqueString('silencerFix'), 2)
 
 --[[
                 Timers:CreateTimer(function()

@@ -8,6 +8,9 @@ All notable changes to this project will be documented in this file.
 - Cask does not proc spell echo or anomaly cause its bugged
 - Spell Echo now starts at delay of 2.0 and levels up to 0.5
 - Default Respawn Rate is now 70% instead of 100%
+- Dazzle's perk now gives shallow grave global cast range, but no cooldown reduction.
+- Possibly Fixed Sniper getting Assassinate and Shaprnel when he didnt pick them.
+- Fixed tooltip on toggle rifle OP
 
 ## 6.6 - Steam Version
 - Removed the backpack blocking items from the bots, they dont seem to need them anymore. 

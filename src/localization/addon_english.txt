@@ -528,7 +528,7 @@
     "balance_mode_points"                           "Points Remaining: {d:points}"
 
     "acceptHosting"                                 "Ok, I understand"
-    "lodWelcomeMessage"                             "<font color='#ffffff'><font color='#70EA72'>Thanks for playing Legends of Dota: Redux</font>. Unfortunately talents are still disabled as they were preventing spells from being castable, we will get them back asap, sorry about that.<br><br> <font color='#70EA72'>Redux 6.6:</font></font><br>- Removed the backpack blocking items from the bots, they dont seem to need them anymore. <br>- Added OP Walrus Kick<br>- Potential fix for gold loss at start of game<br>- Timbersaw's perk no longer gives EXP but now gives 1% of Timbersaws max health/mana. <br>- Added 6 Tomes from Angel Arena Reborn (as abilities not items). Also an additional 6 OP Variants. <br>- Roshanify becomes a passive while you hold the aegis of immortal<br>- You can now enable IMBA abilities and other abilities IF its a single player game. Note for players: IMBA has an upcoming major patch, no IMBA abilities will be added until after that megapatch, which may be a few weeks away.<br>- Added Arcane Art from Angel Arena: Black Star"
+    "lodWelcomeMessage"                             "<font color='#ffffff'><font color='#70EA72'>Thanks for playing Legends of Dota: Redux</font>. Unfortunately talents are still disabled as they were preventing spells from being castable, we will get them back asap, sorry about that.<br><br> <font color='#70EA72'>Redux 6.6:</font></font><br>- Removed the backpack blocking items from the bots, they dont seem to need them anymore. <br>- Added OP Walrus Kick<br>- Potential fix for gold loss at start of game<br>- Timbersaw's perk no longer gives EXP but now gives 1% of Timbersaws max health/mana. <br>- Added 6 Tomes from Angel Arena Reborn (as abilities not items). Also an additional 6 OP Variants. <br>- Roshanify becomes a passive while you hold the aegis of immortal<br>- You can now enable IMBA abilities and other abilities IF its a single player game. Note for players: IMBA has an upcoming major patch, no IMBA abilities will be added until after that megapatch, which may be a few weeks away.<br>- Added Arcane Art from Angel Arena: Black Star<br><br><font color='#ffffff'><font color='#FF4949'>Re-Enabled Talents, this may cause spells to be uncastable. Please report any problems to developers, we are in the process of trying to fix Talents.</font>"
     "lodPickingMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked.<br><br><font color='#70EA72'>Remeber to pick a hero before time runs out or else you will get stuck with a random hero.</font>"
     "lodBanningMessage"                             "<font color='#70EA72'>This is the banning phase</font>. You can ban heroes and abilities to prevent players from selecting them in this match.<br><br> If you dont want to ban or have finished banning, <font color='#70EA72'>press the 'Finish Banning' button</font> to confirm your ready and to speed up the game."
     "lodBalanceMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked. <br><br><font color='#70EA72'>Points Mode is on.</font> In Points Mode you have limited points to spend on abilities. Abilities are priced by how powerful they are and abilities with no price tags are free. Have fun!"
@@ -819,7 +819,7 @@
     "hintBristleBack"                           "Bristleback reduces the cooldown of all spells which cost less than 50 mana by 15%. "
     "hintCK"                            "Chaos Knight gains 200 extra gold for each ability he randoms."
     "hintClockwerk"                         "Clockwerk fires a random flare to any part of the map every 15 seconds. Scales with Rocket Flare."
-    "hintDazzle"                            "Shallow Grave has double cast range and 50% cooldown reduction when picked by Dazzle."
+    "hintDazzle"                            "Shallow Grave has global cast range when picked by Dazzle."
     "hintDP"                            "Any Silence from Death Prophet is also a mute."
     "hintDisruptor"                           "Disruptor regenerates .5 mp/s for every 10% of mana he is missing."
 
@@ -1098,7 +1098,7 @@
     "unique_mechanic_rattletrap"                        "Clockwerk fires a random flare to any part of the map every 15 seconds. Scales with <font color=\'#ffd966\'>Rocket Flare</font>."
     "unique_mechanic_crystal_maiden"    "Crystal Maiden gains +2 movement speed for each level put in <font color=\'#ffd966\'>Support</font> abilities."
     "unique_mechanic_dark_seer"             "Dark Seer self-casts <font color=\'#ffd966\'>Surge</font> and <font color=\'#ffd966\'>Ion Shell</font> when casting them on allies."
-    "unique_mechanic_dazzle"                        "<font color=\'#ffd966\'>Shallow Grave</font> has double cast range and 50% cooldown reduction when picked by Dazzle."
+    "unique_mechanic_dazzle"                        "<font color=\'#ffd966\'>Shallow Grave</font> has global cast range when picked by Dazzle."
     "unique_mechanic_death_prophet"                        "Any <font color=\'#ffd966\'>Silence</font> applied by Death Prophet also applies Mute."
     "unique_mechanic_disruptor"                        "Disruptor regenerates .5 mp/s for every 10% of mana he is missing."
     "unique_mechanic_doom_bringer"          "Doom applies Breakwhen casting <font color=\'#ffd966\'>Doom</font>."
@@ -2958,7 +2958,7 @@
 
     /// DAZZLE
     "DOTA_Tooltip_modifier_npc_dota_hero_dazzle_perk"   "Dazzle Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_dazzle_perk_Description"   "Shallow Grave has double cast range and 50%d% cooldown reduction when picked by Dazzle.<br><br><font color=\'#7D7D7D\'>By TideSofDarK | github.com/TideSofDarK</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_dazzle_perk_Description"   "Shallow Grave has global cast range when picked by Dazzle.<br><br><font color=\'#7D7D7D\'>By TideSofDarK | github.com/TideSofDarK</font>"
 
     /// DEATH PROPHET​
     "DOTA_Tooltip_modifier_npc_dota_hero_death_prophet_perk"    "Death Prophet Perk"
@@ -3478,12 +3478,12 @@
     "DOTA_Tooltip_ability_angel_arena_rifle_OP"                         "Toggle Rifle OP"
     "DOTA_Tooltip_ability_angel_arena_rifle_OP_Description"             "Toggle between Rifle Mode or Machine-Gun mode. While in Machine-Gun mode, some items will be disabled (such as bash). <font color='#70EA72'>Has less movement and damage penalty.</font>"
     "DOTA_Tooltip_ability_angel_arena_rifle_OP_gun_base_attack_time"        "GUN BASE ATTACK:"
-    "DOTA_Tooltip_ability_angel_arena_rifle_OP_gun_range_tooltip"           "GUN RANGE:"
+    "DOTA_Tooltip_ability_angel_arena_rifle_OP_gun_range_tooltip"           "GUN RANGE PENALTY:"
     "DOTA_Tooltip_ability_angel_arena_rifle_OP_gun_bonus_attack"            "%GUN ATTACK PENALTY:"
     "DOTA_Tooltip_ability_angel_arena_rifle_OP_gun_bonus_movespeed"     "GUN MOVEMENT SLOW:"
 
     "DOTA_Tooltip_ability_angel_arena_rifle_OP_rifle_base_attack_time"      "RIFLE BASE ATTACK:"
-    "DOTA_Tooltip_ability_angel_arena_rifle_OP_rifle_range_tooltip"     "RIFLE RANGE:"
+    "DOTA_Tooltip_ability_angel_arena_rifle_OP_rifle_range_tooltip"     "RIFLE BONUS RANGE:"
     "DOTA_Tooltip_ability_angel_arena_rifle_OP_rifle_bonus_movespeed"       "RIFLE MOVESPEED BONUS:"
     "DOTA_Tooltip_ability_angel_arena_rifle_OP_bonus_attack"                "RIFLE BONUS DAMAGE:"
 
