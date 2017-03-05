@@ -25,12 +25,11 @@ function item_skadi_consumable:ConsumeItem(hCaster)
     ab:SetHidden(true)
   end
   local ab = self:GetCaster():FindAbilityByName("ability_consumable_item_container")
-  if ab then
+  if ab and not ab.name then
     hCaster:RemoveItem(self)
     hCaster:RemoveModifierByName(name)
     local modifier = hCaster:AddNewModifier(hCaster,ab,name,{})
-  else
-    print("The item container could not be added!")
+    ab.name = true
   end
 end
 

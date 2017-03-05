@@ -45,7 +45,7 @@ function modifier_item_desolator_consumable:IsPermanent()
   return true
 end
 function modifier_item_desolator_consumable:GetAttributes()
-    return MODIFIER_ATTRIBUTE_MULTIPLE
+  return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
 

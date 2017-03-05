@@ -21,10 +21,11 @@ function item_assault_consumable:ConsumeItem(hCaster)
     ab:SetHidden(true)
   end
   local ab = self:GetCaster():FindAbilityByName("ability_consumable_item_container")
-  if ab then
+  if ab and not ab.name then
     hCaster:RemoveItem(self)
     hCaster:RemoveModifierByName(name)
     local modifier = hCaster:AddNewModifier(hCaster,ab,name,{})
+    ab.name = true
   end
 end
 
@@ -45,6 +46,10 @@ function modifier_item_assault_consumable:IsPurgable()
 end
 function modifier_item_assault_consumable:IsPermanent()
   return true
+end
+
+function modifier_item_assault_consumable:GetAttributes()
+  return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 
 function modifier_item_assault_consumable:GetAuraRadius()
