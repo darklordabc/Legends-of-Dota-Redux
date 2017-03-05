@@ -8348,5 +8348,13 @@
         "DOTA_TOOLTIP_ABILITY_angel_arena_tome_med_health"  "PERMANENT BONUS HEALTH:"
         "DOTA_TOOLTIP_ABILITY_angel_arena_tome_med_mana"  "PERMANENT BONUS MANA:"
         "DOTA_TOOLTIP_ABILITY_angel_arena_tome_med_gold_cost_toolip"  "<font color=\'#FFDD2C\'>GOLD COST:</font>"
+		
+		
+		"DOTA_Tooltip_ability_meepo_poof_redux"								"Poof Redux"
+		"DOTA_Tooltip_ability_meepo_poof_redux_Description"					"Drawing mystical energies from the earth, a Meepo can teleport to another Meepo or itself after channeling for 1.5 seconds, dealing damage in both the departure and arrival locations. <font color='#70EA72'>Valid target hero is based on having same character model.</font>\n\n<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>\n"
+		"DOTA_Tooltip_ability_meepo_poof_redux_Lore"							"Sometimes breaking one of the Riftshadow Crystals can be just the trick for getting yourself out of a bind.  Or your other self."
+		"DOTA_Tooltip_ability_meepo_poof_redux_Note0"							"Can be cast through the minimap."
+		"DOTA_Tooltip_ability_meepo_poof_redux_Note1"							"Can teleport to Meepo illusions."
+		"DOTA_Tooltip_ability_meepo_poof_redux_radius"						"RADIUS:"
 
 }

@@ -1,0 +1,33 @@
+"DOTAAbilities" {
+	"meepo_poof_redux"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_lua"
+		"ScriptFile"					"abilities/meepo_poof_redux.lua"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+		//"AbilityTextureName"			"meepo_poof"
+		"AbilityTextureName" "custom/meepo_poof_redux"
+		"AbilityCastRange"              "0"
+		"AbilityCastPoint"              "0.05"
+		"AbilityCooldown"               "12 10 8 6"
+		"AbilityChannelTime"      "1.45"
+    "AbilityManaCost"               "80"
+		"AbilityDamage" "80 100 120 140"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial" {
+  			"01" {
+  				"var_type" "FIELD_INTEGER"
+  				"radius" "375"
+  			}
+      }
+		"precache"
+		{
+		"soundfile" "soundevents/game_sounds_heroes/game_sounds_meepo.vsndevts"
+		"particle"	"particles/units/heroes/hero_meepo/meepo_poof_end.vpcf"
+		"particle"	"particles/units/heroes/hero_meepo/meepo_poof_start.vpcf"
+		}
+	}
+}
