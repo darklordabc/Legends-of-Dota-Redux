@@ -109,6 +109,9 @@ var tipsGeneral = [{
     },{
         img: 'file://{images}/custom_game/hints/hint_Balancing.png',
         txt: '#hintBalancing'
+    },{
+        img: 'file://{images}/custom_game/hints/hint_GoldBorder.png',
+        txt: '#hintGoldBorder'
     },
 ];
 
