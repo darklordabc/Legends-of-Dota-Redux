@@ -687,21 +687,23 @@ function runEverything( dotaPath ) {
 
 	// Prepare hte languge files
 	prepareLanguageFiles(function() {
-        for(var i=0; i<langs.length; ++i) {
-            (function(lang) {
-                fs.writeFile(scriptDirOut+'addon_' + lang + '_token.txt', specialChar + toKV({Tokens: langOut[lang]}, 'lang'), 'utf16le', function(err) {
-                    if (err) throw err;
+        generateSkillAddendums(function() {
+            for(var i=0; i<langs.length; ++i) {
+                (function(lang) {
+                    fs.writeFile(scriptDirOut+'addon_' + lang + '_token.txt', specialChar + toKV({Tokens: langOut[lang]}, 'lang'), 'utf16le', function(err) {
+                        if (err) throw err;
 
-                    console.log('Finished saving ' + lang + '!');
-                });
+                        console.log('Finished saving ' + lang + '!');
+                    });
 
-                fs.writeFile(scriptDirOut+'addon_' + lang + '.txt', specialChar + toKV(langOut[lang], 'addon'), 'utf16le', function(err) {
-                    if (err) throw err;
+                    fs.writeFile(scriptDirOut+'addon_' + lang + '.txt', specialChar + toKV(langOut[lang], 'addon'), 'utf16le', function(err) {
+                        if (err) throw err;
 
-                    console.log('Finished saving ' + lang + '!');
-                });
-            })(langs[i]);
-        }
+                        console.log('Finished saving ' + lang + '!');
+                    });
+                })(langs[i]);
+            }
+        });
 	});	
 }
 
