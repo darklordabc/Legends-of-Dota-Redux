@@ -6740,6 +6740,25 @@ function Pregame:fixSpawningIssues()
                     end]]
                 end
 
+                Timers:CreateTimer(function()
+                    local talents = {}
+
+                    for i = 0, spawnedUnit:GetAbilityCount() do
+                        if spawnedUnit:GetAbilityByIndex(i) then 
+                            local ability = spawnedUnit:GetAbilityByIndex(i)
+                            if ability and string.match(ability:GetName(), "special_bonus_") then
+                                local abName = ability:GetName()
+                                table.insert(talents, abName)
+                                spawnedUnit:RemoveAbility(abName)
+                            end
+                        end
+                    end
+
+                    for k,v in pairs(talents) do
+                        spawnedUnit:AddAbility(v)
+                    end
+                end, DoUniqueString('fixTalentsOrder'), 2.0)
+
                 -- Various fixes
                 Timers:CreateTimer(function()
                     if IsValidEntity(spawnedUnit) then
@@ -6909,7 +6928,6 @@ function Pregame:fixSpawningIssues()
                        -- end
                     --end
                 end, DoUniqueString('addTalents'), 1.5)
-                
 
                 -- Don't touch this hero more than once :O
                 if handled[spawnedUnit] then return end
