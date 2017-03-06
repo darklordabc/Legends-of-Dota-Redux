@@ -327,7 +327,7 @@ function Pregame:init()
 
     -- Custom -- set preset
     -- if mapName == 'custom' or mapName == 'custom_bot' or mapName == 'dota_180' or mapName == 'custom_702' or mapName == '10_vs_10' then
-    if mapName == 'dota_180' or mapName == 'custom_702' then
+    if mapName == 'dota_180' or mapName == 'custom_702' or mapName == 'dota' then
         self:setOption('lodOptionGamemode', 1)
     end
 
@@ -343,7 +343,7 @@ function Pregame:init()
 
     -- Bot match
     -- if mapName == 'custom_bot' or mapName == 'custom_702' or mapName == 'dota_180' or mapName == '10_vs_10' then
-    if mapName == 'dota_180' or mapName == 'custom_702' then
+    if mapName == 'dota_180' or mapName == 'custom_702' or mapName == 'dota' then
         self.enabledBots = true
     end
 
