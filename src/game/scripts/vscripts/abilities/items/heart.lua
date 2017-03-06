@@ -21,11 +21,11 @@ function item_heart_consumable:ConsumeItem(hCaster)
     ab:SetHidden(true)
   end
   local ab = self:GetCaster():FindAbilityByName("ability_consumable_item_container")
-  if ab and not ab.name then
+  if ab and not ab[name] then
     hCaster:RemoveItem(self)
     hCaster:RemoveModifierByName(name)
     local modifier = hCaster:AddNewModifier(hCaster,ab,name,{})
-    ab.name = true
+    ab[name] = true
   end
 end
 

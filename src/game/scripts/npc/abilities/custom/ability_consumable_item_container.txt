@@ -1,16 +1,21 @@
 "DOTAAbilities" 
 {
-	"ability_consumable_item_container"
-	{
-		"BaseClass"                        "ability_datadriven"
-		// Add an icon for this
-		"AbilityTextureName"               ""
-		"AbilityBehavior"                  "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"MaxLevel"												 "1"
+  "ability_consumable_item_container"
+  {
+    "BaseClass"                        "ability_datadriven"
+    // Add an icon for this
+    "AbilityTextureName"               ""
+    "AbilityBehavior"                  "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "MaxLevel"                         "1"
 
-		"AbilitySpecial"
+    "precache"
     {
-    	// Assault
+      "particle"  "particles/items3_fx/octarine_core_lifesteal.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+      // Assault
       "01"
       {
         "var_type"              "FIELD_INTEGER"
@@ -39,39 +44,39 @@
       // Skadi
       "06"
       {
-				"var_type"				"FIELD_INTEGER"
-				"skadi_bonus_all_stats"		"25"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"skadi_bonus_health"			"225"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"skadi_bonus_mana"			"250"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"skadi_cold_movement_speed"	"-35"
-			}
-			"10"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"skadi_cold_attack_speed"		"-45"
-			}
-			"11"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"skadi_cold_duration_melee"	"5.0"
-			}
-			"12"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"skadi_cold_duration_ranged"	"2.5"
-			}
+        "var_type"        "FIELD_INTEGER"
+        "skadi_bonus_all_stats"   "25"
+      }
+      "07"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "skadi_bonus_health"      "225"
+      }
+      "08"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "skadi_bonus_mana"      "250"
+      }
+      "09"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "skadi_cold_movement_speed" "-35"
+      }
+      "10"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "skadi_cold_attack_speed"   "-45"
+      }
+      "11"
+      {
+        "var_type"        "FIELD_FLOAT"
+        "skadi_cold_duration_melee" "5.0"
+      }
+      "12"
+      {
+        "var_type"        "FIELD_FLOAT"
+        "skadi_cold_duration_ranged"  "2.5"
+      }
       "13"
       {
         "var_type"              "FIELD_INTEGER"
@@ -124,8 +129,44 @@
       }
       "23"
       {
-      "var_type"              "FIELD_INTEGER"
-      "greater_crit_crit_multiplier"       "230"
+        "var_type"              "FIELD_INTEGER"
+        "greater_crit_crit_multiplier"       "230"
       }
-	  }
+      "24"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "octarine_core_bonus_intelligence"    "25"
+      }
+      "25"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "octarine_core_bonus_health"          "425"
+      }
+      "26"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "octarine_core_bonus_mana"            "425"
+      }
+      "27"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "octarine_core_bonus_cooldown"        "25"
+      }
+      "28"
+      {
+        "var_type"              "FIELD_FLOAT"
+        "octarine_core_hero_lifesteal"        "25"
+      }           
+      "29"
+      {
+        "var_type"              "FIELD_FLOAT"
+        "octarine_core_creep_lifesteal"       "5"
+      }   
+      "30"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "octarine_core_active_duration"       "7"
+      }
+    }
+  }
 }

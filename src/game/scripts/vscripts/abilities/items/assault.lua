@@ -16,16 +16,16 @@ function item_assault_consumable:ConsumeItem(hCaster)
   
   local name = self:GetIntrinsicModifierName()
   if not self:GetCaster():HasAbility("ability_consumable_item_container") then
-    local ab =  self:GetCaster():AddAbility("ability_consumable_item_container")
+    local ab = self:GetCaster():AddAbility("ability_consumable_item_container")
     ab:SetLevel(1)
     ab:SetHidden(true)
   end
   local ab = self:GetCaster():FindAbilityByName("ability_consumable_item_container")
-  if ab and not ab.name then
+  if ab and not ab[name] then
     hCaster:RemoveItem(self)
     hCaster:RemoveModifierByName(name)
     local modifier = hCaster:AddNewModifier(hCaster,ab,name,{})
-    ab.name = true
+    ab[name] = true
   end
 end
 
@@ -46,6 +46,9 @@ function modifier_item_assault_consumable:IsPurgable()
 end
 function modifier_item_assault_consumable:IsPermanent()
   return true
+end
+function modifier_item_desolator_consumable:IsHidden()
+  return self:GetAbility().IsItem
 end
 
 function modifier_item_assault_consumable:GetAttributes()
@@ -134,14 +137,7 @@ function modifier_item_assault_consumable_aura:IsDebuff()
 end
 
 function modifier_item_assault_consumable_aura:IsHidden()
-  if IsServer() then
-    if self:GetCaster():CanEntityBeSeenByMyTeam(self:GetParent()) then
-      self:SetStackCount(0)
-    else
-      self:SetStackCount(1)
-    end
-  end
-  return not self:GetStackCount() == 0
+  return self:GetCaster() == self:GetParent()
 end
 
 

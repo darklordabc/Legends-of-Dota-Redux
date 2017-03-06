@@ -21,11 +21,11 @@ function item_greater_crit_consumable:ConsumeItem(hCaster)
     ab:SetHidden(true)
   end
   local ab = self:GetCaster():FindAbilityByName("ability_consumable_item_container")
-  if ab and not ab.name then
+  if ab and not ab[name] then
     hCaster:RemoveItem(self)
     hCaster:RemoveModifierByName(name)
     local modifier = hCaster:AddNewModifier(hCaster,ab,name,{})
-    ab.name = true
+    ab[name] = true
   end
 end
 
@@ -45,9 +45,11 @@ function modifier_item_greater_crit_consumable:IsPermanent()
   return true
 end
 function modifier_item_greater_crit_consumable:GetAttributes()
-    return MODIFIER_ATTRIBUTE_MULTIPLE
+  return MODIFIER_ATTRIBUTE_MULTIPLE
 end
-
+function modifier_item_desolator_consumable:IsHidden()
+  return self:GetAbility().IsItem
+end
 
 function modifier_item_greater_crit_consumable:DeclareFunctions()
   local funcs = {
@@ -58,14 +60,14 @@ function modifier_item_greater_crit_consumable:DeclareFunctions()
 end
 
 function modifier_item_greater_crit_consumable:GetModifierPreAttack_BonusDamage()
-  return self:GetAbility():GetSpecialValue("greater_crit_bonus_damage")
+  return self:GetAbility():GetSpecialValueFor("greater_crit_bonus_damage")
 end
 
 function modifier_item_greater_crit_consumable:OnAttackStart()
   if IsServer() then
     self:GetParent():RemoveModifierByName("modifier_item_greater_crit_consumable_crit")
     local random = RandomInt(0,100)
-    if random <= self:GetAbility():GetSpecialValue("greater_crit_crit_chance") then
+    if random <= self:GetAbility():GetSpecialValueFor("greater_crit_crit_chance") then
       self:GetParent():AddNewModifier(self:GetParent(),self:GetAbility(),"modifier_item_greater_crit_consumable_crit",{duration = 1})
     end
   end
