@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ## 6.8 - Development Version
 - Tomes now get lower cooldown on levelup
+- Magic Barrier decay reduced to 3 per second instead of 5, but no longer works with abilities with 0 cooldown (e.g. Arcane Orb)
 
 ## 6.7 - Steam Version
 - Disease Tower saps 5 less attributes

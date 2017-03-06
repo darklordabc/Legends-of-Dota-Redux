@@ -22,7 +22,7 @@
 
 			"02" {
 				"var_type" "FIELD_INTEGER"
-				"lol1" "5"
+				"lol1" "3"
 			}
 		}
 	}
