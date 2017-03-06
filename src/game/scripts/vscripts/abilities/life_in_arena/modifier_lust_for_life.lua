@@ -19,23 +19,18 @@ end
 
     function modifier_lust_for_life:OnCreated()
 			self:StartIntervalThink(1.0)
-			self:OnIntervalThink()     
+			self:OnIntervalThink()
     end
 
     function modifier_lust_for_life:OnIntervalThink(event)
 		if IsServer() then
 			local caster = self:GetParent()
-			local ability = self:GetAbility()				
-			local perChunk = self:GetAbility():GetSpecialValueFor("tolltip")
-			while(caster:HasModifier("modifier_lust_for_life_health_regen")) do
-				caster:RemoveModifierByName("modifier_lust_for_life_health_regen")
+			local ability = self:GetAbility()
+			if ability:GetLevel() > 0 then
+				local perChunk = self:GetAbility():GetSpecialValueFor("tolltip")
+				modifierCount = math.ceil((100 - caster:GetHealthPercent())/perChunk)
+				self:SetStackCount(modifierCount)
 			end
-			
-
-			modifierCount = math.ceil((100 - caster:GetHealthPercent())/perChunk)
-
-			
-			self:SetStackCount(modifierCount)
 		end
 	end
 
@@ -47,4 +42,3 @@ end
 function modifier_lust_for_life:GetModifierBonusStats_Intellect()
 	return self:GetAbility():GetSpecialValueFor("intellect_sacrifice")
 end
-
