@@ -6,7 +6,7 @@
         "BaseClass"                     "ability_datadriven"
         "ID"                            "1197"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-        "AbilityCooldown"               "80"
+        "AbilityCooldown"               "80 70 60 50"
         "AbilityGoldCost"            "1200 1600 2000"
         "AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
         "MaxLevel"                  "3"

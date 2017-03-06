@@ -2,7 +2,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 6.7 - Development Version
+## 6.8 - Development Version
+- Tomes now get lower cooldown on levelup
+
+## 6.7 - Steam Version
 - Disease Tower saps 5 less attributes
 - Anomaly now has fixed 6 second duration but lower manacost
 - Cask does not proc spell echo or anomaly cause its bugged
@@ -15,8 +18,9 @@ All notable changes to this project will be documented in this file.
 - Fixed Wind Soul working with toggles
 - Tree Eater Duration increased from 15 to 30 seconds
 - Discontinued 'custom_bot' and 'custom' maps
+- Enabled Ingame hero builder in all games, until talents/abilities problem can be fixed
 
-## 6.6 - Steam Version
+## 6.6 
 - Removed the backpack blocking items from the bots, they dont seem to need them anymore. 
 - Added OP Walrus Kick
 - Potential fix for gold loss at start of game
