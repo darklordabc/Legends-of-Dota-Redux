@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 - Fixed tooltip on toggle rifle OP
 - If Free Scepter mutator is on, Aghmanin scepter giving abilities are banned (no need for them)
 - Fixed Wind Soul working with toggles
+- Tree Eater Duration increased from 15 to 30 seconds
 
 ## 6.6 - Steam Version
 - Removed the backpack blocking items from the bots, they dont seem to need them anymore. 
