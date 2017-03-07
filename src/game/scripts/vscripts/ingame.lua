@@ -470,6 +470,27 @@ function Ingame:OnPlayerChat(keys)
     if string.find(text, "-test") then 
         GameRules:SendCustomMessage('testing testing 1. 2. 3.', 0, 0)
 
+    elseif string.find(text, "-fixcasting") then 
+
+            Timers:CreateTimer(function()        
+                local talents = {}
+
+                for i = 0, hero:GetAbilityCount() do
+                    if hero:GetAbilityByIndex(i) then 
+                        local ability = hero:GetAbilityByIndex(i)
+                        if ability and string.match(ability:GetName(), "special_bonus_") then
+                            local abName = ability:GetName()
+                            table.insert(talents, abName)
+                            hero:RemoveAbility(abName)
+                        end
+                    end
+                end
+
+                for k,v in pairs(talents) do
+                    hero:AddAbility(v)
+                end
+            end, DoUniqueString('fixcasting'), .5)
+
     elseif string.find(text, "-gold") and util:isSinglePlayerMode() then 
 
             Timers:CreateTimer(function()        
