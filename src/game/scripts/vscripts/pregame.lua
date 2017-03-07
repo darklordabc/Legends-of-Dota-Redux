@@ -37,6 +37,8 @@ local challenge = require('challenge')
 local ingame = require('ingame')
 local localStorage = require("ModDotaLib.LocalStorage")
 require('lib/wearables')
+require('split')
+require('chatcommand')
 
 -- This should alone be used if duels are on.
 --require('lib/util_aar')
@@ -58,6 +60,12 @@ LinkLuaModifier("modifier_neutral_power", "abilities/modifiers/modifier_neutral_
 
 local Pregame = class({})
 local buildBackups = {}
+
+ChatCommand:LinkCommand("-test", "MyFunction")
+
+function MyFunction(keys)
+    print("hello world")
+end
 
 -- Init pregame stuff
 function Pregame:init()
