@@ -93,6 +93,81 @@ function RandomFromTable(table)
 	return array[RandomInt(1,n)]
 end
 
+function PullTowerAbility(towerTable, usedTable, difference, baseMax)
+	local array = {}
+	local n = 0
+	local maxDiff = 5 -- Change this to narrow search parameters
+	
+	local searchParamMax = math.abs(difference)
+	local searchParamMin = math.abs(difference) - maxDiff
+	if searchParamMax == 0 then 
+		searchParamMax = baseMax - maxDiff
+		searchParamMin = baseMax - maxDiff
+	end
+	if searchParamMin < 0 then searchParamMin = 0 end
+	
+	local escape = 0
+	while n == 0 do
+		escape = escape + 1
+		searchParamMax = searchParamMax + maxDiff -- Broadens search params on fail
+		if searchParamMin > maxDiff then 
+			searchParamMin = searchParamMin - maxDiff
+		else searchParamMin = 0 end
+		for k,v in pairs(towerTable) do
+			if not usedTable[k] and tonumber(v) <= searchParamMax and tonumber(v) > math.abs(difference) then
+				array[#array+1] = k
+				n = n + 1
+			end
+		end
+		if escape > #towerTable then usedTable = {} end -- clears used abilities
+	end
+	local returnAbility = array[RandomInt(1,n)]
+	return returnAbility
+end
+
+function GetTowerAbilityPowerValue(tower, kv)
+	tower.strongTowerAbilities = tower.strongTowerAbilities or {}
+	local powerVal = 0
+	for amount,abName in pairs(tower.strongTowerAbilities) do
+		powerVal = powerVal + kv[abName]
+	end
+	return powerVal
+end
+
+function GetEquivalentTowerAbilityPowerValue(tower, kv, limit)
+	tower.strongTowerAbilities = tower.strongTowerAbilities or {}
+	local powerVal = 0
+	for amount,abName in pairs(tower.strongTowerAbilities) do
+		if amount < limit then
+			powerVal = powerVal + kv[abName]
+		else 
+			break
+		end
+	end
+	return powerVal
+end
+
+function FindSisterTower(tower)
+	if tower.sisterTower then
+		return tower.sisterTower
+	else
+		if tower:GetLevel() < 4 then
+			local originalTeam = "goodguys"
+			local sisterTeam = "badguys"
+			if tower:GetTeamNumber() == DOTA_TEAM_BADGUYS then
+				originalTeam = "badguys"
+				sisterTeam = "goodguys"
+			end
+			local sisterTowerName = string.gsub(tower:GetName(), originalTeam, sisterTeam)
+			sisterTower = Entities:FindAllByName(sisterTowerName)[1]
+			tower.sisterTower = sisterTower
+			sisterTower.sisterTower = tower
+			return sisterTower
+		end
+	end
+	return nil
+end
+
 -------------------------------------------------------------------------------------------------
 -- IMBA: custom utility functions
 -------------------------------------------------------------------------------------------------
