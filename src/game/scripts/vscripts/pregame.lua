@@ -4381,12 +4381,14 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
             network:setSelectedHero(playerID, newBuild.hero)
             network:setSelectedAttr(playerID, newBuild.setAttr)
             hero = PlayerResource:GetSelectedHeroEntity(playerID)
-            if OptionManager:GetOption('ingameBuilderPenalty') > 0 then
+            --if OptionManager:GetOption('ingameBuilderPenalty') > 0 then
+            --TODO: Temporary always true
+            if true then
                 Timers:CreateTimer(function()
-                    local penalty = OptionManager:GetOption('ingameBuilderPenalty')
                     -- TODO: penalty should be game settings, but because its forced on until talents fix, make it based on gametime to stop abuse
+                    -- local penalty = OptionManager:GetOption('ingameBuilderPenalty')
                     local dotaTime = GameRules:GetDOTATime(false, false)
-                    penalty = dotaTime / 30
+                    local penalty = dotaTime / 30
                     hero:Kill(nil, nil)
                     
                     Timers:CreateTimer(function()

@@ -453,9 +453,21 @@ function Ingame:onStart()
     ListenToGameEvent('dota_player_gained_level', Dynamic_Wrap(Ingame, 'OnHeroLeveledUp'), self)
 
     ListenToGameEvent("player_reconnected", Dynamic_Wrap(Ingame, 'OnPlayerReconnect'), self)
+
+    ListenToGameEvent("player_chat", Dynamic_Wrap(Ingame, 'OnPlayerChat'), self)
     
     -- -- Set it to no team balance
     self:setNoTeamBalanceNeeded()
+end
+
+function Ingame:OnPlayerChat(keys)
+    local teamonly = keys.teamonly
+    local playerID = keys.userid
+    local text = keys.text
+
+    if string.find(text, "-test") then 
+        GameRules:SendCustomMessage('testing testing 1. 2. 3.', 0, 0)
+    end
 end
 
 function Ingame:fixRuneBug()
