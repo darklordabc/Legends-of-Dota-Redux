@@ -462,7 +462,8 @@ end
 
 function Ingame:OnPlayerChat(keys)
     local teamonly = keys.teamonly
-    local playerID = keys.userid - 1 
+    local playerID = keys.playerid
+    
     local text = keys.text
     local hero = PlayerResource:GetSelectedHeroEntity(playerID) 
 
