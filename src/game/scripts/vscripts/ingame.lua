@@ -48,7 +48,7 @@ function Ingame:init()
     self.playerColors[18]  = { 58.43 * 2.55, 58.82 * 2.55, 59.21 * 2.55 }
     self.playerColors[19]  = { 49.41 * 2.55, 74.90 * 2.55, 94.51 * 2.55 }
 
-    -- -- 40 minutes
+    -- 40 minutes
     self.timeToIncreaseRespawnRate = 2400
     self.timeToIncreaseRepawnInterval = 600
 
@@ -462,13 +462,54 @@ end
 
 function Ingame:OnPlayerChat(keys)
     local teamonly = keys.teamonly
-    local playerID = keys.userid
+    local playerID = keys.userid - 1 
     local text = keys.text
+    local hero = PlayerResource:GetSelectedHeroEntity(playerID) 
 
     if string.find(text, "-test") then 
         GameRules:SendCustomMessage('testing testing 1. 2. 3.', 0, 0)
+
+    elseif string.find(text, "-gold") and util:isSinglePlayerMode() then 
+
+            Timers:CreateTimer(function()        
+                hero:SetGold(99999, true)
+                GameRules:SendCustomMessage('given maximum gold to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+            end, DoUniqueString('cheatgold'), .5)
+
+    elseif string.find(text, "-respawn") and util:isSinglePlayerMode() then 
+
+        Timers:CreateTimer(function()
+            if not hero:IsAlive() then
+                hero:SetTimeUntilRespawn(1)
+            end
+        end, DoUniqueString('cheatrespawn'), 1)
+
+    elseif string.find(text, "-refresh") and util:isSinglePlayerMode() then 
+
+        Timers:CreateTimer(function()
+
+            hero:SetMana(hero:GetMaxMana())
+            hero:SetHealth(hero:GetMaxHealth())
+
+            for i = 0, hero:GetAbilityCount() - 1 do
+                local ability = hero:GetAbilityByIndex(i)
+                if ability then
+                    ability:EndCooldown()
+                end
+            end
+
+            for i = 0, 5 do
+                local item = hero:GetItemInSlot( i )
+                if item then
+                    item:EndCooldown()
+                end
+            end
+        end, DoUniqueString('cheatrefresh'), .2)
+
     end
 end
+
+
 
 function Ingame:fixRuneBug()
     ListenToGameEvent('game_rules_state_change', function(keys)
@@ -985,7 +1026,21 @@ function Ingame:handleRespawnModifier()
                                 timeLeft = timeLeft / respawnModifier
                             end]]
 
-                            -- Set the time left until we respawn
+                            -- If the game is single player, it should let players know that they can force respawn. Notify after first death, and notified a second time if their respawn time is longer than 30 seconds. 
+                            --print(RespawnNotificationLevel)
+                            if not hero.RespawnNotificationLevel then
+                                hero.RespawnNotificationLevel = 0
+                            end
+                            if util:isSinglePlayerMode() and hero.RespawnNotificationLevel < 2 then
+                                if hero.RespawnNotificationLevel == 0 then
+                                    GameRules:SendCustomMessage("You can use the chat command cheat '-respawn' to force your hero to respawn, this cheat is only available in single player mode</font>.", 0, 0) 
+                                    hero.RespawnNotificationLevel = 1
+                                elseif hero.RespawnNotificationLevel == 1 and timeLeft > 30 then
+                                    GameRules:SendCustomMessage("You can use the chat command cheat '-respawn' to force your hero to respawn, this cheat is only available in single player mode</font>.", 0, 0) 
+                                    hero.RespawnNotificationLevel = 2
+                                end
+                            end
+
                             hero:SetTimeUntilRespawn(timeLeft)
                             
                             -- Give 322 gold if enabled
