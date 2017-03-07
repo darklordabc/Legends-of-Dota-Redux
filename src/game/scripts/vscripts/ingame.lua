@@ -470,6 +470,43 @@ function Ingame:OnPlayerChat(keys)
     if string.find(text, "-test") then 
         GameRules:SendCustomMessage('testing testing 1. 2. 3.', 0, 0)
 
+    elseif string.find(text, "-printabilities") then 
+            Timers:CreateTimer(function()        
+                -- GameRules:SendCustomMessage("-------------HERO STATS------------", 0, 0)
+                -- GameRules:SendCustomMessage("HP: "..tostring(hero:GetHealth()).."/"..tostring(hero:GetMaxHealth()), 0, 0)
+                -- GameRules:SendCustomMessage("EP: "..tostring(hero:GetMana()).."/"..tostring(hero:GetMaxMana()), 0, 0)
+                -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
+                -- GameRules:SendCustomMessage("MR: "..tostring(hero:GetMagicalArmorValue()), 0, 0)
+                -- GameRules:SendCustomMessage("ARMOR: "..tostring(hero:GetPhysicalArmorValue()), 0, 0)
+                -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
+                -- GameRules:SendCustomMessage("STR: "..tostring(hero:GetStrength()), 0, 0)
+                -- GameRules:SendCustomMessage("AGI: "..tostring(hero:GetAgility()), 0, 0)
+                -- GameRules:SendCustomMessage("INT: "..tostring(hero:GetIntellect()), 0, 0)
+                -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
+                -- GameRules:SendCustomMessage("AD: "..tostring(hero:GetAverageTrueAttackDamage(hero)), 0, 0)
+                -- GameRules:SendCustomMessage("AS: "..tostring(hero:GetAttackSpeed()), 0, 0)
+                -- GameRules:SendCustomMessage("ApS: "..tostring(hero:GetAttacksPerSecond()), 0, 0)
+                -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
+                -- GameRules:SendCustomMessage("MODIFIER COUNT: "..tostring(hero:GetModifierCount()), 0, 0)
+                -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
+                -- for i=0,hero:GetModifierCount() do
+                --     GameRules:SendCustomMessage(hero:GetModifierNameByIndex(i).." "..hero:GetModifierStackCount(hero:GetModifierNameByIndex(i), hero))
+                -- end
+                local abilities = ""
+                for i=0,32 do
+                    local abil = hero:GetAbilityByIndex(i)
+                    if abil then
+                        abilities = abilities..abil:GetName().." "
+                        if string.len(abilities) >= 100 then
+                            GameRules:SendCustomMessage(abilities, 0, 0)
+                            abilities = ""
+                        end
+                    end
+                end
+                GameRules:SendCustomMessage(abilities, 0, 0)
+                -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
+            end, DoUniqueString('printabilities'), .5)
+
     elseif string.find(text, "-fixcasting") then 
 
             Timers:CreateTimer(function()        
