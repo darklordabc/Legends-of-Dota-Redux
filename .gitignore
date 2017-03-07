@@ -217,8 +217,6 @@ pip-log.txt
 dota/game/
 dota/content/
 
-src/game/particles/
-
 # Compiled formats
 *.vpcf_c
 *.vtex_c
