@@ -4384,8 +4384,15 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
             if OptionManager:GetOption('ingameBuilderPenalty') > 0 then
                 Timers:CreateTimer(function()
                     local penalty = OptionManager:GetOption('ingameBuilderPenalty')
+                    -- TODO: penalty should be game settings, but because its forced on until talents fix, make it based on gametime to stop abuse
+                    local dotaTime = GameRules:GetDOTATime(false, false)
+                    penalty = dotaTime / 30
                     hero:Kill(nil, nil)
-                    hero:SetTimeUntilRespawn(penalty)
+                    
+                    Timers:CreateTimer(function()
+                        hero:SetTimeUntilRespawn(penalty)
+                    end, DoUniqueString('respawnFix'), 1)  
+
                 end, DoUniqueString('penalty'), 1)
             else
                 if hero:GetTeam() == DOTA_TEAM_BADGUYS then
