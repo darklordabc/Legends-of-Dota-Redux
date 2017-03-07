@@ -75,6 +75,9 @@
 		{ "link": "../dota/game/resource/addon_russian.txt", "dir": "../script_generator/BIN/addon_russian_token.txt" },
 		{ "link": "../dota/game/panorama/localization/addon_russian.txt", "dir": "../script_generator/BIN/addon_russian.txt" },
 
+		{ "link": "../dota/game/resource/addon_korean.txt", "dir": "../script_generator/BIN/addon_korean_token.txt" },
+		{ "link": "../dota/game/panorama/localization/addon_korean.txt", "dir": "../script_generator/BIN/addon_korean.txt" },
+
 		{ "link": "../dota/game/scripts/npc/npc_abilities_override.txt", "dir": "../src/game/scripts/npc/npc_abilities_override.txt" },
 		{ "link": "../dota/game/scripts/npc/npc_abilities_custom.txt", "dir": "../src/game/scripts/npc/npc_abilities_custom.txt" },
 		{ "link": "../dota/game/scripts/npc/npc_heroes_custom.txt", "dir": "../script_generator/BIN/npc_heroes_custom.txt" },

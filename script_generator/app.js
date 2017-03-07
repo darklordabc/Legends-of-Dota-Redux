@@ -33,7 +33,7 @@ var abilities = {};
     Prepare language files
 */
 
-var langs = ['english', 'schinese', 'russian'];
+var langs = ['english', 'schinese', 'russian', 'korean'];
 var langIn = {};
 var langOut = {};
 var specialChar;    // Special character needed for doto encoding
@@ -103,6 +103,8 @@ function prepareLanguageFiles(next) {
             if(lang == 'english') {
                 ourData = ''+fs.readFileSync(langDir + 'addon_' + lang + '.txt');
             } else if(lang == 'russian') {
+                ourData = ''+fs.readFileSync(langDir + 'addon_' + lang + '.txt');
+            } else if(lang == 'korean') {
                 ourData = ''+fs.readFileSync(langDir + 'addon_' + lang + '.txt');
             } else {
                 ourData = ''+fs.readFileSync(langDir + 'addon_' + lang + '.txt', 'utf16le').substring(1);
