@@ -1033,10 +1033,10 @@ function Ingame:handleRespawnModifier()
                             end
                             if util:isSinglePlayerMode() and hero.RespawnNotificationLevel < 2 then
                                 if hero.RespawnNotificationLevel == 0 then
-                                    GameRules:SendCustomMessage("You can use the chat command cheat '-respawn' to force your hero to respawn, this cheat is only available in single player mode</font>.", 0, 0) 
+                                    GameRules:SendCustomMessage('#respawnCheatNotification', 0, 0) 
                                     hero.RespawnNotificationLevel = 1
                                 elseif hero.RespawnNotificationLevel == 1 and timeLeft > 30 then
-                                    GameRules:SendCustomMessage("You can use the chat command cheat '-respawn' to force your hero to respawn, this cheat is only available in single player mode</font>.", 0, 0) 
+                                    GameRules:SendCustomMessage('#respawnCheatNotification', 0, 0) 
                                     hero.RespawnNotificationLevel = 2
                                 end
                             end
