@@ -4369,7 +4369,10 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
             if newBuild.setAttr ~= attr or newBuild.hero ~= heroName then
                 isSameBuild = false
             end
-            if isSameBuild then
+
+            --TODO: If timer is more than 10 minutes you can't change builds
+            local dotaTime = GameRules:GetDOTATime(false, false)
+            if isSameBuild or dotaTime > 600 and not util:isSinglePlayerMode() then
                 local player = PlayerResource:GetPlayer(playerID)
                 network:hideHeroBuilder(player)
                 return
@@ -4382,13 +4385,15 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
             network:setSelectedAttr(playerID, newBuild.setAttr)
             hero = PlayerResource:GetSelectedHeroEntity(playerID)
             --if OptionManager:GetOption('ingameBuilderPenalty') > 0 then
-            --TODO: Temporary always true
-            if true then
+            --TODO: If long enough, players die to respawn
+            if dotaTime > 15 and not util:isSinglePlayerMode() then
                 Timers:CreateTimer(function()
                     -- TODO: penalty should be game settings, but because its forced on until talents fix, make it based on gametime to stop abuse
                     -- local penalty = OptionManager:GetOption('ingameBuilderPenalty')
-                    local dotaTime = GameRules:GetDOTATime(false, false)
-                    local penalty = dotaTime / 30
+                    local penalty = dotaTime / 15
+                    if penalty > 60 then 
+                        penalty = 60
+                    end
                     hero:Kill(nil, nil)
                     
                     Timers:CreateTimer(function()
@@ -4400,9 +4405,11 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
                 if hero:GetTeam() == DOTA_TEAM_BADGUYS then
                     local ent = Entities:FindByClassname(nil, "info_player_start_badguys")
                     hero:SetAbsOrigin(ent:GetAbsOrigin())
+                    hero:AddNewModifier(hero, nil, "modifier_phased", {Duration = 2})
                 elseif hero:GetTeam() == DOTA_TEAM_GOODGUYS then
                     local ent = Entities:FindByClassname(nil, "info_player_start_goodguys")
                     hero:SetAbsOrigin(ent:GetAbsOrigin())
+                    hero:AddNewModifier(hero, nil, "modifier_phased", {Duration = 2})
                 end
             end
             GameRules:SendCustomMessage('Player '..PlayerResource:GetPlayerName(playerID)..' just changed build.', 0, 0)
