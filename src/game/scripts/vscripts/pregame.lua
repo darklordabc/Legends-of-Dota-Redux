@@ -4087,7 +4087,7 @@ function Pregame:onPlayerSelectHero(eventSourceIndex, args)
             end
         end
         if not hasAbil then
-            self:onPlayerSelectAbility(0, {PlayerID = playerID, abilityName = GameRules.perks["heroAbilityPairs"][hero], slot=5})
+            self:onPlayerSelectAbility(0, {PlayerID = playerID, abilityName = GameRules.perks["heroAbilityPairs"][hero], slot=1})
         end
     end
 
