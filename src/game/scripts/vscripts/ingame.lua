@@ -1102,18 +1102,20 @@ function Ingame:handleRespawnModifier()
 
                             -- If the game is single player, it should let players know that they can force respawn. Notify after first death, and notified a second time if their respawn time is longer than 30 seconds. 
                             --print(RespawnNotificationLevel)
-                            if not hero.RespawnNotificationLevel then
-                                hero.RespawnNotificationLevel = 0
-                            end
-                            if util:isSinglePlayerMode() and hero.RespawnNotificationLevel < 2 then
-                                if hero.RespawnNotificationLevel == 0 then
-                                    GameRules:SendCustomMessage('#respawnCheatNotification', 0, 0) 
-                                    hero.RespawnNotificationLevel = 1
-                                elseif hero.RespawnNotificationLevel == 1 and timeLeft > 30 then
-                                    GameRules:SendCustomMessage('#respawnCheatNotification', 0, 0) 
-                                    hero.RespawnNotificationLevel = 2
-                                end
-                            end
+                            if not util:isPlayerBot(playerID) and util:isSinglePlayerMode() then
+	                            if not hero.RespawnNotificationLevel then
+	                                hero.RespawnNotificationLevel = 0
+	                            end
+	                            if hero.RespawnNotificationLevel < 2 then
+	                                if hero.RespawnNotificationLevel == 0 then
+	                                    GameRules:SendCustomMessage('#respawnCheatNotification', 0, 0) 
+	                                    hero.RespawnNotificationLevel = 1
+	                                elseif hero.RespawnNotificationLevel == 1 and timeLeft > 30 then
+	                                    GameRules:SendCustomMessage('#respawnCheatNotification', 0, 0) 
+	                                    hero.RespawnNotificationLevel = 2
+	                                end
+	                            end
+                        	end
 
                             hero:SetTimeUntilRespawn(timeLeft)
                             
@@ -1389,7 +1391,7 @@ function Ingame:AddTowerBotController()
             local radiantBots = false
             -- CHECK ALL PLAYERS TO SEE WHICH TEAM HAS BOT(S)
             for playerID=0,(maxPlayers-1) do
-                if  util:isPlayerBot(playerID) and PlayerResource:GetTeam(playerID) == DOTA_TEAM_GOODGUYS then
+                if util:isPlayerBot(playerID) and PlayerResource:GetTeam(playerID) == DOTA_TEAM_GOODGUYS then
                     radiantBots = true
                 elseif util:isPlayerBot(playerID) and PlayerResource:GetTeam(playerID) == DOTA_TEAM_BADGUYS then
                     direBots = true
