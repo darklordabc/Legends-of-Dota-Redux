@@ -1431,9 +1431,9 @@ function Ingame:addStrongTowers()
 				if not handledTowers[tower] then
 					-- Main ability handling
 					local difference = 0 -- will always be 0 anyway
-					local abName = PullTowerAbility(self.towerList, self.usedRandomTowers, difference, tower:GetLevel() * 10)
-					tower:AddAbility(abName):SetLevel(1)
 					tower.strongTowerAbilities = tower.strongTowerAbilities or {}
+					local abName = PullTowerAbility(self.towerList, self.usedRandomTowers, tower.strongTowerAbilities, difference, tower:GetLevel() * 10)
+					tower:AddAbility(abName):SetLevel(1)
 					table.insert(tower.strongTowerAbilities, abName)
 					self.usedRandomTowers[abName] = true
 					handledTowers[tower] = true
@@ -1442,18 +1442,20 @@ function Ingame:addStrongTowers()
 						local sisterTower = FindSisterTower(tower)
 						-- Sister ability handling
 						difference = GetTowerAbilityPowerValue(sisterTower, self.towerList) - GetTowerAbilityPowerValue(tower, self.towerList)
-						local sisterAbName = PullTowerAbility(self.towerList, self.usedRandomTowers, difference, sisterTower:GetLevel() * 10)
-						sisterTower:AddAbility(sisterAbName):SetLevel(1)
 						sisterTower.strongTowerAbilities = sisterTower.strongTowerAbilities or {}
+						local sisterAbName = PullTowerAbility(self.towerList, self.usedRandomTowers, tower.strongTowerAbilities, difference, sisterTower:GetLevel() * 10)
+						sisterTower:AddAbility(sisterAbName):SetLevel(1)
 						table.insert(sisterTower.strongTowerAbilities, sisterAbName)
 						self.usedRandomTowers[sisterAbName] = true
 						handledTowers[sisterTower] = true
 						-- Assign sister towers permanently
 						tower.sisterTower = sisterTower
 						sisterTower.sisterTower = tower
+						print(tower:GetUnitName(), sisterTower:GetUnitName())
 					end
 				end
 			end
+			print("lul")
         end
     end, nil)
     ListenToGameEvent('dota_tower_kill', function (keys)
@@ -1515,9 +1517,9 @@ function Ingame:UpgradeTower( tower )
 	if sisterTower then
 		local difference = GetEquivalentTowerAbilityPowerValue(sisterTower, self.towerList, #tower.strongTowerAbilities) - GetTowerAbilityPowerValue(tower, self.towerList)
 	end
-	local towerAbName = PullTowerAbility(self.towerList, self.usedRandomTowers, difference, tower:GetLevel() * 10)
-	tower:AddAbility(towerAbName):SetLevel(1)
 	tower.strongTowerAbilities = tower.strongTowerAbilities or {}
+	local towerAbName = PullTowerAbility(self.towerList, self.usedRandomTowers, tower.strongTowerAbilities, difference, tower:GetLevel() * 10)
+	tower:AddAbility(towerAbName):SetLevel(1)
 	table.insert(tower.strongTowerAbilities, towerAbName)
 	self.usedRandomTowers[towerAbName] = true
 end
