@@ -47,7 +47,7 @@ end
 function modifier_item_greater_crit_consumable:GetAttributes()
   return MODIFIER_ATTRIBUTE_MULTIPLE
 end
-function modifier_item_desolator_consumable:IsHidden()
+function modifier_item_greater_crit_consumable:IsHidden()
   return self:GetAbility().IsItem
 end
 

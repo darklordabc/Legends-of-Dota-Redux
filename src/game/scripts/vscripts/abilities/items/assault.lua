@@ -47,7 +47,7 @@ end
 function modifier_item_assault_consumable:IsPermanent()
   return true
 end
-function modifier_item_desolator_consumable:IsHidden()
+function modifier_item_assault_consumable:IsHidden()
   return self:GetAbility().IsItem
 end
 
