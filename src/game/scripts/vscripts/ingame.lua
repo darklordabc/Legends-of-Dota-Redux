@@ -1102,11 +1102,11 @@ function Ingame:handleRespawnModifier()
 
                             -- If the game is single player, it should let players know that they can force respawn. Notify after first death, and notified a second time if their respawn time is longer than 30 seconds. 
                             --print(RespawnNotificationLevel)
-                            if not util:isPlayerBot(playerID) then
+                            if not util:isPlayerBot(playerID) and util:isSinglePlayerMode() then
 	                            if not hero.RespawnNotificationLevel then
 	                                hero.RespawnNotificationLevel = 0
 	                            end
-	                            if util:isSinglePlayerMode() and hero.RespawnNotificationLevel < 2 then
+	                            if hero.RespawnNotificationLevel < 2 then
 	                                if hero.RespawnNotificationLevel == 0 then
 	                                    GameRules:SendCustomMessage('#respawnCheatNotification', 0, 0) 
 	                                    hero.RespawnNotificationLevel = 1
