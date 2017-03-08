@@ -35,7 +35,7 @@ require('statcollection.init')
 local Debug = require('lod_debug')              -- Debug library with helper functions, by Ash47
 local challenge = require('challenge')
 local ingame = require('ingame')
-local localStorage = require("ModDotaLib.LocalStorage")
+local localStorage = require("lib/LocalStorage")
 require('lib/wearables')
 
 -- This should alone be used if duels are on.
