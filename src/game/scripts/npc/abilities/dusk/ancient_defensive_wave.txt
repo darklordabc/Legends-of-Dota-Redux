@@ -68,7 +68,7 @@
 					{
 						"RunScript"
 						{
-							"ScriptFile"	"buildings/ancient_abilities.lua"
+							"ScriptFile"	"abilities/dusk/ancient_abilities.lua"
 							"Function"		"d_waves"
 						}
 					}
