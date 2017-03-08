@@ -49,17 +49,17 @@ function DealDamage(target,attacker,damageAmount,damageType,damageFlags,ability)
 end
 
 function d_waves(keys)
+	local ability = keys.ability
 	local caster = keys.caster
-	local radius = 1250
-	if caster:GetHealthPercent() < 33 then
-		if caster:HasModifier("modifier_defensive_wave_warning") ~= true then
-			keys.ability:ApplyDataDrivenModifier(caster, caster, "modifier_defensive_wave_warning", {}) --[[Returns:void
-			No Description Set
-			]]
-		end
-		local mod = caster:FindModifierByName("modifier_defensive_wave_warning")
-		--caster:SetCustomHealthLabel("Giga Graviton in "..tostring(4-mod:GetStackCount()/10),128,0,0)
-		if mod:GetStackCount() >= 40 then
+	local radius = ability:GetSpecialValueFor("radius")
+	local healthThreshold = ability:GetSpecialValueFor("hpthreshhold")
+
+	if not ability:IsCooldownReady() then
+		return
+	end
+
+	if caster:GetHealthPercent() < healthThreshold then
+			ability:StartCooldown(ability:GetCooldown(ability:GetLevel()))
 			local enemy_found = FindUnitsInRadius( caster:GetTeamNumber(),
 	                              caster:GetCenter(),
 	                              nil,
@@ -78,84 +78,102 @@ function d_waves(keys)
 	                                DOTA_UNIT_TARGET_FLAG_NONE,
 	                                FIND_CLOSEST,
 	                                false)
-			for k,v in pairs(enemy_found) do
-				local hp = v:GetMaxHealth()
-				local dmg = hp*0.55
-				local time = k*0.25
-				local rand = RandomFloat(0, 0.25)
-				Timers:CreateTimer(rand+time,function()
-					DealDamage(v,caster,dmg,DAMAGE_TYPE_PURE)
-					local p = ParticleManager:CreateParticle("particles/econ/items/luna/luna_lucent_ti5/luna_eclipse_impact_moonfall.vpcf", PATTACH_ABSORIGIN_FOLLOW, v) --[[Returns:int
-					Creates a new particle effect
-					]]
+			-- If there is any nearby enemies trigger the gigatron
+			if (#enemy_found + #enemy_hero_found) > 0 then
+				ability:StartCooldown(5)
+				Timers:CreateTimer(1,function() -- Have a slight delay so it gives a chance to get more enemies in GetHullRadius()
+					--- Refresh the found enemies
+					enemy_found = FindUnitsInRadius( caster:GetTeamNumber(),
+	                              caster:GetCenter(),
+	                              nil,
+	                                radius,
+	                                DOTA_UNIT_TARGET_TEAM_ENEMY,
+	                                DOTA_UNIT_TARGET_CREEP,
+	                                DOTA_UNIT_TARGET_FLAG_NONE,
+	                                FIND_CLOSEST,
+	                                false)
 
-					ParticleManager:SetParticleControlEnt(p, 0, caster, PATTACH_POINT_FOLLOW, "attach_origin", caster:GetAbsOrigin(), true) --[[Returns:void
-					No Description Set
-					]]
-					ParticleManager:SetParticleControlEnt(p, 1, v, PATTACH_POINT_FOLLOW, "attach_origin", v:GetAbsOrigin(), true) --[[Returns:void
-					No Description Set
-					]]
-					ParticleManager:SetParticleControlEnt(p, 2, v, PATTACH_POINT_FOLLOW, "attach_origin", v:GetAbsOrigin(), true) --[[Returns:void
-					No Description Set
-					]]
-					ParticleManager:SetParticleControlEnt(p, 3, v, PATTACH_POINT_FOLLOW, "attach_origin", v:GetAbsOrigin(), true) --[[Returns:void
-					No Description Set
-					]]
-					ParticleManager:SetParticleControlEnt(p, 4, v, PATTACH_POINT_FOLLOW, "attach_origin", v:GetAbsOrigin(), true) --[[Returns:void
-					No Description Set
-					]]
-					ParticleManager:SetParticleControlEnt(p, 5, v, PATTACH_POINT_FOLLOW, "attach_origin", v:GetAbsOrigin(), true) --[[Returns:void
-					No Description Set
-					]]
+					enemy_hero_found = FindUnitsInRadius( caster:GetTeamNumber(),
+	                              caster:GetCenter(),
+	                              nil,
+	                                radius,
+	                                DOTA_UNIT_TARGET_TEAM_ENEMY,
+	                                DOTA_UNIT_TARGET_HERO,
+	                                DOTA_UNIT_TARGET_FLAG_NONE,
+	                                FIND_CLOSEST,
+	                                false)
 
-					v:EmitSound("Hero_Luna.LucentBeam.Target")
+					for k,v in pairs(enemy_found) do
+						local hp = v:GetMaxHealth()
+						local dmg = hp*0.55
+						local time = k*0.25
+						local rand = RandomFloat(0, 0.25)
+						Timers:CreateTimer(rand+time,function()
+							DealDamage(v,caster,dmg,DAMAGE_TYPE_PURE)
+							local p = ParticleManager:CreateParticle("particles/econ/items/luna/luna_lucent_ti5/luna_eclipse_impact_moonfall.vpcf", PATTACH_ABSORIGIN_FOLLOW, v) --[[Returns:int
+							Creates a new particle effect
+							]]
+
+							ParticleManager:SetParticleControlEnt(p, 0, caster, PATTACH_POINT_FOLLOW, "attach_origin", caster:GetAbsOrigin(), true) --[[Returns:void
+							No Description Set
+							]]
+							ParticleManager:SetParticleControlEnt(p, 1, v, PATTACH_POINT_FOLLOW, "attach_origin", v:GetAbsOrigin(), true) --[[Returns:void
+							No Description Set
+							]]
+							ParticleManager:SetParticleControlEnt(p, 2, v, PATTACH_POINT_FOLLOW, "attach_origin", v:GetAbsOrigin(), true) --[[Returns:void
+							No Description Set
+							]]
+							ParticleManager:SetParticleControlEnt(p, 3, v, PATTACH_POINT_FOLLOW, "attach_origin", v:GetAbsOrigin(), true) --[[Returns:void
+							No Description Set
+							]]
+							ParticleManager:SetParticleControlEnt(p, 4, v, PATTACH_POINT_FOLLOW, "attach_origin", v:GetAbsOrigin(), true) --[[Returns:void
+							No Description Set
+							]]
+							ParticleManager:SetParticleControlEnt(p, 5, v, PATTACH_POINT_FOLLOW, "attach_origin", v:GetAbsOrigin(), true) --[[Returns:void
+							No Description Set
+							]]
+
+							v:EmitSound("Hero_Luna.LucentBeam.Target")
+						end)
+					end
+					for k,v in pairs(enemy_hero_found) do
+						local hp = v:GetMaxHealth()
+						local dmg = hp*0.09
+						local time = (k-1)*0.25
+						local rand = RandomFloat(0, 0.25)
+						if dmg >= v:GetHealth() then
+							dmg = v:GetHealth() - 1
+						end
+						Timers:CreateTimer(rand+time,function()
+							DealDamage(v,caster,dmg,DAMAGE_TYPE_PURE)
+							local p = ParticleManager:CreateParticle("particles/econ/items/luna/luna_lucent_ti5/luna_eclipse_impact_moonfall.vpcf", PATTACH_ABSORIGIN_FOLLOW, v) --[[Returns:int
+							Creates a new particle effect
+							]]
+
+							ParticleManager:SetParticleControlEnt(p, 0, caster, PATTACH_POINT_FOLLOW, "attach_origin", caster:GetAbsOrigin(), true) --[[Returns:void
+							No Description Set
+							]]
+							ParticleManager:SetParticleControlEnt(p, 1, v, PATTACH_POINT_FOLLOW, "attach_origin", v:GetAbsOrigin(), true) --[[Returns:void
+							No Description Set
+							]]
+							ParticleManager:SetParticleControlEnt(p, 2, v, PATTACH_POINT_FOLLOW, "attach_origin", v:GetAbsOrigin(), true) --[[Returns:void
+							No Description Set
+							]]
+							ParticleManager:SetParticleControlEnt(p, 3, v, PATTACH_POINT_FOLLOW, "attach_origin", v:GetAbsOrigin(), true) --[[Returns:void
+							No Description Set
+							]]
+							ParticleManager:SetParticleControlEnt(p, 4, v, PATTACH_POINT_FOLLOW, "attach_origin", v:GetAbsOrigin(), true) --[[Returns:void
+							No Description Set
+							]]
+							ParticleManager:SetParticleControlEnt(p, 5, v, PATTACH_POINT_FOLLOW, "attach_origin", v:GetAbsOrigin(), true) --[[Returns:void
+							No Description Set
+							]]
+
+							v:EmitSound("Hero_Luna.LucentBeam.Target")
+						end)
+					end		
 				end)
 			end
-			-- local n = 7
-			-- Timers:CreateTimer(1,function()
-			-- 	n = n-1
-			-- 	caster:SetCustomHealthLabel(n,255,255,255)
-			-- 	return 1
-			-- end)
-			for k,v in pairs(enemy_hero_found) do
-				local hp = v:GetMaxHealth()
-				local dmg = hp*0.09
-				local time = (k-1)*0.25
-				local rand = RandomFloat(0, 0.25)
-				if dmg >= v:GetHealth() then
-					dmg = v:GetHealth() - 1
-				end
-				Timers:CreateTimer(rand+time,function()
-					DealDamage(v,caster,dmg,DAMAGE_TYPE_PURE)
-					local p = ParticleManager:CreateParticle("particles/econ/items/luna/luna_lucent_ti5/luna_eclipse_impact_moonfall.vpcf", PATTACH_ABSORIGIN_FOLLOW, v) --[[Returns:int
-					Creates a new particle effect
-					]]
-
-					ParticleManager:SetParticleControlEnt(p, 0, caster, PATTACH_POINT_FOLLOW, "attach_origin", caster:GetAbsOrigin(), true) --[[Returns:void
-					No Description Set
-					]]
-					ParticleManager:SetParticleControlEnt(p, 1, v, PATTACH_POINT_FOLLOW, "attach_origin", v:GetAbsOrigin(), true) --[[Returns:void
-					No Description Set
-					]]
-					ParticleManager:SetParticleControlEnt(p, 2, v, PATTACH_POINT_FOLLOW, "attach_origin", v:GetAbsOrigin(), true) --[[Returns:void
-					No Description Set
-					]]
-					ParticleManager:SetParticleControlEnt(p, 3, v, PATTACH_POINT_FOLLOW, "attach_origin", v:GetAbsOrigin(), true) --[[Returns:void
-					No Description Set
-					]]
-					ParticleManager:SetParticleControlEnt(p, 4, v, PATTACH_POINT_FOLLOW, "attach_origin", v:GetAbsOrigin(), true) --[[Returns:void
-					No Description Set
-					]]
-					ParticleManager:SetParticleControlEnt(p, 5, v, PATTACH_POINT_FOLLOW, "attach_origin", v:GetAbsOrigin(), true) --[[Returns:void
-					No Description Set
-					]]
-
-					v:EmitSound("Hero_Luna.LucentBeam.Target")
-				end)
-			end
-			mod:SetStackCount(0)
-		end
-		mod:IncrementStackCount()
 	end
 end
 

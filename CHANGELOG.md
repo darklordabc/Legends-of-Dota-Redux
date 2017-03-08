@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - You can now use the cheats '-gold', '-respawn' and '-refresh' in any single player game, with or without sv_cheats being activated.
 - Burrow Redux is now troll combo with the same stuff Burrow regular is, like Dispersion. 
 - Temporarily disabled Juxtapose and Forest ability because of allegations of lag creating. 
+- Added levels to GIGA GRAVITON
 
 ## 6.7 - Steam Version
 - Disease Tower saps 5 less attributes

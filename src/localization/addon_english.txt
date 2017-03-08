@@ -8054,6 +8054,7 @@
         "DOTA_Tooltip_ability_ancient_defensive_wave_description"                         "Every 7s, the Ancient unleashes a pulse of devastating energy that instantly kills all creeps in a large radius, and deals Pure damage equal to 12% of all nearby enemy Heroes' Max Health. Only activates when under 33%% of its Max Health."
         "DOTA_Tooltip_ability_ancient_defensive_wave_Note0"                               "Deals the damage to each creep at random within a 2.5s interval when the timer hits zero."
         "DOTA_Tooltip_ability_ancient_defensive_wave_radius"                              "RADIUS:"
+        "DOTA_Tooltip_ability_ancient_defensive_wave_hpthreshhold"                              "HP THRESHOLD:"
         
         "DOTA_Tooltip_modifier_side_gunner_redux_cd"                                            "Side Gunner Cooldown"
         "DOTA_Tooltip_modifier_side_gunner_redux_cd_Description"                                ""
