@@ -471,48 +471,48 @@ function Ingame:OnPlayerChat(keys)
         GameRules:SendCustomMessage('testing testing 1. 2. 3.', 0, 0)
 
     elseif string.find(text, "-printabilities") then 
-            Timers:CreateTimer(function()        
-                -- GameRules:SendCustomMessage("-------------HERO STATS------------", 0, 0)
-                -- GameRules:SendCustomMessage("HP: "..tostring(hero:GetHealth()).."/"..tostring(hero:GetMaxHealth()), 0, 0)
-                -- GameRules:SendCustomMessage("EP: "..tostring(hero:GetMana()).."/"..tostring(hero:GetMaxMana()), 0, 0)
-                -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
-                -- GameRules:SendCustomMessage("MR: "..tostring(hero:GetMagicalArmorValue()), 0, 0)
-                -- GameRules:SendCustomMessage("ARMOR: "..tostring(hero:GetPhysicalArmorValue()), 0, 0)
-                -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
-                -- GameRules:SendCustomMessage("STR: "..tostring(hero:GetStrength()), 0, 0)
-                -- GameRules:SendCustomMessage("AGI: "..tostring(hero:GetAgility()), 0, 0)
-                -- GameRules:SendCustomMessage("INT: "..tostring(hero:GetIntellect()), 0, 0)
-                -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
-                -- GameRules:SendCustomMessage("AD: "..tostring(hero:GetAverageTrueAttackDamage(hero)), 0, 0)
-                -- GameRules:SendCustomMessage("AS: "..tostring(hero:GetAttackSpeed()), 0, 0)
-                -- GameRules:SendCustomMessage("ApS: "..tostring(hero:GetAttacksPerSecond()), 0, 0)
-                -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
-                -- GameRules:SendCustomMessage("MODIFIER COUNT: "..tostring(hero:GetModifierCount()), 0, 0)
-                -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
-                -- for i=0,hero:GetModifierCount() do
-                --     GameRules:SendCustomMessage(hero:GetModifierNameByIndex(i).." "..hero:GetModifierStackCount(hero:GetModifierNameByIndex(i), hero))
-                -- end
-                local abilities = ""
-                for i=0,32 do
-                    local abil = hero:GetAbilityByIndex(i)
-                    if abil then
-                        abilities = abilities..abil:GetName().." "
-                        if string.len(abilities) >= 100 then
-                            GameRules:SendCustomMessage(abilities, 0, 0)
-                            abilities = ""
-                        end
+        Timers:CreateTimer(function()        
+            -- GameRules:SendCustomMessage("-------------HERO STATS------------", 0, 0)
+            -- GameRules:SendCustomMessage("HP: "..tostring(hero:GetHealth()).."/"..tostring(hero:GetMaxHealth()), 0, 0)
+            -- GameRules:SendCustomMessage("EP: "..tostring(hero:GetMana()).."/"..tostring(hero:GetMaxMana()), 0, 0)
+            -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
+            -- GameRules:SendCustomMessage("MR: "..tostring(hero:GetMagicalArmorValue()), 0, 0)
+            -- GameRules:SendCustomMessage("ARMOR: "..tostring(hero:GetPhysicalArmorValue()), 0, 0)
+            -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
+            -- GameRules:SendCustomMessage("STR: "..tostring(hero:GetStrength()), 0, 0)
+            -- GameRules:SendCustomMessage("AGI: "..tostring(hero:GetAgility()), 0, 0)
+            -- GameRules:SendCustomMessage("INT: "..tostring(hero:GetIntellect()), 0, 0)
+            -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
+            -- GameRules:SendCustomMessage("AD: "..tostring(hero:GetAverageTrueAttackDamage(hero)), 0, 0)
+            -- GameRules:SendCustomMessage("AS: "..tostring(hero:GetAttackSpeed()), 0, 0)
+            -- GameRules:SendCustomMessage("ApS: "..tostring(hero:GetAttacksPerSecond()), 0, 0)
+            -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
+            -- GameRules:SendCustomMessage("MODIFIER COUNT: "..tostring(hero:GetModifierCount()), 0, 0)
+            -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
+            -- for i=0,hero:GetModifierCount() do
+            --     GameRules:SendCustomMessage(hero:GetModifierNameByIndex(i).." "..hero:GetModifierStackCount(hero:GetModifierNameByIndex(i), hero))
+            -- end
+            local abilities = ""
+            for i=0,32 do
+                local abil = hero:GetAbilityByIndex(i)
+                if abil then
+                    abilities = abilities..abil:GetName().." "
+                    if string.len(abilities) >= 100 then
+                        GameRules:SendCustomMessage(abilities, 0, 0)
+                        abilities = ""
                     end
                 end
-                GameRules:SendCustomMessage(abilities, 0, 0)
-                -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
-            end, DoUniqueString('printabilities'), .5)
+            end
+            GameRules:SendCustomMessage(abilities, 0, 0)
+            -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
+        end, DoUniqueString('printabilities'), .5)
 
     elseif string.find(text, "-fixcasting") then 
-
-            Timers:CreateTimer(function()        
+        Timers:CreateTimer(function()        
+            local status2,err2 = pcall(function()
                 local talents = {}
 
-                for i = 0, hero:GetAbilityCount() do
+                for i = 0, 23 do
                     if hero:GetAbilityByIndex(i) then 
                         local ability = hero:GetAbilityByIndex(i)
                         if ability and string.match(ability:GetName(), "special_bonus_") then
@@ -523,10 +523,25 @@ function Ingame:OnPlayerChat(keys)
                     end
                 end
 
-                for k,v in pairs(talents) do
-                    hero:AddAbility(v)
-                end
-            end, DoUniqueString('fixcasting'), .5)
+                SendToServerConsole('say "Found talents: '..tostring(util:getTableLength(talents))..'"')
+
+                Timers:CreateTimer(function()  
+                    local status2,err2 = pcall(function()      
+                        for k,v in pairs(talents) do
+                            hero:AddAbility(v)
+                        end
+                    end)
+
+                    if not status2 then
+                        SendToServerConsole('say "Post this to the LoD comments section: '..err2:gsub('"',"''")..'"')
+                    end
+                end, DoUniqueString('fixcasting'), .5)
+            end)
+
+            if not status2 then
+                SendToServerConsole('say "Post this to the LoD comments section: '..err2:gsub('"',"''")..'"')
+            end
+        end, DoUniqueString('fixcasting'), .5)
 
     elseif string.find(text, "-gold") and util:isSinglePlayerMode() then 
 
