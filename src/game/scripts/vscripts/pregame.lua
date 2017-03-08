@@ -6758,25 +6758,6 @@ function Pregame:fixSpawningIssues()
                     end]]
                 end
 
-                Timers:CreateTimer(function()
-                    local talents = {}
-
-                    for i = 0, spawnedUnit:GetAbilityCount() do
-                        if spawnedUnit:GetAbilityByIndex(i) then 
-                            local ability = spawnedUnit:GetAbilityByIndex(i)
-                            if ability and string.match(ability:GetName(), "special_bonus_") then
-                                local abName = ability:GetName()
-                                table.insert(talents, abName)
-                                spawnedUnit:RemoveAbility(abName)
-                            end
-                        end
-                    end
-
-                    for k,v in pairs(talents) do
-                        spawnedUnit:AddAbility(v)
-                    end
-                end, DoUniqueString('fixTalentsOrder'), 2.0)
-
                 -- Various fixes
                 Timers:CreateTimer(function()
                     if IsValidEntity(spawnedUnit) then
@@ -6886,66 +6867,6 @@ function Pregame:fixSpawningIssues()
                        --print("Perk assigned")
                     end
                 end, DoUniqueString('addPerk'), 1.0)
-                
-                -- Add talents
-                Timers:CreateTimer(function()
-                    --print(self.perksDisabled)
-                    if spawnedUnit:IsNull() then
-                        return
-                    end
-                    
-                    local nameTest = spawnedUnit:GetName()
-                    -- TODO: This is been temporarily disabled by the "and false" until we can fix up the ability index problem
-                    if IsValidEntity(spawnedUnit) and not spawnedUnit.hasTalent then
-                        for heroName,heroValues in pairs(allHeroes) do
-                            if heroName == nameTest then
-                                if heroName == "npc_dota_hero_invoker"  then
-                                    for i=17,24 do
-                                        local abName = heroValues['Ability' .. i]
-                                        spawnedUnit:AddAbility(abName)
-                                    end
-                                elseif heroName == "npc_dota_hero_wisp" or heroName == "npc_dota_hero_rubick" then
-                                     if string.find(spawnedUnit:GetAbilityByIndex(0):GetAbilityName(),"special_bonus") then
-                                        print("0index talent")
-                                        spawnedUnit.tempAbil = spawnedUnit:GetAbilityByIndex(0):GetAbilityName()
-                                        spawnedUnit:RemoveAbility(spawnedUnit.tempAbil)
-                                    end
-                                    for i=11,18 do
-                                        local abName = heroValues['Ability' .. i]
-                                        local talent = spawnedUnit:AddAbility(abName)
-                                    end
-                                    if not spawnedUnit:HasAbility(spawnedUnit.tempAbil) then
-                                        spawnedUnit:AddAbility(spawnedUnit.tempAbil)
-                                    end
-                                else
-                                    if string.find(spawnedUnit:GetAbilityByIndex(0):GetAbilityName(),"special_bonus") then
-                                        print("0index talent")
-                                        spawnedUnit.tempAbil = spawnedUnit:GetAbilityByIndex(0):GetAbilityName()
-                                        spawnedUnit:RemoveAbility(spawnedUnit.tempAbil)
-                                    end
-                                    for i=10,17 do
-                                        local abName = heroValues['Ability' .. i]
-                                        local talent = spawnedUnit:AddAbility(abName)
-                                    end
-                                    if not spawnedUnit:HasAbility(spawnedUnit.tempAbil) then
-                                        spawnedUnit:AddAbility(spawnedUnit.tempAbil)
-                                    end
-                                end
-                            end
-                        end
-                        spawnedUnit.hasTalent = true
-                    end
-
-                    --for i = 0, spawnedUnit:GetAbilityCount() do
-                   --     if spawnedUnit:GetAbilityByIndex(i) then
-                            --print("removed") 
-                      --      local ability = spawnedUnit:GetAbilityByIndex(i)
-                         --   if ability then
-                             --   print("Ability " .. i .. ": " .. ability:GetAbilityName() .. ", Level " .. ability:GetLevel())
-                          --  end
-                       -- end
-                    --end
-                end, DoUniqueString('addTalents'), 1.5)
 
                 -- Don't touch this hero more than once :O
                 if handled[spawnedUnit] then return end
@@ -7226,7 +7147,73 @@ local _instance = Pregame()
 
 ListenToGameEvent('game_rules_state_change', function(keys)
     local newState = GameRules:State_Get()
-    if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+    if newState == DOTA_GAMERULES_STATE_PRE_GAME then
+        local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
+        
+        -- Add talents
+        Timers:CreateTimer(function()
+            local maxPlayerID = 24
+            for playerID=0,maxPlayerID-1 do
+                local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+
+                if hero ~= nil and IsValidEntity(hero) then
+                    local nameTest = hero:GetName()
+                    -- TODO: This is been temporarily disabled by the "and false" until we can fix up the ability index problem
+                    if IsValidEntity(hero) and not hero.hasTalent then
+                        for i = 0, hero:GetAbilityCount() do
+                            if hero:GetAbilityByIndex(i) then 
+                                local ability = hero:GetAbilityByIndex(i)
+                                if ability and string.match(ability:GetName(), "special_bonus_") then
+                                    local abName = ability:GetName()
+                                    table.insert(talents, abName)
+                                    hero:RemoveAbility(abName)
+                                end
+                            end
+                        end
+                        for heroName,heroValues in pairs(allHeroes) do
+                            if heroName == nameTest then
+                                if heroName == "npc_dota_hero_invoker"  then
+                                    for i=17,24 do
+                                        local abName = heroValues['Ability' .. i]
+                                        hero:AddAbility(abName)
+                                    end
+                                elseif heroName == "npc_dota_hero_wisp" or heroName == "npc_dota_hero_rubick" then
+                                     if string.find(hero:GetAbilityByIndex(0):GetAbilityName(),"special_bonus") then
+                                        print("0index talent")
+                                        hero.tempAbil = hero:GetAbilityByIndex(0):GetAbilityName()
+                                        hero:RemoveAbility(hero.tempAbil)
+                                    end
+                                    for i=11,18 do
+                                        local abName = heroValues['Ability' .. i]
+                                        local talent = hero:AddAbility(abName)
+                                    end
+                                    if not hero:HasAbility(hero.tempAbil) then
+                                        hero:AddAbility(hero.tempAbil)
+                                    end
+                                else
+                                    if string.find(hero:GetAbilityByIndex(0):GetAbilityName(),"special_bonus") then
+                                        print("0index talent")
+                                        hero.tempAbil = hero:GetAbilityByIndex(0):GetAbilityName()
+                                        hero:RemoveAbility(hero.tempAbil)
+                                    end
+                                    for i=10,17 do
+                                        local abName = heroValues['Ability' .. i]
+                                        local talent = hero:AddAbility(abName)
+                                    end
+                                    if not hero:HasAbility(hero.tempAbil) then
+                                        hero:AddAbility(hero.tempAbil)
+                                    end
+                                end
+                            end
+                        end
+                        hero.hasTalent = true
+                    end
+
+                    print("DONE!")
+                end
+            end
+        end, DoUniqueString('addTalents'), 2.0)
+    elseif newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
         if IsDedicatedServer() then
           SU:SendPlayerBuild( buildBackups )
         end
