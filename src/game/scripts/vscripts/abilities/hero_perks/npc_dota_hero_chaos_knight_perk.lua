@@ -37,10 +37,11 @@ function modifier_npc_dota_hero_chaos_knight_perk:OnCreated()
 		-- amount of gold per random ability
 		local goldPerRandom = 200
 
-		if caster:IsRealHero() and ply and ply.random and ply.random > 0 and PlayerResource:GetConnectionState(caster:GetPlayerOwnerID()) ~= 1 then
+		if caster:IsRealHero() and ply and not ply.ckPerkBonusGoldGiven and ply.random and ply.random > 0 and PlayerResource:GetConnectionState(caster:GetPlayerOwnerID()) ~= 1 then
 			caster:ModifyGold(ply.random * goldPerRandom, false, 0)
 			SendOverheadEventMessage( ply, OVERHEAD_ALERT_GOLD , ply, ply.random * goldPerRandom, nil )
 			ply.random = 0
+			ply.ckPerkBonusGoldGiven = true
 		end
 	end
 	return true
