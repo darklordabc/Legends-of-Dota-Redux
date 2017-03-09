@@ -437,10 +437,10 @@ var tipsPerks = [{
     }*/, {
         img: 'file://{images}/custom_game/hints/hint_bristle_back.png',
         txt: '#hintBristleBack'
-    }, {
+    }/*, {
         img: 'file://{images}/custom_game/hints/hint_CK.png',
         txt: '#hintCK'
-    }, {
+    }*/, {
         img: 'file://{images}/custom_game/hints/hint_clockwerk.png',
         txt: '#hintClockwerk'
     }, {
