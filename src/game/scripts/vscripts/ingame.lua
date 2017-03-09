@@ -142,7 +142,7 @@ function Ingame:FilterItemsInventory(keys)
         -- Convert certain items to consumable items
         --if OptionManager:GetOption('ConsumableItems') then 
              Timers:CreateTimer(function ()
-                for i=0,14 do
+                for i=0,8 do
                     local hItem = hero:GetItemInSlot(i)
                     if hItem then
                         local name = hItem:GetAbilityName()

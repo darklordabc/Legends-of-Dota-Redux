@@ -54,6 +54,10 @@ end
 function modifier_item_skadi_consumable:IsHidden()
   return self:GetAbility().IsItem
 end
+function modifier_item_skadi_consumable:GetAttributes()
+  return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+
 
 
 function modifier_item_skadi_consumable:DeclareFunctions()
