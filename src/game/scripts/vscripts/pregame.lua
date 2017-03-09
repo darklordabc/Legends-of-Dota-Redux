@@ -526,7 +526,7 @@ function Pregame:loadDefaultSettings()
     self:setOption('lodOptionCrazyWTF', 0, true)
 
     -- Disable ingame hero builder
-    self:setOption('lodOptionIngameBuilder', 1, true)
+    self:setOption('lodOptionIngameBuilder', 0, true)
     self:setOption("lodOptionIngameBuilderPenalty", 0)
 
     -- Enable Perks
@@ -2564,7 +2564,7 @@ function Pregame:initOptionSelector()
 
         -- Other -- Ingame Builder
         lodOptionIngameBuilder = function(value)
-            return value == 1 or value == 1
+            return value == 0 or value == 1
         end,
 
         -- Other -- Ingame Builder Penalty
@@ -3421,8 +3421,7 @@ function Pregame:processOptions()
     local mapName = GetMapName()
 
     -- Single Player Overrides
-   -- if util:isSinglePlayerMode() then
-    if true then
+    if util:isSinglePlayerMode() then
                 self:setOption('lodOptionIngameBuilder', 1, true)
                 self:setOption("lodOptionIngameBuilderPenalty", 0)
     end
