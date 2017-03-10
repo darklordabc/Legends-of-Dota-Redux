@@ -526,7 +526,7 @@ function Pregame:loadDefaultSettings()
     self:setOption('lodOptionCrazyWTF', 0, true)
 
     -- Disable ingame hero builder
-    self:setOption('lodOptionIngameBuilder', 1, true)
+    self:setOption('lodOptionIngameBuilder', 0, true)
     self:setOption("lodOptionIngameBuilderPenalty", 0)
 
     -- Enable Perks
@@ -2564,7 +2564,7 @@ function Pregame:initOptionSelector()
 
         -- Other -- Ingame Builder
         lodOptionIngameBuilder = function(value)
-            return value == 1 or value == 1
+            return value == 0 or value == 1
         end,
 
         -- Other -- Ingame Builder Penalty
@@ -3421,8 +3421,7 @@ function Pregame:processOptions()
     local mapName = GetMapName()
 
     -- Single Player Overrides
-   -- if util:isSinglePlayerMode() then
-    if true then
+    if util:isSinglePlayerMode() then
                 self:setOption('lodOptionIngameBuilder', 1, true)
                 self:setOption("lodOptionIngameBuilderPenalty", 0)
     end
@@ -3670,7 +3669,6 @@ function Pregame:processOptions()
         -- Enable All Vision
         if this.optionStore['lodOptionCrazyAllVision'] == 1 then
             Convars:SetBool('dota_all_vision', true)
-            SendToServerConsole('dota_spawn_neutrals')  
         end
 
         if this.optionStore['lodOptionBlackForest'] == 1 then
@@ -4369,10 +4367,7 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
             if newBuild.setAttr ~= attr or newBuild.hero ~= heroName then
                 isSameBuild = false
             end
-
-            --TODO: If timer is more than 10 minutes you can't change builds
-            local dotaTime = GameRules:GetDOTATime(false, false)
-            if isSameBuild or dotaTime > 600 and not util:isSinglePlayerMode() then
+            if isSameBuild then
                 local player = PlayerResource:GetPlayer(playerID)
                 network:hideHeroBuilder(player)
                 return
@@ -4387,14 +4382,10 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
             --if OptionManager:GetOption('ingameBuilderPenalty') > 0 then
             --TODO: If long enough, players die to respawn
             self:fixSpawnedHero(hero)
-            if dotaTime > 15 and not util:isSinglePlayerMode() then
+            if not util:isSinglePlayerMode() and OptionManager:GetOption('ingameBuilderPenalty') > 0 then
                 Timers:CreateTimer(function()
-                    -- TODO: penalty should be game settings, but because its forced on until talents fix, make it based on gametime to stop abuse
-                    -- local penalty = OptionManager:GetOption('ingameBuilderPenalty')
-                    local penalty = dotaTime / 15
-                    if penalty > 60 then 
-                        penalty = 60
-                    end
+                    local penalty = OptionManager:GetOption('ingameBuilderPenalty')
+
                     hero:Kill(nil, nil)
                     
                     Timers:CreateTimer(function()

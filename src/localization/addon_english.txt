@@ -489,8 +489,8 @@
     "minimapMenuReviewGameOptions"                  "Review Game Settings"
     "minimapMenuHeroBuilder"                        "Hero Builder"
 	
-    "ingameBuilderNotification"                     "<font color='#00DD0B'>Ingame Build Switch is Enabled. Click on the change build icon in the bottom left corner to change your abilities/hero/primaray stat.</font> <font color=\'#FF4949\'>At 10 minutes mark hero switching will be disabled.</font>"
-    "ingameBuilderReminder"                     "<font color='#00DD0B'>Don't forget. Ingame Build Switch is Enabled. Click on the change build icon in the bottom left corner to change your abilities/hero/primaray stat. <font color=\'#FF4949\'>At 10 minutes mark hero switching will be disabled.</font>"
+    "ingameBuilderNotification"                     "<font color='#00DD0B'>Ingame Build Switch is Enabled. Click on the change build icon in the bottom left corner to change your abilities/hero/primaray stat.</font>"
+    "ingameBuilderReminder"                     "<font color='#00DD0B'>Don't forget. Ingame Build Switch is Enabled. Click on the change build icon in the bottom left corner to change your abilities/hero/primaray stat.</font>"
     "tempDuelBlock"                     "<font color='#FF0000'>Duels are temporarily disabled due to a crash issue. They will be reenabled soon. Sorry about that.</font>"
     "respawnCheatNotification"  "You can use the chat command cheat '-respawn' to force your hero to respawn, this cheat is only available in single player mode."
 
@@ -4198,7 +4198,7 @@
 
     "DOTA_Tooltip_ability_item_backPackBlocker" "Bot BackPack Blocker"
 
-    "DOTA_Tooltip_ability_item_devDagger" "Toolsmode Blink Dagger"
+    "DOTA_Tooltip_ability_item_devDagger" "GLOBAL OP Blink Dagger"
 
     "DOTA_Tooltip_ability_arc_warden_tempest_double_redux"        "Tempest Double Redux"
     "DOTA_Tooltip_ability_arc_warden_tempest_double_redux_Description"    "Briefly refocusing its fractured elements into a single form, the Arc Warden is able to create a perfect electrical duplication of itself. The duplicate can use all of Arc Warden's current items and spells, except consumables and items that drop on death. The duplicate has seperate item and ability cooldowns. <font color='#70EA72'>Has 50% longer cooldown.</font>"
