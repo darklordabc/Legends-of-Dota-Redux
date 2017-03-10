@@ -6912,10 +6912,11 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                         local devDagger = spawnedUnit:FindItemByName("item_devDagger")
                         local normalDagger = spawnedUnit:FindItemByName("item_blink")
                         if not devDagger and not normalDagger then
-                            spawnedUnit:AddItemByName('item_devDagger')
+                            Say(spawnedUnit:GetPlayerOwner(), "-dagger", false)
+
                         elseif not devDagger and normalDagger then
                             normalDagger:RemoveSelf()
-                            spawnedUnit:AddItemByName('item_devDagger')
+                            Say(spawnedUnit:GetPlayerOwner(), "-dagger", false)
                         end
 
                     end
