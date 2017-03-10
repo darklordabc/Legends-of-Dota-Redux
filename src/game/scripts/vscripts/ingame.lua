@@ -83,16 +83,16 @@ function Ingame:init()
         local code = DoUniqueString("team_switch")
         self.teamSwitchCode = code
         Timers:CreateTimer(function ()
-            this:swapPlayers(args.x, args.y, code)
+            self:swapPlayers(args.x, args.y, code)
         end, 'switch_warning', 5)
     end)
 
     CustomGameEventManager:RegisterListener( 'declined', function (eventSourceIndex)
-        this:declined(eventSourceIndex)
+        self:declined(eventSourceIndex)
     end)
 
     CustomGameEventManager:RegisterListener( 'ask_custom_team_info', function(eventSourceIndex, args)
-        this:returnCustomTeams(eventSourceIndex, args)
+        self:returnCustomTeams(eventSourceIndex, args)
     end)
 end   
 
