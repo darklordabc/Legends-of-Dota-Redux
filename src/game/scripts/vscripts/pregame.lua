@@ -6624,8 +6624,8 @@ function Pregame:hookBotStuff()
 end
 
 function Pregame:fixSpawnedHero( spawnedUnit )
-    local givenBonuses = {}
-    local handled = {}
+    self.givenBonuses = self.givenBonuses or {}
+    self.handled = self.handled or {}
     self.givenCouriers = {}
     local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
 
@@ -6649,7 +6649,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
         -- npc_dota_hero_shadow_demon = true,
         -- npc_dota_hero_spirit_breaker = true,
         --npc_dota_hero_spirit_slardar = true,
-        npc_dota_hero_chaos_knight = true,
+        -- npc_dota_hero_chaos_knight = true,
         npc_dota_hero_wisp = true
     }
 
@@ -6869,8 +6869,8 @@ function Pregame:fixSpawnedHero( spawnedUnit )
     end, DoUniqueString('addPerk'), 1.0)
 
     -- Don't touch this hero more than once :O
-    if handled[spawnedUnit] then return end
-    handled[spawnedUnit] = true
+    if self.handled[spawnedUnit] then return end
+    self.handled[spawnedUnit] = true
 
     -- Are they a bot?
     Timers:CreateTimer(function()
@@ -7067,9 +7067,9 @@ function Pregame:fixSpawnedHero( spawnedUnit )
      end, DoUniqueString('removeTalentModifiers'), 2)
                 
     -- Only give bonuses once
-    if not givenBonuses[playerID] then
+    if not self.givenBonuses[playerID] then
         -- We have given bonuses
-        givenBonuses[playerID] = true
+        self.givenBonuses[playerID] = true
 
         local startingLevel = OptionManager:GetOption('startingLevel')
         -- Do we need to level up?
@@ -7094,8 +7094,8 @@ end
 
 -- Apply fixes, add perks
 function Pregame:fixSpawningIssues()
-    local givenBonuses = {}
-    local handled = {}
+    self.givenBonuses = self.givenBonuses or {}
+    self.handled = self.handled or {}
     local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
 
     -- Grab a reference to self
