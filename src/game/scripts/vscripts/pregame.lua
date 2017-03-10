@@ -6617,7 +6617,7 @@ end
 function Pregame:fixSpawnedHero( spawnedUnit )
     self.givenBonuses = self.givenBonuses or {}
     self.handled = self.handled or {}
-    self.givenCouriers = {}
+    self.givenCouriers = self.givenCouriers or {}
     local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
 
     -- Grab a reference to self
