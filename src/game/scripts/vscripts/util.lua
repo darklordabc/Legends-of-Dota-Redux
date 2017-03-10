@@ -674,6 +674,14 @@ function CDOTABaseAbility:HasAbilityFlag(flag)
     end
 end
 
+function Util:split(s, delimiter)
+    result = {};
+    for match in (s..delimiter):gmatch("(.-)"..delimiter) do
+        table.insert(result, match);
+    end
+    return result;
+end
+
 function Util:isSinglePlayerMode()
     local maxPlayerID = 24
     local count = 0

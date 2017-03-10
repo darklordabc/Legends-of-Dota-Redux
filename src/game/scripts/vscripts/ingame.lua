@@ -83,16 +83,16 @@ function Ingame:init()
         local code = DoUniqueString("team_switch")
         self.teamSwitchCode = code
         Timers:CreateTimer(function ()
-            this:swapPlayers(args.x, args.y, code)
+            self:swapPlayers(args.x, args.y, code)
         end, 'switch_warning', 5)
     end)
 
     CustomGameEventManager:RegisterListener( 'declined', function (eventSourceIndex)
-        this:declined(eventSourceIndex)
+        self:declined(eventSourceIndex)
     end)
 
     CustomGameEventManager:RegisterListener( 'ask_custom_team_info', function(eventSourceIndex, args)
-        this:returnCustomTeams(eventSourceIndex, args)
+        self:returnCustomTeams(eventSourceIndex, args)
     end)
 end   
 
@@ -456,7 +456,7 @@ function Ingame:onStart()
 
     ListenToGameEvent("player_chat", Dynamic_Wrap(Ingame, 'OnPlayerChat'), self)
     
-    -- -- Set it to no team balance
+    -- Set it to no team balance
     self:setNoTeamBalanceNeeded()
 end
 
@@ -464,9 +464,12 @@ function Ingame:OnPlayerChat(keys)
     local teamonly = keys.teamonly
     local playerID = keys.playerid
     
-    local text = keys.text
+    local text = string.lower(keys.text)
     local hero = PlayerResource:GetSelectedHeroEntity(playerID) 
 
+    ----------------------------
+    -- Debug Commands
+    ----------------------------
     if string.find(text, "-test") then 
         GameRules:SendCustomMessage('testing testing 1. 2. 3.', 0, 0)
 
@@ -542,44 +545,103 @@ function Ingame:OnPlayerChat(keys)
                 SendToServerConsole('say "Post this to the LoD comments section: '..err2:gsub('"',"''")..'"')
             end
         end, DoUniqueString('fixcasting'), .5)
-
-    elseif string.find(text, "-gold") and util:isSinglePlayerMode() then 
-
-            Timers:CreateTimer(function()        
-                hero:SetGold(99999, true)
-                GameRules:SendCustomMessage('given maximum gold to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
-            end, DoUniqueString('cheatgold'), .5)
-
-    elseif string.find(text, "-respawn") and util:isSinglePlayerMode() then 
-
-        Timers:CreateTimer(function()
-            if not hero:IsAlive() then
-                hero:SetTimeUntilRespawn(1)
+    end
+    ----------------------------
+    -- Cheat Commands
+    ----------------------------
+    if util:isSinglePlayerMode() or Convars:GetBool("sv_cheats") then
+        if string.find(text, "-gold") then 
+            -- Give user max gold, unless they specify a number
+            local goldAmount = 100000
+            local splitedText = util:split(text, " ")       
+            if splitedText[2] and tonumber(splitedText[2])then
+                goldAmount = tonumber(splitedText[2])
             end
-        end, DoUniqueString('cheatrespawn'), 1)
+            Timers:CreateTimer(function()  
+                PlayerResource:ModifyGold(hero:GetPlayerOwner():GetPlayerID(), goldAmount, true, 0)      
+                GameRules:SendCustomMessage('Cheat: Given ' .. goldAmount .. ' gold to '.. hero:GetName(), 0, 0 )
+            end, DoUniqueString('cheat'), .1)
 
-    elseif string.find(text, "-refresh") and util:isSinglePlayerMode() then 
-
-        Timers:CreateTimer(function()
-
-            hero:SetMana(hero:GetMaxMana())
-            hero:SetHealth(hero:GetMaxHealth())
-
-            for i = 0, hero:GetAbilityCount() - 1 do
-                local ability = hero:GetAbilityByIndex(i)
-                if ability then
-                    ability:EndCooldown()
+        elseif string.find(text, "-lvlup") then 
+            -- Give user 1 level, unless they specify a number after
+            local levels = 1
+            local splitedText = util:split(text, " ")       
+            if splitedText[2] and tonumber(splitedText[2]) then
+                levels = tonumber(splitedText[2])
+            end
+            Timers:CreateTimer(function()  
+                for i=0,levels-1 do
+                    hero:HeroLevelUp(true)
                 end
-            end
+                GameRules:SendCustomMessage('Cheat: Given ' .. levels .. ' level(s) to '.. hero:GetName(), 0, 0 )
+            end, DoUniqueString('cheat'), .1)
 
-            for i = 0, 5 do
-                local item = hero:GetItemInSlot( i )
-                if item then
-                    item:EndCooldown()
+        elseif string.find(text, "-lvlmax") then 
+            Timers:CreateTimer(function()
+                for i=0,100 do
+                    hero:HeroLevelUp(true)
                 end
-            end
-        end, DoUniqueString('cheatrefresh'), .2)
+                for i = 0, hero:GetAbilityCount() - 1 do
+                    local ability = hero:GetAbilityByIndex(i)
+                    if ability then
+                        ability:SetLevel(ability:GetMaxLevel())
+                    end
+                end
+                GameRules:SendCustomMessage('Cheat: Max level given to '.. hero:GetName(), 0, 0 )
+            end, DoUniqueString('cheat'), .1)
 
+        elseif string.find(text, "-dagger") then 
+            Timers:CreateTimer(function()
+                hero:AddItemByName('item_devDagger')
+                GameRules:SendCustomMessage('Cheat: Global teleport dagger given to '.. hero:GetName(), 0, 0 )
+            end, DoUniqueString('cheat'), 0.2)
+
+
+        elseif string.find(text, "-teleport") then 
+            -- Teleport is not exactly reproduced. If the game is in tools mode or has sv_cheats, leave it as it is, if not give players the teleport dagger.
+            if not IsInToolsMode() and not Convars:GetBool("sv_cheats") then
+                Timers:CreateTimer(function()
+                    hero:AddItemByName('item_devDagger')
+                    GameRules:SendCustomMessage('Cheat: Global teleport dagger given to '.. hero:GetName(), 0, 0 )
+                end, DoUniqueString('cheat'), 0.2)
+            end
+        
+        elseif string.find(text, "-startgame") then 
+            Timers:CreateTimer(function()
+                Tutorial:ForceGameStart()
+                GameRules:SendCustomMessage('Cheat: Forced game start, by '.. hero:GetName(), 0, 0 )
+            end, DoUniqueString('cheat'), .1)    
+
+        elseif string.find(text, "-respawn") then 
+            Timers:CreateTimer(function()
+                if not hero:IsAlive() then
+                    hero:SetTimeUntilRespawn(1)
+                end
+                GameRules:SendCustomMessage('Cheat: Respawned '.. hero:GetName(), 0, 0 )
+            end, DoUniqueString('cheat'), 1)
+
+        elseif string.find(text, "-refresh") then 
+            Timers:CreateTimer(function()
+
+                hero:SetMana(hero:GetMaxMana())
+                hero:SetHealth(hero:GetMaxHealth())
+
+                for i = 0, hero:GetAbilityCount() - 1 do
+                    local ability = hero:GetAbilityByIndex(i)
+                    if ability then
+                        ability:EndCooldown()
+                    end
+                end
+
+                for i = 0, 5 do
+                    local item = hero:GetItemInSlot( i )
+                    if item then
+                        item:EndCooldown()
+                    end
+                end
+                GameRules:SendCustomMessage('Cheat: Refreshed '.. hero:GetName(), 0, 0 )
+            end, DoUniqueString('cheatrefresh'), .2)
+        end
     end
 end
 
