@@ -3669,7 +3669,6 @@ function Pregame:processOptions()
         -- Enable All Vision
         if this.optionStore['lodOptionCrazyAllVision'] == 1 then
             Convars:SetBool('dota_all_vision', true)
-            SendToServerConsole('dota_spawn_neutrals')  
         end
 
         if this.optionStore['lodOptionBlackForest'] == 1 then
