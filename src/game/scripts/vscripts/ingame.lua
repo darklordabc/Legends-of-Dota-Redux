@@ -623,6 +623,56 @@ function Ingame:OnPlayerChat(keys)
                 end
             end, DoUniqueString('cheat'), .1)
 
+        elseif string.find(text, "-addability") or string.find(text, "-giveability") then 
+            -- Give user 1 level, unless they specify a number after
+
+            Timers:CreateTimer(function()  
+                local splitedText = util:split(text, " ")       
+                local validAbility = false
+                if splitedText[2] then    
+                    local oldAbList = LoadKeyValues('scripts/kv/abilities.kv')
+                    local skills = oldAbList.skills
+                    for tabName, tabList in pairs(skills) do
+                        for abilityName,abilityGroup in pairs(tabList) do
+                            print(abilityName)
+                            if string.find(abilityName, splitedText[2]) then
+                                splitedText[2] = abilityName
+                            end
+                        end
+                    end
+                    hero:AddAbility(splitedText[2])
+                    local findAbility = hero:FindAbilityByName(splitedText[2])
+                    if findAbility then validAbility = true end
+                end
+                if validAbility then
+                    GameRules:SendCustomMessage('Cheat: Given ' .. splitedText[2] .. ' to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                end
+            end, DoUniqueString('cheat'), .1)
+
+        elseif string.find(text, "-removeability") then 
+            -- Give user 1 level, unless they specify a number after
+
+            Timers:CreateTimer(function()  
+                local splitedText = util:split(text, " ")       
+                local validAbility = false
+                if splitedText[2] then    
+                    for i=0,32 do
+                        local abil = hero:GetAbilityByIndex(i)
+                        if abil then
+                            if splitedText[2] == "all" then
+                                hero:RemoveAbility(abil:GetName())
+                            elseif string.find(abil:GetName(), splitedText[2]) then
+                                splitedText[2] = abil:GetName()
+                            end
+                        end
+                    end
+                    hero:RemoveAbility(splitedText[2])
+                end
+                if validAbility then
+                    GameRules:SendCustomMessage('Cheat: -removeability used by  '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                end
+            end, DoUniqueString('cheat'), .1)
+
         elseif string.find(text, "-lvlmax") then 
             Timers:CreateTimer(function()
                 for i=0,100 do
