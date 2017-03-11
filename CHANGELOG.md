@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 - The following cheats can be used in all single player games, you no longer need sv_cheats 1 enabled: '-gold x' '-lvlup x' '-lvlmax'
 '-dagger' '-teleport' '-startgame' '-respawn' '-refresh' '-item x'
 - Berserk and Rot is now a troll combo.
+- Added Anti-Kamikaze Mechanic: If a hero dies more than 3 times within 60 seconds, they will incur a 20 second extra respawn time penalty, if they again die 3 times within 60 seconds, that penalty will increase by 30 seconds each times.
 
 ## 6.7 - Steam Version
 - Disease Tower saps 5 less attributes

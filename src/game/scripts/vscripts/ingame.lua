@@ -1194,6 +1194,48 @@ function Ingame:handleRespawnModifier()
 	                            end
                         	end
 
+                            -------
+                            -- Anti-Kamikaze Mechanic START
+                            -- This is designed to stop players from spawning very quicky and dying very quickly, e.g pushing towers
+                            -------
+                            if not util:isPlayerBot(playerID) then
+                                local allowableSecsBetweenDeaths = 60
+                                if not hero.lastDeath then
+                                    hero.lastDeath = GameRules:GetDOTATime(false, false)
+                                else
+                                    timeSinceLastDeath = GameRules:GetDOTATime(false, false) - hero.lastDeath 
+                                    hero.lastDeath = GameRules:GetDOTATime(false, false)
+                                    -- If they have died a few seconds after respawning, increase Kamikaze rating
+                                    if timeSinceLastDeath <= allowableSecsBetweenDeaths then
+                                        if not hero.KamikazeRating then
+                                            hero.KamikazeRating = 1
+                                        else
+                                            hero.KamikazeRating = hero.KamikazeRating +1
+                                            if hero.KamikazeRating > 2 then
+                                                GameRules:SendCustomMessage('Player '..PlayerResource:GetPlayerName(playerID)..' has died at least 3 times in the last ' .. allowableSecsBetweenDeaths .. " seconds. To prevent Kamikaze tactics, they have incured <font color=\'#FF4949\'>extra respawn time</font>. " , 0, 0)
+                                                -- If they continue this strat, extra respawn peanlty increases by 10 seconds
+                                                if not hero.KamikazePenalty then
+                                                    hero.KamikazePenalty = 1
+                                                else
+                                                    hero.KamikazePenalty = hero.KamikazePenalty + 1
+                                                end
+                                                timeLeft = timeLeft + (hero.KamikazePenalty * 10)
+                                            end
+                                        end
+
+                                        -- After the the allowable time between deaths, lower the rating
+                                        Timers:CreateTimer( function()
+                                            if hero.KamikazeRating and hero.KamikazeRating > 0 then
+                                               hero.KamikazeRating = hero.KamikazeRating - 1   
+                                            end
+                                        end, DoUniqueString('lowerKamikazeRating'), allowableSecsBetweenDeaths)
+                                    end
+                                end
+                            end
+                            -------
+                            -- Anti-Kamikaze Mechanic END
+                            -------
+
                             hero:SetTimeUntilRespawn(timeLeft)
                             
                             -- Give 322 gold if enabled
