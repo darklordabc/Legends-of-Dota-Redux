@@ -48,9 +48,11 @@ function Ingame:init()
     self.playerColors[18]  = { 58.43 * 2.55, 58.82 * 2.55, 59.21 * 2.55 }
     self.playerColors[19]  = { 49.41 * 2.55, 74.90 * 2.55, 94.51 * 2.55 }
 
-    -- 40 minutes
+    -- When to increase respawn rates - 40 minutes
     self.timeToIncreaseRespawnRate = 2400
     self.timeToIncreaseRepawnInterval = 600
+
+    self.voteEnabledCheatMode = false
 
     -- Setup standard rules
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
@@ -549,7 +551,37 @@ function Ingame:OnPlayerChat(keys)
     ----------------------------
     -- Cheat Commands
     ----------------------------
-    if util:isSinglePlayerMode() or Convars:GetBool("sv_cheats") then
+    if string.find(text, "-enablecheat") then 
+        Timers:CreateTimer(function()
+            if not PlayerResource:GetPlayer(playerID).enableCheats then
+                PlayerResource:GetPlayer(playerID).enableCheats = true
+                
+                local votesRequiredToEnable = 0
+                
+                for playerID = 0,(24-1) do                        
+                    if not util:isPlayerBot(playerID) then                            
+                        local state = PlayerResource:GetConnectionState(playerID)
+                        if state == 1 or state == 2 then
+                            if not PlayerResource:GetPlayer(playerID).enableCheats then
+                                votesRequiredToEnable = votesRequiredToEnable + 1
+                            end
+                        end
+                    end
+                end
+
+                if votesRequiredToEnable == 0 then
+                    self.voteEnabledCheatMode = true
+                    GameRules:SendCustomMessage('Everbody voted to enable cheat mode. <font color=\'#70EA72\'>Cheat mode enabled</font>.',0,0)
+                else
+                    GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to enable cheat mode. <font color=\'#70EA72\'>'.. votesRequiredToEnable .. ' more votes are required</font>, type -enablecheats to vote to enable',0,0)
+                end
+
+                print(votesRequiredToEnable)
+
+            end
+        end, DoUniqueString('enableCheat'), .1)
+    end
+    if util:isSinglePlayerMode() or Convars:GetBool("sv_cheats") or self.voteEnabledCheatMode then
         if string.find(text, "-gold") then 
             -- Give user max gold, unless they specify a number
             local goldAmount = 100000
@@ -656,6 +688,37 @@ function Ingame:OnPlayerChat(keys)
                 end
                 GameRules:SendCustomMessage('Cheat: Refreshed '.. hero:GetName(), 0, 0 )
             end, DoUniqueString('cheatrefresh'), .2)
+
+        elseif string.find(text, "-enablecheat") then 
+            Timers:CreateTimer(function()
+                if not PlayerResource:GetPlayer(playerID).enableCheats then
+                    PlayerResource:GetPlayer(playerID).enableCheats = true
+                    
+                    local votesRequiredToEnable = 0
+                    
+                    for playerID = 0,(24-1) do                        
+                        if not util:isPlayerBot(playerID) then                            
+                            local state = PlayerResource:GetConnectionState(playerID)
+                            if state == 1 or state == 2 then
+                                if not PlayerResource:GetPlayer(playerID).enableCheats then
+                                    votesRequiredToEnable = votesRequiredToEnable + 1
+                                end
+                            end
+                        end
+                    end
+
+                    if votesRequiredToEnable == 0 then
+                        self.voteEnabledCheatMode = true
+                        GameRules:SendCustomMessage('Everbody voted to enable cheat mode. Cheat mode enabled.',0,0)
+                    else
+                        GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to enable cheat mode. <font color=\'#70EA72\'>'.. votesRequiredToEnable .. ' more votes are required</font>, type -enablecheats to vote to enable',0,0)
+                    end
+
+                    print(votesRequiredToEnable)
+
+                end
+            end, DoUniqueString('cheat'), .1)
+
         end
     end
 end
@@ -1237,7 +1300,7 @@ function Ingame:handleRespawnModifier()
                             -------
 
                             hero:SetTimeUntilRespawn(timeLeft)
-                            
+
                             -- Give 322 gold if enabled
                             if OptionManager:GetOption('322') == 1 then
                                 hero:ModifyGold(322,false,0)

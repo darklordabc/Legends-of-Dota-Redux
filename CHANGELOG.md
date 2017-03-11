@@ -2,6 +2,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 6.9 - Development Version
+- You can enable cheats in a multiplayer games now if everbody types '-enablecheats'
+
 ## 6.8 - Development Version
 - Tomes now get lower cooldown on levelup
 - Magic Barrier decay reduced to 3 per second instead of 5, but no longer works with abilities with 0 cooldown (e.g. Arcane Orb)
