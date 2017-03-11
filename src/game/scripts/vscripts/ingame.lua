@@ -576,6 +576,21 @@ function Ingame:OnPlayerChat(keys)
                 GameRules:SendCustomMessage('Cheat: Given ' .. levels .. ' level(s) to '.. hero:GetName(), 0, 0 )
             end, DoUniqueString('cheat'), .1)
 
+        elseif string.find(text, "-item") then 
+            -- Give user 1 level, unless they specify a number after
+            Timers:CreateTimer(function()  
+                local splitedText = util:split(text, " ")       
+                local validItem = false
+                if splitedText[2] then
+                    hero:AddItemByName(splitedText[2])
+                    local findItem = hero:FindItemByName(splitedText[2])
+                    if findItem then validItem = true end
+                end
+                if validItem then
+                    GameRules:SendCustomMessage('Cheat: Given ' .. splitedText[2] .. ' to '.. hero:GetName(), 0, 0 )
+                end
+            end, DoUniqueString('cheat'), .1)
+
         elseif string.find(text, "-lvlmax") then 
             Timers:CreateTimer(function()
                 for i=0,100 do

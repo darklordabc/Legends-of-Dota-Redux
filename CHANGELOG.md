@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file.
 - Temporarily disabled Juxtapose and Forest ability because of allegations of lag creating. 
 - Added levels to GIGA GRAVITON
 - The following cheats can be used in all single player games, you no longer need sv_cheats 1 enabled: '-gold x' '-lvlup x' '-lvlmax'
-'-dagger' '-teleport' '-startgame' '-respawn' '-refresh'
+'-dagger' '-teleport' '-startgame' '-respawn' '-refresh' '-item x'
 - Berserk and Rot is now a troll combo.
 
 ## 6.7 - Steam Version
