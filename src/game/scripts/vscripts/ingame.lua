@@ -591,7 +591,19 @@ function Ingame:OnPlayerChat(keys)
             end
             Timers:CreateTimer(function()  
                 PlayerResource:ModifyGold(hero:GetPlayerOwner():GetPlayerID(), goldAmount, true, 0)      
-                GameRules:SendCustomMessage('Cheat: Given ' .. goldAmount .. ' gold to '.. hero:GetName(), 0, 0 )
+                GameRules:SendCustomMessage('Cheat: Given ' .. goldAmount .. ' gold to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+            end, DoUniqueString('cheat'), .1)
+
+        elseif string.find(text, "-levelbots") then 
+            -- Give user 1 level, unless they specify a number after
+            local levels = 1
+            local splitedText = util:split(text, " ")       
+            if splitedText[2] and tonumber(splitedText[2]) then
+                levels = tonumber(splitedText[2])
+            end
+            Timers:CreateTimer(function()  
+                SendToServerConsole('dota_bot_give_level ' .. levels)
+                GameRules:SendCustomMessage('Cheat: Given ' .. levels .. ' level(s) to bots by '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
             end, DoUniqueString('cheat'), .1)
 
         elseif string.find(text, "-lvlup") then 
@@ -605,7 +617,7 @@ function Ingame:OnPlayerChat(keys)
                 for i=0,levels-1 do
                     hero:HeroLevelUp(true)
                 end
-                GameRules:SendCustomMessage('Cheat: Given ' .. levels .. ' level(s) to '.. hero:GetName(), 0, 0 )
+                GameRules:SendCustomMessage('Cheat: Given ' .. levels .. ' level(s) to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
             end, DoUniqueString('cheat'), .1)
 
         elseif string.find(text, "-item") then 
@@ -619,7 +631,18 @@ function Ingame:OnPlayerChat(keys)
                     if findItem then validItem = true end
                 end
                 if validItem then
-                    GameRules:SendCustomMessage('Cheat: Given ' .. splitedText[2] .. ' to '.. hero:GetName(), 0, 0 )
+                    GameRules:SendCustomMessage('Cheat: Given ' .. splitedText[2] .. ' to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                end
+            end, DoUniqueString('cheat'), .1)
+
+        elseif string.find(text, "-givebots") then 
+            -- Give user 1 level, unless they specify a number after
+            Timers:CreateTimer(function()  
+                local splitedText = util:split(text, " ")       
+                local validItem = false
+                if splitedText[2] then
+                    SendToServerConsole('dota_bot_give_item ' .. splitedText[2] )
+                    GameRules:SendCustomMessage('Cheat: Given ' .. splitedText[2] .. ' to all bots by '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
                 end
             end, DoUniqueString('cheat'), .1)
 
@@ -634,13 +657,13 @@ function Ingame:OnPlayerChat(keys)
                         ability:SetLevel(ability:GetMaxLevel())
                     end
                 end
-                GameRules:SendCustomMessage('Cheat: Max level given to '.. hero:GetName(), 0, 0 )
+                GameRules:SendCustomMessage('Cheat: Max level given to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
             end, DoUniqueString('cheat'), .1)
 
         elseif string.find(text, "-dagger") then 
             Timers:CreateTimer(function()
                 hero:AddItemByName('item_devDagger')
-                GameRules:SendCustomMessage('Cheat: Global teleport dagger given to '.. hero:GetName(), 0, 0 )
+                GameRules:SendCustomMessage('Cheat: Global teleport dagger given to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
             end, DoUniqueString('cheat'), 0.2)
 
 
@@ -649,22 +672,70 @@ function Ingame:OnPlayerChat(keys)
             if not IsInToolsMode() and not Convars:GetBool("sv_cheats") then
                 Timers:CreateTimer(function()
                     hero:AddItemByName('item_devDagger')
-                    GameRules:SendCustomMessage('Cheat: Global teleport dagger given to '.. hero:GetName(), 0, 0 )
+                    GameRules:SendCustomMessage('Cheat: Global teleport dagger given to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
                 end, DoUniqueString('cheat'), 0.2)
             end
         
         elseif string.find(text, "-startgame") then 
             Timers:CreateTimer(function()
                 Tutorial:ForceGameStart()
-                GameRules:SendCustomMessage('Cheat: Forced game start, by '.. hero:GetName(), 0, 0 )
+                GameRules:SendCustomMessage('Cheat: Forced game start, by '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
             end, DoUniqueString('cheat'), .1)    
+
+        elseif string.find(text, "-spawnneutrals") then 
+            Timers:CreateTimer(function()
+                SendToServerConsole('dota_spawn_neutrals') 
+                GameRules:SendCustomMessage('Cheat: Spawned Neturals by '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+            end, DoUniqueString('cheat'), .1) 
+
+        elseif string.find(text, "-spawncreeps") then 
+            Timers:CreateTimer(function()
+                SendToServerConsole('dota_spawn_creeps') 
+                GameRules:SendCustomMessage('Cheat: Creeps enabled by '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+            end, DoUniqueString('cheat'), .1) 
+
+        elseif string.find(text, "-enablecreepspawn") then 
+            Timers:CreateTimer(function()
+                SendToServerConsole('dota_creeps_no_spawning_disable') 
+                GameRules:SendCustomMessage('Cheat: Creeps disabled by '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+            end, DoUniqueString('cheat'), .1) 
+
+        elseif string.find(text, "-disablecreepspawn") then 
+            Timers:CreateTimer(function()
+                SendToServerConsole('dota_creeps_no_spawning_enable') 
+                GameRules:SendCustomMessage('Cheat: Disabled creep spawn by '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+            end, DoUniqueString('cheat'), .1) 
+
+        elseif string.find(text, "-allvision") then 
+            Timers:CreateTimer(function()
+                SendToServerConsole('dota_all_vision_enable') 
+                GameRules:SendCustomMessage('Cheat: All vision enabled by '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+            end, DoUniqueString('cheat'), .1) 
+
+        elseif string.find(text, "-normalvision") then 
+            Timers:CreateTimer(function()
+                SendToServerConsole('dota_all_vision_disable') 
+                GameRules:SendCustomMessage('Cheat: Normal vision enabled by '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+            end, DoUniqueString('cheat'), .1) 
+
+        elseif string.find(text, "-wtf") then 
+            Timers:CreateTimer(function()
+                SendToServerConsole('dota_ability_debug_enable') 
+                GameRules:SendCustomMessage('Cheat: WTF enabled by '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+            end, DoUniqueString('cheat'), .1) 
+
+        elseif string.find(text, "-unwtf") then 
+            Timers:CreateTimer(function()
+                SendToServerConsole('dota_ability_debug_disable') 
+                GameRules:SendCustomMessage('Cheat: UnWTF enabled by '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+            end, DoUniqueString('cheat'), .1) 
 
         elseif string.find(text, "-respawn") then 
             Timers:CreateTimer(function()
                 if not hero:IsAlive() then
                     hero:SetTimeUntilRespawn(1)
                 end
-                GameRules:SendCustomMessage('Cheat: Respawned '.. hero:GetName(), 0, 0 )
+                GameRules:SendCustomMessage('Cheat: Respawned '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
             end, DoUniqueString('cheat'), 1)
 
         elseif string.find(text, "-refresh") then 
@@ -686,7 +757,7 @@ function Ingame:OnPlayerChat(keys)
                         item:EndCooldown()
                     end
                 end
-                GameRules:SendCustomMessage('Cheat: Refreshed '.. hero:GetName(), 0, 0 )
+                GameRules:SendCustomMessage('Cheat: Refreshed '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
             end, DoUniqueString('cheatrefresh'), .2)
 
         elseif string.find(text, "-enablecheat") then 

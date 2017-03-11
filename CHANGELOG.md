@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 6.9 - Development Version
 - You can enable cheats in a multiplayer games now if everbody types '-enablecheats'
 - Reduced the amount of health neutral power modifier gives per level (100 to 80)
+- Added extra cheats that can be used in non sv_cheats server: '-levelbots x' '-givebots x' '-spawnneutrals' '-spawncreeps' '-enablecreepspawn' '-disablecreepspawn' '-allvision' '-normalvision' '-wtf' '-unwtf'
 
 ## 6.8 - Steam Version
 - Tomes now get lower cooldown on levelup
