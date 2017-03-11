@@ -115,6 +115,9 @@ var tipsGeneral = [{
     },{
         img: 'file://{images}/spellicons/techies_suicide.png',
         txt: '#hintAntiKamikaze'
+    },{
+        img: 'file://{images}/spellicons/courier_shield.png',
+        txt: '#hintChatCheats'
     },
 ];
 
@@ -440,10 +443,10 @@ var tipsPerks = [{
     }*/, {
         img: 'file://{images}/custom_game/hints/hint_bristle_back.png',
         txt: '#hintBristleBack'
-    }/*, {
+    }, {
         img: 'file://{images}/custom_game/hints/hint_CK.png',
         txt: '#hintCK'
-    }*/, {
+    }, {
         img: 'file://{images}/custom_game/hints/hint_clockwerk.png',
         txt: '#hintClockwerk'
     }, {

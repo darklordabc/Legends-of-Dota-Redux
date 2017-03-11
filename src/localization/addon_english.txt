@@ -713,6 +713,8 @@
     "hintBalancing"  "A balanced game is a fun game. But balance needs you! If you know a playstyle or ability which is too easy to win with (even if its your favourite), do your part, and report it to the developers."
     "hintGoldBorder"  "Ultimate Abilities have a gold border."
     "hintAntiKamikaze"  "Anti-Kamikaze mechanic: If you die more than 3 times within 60 seconds, you will be penalized with extra respawn time. This is to prevent players taking advantage of lowered respawn."
+    "hintChatCheats"  "You can use cheats in any single player game (even without sv_cheats enabled) like: '-gold x' '-lvlup x' '-lvlmax'
+'-dagger' '-teleport' '-startgame' '-respawn' '-refresh' '-item x'"
 
     // Perk-related Hints
     "hintLina"                          "Lina's intelligence increases by 3 for each level put in Fire abilities"
@@ -823,7 +825,7 @@
     //"hintGyro"                         "Aghanim's Scepter will give Gyrocopter a side gunner. If 'Free Scepter' option is enabled, this hero will not benefit from it."
     "hintBM"                            "Non-ultimate Summon abilities used by Broodmother will have 20% mana cost refunded and 20% cooldown reduction."
     "hintBristleBack"                           "Bristleback reduces the cooldown of all spells which cost less than 50 mana by 15%. "
-    //"hintCK"                            "Chaos Knight gains 200 extra gold for each ability he randoms."
+    "hintCK"                            "Chaos Knight gains 200 extra gold for each ability he randoms."
     "hintClockwerk"                         "Clockwerk fires a random flare to any part of the map every 15 seconds. Scales with Rocket Flare."
     "hintDazzle"                            "Shallow Grave has global cast range when picked by Dazzle."
     "hintDP"                            "Any Silence from Death Prophet is also a mute."
@@ -1098,7 +1100,7 @@
     "unique_mechanic_bristleback"                        "Bristleback reduces the cooldown of all spells which cost less than 50 mana by 15%."
     "unique_mechanic_broodmother"                        "Non-ultimate <font color=\'#ffd966\'>Summon</font> abilities will have 20% mana cost refunded and 20% reduced cooldown. "
     "unique_mechanic_centaur"               "Centaur Warrunnertakes 75% damage from  <font color=\'#ffd966\'>Self-Damaging</font> spells."
-    //"unique_mechanic_chaos_knight"                        "Chaos Knight gains 200 extra gold for each ability he randoms. "
+    "unique_mechanic_chaos_knight"                        "Chaos Knight gains 200 extra gold for each ability he randoms. "
     "unique_mechanic_chen"                   "When Chen sends creeps home to the fountain by casting <font color=\'#ffd966\'>Test of Faith (Teleport)</font> they will receive an extra ability."
     "unique_mechanic_clinkz"                        "Clinkz will receive a free level in his first non-ultimate <font color=\'#ffd966\'>Autocast</font> ability at the start of the game."
     "unique_mechanic_rattletrap"                        "Clockwerk fires a random flare to any part of the map every 15 seconds. Scales with <font color=\'#ffd966\'>Rocket Flare</font>."
