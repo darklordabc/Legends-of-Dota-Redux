@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 6.9 - Development Version
 - You can enable cheats in a multiplayer games now if everbody types '-enablecheats'
 
-## 6.8 - Development Version
+## 6.8 - Steam Version
 - Tomes now get lower cooldown on levelup
 - Magic Barrier decay reduced to 3 per second instead of 5, but no longer works with abilities with 0 cooldown (e.g. Arcane Orb)
 - You can now use the cheats '-gold', '-respawn' and '-refresh' in any single player game, with or without sv_cheats being activated.
@@ -18,7 +18,7 @@ All notable changes to this project will be documented in this file.
 - Added Anti-Kamikaze Mechanic: If a hero dies more than 3 times within 60 seconds, they will incur a 20 second extra respawn time penalty, if they again die 3 times within 60 seconds, that penalty will increase by 30 seconds each times.
 - Re-Enabled Chaos Knight perk
 
-## 6.7 - Steam Version
+## 6.7 
 - Disease Tower saps 5 less attributes
 - Anomaly now has fixed 6 second duration but lower manacost
 - Cask does not proc spell echo or anomaly cause its bugged
