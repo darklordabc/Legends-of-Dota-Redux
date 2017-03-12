@@ -52,7 +52,11 @@ function Ingame:init()
     self.timeToIncreaseRespawnRate = 2400
     self.timeToIncreaseRepawnInterval = 600
 
+    -- These are optional votes that can enable or disable game mechanics
     self.voteEnabledCheatMode = false
+    self.voteDisableAntiKamikaze = false
+    self.voteDisableRespawnLimit = false
+    self.origianlRespawnRate = nil
 
     -- Setup standard rules
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
@@ -556,30 +560,93 @@ function Ingame:OnPlayerChat(keys)
             if not PlayerResource:GetPlayer(playerID).enableCheats then
                 PlayerResource:GetPlayer(playerID).enableCheats = true
                 
-                local votesRequiredToEnable = 0
+                local votesRequired = 0
                 
                 for playerID = 0,(24-1) do                        
                     if not util:isPlayerBot(playerID) then                            
                         local state = PlayerResource:GetConnectionState(playerID)
                         if state == 1 or state == 2 then
                             if not PlayerResource:GetPlayer(playerID).enableCheats then
-                                votesRequiredToEnable = votesRequiredToEnable + 1
+                                votesRequired = votesRequired + 1
                             end
                         end
                     end
                 end
 
-                if votesRequiredToEnable == 0 then
+                if votesRequired == 0 then
                     self.voteEnabledCheatMode = true
                     GameRules:SendCustomMessage('Everbody voted to enable cheat mode. <font color=\'#70EA72\'>Cheat mode enabled</font>.',0,0)
                 else
-                    GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to enable cheat mode. <font color=\'#70EA72\'>'.. votesRequiredToEnable .. ' more votes are required</font>, type -enablecheats to vote to enable',0,0)
+                    GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to enable cheat mode. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablecheats to vote to enable',0,0)
                 end
 
-                print(votesRequiredToEnable)
+                --print(votesRequired)
 
             end
         end, DoUniqueString('enableCheat'), .1)
+    end
+    if string.find(text, "-enablekamikaze") then 
+        Timers:CreateTimer(function()
+            if not PlayerResource:GetPlayer(playerID).enableKamikaze then
+                PlayerResource:GetPlayer(playerID).enableKamikaze = true
+                
+                local votesRequired = 0
+                
+                for playerID = 0,(24-1) do                        
+                    if not util:isPlayerBot(playerID) then                            
+                        local state = PlayerResource:GetConnectionState(playerID)
+                        if state == 1 or state == 2 then
+                            if not PlayerResource:GetPlayer(playerID).enableKamikaze then
+                                votesRequired = votesRequired + 1
+                            end
+                        end
+                    end
+                end
+
+                if votesRequired == 0 then
+                    self.voteDisableAntiKamikaze = true
+                    GameRules:SendCustomMessage('Everbody voted to disable the Kamikaze Mechanic. <font color=\'#70EA72\'>No more peanlty for dying 3 times within 60 seconds</font>.',0,0)
+                else
+                    GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to disable anti-Kamikaze safeguard. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablekamikaze to vote to disable.',0,0)
+                end
+
+                --print(votesRequired)
+
+            end
+        end, DoUniqueString('enableKamikaze'), .1)
+    end
+    if string.find(text, "-enablerespawn") then 
+        Timers:CreateTimer(function()
+            if not PlayerResource:GetPlayer(playerID).enableRespawn then
+                PlayerResource:GetPlayer(playerID).enableRespawn = true
+                
+                local votesRequired = 0
+                
+                for playerID = 0,(24-1) do                        
+                    if not util:isPlayerBot(playerID) then                            
+                        local state = PlayerResource:GetConnectionState(playerID)
+                        if state == 1 or state == 2 then
+                            if not PlayerResource:GetPlayer(playerID).enableRespawn then
+                                votesRequired = votesRequired + 1
+                            end
+                        end
+                    end
+                end
+
+                if votesRequired == 0 then
+                    self.voteDisableRespawnLimit = true
+                    if self.origianlRespawnRate ~= nil then
+                        OptionManager:SetOption('respawnModifierPercentage', self.origianlRespawnRate)
+                    end        
+                    GameRules:SendCustomMessage('Everbody voted to disable the increasing-spawn-rate Mechanic. <font color=\'#70EA72\'>Respawn rates no longer increase after 40 minutes</font>. Respawn rate is now '.. OptionManager:GetOption('respawnModifierPercentage') .. '%.',0,0)
+                else
+                    GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to disable increasing-spawn-rate safeguard. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablerespawn to vote to disable.',0,0)
+                end
+
+                --print(votesRequired)
+
+            end
+        end, DoUniqueString('enableRespawn'), .1)
     end
     if util:isSinglePlayerMode() or Convars:GetBool("sv_cheats") or self.voteEnabledCheatMode then
         if string.find(text, "-gold") then 
@@ -744,27 +811,27 @@ function Ingame:OnPlayerChat(keys)
                 if not PlayerResource:GetPlayer(playerID).enableCheats then
                     PlayerResource:GetPlayer(playerID).enableCheats = true
                     
-                    local votesRequiredToEnable = 0
+                    local votesRequired = 0
                     
                     for playerID = 0,(24-1) do                        
                         if not util:isPlayerBot(playerID) then                            
                             local state = PlayerResource:GetConnectionState(playerID)
                             if state == 1 or state == 2 then
                                 if not PlayerResource:GetPlayer(playerID).enableCheats then
-                                    votesRequiredToEnable = votesRequiredToEnable + 1
+                                    votesRequired = votesRequired + 1
                                 end
                             end
                         end
                     end
 
-                    if votesRequiredToEnable == 0 then
+                    if votesRequired == 0 then
                         self.voteEnabledCheatMode = true
                         GameRules:SendCustomMessage('Everbody voted to enable cheat mode. Cheat mode enabled.',0,0)
                     else
-                        GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to enable cheat mode. <font color=\'#70EA72\'>'.. votesRequiredToEnable .. ' more votes are required</font>, type -enablecheats to vote to enable',0,0)
+                        GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to enable cheat mode. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablecheats to vote to enable',0,0)
                     end
 
-                    print(votesRequiredToEnable)
+                    print(votesRequired)
 
                 end
             end, DoUniqueString('cheat'), .1)
@@ -1219,12 +1286,15 @@ end
 function Ingame:checkIfRespawnRate()
     if util:isSinglePlayerMode() then return end
     local respawnModifierPercentage = OptionManager:GetOption('respawnModifierPercentage')
-    if GameRules:GetDOTATime(false,false) > self.timeToIncreaseRespawnRate and respawnModifierPercentage < 50  then
+    if GameRules:GetDOTATime(false,false) > self.timeToIncreaseRespawnRate and respawnModifierPercentage < 50 and self.voteDisableRespawnLimit == false then
+        if self.origianlRespawnRate == nil then
+            self.origianlRespawnRate = respawnModifierPercentage
+        end
         local newRespawnRate = respawnModifierPercentage + 10
         if newRespawnRate > 50 then
             newRespawnRate = 50
         end
-        GameRules:SendCustomMessage("Games has been going for too long, respawn rates have increased by 10%. New respawn rate is " .. newRespawnRate .. "%", 0, 0)
+        GameRules:SendCustomMessage("Games has been going for too long, respawn rates have increased by 10%. New respawn rate is " .. newRespawnRate .. "%. Use '-enablerespawn' to disable this safeguard.", 0, 0)
         OptionManager:SetOption('respawnModifierPercentage', newRespawnRate)
 
         self.timeToIncreaseRespawnRate = self.timeToIncreaseRespawnRate + self.timeToIncreaseRepawnInterval
@@ -1311,7 +1381,7 @@ function Ingame:handleRespawnModifier()
                             -- Anti-Kamikaze Mechanic START
                             -- This is designed to stop players from spawning very quicky and dying very quickly, e.g pushing towers
                             -------
-                            if not util:isPlayerBot(playerID) then
+                            if not util:isPlayerBot(playerID) and self.voteDisableAntiKamikaze == false then
                                 local allowableSecsBetweenDeaths = 60
                                 if not hero.lastDeath then
                                     hero.lastDeath = GameRules:GetDOTATime(false, false)
@@ -1325,7 +1395,7 @@ function Ingame:handleRespawnModifier()
                                         else
                                             hero.KamikazeRating = hero.KamikazeRating +1
                                             if hero.KamikazeRating > 2 then
-                                                GameRules:SendCustomMessage('Player '..PlayerResource:GetPlayerName(playerID)..' has died at least 3 times in the last ' .. allowableSecsBetweenDeaths .. " seconds. To prevent Kamikaze tactics, they have incured <font color=\'#FF4949\'>extra respawn time</font>. " , 0, 0)
+                                                GameRules:SendCustomMessage('Player '..PlayerResource:GetPlayerName(playerID)..' has died at least 3 times in the last ' .. allowableSecsBetweenDeaths .. " seconds. To prevent Kamikaze tactics, they have incured <font color=\'#FF4949\'>extra respawn time</font>. Use '-enablekamikaze' to disable this safeguard." , 0, 0)
                                                 -- If they continue this strat, extra respawn peanlty increases by 10 seconds
                                                 if not hero.KamikazePenalty then
                                                     hero.KamikazePenalty = 1
