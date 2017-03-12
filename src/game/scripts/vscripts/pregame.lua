@@ -7161,6 +7161,45 @@ function Pregame:fixSpawningIssues()
             end
             -- Make sure it is a hero
             if spawnedUnit:IsHero() then
+                
+            elseif string.match(spawnedUnit:GetUnitName(), "creep") or string.match(spawnedUnit:GetUnitName(), "siege") then
+                if this.optionStore['lodOptionCreepPower'] > 0 then
+                    local dotaTime = GameRules:GetDOTATime(false, false)
+                    local level = math.ceil(dotaTime / this.optionStore['lodOptionCreepPower'])
+
+                    Timers:CreateTimer(function()
+                        if IsValidEntity(spawnedUnit) then
+                            local ability = spawnedUnit:AddAbility("lod_creep_power")
+                            ability:UpgradeAbility(false)
+                            spawnedUnit:SetModifierStackCount("modifier_creep_power",spawnedUnit,level)
+                        end
+                    end, DoUniqueString('giveCreepPower'), 2)
+
+                    -- After level 14, creeps evolve model to represent their upgraded power
+                    local levelToUpgrade = 14
+
+                    Timers:CreateTimer(function()
+                        if IsValidEntity(spawnedUnit) then
+                            
+                            if level > levelToUpgrade then
+                                if spawnedUnit:GetModelName() == "models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee.vmdl" then
+                                    spawnedUnit:SetModel("models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee_mega.vmdl")
+                                    spawnedUnit:SetOriginalModel("models/creeps/lane_creeps/creep_bad_melee/creep_bad_melee_mega.vmdl")
+                                elseif spawnedUnit:GetModelName() == "models/creeps/lane_creeps/creep_bad_ranged/lane_dire_ranged.vmdl" then
+                                    spawnedUnit:SetModel("models/creeps/lane_creeps/creep_bad_ranged/lane_dire_ranged_mega.vmdl")
+                                    spawnedUnit:SetOriginalModel("models/creeps/lane_creeps/creep_bad_ranged/lane_dire_ranged_mega.vmdl")
+                                elseif spawnedUnit:GetModelName() == "models/creeps/lane_creeps/creep_radiant_melee/radiant_melee.vmdl" then
+                                    spawnedUnit:SetModel("models/creeps/lane_creeps/creep_radiant_melee/radiant_melee_mega.vmdl")
+                                    spawnedUnit:SetOriginalModel("models/creeps/lane_creeps/creep_radiant_melee/radiant_melee_mega.vmdl")
+                                elseif spawnedUnit:GetModelName() == "models/creeps/lane_creeps/creep_radiant_ranged/radiant_ranged.vmdl" then
+                                    spawnedUnit:SetModel("models/creeps/lane_creeps/creep_radiant_ranged/radiant_ranged_mega.vmdl")
+                                    spawnedUnit:SetOriginalModel("models/creeps/lane_creeps/creep_radiant_ranged/radiant_ranged_mega.vmdl")
+                                end
+                            end
+                        end
+                    end, DoUniqueString('evolveCreep'), .5)
+                    
+                end
 
             elseif spawnedUnit:GetTeam() == DOTA_TEAM_NEUTRALS then
                 -- Increasing creep power over time                
