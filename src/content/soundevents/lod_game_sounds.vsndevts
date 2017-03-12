@@ -51,6 +51,59 @@
 	}
 }
 
+"Event.CheatEnabled"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/ui/compendium_levelup.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"		"1.000000"
+					}
+					"pitch_rand_min"
+					{
+						"value"		"-0.300000"
+					}
+					"pitch_rand_max"
+					{
+						"value"		"-0.250000"
+					}
+					"pitch"
+					{
+						"value"		"0.900000"
+					}
+					"soundlevel"
+					{
+						"value"		"78.000000"
+					}
+					"distance_max"
+					{
+						"value"		"2500.000000"
+					}
+					"limiter_on"
+					{
+						"value"		"0.000000"
+					}
+				}
+			}
+		}
+	}
+}
+
 "BoosterDraft.Pick"
 {
 	"operator_stacks"

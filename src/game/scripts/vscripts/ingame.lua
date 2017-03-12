@@ -57,6 +57,7 @@ function Ingame:init()
     self.voteDisableAntiKamikaze = false
     self.voteDisableRespawnLimit = false
     self.origianlRespawnRate = nil
+    self.shownCheats = {}
 
     -- Setup standard rules
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
@@ -575,7 +576,8 @@ function Ingame:OnPlayerChat(keys)
 
                 if votesRequired == 0 then
                     self.voteEnabledCheatMode = true
-                    GameRules:SendCustomMessage('Everbody voted to enable cheat mode. <font color=\'#70EA72\'>Cheat mode enabled</font>.',0,0)
+                    EmitGlobalSound("Event.CheatEnabled")
+                    GameRules:SendCustomMessage('<font color=\'#70EA72\'>Everbody voted to enable cheat mode. Cheat mode enabled</font>.',0,0)
                 else
                     GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to enable cheat mode. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablecheats (-ec) to vote to enable',0,0)
                 end
@@ -605,6 +607,7 @@ function Ingame:OnPlayerChat(keys)
 
                 if votesRequired == 0 then
                     self.voteDisableAntiKamikaze = true
+                    EmitGlobalSound("Event.CheatEnabled")
                     GameRules:SendCustomMessage('Everbody voted to disable the anti-Kamikaze mechanic. <font color=\'#70EA72\'>No more peanlty for dying 3 times within 60 seconds</font>.',0,0)
                 else
                     GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to disable anti-Kamikaze safeguard. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablekamikaze (-ek) to vote to disable.',0,0)
@@ -638,6 +641,7 @@ function Ingame:OnPlayerChat(keys)
                     if self.origianlRespawnRate ~= nil then
                         OptionManager:SetOption('respawnModifierPercentage', self.origianlRespawnRate)
                     end        
+                    EmitGlobalSound("Event.CheatEnabled")
                     GameRules:SendCustomMessage('Everbody voted to disable the increasing-spawn-rate mechanic. <font color=\'#70EA72\'>Respawn rates no longer increase after 40 minutes</font>. Respawn rate is now '.. OptionManager:GetOption('respawnModifierPercentage') .. '%.',0,0)
                 else
                     GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to disable increasing-spawn-rate safeguard. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablerespawn (-er) to vote to disable.',0,0)
@@ -658,7 +662,10 @@ function Ingame:OnPlayerChat(keys)
             end
             Timers:CreateTimer(function()  
                 PlayerResource:ModifyGold(hero:GetPlayerOwner():GetPlayerID(), goldAmount, true, 0)      
-                GameRules:SendCustomMessage('Cheat: Given ' .. goldAmount .. ' gold to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                if not self.shownCheats["-gold"]then
+                    self.shownCheats["-gold"] = true
+                    GameRules:SendCustomMessage('Cheat Used (-gold): Given ' .. goldAmount .. ' gold to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                end
             end, DoUniqueString('cheat'), .1)
 
         elseif string.find(text, "-lvlup") then 
@@ -672,7 +679,10 @@ function Ingame:OnPlayerChat(keys)
                 for i=0,levels-1 do
                     hero:HeroLevelUp(true)
                 end
-                GameRules:SendCustomMessage('Cheat: Given ' .. levels .. ' level(s) to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                if not self.shownCheats["-lvlup"]then
+                    self.shownCheats["-lvlup"] = true
+                    GameRules:SendCustomMessage('Cheat Used (-lvlup): Given ' .. levels .. ' level(s) to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                end
             end, DoUniqueString('cheat'), .1)
 
         elseif string.find(text, "-item") then 
@@ -686,13 +696,15 @@ function Ingame:OnPlayerChat(keys)
                     if findItem then validItem = true end
                 end
                 if validItem then
-                    GameRules:SendCustomMessage('Cheat: Given ' .. splitedText[2] .. ' to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                    if not self.shownCheats["-item"]then
+                        self.shownCheats["-item"] = true
+                        GameRules:SendCustomMessage('Cheat Used (-item): Given ' .. splitedText[2] .. ' to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                    end
                 end
             end, DoUniqueString('cheat'), .1)
 
         elseif string.find(text, "-addability") or string.find(text, "-giveability") then 
             -- Give user 1 level, unless they specify a number after
-
             Timers:CreateTimer(function()  
                 local splitedText = util:split(text, " ")       
                 local validAbility = false
@@ -712,7 +724,10 @@ function Ingame:OnPlayerChat(keys)
                     if findAbility then validAbility = true end
                 end
                 if validAbility then
-                    GameRules:SendCustomMessage('Cheat: Given ' .. splitedText[2] .. ' to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                    if not self.shownCheats["-addability"] then
+                        self.shownCheats["-addability"] = true
+                        GameRules:SendCustomMessage('Cheat Used (-addability): Given ' .. splitedText[2] .. ' to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                    end
                 end
             end, DoUniqueString('cheat'), .1)
 
@@ -736,7 +751,10 @@ function Ingame:OnPlayerChat(keys)
                     hero:RemoveAbility(splitedText[2])
                 end
                 if validAbility then
-                    GameRules:SendCustomMessage('Cheat: -removeability used by  '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                    if not self.shownCheats["-removeability"] then
+                        self.shownCheats["-removeability"] = true
+                        GameRules:SendCustomMessage('Cheat Used (-removeability): -removeability used by  '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                    end
                 end
             end, DoUniqueString('cheat'), .1)
 
@@ -751,13 +769,19 @@ function Ingame:OnPlayerChat(keys)
                         ability:SetLevel(ability:GetMaxLevel())
                     end
                 end
-                GameRules:SendCustomMessage('Cheat: Max level given to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                if not self.shownCheats["-lvlmax"] then
+                    self.shownCheats["-lvlmax"] = true
+                    GameRules:SendCustomMessage('Cheat Used (-lvlmax): Max level given to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                end
             end, DoUniqueString('cheat'), .1)
 
         elseif string.find(text, "-dagger") then 
             Timers:CreateTimer(function()
                 hero:AddItemByName('item_devDagger')
-                GameRules:SendCustomMessage('Cheat: Global teleport dagger given to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                if not self.shownCheats["-dagger"] then
+                    self.shownCheats["-dagger"] = true
+                    GameRules:SendCustomMessage('Cheat Used (-dagger): Global teleport dagger given to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                end
             end, DoUniqueString('cheat'), 0.2)
 
 
@@ -766,14 +790,20 @@ function Ingame:OnPlayerChat(keys)
             if not IsInToolsMode() and not Convars:GetBool("sv_cheats") then
                 Timers:CreateTimer(function()
                     hero:AddItemByName('item_devDagger')
-                    GameRules:SendCustomMessage('Cheat: Global teleport dagger given to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                    if not self.shownCheats["-teleport"] then
+                        self.shownCheats["-teleport"] = true
+                        GameRules:SendCustomMessage('Cheat Used (-teleport): Global teleport dagger given to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                    end
                 end, DoUniqueString('cheat'), 0.2)
             end
         
         elseif string.find(text, "-startgame") then 
             Timers:CreateTimer(function()
                 Tutorial:ForceGameStart()
-                GameRules:SendCustomMessage('Cheat: Forced game start, by '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                if not self.shownCheats["-startgame"] then
+                    self.shownCheats["-startgame"] = true
+                    GameRules:SendCustomMessage('Cheat Used (-startgame): Forced game start, by '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                end
             end, DoUniqueString('cheat'), .1)    
 
         elseif string.find(text, "-respawn") then 
@@ -781,7 +811,10 @@ function Ingame:OnPlayerChat(keys)
                 if not hero:IsAlive() then
                     hero:SetTimeUntilRespawn(1)
                 end
-                GameRules:SendCustomMessage('Cheat: Respawned '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                if not self.shownCheats["-respawn"] then
+                    self.shownCheats["-respawn"] = true
+                    GameRules:SendCustomMessage('Cheat Used (-respawn): Respawned '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                end
             end, DoUniqueString('cheat'), 1)
 
         elseif string.find(text, "-refresh") then 
@@ -803,7 +836,10 @@ function Ingame:OnPlayerChat(keys)
                         item:EndCooldown()
                     end
                 end
-                GameRules:SendCustomMessage('Cheat: Refreshed '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                if not self.shownCheats["-refresh"] then
+                    self.shownCheats["-refresh"] = true
+                    GameRules:SendCustomMessage('Cheat Used (-refresh): Refreshed '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                end
             end, DoUniqueString('cheatrefresh'), .2)
         end
     end
