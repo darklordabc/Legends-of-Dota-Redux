@@ -47,3 +47,4 @@ git update-index --assume-unchanged src/game/particles/units/heroes/hero_tek/sky
 git update-index --assume-unchanged src/game/soundevents/lod_game_sounds.vsndevts_c
 git update-index --assume-unchanged src/game/soundevents/memes_redux_sounds.vsndevts_c
 git update-index --assume-unchanged src/game/particles/juggernaut_manaward_d.vpcf_c
+git update-index --assume-unchanged src/game/materials/hat_trump.vmat_c
