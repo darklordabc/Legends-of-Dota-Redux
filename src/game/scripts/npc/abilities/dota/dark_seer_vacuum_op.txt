@@ -1,0 +1,61 @@
+"DOTAAbilities" {
+	"dark_seer_vacuum_op"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"					"dark_seer_vacuum"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"AbilityTextureName"			"custom/dark_seer_vacuum_op"
+		"FightRecapLevel"				"1"
+		"LevelsBetweenUpgrades"					"2"
+		"MaxLevel"						"10"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000 2000 3000 4000 5000 6000 7000 8000 9000 25000"
+		"AbilityCastPoint"				"0.4"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"28"
+		
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"200"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"1000 2000 3000 4000 5000 6000 7000 8000 9000 25000"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"1.5"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"100 200 300 400 400 400 400 400 400 400"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius_tree"				"800"
+			}
+
+			"05" 
+			{
+				"var_type" "FIELD_INTEGER"
+				"cast_range"   "1000 2000 3000 4000 5000 6000 7000 8000 9000 25000"
+			}
+		}
+	}
+}

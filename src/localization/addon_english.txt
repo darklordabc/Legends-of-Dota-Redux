@@ -3553,7 +3553,7 @@
     "DOTA_Tooltip_ability_android_cluster_rockets_radius"   "RADIUS:"
 
     "DOTA_Tooltip_ability_android_cluster_rockets_OP"   "Cluster Rockets OP"
-    "DOTA_Tooltip_ability_android_cluster_rockets_OP_Description"   "Bombards an area with rockets, stunning enemy land units for 1 second and damaging nearby enemy units. <font color='#70EA72'>Fires more rockets and does more damage per rocket.</font>"
+    "DOTA_Tooltip_ability_android_cluster_rockets_OP_Description"   "Bombards an area with rockets, stunning enemy land units for 1 second and damaging nearby enemy units. <font color='#70EA72'>Fires more rockets, does more damage per rocket, larger cast range and faster projectile speed.</font>"
     "DOTA_Tooltip_ability_android_cluster_rockets_OP_damage"    "ONE ROCKET DAMAGE:"
     "DOTA_Tooltip_ability_android_cluster_rockets_OP_projectile_count"  "ROCKETS COUNT:"
     "DOTA_Tooltip_ability_android_cluster_rockets_OP_radius"    "RADIUS:"
@@ -8398,4 +8398,14 @@
         "DOTA_Tooltip_ability_aabs_nightshadow_proc_chance"                              "%REDUCTION CHANCE:"
         "DOTA_Tooltip_ability_aabs_nightshadow_cooldown_reduction"                       "COOLDOWN REDUCTION:"
 
+        "DOTA_Tooltip_ability_dark_seer_vacuum_op"                                         "Vacuum OP"
+        "DOTA_Tooltip_ability_dark_seer_vacuum_op_Description"                             "Dark Seer creates a vacuum over the target area that sucks in enemy units, disrupting them and dealing damage. <font color='#70EA72'>Larger cast range, radius, damage and more levels.</font>"
+        "DOTA_Tooltip_ability_dark_seer_vacuum_op_Lore"                                    "Ish'Kafel modifies the center of gravity to a place of his choosing."
+        "DOTA_Tooltip_ability_dark_seer_vacuum_op_Note0"                                   "This ability interrupts channeling."
+        "DOTA_Tooltip_ability_dark_seer_vacuum_op_Note1"                                   "Pulls units over 0.5 seconds before dealing damage."
+        "DOTA_Tooltip_ability_dark_seer_vacuum_op_Note2"                                   "Doesn't pull invulnerable units."
+        "DOTA_Tooltip_ability_dark_seer_vacuum_op_Note3"                                   "Trees near the center of the vacuum will be destroyed."
+        "DOTA_Tooltip_ability_dark_seer_vacuum_op_radius"                                  "RADIUS:"
+        "DOTA_Tooltip_ability_dark_seer_vacuum_op_damage"                                  "DAMAGE:" 
+        "DOTA_Tooltip_ability_dark_seer_vacuum_op_cast_range"                              "CAST RANGE:"
 }

@@ -554,7 +554,7 @@ function Ingame:OnPlayerChat(keys)
         end, DoUniqueString('fixcasting'), .5)
     end
     ----------------------------
-    -- Cheat Commands
+    -- Vote Commands
     ----------------------------
     if string.find(text, "-enablecheat") or text == "-ec" then 
         Timers:CreateTimer(function()
@@ -652,6 +652,9 @@ function Ingame:OnPlayerChat(keys)
             end
         end, DoUniqueString('enableRespawn'), .1)
     end
+    ----------------------------
+    -- Cheat Commands
+    ----------------------------
     if util:isSinglePlayerMode() or Convars:GetBool("sv_cheats") or self.voteEnabledCheatMode then
         if string.find(text, "-gold") then 
             -- Give user max gold, unless they specify a number
