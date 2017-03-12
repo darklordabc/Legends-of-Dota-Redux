@@ -2673,7 +2673,7 @@ function Pregame:initOptionSelector()
                     self:setOption('lodOptionDraftAbilities', 47, false)
                 end
             else
-                self:loadDefaultSettings()
+                --self:loadDefaultSettings()
                 self:setOption('lodOptionCommonGamemode', 1)               
             end
         end,
