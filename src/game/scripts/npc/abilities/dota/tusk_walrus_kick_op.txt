@@ -2,11 +2,12 @@
 	"tusk_walrus_kick_op"{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"tusk_walrus_kick"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"AbilityTextureName" "custom/tusk_walrus_kick_op"
+		"AbilityTextureName"			"custom/tusk_walrus_kick_op"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
@@ -44,7 +45,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"push_length"				"1600 2000 2600"
+				"push_length"				"1500 2500 3500"
 			}			
 			"04"
 			{

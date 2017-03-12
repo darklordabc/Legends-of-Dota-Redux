@@ -555,7 +555,7 @@ function Ingame:OnPlayerChat(keys)
     ----------------------------
     -- Cheat Commands
     ----------------------------
-    if string.find(text, "-enablecheat") then 
+    if string.find(text, "-enablecheat") or string.find(text, "-ec") then 
         Timers:CreateTimer(function()
             if not PlayerResource:GetPlayer(playerID).enableCheats then
                 PlayerResource:GetPlayer(playerID).enableCheats = true
@@ -577,7 +577,7 @@ function Ingame:OnPlayerChat(keys)
                     self.voteEnabledCheatMode = true
                     GameRules:SendCustomMessage('Everbody voted to enable cheat mode. <font color=\'#70EA72\'>Cheat mode enabled</font>.',0,0)
                 else
-                    GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to enable cheat mode. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablecheats to vote to enable',0,0)
+                    GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to enable cheat mode. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablecheats (-ec) to vote to enable',0,0)
                 end
 
                 --print(votesRequired)
@@ -585,7 +585,7 @@ function Ingame:OnPlayerChat(keys)
             end
         end, DoUniqueString('enableCheat'), .1)
     end
-    if string.find(text, "-enablekamikaze") then 
+    if string.find(text, "-enablekamikaze") or string.find(text, "-ek") then 
         Timers:CreateTimer(function()
             if not PlayerResource:GetPlayer(playerID).enableKamikaze then
                 PlayerResource:GetPlayer(playerID).enableKamikaze = true
@@ -605,9 +605,9 @@ function Ingame:OnPlayerChat(keys)
 
                 if votesRequired == 0 then
                     self.voteDisableAntiKamikaze = true
-                    GameRules:SendCustomMessage('Everbody voted to disable the Kamikaze Mechanic. <font color=\'#70EA72\'>No more peanlty for dying 3 times within 60 seconds</font>.',0,0)
+                    GameRules:SendCustomMessage('Everbody voted to disable the anti-Kamikaze mechanic. <font color=\'#70EA72\'>No more peanlty for dying 3 times within 60 seconds</font>.',0,0)
                 else
-                    GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to disable anti-Kamikaze safeguard. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablekamikaze to vote to disable.',0,0)
+                    GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to disable anti-Kamikaze safeguard. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablekamikaze (-ek) to vote to disable.',0,0)
                 end
 
                 --print(votesRequired)
@@ -615,7 +615,7 @@ function Ingame:OnPlayerChat(keys)
             end
         end, DoUniqueString('enableKamikaze'), .1)
     end
-    if string.find(text, "-enablerespawn") then 
+    if string.find(text, "-enablerespawn") or string.find(text, "-er") then 
         Timers:CreateTimer(function()
             if not PlayerResource:GetPlayer(playerID).enableRespawn then
                 PlayerResource:GetPlayer(playerID).enableRespawn = true
@@ -638,9 +638,9 @@ function Ingame:OnPlayerChat(keys)
                     if self.origianlRespawnRate ~= nil then
                         OptionManager:SetOption('respawnModifierPercentage', self.origianlRespawnRate)
                     end        
-                    GameRules:SendCustomMessage('Everbody voted to disable the increasing-spawn-rate Mechanic. <font color=\'#70EA72\'>Respawn rates no longer increase after 40 minutes</font>. Respawn rate is now '.. OptionManager:GetOption('respawnModifierPercentage') .. '%.',0,0)
+                    GameRules:SendCustomMessage('Everbody voted to disable the increasing-spawn-rate mechanic. <font color=\'#70EA72\'>Respawn rates no longer increase after 40 minutes</font>. Respawn rate is now '.. OptionManager:GetOption('respawnModifierPercentage') .. '%.',0,0)
                 else
-                    GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to disable increasing-spawn-rate safeguard. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablerespawn to vote to disable.',0,0)
+                    GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to disable increasing-spawn-rate safeguard. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablerespawn (-er) to vote to disable.',0,0)
                 end
 
                 --print(votesRequired)
@@ -1294,7 +1294,7 @@ function Ingame:checkIfRespawnRate()
         if newRespawnRate > 50 then
             newRespawnRate = 50
         end
-        GameRules:SendCustomMessage("Games has been going for too long, respawn rates have increased by 10%. New respawn rate is " .. newRespawnRate .. "%. Use '-enablerespawn' to disable this safeguard.", 0, 0)
+        GameRules:SendCustomMessage("Games has been going for too long, respawn rates have increased by 10%. New respawn rate is " .. newRespawnRate .. "%. Use -enablerespawn (-er) to disable this safeguard.", 0, 0)
         OptionManager:SetOption('respawnModifierPercentage', newRespawnRate)
 
         self.timeToIncreaseRespawnRate = self.timeToIncreaseRespawnRate + self.timeToIncreaseRepawnInterval
@@ -1362,19 +1362,21 @@ function Ingame:handleRespawnModifier()
 
                             -- If the game is single player, it should let players know that they can force respawn. Notify after first death, and notified a second time if their respawn time is longer than 30 seconds. 
                             --print(RespawnNotificationLevel)
-                            if not util:isPlayerBot(playerID) and util:isSinglePlayerMode() then
-	                            if not hero.RespawnNotificationLevel then
-	                                hero.RespawnNotificationLevel = 0
-	                            end
-	                            if hero.RespawnNotificationLevel < 2 then
-	                                if hero.RespawnNotificationLevel == 0 then
-	                                    GameRules:SendCustomMessage('#respawnCheatNotification', 0, 0) 
-	                                    hero.RespawnNotificationLevel = 1
-	                                elseif hero.RespawnNotificationLevel == 1 and timeLeft > 30 then
-	                                    GameRules:SendCustomMessage('#respawnCheatNotification', 0, 0) 
-	                                    hero.RespawnNotificationLevel = 2
-	                                end
-	                            end
+                            if not util:isPlayerBot(playerID) then
+                                if util:isSinglePlayerMode() or Convars:GetBool("sv_cheats") or self.voteEnabledCheatMode then
+    	                            if not hero.RespawnNotificationLevel then
+    	                                hero.RespawnNotificationLevel = 0
+    	                            end
+    	                            if hero.RespawnNotificationLevel < 2 then
+    	                                if hero.RespawnNotificationLevel == 0 then
+    	                                    GameRules:SendCustomMessage('#respawnCheatNotification', 0, 0) 
+    	                                    hero.RespawnNotificationLevel = 1
+    	                                elseif hero.RespawnNotificationLevel == 1 and timeLeft > 30 then
+    	                                    GameRules:SendCustomMessage('#respawnCheatNotification', 0, 0) 
+    	                                    hero.RespawnNotificationLevel = 2
+    	                                end
+    	                            end
+                                end
                         	end
 
                             -------
@@ -1395,7 +1397,7 @@ function Ingame:handleRespawnModifier()
                                         else
                                             hero.KamikazeRating = hero.KamikazeRating +1
                                             if hero.KamikazeRating > 2 then
-                                                GameRules:SendCustomMessage('Player '..PlayerResource:GetPlayerName(playerID)..' has died at least 3 times in the last ' .. allowableSecsBetweenDeaths .. " seconds. To prevent Kamikaze tactics, they have incured <font color=\'#FF4949\'>extra respawn time</font>. Use '-enablekamikaze' to disable this safeguard." , 0, 0)
+                                                GameRules:SendCustomMessage('Player '..PlayerResource:GetPlayerName(playerID)..' has died at least 3 times in the last ' .. allowableSecsBetweenDeaths .. " seconds. To prevent Kamikaze tactics, they have incured <font color=\'#FF4949\'>extra respawn time</font>. Use -enablekamikaze (-ek) to disable this safeguard." , 0, 0)
                                                 -- If they continue this strat, extra respawn peanlty increases by 10 seconds
                                                 if not hero.KamikazePenalty then
                                                     hero.KamikazePenalty = 1
