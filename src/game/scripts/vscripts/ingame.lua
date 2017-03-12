@@ -555,7 +555,7 @@ function Ingame:OnPlayerChat(keys)
     ----------------------------
     -- Cheat Commands
     ----------------------------
-    if string.find(text, "-enablecheat") or string.find(text, "-ec") then 
+    if string.find(text, "-enablecheat") or text == "-ec" then 
         Timers:CreateTimer(function()
             if not PlayerResource:GetPlayer(playerID).enableCheats then
                 PlayerResource:GetPlayer(playerID).enableCheats = true
@@ -585,7 +585,7 @@ function Ingame:OnPlayerChat(keys)
             end
         end, DoUniqueString('enableCheat'), .1)
     end
-    if string.find(text, "-enablekamikaze") or string.find(text, "-ek") then 
+    if string.find(text, "-enablekamikaze") or text == "-ek" then 
         Timers:CreateTimer(function()
             if not PlayerResource:GetPlayer(playerID).enableKamikaze then
                 PlayerResource:GetPlayer(playerID).enableKamikaze = true
@@ -615,7 +615,7 @@ function Ingame:OnPlayerChat(keys)
             end
         end, DoUniqueString('enableKamikaze'), .1)
     end
-    if string.find(text, "-enablerespawn") or string.find(text, "-er") then 
+    if string.find(text, "-enablerespawn") or text == "-er" then 
         Timers:CreateTimer(function()
             if not PlayerResource:GetPlayer(playerID).enableRespawn then
                 PlayerResource:GetPlayer(playerID).enableRespawn = true
