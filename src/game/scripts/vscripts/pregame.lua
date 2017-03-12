@@ -2224,9 +2224,9 @@ function Pregame:initOptionSelector()
         lodOptionBanningUseBanList = function(value)
             if not util:isSinglePlayerMode() then 
                 Timers:CreateTimer(function()
-                    self:setOption('lodOptionBanningUseBanList', 0, true)
+                    self:setOption('lodOptionBanningUseBanList', 1, true)
                     --Comented out below because players can't see it in the custom chat menu at start
-                    --GameRules:SendCustomMessage('Single Player abilities cannot be enabled in multiplayer games for now.', 0, 0)
+                    --GameRules:SendCustomMessage('Single Player abilities cannot be enabled  bin multiplayer games for now.', 0, 0)
                     --SendToServerConsole('say "Single Player abilities cannot be enabled in multiplayer games for now."')
                 end, DoUniqueString('attackPlayer'), 0.1)
             end

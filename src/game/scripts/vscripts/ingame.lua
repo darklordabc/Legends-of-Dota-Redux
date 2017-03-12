@@ -562,11 +562,11 @@ function Ingame:OnPlayerChat(keys)
                 
                 local votesRequired = 0
                 
-                for playerID = 0,(24-1) do                        
-                    if not util:isPlayerBot(playerID) then                            
-                        local state = PlayerResource:GetConnectionState(playerID)
+                for player_ID = 0,(24-1) do                        
+                    if not util:isPlayerBot(player_ID) and PlayerResource:GetPlayer(playerID) ~= PlayerResource:GetPlayer(player_ID) then                            
+                        local state = PlayerResource:GetConnectionState(player_ID)
                         if state == 1 or state == 2 then
-                            if not PlayerResource:GetPlayer(playerID).enableCheats then
+                            if not PlayerResource:GetPlayer(player_ID).enableCheats then
                                 votesRequired = votesRequired + 1
                             end
                         end
@@ -805,37 +805,6 @@ function Ingame:OnPlayerChat(keys)
                 end
                 GameRules:SendCustomMessage('Cheat: Refreshed '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
             end, DoUniqueString('cheatrefresh'), .2)
-
-        elseif string.find(text, "-enablecheat") then 
-            Timers:CreateTimer(function()
-                if not PlayerResource:GetPlayer(playerID).enableCheats then
-                    PlayerResource:GetPlayer(playerID).enableCheats = true
-                    
-                    local votesRequired = 0
-                    
-                    for playerID = 0,(24-1) do                        
-                        if not util:isPlayerBot(playerID) then                            
-                            local state = PlayerResource:GetConnectionState(playerID)
-                            if state == 1 or state == 2 then
-                                if not PlayerResource:GetPlayer(playerID).enableCheats then
-                                    votesRequired = votesRequired + 1
-                                end
-                            end
-                        end
-                    end
-
-                    if votesRequired == 0 then
-                        self.voteEnabledCheatMode = true
-                        GameRules:SendCustomMessage('Everbody voted to enable cheat mode. Cheat mode enabled.',0,0)
-                    else
-                        GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to enable cheat mode. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablecheats to vote to enable',0,0)
-                    end
-
-                    print(votesRequired)
-
-                end
-            end, DoUniqueString('cheat'), .1)
-
         end
     end
 end
