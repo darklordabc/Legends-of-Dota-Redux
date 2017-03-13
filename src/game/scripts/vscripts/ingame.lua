@@ -59,6 +59,8 @@ function Ingame:init()
     self.origianlRespawnRate = nil
     self.shownCheats = {}
 
+    self.botsInLateGameMode = false
+
     -- Setup standard rules
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
 
@@ -318,7 +320,7 @@ function Ingame:onStart()
 
     -- Force bots to take a defensive pose until the first tower has been destroyed. This is top stop bots from straight away pushing lanes when they hit level 6
     Timers:CreateTimer(function ()
-               GameRules:GetGameModeEntity():SetBotsInLateGame(false)
+               GameRules:GetGameModeEntity():SetBotsInLateGame(self.botsInLateGameMode)
                --print("bots will only defend")
             end, 'forceBotsToDefend', 0.5)
     
@@ -467,6 +469,19 @@ function Ingame:onStart()
     self:setNoTeamBalanceNeeded()
 end
 
+function Ingame:CommandNotification(command, message, cooldown)
+    print(command)
+    if not self.shownCheats[command] then
+        GameRules:SendCustomMessage(message, 0, 0) 
+        self.shownCheats[command] = true
+    end
+    if cooldown and cooldown > 0 then
+        Timers:CreateTimer(function() 
+            self.shownCheats[command] = false
+        end, DoUniqueString('temporaryblockcommand'), cooldown)
+    end
+end
+
 function Ingame:OnPlayerChat(keys)
     local teamonly = keys.teamonly
     local playerID = keys.playerid
@@ -479,7 +494,14 @@ function Ingame:OnPlayerChat(keys)
     ----------------------------
     if string.find(text, "-test") then 
         GameRules:SendCustomMessage('testing testing 1. 2. 3.', 0, 0)
-
+    elseif string.find(text, "-bot") then
+        if string.find(text, "mode") then
+            if not self.botsInLateGameMode then 
+                self:CommandNotification("-botmode", "Bots are in early game mode.", 10)  
+            elseif self.botsInLateGameMode then 
+                self:CommandNotification("-botmode", "Bots are in late game mode.", 10)   
+            end   
+        end            
     elseif string.find(text, "-printabilities") then 
         Timers:CreateTimer(function()        
             -- GameRules:SendCustomMessage("-------------HERO STATS------------", 0, 0)
@@ -663,14 +685,25 @@ function Ingame:OnPlayerChat(keys)
             if splitedText[2] and tonumber(splitedText[2])then
                 goldAmount = tonumber(splitedText[2])
             end
+
             Timers:CreateTimer(function()  
                 PlayerResource:ModifyGold(hero:GetPlayerOwner():GetPlayerID(), goldAmount, true, 0)      
-                if not self.shownCheats["-gold"]then
-                    self.shownCheats["-gold"] = true
-                    GameRules:SendCustomMessage('Cheat Used (-gold): Given ' .. goldAmount .. ' gold to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
-                end
+                self:CommandNotification("-gold", 'Cheat Used (-gold): Given ' .. goldAmount .. ' gold to '.. PlayerResource:GetPlayerName(playerID)) 
             end, DoUniqueString('cheat'), .1)
 
+        -- Some Bot commands are cheats
+        elseif string.find(text, "-bot") then
+            if string.find(text, "switch") then
+                if self.botsInLateGameMode then
+                    self.botsInLateGameMode = false
+                    GameRules:GetGameModeEntity():SetBotsInLateGame(self.botsInLateGameMode)
+                else
+                    self.botsInLateGameMode = true
+                    GameRules:GetGameModeEntity():SetBotsInLateGame(self.botsInLateGameMode)
+                end
+                self:CommandNotification("-switched", "Bots have switched modes.", 5)
+            end
+        
         elseif string.find(text, "-lvlup") then 
             -- Give user 1 level, unless they specify a number after
             local levels = 1
@@ -682,10 +715,7 @@ function Ingame:OnPlayerChat(keys)
                 for i=0,levels-1 do
                     hero:HeroLevelUp(true)
                 end
-                if not self.shownCheats["-lvlup"]then
-                    self.shownCheats["-lvlup"] = true
-                    GameRules:SendCustomMessage('Cheat Used (-lvlup): Given ' .. levels .. ' level(s) to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
-                end
+                self:CommandNotification("-lvlup", 'Cheat Used (-lvlup): Given ' .. levels .. ' level(s) to '.. PlayerResource:GetPlayerName(playerID)) 
             end, DoUniqueString('cheat'), .1)
 
         elseif string.find(text, "-item") then 
@@ -699,10 +729,7 @@ function Ingame:OnPlayerChat(keys)
                     if findItem then validItem = true end
                 end
                 if validItem then
-                    if not self.shownCheats["-item"]then
-                        self.shownCheats["-item"] = true
-                        GameRules:SendCustomMessage('Cheat Used (-item): Given ' .. splitedText[2] .. ' to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
-                    end
+                    self:CommandNotification("-item", 'Cheat Used (-item): Given ' .. splitedText[2] .. ' to '.. PlayerResource:GetPlayerName(playerID)) 
                 end
             end, DoUniqueString('cheat'), .1)
 
@@ -727,10 +754,7 @@ function Ingame:OnPlayerChat(keys)
                     if findAbility then validAbility = true end
                 end
                 if validAbility then
-                    if not self.shownCheats["-addability"] then
-                        self.shownCheats["-addability"] = true
-                        GameRules:SendCustomMessage('Cheat Used (-addability): Given ' .. splitedText[2] .. ' to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
-                    end
+                    self:CommandNotification("-addability", 'Cheat Used (-addability): Given ' .. splitedText[2] .. ' to '.. PlayerResource:GetPlayerName(playerID)) 
                 end
             end, DoUniqueString('cheat'), .1)
 
@@ -754,10 +778,7 @@ function Ingame:OnPlayerChat(keys)
                     hero:RemoveAbility(splitedText[2])
                 end
                 if validAbility then
-                    if not self.shownCheats["-removeability"] then
-                        self.shownCheats["-removeability"] = true
-                        GameRules:SendCustomMessage('Cheat Used (-removeability): -removeability used by  '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
-                    end
+                    self:CommandNotification("-removeability", 'Cheat Used (-removeability): -removeability used by  '.. PlayerResource:GetPlayerName(playerID)) 
                 end
             end, DoUniqueString('cheat'), .1)
 
@@ -772,19 +793,13 @@ function Ingame:OnPlayerChat(keys)
                         ability:SetLevel(ability:GetMaxLevel())
                     end
                 end
-                if not self.shownCheats["-lvlmax"] then
-                    self.shownCheats["-lvlmax"] = true
-                    GameRules:SendCustomMessage('Cheat Used (-lvlmax): Max level given to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
-                end
+                self:CommandNotification("-lvlmax", 'Cheat Used (-lvlmax): Max level given to '.. PlayerResource:GetPlayerName(playerID)) 
             end, DoUniqueString('cheat'), .1)
 
         elseif string.find(text, "-dagger") then 
             Timers:CreateTimer(function()
                 hero:AddItemByName('item_devDagger')
-                if not self.shownCheats["-dagger"] then
-                    self.shownCheats["-dagger"] = true
-                    GameRules:SendCustomMessage('Cheat Used (-dagger): Global teleport dagger given to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
-                end
+                self:CommandNotification("-item_devDagger", 'Cheat Used (-dagger): Global teleport dagger given to '.. PlayerResource:GetPlayerName(playerID)) 
             end, DoUniqueString('cheat'), 0.2)
 
 
@@ -793,20 +808,14 @@ function Ingame:OnPlayerChat(keys)
             if not IsInToolsMode() and not Convars:GetBool("sv_cheats") then
                 Timers:CreateTimer(function()
                     hero:AddItemByName('item_devDagger')
-                    if not self.shownCheats["-teleport"] then
-                        self.shownCheats["-teleport"] = true
-                        GameRules:SendCustomMessage('Cheat Used (-teleport): Global teleport dagger given to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
-                    end
+                    self:CommandNotification("-teleport", 'Cheat Used (-teleport): Global teleport dagger given to '.. PlayerResource:GetPlayerName(playerID)) 
                 end, DoUniqueString('cheat'), 0.2)
             end
         
         elseif string.find(text, "-startgame") then 
             Timers:CreateTimer(function()
                 Tutorial:ForceGameStart()
-                if not self.shownCheats["-startgame"] then
-                    self.shownCheats["-startgame"] = true
-                    GameRules:SendCustomMessage('Cheat Used (-startgame): Forced game start, by '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
-                end
+                self:CommandNotification("-startgame", 'Cheat Used (-startgame): Forced game start, by '.. PlayerResource:GetPlayerName(playerID)) 
             end, DoUniqueString('cheat'), .1)    
 
         elseif string.find(text, "-respawn") then 
@@ -814,10 +823,7 @@ function Ingame:OnPlayerChat(keys)
                 if not hero:IsAlive() then
                     hero:SetTimeUntilRespawn(1)
                 end
-                if not self.shownCheats["-respawn"] then
-                    self.shownCheats["-respawn"] = true
-                    GameRules:SendCustomMessage('Cheat Used (-respawn): Respawned '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
-                end
+                self:CommandNotification("-respawn", 'Cheat Used (-respawn): Respawned '.. PlayerResource:GetPlayerName(playerID)) 
             end, DoUniqueString('cheat'), 1)
 
         elseif string.find(text, "-refresh") then 
@@ -839,10 +845,7 @@ function Ingame:OnPlayerChat(keys)
                         item:EndCooldown()
                     end
                 end
-                if not self.shownCheats["-refresh"] then
-                    self.shownCheats["-refresh"] = true
-                    GameRules:SendCustomMessage('Cheat Used (-refresh): Refreshed '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
-                end
+                self:CommandNotification("-refresh", 'Cheat Used (-refresh): Refreshed '.. PlayerResource:GetPlayerName(playerID)) 
             end, DoUniqueString('cheatrefresh'), .2)
         end
     end
@@ -1830,14 +1833,16 @@ function Ingame:addStrongTowers()
         local switchAI = (RandomInt(1,3))
         if switchAI == 1 then
             --print("bots are in early game behaviour")
-            GameRules:GetGameModeEntity():SetBotsInLateGame(false)
+            self.botsInLateGameMode = false
+            GameRules:GetGameModeEntity():SetBotsInLateGame(self.botsInLateGameMode)
             Timers:CreateTimer(function()
-                GameRules:GetGameModeEntity():SetBotsInLateGame(true)
-                --print("bots have gone back to pushing")
+                self.botsInLateGameMode = true
+                GameRules:GetGameModeEntity():SetBotsInLateGame(self.botsInLateGameMode)
             end, DoUniqueString('makesBotsLateGameAgain'), 180)
         else
             --print("bots are in late game behaviour")
-            GameRules:GetGameModeEntity():SetBotsInLateGame(true)        
+            self.botsInLateGameMode = true
+            GameRules:GetGameModeEntity():SetBotsInLateGame(self.botsInLateGameMode)        
         end
         
         if OptionManager:GetOption('strongTowers') then
