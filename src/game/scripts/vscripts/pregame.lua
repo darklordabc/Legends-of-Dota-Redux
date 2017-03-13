@@ -2224,14 +2224,16 @@ function Pregame:initOptionSelector()
 
         -- Common use ban list
         lodOptionBanningUseBanList = function(value)
-            if not util:isSinglePlayerMode() then 
                 Timers:CreateTimer(function()
-                    self:setOption('lodOptionBanningUseBanList', 1, true)
-                    --Comented out below because players can't see it in the custom chat menu at start
-                    --GameRules:SendCustomMessage('Single Player abilities cannot be enabled  bin multiplayer games for now.', 0, 0)
-                    --SendToServerConsole('say "Single Player abilities cannot be enabled in multiplayer games for now."')
+                    -- Only allow if all players on one side (i.e. coop or singleplayer)
+                    local RadiantHumanPlayers = util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS)
+                    local DireHumanPlayers = util:GetActiveHumanPlayerCountForTeam(DOTA_TEAM_BADGUYS)
+                    
+                    if RadiantHumanPlayers > 0 and DireHumanPlayers > 0 then
+                        self:setOption('lodOptionBanningUseBanList', 1, true)
+                    end
+
                 end, DoUniqueString('disallowOP'), 0.1)
-            end
             
             return value == 0 or value == 1
         end,
@@ -3435,6 +3437,13 @@ function Pregame:processOptions()
     if util:isSinglePlayerMode() then
         self:setOption('lodOptionIngameBuilder', 1, true)
         self:setOption("lodOptionIngameBuilderPenalty", 0)
+    end
+
+    -- Only allow single player abilities if all players on one side (i.e. coop or singleplayer)
+    local RadiantHumanPlayers = util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS)
+    local DireHumanPlayers = util:GetActiveHumanPlayerCountForTeam(DOTA_TEAM_BADGUYS)
+    if RadiantHumanPlayers > 0 and DireHumanPlayers > 0 then
+        self:setOption('lodOptionBanningUseBanList', 1, true)
     end
 
     -- Only process options once
