@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 - Temporarily blocked single player abilities in multiplayer games until better solution can be found
 - Improved Cluster Rockets OP
 - Added Single Player OP versions of the following abilities: Dark Rift, Vacumn, Chaos Meteor and versions of OP BloodLust 
+- Increased Portal cast range
 
 ## 6.8 - Steam Version
 - Tomes now get lower cooldown on levelup
