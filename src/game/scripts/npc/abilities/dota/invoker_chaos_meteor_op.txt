@@ -8,7 +8,7 @@
 		"RequiredLevel" "1"
 		"AbilityCastRange" "700"
 		"AbilityCastPoint" "0"
-		"AbilityCooldown" "0"
+		"AbilityCooldown" "50 40 30 20"
 		"AbilityManaCost" "250"
 		"AbilityModifierSupportValue" "0.0"
 
