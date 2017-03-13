@@ -1,3 +1,4 @@
+https://github.com/darklordabc/Legends-of-Dota-Redux/commit/d926ad21f614aa7ea74af4eeb76f0f07f377e1df
 ///Changes made to this branch code to decrease testing time
 
 ///Pregame.lua - line 3333
