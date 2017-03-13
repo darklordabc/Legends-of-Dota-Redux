@@ -704,6 +704,30 @@ function Ingame:OnPlayerChat(keys)
                 self:CommandNotification("-switched", "Bots have switched modes.", 5)
             end
         
+        elseif string.find(text, "-god") then 
+            Timers:CreateTimer(function()  
+                local godMode = hero:FindModifierByName("modifier_invulnerable")
+                if godMode then
+                    hero:RemoveModifierByName("modifier_invulnerable")
+                else
+                    hero:AddNewModifier(hero,nil,"modifier_invulnerable",{duration = 240})
+                    self:CommandNotification("-godmode", 'Cheat Used (-godmode): Given invulnerability to '.. PlayerResource:GetPlayerName(playerID)) 
+                end
+                             
+            end, DoUniqueString('cheat'), .1)
+
+        elseif string.find(text, "-regen") then 
+            Timers:CreateTimer(function()  
+                local godMode = hero:FindModifierByName("modifier_fountain_aura_buff")
+                if godMode then
+                    hero:RemoveModifierByName("modifier_fountain_aura_buff")
+                else
+                    hero:AddNewModifier(hero,nil,"modifier_fountain_aura_buff",{})
+                    self:CommandNotification("-godmode", 'Cheat Used (-regen): Given foutain regeneration to '.. PlayerResource:GetPlayerName(playerID)) 
+                end
+                             
+            end, DoUniqueString('cheat'), .1)
+
         elseif string.find(text, "-lvlup") then 
             -- Give user 1 level, unless they specify a number after
             local levels = 1
@@ -1991,6 +2015,8 @@ function Ingame:SetPlayerColors( )
         end
     end
 end
+
+
 
 local _instance = Ingame()
 
