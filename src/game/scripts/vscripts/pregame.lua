@@ -970,7 +970,9 @@ function Pregame:onThink()
     -- Review
     if ourPhase == constants.PHASE_REVIEW then
         -- Is it over?
-        if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
+        
+        --QUICKER DEBUGGING CHANGE (the ToolsMode check) - Skips review phase
+        if Time() >= self:getEndOfPhase() and self.freezeTimer == nil or IsInToolsMode() then
             -- Change to picking phase
             self:setPhase(constants.PHASE_SPAWN_HEROES)
 
