@@ -1201,13 +1201,13 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                     
                     local hero = CreateHeroForPlayer(heroName, player)
 
-                    if not IsInToolsMode() and not GameRules:IsCheatMode() then
+                    --if not IsInToolsMode() and not GameRules:IsCheatMode() then
                         UTIL_Remove(hero)
-                    else
-                        hero:AddNoDraw()
-                        hero:AddNewModifier(hero,nil,"modifier_invulnerable",{})
-                        hero:SetAbsOrigin(Vector(-10000,-10000,-10000))
-                    end
+                    --else
+                    --    hero:AddNoDraw()
+                    --    hero:AddNewModifier(hero,nil,"modifier_invulnerable",{})
+                    --    hero:SetAbsOrigin(Vector(-10000,-10000,-10000))
+                    --end
 
                     --[[if hero ~= nil and IsValidEntity(hero) then
                         SkillManager:ApplyBuild(hero, build or {})
