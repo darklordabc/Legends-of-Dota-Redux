@@ -559,7 +559,7 @@
     "lodOptionAboutBanningMaxBans"                  "The max number of abilities each player can ban."
     "lodOptionAboutBanningMaxHeroBans"              "The max number of heroes each player can ban."
     "lodOptionAboutBanningBlockTrollCombos"         "This option will block certain combinations of skills that are traditionally used to troll people / make a game aweful to play."
-    "lodOptionAboutBanningUseBanList"               "Ban abilities not designed for Multiplayer games. These abilities are purposely not balanced and are guaranteed to ruin a Multiplayer game."
+    "lodOptionAboutBanningUseBanList"               "Ban SUPER POWERFUL abilities not designed for Multiplayer games. If all players are on the same team (coop) you can enable these abilities."
     "lodOptionAboutBanningBalanceMode"              "Ban a predefined list of abilities too overpowered for Points mode."
     "lodOptionAboutAdvancedOPAbilities"             "Ban all skills that are considered to be over powered."
     "lodOptionAboutBanningBanInvis"                 "Ban all abilities that allow a player to turn invisible or abilities that require invis detect to counter."
