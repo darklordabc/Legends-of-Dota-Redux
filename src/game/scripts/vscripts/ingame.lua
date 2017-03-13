@@ -48,9 +48,16 @@ function Ingame:init()
     self.playerColors[18]  = { 58.43 * 2.55, 58.82 * 2.55, 59.21 * 2.55 }
     self.playerColors[19]  = { 49.41 * 2.55, 74.90 * 2.55, 94.51 * 2.55 }
 
-    -- 40 minutes
+    -- When to increase respawn rates - 40 minutes
     self.timeToIncreaseRespawnRate = 2400
     self.timeToIncreaseRepawnInterval = 600
+
+    -- These are optional votes that can enable or disable game mechanics
+    self.voteEnabledCheatMode = false
+    self.voteDisableAntiKamikaze = false
+    self.voteDisableRespawnLimit = false
+    self.origianlRespawnRate = nil
+    self.shownCheats = {}
 
     -- Setup standard rules
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
@@ -83,16 +90,16 @@ function Ingame:init()
         local code = DoUniqueString("team_switch")
         self.teamSwitchCode = code
         Timers:CreateTimer(function ()
-            this:swapPlayers(args.x, args.y, code)
+            self:swapPlayers(args.x, args.y, code)
         end, 'switch_warning', 5)
     end)
 
     CustomGameEventManager:RegisterListener( 'declined', function (eventSourceIndex)
-        this:declined(eventSourceIndex)
+        self:declined(eventSourceIndex)
     end)
 
     CustomGameEventManager:RegisterListener( 'ask_custom_team_info', function(eventSourceIndex, args)
-        this:returnCustomTeams(eventSourceIndex, args)
+        self:returnCustomTeams(eventSourceIndex, args)
     end)
 end   
 
@@ -456,7 +463,7 @@ function Ingame:onStart()
 
     ListenToGameEvent("player_chat", Dynamic_Wrap(Ingame, 'OnPlayerChat'), self)
     
-    -- -- Set it to no team balance
+    -- Set it to no team balance
     self:setNoTeamBalanceNeeded()
 end
 
@@ -464,55 +471,58 @@ function Ingame:OnPlayerChat(keys)
     local teamonly = keys.teamonly
     local playerID = keys.playerid
     
-    local text = keys.text
+    local text = string.lower(keys.text)
     local hero = PlayerResource:GetSelectedHeroEntity(playerID) 
 
+    ----------------------------
+    -- Debug Commands
+    ----------------------------
     if string.find(text, "-test") then 
         GameRules:SendCustomMessage('testing testing 1. 2. 3.', 0, 0)
 
     elseif string.find(text, "-printabilities") then 
-            Timers:CreateTimer(function()        
-                -- GameRules:SendCustomMessage("-------------HERO STATS------------", 0, 0)
-                -- GameRules:SendCustomMessage("HP: "..tostring(hero:GetHealth()).."/"..tostring(hero:GetMaxHealth()), 0, 0)
-                -- GameRules:SendCustomMessage("EP: "..tostring(hero:GetMana()).."/"..tostring(hero:GetMaxMana()), 0, 0)
-                -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
-                -- GameRules:SendCustomMessage("MR: "..tostring(hero:GetMagicalArmorValue()), 0, 0)
-                -- GameRules:SendCustomMessage("ARMOR: "..tostring(hero:GetPhysicalArmorValue()), 0, 0)
-                -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
-                -- GameRules:SendCustomMessage("STR: "..tostring(hero:GetStrength()), 0, 0)
-                -- GameRules:SendCustomMessage("AGI: "..tostring(hero:GetAgility()), 0, 0)
-                -- GameRules:SendCustomMessage("INT: "..tostring(hero:GetIntellect()), 0, 0)
-                -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
-                -- GameRules:SendCustomMessage("AD: "..tostring(hero:GetAverageTrueAttackDamage(hero)), 0, 0)
-                -- GameRules:SendCustomMessage("AS: "..tostring(hero:GetAttackSpeed()), 0, 0)
-                -- GameRules:SendCustomMessage("ApS: "..tostring(hero:GetAttacksPerSecond()), 0, 0)
-                -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
-                -- GameRules:SendCustomMessage("MODIFIER COUNT: "..tostring(hero:GetModifierCount()), 0, 0)
-                -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
-                -- for i=0,hero:GetModifierCount() do
-                --     GameRules:SendCustomMessage(hero:GetModifierNameByIndex(i).." "..hero:GetModifierStackCount(hero:GetModifierNameByIndex(i), hero))
-                -- end
-                local abilities = ""
-                for i=0,32 do
-                    local abil = hero:GetAbilityByIndex(i)
-                    if abil then
-                        abilities = abilities..abil:GetName().." "
-                        if string.len(abilities) >= 100 then
-                            GameRules:SendCustomMessage(abilities, 0, 0)
-                            abilities = ""
-                        end
+        Timers:CreateTimer(function()        
+            -- GameRules:SendCustomMessage("-------------HERO STATS------------", 0, 0)
+            -- GameRules:SendCustomMessage("HP: "..tostring(hero:GetHealth()).."/"..tostring(hero:GetMaxHealth()), 0, 0)
+            -- GameRules:SendCustomMessage("EP: "..tostring(hero:GetMana()).."/"..tostring(hero:GetMaxMana()), 0, 0)
+            -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
+            -- GameRules:SendCustomMessage("MR: "..tostring(hero:GetMagicalArmorValue()), 0, 0)
+            -- GameRules:SendCustomMessage("ARMOR: "..tostring(hero:GetPhysicalArmorValue()), 0, 0)
+            -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
+            -- GameRules:SendCustomMessage("STR: "..tostring(hero:GetStrength()), 0, 0)
+            -- GameRules:SendCustomMessage("AGI: "..tostring(hero:GetAgility()), 0, 0)
+            -- GameRules:SendCustomMessage("INT: "..tostring(hero:GetIntellect()), 0, 0)
+            -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
+            -- GameRules:SendCustomMessage("AD: "..tostring(hero:GetAverageTrueAttackDamage(hero)), 0, 0)
+            -- GameRules:SendCustomMessage("AS: "..tostring(hero:GetAttackSpeed()), 0, 0)
+            -- GameRules:SendCustomMessage("ApS: "..tostring(hero:GetAttacksPerSecond()), 0, 0)
+            -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
+            -- GameRules:SendCustomMessage("MODIFIER COUNT: "..tostring(hero:GetModifierCount()), 0, 0)
+            -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
+            -- for i=0,hero:GetModifierCount() do
+            --     GameRules:SendCustomMessage(hero:GetModifierNameByIndex(i).." "..hero:GetModifierStackCount(hero:GetModifierNameByIndex(i), hero))
+            -- end
+            local abilities = ""
+            for i=0,32 do
+                local abil = hero:GetAbilityByIndex(i)
+                if abil then
+                    abilities = abilities..abil:GetName().." "
+                    if string.len(abilities) >= 100 then
+                        GameRules:SendCustomMessage(abilities, 0, 0)
+                        abilities = ""
                     end
                 end
-                GameRules:SendCustomMessage(abilities, 0, 0)
-                -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
-            end, DoUniqueString('printabilities'), .5)
+            end
+            GameRules:SendCustomMessage(abilities, 0, 0)
+            -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
+        end, DoUniqueString('printabilities'), .5)
 
     elseif string.find(text, "-fixcasting") then 
-
-            Timers:CreateTimer(function()        
+        Timers:CreateTimer(function()        
+            local status2,err2 = pcall(function()
                 local talents = {}
 
-                for i = 0, hero:GetAbilityCount() do
+                for i = 0, 23 do
                     if hero:GetAbilityByIndex(i) then 
                         local ability = hero:GetAbilityByIndex(i)
                         if ability and string.match(ability:GetName(), "special_bonus_") then
@@ -523,48 +533,318 @@ function Ingame:OnPlayerChat(keys)
                     end
                 end
 
-                for k,v in pairs(talents) do
-                    hero:AddAbility(v)
-                end
-            end, DoUniqueString('fixcasting'), .5)
+                SendToServerConsole('say "Found talents: '..tostring(util:getTableLength(talents))..'"')
 
-    elseif string.find(text, "-gold") and util:isSinglePlayerMode() then 
+                Timers:CreateTimer(function()  
+                    local status2,err2 = pcall(function()      
+                        for k,v in pairs(talents) do
+                            hero:AddAbility(v)
+                        end
+                    end)
 
-            Timers:CreateTimer(function()        
-                hero:SetGold(99999, true)
-                GameRules:SendCustomMessage('given maximum gold to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
-            end, DoUniqueString('cheatgold'), .5)
+                    if not status2 then
+                        SendToServerConsole('say "Post this to the LoD comments section: '..err2:gsub('"',"''")..'"')
+                    end
+                end, DoUniqueString('fixcasting'), .5)
+            end)
 
-    elseif string.find(text, "-respawn") and util:isSinglePlayerMode() then 
-
+            if not status2 then
+                SendToServerConsole('say "Post this to the LoD comments section: '..err2:gsub('"',"''")..'"')
+            end
+        end, DoUniqueString('fixcasting'), .5)
+    end
+    ----------------------------
+    -- Vote Commands
+    ----------------------------
+    if string.find(text, "-enablecheat") or text == "-ec" then 
         Timers:CreateTimer(function()
-            if not hero:IsAlive() then
-                hero:SetTimeUntilRespawn(1)
+            if not PlayerResource:GetPlayer(playerID).enableCheats then
+                PlayerResource:GetPlayer(playerID).enableCheats = true
+                
+                local votesRequired = 0
+                
+                for player_ID = 0,(24-1) do                        
+                    if not util:isPlayerBot(player_ID) and PlayerResource:GetPlayer(playerID) ~= PlayerResource:GetPlayer(player_ID) then                            
+                        local state = PlayerResource:GetConnectionState(player_ID)
+                        if state == 1 or state == 2 then
+                            if not PlayerResource:GetPlayer(player_ID).enableCheats then
+                                votesRequired = votesRequired + 1
+                            end
+                        end
+                    end
+                end
+
+                if votesRequired == 0 then
+                    self.voteEnabledCheatMode = true
+                    EmitGlobalSound("Event.CheatEnabled")
+                    GameRules:SendCustomMessage('<font color=\'#70EA72\'>Everbody voted to enable cheat mode. Cheat mode enabled</font>.',0,0)
+                else
+                    GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to enable cheat mode. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablecheats (-ec) to vote to enable',0,0)
+                end
+
+                --print(votesRequired)
+
             end
-        end, DoUniqueString('cheatrespawn'), 1)
-
-    elseif string.find(text, "-refresh") and util:isSinglePlayerMode() then 
-
+        end, DoUniqueString('enableCheat'), .1)
+    end
+    if string.find(text, "-enablekamikaze") or text == "-ek" then 
         Timers:CreateTimer(function()
-
-            hero:SetMana(hero:GetMaxMana())
-            hero:SetHealth(hero:GetMaxHealth())
-
-            for i = 0, hero:GetAbilityCount() - 1 do
-                local ability = hero:GetAbilityByIndex(i)
-                if ability then
-                    ability:EndCooldown()
+            if not PlayerResource:GetPlayer(playerID).enableKamikaze then
+                PlayerResource:GetPlayer(playerID).enableKamikaze = true
+                
+                local votesRequired = 0
+                
+                for playerID = 0,(24-1) do                        
+                    if not util:isPlayerBot(playerID) then                            
+                        local state = PlayerResource:GetConnectionState(playerID)
+                        if state == 1 or state == 2 then
+                            if not PlayerResource:GetPlayer(playerID).enableKamikaze then
+                                votesRequired = votesRequired + 1
+                            end
+                        end
+                    end
                 end
-            end
 
-            for i = 0, 5 do
-                local item = hero:GetItemInSlot( i )
-                if item then
-                    item:EndCooldown()
+                if votesRequired == 0 then
+                    self.voteDisableAntiKamikaze = true
+                    EmitGlobalSound("Event.CheatEnabled")
+                    GameRules:SendCustomMessage('Everbody voted to disable the anti-Kamikaze mechanic. <font color=\'#70EA72\'>No more peanlty for dying 3 times within 60 seconds</font>.',0,0)
+                else
+                    GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to disable anti-Kamikaze safeguard. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablekamikaze (-ek) to vote to disable.',0,0)
                 end
-            end
-        end, DoUniqueString('cheatrefresh'), .2)
 
+                --print(votesRequired)
+
+            end
+        end, DoUniqueString('enableKamikaze'), .1)
+    end
+    if string.find(text, "-enablerespawn") or text == "-er" then 
+        Timers:CreateTimer(function()
+            if not PlayerResource:GetPlayer(playerID).enableRespawn then
+                PlayerResource:GetPlayer(playerID).enableRespawn = true
+                
+                local votesRequired = 0
+                
+                for playerID = 0,(24-1) do                        
+                    if not util:isPlayerBot(playerID) then                            
+                        local state = PlayerResource:GetConnectionState(playerID)
+                        if state == 1 or state == 2 then
+                            if not PlayerResource:GetPlayer(playerID).enableRespawn then
+                                votesRequired = votesRequired + 1
+                            end
+                        end
+                    end
+                end
+
+                if votesRequired == 0 then
+                    self.voteDisableRespawnLimit = true
+                    if self.origianlRespawnRate ~= nil then
+                        OptionManager:SetOption('respawnModifierPercentage', self.origianlRespawnRate)
+                    end        
+                    EmitGlobalSound("Event.CheatEnabled")
+                    GameRules:SendCustomMessage('Everbody voted to disable the increasing-spawn-rate mechanic. <font color=\'#70EA72\'>Respawn rates no longer increase after 40 minutes</font>. Respawn rate is now '.. OptionManager:GetOption('respawnModifierPercentage') .. '%.',0,0)
+                else
+                    GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to disable increasing-spawn-rate safeguard. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablerespawn (-er) to vote to disable.',0,0)
+                end
+
+                --print(votesRequired)
+
+            end
+        end, DoUniqueString('enableRespawn'), .1)
+    end
+    ----------------------------
+    -- Cheat Commands
+    ----------------------------
+    if util:isSinglePlayerMode() or Convars:GetBool("sv_cheats") or self.voteEnabledCheatMode then
+        if string.find(text, "-gold") then 
+            -- Give user max gold, unless they specify a number
+            local goldAmount = 100000
+            local splitedText = util:split(text, " ")       
+            if splitedText[2] and tonumber(splitedText[2])then
+                goldAmount = tonumber(splitedText[2])
+            end
+            Timers:CreateTimer(function()  
+                PlayerResource:ModifyGold(hero:GetPlayerOwner():GetPlayerID(), goldAmount, true, 0)      
+                if not self.shownCheats["-gold"]then
+                    self.shownCheats["-gold"] = true
+                    GameRules:SendCustomMessage('Cheat Used (-gold): Given ' .. goldAmount .. ' gold to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                end
+            end, DoUniqueString('cheat'), .1)
+
+        elseif string.find(text, "-lvlup") then 
+            -- Give user 1 level, unless they specify a number after
+            local levels = 1
+            local splitedText = util:split(text, " ")       
+            if splitedText[2] and tonumber(splitedText[2]) then
+                levels = tonumber(splitedText[2])
+            end
+            Timers:CreateTimer(function()  
+                for i=0,levels-1 do
+                    hero:HeroLevelUp(true)
+                end
+                if not self.shownCheats["-lvlup"]then
+                    self.shownCheats["-lvlup"] = true
+                    GameRules:SendCustomMessage('Cheat Used (-lvlup): Given ' .. levels .. ' level(s) to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                end
+            end, DoUniqueString('cheat'), .1)
+
+        elseif string.find(text, "-item") then 
+            -- Give user 1 level, unless they specify a number after
+            Timers:CreateTimer(function()  
+                local splitedText = util:split(text, " ")       
+                local validItem = false
+                if splitedText[2] then
+                    hero:AddItemByName(splitedText[2])
+                    local findItem = hero:FindItemByName(splitedText[2])
+                    if findItem then validItem = true end
+                end
+                if validItem then
+                    if not self.shownCheats["-item"]then
+                        self.shownCheats["-item"] = true
+                        GameRules:SendCustomMessage('Cheat Used (-item): Given ' .. splitedText[2] .. ' to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                    end
+                end
+            end, DoUniqueString('cheat'), .1)
+
+        elseif string.find(text, "-addability") or string.find(text, "-giveability") then 
+            -- Give user 1 level, unless they specify a number after
+            Timers:CreateTimer(function()  
+                local splitedText = util:split(text, " ")       
+                local validAbility = false
+                if splitedText[2] then    
+                    local oldAbList = LoadKeyValues('scripts/kv/abilities.kv')
+                    local skills = oldAbList.skills
+                    for tabName, tabList in pairs(skills) do
+                        for abilityName,abilityGroup in pairs(tabList) do
+                            print(abilityName)
+                            if string.find(abilityName, splitedText[2]) then
+                                splitedText[2] = abilityName
+                            end
+                        end
+                    end
+                    hero:AddAbility(splitedText[2])
+                    local findAbility = hero:FindAbilityByName(splitedText[2])
+                    if findAbility then validAbility = true end
+                end
+                if validAbility then
+                    if not self.shownCheats["-addability"] then
+                        self.shownCheats["-addability"] = true
+                        GameRules:SendCustomMessage('Cheat Used (-addability): Given ' .. splitedText[2] .. ' to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                    end
+                end
+            end, DoUniqueString('cheat'), .1)
+
+        elseif string.find(text, "-removeability") then 
+            -- Give user 1 level, unless they specify a number after
+
+            Timers:CreateTimer(function()  
+                local splitedText = util:split(text, " ")       
+                local validAbility = false
+                if splitedText[2] then    
+                    for i=0,32 do
+                        local abil = hero:GetAbilityByIndex(i)
+                        if abil then
+                            if splitedText[2] == "all" then
+                                hero:RemoveAbility(abil:GetName())
+                            elseif string.find(abil:GetName(), splitedText[2]) then
+                                splitedText[2] = abil:GetName()
+                            end
+                        end
+                    end
+                    hero:RemoveAbility(splitedText[2])
+                end
+                if validAbility then
+                    if not self.shownCheats["-removeability"] then
+                        self.shownCheats["-removeability"] = true
+                        GameRules:SendCustomMessage('Cheat Used (-removeability): -removeability used by  '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                    end
+                end
+            end, DoUniqueString('cheat'), .1)
+
+        elseif string.find(text, "-lvlmax") then 
+            Timers:CreateTimer(function()
+                for i=0,100 do
+                    hero:HeroLevelUp(true)
+                end
+                for i = 0, hero:GetAbilityCount() - 1 do
+                    local ability = hero:GetAbilityByIndex(i)
+                    if ability then
+                        ability:SetLevel(ability:GetMaxLevel())
+                    end
+                end
+                if not self.shownCheats["-lvlmax"] then
+                    self.shownCheats["-lvlmax"] = true
+                    GameRules:SendCustomMessage('Cheat Used (-lvlmax): Max level given to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                end
+            end, DoUniqueString('cheat'), .1)
+
+        elseif string.find(text, "-dagger") then 
+            Timers:CreateTimer(function()
+                hero:AddItemByName('item_devDagger')
+                if not self.shownCheats["-dagger"] then
+                    self.shownCheats["-dagger"] = true
+                    GameRules:SendCustomMessage('Cheat Used (-dagger): Global teleport dagger given to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                end
+            end, DoUniqueString('cheat'), 0.2)
+
+
+        elseif string.find(text, "-teleport") then 
+            -- Teleport is not exactly reproduced. If the game is in tools mode or has sv_cheats, leave it as it is, if not give players the teleport dagger.
+            if not IsInToolsMode() and not Convars:GetBool("sv_cheats") then
+                Timers:CreateTimer(function()
+                    hero:AddItemByName('item_devDagger')
+                    if not self.shownCheats["-teleport"] then
+                        self.shownCheats["-teleport"] = true
+                        GameRules:SendCustomMessage('Cheat Used (-teleport): Global teleport dagger given to '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                    end
+                end, DoUniqueString('cheat'), 0.2)
+            end
+        
+        elseif string.find(text, "-startgame") then 
+            Timers:CreateTimer(function()
+                Tutorial:ForceGameStart()
+                if not self.shownCheats["-startgame"] then
+                    self.shownCheats["-startgame"] = true
+                    GameRules:SendCustomMessage('Cheat Used (-startgame): Forced game start, by '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                end
+            end, DoUniqueString('cheat'), .1)    
+
+        elseif string.find(text, "-respawn") then 
+            Timers:CreateTimer(function()
+                if not hero:IsAlive() then
+                    hero:SetTimeUntilRespawn(1)
+                end
+                if not self.shownCheats["-respawn"] then
+                    self.shownCheats["-respawn"] = true
+                    GameRules:SendCustomMessage('Cheat Used (-respawn): Respawned '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                end
+            end, DoUniqueString('cheat'), 1)
+
+        elseif string.find(text, "-refresh") then 
+            Timers:CreateTimer(function()
+
+                hero:SetMana(hero:GetMaxMana())
+                hero:SetHealth(hero:GetMaxHealth())
+
+                for i = 0, hero:GetAbilityCount() - 1 do
+                    local ability = hero:GetAbilityByIndex(i)
+                    if ability then
+                        ability:EndCooldown()
+                    end
+                end
+
+                for i = 0, 5 do
+                    local item = hero:GetItemInSlot( i )
+                    if item then
+                        item:EndCooldown()
+                    end
+                end
+                if not self.shownCheats["-refresh"] then
+                    self.shownCheats["-refresh"] = true
+                    GameRules:SendCustomMessage('Cheat Used (-refresh): Refreshed '.. PlayerResource:GetPlayerName(playerID), 0, 0 )
+                end
+            end, DoUniqueString('cheatrefresh'), .2)
+        end
     end
 end
 
@@ -1014,12 +1294,15 @@ end
 function Ingame:checkIfRespawnRate()
     if util:isSinglePlayerMode() then return end
     local respawnModifierPercentage = OptionManager:GetOption('respawnModifierPercentage')
-    if GameRules:GetDOTATime(false,false) > self.timeToIncreaseRespawnRate and respawnModifierPercentage < 50  then
+    if GameRules:GetDOTATime(false,false) > self.timeToIncreaseRespawnRate and respawnModifierPercentage < 50 and self.voteDisableRespawnLimit == false then
+        if self.origianlRespawnRate == nil then
+            self.origianlRespawnRate = respawnModifierPercentage
+        end
         local newRespawnRate = respawnModifierPercentage + 10
         if newRespawnRate > 50 then
             newRespawnRate = 50
         end
-        GameRules:SendCustomMessage("Games has been going for too long, respawn rates have increased by 10%. New respawn rate is " .. newRespawnRate .. "%", 0, 0)
+        GameRules:SendCustomMessage("Games has been going for too long, respawn rates have increased by 10%. New respawn rate is " .. newRespawnRate .. "%. Use -enablerespawn (-er) to disable this safeguard.", 0, 0)
         OptionManager:SetOption('respawnModifierPercentage', newRespawnRate)
 
         self.timeToIncreaseRespawnRate = self.timeToIncreaseRespawnRate + self.timeToIncreaseRepawnInterval
@@ -1087,21 +1370,67 @@ function Ingame:handleRespawnModifier()
 
                             -- If the game is single player, it should let players know that they can force respawn. Notify after first death, and notified a second time if their respawn time is longer than 30 seconds. 
                             --print(RespawnNotificationLevel)
-                            if not hero.RespawnNotificationLevel then
-                                hero.RespawnNotificationLevel = 0
-                            end
-                            if util:isSinglePlayerMode() and hero.RespawnNotificationLevel < 2 then
-                                if hero.RespawnNotificationLevel == 0 then
-                                    GameRules:SendCustomMessage('#respawnCheatNotification', 0, 0) 
-                                    hero.RespawnNotificationLevel = 1
-                                elseif hero.RespawnNotificationLevel == 1 and timeLeft > 30 then
-                                    GameRules:SendCustomMessage('#respawnCheatNotification', 0, 0) 
-                                    hero.RespawnNotificationLevel = 2
+                            if not util:isPlayerBot(playerID) then
+                                if util:isSinglePlayerMode() or Convars:GetBool("sv_cheats") or self.voteEnabledCheatMode then
+    	                            if not hero.RespawnNotificationLevel then
+    	                                hero.RespawnNotificationLevel = 0
+    	                            end
+    	                            if hero.RespawnNotificationLevel < 2 then
+    	                                if hero.RespawnNotificationLevel == 0 then
+    	                                    GameRules:SendCustomMessage('#respawnCheatNotification', 0, 0) 
+    	                                    hero.RespawnNotificationLevel = 1
+    	                                elseif hero.RespawnNotificationLevel == 1 and timeLeft > 30 then
+    	                                    GameRules:SendCustomMessage('#respawnCheatNotification', 0, 0) 
+    	                                    hero.RespawnNotificationLevel = 2
+    	                                end
+    	                            end
+                                end
+                        	end
+
+                            -------
+                            -- Anti-Kamikaze Mechanic START
+                            -- This is designed to stop players from spawning very quicky and dying very quickly, e.g pushing towers
+                            -------
+                            if not util:isPlayerBot(playerID) and self.voteDisableAntiKamikaze == false then
+                                local allowableSecsBetweenDeaths = 60
+                                if not hero.lastDeath then
+                                    hero.lastDeath = GameRules:GetDOTATime(false, false)
+                                else
+                                    timeSinceLastDeath = GameRules:GetDOTATime(false, false) - hero.lastDeath 
+                                    hero.lastDeath = GameRules:GetDOTATime(false, false)
+                                    -- If they have died a few seconds after respawning, increase Kamikaze rating
+                                    if timeSinceLastDeath <= allowableSecsBetweenDeaths then
+                                        if not hero.KamikazeRating then
+                                            hero.KamikazeRating = 1
+                                        else
+                                            hero.KamikazeRating = hero.KamikazeRating +1
+                                            if hero.KamikazeRating > 2 then
+                                                GameRules:SendCustomMessage('Player '..PlayerResource:GetPlayerName(playerID)..' has died at least 3 times in the last ' .. allowableSecsBetweenDeaths .. " seconds. To prevent Kamikaze tactics, they have incured <font color=\'#FF4949\'>extra respawn time</font>. Use -enablekamikaze (-ek) to disable this safeguard." , 0, 0)
+                                                -- If they continue this strat, extra respawn peanlty increases by 10 seconds
+                                                if not hero.KamikazePenalty then
+                                                    hero.KamikazePenalty = 1
+                                                else
+                                                    hero.KamikazePenalty = hero.KamikazePenalty + 1
+                                                end
+                                                timeLeft = timeLeft + (hero.KamikazePenalty * 10)
+                                            end
+                                        end
+
+                                        -- After the the allowable time between deaths, lower the rating
+                                        Timers:CreateTimer( function()
+                                            if hero.KamikazeRating and hero.KamikazeRating > 0 then
+                                               hero.KamikazeRating = hero.KamikazeRating - 1   
+                                            end
+                                        end, DoUniqueString('lowerKamikazeRating'), allowableSecsBetweenDeaths)
+                                    end
                                 end
                             end
+                            -------
+                            -- Anti-Kamikaze Mechanic END
+                            -------
 
                             hero:SetTimeUntilRespawn(timeLeft)
-                            
+
                             -- Give 322 gold if enabled
                             if OptionManager:GetOption('322') == 1 then
                                 hero:ModifyGold(322,false,0)
@@ -1374,7 +1703,7 @@ function Ingame:AddTowerBotController()
             local radiantBots = false
             -- CHECK ALL PLAYERS TO SEE WHICH TEAM HAS BOT(S)
             for playerID=0,(maxPlayers-1) do
-                if  util:isPlayerBot(playerID) and PlayerResource:GetTeam(playerID) == DOTA_TEAM_GOODGUYS then
+                if util:isPlayerBot(playerID) and PlayerResource:GetTeam(playerID) == DOTA_TEAM_GOODGUYS then
                     radiantBots = true
                 elseif util:isPlayerBot(playerID) and PlayerResource:GetTeam(playerID) == DOTA_TEAM_BADGUYS then
                     direBots = true

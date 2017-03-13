@@ -1,7 +1,7 @@
 --[[
 Unit AI
 ]]
-require( "dota2horde/ai_core" )
+require( "abilities/dota2horde/ai_core" )
 local util = require('util')
 
 

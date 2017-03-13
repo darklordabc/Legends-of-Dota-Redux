@@ -489,10 +489,10 @@
     "minimapMenuReviewGameOptions"                  "Review Game Settings"
     "minimapMenuHeroBuilder"                        "Hero Builder"
 	
-    "ingameBuilderNotification"                     "<font color='#00DD0B'>Ingame Build Switch is Enabled. Click on the change build icon in the bottom left corner to change your abilities/hero/primaray stat.</font> <font color=\'#FF4949\'>At 10 minutes mark hero switching will be disabled.</font>"
-    "ingameBuilderReminder"                     "<font color='#00DD0B'>Don't forget. Ingame Build Switch is Enabled. Click on the change build icon in the bottom left corner to change your abilities/hero/primaray stat. <font color=\'#FF4949\'>At 10 minutes mark hero switching will be disabled.</font>"
+    "ingameBuilderNotification"                     "<font color='#70EA72'>Ingame Build Switch is Enabled. Click on the change build icon in the bottom left corner to change your abilities/hero/primaray stat.</font>"
+    "ingameBuilderReminder"                     "<font color='#70EA72'>Don't forget. Ingame Build Switch is Enabled. Click on the change build icon in the bottom left corner to change your abilities/hero/primaray stat.</font>"
     "tempDuelBlock"                     "<font color='#FF0000'>Duels are temporarily disabled due to a crash issue. They will be reenabled soon. Sorry about that.</font>"
-    "respawnCheatNotification"  "You can use the chat command cheat '-respawn' to force your hero to respawn, this cheat is only available in single player mode."
+    "respawnCheatNotification"  "You can use the chat command cheat '-respawn' to force your hero to respawn, this cheat is only available in single player mode or with cheats mode."
 
     "lodUniqueSkillsOff"                            "Disabled"
     "lodUniqueSkillsTeam"                           "Unique Team Skills"
@@ -533,7 +533,8 @@
     "balance_mode_points"                           "Points Remaining: {d:points}"
 
     "acceptHosting"                                 "Ok, I understand"
-    "lodWelcomeMessage"                             "<font color='#ffffff'><font color='#70EA72'>Thanks for playing Legends of Dota: Redux</font>. <br><br> <font color='#70EA72'>Redux 6.7:</font></font><br>- Updated Map to 7.02<br>- Disease Tower saps 5 less attributes<br>- Anomaly now has fixed 6 second duration but lower manacost<br>- Cask does not proc spell echo or anomaly cause its bugged<br>- Spell Echo now starts at delay of 2.0 and levels up to 0.5<br>- Default Respawn Rate is now 70% instead of 100%<br>- Dazzle's perk now gives shallow grave global cast range, but no cooldown reduction.<br>- Possibly Fixed Sniper getting Assassinate and Shaprnel when he didnt pick them.<br>- Fixed tooltip on toggle rifle OP<br>- If Free Scepter mutator is on, Aghmanin scepter giving abilities are banned (no need for them)<br>- Fixed Wind Soul working with toggles<br>- Tree Eater Duration increased from 15 to 30 seconds<br>- Discontinued 'custom_bot' and 'custom' maps<br>- Enabled Ingame hero builder in all games, until talents/abilities problem can be fixed"
+    "lodWelcomeMessage"                             "<font color='#ffffff'><font color='#70EA72'>Thanks for playing Legends of Dota: Redux</font>. <br><br> <font color='#70EA72'>Redux 6.8:</font></font><br>- Tomes now get lower cooldown on levelup<br>- Magic Barrier decay reduced to 3 per second instead of 5, but no longer works with abilities with 0 cooldown (e.g. Arcane Orb)<br>- Burrow Redux is now troll combo with the same stuff Burrow regular is, like Dispersion. <br>- Temporarily disabled Juxtapose and Forest ability because of allegations of lag creating. <br>- Added levels to GIGA GRAVITON<br>- The following cheats can be used in all single player games, you no longer need sv_cheats 1 enabled: '-gold x' '-lvlup x' '-lvlmax'
+'-dagger' '-teleport' '-startgame' '-respawn' '-refresh' '-item x'<br>- Berserk and Rot is now a troll combo.<br>- Added Anti-Kamikaze Mechanic: If a hero dies more than 3 times within 60 seconds, they will incur a 20 second extra respawn time penalty, if they again die 3 times within 60 seconds, that penalty will increase by 30 seconds each times.<br>- Re-Enabled Chaos Knight perk"
     "lodPickingMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked.<br><br><font color='#70EA72'>Remeber to pick a hero before time runs out or else you will get stuck with a random hero.</font>"
     "lodBanningMessage"                             "<font color='#70EA72'>This is the banning phase</font>. You can ban heroes and abilities to prevent players from selecting them in this match.<br><br> If you dont want to ban or have finished banning, <font color='#70EA72'>press the 'Finish Banning' button</font> to confirm your ready and to speed up the game."
     "lodBalanceMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked. <br><br><font color='#70EA72'>Points Mode is on.</font> In Points Mode you have limited points to spend on abilities. Abilities are priced by how powerful they are and abilities with no price tags are free. Have fun!"
@@ -712,6 +713,9 @@
     "hintMultiplyNeutrals"  "When 'Multiply Neutrals' is enabled, there is chance that cloned neutrals will spawn with special powerups. The chance and power of these powerup will increases as your last-hit count increases."
     "hintBalancing"  "A balanced game is a fun game. But balance needs you! If you know a playstyle or ability which is too easy to win with (even if its your favourite), do your part, and report it to the developers."
     "hintGoldBorder"  "Ultimate Abilities have a gold border."
+    "hintAntiKamikaze"  "Anti-Kamikaze mechanic: If you die more than 3 times within 60 seconds, you will be penalized with extra respawn time. This is to prevent players taking advantage of lowered respawn."
+    "hintChatCheats"  "You can use cheats in any single player game (even without sv_cheats enabled) like: '-gold x' '-lvlup x' '-lvlmax'
+'-dagger' '-teleport' '-startgame' '-respawn' '-refresh' '-item x'"
 
     // Perk-related Hints
     "hintLina"                          "Lina's intelligence increases by 3 for each level put in Fire abilities"
@@ -3549,7 +3553,7 @@
     "DOTA_Tooltip_ability_android_cluster_rockets_radius"   "RADIUS:"
 
     "DOTA_Tooltip_ability_android_cluster_rockets_OP"   "Cluster Rockets OP"
-    "DOTA_Tooltip_ability_android_cluster_rockets_OP_Description"   "Bombards an area with rockets, stunning enemy land units for 1 second and damaging nearby enemy units. <font color='#70EA72'>Fires more rockets and does more damage per rocket.</font>"
+    "DOTA_Tooltip_ability_android_cluster_rockets_OP_Description"   "Bombards an area with rockets, stunning enemy land units for 1 second and damaging nearby enemy units. <font color='#70EA72'>Fires more rockets, does more damage per rocket, larger cast range and faster projectile speed.</font>"
     "DOTA_Tooltip_ability_android_cluster_rockets_OP_damage"    "ONE ROCKET DAMAGE:"
     "DOTA_Tooltip_ability_android_cluster_rockets_OP_projectile_count"  "ROCKETS COUNT:"
     "DOTA_Tooltip_ability_android_cluster_rockets_OP_radius"    "RADIUS:"
@@ -4198,7 +4202,7 @@
 
     "DOTA_Tooltip_ability_item_backPackBlocker" "Bot BackPack Blocker"
 
-    "DOTA_Tooltip_ability_item_devDagger" "Toolsmode Blink Dagger"
+    "DOTA_Tooltip_ability_item_devDagger" "GLOBAL OP Blink Dagger"
 
     "DOTA_Tooltip_ability_arc_warden_tempest_double_redux"        "Tempest Double Redux"
     "DOTA_Tooltip_ability_arc_warden_tempest_double_redux_Description"    "Briefly refocusing its fractured elements into a single form, the Arc Warden is able to create a perfect electrical duplication of itself. The duplicate can use all of Arc Warden's current items and spells, except consumables and items that drop on death. The duplicate has seperate item and ability cooldowns. <font color='#70EA72'>Has 50% longer cooldown.</font>"
@@ -8054,6 +8058,7 @@
         "DOTA_Tooltip_ability_ancient_defensive_wave_description"                         "Every 7s, the Ancient unleashes a pulse of devastating energy that instantly kills all creeps in a large radius, and deals Pure damage equal to 12% of all nearby enemy Heroes' Max Health. Only activates when under 33%% of its Max Health."
         "DOTA_Tooltip_ability_ancient_defensive_wave_Note0"                               "Deals the damage to each creep at random within a 2.5s interval when the timer hits zero."
         "DOTA_Tooltip_ability_ancient_defensive_wave_radius"                              "RADIUS:"
+        "DOTA_Tooltip_ability_ancient_defensive_wave_hpthreshhold"                              "HP THRESHOLD:"
         
         "DOTA_Tooltip_modifier_side_gunner_redux_cd"                                            "Side Gunner Cooldown"
         "DOTA_Tooltip_modifier_side_gunner_redux_cd_Description"                                ""
@@ -8393,4 +8398,14 @@
         "DOTA_Tooltip_ability_aabs_nightshadow_proc_chance"                              "%REDUCTION CHANCE:"
         "DOTA_Tooltip_ability_aabs_nightshadow_cooldown_reduction"                       "COOLDOWN REDUCTION:"
 
+        "DOTA_Tooltip_ability_dark_seer_vacuum_op"                                         "Vacuum OP"
+        "DOTA_Tooltip_ability_dark_seer_vacuum_op_Description"                             "Dark Seer creates a vacuum over the target area that sucks in enemy units, disrupting them and dealing damage. <font color='#70EA72'>Larger cast range, radius, damage and more levels.</font>"
+        "DOTA_Tooltip_ability_dark_seer_vacuum_op_Lore"                                    "Ish'Kafel modifies the center of gravity to a place of his choosing."
+        "DOTA_Tooltip_ability_dark_seer_vacuum_op_Note0"                                   "This ability interrupts channeling."
+        "DOTA_Tooltip_ability_dark_seer_vacuum_op_Note1"                                   "Pulls units over 0.5 seconds before dealing damage."
+        "DOTA_Tooltip_ability_dark_seer_vacuum_op_Note2"                                   "Doesn't pull invulnerable units."
+        "DOTA_Tooltip_ability_dark_seer_vacuum_op_Note3"                                   "Trees near the center of the vacuum will be destroyed."
+        "DOTA_Tooltip_ability_dark_seer_vacuum_op_radius"                                  "RADIUS:"
+        "DOTA_Tooltip_ability_dark_seer_vacuum_op_damage"                                  "DAMAGE:" 
+        "DOTA_Tooltip_ability_dark_seer_vacuum_op_cast_range"                              "CAST RANGE:"
 }

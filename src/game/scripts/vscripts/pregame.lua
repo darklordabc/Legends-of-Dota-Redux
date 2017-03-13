@@ -35,7 +35,7 @@ require('statcollection.init')
 local Debug = require('lod_debug')              -- Debug library with helper functions, by Ash47
 local challenge = require('challenge')
 local ingame = require('ingame')
-local localStorage = require("ModDotaLib.LocalStorage")
+local localStorage = require("lib/LocalStorage")
 require('lib/wearables')
 
 -- This should alone be used if duels are on.
@@ -526,7 +526,7 @@ function Pregame:loadDefaultSettings()
     self:setOption('lodOptionCrazyWTF', 0, true)
 
     -- Disable ingame hero builder
-    self:setOption('lodOptionIngameBuilder', 1, true)
+    self:setOption('lodOptionIngameBuilder', 0, true)
     self:setOption("lodOptionIngameBuilderPenalty", 0)
 
     -- Enable Perks
@@ -2222,6 +2222,15 @@ function Pregame:initOptionSelector()
 
         -- Common use ban list
         lodOptionBanningUseBanList = function(value)
+            if not util:isSinglePlayerMode() then 
+                Timers:CreateTimer(function()
+                    self:setOption('lodOptionBanningUseBanList', 1, true)
+                    --Comented out below because players can't see it in the custom chat menu at start
+                    --GameRules:SendCustomMessage('Single Player abilities cannot be enabled  bin multiplayer games for now.', 0, 0)
+                    --SendToServerConsole('say "Single Player abilities cannot be enabled in multiplayer games for now."')
+                end, DoUniqueString('disallowOP'), 0.1)
+            end
+            
             return value == 0 or value == 1
         end,
 
@@ -2564,7 +2573,7 @@ function Pregame:initOptionSelector()
 
         -- Other -- Ingame Builder
         lodOptionIngameBuilder = function(value)
-            return value == 1 or value == 1
+            return value == 0 or value == 1
         end,
 
         -- Other -- Ingame Builder Penalty
@@ -2664,7 +2673,7 @@ function Pregame:initOptionSelector()
                     self:setOption('lodOptionDraftAbilities', 47, false)
                 end
             else
-                self:loadDefaultSettings()
+                --self:loadDefaultSettings()
                 self:setOption('lodOptionCommonGamemode', 1)               
             end
         end,
@@ -3421,10 +3430,9 @@ function Pregame:processOptions()
     local mapName = GetMapName()
 
     -- Single Player Overrides
-   -- if util:isSinglePlayerMode() then
-    if true then
-                self:setOption('lodOptionIngameBuilder', 1, true)
-                self:setOption("lodOptionIngameBuilderPenalty", 0)
+    if util:isSinglePlayerMode() then
+        self:setOption('lodOptionIngameBuilder', 1, true)
+        self:setOption("lodOptionIngameBuilderPenalty", 0)
     end
 
     -- Only process options once
@@ -3670,7 +3678,6 @@ function Pregame:processOptions()
         -- Enable All Vision
         if this.optionStore['lodOptionCrazyAllVision'] == 1 then
             Convars:SetBool('dota_all_vision', true)
-            SendToServerConsole('dota_spawn_neutrals')  
         end
 
         if this.optionStore['lodOptionBlackForest'] == 1 then
@@ -4087,7 +4094,7 @@ function Pregame:onPlayerSelectHero(eventSourceIndex, args)
             end
         end
         if not hasAbil then
-            self:onPlayerSelectAbility(0, {PlayerID = playerID, abilityName = GameRules.perks["heroAbilityPairs"][hero], slot=5})
+            self:onPlayerSelectAbility(0, {PlayerID = playerID, abilityName = GameRules.perks["heroAbilityPairs"][hero], slot=1})
         end
     end
 
@@ -4369,10 +4376,7 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
             if newBuild.setAttr ~= attr or newBuild.hero ~= heroName then
                 isSameBuild = false
             end
-
-            --TODO: If timer is more than 10 minutes you can't change builds
-            local dotaTime = GameRules:GetDOTATime(false, false)
-            if isSameBuild or dotaTime > 600 and not util:isSinglePlayerMode() then
+            if isSameBuild then
                 local player = PlayerResource:GetPlayer(playerID)
                 network:hideHeroBuilder(player)
                 return
@@ -4386,14 +4390,11 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
             hero = PlayerResource:GetSelectedHeroEntity(playerID)
             --if OptionManager:GetOption('ingameBuilderPenalty') > 0 then
             --TODO: If long enough, players die to respawn
-            if dotaTime > 15 and not util:isSinglePlayerMode() then
+            self:fixSpawnedHero(hero)
+            if not util:isSinglePlayerMode() and OptionManager:GetOption('ingameBuilderPenalty') > 0 then
                 Timers:CreateTimer(function()
-                    -- TODO: penalty should be game settings, but because its forced on until talents fix, make it based on gametime to stop abuse
-                    -- local penalty = OptionManager:GetOption('ingameBuilderPenalty')
-                    local penalty = dotaTime / 15
-                    if penalty > 60 then 
-                        penalty = 60
-                    end
+                    local penalty = OptionManager:GetOption('ingameBuilderPenalty')
+
                     hero:Kill(nil, nil)
                     
                     Timers:CreateTimer(function()
@@ -4436,6 +4437,11 @@ function Pregame:checkForReady()
     local currentTime = self.endOfTimer - Time()
     local maxTime = OptionManager:GetOption('pickingTime')
     local minTime = 3
+    --QUICKER DEBUGGING CHANGE
+    if IsInToolsMode() then
+        minTime = 0.5
+    end
+
 
     local canFinishBanning = false
 
@@ -6622,11 +6628,10 @@ function Pregame:hookBotStuff()
     end, nil)
 end
 
--- Apply fixes, add perks
-function Pregame:fixSpawningIssues()
-    local givenBonuses = {}
-    local handled = {}
-    local givenCouriers = {}
+function Pregame:fixSpawnedHero( spawnedUnit )
+    self.givenBonuses = self.givenBonuses or {}
+    self.handled = self.handled or {}
+    self.givenCouriers = self.givenCouriers or {}
     local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
 
     -- Grab a reference to self
@@ -6649,17 +6654,474 @@ function Pregame:fixSpawningIssues()
         -- npc_dota_hero_shadow_demon = true,
         -- npc_dota_hero_spirit_breaker = true,
         --npc_dota_hero_spirit_slardar = true,
-        -- npc_dota_hero_ancient_apparition = true,
+        -- npc_dota_hero_chaos_knight = true,
         npc_dota_hero_wisp = true
+    }
+
+    -- Grab their playerID
+    local playerID = spawnedUnit:GetPlayerID()
+
+    local mainHero = PlayerResource:GetSelectedHeroEntity(playerID)
+
+    -- Fix meepo clones and illusions
+    if mainHero and mainHero ~= spawnedUnit and self.spawnedHeroesFor[playerID] then
+        -- Apply the build
+        local build = this.selectedSkills[playerID] or {}
+        SkillManager:ApplyBuild(spawnedUnit, build)
+
+        -- Illusion and Tempest Double fixes
+        if not spawnedUnit:IsClone() then
+            Timers:CreateTimer(function()
+                if IsValidEntity(spawnedUnit) then
+                    for k,abilityName in pairs(build) do
+                        if notOnIllusions[abilityName] then
+                            local ab = spawnedUnit:FindAbilityByName(abilityName)
+                            if ab then
+                                ab:SetLevel(0)
+                                ab:RemoveSelf()
+                            end
+                        end
+                    end
+
+
+                end
+            end, DoUniqueString('fixBrokenSkills'), 0)
+        end
+
+        -- Set the correct level for each ability
+        --[[for k,v in pairs(build) do
+            local abMain = mainHero:FindAbilityByName(v)
+
+            if abMain then
+                local abAlt = spawnedUnit:FindAbilityByName(v)
+
+                if abAlt then
+                    -- Both heroes have both skills, set the level
+                    abAlt:SetLevel(abMain:GetLevel())
+                end
+            end
+        end]]
+    end
+
+    -- Add talents
+    Timers:CreateTimer(function()
+        --print(self.perksDisabled)
+        if spawnedUnit:IsNull() then
+            return
+        end
+        
+        local nameTest = spawnedUnit:GetName()
+        -- TODO: This is been temporarily disabled by the "and false" until we can fix up the ability index problem
+        if IsValidEntity(spawnedUnit) and not spawnedUnit.hasTalent then
+            for heroName,heroValues in pairs(allHeroes) do
+                if heroName == nameTest then
+                    if heroName == "npc_dota_hero_invoker"  then
+                        for i=17,24 do
+                            local abName = heroValues['Ability' .. i]
+                            spawnedUnit:AddAbility(abName)
+                        end
+                    elseif heroName == "npc_dota_hero_wisp" or heroName == "npc_dota_hero_rubick" then
+                         if string.find(spawnedUnit:GetAbilityByIndex(0):GetAbilityName(),"special_bonus") then
+                            print("0index talent")
+                            spawnedUnit.tempAbil = spawnedUnit:GetAbilityByIndex(0):GetAbilityName()
+                            spawnedUnit:RemoveAbility(spawnedUnit.tempAbil)
+                        end
+                        for i=11,18 do
+                            local abName = heroValues['Ability' .. i]
+                            local talent = spawnedUnit:AddAbility(abName)
+                        end
+                        if not spawnedUnit:HasAbility(spawnedUnit.tempAbil) then
+                            spawnedUnit:AddAbility(spawnedUnit.tempAbil)
+                        end
+                    else
+                        if string.find(spawnedUnit:GetAbilityByIndex(0):GetAbilityName(),"special_bonus") then
+                            print("0index talent")
+                            spawnedUnit.tempAbil = spawnedUnit:GetAbilityByIndex(0):GetAbilityName()
+                            spawnedUnit:RemoveAbility(spawnedUnit.tempAbil)
+                        end
+                        for i=10,17 do
+                            local abName = heroValues['Ability' .. i]
+                            local talent = spawnedUnit:AddAbility(abName)
+                        end
+                        if not spawnedUnit:HasAbility(spawnedUnit.tempAbil) then
+                            spawnedUnit:AddAbility(spawnedUnit.tempAbil)
+                        end
+                    end
+                end
+            end
+            spawnedUnit.hasTalent = true
+        end
+
+        --for i = 0, spawnedUnit:GetAbilityCount() do
+       --     if spawnedUnit:GetAbilityByIndex(i) then
+                --print("removed") 
+          --      local ability = spawnedUnit:GetAbilityByIndex(i)
+             --   if ability then
+                 --   print("Ability " .. i .. ": " .. ability:GetAbilityName() .. ", Level " .. ability:GetLevel())
+              --  end
+           -- end
+        --end
+    end, DoUniqueString('addTalents'), 1.5)
+
+    -- Various fixes
+    Timers:CreateTimer(function()
+        if IsValidEntity(spawnedUnit) then
+            -- Silencer Fix
+            if spawnedUnit:HasAbility('silencer_glaives_of_wisdom_steal') then
+                if not spawnedUnit:HasModifier('modifier_silencer_int_steal') then
+                    spawnedUnit:AddNewModifier(spawnedUnit, spawnedUnit:FindAbilityByName("silencer_glaives_of_wisdom_steal"), 'modifier_silencer_int_steal', {})
+                end
+            else
+                spawnedUnit:RemoveModifierByName('modifier_silencer_int_steal')
+            end
+
+            -- Stalker Innate Auto-Level
+            if spawnedUnit:HasAbility('night_stalker_innate_redux') then
+                local stalkerInnate = spawnedUnit:FindAbilityByName('night_stalker_innate_redux')
+                if stalkerInnate then
+                    if stalkerInnate:GetLevel() ~= 1 then
+                        stalkerInnate:UpgradeAbility(false)
+                    end
+                end
+            end
+
+            -- KOTL Innate Auto-Level
+            if spawnedUnit:HasAbility('keeper_of_the_light_innate_redux') then
+                local kotlInnate = spawnedUnit:FindAbilityByName('keeper_of_the_light_innate_redux')
+                if kotlInnate then
+                    if kotlInnate:GetLevel() ~= 1 then
+                        kotlInnate:UpgradeAbility(false)
+                    end
+                end
+            end
+            
+            -- Change sniper assassinate to our custom version to work with aghs
+            if spawnedUnit:HasAbility("sniper_assassinate") and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("sniper_assassinate"):IsHidden() then
+                    spawnedUnit:AddAbility("sniper_assassinate_redux")
+                    spawnedUnit:SwapAbilities("sniper_assassinate","sniper_assassinate_redux",false,true)
+                    spawnedUnit:RemoveAbility("sniper_assassinate")
+            end
+            -- Change juxtapose to juxtapose ranged, for ranged heros
+            if spawnedUnit:HasAbility("phantom_lancer_juxtapose_melee") and spawnedUnit:IsRangedAttacker() then
+                    spawnedUnit:AddAbility("phantom_lancer_juxtapose_ranged")
+                    spawnedUnit:SwapAbilities("phantom_lancer_juxtapose_melee","phantom_lancer_juxtapose_ranged",false,true)
+                    spawnedUnit:RemoveAbility("phantom_lancer_juxtapose_melee")
+            end
+            -- Change Jingu to Jingu ranged, for ranged heros
+            if spawnedUnit:HasAbility("monkey_king_jingu_mastery_lod_melee") and spawnedUnit:IsRangedAttacker() then
+                    spawnedUnit:AddAbility("monkey_king_jingu_mastery_lod_ranged")
+                    spawnedUnit:SwapAbilities("monkey_king_jingu_mastery_lod_melee","monkey_king_jingu_mastery_lod_ranged",false,true)
+                    spawnedUnit:RemoveAbility("monkey_king_jingu_mastery_lod_melee")
+            end
+            -- Change infernal blade on gyro to critical strike
+            if this.optionStore['lodOptionBanningUseBanList'] == 1 and spawnedUnit:HasAbility("doom_bringer_infernal_blade") and spawnedUnit:GetUnitName() == "npc_dota_hero_gyrocopter" and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("doom_bringer_infernal_blade"):IsHidden() then
+                    spawnedUnit:AddAbility("chaos_knight_chaos_strike_gyro")
+                    spawnedUnit:SwapAbilities("doom_bringer_infernal_blade","chaos_knight_chaos_strike_gyro",false,true)
+                    spawnedUnit:RemoveAbility("doom_bringer_infernal_blade")
+            end
+            -- Custom Flesh Heap fixes
+            for abilitySlot=0,6 do
+                local abilityTemp = spawnedUnit:GetAbilityByIndex(abilitySlot)
+                if abilityTemp then 
+                    if string.find(abilityTemp:GetAbilityName(),"flesh_heap_") then
+                        local abilityName = abilityTemp:GetAbilityName()
+                        local modifierName = "modifier"..string.sub(abilityName,6)
+                        spawnedUnit:AddNewModifier(spawnedUnit,abilityTemp,modifierName,{})
+                        
+                    end
+                end
+            end
+        end
+    end, DoUniqueString('silencerFix'), 2)
+
+--[[
+    Timers:CreateTimer(function()
+        if IsValidEntity(spawnedUnit) and not spawnedUnit.hasTalents then 
+            local abilities = spawnedUnit:GetAbilityCount() - 1
+            spawnedUnit.talents = {}
+
+            for i = 0, abilities do
+                if spawnedUnit:GetAbilityByIndex(i) then
+                    if string.find(spawnedUnit:GetAbilityByIndex(i):GetAbilityName(), "special_bonus") then
+                        --print("removed") 
+                        local talent = spawnedUnit:GetAbilityByIndex(i):GetAbilityName()
+                        spawnedUnit.talents[i] = talent
+                        print("Ability " .. i .. ": " .. talent)
+                        spawnedUnit:RemoveAbility(talent)
+                    end
+                end
+            end
+            spawnedUnit.hasTalents = true
+       end
+
+    end, DoUniqueString('fixHotKey'), 1)]]
+
+     -- Add hero perks
+    Timers:CreateTimer(function()
+        if spawnedUnit:IsNull() then
+            return
+        end
+        local nameTest = spawnedUnit:GetName()
+        if IsValidEntity(spawnedUnit) and not self.perksDisabled and not spawnedUnit.hasPerk and not disabledPerks[nameTest] then
+           local perkName = spawnedUnit:GetName() .. "_perk"
+           local perk = spawnedUnit:AddAbility(perkName)
+           local perkModifier = "modifier_" .. perkName
+           if perk then perk:SetLevel(1) end
+           spawnedUnit:AddNewModifier(spawnedUnit, perk, perkModifier, {})
+           spawnedUnit.hasPerk = true
+           --print("Perk assigned")
+        end
+    end, DoUniqueString('addPerk'), 1.0)
+
+    -- Don't touch this hero more than once :O
+    if self.handled[spawnedUnit] then return end
+    self.handled[spawnedUnit] = true
+
+    -- Are they a bot?
+    Timers:CreateTimer(function()
+        if PlayerResource:GetConnectionState(playerID) == 1 then
+            -- Find custom abilities to add AI modifiers
+            for k,abilityName in pairs(this.selectedSkills[playerID]) do
+                if botAIModifier[abilityName] then
+                    abModifierName = "modifier_" .. abilityName .. "_ai"
+                    spawnedUnit:AddNewModifier(spawnedUnit, nil, abModifierName, {})
+                end
+            end
+        end
+    end, DoUniqueString('addBotAI'), 0.5)
+
+
+
+    --[[local ab1 = spawnedUnit:GetAbilityByIndex(1)
+    local ab2 = spawnedUnit:GetAbilityByIndex(2)
+    local ab3 = spawnedUnit:GetAbilityByIndex(3)
+
+    local ab1Name = ab1:GetAbilityName()
+    local ab2Name = ab2:GetAbilityName()
+    local ab3Name = ab3:GetAbilityName()
+
+    print('NEW')
+    print(ab1Name)
+    print(ab2Name)
+    print(ab3Name)]]
+
+    --spawnedUnit:RemoveAbility(ab1Name)
+    --spawnedUnit:RemoveAbility(ab2Name)
+    --spawnedUnit:RemoveAbility(ab3Name)
+
+    --[[spawnedUnit:AddAbility('pudge_meat_hook')
+    spawnedUnit:AddAbility('pudge_flesh_heap')
+    spawnedUnit:AddAbility('pudge_dismember')
+    spawnedUnit:AddAbility('pudge_rot')]]
+
+    -- Handle the free courier stuff
+    --handleFreeCourier(spawnedUnit)
+
+    -- Toolsmode developer stuff to help test
+    if IsInToolsMode() then
+        -- If setting is 1, everyone gets free scepter modifier, if its 2, only human players get the upgrade
+        Timers:CreateTimer(function()
+                if IsValidEntity(spawnedUnit) then
+                    if not util:isPlayerBot(playerID) then
+                        local devDagger = spawnedUnit:FindItemByName("item_devDagger")
+                        local normalDagger = spawnedUnit:FindItemByName("item_blink")
+                        if not devDagger and not normalDagger then
+                            Say(spawnedUnit:GetPlayerOwner(), "-dagger", false)
+
+                        elseif not devDagger and normalDagger then
+                            normalDagger:RemoveSelf()
+                            Say(spawnedUnit:GetPlayerOwner(), "-dagger", false)
+                        end
+
+                    end
+                end
+        end, DoUniqueString('giveDagger'), 1)            
+    end
+
+    -- Handle free scepter stuff 
+    if OptionManager:GetOption('freeScepter') ~= 0 then
+        -- If setting is 1, everyone gets free scepter modifier, if its 2, only human players get the upgrade
+        if OptionManager:GetOption('freeScepter') == 1 or (OptionManager:GetOption('freeScepter') == 2 and not util:isPlayerBot(playerID))  then
+            spawnedUnit:AddNewModifier(spawnedUnit, nil, 'modifier_item_ultimate_scepter_consumed', {
+                bonus_all_stats = 0,
+                bonus_health = 0,
+                bonus_mana = 0
+            })
+         end
+    end
+
+    -- Give out the global cast range ability
+    if OptionManager:GetOption('globalCastRange') == 1 then
+        Timers:CreateTimer(function()
+                if IsValidEntity(spawnedUnit) then
+                    -- If hero is not earthshaker or pudge, give ability, or if the hero is not a bot, give the ability.
+                    if util:isPlayerBot(playerID) == false then
+                        local globalCastRangeAbility = spawnedUnit:AddAbility("aether_range_lod_global")
+                        globalCastRangeAbility:UpgradeAbility(true)
+                    elseif spawnedUnit:GetUnitName() ~= "npc_dota_hero_earthshaker" and spawnedUnit:GetUnitName() ~= "npc_dota_hero_pudge" then
+                        local globalCastRangeAbility = spawnedUnit:AddAbility("aether_range_lod_global")
+                        globalCastRangeAbility:UpgradeAbility(true)
+                    end
+                end
+            end, DoUniqueString('giveGlobalCastRange'), 1)
+    end
+
+    -- Give out the free extra abilities
+    if OptionManager:GetOption('extraAbility') > 0 then
+        Timers:CreateTimer(function()
+            local fleshHeapToGive = nil 
+            local essenceshiftToGive = nil    
+            local rangedTrickshot = nil 
+
+            if OptionManager:GetOption('extraAbility') == 5 then 
+
+                local random = RandomInt(1,7)  
+                local givenAbility = false
+                -- Randomly choose which flesh heap to give them
+                if random == 1 and not spawnedUnit:HasAbility('pudge_flesh_heap') then fleshHeapToGive = "pudge_flesh_heap" ; givenAbility = true
+                elseif random == 2 and not spawnedUnit:HasAbility('pudge_flesh_heap_int') then fleshHeapToGive = "pudge_flesh_heap_int" ; givenAbility = true
+                elseif random == 3 and not spawnedUnit:HasAbility('pudge_flesh_heap_agility') then fleshHeapToGive = "pudge_flesh_heap_agility" ; givenAbility = true
+                elseif random == 4 and not spawnedUnit:HasAbility('pudge_flesh_heap_move_speed') then fleshHeapToGive = "pudge_flesh_heap_move_speed" ; givenAbility = true
+                elseif random == 5 and not spawnedUnit:HasAbility('pudge_flesh_heap_spell_amp') then fleshHeapToGive = "pudge_flesh_heap_spell_amp" ; givenAbility = true
+                elseif random == 6 and not spawnedUnit:HasAbility('pudge_flesh_heap_attack_range') then fleshHeapToGive = "pudge_flesh_heap_attack_range" ; givenAbility = true
+                elseif random == 7 and not spawnedUnit:HasAbility('pudge_flesh_heap_bonus_vision') then fleshHeapToGive = "pudge_flesh_heap_bonus_vision" ; givenAbility = true
+                end
+                -- If they randomly picked a flesh heap they already had, go through this list and try to give them one until they get one
+                if not givenAbility then
+                    if not spawnedUnit:HasAbility('pudge_flesh_heap') then fleshHeapToGive = "pudge_flesh_heap" 
+                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_int') then fleshHeapToGive = "pudge_flesh_heap_int" 
+                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_agility') then fleshHeapToGive = "pudge_flesh_heap_agility" 
+                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_move_speed') then fleshHeapToGive = "pudge_flesh_heap_move_speed" 
+                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_spell_amp') then fleshHeapToGive = "pudge_flesh_heap_spell_amp" 
+                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_attack_range') then fleshHeapToGive = "pudge_flesh_heap_attack_range" 
+                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_bonus_vision') then fleshHeapToGive = "pudge_flesh_heap_bonus_vision" 
+                    end
+                end
+            end
+
+            if OptionManager:GetOption('extraAbility') == 13 then 
+                -- Give an essence shift based on heros primary attribute
+                if spawnedUnit:GetPrimaryAttribute() == 0 then essenceshiftToGive = "slark_essence_shift_strength_lod"
+                elseif spawnedUnit:GetPrimaryAttribute() == 1 then essenceshiftToGive = "slark_essence_shift_agility_lod"
+                elseif spawnedUnit:GetPrimaryAttribute() == 2 then essenceshiftToGive = "slark_essence_shift_intellect_lod"
+                end
+            end
+
+             if OptionManager:GetOption('extraAbility') == 19 then 
+                -- Give an essence shift based on heros primary attribute
+                if spawnedUnit:IsRangedAttacker() then rangedTrickshot = "ebf_clinkz_trickshot_passive_ranged"
+                end
+            end
+
+            local abilityToGive = self.freeAbility
+
+            if fleshHeapToGive then abilityToGive = fleshHeapToGive 
+            elseif essenceshiftToGive then abilityToGive = essenceshiftToGive 
+            elseif rangedTrickshot then abilityToGive = rangedTrickshot 
+            end
+
+            spawnedUnit:AddAbility(abilityToGive)
+            local givenAbility = spawnedUnit:FindAbilityByName(abilityToGive)
+            if givenAbility then
+                givenAbility:SetLevel(givenAbility:GetMaxLevel())
+            end
+
+        end, DoUniqueString('addExtra'), RandomInt(1,3) )
+    end
+
+    if OptionManager:GetOption('freeCourier') then
+        local team = spawnedUnit:GetTeam()
+
+        if not self.givenCouriers[team] then
+            Timers:CreateTimer(function()
+                if IsValidEntity(spawnedUnit) then
+                    if not self.givenCouriers[team] then
+                        self.givenCouriers[team] = true
+                        local item = spawnedUnit:AddItemByName('item_courier')
+
+                        if item then
+                            spawnedUnit:CastAbilityImmediately(item, spawnedUnit:GetPlayerID())
+                        end
+                    end
+                end
+            end, DoUniqueString('spawncourier'), 1)
+        end
+    end
+
+    -- THIS does not seem necessary anymore, eventually remove this code.
+    --if util:isPlayerBot(playerID) then
+        --Timers:CreateTimer(function()
+            --if IsValidEntity(spawnedUnit) then
+                    --local item = spawnedUnit:AddItemByName('item_backPackBlocker')
+                    --spawnedUnit:SwapItems(0, 6)
+                    --local item2 = spawnedUnit:AddItemByName('item_backPackBlocker')
+                    --spawnedUnit:SwapItems(0, 7)
+                    --local item3 = spawnedUnit:AddItemByName('item_backPackBlocker')
+                    --spawnedUnit:SwapItems(0, 8)
+           -- end
+        --end, DoUniqueString('fillBotsBackPack'), 1)
+    --end
+
+    Timers:CreateTimer(function()
+        if IsValidEntity(spawnedUnit) then
+            for _,modifier in pairs(spawnedUnit:FindAllModifiers()) do
+                if string.find(modifier:GetName(), "modifier_special_bonus") then
+                    modifier:Destroy()
+                end
+           end
+        end
+     end, DoUniqueString('removeTalentModifiers'), 2)
+                
+    -- Only give bonuses once
+    if not self.givenBonuses[playerID] then
+        -- We have given bonuses
+        self.givenBonuses[playerID] = true
+
+        local startingLevel = OptionManager:GetOption('startingLevel')
+        -- Do we need to level up?
+        if startingLevel > 1 then
+            -- Level it up
+            for i=1,startingLevel-1 do
+               spawnedUnit:HeroLevelUp(false)
+            end
+
+            local exp = constants.XP_PER_LEVEL_TABLE[startingLevel]
+
+            -- Fix EXP
+            spawnedUnit:AddExperience(exp, false, false)
+        end
+
+        -- Any bonus gold?
+        if OptionManager:GetOption('bonusGold') > 0 then
+            PlayerResource:SetGold(playerID, OptionManager:GetOption('bonusGold'), true)
+        end
+    end
+end
+
+-- Apply fixes, add perks
+function Pregame:fixSpawningIssues()
+    self.givenBonuses = self.givenBonuses or {}
+    self.handled = self.handled or {}
+    local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
+
+    -- Grab a reference to self
+    local this = self
+
+    local notOnIllusions = {
+        lone_druid_spirit_bear = true,
+        necronomicon_warrior_last_will_lod = true,
+        roshan_bash = true,
+    }
+
+    local botAIModifier = {
+        slark_shadow_dance = true,
+        alchemist_chemical_rage = true,
+        --rattletrap_rocket_flare = true,
     }
 
     ListenToGameEvent('npc_spawned', function(keys)
         -- Grab the unit that spawned
         local spawnedUnit = EntIndexToHScript(keys.entindex)
-
-        if GameRules:State_Get() < DOTA_GAMERULES_STATE_STRATEGY_TIME then
-            return false
-        end
 
         -- Ensure it's a valid unit
         if IsValidEntity(spawnedUnit) then
@@ -6701,476 +7163,10 @@ function Pregame:fixSpawningIssues()
                         end, DoUniqueString('makeMonster4'), 1)    
                     end 
                 end
-
-                -- self.spawnedArray = self.spawnedArray or {}
-
-                -- if not self.spawnedArray[spawnedUnit:GetPlayerID()] then
-                --     self.spawnedArray[spawnedUnit:GetPlayerID()] = true
-                --     spawnedUnit.dummy = true
-                --     spawnedUnit:AddNoDraw()
-                --     return
-                -- end
             end
             -- Make sure it is a hero
             if spawnedUnit:IsHero() then
-                -- Grab their playerID
-                local playerID = spawnedUnit:GetPlayerID()
 
-                local mainHero = PlayerResource:GetSelectedHeroEntity(playerID)
-
-                -- Fix meepo clones and illusions
-                if mainHero and mainHero ~= spawnedUnit and self.spawnedHeroesFor[playerID] then
-                    -- Apply the build
-                    local build = this.selectedSkills[playerID] or {}
-                    SkillManager:ApplyBuild(spawnedUnit, build)
-
-                    -- Illusion and Tempest Double fixes
-                    if not spawnedUnit:IsClone() then
-                        Timers:CreateTimer(function()
-                            if IsValidEntity(spawnedUnit) then
-                                for k,abilityName in pairs(build) do
-                                    if notOnIllusions[abilityName] then
-                                        local ab = spawnedUnit:FindAbilityByName(abilityName)
-                                        if ab then
-                                            ab:SetLevel(0)
-                                            ab:RemoveSelf()
-                                        end
-                                    end
-                                end
-
-
-                            end
-                        end, DoUniqueString('fixBrokenSkills'), 0)
-                    end
-
-                    -- Set the correct level for each ability
-                    --[[for k,v in pairs(build) do
-                        local abMain = mainHero:FindAbilityByName(v)
-
-                        if abMain then
-                            local abAlt = spawnedUnit:FindAbilityByName(v)
-
-                            if abAlt then
-                                -- Both heroes have both skills, set the level
-                                abAlt:SetLevel(abMain:GetLevel())
-                            end
-                        end
-                    end]]
-                end
-
-                Timers:CreateTimer(function()
-                    local talents = {}
-
-                    for i = 0, spawnedUnit:GetAbilityCount() do
-                        if spawnedUnit:GetAbilityByIndex(i) then 
-                            local ability = spawnedUnit:GetAbilityByIndex(i)
-                            if ability and string.match(ability:GetName(), "special_bonus_") then
-                                local abName = ability:GetName()
-                                table.insert(talents, abName)
-                                spawnedUnit:RemoveAbility(abName)
-                            end
-                        end
-                    end
-
-                    for k,v in pairs(talents) do
-                        spawnedUnit:AddAbility(v)
-                    end
-                end, DoUniqueString('fixTalentsOrder'), 2.0)
-
-                -- Various fixes
-                Timers:CreateTimer(function()
-                    if IsValidEntity(spawnedUnit) then
-                        -- Silencer Fix
-                        if spawnedUnit:HasAbility('silencer_glaives_of_wisdom_steal') then
-                            if not spawnedUnit:HasModifier('modifier_silencer_int_steal') then
-                                spawnedUnit:AddNewModifier(spawnedUnit, spawnedUnit:FindAbilityByName("silencer_glaives_of_wisdom_steal"), 'modifier_silencer_int_steal', {})
-                            end
-                        else
-                            spawnedUnit:RemoveModifierByName('modifier_silencer_int_steal')
-                        end
-
-                        -- Stalker Innate Auto-Level
-                        if spawnedUnit:HasAbility('night_stalker_innate_redux') then
-                            local stalkerInnate = spawnedUnit:FindAbilityByName('night_stalker_innate_redux')
-                            if stalkerInnate then
-                                if stalkerInnate:GetLevel() ~= 1 then
-                                    stalkerInnate:UpgradeAbility(false)
-                                end
-                            end
-                        end
-
-                        -- KOTL Innate Auto-Level
-                        if spawnedUnit:HasAbility('keeper_of_the_light_innate_redux') then
-                            local kotlInnate = spawnedUnit:FindAbilityByName('keeper_of_the_light_innate_redux')
-                            if kotlInnate then
-                                if kotlInnate:GetLevel() ~= 1 then
-                                    kotlInnate:UpgradeAbility(false)
-                                end
-                            end
-                        end
-                        
-                        -- Change sniper assassinate to our custom version to work with aghs
-                        if spawnedUnit:HasAbility("sniper_assassinate") and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("sniper_assassinate"):IsHidden() then
-                                spawnedUnit:AddAbility("sniper_assassinate_redux")
-                                spawnedUnit:SwapAbilities("sniper_assassinate","sniper_assassinate_redux",false,true)
-                                spawnedUnit:RemoveAbility("sniper_assassinate")
-                        end
-                        -- Change juxtapose to juxtapose ranged, for ranged heros
-                        if spawnedUnit:HasAbility("phantom_lancer_juxtapose_melee") and spawnedUnit:IsRangedAttacker() then
-                                spawnedUnit:AddAbility("phantom_lancer_juxtapose_ranged")
-                                spawnedUnit:SwapAbilities("phantom_lancer_juxtapose_melee","phantom_lancer_juxtapose_ranged",false,true)
-                                spawnedUnit:RemoveAbility("phantom_lancer_juxtapose_melee")
-                        end
-                        -- Change Jingu to Jingu ranged, for ranged heros
-                        if spawnedUnit:HasAbility("monkey_king_jingu_mastery_lod_melee") and spawnedUnit:IsRangedAttacker() then
-                                spawnedUnit:AddAbility("monkey_king_jingu_mastery_lod_ranged")
-                                spawnedUnit:SwapAbilities("monkey_king_jingu_mastery_lod_melee","monkey_king_jingu_mastery_lod_ranged",false,true)
-                                spawnedUnit:RemoveAbility("monkey_king_jingu_mastery_lod_melee")
-                        end
-                        -- Change infernal blade on gyro to critical strike
-                        if this.optionStore['lodOptionBanningUseBanList'] == 1 and spawnedUnit:HasAbility("doom_bringer_infernal_blade") and spawnedUnit:GetUnitName() == "npc_dota_hero_gyrocopter" and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("doom_bringer_infernal_blade"):IsHidden() then
-                                spawnedUnit:AddAbility("chaos_knight_chaos_strike_gyro")
-                                spawnedUnit:SwapAbilities("doom_bringer_infernal_blade","chaos_knight_chaos_strike_gyro",false,true)
-                                spawnedUnit:RemoveAbility("doom_bringer_infernal_blade")
-                        end
-                        -- Custom Flesh Heap fixes
-                        for abilitySlot=0,6 do
-                            local abilityTemp = spawnedUnit:GetAbilityByIndex(abilitySlot)
-                            if abilityTemp then 
-                                if string.find(abilityTemp:GetAbilityName(),"flesh_heap_") then
-                                    local abilityName = abilityTemp:GetAbilityName()
-                                    local modifierName = "modifier"..string.sub(abilityName,6)
-                                    spawnedUnit:AddNewModifier(spawnedUnit,abilityTemp,modifierName,{})
-                                    
-                                end
-                            end
-                        end
-                    end
-                end, DoUniqueString('silencerFix'), 2)
-
---[[
-                Timers:CreateTimer(function()
-                    if IsValidEntity(spawnedUnit) and not spawnedUnit.hasTalents then 
-                        local abilities = spawnedUnit:GetAbilityCount() - 1
-                        spawnedUnit.talents = {}
-
-                        for i = 0, abilities do
-                            if spawnedUnit:GetAbilityByIndex(i) then
-                                if string.find(spawnedUnit:GetAbilityByIndex(i):GetAbilityName(), "special_bonus") then
-                                    --print("removed") 
-                                    local talent = spawnedUnit:GetAbilityByIndex(i):GetAbilityName()
-                                    spawnedUnit.talents[i] = talent
-                                    print("Ability " .. i .. ": " .. talent)
-                                    spawnedUnit:RemoveAbility(talent)
-                                end
-                            end
-                        end
-                        spawnedUnit.hasTalents = true
-                   end
-
-                end, DoUniqueString('fixHotKey'), 1)]]
-
-                 -- Add hero perks
-                Timers:CreateTimer(function()
-                    if spawnedUnit:IsNull() then
-                        return
-                    end
-                    local nameTest = spawnedUnit:GetName()
-                    if IsValidEntity(spawnedUnit) and not self.perksDisabled and not spawnedUnit.hasPerk and not disabledPerks[nameTest] then
-                       local perkName = spawnedUnit:GetName() .. "_perk"
-                       local perk = spawnedUnit:AddAbility(perkName)
-                       local perkModifier = "modifier_" .. perkName
-                       if perk then perk:SetLevel(1) end
-                       spawnedUnit:AddNewModifier(spawnedUnit, perk, perkModifier, {})
-                       spawnedUnit.hasPerk = true
-                       --print("Perk assigned")
-                    end
-                end, DoUniqueString('addPerk'), 1.0)
-                
-                -- Add talents
-                Timers:CreateTimer(function()
-                    --print(self.perksDisabled)
-                    if spawnedUnit:IsNull() then
-                        return
-                    end
-                    
-                    local nameTest = spawnedUnit:GetName()
-                    -- TODO: This is been temporarily disabled by the "and false" until we can fix up the ability index problem
-                    if IsValidEntity(spawnedUnit) and not spawnedUnit.hasTalent then
-                        for heroName,heroValues in pairs(allHeroes) do
-                            if heroName == nameTest then
-                                if heroName == "npc_dota_hero_invoker"  then
-                                    for i=17,24 do
-                                        local abName = heroValues['Ability' .. i]
-                                        spawnedUnit:AddAbility(abName)
-                                    end
-                                elseif heroName == "npc_dota_hero_wisp" or heroName == "npc_dota_hero_rubick" then
-                                     if string.find(spawnedUnit:GetAbilityByIndex(0):GetAbilityName(),"special_bonus") then
-                                        print("0index talent")
-                                        spawnedUnit.tempAbil = spawnedUnit:GetAbilityByIndex(0):GetAbilityName()
-                                        spawnedUnit:RemoveAbility(spawnedUnit.tempAbil)
-                                    end
-                                    for i=11,18 do
-                                        local abName = heroValues['Ability' .. i]
-                                        local talent = spawnedUnit:AddAbility(abName)
-                                    end
-                                    if not spawnedUnit:HasAbility(spawnedUnit.tempAbil) then
-                                        spawnedUnit:AddAbility(spawnedUnit.tempAbil)
-                                    end
-                                else
-                                    if string.find(spawnedUnit:GetAbilityByIndex(0):GetAbilityName(),"special_bonus") then
-                                        print("0index talent")
-                                        spawnedUnit.tempAbil = spawnedUnit:GetAbilityByIndex(0):GetAbilityName()
-                                        spawnedUnit:RemoveAbility(spawnedUnit.tempAbil)
-                                    end
-                                    for i=10,17 do
-                                        local abName = heroValues['Ability' .. i]
-                                        local talent = spawnedUnit:AddAbility(abName)
-                                    end
-                                    if not spawnedUnit:HasAbility(spawnedUnit.tempAbil) then
-                                        spawnedUnit:AddAbility(spawnedUnit.tempAbil)
-                                    end
-                                end
-                            end
-                        end
-                        spawnedUnit.hasTalent = true
-                    end
-
-                    --for i = 0, spawnedUnit:GetAbilityCount() do
-                   --     if spawnedUnit:GetAbilityByIndex(i) then
-                            --print("removed") 
-                      --      local ability = spawnedUnit:GetAbilityByIndex(i)
-                         --   if ability then
-                             --   print("Ability " .. i .. ": " .. ability:GetAbilityName() .. ", Level " .. ability:GetLevel())
-                          --  end
-                       -- end
-                    --end
-                end, DoUniqueString('addTalents'), 1.5)
-
-                -- Don't touch this hero more than once :O
-                if handled[spawnedUnit] then return end
-                handled[spawnedUnit] = true
-
-                -- Are they a bot?
-                Timers:CreateTimer(function()
-                    if PlayerResource:GetConnectionState(playerID) == 1 then
-                        -- Find custom abilities to add AI modifiers
-                        for k,abilityName in pairs(this.selectedSkills[playerID]) do
-                            if botAIModifier[abilityName] then
-                                abModifierName = "modifier_" .. abilityName .. "_ai"
-                                spawnedUnit:AddNewModifier(spawnedUnit, nil, abModifierName, {})
-                            end
-                        end
-                    end
-                end, DoUniqueString('addBotAI'), 0.5)
-
-
-
-                --[[local ab1 = spawnedUnit:GetAbilityByIndex(1)
-                local ab2 = spawnedUnit:GetAbilityByIndex(2)
-                local ab3 = spawnedUnit:GetAbilityByIndex(3)
-
-                local ab1Name = ab1:GetAbilityName()
-                local ab2Name = ab2:GetAbilityName()
-                local ab3Name = ab3:GetAbilityName()
-
-                print('NEW')
-                print(ab1Name)
-                print(ab2Name)
-                print(ab3Name)]]
-
-                --spawnedUnit:RemoveAbility(ab1Name)
-                --spawnedUnit:RemoveAbility(ab2Name)
-                --spawnedUnit:RemoveAbility(ab3Name)
-
-                --[[spawnedUnit:AddAbility('pudge_meat_hook')
-                spawnedUnit:AddAbility('pudge_flesh_heap')
-                spawnedUnit:AddAbility('pudge_dismember')
-                spawnedUnit:AddAbility('pudge_rot')]]
-
-                -- Handle the free courier stuff
-                --handleFreeCourier(spawnedUnit)
-
-                -- Toolsmode developer stuff to help test
-                if IsInToolsMode() then
-                    -- If setting is 1, everyone gets free scepter modifier, if its 2, only human players get the upgrade
-                    Timers:CreateTimer(function()
-                            if IsValidEntity(spawnedUnit) then
-                                if not util:isPlayerBot(playerID) then
-                                    local devDagger = spawnedUnit:FindItemByName("item_devDagger")
-                                    local normalDagger = spawnedUnit:FindItemByName("item_blink")
-                                    if not devDagger and not normalDagger then
-                                        spawnedUnit:AddItemByName('item_devDagger')
-                                    elseif not devDagger and normalDagger then
-                                        normalDagger:RemoveSelf()
-                                        spawnedUnit:AddItemByName('item_devDagger')
-                                    end
-
-                                end
-                            end
-                    end, DoUniqueString('giveDagger'), 1)            
-                end
-
-                -- Handle free scepter stuff 
-                if OptionManager:GetOption('freeScepter') ~= 0 then
-                    -- If setting is 1, everyone gets free scepter modifier, if its 2, only human players get the upgrade
-                    if OptionManager:GetOption('freeScepter') == 1 or (OptionManager:GetOption('freeScepter') == 2 and not util:isPlayerBot(playerID))  then
-                        spawnedUnit:AddNewModifier(spawnedUnit, nil, 'modifier_item_ultimate_scepter_consumed', {
-                            bonus_all_stats = 0,
-                            bonus_health = 0,
-                            bonus_mana = 0
-                        })
-                     end
-                end
-
-                -- Give out the global cast range ability
-                if OptionManager:GetOption('globalCastRange') == 1 then
-                    Timers:CreateTimer(function()
-                            if IsValidEntity(spawnedUnit) then
-                                -- If hero is not earthshaker or pudge, give ability, or if the hero is not a bot, give the ability.
-                                if util:isPlayerBot(playerID) == false then
-                                    local globalCastRangeAbility = spawnedUnit:AddAbility("aether_range_lod_global")
-                                    globalCastRangeAbility:UpgradeAbility(true)
-                                elseif spawnedUnit:GetUnitName() ~= "npc_dota_hero_earthshaker" and spawnedUnit:GetUnitName() ~= "npc_dota_hero_pudge" then
-                                    local globalCastRangeAbility = spawnedUnit:AddAbility("aether_range_lod_global")
-                                    globalCastRangeAbility:UpgradeAbility(true)
-                                end
-                            end
-                        end, DoUniqueString('giveGlobalCastRange'), 1)
-                end
-
-                -- Give out the free extra abilities
-                if OptionManager:GetOption('extraAbility') > 0 then
-                    Timers:CreateTimer(function()
-                        local fleshHeapToGive = nil 
-                        local essenceshiftToGive = nil    
-                        local rangedTrickshot = nil 
-
-                        if OptionManager:GetOption('extraAbility') == 5 then 
-
-                            local random = RandomInt(1,7)  
-                            local givenAbility = false
-                            -- Randomly choose which flesh heap to give them
-                            if random == 1 and not spawnedUnit:HasAbility('pudge_flesh_heap') then fleshHeapToGive = "pudge_flesh_heap" ; givenAbility = true
-                            elseif random == 2 and not spawnedUnit:HasAbility('pudge_flesh_heap_int') then fleshHeapToGive = "pudge_flesh_heap_int" ; givenAbility = true
-                            elseif random == 3 and not spawnedUnit:HasAbility('pudge_flesh_heap_agility') then fleshHeapToGive = "pudge_flesh_heap_agility" ; givenAbility = true
-                            elseif random == 4 and not spawnedUnit:HasAbility('pudge_flesh_heap_move_speed') then fleshHeapToGive = "pudge_flesh_heap_move_speed" ; givenAbility = true
-                            elseif random == 5 and not spawnedUnit:HasAbility('pudge_flesh_heap_spell_amp') then fleshHeapToGive = "pudge_flesh_heap_spell_amp" ; givenAbility = true
-                            elseif random == 6 and not spawnedUnit:HasAbility('pudge_flesh_heap_attack_range') then fleshHeapToGive = "pudge_flesh_heap_attack_range" ; givenAbility = true
-                            elseif random == 7 and not spawnedUnit:HasAbility('pudge_flesh_heap_bonus_vision') then fleshHeapToGive = "pudge_flesh_heap_bonus_vision" ; givenAbility = true
-                            end
-                            -- If they randomly picked a flesh heap they already had, go through this list and try to give them one until they get one
-                            if not givenAbility then
-                                if not spawnedUnit:HasAbility('pudge_flesh_heap') then fleshHeapToGive = "pudge_flesh_heap" 
-                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_int') then fleshHeapToGive = "pudge_flesh_heap_int" 
-                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_agility') then fleshHeapToGive = "pudge_flesh_heap_agility" 
-                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_move_speed') then fleshHeapToGive = "pudge_flesh_heap_move_speed" 
-                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_spell_amp') then fleshHeapToGive = "pudge_flesh_heap_spell_amp" 
-                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_attack_range') then fleshHeapToGive = "pudge_flesh_heap_attack_range" 
-                                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_bonus_vision') then fleshHeapToGive = "pudge_flesh_heap_bonus_vision" 
-                                end
-                            end
-                        end
-
-                        if OptionManager:GetOption('extraAbility') == 13 then 
-                            -- Give an essence shift based on heros primary attribute
-                            if spawnedUnit:GetPrimaryAttribute() == 0 then essenceshiftToGive = "slark_essence_shift_strength_lod"
-                            elseif spawnedUnit:GetPrimaryAttribute() == 1 then essenceshiftToGive = "slark_essence_shift_agility_lod"
-                            elseif spawnedUnit:GetPrimaryAttribute() == 2 then essenceshiftToGive = "slark_essence_shift_intellect_lod"
-                            end
-                        end
-
-                         if OptionManager:GetOption('extraAbility') == 19 then 
-                            -- Give an essence shift based on heros primary attribute
-                            if spawnedUnit:IsRangedAttacker() then rangedTrickshot = "ebf_clinkz_trickshot_passive_ranged"
-                            end
-                        end
-
-                        local abilityToGive = self.freeAbility
-
-                        if fleshHeapToGive then abilityToGive = fleshHeapToGive 
-                        elseif essenceshiftToGive then abilityToGive = essenceshiftToGive 
-                        elseif rangedTrickshot then abilityToGive = rangedTrickshot 
-                        end
-
-                        spawnedUnit:AddAbility(abilityToGive)
-                        local givenAbility = spawnedUnit:FindAbilityByName(abilityToGive)
-                        if givenAbility then
-                            givenAbility:SetLevel(givenAbility:GetMaxLevel())
-                        end
-
-                    end, DoUniqueString('addExtra'), RandomInt(1,3) )
-                end
-
-               if OptionManager:GetOption('freeCourier') then
-                    local team = spawnedUnit:GetTeam()
-
-                    if not givenCouriers[team] then
-                        Timers:CreateTimer(function()
-                            if IsValidEntity(spawnedUnit) then
-                                if not givenCouriers[team] then
-                                    givenCouriers[team] = true
-                                    local item = spawnedUnit:AddItemByName('item_courier')
-
-                                    if item then
-                                        spawnedUnit:CastAbilityImmediately(item, spawnedUnit:GetPlayerID())
-                                    end
-                                end
-                            end
-                        end, DoUniqueString('spawncourier'), 1)
-                    end
-                end
-
-            -- THIS does not seem necessary anymore, eventually remove this code.
-            --if util:isPlayerBot(playerID) then
-                --Timers:CreateTimer(function()
-                    --if IsValidEntity(spawnedUnit) then
-                            --local item = spawnedUnit:AddItemByName('item_backPackBlocker')
-                            --spawnedUnit:SwapItems(0, 6)
-                            --local item2 = spawnedUnit:AddItemByName('item_backPackBlocker')
-                            --spawnedUnit:SwapItems(0, 7)
-                            --local item3 = spawnedUnit:AddItemByName('item_backPackBlocker')
-                            --spawnedUnit:SwapItems(0, 8)
-                   -- end
-                --end, DoUniqueString('fillBotsBackPack'), 1)
-            --end
-            
-            Timers:CreateTimer(function()
-                if IsValidEntity(spawnedUnit) then
-                    for _,modifier in pairs(spawnedUnit:FindAllModifiers()) do
-                        if string.find(modifier:GetName(), "modifier_special_bonus") then
-                            modifier:Destroy()
-                        end
-                   end
-                end
-             end, DoUniqueString('removeTalentModifiers'), 2)
-
-
-                        
-            -- Only give bonuses once
-            if not givenBonuses[playerID] then
-                    -- We have given bonuses
-                    givenBonuses[playerID] = true
-
-                    local startingLevel = OptionManager:GetOption('startingLevel')
-                    -- Do we need to level up?
-                    if startingLevel > 1 then
-                        -- Level it up
-                        for i=1,startingLevel-1 do
-                           spawnedUnit:HeroLevelUp(false)
-                        end
-
-                        local exp = constants.XP_PER_LEVEL_TABLE[startingLevel]
-
-                        -- Fix EXP
-                        spawnedUnit:AddExperience(exp, false, false)
-                    end
-
-                    -- Any bonus gold?
-                    if OptionManager:GetOption('bonusGold') > 0 then
-                        PlayerResource:SetGold(playerID, OptionManager:GetOption('bonusGold'), true)
-                    end
-                end
             elseif string.match(spawnedUnit:GetUnitName(), "creep") or string.match(spawnedUnit:GetUnitName(), "siege") then
                 if this.optionStore['lodOptionCreepPower'] > 0 then
                     local dotaTime = GameRules:GetDOTATime(false, false)
@@ -7209,6 +7205,7 @@ function Pregame:fixSpawningIssues()
                     end, DoUniqueString('evolveCreep'), .5)
                     
                 end
+
             elseif spawnedUnit:GetTeam() == DOTA_TEAM_NEUTRALS then
                 -- Increasing creep power over time                
                 if this.optionStore['lodOptionNeutralCreepPower'] > 0 then
@@ -7226,7 +7223,21 @@ local _instance = Pregame()
 
 ListenToGameEvent('game_rules_state_change', function(keys)
     local newState = GameRules:State_Get()
-    if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+    if newState == DOTA_GAMERULES_STATE_PRE_GAME then
+        local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
+        
+        -- Add talents
+        Timers:CreateTimer(function()
+            local maxPlayerID = 24
+            for playerID=0,maxPlayerID-1 do
+                local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+
+                if hero ~= nil and IsValidEntity(hero) then
+                    _instance:fixSpawnedHero( hero )
+                end
+            end
+        end, DoUniqueString('addTalents'), 2.0)
+    elseif newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
         if IsDedicatedServer() then
           SU:SendPlayerBuild( buildBackups )
         end

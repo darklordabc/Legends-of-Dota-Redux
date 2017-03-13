@@ -115,6 +115,7 @@
 #base "abilities\dota\chaos_knight_chaos_strike_gyro.txt"
 #base "abilities\dota\dazzle_shallow_grave_perk.txt"
 #base "abilities\dota\doom_bringer_devour_lod.txt"
+#base "abilities\dota\dark_seer_vacuum_op.txt"
 #base "abilities\dota\monkey_king_jingu_mastery_lod.txt"
 #base "abilities\dota\monkey_king_jingu_mastery_lod_melee.txt"
 #base "abilities\dota\monkey_king_jingu_mastery_lod_ranged.txt"

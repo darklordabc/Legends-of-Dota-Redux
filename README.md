@@ -40,6 +40,7 @@ Dota 2 Redux
  - Start a map by opening the console and running `dota_launch_custom_game <addonName> <mapname>`, replacing <addonName> with the name of your addon and <mapname> with a valid map name.
  - Valid map names can be found in the maps folder in the root directory of the repo. Do not include .vpk.
  - Check the console, you should see something along the lines of "Dota 2 Redux is activating!". Any errors while loading will be listed below this.
+ - If Sourcetree detects many particle (and other) files as "uncommited changes", this is because when you run the game it makes tiny changes to these particle files, to fix this you have to add these particles to your local "assumed unchanged" list, which tells SourceTree not to track changes for these files. A pastable list can be found here: [FIX](https://raw.githubusercontent.com/darklordabc/Legends-of-Dota-Redux/develop/FIX%20-%20Too%20Many%20'Uncommited%20Changes'.md)
 
 ###Can I contribute code?###
  - Yes please do. The best way to contribute is to create a new branch on the repistory per feature, and then create a pull request to merge with "develop" branch. 

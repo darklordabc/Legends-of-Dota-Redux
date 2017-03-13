@@ -2,13 +2,29 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 6.8 - Development Version
+## 6.9 - Development Version
+- You can enable cheats in a multiplayer games now if everbody types '-enablecheats'
+- Reduced the amount of health neutral power modifier gives per level (100 to 80)
+- Added extra cheats that can be used in non sv_cheats server: '-giveability x' '-removeability x'
+- Added chat commands that can be used to disable some game mechanics: Disable the increasing respawn time mechanic (-enablerespawn or -er), disable the anti-kamikaze mechanic (-enablekamikaze or -ek), you can also use -ec to enable cheats.
+- Fixed global tusk kick and increased its kick distance
+- Temporarily blocked single player abilities in multiplayer games until better solution can be found
+- Added OP Vacumn, Improved Cluster Rockets OP
+
+## 6.8 - Steam Version
 - Tomes now get lower cooldown on levelup
 - Magic Barrier decay reduced to 3 per second instead of 5, but no longer works with abilities with 0 cooldown (e.g. Arcane Orb)
 - You can now use the cheats '-gold', '-respawn' and '-refresh' in any single player game, with or without sv_cheats being activated.
 - Burrow Redux is now troll combo with the same stuff Burrow regular is, like Dispersion. 
+- Temporarily disabled Juxtapose and Forest ability because of allegations of lag creating. 
+- Added levels to GIGA GRAVITON
+- The following cheats can be used in all single player games, you no longer need sv_cheats 1 enabled: '-gold x' '-lvlup x' '-lvlmax'
+'-dagger' '-teleport' '-startgame' '-respawn' '-refresh' '-item x'
+- Berserk and Rot is now a troll combo.
+- Added Anti-Kamikaze Mechanic: If a hero dies more than 3 times within 60 seconds, they will incur a 20 second extra respawn time penalty, if they again die 3 times within 60 seconds, that penalty will increase by 30 seconds each times.
+- Re-Enabled Chaos Knight perk
 
-## 6.7 - Steam Version
+## 6.7 
 - Disease Tower saps 5 less attributes
 - Anomaly now has fixed 6 second duration but lower manacost
 - Cask does not proc spell echo or anomaly cause its bugged

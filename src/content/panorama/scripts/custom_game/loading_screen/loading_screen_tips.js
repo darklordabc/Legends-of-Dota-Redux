@@ -112,6 +112,12 @@ var tipsGeneral = [{
     },{
         img: 'file://{images}/custom_game/hints/hint_GoldBorder.png',
         txt: '#hintGoldBorder'
+    },{
+        img: 'file://{images}/spellicons/techies_suicide.png',
+        txt: '#hintAntiKamikaze'
+    },{
+        img: 'file://{images}/spellicons/courier_shield.png',
+        txt: '#hintChatCheats'
     },
 ];
 
