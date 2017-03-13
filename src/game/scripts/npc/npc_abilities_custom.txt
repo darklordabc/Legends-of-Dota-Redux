@@ -747,6 +747,7 @@
 #base "abilities\retro\invoker_retro_scout.txt"
 #base "abilities\retro\invoker_retro_scout_unit_ability.txt"
 #base "abilities\tower\bahamut_reckoning_aura.txt"
+#base "abilities\tower\imba_tower_counter.txt"
 #base "abilities\tower\imba_tower_aegis.txt"
 #base "abilities\tower\imba_tower_ai_controller.txt"
 #base "abilities\tower\imba_tower_atrophy.txt"

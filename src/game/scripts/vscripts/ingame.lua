@@ -1762,10 +1762,13 @@ function Ingame:addStrongTowers()
 					local difference = 0 -- will always be 0 anyway
 					tower.strongTowerAbilities = tower.strongTowerAbilities or {}
 					local abName = PullTowerAbility(self.towerList, self.usedRandomTowers, tower.strongTowerAbilities, difference, tower:GetLevel() * 10)
-					tower:AddAbility(abName):SetLevel(1)
-					table.insert(tower.strongTowerAbilities, abName)
-					self.usedRandomTowers[abName] = true
-					handledTowers[tower] = true
+					if not tower:HasAbility(abName) then
+                        tower:AddAbility(abName):SetLevel(1) 
+                        table.insert(tower.strongTowerAbilities, abName)
+                        self.usedRandomTowers[abName] = true
+                        handledTowers[tower] = true
+                    end
+
 					-- Find sister tower, only relevant for tiers below 4
 					if tower:GetLevel() < 4 then
 						local sisterTower = FindSisterTower(tower)
@@ -1773,15 +1776,20 @@ function Ingame:addStrongTowers()
 						difference = GetTowerAbilityPowerValue(sisterTower, self.towerList) - GetTowerAbilityPowerValue(tower, self.towerList)
 						sisterTower.strongTowerAbilities = sisterTower.strongTowerAbilities or {}
 						local sisterAbName = PullTowerAbility(self.towerList, self.usedRandomTowers, tower.strongTowerAbilities, difference, sisterTower:GetLevel() * 10)
-						sisterTower:AddAbility(sisterAbName):SetLevel(1)
-						table.insert(sisterTower.strongTowerAbilities, sisterAbName)
-						self.usedRandomTowers[sisterAbName] = true
-						handledTowers[sisterTower] = true
+						if not tower:HasAbility(abName) then
+                            sisterTower:AddAbility(sisterAbName):SetLevel(1)
+                            table.insert(sisterTower.strongTowerAbilities, sisterAbName)
+                            self.usedRandomTowers[sisterAbName] = true
+                            handledTowers[sisterTower] = true
+                        end
 						-- Assign sister towers permanently
 						tower.sisterTower = sisterTower
 						sisterTower.sisterTower = tower
 						print(tower:GetUnitName(), sisterTower:GetUnitName())
 					end
+
+                    tower:AddAbility("imba_tower_counter")
+                    tower:FindAbilityByName("imba_tower_counter"):SetLevel(1)
 				end
 			end
 			print("lul")

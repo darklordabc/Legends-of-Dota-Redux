@@ -1109,18 +1109,20 @@ function UpgradeTower( tower )
 			util:MergeTables(oldAbList, oldAbList3)
 
             local towerSkills = {}
-                for skill_name in pairs(oldAbList) do
-                    table.insert(towerSkills, skill_name)
-                end
+            for skill_name in pairs(oldAbList) do
+                table.insert(towerSkills, skill_name)
+            end
             local new_ability = RandomFromTable(towerSkills)
             while not IsUniqueAbility(abilities, new_ability) do
             	new_ability = RandomFromTable(towerSkills)
             end
 
             -- Add the new ability
-            tower:AddAbility(new_ability)
-            new_ability = tower:FindAbilityByName(new_ability)
-            new_ability:SetLevel(1)
+            if not tower:HasAbility(new_ability) then
+	            tower:AddAbility(new_ability)
+	            new_ability = tower:FindAbilityByName(new_ability)
+	            new_ability:SetLevel(1)
+            end
 
             return nil
         end

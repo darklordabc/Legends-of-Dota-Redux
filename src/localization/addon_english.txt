@@ -2669,6 +2669,9 @@
     "DOTA_Tooltip_modifier_imba_tower_disease_aura"                                     "Disease"
     "DOTA_Tooltip_modifier_imba_tower_disease_aura_Description"                         "All attributes reduced"
 
+    "DOTA_Tooltip_modifier_imba_tower_counter"                                          "Counter"
+    "DOTA_Tooltip_modifier_imba_tower_counter_Description"                              "Power of this tower"
+
     "DOTA_Tooltip_ability_imba_tower_laser"                                             "Laser Tower"
     "DOTA_Tooltip_ability_imba_tower_laser_Description"                                 "Periodically blinds all enemies in its range."
     "DOTA_Tooltip_ability_imba_tower_laser_Note0"                                       "Activates when at least four creeps, or one enemy hero, enters its range."
