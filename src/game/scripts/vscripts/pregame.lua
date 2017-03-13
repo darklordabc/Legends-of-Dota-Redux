@@ -4437,6 +4437,11 @@ function Pregame:checkForReady()
     local currentTime = self.endOfTimer - Time()
     local maxTime = OptionManager:GetOption('pickingTime')
     local minTime = 3
+    --QUICKER DEBUGGING CHANGE
+    if IsInToolsMode() then
+        minTime = 0.5
+    end
+
 
     local canFinishBanning = false
 

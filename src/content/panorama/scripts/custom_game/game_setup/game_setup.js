@@ -173,6 +173,9 @@ var isPremiumPlayer = false;
 // Save code timer
 var saveSCTimer = false;
 
+// Auto Load Switch
+var autoloaded = false
+
 // Used to calculate filters (stub function)
 var calculateFilters = function(){};
 var calculateHeroFilters = function(){};
@@ -1244,6 +1247,14 @@ function buildHeroList() {
                 break;
             }
         }
+
+    // QUICKER DEBUGGING CHANGE
+    if (Game.IsInToolsMode() && autoloaded == false) {
+        autoloaded = true
+        Game.SetTeamSelectionLocked(true);
+        LoadPlayerSC( )
+    }
+    
     }
 
     function doInsertHeroes(container, heroList) {
@@ -4966,6 +4977,10 @@ function UpdateTimer() {
             if(shouldShowTimer) {
                 // Work out how long to show for
                 var showDuration = 3;
+                // QUICKER DEBUGGING CHANGE
+                if (Game.IsInToolsMode()) {
+                    showDuration = 0.5
+                }
 
                 // Calculate when the next show should occur
                 if(timeLeft <= 30) {
@@ -5038,7 +5053,10 @@ function onAcceptPopup() {
 // Shows a popup message to a player
 function showPopupMessage(msg) {
     $('#lodPopupMessageLabel').text = $.Localize(msg);
-    $('#lodPopupMessage').visible = true;
+    // QUICKER DEBUGGING CHANGE - Only show pops in non-tools mode
+    if (Game.IsInToolsMode() = false) {
+        $('#lodPopupMessage').visible = true;
+    }
     $('#lodOptionsRoot').SetHasClass("darkened", true);
     $('#tipPanel').SetHasClass("darkened", true);
 
