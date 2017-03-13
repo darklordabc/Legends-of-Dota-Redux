@@ -53,3 +53,17 @@ git update-index --assume-unchanged src/game/particles/juggernaut_manaward_d.vpc
 git update-index --assume-unchanged src/game/materials/hat_trump.vmat_c
 git update-index --assume-unchanged src/game/particles/ambient/tower_laser_blind.vpcf_c
 git update-index --assume-unchanged src/game/particles/ambient/tower_salvo_explosion.vpcf_c
+git update-index --assume-unchanged src/game/particles/force_dash/force_dash.vpcf_c
+git update-index --assume-unchanged src/game/particles/force_dash/force_dash_glow_trail.vpcf_c
+git update-index --assume-unchanged src/game/particles/force_dash/force_dash_ground_trail.vpcf_c
+git update-index --assume-unchanged src/game/particles/force_dash/force_dash_mod_trail.vpcf_c
+git update-index --assume-unchanged src/game/particles/force_dash/force_dash_ribbon.vpcf_c
+git update-index --assume-unchanged src/game/particles/force_dash/force_dash_snow.vpcf_c
+git update-index --assume-unchanged src/game/particles/force_dash/force_dash_snow_glow.vpcf_c
+git update-index --assume-unchanged src/game/particles/true_sight/dust_of_gem.vpcf_c
+git update-index --assume-unchanged src/game/particles/true_sight/dust_of_gem_b.vpcf_c
+git update-index --assume-unchanged src/game/particles/true_sight/dust_of_gem_c.vpcf_c
+git update-index --assume-unchanged src/game/particles/true_sight/true_sight_debuff.vpcf_c
+git update-index --assume-unchanged src/game/particles/true_sight/dust_of_gem_true_sight.vpcf_c
+git update-index --assume-unchanged src/game/sounds/booster_draft_round.vsnd_c
+git update-index --assume-unchanged src/game/sounds/booster_draft_pick.vsnd_c
