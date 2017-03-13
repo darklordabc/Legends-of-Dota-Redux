@@ -1,6 +1,7 @@
 //Copy and paste the below into the git termal (in source tree its on the top right), it should then ignore all the chances to these files, we may need to add to this list
 // To see what files your git index is assuming unchanged, use this command    git ls-files -v | grep -e "^[hsmrck]"'
 
+git update-index --assume-unchanged src/game/panorama/layout/custom_game/custom_tooltip.vxml_c
 git update-index --assume-unchanged src/game/particles/cherub_explosive_spore.vpcf_c
 git update-index --assume-unchanged src/game/particles/cherub_pink_flower_heal_projectile.vpcf_c
 git update-index --assume-unchanged src/game/particles/cherub_sleep_status.vpcf_c
