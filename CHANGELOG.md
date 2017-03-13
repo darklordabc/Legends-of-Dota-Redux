@@ -9,7 +9,8 @@ All notable changes to this project will be documented in this file.
 - Added chat commands that can be used to disable some game mechanics: Disable the increasing respawn time mechanic (-enablerespawn or -er), disable the anti-kamikaze mechanic (-enablekamikaze or -ek), you can also use -ec to enable cheats.
 - Fixed global tusk kick and increased its kick distance
 - Temporarily blocked single player abilities in multiplayer games until better solution can be found
-- Added OP Vacumn, Improved Cluster Rockets OP
+- Improved Cluster Rockets OP
+- Added Single Player OP versions of the following abilities: Dark Rift, Vacumn, Chaos Meteor and versions of OP BloodLust 
 
 ## 6.8 - Steam Version
 - Tomes now get lower cooldown on levelup
