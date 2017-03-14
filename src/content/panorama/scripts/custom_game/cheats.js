@@ -105,7 +105,11 @@ var commandList = [{
 		title: "scepter",
 		chatCommand: "scepter",
 		isCheat: true,
-	}, {
+	},{
+		title: "dagger",
+		chatCommand: "dagger",
+		isCheat: true,
+	},  {
 		title: "selfLevelUp",
 		chatCommand: "lvlup",
 		"getArgs": function(settings) {
