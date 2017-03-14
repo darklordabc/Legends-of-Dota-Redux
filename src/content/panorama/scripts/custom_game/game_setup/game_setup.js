@@ -5054,7 +5054,7 @@ function onAcceptPopup() {
 function showPopupMessage(msg) {
     $('#lodPopupMessageLabel').text = $.Localize(msg);
     // QUICKER DEBUGGING CHANGE - Only show pops in non-tools mode
-    if (Game.IsInToolsMode() = false) {
+    if (Game.IsInToolsMode() == false) {
         $('#lodPopupMessage').visible = true;
     }
     $('#lodOptionsRoot').SetHasClass("darkened", true);
@@ -5346,7 +5346,7 @@ function loadPlayerBans() {
         if (!preloadedHeroPanels[data.heroName]) {
             var heroImage = $.CreatePanel('Panel', $.GetContextPanel(), 'reviewPhaseHeroImageLoader');
 
-            heroImage.BLoadLayoutFromString('<root><Panel><DOTAScenePanel style="width: 300px; height: 800px; opacity-mask: url(\'s2r://panorama/images/masks/softedge_box_png.vtex\');" unit="' + data.heroName + '"/></Panel></root>', false, false);
+            heroImage.BLoadLayoutFromString('<root><Panel><DOTAScenePanel particleonly="false" style="width: 300px; height: 800px; opacity-mask: url(\'s2r://panorama/images/masks/softedge_box_png.vtex\');" unit="' + data.heroName + '"/></Panel></root>', false, false);
             heroImage.AddClass("avatarScene");    
 
             heroImage.visible = false;

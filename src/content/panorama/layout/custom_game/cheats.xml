@@ -7,79 +7,27 @@
 	<scripts>
 		<include src="file://{resources}/scripts/custom_game/cheats.js" /> 
 	</scripts>
-	
-	<Panel class="cheatsRoot" hittest="false">
-		<Panel id="cheatsContainer" hittest="false">
-			<Panel id="cheatsDisplay" class="cheatsDisplayHidden" hittest="false">
-				<Label class="titlelabel" text="Cheat/Debuging Menu" />
-				<TextButton id="com_start_game" class="cheatButton" text="#com_start_game_Description"  onactivate="onActivate('com_start_game')">
-					<Label/>
-				</TextButton>
-				<TextButton id="com_spawn_neutrals" class="cheatButton" text="#com_spawn_neutrals_Description"  onactivate="onActivate('com_spawn_neutrals')">
-					<Label/>
-				</TextButton>
-				<TextButton id="com_lvl_up_1" class="cheatButton" text="#com_lvl_up_1_Description"  onactivate="onActivate('com_lvl_up_1')">
-					<Label/>
-				</TextButton>
-				
-				<TextButton id="com_lvl_max" class="cheatButton" text="#com_lvl_max_Description" onactivate="onActivate('com_lvl_max')">
-					<Label/>
-				</TextButton>
-				<TextButton id="com_gold_max" class="cheatButton" text="#com_gold_max_Description" onactivate="onActivate('com_gold_max')">
-					<Label/>
-				</TextButton>
-				
-				<TextButton id="com_refresh" class="cheatButton" text="#com_refresh_Description" onactivate="onActivate('com_refresh')">
-					<Label/>
-				</TextButton>
-				<TextButton id="com_respawn" class="cheatButton" text="#com_respawn_Description" onactivate="onActivate('com_respawn')">
-					<Label/>
-				</TextButton>
-				<TextButton id="com_item_1" class="cheatButton" text="#com_item_1_Description" onactivate="onActivate('com_item_1')">
-					<Label/>
-				</TextButton>
-				<TextButton id="com_item_2" class="cheatButton" text="#com_item_2_Description" onactivate="onActivate('com_item_2')">
-					<Label/>
-				</TextButton>
-				<TextButton id="com_item_3" class="cheatButton" text="#com_item_3_Description" onactivate="onActivate('com_item_3')">
-					<Label/>
-				</TextButton>
-				<TextButton id="com_item_4" class="cheatButton" text="#com_item_4_Description" onactivate="onActivate('com_item_4')">
-					<Label/>
-				</TextButton>
-				<TextButton id="com_item_5" class="cheatButton" text="#com_item_5_Description" onactivate="onActivate('com_item_5')">
-					<Label/>
-				</TextButton>
-				<TextButton id="com_lvl_bots_1" class="cheatButton" text="#com_lvl_bots_1_Description" onactivate="onActivate('com_lvl_bots_1')">
-					<Label/>
-				</TextButton>
-				<TextButton id="com_gold_bots" class="cheatButton" text="#com_gold_bots_Description" onactivate="onActivate('com_gold_bots')">
-					<Label/>
-				</TextButton>
-				<TextButton id="com_spawn_roshan" class="cheatButton" text="#com_spawn_roshan_Description" onactivate="onActivate('com_spawn_roshan')">
-					<Label/>
-				</TextButton>
-				<TextButton id="com_spawn_enemy" class="cheatButton" text="#com_spawn_enemy_Description" onactivate="onActivate('com_spawn_enemy')">
-					<Label/>
-				</TextButton>
-			    <TextButton id="com_spawn_friendly" class="cheatButton" text="#com_spawn_friendly_Description" onactivate="onActivate('com_spawn_friendly')">
-					<Label/>
-				</TextButton>	
-				
-				<TextButton id="com_wtf_unwtf" class="cheatButton" text="#com_wtf_unwtf_Description" onactivate="onActivate('com_wtf_unwtf')">
-					<Label/>
-				</TextButton>
-				<TextButton id="com_vision" class="cheatButton" text="#com_vision_Description" onactivate="onActivate('com_vision')">
-					<Label/>
-				</TextButton>
-				<TextButton id="com_host_scale_normal" class="cheatButton" text="#com_host_scale_normal_Description" onactivate="onActivate('com_host_scale_normal')">
-					<Label/>
-				</TextButton>
-				<TextButton id="com_host_scale_5" class="cheatButton" text="#com_host_scale_5_Description" onactivate="onActivate('com_host_scale_5')">
-					<Label/>
-				</TextButton>
-				
+	<snippets>
+		<snippet name="commandGroup">
+			<Panel class="commandGroup GroupCollapsed">
+				<ToggleButton id="groupHeader" class="ExpandCollapseToggleButton" text="{s:group_title}" />
+				<Panel id="groupContents" />
 			</Panel>
+		</snippet>
+		<snippet name="command">
+			<Panel class="command">
+				<Button id="commandHeader" class="ExpandCollapseToggleButton">
+					<Image id="commandIcon" src="file://{images}/control_icons/chat_wheel_icon.png" />
+					<Label id="commandTitle" text="{s:command_title}" />
+				</Button>
+				<Panel id="commandSettings" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="cheatsRoot" hittest="false">
+		<Panel id="cheatsDisplay" class="cheatsDisplayHidden" hittest="false">
+			<Label id="commandMenuTitle" text="Command Menu" />
+			<Panel id="commandList" />
 		</Panel>
 	</Panel>
 </root>
