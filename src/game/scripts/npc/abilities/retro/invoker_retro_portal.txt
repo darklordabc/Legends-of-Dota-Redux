@@ -15,7 +15,7 @@
 		"CastFilterRejectCaster" "1"
 		"AbilityCooldown" "30 28 26 24"
 		"AbilityManaCost" "100"
-		"AbilityCastRange" "600 750 900 1100"
+		"AbilityCastRange" "800 1000 1300 1600"
 		"AbilityCastPoint" ".75"
 
 		"precache" {
@@ -31,7 +31,7 @@
 
 			"02" {
 				"var_type" "FIELD_INTEGER"
-				"cast_range" "600 750 900 1100"
+				"cast_range" "800 1000 1300 1600"
 			}
 
 			"03" {

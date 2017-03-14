@@ -919,6 +919,7 @@
                                             <ToggleButton id="buttonHeroGrouping" text="groupHeroAbilities" onactivate="toggleHeroGrouping()" />
                                             <ToggleButton id="buttonShowBanned" text="showBannedSkills" onactivate="toggleShowBanned()" />
                                             <ToggleButton text="showDisallowedSkills" onactivate="toggleShowDisallowed()" />
+                                            <ToggleButton text="showOnlyHeroPerkRelativeSkills" onactivate="toggleShowPerkRelative()" />
 
                                             <ToggleButton id="toggleShowDraftAblilities" text="Show Non Draft Skills" onactivate="toggleShowDraftSkills()" />
                                             <ToggleButton id="lodToggleButton" text="Show Taken Skills" onactivate="toggleShowTaken()" />                                        

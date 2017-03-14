@@ -2,16 +2,26 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 6.9 - Development Version
+## 7.0 - Development Version
+- You can now use '-bot mode' chat command to see what mode bots are in (early game or late game). '-bot switch' can be used to alternative between modes, but can only be used when cheats are enable or in single player. 
+- Added cooldown to chaos meteor OP
+- Added '-god' and '-regen' cheat commands
+- Revamped the ingame cheat menu, it is now a "command menu" which will house all added user commands. It is now accessible in all games not just ones with cheats mode on.
+- Optimized the ingame hero builder menu, should no longer cause instability or lags. 
+- Added a ingame filter to see hero perk related abiliites. 
+
+## 6.9 - Steam Version
 - You can enable cheats in a multiplayer games now if everbody types '-enablecheats'
 - Reduced the amount of health neutral power modifier gives per level (100 to 80)
 - Added extra cheats that can be used in non sv_cheats server: '-giveability x' '-removeability x'
 - Added chat commands that can be used to disable some game mechanics: Disable the increasing respawn time mechanic (-enablerespawn or -er), disable the anti-kamikaze mechanic (-enablekamikaze or -ek), you can also use -ec to enable cheats.
 - Fixed global tusk kick and increased its kick distance
-- Temporarily blocked single player abilities in multiplayer games until better solution can be found
-- Added OP Vacumn, Improved Cluster Rockets OP
+- Temporarily blocked single player abilities in multiplayer VS games until better solution can be found. They can still be used if all human players are on the same team (coop).
+- Improved Cluster Rockets OP
+- Added Single Player OP versions of the following abilities: Dark Rift, Vacumn, Chaos Meteor and versions of OP BloodLust 
+- Increased Portal cast range
 
-## 6.8 - Steam Version
+## 6.8 
 - Tomes now get lower cooldown on levelup
 - Magic Barrier decay reduced to 3 per second instead of 5, but no longer works with abilities with 0 cooldown (e.g. Arcane Orb)
 - You can now use the cheats '-gold', '-respawn' and '-refresh' in any single player game, with or without sv_cheats being activated.

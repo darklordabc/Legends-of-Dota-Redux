@@ -485,7 +485,7 @@
 
 	// Minimap Menu and In-Game Hero Builder
     "minimapMenuCredits"                            "Credits"
-    "minimapMenuCheats"                             "Cheats"
+    "minimapMenuCheats"                             "Commands"
     "minimapMenuReviewGameOptions"                  "Review Game Settings"
     "minimapMenuHeroBuilder"                        "Hero Builder"
 	
@@ -533,8 +533,7 @@
     "balance_mode_points"                           "Points Remaining: {d:points}"
 
     "acceptHosting"                                 "Ok, I understand"
-    "lodWelcomeMessage"                             "<font color='#ffffff'><font color='#70EA72'>Thanks for playing Legends of Dota: Redux</font>. <br><br> <font color='#70EA72'>Redux 6.8:</font></font><br>- Tomes now get lower cooldown on levelup<br>- Magic Barrier decay reduced to 3 per second instead of 5, but no longer works with abilities with 0 cooldown (e.g. Arcane Orb)<br>- Burrow Redux is now troll combo with the same stuff Burrow regular is, like Dispersion. <br>- Temporarily disabled Juxtapose and Forest ability because of allegations of lag creating. <br>- Added levels to GIGA GRAVITON<br>- The following cheats can be used in all single player games, you no longer need sv_cheats 1 enabled: '-gold x' '-lvlup x' '-lvlmax'
-'-dagger' '-teleport' '-startgame' '-respawn' '-refresh' '-item x'<br>- Berserk and Rot is now a troll combo.<br>- Added Anti-Kamikaze Mechanic: If a hero dies more than 3 times within 60 seconds, they will incur a 20 second extra respawn time penalty, if they again die 3 times within 60 seconds, that penalty will increase by 30 seconds each times.<br>- Re-Enabled Chaos Knight perk"
+    "lodWelcomeMessage"                             "<font color='#ffffff'><font color='#70EA72'>Thanks for playing Legends of Dota: Redux</font>. <br><br> <font color='#70EA72'>Redux 6.9:</font></font><br>- You can enable cheats in a multiplayer games now if everbody types '-enablecheats'<br>- Reduced the amount of health neutral power modifier gives per level (100 to 80)<br>- Added extra cheats that can be used in non sv_cheats server: '-giveability x' '-removeability x'<br>- Added chat commands that can be used to disable some game mechanics: Disable the increasing respawn time mechanic -enablerespawn or -er), disable the anti-kamikaze mechanic (-enablekamikaze or -ek), you can also use -ec to enable cheats.<br>- Fixed global tusk kick and increased its kick distance<br>- Temporarily blocked single player abilities in multiplayer VS games until better solution can be found. They can still be used if all human players are on the same team (coop).<br>- Improved Cluster Rockets OP<br>- Added Single Player OP versions of the following abilities: Dark Rift, Vacumn, Chaos Meteor and versions of OP BloodLust <br>- Increased Portal cast range"
     "lodPickingMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked.<br><br><font color='#70EA72'>Remeber to pick a hero before time runs out or else you will get stuck with a random hero.</font>"
     "lodBanningMessage"                             "<font color='#70EA72'>This is the banning phase</font>. You can ban heroes and abilities to prevent players from selecting them in this match.<br><br> If you dont want to ban or have finished banning, <font color='#70EA72'>press the 'Finish Banning' button</font> to confirm your ready and to speed up the game."
     "lodBalanceMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked. <br><br><font color='#70EA72'>Points Mode is on.</font> In Points Mode you have limited points to spend on abilities. Abilities are priced by how powerful they are and abilities with no price tags are free. Have fun!"
@@ -559,7 +558,7 @@
     "lodOptionAboutBanningMaxBans"                  "The max number of abilities each player can ban."
     "lodOptionAboutBanningMaxHeroBans"              "The max number of heroes each player can ban."
     "lodOptionAboutBanningBlockTrollCombos"         "This option will block certain combinations of skills that are traditionally used to troll people / make a game aweful to play."
-    "lodOptionAboutBanningUseBanList"               "Ban abilities not designed for Multiplayer games. These abilities are purposely not balanced and are guaranteed to ruin a Multiplayer game."
+    "lodOptionAboutBanningUseBanList"               "Ban SUPER POWERFUL abilities not designed for Multiplayer games. If all players are on the same team (coop) you can enable these abilities."
     "lodOptionAboutBanningBalanceMode"              "Ban a predefined list of abilities too overpowered for Points mode."
     "lodOptionAboutAdvancedOPAbilities"             "Ban all skills that are considered to be over powered."
     "lodOptionAboutBanningBanInvis"                 "Ban all abilities that allow a player to turn invisible or abilities that require invis detect to counter."
@@ -851,6 +850,7 @@
     "showBannedSkills"                              "Show Banned Skills"
     "showMostUsedSkills"                            "Show Most Used Skills"
     "showDisallowedSkills"                          "Show Disallowed Skills"
+    "showOnlyHeroPerkRelativeSkills"                "Show Only Hero Perk Relative Skills"
 
     "txtRecommendedBuilds"                          "Recommended Builds:"
 
@@ -1204,31 +1204,33 @@
     /////////////////
     // Cheats
     /////////////////
+    "command_menu_cheat_rejection"                      "This is cheat-only command. To play with cheats, quit this lobby, host a custom lobby with a password and tick 'ENABLE CHEATS'."
 
-    "cheat_activated" "Cheat Activated"
-    "cheat_rejection" "Sorry, cheats are disabled. To play with cheats, quit this lobby, host a custom lobby with a password and tick 'ENABLE CHEATS'."
-    "com_lvl_up_1_Description" "Level up Hero by 1"
-    "com_lvl_bots_1_Description" "Level up Bots by 1"
-    "com_lvl_max_Description" "Level up Hero to max"
-    "com_gold_max_Description" "Give Max Gold"
-    "com_gold_bots_Description" "Give Bots 1000 Gold"
-    "com_refresh_Description" "Refresh all abilities"
-    "com_respawn_Description" "Respawn"
-    "com_start_game_Description" "Start game"
-    "com_spawn_neutrals_Description" "Spawn Neutrals"
-    "com_wtf_unwtf_Description" "WTF/UNWTF"
-    "com_vision_Description" "Enable/Disable All Vision"
-    //"com_teleport_Description" "Teleport"
-    "com_item_1_Description" "Give Boots of Travel"
-    "com_item_2_Description" "Give Heart of Tarrasque"
-    "com_item_3_Description" "Give Radiance"
-    "com_item_4_Description" "Give Blink Dagger"
-    "com_item_5_Description" "Give Bloodstone"
-    "com_spawn_enemy_Description" "Spawn Enemy Axe"
-    "com_spawn_friendly_Description" "Spawn Friendly Axe"
-    "com_spawn_roshan_Description" "Spawn Roshan"
-    "com_host_scale_normal_Description" "Normal Timescale"
-    "com_host_scale_5_Description" "5x Timescale"
+    "command_menu_group_votes"                          "Voting"
+    "command_menu_command_voteEnableCheat"              "Enable Cheat Mode"
+    "command_menu_command_voteEnableKamikaze"           "Enable Kamikaze Mode"
+    "command_menu_command_voteEnableRespawn"            "Enable Respawn"
+    
+    "command_menu_group_game"                           "Game"
+    "command_menu_command_toggleWtf"                    "Toggle WTF"
+    "command_menu_command_toggleAllVision"              "Toggle All Vision"
+    "command_menu_command_setTimescale"                 "Set Timescale"
+    "command_menu_command_startGame"                    "Start Game"
+    "command_menu_command_spawnNeutrals"                "Spawn Neutrals"
+    "command_menu_command_spawnUnit"                    "Spawn Unit"
+
+    "command_menu_group_bots"                           "Bots"
+    "command_menu_command_botsLevelUp"                  "Level Up Bots"
+    "command_menu_command_botsGiveGold"                 "Give Bots Gold"
+
+    "command_menu_group_player"                         "Player"
+    "command_menu_command_selfLevelUp"                  "Level Up"
+    "command_menu_command_selfGiveGold"                 "Give Gold"
+    "command_menu_command_selfGetItem"                  "Give Item"
+    "command_menu_command_refresh"                      "Refresh all abilities"
+    "command_menu_command_respawn"                      "Respawn"
+    "command_menu_command_godMode"                      "Get Invulnerability"
+    "command_menu_command_regen"                        "Get Fountain Regeneration"
 
     /////////////////
     // Skill Warnings
@@ -8411,4 +8413,42 @@
         "DOTA_Tooltip_ability_dark_seer_vacuum_op_radius"                                  "RADIUS:"
         "DOTA_Tooltip_ability_dark_seer_vacuum_op_damage"                                  "DAMAGE:" 
         "DOTA_Tooltip_ability_dark_seer_vacuum_op_cast_range"                              "CAST RANGE:"
+
+        "DOTA_Tooltip_ability_ogre_magi_bloodlust_op"                                  "Bloodlust OP"
+        "DOTA_Tooltip_ability_ogre_magi_bloodlust_op_Description"                      "Incites a frenzy in a friendly unit, increasing its movement speed and attack speed. Can be cast on towers.<font color='#70EA72'> More levels, largel model size, and more attack/movement speed.</font>"
+        "DOTA_Tooltip_ability_ogre_magi_bloodlust_op_Lore"                             "'Running's not as fun as hitting... Not one bit fun.'"
+        "DOTA_Tooltip_ability_ogre_magi_bloodlust_op_Note0"                            "When multicast, nearby allies will be selected randomly in an 575 area of effect to receive Bloodlust."
+        "DOTA_Tooltip_ability_ogre_magi_bloodlust_op_Note1"                            "Can affect siege units."
+        "DOTA_Tooltip_ability_ogre_magi_bloodlust_op_Note2"                            "Can be cast on Spell Immune allies."
+        "DOTA_Tooltip_ability_ogre_magi_bloodlust_op_duration"                         "DURATION:"
+        "DOTA_Tooltip_ability_ogre_magi_bloodlust_op_bonus_attack_speed"               "BONUS ATTACK SPEED:"
+        "DOTA_Tooltip_ability_ogre_magi_bloodlust_op_bonus_movement_speed"             "%BONUS MOVE SPEED:"
+
+        "DOTA_Tooltip_ability_ogre_magi_bloodlust_reverse"                                  "Bloodlust Reverse"
+        "DOTA_Tooltip_ability_ogre_magi_bloodlust_reverse_Description"                      "Incites a frenzy in a friendly unit, increasing its movement speed and attack speed. Can be cast on towers.<font color='#70EA72'> Is a debuff that can be cast on enemies.</font>"
+        "DOTA_Tooltip_ability_ogre_magi_bloodlust_reverse_Lore"                             "'Running's not as fun as hitting... Not one bit fun.'"
+        "DOTA_Tooltip_ability_ogre_magi_bloodlust_reverse_Note0"                            "When multicast, nearby enemies will be selected randomly in an 575 area of effect to receive Bloodlust."
+        "DOTA_Tooltip_ability_ogre_magi_bloodlust_reverse_Note1"                            "Can affect siege units."
+        "DOTA_Tooltip_ability_ogre_magi_bloodlust_reverse_Note2"                            "Can be cast on Spell Immune enemies."
+        "DOTA_Tooltip_ability_ogre_magi_bloodlust_reverse_duration"                         "DURATION:"
+        "DOTA_Tooltip_ability_ogre_magi_bloodlust_reverse_bonus_attack_speed"               "REDUCED ATTACK SPEED:"
+        "DOTA_Tooltip_ability_ogre_magi_bloodlust_reverse_bonus_movement_speed"             "%REDUCED MOVE SPEED:"
+
+        "DOTA_Tooltip_ability_invoker_chaos_meteor_op"                                 "Chaos Meteor OP"
+    "DOTA_Tooltip_ability_invoker_chaos_meteor_op_Description"                     "Invoker pulls a flaming meteor from space onto the targeted location. Upon landing, the meteor rolls forward, constantly dealing damage, and rolling further. Units hit by the meteor will also be set on fire for a short time, receiving additional damage.<font color='#70EA72'> Much more travel distance and damage.</font>"
+    "DOTA_Tooltip_ability_invoker_chaos_meteor_op_Lore"                            "Tarak's Descent of Fire."
+    "DOTA_Tooltip_ability_invoker_chaos_meteor_op_Note0"                           "Deals main damage to enemy units under meteor every 0.5 seconds and burns enemies for smaller damage over 3 seconds."
+    "DOTA_Tooltip_ability_invoker_chaos_meteor_op_Note1"                           "The meteor moves at a speed of 300."
+    "DOTA_Tooltip_ability_invoker_chaos_meteor_op_land_time"                       "IMPACT DELAY:"
+    "DOTA_Tooltip_ability_invoker_chaos_meteor_op_area_of_effect"                  "RADIUS:"
+    "DOTA_Tooltip_ability_invoker_chaos_meteor_op_travel_distance"                 "TRAVEL DISTANCE:"
+    "DOTA_Tooltip_ability_invoker_chaos_meteor_op_main_damage"                     "CONTACT DAMAGE:"
+    "DOTA_Tooltip_ability_invoker_chaos_meteor_op_damage_interval"                 "CONTACT DAMAGE TICK:"
+    "DOTA_Tooltip_ability_invoker_chaos_meteor_op_burn_duration"                   "BURN DURATION:"
+    "DOTA_Tooltip_ability_invoker_chaos_meteor_op_burn_dps"                        "BURN DAMAGE PER SECOND:"
+
+    "DOTA_Tooltip_ability_abyssal_underlord_dark_rift_op"                  "Dark Rift OP"
+        "DOTA_Tooltip_ability_abyssal_underlord_dark_rift_op_Description"      "Opens a dark rift at the targeted friendly unit's position.  After a short delay, Underlord and <font color='#70EA72'>all alive friendly heroes</font> are teleported to that unit's location.  Dark Rift can be cancelled at anytime during the cast.  If it is cancelled in this way or the target unit dies before the spell becomes active, Dark Rift goes into cooldown.<font color='#70EA72'> Also has lower cooldown</font>."
+        "DOTA_Tooltip_ability_abyssal_underlord_dark_rift_op_Lore"             "They come without warning, leaving fire and blood where kingdoms once flourished."
+        "DOTA_Tooltip_ability_abyssal_underlord_dark_rift_op_teleport_delay"   "TELEPORT DELAY:"
 }

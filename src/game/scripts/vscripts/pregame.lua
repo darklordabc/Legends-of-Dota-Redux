@@ -259,6 +259,43 @@ function Pregame:init()
         this:onGameChangeLock(eventSourceIndex, args)
     end)
 
+    --List of keys in perks.kv, that aren't perks
+    local NotPerks = {
+        chen_creep_abilities = true,
+        male = true,
+        female = true,
+        heroAbilityPairs = true,
+    }
+    local ability_perks = {}
+    local function AddPerkToAbility(ability, perk)
+        ability_perks[ability] = ability_perks[ability] == nil and perk or (ability_perks[ability] .. "|" .. perk)
+    end
+    for k,v in pairs(GameRules.perks) do
+        if not NotPerks[k] then
+            for ability,_ in pairs(v) do
+                if string.sub(ability,1,string.len("item_")) ~= "item_" then
+                    AddPerkToAbility(ability, k)
+                end
+            end
+        end
+    end
+    for tabName, tabList in pairs(LoadKeyValues('scripts/kv/abilities.kv').skills) do
+        for abilityName,abilityGroup in pairs(tabList) do
+            if type(abilityGroup) == "table" then
+                for groupedAbilityName,_ in pairs(abilityGroup) do
+                    if IsCustomAbilityByName(groupedAbilityName) then
+                        AddPerkToAbility(groupedAbilityName, "custom_ability")
+                    end
+                end
+            elseif IsCustomAbilityByName(abilityName) then
+                AddPerkToAbility(abilityName, "custom_ability")
+            end
+        end
+    end
+    CustomGameEventManager:RegisterListener('lodRequestAbilityPerkData', function(eventSourceIndex, args)
+        CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(args.PlayerID), "lodRequestAbilityPerkData", ability_perks)
+    end)
+
     -- Init debug
     Debug:init()
     
@@ -970,7 +1007,9 @@ function Pregame:onThink()
     -- Review
     if ourPhase == constants.PHASE_REVIEW then
         -- Is it over?
-        if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
+        
+        --QUICKER DEBUGGING CHANGE (the ToolsMode check) - Skips review phase
+        if Time() >= self:getEndOfPhase() and self.freezeTimer == nil or IsInToolsMode() then
             -- Change to picking phase
             self:setPhase(constants.PHASE_SPAWN_HEROES)
 
@@ -1199,13 +1238,13 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                     
                     local hero = CreateHeroForPlayer(heroName, player)
 
-                    if not IsInToolsMode() and not GameRules:IsCheatMode() then
+                    --if not IsInToolsMode() and not GameRules:IsCheatMode() then
                         UTIL_Remove(hero)
-                    else
-                        hero:AddNoDraw()
-                        hero:AddNewModifier(hero,nil,"modifier_invulnerable",{})
-                        hero:SetAbsOrigin(Vector(-10000,-10000,-10000))
-                    end
+                    --else
+                    --    hero:AddNoDraw()
+                    --    hero:AddNewModifier(hero,nil,"modifier_invulnerable",{})
+                    --    hero:SetAbsOrigin(Vector(-10000,-10000,-10000))
+                    --end
 
                     --[[if hero ~= nil and IsValidEntity(hero) then
                         SkillManager:ApplyBuild(hero, build or {})
@@ -1456,7 +1495,8 @@ function Pregame:networkHeroes()
                 StatusMana = customHero.StatusMana or heroValues.StatusMana or baseHero.StatusMana,
                 StatusManaRegen = customHero.StatusManaRegen or heroValues.StatusManaRegen or baseHero.StatusManaRegen,
                 VisionDaytimeRange = customHero.VisionDaytimeRange or heroValues.VisionDaytimeRange or baseHero.VisionDaytimeRange,
-                VisionNighttimeRange = customHero.VisionNighttimeRange or heroValues.VisionNighttimeRange or baseHero.VisionNighttimeRange
+                VisionNighttimeRange = customHero.VisionNighttimeRange or heroValues.VisionNighttimeRange or baseHero.VisionNighttimeRange,
+                HeroPerk = GameRules.hero_perks[heroName] or ""
             }
 
             theData["Enabled"] = heroList[heroName]
@@ -2222,14 +2262,16 @@ function Pregame:initOptionSelector()
 
         -- Common use ban list
         lodOptionBanningUseBanList = function(value)
-            if not util:isSinglePlayerMode() then 
                 Timers:CreateTimer(function()
-                    self:setOption('lodOptionBanningUseBanList', 1, true)
-                    --Comented out below because players can't see it in the custom chat menu at start
-                    --GameRules:SendCustomMessage('Single Player abilities cannot be enabled  bin multiplayer games for now.', 0, 0)
-                    --SendToServerConsole('say "Single Player abilities cannot be enabled in multiplayer games for now."')
+                    -- Only allow if all players on one side (i.e. coop or singleplayer)
+                    local RadiantHumanPlayers = util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS)
+                    local DireHumanPlayers = util:GetActiveHumanPlayerCountForTeam(DOTA_TEAM_BADGUYS)
+                    
+                    if RadiantHumanPlayers > 0 and DireHumanPlayers > 0 then
+                        self:setOption('lodOptionBanningUseBanList', 1, true)
+                    end
+
                 end, DoUniqueString('disallowOP'), 0.1)
-            end
             
             return value == 0 or value == 1
         end,
@@ -3433,6 +3475,13 @@ function Pregame:processOptions()
     if util:isSinglePlayerMode() then
         self:setOption('lodOptionIngameBuilder', 1, true)
         self:setOption("lodOptionIngameBuilderPenalty", 0)
+    end
+
+    -- Only allow single player abilities if all players on one side (i.e. coop or singleplayer)
+    local RadiantHumanPlayers = util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS)
+    local DireHumanPlayers = util:GetActiveHumanPlayerCountForTeam(DOTA_TEAM_BADGUYS)
+    if RadiantHumanPlayers > 0 and DireHumanPlayers > 0 then
+        self:setOption('lodOptionBanningUseBanList', 1, true)
     end
 
     -- Only process options once
