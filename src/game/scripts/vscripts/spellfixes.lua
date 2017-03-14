@@ -81,6 +81,13 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
     if ply then
         local hero = ply:GetAssignedHero()
         if hero then
+            if OptionManager:GetOption('lodOptionCrazyWTF') == 1 then
+                local usedAbility = hero:FindAbilityByName(keys.abilityname)
+                if usedAbility then
+                    usedAbility:EndCooldown()
+                    usedAbility:RefundManaCost()
+                end
+            end
             -- Check if they tried to illegally use shadow items, if they did, punish them by not refunding the full price
             if OptionManager:GetOption('banInvis') == 2 and (keys.abilityname == "item_invis_sword" or keys.abilityname == "item_silver_edge") then
                 for i=0,11 do

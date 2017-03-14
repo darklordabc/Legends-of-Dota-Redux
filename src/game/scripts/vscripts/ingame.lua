@@ -684,6 +684,9 @@ function Ingame:OnPlayerChat(keys)
     -- Cheat Commands
     ----------------------------
     if util:isSinglePlayerMode() or Convars:GetBool("sv_cheats") or self.voteEnabledCheatMode then
+        -- Some cheats that work in tools and cheats mode conflict
+        local blockConfliction = util:isSinglePlayerMode() or Convars:GetBool("sv_cheats")
+        
         if string.find(text, "-gold") then 
             -- Give user max gold, unless they specify a number
             local goldAmount = 100000
@@ -732,6 +735,27 @@ function Ingame:OnPlayerChat(keys)
                     self:CommandNotification("-godmode", 'Cheat Used (-regen): Given foutain regeneration to '.. PlayerResource:GetPlayerName(playerID)) 
                 end
                              
+            end, DoUniqueString('cheat'), .1)
+
+        elseif string.find(text, "-wtf") and not blockConfliction then 
+            Timers:CreateTimer(function()  
+                print(OptionManager:GetOption('lodOptionCrazyWTF'))
+                if OptionManager:GetOption('lodOptionCrazyWTF') == 1 then
+                    OptionManager:SetOption('lodOptionCrazyWTF', 0)
+                    self:CommandNotification("-wtfoff", 'Cheat Used (-wtf): WTF mode disabled, spells have regular cooldowns and manacosts.',30)
+                else
+                    OptionManager:SetOption('lodOptionCrazyWTF', 1)
+                    self:CommandNotification("-wtfon", 'Cheat Used (-wtf): WTF mode enabled, spells have no cooldowns or manacosts.',30) 
+                end
+                             
+            end, DoUniqueString('cheat'), .1)
+
+        elseif string.find(text, "-unwtf") and not blockConfliction then 
+            Timers:CreateTimer(function()  
+                if OptionManager:GetOption('lodOptionCrazyWTF') == 1 then
+                    OptionManager:SetOption('lodOptionCrazyWTF', 0)
+                    self:CommandNotification("-wtfoff", 'Cheat Used (-wtf): WTF mode disabled, spells have regular cooldowns and manacosts.',30)    
+                end           
             end, DoUniqueString('cheat'), .1)
 
         elseif string.find(text, "-lvlup") then 
@@ -833,14 +857,12 @@ function Ingame:OnPlayerChat(keys)
             end, DoUniqueString('cheat'), 0.2)
 
 
-        elseif string.find(text, "-teleport") then 
+        elseif string.find(text, "-teleport") and not blockConfliction then 
             -- Teleport is not exactly reproduced. If the game is in tools mode or has sv_cheats, leave it as it is, if not give players the teleport dagger.
-            if not IsInToolsMode() and not Convars:GetBool("sv_cheats") then
                 Timers:CreateTimer(function()
                     hero:AddItemByName('item_devDagger')
                     self:CommandNotification("-teleport", 'Cheat Used (-teleport): Global teleport dagger given to '.. PlayerResource:GetPlayerName(playerID)) 
                 end, DoUniqueString('cheat'), 0.2)
-            end
         
         elseif string.find(text, "-startgame") then 
             Timers:CreateTimer(function()
