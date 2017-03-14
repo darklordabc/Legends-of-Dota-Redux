@@ -706,13 +706,11 @@ function CDOTA_BaseNPC:HasAbilityWithFlag(flag)
 end
 
 function CDOTABaseAbility:IsCustomAbility()
-    local spell = self:GetAbilityName():gsub("_lod", "")
-    spell = self:GetAbilityName():gsub("_redux", "")
-    if not regularSpells[spell] then
-        return true
-    else
-        return false
-    end
+    return IsCustomAbilityByName(self:GetAbilityName())
+end
+
+function IsCustomAbilityByName(name)
+    return regularSpells[name:gsub("_lod", ""):gsub("_redux", "")] == nil
 end
 
 function CDOTA_BaseNPC:HasUnitFlag(flag)
