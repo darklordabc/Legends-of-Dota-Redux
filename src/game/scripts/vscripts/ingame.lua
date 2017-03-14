@@ -647,7 +647,7 @@ function Ingame:OnPlayerChat(keys)
             end
         end, DoUniqueString('enableKamikaze'), .1)
 
-    elseif string.find(text, "-enablebuilder") or text == "-eb" then 
+    elseif (string.find(text, "-enablebuilder") or text == "-eb") and OptionManager:GetOption('allowIngameHeroBuilder') == false then 
         Timers:CreateTimer(function()
             if not PlayerResource:GetPlayer(playerID).enableBuilder then
                 PlayerResource:GetPlayer(playerID).enableBuilder = true
