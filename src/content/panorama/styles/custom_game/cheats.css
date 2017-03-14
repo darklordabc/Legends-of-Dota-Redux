@@ -192,3 +192,11 @@ DropDown Label {
 	margin-top: 0px;
 	margin-bottom: 0px;
 }
+
+.tooltipContents
+{
+    min-width: 80px;
+    max-width: 400px;
+    max-height: 600px;
+    flow-children: down;
+}

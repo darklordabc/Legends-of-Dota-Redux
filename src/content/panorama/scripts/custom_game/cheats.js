@@ -159,7 +159,7 @@ function createCommandPanel(data, root) {
 			if (panel.BHasHoverStyle()) {
 				var description = $.Localize("command_menu_command_descr_" + data.title);
 				if (description != ("command_menu_command_descr_" + data.title)) {
-					$.DispatchEvent('DOTAShowTitleTextTooltipStyled', panel.FindChildTraverse("commandSettings"), $.Localize("command_menu_command_" + data.title), description, "testStyle");
+					$.DispatchEvent('DOTAShowTitleTextTooltipStyled', panel.FindChildTraverse("commandTitle"), $.Localize("command_menu_command_" + data.title), description, "testStyle");
 				}
 			}
 		})
