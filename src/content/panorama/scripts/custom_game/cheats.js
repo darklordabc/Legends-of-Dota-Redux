@@ -1,4 +1,7 @@
 "use strict";
+
+var util = GameUI.CustomUIConfig().Util;
+
 var CommandProperties = {}
 var commandList = [{
 	title: "votes",
@@ -215,3 +218,6 @@ GameEvents.Subscribe('lodShowCheatPanel', function(data) {
 });
 $("#commandList").RemoveAndDeleteChildren();
 $.Each(commandList, createCommandGroup);
+
+util.blockMouseWheel($("#changelogDisplay"));
+util.blockMouseWheel($("#changelogNotification"));
