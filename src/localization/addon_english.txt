@@ -1206,31 +1206,31 @@
     /////////////////
     "command_menu_cheat_rejection"                      "This is cheat-only command. To play with cheats, quit this lobby, host a custom lobby with a password and tick 'ENABLE CHEATS'."
 
-    "command_menu_group_votes"                          "Voting"
+    "command_menu_group_votes"                          "Vote | Mechanics"
     "command_menu_command_voteEnableCheat"              "Enable Cheat Mode"
-    "command_menu_command_voteEnableKamikaze"           "Enable Kamikaze Mode"
-    "command_menu_command_voteEnableRespawn"            "Enable Respawn"
+    "command_menu_command_voteEnableKamikaze"           "Disable Anti-Kamikaze"
+    "command_menu_command_voteEnableRespawn"            "Disable Late-Game Respawn Rate Increase"
     
-    "command_menu_group_game"                           "Game"
-    "command_menu_command_toggleWtf"                    "Toggle WTF"
+    "command_menu_group_game"                           "Cheats | Game"
+    "command_menu_command_toggleWtf"                    "Toggle Free Spells"
     "command_menu_command_toggleAllVision"              "Toggle All Vision"
     "command_menu_command_setTimescale"                 "Set Timescale"
-    "command_menu_command_startGame"                    "Start Game"
+    "command_menu_command_startGame"                    "Force Start Game"
     "command_menu_command_spawnNeutrals"                "Spawn Neutrals"
     "command_menu_command_spawnUnit"                    "Spawn Unit"
 
-    "command_menu_group_bots"                           "Bots"
+    "command_menu_group_bots"                           "Cheats | Bots"
     "command_menu_command_botsLevelUp"                  "Level Up Bots"
     "command_menu_command_botsGiveGold"                 "Give Bots Gold"
 
-    "command_menu_group_player"                         "Player"
+    "command_menu_group_player"                         "Cheats | Player"
     "command_menu_command_selfLevelUp"                  "Level Up"
     "command_menu_command_selfGiveGold"                 "Give Gold"
     "command_menu_command_selfGetItem"                  "Give Item"
     "command_menu_command_refresh"                      "Refresh all abilities"
     "command_menu_command_respawn"                      "Respawn"
-    "command_menu_command_godMode"                      "Get Invulnerability"
-    "command_menu_command_regen"                        "Get Fountain Regeneration"
+    "command_menu_command_godMode"                      "Invulnerability"
+    "command_menu_command_regen"                        "Fountain Regeneration"
 
     /////////////////
     // Skill Warnings
@@ -1302,9 +1302,8 @@
     "warning_angel_arena_transmute" "<font color=\'#FF4949\'>Warning:</font> This ability has strange coding, cooldown manipulation abilities will not work on it.\n"
     "warning_night_stalker_innate_redux" "<font color=\'#FF4949\'>Warning:</font> This ability requires <font color=\'#70EA72\'>Aghanim's Scepter</font> to have any effect.\n"
     "warning_keeper_of_the_light_innate_redux" "<font color=\'#FF4949\'>Warning:</font> This ability requires <font color=\'#70EA72\'>Aghanim's Scepter</font> to have any effect.\n"
+    "warning_chen_holy_persuasion" "<font color=\'#FF4949\'>Warning:</font> Persuading Ancients requires levels in <font color=\'#70EA72\'>Hand of God</font> to have any effect.\n"
 
-
-    
 
     "credit_spell_lab_symbiotic"           "<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>"
     "credit_sight"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
