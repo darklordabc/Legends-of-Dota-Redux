@@ -682,7 +682,7 @@ function Ingame:OnPlayerChat(keys)
                 --print(votesRequired)
 
             end
-        end, DoUniqueString('enableKamikaze'), .1)
+        end, DoUniqueString('enablebuilder'), .1)
 
     elseif string.find(text, "-enablerespawn") or text == "-er" then 
         Timers:CreateTimer(function()
