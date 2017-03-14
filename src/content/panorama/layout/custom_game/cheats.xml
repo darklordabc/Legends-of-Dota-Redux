@@ -25,11 +25,9 @@
 		</snippet>
 	</snippets>
 	<Panel class="cheatsRoot" hittest="false">
-		<Panel id="cheatsContainer" hittest="false">
-			<Panel id="cheatsDisplay" class="cheatsDisplayHidden" hittest="false">
-				<Label id="commandMenuTitle" text="Command Menu" />
-				<Panel id="commandList" />
-			</Panel>
+		<Panel id="cheatsDisplay" class="cheatsDisplayHidden" hittest="false">
+			<Label id="commandMenuTitle" text="Command Menu" />
+			<Panel id="commandList" />
 		</Panel>
 	</Panel>
 </root>
