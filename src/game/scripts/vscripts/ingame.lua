@@ -725,6 +725,22 @@ function Ingame:OnPlayerChat(keys)
                              
             end, DoUniqueString('cheat'), .1)
 
+        elseif string.find(text, "-aghs") or string.find(text, "-aghanim") or string.find(text, "-scepter") then 
+            Timers:CreateTimer(function()    
+                local scepter = hero:FindModifierByName("modifier_item_ultimate_scepter_consumed")
+                if scepter then
+                    hero:RemoveModifierByName("modifier_item_ultimate_scepter_consumed")
+                else
+                    hero:AddNewModifier(hero, nil, 'modifier_item_ultimate_scepter_consumed', {
+                        bonus_all_stats = 0,
+                        bonus_health = 0,
+                        bonus_mana = 0
+                    })
+                    self:CommandNotification("-scepter", 'Cheat Used (-scepter): Given Aghanims Scepter upgrade to '.. PlayerResource:GetPlayerName(playerID)) 
+                end
+                             
+            end, DoUniqueString('cheat'), .1)
+
         elseif string.find(text, "-regen") then 
             Timers:CreateTimer(function()  
                 local godMode = hero:FindModifierByName("modifier_fountain_aura_buff")
@@ -737,7 +753,7 @@ function Ingame:OnPlayerChat(keys)
                              
             end, DoUniqueString('cheat'), .1)
 
-        elseif string.find(text, "-wtf") and not blockConfliction then 
+        elseif (string.find(text, "-wtf") and not blockConfliction) or string.find(text, "-wtfmenu") then 
             Timers:CreateTimer(function()  
                 print(OptionManager:GetOption('lodOptionCrazyWTF'))
                 if OptionManager:GetOption('lodOptionCrazyWTF') == 1 then

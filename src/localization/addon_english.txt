@@ -1221,6 +1221,8 @@
 
     "command_menu_group_bots"                           "Cheats | Bots"
     "command_menu_command_botsLevelUp"                  "Level Up Bots"
+    "command_menu_command_botsShowMode"                 "Show Bot Mode"
+    "command_menu_command_botsSwitchMode"                 "Switch Bot Mode"
     "command_menu_command_botsGiveGold"                 "Give Bots Gold"
 
     "command_menu_group_player"                         "Cheats | Player"
@@ -1231,6 +1233,7 @@
     "command_menu_command_respawn"                      "Respawn"
     "command_menu_command_godMode"                      "Invulnerability"
     "command_menu_command_regen"                        "Fountain Regeneration"
+    "command_menu_command_scepter"                        "Free Scepter"
 
     /////////////////
     // Skill Warnings
