@@ -135,6 +135,13 @@
 	width: 12px;
 	margin-top: 4px;
 	margin-left: 12px;
+	opacity: 0.0;
+	transition-timing-function: ease-in-out;
+	transition-property: opacity;
+	transition-duration: 0.1s;
+}
+#commandHeader:hover #commandIcon
+{
 	opacity: 0.2;
 }
 /*#commandIcon
@@ -154,7 +161,7 @@
 {
 	width: 100%;
 	flow-children: down;
-	margin-left: 24px;
+	margin-left: 30px;
 	margin-right: 16px;
 }
 
