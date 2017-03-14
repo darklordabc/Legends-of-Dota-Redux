@@ -82,7 +82,7 @@ function OnReviewPhaseStart() {
             } else {
                 var heroImage = $.CreatePanel('Panel', con, 'reviewPhaseHeroImageLoader');
 
-                heroImage.BLoadLayoutFromString('<root><Panel><DOTAScenePanel style="width: 300px; height: 800px; opacity-mask: url(\'s2r://panorama/images/masks/softedge_box_png.vtex\');" unit="' + ourHeroName + '"/></Panel></root>', false, false);
+                heroImage.BLoadLayoutFromString('<root><Panel><DOTAScenePanel particleonly="false" style="width: 300px; height: 800px; opacity-mask: url(\'s2r://panorama/images/masks/softedge_box_png.vtex\');" unit="' + ourHeroName + '"/></Panel></root>', false, false);
                 heroImage.AddClass("avatarScene");
             }
         }
