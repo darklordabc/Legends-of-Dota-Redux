@@ -1209,7 +1209,8 @@
     "command_menu_group_votes"                          "Vote | Mechanics"
     "command_menu_command_voteEnableCheat"              "Enable Cheat Mode"
     "command_menu_command_voteEnableKamikaze"           "Disable Anti-Kamikaze"
-    "command_menu_command_voteEnableRespawn"            "Disable Late-Game Respawn Rate Increase"
+    "command_menu_command_voteEnableRespawn"            "Disable Late-Game Respawn Rate Increase" 
+    "command_menu_command_voteEnableBuilder"            "Enable In-Game Hero Builder"
     
     "command_menu_group_game"                           "Cheats | Game"
     "command_menu_command_toggleWtf"                    "Toggle Free Spells"

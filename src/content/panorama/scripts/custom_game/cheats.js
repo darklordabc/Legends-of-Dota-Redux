@@ -6,11 +6,14 @@ var commandList = [{
 		title: "voteEnableCheat",
 		chatCommand: "enablecheat",
 	}, {
-		title: "voteEnableKamikaze",
-		chatCommand: "enablekamikaze",
+		title: "voteEnableBuilder",
+		chatCommand: "enablebuilder",
 	}, {
 		title: "voteEnableRespawn",
 		chatCommand: "enablerespawn",
+	},{
+		title: "voteEnableKamikaze",
+		chatCommand: "enablekamikaze",
 	}, ]
 }, {
 	title: "game",
