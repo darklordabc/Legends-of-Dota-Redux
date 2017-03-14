@@ -31,14 +31,6 @@ var commandList = [{
 		},
 		isCheat: true,
 	}, {
-		title: "setTimescale",
-		consoleCommand: "host_timescale",
-		"getArgs": function(settings) {
-			return settings.GetChild(0).value
-		},
-		customXmlPanel: "<root><Panel><NumberEntry value='1' min='1' max='10'/></Panel></root>",
-		isCheat: true,
-	}, {
 		title: "startGame",
 		consoleCommand: "dota_start_game",
 		isCheat: true,
@@ -57,7 +49,15 @@ var commandList = [{
 				<Label text='Roshan' id='npc_dota_roshan'/>\
 			</DropDown><ToggleButton text='Enemy' /></Panel></root>",
 		isCheat: true,
-	}, ]	
+	}, {
+		title: "setTimescale",
+		consoleCommand: "host_timescale",
+		"getArgs": function(settings) {
+			return settings.GetChild(0).value
+		},
+		customXmlPanel: "<root><Panel><NumberEntry value='1' min='1' max='10'/></Panel></root>",
+		isCheat: true,
+	},]	
 }, {
 	title: "bots",
 	isCheat: true,
@@ -89,6 +89,30 @@ var commandList = [{
 	title: "player",
 	isCheat: true,
 	commands: [{
+		title: "refresh",
+		consoleCommand: "dota_hero_refresh",
+		isCheat: true,
+	}, {
+		title: "respawn",
+		chatCommand: "respawn",
+		isCheat: true,
+	}, {
+		title: "godMode",
+		chatCommand: "god",
+		isCheat: true,
+	}, {
+		title: "regen",
+		chatCommand: "regen",
+		isCheat: true,
+	},{
+		title: "scepter",
+		chatCommand: "scepter",
+		isCheat: true,
+	},{
+		title: "dagger",
+		chatCommand: "dagger",
+		isCheat: true,
+	},  {
 		title: "selfLevelUp",
 		chatCommand: "lvlup",
 		"getArgs": function(settings) {
@@ -105,14 +129,6 @@ var commandList = [{
 		customXmlPanel: "<root><Panel><NumberEntry value='999999' min='1' max='999999'/></Panel></root>",
 		isCheat: true,
 	}, {
-		title: "refresh",
-		consoleCommand: "dota_hero_refresh",
-		isCheat: true,
-	}, {
-		title: "respawn",
-		chatCommand: "respawn",
-		isCheat: true,
-	}, {
 		title: "selfGetItem",
 		consoleCommand: "dota_create_item",
 		"getArgs": function(settings) {
@@ -125,18 +141,6 @@ var commandList = [{
 				<Label text='Blink Dagger' id='item_blink'/>\
 				<Label text='Bloodstone' id='item_bloodstone'/>\
 			</DropDown></Panel></root>",
-		isCheat: true,
-	}, {
-		title: "godMode",
-		chatCommand: "god",
-		isCheat: true,
-	}, {
-		title: "regen",
-		chatCommand: "regen",
-		isCheat: true,
-	},{
-		title: "scepter",
-		chatCommand: "scepter",
 		isCheat: true,
 	}, ]
 }];
