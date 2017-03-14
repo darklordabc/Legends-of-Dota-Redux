@@ -5,15 +5,8 @@ function setupCheats(data){
     isCheatsEnabled = (data.cheats == 1) ? true : false;
 }
 
-function toggleCheats(){
-    if (!isCheatsEnabled){
-        GameEvents.SendCustomGameEventToServer('lodOnCheats', {
-        status: 'error',
-        });
-        return false;
-    }
-
-    GameEvents.SendEventClientSide('lodOnCheats', { });
+function toggleCheats() {
+    GameEvents.SendEventClientSide('lodOnCheats', {});
 }
 
 // Play wants to open changelog

@@ -485,7 +485,7 @@
 
 	// Minimap Menu and In-Game Hero Builder
     "minimapMenuCredits"                            "Credits"
-    "minimapMenuCheats"                             "Cheats"
+    "minimapMenuCheats"                             "Commands"
     "minimapMenuReviewGameOptions"                  "Review Game Settings"
     "minimapMenuHeroBuilder"                        "Hero Builder"
 	
@@ -1204,31 +1204,33 @@
     /////////////////
     // Cheats
     /////////////////
+    "command_menu_cheat_rejection"                      "This is cheat-only command. To play with cheats, quit this lobby, host a custom lobby with a password and tick 'ENABLE CHEATS'."
 
-    "cheat_activated" "Cheat Activated"
-    "cheat_rejection" "Sorry, cheats are disabled. To play with cheats, quit this lobby, host a custom lobby with a password and tick 'ENABLE CHEATS'."
-    "com_lvl_up_1_Description" "Level up Hero by 1"
-    "com_lvl_bots_1_Description" "Level up Bots by 1"
-    "com_lvl_max_Description" "Level up Hero to max"
-    "com_gold_max_Description" "Give Max Gold"
-    "com_gold_bots_Description" "Give Bots 1000 Gold"
-    "com_refresh_Description" "Refresh all abilities"
-    "com_respawn_Description" "Respawn"
-    "com_start_game_Description" "Start game"
-    "com_spawn_neutrals_Description" "Spawn Neutrals"
-    "com_wtf_unwtf_Description" "WTF/UNWTF"
-    "com_vision_Description" "Enable/Disable All Vision"
-    //"com_teleport_Description" "Teleport"
-    "com_item_1_Description" "Give Boots of Travel"
-    "com_item_2_Description" "Give Heart of Tarrasque"
-    "com_item_3_Description" "Give Radiance"
-    "com_item_4_Description" "Give Blink Dagger"
-    "com_item_5_Description" "Give Bloodstone"
-    "com_spawn_enemy_Description" "Spawn Enemy Axe"
-    "com_spawn_friendly_Description" "Spawn Friendly Axe"
-    "com_spawn_roshan_Description" "Spawn Roshan"
-    "com_host_scale_normal_Description" "Normal Timescale"
-    "com_host_scale_5_Description" "5x Timescale"
+    "command_menu_group_votes"                          "Voting"
+    "command_menu_command_voteEnableCheat"              "Enable Cheat Mode"
+    "command_menu_command_voteEnableKamikaze"           "Enable Kamikaze Mode"
+    "command_menu_command_voteEnableRespawn"            "Enable Respawn"
+    
+    "command_menu_group_game"                           "Game"
+    "command_menu_command_toggleWtf"                    "Toggle WTF"
+    "command_menu_command_toggleAllVision"              "Toggle All Vision"
+    "command_menu_command_setTimescale"                 "Set Timescale"
+    "command_menu_command_startGame"                    "Start Game"
+    "command_menu_command_spawnNeutrals"                "Spawn Neutrals"
+    "command_menu_command_spawnUnit"                    "Spawn Unit"
+
+    "command_menu_group_bots"                           "Bots"
+    "command_menu_command_botsLevelUp"                  "Level Up Bots"
+    "command_menu_command_botsGiveGold"                 "Give Bots Gold"
+
+    "command_menu_group_player"                         "Player"
+    "command_menu_command_selfLevelUp"                  "Level Up"
+    "command_menu_command_selfGiveGold"                 "Give Gold"
+    "command_menu_command_selfGetItem"                  "Give Item"
+    "command_menu_command_refresh"                      "Refresh all abilities"
+    "command_menu_command_respawn"                      "Respawn"
+    "command_menu_command_godMode"                      "Get Invulnerability"
+    "command_menu_command_regen"                        "Get Fountain Regeneration"
 
     /////////////////
     // Skill Warnings

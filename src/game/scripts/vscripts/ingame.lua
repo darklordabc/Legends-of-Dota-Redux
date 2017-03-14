@@ -378,11 +378,16 @@ function Ingame:onStart()
     end, nil)
 
     CustomGameEventManager:RegisterListener('lodOnCheats', function(eventSourceIndex, args)
-        if args.status == 'ok' then
-            GameRules:SendCustomMessage("#cheat_activated", 0, 0)
-            this:onPlayerCheat(eventSourceIndex, args)
-        elseif args.status == 'error' then
-            --GameRules:SendCustomMessage("#cheat_rejection", 0, 0)
+        if args.command then
+            self:OnPlayerChat({
+                teamonly = true,
+                playerid = args.PlayerID,
+                text = "-" .. args.command
+            })
+        end
+
+        if args.consoleCommand and (util:isSinglePlayerMode() or Convars:GetBool("sv_cheats") or self.voteEnabledCheatMode) then
+            SendToServerConsole(args.consoleCommand)
         end
     end)
 
@@ -1247,34 +1252,6 @@ function Ingame:checkBalanceTeamsNextTick()
     Timers:CreateTimer(function()
         this:checkBalanceTeams()
     end, DoUniqueString('balanceChecker'), 0)
-end
-
-function Ingame:onPlayerCheat(eventSourceIndex, args)
-    local command = args.command
-    local value = args.value
-    local playerID = args.playerID
-    local isCustom = tonumber(args.isCustom) == 1 and true or false
-    if isCustom then
-        -- Lvl-up hero
-        local player = PlayerResource:GetSelectedHeroEntity(playerID)
-        if command == 'lvl_up' then
-            for i=0,value-1 do
-                player:HeroLevelUp(true)
-            end
-        elseif command == 'give_gold' then
-            player:ModifyGold(value, true, DOTA_ModifyGold_CheatCommand)
-        elseif command == 'hero_respawn' then
-            player:RespawnUnit()
-        elseif command == 'create_item' then
-            player:AddItemByName(value)
-        end
-    end
-    if type(value) ~= 'table' then
-        value = tonumber(value) == 1 and true or false
-        Convars:SetBool(command, value)
-    else
-        SendToServerConsole(command)
-    end
 end
 
 -- Called to check if teams need to be balanced
