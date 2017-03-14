@@ -17,11 +17,7 @@ var commandList = [{
 	isCheat: true,
 	commands: [{
 		title: "toggleWtf",
-		consoleCommand: "dota_ability_debug",
-		"getArgs": function() {
-			CommandProperties.toggleWtf = !(CommandProperties.toggleWtf || false);
-			return CommandProperties.toggleWtf ? 1 : 0;
-		},
+		chatCommand: "wtfmenu",
 		isCheat: true,
 	}, {
 		title: "toggleAllVision",
@@ -58,11 +54,18 @@ var commandList = [{
 				<Label text='Roshan' id='npc_dota_roshan'/>\
 			</DropDown><ToggleButton text='Enemy' /></Panel></root>",
 		isCheat: true,
-	}, ]
+	}, ]	
 }, {
 	title: "bots",
 	isCheat: true,
 	commands: [{
+		title: "botsShowMode",
+		chatCommand: "bot mode",
+	},{
+		title: "botsSwitchMode",
+		chatCommand: "bot switch",
+		isCheat: true,
+	},{
 		title: "botsLevelUp",
 		consoleCommand: "dota_bot_give_level",
 		"getArgs": function(settings) {
@@ -127,6 +130,10 @@ var commandList = [{
 	}, {
 		title: "regen",
 		chatCommand: "regen",
+		isCheat: true,
+	},{
+		title: "scepter",
+		chatCommand: "scepter",
 		isCheat: true,
 	}, ]
 }];
