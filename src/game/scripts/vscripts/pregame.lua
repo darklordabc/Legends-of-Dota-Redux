@@ -259,6 +259,27 @@ function Pregame:init()
         this:onGameChangeLock(eventSourceIndex, args)
     end)
 
+    --List of keys in perks.kv, that aren't perks
+    local NotPerks = {
+        chen_creep_abilities = true,
+        male = true,
+        female = true,
+        heroAbilityPairs = true,
+    }
+    local ability_perks = {}
+    for k,v in pairs(GameRules.perks) do
+        if not NotPerks[k] then
+            for ability,_ in pairs(v) do
+                if string.sub(ability,1,string.len("item_")) ~= "item_" then
+                    ability_perks[ability] = ability_perks[ability] == nil and k or (ability_perks[ability] .. "|" .. k)
+                end
+            end
+        end
+    end
+    CustomGameEventManager:RegisterListener('lodRequestAbilityPerkData', function(eventSourceIndex, args)
+        CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(args.PlayerID), "lodRequestAbilityPerkData", ability_perks)
+    end)
+
     -- Init debug
     Debug:init()
     
@@ -1458,7 +1479,8 @@ function Pregame:networkHeroes()
                 StatusMana = customHero.StatusMana or heroValues.StatusMana or baseHero.StatusMana,
                 StatusManaRegen = customHero.StatusManaRegen or heroValues.StatusManaRegen or baseHero.StatusManaRegen,
                 VisionDaytimeRange = customHero.VisionDaytimeRange or heroValues.VisionDaytimeRange or baseHero.VisionDaytimeRange,
-                VisionNighttimeRange = customHero.VisionNighttimeRange or heroValues.VisionNighttimeRange or baseHero.VisionNighttimeRange
+                VisionNighttimeRange = customHero.VisionNighttimeRange or heroValues.VisionNighttimeRange or baseHero.VisionNighttimeRange,
+                HeroPerk = GameRules.hero_perks[heroName] or ""
             }
 
             theData["Enabled"] = heroList[heroName]

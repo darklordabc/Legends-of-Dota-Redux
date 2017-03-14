@@ -14,6 +14,7 @@ local Ingame = class({})
 
 local ts_entities = LoadKeyValues('scripts/kv/ts_entities.kv')
 GameRules.perks = LoadKeyValues('scripts/kv/perks.kv')
+GameRules.hero_perks = LoadKeyValues('scripts/kv/hero_perks.kv')
 
 -- Init Ingame stuff, sets up all ingame related features
 function Ingame:init()

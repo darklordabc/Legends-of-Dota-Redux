@@ -850,6 +850,7 @@
     "showBannedSkills"                              "Show Banned Skills"
     "showMostUsedSkills"                            "Show Most Used Skills"
     "showDisallowedSkills"                          "Show Disallowed Skills"
+    "showOnlyHeroPerkRelativeSkills"                "Show Only Hero Perk Relative Skills"
 
     "txtRecommendedBuilds"                          "Recommended Builds:"
 

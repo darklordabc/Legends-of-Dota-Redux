@@ -143,6 +143,7 @@ var showBannedSkills = false;
 var showDisallowedSkills = false;
 var showTakenSkills = true;
 var showNonDraftSkills = false;
+var showPerkRelativeSkills = false;
 var useSmartGrouping = true;
 
 // A store for all abilities
@@ -175,6 +176,9 @@ var saveSCTimer = false;
 
 // Auto Load Switch
 var autoloaded = false
+
+// Ability - Perk table
+var AbilityPerks = {};
 
 // Used to calculate filters (stub function)
 var calculateFilters = function(){};
@@ -448,6 +452,10 @@ function OnSelectedHeroesChanged(table_name, key, data) {
 
         // We have now picked a hero
         pickedAHero = true;
+
+        if (showPerkRelativeSkills) {
+            calculateFilters();
+        }
     }
 
     // Shows which heroes have been taken
@@ -1023,11 +1031,13 @@ function onBacktrackButton() {
 
 function fixBacktrackUI() {
 	var masterRoot = $.GetContextPanel();
-    masterRoot.SetHasClass('phase_option_selection_selected', selectedPhase == PHASE_OPTION_SELECTION || util.reviewOptions);
-    masterRoot.SetHasClass('review_selection', util.reviewOptions);
-    masterRoot.SetHasClass('phase_selection_selected', (selectedPhase == PHASE_SELECTION || selectedPhase == PHASE_INGAME) && !util.reviewOptions);
-	
-	$('#backtrackBtnTxt').text = $.Localize((util.reviewOptions)? 'reviewReturn': 'reviewOptions');
+    if (masterRoot != null) {
+        masterRoot.SetHasClass('phase_option_selection_selected', selectedPhase == PHASE_OPTION_SELECTION || util.reviewOptions);
+        masterRoot.SetHasClass('review_selection', util.reviewOptions);
+        masterRoot.SetHasClass('phase_selection_selected', (selectedPhase == PHASE_SELECTION || selectedPhase == PHASE_INGAME) && !util.reviewOptions);
+        
+        $('#backtrackBtnTxt').text = $.Localize((util.reviewOptions)? 'reviewReturn': 'reviewOptions');
+    }
 }
 
 // Sets up the hero builder tab
@@ -1692,6 +1702,13 @@ function toggleShowDisallowed() {
     calculateFilters();
 }
 
+function toggleShowPerkRelative() {
+    showPerkRelativeSkills = !showPerkRelativeSkills;
+
+    // Update filters
+    calculateFilters();
+}
+
 function toggleShowTaken() {
     showTakenSkills = !showTakenSkills;
 
@@ -2029,10 +2046,8 @@ function updateHeroPreviewFilters() {
 
     // Remove any search text
     searchParts = [];
-
     for(var i=1; i<=16; ++i) {
         var abCon = $('#buildingHelperHeroPreviewSkill' + i);
-
         // Is it visible?
         if(abCon.visible) {
             // Grab ability name
@@ -2047,6 +2062,7 @@ function updateHeroPreviewFilters() {
             abCon.SetHasClass('takenSkill', filterInfo.taken);
             abCon.SetHasClass('notDraftable', filterInfo.cantDraft);
             abCon.SetHasClass('trollCombo', filterInfo.trollCombo);
+            //abCon.SetHasClass('notPerkRelative', filterInfo.notPerkRelative);
 
             if (balanceMode) {
                 // Set the label to the cost of the ability
@@ -2102,6 +2118,7 @@ function getSkillFilterInfo(abilityName) {
     var banned = false;
     var taken = false;
     var cantDraft = false;
+    var notPerkRelative = false;
     var trollCombo = true;
     var cost = 0;
 
@@ -2117,6 +2134,19 @@ function getSkillFilterInfo(abilityName) {
             shouldShow = false;
         }
     }
+    var heroName = selectedHeroes[Players.GetLocalPlayer()] || "";
+    if (heroName != null && heroData[heroName] != null && heroData[heroName].HeroPerk != null) {
+        var HeroPerk = heroData[heroName].HeroPerk;
+        var abilityPerks = AbilityPerks[abilityName] == null ? [] : AbilityPerks[abilityName].split("|")
+        var heroPerks = HeroPerk == null ? [] : HeroPerk.split(" | ");
+        if (heroPerks.indexOf(abilityName) == -1 && abilityPerks.every(function(v) {return heroPerks.indexOf(v) == -1;})) {
+            notPerkRelative = true;
+            if(showPerkRelativeSkills) {
+                shouldShow = false;
+            }
+        }
+    }
+    
 
     // Check for bans
     if(bannedAbilities[abilityName]) {
@@ -2210,6 +2240,7 @@ function getSkillFilterInfo(abilityName) {
         taken: taken,
         cantDraft: cantDraft,
         trollCombo: trollCombo,
+        notPerkRelative: notPerkRelative,
         cost: cost
     };
 }
@@ -5053,12 +5084,13 @@ function onAcceptPopup() {
 // Shows a popup message to a player
 function showPopupMessage(msg) {
     $('#lodPopupMessageLabel').text = $.Localize(msg);
+
     // QUICKER DEBUGGING CHANGE - Only show pops in non-tools mode
-    if (Game.IsInToolsMode() = false) {
+    if (!Game.IsInToolsMode()) {
         $('#lodPopupMessage').visible = true;
+        $('#lodOptionsRoot').SetHasClass("darkened", true);
+        $('#tipPanel').SetHasClass("darkened", true);
     }
-    $('#lodOptionsRoot').SetHasClass("darkened", true);
-    $('#tipPanel').SetHasClass("darkened", true);
 
     for (var k in $("#lodPopupMessageImage").Children()) {
         $("#lodPopupMessageImage").Children()[k].visible = false;
@@ -5313,6 +5345,11 @@ function loadPlayerBans() {
     hookAndFire('random_builds', OnGetRandomBuilds);
     //hookAndFire('selected_random_builds', OnSelectedRandomBuildChanged);
     hookAndFire('draft_array', OnGetDraftArray);
+    //Run out of nettables
+    GameEvents.SendCustomGameEventToServer("lodRequestAbilityPerkData", {})
+    GameEvents.Subscribe("lodRequestAbilityPerkData", function(data) {
+        AbilityPerks = data;
+    })
 
     GameUI.CustomUIConfig().hookSkillInfo = hookSkillInfo;
 
