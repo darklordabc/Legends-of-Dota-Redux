@@ -267,12 +267,28 @@ function Pregame:init()
         heroAbilityPairs = true,
     }
     local ability_perks = {}
+    local function AddPerkToAbility(ability, perk)
+        ability_perks[ability] = ability_perks[ability] == nil and perk or (ability_perks[ability] .. "|" .. perk)
+    end
     for k,v in pairs(GameRules.perks) do
         if not NotPerks[k] then
             for ability,_ in pairs(v) do
                 if string.sub(ability,1,string.len("item_")) ~= "item_" then
-                    ability_perks[ability] = ability_perks[ability] == nil and k or (ability_perks[ability] .. "|" .. k)
+                    AddPerkToAbility(ability, k)
                 end
+            end
+        end
+    end
+    for tabName, tabList in pairs(LoadKeyValues('scripts/kv/abilities.kv').skills) do
+        for abilityName,abilityGroup in pairs(tabList) do
+            if type(abilityGroup) == "table" then
+                for groupedAbilityName,_ in pairs(abilityGroup) do
+                    if IsCustomAbilityByName(groupedAbilityName) then
+                        AddPerkToAbility(groupedAbilityName, "custom_ability")
+                    end
+                end
+            elseif IsCustomAbilityByName(abilityName) then
+                AddPerkToAbility(abilityName, "custom_ability")
             end
         end
     end
