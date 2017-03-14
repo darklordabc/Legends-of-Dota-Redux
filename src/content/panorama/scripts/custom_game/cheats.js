@@ -180,6 +180,16 @@ function createCommandGroup(data) {
 	var groupHeader = panel.FindChildTraverse("groupHeader")
 	groupHeader.SetPanelEvent("onactivate", function() {
 		panel.SetHasClass("GroupCollapsed", !groupHeader.checked);
+		if (!groupHeader.checked) {
+			panel.FindChildTraverse("groupContents").style.height = "0px;";
+		} else {
+			panel.FindChildTraverse("groupContents").style.height = panel.FindChildTraverse("groupContents").tempHeight + "px;";;
+		}
+	})
+
+	$.Schedule(0.5, function () {
+		panel.FindChildTraverse("groupContents").tempHeight = panel.FindChildTraverse("groupContents").contentheight;
+		panel.FindChildTraverse("groupContents").style.height = "0px;";
 	})
 }
 
