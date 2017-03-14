@@ -10,6 +10,7 @@
 	background-color: #000000EB;
 	align: right top;
 	margin-top: 50px;
+	padding-bottom: 8px;
 	height: fit-children;
 	/*min-height: 300px;*/
 	width: 255px;

@@ -157,7 +157,11 @@ function createCommandPanel(data, root) {
 	panel.SetPanelEvent("onmouseover", function () {
 		$.Schedule(3.0, function () {
 			if (panel.BHasHoverStyle()) {
-				$.DispatchEvent('DOTAShowTitleTextTooltip', panel.FindChildTraverse("commandSettings"), $.Localize("command_menu_command_" + data.title), $.Localize("command_menu_command_descr_" + data.title));
+				var description = $.Localize("command_menu_command_descr_" + data.title);
+				if (description == ("command_menu_command_descr_" + data.title)) {
+					description = "";
+				}
+				$.DispatchEvent('DOTAShowTitleTextTooltip', panel.FindChildTraverse("commandSettings"), $.Localize("command_menu_command_" + data.title), description);
 			}
 		})
 	});
