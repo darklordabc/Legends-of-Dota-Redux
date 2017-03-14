@@ -2,6 +2,8 @@
 
 var util = GameUI.CustomUIConfig().Util;
 
+var currentMenu;
+
 var CommandProperties = {}
 var commandList = [{
 	title: "votes",
@@ -152,6 +154,16 @@ function createCommandPanel(data, root) {
 	var panel = $.CreatePanel("Panel", root, "");
 	panel.BLoadLayoutSnippet("command");
 	panel.SetDialogVariable("command_title", $.Localize("command_menu_command_" + data.title));
+	panel.SetPanelEvent("onmouseover", function () {
+		$.Schedule(3.0, function () {
+			if (panel.BHasHoverStyle()) {
+				$.DispatchEvent('DOTAShowTitleTextTooltip', panel.FindChildTraverse("commandSettings"), $.Localize("command_menu_command_" + data.title), $.Localize("command_menu_command_descr_" + data.title));
+			}
+		})
+	});
+	panel.SetPanelEvent("onmouseout", function () {
+		$.DispatchEvent('DOTAHideTitleTextTooltip');
+	});
 	var isCheat = data.isCheat == true;
 	panel.SetHasClass("cheatOnly", isCheat);
 	var commandSettings = panel.FindChildTraverse("commandSettings");
@@ -202,6 +214,19 @@ function createCommandGroup(data) {
 		} else {
 			panel.FindChildTraverse("groupContents").style.height = panel.FindChildTraverse("groupContents").tempHeight + "px;";;
 		}
+
+		if (currentMenu) {
+			$.Msg("Asd");
+			currentMenu.FindChildTraverse("groupHeader").checked = !currentMenu.FindChildTraverse("groupHeader").checked;
+			currentMenu.SetHasClass("GroupCollapsed", !currentMenu.FindChildTraverse("groupHeader").checked);
+			if (!currentMenu.FindChildTraverse("groupHeader").checked) {
+				currentMenu.FindChildTraverse("groupContents").style.height = "0px;";
+			} else {
+				currentMenu.FindChildTraverse("groupContents").style.height = currentMenu.FindChildTraverse("groupContents").tempHeight + "px;";;
+			}
+		}
+
+		currentMenu = panel;
 	})
 
 	$.Schedule(0.5, function () {
