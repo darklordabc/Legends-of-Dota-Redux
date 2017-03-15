@@ -206,12 +206,12 @@ function createCommandGroup(data) {
 		panel.FindChildrenWithClassTraverse("TickBox")[0].SetImage(data.image);
 		panel.AddClass("groupCustomImage")
 	}*/
+	var groupContents = panel.FindChildTraverse("groupContents");
 	$.Each(data.commands, function(info) {
-		createCommandPanel(info, panel.FindChildTraverse("groupContents"));
+		createCommandPanel(info, groupContents);
 	})
 	var groupHeader = panel.FindChildTraverse("groupHeader")
 	groupHeader.SetPanelEvent("onactivate", function() {
-		panel.SetHasClass("GroupCollapsed", !groupHeader.checked);
 		if (!groupHeader.checked) {
 			panel.FindChildTraverse("groupContents").style.height = "0px;";
 		} else {
@@ -221,7 +221,6 @@ function createCommandGroup(data) {
 		if (currentMenu) {
 			$.Msg("Asd");
 			currentMenu.FindChildTraverse("groupHeader").checked = !currentMenu.FindChildTraverse("groupHeader").checked;
-			currentMenu.SetHasClass("GroupCollapsed", !currentMenu.FindChildTraverse("groupHeader").checked);
 			if (!currentMenu.FindChildTraverse("groupHeader").checked) {
 				currentMenu.FindChildTraverse("groupContents").style.height = "0px;";
 			} else {
@@ -232,10 +231,15 @@ function createCommandGroup(data) {
 		currentMenu = panel;
 	})
 
-	$.Schedule(0.5, function () {
-		panel.FindChildTraverse("groupContents").tempHeight = panel.FindChildTraverse("groupContents").contentheight;
-		panel.FindChildTraverse("groupContents").style.height = "0px;";
-	})
+	var checkHeight = function() {
+		if (heightResolutionFix != null && groupContents.contentheight > 0) {
+			groupContents.tempHeight = groupContents.contentheight * heightResolutionFix;
+			groupContents.style.height = "0px;";
+		} else {
+			$.Schedule(0.1, checkHeight);
+		}
+	}
+	checkHeight();
 }
 
 GameEvents.Subscribe("lodOnCheats", function() {
@@ -249,3 +253,16 @@ $.Each(commandList, createCommandGroup);
 
 util.blockMouseWheel($("#changelogDisplay"));
 util.blockMouseWheel($("#changelogNotification"));
+
+var heightResolutionFix;
+var heightResolutionFixPanel = $.CreatePanel("Panel", $.GetContextPanel(), "");
+heightResolutionFixPanel.style.height = "100px";
+var checkFixPanel = function() {
+	if (heightResolutionFixPanel.actuallayoutheight > 0) {
+		heightResolutionFix = 100 / heightResolutionFixPanel.actuallayoutheight;
+		heightResolutionFixPanel.DeleteAsync(0);
+	} else {
+		$.Schedule(0.1, checkFixPanel);
+	}
+}
+checkFixPanel();
