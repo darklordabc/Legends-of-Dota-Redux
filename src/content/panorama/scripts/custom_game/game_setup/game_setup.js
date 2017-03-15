@@ -4342,7 +4342,7 @@ function isBoosterDraftGamemode() {
 
 // A phase was changed
 var seenPopupMessages = {};
-var isBuildsDonwloaded = false;
+var isTabSwitched = false;
 
 function OnPhaseChanged(table_name, key, data) {
     switch(key) {
@@ -4393,9 +4393,9 @@ function OnPhaseChanged(table_name, key, data) {
                 setSelectedHelperHero(undefined, false)
 
                 // Set main tab activated
-                if (!isBuildsDonwloaded){
+                if (!isTabSwitched){
                     showBuilderTab('pickingPhaseMainTab');
-                    isBuildsDonwloaded = true;
+                    isTabSwitched = true;
                 }
 
                 // Should we show the host message popup?
@@ -4422,7 +4422,7 @@ function OnPhaseChanged(table_name, key, data) {
                 // }
 
                 // Set main tab activated
-                if (!isBuildsDonwloaded){
+                if (!isTabSwitched){
                     if (isDraftGamemode()) {
                         showBuilderTab('pickingPhaseSkillTab');
                         $("#pickingPhaseSkillTabContent").visible = false;
@@ -4430,9 +4430,7 @@ function OnPhaseChanged(table_name, key, data) {
                         showBuilderTab('pickingPhaseMainTab');
                     }
                     
-                    isBuildsDonwloaded = true;
-                } else {
-                    showBuilderTab('pickingPhaseHeroTab');
+                    isTabSwitched = true;
                 }
 
                 // Should we show the host message popup?
