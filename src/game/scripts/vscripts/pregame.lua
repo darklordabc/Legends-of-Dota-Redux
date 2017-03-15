@@ -452,6 +452,9 @@ function Pregame:loadDefaultSettings()
     -- Balance Mode disabled by default
     self:setOption('lodOptionBalanceMode', 0, true)
 
+    -- Anti Rat option
+    self:setOption('lodOptionAntiRat', 0, false)
+
     -- Mutators disabled by default
     self:setOption('lodOptionDuels', 0, false)
     self:setOption('lodOption322', 0, false)
@@ -2411,6 +2414,11 @@ function Pregame:initOptionSelector()
             return true
         end,
 
+        -- AntiRat
+        lodOptionAntiRat = function(value)
+            return value == 0 or value == 1
+        end,
+
         -- Game Speed - Scepter Upgraded
         lodOptionGameSpeedUpgradedUlts = function(value)
             return value == 0 or value == 1 or value == 2
@@ -3533,6 +3541,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('darkMoon', this.optionStore['lodOptionDarkMoon'])
         OptionManager:SetOption('blackForest', this.optionStore['lodOptionBlackForest'])
         OptionManager:SetOption('banInvis', this.optionStore['lodOptionBanningBanInvis'])
+        OptionManager:SetOption('antiRat', this.optionStore['lodOptionAntiRat'])
 
         -- Enforce max level
         if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
