@@ -1874,6 +1874,7 @@ function Ingame:addStrongTowers()
                     end
                 end
             end
+        elseif newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
             if OptionManager:GetOption('strongTowers') then
                 local maxPlayers = 24
                 local botsEnabled = false
@@ -1897,10 +1898,10 @@ function Ingame:addStrongTowers()
                         local abName = PullTowerAbility(self.towerList, self.usedRandomTowers, tower.strongTowerAbilities, difference, tower:GetLevel() * 10)
                         if not tower:HasAbility(abName) then
                             tower:AddAbility(abName):SetLevel(1) 
-                            table.insert(tower.strongTowerAbilities, abName)
                             self.usedRandomTowers[abName] = true
                             handledTowers[tower] = true
-                        end
+                            table.insert(tower.strongTowerAbilities, abName)
+                        end        
 
                         -- Find sister tower, only relevant for tiers below 4
                         if tower:GetLevel() < 4 then
@@ -1911,9 +1912,9 @@ function Ingame:addStrongTowers()
                             local sisterAbName = PullTowerAbility(self.towerList, self.usedRandomTowers, tower.strongTowerAbilities, difference, sisterTower:GetLevel() * 10)
                             if not tower:HasAbility(abName) then
                                 sisterTower:AddAbility(sisterAbName):SetLevel(1)
-                                table.insert(sisterTower.strongTowerAbilities, sisterAbName)
                                 self.usedRandomTowers[sisterAbName] = true
                                 handledTowers[sisterTower] = true
+                                table.insert(sisterTower.strongTowerAbilities, sisterAbName)
                             end
                             -- Assign sister towers permanently
                             tower.sisterTower = sisterTower
