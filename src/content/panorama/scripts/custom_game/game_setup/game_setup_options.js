@@ -913,6 +913,22 @@ var advancedOptions = {
                 ]
             },
             {
+                name: 'lodOptionAntiRat',
+                des: 'lodOptionDesAntiRat',
+                about: 'lodOptionAboutAntiRat',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
                 name: 'lodOptionCreepPower',
                 des: 'lodOptionDesCreepPower',
                 about: 'lodOptionAboutCreepPower',
@@ -1251,22 +1267,6 @@ var advancedOptions = {
                     }
                 ]
             },
-            {
-                name: 'lodOptionAntiRat',
-                des: 'lodOptionDesAntiRat',
-                about: 'lodOptionAboutAntiRat',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            }
         ]
     },
 
