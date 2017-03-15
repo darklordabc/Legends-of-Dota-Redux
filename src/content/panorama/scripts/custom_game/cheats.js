@@ -220,8 +220,8 @@ function createCommandGroup(data) {
 
 		if (currentMenu) {
 			$.Msg("Asd");
-			groupHeader.checked = !groupHeader.checked;
-			if (!groupHeader.checked) {
+			currentMenu.FindChildTraverse("groupHeader").checked = !currentMenu.FindChildTraverse("groupHeader").checked;
+			if (!currentMenu.FindChildTraverse("groupHeader").checked) {
 				currentMenu.FindChildTraverse("groupContents").style.height = "0px;";
 			} else {
 				currentMenu.FindChildTraverse("groupContents").style.height = currentMenu.FindChildTraverse("groupContents").tempHeight + "px;";;
