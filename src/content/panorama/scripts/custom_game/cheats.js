@@ -211,7 +211,6 @@ function createCommandGroup(data) {
 	})
 	var groupHeader = panel.FindChildTraverse("groupHeader")
 	groupHeader.SetPanelEvent("onactivate", function() {
-		panel.SetHasClass("GroupCollapsed", !groupHeader.checked);
 		if (!groupHeader.checked) {
 			panel.FindChildTraverse("groupContents").style.height = "0px;";
 		} else {
@@ -221,7 +220,6 @@ function createCommandGroup(data) {
 		if (currentMenu) {
 			$.Msg("Asd");
 			currentMenu.FindChildTraverse("groupHeader").checked = !currentMenu.FindChildTraverse("groupHeader").checked;
-			currentMenu.SetHasClass("GroupCollapsed", !currentMenu.FindChildTraverse("groupHeader").checked);
 			if (!currentMenu.FindChildTraverse("groupHeader").checked) {
 				currentMenu.FindChildTraverse("groupContents").style.height = "0px;";
 			} else {
@@ -233,7 +231,7 @@ function createCommandGroup(data) {
 	})
 
 	$.Schedule(0.5, function () {
-		panel.FindChildTraverse("groupContents").tempHeight = panel.FindChildTraverse("groupContents").contentheight;
+		panel.FindChildTraverse("groupContents").tempHeight = panel.FindChildTraverse("groupContents").contentheight * heightResolutionFix;
 		panel.FindChildTraverse("groupContents").style.height = "0px;";
 	})
 }
@@ -249,3 +247,11 @@ $.Each(commandList, createCommandGroup);
 
 util.blockMouseWheel($("#changelogDisplay"));
 util.blockMouseWheel($("#changelogNotification"));
+
+var heightResolutionFix = 1;
+var heightResolutionFixPanel = $.CreatePanel("Panel", $.GetContextPanel(), "");
+heightResolutionFixPanel.style.height = "100px";
+$.Schedule(0.4, function() {
+	heightResolutionFix = 100 / heightResolutionFixPanel.actuallayoutheight;
+	heightResolutionFixPanel.DeleteAsync(0);
+});
