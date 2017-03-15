@@ -105,6 +105,10 @@ function Ingame:init()
     CustomGameEventManager:RegisterListener( 'ask_custom_team_info', function(eventSourceIndex, args)
         self:returnCustomTeams(eventSourceIndex, args)
     end)
+    
+    CustomGameEventManager:RegisterListener('lodRequestCheatData', function(eventSourceIndex, args)
+        network:updateCheatPanelStatus(self.voteEnabledCheatMode, args.PlayerID)
+    end)
 end   
 
 function Ingame:OnPlayerReconnect(keys)
@@ -377,19 +381,7 @@ function Ingame:onStart()
            
     --Attempt to enable cheats
     Convars:SetBool("sv_cheats", true)
-    local isCheatsEnabled = Convars:GetBool("sv_cheats")
-    local maxPlayers = 24
-    local count = 0
-    for playerID=0,(maxPlayers-1) do
-        if not util:isPlayerBot(playerID) then
-            count = count + 1
-        end
-    end
-    local options = {
-        players = count,
-        cheats = isCheatsEnabled
-    }
-    network:showCheatPanel(options)
+    
     if OptionManager:GetOption('allowIngameHeroBuilder') then
         network:enableIngameHeroEditor()
         
@@ -641,6 +633,7 @@ function Ingame:OnPlayerChat(keys)
 
                 if votesRequired == 0 then
                     self.voteEnabledCheatMode = true
+                    network:updateCheatPanelStatus(self.voteEnabledCheatMode)
                     EmitGlobalSound("Event.CheatEnabled")
                     GameRules:SendCustomMessage('<font color=\'#70EA72\'>Everbody voted to enable cheat mode. Cheat mode enabled</font>.',0,0)
                 else

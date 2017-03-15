@@ -1,5 +1,6 @@
 -- Imports
 local constants = require('constants')
+local util = require('util')
 
 -- A store for all the net table stuff
 local Network = class({})
@@ -174,12 +175,13 @@ function Network:sendNotification(ply, options)
     CustomGameEventManager:Send_ServerToPlayer(ply, 'lodNotification', options)
 end
 
-function Network:showCheatPanel(options)
-    -- Ensure we have an options table
-    options = options or {}
-
-    -- Push it
-    CustomGameEventManager:Send_ServerToAllClients('lodShowCheatPanel', options)
+function Network:updateCheatPanelStatus(voteEnabledCheatMode, PlayerID)
+    local options = {enabled = util:isSinglePlayerMode() or Convars:GetBool("sv_cheats") or voteEnabledCheatMode}
+    if PlayerID then
+        CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(PlayerID), 'lodRequestCheatData', options)
+    else
+        CustomGameEventManager:Send_ServerToAllClients('lodRequestCheatData', options)
+    end
 end
 
 -- Sends a notification to all players

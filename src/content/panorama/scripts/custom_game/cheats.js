@@ -65,7 +65,6 @@ var commandList = [{
 	},]	
 }, {
 	title: "bots",
-	isCheat: true,
 	commands: [{
 		title: "botsShowMode",
 		chatCommand: "bot mode",
@@ -246,9 +245,11 @@ function createCommandGroup(data) {
 GameEvents.Subscribe("lodOnCheats", function() {
 	$('#cheatsDisplay').SetHasClass('cheatsDisplayHidden', !$('#cheatsDisplay').BHasClass('cheatsDisplayHidden'));
 });
-GameEvents.Subscribe('lodShowCheatPanel', function(data) {
-	$.GetContextPanel().SetHasClass("cheatMode", data.cheats == 1 || data.players == 1);
+GameEvents.Subscribe('lodRequestCheatData', function(data) {
+	$.GetContextPanel().SetHasClass("cheatMode", data.enabled == 1);
 });
+GameEvents.SendCustomGameEventToServer("lodRequestCheatData", {})
+
 $("#commandList").RemoveAndDeleteChildren();
 $.Each(commandList, createCommandGroup);
 
