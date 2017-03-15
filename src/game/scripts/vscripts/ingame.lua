@@ -1820,60 +1820,73 @@ end
 
 function Ingame:addStrongTowers()
     ListenToGameEvent('game_rules_state_change', function(keys)
-
         local newState = GameRules:State_Get()
-        if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS and OptionManager:GetOption('strongTowers') then
-			local maxPlayers = 24
-			local botsEnabled = false
-			for playerID=0,(maxPlayers-1) do
-				if util:isPlayerBot(playerID) then
-					botsEnabled = true
-				end
-			end
-			
-			self.towerList = LoadKeyValues('scripts/kv/towers.kv')
-			self.usedRandomTowers = {}
+        if newState == DOTA_GAMERULES_STATE_PRE_GAME then
+            if OptionManager:GetOption('antiRat') == 1 then
+                local towers = Entities:FindAllByClassname('npc_dota_tower')
 
-			local towers = Entities:FindAllByClassname('npc_dota_tower')
-			local handledTowers = {}
-			
-			for _, tower in pairs(towers) do
-				if not handledTowers[tower] then
-					-- Main ability handling
-					local difference = 0 -- will always be 0 anyway
-					tower.strongTowerAbilities = tower.strongTowerAbilities or {}
-					local abName = PullTowerAbility(self.towerList, self.usedRandomTowers, tower.strongTowerAbilities, difference, tower:GetLevel() * 10)
-					if not tower:HasAbility(abName) then
-                        tower:AddAbility(abName):SetLevel(1) 
-                        table.insert(tower.strongTowerAbilities, abName)
-                        self.usedRandomTowers[abName] = true
-                        handledTowers[tower] = true
+                self.destroyedTowers = self.destroyedTowers or {}
+
+                for k,v in pairs(towers) do
+                    table.insert(self.destroyedTowers, v)
+                    if string.match(v:GetUnitName(), "3") then
+                        v:AddAbility("tower_anti_rat"):SetLevel(1)
                     end
+                end
+            end
+            if OptionManager:GetOption('strongTowers') then
+                local maxPlayers = 24
+                local botsEnabled = false
+                for playerID=0,(maxPlayers-1) do
+                    if util:isPlayerBot(playerID) then
+                        botsEnabled = true
+                    end
+                end
+                
+                self.towerList = LoadKeyValues('scripts/kv/towers.kv')
+                self.usedRandomTowers = {}
 
-					-- Find sister tower, only relevant for tiers below 4
-					if tower:GetLevel() < 4 then
-						local sisterTower = FindSisterTower(tower)
-						-- Sister ability handling
-						difference = GetTowerAbilityPowerValue(sisterTower, self.towerList) - GetTowerAbilityPowerValue(tower, self.towerList)
-						sisterTower.strongTowerAbilities = sisterTower.strongTowerAbilities or {}
-						local sisterAbName = PullTowerAbility(self.towerList, self.usedRandomTowers, tower.strongTowerAbilities, difference, sisterTower:GetLevel() * 10)
-						if not tower:HasAbility(abName) then
-                            sisterTower:AddAbility(sisterAbName):SetLevel(1)
-                            table.insert(sisterTower.strongTowerAbilities, sisterAbName)
-                            self.usedRandomTowers[sisterAbName] = true
-                            handledTowers[sisterTower] = true
+                local towers = Entities:FindAllByClassname('npc_dota_tower')
+                local handledTowers = {}
+                
+                for _, tower in pairs(towers) do
+                    if not handledTowers[tower] then
+                        -- Main ability handling
+                        local difference = 0 -- will always be 0 anyway
+                        tower.strongTowerAbilities = tower.strongTowerAbilities or {}
+                        local abName = PullTowerAbility(self.towerList, self.usedRandomTowers, tower.strongTowerAbilities, difference, tower:GetLevel() * 10)
+                        if not tower:HasAbility(abName) then
+                            tower:AddAbility(abName):SetLevel(1) 
+                            table.insert(tower.strongTowerAbilities, abName)
+                            self.usedRandomTowers[abName] = true
+                            handledTowers[tower] = true
                         end
-						-- Assign sister towers permanently
-						tower.sisterTower = sisterTower
-						sisterTower.sisterTower = tower
-						print(tower:GetUnitName(), sisterTower:GetUnitName())
-					end
 
-                    tower:AddAbility("imba_tower_counter")
-                    tower:FindAbilityByName("imba_tower_counter"):SetLevel(1)
-				end
-			end
-			print("lul")
+                        -- Find sister tower, only relevant for tiers below 4
+                        if tower:GetLevel() < 4 then
+                            local sisterTower = FindSisterTower(tower)
+                            -- Sister ability handling
+                            difference = GetTowerAbilityPowerValue(sisterTower, self.towerList) - GetTowerAbilityPowerValue(tower, self.towerList)
+                            sisterTower.strongTowerAbilities = sisterTower.strongTowerAbilities or {}
+                            local sisterAbName = PullTowerAbility(self.towerList, self.usedRandomTowers, tower.strongTowerAbilities, difference, sisterTower:GetLevel() * 10)
+                            if not tower:HasAbility(abName) then
+                                sisterTower:AddAbility(sisterAbName):SetLevel(1)
+                                table.insert(sisterTower.strongTowerAbilities, sisterAbName)
+                                self.usedRandomTowers[sisterAbName] = true
+                                handledTowers[sisterTower] = true
+                            end
+                            -- Assign sister towers permanently
+                            tower.sisterTower = sisterTower
+                            sisterTower.sisterTower = tower
+                            print(tower:GetUnitName(), sisterTower:GetUnitName())
+                        end
+
+                        tower:AddAbility("imba_tower_counter")
+                        tower:FindAbilityByName("imba_tower_counter"):SetLevel(1)
+                    end
+                end
+                print("lul")
+            end
         end
     end, nil)
     ListenToGameEvent('dota_tower_kill', function (keys)
@@ -1894,7 +1907,32 @@ function Ingame:addStrongTowers()
         end
 
         if OptionManager:GetOption('antiRat') == 1 then
-            print("adasdasdaads")
+            local towers = Entities:FindAllByClassname('npc_dota_tower')
+
+            local direIsDead = true
+            local radiantIsDead = true
+
+            for k,v in pairs(towers) do
+                if not v:IsNull() and string.match(v:GetUnitName(), "2") and v:IsAlive() then
+                    if v:GetTeamNumber() == 2 then
+                        radiantIsDead = false
+                    else
+                        direIsDead = false
+                    end
+                end
+            end
+
+            for k,v in pairs(towers) do
+                if string.match(v:GetUnitName(), "3") then
+                    if radiantIsDead and v:GetTeamNumber() == 2 then
+                        v:RemoveAbility("tower_anti_rat")
+                        v:RemoveModifierByName("modifier_tower_anti_rat")
+                    elseif direIsDead and v:GetTeamNumber() == 3 then
+                        v:RemoveAbility("tower_anti_rat")
+                        v:RemoveModifierByName("modifier_tower_anti_rat")
+                    end
+                end
+            end
         end
         
         if OptionManager:GetOption('strongTowers') then

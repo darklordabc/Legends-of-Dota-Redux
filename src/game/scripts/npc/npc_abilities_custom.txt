@@ -783,6 +783,7 @@
 #base "abilities\tower\imba_tower_split.txt"
 #base "abilities\tower\imba_tower_thorns.txt"
 #base "abilities\tower\imba_tower_vicious.txt"
+#base "abilities\tower\tower_anti_rat.txt"
 #base "abilities\tower\summoner_tesla_coil.txt"
 #base "abilities\tower\titan_command_aura.txt"
 #base "abilities\unpickable\clone_token_ability.txt"
