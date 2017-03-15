@@ -16,6 +16,7 @@ function Snippet_TopBarPlayerSlot(pid) {
 			var panel = $.CreatePanel("Panel", teamPanel, "")
 			panel.BLoadLayoutSnippet("TopBarPlayerSlot")
 			panel.playerId = pid
+			//panel.AddClass("pid_" + pid)
 			panel.FindChildTraverse("HeroImage").SetPanelEvent("onactivate", function() {
 				Players.PlayerPortraitClicked(pid, GameUI.IsControlDown(), GameUI.IsAltDown());
 			});
@@ -46,15 +47,13 @@ function Snippet_TopBarPlayerSlot_Update(panel) {
 	var playerId = panel.playerId;
 	var playerInfo = Game.GetPlayerInfo(playerId);
 	var connectionState = playerInfo.player_connection_state;
-	if (connectionState == DOTAConnectionState_t.DOTA_CONNECTION_STATE_ABANDONED) {
-		panel.visible = false;
-	} else {
+	panel.visible = connectionState != DOTAConnectionState_t.DOTA_CONNECTION_STATE_ABANDONED && connectionState != DOTAConnectionState_t.DOTA_CONNECTION_STATE_DISCONNECTED;
+	if (panel.visible) {
 		var respawnSeconds = playerInfo.player_respawn_seconds;
 		var heroEnt = playerInfo.player_selected_hero_entity_index;
 		var isAlly = playerInfo.player_team_id == Players.GetTeam(Game.GetLocalPlayerID());
 		panel.SetDialogVariableInt("respawn_seconds", respawnSeconds + 1);
 		panel.SetHasClass("Dead", respawnSeconds >= 0);
-		panel.SetHasClass("Disconnected", connectionState == DOTAConnectionState_t.DOTA_CONNECTION_STATE_DISCONNECTED);
 		panel.FindChildTraverse("HeroImage").heroname = playerInfo.player_selected_hero;
 		panel.FindChildTraverse("PlayerColor").style.backgroundColor = Util.getHexPlayerColor(playerId);
 		var ultStateOrTime = isAlly ? Game.GetPlayerUltimateStateOrTime(playerId) : PlayerUltimateStateOrTime_t.PLAYER_ULTIMATE_STATE_HIDDEN;

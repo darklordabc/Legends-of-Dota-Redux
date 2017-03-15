@@ -137,7 +137,7 @@ DOTAHud.IsBeforeGameplay .base
 	margin-right:6px;
 }
 
-.AltPressed .BuybackReady #BuybackIcon
+.AltPressed .TeamScorePlayers:not(.EnemyTeam) .BuybackReady #BuybackIcon
 {
 	transform: translateY(0px);
 	opacity: 1;
@@ -162,7 +162,6 @@ DOTAHud.IsBeforeGameplay .base
 #TopBarPlayersContainer
 {
 	height: 100%;
-	width: 316px;
 	z-index: 2;
 }
 
@@ -226,12 +225,10 @@ DOTAHud.IsBeforeGameplay .base
 {
 	//height: 100%;
 	height: 66px;
-	width: 380px;
 }
 #TeamScorePlayersMainFlow
 {
 	height: 100%;
-	width: 100%;
 }
 .RightAlignedTeam #TeamScorePlayersMainFlow
 {
@@ -242,15 +239,7 @@ DOTAHud.IsBeforeGameplay .base
 	flow-children: right;
 	overflow: noclip;
 }
-.TeamScorePlayers.RightAlignedTeam
-{
-	//horizontal-align: right;
-	//margin-left: 39px;
-}
-.TeamScorePlayers.LeftAlignedTeam
-{
-}
-.RightAlignedTeam #TopBarPlayersContainer
+.LeftAlignedTeam #TopBarPlayersContainer
 {
 	flow-children: left;
 }
