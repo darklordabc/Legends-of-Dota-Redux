@@ -16,7 +16,6 @@ function Snippet_TopBarPlayerSlot(pid) {
 			var panel = $.CreatePanel("Panel", teamPanel, "")
 			panel.BLoadLayoutSnippet("TopBarPlayerSlot")
 			panel.playerId = pid
-			//panel.AddClass("pid_" + pid)
 			panel.FindChildTraverse("HeroImage").SetPanelEvent("onactivate", function() {
 				Players.PlayerPortraitClicked(pid, GameUI.IsControlDown(), GameUI.IsAltDown());
 			});
@@ -32,8 +31,8 @@ function Snippet_TopBarPlayerSlot(pid) {
 				//$.DispatchEvent("DOTAHideTopBarUltimateTooltip", panel);
 			});
 			panel.Resort = function() {
-				SortPanelChildren(teamPanel, dynamicSort("playerId"), function(child, child2) {
-					return child.playerId < child2.playerId
+				SortPanelChildren(teamPanel, dynamicSort("-playerId"), function(child, child2) {
+					return child.playerId > child2.playerId
 				});
 			}
 			panel.Resort();
