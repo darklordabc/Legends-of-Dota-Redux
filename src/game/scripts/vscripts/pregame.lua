@@ -3595,8 +3595,8 @@ function Pregame:processOptions()
                 this:banAbility(abilityName)
             end
 
-            -- Enable debug mode
-            Convars:SetBool('dota_ability_debug', true)
+            -- Enable debug mode - Depreciated, wtf is now a filter in spellfixes.lua
+            -- Convars:SetBool('dota_ability_debug', true)
         end
 
         -- Banning of OP Skills

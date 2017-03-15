@@ -81,6 +81,14 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
     if ply then
         local hero = ply:GetAssignedHero()
         if hero then
+            if OptionManager:GetOption('lodOptionCrazyWTF') == 1 then
+                local usedAbility = hero:FindAbilityByName(keys.abilityname)
+                if usedAbility then
+                    usedAbility:EndCooldown()
+                    usedAbility:RefundManaCost()
+                end
+            end
+
             --Support for NS's darkness to show it in top bar
             local night_stalker_darkness = hero:FindAbilityByName("night_stalker_darkness")
             if keys.abilityname == "night_stalker_darkness" and night_stalker_darkness then

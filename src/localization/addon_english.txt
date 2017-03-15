@@ -1208,6 +1208,7 @@
 
     "command_menu_group_votes"                          "Vote | Mechanics"
 
+
     "command_menu_command_voteEnableCheat"              "Enable Cheat Mode"
     "command_menu_command_descr_voteEnableCheat"        "Starts a vote to enable cheats mode, requires unanimous agreement among players. Shortcuts: -enablecheats, -ec"
 
@@ -1240,7 +1241,9 @@
     "command_menu_command_selfGetItem"                  "Give Item"
     "command_menu_command_refresh"                      "Refresh all abilities"
     "command_menu_command_respawn"                      "Respawn"
+
     "command_menu_command_dagger"                      "Dagger"
+
     "command_menu_command_godMode"                      "Invulnerability"
     "command_menu_command_regen"                        "Fountain Regeneration"
     "command_menu_command_scepter"                        "Free Scepter"

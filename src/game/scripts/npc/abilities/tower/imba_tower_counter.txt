@@ -1,0 +1,8 @@
+"DOTAAbilities" {
+	"imba_tower_counter" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/imba_tower_counter.lua"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"MaxLevel" "1"
+	}
+}
