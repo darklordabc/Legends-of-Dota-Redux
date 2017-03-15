@@ -292,6 +292,16 @@ function Pregame:init()
             end
         end
     end
+    local npc_abilities = LoadKeyValues('scripts/npc/npc_abilities.txt')
+    local absCustom = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
+    for k,v in pairs(absCustom) do
+        npc_abilities[k] = v
+    end
+    for abilityName,data in pairs(npc_abilities) do
+        if type(data) == 'table' and data.AbilityBehavior and string.match(data.AbilityBehavior, 'DOTA_ABILITY_BEHAVIOR_TOGGLE') then
+            AddPerkToAbility(abilityName, 'toggle_ability')
+        end
+    end
     CustomGameEventManager:RegisterListener('lodRequestAbilityPerkData', function(eventSourceIndex, args)
         CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(args.PlayerID), "lodRequestAbilityPerkData", ability_perks)
     end)

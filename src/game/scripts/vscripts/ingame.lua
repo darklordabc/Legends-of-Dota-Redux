@@ -57,6 +57,7 @@ function Ingame:init()
     self.voteEnabledCheatMode = false
     self.voteDisableAntiKamikaze = false
     self.voteDisableRespawnLimit = false
+    self.voteEnableBuilder = false
     self.origianlRespawnRate = nil
     self.shownCheats = {}
 
@@ -149,7 +150,43 @@ function Ingame:OnPlayerPurchasedItem(keys)
     -- Bots will get items auto-delievered to them
     self:checkIfRespawnRate()
     if util:isPlayerBot(keys.PlayerID) then
-        local hero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()      
+        local hero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()
+        -- If bots buy boots remove first instances of cheap items they have, this is a fix for them having boots in backpack
+        if string.find(keys.itemname, "boots") or keys.itemname == "item_power_treads" then
+            local tangos = hero:FindItemByName("item_tango")
+            local mangos = hero:FindItemByName("item_enchanted_mango")
+            local clarity = hero:FindItemByName("item_clarity")
+            local faerie = hero:FindItemByName("item_faerie_fire")
+            local flask = hero:FindItemByName("item_flask")
+
+            if tangos then
+            local refund = tangos:GetCost()
+            hero:ModifyGold(refund, false, 0)
+            tangos:RemoveSelf()
+            end
+            if mangos then
+                local refund = mangos:GetCost()
+                hero:ModifyGold(refund, false, 0)
+                mangos:RemoveSelf()
+            end
+            if clarity then
+                local refund = clarity:GetCost() * clarity:GetCurrentCharges()
+                hero:ModifyGold(refund, false, 0)
+                clarity:RemoveSelf()
+            end
+            if faerie then
+                local refund = faerie:GetCost()
+                hero:ModifyGold(refund, false, 0)
+                faerie:RemoveSelf()
+            end
+            if flask then
+                local refund = flask:GetCost() * flask:GetCurrentCharges()
+                hero:ModifyGold(refund, false, 0)
+                flask:RemoveSelf()
+            end
+        end
+
+              
             for slot =  DOTA_STASH_SLOT_1, DOTA_STASH_SLOT_6 do
                 item = hero:GetItemInSlot(slot)
                 if item ~= nil then
@@ -614,19 +651,19 @@ function Ingame:OnPlayerChat(keys)
 
             end
         end, DoUniqueString('enableCheat'), .1)
-    end
-    if string.find(text, "-enablekamikaze") or text == "-ek" then 
+
+    elseif string.find(text, "-enablekamikaze") or text == "-ek" then 
         Timers:CreateTimer(function()
             if not PlayerResource:GetPlayer(playerID).enableKamikaze then
                 PlayerResource:GetPlayer(playerID).enableKamikaze = true
                 
                 local votesRequired = 0
                 
-                for playerID = 0,(24-1) do                        
-                    if not util:isPlayerBot(playerID) then                            
-                        local state = PlayerResource:GetConnectionState(playerID)
+                for player_ID = 0,(24-1) do                        
+                    if not util:isPlayerBot(player_ID) and PlayerResource:GetPlayer(playerID) ~= PlayerResource:GetPlayer(player_ID) then                            
+                        local state = PlayerResource:GetConnectionState(player_ID)
                         if state == 1 or state == 2 then
-                            if not PlayerResource:GetPlayer(playerID).enableKamikaze then
+                            if not PlayerResource:GetPlayer(player_ID).enableKamikaze then
                                 votesRequired = votesRequired + 1
                             end
                         end
@@ -645,19 +682,56 @@ function Ingame:OnPlayerChat(keys)
 
             end
         end, DoUniqueString('enableKamikaze'), .1)
-    end
-    if string.find(text, "-enablerespawn") or text == "-er" then 
+
+    elseif (string.find(text, "-enablebuilder") or text == "-eb") and OptionManager:GetOption('allowIngameHeroBuilder') == false then 
+        Timers:CreateTimer(function()
+            if not PlayerResource:GetPlayer(playerID).enableBuilder then
+                PlayerResource:GetPlayer(playerID).enableBuilder = true
+                
+                local votesRequired = 0
+                
+                for player_ID = 0,(24-1) do                        
+                    if not util:isPlayerBot(player_ID) and PlayerResource:GetPlayer(playerID) ~= PlayerResource:GetPlayer(player_ID) then                            
+                        local state = PlayerResource:GetConnectionState(player_ID)
+                        if state == 1 or state == 2 then
+                            if not PlayerResource:GetPlayer(player_ID).enableBuilder then
+                                votesRequired = votesRequired + 1
+                            end
+                        end
+                    end
+                end
+
+                if votesRequired == 0 then
+                    network:enableIngameHeroEditor()
+                    OptionManager:SetOption('allowIngameHeroBuilder', 1)
+                    -- If its a versus game set a penalty for using the builder
+                    if util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS) > 0 and util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS) > 0 then
+                            OptionManager:SetOption('ingameBuilderPenalty', 30)
+                    end
+                    self.voteEnableBuilder = true
+                    EmitGlobalSound("Event.CheatEnabled")
+                    GameRules:SendCustomMessage('Everbody voted to enable the ingame hero builder. <font color=\'#70EA72\'>You can now change your hero build mid-game</font>.',0,0)
+                else
+                    GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to disable anti-Kamikaze safeguard. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablekamikaze (-ek) to vote to disable.',0,0)
+                end
+
+                --print(votesRequired)
+
+            end
+        end, DoUniqueString('enablebuilder'), .1)
+
+    elseif string.find(text, "-enablerespawn") or text == "-er" then 
         Timers:CreateTimer(function()
             if not PlayerResource:GetPlayer(playerID).enableRespawn then
                 PlayerResource:GetPlayer(playerID).enableRespawn = true
                 
                 local votesRequired = 0
                 
-                for playerID = 0,(24-1) do                        
-                    if not util:isPlayerBot(playerID) then                            
-                        local state = PlayerResource:GetConnectionState(playerID)
+                for player_ID = 0,(24-1) do                        
+                    if not util:isPlayerBot(player_ID) and PlayerResource:GetPlayer(playerID) ~= PlayerResource:GetPlayer(player_ID) then                            
+                        local state = PlayerResource:GetConnectionState(player_ID)
                         if state == 1 or state == 2 then
-                            if not PlayerResource:GetPlayer(playerID).enableRespawn then
+                            if not PlayerResource:GetPlayer(player_ID).enableRespawn then
                                 votesRequired = votesRequired + 1
                             end
                         end

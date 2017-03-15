@@ -10,6 +10,9 @@ All notable changes to this project will be documented in this file.
 - Optimized the ingame hero builder menu, should no longer cause instability or lags. 
 - Added a ingame filter to see hero perk related abiliites. 
 - Added cheats '-wtf' and '-scepter' that can be used in games without sv_cheats
+- Made attempt at fixing bots having boots in their backpack.
+- Top hero bar now updates with correct team compositions. 
+
 
 ## 6.9 - Steam Version
 - You can enable cheats in a multiplayer games now if everbody types '-enablecheats'

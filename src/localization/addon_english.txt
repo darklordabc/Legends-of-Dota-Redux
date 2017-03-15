@@ -1207,9 +1207,19 @@
     "command_menu_cheat_rejection"                      "This is cheat-only command. To play with cheats, quit this lobby, host a custom lobby with a password and tick 'ENABLE CHEATS'."
 
     "command_menu_group_votes"                          "Vote | Mechanics"
+
+
     "command_menu_command_voteEnableCheat"              "Enable Cheat Mode"
+    "command_menu_command_descr_voteEnableCheat"        "Starts a vote to enable cheats mode, requires unanimous agreement among players. Shortcuts: -enablecheats, -ec"
+
     "command_menu_command_voteEnableKamikaze"           "Disable Anti-Kamikaze"
-    "command_menu_command_voteEnableRespawn"            "Disable Late-Game Respawn Rate Increase"
+    "command_menu_command_descr_voteEnableKamikaze"        "Anti-Kamikaze is a game mechanic which punishes players that die more than 3 times within 60 seconds. This usually happens when games have instant respawn and players are using a strat where they Kamikaze themselves agaisnt towers and buildings. Shortcuts: -enablekamikaze -ek"
+
+    "command_menu_command_voteEnableRespawn"            "Disable Late-Game Respawn Rate Increase" 
+    "command_menu_command_descr_voteEnableRespawn"        "To prevent games with low respawn times lasting for too long or being never-ending, the game will increase respawn rates at the 40 minute mark by 10%, and by another 10% after 10 minutes, continually, until respawn rates are at minimum 50%. This option disables that safeguard. Shortcuts: -enablerespawn -er"  
+
+    "command_menu_command_voteEnableBuilder"            "Enable In-Game Hero Builder"
+    "command_menu_command_descr_voteEnableBuilder"        "Enables the icon at the bottom left that allows heros to change their hero and ability builds mid-game. If the game is not coop or single player, there will be a 30-second death peanlty with changing builds to prevent abuse. Shortcuts: -enablebuilder -eb" 
     
     "command_menu_group_game"                           "Cheats | Game"
     "command_menu_command_toggleWtf"                    "Toggle Free Spells"
@@ -1231,6 +1241,9 @@
     "command_menu_command_selfGetItem"                  "Give Item"
     "command_menu_command_refresh"                      "Refresh all abilities"
     "command_menu_command_respawn"                      "Respawn"
+
+    "command_menu_command_dagger"                      "Dagger"
+
     "command_menu_command_godMode"                      "Invulnerability"
     "command_menu_command_regen"                        "Fountain Regeneration"
     "command_menu_command_scepter"                        "Free Scepter"
@@ -4209,7 +4222,8 @@
 
     "DOTA_Tooltip_ability_item_backPackBlocker" "Bot BackPack Blocker"
 
-    "DOTA_Tooltip_ability_item_devDagger" "GLOBAL OP Blink Dagger"
+    "DOTA_Tooltip_ability_item_devDagger" "Dev Dagger"
+    "DOTA_Tooltip_ability_item_devDagger_Description" "Dagger used by developers to help in testing."
 
     "DOTA_Tooltip_ability_arc_warden_tempest_double_redux"        "Tempest Double Redux"
     "DOTA_Tooltip_ability_arc_warden_tempest_double_redux_Description"    "Briefly refocusing its fractured elements into a single form, the Arc Warden is able to create a perfect electrical duplication of itself. The duplicate can use all of Arc Warden's current items and spells, except consumables and items that drop on death. The duplicate has seperate item and ability cooldowns. <font color='#70EA72'>Has 50% longer cooldown.</font>"

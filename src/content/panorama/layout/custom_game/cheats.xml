@@ -17,7 +17,7 @@
 		<snippet name="command">
 			<Panel class="command">
 				<Button id="commandHeader" class="ExpandCollapseToggleButton">
-					<Image id="commandIcon" src="file://{images}/control_icons/chat_wheel_icon.png" />
+					<Image id="commandIcon" src="s2r://panorama/images/control_icons/expand_collapse_png1.vtex" />
 					<Label id="commandTitle" text="{s:command_title}" />
 				</Button>
 				<Panel id="commandSettings" />

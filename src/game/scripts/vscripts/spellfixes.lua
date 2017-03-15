@@ -88,6 +88,15 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
                     usedAbility:RefundManaCost()
                 end
             end
+
+            --Support for NS's darkness to show it in top bar
+            local night_stalker_darkness = hero:FindAbilityByName("night_stalker_darkness")
+            if keys.abilityname == "night_stalker_darkness" and night_stalker_darkness then
+                CustomGameEventManager:Send_ServerToAllClients("time_nightstalker_darkness", {
+                    duration = night_stalker_darkness:GetLevelSpecialValueFor("duration", night_stalker_darkness:GetLevel() - 1)
+                })
+            end
+
             -- Check if they tried to illegally use shadow items, if they did, punish them by not refunding the full price
             if OptionManager:GetOption('banInvis') == 2 and (keys.abilityname == "item_invis_sword" or keys.abilityname == "item_silver_edge") then
                 for i=0,11 do
