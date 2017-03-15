@@ -4362,7 +4362,7 @@ function OnPhaseChanged(table_name, key, data) {
             if (currentPhase == PHASE_OPTION_VOTING)
             {
                 var mapName = Game.GetMapInfo().map_display_name;                 
-                if (mapName.match("standart"))
+                if (mapName.match("standard"))
 					$('#middleButtons').visible = false;
             }
 

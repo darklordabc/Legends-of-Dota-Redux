@@ -398,8 +398,8 @@ function Pregame:init()
         self.useOptionVoting = true
     end
 
-    -- Standart gamemode featuring voting system
-    if mapName == 'standart' then
+    -- Standard gamemode featuring voting system
+    if mapName == 'standard' then
         self:setOption('lodOptionGamemode', 1)
         self:setOption('lodOptionBalanceMode', 1, true)
         --self:setOption('lodOptionBanningBalanceMode', 1, true)
