@@ -958,21 +958,18 @@
 
     // OPTION VOTING
     "lodOptionVotingHeader"                         "Vote For Options"
-    "lodHowManySlots"                               "How many slots?"
-    "voteMaxSlots4"                                 "4 Slots"
-    "voteMaxSlots5"                                 "5 Slots"
-    "voteMaxSlots6"                                 "6 Slots"
 
-    "lodBanningPhase"                               "Banning Phase"
-    "lodFastStart"                                  "Enable Fast Start"
-    "lodBalanceMode"                                "Disable Points Mode"
-    "lodStrongTower"                                "Enable Stronger Towers"
-    "lodDuels"                                      "Enable Duels"
+    "option_vote_entry_title_banning"               "Enable Banning Phase"
+    "option_vote_entry_title_fastStart"             "Enable Fast Start"
+    "option_vote_entry_title_doubledAbilityPoints"  "Doubled Ability Points"
+    "option_vote_entry_title_strongTowers"          "Enable Stronger Towers"
+    "option_vote_entry_title_extraTowers"           "Enable Extra Towers"
 
-    "textFSTooltip"                             "Everyone starts at level 6 and receives 1000 bonus gold."
-    "textBMTooltip"                             "In Points Mode, players have 120 points to spend on abilities. Powerful abilities cost more than weaker ones and the weakest abilities cost no points to use."
-    "textSTTooltip"                             "This will give Towers powerful abilities that upgrade each time a tower on their side dies. After 3 upgrades, a tower will receive a new ability."
-    "textDTooltip"                              "Teams face each other every 5 minutes on randomly selected arenas."
+    "option_vote_entry_info_banning"                "In Points Mode, players have 120 points to spend on abilities. Powerful abilities cost more than weaker ones and the weakest abilities cost no points to use."
+    "option_vote_entry_info_fastStart"              "Everyone starts at level 6 and receives 1000 bonus gold."
+    "option_vote_entry_info_doubledAbilityPoints"   "Players can waste 240 points on abilities instead of 120"
+    "option_vote_entry_info_strongTowers"           "This will give Towers powerful abilities that upgrade each time a tower on their side dies. After 3 upgrades, a tower will receive a new ability."
+    "option_vote_entry_info_extraTowers"            "Increase amount of towers that will be placed in a lane to 5."
 
     "bots_lod"                                      "Bots"
 

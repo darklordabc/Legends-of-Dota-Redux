@@ -163,6 +163,7 @@ DOTAHud.IsBeforeGameplay .base
 {
 	height: 100%;
 	z-index: 2;
+	min-width: 200px;
 }
 
 .TopBarBackground

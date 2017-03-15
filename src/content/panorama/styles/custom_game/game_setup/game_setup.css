@@ -3500,3 +3500,9 @@ Button:enabled:hover {
 .ingame_menu #optionSelection, .ingame_menu #pickingPhase{
 	height: 825px;
 }
+
+#optionVotePhasesList
+{
+    flow-children: down;
+    width: 100%;
+}
