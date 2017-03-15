@@ -1892,6 +1892,10 @@ function Ingame:addStrongTowers()
             self.botsInLateGameMode = true
             GameRules:GetGameModeEntity():SetBotsInLateGame(self.botsInLateGameMode)        
         end
+
+        if OptionManager:GetOption('antiRat') == 1 then
+            print("adasdasdaads")
+        end
         
         if OptionManager:GetOption('strongTowers') then
             local tower_team = keys.teamnumber

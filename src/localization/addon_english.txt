@@ -443,6 +443,11 @@
     "lodOptionAboutBlackForest"                             "At the start of the game a Forest is generated, planting many more trees on the map."
     "lodMutatorBlackForest"                         "Black Forest"
 
+    "lodOptionAntiRat"                                  "AntiRat"
+    "lodOptionDesAntiRat"                               "Enable Black Forest"
+    "lodOptionAboutAntiRat"                             "At the start of the game a Forest is generated, planting many more trees on the map."
+    "lodMutatorAntiRat"                                 "AntiRat"
+
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"
     "lodOptionDesAdvancedNeutralAbilities"          "Allow Neutral Abilities"
     "lodOptionDesAdvancedCustomSkills"              "Allow Custom Abilities"
