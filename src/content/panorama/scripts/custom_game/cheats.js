@@ -159,13 +159,14 @@ function createCommandPanel(data, root) {
 			if (panel.BHasHoverStyle()) {
 				var description = $.Localize("command_menu_command_descr_" + data.title);
 				if (description != ("command_menu_command_descr_" + data.title)) {
-					$.DispatchEvent('DOTAShowTitleTextTooltipStyled', panel.FindChildTraverse("commandTitle"), $.Localize("command_menu_command_" + data.title), description, "testStyle");
+					$.DispatchEvent('UIShowCustomLayoutParametersTooltip', panel.FindChildTraverse("commandTitle"), panel.FindChildTraverse("commandTitle").id, "file://{resources}/layout/custom_game/custom_text_tooltip.xml", "text="+description);
+					// $.DispatchEvent('DOTAShowTitleTextTooltipStyled', panel.FindChildTraverse("commandTitle"), $.Localize("command_menu_command_" + data.title), description, "testStyle");
 				}
 			}
 		})
 	});
 	panel.SetPanelEvent("onmouseout", function () {
-		$.DispatchEvent('DOTAHideTitleTextTooltip');
+		$.DispatchEvent("UIHideCustomLayoutTooltip", panel.FindChildTraverse("commandTitle"), panel.FindChildTraverse("commandTitle").id); 
 	});
 	var isCheat = data.isCheat == true;
 	panel.SetHasClass("cheatOnly", isCheat);

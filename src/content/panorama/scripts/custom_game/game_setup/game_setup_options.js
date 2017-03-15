@@ -428,6 +428,11 @@ var basicOptions = {
                         extraInfo: 'lodOptionAboutBlackForest',
                         about: 'lodMutatorBlackForest'
                     },
+                    {
+                        name: 'lodOptionAntiRat',
+                        extraInfo: 'lodOptionAboutAntiRat',
+                        about: 'lodMutatorAntiRat'
+                    },
                 ]
             }
         ]
@@ -1246,6 +1251,22 @@ var advancedOptions = {
                     }
                 ]
             },
+            {
+                name: 'lodOptionAntiRat',
+                des: 'lodOptionDesAntiRat',
+                about: 'lodOptionAboutAntiRat',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            }
         ]
     },
 

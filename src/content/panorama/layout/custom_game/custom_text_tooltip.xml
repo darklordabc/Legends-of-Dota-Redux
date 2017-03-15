@@ -1,0 +1,17 @@
+<root>
+    <styles>
+        <include src="s2r://panorama/styles/dotastyles.vcss_c" />
+        <include src="file://{resources}/styles/custom_game/custom_text_tooltip.css" />
+    </styles>
+    <script>
+        function setupTooltip()
+        {
+            $.Msg("Asdasd");
+            $("#TooltipText").text = $.Localize( $.GetContextPanel().GetAttributeString( "text", "not-found" ) );
+        }
+    </script>
+    <Panel class="tooltipContents" ontooltiploaded="setupTooltip()">
+        <Label id="TooltipText" class="InfoTooltip"/>
+        <Label id="TooltipText2" class="InfoTooltip"/>
+    </Panel>
+</root>
