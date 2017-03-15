@@ -1909,25 +1909,25 @@ function Ingame:addStrongTowers()
         if OptionManager:GetOption('antiRat') == 1 then
             local towers = Entities:FindAllByClassname('npc_dota_tower')
 
-            local direIsDead = true
-            local radiantIsDead = true
+            local direIsDead = 0
+            local radiantIsDead = 0
 
             for k,v in pairs(towers) do
-                if not v:IsNull() and string.match(v:GetUnitName(), "2") and v:IsAlive() then
+                if not v:IsNull() and v:IsAlive() then
                     if v:GetTeamNumber() == 2 then
-                        radiantIsDead = false
+                        radiantIsDead = radiantIsDead + 1
                     else
-                        direIsDead = false
+                        direIsDead = direIsDead + 1
                     end
                 end
             end
 
             for k,v in pairs(towers) do
                 if string.match(v:GetUnitName(), "3") then
-                    if radiantIsDead and v:GetTeamNumber() == 2 then
+                    if radiantIsDead == 5 and v:GetTeamNumber() == 2 then
                         v:RemoveAbility("tower_anti_rat")
                         v:RemoveModifierByName("modifier_tower_anti_rat")
-                    elseif direIsDead and v:GetTeamNumber() == 3 then
+                    elseif direIsDead == 5 and v:GetTeamNumber() == 3 then
                         v:RemoveAbility("tower_anti_rat")
                         v:RemoveModifierByName("modifier_tower_anti_rat")
                     end
