@@ -1,12 +1,12 @@
 "AddonInfo"
 {
-	maps			"dota dota_180"
+	maps			"custom_702 dota_180"
 	"IsPlayable"	"1"
     "version"       "3.1.2"
 
-    "3_vs_3"
+    "custom_702"
     {
-        "MaxPlayers"                    "6"
+        "MaxPlayers"                    "10"
     }
 
     "10_vs_10"

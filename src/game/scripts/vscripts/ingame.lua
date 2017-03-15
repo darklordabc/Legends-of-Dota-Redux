@@ -150,7 +150,43 @@ function Ingame:OnPlayerPurchasedItem(keys)
     -- Bots will get items auto-delievered to them
     self:checkIfRespawnRate()
     if util:isPlayerBot(keys.PlayerID) then
-        local hero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()      
+        local hero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()
+        -- If bots buy boots remove first instances of cheap items they have, this is a fix for them having boots in backpack
+        if string.find(keys.itemname, "boots") or keys.itemname == "item_power_treads" then
+            local tangos = hero:FindItemByName("item_tango")
+            local mangos = hero:FindItemByName("item_enchanted_mango")
+            local clarity = hero:FindItemByName("item_clarity")
+            local faerie = hero:FindItemByName("item_faerie_fire")
+            local flask = hero:FindItemByName("item_flask")
+
+            if tangos then
+            local refund = tangos:GetCost()
+            hero:ModifyGold(refund, false, 0)
+            tangos:RemoveSelf()
+            end
+            if mangos then
+                local refund = mangos:GetCost()
+                hero:ModifyGold(refund, false, 0)
+                mangos:RemoveSelf()
+            end
+            if clarity then
+                local refund = clarity:GetCost() * clarity:GetCurrentCharges()
+                hero:ModifyGold(refund, false, 0)
+                clarity:RemoveSelf()
+            end
+            if faerie then
+                local refund = faerie:GetCost()
+                hero:ModifyGold(refund, false, 0)
+                faerie:RemoveSelf()
+            end
+            if flask then
+                local refund = flask:GetCost() * flask:GetCurrentCharges()
+                hero:ModifyGold(refund, false, 0)
+                flask:RemoveSelf()
+            end
+        end
+
+              
             for slot =  DOTA_STASH_SLOT_1, DOTA_STASH_SLOT_6 do
                 item = hero:GetItemInSlot(slot)
                 if item ~= nil then
@@ -918,10 +954,14 @@ function Ingame:OnPlayerChat(keys)
                     self:CommandNotification("-teleport", 'Cheat Used (-teleport): Global teleport dagger given to '.. PlayerResource:GetPlayerName(playerID)) 
                 end, DoUniqueString('cheat'), 0.2)
         
-        elseif string.find(text, "-startgame") then 
+        elseif string.find(text, "-startgame") and not blockConfliction then 
             Timers:CreateTimer(function()
-                Tutorial:ForceGameStart()
-                self:CommandNotification("-startgame", 'Cheat Used (-startgame): Forced game start, by '.. PlayerResource:GetPlayerName(playerID)) 
+                --print(GameRules:GetDOTATime(false,false)) 
+                -- If the game has already started, do nothing.
+                if GameRules:GetDOTATime(false,false) == 0 then
+                    Tutorial:ForceGameStart()
+                    self:CommandNotification("-startgame", 'Cheat Used (-startgame): Forced game start, by '.. PlayerResource:GetPlayerName(playerID)) 
+                end
             end, DoUniqueString('cheat'), .1)    
 
         elseif string.find(text, "-respawn") then 
