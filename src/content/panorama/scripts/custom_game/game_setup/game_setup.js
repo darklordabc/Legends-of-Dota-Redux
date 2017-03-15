@@ -5142,7 +5142,7 @@ function addVotingOption(name) {
     });
     var VotingOptionInfo = panel.FindChildTraverse("VotingOptionInfo")
     VotingOptionInfo.SetPanelEvent("onmouseover", function() {
-        $.DispatchEvent("UIShowCustomLayoutParametersTooltip", panel, "voteOptionInfoTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("option_vote_entry_info_" + name));
+        $.DispatchEvent("UIShowCustomLayoutParametersTooltip", VotingOptionInfo, "voteOptionInfoTooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "text=" + $.Localize("option_vote_entry_info_" + name));
     });
     panel.UpdateVotes = function(info) {
         info = [

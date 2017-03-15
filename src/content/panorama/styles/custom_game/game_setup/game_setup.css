@@ -2640,6 +2640,7 @@ Button:enabled:hover {
 }
 
 .optionVoteHeader {
+    margin-left: 18px;
     horizontal-align: middle;
 }
 
@@ -2693,9 +2694,8 @@ Button:enabled:hover {
 
 .optionVoteInfoHeader {
     flow-children: right;
-    horizontal-align: middle;
+    align: center center;
 	
-	margin-left: 23px;
 }
 
 .VotingOptionInfo {
@@ -3504,5 +3504,4 @@ Button:enabled:hover {
 #optionVotePhasesList
 {
     flow-children: down;
-    width: 100%;
 }
