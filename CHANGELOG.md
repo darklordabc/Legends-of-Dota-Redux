@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
 - Top hero bar now updates with correct team compositions. 
 - Tower abiltiies have been reworked, so should try to keep comparable power to their equivalent tower on the enemy side. Power counter added to towers, they should also try to avoid duplicate abiliteis. 
 - Added Anti-Rat mutator
+- Added New Map 'Standard'
 
 
 ## 6.9 - Steam Version
