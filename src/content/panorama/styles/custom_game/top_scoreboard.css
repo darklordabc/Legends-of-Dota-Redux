@@ -11,10 +11,6 @@
 	transition-delay: 2s;
 	transition-timing-function: ease-in-out;
 }
-.AspectRatio16x10 .base
-{
-	margin-left: 100px;
-}
 
 DOTAHud.IsBeforeGameplay .base
 {
@@ -28,54 +24,32 @@ DOTAHud.IsBeforeGameplay .base
 	z-index: 3;
 }
 
-#TopBarLeftFlare,
-#TopBarRightFlare
+#TeamsPanel
 {
-	background-size: 100%;
-	background-repeat: no-repeat;
-	width: 16px;
-	height: 40px;
-
-}
-#TopBarLeftFlare
-{
-	background-image: url("s2r://panorama/images/hud/reborn/header_endcap_psd.vtex");
-	margin-left: 36px;
-	transform: scaleX(-1);
-	visibility: collapse;
-}
-#TopBarRightFlare
-{
-	background-image: url("s2r://panorama/images/hud/reborn/header_endcap_psd.vtex");
-	horizontal-align: right;
-	margin-right: 36px;
-	z-index: -80;
-	visibility: collapse;
+	height: 100%;
+	flow-children: right;
+	horizontal-align: center;
 }
 
 #TopBarLeftTeams,
 #TopBarRightTeams
 {
-	width: 760px;
+	width: 772px;
 	height: 100%;
 }
-
 #TopBarLeftTeams
 {
-	margin-left: 52px;
+	margin-right: 76px;
+}
+.AspectRatio4x3 #TopBarLeftTeams,
+.AspectRatio5x4 #TopBarLeftTeams
+{
+	margin-left: -91px;
 }
 
 #TopBarRightTeams .TopBarBackground
 {
 	transform: scaleX(-1);
-}
-
-#TopBarRightTeams
-{
-	//horizontal-align: right;
-	//margin-right: 52px;
-	horizontal-align: center;
-	margin-left: 838px; //760+78
 }
 
 #TopBarRightPlayers
@@ -98,16 +72,21 @@ DOTAHud.IsBeforeGameplay .base
 
 #HeroImage
 {
-	background-color: #222;
 	background-color: gradient( linear, 0% 0%, 0% 100%, from( #333  ), color-stop( 0.2, #444 ), color-stop( .5, #333), to( #111 ) );
 	width: 66px;
-	height: 36px;
+	height: width-percentage(55%);
 	margin-top: 4px;
 	vertical-align: top;
 	transition-duration: 0.1s;
 	saturation: 1;
 	brightness: 1;
 	contrast: 1;
+}
+
+.AspectRatio4x3 #HeroImage,
+.AspectRatio5x4 #HeroImage
+{
+	width: 50px;
 }
 
 #BuybackIcon
@@ -129,6 +108,12 @@ DOTAHud.IsBeforeGameplay .base
 	transition-property: opacity, pre-transform-scale2d, transform;
 	transition-duration: .12s;
 	transition-timing-function: ease-out;	
+}
+
+.AspectRatio4x3 #BuybackIcon,
+.AspectRatio5x4 #BuybackIcon
+{
+	margin-bottom: 18px;
 }
 
 #TopBarRightPlayers #BuybackIcon
@@ -175,13 +160,15 @@ DOTAHud.IsBeforeGameplay .base
 	height: 40px;
 }
 
+.AspectRatio4x3 .TopBarBackground,
+.AspectRatio5x4 .TopBarBackground
+{
+	background-size: 100% 80%;
+}
+
 #TopBarLeftTeams .TopBarBackground
 {
 	horizontal-align: right;
-}
-
-#TopBarRightTeams .TopBarBackground
-{
 }
 
 .TopBarPlayerSlot
@@ -212,6 +199,11 @@ DOTAHud.IsBeforeGameplay .base
 	margin-top: 7px;
 	z-index: 5;
 }
+.AspectRatio4x3 #TopBarScore,
+.AspectRatio5x4 #TopBarScore
+{
+	margin-top: 3px;
+}
 .LeftAlignedTeam #TopBarScore
 {
 	horizontal-align: left;
@@ -220,11 +212,10 @@ DOTAHud.IsBeforeGameplay .base
 .RightAlignedTeam #TopBarScore
 {
 	horizontal-align: right;
-	margin-right: 8px; //why?
+	margin-right: 8px;
 }
 .TeamScorePlayers
 {
-	//height: 100%;
 	height: 66px;
 }
 #TeamScorePlayersMainFlow
@@ -287,6 +278,12 @@ DOTAHud.IsBeforeGameplay .base
 	tooltip-body-position: 50% 50%;
 }
 
+.AspectRatio4x3 #TopBarUltIndicator,
+.AspectRatio5x4 #TopBarUltIndicator
+{
+	margin-top: 21px;
+}
+
 #AbilityDraftHitBox
 {
 	visibility: collapse;
@@ -330,7 +327,7 @@ DOTAHud.IsBeforeGameplay .base
 #TimeOfDay
 {
 	width: 80px;
-	height: 46px; //46+36
+	height: 82px; //46+36
 	horizontal-align: center;
 	vertical-align: top;
 	z-index: 2;
@@ -468,6 +465,12 @@ DOTAHud.IsBeforeGameplay .base
 	transition-timing-function: ease-out;
 }
 
+.AspectRatio4x3 #RespawnTimer,
+.AspectRatio5x4 #RespawnTimer
+{
+	margin-bottom: 8px;
+}
+
 .TeamScorePlayers.LeftAlignedTeam #RespawnTimer
 {
 	transform: translateY(-28px) translateX(-4px);
@@ -598,6 +601,12 @@ DOTAHud.IsBeforeGameplay .base
 	margin-top: 4px;
 }
 
+.AspectRatio4x3 #GoldIcon,
+.AspectRatio5x4 #GoldIcon
+{
+	margin-bottom: 8px;
+}
+
 .BuybackUsed #GoldIcon
 {
 	z-index: 500;
@@ -647,6 +656,13 @@ DOTAHud.IsBeforeGameplay .base
 	opacity: 0;
 }
 
+
+.AspectRatio4x3 #DisconnectIcon,
+.AspectRatio5x4 #DisconnectIcon
+{
+	width: 50px;
+}
+
 .Disconnected #DisconnectIcon
 {
 	opacity: 1;
@@ -690,6 +706,24 @@ DOTAHud.IsBeforeGameplay .base
 	transition-property: transform, opacity;
 	transition-duration: 0.12s;
 	transition-timing-function: ease-in-out;
+}
+
+.AspectRatio4x3 .TopBarHealthBar,
+.AspectRatio5x4 .TopBarHealthBar,
+.AspectRatio4x3 #ManaBar,
+.AspectRatio5x4 #ManaBar
+{
+	width: 40px;
+}
+.AspectRatio4x3 .TopBarHealthBar,
+.AspectRatio5x4 .TopBarHealthBar
+{
+	margin-bottom: 38px;
+}
+.AspectRatio4x3 #ManaBar,
+.AspectRatio5x4 #ManaBar
+{
+	margin-bottom: 30px;
 }
 
 .AltPressed #ManaBar
@@ -750,7 +784,7 @@ DOTAHud.IsBeforeGameplay .base
 {
 	color: white;
 	align: center top;
-	margin-top: 46px;
+	margin-top: 84px;
 	letter-spacing: 1px;
 	font-family: RadianceM, Radiance;
 	font-size: 14px;
@@ -777,57 +811,6 @@ DOTAHud.IsBeforeGameplay .base
 	transform: translateY(0px);
 }
 
-
-
-
-
-.AspectRatio5x4 #TopBarRightPlayers,
-.AspectRatio5x4 #TopBarLeftPlayers
-{
-	flow-children: down;
-}
-
-.AspectRatio5x4 #TopBarLeftTeams,
-.AspectRatio5x4 #TopBarRightTeams
-{
-	width: 380px;
-	height: 100%;
-}
-.AspectRatio5x4 #TopBarLeftTeams
-{
-	horizontal-align: center;
-	margin-right: 506px;
-}
-
-.AspectRatio5x4 #TopBarRightTeams
-{
-	//margin-left: 838px; //760+78
-	margin-left: 458px;
-}
-
-.AspectRatio4x3 #TopBarRightPlayers,
-.AspectRatio4x3 #TopBarLeftPlayers
-{
-	flow-children: down;
-}
-
-.AspectRatio4x3 #TopBarLeftTeams,
-.AspectRatio4x3 #TopBarRightTeams
-{
-	width: 380px;
-	height: 100%;
-}
-.AspectRatio4x3 #TopBarLeftTeams
-{
-	horizontal-align: center;
-	margin-right: 506px;
-}
-
-.AspectRatio4x3 #TopBarRightTeams
-{
-	//margin-left: 838px; //760+78
-	margin-left: 458px;
-}
 
 #GamemodeVariablePanel
 {
@@ -892,4 +875,13 @@ DOTAHud.IsBeforeGameplay .base
 .AltPressed #DuelTimer
 {
 	transform: translateY(0px);
+}
+
+#TimeOfDay
+{
+	height: 46px;
+}
+#TimeUntil
+{
+	margin-top: 46px;
 }

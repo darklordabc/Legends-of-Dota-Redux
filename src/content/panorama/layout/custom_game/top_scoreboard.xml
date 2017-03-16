@@ -43,11 +43,6 @@
 	</snippets>
 
 	<Panel class="base" hittest="false">
-		<Panel id="TopBarLeftFlare" hittest="false" />
-		<Panel id="TopBarLeftTeams" hittest="false">
-			<Panel id="TopBarLeftPlayers" hittest="false" class="PlayerContainer" />
-		</Panel>
-
 		<Panel id="TimeOfDayBG"/>
 
 		<Panel id="TimeOfDay" onmouseover="$.GetContextPanel().AddClass('ShowTimeUntil')" onmouseout="$.GetContextPanel().RemoveClass('ShowTimeUntil')">
@@ -64,9 +59,13 @@
 		<Panel id="NightGlow" hittest="false"/>
 		<Label id="TimeUntil" text="#DOTA_HUD_TimeUntil" hittest="false"/>
 
-		<Panel id="TopBarRightTeams" hittest="false">
-			<Panel id="TopBarRightPlayers" hittest="false" class="PlayerContainer" />
+		<Panel id="TeamsPanel">
+			<Panel id="TopBarLeftTeams" hittest="false">
+				<Panel id="TopBarLeftPlayers" hittest="false" class="PlayerContainer" />
+			</Panel>
+			<Panel id="TopBarRightTeams" hittest="false">
+				<Panel id="TopBarRightPlayers" hittest="false" class="PlayerContainer" />
+			</Panel>
 		</Panel>
-		<Panel id="TopBarRightFlare" />
 	</Panel>
 </root>
