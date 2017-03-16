@@ -1,6 +1,7 @@
 "AddonInfo"
 {
-	maps			"standard custom_702 dota_180"
+	maps			"standard dota dota_180"
+
 	"IsPlayable"	"1"
     "version"       "3.1.2"
 
