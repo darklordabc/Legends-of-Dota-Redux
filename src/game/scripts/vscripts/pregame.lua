@@ -140,22 +140,28 @@ function Pregame:init()
             onselected = function(self)
                 self:setOption('lodOptionGameSpeedStrongTowers', 1, true)
                 self:setOption('lodOptionCreepPower', 120, true)
+                self:setOption('lodOptionGameSpeedTowersPerLane', 4, true)
             end,
             onunselected = function(self)
                 self:setOption('lodOptionGameSpeedStrongTowers', 0, true)
+                self:setOption('lodOptionGameSpeedTowersPerLane', 3, true)
             end
         },
-        extraTowers = {
+        customAbilities = {
             onselected = function(self)
                 self:setOption('lodOptionGameSpeedTowersPerLane', 5, true)
+                self:setOption('lodOptionAdvancedCustomSkills', 1, true)
             end,
             onunselected = function(self)
-                self:setOption('lodOptionGameSpeedTowersPerLane', 3, true)
+                self:setOption('lodOptionAdvancedCustomSkills', 0, true)
             end
         },
         doubledAbilityPoints = {
             onselected = function(self)
                 self:setOption('lodOptionBalanceModePoints', 240, true)
+                if not self:isCoop() then
+                    self:setOption('lodOptionBanningUseBanList', 1, true)
+                end    
             end,
             onunselected = function(self)
                 self:setOption('lodOptionBalanceModePoints', 120, true)
@@ -403,6 +409,11 @@ function Pregame:init()
         self:setOption('lodOptionGamemode', 1)
         self:setOption('lodOptionBalanceMode', 1, true)
         OptionManager:SetOption('banningTime', 30)
+        if self:isCoop() then
+            self.enabledBots = true
+            self.desiredRadiant = self.desiredRadiant or 5
+            self.desiredDire = self.desiredDire or 5
+        end
         --self:setOption('lodOptionBanningBalanceMode', 1, true)
         --self:setOption('lodOptionGameSpeedRespawnTimePercentage', 70, true)
         --self:setOption('lodOptionBuybackCooldownTimeConstant', 210, true)
@@ -840,6 +851,11 @@ function Pregame:onThink()
             if self.useOptionVoting then
                 -- Option voting
                 self:setPhase(constants.PHASE_OPTION_VOTING)
+                -- QUICKER DEBUGGING
+                if IsInToolsMode() then
+                    OptionManager:SetOption('maxOptionVotingTime', 7)
+                end
+
                 self:setEndOfPhase(Time() + OptionManager:GetOption('maxOptionVotingTime'))
             else
                 -- Option selection
@@ -2220,11 +2236,8 @@ function Pregame:initOptionSelector()
         -- Common use ban list
         lodOptionBanningUseBanList = function(value)
                 Timers:CreateTimer(function()
-                    -- Only allow if all players on one side (i.e. coop or singleplayer)
-                    local RadiantHumanPlayers = util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS)
-                    local DireHumanPlayers = util:GetActiveHumanPlayerCountForTeam(DOTA_TEAM_BADGUYS)
-                    
-                    if RadiantHumanPlayers > 0 and DireHumanPlayers > 0 then
+                    -- Only allow if all players on one side (i.e. coop or singleplayer)                  
+                    if not self:isCoop() then
                         self:setOption('lodOptionBanningUseBanList', 1, true)
                     end
 
@@ -3440,9 +3453,7 @@ function Pregame:processOptions()
     end
 
     -- Only allow single player abilities if all players on one side (i.e. coop or singleplayer)
-    local RadiantHumanPlayers = util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS)
-    local DireHumanPlayers = util:GetActiveHumanPlayerCountForTeam(DOTA_TEAM_BADGUYS)
-    if RadiantHumanPlayers > 0 and DireHumanPlayers > 0 then
+    if not self:isCoop() then
         self:setOption('lodOptionBanningUseBanList', 1, true)
     end
 
@@ -6093,6 +6104,19 @@ function Pregame:preventCamping()
                 fountain:AddItem(item)
             end
         end
+    end
+end
+
+
+-- Prevents Fountain Camping
+function Pregame:isCoop()
+    -- Should we prevent fountain camping?
+    local RadiantHumanPlayers = util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS)
+    local DireHumanPlayers = util:GetActiveHumanPlayerCountForTeam(DOTA_TEAM_BADGUYS)
+    if RadiantHumanPlayers == 0 or DireHumanPlayers == 0 then
+        return true
+    else
+        return false
     end
 end
 
