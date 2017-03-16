@@ -117,8 +117,8 @@ function Pregame:init()
         banning = {
             onselected = function(self)
                 self:setOption('lodOptionBanning', 3, true)
-                self:setOption('lodOptionBanningMaxBans', 5, true)
-                self:setOption('lodOptionBanningMaxHeroBans', 2, true)
+                self:setOption('lodOptionBanningMaxBans', 2, true)
+                self:setOption('lodOptionBanningMaxHeroBans', 1, true)
             end,
             onunselected = function(self)
                 self:setOption('lodOptionBanning', 1, true)
@@ -402,6 +402,7 @@ function Pregame:init()
     if mapName == 'standard' then
         self:setOption('lodOptionGamemode', 1)
         self:setOption('lodOptionBalanceMode', 1, true)
+        OptionManager:SetOption('banningTime', 30)
         --self:setOption('lodOptionBanningBalanceMode', 1, true)
         --self:setOption('lodOptionGameSpeedRespawnTimePercentage', 70, true)
         --self:setOption('lodOptionBuybackCooldownTimeConstant', 210, true)

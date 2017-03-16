@@ -965,9 +965,9 @@
     "option_vote_entry_title_strongTowers"          "Enable Stronger Towers"
     "option_vote_entry_title_extraTowers"           "Enable Extra Towers"
 
-    "option_vote_entry_info_banning"                "In Points Mode, players have 120 points to spend on abilities. Powerful abilities cost more than weaker ones and the weakest abilities cost no points to use."
+    "option_vote_entry_info_banning"                "Players get 30 seconds to ban 2 abilities and 1 hero, each."
     "option_vote_entry_info_fastStart"              "Everyone starts at level 6 and receives 1000 bonus gold."
-    "option_vote_entry_info_doubledAbilityPoints"   "Players can waste 240 points on abilities instead of 120"
+    "option_vote_entry_info_doubledAbilityPoints"   "Players can spend 240 points on abilities instead of 120"
     "option_vote_entry_info_strongTowers"           "This will give Towers powerful abilities that upgrade each time a tower on their side dies. After 3 upgrades, a tower will receive a new ability."
     "option_vote_entry_info_extraTowers"            "Increase amount of towers that will be placed in a lane to 5."
 
