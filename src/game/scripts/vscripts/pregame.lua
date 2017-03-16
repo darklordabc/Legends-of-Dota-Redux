@@ -112,6 +112,57 @@ function Pregame:init()
     self.chanceToHearMeme = 1
     self.freeAbility = nil
 
+    self.votingStatFlags = {}
+    self.optionVoteSettings = {
+        banning = {
+            onselected = function(self)
+                self:setOption('lodOptionBanning', 3, true)
+                self:setOption('lodOptionBanningMaxBans', 5, true)
+                self:setOption('lodOptionBanningMaxHeroBans', 2, true)
+            end,
+            onunselected = function(self)
+                self:setOption('lodOptionBanning', 1, true)
+                self:setOption('lodOptionBanningMaxBans', 0, true)
+                self:setOption('lodOptionBanningMaxHeroBans', 0, true)
+            end
+        },
+        fastStart = {
+            onselected = function(self)
+                self:setOption('lodOptionGameSpeedStartingLevel', 6, true)
+                self:setOption('lodOptionGameSpeedStartingGold', 1000, true)
+            end,
+            onunselected = function(self)
+                self:setOption('lodOptionGameSpeedStartingLevel', 1, true)
+                self:setOption('lodOptionGameSpeedStartingGold', 0, true)
+            end
+        },
+        strongTowers = {
+            onselected = function(self)
+                self:setOption('lodOptionGameSpeedStrongTowers', 1, true)
+                self:setOption('lodOptionCreepPower', 120, true)
+            end,
+            onunselected = function(self)
+                self:setOption('lodOptionGameSpeedStrongTowers', 0, true)
+            end
+        },
+        extraTowers = {
+            onselected = function(self)
+                self:setOption('lodOptionGameSpeedTowersPerLane', 5, true)
+            end,
+            onunselected = function(self)
+                self:setOption('lodOptionGameSpeedTowersPerLane', 3, true)
+            end
+        },
+        doubledAbilityPoints = {
+            onselected = function(self)
+                self:setOption('lodOptionBalanceModePoints', 240, true)
+            end,
+            onunselected = function(self)
+                self:setOption('lodOptionBalanceModePoints', 120, true)
+            end
+        },
+    }
+
     -- Init thinker
     GameRules:GetGameModeEntity():SetThink('onThink', self, 'PregameThink', 0.25)
     GameRules:SetHeroSelectionTime(0)   -- Hero selection is done elsewhere, hero selection should be instant
@@ -347,17 +398,14 @@ function Pregame:init()
         self.useOptionVoting = true
     end
 
-    -- All pick with 6 slots
-    if mapName == '5_vs_5' then
+    -- Standard gamemode featuring voting system
+    if mapName == 'standard' then
         self:setOption('lodOptionGamemode', 1)
-        self:setOption('lodOptionSlots', 6, true)
-        self:setOption('lodOptionCommonMaxUlts', 2, true)
         self:setOption('lodOptionBalanceMode', 1, true)
-        self:setOption('lodOptionBanningBalanceMode', 1, true)
-        self:setOption('lodOptionGameSpeedRespawnTimePercentage', 70, true)
-        self:setOption('lodOptionBuybackCooldownTimeConstant', 210, true)
+        --self:setOption('lodOptionBanningBalanceMode', 1, true)
+        --self:setOption('lodOptionGameSpeedRespawnTimePercentage', 70, true)
+        --self:setOption('lodOptionBuybackCooldownTimeConstant', 210, true)
         self.useOptionVoting = true
-        self.noSlotVoting = true
     end
 
     -- Mirror Draft Only
@@ -402,7 +450,6 @@ function Pregame:init()
         self:setOption('lodOptionBalanceMode', 1, true)
         self:setOption('lodOptionBanningBalanceMode', 1, true)
         self.useOptionVoting = true
-        self.noSlotVoting = true
 
         GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_GOODGUYS, 3)
         GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_BADGUYS, 3)
@@ -451,6 +498,7 @@ function Pregame:loadDefaultSettings()
     
     -- Balance Mode disabled by default
     self:setOption('lodOptionBalanceMode', 0, true)
+    self:setOption('lodOptionBalanceModePoints', 120, true)
 
     -- Anti Rat option
     self:setOption('lodOptionAntiRat', 0, false)
@@ -1748,49 +1796,18 @@ function Pregame:onPlayerCastVote(eventSourceIndex, args)
     if self:getPhase() ~= constants.PHASE_OPTION_VOTING then return end
 
     -- Grab the data
-    local playerID = args.PlayerID
     local optionName = args.optionName
     local optionValue = args.optionValue
-    local player = PlayerResource:GetPlayer(playerID)
-
-    -- Ensure we have a store for vote data
-    self.voteData = self.voteData or {}
-
-    -- Option validator
-    local optionValidator = {
-        slots = function(slotCount)
-            return slotCount == 4 or slotCount == 5 or slotCount == 6
-        end,
-
-        banning = function(choice)
-            return choice == 1 or choice == 0
-        end,
-
-        faststart = function(choice)
-            return choice == 1 or choice == 0
-        end,
-
-        balancemode = function(choice)
-            return choice == 1 or choice == 0
-        end,
-
-        strongtowers = function(choice)
-            return choice == 1 or choice == 0
-        end,
-
-        duels = function(choice)
-            return choice == 1 or choice == 0
-        end
-    }
 
     -- Validate options
-    if not optionValidator[optionName] or not optionValidator[optionName](optionValue) then return end
+    if not self.useOptionVoting or not self.optionVoteSettings[optionName] or not (optionValue == 1 or optionValue == 0) then return end
 
     -- Ensure we have a store for this option
+    self.voteData = self.voteData or {}
     self.voteData[optionName] = self.voteData[optionName] or {}
 
     -- Store their vote
-    self.voteData[optionName][playerID] = optionValue
+    self.voteData[optionName][args.PlayerID] = optionValue
 
     -- Process / update the vote data
     self:processVoteData()
@@ -1838,88 +1855,10 @@ function Pregame:processVoteData()
             end
         end
     end
-
-    -- Do we have a choice for slots
-    if not self.noSlotVoting and results.slots ~= nil then
-        if results.slots == 4 then
-            self:setOption('lodOptionCommonMaxSlots', 4, true)
-            self:setOption('lodOptionCommonMaxUlts', 1, true)
-        elseif results.slots == 5 then
-            self:setOption('lodOptionCommonMaxSlots', 5, true)
-            self:setOption('lodOptionCommonMaxUlts', 1, true)
-        elseif results.slots == 6 then
-            self:setOption('lodOptionCommonMaxSlots', 6, true)
-            self:setOption('lodOptionCommonMaxUlts', 2, true)
-        end
+    for k,v in pairs(results) do
+        self.optionVoteSettings[k][v == 1 and "onselected" or "onunselected"](self)
+        self.votingStatFlags["Voting " .. k .. " Enabled"] = v == 1
     end
-
-    -- Do we have a choice for banning phase?
-    if results.banning ~= nil then
-        if results.banning == 1 then
-          -- Option Voting
-            self:setOption('lodOptionBanning', 3, true)
-            self:setOption('lodOptionBanningMaxBans', 5, true)
-            self:setOption('lodOptionBanningMaxHeroBans', 2, true)
-            self.optionVotingBanning = 1
-        else
-          -- No option voting
-            self:setOption('lodOptionBanning', 1, true)
-            self:setOption('lodOptionBanningMaxBans', 0, true)
-            self:setOption('lodOptionBanningMaxHeroBans', 0, true)
-            self.optionVotingBanning = 0
-        end
-    end
-
-    if results.faststart ~= nil then
-        if results.faststart == 1 then
-            -- Option Voting
-            self:setOption('lodOptionGameSpeedStartingLevel', 6, true)
-            self:setOption('lodOptionGameSpeedStartingGold', 1000, true)
-            self.optionVotingFastStart = 1
-        else
-            -- No option voting
-            self:setOption('lodOptionGameSpeedStartingLevel', 1, true)
-            self:setOption('lodOptionGameSpeedStartingGold', 0, true)
-            self.optionVotingFastStart = 0
-        end
-    end
-    if results.balancemode ~= nil then
-        if results.balancemode == 1 then
-            -- Disable Balance Mode
-            self:setOption('lodOptionBalanceMode', 0, true)
-            self:setOption('lodOptionAdvancedOPAbilities', 1, true)
-            self.optionVotingBalanceMode = 1
-        else
-            -- On by default
-            self:setOption('lodOptionBalanceMode', 1, true)
-            self.optionVotingBalanceMode = 0
-            -- banning mode does not get overridden
-        end
-    end
-    if results.strongtowers ~= nil then
-        if results.strongtowers == 1 then
-            -- Enable Strong Towers
-            self:setOption('lodOptionGameSpeedStrongTowers', 1, true)
-            self:setOption('lodOptionCreepPower', 120, true)
-            self.optionVotingStrongTowers = 1
-        else
-            -- On by default
-            self:setOption('lodOptionGameSpeedStrongTowers', 0, true)
-            self.optionVotingStrongTowers = 0
-        end
-    end
-    if results.duels ~= nil then
-        if results.duels == 1 then
-            -- Enable Strong Towers
-            self:setOption('lodOptionDuels', 1, true)
-            self.optionVotingDuels = 1
-        else
-            -- On by default
-            self:setOption('lodOptionDuels', 0, true)
-            self.optionVotingDuels = 0
-        end
-    end
-
     -- Push the counts
     network:voteCounts(counts)
 end
@@ -2039,8 +1978,8 @@ function Pregame:notEnoughPoints(build)
     end
 
     -- Check to see if we exceed 100
-    if spent > constants.BALANCE_MODE_POINTS then
-        return true, spent - constants.BALANCE_MODE_POINTS
+    if spent > self.optionStore["lodOptionBalanceModePoints"] then
+        return true, spent - self.optionStore["lodOptionBalanceModePoints"]
     end
 
     return false
@@ -2254,6 +2193,10 @@ function Pregame:initOptionSelector()
             end
 
             return false
+        end,
+
+        lodOptionBalanceModePoints = function(value)
+            return type(value) ~= 'number' and math.floor(value) ~= value
         end,
 
         -- Balance Mode ban list
@@ -3785,12 +3728,7 @@ function Pregame:processOptions()
             -- Did anyone actually post to the banning bote?
             if this.optionVotingBanning ~= nil then
                 -- Someone actually voted
-                statCollection:setFlags({
-                    ['Voting Banning Enabled'] = this.optionVotingBanning,
-                    ['Voting Fast Start Enabled'] = this.optionVotingFastStart,
-                    ['Voting Disabled Balance'] = this.optionVotingBalanceMode,
-                    ['Voting Stronger Towers'] = this.optionVotingStrongTowers
-                })
+                statCollection:setFlags(self.votingStatFlags)
             end
         else
             -- We are using option selection
