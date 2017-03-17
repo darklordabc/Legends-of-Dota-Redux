@@ -752,7 +752,7 @@ function Ingame:OnPlayerChat(keys)
     ----------------------------
     if util:isSinglePlayerMode() or Convars:GetBool("sv_cheats") or self.voteEnabledCheatMode then
         -- Some cheats that work in tools and cheats mode conflict
-        local blockConfliction = util:isSinglePlayerMode() or Convars:GetBool("sv_cheats")
+        local blockConfliction = IsInToolsMode() or Convars:GetBool("sv_cheats")
         
         if string.find(text, "-gold") then 
             -- Give user max gold, unless they specify a number

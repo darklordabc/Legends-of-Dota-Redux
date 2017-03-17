@@ -6234,28 +6234,48 @@ function Pregame:generateBotBuilds()
 
     -- Create a table to store bot builds
     --self.botBuilds = {}
+    local brokenBots = {}
 
     -- List of bots that are borked
-    local brokenBots = {
-        npc_dota_hero_tidehunter = true,
-        npc_dota_hero_razor = true,
-        
-        -- Stoped working around Feburary, 24, 2017
-        npc_dota_hero_skywrath_mage = true,
-        npc_dota_hero_nevermore = true,
-        npc_dota_hero_pudge = true,
-        npc_dota_hero_phantom_assassin = true,
+    if IsInToolsMode() then
+        brokenBots = {
+            npc_dota_hero_tidehunter = true,
+            npc_dota_hero_razor = true,
+            
+            -- Stoped working around Feburary, 24, 2017
+            npc_dota_hero_skywrath_mage = true,
+            npc_dota_hero_nevermore = true,
+            npc_dota_hero_pudge = true,
+            npc_dota_hero_phantom_assassin = true,
 
-        --[[npc_dota_hero_sven = true,
-        npc_dota_hero_skeleton_king = true,
-        npc_dota_hero_lina = true,
-        npc_dota_hero_luna = true,
-        npc_dota_hero_dragon_knight = true,
-        npc_dota_hero_bloodseeker = true,
-        npc_dota_hero_lion = true,
-        npc_dota_hero_tiny = true,
-        npc_dota_hero_oracle = true,]]
-    }
+            --[[npc_dota_hero_sven = true,
+            npc_dota_hero_skeleton_king = true,
+            npc_dota_hero_lina = true,
+            npc_dota_hero_luna = true,
+            npc_dota_hero_dragon_knight = true,
+            npc_dota_hero_bloodseeker = true,
+            npc_dota_hero_lion = true,
+            npc_dota_hero_tiny = true,
+            npc_dota_hero_oracle = true,]]
+        }
+    else
+        brokenBots = {
+            npc_dota_hero_tidehunter = true,
+            npc_dota_hero_razor = true,
+            
+            -- Stoped working around Feburary, 24, 2017
+            --[[npc_dota_hero_sven = true,
+            npc_dota_hero_skeleton_king = true,
+            npc_dota_hero_lina = true,
+            npc_dota_hero_luna = true,
+            npc_dota_hero_dragon_knight = true,
+            npc_dota_hero_bloodseeker = true,
+            npc_dota_hero_lion = true,
+            npc_dota_hero_tiny = true,
+            npc_dota_hero_oracle = true,]]
+        }
+
+    end
 
     -- Generate a list of possible heroes
     local possibleHeroes = {}
