@@ -2,7 +2,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 7.0 - Development Version
+## 7.1 - Development Version
+- Added Dagon and Spawn golem cheat
+- Readded Juxtapose
+
+## 7.0 - Steam Version
 - You can now use '-bot mode' chat command to see what mode bots are in (early game or late game). '-bot switch' can be used to alternative between modes, but can only be used when cheats are enable or in single player. 
 - Added cooldown to chaos meteor OP
 - Added '-god' and '-regen' cheat commands
@@ -17,7 +21,7 @@ All notable changes to this project will be documented in this file.
 - Added New Map 'Standard'
 
 
-## 6.9 - Steam Version
+## 6.9 
 - You can enable cheats in a multiplayer games now if everbody types '-enablecheats'
 - Reduced the amount of health neutral power modifier gives per level (100 to 80)
 - Added extra cheats that can be used in non sv_cheats server: '-giveability x' '-removeability x'
