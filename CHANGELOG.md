@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 - Readded Juxtapose
 - 4 previously disabled bots are re-enabled
 - Side gunner is now available in normal games
+- Re-Enabled Wukong Command, seems non-buggy in testing, please report if it causes lag
 
 ## 7.0 - Steam Version
 - You can now use '-bot mode' chat command to see what mode bots are in (early game or late game). '-bot switch' can be used to alternative between modes, but can only be used when cheats are enable or in single player. 
