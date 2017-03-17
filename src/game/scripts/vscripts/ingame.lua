@@ -142,13 +142,15 @@ function Ingame:FilterItemsInventory(keys)
         -- Convert certain items to consumable items
         --if OptionManager:GetOption('ConsumableItems') then 
              Timers:CreateTimer(function ()
-                for i=0,8 do
+                for i=0,14 do
                     local hItem = hero:GetItemInSlot(i)
                     if hItem then
                         local name = hItem:GetAbilityName()
                         if itemTable[name] then
                             hero:RemoveItem(hItem)
                             hero:AddItemByName(name.."_consumable")
+                            local nSlot, hUseless = hero:FindItemByNameEverywhere(name.."_consumable")
+                            hero:SwapItems(i,nSlot)
                             break
                         end
                     end
