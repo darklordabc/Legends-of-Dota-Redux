@@ -7997,7 +7997,7 @@
         "DOTA_Tooltip_ability_brewmaster_storm_wind_walk_redux_duration"                  "DURATION:"
 
         "DOTA_Tooltip_ability_side_gunner_redux"                            "Side Gunner"
-        "DOTA_Tooltip_ability_side_gunner_redux_Description"    "The Side Gunner performs an instant attack in the set interval. Its target is chosen completely randomly."
+        "DOTA_Tooltip_ability_side_gunner_redux_Description"    "The Side Gunner performs an instant attack in the set interval. Its target is chosen completely randomly.\n\n Upgradeable by Aghanim's Scepter"
         "DOTA_Tooltip_ability_side_gunner_redux_Lore"           ""
         "DOTA_Tooltip_ability_side_gunner_redux_interval"    "INTERVAL:"
         "DOTA_Tooltip_ability_side_gunner_redux_interval_scepter"    "INTERVAL WITH SCEPTER:"
