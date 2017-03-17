@@ -1228,8 +1228,11 @@
     "command_menu_command_toggleAllVision"              "Toggle All Vision"
     "command_menu_command_setTimescale"                 "Set Timescale"
     "command_menu_command_startGame"                    "Force Start Game"
+    "command_menu_command_spawnGolem"                   "Spawn Golem"
     "command_menu_command_spawnNeutrals"                "Spawn Neutrals"
     "command_menu_command_spawnUnit"                    "Spawn Unit"
+
+    
 
     "command_menu_group_bots"                           "Cheats | Bots"
     "command_menu_command_botsLevelUp"                  "Level Up Bots"
@@ -1245,6 +1248,7 @@
     "command_menu_command_respawn"                      "Respawn"
 
     "command_menu_command_dagger"                      "Dagger"
+    "command_menu_command_dagon"                      "Dagon"
 
     "command_menu_command_godMode"                      "Invulnerability"
     "command_menu_command_regen"                        "Fountain Regeneration"
@@ -4226,6 +4230,9 @@
 
     "DOTA_Tooltip_ability_item_devDagger" "Dev Dagger"
     "DOTA_Tooltip_ability_item_devDagger_Description" "Dagger used by developers to help in testing."
+
+    "DOTA_Tooltip_ability_item_devDagon" "Dev Dagon"
+    "DOTA_Tooltip_ability_item_devDagon_Description" "Dagon used by developers to help in testing."
 
     "DOTA_Tooltip_ability_arc_warden_tempest_double_redux"        "Tempest Double Redux"
     "DOTA_Tooltip_ability_arc_warden_tempest_double_redux_Description"    "Briefly refocusing its fractured elements into a single form, the Arc Warden is able to create a perfect electrical duplication of itself. The duplicate can use all of Arc Warden's current items and spells, except consumables and items that drop on death. The duplicate has seperate item and ability cooldowns. <font color='#70EA72'>Has 50% longer cooldown.</font>"

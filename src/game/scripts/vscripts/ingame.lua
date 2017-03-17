@@ -904,6 +904,18 @@ function Ingame:OnPlayerChat(keys)
                 end
             end, DoUniqueString('cheat'), .1)
 
+        elseif string.find(text, "-spawn") then 
+            -- Give user 1 level, unless they specify a number after
+            Timers:CreateTimer(function()  
+                if string.find(text, "golem") then
+                    local spawnLoc = hero:GetAbsOrigin()-hero:GetForwardVector()*200
+                    local golem = CreateUnitByName("npc_dota_warlock_golem_1", spawnLoc, true, nil, nil, otherTeam(hero:GetTeamNumber()))
+                end
+
+                --self:CommandNotification("-addability", 'Cheat Used (-addability): Given ' .. splitedText[2] .. ' to '.. PlayerResource:GetPlayerName(playerID)) 
+        
+            end, DoUniqueString('cheat'), .1)
+
         elseif string.find(text, "-removeability") or string.find(text, "-remove") then 
             -- Give user 1 level, unless they specify a number after
 
@@ -946,6 +958,12 @@ function Ingame:OnPlayerChat(keys)
             Timers:CreateTimer(function()
                 hero:AddItemByName('item_devDagger')
                 self:CommandNotification("-item_devDagger", 'Cheat Used (-dagger): Global teleport dagger given to '.. PlayerResource:GetPlayerName(playerID)) 
+            end, DoUniqueString('cheat'), 0.2)
+
+        elseif string.find(text, "-dagon") then 
+            Timers:CreateTimer(function()
+                hero:AddItemByName('item_devDagon')
+                self:CommandNotification("-item_devDagon", 'Cheat Used (-dagon): Ultra dagon dagon given to '.. PlayerResource:GetPlayerName(playerID)) 
             end, DoUniqueString('cheat'), 0.2)
 
 

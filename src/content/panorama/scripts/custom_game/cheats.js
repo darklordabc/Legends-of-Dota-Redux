@@ -44,6 +44,9 @@ var commandList = [{
 		consoleCommand: "dota_spawn_neutrals",
 		isCheat: true,
 	}, {
+		title: "spawnGolem",
+		chatCommand: "spawn golem",
+	}, {
 		title: "spawnUnit",
 		consoleCommand: "dota_create_unit",
 		"getArgs": function(settings) {
@@ -115,6 +118,10 @@ var commandList = [{
 	},{
 		title: "dagger",
 		chatCommand: "dagger",
+		isCheat: true,
+	},{
+		title: "dagon",
+		chatCommand: "dagon",
 		isCheat: true,
 	},  {
 		title: "selfLevelUp",
