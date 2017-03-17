@@ -8469,4 +8469,11 @@
         "DOTA_Tooltip_ability_abyssal_underlord_dark_rift_op_Description"      "Opens a dark rift at the targeted friendly unit's position.  After a short delay, Underlord and <font color='#70EA72'>all alive friendly heroes</font> are teleported to that unit's location.  Dark Rift can be cancelled at anytime during the cast.  If it is cancelled in this way or the target unit dies before the spell becomes active, Dark Rift goes into cooldown.<font color='#70EA72'> Also has lower cooldown</font>."
         "DOTA_Tooltip_ability_abyssal_underlord_dark_rift_op_Lore"             "They come without warning, leaving fire and blood where kingdoms once flourished."
         "DOTA_Tooltip_ability_abyssal_underlord_dark_rift_op_teleport_delay"   "TELEPORT DELAY:"
+
+        
+    "DOTA_Tooltip_ability_tower_anti_rat"                  "Anti-Rat Protection"
+    "DOTA_Tooltip_ability_tower_anti_rat_Description"      "This tower has invulnerability until all outer towers have been destroyed."
+
+    "DOTA_Tooltip_modifier_tower_anti_rat"                                             "Anti-Rat Protection"
+    "DOTA_Tooltip_modifier_tower_anti_rat_Description"                                 "This tower has invulnerability until all outer towers have been destroyed."
 }

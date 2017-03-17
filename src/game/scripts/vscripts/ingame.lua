@@ -870,7 +870,7 @@ function Ingame:OnPlayerChat(keys)
                 end
             end, DoUniqueString('cheat'), .1)
 
-        elseif string.find(text, "-addability") or string.find(text, "-giveability") then 
+        elseif string.find(text, "-addability") or string.find(text, "-giveability") or string.find(text, "-add") then 
             -- Give user 1 level, unless they specify a number after
             Timers:CreateTimer(function()  
                 local splitedText = util:split(text, " ")       
@@ -891,11 +891,20 @@ function Ingame:OnPlayerChat(keys)
                     if findAbility then validAbility = true end
                 end
                 if validAbility then
+                    for i = 0, 23 do
+                        if hero:GetAbilityByIndex(i) then 
+                            local ability = hero:GetAbilityByIndex(i)
+                            if ability and string.match(ability:GetName(), "special_bonus_") then
+                                local abName = ability:GetName()
+                                hero:RemoveAbility(abName)
+                            end
+                        end
+                    end
                     self:CommandNotification("-addability", 'Cheat Used (-addability): Given ' .. splitedText[2] .. ' to '.. PlayerResource:GetPlayerName(playerID)) 
                 end
             end, DoUniqueString('cheat'), .1)
 
-        elseif string.find(text, "-removeability") then 
+        elseif string.find(text, "-removeability") or string.find(text, "-remove") then 
             -- Give user 1 level, unless they specify a number after
 
             Timers:CreateTimer(function()  

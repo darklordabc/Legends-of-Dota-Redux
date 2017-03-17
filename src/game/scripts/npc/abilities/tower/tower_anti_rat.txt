@@ -5,6 +5,7 @@
 		"MaxLevel" "1"
 		"AbilitySharedWithTeammates" "1"
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName" "custom/anti-rat"
 
 		"Modifiers" {
 			"modifier_tower_anti_rat" {
