@@ -18,6 +18,10 @@ function modifier_imba_tower_counter:OnCreated(keys)
     end
 end
 
+function modifier_imba_tower_counter:GetTexture()
+    return "custom/strongtower"
+end
+
 function modifier_imba_tower_counter:OnIntervalThink(keys)
     local caster = self:GetCaster()
 
