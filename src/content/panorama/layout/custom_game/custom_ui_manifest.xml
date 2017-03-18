@@ -6,6 +6,8 @@
         <include src="file://{resources}/scripts/ModDota/LocalStorage.js" />
 
         <include src="file://{resources}/scripts/custom_game/ui_hack.js" />
+
+        <include src="file://{resources}/scripts/custom_game/universal_votings.js" />
     </scripts>
 
     <script>
@@ -13,9 +15,9 @@
             shouldSort: false
         };
 
-<!--         GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_HERO_SELECTION_TEAMS, false);
+        GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_HERO_SELECTION_TEAMS, false);
         GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_HERO_SELECTION_GAME_NAME, false);
-        GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_HERO_SELECTION_CLOCK, false); -->
+        GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_HERO_SELECTION_CLOCK, false);
 
         GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_ENDGAME, false);
     </script>

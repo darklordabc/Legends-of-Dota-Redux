@@ -5485,4 +5485,11 @@ function loadPlayerBans() {
     // parent.FindChildTraverse("PreGame").visible = false;
     // parent.FindChildTraverse("PreGame").style.width = "0px;";
     // parent.FindChildTraverse("PreGame").MapLoadingOutroFinished();
+    $.Schedule(1.0, function () {
+        GameUI.CustomUIConfig().createVoting($("#lodOptionsRoot"), Game.GetPlayerInfo( Players.GetLocalPlayer() ), "lodVotingEnableHeroBuilder", "lodVotingEnableHeroBuilderLine", function () {
+            // body...
+        }, function () {
+            
+        });
+    })
 })();

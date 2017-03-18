@@ -488,6 +488,9 @@
     "lodMutatorIngameBuilder3"                      "Build Switcher 30s penalty"
     "lodMutatorIngameBuilder4"                      "Build Switcher Free"
 
+    "lodVotingEnableHeroBuilder"                    "Option Voting"
+    "lodVotingEnableHeroBuilderLine"                "wants to enable <font color='#70EA72'>ingame hero builder</font>"
+
 	// Minimap Menu and In-Game Hero Builder
     "minimapMenuCredits"                            "Credits"
     "minimapMenuCheats"                             "Commands"
