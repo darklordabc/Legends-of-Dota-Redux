@@ -8483,4 +8483,51 @@
 
     "DOTA_Tooltip_modifier_tower_anti_rat"                                             "Anti-Rat Protection"
     "DOTA_Tooltip_modifier_tower_anti_rat_Description"                                 "This tower has invulnerability until all outer towers have been destroyed."
+
+    "DOTA_Tooltip_ability_dragon_knight_dragon_blood_op"                               "Dragon Blood OP"
+    "DOTA_Tooltip_ability_dragon_knight_dragon_blood_op_Description"                   "The life blood of the Dragon improves health regeneration and strengthens armor. <font color='#70EA72'>20 levels</font>."
+    "DOTA_Tooltip_ability_dragon_knight_dragon_blood_op_Lore"                          "Slyrak's blood still courses through Davion's veins, giving him twice the vitality of an ordinary knight."
+    "DOTA_Tooltip_ability_dragon_knight_dragon_blood_op_bonus_health_regen"            "HEALTH REGEN:"
+    "DOTA_Tooltip_ability_dragon_knight_dragon_blood_op_bonus_armor"                   "ARMOR:"
+
+    "DOTA_Tooltip_ability_batrider_flamebreak_op"                          "Flamebreak OP"
+    "DOTA_Tooltip_ability_batrider_flamebreak_op_Description"              "Hurls an explosive cocktail that explodes when it reaches the target location, knocking back, and dealing damage over time to enemies in the area. <font color='#70EA72'>Further knockback, double cast-range and more damage.</font>"
+    "DOTA_Tooltip_ability_batrider_flamebreak_op_Lore"                     "A molotov cocktail is the weapon of choice for Batrider."
+    "DOTA_Tooltip_ability_batrider_flamebreak_op_damage_per_second"                    "DAMAGE PER SECOND:"
+    "DOTA_Tooltip_ability_batrider_flamebreak_op_damage_duration"              "BURN DURATION:"    
+    "DOTA_Tooltip_ability_batrider_flamebreak_op_damage_total_tooltip"         "TOTAL DAMAGE:"
+    "DOTA_Tooltip_ability_batrider_flamebreak_op_explosion_radius"         "RADIUS:"
+
+    "DOTA_Tooltip_ability_alchemist_goblins_greed_op"                              "Greevil's Greed OP"
+    "DOTA_Tooltip_ability_alchemist_goblins_greed_op_Description"                  "Alchemist synthesizes additional gold from his enemies and bounty runes. With each kill, Alchemist earns base bonus gold and extra bonus gold. If Alchemist kills another unit which yields gold within the next %duration% seconds, an additional instance of Extra Bonus Gold is added to the total. Additionally, causes bounty runes to yield %bounty_multiplier_tooltip% times their normal gold. <font color='#70EA72'>Triple duration and unlimited stack amount.</font>"
+    "DOTA_Tooltip_ability_alchemist_goblins_greed_op_Lore"                         "While it is not a mountain, Razzil has mastered the conversion of smaller compounds to line his pockets."
+    "DOTA_Tooltip_ability_alchemist_goblins_greed_op_duration"                     "RECENT KILL WINDOW:"
+    "DOTA_Tooltip_ability_alchemist_goblins_greed_op_bonus_gold"                   "BASE BONUS GOLD:"
+    "DOTA_Tooltip_ability_alchemist_goblins_greed_op_bonus_bonus_gold"             "EXTRA BONUS GOLD:"     
+    "DOTA_Tooltip_ability_alchemist_goblins_greed_op_bounty_multiplier_tooltip"    "BOUNTY RUNE MULTIPLIER:"
+
+    "DOTA_Tooltip_ability_nevermore_necromastery_op"                                   "Necromastery OP"
+    "DOTA_Tooltip_ability_nevermore_necromastery_op_Description"                       "Shadow Fiend steals the soul from units he kills, gaining bonus damage. If the killed unit is a hero, he gains 12 souls.  On death, he releases half of them from bondage. <font color='#70EA72'>Triple soul limit</font>.\n\nUpgradable by Aghanim's Scepter."
+    "DOTA_Tooltip_ability_nevermore_necromastery_op_Lore"                              "Harvested souls swirl in and out of the Abysm, empowering the Shadow Fiend to increase the size of his collection."
+    "DOTA_Tooltip_ability_nevermore_necromastery_Note0"                             "Denies and neutral creeps also provide bonus damage through Necromastery."
+    "DOTA_Tooltip_ability_nevermore_necromastery_op_necromastery_max_souls"            "MAX SOULS:"
+    "DOTA_Tooltip_ability_nevermore_necromastery_op_necromastery_damage_per_soul"      "DAMAGE PER SOUL:"
+    "DOTA_Tooltip_ability_nevermore_necromastery_op_necromastery_max_souls_scepter"    "SCEPTER MAX SOULS:"
+    "DOTA_Tooltip_ability_nevermore_necromastery_op_aghanim_description"               "Increases max souls."
+
+    "DOTA_Tooltip_ability_shredder_reactive_armor_op"                          "Reactive Armor OP"
+    "DOTA_Tooltip_ability_shredder_reactive_armor_op_Description"              "Each time Timbersaw is attacked, he gains increased health regen and armor. <font color='#70EA72'>Longer duration and unlimited stacks</font>."
+    "DOTA_Tooltip_ability_shredder_reactive_armor_op_Lore"                     "The saw-suit is equipped to react to the slightest touch with fortified defenses."
+    "DOTA_Tooltip_ability_shredder_reactive_armor_op_bonus_armor"              "BONUS ARMOR:"
+    "DOTA_Tooltip_ability_shredder_reactive_armor_op_bonus_hp_regen"           "BONUS HP REGEN:"
+    "DOTA_Tooltip_ability_shredder_reactive_armor_op_stack_duration"           "STACK DURATION:"
+
+    "DOTA_Tooltip_ability_lone_druid_savage_roar_op"                               "Global Savage Roar"
+    "DOTA_Tooltip_ability_lone_druid_savage_roar_op_Lore"                          "Sylla studies and masters the arts of the lost Bear Clan, enhancing his attunement with the wild."
+    "DOTA_Tooltip_ability_lone_druid_savage_roar_op_Description"                   "Lone Druid roars fiercely causing nearby enemies to flee towards their base in terror. Their movement speed is increased by %bonus_speed%%%. <font color='#70EA72'>Global radius, more movementspeed and longer duration</font>."
+    "DOTA_Tooltip_ability_lone_druid_savage_roar_op_Note0"                         "An entangled hero will not be able to move."
+    "DOTA_Tooltip_ability_lone_druid_savage_roar_op_Note1"                         "Cooldown is shared with Spirit Bear."
+    "DOTA_Tooltip_ability_lone_druid_savage_roar_op_bonus_speed"                   "%ENEMY MOVEMENT SPEED BONUS:"
+    "DOTA_Tooltip_ability_lone_druid_savage_roar_op_duration"                      "DURATION:"
+
 }
