@@ -705,7 +705,7 @@ function Ingame:OnPlayerChat(keys)
                     EmitGlobalSound("Event.CheatEnabled")
                     GameRules:SendCustomMessage('Everbody voted to enable the ingame hero builder. <font color=\'#70EA72\'>You can now change your hero build mid-game</font>.',0,0)
                 else
-                    GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to disable anti-Kamikaze safeguard. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablekamikaze (-ek) to vote to disable.',0,0)
+                    GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to enable ingame hero builder. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablebuilder (-eb) to vote to disable.',0,0)
                 end
 
                 --print(votesRequired)
@@ -840,6 +840,13 @@ function Ingame:OnPlayerChat(keys)
                     self:CommandNotification("-wtfoff", 'Cheat Used (-wtf): WTF mode disabled, spells have regular cooldowns and manacosts.',30)    
                 end           
             end, DoUniqueString('cheat'), .1)
+ 
+        elseif string.find(text, "-bear") then 
+            -- Give user 1 level, unless they specify a number after
+            local hAncient = Entities:FindByName( nil, "dota_badguys_fort" )
+            hAncient:AddAbility("invasion")
+            local ab = hAncient:FindAbilityByName("invasion")
+            ab:UpgradeAbility(false)
 
         elseif string.find(text, "-lvlup") then 
             -- Give user 1 level, unless they specify a number after

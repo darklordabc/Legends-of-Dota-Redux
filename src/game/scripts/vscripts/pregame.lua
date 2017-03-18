@@ -409,11 +409,6 @@ function Pregame:init()
         self:setOption('lodOptionGamemode', 1)
         self:setOption('lodOptionBalanceMode', 1, true)
         OptionManager:SetOption('banningTime', 30)
-        if self:isCoop() then
-            self.enabledBots = true
-            self.desiredRadiant = self.desiredRadiant or 5
-            self.desiredDire = self.desiredDire or 5
-        end
         --self:setOption('lodOptionBanningBalanceMode', 1, true)
         --self:setOption('lodOptionGameSpeedRespawnTimePercentage', 70, true)
         --self:setOption('lodOptionBuybackCooldownTimeConstant', 210, true)
@@ -932,6 +927,12 @@ function Pregame:onThink()
         if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
             -- Finish the option selection
             self:finishOptionSelection()
+            if self:isCoop() then
+                print("vote ended")
+                self.enabledBots = true
+                self.desiredRadiant = self.desiredRadiant or 5
+                self.desiredDire = self.desiredDire or 5
+            end
         end
 
         return 0.1
