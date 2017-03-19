@@ -1910,6 +1910,16 @@ function Ingame:addStrongTowers()
                         botsEnabled = true
                     end
                 end
+
+                local tempBanList = LoadKeyValues('scripts/kv/bans.kv')
+                local towerTrollCombos = {}
+
+                -- Loop over the banned combinations
+                for skillName, group in pairs(tempBanList.BannedCombinations) do
+                    if string.match(skillName, "tower_") then
+                        towerTrollCombos[skillName] = group
+                    end
+                end
                 
                 self.towerList = LoadKeyValues('scripts/kv/towers.kv')
                 self.usedRandomTowers = {}
@@ -1922,7 +1932,7 @@ function Ingame:addStrongTowers()
                         -- Main ability handling
                         local difference = 0 -- will always be 0 anyway
                         tower.strongTowerAbilities = tower.strongTowerAbilities or {}
-                        local abName = PullTowerAbility(self.towerList, self.usedRandomTowers, tower.strongTowerAbilities, difference, tower:GetLevel() * 10)
+                        local abName = PullTowerAbility(self.towerList, self.usedRandomTowers, towerTrollCombos, tower.strongTowerAbilities, difference, tower:GetLevel() * 10)
                         if not tower:HasAbility(abName) then
                             tower:AddAbility(abName):SetLevel(1) 
                             self.usedRandomTowers[abName] = true
@@ -1936,7 +1946,7 @@ function Ingame:addStrongTowers()
                             -- Sister ability handling
                             difference = GetTowerAbilityPowerValue(sisterTower, self.towerList) - GetTowerAbilityPowerValue(tower, self.towerList)
                             sisterTower.strongTowerAbilities = sisterTower.strongTowerAbilities or {}
-                            local sisterAbName = PullTowerAbility(self.towerList, self.usedRandomTowers, tower.strongTowerAbilities, difference, sisterTower:GetLevel() * 10)
+                            local sisterAbName = PullTowerAbility(self.towerList, self.usedRandomTowers, towerTrollCombos, tower.strongTowerAbilities, difference, sisterTower:GetLevel() * 10)
                             if not tower:HasAbility(abName) then
                                 sisterTower:AddAbility(sisterAbName):SetLevel(1)
                                 self.usedRandomTowers[sisterAbName] = true
@@ -2033,6 +2043,16 @@ function Ingame:addStrongTowers()
 end
 
 function Ingame:UpgradeTower( tower )
+    local tempBanList = LoadKeyValues('scripts/kv/bans.kv')
+    local towerTrollCombos = {}
+
+    -- Loop over the banned combinations
+    for skillName, group in pairs(tempBanList.BannedCombinations) do
+        if string.match(skillName, "tower_") then
+            towerTrollCombos[skillName] = group
+        end
+    end
+
     -- Fetch tower abilities
     for _,abName in pairs(tower.strongTowerAbilities) do
 		print(abName)
@@ -2048,7 +2068,7 @@ function Ingame:UpgradeTower( tower )
 		local difference = GetEquivalentTowerAbilityPowerValue(sisterTower, self.towerList, #tower.strongTowerAbilities) - GetTowerAbilityPowerValue(tower, self.towerList)
 	end
 	tower.strongTowerAbilities = tower.strongTowerAbilities or {}
-	local towerAbName = PullTowerAbility(self.towerList, self.usedRandomTowers, tower.strongTowerAbilities, difference, tower:GetLevel() * 10)
+	local towerAbName = PullTowerAbility(self.towerList, self.usedRandomTowers, towerTrollCombos, tower.strongTowerAbilities, difference, tower:GetLevel() * 10)
 	tower:AddAbility(towerAbName):SetLevel(1)
 	table.insert(tower.strongTowerAbilities, towerAbName)
 	self.usedRandomTowers[towerAbName] = true

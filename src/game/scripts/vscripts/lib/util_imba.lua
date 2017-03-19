@@ -100,7 +100,35 @@ function TableHasValue(val, checkTable)
 	return false
 end
 
-function PullTowerAbility(towerTable, usedTable, abilityTable,difference, baseMax)
+function CheckTrollCombo(trollCombos, oldAbilities, newAbilities)
+	for comboName, combo in pairs(trollCombos) do
+		local check = true
+		for ability,_ in pairs(combo) do
+			local hasAbility = false
+			for k,v in pairs(oldAbilities) do
+				if v == ability then
+					hasAbility = true
+				end
+			end
+			for k,v in pairs(newAbilities) do
+				if v == ability then
+					hasAbility = true
+				end
+			end
+			if not hasAbility then
+				check = false
+				break
+			end
+		end
+		if check then
+			return true
+		end
+	end
+	
+	return false
+end
+
+function PullTowerAbility(towerTable, usedTable, trollCombos, abilityTable,difference, baseMax)
 	local array = {}
 	local n = 0
 	local maxDiff = 5 -- Change this to narrow search parameters
@@ -121,7 +149,7 @@ function PullTowerAbility(towerTable, usedTable, abilityTable,difference, baseMa
 			searchParamMin = searchParamMin - maxDiff
 		else searchParamMin = 0 end
 		for k,v in pairs(towerTable) do
-			if not usedTable[k] and not TableHasValue(k, abilityTable) and tonumber(v) <= searchParamMax and tonumber(v) > math.abs(searchParamMin) then
+			if not usedTable[k] and not TableHasValue(k, abilityTable) and tonumber(v) <= searchParamMax and tonumber(v) > math.abs(searchParamMin) and not CheckTrollCombo(trollCombos, abilityTable, array) then
 				array[#array+1] = k
 				n = n + 1
 			end
