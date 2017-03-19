@@ -11,6 +11,11 @@ All notable changes to this project will be documented in this file.
 - Single player abilities can now be used in VS multiplayer, not so much an issue now as most games are played on standard. Still need better solution.
 - Added 6 OP ability variants
 - Increased Manacost and Cooldown of Eldritch: Anti Magic
+- Arcane Echoed Spells now cost half-mana.
+- Bristleback bot doesnt get dispersion anymore
+- Increased Manacost and Cooldown of Fireball
+- IMBA abilities can be enabled with normal abilities if game is coop vs bots
+- Strong towers no longer gives 4 towers per lane
 
 ## 7.0 - Steam Version
 - You can now use '-bot mode' chat command to see what mode bots are in (early game or late game). '-bot switch' can be used to alternative between modes, but can only be used when cheats are enable or in single player. 

@@ -140,11 +140,11 @@ function Pregame:init()
             onselected = function(self)
                 self:setOption('lodOptionGameSpeedStrongTowers', 1, true)
                 self:setOption('lodOptionCreepPower', 120, true)
-                self:setOption('lodOptionGameSpeedTowersPerLane', 4, true)
+                --self:setOption('lodOptionGameSpeedTowersPerLane', 4, true)
             end,
             onunselected = function(self)
                 self:setOption('lodOptionGameSpeedStrongTowers', 0, true)
-                self:setOption('lodOptionGameSpeedTowersPerLane', 3, true)
+                --self:setOption('lodOptionGameSpeedTowersPerLane', 3, true)
             end
         },
         customAbilities = {
