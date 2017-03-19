@@ -40,6 +40,12 @@ function modifier_npc_dota_hero_rubick_perk:OnCreated(keys)
             nullField:UpgradeAbility(false)
         else 
             nullField = caster:AddAbility("rubick_null_field")
+	    for i=0,24 do
+            	local abil = caster:GetAbilityByIndex(i)
+                if not abil then
+		    nullField:SetAbilityIndex(i)
+		end
+     	    end
             nullField:SetHidden(true)
             nullField:SetLevel(1)	
         end
