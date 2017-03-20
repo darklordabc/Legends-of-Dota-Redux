@@ -3649,6 +3649,7 @@ function Pregame:processOptions()
         elseif this.optionStore['lodOptionExtraAbility'] == 11 then
             self.freeAbility = "alchemist_goblins_greed"
             this:banAbility("alchemist_goblins_greed")
+            this:banAbility("alchemist_goblins_greed_op")
         elseif this.optionStore['lodOptionExtraAbility'] == 12 then
             self.freeAbility = "angel_arena_nether_ritual"
             this:banAbility("angel_arena_nether_ritual")
