@@ -7203,22 +7203,20 @@ function Pregame:fixSpawningIssues()
         -- Grab the unit that spawned
         local spawnedUnit = EntIndexToHScript(keys.entindex)
 
-        -- Fix up tempest doubles/etc
-        if IsValidEntity(spawnedUnit) and (spawnedUnit:IsClone() or spawnedUnit:IsTempestDouble() or spawnedUnit:HasModifier("modifier_arc_warden_tempest_double")) then
-            print(2, spawnedUnit:GetUnitName())
-            local notOnIllusions = {
-                lone_druid_spirit_bear = true,
-                necronomicon_warrior_last_will_lod = true,
-                roshan_bash = true,
-            }
-
-            -- Grab their playerID
+        -- Grab their playerID
+        if spawnedUnit.GetPlayerID then
             local playerID = spawnedUnit:GetPlayerID()
 
             local mainHero = PlayerResource:GetSelectedHeroEntity(playerID)
 
-            -- Fix meepo clones and illusions
-            if mainHero and mainHero ~= spawnedUnit and self.spawnedHeroesFor[playerID] then
+            -- Fix up tempest doubles/etc
+            if self.spawnedHeroesFor[playerID] and mainHero and mainHero ~= spawnedUnit then
+                local notOnIllusions = {
+                    lone_druid_spirit_bear = true,
+                    necronomicon_warrior_last_will_lod = true,
+                    roshan_bash = true,
+                }
+
                 -- Apply the build
                 local build = this.selectedSkills[playerID] or {}
                 SkillManager:ApplyBuild(spawnedUnit, build)
