@@ -3008,9 +3008,7 @@
 
     /// DOOM​
     "DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_perk" "Doom Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_perk_Description" "Doom applies Break when casting Doom.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
-    "DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_doom_break"   "Break"
-    "DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_doom_break_Description"   "Doom's Perk. Your passives are disabled while doomed."
+    "DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_perk_Description" "Doom's passives cannot be disabled.<br><br><font color=\'#7D7D7D\'>By TideSofDarK | github.com/TideSofDarK</font>"
 
     /// DRAGON KNIGHT​
     "DOTA_Tooltip_modifier_npc_dota_hero_dragon_knight_perk"    "Dragon Knight Perk"
