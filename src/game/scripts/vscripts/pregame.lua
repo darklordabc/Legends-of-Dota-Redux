@@ -140,16 +140,15 @@ function Pregame:init()
             onselected = function(self)
                 self:setOption('lodOptionGameSpeedStrongTowers', 1, true)
                 self:setOption('lodOptionCreepPower', 120, true)
-                --self:setOption('lodOptionGameSpeedTowersPerLane', 4, true)
+                self:setOption('lodOptionGameSpeedTowersPerLane', 3, true)
             end,
             onunselected = function(self)
                 self:setOption('lodOptionGameSpeedStrongTowers', 0, true)
-                --self:setOption('lodOptionGameSpeedTowersPerLane', 3, true)
+                self:setOption('lodOptionGameSpeedTowersPerLane', 3, true)
             end
         },
         customAbilities = {
             onselected = function(self)
-                self:setOption('lodOptionGameSpeedTowersPerLane', 5, true)
                 self:setOption('lodOptionAdvancedCustomSkills', 1, true)
             end,
             onunselected = function(self)
@@ -420,6 +419,7 @@ function Pregame:init()
     end
 
     if mapName == 'all_allowed' then
+    	self:setOption('lodOptionGameSpeedMaxLevel', 100, true)
     	self:setOption('lodOptionGamemode', 1)
         OptionManager:SetOption('banningTime', 30)
 		self:setOption('lodOptionBalanceMode', 0, true)
