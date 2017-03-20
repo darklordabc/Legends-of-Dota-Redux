@@ -387,8 +387,6 @@ function Pregame:init()
     Timers:CreateTimer(function()
         if util:isSinglePlayerMode() then
             self:setOption('lodOptionBanningUseBanList', 0, true)
-        else
-            self:setOption('lodOptionBanningUseBanList', 1, true)
         end
     end, DoUniqueString('checkSinglePlayer'), 1.5)
 
@@ -420,6 +418,7 @@ function Pregame:init()
 
     if mapName == 'all_allowed' then
     	self:setOption('lodOptionGameSpeedMaxLevel', 100, true)
+    	self:setOption('lodOptionBanningUseBanList', 1, true)
     	self:setOption('lodOptionGamemode', 1)
         OptionManager:SetOption('banningTime', 30)
 		self:setOption('lodOptionBalanceMode', 0, true)
@@ -428,13 +427,17 @@ function Pregame:init()
 		self:setOption('lodOptionGameSpeedRespawnTimePercentage', 25, true)
 		self.useOptionVoting = true
         self.optionVoteSettings.doubledAbilityPoints = nil
+        -- If OP abilities are enabled, players always get a chance to ban
         self.optionVoteSettings.singlePlayerAbilities = {
-            onselected = function(self)
-                self:setOption('lodOptionBanningUseBanList', 0, true)
-            end,
-            onunselected = function(self)
-                self:setOption('lodOptionBanningUseBanList', 1, true)
-            end
+        onselected = function(self)
+            self:setOption('lodOptionBanningUseBanList', 0, true)
+            self:setOption('lodOptionBanning', 3, true)
+            self:setOption('lodOptionBanningMaxBans', 4, true)
+            self:setOption('lodOptionBanningMaxHeroBans', 1, true)
+        end,
+        onunselected = function(self)
+            self:setOption('lodOptionBanningUseBanList', 1, true)
+        end
         }
 	end
 
@@ -2261,7 +2264,7 @@ function Pregame:initOptionSelector()
         lodOptionBanningUseBanList = function(value)
                 Timers:CreateTimer(function()
                     -- Only allow if all players on one side (i.e. coop or singleplayer)                  
-                    if not self:isCoop() then
+                    if not self:isCoop() and GetMapName() ~= "all_allowed" then
                         self:setOption('lodOptionBanningUseBanList', 1, true)
                     end
 
@@ -3477,7 +3480,7 @@ function Pregame:processOptions()
     end
 
     -- Only allow single player abilities if all players on one side (i.e. coop or singleplayer)
-    if not self:isCoop() then
+    if not self:isCoop() and GetMapName() ~= "all_allowed" then
         self:setOption('lodOptionBanningUseBanList', 1, true)
     end
 
