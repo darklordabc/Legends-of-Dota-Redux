@@ -7203,6 +7203,47 @@ function Pregame:fixSpawningIssues()
         -- Grab the unit that spawned
         local spawnedUnit = EntIndexToHScript(keys.entindex)
 
+        -- Fix up tempest doubles/etc
+        if IsValidEntity(spawnedUnit) and (spawnedUnit:IsClone() or spawnedUnit:IsTempestDouble() or spawnedUnit:HasModifier("modifier_arc_warden_tempest_double")) then
+            print(2, spawnedUnit:GetUnitName())
+            local notOnIllusions = {
+                lone_druid_spirit_bear = true,
+                necronomicon_warrior_last_will_lod = true,
+                roshan_bash = true,
+            }
+
+            -- Grab their playerID
+            local playerID = spawnedUnit:GetPlayerID()
+
+            local mainHero = PlayerResource:GetSelectedHeroEntity(playerID)
+
+            -- Fix meepo clones and illusions
+            if mainHero and mainHero ~= spawnedUnit and self.spawnedHeroesFor[playerID] then
+                -- Apply the build
+                local build = this.selectedSkills[playerID] or {}
+                SkillManager:ApplyBuild(spawnedUnit, build)
+
+                -- Illusion and Tempest Double fixes
+                if not spawnedUnit:IsClone() then
+                    Timers:CreateTimer(function()
+                        if IsValidEntity(spawnedUnit) then
+                            for k,abilityName in pairs(build) do
+                                if notOnIllusions[abilityName] then
+                                    local ab = spawnedUnit:FindAbilityByName(abilityName)
+                                    if ab then
+                                        ab:SetLevel(0)
+                                        ab:RemoveSelf()
+                                    end
+                                end
+                            end
+
+
+                        end
+                    end, DoUniqueString('fixBrokenSkills'), 0)
+                end
+            end
+        end
+
         -- Ensure it's a valid unit
         if IsValidEntity(spawnedUnit) then
             -- Spellfix: Give Eyes in the Forest a notification for nearby enemies.
