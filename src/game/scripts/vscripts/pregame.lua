@@ -121,9 +121,12 @@ function Pregame:init()
                 self:setOption('lodOptionBanningMaxHeroBans', 1, true)
             end,
             onunselected = function(self)
-                self:setOption('lodOptionBanning', 1, true)
-                self:setOption('lodOptionBanningMaxBans', 0, true)
-                self:setOption('lodOptionBanningMaxHeroBans', 0, true)
+            	-- If single players are activated, do not cancel bans
+            	if self.optionStore['lodOptionBanningUseBanList'] == 1 then
+	                self:setOption('lodOptionBanning', 1, true)
+	                self:setOption('lodOptionBanningMaxBans', 0, true)
+	                self:setOption('lodOptionBanningMaxHeroBans', 0, true)
+               	end
             end
         },
         fastStart = {
@@ -169,6 +172,18 @@ function Pregame:init()
             onunselected = function(self)
                 self:setOption('lodOptionBalanceModePoints', 120, true)
             end
+        },
+        singlePlayerAbilities = {
+        onselected = function(self)
+        	self:setOption('lodOptionAdvancedCustomSkills', 1, true)
+            self:setOption('lodOptionBanningUseBanList', 0, true)
+            self:setOption('lodOptionBanning', 3, true)
+            self:setOption('lodOptionBanningMaxBans', 4, true)
+            self:setOption('lodOptionBanningMaxHeroBans', 1, true)
+        end,
+        onunselected = function(self)
+            self:setOption('lodOptionBanningUseBanList', 1, true)
+        end
         },
     }
 
@@ -427,18 +442,6 @@ function Pregame:init()
 		self:setOption('lodOptionGameSpeedRespawnTimePercentage', 25, true)
 		self.useOptionVoting = true
         self.optionVoteSettings.doubledAbilityPoints = nil
-        -- If OP abilities are enabled, players always get a chance to ban
-        self.optionVoteSettings.singlePlayerAbilities = {
-        onselected = function(self)
-            self:setOption('lodOptionBanningUseBanList', 0, true)
-            self:setOption('lodOptionBanning', 3, true)
-            self:setOption('lodOptionBanningMaxBans', 4, true)
-            self:setOption('lodOptionBanningMaxHeroBans', 1, true)
-        end,
-        onunselected = function(self)
-            self:setOption('lodOptionBanningUseBanList', 1, true)
-        end
-        }
 	end
 
     -- Mirror Draft Only
@@ -3482,6 +3485,18 @@ function Pregame:processOptions()
     -- Only allow single player abilities if all players on one side (i.e. coop or singleplayer)
     if not self:isCoop() and GetMapName() ~= "all_allowed" then
         self:setOption('lodOptionBanningUseBanList', 1, true)
+    end
+
+    -- This is a fix to deal with how votes are executed
+    if GetMapName() == "all_allowed" then
+        if self.optionStore['lodOptionBanningMaxBans'] == 2 and self.optionStore['lodOptionBanningUseBanList'] == 0 and self.optionStore['lodOptionAdvancedCustomSkills'] == 1 then
+        	self:setOption('lodOptionBanningMaxBans', 6, true)
+        end
+        if self.optionStore['lodOptionBanningMaxBans'] == 4 and self.optionStore['lodOptionAdvancedCustomSkills'] == 0 then
+        	self:setOption('lodOptionBanningMaxBans', 0, true)
+        	self:setOption('lodOptionBanningMaxHeroBans', 0, true)
+        end
+        	
     end
 
     -- Only process options once
