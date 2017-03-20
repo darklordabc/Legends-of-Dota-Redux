@@ -9,14 +9,7 @@ function Impact( keys )
 
 	if caster:IsNull() then return end
 
-	local damageTable = {
-		victim = target,
-		attacker = caster,
-		damage = caster:GetAverageTrueAttackDamage(target),
-		damage_type = DAMAGE_TYPE_PHYSICAL
-	}
-
-	ApplyDamage(damageTable)
+	caster:PerformAttack(target, false, true, true, false, false, false, true)
 end
 
 function Shot( keys )

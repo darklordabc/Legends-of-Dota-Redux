@@ -2,7 +2,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 7.1 - Development Version
+## 7.2 - Development Version
+- Removed Strategy time
+- Fixed Tempest Double
+
+## 7.1 - Steam Version
 - Added Dagon and Spawn golem cheat
 - Readded Juxtapose
 - 4 previously disabled bots are re-enabled
@@ -16,8 +20,15 @@ All notable changes to this project will be documented in this file.
 - Increased Manacost and Cooldown of Fireball
 - IMBA abilities can be enabled with normal abilities if game is coop vs bots
 - Strong towers no longer gives 4 towers per lane
+- Added "all_allowed" map
+- Reduced Motherlods bounty increase
+- Added a few more spells to rearm troll combo.
+- In Standard map, you can only vote for "extra" points, no longer double
+- Increased price of starfall and shallow grave
+- Side Gunner now procs on attack effects
 
-## 7.0 - Steam Version
+
+## 7.0 
 - You can now use '-bot mode' chat command to see what mode bots are in (early game or late game). '-bot switch' can be used to alternative between modes, but can only be used when cheats are enable or in single player. 
 - Added cooldown to chaos meteor OP
 - Added '-god' and '-regen' cheat commands

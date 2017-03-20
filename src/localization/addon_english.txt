@@ -538,7 +538,7 @@
     "balance_mode_points"                           "Points Remaining: {d:points}"
 
     "acceptHosting"                                 "Ok, I understand"
-    "lodWelcomeMessage"                             "<font color='#ffffff'><font color='#70EA72'>Thanks for playing Legends of Dota: Redux</font>. <br><br> <font color='#70EA72'>Redux 7.0:</font></font><br>- You can now use '-bot mode' chat command to see what mode bots are in (early game or late game). '-bot switch' can be used to alternative between modes, but can only be used when cheats are enable or in single player. <br>- Added cooldown to chaos meteor OP<br>- Added '-god' and '-regen' cheat commands<br>- Revamped the ingame cheat menu, it is now a 'command menu' which will house all added user commands. It is now accessible in all games not just ones with cheats mode on.<br>- Optimized the ingame hero builder menu, should no longer cause instability or lags. <br>- Added a ingame filter to see hero perk related abiliites. <br>- Added cheats '-wtf' and '-scepter' that can be used in games without sv_cheats<br>- Made attempt at fixing bots having boots in their backpack.<br>- Top hero bar now updates with correct team compositions. <br>- Tower abiltiies have been reworked, so should try to keep comparable power to their equivalent tower on the enemy side. Power counter added to towers, they should also try to avoid duplicate abilities. <br>- Added Anti-Rat mutator<br>- Added New Map 'Standard'"
+    "lodWelcomeMessage"                             "<font color='#ffffff'><font color='#70EA72'>Thanks for playing Legends of Dota: Redux</font>. <br><br> <font color='#70EA72'>Redux 7.1:</font></font><br>- Added Dagon and Spawn golem cheat<br>- Readded Juxtapose<br>- 4 previously disabled bots are re-enabled<br>- Side gunner is now available in normal games<br>- Re-Enabled Wukong Command, seems non-buggy in testing, please report if it causes lag<br>- Single player abilities can now be used in VS multiplayer, not so much an issue now as most games are played on standard. Still need better solution.<br>- Added 6 OP ability variants<br>- Increased Manacost and Cooldown of Eldritch: Anti Magic<br>- Arcane Echoed Spells now cost half-mana.<br>- Bristleback bot doesnt get dispersion anymore<br>- Increased Manacost and Cooldown of Fireball<br>- IMBA abilities can be enabled with normal abilities if game is coop vs bots<br>- Strong towers no longer gives 4 towers per lane<br>- Added 'all_allowed' map<br>- Reduced Motherlods bounty increase<br>- Added a few more spells to rearm troll combo.<br>- In Standard map, you can only vote for 'extra' points, no longer double<br>- Increased price of starfall and shallow grave<br>- Side Gunner now procs on attack effects"
     "lodPickingMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked.<br><br><font color='#70EA72'>Remeber to pick a hero before time runs out or else you will get stuck with a random hero.</font>"
     "lodBanningMessage"                             "<font color='#70EA72'>This is the banning phase</font>. You can ban heroes and abilities to prevent players from selecting them in this match.<br><br> If you dont want to ban or have finished banning, <font color='#70EA72'>press the 'Finish Banning' button</font> to confirm your ready and to speed up the game."
     "lodBalanceMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked. <br><br><font color='#70EA72'>Points Mode is on.</font> In Points Mode you have limited points to spend on abilities. Abilities are priced by how powerful they are and abilities with no price tags are free. Have fun!"
@@ -961,15 +961,17 @@
 
     "option_vote_entry_title_banning"               "Enable Banning Phase"
     "option_vote_entry_title_fastStart"             "Enable Fast Start"
-    "option_vote_entry_title_doubledAbilityPoints"  "Doubled Ability Points"
+    "option_vote_entry_title_doubledAbilityPoints"  "Extra Ability Points"
     "option_vote_entry_title_strongTowers"          "Enable Stronger Towers"
-    "option_vote_entry_title_customAbilities"           "Enable Custom Abilities"
+    "option_vote_entry_title_customAbilities"       "Enable Custom Abilities"
+    "option_vote_entry_title_singlePlayerAbilities" "Enable SUPER-OP Abilities"
 
     "option_vote_entry_info_banning"                "Players get 30 seconds to ban 2 abilities and 1 hero, each."
     "option_vote_entry_info_fastStart"              "Everyone starts at level 6 and receives 1000 bonus gold."
-    "option_vote_entry_info_doubledAbilityPoints"   "Players can spend 240 points on abilities instead of 120"
+    "option_vote_entry_info_doubledAbilityPoints"   "Players can spend 180 points on abilities instead of 120"
     "option_vote_entry_info_strongTowers"           "This will give Towers powerful abilities that upgrade each time a tower on their side dies. After 3 upgrades, a tower will receive a new ability."
-    "option_vote_entry_info_customAbilities"            "Allows players to pick from custom and new abilities. If Points are doubled, the most OP abilities are banned."
+    "option_vote_entry_info_customAbilities"        "Allows players to pick from custom and new abilities. If Points are doubled, the most OP abilities are banned."
+    "option_vote_entry_info_singlePlayerAbilities"  "Allows to pick 'Single Player abilities' that are designed for solo play against bots, these are extremely powerful and are not designed with multiplayer in mind. Only enabled if custom abilities are also voted for. Player bans are always allowed."
 
     "bots_lod"                                      "Bots"
 
@@ -3006,9 +3008,7 @@
 
     /// DOOM​
     "DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_perk" "Doom Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_perk_Description" "Doom applies Break when casting Doom.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
-    "DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_doom_break"   "Break"
-    "DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_doom_break_Description"   "Doom's Perk. Your passives are disabled while doomed."
+    "DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_perk_Description" "Doom's passives cannot be disabled.<br><br><font color=\'#7D7D7D\'>By TideSofDarK | github.com/TideSofDarK</font>"
 
     /// DRAGON KNIGHT​
     "DOTA_Tooltip_modifier_npc_dota_hero_dragon_knight_perk"    "Dragon Knight Perk"

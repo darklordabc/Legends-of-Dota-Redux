@@ -37,7 +37,7 @@
 		"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"percent"						"200 250 300"
+				"percent"						"125 150 175"
 			}
 		"02"
 			{

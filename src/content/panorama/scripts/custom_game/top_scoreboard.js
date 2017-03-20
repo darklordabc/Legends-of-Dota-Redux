@@ -64,12 +64,12 @@ function Snippet_TopBarPlayerSlot_Update(panel) {
 		panel.FindChildTraverse("HealthBar").value = Entities.GetHealthPercent(heroEnt) / 100;
 		panel.FindChildTraverse("ManaBar").value = Entities.GetMana(heroEnt) / Entities.GetMaxMana(heroEnt);
 		panel.ultimateCooldown = ultStateOrTime;
-		if (playerInfo.player_team_id != panel.GetParent().team && teamColors[playerInfo.player_team_id] != null) {
-			panel.SetParent(Snippet_DotaTeamBar(playerInfo.player_team_id).FindChildTraverse("TopBarPlayersContainer"))
-		}
 		panel.SetHasClass("BuybackReady", Players.CanPlayerBuyback(playerId));
 		var lastBuybackTime = Players.GetLastBuybackTime(playerId)
 		panel.SetHasClass("BuybackUsed", lastBuybackTime != 0 && Game.GetGameTime() - lastBuybackTime < 10)
+		if (playerInfo.player_team_id != DOTA_TEAM_SPECTATOR && playerInfo.player_team_id != panel.GetParent().team && teamColors[playerInfo.player_team_id] != null) {
+			panel.SetParent(Snippet_DotaTeamBar(playerInfo.player_team_id).FindChildTraverse("TopBarPlayersContainer"))
+		}
 	}
 }
 
@@ -117,9 +117,7 @@ function Update() {
 	$("#NightTime").visible = !isNSNight && !isDayTime;
 	$("#NightstalkerNight").visible = isNSNight;
 	$.Each(Game.GetAllPlayerIDs(), function(pid) {
-		if (Players.GetTeam(pid) != DOTA_TEAM_SPECTATOR) {
-			Snippet_TopBarPlayerSlot_Update(Snippet_TopBarPlayerSlot(pid));
-		}
+		Snippet_TopBarPlayerSlot_Update(Snippet_TopBarPlayerSlot(pid));
 	})
 	for (var i in TeamPanels) {
 		Snippet_DotaTeamBar_Update(TeamPanels[i]);
