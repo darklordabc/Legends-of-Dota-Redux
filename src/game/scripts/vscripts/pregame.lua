@@ -7218,6 +7218,45 @@ function Pregame:fixSpawningIssues()
         -- Grab the unit that spawned
         local spawnedUnit = EntIndexToHScript(keys.entindex)
 
+        -- Grab their playerID
+        if spawnedUnit.GetPlayerID then
+            local playerID = spawnedUnit:GetPlayerID()
+
+            local mainHero = PlayerResource:GetSelectedHeroEntity(playerID)
+
+            -- Fix up tempest doubles/etc
+            if self.spawnedHeroesFor[playerID] and mainHero and mainHero ~= spawnedUnit then
+                local notOnIllusions = {
+                    lone_druid_spirit_bear = true,
+                    necronomicon_warrior_last_will_lod = true,
+                    roshan_bash = true,
+                }
+
+                -- Apply the build
+                local build = this.selectedSkills[playerID] or {}
+                SkillManager:ApplyBuild(spawnedUnit, build)
+
+                -- Illusion and Tempest Double fixes
+                if not spawnedUnit:IsClone() then
+                    Timers:CreateTimer(function()
+                        if IsValidEntity(spawnedUnit) then
+                            for k,abilityName in pairs(build) do
+                                if notOnIllusions[abilityName] then
+                                    local ab = spawnedUnit:FindAbilityByName(abilityName)
+                                    if ab then
+                                        ab:SetLevel(0)
+                                        ab:RemoveSelf()
+                                    end
+                                end
+                            end
+
+
+                        end
+                    end, DoUniqueString('fixBrokenSkills'), 0)
+                end
+            end
+        end
+
         -- Ensure it's a valid unit
         if IsValidEntity(spawnedUnit) then
             -- Spellfix: Give Eyes in the Forest a notification for nearby enemies.
