@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ## 7.2 - Development Version
 - Removed Strategy time
+- Fixed Tempest Double
 
 ## 7.1 - Steam Version
 - Added Dagon and Spawn golem cheat
