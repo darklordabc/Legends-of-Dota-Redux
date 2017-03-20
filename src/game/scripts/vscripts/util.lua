@@ -766,6 +766,65 @@ function CDOTA_BaseNPC:FindItemByName(item_name)
     return nil
 end
 
+Util.votings = {}
+function Util:CreateVoting(votingName, initiator, duration, percent, onaccept, onvote, ondecline)
+    if self.votings[votingName] then
+        self.votings[votingName].onvote(initiator, true)
+        return
+    end
+    local CheckForEnd = function()
+        local votesAccepted = 0
+        local totalPlayers = 0
+        for PlayerID = 0, 23 do
+            if not Util:isPlayerBot(PlayerID) then                            
+                local state = PlayerResource:GetConnectionState(PlayerID)
+                if state == 1 or state == 2 then
+                    if self.votings[votingName].votes[PlayerID] ~= nil then
+                        if self.votings[votingName].votes[PlayerID] then
+                            votesAccepted = votesAccepted + 1
+                        end
+                    end
+                    totalPlayers = totalPlayers + 1
+                end
+            end
+        end
+        
+        if votesAccepted / totalPlayers >= (percent or 100) * 0.01 then
+            if onaccept then
+                onaccept()
+            end
+            return true
+        end
+        return false
+    end
+    local vote_counter = Timers:CreateTimer(duration, function()
+        if not CheckForEnd() and ondecline then
+            ondecline()
+        end
+        self.votings[votingName] = nil
+    end)
+    local _onvote = function(pid, accepted)
+        self.votings[votingName].votes[pid] = accepted
+        CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(pid), "universalVotingsPlayerUpdate", {votingName = votingName, accept = accepted})
+        if onvote then
+            onvote(pid, accepted)
+        end
+        if CheckForEnd() then
+            Timers:RemoveTimer(vote_counter)
+        end
+    end
+    self.votings[votingName] = {
+        votes = {},
+        onvote = _onvote
+    }
+    CustomGameEventManager:Send_ServerToAllClients("lodCreateUniversalVoting", {
+        title = votingName,
+        initiator = initiator,
+        duration = duration
+    })
+    _onvote(initiator, true)
+end
+
 function CDOTA_BaseNPC:PopupNumbers(target, pfx, color, lifetime, number, presymbol, postsymbol)
      local armor = target:GetPhysicalArmorValue()
      local damageReduction = ((0.02 * armor) / (1 + 0.02 * armor))

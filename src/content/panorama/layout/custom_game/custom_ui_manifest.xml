@@ -44,6 +44,8 @@
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/scoreboard_hack.xml" />
 
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/top_scoreboard.xml" />
+
+        <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/ingame_votes.xml" />
         <!-- Textures compiling stuff 
             <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/dummy.xml" />
             -->

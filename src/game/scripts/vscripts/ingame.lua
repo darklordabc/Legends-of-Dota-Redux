@@ -105,6 +105,12 @@ function Ingame:init()
     CustomGameEventManager:RegisterListener( 'ask_custom_team_info', function(eventSourceIndex, args)
         self:returnCustomTeams(eventSourceIndex, args)
     end)
+
+    CustomGameEventManager:RegisterListener('universalVotingsVote', function(eventSourceIndex, args)
+        if util.votings[args.votingName] then
+            util.votings[args.votingName].onvote(args.PlayerID, args.accept == 1)
+        end
+    end)
 end   
 
 function Ingame:OnPlayerReconnect(keys)
@@ -621,138 +627,46 @@ function Ingame:OnPlayerChat(keys)
     ----------------------------
     -- Vote Commands
     ----------------------------
-    if string.find(text, "-enablecheat") or text == "-ec" then 
-        Timers:CreateTimer(function()
-            if not PlayerResource:GetPlayer(playerID).enableCheats then
-                PlayerResource:GetPlayer(playerID).enableCheats = true
-                
-                local votesRequired = 0
-                
-                for player_ID = 0,(24-1) do                        
-                    if not util:isPlayerBot(player_ID) and PlayerResource:GetPlayer(playerID) ~= PlayerResource:GetPlayer(player_ID) then                            
-                        local state = PlayerResource:GetConnectionState(player_ID)
-                        if state == 1 or state == 2 then
-                            if not PlayerResource:GetPlayer(player_ID).enableCheats then
-                                votesRequired = votesRequired + 1
-                            end
-                        end
-                    end
+    if string.find(text, "-enablecheat") or text == "-ec" then
+        if not self.voteEnabledCheatMode then
+            util:CreateVoting("lodVotingEnableCheatMode", playerID, 20, 100, function()
+                self.voteEnabledCheatMode = true
+                EmitGlobalSound("Event.CheatEnabled")
+                GameRules:SendCustomMessage('<font color=\'#70EA72\'>Everbody voted to enable cheat mode. Cheat mode enabled</font>.',0,0)
+            end)
+        end
+    elseif string.find(text, "-enablekamikaze") or text == "-ek" then
+        if not self.voteDisableAntiKamikaze then
+            util:CreateVoting("lodVotingEnableKamikaze", playerID, 20, 100, function()
+                self.voteDisableAntiKamikaze = true
+                EmitGlobalSound("Event.CheatEnabled")
+                GameRules:SendCustomMessage('Everbody voted to disable the anti-Kamikaze mechanic. <font color=\'#70EA72\'>No more peanlty for dying 3 times within 60 seconds</font>.',0,0)
+            end)
+        end
+    elseif (string.find(text, "-enablebuilder") or text == "-eb") and OptionManager:GetOption('allowIngameHeroBuilder') == false then
+        if not self.voteEnableBuilder then
+            util:CreateVoting("lodVotingEnableHeroBuilder", playerID, 20, 100, function()
+                network:enableIngameHeroEditor()
+                OptionManager:SetOption('allowIngameHeroBuilder', 1)
+                if util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS) > 0 and util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS) > 0 then
+                    OptionManager:SetOption('ingameBuilderPenalty', 30)
                 end
-
-                if votesRequired == 0 then
-                    self.voteEnabledCheatMode = true
-                    EmitGlobalSound("Event.CheatEnabled")
-                    GameRules:SendCustomMessage('<font color=\'#70EA72\'>Everbody voted to enable cheat mode. Cheat mode enabled</font>.',0,0)
-                else
-                    GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to enable cheat mode. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablecheats (-ec) to vote to enable',0,0)
+                self.voteEnableBuilder = true
+                EmitGlobalSound("Event.CheatEnabled")
+                GameRules:SendCustomMessage('Everbody voted to enable the ingame hero builder. <font color=\'#70EA72\'>You can now change your hero build mid-game</font>.',0,0)
+            end)
+        end
+    elseif string.find(text, "-enablerespawn") or text == "-er" then
+        if not self.voteDisableRespawnLimit then
+            util:CreateVoting("lodVotingEnableRespawn", playerID, 20, 100, function()
+                self.voteDisableRespawnLimit = true
+                if self.origianlRespawnRate ~= nil then
+                    OptionManager:SetOption('respawnModifierPercentage', self.origianlRespawnRate)
                 end
-
-                --print(votesRequired)
-
-            end
-        end, DoUniqueString('enableCheat'), .1)
-
-    elseif string.find(text, "-enablekamikaze") or text == "-ek" then 
-        Timers:CreateTimer(function()
-            if not PlayerResource:GetPlayer(playerID).enableKamikaze then
-                PlayerResource:GetPlayer(playerID).enableKamikaze = true
-                
-                local votesRequired = 0
-                
-                for player_ID = 0,(24-1) do                        
-                    if not util:isPlayerBot(player_ID) and PlayerResource:GetPlayer(playerID) ~= PlayerResource:GetPlayer(player_ID) then                            
-                        local state = PlayerResource:GetConnectionState(player_ID)
-                        if state == 1 or state == 2 then
-                            if not PlayerResource:GetPlayer(player_ID).enableKamikaze then
-                                votesRequired = votesRequired + 1
-                            end
-                        end
-                    end
-                end
-
-                if votesRequired == 0 then
-                    self.voteDisableAntiKamikaze = true
-                    EmitGlobalSound("Event.CheatEnabled")
-                    GameRules:SendCustomMessage('Everbody voted to disable the anti-Kamikaze mechanic. <font color=\'#70EA72\'>No more peanlty for dying 3 times within 60 seconds</font>.',0,0)
-                else
-                    GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to disable anti-Kamikaze safeguard. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablekamikaze (-ek) to vote to disable.',0,0)
-                end
-
-                --print(votesRequired)
-
-            end
-        end, DoUniqueString('enableKamikaze'), .1)
-
-    elseif (string.find(text, "-enablebuilder") or text == "-eb") and OptionManager:GetOption('allowIngameHeroBuilder') == false then 
-        Timers:CreateTimer(function()
-            if not PlayerResource:GetPlayer(playerID).enableBuilder then
-                PlayerResource:GetPlayer(playerID).enableBuilder = true
-                
-                local votesRequired = 0
-                
-                for player_ID = 0,(24-1) do                        
-                    if not util:isPlayerBot(player_ID) and PlayerResource:GetPlayer(playerID) ~= PlayerResource:GetPlayer(player_ID) then                            
-                        local state = PlayerResource:GetConnectionState(player_ID)
-                        if state == 1 or state == 2 then
-                            if not PlayerResource:GetPlayer(player_ID).enableBuilder then
-                                votesRequired = votesRequired + 1
-                            end
-                        end
-                    end
-                end
-
-                if votesRequired == 0 then
-                    network:enableIngameHeroEditor()
-                    OptionManager:SetOption('allowIngameHeroBuilder', 1)
-                    -- If its a versus game set a penalty for using the builder
-                    if util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS) > 0 and util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS) > 0 then
-                            OptionManager:SetOption('ingameBuilderPenalty', 30)
-                    end
-                    self.voteEnableBuilder = true
-                    EmitGlobalSound("Event.CheatEnabled")
-                    GameRules:SendCustomMessage('Everbody voted to enable the ingame hero builder. <font color=\'#70EA72\'>You can now change your hero build mid-game</font>.',0,0)
-                else
-                    GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to disable anti-Kamikaze safeguard. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablekamikaze (-ek) to vote to disable.',0,0)
-                end
-
-                --print(votesRequired)
-
-            end
-        end, DoUniqueString('enablebuilder'), .1)
-
-    elseif string.find(text, "-enablerespawn") or text == "-er" then 
-        Timers:CreateTimer(function()
-            if not PlayerResource:GetPlayer(playerID).enableRespawn then
-                PlayerResource:GetPlayer(playerID).enableRespawn = true
-                
-                local votesRequired = 0
-                
-                for player_ID = 0,(24-1) do                        
-                    if not util:isPlayerBot(player_ID) and PlayerResource:GetPlayer(playerID) ~= PlayerResource:GetPlayer(player_ID) then                            
-                        local state = PlayerResource:GetConnectionState(player_ID)
-                        if state == 1 or state == 2 then
-                            if not PlayerResource:GetPlayer(player_ID).enableRespawn then
-                                votesRequired = votesRequired + 1
-                            end
-                        end
-                    end
-                end
-
-                if votesRequired == 0 then
-                    self.voteDisableRespawnLimit = true
-                    if self.origianlRespawnRate ~= nil then
-                        OptionManager:SetOption('respawnModifierPercentage', self.origianlRespawnRate)
-                    end        
-                    EmitGlobalSound("Event.CheatEnabled")
-                    GameRules:SendCustomMessage('Everbody voted to disable the increasing-spawn-rate mechanic. <font color=\'#70EA72\'>Respawn rates no longer increase after 40 minutes</font>. Respawn rate is now '.. OptionManager:GetOption('respawnModifierPercentage') .. '%.',0,0)
-                else
-                    GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to disable increasing-spawn-rate safeguard. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablerespawn (-er) to vote to disable.',0,0)
-                end
-
-                --print(votesRequired)
-
-            end
-        end, DoUniqueString('enableRespawn'), .1)
+                EmitGlobalSound("Event.CheatEnabled")
+                GameRules:SendCustomMessage('Everbody voted to disable the increasing-spawn-rate mechanic. <font color=\'#70EA72\'>Respawn rates no longer increase after 40 minutes</font>. Respawn rate is now '.. OptionManager:GetOption('respawnModifierPercentage') .. '%.',0,0)
+            end)
+        end
     end
     ----------------------------
     -- Cheat Commands

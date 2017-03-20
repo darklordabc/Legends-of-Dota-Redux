@@ -488,8 +488,11 @@
     "lodMutatorIngameBuilder3"                      "Build Switcher 30s penalty"
     "lodMutatorIngameBuilder4"                      "Build Switcher Free"
 
-    "lodVotingEnableHeroBuilder"                    "Option Voting"
+    "lodVotingTitle"                                "Option Voting"
+    "lodVotingEnableCheatModeLine"                  "wants to enable <font color='#70EA72'>cheat mode</font>"
+    "lodVotingEnableKamikazeLine"                   "wants to disable <font color='#70EA72'>Anti-Kamikaze</font> mechanic"
     "lodVotingEnableHeroBuilderLine"                "wants to enable <font color='#70EA72'>ingame hero builder</font>"
+    "lodVotingEnableRespawnLine"                    "wants to disable <font color='#70EA72'>increasing-spawn-rate</font> mechanic"
 
 	// Minimap Menu and In-Game Hero Builder
     "minimapMenuCredits"                            "Credits"
