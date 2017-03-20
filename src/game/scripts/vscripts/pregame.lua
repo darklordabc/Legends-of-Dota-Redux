@@ -2250,13 +2250,13 @@ function Pregame:initOptionSelector()
 
         -- Common use ban list
         lodOptionBanningUseBanList = function(value)
-               -- Timers:CreateTimer(function()
+                Timers:CreateTimer(function()
                     -- Only allow if all players on one side (i.e. coop or singleplayer)                  
-                 --   if not self:isCoop() then
-                 --       self:setOption('lodOptionBanningUseBanList', 1, true)
-                --    end
+                    if not self:isCoop() then
+                        self:setOption('lodOptionBanningUseBanList', 1, true)
+                    end
 
-                --end, DoUniqueString('disallowOP'), 0.1)
+                end, DoUniqueString('disallowOP'), 0.1)
             
             return value == 0 or value == 1
         end,
@@ -3468,9 +3468,9 @@ function Pregame:processOptions()
     end
 
     -- Only allow single player abilities if all players on one side (i.e. coop or singleplayer)
-    --if not self:isCoop() then
-    --    self:setOption('lodOptionBanningUseBanList', 1, true)
-    --end
+    if not self:isCoop() then
+        self:setOption('lodOptionBanningUseBanList', 1, true)
+    end
 
     -- Only process options once
     if self.processedOptions then return end
