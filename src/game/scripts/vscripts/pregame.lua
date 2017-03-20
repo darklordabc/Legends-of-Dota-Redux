@@ -161,7 +161,11 @@ function Pregame:init()
                 self:setOption('lodOptionBalanceModePoints', 240, true)
                 if not self:isCoop() then
                     self:setOption('lodOptionBanningUseBanList', 1, true)
-                end    
+                end   
+                if mapName == 'all_allowed' then
+                	self:setOption('lodOptionBanningUseBanList', 0, true)
+                end
+
             end,
             onunselected = function(self)
                 self:setOption('lodOptionBalanceModePoints', 120, true)
@@ -405,7 +409,7 @@ function Pregame:init()
     end
 
     -- Standard gamemode featuring voting system
-    if mapName == 'standard' or mapName == 'all_allowed' then
+    if mapName == 'standard' then
         self:setOption('lodOptionGamemode', 1)
         self:setOption('lodOptionBalanceMode', 1, true)
         OptionManager:SetOption('banningTime', 30)
@@ -414,6 +418,16 @@ function Pregame:init()
         --self:setOption('lodOptionBuybackCooldownTimeConstant', 210, true)
         self.useOptionVoting = true
     end
+
+    if mapName == 'all_allowed' then
+    	self:setOption('lodOptionGamemode', 1)
+        OptionManager:SetOption('banningTime', 30)
+		self:setOption('lodOptionBalanceMode', 0, true)
+		self:setOption('lodOptionAdvancedHidePicks', 0, true)
+		self:setOption('lodOptionCommonMaxUlts', 6, true)
+		self:setOption('lodOptionGameSpeedRespawnTimePercentage', 25, true)
+		self.useOptionVoting = true
+	end
 
     -- Mirror Draft Only
     if mapName == 'mirror_draft' then

@@ -5402,9 +5402,17 @@ function SetBalanceModePoints(value) {
 
     $('#chat').BLoadLayout('file://{resources}/layout/custom_game/game_setup/chat.xml', false, false);
 
-    $.Each(["doubledAbilityPoints", "fastStart", "banning", "strongTowers", "customAbilities"], function(name) {
-        addVotingOption(name);
-    })
+    if (mapName.match("standard")){
+	    $.Each(["doubledAbilityPoints", "fastStart", "banning", "strongTowers", "customAbilities"], function(name) {
+	        addVotingOption(name);
+	    })
+    }
+
+    if (mapName.match("all_allowed")){
+	    $.Each(["fastStart", "banning", "strongTowers", "customAbilities"], function(name) {
+	        addVotingOption(name);
+	    })
+    }
 
     // Workarounds
     // var parent = $.GetContextPanel().GetParent();
