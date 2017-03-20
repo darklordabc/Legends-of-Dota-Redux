@@ -427,6 +427,15 @@ function Pregame:init()
 		self:setOption('lodOptionCommonMaxUlts', 6, true)
 		self:setOption('lodOptionGameSpeedRespawnTimePercentage', 25, true)
 		self.useOptionVoting = true
+        self.optionVoteSettings.doubledAbilityPoints = nil
+        self.optionVoteSettings.singlePlayerAbilities = {
+            onselected = function(self)
+                self:setOption('lodOptionBanningUseBanList', 0, true)
+            end,
+            onunselected = function(self)
+                self:setOption('lodOptionBanningUseBanList', 1, true)
+            end
+        }
 	end
 
     -- Mirror Draft Only
