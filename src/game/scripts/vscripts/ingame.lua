@@ -697,7 +697,7 @@ function Ingame:OnPlayerChat(keys)
                 end
 
                 -- In all_allowed map, votes needed is only 50% of players (rounded up)
-                if mapName == 'all_allowed' then
+                if GetMapName() == 'all_allowed' then
                     activePlayers = math.ceil(activePlayers/2)
                 end
 
