@@ -158,7 +158,7 @@ function Pregame:init()
         },
         doubledAbilityPoints = {
             onselected = function(self)
-                self:setOption('lodOptionBalanceModePoints', 240, true)
+                self:setOption('lodOptionBalanceModePoints', 180, true)
                 if not self:isCoop() then
                     self:setOption('lodOptionBanningUseBanList', 1, true)
                 end   

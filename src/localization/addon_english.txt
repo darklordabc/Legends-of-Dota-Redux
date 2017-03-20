@@ -961,13 +961,13 @@
 
     "option_vote_entry_title_banning"               "Enable Banning Phase"
     "option_vote_entry_title_fastStart"             "Enable Fast Start"
-    "option_vote_entry_title_doubledAbilityPoints"  "Doubled Ability Points"
+    "option_vote_entry_title_doubledAbilityPoints"  "Extra Ability Points"
     "option_vote_entry_title_strongTowers"          "Enable Stronger Towers"
     "option_vote_entry_title_customAbilities"           "Enable Custom Abilities"
 
     "option_vote_entry_info_banning"                "Players get 30 seconds to ban 2 abilities and 1 hero, each."
     "option_vote_entry_info_fastStart"              "Everyone starts at level 6 and receives 1000 bonus gold."
-    "option_vote_entry_info_doubledAbilityPoints"   "Players can spend 240 points on abilities instead of 120"
+    "option_vote_entry_info_doubledAbilityPoints"   "Players can spend 180 points on abilities instead of 120"
     "option_vote_entry_info_strongTowers"           "This will give Towers powerful abilities that upgrade each time a tower on their side dies. After 3 upgrades, a tower will receive a new ability."
     "option_vote_entry_info_customAbilities"            "Allows players to pick from custom and new abilities. If Points are doubled, the most OP abilities are banned."
 
