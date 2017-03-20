@@ -60,6 +60,7 @@ function Ingame:init()
     self.voteEnableBuilder = false
     self.origianlRespawnRate = nil
     self.shownCheats = {}
+    self.heard = {}
 
     self.botsInLateGameMode = false
 
@@ -764,6 +765,10 @@ function Ingame:OnPlayerChat(keys)
         
         if string.find(text, "-gold") then 
             -- Give user max gold, unless they specify a number
+            if not self.heard["freestuff"] then
+                EmitGlobalSound("Event.FreeStuff")
+                self.heard["freestuff"] = true
+            end   
             local goldAmount = 100000
             local splitedText = util:split(text, " ")       
             if splitedText[2] and tonumber(splitedText[2])then
