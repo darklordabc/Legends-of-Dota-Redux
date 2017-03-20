@@ -681,20 +681,27 @@ function Ingame:OnPlayerChat(keys)
             if not PlayerResource:GetPlayer(playerID).enableBuilder then
                 PlayerResource:GetPlayer(playerID).enableBuilder = true
                 
-                local votesRequired = 0
+                local votesReceived = 1
+                local activePlayers = 1
                 
                 for player_ID = 0,(24-1) do                        
                     if not util:isPlayerBot(player_ID) and PlayerResource:GetPlayer(playerID) ~= PlayerResource:GetPlayer(player_ID) then                            
                         local state = PlayerResource:GetConnectionState(player_ID)
                         if state == 1 or state == 2 then
-                            if not PlayerResource:GetPlayer(player_ID).enableBuilder then
-                                votesRequired = votesRequired + 1
+                            activePlayers = activePlayers + 1
+                            if PlayerResource:GetPlayer(player_ID).enableBuilder then
+                                votesReceived = votesReceived + 1
                             end
                         end
                     end
                 end
 
-                if votesRequired == 0 then
+                -- In all_allowed map, votes needed is only 50% of players (rounded up)
+                if mapName == 'all_allowed' then
+                    activePlayers = math.ceil(activePlayers/2)
+                end
+
+                if votesReceived >= activePlayers then
                     network:enableIngameHeroEditor()
                     OptionManager:SetOption('allowIngameHeroBuilder', 1)
                     -- If its a versus game set a penalty for using the builder
@@ -705,6 +712,7 @@ function Ingame:OnPlayerChat(keys)
                     EmitGlobalSound("Event.CheatEnabled")
                     GameRules:SendCustomMessage('Everbody voted to enable the ingame hero builder. <font color=\'#70EA72\'>You can now change your hero build mid-game</font>.',0,0)
                 else
+                    local votesRequired = activePlayers - votesReceived
                     GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to enable ingame hero builder. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablebuilder (-eb) to vote to disable.',0,0)
                 end
 
