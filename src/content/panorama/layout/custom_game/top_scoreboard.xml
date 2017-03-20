@@ -59,7 +59,7 @@
 		<Panel id="NightGlow" hittest="false"/>
 		<Label id="TimeUntil" text="#DOTA_HUD_TimeUntil" hittest="false"/>
 
-		<Panel id="TeamsPanel">
+		<Panel id="TeamsPanel" hittest="false">
 			<Panel id="TopBarLeftTeams" hittest="false">
 				<Panel id="TopBarLeftPlayers" hittest="false" class="PlayerContainer" />
 			</Panel>
