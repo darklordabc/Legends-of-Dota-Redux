@@ -2794,7 +2794,7 @@
     "DOTA_Tooltip_ability_imba_tower_multihit_bonus_attacks"                            "BONUS ATTACKS:"
 
     "DOTA_Tooltip_ability_imba_tower_spell_shield"                                      "Spell Dampener"
-    "DOTA_Tooltip_ability_imba_tower_spell_shield_Description"                          "This tower is magic immune, and increases magic resistance of all allies in range."
+    "DOTA_Tooltip_ability_imba_tower_spell_shield_Description"                          "This tower increases magic resistance of all allies in range."
     "DOTA_Tooltip_ability_imba_tower_spell_shield_Lore"                                 "Spellcasters feel sick just being near it."
     "DOTA_Tooltip_ability_imba_tower_spell_shield_magic_resistance_aura"                "%BONUS MAGIC RESISTANCE:"
 
