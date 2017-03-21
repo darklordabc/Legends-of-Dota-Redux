@@ -7,6 +7,7 @@
 		<include src="file://{resources}/scripts/custom_game/universal_votings.js" />
 	</scripts>
 	<Panel class="base" hittest="false">
+        <!-- <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableCheatMode.png"></Image> -->
         <Panel class='dialog'>
             <Label class='title' text='TEAM SWITCH' id="titleLabel" />
             <Panel class='bar_border' >
@@ -14,8 +15,7 @@
             </Panel>
             <Panel id='swap_info' >
                 <Panel id='swapper_switch' class='player_info'>
-                    <DOTAAvatarImage id="swapper_icon"/>
-                    <Label id='swapper_name' />
+                    <Image id="picture"/>
                 </Panel>
                 <Label id="lineLabel" text='would like to switch with'/>
             </Panel>

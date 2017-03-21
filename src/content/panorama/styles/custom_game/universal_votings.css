@@ -177,6 +177,11 @@
     background-size: 100% 100%;   
 }
 
+.choice .decline:disabled,
+.choice .accept:disabled {
+    opacity: 0.5;
+}
+
 .isolation:hover {
     wash-color: #F2F2F2;
 }
@@ -217,3 +222,11 @@
 .hiddenoccupy {
     opacity: 0;
 }
+
+#picture {
+    width: 150px;
+    height: 150px;
+
+    horizontal-align: center;
+}
+

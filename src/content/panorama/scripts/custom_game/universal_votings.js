@@ -4,10 +4,16 @@ function createVoting(rootPanel, playerInfo, votingName, votingTitle, votingLine
 
     panel.FindChildTraverse("titleLabel").text = $.Localize(votingTitle);
     panel.FindChildTraverse("lineLabel").html = true;
-    panel.FindChildTraverse("lineLabel").text = $.Localize(votingLine);
+    panel.FindChildTraverse("lineLabel").text = playerInfo.player_name + " " + $.Localize(votingLine);
 
-    panel.FindChildTraverse("swapper_icon").steamid = playerInfo.player_steamid;
-    panel.FindChildTraverse("swapper_name").text = playerInfo.player_name;
+    panel.FindChildTraverse("picture").SetImage("file://{images}/custom_game/votings/" + votingName + ".png");
+
+    panel.FindChildTraverse("acceptButton").enabled = false;
+    panel.FindChildTraverse("declineButton").enabled = false;
+    $.Schedule(5, function() {
+        panel.FindChildTraverse("acceptButton").enabled = true;
+        panel.FindChildTraverse("declineButton").enabled = true;
+    });
 
     panel.FindChildTraverse("acceptButton").SetPanelEvent("onactivate", (function () {
         acceptCallback();
