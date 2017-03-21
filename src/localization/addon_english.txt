@@ -1,10 +1,15 @@
 "addon"
 {
     // The name of the game
-    "ADDON_GAME_NAME"                               "Dota 2 Redux"
-    "addonname"                                     "Dota 2 Redux"
+    "ADDON_GAME_NAME"                               "Legends of Dota: Redux"
+    "addonname"                                     "Legends of Dota: Redux"
     "addonname_description"                         "Based on the official Legends of Dota by Ash47"
     "game_mode_15_desc"                             "Make Modding Great Again"
+
+	"game_mode_15"              "Legends of Dota: Redux"
+	"ADDON_GAME_NAME"           "Legends of Dota: Redux"
+	"addon_game_name"           "Legends of Dota: Redux"
+	"addonname"                 "Legends of Dota: Redux"
 
     // Contributors
     "76561197988355984" "Ash47"
