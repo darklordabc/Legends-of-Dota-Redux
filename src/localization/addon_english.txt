@@ -1259,6 +1259,7 @@
     /////////////////
     // Skill Warnings
     ////////////////
+    "warning_imba_tower_plasma_field"   "<font color=\'#FF4949\'>Warning:</font> Requies an extra ability slot. If you have many side abilities (including hidden abilities), this ability will not work."
     "warning_keeper_of_the_light_spirit_form"   "<font color=\'#FF4949\'>Warning:</font> Will not give additional abilities.<br><font color=\'#FF4949\'>Hero Requirement:</font> You have to play as <font color=\'#70EA72\'>Elazor</font> to get Aghanim's Scepter bonuses."
     "warning_undying_tombstone_zombie_deathstrike"   "<font color=\'#FF4949\'>Warning:</font> This ability is half broken, you will not gain bonus movementspeed nor bonus attack speed. Its recommended you don't pick it."
     "warning_life_stealer_infest"               "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Consume</font> and <font color=\'#70EA72\'>Control</font>."
@@ -2857,6 +2858,14 @@
     "DOTA_Tooltip_ability_imba_tower_mindblast_Lore"                                    "This tower is too old and cranky to tolerate your racket."
     "DOTA_Tooltip_ability_imba_tower_mindblast_silence_radius"                          "SILENCE RADIUS:"
     "DOTA_Tooltip_ability_imba_tower_mindblast_silence_duration"                        "SILENCE DURATION:"
+
+    "DOTA_Tooltip_ability_imba_tower_plasma_field"                                         "Plasma Field Tower"
+    "DOTA_Tooltip_ability_imba_tower_plasma_field_Description"                             "Periodically sends out a devastating wave of plasma."
+    "DOTA_Tooltip_ability_imba_tower_plasma_field_Note0"                                   "Activates when at least one enemy hero enters its range."
+    "DOTA_Tooltip_ability_imba_tower_plasma_field_Lore"                                    "The wave of death is unstoppable but avoidable."
+    "DOTA_Tooltip_ability_imba_tower_plasma_field_plasma_radius"                          "PLASMA WAVE RADIUS:"
+    "DOTA_Tooltip_ability_imba_tower_plasma_field_plasma_damage_min"					  "DAMAGE MIN:"
+    "DOTA_Tooltip_ability_imba_tower_plasma_field_plasma_damage_max"					  "DAMAGE MAX:" 
 
     "DOTA_Tooltip_ability_imba_tower_atrophy"                                           "Atrophy Tower"
     "DOTA_Tooltip_ability_imba_tower_atrophy_Description"                               "Reduces the attack damage of all nearby units."

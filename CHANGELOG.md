@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 7.2 - Development Version
 - Removed Strategy time
 - Fixed Tempest Double
-- Added 2 tower abilities: Degen Aura, Degen Aura Attack Damage
+- Added 3 tower abilities: Degen Aura, Degen Aura Attack Damage, Plasma Field
 - IMBA Spell Dampener no longer gives spell immunity, nor 100% resistance to magic damage
 
 ## 7.1 - Steam Version
