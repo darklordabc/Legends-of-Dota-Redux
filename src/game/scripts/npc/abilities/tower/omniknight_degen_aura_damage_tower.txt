@@ -39,30 +39,30 @@
 
 		"OnUpgrade" {
 			"RemoveModifier" {
-				"ModifierName" "modifier_imba_degen_aura"
+				"ModifierName" "modifier_imba_degen_aura_attack"
 				"Target" "CASTER"
 			}
 
 			"ApplyModifier" {
-				"ModifierName" "modifier_imba_degen_aura"
+				"ModifierName" "modifier_imba_degen_aura_attack"
 				"Target" "CASTER"
 			}
 		}
 
 		"Modifiers" {
-			"modifier_imba_degen_aura" {
+			"modifier_imba_degen_aura_attack" {
 				"Passive" "1"
 				"IsHidden" "1"
 				"IsBuff" "1"
 				"IsPurgable" "0"
-				"Aura" "modifier_imba_degen_aura_effect"
+				"Aura" "modifier_imba_degen_aura_effect_attack"
 				"Aura_Radius" "%radius"
 				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
 				"Aura_Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 				"Aura_Flags" "DOTA_UNIT_TARGET_FLAG_NONE"
 			}
 
-			"modifier_imba_degen_aura_effect" {
+			"modifier_imba_degen_aura_effect_attack" {
 				"IsDebuff" "1"
 				"IsPurgable" "1"
 				"IsHidden" "1"
@@ -75,12 +75,12 @@
 					"RunScript" {
 						"ScriptFile" "abilities/hero_omniknight.lua"
 						"Function" "DegenAura"
-						"modifier_stacks" "modifier_imba_degen_aura_stacks"
+						"modifier_stacks" "modifier_imba_degen_aura_stacks_attack"
 					}
 				}
 			}
 
-			"modifier_imba_degen_aura_stacks" {
+			"modifier_imba_degen_aura_stacks_attack" {
 				"IsDebuff" "1"
 				"IsHidden" "0"
 				"IsPurgable" "1"
