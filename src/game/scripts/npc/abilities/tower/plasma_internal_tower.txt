@@ -1,0 +1,59 @@
+"DOTAAbilities" {
+	"plasma_internal_tower"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"					"razor_plasma_field"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"				"1"
+		"MaxLevel"	"3"
+	
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"		
+
+		"precache" {
+			"soundfile" "sounds/weapons/hero/razor/plasma_field.vsnd"
+			"soundfile" "sounds/weapons/hero/razor/plasma_field_impact01.vsnd"
+			"soundfile" "sounds/weapons/hero/razor/plasma_field_impact02.vsnd"
+			"soundfile" "sounds/weapons/hero/razor/plasma_field_impact03.vsnd"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_min"				"100 200 300"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_max"				"200 400 600"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"700 800 900"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"speed"						"200"  // 1.2 second to reach radius
+			}
+		}
+	}
+}
