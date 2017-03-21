@@ -100,31 +100,16 @@ function TableHasValue(val, checkTable)
 	return false
 end
 
-function CheckTrollCombo(trollCombos, oldAbilities, newAbilities)
-	for comboName, combo in pairs(trollCombos) do
-		local check = true
-		for ability,_ in pairs(combo) do
-			local hasAbility = false
-			for k,v in pairs(oldAbilities) do
-				if v == ability then
-					hasAbility = true
-				end
+function CheckTrollCombo(trollCombos, abilities, ability)
+	for k,v in pairs(abilities) do
+		if v ~= nil and trollCombos[v] then
+			if trollCombos[v][ability] then
+				print(v, ability)
+				return true
 			end
-			for k,v in pairs(newAbilities) do
-				if v == ability then
-					hasAbility = true
-				end
-			end
-			if not hasAbility then
-				check = false
-				break
-			end
-		end
-		if check then
-			return true
 		end
 	end
-	
+
 	return false
 end
 
@@ -149,13 +134,13 @@ function PullTowerAbility(towerTable, usedTable, trollCombos, abilityTable,diffe
 			searchParamMin = searchParamMin - maxDiff
 		else searchParamMin = 0 end
 		for k,v in pairs(towerTable) do
-			if not usedTable[k] and not TableHasValue(k, abilityTable) and tonumber(v) <= searchParamMax and tonumber(v) > math.abs(searchParamMin) and not CheckTrollCombo(trollCombos, abilityTable, array) then
-				array[#array+1] = k
+			if not usedTable[k] and not TableHasValue(k, abilityTable) and tonumber(v) <= searchParamMax and tonumber(v) > math.abs(searchParamMin) and not CheckTrollCombo(trollCombos, abilityTable, k) then
+				table.insert(array, k)
 				n = n + 1
 			end
-		end
+		end  
+		if escape >= util:getTableLength(towerTable) then usedTable = {} end -- clears used abilities
 		print(escape)
-		if escape > #towerTable then usedTable = {} end -- clears used abilities
 	end
 	local returnAbility = array[RandomInt(1,n)]
 	return returnAbility
