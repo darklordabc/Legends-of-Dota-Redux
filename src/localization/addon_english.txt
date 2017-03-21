@@ -2895,6 +2895,21 @@
     "DOTA_Tooltip_ability_imba_tower_salvo_salvo_dmg"                                   "BONUS DAMAGE:"
     "DOTA_Tooltip_ability_imba_tower_salvo_salvo_aoe" "DAMAGE RADIUS:"
 
+
+	"DOTA_Tooltip_ability_omniknight_degen_aura_tower"                                   "Degen Aura Tower"
+    "DOTA_Tooltip_ability_omniknight_degen_aura_tower_Description"                       "Greatly degenerates the movement capabilities of nearby enemies. Continuously reduces enemy movement speed while they are inside aura's effect."
+    "DOTA_Tooltip_ability_omniknight_degen_aura_tower_Lore"                              "The holy embodiment of Purist Thunderwrath is enough to weaken those of lesser faith."
+    "DOTA_Tooltip_ability_omniknight_degen_aura_tower_radius"                 "RADIUS:"
+    "DOTA_Tooltip_ability_omniknight_degen_aura_tower_stack_reduction_pct"                 "%MOVEMENT REDUCTION PER SECOND:"
+    "DOTA_Tooltip_ability_omniknight_degen_aura_tower_sticky_time"                 "STICKY DURATION:"
+
+    "DOTA_Tooltip_ability_omniknight_degen_aura_damage_tower"                                   "Degen Aura Tower Attack Damage"
+    "DOTA_Tooltip_ability_omniknight_degen_aura_damage_tower_Description"                       "Greatly degenerates the attack capabilities of nearby enemies. Continuously reduces enemy attack damage while they are inside aura's effect."
+    "DOTA_Tooltip_ability_omniknight_degen_aura_damage_tower_Lore"                              "The holy embodiment of Purist Thunderwrath is enough to weaken those of lesser faith."
+    "DOTA_Tooltip_ability_omniknight_degen_aura_damage_tower_radius"                 "RADIUS:"
+    "DOTA_Tooltip_ability_omniknight_degen_aura_damage_tower_stack_reduction_pct"                 "%DAMAGE REDUCTION PER SECOND:"
+    "DOTA_Tooltip_ability_omniknight_degen_aura_damage_tower_sticky_time"                 "STICKY DURATION:"
+
     /////////////////
     // HERO PERKS
     ////////////////
