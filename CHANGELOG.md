@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 - Removed Strategy time
 - Fixed Tempest Double
 - Added 2 tower abilities: Degen Aura, Degen Aura Attack Damage
+- IMBA Spell Dampener no longer gives spell immunity, nor 100% resistance to magic damage
 
 ## 7.1 - Steam Version
 - Added Dagon and Spawn golem cheat
