@@ -797,12 +797,36 @@ function Util:CreateVoting(votingName, initiator, duration, percent, onaccept, o
         end
         return false
     end
-    local vote_counter = Timers:CreateTimer(duration, function()
-        if not CheckForEnd() and ondecline then
-            ondecline()
+
+    local pauseChecker = Timers:CreateTimer({
+        useGameTime = false,
+        callback = function()
+            if not GameRules:IsGamePaused() then
+                PauseGame(true)
+            end
+            return 1/30
         end
-        self.votings[votingName] = nil
-    end)
+    })
+    local vote_counter = Timers:CreateTimer({
+        useGameTime = false,
+        endTime = duration,
+        callback = function()
+            if ondecline and not CheckForEnd() then
+                ondecline()
+            end
+            --[[for PlayerID = 0, 23 do
+                if not Util:isPlayerBot(PlayerID) then                            
+                    local state = PlayerResource:GetConnectionState(PlayerID)
+                    if (state == 1 or state == 2) and self.votings[votingName].votes[PlayerID] == nil then
+                        CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(PlayerID), "universalVotingsPlayerUpdate", {votingName = votingName, accept = false})
+                    end
+                end
+            end]]
+            Timers:RemoveTimer(pauseChecker)
+            self.votings[votingName] = nil
+            PauseGame(false)
+        end
+    })
     local _onvote = function(pid, accepted)
         self.votings[votingName].votes[pid] = accepted
         CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(pid), "universalVotingsPlayerUpdate", {votingName = votingName, accept = accepted})
@@ -810,7 +834,10 @@ function Util:CreateVoting(votingName, initiator, duration, percent, onaccept, o
             onvote(pid, accepted)
         end
         if CheckForEnd() then
+            Timers:RemoveTimer(pauseChecker)
             Timers:RemoveTimer(vote_counter)
+            self.votings[votingName] = nil
+            PauseGame(false)
         end
     end
     self.votings[votingName] = {
