@@ -3884,7 +3884,7 @@
     "DOTA_Tooltip_ability_lord_of_lightning_holy_wrath_chance_dmg"  "%LIGHTNING STRIKE CHANCE:"
     "DOTA_Tooltip_ability_lord_of_lightning_holy_wrath_damage_per_int"  "INTELLIGENCE MULTIPLIER:"
 
-    "DOTA_Tooltip_ability_lord_of_lightning_holy_wrath_OP"  "Holy Wrath"
+    "DOTA_Tooltip_ability_lord_of_lightning_holy_wrath_OP"  "Holy Wrath OP"
     "DOTA_Tooltip_ability_lord_of_lightning_holy_wrath_OP_Description"  "When Lighnthing Lord or his ally in a 800 radius is attacked, there is a chance that the attacker will be struck by a lightning and take damage. This damage is equal to Lightning Lord's intelligence multiplied by some number. Enemies in a 200 radius around the attacker take half the damage. Primary target gets purged and movement slowed for 1 second. <font color='#70EA72'>No cooldown and has much higher chance to proc.</font>"
     "DOTA_Tooltip_ability_lord_of_lightning_holy_wrath_OP_chance_dmg"   "%LIGHTNING STRIKE CHANCE:"
     "DOTA_Tooltip_ability_lord_of_lightning_holy_wrath_OP_damage_per_int"   "INTELLIGENCE MULTIPLIER:"
