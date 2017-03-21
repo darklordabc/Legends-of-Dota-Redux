@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 - Fixed Tempest Double
 - Added 3 tower abilities: Degen Aura, Degen Aura Attack Damage, Plasma Field
 - IMBA Spell Dampener no longer gives spell immunity, nor 100% resistance to magic damage
+- You can now vote to enable anti rat protection '-antirat' or '-ar'
 
 ## 7.1 - Steam Version
 - Added Dagon and Spawn golem cheat

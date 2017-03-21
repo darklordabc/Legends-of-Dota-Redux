@@ -13,13 +13,16 @@ var commandList = [{
 	}, {
 		title: "voteEnableBuilder",
 		chatCommand: "enablebuilder",
-	}, {
+	},{
+		title: "voteEnableAntiRat",
+		chatCommand: "antirat",
+	},{
 		title: "voteEnableRespawn",
 		chatCommand: "enablerespawn",
 	},{
 		title: "voteEnableKamikaze",
 		chatCommand: "enablekamikaze",
-	}, ]
+	},]
 }, {
 	title: "game",
 	isCheat: true,

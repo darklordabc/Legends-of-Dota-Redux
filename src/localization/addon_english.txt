@@ -1216,6 +1216,9 @@
     "command_menu_command_voteEnableCheat"              "Enable Cheat Mode"
     "command_menu_command_descr_voteEnableCheat"        "Starts a vote to enable cheats mode, requires unanimous agreement among players. Shortcuts: -enablecheats, -ec"
 
+    "command_menu_command_voteEnableAntiRat"              "Enable Anti-Rat Protection"
+    "command_menu_command_descr_voteEnableAntiRat"        "When Anti-Rat is enabled, Tier3 towers cannot be destroyed unless all the outer towers are dead. Shortcuts: -antirat, -ar"
+
     "command_menu_command_voteEnableKamikaze"           "Disable Anti-Kamikaze"
     "command_menu_command_descr_voteEnableKamikaze"        "Anti-Kamikaze is a game mechanic which punishes players that die more than 3 times within 60 seconds. This usually happens when games have instant respawn and players are using a strat where they Kamikaze themselves agaisnt towers and buildings. Shortcuts: -enablekamikaze -ek"
 

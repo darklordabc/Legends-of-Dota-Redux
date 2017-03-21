@@ -59,6 +59,7 @@ function Ingame:init()
     self.voteDisableAntiKamikaze = false
     self.voteDisableRespawnLimit = false
     self.voteEnableBuilder = false
+    self.voteAntiRat = false
     self.origianlRespawnRate = nil
     self.shownCheats = {}
     self.heard = {}
@@ -529,7 +530,11 @@ function Ingame:OnPlayerChat(keys)
     ----------------------------
     -- Debug Commands
     ----------------------------
-    if string.find(text, "-test") then 
+    if string.find(text, "-test") then
+        if OptionManager:GetOption('antiRat') == 0 then
+            OptionManager:SetOption('antiRat', 1) 
+            self:giveAntiRatProtection()
+        end
         GameRules:SendCustomMessage('testing testing 1. 2. 3.', 0, 0)
     elseif string.find(text, "-bot") then
         if string.find(text, "mode") then
@@ -615,7 +620,51 @@ function Ingame:OnPlayerChat(keys)
     ----------------------------
     -- Vote Commands
     ----------------------------
-    if string.find(text, "-enablecheat") or text == "-ec" then 
+    if string.find(text, "-antirat") or text == "-ar" then
+        if OptionManager:GetOption('antiRat') == 0 then
+            Timers:CreateTimer(function()
+                if not PlayerResource:GetPlayer(playerID).antirat then
+                    PlayerResource:GetPlayer(playerID).antirat = true
+                    
+                    local votesReceived = 1
+                    local activePlayers = 1
+                    
+                    for player_ID = 0,(24-1) do                        
+                        if not util:isPlayerBot(player_ID) and PlayerResource:GetPlayer(playerID) ~= PlayerResource:GetPlayer(player_ID) then                            
+                            local state = PlayerResource:GetConnectionState(player_ID)
+                            if state == 1 or state == 2 then
+                                activePlayers = activePlayers + 1
+                                if PlayerResource:GetPlayer(player_ID).antirat then
+                                    votesReceived = votesReceived + 1
+                                end
+                            end
+                        end
+                    end
+
+                    -- In all_allowed map, votes needed is only 50% of players (rounded up)
+                    if GetMapName() == 'all_allowed' then
+                        activePlayers = math.ceil(activePlayers/2)
+                    end
+
+                    if votesReceived >= activePlayers then
+                        OptionManager:SetOption('antiRat', 1) 
+                        self:giveAntiRatProtection()
+                        self.voteAntiRat = true
+                        EmitGlobalSound("Event.CheatEnabled")
+                        GameRules:SendCustomMessage('Enough players voted to enable anti-rat protection. <font color=\'#70EA72\'>Tier 3 towers cannot be destroyed until all other towers are gone.</font>.',0,0)
+                    else
+                        EmitGlobalSound("Event.VoteRecieved")
+                        local votesRequired = activePlayers - votesReceived
+                        GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to enable anti-rat protection. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -antirat (-ar) to vote to enable.',0,0)
+                    end
+
+                    --print(votesRequired)
+
+                end
+            end, DoUniqueString('antirat'), .1)
+        end
+
+    elseif string.find(text, "-enablecheat") or text == "-ec" then 
         Timers:CreateTimer(function()
             if not PlayerResource:GetPlayer(playerID).enableCheats then
                 PlayerResource:GetPlayer(playerID).enableCheats = true
@@ -636,9 +685,10 @@ function Ingame:OnPlayerChat(keys)
                 if votesRequired == 0 then
                     self.voteEnabledCheatMode = true
                     network:updateCheatPanelStatus(self.voteEnabledCheatMode)
-                    EmitGlobalSound("Event.CheatEnabled")
+                    EmitGlobalSound("Event.CheatEnabled") 
                     GameRules:SendCustomMessage('<font color=\'#70EA72\'>Everbody voted to enable cheat mode. Cheat mode enabled</font>.',0,0)
                 else
+                    EmitGlobalSound("Event.VoteRecieved")
                     GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to enable cheat mode. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablecheats (-ec) to vote to enable',0,0)
                 end
 
@@ -670,6 +720,7 @@ function Ingame:OnPlayerChat(keys)
                     EmitGlobalSound("Event.CheatEnabled")
                     GameRules:SendCustomMessage('Everbody voted to disable the anti-Kamikaze mechanic. <font color=\'#70EA72\'>No more peanlty for dying 3 times within 60 seconds</font>.',0,0)
                 else
+                    EmitGlobalSound("Event.VoteRecieved")
                     GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to disable anti-Kamikaze safeguard. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablekamikaze (-ek) to vote to disable.',0,0)
                 end
 
@@ -714,6 +765,7 @@ function Ingame:OnPlayerChat(keys)
                     EmitGlobalSound("Event.CheatEnabled")
                     GameRules:SendCustomMessage('Everbody voted to enable the ingame hero builder. <font color=\'#70EA72\'>You can now change your hero build mid-game</font>.',0,0)
                 else
+                    EmitGlobalSound("Event.VoteRecieved")
                     local votesRequired = activePlayers - votesReceived
                     GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to enable ingame hero builder. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablebuilder (-eb) to vote to enable.',0,0)
                 end
@@ -749,6 +801,7 @@ function Ingame:OnPlayerChat(keys)
                     EmitGlobalSound("Event.CheatEnabled")
                     GameRules:SendCustomMessage('Everbody voted to disable the increasing-spawn-rate mechanic. <font color=\'#70EA72\'>Respawn rates no longer increase after 40 minutes</font>. Respawn rate is now '.. OptionManager:GetOption('respawnModifierPercentage') .. '%.',0,0)
                 else
+                    EmitGlobalSound("Event.VoteRecieved")
                     GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to disable increasing-spawn-rate safeguard. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablerespawn (-er) to vote to disable.',0,0)
                 end
 
@@ -1925,21 +1978,43 @@ function Ingame:loadTrollCombos()
     end
 end
 
+function Ingame:giveAntiRatProtection()
+    local towers = Entities:FindAllByClassname('npc_dota_tower')
+
+    self.destroyedTowers = self.destroyedTowers or {}
+
+    local radiantTowers = 0
+    local direTowers = 0
+    for k,v in pairs(towers) do
+        if not v:IsNull() and v:IsAlive() then
+            if v:GetTeamNumber() == 2 then
+                radiantTowers = radiantTowers + 1
+            else
+                direTowers = direTowers + 1
+            end
+        end
+    end
+    --print(radiantTowers)
+    --print(direTowers)
+    -- If either team's towers is at the point where anti-rat is disabled, do nothing.
+    if direTowers <= 5 or radiantTowers <=5 then
+        return
+    end
+
+    for k,v in pairs(towers) do
+        table.insert(self.destroyedTowers, v)
+        if string.match(v:GetUnitName(), "3") then
+            v:AddAbility("tower_anti_rat"):SetLevel(1)
+        end
+    end
+end
+
 function Ingame:addStrongTowers()
     ListenToGameEvent('game_rules_state_change', function(keys)
         local newState = GameRules:State_Get()
         if newState == DOTA_GAMERULES_STATE_PRE_GAME then
             if OptionManager:GetOption('antiRat') == 1 then
-                local towers = Entities:FindAllByClassname('npc_dota_tower')
-
-                self.destroyedTowers = self.destroyedTowers or {}
-
-                for k,v in pairs(towers) do
-                    table.insert(self.destroyedTowers, v)
-                    if string.match(v:GetUnitName(), "3") then
-                        v:AddAbility("tower_anti_rat"):SetLevel(1)
-                    end
-                end
+                self:giveAntiRatProtection()
             end
         elseif newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
             if OptionManager:GetOption('strongTowers') then
