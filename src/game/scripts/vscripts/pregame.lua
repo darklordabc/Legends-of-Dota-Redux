@@ -110,7 +110,6 @@ function Pregame:init()
     self:sendContributors()
 
     self.chanceToHearMeme = 1
-    self.applyBuildDelay = 0
     self.freeAbility = nil
 
     self.votingStatFlags = {}
@@ -827,13 +826,7 @@ function Pregame:applyBuilds()
 
             if build then
                 local status2,err2 = pcall(function()
-                    
-                    -- TESTING DELAYED APPLYING OF BUILDS TO SEE IF IT REDUCES CRASHES AT START
-                    self.applyBuildDelay = self.applyBuildDelay + 1
-                    Timers:CreateTimer(function()
-                        SkillManager:ApplyBuild(hero, build or {})
-                    end, DoUniqueString('applyBuilds'), self.applyBuildDelay)
-                    
+                    SkillManager:ApplyBuild(hero, build or {})
 
                     buildBackups[playerID] = build
 
