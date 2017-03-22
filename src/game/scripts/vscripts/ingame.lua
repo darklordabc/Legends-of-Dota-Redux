@@ -2076,7 +2076,7 @@ function Ingame:addStrongTowers()
                         local difference = 0 -- will always be 0 anyway
                         tower.strongTowerAbilities = tower.strongTowerAbilities or {}
                         local abName = PullTowerAbility(self.towerList, self.usedRandomTowers, self.banList, tower.strongTowerAbilities, difference, tower:GetLevel() * 10, tower)
-                        if not tower:HasAbility(abName) then
+                        if not tower:HasAbility(abName) and abName then
                             tower:AddAbility(abName):SetLevel(1) 
                             self.usedRandomTowers[abName] = true
                             handledTowers[tower] = true
@@ -2090,7 +2090,7 @@ function Ingame:addStrongTowers()
                             difference = GetTowerAbilityPowerValue(sisterTower, self.towerList) - GetTowerAbilityPowerValue(tower, self.towerList)
                             sisterTower.strongTowerAbilities = sisterTower.strongTowerAbilities or {}
                             local sisterAbName = PullTowerAbility(self.towerList, self.usedRandomTowers, self.banList, tower.strongTowerAbilities, difference, sisterTower:GetLevel() * 10, tower)
-                            if not tower:HasAbility(abName) then
+                            if not tower:HasAbility(abName) and abName then
                                 sisterTower:AddAbility(sisterAbName):SetLevel(1)
                                 self.usedRandomTowers[sisterAbName] = true
                                 handledTowers[sisterTower] = true
@@ -2202,9 +2202,11 @@ function Ingame:UpgradeTower( tower )
 	end
 	tower.strongTowerAbilities = tower.strongTowerAbilities or {}
 	local towerAbName = PullTowerAbility(self.towerList, self.usedRandomTowers, self.banList, tower.strongTowerAbilities, difference, tower:GetLevel() * 10, tower)
-	tower:AddAbility(towerAbName):SetLevel(1)
-	table.insert(tower.strongTowerAbilities, towerAbName)
-	self.usedRandomTowers[towerAbName] = true
+	if towerAbName then
+        tower:AddAbility(towerAbName):SetLevel(1)
+        table.insert(tower.strongTowerAbilities, towerAbName)
+        self.usedRandomTowers[towerAbName] = true
+    end
 end
 
 function Ingame:initGlobalMutator()
