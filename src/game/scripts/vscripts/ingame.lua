@@ -530,12 +530,27 @@ function Ingame:OnPlayerChat(keys)
     ----------------------------
     -- Debug Commands
     ----------------------------
+
+    
     if string.find(text, "-test") then
         if OptionManager:GetOption('antiRat') == 0 then
             OptionManager:SetOption('antiRat', 1) 
             self:giveAntiRatProtection()
         end
         GameRules:SendCustomMessage('testing testing 1. 2. 3.', 0, 0)
+    elseif string.find(text, "gg") then
+        if OptionManager:GetOption('memesRedux') == 1 then
+            if self.heard["gg"] ~= true then
+                
+                EmitGlobalSound("Memes.GG")
+                self.heard["gg"] = true
+
+                Timers:CreateTimer( function()
+                    self.heard["gg"] = false
+                end, DoUniqueString('ggAgain'), 5)
+
+            end
+        end
     elseif string.find(text, "-bot") then
         if string.find(text, "mode") then
             if not self.botsInLateGameMode then 
