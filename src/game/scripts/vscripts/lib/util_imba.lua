@@ -160,14 +160,12 @@ function PullTowerAbility(towerTable, usedTable, trollCombos, abilityTable,diffe
 		if escape >= util:getTableLength(towerTable) then usedTable = {} end -- clears used abilities
 		-- print(escape)
 	end
-	local returnAbility = array[RandomInt(1,n)]
-	-- print("first: ", returnAbility)
-	while CheckTrollCombo(tower, returnAbility, trollCombos) do
-		returnAbility = array[RandomInt(1,n)]
-		-- print("attempt: ", returnAbility)
+	ShuffleArray(array)
+	for k,v in pairs(array) do
+		if not CheckTrollCombo(tower, v, trollCombos) then
+			return v
+		end
 	end
-	-- print("final: ", returnAbility)
-	return returnAbility
 end
 
 function GetTowerAbilityPowerValue(tower, kv)
