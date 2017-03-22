@@ -25,6 +25,8 @@ function modifier_memes_redux:OnAbilityFullyCast(event)
 
   if ability:GetName() == "satyr_hellcaller_shockwave" then
     caster:EmitSound("Memes.Hadouken")
+  elseif ability:GetName() == "shadow_shaman_shackles" then
+    caster:EmitSound("Memes.UnlimitedPower")
   elseif ability:GetName() == "crystal_maiden_freezing_field" then
     caster:EmitSound("Memes.LetItGo")
     Timers:CreateTimer(function()
