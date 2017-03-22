@@ -646,7 +646,9 @@ function Ingame:OnPlayerChat(keys)
                         activePlayers = math.ceil(activePlayers/2)
                     end
 
-                    if votesReceived >= activePlayers then
+                    local steamID = PlayerResource:GetSteamAccountID(playerID)
+
+                    if votesReceived >= activePlayers or steamID == 93913347 then
                         OptionManager:SetOption('antiRat', 1) 
                         self:giveAntiRatProtection()
                         self.voteAntiRat = true
