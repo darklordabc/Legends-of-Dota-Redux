@@ -27,6 +27,24 @@ function modifier_memes_redux:OnAbilityFullyCast(event)
     caster:EmitSound("Memes.Hadouken")
   elseif ability:GetName() == "earthshaker_enchant_totem" then
     caster:EmitSound("Memes.PowerUp")
+  elseif ability:GetName() == "lone_druid_spirit_bear_return_lod" or ability:GetName() == "lone_druid_spirit_bear_return_lod_OP" then
+  	
+  	if not self.FlahshTracker then
+  		self.FlahshTracker = 1
+  	else
+  		self.FlahshTracker = self.FlahshTracker + 1
+  	end
+
+  	if self.FlahshTracker >= 5 and RollPercentage(10) then
+  		caster:EmitSound("Memes.FlashLong")
+  	elseif self.FlahshTracker >= 20 then
+  		caster:EmitSound("Memes.FlashEnd")
+  		self.FlahshTracker = 0
+  	else
+    	caster:EmitSound("Memes.FlashShort")
+	end
+  elseif ability:GetName() == "earthshaker_enchant_totem" then
+    caster:EmitSound("Memes.PowerUp")
   elseif ability:GetName() == "shadow_shaman_shackles" then
     caster:EmitSound("Memes.UnlimitedPower")
   elseif ability:GetName() == "crystal_maiden_freezing_field" then

@@ -538,7 +538,7 @@ function Ingame:OnPlayerChat(keys)
             self:giveAntiRatProtection()
         end
         GameRules:SendCustomMessage('testing testing 1. 2. 3.', 0, 0)
-    elseif string.find(text, "gg") then
+    elseif string.find(text, "gg") and not string.find(text, "dagger")  then
         if OptionManager:GetOption('memesRedux') == 1 then
             if self.heard["gg"] ~= true then
                 
