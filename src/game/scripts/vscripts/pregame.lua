@@ -1950,12 +1950,8 @@ function Pregame:loadTrollCombos()
 
     -- Loop over the banned combinations
     for skillName, group in pairs(tempBanList.BannedCombinations) do
-        if string.match(skillName, "tower_") then
-            -- self.towerTrollCombos[skillName] = group
-        else
-            for skillName2,_ in pairs(group) do
-                banCombo(skillName, skillName2)
-            end
+        for skillName2,_ in pairs(group) do
+            banCombo(skillName, skillName2)
         end
     end
 

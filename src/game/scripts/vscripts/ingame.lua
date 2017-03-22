@@ -1969,9 +1969,16 @@ function Ingame:loadTrollCombos()
     end
 
     -- Loop over the banned combinations
-    for skillName, group in pairs(tempBanList.BannedCombinations) do
-        if string.match(skillName, "tower_") then
-            for skillName2,_ in pairs(group) do
+    for skillName, group in pairs(tempBanList.BannedTowerCombinations) do
+        for skillName2,_ in pairs(group) do
+            banCombo(skillName, skillName2)
+        end
+    end
+
+    -- Ban the group bans
+    for _,group in pairs(tempBanList.BannedTowerGroups) do
+        for skillName,__ in pairs(group) do
+            for skillName2,___ in pairs(group) do
                 banCombo(skillName, skillName2)
             end
         end
@@ -2037,7 +2044,7 @@ function Ingame:addStrongTowers()
                         -- Main ability handling
                         local difference = 0 -- will always be 0 anyway
                         tower.strongTowerAbilities = tower.strongTowerAbilities or {}
-                        local abName = PullTowerAbility(self.towerList, self.usedRandomTowers, self.banList, tower.strongTowerAbilities, difference, tower:GetLevel() * 10)
+                        local abName = PullTowerAbility(self.towerList, self.usedRandomTowers, self.banList, tower.strongTowerAbilities, difference, tower:GetLevel() * 10, tower)
                         if not tower:HasAbility(abName) then
                             tower:AddAbility(abName):SetLevel(1) 
                             self.usedRandomTowers[abName] = true
@@ -2051,7 +2058,7 @@ function Ingame:addStrongTowers()
                             -- Sister ability handling
                             difference = GetTowerAbilityPowerValue(sisterTower, self.towerList) - GetTowerAbilityPowerValue(tower, self.towerList)
                             sisterTower.strongTowerAbilities = sisterTower.strongTowerAbilities or {}
-                            local sisterAbName = PullTowerAbility(self.towerList, self.usedRandomTowers, self.banList, tower.strongTowerAbilities, difference, sisterTower:GetLevel() * 10)
+                            local sisterAbName = PullTowerAbility(self.towerList, self.usedRandomTowers, self.banList, tower.strongTowerAbilities, difference, sisterTower:GetLevel() * 10, tower)
                             if not tower:HasAbility(abName) then
                                 sisterTower:AddAbility(sisterAbName):SetLevel(1)
                                 self.usedRandomTowers[sisterAbName] = true
@@ -2163,7 +2170,7 @@ function Ingame:UpgradeTower( tower )
 		local difference = GetEquivalentTowerAbilityPowerValue(sisterTower, self.towerList, #tower.strongTowerAbilities) - GetTowerAbilityPowerValue(tower, self.towerList)
 	end
 	tower.strongTowerAbilities = tower.strongTowerAbilities or {}
-	local towerAbName = PullTowerAbility(self.towerList, self.usedRandomTowers, self.banList, tower.strongTowerAbilities, difference, tower:GetLevel() * 10)
+	local towerAbName = PullTowerAbility(self.towerList, self.usedRandomTowers, self.banList, tower.strongTowerAbilities, difference, tower:GetLevel() * 10, tower)
 	tower:AddAbility(towerAbName):SetLevel(1)
 	table.insert(tower.strongTowerAbilities, towerAbName)
 	self.usedRandomTowers[towerAbName] = true

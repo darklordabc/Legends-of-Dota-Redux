@@ -100,20 +100,38 @@ function TableHasValue(val, checkTable)
 	return false
 end
 
-function CheckTrollCombo(trollCombos, abilities, ability)
-	for k,v in pairs(abilities) do
-		if v ~= nil and trollCombos[v] then
-			if trollCombos[v][ability] then
-				print(v, ability)
-				return true
-			end
+function CheckTrollCombo(tower, newAbility, banList)
+	local build = {}
+	for i=0,23 do
+		local ab = tower:GetAbilityByIndex(i)
+		if ab then
+			table.insert(build, ab:GetName())
+			-- print("existing: ", ab:GetName())
 		end
 	end
 
-	return false
+	table.insert(build, newAbility)
+	-- print("existing+: ", newAbility)
+
+    for i=1,util:getTableLength(build) do
+        local ab1 = build[i]
+        if ab1 ~= nil and banList[ab1] then
+            for j=(i+1),util:getTableLength(build) do
+                local ab2 = build[j]
+
+                if ab2 ~= nil and banList[ab1][ab2] then
+                    -- Ability should be banned
+
+                    return true, ab1, ab2
+                end
+            end
+        end
+    end
+
+    return false
 end
 
-function PullTowerAbility(towerTable, usedTable, trollCombos, abilityTable,difference, baseMax)
+function PullTowerAbility(towerTable, usedTable, trollCombos, abilityTable,difference, baseMax,tower)
 	local array = {}
 	local n = 0
 	local maxDiff = 5 -- Change this to narrow search parameters
@@ -134,15 +152,21 @@ function PullTowerAbility(towerTable, usedTable, trollCombos, abilityTable,diffe
 			searchParamMin = searchParamMin - maxDiff
 		else searchParamMin = 0 end
 		for k,v in pairs(towerTable) do
-			if not usedTable[k] and not TableHasValue(k, abilityTable) and tonumber(v) <= searchParamMax and tonumber(v) > math.abs(searchParamMin) and not CheckTrollCombo(trollCombos, abilityTable, k) then
+			if not usedTable[k] and not TableHasValue(k, abilityTable) and tonumber(v) <= searchParamMax and tonumber(v) > math.abs(searchParamMin) then
 				table.insert(array, k)
 				n = n + 1
 			end
 		end  
 		if escape >= util:getTableLength(towerTable) then usedTable = {} end -- clears used abilities
-		print(escape)
+		-- print(escape)
 	end
 	local returnAbility = array[RandomInt(1,n)]
+	-- print("first: ", returnAbility)
+	while CheckTrollCombo(tower, returnAbility, trollCombos) do
+		returnAbility = array[RandomInt(1,n)]
+		-- print("attempt: ", returnAbility)
+	end
+	-- print("final: ", returnAbility)
 	return returnAbility
 end
 
