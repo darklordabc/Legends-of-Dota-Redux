@@ -439,7 +439,7 @@ function Pregame:init()
         OptionManager:SetOption('banningTime', 30)
 		self:setOption('lodOptionBalanceMode', 0, true)
 		self:setOption('lodOptionAdvancedHidePicks', 0, true)
-		self:setOption('lodOptionCommonMaxUlts', 6, true)
+		self:setOption('lodOptionCommonMaxUlts', 2, true)
 		self:setOption('lodOptionGameSpeedRespawnTimePercentage', 25, true)
 		self.useOptionVoting = true
         self.optionVoteSettings.doubledAbilityPoints = nil
