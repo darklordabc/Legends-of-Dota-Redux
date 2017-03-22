@@ -1071,6 +1071,8 @@
     "heroStats_visionDay"                           "DAY VISION"
     "heroStats_visionNight"                         "NIGHT VISION"
 
+    "imbalance_notification"                              "Teams are imbalanced. Advantaged teams gain 10 seconds extra respawn per extra player, disadvantaged teams gain 10 seconds less respawn time."
+
     // Team switching
     "teamSwitch_title"                              "Switch Teams"
     "teamSwitch_warning"                            "Teams have become unbalanced. Press switch to nominate yourself to switch to the enemy side."

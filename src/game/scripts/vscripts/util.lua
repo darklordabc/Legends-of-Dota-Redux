@@ -695,6 +695,16 @@ function Util:isSinglePlayerMode()
     return true
 end
 
+function Util:isCoop()
+    local RadiantHumanPlayers = self:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS)
+    local DireHumanPlayers = self:GetActiveHumanPlayerCountForTeam(DOTA_TEAM_BADGUYS)
+    if RadiantHumanPlayers == 0 or DireHumanPlayers == 0 then
+        return true
+    else
+        return false
+    end
+end
+
 function CDOTA_BaseNPC:HasAbilityWithFlag(flag)
     for i = 0, 23 do
 		local ability = self:GetAbilityByIndex(i)

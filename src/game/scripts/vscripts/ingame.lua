@@ -1644,6 +1644,32 @@ function Ingame:handleRespawnModifier()
                             -- Anti-Kamikaze Mechanic END
                             -------
 
+                            -------
+                            -- Imbalanced-Comepenstation Mechanic Start
+                            -------
+                            if not util:isCoop() then
+                                local herosTeam = util:GetActivePlayerCountForTeam(hero:GetTeamNumber())
+                                local opposingTeam = util:GetActivePlayerCountForTeam(otherTeam(hero:GetTeamNumber()))
+                                local difference = herosTeam - opposingTeam
+                                
+                                -- 10 seconds per player difference, if addedTime is positive, it means the player team has an advantage, if its a negative it means they are disadvantaged
+                                local addedTime = difference * 10
+                                timeLeft = timeLeft + addedTime
+                                if timeLeft < 1 then
+                                    timeLeft = 1
+                                end   
+
+                                -- Display message once, informing players of balance mechanic in use
+                                if addedTime ~= 0 and not self.heard["imbalancedTeams"] then
+                                    GameRules:SendCustomMessage("#imbalance_notification", 0, 0) 
+                                    self.heard["imbalancedTeams"] = true
+                                end   
+                            end
+
+                            -------
+                            -- Imbalanced-Comepenstation Mechanic End
+                            ------
+
                             hero:SetTimeUntilRespawn(timeLeft)
 
                             -- Give 322 gold if enabled

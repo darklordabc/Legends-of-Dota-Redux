@@ -110,6 +110,7 @@ function Pregame:init()
     self:sendContributors()
 
     self.chanceToHearMeme = 1
+    self.applyBuildDelay = 0
     self.freeAbility = nil
 
     self.votingStatFlags = {}
@@ -161,7 +162,7 @@ function Pregame:init()
         doubledAbilityPoints = {
             onselected = function(self)
                 self:setOption('lodOptionBalanceModePoints', 180, true)
-                if not self:isCoop() then
+                if not util:isCoop() then
                     self:setOption('lodOptionBanningUseBanList', 1, true)
                 end   
                 if mapName == 'all_allowed' then
@@ -438,7 +439,7 @@ function Pregame:init()
         OptionManager:SetOption('banningTime', 30)
 		self:setOption('lodOptionBalanceMode', 0, true)
 		self:setOption('lodOptionAdvancedHidePicks', 0, true)
-		self:setOption('lodOptionCommonMaxUlts', 6, true)
+		self:setOption('lodOptionCommonMaxUlts', 2, true)
 		self:setOption('lodOptionGameSpeedRespawnTimePercentage', 25, true)
 		self.useOptionVoting = true
         self.optionVoteSettings.doubledAbilityPoints = nil
@@ -826,7 +827,13 @@ function Pregame:applyBuilds()
 
             if build then
                 local status2,err2 = pcall(function()
-                    SkillManager:ApplyBuild(hero, build or {})
+                    
+                    -- TESTING DELAYED APPLYING OF BUILDS TO SEE IF IT REDUCES CRASHES AT START
+                    self.applyBuildDelay = self.applyBuildDelay + 1
+                    Timers:CreateTimer(function()
+                        SkillManager:ApplyBuild(hero, build or {})
+                    end, DoUniqueString('applyBuilds'), self.applyBuildDelay)
+                    
 
                     buildBackups[playerID] = build
 
@@ -956,7 +963,7 @@ function Pregame:onThink()
         if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
             -- Finish the option selection
             self:finishOptionSelection()
-            if self:isCoop() then
+            if util:isCoop() then
                 print("vote ended")
                 self.enabledBots = true
                 self.desiredRadiant = self.desiredRadiant or 5
@@ -2267,7 +2274,7 @@ function Pregame:initOptionSelector()
         lodOptionBanningUseBanList = function(value)
                 Timers:CreateTimer(function()
                     -- Only allow if all players on one side (i.e. coop or singleplayer)                  
-                    if not self:isCoop() and GetMapName() ~= "all_allowed" then
+                    if not util:isCoop() and GetMapName() ~= "all_allowed" then
                         self:setOption('lodOptionBanningUseBanList', 1, true)
                     end
 
@@ -2488,7 +2495,7 @@ function Pregame:initOptionSelector()
         -- Advanced -- Enable Hero Abilities
         lodOptionAdvancedHeroAbilities = function(value)
             -- Disables IMBA Abilities
-            if value == 1 and not self:isCoop() then 
+            if value == 1 and not util:isCoop() then 
                 self:setOption('lodOptionAdvancedImbaAbilities', 0, true)
             end
 
@@ -2497,7 +2504,7 @@ function Pregame:initOptionSelector()
 
         -- Advanced -- Enable Neutral Abilities
         lodOptionAdvancedNeutralAbilities = function(value)
-            if value == 1 and not self:isCoop() then 
+            if value == 1 and not util:isCoop() then 
                 self:setOption('lodOptionAdvancedImbaAbilities', 0, true)
             end
 
@@ -2506,7 +2513,7 @@ function Pregame:initOptionSelector()
 
         -- Advanced -- Enable Custom Abilities
         lodOptionAdvancedCustomSkills = function(value)
-            if value == 1 and not self:isCoop() then 
+            if value == 1 and not util:isCoop() then 
                 self:setOption('lodOptionAdvancedImbaAbilities', 0, true)
             end
 
@@ -2516,7 +2523,7 @@ function Pregame:initOptionSelector()
         -- Advanced -- Enable IMBA Abilities
         lodOptionAdvancedImbaAbilities = function(value)
         -- If you use IMBA abilities, you cannot use any other major category of abilities.
-            if value == 1 and not self:isCoop() then 
+            if value == 1 and not util:isCoop() then 
                 self:setOption('lodOptionAdvancedHeroAbilities', 0, true)
                 self:setOption('lodOptionAdvancedNeutralAbilities', 0, true)
                 self:setOption('lodOptionAdvancedCustomSkills', 0, true)
@@ -3483,7 +3490,7 @@ function Pregame:processOptions()
     end
 
     -- Only allow single player abilities if all players on one side (i.e. coop or singleplayer)
-    if not self:isCoop() and GetMapName() ~= "all_allowed" then
+    if not util:isCoop() and GetMapName() ~= "all_allowed" then
         self:setOption('lodOptionBanningUseBanList', 1, true)
     end
 
@@ -6147,19 +6154,6 @@ function Pregame:preventCamping()
                 fountain:AddItem(item)
             end
         end
-    end
-end
-
-
--- Prevents Fountain Camping
-function Pregame:isCoop()
-    -- Should we prevent fountain camping?
-    local RadiantHumanPlayers = util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS)
-    local DireHumanPlayers = util:GetActiveHumanPlayerCountForTeam(DOTA_TEAM_BADGUYS)
-    if RadiantHumanPlayers == 0 or DireHumanPlayers == 0 then
-        return true
-    else
-        return false
     end
 end
 
