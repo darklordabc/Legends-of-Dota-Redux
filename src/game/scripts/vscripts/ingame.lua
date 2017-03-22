@@ -1660,9 +1660,14 @@ function Ingame:handleRespawnModifier()
                                 end   
 
                                 -- Display message once, informing players of balance mechanic in use
-                                if addedTime ~= 0 and not self.heard["imbalancedTeams"] then
+                                if addedTime ~= 0 and self.heard["imbalancedTeams"] ~= true then
                                     GameRules:SendCustomMessage("#imbalance_notification", 0, 0) 
                                     self.heard["imbalancedTeams"] = true
+                                    
+                                    -- Show the warning again after 10 minutes
+                                    Timers:CreateTimer( function()
+                                        self.heard["imbalancedTeams"] = false
+                                    end, DoUniqueString('showNotifAgain'), 600)
                                 end   
                             end
 
