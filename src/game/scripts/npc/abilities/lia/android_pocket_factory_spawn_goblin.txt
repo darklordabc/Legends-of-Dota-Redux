@@ -9,7 +9,7 @@
 		"AbilitySpecial" {
 			"01" {
 				"var_type" "FIELD_INTEGER"
-				"goblin_duration" "10"
+				"goblin_duration" "30"
 			}
 
 			"02" {
