@@ -21,11 +21,11 @@
 #base "abilities\aa\angel_arena_storm.txt"
 #base "abilities\aa\angel_arena_summon_hawk.txt"
 #base "abilities\aa\angel_arena_transmute.txt"
-#base "abilities\aa\angel_arena_tome_lvlup.txt" 
+#base "abilities\aa\angel_arena_tome_lvlup.txt"
 #base "abilities\aa\angel_arena_tome_gods.txt"
 #base "abilities\aa\angel_arena_tome_int.txt"
-#base "abilities\aa\angel_arena_tome_str.txt" 
-#base "abilities\aa\angel_arena_tome_agi.txt" 
+#base "abilities\aa\angel_arena_tome_str.txt"
+#base "abilities\aa\angel_arena_tome_agi.txt"
 #base "abilities\aa\angel_arena_tome_med.txt"
 #base "abilities\aa\angel_arena_tome_lvlup_op.txt" 
 #base "abilities\aa\angel_arena_tome_gods_op.txt"
@@ -41,7 +41,7 @@
 #base "abilities\oneshot\benneng.txt"
 #base "abilities\oneshot\sight.txt"
 #base "abilities\oneshot\zhanhun.txt"
-#base "abilities\oneshot\zhanhun_op.txt" 
+#base "abilities\oneshot\zhanhun_op.txt"
 #base "abilities\overflow\eat_tree_eldri.txt"
 #base "abilities\overflow\blink_support.txt"
 #base "abilities\overflow\dark_blade.txt"
@@ -96,6 +96,7 @@
 #base "abilities\custom\keeper_of_the_light_innate.txt"
 #base "abilities\custom\zuus_lightning_bolt_global.txt"
 #base "abilities\custom\zuus_thundergods_vengeance.txt"
+#base "abilities\dota\meepo_poof_redux.txt"
 #base "abilities\dnd\makecatapults_lua.txt"
 #base "abilities\dnd\makemeleecreeps_lua.txt"
 #base "abilities\dnd\makerangedcreeps_lua.txt"
@@ -198,7 +199,7 @@
 #base "abilities\dusk\paragon_tranquility_seal.txt"
 #base "abilities\dusk\ancient_last_resort.txt"
 #base "abilities\dusk\ancient_defensive_wave.txt"
-#base "abilities\dusk\self_explosion.txt" 
+#base "abilities\dusk\self_explosion.txt"
 #base "abilities\ebf\ebf_clinkz_trickshot.txt"
 #base "abilities\ebf\ebf_clinkz_trickshot_passive.txt"
 #base "abilities\ebf\ebf_clinkz_trickshot_passive_ranged.txt"
@@ -815,5 +816,5 @@
 #base "abilities\unpickable\treant_eyes_in_the_forest_notification.txt"
 
 "DOTAAbilities" {
-	
+
 }
