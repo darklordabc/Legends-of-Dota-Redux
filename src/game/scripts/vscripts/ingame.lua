@@ -964,20 +964,16 @@ function Ingame:OnPlayerChat(keys)
         elseif string.find(text, "-addability") or string.find(text, "-giveability") or string.find(text, "-add") then 
             -- Give user 1 level, unless they specify a number after
             Timers:CreateTimer(function()  
-                local splitedText = util:split(text, " ")       
-                local validAbility = false
-                if splitedText[2] then    
-                    local oldAbList = LoadKeyValues('scripts/kv/abilities.kv')
-                    local skills = oldAbList.skills
-                    for tabName, tabList in pairs(skills) do
-                        for abilityName,abilityGroup in pairs(tabList) do
-                            print(abilityName)
-                            if string.find(abilityName, splitedText[2]) then
-                                splitedText[2] = abilityName
-                            end
-                        end
+              local splitedText = util:split(text, " ")       
+              if splitedText[2] then 
+                local absCustom = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
+                for k,v in pairs(absCustom) do
+                    --print(k)
+                    if string.find(k, splitedText[2]) then
+                      splitedText[2] = k
                     end
-                    hero:AddAbility(splitedText[2])
+                end
+                hero:AddAbility(splitedText[2])
                     local findAbility = hero:FindAbilityByName(splitedText[2])
                     if findAbility then validAbility = true end
                 end
