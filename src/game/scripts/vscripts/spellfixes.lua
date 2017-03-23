@@ -1,4 +1,3 @@
-local OptionManager = require('optionmanager')
 local util = require('util')
 local Timers = require('easytimers')
 

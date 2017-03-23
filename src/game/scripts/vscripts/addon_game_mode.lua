@@ -17,6 +17,9 @@ require('lib/StatUploaderFunctions')
 -- Precache obstacles
 require('obstacles')
 
+-- Option storage
+require('optionmanager')
+
 -- Precaching
 function Precache(context)
     local soundList = LoadKeyValues('scripts/kv/sounds.kv')

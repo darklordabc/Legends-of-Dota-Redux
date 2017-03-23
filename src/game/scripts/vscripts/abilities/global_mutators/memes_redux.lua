@@ -1,5 +1,4 @@
 local Timers = require('easytimers')
-local OptionManager = require('optionmanager')
 
 --------------------------------------------------------------------------------------------------------
 --    Modifier: modifier_memes_redux        
