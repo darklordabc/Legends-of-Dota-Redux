@@ -192,6 +192,7 @@ function Pregame:init()
     GameRules:SetHeroSelectionTime(0)   -- Hero selection is done elsewhere, hero selection should be instant
     GameRules:GetGameModeEntity():SetBotThinkingEnabled(true)
     GameRules:SetStrategyTime( 0 )
+    GameRules:SetShowcaseTime( 0 )
     -- GameRules:GetGameModeEntity():SetCustomGameForceHero("npc_dota_hero_wisp")
 
     -- Rune fix
@@ -4144,6 +4145,11 @@ function Pregame:onPlayerSelectHero(eventSourceIndex, args)
     end
     -- Add skill to hero if needed
     local hero = args.heroName
+    -- Play Meme sounds
+    if hero and hero == "npc_dota_hero_juggernaut" and OptionManager:GetOption("memesRedux") == 1 then
+        EmitGlobalSound("Memes.Swords")
+    end
+
     if hero and GameRules.perks["heroAbilityPairs"][hero] then
         -- Do not try to learn it twice
         local hasAbil = false
@@ -4919,7 +4925,8 @@ end
 function Pregame:PlayAlert(playerID)
     local sound = self:getRandomSound("game_error_alert")
     if OptionManager:GetOption("memesRedux") == 1 then
-        EmitAnnouncerSoundForPlayer("Memes.Denied", playerID)
+        --EmitAnnouncerSoundForPlayer("Memes.Denied", playerID)
+        EmitGlobalSound("Memes.Denied")
     else
         EmitAnnouncerSoundForPlayer(sound, playerID)
     end
@@ -5397,7 +5404,9 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                 -- Network it
                 network:setSelectedAbilities(playerID, build)
                 if OptionManager:GetOption("memesRedux") == 1 then
-                    if abilityName == "alchemist_goblins_greed" or abilityName == "angel_arena_transmute" then
+                    if abilityName == "juggernaut_blade_dance" or abilityName == "juggernaut_blade_fury" or abilityName == "juggernaut_omni_slash"  then
+                        EmitGlobalSound("Memes.Swords")
+                    elseif abilityName == "alchemist_goblins_greed" or abilityName == "angel_arena_transmute" then
                         EmitGlobalSound("Memes.Rich")
                     elseif abilityName == "ebf_clinkz_trickshot_passive" or abilityName == "imba_tower_multihit" or
                         abilityName == "imba_tower_essence_drain" or

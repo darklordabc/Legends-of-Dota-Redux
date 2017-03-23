@@ -25,6 +25,10 @@ function modifier_memes_redux:OnAbilityFullyCast(event)
 
   if ability:GetName() == "satyr_hellcaller_shockwave" then
     caster:EmitSound("Memes.Hadouken")
+  elseif ability:GetName() == "juggernaut_omni_slash" then
+    caster:EmitSound("Memes.OmniSwords")
+  elseif ability:GetName() == "earthshaker_enchant_totem" then
+    caster:EmitSound("Memes.PowerUp")
   elseif ability:GetName() == "earthshaker_enchant_totem" then
     caster:EmitSound("Memes.PowerUp")
   elseif ability:GetName() == "lone_druid_spirit_bear_return_lod" or ability:GetName() == "lone_druid_spirit_bear_return_lod_OP" then
@@ -256,12 +260,14 @@ function memesModifierFilter(filterTable)
     end, DoUniqueString("darude"), 0.5)
   elseif modifierName == "modifier_tiny_toss" and RollPercentage(35) then
     parent:EmitSound("Memes.Fly")
+  elseif modifierName == "modifier_juggernaut_blade_fury" then
+    parent:EmitSound("Memes.OmniSwords")
   elseif modifierName == "modifier_monkey_king_unperched_stunned" then
     parent:EmitSound("Memes.TreeFall")
   end
 
   -- Returning the filterTable
-  return filterTable
+  return filterTable 
 end
 
 function memesDamageFilter(filterTable)
