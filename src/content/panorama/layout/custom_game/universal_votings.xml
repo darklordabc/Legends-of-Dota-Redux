@@ -20,7 +20,7 @@
                         </Panel>
                         <Label id="lineLabel" text='would like to switch with'/>
                     </Panel>
-                    <Label id="descriptionLabel" text='description'/>
+                    <Label html="true" id="descriptionLabel" text='description'/>
                     <Panel id='choice' class='choice' >
                         <Panel class='isolation' >
                             <Button id="acceptButton" class='accept'>
