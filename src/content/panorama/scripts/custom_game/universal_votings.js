@@ -1,5 +1,7 @@
 var VotingCallbacks = {};
 
+var hud, label;
+
 function createVoting(playerInfo, votingName, votingTitle, votingLine, acceptCallback, declineCallback, voteDuration) {
     var panel = $.CreatePanel("Panel", $.GetContextPanel(), "voting_" + votingName);
     panel.BLoadLayoutSnippet('Voting');
@@ -7,6 +9,7 @@ function createVoting(playerInfo, votingName, votingTitle, votingLine, acceptCal
     panel.FindChildTraverse("titleLabel").text = $.Localize(votingTitle);
     panel.FindChildTraverse("lineLabel").html = true;
     panel.FindChildTraverse("lineLabel").text = playerInfo.player_name + " " + $.Localize(votingLine);
+    panel.FindChildTraverse("descriptionLabel").text = $.Localize(votingLine + "Descr");
 
     panel.FindChildTraverse("picture").SetImage("file://{images}/custom_game/votings/" + votingName + ".png");
 
@@ -36,6 +39,8 @@ function createVoting(playerInfo, votingName, votingTitle, votingLine, acceptCal
         panel.FindChildTraverse("vote_timer").RemoveClass('shrink');
 
         panel.DeleteAsync(10);
+
+        label.visible = true;
     });
 
     panel.SetHasClass("dialog_hidden", false);
@@ -56,7 +61,11 @@ function createVoting(playerInfo, votingName, votingTitle, votingLine, acceptCal
             panel.RemoveClass(accepted ? 'accepted' : 'declined');
         })
         panel.DeleteAsync(10);
+
+        label.visible = true;
     }
+
+    label.visible = false;
 
     return panel;
 }
@@ -80,6 +89,12 @@ function halt_transition(el, c) {
 }
 
 (function () {
+    hud = $.GetContextPanel().GetParent();
+    while(hud.id != "Hud")
+        hud = hud.GetParent();
+
+    label = hud.FindChildTraverse("PausedLabel");
+
     GameEvents.Subscribe('lodCreateUniversalVoting', function(data) {
         createVoting(Game.GetPlayerInfo(data.initiator), data.title, 'lodVotingTitle', data.title + 'Line', function() {}, function() {}, data.duration);
     })

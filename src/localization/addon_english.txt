@@ -490,9 +490,13 @@
 
     "lodVotingTitle"                                "Option Voting"
     "lodVotingEnableCheatModeLine"                  "wants to enable <font color='#70EA72'>cheat mode</font>"
+    "lodVotingEnableCheatModeLineDescr"             "<font color='#70EA72'>cheat mode</font> description"
     "lodVotingEnableKamikazeLine"                   "wants to disable <font color='#70EA72'>Anti-Kamikaze</font> mechanic"
+    "lodVotingEnableKamikazeLineDescr"              "<font color='#70EA72'>Anti-Kamikaze</font> description"
     "lodVotingEnableHeroBuilderLine"                "wants to enable <font color='#70EA72'>ingame hero builder</font>"
+    "lodVotingEnableHeroBuilderLineDescr"           "<font color='#70EA72'>ingame hero builder</font> description"
     "lodVotingEnableRespawnLine"                    "wants to disable <font color='#70EA72'>increasing-spawn-rate</font> mechanic"
+    "lodVotingEnableRespawnLineDescr"               "<font color='#70EA72'>increasing-spawn-rate</font> description"
 
 	// Minimap Menu and In-Game Hero Builder
     "minimapMenuCredits"                            "Credits"
