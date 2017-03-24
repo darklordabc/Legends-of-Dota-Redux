@@ -6,8 +6,6 @@
         <include src="file://{resources}/scripts/ModDota/LocalStorage.js" />
 
         <include src="file://{resources}/scripts/custom_game/ui_hack.js" />
-
-        <include src="file://{resources}/scripts/custom_game/universal_votings.js" />
     </scripts>
 
     <script>
@@ -45,7 +43,7 @@
 
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/top_scoreboard.xml" />
 
-        <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/ingame_votes.xml" />
+        <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/universal_votings.xml" />
         <!-- Textures compiling stuff 
             <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/dummy.xml" />
             -->
