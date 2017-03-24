@@ -8,6 +8,9 @@
 	</scripts>
 	<Panel class="base" hittest="false">
         <!-- <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableCheatMode.png"></Image> -->
+        <!-- <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableHeroBuilder.png"></Image> -->
+        <!-- <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableKamikaze.png"></Image> -->
+         <!-- <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableRespawn.png"></Image> -->
         <Panel class='dialog'>
             <Label class='title' text='TEAM SWITCH' id="titleLabel" />
             <Panel class='bar_border' >
