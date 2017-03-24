@@ -1,8 +1,0 @@
-<root>
-	<script>
-		GameEvents.Subscribe('lodCreateUniversalVoting', function(data) {
-		    GameUI.CustomUIConfig().createVoting($.GetContextPanel(), Game.GetPlayerInfo(data.initiator), data.title, 'lodVotingTitle', data.title + 'Line', function() {}, function() {}, data.duration);
-		})
-	</script>
-	<Panel style="width: 100%; height: 100%;" hittest="false" />
-</root>

@@ -1,6 +1,8 @@
-function createVoting(rootPanel, playerInfo, votingName, votingTitle, votingLine, acceptCallback, declineCallback, voteDuration) {
-    var panel = $.CreatePanel("Panel", rootPanel, "voting_" + votingName);
-    panel.BLoadLayout('file://{resources}/layout/custom_game/universal_votings.xml', false, false);
+var VotingCallbacks = {};
+
+function createVoting(playerInfo, votingName, votingTitle, votingLine, acceptCallback, declineCallback, voteDuration) {
+    var panel = $.CreatePanel("Panel", $.GetContextPanel(), "voting_" + votingName);
+    panel.BLoadLayoutSnippet('Voting');
 
     panel.FindChildTraverse("titleLabel").text = $.Localize(votingTitle);
     panel.FindChildTraverse("lineLabel").html = true;
@@ -39,25 +41,22 @@ function createVoting(rootPanel, playerInfo, votingName, votingTitle, votingLine
     panel.SetHasClass("dialog_hidden", false);
     panel.FindChildTraverse("choice").RemoveClass('hiddenoccupy');
 
-    GameEvents.Subscribe("universalVotingsPlayerUpdate", function(data) {
-        if (data.votingName == votingName) {
-            panel.FindChildTraverse("choice").AddClass('hiddenoccupy')
-            var accepted = data.accept
-            var title = panel.FindChildTraverse('titleLabel');
-            title.text = accepted ? 'ACCEPTED' : 'DECLINED';
-            panel.AddClass(accepted ? 'accepted' : 'declined');
+    VotingCallbacks[votingName] = function(accepted) {
+        panel.FindChildTraverse("choice").AddClass('hiddenoccupy')
+        var title = panel.FindChildTraverse('titleLabel');
+        title.text = accepted ? 'ACCEPTED' : 'DECLINED';
+        panel.AddClass(accepted ? 'accepted' : 'declined');
 
-            $.CancelScheduled(handler);
-            halt_transition(panel.FindChildTraverse("vote_timer"), 'shrink');
-            $.Schedule(2, function() {
-                panel.AddClass('dialog_hidden');
-            })
-            $.Schedule(4, function() {
-                panel.RemoveClass(accepted ? 'accepted' : 'declined');
-            })
-            panel.DeleteAsync(10);
-        }
-    });
+        $.CancelScheduled(handler);
+        halt_transition(panel.FindChildTraverse("vote_timer"), 'shrink');
+        $.Schedule(2, function() {
+            panel.AddClass('dialog_hidden');
+        })
+        $.Schedule(4, function() {
+            panel.RemoveClass(accepted ? 'accepted' : 'declined');
+        })
+        panel.DeleteAsync(10);
+    }
 
     return panel;
 }
@@ -81,5 +80,13 @@ function halt_transition(el, c) {
 }
 
 (function () {
-    GameUI.CustomUIConfig().createVoting = createVoting;
+    GameEvents.Subscribe('lodCreateUniversalVoting', function(data) {
+        createVoting(Game.GetPlayerInfo(data.initiator), data.title, 'lodVotingTitle', data.title + 'Line', function() {}, function() {}, data.duration);
+    })
+
+    GameEvents.Subscribe("universalVotingsPlayerUpdate", function(data) {
+        if (VotingCallbacks[data.votingName] != null) {
+            VotingCallbacks[data.votingName](data.accept)
+        }
+    });
 })();
