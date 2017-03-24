@@ -3,9 +3,6 @@
 
 require('lib/timers')
 require('lib/util_imba')
-local util = require('util')
-
-
 
 function AIControl( keys )
     local caster = keys.caster

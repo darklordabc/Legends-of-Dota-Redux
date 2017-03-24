@@ -2,8 +2,6 @@
 Unit AI
 ]]
 require( "abilities/dota2horde/ai_core" )
-local util = require('util')
-
 
 behaviorSystem = {} -- create the global so we can assign to it
 

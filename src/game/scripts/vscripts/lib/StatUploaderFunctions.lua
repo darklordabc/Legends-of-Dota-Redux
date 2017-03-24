@@ -1,5 +1,5 @@
 require('lib/StatUploader')
-local util = require('util')
+
 local isTest = true
 local steamIDs;
 
