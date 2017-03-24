@@ -536,7 +536,39 @@ function Ingame:OnPlayerChat(keys)
     local playerID = keys.playerid
     
     local text = string.lower(keys.text)
+    
+    -- Change the PLAYERID for the command to simulate another player using the command
+    if string.find(text, "#") then
+        if string.find(text, "#0") then playerID = 0
+        elseif string.find(text, "#1") then playerID = 1 
+        elseif string.find(text, "#2") then playerID = 2 
+        elseif string.find(text, "#3") then playerID = 3 
+        elseif string.find(text, "#4") then playerID = 4 
+        elseif string.find(text, "#5") then playerID = 5 
+        elseif string.find(text, "#6") then playerID = 6 
+        elseif string.find(text, "#7") then playerID = 7 
+        elseif string.find(text, "#8") then playerID = 8 
+        elseif string.find(text, "#9") then playerID = 9 
+        elseif string.find(text, "#10") then playerID = 10
+        elseif string.find(text, "#11") then playerID = 11
+        elseif string.find(text, "#12") then playerID = 12 
+        elseif string.find(text, "#13") then playerID = 13
+        elseif string.find(text, "#14") then playerID = 14
+        elseif string.find(text, "#15") then playerID = 15
+        elseif string.find(text, "#16") then playerID = 16
+        elseif string.find(text, "#17") then playerID = 17
+        elseif string.find(text, "#18") then playerID = 18
+        elseif string.find(text, "#19") then playerID = 19
+        elseif string.find(text, "#20") then playerID = 20
+        elseif string.find(text, "#21") then playerID = 21
+        elseif string.find(text, "#22") then playerID = 22
+        elseif string.find(text, "#23") then playerID = 23
+        end
+    end
+
     local hero = PlayerResource:GetSelectedHeroEntity(playerID) 
+    -- If not valid hero, return
+    if not hero then return end
 
     ----------------------------
     -- Debug Commands
@@ -551,6 +583,14 @@ function Ingame:OnPlayerChat(keys)
                 self:CommandNotification("-botmode", "Bots are in late game mode.", 10)   
             end   
         end            
+    elseif string.find(text, "-pid") then
+        --if not self.voteEnabledCheatMode then
+            for playerID=0,24-1 do
+                local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+                if hero ~= nil and IsValidEntity(hero) then
+                    GameRules:SendCustomMessage( string.sub(hero:GetName(),15) .. ': ' .. playerID ,0,0)
+                end
+            end
     elseif string.find(text, "-printabilities") then 
         Timers:CreateTimer(function()        
             -- GameRules:SendCustomMessage("-------------HERO STATS------------", 0, 0)
@@ -627,15 +667,15 @@ function Ingame:OnPlayerChat(keys)
     ----------------------------
     -- Vote Commands
     ----------------------------
-    if string.find(text, "-enablecheat") or text == "-ec" then
-        if not self.voteEnabledCheatMode then
+    if string.find(text, "-enablecheat") or string.find(text, "-ec") then
+        --if not self.voteEnabledCheatMode then       
             util:CreateVoting("lodVotingEnableCheatMode", playerID, 20, 100, function()
                 self.voteEnabledCheatMode = true
                 EmitGlobalSound("Event.CheatEnabled")
                 GameRules:SendCustomMessage('<font color=\'#70EA72\'>Everbody voted to enable cheat mode. Cheat mode enabled</font>.',0,0)
             end)
-        end
-    elseif string.find(text, "-enablekamikaze") or text == "-ek" then
+        --end
+    elseif string.find(text, "-enablekamikaze") or string.find(text, "-ek") then
         if not self.voteDisableAntiKamikaze then
             util:CreateVoting("lodVotingEnableKamikaze", playerID, 20, 100, function()
                 self.voteDisableAntiKamikaze = true
@@ -643,7 +683,7 @@ function Ingame:OnPlayerChat(keys)
                 GameRules:SendCustomMessage('Everbody voted to disable the anti-Kamikaze mechanic. <font color=\'#70EA72\'>No more peanlty for dying 3 times within 60 seconds</font>.',0,0)
             end)
         end
-    elseif (string.find(text, "-enablebuilder") or text == "-eb") and OptionManager:GetOption('allowIngameHeroBuilder') == false then
+    elseif string.find(text, "-enablebuilder") or string.find(text, "-eb") and OptionManager:GetOption('allowIngameHeroBuilder') == false then
         if not self.voteEnableBuilder then
             util:CreateVoting("lodVotingEnableHeroBuilder", playerID, 20, 100, function()
                 network:enableIngameHeroEditor()
@@ -656,7 +696,7 @@ function Ingame:OnPlayerChat(keys)
                 GameRules:SendCustomMessage('Everbody voted to enable the ingame hero builder. <font color=\'#70EA72\'>You can now change your hero build mid-game</font>.',0,0)
             end)
         end
-    elseif string.find(text, "-enablerespawn") or text == "-er" then
+    elseif string.find(text, "-enablerespawn") or string.find(text, "-er") then
         if not self.voteDisableRespawnLimit then
             util:CreateVoting("lodVotingEnableRespawn", playerID, 20, 100, function()
                 self.voteDisableRespawnLimit = true
