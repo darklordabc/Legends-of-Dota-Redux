@@ -497,6 +497,8 @@
     "lodVotingEnableHeroBuilderLineDescr"           "This allows players to change their ability builds mid-game."
     "lodVotingEnableRespawnLine"                    "wants to disable <font color='#FF4949'>Increasing-spawn-rate</font> mechanic"
     "lodVotingEnableRespawnLineDescr"               "This prevents respawn times slowly increasing after 40 minutes.<br><font color='#FF4949'>It its not recommended</font>."
+    "lodVotingSwitchTeam"                           "wants to <font color='#70EA72'>switch team</font>"
+    "lodVotingSwitchTeamDescr"                      "<font color='#70EA72'>switch team</font> description"
 
 	// Minimap Menu and In-Game Hero Builder
     "minimapMenuCredits"                            "Credits"
@@ -1077,15 +1079,6 @@
     "heroStats_visionDay"                           "DAY VISION"
     "heroStats_visionNight"                         "NIGHT VISION"
 
-    // Team switching
-    "teamSwitch_title"                              "Switch Teams"
-    "teamSwitch_warning"                            "Teams have become unbalanced. Press switch to nominate yourself to switch to the enemy side."
-    "teamSwitch_tooltip"                            "Your team must have at least a 2 player advantage before you can nominate to switch."
-    "teamSwitch_select"                             "Select a hero to switch teams with."
-    "teamSwitch_disconnected"                       "DISCONNECTED"
-    "teamSwitch_notification"                       "Team switch voting will start in 10 seconds. One team has a 2+ player advantage, and a player from that team has nominated to leave their team and switch sides to help balance the game. If at least 1 person declines the vote the vote will not pass."
-    "teamSwitch_cooldown"                           "Team switching is still on cooldown."
-
     // Duel
 
     "duel_cant_swap"                                "You can't change build during duel!"
@@ -1234,7 +1227,10 @@
     "command_menu_command_descr_voteEnableRespawn"        "To prevent games with low respawn times lasting for too long or being never-ending, the game will increase respawn rates at the 40 minute mark by 10%, and by another 10% after 10 minutes, continually, until respawn rates are at minimum 50%. This option disables that safeguard. Shortcuts: -enablerespawn -er"  
 
     "command_menu_command_voteEnableBuilder"            "Enable In-Game Hero Builder"
-    "command_menu_command_descr_voteEnableBuilder"        "Enables the icon at the bottom left that allows heros to change their hero and ability builds mid-game. If the game is not coop or single player, there will be a 30-second death peanlty with changing builds to prevent abuse. Shortcuts: -enablebuilder -eb" 
+    "command_menu_command_descr_voteEnableBuilder"        "Enables the icon at the bottom left that allows heros to change their hero and ability builds mid-game. If the game is not coop or single player, there will be a 30-second death peanlty with changing builds to prevent abuse. Shortcuts: -enablebuilder -eb"
+
+    "command_menu_command_voteSwitchTeam"               "Switch Teams"
+    "command_menu_command_descr_voteEnableCheat"        "Nominate yourself to switch to the enemy side. Your team must have at least a 2 player advantage before you can nominate to switch. Shortcuts: -switchteam"
     
     "command_menu_group_game"                           "Cheats | Game"
     "command_menu_command_toggleWtf"                    "Toggle Free Spells"
