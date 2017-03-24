@@ -1,4 +1,6 @@
-local Util = {}
+if not util then
+    util = class({})
+end
 
 -- A store of player names
 local storedNames = {}
@@ -9,8 +11,8 @@ local targetSpells = {}
 local regularSpells = LoadKeyValues('scripts/npc/npc_abilities.txt')
 
 -- Grab contributors file
-Util.contributors = Util.contributors or LoadKeyValues('scripts/kv/contributors.kv')
-Util.bannedKV = Util.bannedKV or LoadKeyValues('scripts/kv/banned.kv')
+util.contributors = util.contributors or LoadKeyValues('scripts/kv/contributors.kv')
+util.bannedKV = util.bannedKV or LoadKeyValues('scripts/kv/banned.kv')
 
 function CDOTABaseAbility:GetTalentSpecialValueFor(value)
     local base = self:GetSpecialValueFor(value)
@@ -35,7 +37,7 @@ end
 -- This function RELIABLY gets a player's name
 -- Note: PlayerResource needs to be loaded (aka, after Activated has been called)
 --       This method is safe for all of our internal uses
-function Util:GetPlayerNameReliable(playerID)
+function util:GetPlayerNameReliable(playerID)
     -- Ensure player resource is ready
     if not PlayerResource then
         return 'PlayerResource not loaded!'
@@ -49,7 +51,7 @@ function Util:GetPlayerNameReliable(playerID)
 end
 
 -- Round number
-function Util:round(num, idp)
+function util:round(num, idp)
     if num >= 0 then return math.floor(num+.5) 
     else return math.ceil(num-.5) end
 end
@@ -69,7 +71,7 @@ end, nil)
 -- Encodes a byte to send over the network
 -- This function expects a number from 0 - 254
 -- This function returns a character, values 1 - 255
-function Util:EncodeByte(v)
+function util:EncodeByte(v)
     -- Check for negative
     if v < 0 then
         print("Warning: Tried to encode a number less than 0! Clamping to 255")
@@ -90,11 +92,11 @@ function Util:EncodeByte(v)
 end
 
 -- Merges the contents of t2 into t1
-function Util:MergeTables(t1, t2)
+function util:MergeTables(t1, t2)
     for k,v in pairs(t2) do
         if type(v) == "table" then
             if type(t1[k] or false) == "table" then
-                Util:MergeTables(t1[k] or {}, t2[k] or {})
+                util:MergeTables(t1[k] or {}, t2[k] or {})
             else
                 t1[k] = v
             end
@@ -105,7 +107,7 @@ function Util:MergeTables(t1, t2)
     return t1
 end
 
-function Util:DeepCopy(orig)
+function util:DeepCopy(orig)
     local orig_type = type(orig)
     local copy
     if orig_type == 'table' then
@@ -121,7 +123,7 @@ function Util:DeepCopy(orig)
 end
 
 -- Sets up spell properties
-function Util:SetupSpellProperties(abs)
+function util:SetupSpellProperties(abs)
     for k,v in pairs(abs) do
         if k ~= 'Version' and k ~= 'ability_base' then
             if v.AbilityBehavior then
@@ -143,7 +145,7 @@ function Util:SetupSpellProperties(abs)
 end
 
 -- Tells you if a given spell is channelled or not
-function Util:isChannelled(skillName)
+function util:isChannelled(skillName)
     if chanelledSpells[skillName] then
         return true
     end
@@ -152,7 +154,7 @@ function Util:isChannelled(skillName)
 end
 
 -- Tells you if a given spell is target based one or not
-function Util:isTargetSpell(skillName)
+function util:isTargetSpell(skillName)
     if targetSpells[skillName] then
         return true
     end
@@ -161,7 +163,7 @@ function Util:isTargetSpell(skillName)
 end
 
 -- Picks a random rune
-function Util:pickRandomRune()
+function util:pickRandomRune()
     local validRunes = {
         0,
         1,
@@ -176,7 +178,7 @@ function Util:pickRandomRune()
 end
 
 
-function Util:sortTable(input)
+function util:sortTable(input)
     local array = {}
     for heroName in pairs(input) do 
         array[heroName] = {}
@@ -191,7 +193,7 @@ function Util:sortTable(input)
     return array
 end
 
-function Util:swapTable(input)
+function util:swapTable(input)
     local array = {}
     for k,v in pairs(input) do
         if type(v) == 'table' then
@@ -205,22 +207,22 @@ end
 
 
 -- Returns true if a player is premium
-function Util:playerIsPremium(playerID)
+function util:playerIsPremium(playerID)
     -- Check our premium rank
     return self:getPremiumRank(playerID) > 0
 end
 
 -- Returns true if a player is bot
-function Util:isPlayerBot(playerID)
+function util:isPlayerBot(playerID)
     return PlayerResource:GetSteamAccountID(playerID) == 0
 end
 
 -- Returns a player's premium rank
-function Util:getPremiumRank(playerID)
+function util:getPremiumRank(playerID)
     local steamID = PlayerResource:GetSteamAccountID(playerID)
     local conData
 
-    for k,v in pairs(Util.contributors) do
+    for k,v in pairs(util.contributors) do
         if v.steamID3 == tostring(steamID) then
             conData = v
             break
@@ -272,7 +274,7 @@ function getPlayerHost()
 end
 
 
-function Util:GetActivePlayerCountForTeam(team)
+function util:GetActivePlayerCountForTeam(team)
     local number = 0
     for x=0,DOTA_MAX_TEAM do
         local pID = PlayerResource:GetNthPlayerIDOnTeam(team,x)
@@ -283,7 +285,7 @@ function Util:GetActivePlayerCountForTeam(team)
     return number
 end
 
-function Util:GetActiveHumanPlayerCountForTeam(team)
+function util:GetActiveHumanPlayerCountForTeam(team)
     local number = 0
     for x=0,DOTA_MAX_TEAM do
         local pID = PlayerResource:GetNthPlayerIDOnTeam(team,x)
@@ -295,8 +297,8 @@ function Util:GetActiveHumanPlayerCountForTeam(team)
 end
 
 -- Returns if a player is a time burger
-function Util:isTimeBurgler(playerID)
-    local allTimeBurglers = Util.bannedKV.timeburglers
+function util:isTimeBurgler(playerID)
+    local allTimeBurglers = util.bannedKV.timeburglers
 
     local steamID = PlayerResource:GetSteamAccountID(playerID)
 
@@ -304,7 +306,7 @@ function Util:isTimeBurgler(playerID)
 end
 
 -- Returns a player's voting power
-function Util:getVotingPower(playerID)
+function util:getVotingPower(playerID)
     -- Are they a time burgler?
     if self:isTimeBurgler(playerID) then
         -- Time burglers get one less vote
@@ -315,7 +317,7 @@ function Util:getVotingPower(playerID)
 end
 
 -- Attempts to fetch gameinfo of players
-function Util:fetchPlayerData()
+function util:fetchPlayerData()
     local this = self
 
     -- Protected call
@@ -412,7 +414,7 @@ function Util:fetchPlayerData()
     end
 end
 
-function Util:split(pString, pPattern)
+function util:split(pString, pPattern)
     local Table = {}  -- NOTE: use {n = 0} in Lua-5.0
     local fpat = '(.-)' .. pPattern
     local last_end = 1
@@ -433,12 +435,12 @@ function Util:split(pString, pPattern)
 end
 
 -- Works out the time difference between two LoD times
-function Util:timeDifference(lodCurrentTime, lodPreviousTime)
+function util:timeDifference(lodCurrentTime, lodPreviousTime)
     return self:countSeconds(lodCurrentTime) - self:countSeconds(lodPreviousTime)
 end
 
 -- Calculates how many seconds in the given LoD timestamp
-function Util:countSeconds(lodTime)
+function util:countSeconds(lodTime)
     local seconds = lodTime.second
     local minuteSeconds = lodTime.minute * 60
     local hourSeconds = lodTime.hour * 60 * 60
@@ -452,7 +454,7 @@ function Util:countSeconds(lodTime)
 end
 
 -- Works out how many days have passed in order to get to the given month
-function Util:getDaysInPreviousMonths(currentMonth)
+function util:getDaysInPreviousMonths(currentMonth)
     local daysInMonth = {
         [1] = 31,
         [2] = 28,
@@ -478,7 +480,7 @@ function Util:getDaysInPreviousMonths(currentMonth)
 end
 
 -- Parses a time
-function Util:parseTime(timeString)
+function util:parseTime(timeString)
     timeString = timeString or ''
 
     local year = 0
@@ -515,7 +517,7 @@ function Util:parseTime(timeString)
     }
 end
 
-function Util:getTableLength(t) 
+function util:getTableLength(t) 
   if not t then return nil end
   local length = 0
 
@@ -652,13 +654,13 @@ function ShuffleArray(input)
     end
 end
 
-function Util:MoveArray(input, index)
+function util:MoveArray(input, index)
     index = index or 1
     local temp = table.remove(input, index)
     table.insert(input, temp)
 end
 
-function Util:RandomChoice(input)
+function util:RandomChoice(input)
     local temp = {}
     for k in pairs(input) do
         table.insert(temp, k)
@@ -674,7 +676,7 @@ function CDOTABaseAbility:HasAbilityFlag(flag)
     end
 end
 
-function Util:split(s, delimiter)
+function util:split(s, delimiter)
     result = {};
     for match in (s..delimiter):gmatch("(.-)"..delimiter) do
         table.insert(result, match);
@@ -682,7 +684,7 @@ function Util:split(s, delimiter)
     return result;
 end
 
-function Util:isSinglePlayerMode()
+function util:isSinglePlayerMode()
     local maxPlayerID = 24
     local count = 0
     for playerID=0,(maxPlayerID-1) do
@@ -693,6 +695,16 @@ function Util:isSinglePlayerMode()
     end
 
     return true
+end
+
+function util:isCoop()
+    local RadiantHumanPlayers = self:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS)
+    local DireHumanPlayers = self:GetActiveHumanPlayerCountForTeam(DOTA_TEAM_BADGUYS)
+    if RadiantHumanPlayers == 0 or DireHumanPlayers == 0 then
+        return true
+    else
+        return false
+    end
 end
 
 function CDOTA_BaseNPC:HasAbilityWithFlag(flag)
@@ -766,7 +778,7 @@ function CDOTA_BaseNPC:FindItemByName(item_name)
     return nil
 end
 
-function Util:CreateVoting(votingName, initiator, duration, percent, onaccept, onvote, ondecline)
+function util:CreateVoting(votingName, initiator, duration, percent, onaccept, onvote, ondecline)
     if self.activeVoting then
         if self.activeVoting.name == votingName then
             self.activeVoting.onvote(initiator, true)
@@ -779,7 +791,7 @@ function Util:CreateVoting(votingName, initiator, duration, percent, onaccept, o
         local votesAccepted = 0
         local totalPlayers = 0
         for PlayerID = 0, 23 do
-            if not Util:isPlayerBot(PlayerID) then                            
+            if not util:isPlayerBot(PlayerID) then                            
                 local state = PlayerResource:GetConnectionState(PlayerID)
                 if state == 1 or state == 2 then
                     if self.activeVoting.votes[PlayerID] ~= nil then
@@ -897,7 +909,7 @@ function CDOTA_BaseNPC:PopupNumbers(target, pfx, color, lifetime, number, presym
 
 -- Returns a set of abilities that won't trigger stuff like aftershock / essence aura
 local toIgnore
-function Util:getToggleIgnores()
+function util:getToggleIgnores()
     return toIgnore
 end
 
@@ -934,6 +946,3 @@ end
         toIgnore[abilityName] = true
     end
 end)()
-
--- Define the export
-return Util

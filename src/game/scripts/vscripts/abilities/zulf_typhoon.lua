@@ -1,5 +1,4 @@
 local Timers = require('easytimers')
-local util = require('util')
 
 function TyphoonSpinStart( keys )
 	local caster = keys.caster

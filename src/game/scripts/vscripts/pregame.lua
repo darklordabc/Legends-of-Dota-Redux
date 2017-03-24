@@ -24,13 +24,10 @@ end
 
 -- Libraries
 local constants = require('constants')
-local network = require('network')
-local OptionManager = require('optionmanager')
 local SkillManager = require('skillmanager')
 local SU = require('lib/StatUploaderFunctions')
 local Timers = require('easytimers')
 local SpellFixes = require('spellfixes')
-local util = require('util')
 require('statcollection.init')
 local Debug = require('lod_debug')              -- Debug library with helper functions, by Ash47
 local challenge = require('challenge')
@@ -112,11 +109,87 @@ function Pregame:init()
     self.chanceToHearMeme = 1
     self.freeAbility = nil
 
+    self.votingStatFlags = {}
+    self.optionVoteSettings = {
+        banning = {
+            onselected = function(self)
+                self:setOption('lodOptionBanning', 3, true)
+                self:setOption('lodOptionBanningMaxBans', 2, true)
+                self:setOption('lodOptionBanningMaxHeroBans', 1, true)
+            end,
+            onunselected = function(self)
+            	-- If single players are activated, do not cancel bans
+            	if self.optionStore['lodOptionBanningUseBanList'] == 1 then
+	                self:setOption('lodOptionBanning', 1, true)
+	                self:setOption('lodOptionBanningMaxBans', 0, true)
+	                self:setOption('lodOptionBanningMaxHeroBans', 0, true)
+               	end
+            end
+        },
+        fastStart = {
+            onselected = function(self)
+                self:setOption('lodOptionGameSpeedStartingLevel', 6, true)
+                self:setOption('lodOptionGameSpeedStartingGold', 1000, true)
+            end,
+            onunselected = function(self)
+                self:setOption('lodOptionGameSpeedStartingLevel', 1, true)
+                self:setOption('lodOptionGameSpeedStartingGold', 0, true)
+            end
+        },
+        strongTowers = {
+            onselected = function(self)
+                self:setOption('lodOptionGameSpeedStrongTowers', 1, true)
+                self:setOption('lodOptionCreepPower', 120, true)
+                self:setOption('lodOptionGameSpeedTowersPerLane', 3, true)
+            end,
+            onunselected = function(self)
+                self:setOption('lodOptionGameSpeedStrongTowers', 0, true)
+                self:setOption('lodOptionGameSpeedTowersPerLane', 3, true)
+            end
+        },
+        customAbilities = {
+            onselected = function(self)
+                self:setOption('lodOptionAdvancedCustomSkills', 1, true)
+            end,
+            onunselected = function(self)
+                self:setOption('lodOptionAdvancedCustomSkills', 0, true)
+            end
+        },
+        doubledAbilityPoints = {
+            onselected = function(self)
+                self:setOption('lodOptionBalanceModePoints', 180, true)
+                if not util:isCoop() then
+                    self:setOption('lodOptionBanningUseBanList', 1, true)
+                end   
+                if mapName == 'all_allowed' then
+                	self:setOption('lodOptionBanningUseBanList', 0, true)
+                end
+
+            end,
+            onunselected = function(self)
+                self:setOption('lodOptionBalanceModePoints', 120, true)
+            end
+        },
+        singlePlayerAbilities = {
+        onselected = function(self)
+        	self:setOption('lodOptionAdvancedCustomSkills', 1, true)
+            self:setOption('lodOptionBanningUseBanList', 0, true)
+            self:setOption('lodOptionBanning', 3, true)
+            self:setOption('lodOptionBanningMaxBans', 4, true)
+            self:setOption('lodOptionBanningMaxHeroBans', 1, true)
+        end,
+        onunselected = function(self)
+            self:setOption('lodOptionBanningUseBanList', 1, true)
+        end
+        },
+    }
+
     -- Init thinker
     GameRules:GetGameModeEntity():SetThink('onThink', self, 'PregameThink', 0.25)
     GameRules:SetHeroSelectionTime(0)   -- Hero selection is done elsewhere, hero selection should be instant
     GameRules:GetGameModeEntity():SetBotThinkingEnabled(true)
-
+    GameRules:SetStrategyTime( 0 )
+    GameRules:SetShowcaseTime( 0 )
     -- GameRules:GetGameModeEntity():SetCustomGameForceHero("npc_dota_hero_wisp")
 
     -- Rune fix
@@ -327,8 +400,6 @@ function Pregame:init()
     Timers:CreateTimer(function()
         if util:isSinglePlayerMode() then
             self:setOption('lodOptionBanningUseBanList', 0, true)
-        else
-            self:setOption('lodOptionBanningUseBanList', 1, true)
         end
     end, DoUniqueString('checkSinglePlayer'), 1.5)
 
@@ -347,18 +418,29 @@ function Pregame:init()
         self.useOptionVoting = true
     end
 
-    -- All pick with 6 slots
-    if mapName == '5_vs_5' then
+    -- Standard gamemode featuring voting system
+    if mapName == 'standard' then
         self:setOption('lodOptionGamemode', 1)
-        self:setOption('lodOptionSlots', 6, true)
-        self:setOption('lodOptionCommonMaxUlts', 2, true)
         self:setOption('lodOptionBalanceMode', 1, true)
-        self:setOption('lodOptionBanningBalanceMode', 1, true)
-        self:setOption('lodOptionGameSpeedRespawnTimePercentage', 70, true)
-        self:setOption('lodOptionBuybackCooldownTimeConstant', 210, true)
+        OptionManager:SetOption('banningTime', 30)
+        --self:setOption('lodOptionBanningBalanceMode', 1, true)
+        --self:setOption('lodOptionGameSpeedRespawnTimePercentage', 70, true)
+        --self:setOption('lodOptionBuybackCooldownTimeConstant', 210, true)
         self.useOptionVoting = true
-        self.noSlotVoting = true
     end
+
+    if mapName == 'all_allowed' then
+    	self:setOption('lodOptionGameSpeedMaxLevel', 100, true)
+    	self:setOption('lodOptionBanningUseBanList', 1, true)
+    	self:setOption('lodOptionGamemode', 1)
+        OptionManager:SetOption('banningTime', 30)
+		self:setOption('lodOptionBalanceMode', 0, true)
+		self:setOption('lodOptionAdvancedHidePicks', 0, true)
+		self:setOption('lodOptionCommonMaxUlts', 2, true)
+		self:setOption('lodOptionGameSpeedRespawnTimePercentage', 25, true)
+		self.useOptionVoting = true
+        self.optionVoteSettings.doubledAbilityPoints = nil
+	end
 
     -- Mirror Draft Only
     if mapName == 'mirror_draft' then
@@ -374,7 +456,7 @@ function Pregame:init()
 
     -- Custom -- set preset
     -- if mapName == 'custom' or mapName == 'custom_bot' or mapName == 'dota_180' or mapName == 'custom_702' or mapName == '10_vs_10' then
-    if mapName == 'dota_180' or mapName == 'custom_702' or mapName == 'dota' then
+    if mapName == 'dota_180' or mapName == 'custom_702' or mapName == 'dota' or mapName == 'all_allowed_advanced' then
         self:setOption('lodOptionGamemode', 1)
     end
 
@@ -390,7 +472,7 @@ function Pregame:init()
 
     -- Bot match
     -- if mapName == 'custom_bot' or mapName == 'custom_702' or mapName == 'dota_180' or mapName == '10_vs_10' then
-    if mapName == 'dota_180' or mapName == 'custom_702' or mapName == 'dota' then
+    if mapName == 'dota_180' or mapName == 'custom_702' or mapName == 'dota' or mapName == 'all_allowed_advanced' then
         self.enabledBots = true
     end
 
@@ -402,7 +484,6 @@ function Pregame:init()
         self:setOption('lodOptionBalanceMode', 1, true)
         self:setOption('lodOptionBanningBalanceMode', 1, true)
         self.useOptionVoting = true
-        self.noSlotVoting = true
 
         GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_GOODGUYS, 3)
         GameRules:SetCustomGameTeamMaxPlayers(DOTA_TEAM_BADGUYS, 3)
@@ -451,6 +532,7 @@ function Pregame:loadDefaultSettings()
     
     -- Balance Mode disabled by default
     self:setOption('lodOptionBalanceMode', 0, true)
+    self:setOption('lodOptionBalanceModePoints', 120, true)
 
     -- Anti Rat option
     self:setOption('lodOptionAntiRat', 0, false)
@@ -791,6 +873,11 @@ function Pregame:onThink()
             if self.useOptionVoting then
                 -- Option voting
                 self:setPhase(constants.PHASE_OPTION_VOTING)
+                -- QUICKER DEBUGGING
+                if IsInToolsMode() then
+                    OptionManager:SetOption('maxOptionVotingTime', 7)
+                end
+
                 self:setEndOfPhase(Time() + OptionManager:GetOption('maxOptionVotingTime'))
             else
                 -- Option selection
@@ -867,6 +954,12 @@ function Pregame:onThink()
         if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
             -- Finish the option selection
             self:finishOptionSelection()
+            if util:isCoop() then
+                print("vote ended")
+                self.enabledBots = true
+                self.desiredRadiant = self.desiredRadiant or 5
+                self.desiredDire = self.desiredDire or 5
+            end
         end
 
         return 0.1
@@ -1748,49 +1841,18 @@ function Pregame:onPlayerCastVote(eventSourceIndex, args)
     if self:getPhase() ~= constants.PHASE_OPTION_VOTING then return end
 
     -- Grab the data
-    local playerID = args.PlayerID
     local optionName = args.optionName
     local optionValue = args.optionValue
-    local player = PlayerResource:GetPlayer(playerID)
-
-    -- Ensure we have a store for vote data
-    self.voteData = self.voteData or {}
-
-    -- Option validator
-    local optionValidator = {
-        slots = function(slotCount)
-            return slotCount == 4 or slotCount == 5 or slotCount == 6
-        end,
-
-        banning = function(choice)
-            return choice == 1 or choice == 0
-        end,
-
-        faststart = function(choice)
-            return choice == 1 or choice == 0
-        end,
-
-        balancemode = function(choice)
-            return choice == 1 or choice == 0
-        end,
-
-        strongtowers = function(choice)
-            return choice == 1 or choice == 0
-        end,
-
-        duels = function(choice)
-            return choice == 1 or choice == 0
-        end
-    }
 
     -- Validate options
-    if not optionValidator[optionName] or not optionValidator[optionName](optionValue) then return end
+    if not self.useOptionVoting or not self.optionVoteSettings[optionName] or not (optionValue == 1 or optionValue == 0) then return end
 
     -- Ensure we have a store for this option
+    self.voteData = self.voteData or {}
     self.voteData[optionName] = self.voteData[optionName] or {}
 
     -- Store their vote
-    self.voteData[optionName][playerID] = optionValue
+    self.voteData[optionName][args.PlayerID] = optionValue
 
     -- Process / update the vote data
     self:processVoteData()
@@ -1838,88 +1900,10 @@ function Pregame:processVoteData()
             end
         end
     end
-
-    -- Do we have a choice for slots
-    if not self.noSlotVoting and results.slots ~= nil then
-        if results.slots == 4 then
-            self:setOption('lodOptionCommonMaxSlots', 4, true)
-            self:setOption('lodOptionCommonMaxUlts', 1, true)
-        elseif results.slots == 5 then
-            self:setOption('lodOptionCommonMaxSlots', 5, true)
-            self:setOption('lodOptionCommonMaxUlts', 1, true)
-        elseif results.slots == 6 then
-            self:setOption('lodOptionCommonMaxSlots', 6, true)
-            self:setOption('lodOptionCommonMaxUlts', 2, true)
-        end
+    for k,v in pairs(results) do
+        self.optionVoteSettings[k][v == 1 and "onselected" or "onunselected"](self)
+        self.votingStatFlags["Voting " .. k .. " Enabled"] = v == 1
     end
-
-    -- Do we have a choice for banning phase?
-    if results.banning ~= nil then
-        if results.banning == 1 then
-          -- Option Voting
-            self:setOption('lodOptionBanning', 3, true)
-            self:setOption('lodOptionBanningMaxBans', 5, true)
-            self:setOption('lodOptionBanningMaxHeroBans', 2, true)
-            self.optionVotingBanning = 1
-        else
-          -- No option voting
-            self:setOption('lodOptionBanning', 1, true)
-            self:setOption('lodOptionBanningMaxBans', 0, true)
-            self:setOption('lodOptionBanningMaxHeroBans', 0, true)
-            self.optionVotingBanning = 0
-        end
-    end
-
-    if results.faststart ~= nil then
-        if results.faststart == 1 then
-            -- Option Voting
-            self:setOption('lodOptionGameSpeedStartingLevel', 6, true)
-            self:setOption('lodOptionGameSpeedStartingGold', 1000, true)
-            self.optionVotingFastStart = 1
-        else
-            -- No option voting
-            self:setOption('lodOptionGameSpeedStartingLevel', 1, true)
-            self:setOption('lodOptionGameSpeedStartingGold', 0, true)
-            self.optionVotingFastStart = 0
-        end
-    end
-    if results.balancemode ~= nil then
-        if results.balancemode == 1 then
-            -- Disable Balance Mode
-            self:setOption('lodOptionBalanceMode', 0, true)
-            self:setOption('lodOptionAdvancedOPAbilities', 1, true)
-            self.optionVotingBalanceMode = 1
-        else
-            -- On by default
-            self:setOption('lodOptionBalanceMode', 1, true)
-            self.optionVotingBalanceMode = 0
-            -- banning mode does not get overridden
-        end
-    end
-    if results.strongtowers ~= nil then
-        if results.strongtowers == 1 then
-            -- Enable Strong Towers
-            self:setOption('lodOptionGameSpeedStrongTowers', 1, true)
-            self:setOption('lodOptionCreepPower', 120, true)
-            self.optionVotingStrongTowers = 1
-        else
-            -- On by default
-            self:setOption('lodOptionGameSpeedStrongTowers', 0, true)
-            self.optionVotingStrongTowers = 0
-        end
-    end
-    if results.duels ~= nil then
-        if results.duels == 1 then
-            -- Enable Strong Towers
-            self:setOption('lodOptionDuels', 1, true)
-            self.optionVotingDuels = 1
-        else
-            -- On by default
-            self:setOption('lodOptionDuels', 0, true)
-            self.optionVotingDuels = 0
-        end
-    end
-
     -- Push the counts
     network:voteCounts(counts)
 end
@@ -2039,8 +2023,8 @@ function Pregame:notEnoughPoints(build)
     end
 
     -- Check to see if we exceed 100
-    if spent > constants.BALANCE_MODE_POINTS then
-        return true, spent - constants.BALANCE_MODE_POINTS
+    if spent > self.optionStore["lodOptionBalanceModePoints"] then
+        return true, spent - self.optionStore["lodOptionBalanceModePoints"]
     end
 
     return false
@@ -2256,6 +2240,10 @@ function Pregame:initOptionSelector()
             return false
         end,
 
+        lodOptionBalanceModePoints = function(value)
+            return type(value) ~= 'number' and math.floor(value) ~= value
+        end,
+
         -- Balance Mode ban list
         lodOptionBanningBalanceMode = function(value)
             if self.optionStore['lodOptionGamemode'] == 1 then return value == 1 end
@@ -2276,11 +2264,8 @@ function Pregame:initOptionSelector()
         -- Common use ban list
         lodOptionBanningUseBanList = function(value)
                 Timers:CreateTimer(function()
-                    -- Only allow if all players on one side (i.e. coop or singleplayer)
-                    local RadiantHumanPlayers = util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS)
-                    local DireHumanPlayers = util:GetActiveHumanPlayerCountForTeam(DOTA_TEAM_BADGUYS)
-                    
-                    if RadiantHumanPlayers > 0 and DireHumanPlayers > 0 then
+                    -- Only allow if all players on one side (i.e. coop or singleplayer)                  
+                    if not util:isCoop() and GetMapName() ~= "all_allowed" then
                         self:setOption('lodOptionBanningUseBanList', 1, true)
                     end
 
@@ -2501,7 +2486,7 @@ function Pregame:initOptionSelector()
         -- Advanced -- Enable Hero Abilities
         lodOptionAdvancedHeroAbilities = function(value)
             -- Disables IMBA Abilities
-            if value == 1 and not util:isSinglePlayerMode() then 
+            if value == 1 and not util:isCoop() then 
                 self:setOption('lodOptionAdvancedImbaAbilities', 0, true)
             end
 
@@ -2510,7 +2495,7 @@ function Pregame:initOptionSelector()
 
         -- Advanced -- Enable Neutral Abilities
         lodOptionAdvancedNeutralAbilities = function(value)
-            if value == 1 and not util:isSinglePlayerMode() then 
+            if value == 1 and not util:isCoop() then 
                 self:setOption('lodOptionAdvancedImbaAbilities', 0, true)
             end
 
@@ -2519,7 +2504,7 @@ function Pregame:initOptionSelector()
 
         -- Advanced -- Enable Custom Abilities
         lodOptionAdvancedCustomSkills = function(value)
-            if value == 1 and not util:isSinglePlayerMode() then 
+            if value == 1 and not util:isCoop() then 
                 self:setOption('lodOptionAdvancedImbaAbilities', 0, true)
             end
 
@@ -2529,7 +2514,7 @@ function Pregame:initOptionSelector()
         -- Advanced -- Enable IMBA Abilities
         lodOptionAdvancedImbaAbilities = function(value)
         -- If you use IMBA abilities, you cannot use any other major category of abilities.
-            if value == 1 and not util:isSinglePlayerMode() then 
+            if value == 1 and not util:isCoop() then 
                 self:setOption('lodOptionAdvancedHeroAbilities', 0, true)
                 self:setOption('lodOptionAdvancedNeutralAbilities', 0, true)
                 self:setOption('lodOptionAdvancedCustomSkills', 0, true)
@@ -3496,10 +3481,20 @@ function Pregame:processOptions()
     end
 
     -- Only allow single player abilities if all players on one side (i.e. coop or singleplayer)
-    local RadiantHumanPlayers = util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS)
-    local DireHumanPlayers = util:GetActiveHumanPlayerCountForTeam(DOTA_TEAM_BADGUYS)
-    if RadiantHumanPlayers > 0 and DireHumanPlayers > 0 then
+    if not util:isCoop() and GetMapName() ~= "all_allowed" then
         self:setOption('lodOptionBanningUseBanList', 1, true)
+    end
+
+    -- This is a fix to deal with how votes are executed
+    if GetMapName() == "all_allowed" then
+        if self.optionStore['lodOptionBanningMaxBans'] == 2 and self.optionStore['lodOptionBanningUseBanList'] == 0 and self.optionStore['lodOptionAdvancedCustomSkills'] == 1 then
+        	self:setOption('lodOptionBanningMaxBans', 6, true)
+        end
+        if self.optionStore['lodOptionBanningMaxBans'] == 4 and self.optionStore['lodOptionAdvancedCustomSkills'] == 0 then
+        	self:setOption('lodOptionBanningMaxBans', 0, true)
+        	self:setOption('lodOptionBanningMaxHeroBans', 0, true)
+        end
+        	
     end
 
     -- Only process options once
@@ -3693,6 +3688,7 @@ function Pregame:processOptions()
         elseif this.optionStore['lodOptionExtraAbility'] == 11 then
             self.freeAbility = "alchemist_goblins_greed"
             this:banAbility("alchemist_goblins_greed")
+            this:banAbility("alchemist_goblins_greed_op")
         elseif this.optionStore['lodOptionExtraAbility'] == 12 then
             self.freeAbility = "angel_arena_nether_ritual"
             this:banAbility("angel_arena_nether_ritual")
@@ -3785,12 +3781,7 @@ function Pregame:processOptions()
             -- Did anyone actually post to the banning bote?
             if this.optionVotingBanning ~= nil then
                 -- Someone actually voted
-                statCollection:setFlags({
-                    ['Voting Banning Enabled'] = this.optionVotingBanning,
-                    ['Voting Fast Start Enabled'] = this.optionVotingFastStart,
-                    ['Voting Disabled Balance'] = this.optionVotingBalanceMode,
-                    ['Voting Stronger Towers'] = this.optionVotingStrongTowers
-                })
+                statCollection:setFlags(self.votingStatFlags)
             end
         else
             -- We are using option selection
@@ -3852,6 +3843,7 @@ function Pregame:processOptions()
                     ['Other: Memes Redux'] = this.optionStore['lodOptionMemesRedux'],
                     ['Other: Item Drops'] = this.optionStore['lodOptionDarkMoon'],
                     ['Other: Black Forest'] = this.optionStore['lodOptionBlackForest'],
+                    ['Towers: Anti-Rat'] = this.optionStore['lodOptionAntiRat'],
                     ['Towers: Enable Stronger Towers'] = this.optionStore['lodOptionGameSpeedStrongTowers'],
                     ['Towers: Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],
                     ['Bots: Unique Skills'] = this.optionStore['lodOptionBotsUniqueSkills'],
@@ -4150,6 +4142,11 @@ function Pregame:onPlayerSelectHero(eventSourceIndex, args)
     end
     -- Add skill to hero if needed
     local hero = args.heroName
+    -- Play Meme sounds
+    if hero and hero == "npc_dota_hero_juggernaut" and OptionManager:GetOption("memesRedux") == 1 then
+        EmitGlobalSound("Memes.Swords")
+    end
+
     if hero and GameRules.perks["heroAbilityPairs"][hero] then
         -- Do not try to learn it twice
         local hasAbil = false
@@ -4925,7 +4922,8 @@ end
 function Pregame:PlayAlert(playerID)
     local sound = self:getRandomSound("game_error_alert")
     if OptionManager:GetOption("memesRedux") == 1 then
-        EmitAnnouncerSoundForPlayer("Memes.Denied", playerID)
+        --EmitAnnouncerSoundForPlayer("Memes.Denied", playerID)
+        EmitGlobalSound("Memes.Denied")
     else
         EmitAnnouncerSoundForPlayer(sound, playerID)
     end
@@ -5403,7 +5401,9 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                 -- Network it
                 network:setSelectedAbilities(playerID, build)
                 if OptionManager:GetOption("memesRedux") == 1 then
-                    if abilityName == "alchemist_goblins_greed" or abilityName == "angel_arena_transmute" then
+                    if abilityName == "juggernaut_blade_dance" or abilityName == "juggernaut_blade_fury" or abilityName == "juggernaut_omni_slash"  then
+                        EmitGlobalSound("Memes.Swords")
+                    elseif abilityName == "alchemist_goblins_greed" or abilityName == "angel_arena_transmute" then
                         EmitGlobalSound("Memes.Rich")
                     elseif abilityName == "ebf_clinkz_trickshot_passive" or abilityName == "imba_tower_multihit" or
                         abilityName == "imba_tower_essence_drain" or
@@ -6270,28 +6270,48 @@ function Pregame:generateBotBuilds()
 
     -- Create a table to store bot builds
     --self.botBuilds = {}
+    local brokenBots = {}
 
     -- List of bots that are borked
-    local brokenBots = {
-        npc_dota_hero_tidehunter = true,
-        npc_dota_hero_razor = true,
-        
-        -- Stoped working around Feburary, 24, 2017
-        npc_dota_hero_skywrath_mage = true,
-        npc_dota_hero_nevermore = true,
-        npc_dota_hero_pudge = true,
-        npc_dota_hero_phantom_assassin = true,
+    if IsInToolsMode() then
+        brokenBots = {
+            npc_dota_hero_tidehunter = true,
+            npc_dota_hero_razor = true,
+            
+            -- Stoped working around Feburary, 24, 2017
+            npc_dota_hero_skywrath_mage = true,
+            npc_dota_hero_nevermore = true,
+            npc_dota_hero_pudge = true,
+            npc_dota_hero_phantom_assassin = true,
 
-        --[[npc_dota_hero_sven = true,
-        npc_dota_hero_skeleton_king = true,
-        npc_dota_hero_lina = true,
-        npc_dota_hero_luna = true,
-        npc_dota_hero_dragon_knight = true,
-        npc_dota_hero_bloodseeker = true,
-        npc_dota_hero_lion = true,
-        npc_dota_hero_tiny = true,
-        npc_dota_hero_oracle = true,]]
-    }
+            --[[npc_dota_hero_sven = true,
+            npc_dota_hero_skeleton_king = true,
+            npc_dota_hero_lina = true,
+            npc_dota_hero_luna = true,
+            npc_dota_hero_dragon_knight = true,
+            npc_dota_hero_bloodseeker = true,
+            npc_dota_hero_lion = true,
+            npc_dota_hero_tiny = true,
+            npc_dota_hero_oracle = true,]]
+        }
+    else
+        brokenBots = {
+            npc_dota_hero_tidehunter = true,
+            npc_dota_hero_razor = true,
+            
+            -- Stoped working around Feburary, 24, 2017
+            --[[npc_dota_hero_sven = true,
+            npc_dota_hero_skeleton_king = true,
+            npc_dota_hero_lina = true,
+            npc_dota_hero_luna = true,
+            npc_dota_hero_dragon_knight = true,
+            npc_dota_hero_bloodseeker = true,
+            npc_dota_hero_lion = true,
+            npc_dota_hero_tiny = true,
+            npc_dota_hero_oracle = true,]]
+        }
+
+    end
 
     -- Generate a list of possible heroes
     local possibleHeroes = {}
@@ -7190,6 +7210,45 @@ function Pregame:fixSpawningIssues()
     ListenToGameEvent('npc_spawned', function(keys)
         -- Grab the unit that spawned
         local spawnedUnit = EntIndexToHScript(keys.entindex)
+
+        -- Grab their playerID
+        if spawnedUnit.GetPlayerID then
+            local playerID = spawnedUnit:GetPlayerID()
+
+            local mainHero = PlayerResource:GetSelectedHeroEntity(playerID)
+
+            -- Fix up tempest doubles/etc
+            if self.spawnedHeroesFor[playerID] and mainHero and mainHero ~= spawnedUnit then
+                local notOnIllusions = {
+                    lone_druid_spirit_bear = true,
+                    necronomicon_warrior_last_will_lod = true,
+                    roshan_bash = true,
+                }
+
+                -- Apply the build
+                local build = this.selectedSkills[playerID] or {}
+                SkillManager:ApplyBuild(spawnedUnit, build)
+
+                -- Illusion and Tempest Double fixes
+                if not spawnedUnit:IsClone() then
+                    Timers:CreateTimer(function()
+                        if IsValidEntity(spawnedUnit) then
+                            for k,abilityName in pairs(build) do
+                                if notOnIllusions[abilityName] then
+                                    local ab = spawnedUnit:FindAbilityByName(abilityName)
+                                    if ab then
+                                        ab:SetLevel(0)
+                                        ab:RemoveSelf()
+                                    end
+                                end
+                            end
+
+
+                        end
+                    end, DoUniqueString('fixBrokenSkills'), 0)
+                end
+            end
+        end
 
         -- Ensure it's a valid unit
         if IsValidEntity(spawnedUnit) then

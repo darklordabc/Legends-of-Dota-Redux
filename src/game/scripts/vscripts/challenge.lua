@@ -1,5 +1,4 @@
 local constants = require('constants')
-local OptionManager = require('optionmanager')
 
 -- Setup the challenge module
 local challenge = {}

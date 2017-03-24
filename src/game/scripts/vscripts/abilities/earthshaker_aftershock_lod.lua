@@ -1,4 +1,3 @@
-local util = require('util')
 local toIgnore = util:getToggleIgnores()
 
 function TryAftershock(keys)

@@ -12,15 +12,10 @@
 		"AbilitySpecial" {
 			"01" {
 				"var_type" "FIELD_INTEGER"
-				"magic_resistance" "100"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
 				"magic_resistance_aura" "15 25 35"
 			}
 
-			"03" {
+			"02" {
 				"var_type" "FIELD_INTEGER"
 				"aura_radius" "1200"
 			}
@@ -37,11 +32,7 @@
 				"Aura_ApplyToCaster" "0"
 
 				"Properties" {
-					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance"
-				}
-
-				"States" {
-					"MODIFIER_STATE_MAGIC_IMMUNE" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance_aura"
 				}
 			}
 

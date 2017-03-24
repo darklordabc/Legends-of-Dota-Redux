@@ -101,6 +101,12 @@
 
         // Rearm Abuse
         "tinker_rearm" {
+            "ancient_last_resort"   "1"
+            "zuus_cloud"    "1"
+            "global_stun"     "1"
+            "silencer_global_break" "1"
+            "silencer_global_disarm"    "1"
+            "lone_druid_savage_roar_op"   "1"
             "abaddon_borrowed_time"             "1"
             "abaddon_borrowed_time_redux"   "1"
             "ancient_apparition_ice_blast"      "1"
@@ -303,6 +309,65 @@
             "techies_suicide"             "1" // Self-harming ability
             "huskar_burning_spear"        "1" // Self-harming ability
             "meepo_divided_we_stand"            "1" // HUGE fps drop, need to fix
+            "huskar_life_break"            "1" // Self-harming ability
+        }
+
+        // They dont stack properly
+        "alchemist_goblins_greed" {
+            "alchemist_goblins_greed_op"  "1"
+        }
+        "shredder_reactive_armor" {
+            "shredder_reactive_armor_op"  "1"
+        }
+        "shredder_reactive_armor" {
+            "shredder_reactive_armor_op"  "1"
+        }
+        "dragon_knight_dragon_blood" {
+            "dragon_knight_dragon_blood_OP"  "1"
+        }
+        "nevermore_necromastery" {
+            "nevermore_necromastery_op"  "1"
+        }
+        "ebf_rubick_arcane_echo" {
+            "ebf_rubick_arcane_echo_OP"  "1"
+        }
+        "octarine_vampirism_lod" {
+            "octarine_vampirism_lod_OP"  "1"
+        }
+        "lord_of_lightning_holy_wrath" {
+            "lord_of_lightning_holy_wrath_OP"  "1"
+        }
+        "angel_arena_razor_power" {
+            "angel_arena_razor_power_OP"  "1"
+        }
+        "frost_lord_freezing" {
+            "frost_lord_freezing_OP"  "1"
+        }
+        "aether_range_lod" {
+            "aether_range_lod_OP"  "1"
+        }
+        "spell_reflect" {
+            "spell_reflect_op"  "1"
+        }
+        "jingtong" {
+            "jingtong_op"  "1"
+        }
+        "zhanhun" {
+            "zhanhun_op"  "1"
+        }
+
+        //"imba_tower_machinegun" {
+        //    "imba_tower_fervor"             "1"
+        //    "imba_tower_multishot"              "1"
+        //    "imba_tower_split"              "1"
+        //    "imba_tower_multihit"             "1"
+        //}
+        // Only one super speed ability allowed
+    }
+
+    "BannedTowerCombinations" {
+        "imba_tower_multihit" {
+            "imba_tower_machinegun"              "1"
         }
     }
 
@@ -472,6 +537,16 @@
             "pudge_flesh_heap_attack_range"               "1"
             "pudge_flesh_heap_spell_amp"   "1"
             "pudge_flesh_heap_int"   "1"
+        }
+    }
+
+    "BannedTowerGroups" {
+        "1" {
+            "imba_tower_fervor"             "1"
+            "imba_tower_berserk"   "1"
+            "imba_tower_machinegun"              "1"
+            "imba_tower_essence_drain"              "1"
+            "imba_tower_multihit"             "1"
         }
     }
 
@@ -1027,6 +1102,15 @@
     // Single Player Abilities that will be banned by default in multiplayer LoD
     // This list is up for debate
     "SuperOP" {
+        "imba_tower_plasma_field"     "1"
+        "omniknight_degen_aura_tower"   "1"
+        "omniknight_degen_aura_damage_tower"    "1"
+        "batrider_flamebreak_op"      "1"
+        "lone_druid_savage_roar_op"   "1"
+        "dragon_knight_dragon_blood_OP"     "1"
+        "alchemist_goblins_greed_op"  "1"
+        "shredder_reactive_armor_op"  "1"
+        "nevermore_necromastery_op"   "1"
         "abyssal_underlord_dark_rift_op"   "1"
         "invoker_chaos_meteor_op"   "1"
         "ogre_magi_bloodlust_op"              "1"

@@ -1,6 +1,8 @@
 function StrafeAttack(keys)
 	local caster = keys.caster
 	local radius = caster:GetAttackRange()
+	local abilityName = keys.ability:GetName()
+
 	if caster:IsRangedAttacker() == false then 
 		radius = radius + 50
 	end
@@ -8,6 +10,9 @@ function StrafeAttack(keys)
 	if caster:HasScepter() then
 		counter = keys.ability:GetSpecialValueFor("targets_scepter")
 	end
+
+	if caster:PassivesDisabled() and abilityName == "ebf_clinkz_trickshot_passive" then return end
+
 	local units = FindUnitsInRadius(caster:GetTeam(),
                                   caster:GetAbsOrigin(),
                                   nil,

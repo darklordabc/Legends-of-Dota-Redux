@@ -3,7 +3,6 @@
 --		Global Mutators
 --
 --------------------------------------------------------------------------------------------------------
-local OptionManager = require('optionmanager')
 -- Intrinsic modifier on the unit
 LinkLuaModifier( "modifier_global_mutator", "abilities/global_mutators/global_mutator.lua" ,LUA_MODIFIER_MOTION_NONE )
 -- Gotta Go Fast modifiers

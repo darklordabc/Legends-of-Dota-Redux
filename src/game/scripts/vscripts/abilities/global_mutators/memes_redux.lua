@@ -1,5 +1,4 @@
 local Timers = require('easytimers')
-local OptionManager = require('optionmanager')
 
 --------------------------------------------------------------------------------------------------------
 --    Modifier: modifier_memes_redux        
@@ -25,6 +24,32 @@ function modifier_memes_redux:OnAbilityFullyCast(event)
 
   if ability:GetName() == "satyr_hellcaller_shockwave" then
     caster:EmitSound("Memes.Hadouken")
+  elseif ability:GetName() == "juggernaut_omni_slash" then
+    caster:EmitSound("Memes.OmniSwords")
+  elseif ability:GetName() == "earthshaker_enchant_totem" then
+    caster:EmitSound("Memes.PowerUp")
+  elseif ability:GetName() == "earthshaker_enchant_totem" then
+    caster:EmitSound("Memes.PowerUp")
+  elseif ability:GetName() == "lone_druid_spirit_bear_return_lod" or ability:GetName() == "lone_druid_spirit_bear_return_lod_OP" then
+  	
+  	if not self.FlahshTracker then
+  		self.FlahshTracker = 1
+  	else
+  		self.FlahshTracker = self.FlahshTracker + 1
+  	end
+
+  	if self.FlahshTracker >= 5 and RollPercentage(10) then
+  		caster:EmitSound("Memes.FlashLong")
+  	elseif self.FlahshTracker >= 20 then
+  		caster:EmitSound("Memes.FlashEnd")
+  		self.FlahshTracker = 0
+  	else
+    	caster:EmitSound("Memes.FlashShort")
+	end
+  elseif ability:GetName() == "earthshaker_enchant_totem" then
+    caster:EmitSound("Memes.PowerUp")
+  elseif ability:GetName() == "shadow_shaman_shackles" then
+    caster:EmitSound("Memes.UnlimitedPower")
   elseif ability:GetName() == "crystal_maiden_freezing_field" then
     caster:EmitSound("Memes.LetItGo")
     Timers:CreateTimer(function()
@@ -234,12 +259,14 @@ function memesModifierFilter(filterTable)
     end, DoUniqueString("darude"), 0.5)
   elseif modifierName == "modifier_tiny_toss" and RollPercentage(35) then
     parent:EmitSound("Memes.Fly")
+  elseif modifierName == "modifier_juggernaut_blade_fury" then
+    parent:EmitSound("Memes.OmniSwords")
   elseif modifierName == "modifier_monkey_king_unperched_stunned" then
     parent:EmitSound("Memes.TreeFall")
   end
 
   -- Returning the filterTable
-  return filterTable
+  return filterTable 
 end
 
 function memesDamageFilter(filterTable)

@@ -1,13 +1,12 @@
-local util = require('util')
 local constants = require('constants')
-local network = require('network')
-local OptionManager = require('optionmanager')
 local Timers = require('easytimers')
 require('lib/util_imba')
 require('abilities/hero_perks/hero_perks_filters')
 require('abilities/epic_boss_fight/ebf_mana_fiend_essence_amp')
 require('abilities/global_mutators/global_mutator')
 require('abilities/global_mutators/memes_redux')
+
+require('commands')
 
 -- Create the class for it
 local Ingame = class({})
@@ -25,6 +24,7 @@ function Ingame:init()
 
     -- Init stronger towers
     self:addStrongTowers()
+    self:loadTrollCombos()
     self:AddTowerBotController()
     self:fixRuneBug()
 
@@ -58,8 +58,10 @@ function Ingame:init()
     self.voteDisableAntiKamikaze = false
     self.voteDisableRespawnLimit = false
     self.voteEnableBuilder = false
+    self.voteAntiRat = false
     self.origianlRespawnRate = nil
     self.shownCheats = {}
+    self.heard = {}
 
     self.botsInLateGameMode = false
 
@@ -110,6 +112,10 @@ function Ingame:init()
         if util.activeVoting and util.activeVoting.name == args.votingName then
             util.activeVoting.onvote(args.PlayerID, args.accept == 1)
         end
+    end)
+    
+    CustomGameEventManager:RegisterListener('lodRequestCheatData', function(eventSourceIndex, args)
+        network:updateCheatPanelStatus(self.voteEnabledCheatMode, args.PlayerID)
     end)
 end   
 
@@ -383,19 +389,7 @@ function Ingame:onStart()
            
     --Attempt to enable cheats
     Convars:SetBool("sv_cheats", true)
-    local isCheatsEnabled = Convars:GetBool("sv_cheats")
-    local maxPlayers = 24
-    local count = 0
-    for playerID=0,(maxPlayers-1) do
-        if not util:isPlayerBot(playerID) then
-            count = count + 1
-        end
-    end
-    local options = {
-        players = count,
-        cheats = isCheatsEnabled
-    }
-    network:showCheatPanel(options)
+    
     if OptionManager:GetOption('allowIngameHeroBuilder') then
         network:enableIngameHeroEditor()
         
@@ -422,7 +416,7 @@ function Ingame:onStart()
 
     CustomGameEventManager:RegisterListener('lodOnCheats', function(eventSourceIndex, args)
         if args.command then
-            self:OnPlayerChat({
+            Commands:OnPlayerChat({
                 teamonly = true,
                 playerid = args.PlayerID,
                 text = "-" .. args.command
@@ -512,7 +506,7 @@ function Ingame:onStart()
 
     ListenToGameEvent("player_reconnected", Dynamic_Wrap(Ingame, 'OnPlayerReconnect'), self)
 
-    ListenToGameEvent("player_chat", Dynamic_Wrap(Ingame, 'OnPlayerChat'), self)
+    ListenToGameEvent("player_chat", Dynamic_Wrap(Commands, 'OnPlayerChat'), self)
     
     -- Set it to no team balance
     self:setNoTeamBalanceNeeded()
@@ -530,427 +524,6 @@ function Ingame:CommandNotification(command, message, cooldown)
         end, DoUniqueString('temporaryblockcommand'), cooldown)
     end
 end
-
-function Ingame:OnPlayerChat(keys)
-    local teamonly = keys.teamonly
-    local playerID = keys.playerid
-    
-    local text = string.lower(keys.text)
-    
-    -- Change the PLAYERID for the command to simulate another player using the command
-    if string.find(text, "#") then
-        if string.find(text, "#0") then playerID = 0
-        elseif string.find(text, "#1") then playerID = 1 
-        elseif string.find(text, "#2") then playerID = 2 
-        elseif string.find(text, "#3") then playerID = 3 
-        elseif string.find(text, "#4") then playerID = 4 
-        elseif string.find(text, "#5") then playerID = 5 
-        elseif string.find(text, "#6") then playerID = 6 
-        elseif string.find(text, "#7") then playerID = 7 
-        elseif string.find(text, "#8") then playerID = 8 
-        elseif string.find(text, "#9") then playerID = 9 
-        elseif string.find(text, "#10") then playerID = 10
-        elseif string.find(text, "#11") then playerID = 11
-        elseif string.find(text, "#12") then playerID = 12 
-        elseif string.find(text, "#13") then playerID = 13
-        elseif string.find(text, "#14") then playerID = 14
-        elseif string.find(text, "#15") then playerID = 15
-        elseif string.find(text, "#16") then playerID = 16
-        elseif string.find(text, "#17") then playerID = 17
-        elseif string.find(text, "#18") then playerID = 18
-        elseif string.find(text, "#19") then playerID = 19
-        elseif string.find(text, "#20") then playerID = 20
-        elseif string.find(text, "#21") then playerID = 21
-        elseif string.find(text, "#22") then playerID = 22
-        elseif string.find(text, "#23") then playerID = 23
-        end
-    end
-
-    local hero = PlayerResource:GetSelectedHeroEntity(playerID) 
-    -- If not valid hero, return
-    if not hero then return end
-
-    ----------------------------
-    -- Debug Commands
-    ----------------------------
-    if string.find(text, "-test") then 
-        GameRules:SendCustomMessage('testing testing 1. 2. 3.', 0, 0)
-    elseif string.find(text, "-bot") then
-        if string.find(text, "mode") then
-            if not self.botsInLateGameMode then 
-                self:CommandNotification("-botmode", "Bots are in early game mode.", 10)  
-            elseif self.botsInLateGameMode then 
-                self:CommandNotification("-botmode", "Bots are in late game mode.", 10)   
-            end   
-        end            
-    elseif string.find(text, "-pid") then
-        --if not self.voteEnabledCheatMode then
-            for playerID=0,24-1 do
-                local hero = PlayerResource:GetSelectedHeroEntity(playerID)
-                if hero ~= nil and IsValidEntity(hero) then
-                    GameRules:SendCustomMessage( string.sub(hero:GetName(),15) .. ': ' .. playerID ,0,0)
-                end
-            end
-    elseif string.find(text, "-printabilities") then 
-        Timers:CreateTimer(function()        
-            -- GameRules:SendCustomMessage("-------------HERO STATS------------", 0, 0)
-            -- GameRules:SendCustomMessage("HP: "..tostring(hero:GetHealth()).."/"..tostring(hero:GetMaxHealth()), 0, 0)
-            -- GameRules:SendCustomMessage("EP: "..tostring(hero:GetMana()).."/"..tostring(hero:GetMaxMana()), 0, 0)
-            -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
-            -- GameRules:SendCustomMessage("MR: "..tostring(hero:GetMagicalArmorValue()), 0, 0)
-            -- GameRules:SendCustomMessage("ARMOR: "..tostring(hero:GetPhysicalArmorValue()), 0, 0)
-            -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
-            -- GameRules:SendCustomMessage("STR: "..tostring(hero:GetStrength()), 0, 0)
-            -- GameRules:SendCustomMessage("AGI: "..tostring(hero:GetAgility()), 0, 0)
-            -- GameRules:SendCustomMessage("INT: "..tostring(hero:GetIntellect()), 0, 0)
-            -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
-            -- GameRules:SendCustomMessage("AD: "..tostring(hero:GetAverageTrueAttackDamage(hero)), 0, 0)
-            -- GameRules:SendCustomMessage("AS: "..tostring(hero:GetAttackSpeed()), 0, 0)
-            -- GameRules:SendCustomMessage("ApS: "..tostring(hero:GetAttacksPerSecond()), 0, 0)
-            -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
-            -- GameRules:SendCustomMessage("MODIFIER COUNT: "..tostring(hero:GetModifierCount()), 0, 0)
-            -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
-            -- for i=0,hero:GetModifierCount() do
-            --     GameRules:SendCustomMessage(hero:GetModifierNameByIndex(i).." "..hero:GetModifierStackCount(hero:GetModifierNameByIndex(i), hero))
-            -- end
-            local abilities = ""
-            for i=0,32 do
-                local abil = hero:GetAbilityByIndex(i)
-                if abil then
-                    abilities = abilities..abil:GetName().." "
-                    if string.len(abilities) >= 100 then
-                        GameRules:SendCustomMessage(abilities, 0, 0)
-                        abilities = ""
-                    end
-                end
-            end
-            GameRules:SendCustomMessage(abilities, 0, 0)
-            -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
-        end, DoUniqueString('printabilities'), .5)
-
-    elseif string.find(text, "-fixcasting") then 
-        Timers:CreateTimer(function()        
-            local status2,err2 = pcall(function()
-                local talents = {}
-
-                for i = 0, 23 do
-                    if hero:GetAbilityByIndex(i) then 
-                        local ability = hero:GetAbilityByIndex(i)
-                        if ability and string.match(ability:GetName(), "special_bonus_") then
-                            local abName = ability:GetName()
-                            table.insert(talents, abName)
-                            hero:RemoveAbility(abName)
-                        end
-                    end
-                end
-
-                SendToServerConsole('say "Found talents: '..tostring(util:getTableLength(talents))..'"')
-
-                Timers:CreateTimer(function()  
-                    local status2,err2 = pcall(function()      
-                        for k,v in pairs(talents) do
-                            hero:AddAbility(v)
-                        end
-                    end)
-
-                    if not status2 then
-                        SendToServerConsole('say "Post this to the LoD comments section: '..err2:gsub('"',"''")..'"')
-                    end
-                end, DoUniqueString('fixcasting'), .5)
-            end)
-
-            if not status2 then
-                SendToServerConsole('say "Post this to the LoD comments section: '..err2:gsub('"',"''")..'"')
-            end
-        end, DoUniqueString('fixcasting'), .5)
-    end
-    ----------------------------
-    -- Vote Commands
-    ----------------------------
-    if string.find(text, "-enablecheat") or string.find(text, "-ec") then
-        --if not self.voteEnabledCheatMode then       
-            util:CreateVoting("lodVotingEnableCheatMode", playerID, 20, 100, function()
-                self.voteEnabledCheatMode = true
-                EmitGlobalSound("Event.CheatEnabled")
-                GameRules:SendCustomMessage('<font color=\'#70EA72\'>Everbody voted to enable cheat mode. Cheat mode enabled</font>.',0,0)
-            end)
-        --end
-    elseif string.find(text, "-enablekamikaze") or string.find(text, "-ek") then
-        if not self.voteDisableAntiKamikaze then
-            util:CreateVoting("lodVotingEnableKamikaze", playerID, 20, 100, function()
-                self.voteDisableAntiKamikaze = true
-                EmitGlobalSound("Event.CheatEnabled")
-                GameRules:SendCustomMessage('Everbody voted to disable the anti-Kamikaze mechanic. <font color=\'#70EA72\'>No more peanlty for dying 3 times within 60 seconds</font>.',0,0)
-            end)
-        end
-    elseif string.find(text, "-enablebuilder") or string.find(text, "-eb") and OptionManager:GetOption('allowIngameHeroBuilder') == false then
-        if not self.voteEnableBuilder then
-            util:CreateVoting("lodVotingEnableHeroBuilder", playerID, 20, 100, function()
-                network:enableIngameHeroEditor()
-                OptionManager:SetOption('allowIngameHeroBuilder', 1)
-                if util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS) > 0 and util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS) > 0 then
-                    OptionManager:SetOption('ingameBuilderPenalty', 30)
-                end
-                self.voteEnableBuilder = true
-                EmitGlobalSound("Event.CheatEnabled")
-                GameRules:SendCustomMessage('Everbody voted to enable the ingame hero builder. <font color=\'#70EA72\'>You can now change your hero build mid-game</font>.',0,0)
-            end)
-        end
-    elseif string.find(text, "-enablerespawn") or string.find(text, "-er") then
-        if not self.voteDisableRespawnLimit then
-            util:CreateVoting("lodVotingEnableRespawn", playerID, 20, 100, function()
-                self.voteDisableRespawnLimit = true
-                if self.origianlRespawnRate ~= nil then
-                    OptionManager:SetOption('respawnModifierPercentage', self.origianlRespawnRate)
-                end
-                EmitGlobalSound("Event.CheatEnabled")
-                GameRules:SendCustomMessage('Everbody voted to disable the increasing-spawn-rate mechanic. <font color=\'#70EA72\'>Respawn rates no longer increase after 40 minutes</font>. Respawn rate is now '.. OptionManager:GetOption('respawnModifierPercentage') .. '%.',0,0)
-            end)
-        end
-    end
-    ----------------------------
-    -- Cheat Commands
-    ----------------------------
-    if util:isSinglePlayerMode() or Convars:GetBool("sv_cheats") or self.voteEnabledCheatMode then
-        -- Some cheats that work in tools and cheats mode conflict
-        local blockConfliction = util:isSinglePlayerMode() or Convars:GetBool("sv_cheats")
-        
-        if string.find(text, "-gold") then 
-            -- Give user max gold, unless they specify a number
-            local goldAmount = 100000
-            local splitedText = util:split(text, " ")       
-            if splitedText[2] and tonumber(splitedText[2])then
-                goldAmount = tonumber(splitedText[2])
-            end
-
-            Timers:CreateTimer(function()  
-                PlayerResource:ModifyGold(hero:GetPlayerOwner():GetPlayerID(), goldAmount, true, 0)      
-                self:CommandNotification("-gold", 'Cheat Used (-gold): Given ' .. goldAmount .. ' gold to '.. PlayerResource:GetPlayerName(playerID)) 
-            end, DoUniqueString('cheat'), .1)
-
-        -- Some Bot commands are cheats
-        elseif string.find(text, "-bot") then
-            if string.find(text, "switch") then
-                if self.botsInLateGameMode then
-                    self.botsInLateGameMode = false
-                    GameRules:GetGameModeEntity():SetBotsInLateGame(self.botsInLateGameMode)
-                else
-                    self.botsInLateGameMode = true
-                    GameRules:GetGameModeEntity():SetBotsInLateGame(self.botsInLateGameMode)
-                end
-                self:CommandNotification("-switched", "Bots have switched modes.", 5)
-            end
-        
-        elseif string.find(text, "-god") then 
-            Timers:CreateTimer(function()  
-                local godMode = hero:FindModifierByName("modifier_invulnerable")
-                if godMode then
-                    hero:RemoveModifierByName("modifier_invulnerable")
-                else
-                    hero:AddNewModifier(hero,nil,"modifier_invulnerable",{duration = 240})
-                    self:CommandNotification("-godmode", 'Cheat Used (-godmode): Given invulnerability to '.. PlayerResource:GetPlayerName(playerID)) 
-                end
-                             
-            end, DoUniqueString('cheat'), .1)
-
-        elseif string.find(text, "-aghs") or string.find(text, "-aghanim") or string.find(text, "-scepter") then 
-            Timers:CreateTimer(function()    
-                local scepter = hero:FindModifierByName("modifier_item_ultimate_scepter_consumed")
-                if scepter then
-                    hero:RemoveModifierByName("modifier_item_ultimate_scepter_consumed")
-                else
-                    hero:AddNewModifier(hero, nil, 'modifier_item_ultimate_scepter_consumed', {
-                        bonus_all_stats = 0,
-                        bonus_health = 0,
-                        bonus_mana = 0
-                    })
-                    self:CommandNotification("-scepter", 'Cheat Used (-scepter): Given Aghanims Scepter upgrade to '.. PlayerResource:GetPlayerName(playerID)) 
-                end
-                             
-            end, DoUniqueString('cheat'), .1)
-
-        elseif string.find(text, "-regen") then 
-            Timers:CreateTimer(function()  
-                local godMode = hero:FindModifierByName("modifier_fountain_aura_buff")
-                if godMode then
-                    hero:RemoveModifierByName("modifier_fountain_aura_buff")
-                else
-                    hero:AddNewModifier(hero,nil,"modifier_fountain_aura_buff",{})
-                    self:CommandNotification("-godmode", 'Cheat Used (-regen): Given foutain regeneration to '.. PlayerResource:GetPlayerName(playerID)) 
-                end
-                             
-            end, DoUniqueString('cheat'), .1)
-
-        elseif (string.find(text, "-wtf") and not blockConfliction) or string.find(text, "-wtfmenu") then 
-            Timers:CreateTimer(function()  
-                print(OptionManager:GetOption('lodOptionCrazyWTF'))
-                if OptionManager:GetOption('lodOptionCrazyWTF') == 1 then
-                    OptionManager:SetOption('lodOptionCrazyWTF', 0)
-                    self:CommandNotification("-wtfoff", 'Cheat Used (-wtf): WTF mode disabled, spells have regular cooldowns and manacosts.',30)
-                else
-                    OptionManager:SetOption('lodOptionCrazyWTF', 1)
-                    self:CommandNotification("-wtfon", 'Cheat Used (-wtf): WTF mode enabled, spells have no cooldowns or manacosts.',30) 
-                end
-                             
-            end, DoUniqueString('cheat'), .1)
-
-        elseif string.find(text, "-unwtf") and not blockConfliction then 
-            Timers:CreateTimer(function()  
-                if OptionManager:GetOption('lodOptionCrazyWTF') == 1 then
-                    OptionManager:SetOption('lodOptionCrazyWTF', 0)
-                    self:CommandNotification("-wtfoff", 'Cheat Used (-wtf): WTF mode disabled, spells have regular cooldowns and manacosts.',30)    
-                end           
-            end, DoUniqueString('cheat'), .1)
-
-        elseif string.find(text, "-lvlup") then 
-            -- Give user 1 level, unless they specify a number after
-            local levels = 1
-            local splitedText = util:split(text, " ")       
-            if splitedText[2] and tonumber(splitedText[2]) then
-                levels = tonumber(splitedText[2])
-            end
-            Timers:CreateTimer(function()  
-                for i=0,levels-1 do
-                    hero:HeroLevelUp(true)
-                end
-                self:CommandNotification("-lvlup", 'Cheat Used (-lvlup): Given ' .. levels .. ' level(s) to '.. PlayerResource:GetPlayerName(playerID)) 
-            end, DoUniqueString('cheat'), .1)
-
-        elseif string.find(text, "-item") then 
-            -- Give user 1 level, unless they specify a number after
-            Timers:CreateTimer(function()  
-                local splitedText = util:split(text, " ")       
-                local validItem = false
-                if splitedText[2] then
-                    hero:AddItemByName(splitedText[2])
-                    local findItem = hero:FindItemByName(splitedText[2])
-                    if findItem then validItem = true end
-                end
-                if validItem then
-                    self:CommandNotification("-item", 'Cheat Used (-item): Given ' .. splitedText[2] .. ' to '.. PlayerResource:GetPlayerName(playerID)) 
-                end
-            end, DoUniqueString('cheat'), .1)
-
-        elseif string.find(text, "-addability") or string.find(text, "-giveability") then 
-            -- Give user 1 level, unless they specify a number after
-            Timers:CreateTimer(function()  
-                local splitedText = util:split(text, " ")       
-                local validAbility = false
-                if splitedText[2] then    
-                    local oldAbList = LoadKeyValues('scripts/kv/abilities.kv')
-                    local skills = oldAbList.skills
-                    for tabName, tabList in pairs(skills) do
-                        for abilityName,abilityGroup in pairs(tabList) do
-                            print(abilityName)
-                            if string.find(abilityName, splitedText[2]) then
-                                splitedText[2] = abilityName
-                            end
-                        end
-                    end
-                    hero:AddAbility(splitedText[2])
-                    local findAbility = hero:FindAbilityByName(splitedText[2])
-                    if findAbility then validAbility = true end
-                end
-                if validAbility then
-                    self:CommandNotification("-addability", 'Cheat Used (-addability): Given ' .. splitedText[2] .. ' to '.. PlayerResource:GetPlayerName(playerID)) 
-                end
-            end, DoUniqueString('cheat'), .1)
-
-        elseif string.find(text, "-removeability") then 
-            -- Give user 1 level, unless they specify a number after
-
-            Timers:CreateTimer(function()  
-                local splitedText = util:split(text, " ")       
-                local validAbility = false
-                if splitedText[2] then    
-                    for i=0,32 do
-                        local abil = hero:GetAbilityByIndex(i)
-                        if abil then
-                            if splitedText[2] == "all" then
-                                hero:RemoveAbility(abil:GetName())
-                            elseif string.find(abil:GetName(), splitedText[2]) then
-                                splitedText[2] = abil:GetName()
-                            end
-                        end
-                    end
-                    hero:RemoveAbility(splitedText[2])
-                end
-                if validAbility then
-                    self:CommandNotification("-removeability", 'Cheat Used (-removeability): -removeability used by  '.. PlayerResource:GetPlayerName(playerID)) 
-                end
-            end, DoUniqueString('cheat'), .1)
-
-        elseif string.find(text, "-lvlmax") then 
-            Timers:CreateTimer(function()
-                for i=0,100 do
-                    hero:HeroLevelUp(true)
-                end
-                for i = 0, hero:GetAbilityCount() - 1 do
-                    local ability = hero:GetAbilityByIndex(i)
-                    if ability then
-                        ability:SetLevel(ability:GetMaxLevel())
-                    end
-                end
-                self:CommandNotification("-lvlmax", 'Cheat Used (-lvlmax): Max level given to '.. PlayerResource:GetPlayerName(playerID)) 
-            end, DoUniqueString('cheat'), .1)
-
-        elseif string.find(text, "-dagger") then 
-            Timers:CreateTimer(function()
-                hero:AddItemByName('item_devDagger')
-                self:CommandNotification("-item_devDagger", 'Cheat Used (-dagger): Global teleport dagger given to '.. PlayerResource:GetPlayerName(playerID)) 
-            end, DoUniqueString('cheat'), 0.2)
-
-
-        elseif string.find(text, "-teleport") and not blockConfliction then 
-            -- Teleport is not exactly reproduced. If the game is in tools mode or has sv_cheats, leave it as it is, if not give players the teleport dagger.
-                Timers:CreateTimer(function()
-                    hero:AddItemByName('item_devDagger')
-                    self:CommandNotification("-teleport", 'Cheat Used (-teleport): Global teleport dagger given to '.. PlayerResource:GetPlayerName(playerID)) 
-                end, DoUniqueString('cheat'), 0.2)
-        
-        elseif string.find(text, "-startgame") and not blockConfliction then 
-            Timers:CreateTimer(function()
-                --print(GameRules:GetDOTATime(false,false)) 
-                -- If the game has already started, do nothing.
-                if GameRules:GetDOTATime(false,false) == 0 then
-                    Tutorial:ForceGameStart()
-                    self:CommandNotification("-startgame", 'Cheat Used (-startgame): Forced game start, by '.. PlayerResource:GetPlayerName(playerID)) 
-                end
-            end, DoUniqueString('cheat'), .1)    
-
-        elseif string.find(text, "-respawn") then 
-            Timers:CreateTimer(function()
-                if not hero:IsAlive() then
-                    hero:SetTimeUntilRespawn(1)
-                end
-                self:CommandNotification("-respawn", 'Cheat Used (-respawn): Respawned '.. PlayerResource:GetPlayerName(playerID)) 
-            end, DoUniqueString('cheat'), 1)
-
-        elseif string.find(text, "-refresh") then 
-            Timers:CreateTimer(function()
-
-                hero:SetMana(hero:GetMaxMana())
-                hero:SetHealth(hero:GetMaxHealth())
-
-                for i = 0, hero:GetAbilityCount() - 1 do
-                    local ability = hero:GetAbilityByIndex(i)
-                    if ability then
-                        ability:EndCooldown()
-                    end
-                end
-
-                for i = 0, 5 do
-                    local item = hero:GetItemInSlot( i )
-                    if item then
-                        item:EndCooldown()
-                    end
-                end
-                self:CommandNotification("-refresh", 'Cheat Used (-refresh): Refreshed '.. PlayerResource:GetPlayerName(playerID)) 
-            end, DoUniqueString('cheatrefresh'), .2)
-        end
-    end
-end
-
 
 
 function Ingame:fixRuneBug()
@@ -1504,6 +1077,37 @@ function Ingame:handleRespawnModifier()
                             -- Anti-Kamikaze Mechanic END
                             -------
 
+                            -------
+                            -- Imbalanced-Comepenstation Mechanic Start
+                            -------
+                            if not util:isCoop() then
+                                local herosTeam = util:GetActivePlayerCountForTeam(hero:GetTeamNumber())
+                                local opposingTeam = util:GetActivePlayerCountForTeam(otherTeam(hero:GetTeamNumber()))
+                                local difference = herosTeam - opposingTeam
+                                
+                                -- 10 seconds per player difference, if addedTime is positive, it means the player team has an advantage, if its a negative it means they are disadvantaged
+                                local addedTime = difference * 10
+                                timeLeft = timeLeft + addedTime
+                                if timeLeft < 1 then
+                                    timeLeft = 1
+                                end   
+
+                                -- Display message once, informing players of balance mechanic in use
+                                if addedTime ~= 0 and self.heard["imbalancedTeams"] ~= true then
+                                    GameRules:SendCustomMessage("#imbalance_notification", 0, 0) 
+                                    self.heard["imbalancedTeams"] = true
+                                    
+                                    -- Show the warning again after 10 minutes
+                                    Timers:CreateTimer( function()
+                                        self.heard["imbalancedTeams"] = false
+                                    end, DoUniqueString('showNotifAgain'), 600)
+                                end   
+                            end
+
+                            -------
+                            -- Imbalanced-Comepenstation Mechanic End
+                            ------
+
                             hero:SetTimeUntilRespawn(timeLeft)
 
                             -- Give 322 gold if enabled
@@ -1812,21 +1416,76 @@ function Ingame:AddTowerBotController()
  
 end
 
+function Ingame:loadTrollCombos()
+    -- Load in the ban list
+    local tempBanList = LoadKeyValues('scripts/kv/bans.kv')
+
+    -- Create the stores
+    self.banList = {}
+
+    -- Bans a skill combo
+    local function banCombo(a, b)
+        self.banList[a] = self.banList[a] or {}
+        self.banList[b] = self.banList[b] or {}
+
+        self.banList[a][b] = true
+        self.banList[b][a] = true
+    end
+
+    -- Loop over the banned combinations
+    for skillName, group in pairs(tempBanList.BannedTowerCombinations) do
+        for skillName2,_ in pairs(group) do
+            banCombo(skillName, skillName2)
+        end
+    end
+
+    -- Ban the group bans
+    for _,group in pairs(tempBanList.BannedTowerGroups) do
+        for skillName,__ in pairs(group) do
+            for skillName2,___ in pairs(group) do
+                banCombo(skillName, skillName2)
+            end
+        end
+    end
+end
+
+function Ingame:giveAntiRatProtection()
+    local towers = Entities:FindAllByClassname('npc_dota_tower')
+
+    self.destroyedTowers = self.destroyedTowers or {}
+
+    local radiantTowers = 0
+    local direTowers = 0
+    for k,v in pairs(towers) do
+        if not v:IsNull() and v:IsAlive() then
+            if v:GetTeamNumber() == 2 then
+                radiantTowers = radiantTowers + 1
+            else
+                direTowers = direTowers + 1
+            end
+        end
+    end
+    --print(radiantTowers)
+    --print(direTowers)
+    -- If either team's towers is at the point where anti-rat is disabled, do nothing.
+    if direTowers <= 5 or radiantTowers <=5 then
+        return
+    end
+
+    for k,v in pairs(towers) do
+        table.insert(self.destroyedTowers, v)
+        if string.match(v:GetUnitName(), "3") then
+            v:AddAbility("tower_anti_rat"):SetLevel(1)
+        end
+    end
+end
+
 function Ingame:addStrongTowers()
     ListenToGameEvent('game_rules_state_change', function(keys)
         local newState = GameRules:State_Get()
         if newState == DOTA_GAMERULES_STATE_PRE_GAME then
             if OptionManager:GetOption('antiRat') == 1 then
-                local towers = Entities:FindAllByClassname('npc_dota_tower')
-
-                self.destroyedTowers = self.destroyedTowers or {}
-
-                for k,v in pairs(towers) do
-                    table.insert(self.destroyedTowers, v)
-                    if string.match(v:GetUnitName(), "3") then
-                        v:AddAbility("tower_anti_rat"):SetLevel(1)
-                    end
-                end
+                self:giveAntiRatProtection()
             end
         elseif newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
             if OptionManager:GetOption('strongTowers') then
@@ -1849,8 +1508,8 @@ function Ingame:addStrongTowers()
                         -- Main ability handling
                         local difference = 0 -- will always be 0 anyway
                         tower.strongTowerAbilities = tower.strongTowerAbilities or {}
-                        local abName = PullTowerAbility(self.towerList, self.usedRandomTowers, tower.strongTowerAbilities, difference, tower:GetLevel() * 10)
-                        if not tower:HasAbility(abName) then
+                        local abName = PullTowerAbility(self.towerList, self.usedRandomTowers, self.banList, tower.strongTowerAbilities, difference, tower:GetLevel() * 10, tower)
+                        if not tower:HasAbility(abName) and abName then
                             tower:AddAbility(abName):SetLevel(1) 
                             self.usedRandomTowers[abName] = true
                             handledTowers[tower] = true
@@ -1863,8 +1522,8 @@ function Ingame:addStrongTowers()
                             -- Sister ability handling
                             difference = GetTowerAbilityPowerValue(sisterTower, self.towerList) - GetTowerAbilityPowerValue(tower, self.towerList)
                             sisterTower.strongTowerAbilities = sisterTower.strongTowerAbilities or {}
-                            local sisterAbName = PullTowerAbility(self.towerList, self.usedRandomTowers, tower.strongTowerAbilities, difference, sisterTower:GetLevel() * 10)
-                            if not tower:HasAbility(abName) then
+                            local sisterAbName = PullTowerAbility(self.towerList, self.usedRandomTowers, self.banList, tower.strongTowerAbilities, difference, sisterTower:GetLevel() * 10, tower)
+                            if not tower:HasAbility(abName) and abName then
                                 sisterTower:AddAbility(sisterAbName):SetLevel(1)
                                 self.usedRandomTowers[sisterAbName] = true
                                 handledTowers[sisterTower] = true
@@ -1975,10 +1634,12 @@ function Ingame:UpgradeTower( tower )
 		local difference = GetEquivalentTowerAbilityPowerValue(sisterTower, self.towerList, #tower.strongTowerAbilities) - GetTowerAbilityPowerValue(tower, self.towerList)
 	end
 	tower.strongTowerAbilities = tower.strongTowerAbilities or {}
-	local towerAbName = PullTowerAbility(self.towerList, self.usedRandomTowers, tower.strongTowerAbilities, difference, tower:GetLevel() * 10)
-	tower:AddAbility(towerAbName):SetLevel(1)
-	table.insert(tower.strongTowerAbilities, towerAbName)
-	self.usedRandomTowers[towerAbName] = true
+	local towerAbName = PullTowerAbility(self.towerList, self.usedRandomTowers, self.banList, tower.strongTowerAbilities, difference, tower:GetLevel() * 10, tower)
+	if towerAbName then
+        tower:AddAbility(towerAbName):SetLevel(1)
+        table.insert(tower.strongTowerAbilities, towerAbName)
+        self.usedRandomTowers[towerAbName] = true
+    end
 end
 
 function Ingame:initGlobalMutator()
@@ -2099,16 +1760,14 @@ function Ingame:SetPlayerColors( )
     end
 end
 
-
-
-local _instance = Ingame()
+ingame = Ingame()
 
 ListenToGameEvent('game_rules_state_change', function(keys)
     local newState = GameRules:State_Get()
     if newState == DOTA_GAMERULES_STATE_HERO_SELECTION then
-        _instance:SetPlayerColors()
+        ingame:SetPlayerColors()
     end
 end, nil)
 
 -- Return an instance of it
-return _instance
+return ingame

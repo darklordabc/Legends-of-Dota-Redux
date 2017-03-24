@@ -2,7 +2,37 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 7.0 - Development Version
+## 7.2 - Development Version
+- Removed Strategy time
+- Fixed Tempest Double
+- Added 3 tower abilities: Degen Aura, Degen Aura Attack Damage, Plasma Field
+- IMBA Spell Dampener no longer gives spell immunity, nor 100% resistance to magic damage
+- You can now vote to enable anti rat protection '-antirat' or '-ar'
+- Trickshot passive now gets disabled when hero is broken
+
+## 7.1 - Steam Version
+- Added Dagon and Spawn golem cheat
+- Readded Juxtapose
+- 4 previously disabled bots are re-enabled
+- Side gunner is now available in normal games
+- Re-Enabled Wukong Command, seems non-buggy in testing, please report if it causes lag
+- Single player abilities can now be used in VS multiplayer, not so much an issue now as most games are played on standard. Still need better solution.
+- Added 6 OP ability variants
+- Increased Manacost and Cooldown of Eldritch: Anti Magic
+- Arcane Echoed Spells now cost half-mana.
+- Bristleback bot doesnt get dispersion anymore
+- Increased Manacost and Cooldown of Fireball
+- IMBA abilities can be enabled with normal abilities if game is coop vs bots
+- Strong towers no longer gives 4 towers per lane
+- Added "all_allowed" map
+- Reduced Motherlods bounty increase
+- Added a few more spells to rearm troll combo.
+- In Standard map, you can only vote for "extra" points, no longer double
+- Increased price of starfall and shallow grave
+- Side Gunner now procs on attack effects
+
+
+## 7.0 
 - You can now use '-bot mode' chat command to see what mode bots are in (early game or late game). '-bot switch' can be used to alternative between modes, but can only be used when cheats are enable or in single player. 
 - Added cooldown to chaos meteor OP
 - Added '-god' and '-regen' cheat commands
@@ -12,9 +42,12 @@ All notable changes to this project will be documented in this file.
 - Added cheats '-wtf' and '-scepter' that can be used in games without sv_cheats
 - Made attempt at fixing bots having boots in their backpack.
 - Top hero bar now updates with correct team compositions. 
+- Tower abiltiies have been reworked, so should try to keep comparable power to their equivalent tower on the enemy side. Power counter added to towers, they should also try to avoid duplicate abiliteis. 
+- Added Anti-Rat mutator
+- Added New Map 'Standard'
 
 
-## 6.9 - Steam Version
+## 6.9 
 - You can enable cheats in a multiplayer games now if everbody types '-enablecheats'
 - Reduced the amount of health neutral power modifier gives per level (100 to 80)
 - Added extra cheats that can be used in non sv_cheats server: '-giveability x' '-removeability x'

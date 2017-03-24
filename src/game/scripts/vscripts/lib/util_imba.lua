@@ -1,5 +1,3 @@
-local util = require('util')
-
 function DebugPrint(...)
 	--local spew = Convars:GetInt('barebones_spew') or -1
 	--if spew == -1 and BAREBONES_DEBUG_SPEW then
@@ -100,7 +98,38 @@ function TableHasValue(val, checkTable)
 	return false
 end
 
-function PullTowerAbility(towerTable, usedTable, abilityTable,difference, baseMax)
+function CheckTrollCombo(tower, newAbility, banList)
+	local build = {}
+	for i=0,23 do
+		local ab = tower:GetAbilityByIndex(i)
+		if ab then
+			table.insert(build, ab:GetName())
+			-- print("existing: ", ab:GetName())
+		end
+	end
+
+	table.insert(build, newAbility)
+	-- print("existing+: ", newAbility)
+
+    for i=1,util:getTableLength(build) do
+        local ab1 = build[i]
+        if ab1 ~= nil and banList[ab1] then
+            for j=(i+1),util:getTableLength(build) do
+                local ab2 = build[j]
+
+                if ab2 ~= nil and banList[ab1][ab2] then
+                    -- Ability should be banned
+
+                    return true, ab1, ab2
+                end
+            end
+        end
+    end
+
+    return false
+end
+
+function PullTowerAbility(towerTable, usedTable, trollCombos, abilityTable,difference, baseMax,tower)
 	local array = {}
 	local n = 0
 	local maxDiff = 5 -- Change this to narrow search parameters
@@ -122,15 +151,19 @@ function PullTowerAbility(towerTable, usedTable, abilityTable,difference, baseMa
 		else searchParamMin = 0 end
 		for k,v in pairs(towerTable) do
 			if not usedTable[k] and not TableHasValue(k, abilityTable) and tonumber(v) <= searchParamMax and tonumber(v) > math.abs(searchParamMin) then
-				array[#array+1] = k
+				table.insert(array, k)
 				n = n + 1
 			end
-		end
-		print(escape)
-		if escape > #towerTable then usedTable = {} end -- clears used abilities
+		end  
+		if escape >= util:getTableLength(towerTable) then usedTable = {} end -- clears used abilities
+		-- print(escape)
 	end
-	local returnAbility = array[RandomInt(1,n)]
-	return returnAbility
+	ShuffleArray(array)
+	for k,v in pairs(array) do
+		if not CheckTrollCombo(tower, v, trollCombos) then
+			return v
+		end
+	end
 end
 
 function GetTowerAbilityPowerValue(tower, kv)
