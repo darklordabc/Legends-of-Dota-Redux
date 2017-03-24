@@ -107,8 +107,8 @@ function Ingame:init()
     end)
 
     CustomGameEventManager:RegisterListener('universalVotingsVote', function(eventSourceIndex, args)
-        if util.votings[args.votingName] then
-            util.votings[args.votingName].onvote(args.PlayerID, args.accept == 1)
+        if util.activeVoting and util.activeVoting.name == args.votingName then
+            util.activeVoting.onvote(args.PlayerID, args.accept == 1)
         end
     end)
 end   

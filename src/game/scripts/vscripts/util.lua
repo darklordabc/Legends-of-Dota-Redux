@@ -766,10 +766,13 @@ function CDOTA_BaseNPC:FindItemByName(item_name)
     return nil
 end
 
-Util.votings = {}
 function Util:CreateVoting(votingName, initiator, duration, percent, onaccept, onvote, ondecline)
-    if self.votings[votingName] then
-        self.votings[votingName].onvote(initiator, true)
+    if self.activeVoting then
+        if self.activeVoting.name == votingName then
+            self.activeVoting.onvote(initiator, true)
+        else
+            --TODO: Display error message - Can't start a new voting while there is another ongoing voting
+        end
         return
     end
     local CheckForEnd = function()
@@ -779,8 +782,8 @@ function Util:CreateVoting(votingName, initiator, duration, percent, onaccept, o
             if not Util:isPlayerBot(PlayerID) then                            
                 local state = PlayerResource:GetConnectionState(PlayerID)
                 if state == 1 or state == 2 then
-                    if self.votings[votingName].votes[PlayerID] ~= nil then
-                        if self.votings[votingName].votes[PlayerID] then
+                    if self.activeVoting.votes[PlayerID] ~= nil then
+                        if self.activeVoting.votes[PlayerID] then
                             votesAccepted = votesAccepted + 1
                         end
                     end
@@ -817,18 +820,18 @@ function Util:CreateVoting(votingName, initiator, duration, percent, onaccept, o
             --[[for PlayerID = 0, 23 do
                 if not Util:isPlayerBot(PlayerID) then                            
                     local state = PlayerResource:GetConnectionState(PlayerID)
-                    if (state == 1 or state == 2) and self.votings[votingName].votes[PlayerID] == nil then
+                    if (state == 1 or state == 2) and self.activeVoting.votes[PlayerID] == nil then
                         CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(PlayerID), "universalVotingsPlayerUpdate", {votingName = votingName, accept = false})
                     end
                 end
             end]]
             Timers:RemoveTimer(pauseChecker)
-            self.votings[votingName] = nil
+            self.activeVoting = nil
             PauseGame(false)
         end
     })
     local _onvote = function(pid, accepted)
-        self.votings[votingName].votes[pid] = accepted
+        self.activeVoting.votes[pid] = accepted
         CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(pid), "universalVotingsPlayerUpdate", {votingName = votingName, accept = accepted})
         if onvote then
             onvote(pid, accepted)
@@ -836,11 +839,12 @@ function Util:CreateVoting(votingName, initiator, duration, percent, onaccept, o
         if CheckForEnd() then
             Timers:RemoveTimer(pauseChecker)
             Timers:RemoveTimer(vote_counter)
-            self.votings[votingName] = nil
+            self.activeVoting = nil
             PauseGame(false)
         end
     end
-    self.votings[votingName] = {
+    self.activeVoting = {
+        name = votingName,
         votes = {},
         onvote = _onvote
     }
