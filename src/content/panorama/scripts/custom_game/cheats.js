@@ -22,6 +22,9 @@ var commandList = [{
 	},{
 		title: "voteEnableKamikaze",
 		chatCommand: "enablekamikaze",
+	},{
+		title: "voteSwitchTeam",
+		chatCommand: "switchteam",
 	},]
 }, {
 	title: "game",
