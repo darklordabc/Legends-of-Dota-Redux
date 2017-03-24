@@ -17,6 +17,9 @@ require('lib/StatUploaderFunctions')
 -- Precache obstacles
 require('obstacles')
 
+-- Misc functions
+require('util')
+
 -- Option storage
 require('optionmanager')
 

@@ -29,7 +29,6 @@ local SkillManager = require('skillmanager')
 local SU = require('lib/StatUploaderFunctions')
 local Timers = require('easytimers')
 local SpellFixes = require('spellfixes')
-local util = require('util')
 require('statcollection.init')
 local Debug = require('lod_debug')              -- Debug library with helper functions, by Ash47
 local challenge = require('challenge')

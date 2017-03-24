@@ -1,4 +1,3 @@
-local util = require('util')
 local constants = require('constants')
 local network = require('network')
 local Timers = require('easytimers')

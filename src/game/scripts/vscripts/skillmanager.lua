@@ -3,7 +3,7 @@
 ]]
 
 -- Load requires
-local util = require('util')
+
 local Network = require('network')
 local constants = require('constants')
 local Timers = require('easytimers')

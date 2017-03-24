@@ -1,5 +1,3 @@
-local util = require('util')
-
 Commands = class({})
 
 function Commands:OnPlayerChat(keys)

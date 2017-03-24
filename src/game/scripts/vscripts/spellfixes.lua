@@ -1,4 +1,3 @@
-local util = require('util')
 local Timers = require('easytimers')
 
 local noMulticast = {}

@@ -1,5 +1,4 @@
 local Timers = require('easytimers')
-local util = require('util')
 
 AAR_SMALL_ARENA = 1
 AAR_BIG_ARENA = 2

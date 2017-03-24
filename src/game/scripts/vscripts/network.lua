@@ -1,6 +1,6 @@
 -- Imports
 local constants = require('constants')
-local util = require('util')
+
 
 -- A store for all the net table stuff
 local Network = class({})
