@@ -1,5 +1,4 @@
 local constants = require('constants')
-local network = require('network')
 local Timers = require('easytimers')
 require('lib/util_imba')
 require('abilities/hero_perks/hero_perks_filters')

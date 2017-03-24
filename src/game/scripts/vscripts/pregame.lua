@@ -24,7 +24,6 @@ end
 
 -- Libraries
 local constants = require('constants')
-local network = require('network')
 local SkillManager = require('skillmanager')
 local SU = require('lib/StatUploaderFunctions')
 local Timers = require('easytimers')
