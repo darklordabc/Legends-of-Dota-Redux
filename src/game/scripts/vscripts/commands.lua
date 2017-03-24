@@ -235,7 +235,7 @@ function Commands:OnPlayerChat(keys)
             end)
         end
     elseif string.find(text, "-switchteam") then
-    if self.needsTeamBalance then
+    if ingame.needsTeamBalance or util:isSinglePlayerMode() then
         util:CreateVoting("lodVotingSwitchTeam", playerID, 20, 100, function()
             local possibleReplacements = {}
             for i = 0, DOTA_MAX_TEAM_PLAYERS-1 do
@@ -252,7 +252,7 @@ function Commands:OnPlayerChat(keys)
             end
             local replacedPlayer = possibleReplacements[1]
             if replacedPlayer then
-                self:acceptedPlayerTeamSwap(playerID, replacedPlayer)
+                ingame:acceptedPlayerTeamSwap(playerID, replacedPlayer)
             end
         end)
     else

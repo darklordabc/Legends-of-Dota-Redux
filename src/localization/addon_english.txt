@@ -502,8 +502,8 @@
     "lodVotingEnableHeroBuilderLineDescr"           "This allows players to change their ability builds mid-game."
     "lodVotingEnableRespawnLine"                    "wants to disable <font color='#FF4949'>Increasing-spawn-rate</font> mechanic"
     "lodVotingEnableRespawnLineDescr"               "This prevents respawn times slowly increasing after 40 minutes.<br><font color='#FF4949'>It its not recommended</font>."
-    "lodVotingSwitchTeam"                           "wants to <font color='#70EA72'>Switch Teams</font>"
-    "lodVotingSwitchTeamDescr"                      "This player has volunteered to switch teams to make the game more balanced.<br><font color='#70EA72'>It is recommended</font>."
+    "lodVotingSwitchTeamLine"                           "wants to <font color='#70EA72'>Switch Teams</font>"
+    "lodVotingSwitchTeamLineDescr"                      "This player has volunteered to switch teams to make the game more balanced.<br><font color='#70EA72'>It is recommended</font>."
 
 
 	// Minimap Menu and In-Game Hero Builder
