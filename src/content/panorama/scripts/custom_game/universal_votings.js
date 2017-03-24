@@ -93,7 +93,7 @@ function halt_transition(el, c) {
     while(hud.id != "Hud")
         hud = hud.GetParent();
 
-    label = hud.FindChildTraverse("PausedLabel");
+    label = hud.FindChildTraverse("PausedLabel").GetParent();
 
     GameEvents.Subscribe('lodCreateUniversalVoting', function(data) {
         createVoting(Game.GetPlayerInfo(data.initiator), data.title, 'lodVotingTitle', data.title + 'Line', function() {}, function() {}, data.duration);
