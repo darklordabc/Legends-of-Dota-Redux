@@ -756,29 +756,34 @@ function Ingame:acceptedPlayerTeamSwap(x, y)
     local xrMoney = PlayerResource:GetReliableGold(x)
     local yrMoney = PlayerResource:GetReliableGold(y)
 
-    self:balancePlayer(x, newTeam)
-    self:balancePlayer(y, oldTeam)
+    PlayerResource:SetCustomTeamAssignment(x, DOTA_TEAM_NOTEAM)
+    PlayerResource:SetCustomTeamAssignment(y, DOTA_TEAM_NOTEAM)
 
-    PlayerResource:SetGold(x, xuMoney, false)
-    PlayerResource:SetGold(y, yuMoney, false)
-    PlayerResource:SetGold(x, xrMoney, true)
-    PlayerResource:SetGold(y, yrMoney, true)
-    
-    for i = 0, PlayerResource:GetNumCouriersForTeam(newTeam) - 1 do
-        local cour = PlayerResource:GetNthCourierForTeam(i, newTeam)
-        cour:SetControllableByPlayer(x, false)
-        for j=0, 5 do
-            local item = cour:GetItemInSlot(j)
-            if item and item:GetPurchaser():GetPlayerID() == y then
-                PlayerResource:ModifyGold(y, item:GetCost(), true, 0)
-                cour:RemoveItem(item)
+    Timers:CreateTimer(function()
+        self:balancePlayer(x, newTeam)
+        self:balancePlayer(y, oldTeam)
+
+        PlayerResource:SetGold(x, xuMoney, false)
+        PlayerResource:SetGold(y, yuMoney, false)
+        PlayerResource:SetGold(x, xrMoney, true)
+        PlayerResource:SetGold(y, yrMoney, true)
+        
+        for i = 0, PlayerResource:GetNumCouriersForTeam(newTeam) - 1 do
+            local cour = PlayerResource:GetNthCourierForTeam(i, newTeam)
+            cour:SetControllableByPlayer(x, false)
+            for j=0, 5 do
+                local item = cour:GetItemInSlot(j)
+                if item and item:GetPurchaser():GetPlayerID() == y then
+                    PlayerResource:ModifyGold(y, item:GetCost(), true, 0)
+                    cour:RemoveItem(item)
+                end
             end
         end
-    end
 
-    self.teamSwitchCode = ""
+        self.teamSwitchCode = ""
 
-    Timers:CreateTimer(function () PauseGame(false) end, DoUniqueString(''), 2)
+        Timers:CreateTimer(function () PauseGame(false) end, DoUniqueString(''), 2)
+    end, DoUniqueString(''), 0.3)
 end
 
 -- Sets it to no team balancing is required
