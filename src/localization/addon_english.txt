@@ -1086,6 +1086,11 @@
 
     "imbalance_notification"                              "Teams are imbalanced. Advantaged teams gain 10 seconds extra respawn per extra player, disadvantaged teams gain 10 seconds less respawn time."
 
+    // Team switching
+    "teamSwitch_title"                              "Switch Teams"
+    "teamSwitch_ready"                              "Teams have become unbalanced. Press switch to nominate yourself to switch to the enemy side."
+    "teamSwitch_no_imbalance"                       "Your team must have at least a 2 player advantage before you can nominate to switch."
+
     // Duel
 
     "duel_cant_swap"                                "You can't change build during duel!"

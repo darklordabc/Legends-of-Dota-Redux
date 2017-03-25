@@ -235,30 +235,29 @@ function Commands:OnPlayerChat(keys)
             end)
         end
     elseif string.find(text, "-switchteam") then
-    if ingame.needsTeamBalance or util:isSinglePlayerMode() then
-        util:CreateVoting("lodVotingSwitchTeam", playerID, 20, 100, function()
-            local possibleReplacements = {}
-            for i = 0, DOTA_MAX_TEAM_PLAYERS-1 do
-                if PlayerResource:IsValidPlayerID(i) and self.takeFromTeam ~= PlayerResource:GetTeam(i) then
-                    local state = PlayerResource:GetConnectionState(i)
-                    if state == DOTA_CONNECTION_STATE_ABANDONED or state == DOTA_CONNECTION_STATE_DISCONNECTED or not PlayerResource:GetSelectedHeroEntity(i) then
-                        if state == DOTA_CONNECTION_STATE_ABANDONED then
-                            table.insert(possibleReplacements, 1, i)
-                        else
-                            table.insert(possibleReplacements, i)
+        if ingame.needsTeamBalance or util:isSinglePlayerMode() or IsInToolsMode() then
+            util:CreateVoting("lodVotingSwitchTeam", playerID, 20, 100, function()
+                local possibleReplacements = {}
+                for i = 0, DOTA_MAX_TEAM_PLAYERS-1 do
+                    if PlayerResource:IsValidPlayerID(i) and self.takeFromTeam ~= PlayerResource:GetTeam(i) then
+                        local state = PlayerResource:GetConnectionState(i)
+                        if state == DOTA_CONNECTION_STATE_ABANDONED or state == DOTA_CONNECTION_STATE_DISCONNECTED or not PlayerResource:GetSelectedHeroEntity(i) or IsInToolsMode() then
+                            if state == DOTA_CONNECTION_STATE_ABANDONED then
+                                table.insert(possibleReplacements, 1, i)
+                            else
+                                table.insert(possibleReplacements, i)
+                            end
                         end
                     end
                 end
-            end
-            local replacedPlayer = possibleReplacements[1]
-            if replacedPlayer then
-                ingame:acceptedPlayerTeamSwap(playerID, replacedPlayer)
-            end
-        end)
-    else
-        --Failed, error message
-    end
-
+                local replacedPlayer = possibleReplacements[1]
+                if replacedPlayer then
+                    ingame:acceptedPlayerTeamSwap(playerID, replacedPlayer)
+                end
+            end)
+        else
+            --Failed, error message
+        end
     end
     ----------------------------
     -- Cheat Commands
