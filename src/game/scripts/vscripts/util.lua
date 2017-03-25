@@ -778,9 +778,9 @@ function CDOTA_BaseNPC:FindItemByName(item_name)
     return nil
 end
 
-function util:CreateVoting(votingName, initiator, duration, percent, onaccept, onvote, ondecline)
+function util:CreateVoting(votingName, initiator, duration, percent, onaccept, onvote, ondecline, voteForInitiator)
     if self.activeVoting then
-        if self.activeVoting.name == votingName then
+        if self.activeVoting.name == votingName and (voteForInitiator ~= false or Time() - self.activeVoting.time >= 5) then
             self.activeVoting.onvote(initiator, true)
         else
             --TODO: Display error message - Can't start a new voting while there is another ongoing voting
@@ -791,7 +791,7 @@ function util:CreateVoting(votingName, initiator, duration, percent, onaccept, o
         local votesAccepted = 0
         local totalPlayers = 0
         for PlayerID = 0, 23 do
-            if not util:isPlayerBot(PlayerID) then                            
+            if PlayerResource:IsValidPlayerID(PlayerID) and not util:isPlayerBot(PlayerID) then                            
                 local state = PlayerResource:GetConnectionState(PlayerID)
                 if state == 1 or state == 2 then
                     if self.activeVoting.votes[PlayerID] ~= nil then
@@ -858,6 +858,7 @@ function util:CreateVoting(votingName, initiator, duration, percent, onaccept, o
     self.activeVoting = {
         name = votingName,
         votes = {},
+        time = Time(),
         onvote = _onvote
     }
     CustomGameEventManager:Send_ServerToAllClients("lodCreateUniversalVoting", {
@@ -865,7 +866,9 @@ function util:CreateVoting(votingName, initiator, duration, percent, onaccept, o
         initiator = initiator,
         duration = duration
     })
-    _onvote(initiator, true)
+    if voteForInitiator ~= false then
+        _onvote(initiator, true)
+    end
 end
 
 function CDOTA_BaseNPC:PopupNumbers(target, pfx, color, lifetime, number, presymbol, postsymbol)

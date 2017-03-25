@@ -239,7 +239,7 @@ function Commands:OnPlayerChat(keys)
                 if replacedPlayer then
                     ingame:acceptedPlayerTeamSwap(playerID, replacedPlayer)
                 end
-            end)
+            end, nil, nil, false)
         else
             --Failed, error message
         end

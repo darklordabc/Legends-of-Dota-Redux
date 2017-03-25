@@ -735,7 +735,7 @@ function Ingame:balancePlayer(playerID, newTeam)
                     end
                 end
             end
-        end, DoUniqueString('respawn'), 0.11)
+        end, DoUniqueString('respawn'), 0.2)
     end
 end
 
@@ -757,34 +757,36 @@ function Ingame:acceptedPlayerTeamSwap(x, y)
     local xrMoney = PlayerResource:GetReliableGold(x)
     local yrMoney = PlayerResource:GetReliableGold(y)
 
-    PlayerResource:SetCustomTeamAssignment(x, DOTA_TEAM_NOTEAM)
-    PlayerResource:SetCustomTeamAssignment(y, DOTA_TEAM_NOTEAM)
+    local newTeamPC = GameRules:GetCustomGameTeamMaxPlayers(newTeam)
+    local oldTeamPC = GameRules:GetCustomGameTeamMaxPlayers(oldTeam)
 
-    Timers:CreateTimer(function()
-        self:balancePlayer(x, newTeam)
-        self:balancePlayer(y, oldTeam)
+    GameRules:SetCustomGameTeamMaxPlayers(newTeam, newTeamPC + 1)
+    GameRules:SetCustomGameTeamMaxPlayers(oldTeam, oldTeamPC + 1)
 
-        PlayerResource:SetGold(x, xuMoney, false)
-        PlayerResource:SetGold(y, yuMoney, false)
-        PlayerResource:SetGold(x, xrMoney, true)
-        PlayerResource:SetGold(y, yrMoney, true)
-        
-        for i = 0, PlayerResource:GetNumCouriersForTeam(newTeam) - 1 do
-            local cour = PlayerResource:GetNthCourierForTeam(i, newTeam)
-            cour:SetControllableByPlayer(x, false)
-            for j=0, 5 do
-                local item = cour:GetItemInSlot(j)
-                if item and item:GetPurchaser():GetPlayerID() == y then
-                    PlayerResource:ModifyGold(y, item:GetCost(), true, 0)
-                    cour:RemoveItem(item)
-                end
+    self:balancePlayer(x, newTeam)
+    self:balancePlayer(y, oldTeam)
+
+    GameRules:SetCustomGameTeamMaxPlayers(newTeam, newTeamPC)
+    GameRules:SetCustomGameTeamMaxPlayers(oldTeam, oldTeamPC)
+
+    PlayerResource:SetGold(x, xuMoney, false)
+    PlayerResource:SetGold(y, yuMoney, false)
+    PlayerResource:SetGold(x, xrMoney, true)
+    PlayerResource:SetGold(y, yrMoney, true)
+    
+    for i = 0, PlayerResource:GetNumCouriersForTeam(newTeam) - 1 do
+        local cour = PlayerResource:GetNthCourierForTeam(i, newTeam)
+        cour:SetControllableByPlayer(x, false)
+        for j=0, 5 do
+            local item = cour:GetItemInSlot(j)
+            if item and item:GetPurchaser():GetPlayerID() == y then
+                PlayerResource:ModifyGold(y, item:GetCost(), true, 0)
+                cour:RemoveItem(item)
             end
         end
+    end
 
-        self.teamSwitchCode = ""
-
-        Timers:CreateTimer(function () PauseGame(false) end, DoUniqueString(''), 2)
-    end, DoUniqueString(''), 0.3)
+    self.teamSwitchCode = ""
 end
 
 -- Sets it to no team balancing is required
