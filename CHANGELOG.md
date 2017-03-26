@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - IMBA Spell Dampener no longer gives spell immunity, nor 100% resistance to magic damage
 - You can now vote to enable anti rat protection '-antirat' or '-ar'
 - Trickshot passive now gets disabled when hero is broken
+- Bots no longer get taunted by towers with antirat protection
 
 ## 7.1 - Steam Version
 - Added Dagon and Spawn golem cheat
