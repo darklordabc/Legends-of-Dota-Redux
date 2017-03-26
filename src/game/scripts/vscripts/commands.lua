@@ -164,7 +164,20 @@ function Commands:OnPlayerChat(keys)
                 GameRules:SendCustomMessage('Enough players voted to enable anti-rat protection. <font color=\'#70EA72\'>Tier 3 towers cannot be destroyed until all other towers are gone.</font>.',0,0)
         	end)
         end
-
+    elseif string.find(text, "-doublecreeps") or string.find(text, "-dc") then
+       if not ingame.voteDoubleCreeps then 
+	        local percentNeeded = 100
+	        if GetMapName() == 'all_allowed' then
+	            percentNeeded = 50
+	        end
+	    	util:CreateVoting("lodVotingDoubleCreeps", playerID, 20, percentNeeded, function()
+	    		OptionManager:SetOption('neutralMultiply', 2)
+	           -- pregame:multiplyNeutrals()
+	            ingame.voteDoubleCreeps = true
+	            EmitGlobalSound("Event.CheatEnabled")
+	            GameRules:SendCustomMessage('Enough players voted to enable double neutrals. <font color=\'#70EA72\'>Neutral creep camps are now doubled</font>.',0,0)
+	    	end)
+        end
     elseif string.find(text, "-enablecheat") or string.find(text, "-ec") then
         if not ingame.voteEnabledCheatMode then       
             util:CreateVoting("lodVotingEnableCheatMode", playerID, 20, 100, function()

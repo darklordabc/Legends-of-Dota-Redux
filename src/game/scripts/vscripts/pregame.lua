@@ -5949,7 +5949,9 @@ end
 function Pregame:multiplyNeutrals()
         ListenToGameEvent('entity_hurt', function(keys)
             local this = self
-            if this.optionStore['lodOptionNeutralMultiply'] == 1 then return end
+            --print(OptionManager:GetOption('neutralMultiply'))
+            --print(this.optionStore['lodOptionNeutralMultiply'])
+            if OptionManager:GetOption('neutralMultiply') == 1 then return end
 
             -- Grab the entity that was hurt
             local ent = EntIndexToHScript(keys.entindex_killed)         
@@ -5966,7 +5968,7 @@ function Pregame:multiplyNeutrals()
                     local lastHits = PlayerResource:GetLastHits(attacker:GetOwner():GetPlayerID())
                     local lastHits = PlayerResource:GetLastHits(attacker:GetOwner():GetPlayerID()) + 1
                     --print(lastHits)
-                    self:MultiplyNeutralUnit( ent, attacker, this.optionStore['lodOptionNeutralMultiply'], lastHits )
+                    self:MultiplyNeutralUnit( ent, attacker, OptionManager:GetOption('neutralMultiply'), lastHits )
 
                 end
             end

@@ -55,6 +55,7 @@ function Ingame:init()
 
     -- These are optional votes that can enable or disable game mechanics
     self.voteEnabledCheatMode = false
+    self.voteDoubleCreeps = false
     self.voteDisableAntiKamikaze = false
     self.voteDisableRespawnLimit = false
     self.voteEnableBuilder = false

@@ -129,9 +129,10 @@
 
                         <Panel id="optionSelection" class="workingPanel">
                             <Panel id="optionsPanel">
-                                <Panel id="optionBasic"> 
+                                <Panel id="optionBasic">  
                                     <!--
 									<Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingAntirat.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingDoubleCreeps.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableCheatMode.png"></Image>
 									<Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableHeroBuilder.png"></Image> 
 									<Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableKamikaze.png"></Image> 
