@@ -932,6 +932,89 @@ function Ingame:checkBalanceTeams()
     end
 end
 
+function Ingame:balanceGold()
+	-- If game not started dont check balance
+	if GameRules:GetDOTATime(false,false) == 0 then
+		return
+	end
+
+	local RadiantPlayers = util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS)
+	local DirePlayers = util:GetActivePlayerCountForTeam(DOTA_TEAM_BADGUYS)
+	local losingTeam = nil
+	local fountainArea = nil
+
+	-- If balance returns, clear the slate
+	if RadiantPlayers == DirePlayers then
+		self.timeImbalanceStarted = 0
+		self.radiantBalanceMoney = 0
+		self.direBalanceMoney = 0
+		return
+	end
+
+	if RadiantPlayers < DirePlayers then
+		losingTeam = "goodGuys"
+		fountainArea = Vector(-6327.858398, -5892.900391, 384.000000)
+	else
+		losingTeam = "badGuys"
+		fountainArea = Vector(6234.006348, 5780.487305, 384.000000)
+	end
+
+	if self.timeImbalanceStarted == 0 then
+		self.timeImbalanceStarted = GameRules:GetDOTATime(false,false)	
+	end
+
+	local timeSinceLastCheck = GameRules:GetDOTATime(false,false) - self.timeImbalanceStarted
+	print(timeSinceLastCheck)
+	
+	if timeSinceLastCheck > 180 then
+		local multiplier = 1	
+		if losingTeam == "goodGuys" then
+			multiplier = DirePlayers - RadiantPlayers
+		else
+			multiplier = RadiantPlayers - DirePlayers
+		end
+
+		local moneyToGive = (180 * multiplier) * OptionManager:GetOption('goldPerTick')
+
+		if losingTeam == "goodGuys" then
+			self.radiantBalanceMoney = self.radiantBalanceMoney + moneyToGive
+		else
+			self.direBalanceMoney = self.direBalanceMoney + moneyToGive
+		end
+
+		self.timeImbalanceStarted = GameRules:GetDOTATime(false,false)
+		print(moneyToGive)
+		print(self.radiantBalanceMoney)
+		print(self.direBalanceMoney)
+	end
+
+	local moneySize = 10
+	if self.direBalanceMoney >= 200 or self.radiantBalanceMoney >= 200 then
+		moneySize = 20
+	end
+
+	if self.radiantBalanceMoney >= moneySize * 10 or self.direBalanceMoney >= moneySize * 10 then
+		for playerID=0,24-1 do
+	      local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+	      if hero and PlayerResource:IsValidPlayerID(playerID) and IsValidEntity(hero) then                           
+	          local state = PlayerResource:GetConnectionState(playerID)
+	          if state == 1 or state == 2 then
+	          	if losingTeam == "goodGuys" and hero:GetTeam() == DOTA_TEAM_GOODGUYS and self.radiantBalanceMoney >= 1 then
+	          		hero:ModifyGold(moneySize, false, 0)
+	          		SendOverheadEventMessage(hero:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, hero, moneySize, nil)
+	          		self.radiantBalanceMoney = self.radiantBalanceMoney - moneySize
+	          	elseif losingTeam == "badGuys" and hero:GetTeam() == DOTA_TEAM_BADGUYS and self.direBalanceMoney >= 1 then
+	          		hero:ModifyGold(moneySize, false, 0)
+	          		SendOverheadEventMessage(hero:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, hero, moneySize, nil)
+	          		self.direBalanceMoney = self.direBalanceMoney - moneySize
+	          	end
+	          end
+	      end
+	    end
+	
+	end
+end
+
 -- Increases respawn rate if the game has been going longer than 40 minutes, increases every 10 minutes after that
 function Ingame:checkIfRespawnRate()
     if util:isSinglePlayerMode() then return end
