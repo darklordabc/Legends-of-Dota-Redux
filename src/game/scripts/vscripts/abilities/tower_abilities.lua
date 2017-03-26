@@ -68,11 +68,14 @@ function AIControl( keys )
 	                        enemy:ModifyGold(100, false, 0) 
 	                    end
 	                end)
-	            else
-					local invulnerable = (caster:HasModifier("modifier_invulnerable") or caster:HasModifier("modifier_backdoor_protection_active"))
+	            else 
+					local invulnerable = caster:HasModifier("modifier_tower_anti_rat") or caster:HasModifier("modifier_invulnerable") or caster:HasModifier("modifier_backdoor_protection_active")
 	                if distance < veryClose then
 	                    if invulnerable then
-	                        abilityRoar = caster:FindAbilityByName("lone_druid_savage_roar_tower")    
+	                    	if caster:HasModifier("modifier_tower_anti_rat") then
+	                       	 	enemy:AddNewModifier(enemy, nil, "modifier_chen_test_of_faith_teleport", {duration = 4}) 
+	                    	end
+	                        abilityRoar = caster:FindAbilityByName("lone_druid_savage_roar_tower")   
 	                        caster:CastAbilityImmediately(abilityRoar, caster:GetPlayerOwnerID())
 	                        enemy:AddNewModifier(caster, ability, "modifier_phased", {duration = 4})
 	                        enemy:AddNewModifier(caster, ability, "modifier_dark_seer_surge", {duration = 4})
