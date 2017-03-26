@@ -279,6 +279,13 @@ function Commands:OnPlayerChat(keys)
                 end
                              
             end, DoUniqueString('cheat'), .1)
+        -- Remove fog of war
+        elseif string.find(text, "-nofog") then
+	    GameRules:GetGameModeEntity():SetFogOfWarDisabled(true)
+
+	 	 -- Bring back the fog of war
+	  	elseif string.find(text, "-fog") then
+	    GameRules:GetGameModeEntity():SetFogOfWarDisabled(false)
 
         elseif string.find(text, "-aghs") or string.find(text, "-aghanim") or string.find(text, "-scepter") then 
             Timers:CreateTimer(function()    

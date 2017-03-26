@@ -33,6 +33,14 @@ var commandList = [{
 		title: "toggleWtf",
 		chatCommand: "wtfmenu",
 		isCheat: true,
+	},{
+		title: "nofog",
+		chatCommand: "nofog",
+		isCheat: true,
+	},{
+		title: "fog",
+		chatCommand: "fog",
+		isCheat: true,
 	}, {
 		title: "toggleAllVision",
 		consoleCommand: "dota_all_vision",

@@ -1253,6 +1253,8 @@
     "command_menu_group_game"                           "Cheats | Game"
     "command_menu_command_toggleWtf"                    "Toggle Free Spells"
     "command_menu_command_toggleAllVision"              "Toggle All Vision"
+    "command_menu_command_nofog"             			"Remove Fog of War"
+    "command_menu_command_fog"              			"Add Fog of War"
     "command_menu_command_setTimescale"                 "Set Timescale"
     "command_menu_command_startGame"                    "Force Start Game"
     "command_menu_command_spawnGolem"                   "Spawn Golem"
