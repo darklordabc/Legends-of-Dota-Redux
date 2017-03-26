@@ -788,7 +788,7 @@
     "hintFacelessVoid"                         "This hero can move freely in friendly and enemy chronospheres."
     "hintHuskar"                         "Huskar regenerates 1hp/s for every 10% of health he is missing."
     "hintJakiro"                         "Fire and Ice spells cast sequentially will refund 40% mana and have 20% reduced cooldowns. "
-    "hintJuggernaut"                         "Healing/Mana Ward will have 100% of their mana cost refunded."
+    "hintJuggernaut"                         "Healing/Mana Ward will have 100% of their mana cost refunded when cast by Juggernaut."
     "hintKOTL"                         "Aghanim's Scepter will give KOTL unobstructed day vision. This innate vision bonus consumes an ability slot."
     "hintKunkka"                         "When Kunkka casts a Water spell he has a 50% chance to refill his bottle."
     "hintLeshrac"                         "At the start of the game, Leshrac gains a free level of Octarine Vampirism, whether he has it or not."
