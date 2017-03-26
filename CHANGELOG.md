@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 7.2 - Development Version
 - Removed Strategy time
 - Fixed Tempest Double
-- Added 3 tower abilities: Degen Aura, Degen Aura Attack Damage, Plasma Field
+- Added 4 tower abilities: Degen Aura, Degen Aura Attack Damage, Plasma Field, Death pules tower
 - IMBA Spell Dampener no longer gives spell immunity, nor 100% resistance to magic damage
 - You can now vote to enable anti rat protection '-antirat' or '-ar'
 - Trickshot passive now gets disabled when hero is broken

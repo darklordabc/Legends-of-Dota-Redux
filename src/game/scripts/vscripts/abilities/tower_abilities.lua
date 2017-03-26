@@ -948,6 +948,47 @@ function PlasmaField( keys )
 	end
 end
 
+function DeathPulse( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local ability_level = ability:GetLevel()
+	--local sound_silence = keys.sound_silence
+	if not ability:IsCooldownReady() then
+		return nil
+	end
+
+	if caster:PassivesDisabled() then return end
+
+	if not caster:IsRealHero() and not caster:IsBuilding() then return nil end
+	
+	-- Parameters
+	local plasma_radius = ability:GetLevelSpecialValueFor("area_of_effect", ability_level-1)
+	local tower_loc = caster:GetAbsOrigin()
+
+	-- Find nearby enemies
+	local heroes = FindUnitsInRadius(caster:GetTeamNumber(), tower_loc, nil, 900, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)
+	local creeps = FindUnitsInRadius(caster:GetTeamNumber(), tower_loc, nil, 900, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)
+
+	-- Check if the ability should be cast
+	if #heroes >= 1 or #creeps >= 1 then
+		local pulse = caster:FindAbilityByName("necrolyte_death_pulse_tower")
+		if not pulse then
+			caster:AddAbility("necrolyte_death_pulse_tower")
+			pulse = caster:FindAbilityByName("necrolyte_death_pulse_tower")
+			pulse:SetHidden(true)
+			pulse:SetLevel(ability_level)
+		end
+		pulse:SetLevel(ability_level)
+		print(pulse:GetLevel())
+		--Below doesnt work, I dont know how to make it play the sound
+		--caster:EmitSound("Ability.PlasmaField")
+		pulse:OnSpellStart()
+
+		-- Put the ability on cooldown
+		ability:StartCooldown(ability:GetCooldown(ability_level))
+	end
+end
+
 function Forest( keys )
 
 	local caster = keys.caster

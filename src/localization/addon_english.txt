@@ -2877,6 +2877,12 @@
     "DOTA_Tooltip_ability_imba_tower_plasma_field_plasma_damage_min"					  "DAMAGE MIN:"
     "DOTA_Tooltip_ability_imba_tower_plasma_field_plasma_damage_max"					  "DAMAGE MAX:" 
 
+    "DOTA_Tooltip_ability_imba_tower_death_pulse"                                         "Death Pulse Tower"
+    "DOTA_Tooltip_ability_imba_tower_death_pulse_Description"                             "Tower releases a wave of death around it, dealing damage to enemy units and healing allied units."
+    "DOTA_Tooltip_ability_imba_tower_death_pulse_Lore"                                    "Combining its tower monk heritage with its newfound affinity for plague has a menacing result."
+    "DOTA_Tooltip_ability_imba_tower_death_pulse_area_of_effect"                          "RADIUS:"
+    "DOTA_Tooltip_ability_imba_tower_death_pulse_healdamage"					  "DAMAGE/HEAL:" 
+
     "DOTA_Tooltip_ability_imba_tower_atrophy"                                           "Atrophy Tower"
     "DOTA_Tooltip_ability_imba_tower_atrophy_Description"                               "Reduces the attack damage of all nearby units."
     "DOTA_Tooltip_ability_imba_tower_atrophy_Lore"                                      "This tower's abyssal visage instills fear into your heart... Just kidding. It actually has an adorable kitten face, and you can't bring yourself to hit it as hard as normal."
