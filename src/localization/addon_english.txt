@@ -504,6 +504,8 @@
     "lodVotingEnableRespawnLineDescr"               "This prevents respawn times slowly increasing after 40 minutes.<br><font color='#FF4949'>It its not recommended</font>."
     "lodVotingSwitchTeamLine"                           "wants to <font color='#70EA72'>Switch Teams</font>"
     "lodVotingSwitchTeamLineDescr"                      "This player has volunteered to switch teams to make the game more balanced.<br><font color='#70EA72'>It is recommended</font>."
+    "lodVotingAntiratLine"                           "wants to enable <font color='#70EA72'>Anti-Rat tower protection</font>"
+    "lodVotingAntiratLineDescr"                      "This requires all outer towers be destroyed before you can attack tier 3 towers.<br><font color='#70EA72'>It is recommended</font>."
 
 
 	// Minimap Menu and In-Game Hero Builder
