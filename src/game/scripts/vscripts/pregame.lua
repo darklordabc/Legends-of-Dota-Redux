@@ -2241,7 +2241,13 @@ function Pregame:initOptionSelector()
         end,
 
         lodOptionBalanceModePoints = function(value)
-            return type(value) ~= 'number' and math.floor(value) ~= value
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 60 or value > 400 then return false end
+
+            -- Valid
+            return true
         end,
 
         -- Balance Mode ban list
