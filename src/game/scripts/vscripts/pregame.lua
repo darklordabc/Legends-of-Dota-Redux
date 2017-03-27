@@ -1443,11 +1443,23 @@ function Pregame:networkHeroes()
     local heroList = LoadKeyValues('scripts/npc/herolist.txt')
     local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
     local allHeroesCustom = LoadKeyValues('scripts/npc/npc_heroes_custom.txt')
-    local flags = LoadKeyValues('scripts/kv/flags.kv')
+    local flags = LoadKeyValues('scripts/kv/flags.kv') or {}
     local oldAbList = LoadKeyValues('scripts/kv/abilities.kv')
     local hashCollisions = LoadKeyValues('scripts/kv/hashes.kv')
 
     local heroToSkillMap = oldAbList.heroToSkillMap
+
+    -- Parse flags
+    for k,v in pairs(LoadKeyValues("scripts/npc/npc_abilities_custom.txt")) do
+        if v and v["ReduxFlags"] then
+            local abilityFlags = util:split(v["ReduxFlags"], " | ")
+            for _,flag in pairs(abilityFlags) do
+                local flag = string.lower(flag)
+                flags[flag] = flags[flag] or {}
+                flags[flag][k] = 1
+            end
+        end
+    end
 
     -- Prepare flags
     local flagsInverse = {}
