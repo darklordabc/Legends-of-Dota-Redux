@@ -60,6 +60,9 @@ function Ingame:init()
     self.voteEnableBuilder = false
     self.voteAntiRat = false
     self.origianlRespawnRate = nil
+    self.timeImbalanceStarted = 0
+	self.radiantBalanceMoney = 0
+    self.direBalanceMoney = 0
     self.shownCheats = {}
     self.heard = {}
 
@@ -155,6 +158,7 @@ end
 function Ingame:OnPlayerPurchasedItem(keys)
     -- Bots will get items auto-delievered to them
     self:checkIfRespawnRate()
+    self:balanceGold()
     if util:isPlayerBot(keys.PlayerID) then
         local hero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()
         -- If bots buy boots remove first instances of cheap items they have, this is a fix for them having boots in backpack
@@ -934,7 +938,7 @@ end
 
 function Ingame:balanceGold()
 	-- If game not started dont check balance
-	if GameRules:GetDOTATime(false,false) == 0 then
+	if (GameRules:GetDOTATime(false,false) == 0 or util:isCoop()) and not IsInToolsMode() then
 		return
 	end
 
@@ -964,7 +968,7 @@ function Ingame:balanceGold()
 	end
 
 	local timeSinceLastCheck = GameRules:GetDOTATime(false,false) - self.timeImbalanceStarted
-	print(timeSinceLastCheck)
+	--print(timeSinceLastCheck)
 	
 	if timeSinceLastCheck > 180 then
 		local multiplier = 1	
@@ -983,9 +987,9 @@ function Ingame:balanceGold()
 		end
 
 		self.timeImbalanceStarted = GameRules:GetDOTATime(false,false)
-		print(moneyToGive)
-		print(self.radiantBalanceMoney)
-		print(self.direBalanceMoney)
+		--print(moneyToGive)
+		--print(self.radiantBalanceMoney)
+		--print(self.direBalanceMoney)
 	end
 
 	local moneySize = 10
@@ -1043,6 +1047,7 @@ function Ingame:handleRespawnModifier()
         local respawnModifierConstant = OptionManager:GetOption('respawnModifierConstant')
 
         self:checkIfRespawnRate()
+        self:balanceGold()
 
         --if respawnModifierPercentage == 100 and respawnModifierConstant == 0 then return end
 

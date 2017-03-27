@@ -3551,6 +3551,7 @@ function Pregame:processOptions()
 
         -- Gold per interval
         GameRules:SetGoldPerTick(this.optionStore['lodOptionGameSpeedGoldTickRate'])
+        OptionManager:SetOption('goldPerTick', this.optionStore['lodOptionGameSpeedGoldTickRate'])
         OptionManager:SetOption('goldModifier', this.optionStore['lodOptionGameSpeedGoldModifier'])
         OptionManager:SetOption('expModifier', this.optionStore['lodOptionGameSpeedEXPModifier'])
         OptionManager:SetOption('sharedXP', this.optionStore['lodOptionGameSpeedSharedEXP'])
