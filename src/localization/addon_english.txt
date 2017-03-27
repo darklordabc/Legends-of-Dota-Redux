@@ -4014,6 +4014,12 @@
     "DOTA_Tooltip_Ability_invoker_retro_invisibility_aura_radius"                     "RADIUS:"
     "DOTA_Tooltip_Ability_invoker_retro_invisibility_aura_fade_time"                     "FADE TIME:"
 
+    "DOTA_Tooltip_Ability_invoker_retro_invisibility_aura_tower"                            "Invisibility Aura Tower"
+    "DOTA_Tooltip_Ability_invoker_retro_invisibility_aura_tower_Description"                "Other nearby friendly units become invisible after a fade time.  Owner of aura does not turn invisible.\n\n<font color=\'#7D7D7D\'>Imported from <font color='#ee39a2'>R</font><font color='#f03f95'>e</font><font color='#f24688'>t</font><font color='#f44c7b'>r</font><font color='#f6526e'>o</font><font color='#f75961'> </font><font color='#f95f54'>D</font><font color='#fb6547'>o</font><font color='#fd6c3a'>t</font><font color='#ff722d'>a</font>\n"
+    "DOTA_Tooltip_Ability_invoker_retro_invisibility_aura_tower_Note0"                      "Like with most other auras, Invisibility Aura's effect lingers for .5 seconds."
+    "DOTA_Tooltip_Ability_invoker_retro_invisibility_aura_tower_radius"                     "RADIUS:"
+    "DOTA_Tooltip_Ability_invoker_retro_invisibility_aura_tower_fade_time"                     "FADE TIME:"
+
     "DOTA_Tooltip_modifier_invoker_retro_invisibility_aura_effect"                    "Invisibility Aura"
     "DOTA_Tooltip_modifier_invoker_retro_invisibility_aura_effect_Description"        "Invisible while you remain near owner of aura."
     "DOTA_Tooltip_modifier_invoker_retro_invisibility_aura"                           "Invisibility Aura"
