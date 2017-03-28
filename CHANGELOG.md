@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 - Trickshot passive now gets disabled when hero is broken
 - Bots no longer get taunted by towers with antirat protection
 - Anti-Kamikaze penalty now calculates after team-imbalance calculations, meaning, you will keep high respawn times if peanlized by anti-kamikaze
+- Beast master perk now gives 12 bonus strength is the neutral ability only has 1 level
 
 ## 7.1 - Steam Version
 - Added Dagon and Spawn golem cheat

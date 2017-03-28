@@ -56,6 +56,9 @@ function modifier_npc_dota_hero_beastmaster_perk:OnIntervalThink()
 				if skill:GetLevel() > skill.beastMasterPerkLvl then
 					local increase = (skill:GetLevel()  - skill.beastMasterPerkLvl)
 					increase = increase * self.bonusPerLevel
+					if skill:GetMaxLevel() == 1 then
+						increase = increase * 4
+					end
 					local stacks = self:GetStackCount()
 					self:SetStackCount(stacks + increase)
 					skill.beastMasterPerkLvl = skill:GetLevel()
