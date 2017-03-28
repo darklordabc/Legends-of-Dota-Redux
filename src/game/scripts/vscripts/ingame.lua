@@ -1118,6 +1118,37 @@ function Ingame:handleRespawnModifier()
                         	end
 
                             -------
+                            -- Imbalanced-Comepenstation Mechanic Start
+                            -------
+                            if not util:isCoop() then
+                                local herosTeam = util:GetActivePlayerCountForTeam(hero:GetTeamNumber())
+                                local opposingTeam = util:GetActivePlayerCountForTeam(otherTeam(hero:GetTeamNumber()))
+                                local difference = herosTeam - opposingTeam
+                                
+                                -- 10 seconds per player difference, if addedTime is positive, it means the player team has an advantage, if its a negative it means they are disadvantaged
+                                local addedTime = difference * 10
+                                timeLeft = timeLeft + addedTime
+                                if timeLeft < 1 then
+                                    timeLeft = 1
+                                end   
+
+                                -- Display message once, informing players of balance mechanic in use
+                                if addedTime ~= 0 and self.heard["imbalancedTeams"] ~= true then
+                                    GameRules:SendCustomMessage("#imbalance_notification", 0, 0) 
+                                    self.heard["imbalancedTeams"] = true
+                                    
+                                    -- Show the warning again after 10 minutes
+                                    Timers:CreateTimer( function()
+                                        self.heard["imbalancedTeams"] = false
+                                    end, DoUniqueString('showNotifAgain'), 600)
+                                end   
+                            end
+
+                            -------
+                            -- Imbalanced-Comepenstation Mechanic End
+                            ------
+
+                                                        -------
                             -- Anti-Kamikaze Mechanic START
                             -- This is designed to stop players from spawning very quicky and dying very quickly, e.g pushing towers
                             -------
@@ -1158,37 +1189,6 @@ function Ingame:handleRespawnModifier()
                             -------
                             -- Anti-Kamikaze Mechanic END
                             -------
-
-                            -------
-                            -- Imbalanced-Comepenstation Mechanic Start
-                            -------
-                            if not util:isCoop() then
-                                local herosTeam = util:GetActivePlayerCountForTeam(hero:GetTeamNumber())
-                                local opposingTeam = util:GetActivePlayerCountForTeam(otherTeam(hero:GetTeamNumber()))
-                                local difference = herosTeam - opposingTeam
-                                
-                                -- 10 seconds per player difference, if addedTime is positive, it means the player team has an advantage, if its a negative it means they are disadvantaged
-                                local addedTime = difference * 10
-                                timeLeft = timeLeft + addedTime
-                                if timeLeft < 1 then
-                                    timeLeft = 1
-                                end   
-
-                                -- Display message once, informing players of balance mechanic in use
-                                if addedTime ~= 0 and self.heard["imbalancedTeams"] ~= true then
-                                    GameRules:SendCustomMessage("#imbalance_notification", 0, 0) 
-                                    self.heard["imbalancedTeams"] = true
-                                    
-                                    -- Show the warning again after 10 minutes
-                                    Timers:CreateTimer( function()
-                                        self.heard["imbalancedTeams"] = false
-                                    end, DoUniqueString('showNotifAgain'), 600)
-                                end   
-                            end
-
-                            -------
-                            -- Imbalanced-Comepenstation Mechanic End
-                            ------
 
                             hero:SetTimeUntilRespawn(timeLeft)
 
