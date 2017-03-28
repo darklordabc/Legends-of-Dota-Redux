@@ -8052,13 +8052,6 @@
         "DOTA_Tooltip_ability_side_gunner_redux_range"          "RANGE:"
         "DOTA_Tooltip_ability_side_gunner_redux_aghanim_description"  "Reduces interval by 1 on each level."
 
-        "DOTA_Tooltip_ability_chaos_knight_chaos_strike_gyro"                "Infernal Blade Replacement"
-        "DOTA_Tooltip_ability_chaos_knight_chaos_strike_gyro_Description"    "Gyrocopter cannot use Infernal blade unless 'Single Player' abilities are enabled. There is a bug where infernal blade never goes on cooldown if Gryo attacks via using his side-gunner that is enabled with Aghs. This is a replacement ability, which is based on Chaos Knight's Chaos Strike."
-        "DOTA_Tooltip_ability_chaos_knight_chaos_strike_gyro_Lore"           "Gyrocopter OP power bludgeons those who he passes, crushing the thickest of armors ... until an evil wizard nerfed him."
-        "DOTA_Tooltip_ability_chaos_knight_chaos_strike_gyro_crit_chance"    "%CRITICAL CHANCE:"
-        "DOTA_Tooltip_ability_chaos_knight_chaos_strike_gyro_crit_damage"    "%CRITICAL DAMAGE:"
-        "DOTA_Tooltip_ability_chaos_knight_chaos_strike_gyro_lifesteal"  "%CRITICAL LIFESTEAL:"
-
         "DOTA_Tooltip_ability_spawnlord_master_freeze_creep"              "Lucifer's Petrify"
         "DOTA_Tooltip_ability_spawnlord_master_freeze_creep_Description"  "Causes the next attack to petrify the enemy, rooting them and dealing %damage% damage per second."
         "DOTA_Tooltip_ability_spawnlord_master_freeze_creep_duration"     "PETRIFY DURATION:"
