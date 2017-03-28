@@ -679,8 +679,8 @@ function Ingame:balancePlayer(playerID, newTeam)
     if IsValidEntity(hero) then
         -- Change the team
         hero:SetTeam(newTeam)
-        hero:SetPlayerID(playerID)
-        hero:SetOwner(PlayerResource:GetPlayer(playerID))
+        --hero:SetPlayerID(playerID)
+        --hero:SetOwner(PlayerResource:GetPlayer(playerID))
 
 
 
