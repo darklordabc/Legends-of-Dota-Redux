@@ -100,4 +100,288 @@
             }
         }
     }
+    "item_assault_consumable"
+    {
+        "ID"                            "2112"                                                       // unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityCastRange"              "900"
+        "AbilityTextureName"            "item_assault"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "abilities/items/assault.lua"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "5250"
+        
+        // Special  
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "assault_bonus_attack_speed"    "35"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "assault_bonus_armor"           "10"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "assault_aura_radius"           "900"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "assault_aura_attack_speed"     "20"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "assault_aura_armor"   "5"
+            }
+        }
+    }
+    "item_skadi_consumable"
+    {
+         "ID"                            "2160"                                                       // unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityTextureName"            "item_skadi"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "abilities/items/skadi.lua"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "5675"
+        
+        // Special  
+        //-------------------------------------------------------------------------------------------------------------
+        // Skadi
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "skadi_bonus_all_stats"     "25"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "skadi_bonus_health"            "225"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "skadi_bonus_mana"          "250"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "skadi_cold_movement_speed" "-35"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "skadi_cold_attack_speed"       "-45"
+            }
+            "06"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "skadi_cold_duration_melee" "5.0"
+            }
+            "07"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "skadi_cold_duration_ranged"    "2.5"
+            }
+        }
+    }
+    "item_desolator_consumable"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2168"                                                       // unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityTextureName"            "item_desolator"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "abilities/items/desolator.lua"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "3500"
+        
+        
+        // Special  
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "desolator_bonus_damage"          "50"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "desolator_corruption_armor"      "-7"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "desolator_corruption_duration"   "15.0"
+            }
+        }
+    }
+    "item_heart_consumable"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2114"                                                       
+        "ItemCost"                      "5500"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityTextureName"            "item_heart"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "abilities/items/heart.lua"
+        
+        // Special  
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "heart_bonus_strength"        "45"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "heart_bonus_health"          "250"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "heart_health_regen_rate"     "7"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "heart_cooldown_melee"        "5"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "heart_cooldown_ranged_tooltip"       "7"
+            }
+        }
+    }
+    "item_greater_crit_consumable"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2141"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityTextureName"            "item_greater_crit"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "abilities/items/greater_crit.lua"                                                       
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "5520"
+        
+        // Special  
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "greater_crit_bonus_damage"          "76"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "greater_crit_crit_chance"           "30"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "greater_crit_crit_multiplier"       "230"
+            }
+        }
+    }
+    "item_octarine_core_consumable"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2235"                                                     
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityTextureName"            "item_octarine_core"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "abilities/items/octarine_core.lua"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "5900"
+
+        "precache"
+        {
+            "particle"  "particles/items3_fx/octarine_core_lifesteal.vpcf"
+        }
+        
+        // Special  
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "octarine_core_bonus_intelligence"    "25"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "octarine_core_bonus_health"          "425"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "octarine_core_bonus_mana"            "425"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "octarine_core_bonus_cooldown"        "25"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "octarine_core_hero_lifesteal"        "25"
+            }           
+            "06"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "octarine_core_creep_lifesteal"       "5"
+            }   
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "octarine_core_active_duration"       "7"
+            }
+        }
+    }
 }
