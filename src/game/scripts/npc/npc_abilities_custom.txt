@@ -112,7 +112,6 @@
 #base "abilities\dota\bloodseeker_thirst_lod.txt"
 #base "abilities\dota\brewmaster_earth_pulverize_redux.txt"
 #base "abilities\dota\brewmaster_storm_wind_walk_redux.txt"
-#base "abilities\dota\chaos_knight_chaos_strike_gyro.txt"
 #base "abilities\dota\dazzle_shallow_grave_perk.txt"
 #base "abilities\dota\doom_bringer_devour_lod.txt"
 #base "abilities\dota\dark_seer_vacuum_op.txt"
