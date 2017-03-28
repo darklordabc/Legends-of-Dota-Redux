@@ -1813,8 +1813,26 @@ function Pregame:onOptionChanged(eventSourceIndex, args)
         local optionName = args.k
         local optionValue = args.v
 
-        -- Option values and names are validated at a later stage
-        self:setOption(optionName, optionValue)
+        --Enabling these properties requires an agree by all players
+        local voteRequiredOptions = {
+            ["lodOptionBanningBlockTrollCombos"] = {
+                value = 1,
+                votingName = "lodVotingBanningBlockTrollCombos"
+            },
+            ["lodOptionAdvancedOPAbilities"] = {
+                value = 1,
+                votingName = "lodVotingAdvancedOPAbilities"
+            },
+        }
+        if voteRequiredOptions[optionName] and voteRequiredOptions[optionName].value == optionValue then
+            self:setOption(optionName, voteRequiredOptions[optionName].value == 1 and 0 or 1)
+            util:CreateVoting(, playerID, 20, percentNeeded, function()
+                self:setOption(optionName, voteRequiredOptions[optionName].value)
+            end)
+        else
+            -- Option values and names are validated at a later stage
+            self:setOption(optionName, optionValue)
+        end
     end
 end
 

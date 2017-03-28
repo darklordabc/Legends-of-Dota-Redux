@@ -10,6 +10,7 @@
         <include src="file://{resources}/scripts/custom_game/loading_screen/loading_screen_tips.js" />
         <include src="file://{resources}/scripts/custom_game/game_setup/game_setup_options.js" />
         <include src="file://{resources}/scripts/custom_game/game_setup/game_setup.js" />
+        <include src="file://{resources}/scripts/custom_game/universal_votings.js" />
     </scripts>
     <snippets>
         <snippet name="BoosterPack">

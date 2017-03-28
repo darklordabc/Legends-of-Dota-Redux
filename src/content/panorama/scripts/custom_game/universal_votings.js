@@ -4,7 +4,7 @@ var hud, label;
 
 function createVoting(playerInfo, votingName, votingTitle, votingLine, acceptCallback, declineCallback, voteDuration) {
     var panel = $.CreatePanel("Panel", $.GetContextPanel(), "voting_" + votingName);
-    panel.BLoadLayoutSnippet('Voting');
+    panel.BLoadLayout('file://{resources}/layout/custom_game/universal_votings.xml', false, false);
 
     panel.FindChildTraverse("titleLabel").text = $.Localize(votingTitle);
     panel.FindChildTraverse("lineLabel").html = true;

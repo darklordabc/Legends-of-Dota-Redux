@@ -23,7 +23,6 @@
 .dialog {
     width: 640px;
     
-/*    position: 51% 17% 0px;*/
     background-color: #000000F0;
     box-shadow: #000000bb -5px -5px 10px 10px;
 
@@ -38,6 +37,11 @@
     transition-property: transform, opacity;
     transition-duration: 0.4s;
     transition-timing-function: ease-in;
+}
+
+.lodOptionsInterface .dialog {
+    background-color: #000000B4;
+    box-shadow: #00000082 -5px -5px 10px 10px;
 }
 
 .dialog_hidden {

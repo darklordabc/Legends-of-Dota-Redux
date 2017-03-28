@@ -780,7 +780,7 @@ end
 
 function util:CreateVoting(votingName, initiator, duration, percent, onaccept, onvote, ondecline, voteForInitiator)
     if self.activeVoting then
-        if self.activeVoting.name == votingName and (voteForInitiator ~= false or Time() - self.activeVoting.time >= 5) then
+        if self.activeVoting.name == votingName and Time() >= self.activeVoting.recieveStartTime then
             self.activeVoting.onvote(initiator, true)
         else
             --TODO: Display error message - Can't start a new voting while there is another ongoing voting
@@ -858,7 +858,7 @@ function util:CreateVoting(votingName, initiator, duration, percent, onaccept, o
     self.activeVoting = {
         name = votingName,
         votes = {},
-        time = Time(),
+        recieveStartTime = Time() + 5,
         onvote = _onvote
     }
     CustomGameEventManager:Send_ServerToAllClients("lodCreateUniversalVoting", {

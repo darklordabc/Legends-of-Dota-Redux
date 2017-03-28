@@ -502,12 +502,16 @@
     "lodVotingEnableHeroBuilderLineDescr"           "This allows players to change their ability builds mid-game."
     "lodVotingEnableRespawnLine"                    "wants to disable <font color='#FF4949'>Increasing-spawn-rate</font> mechanic"
     "lodVotingEnableRespawnLineDescr"               "This prevents respawn times slowly increasing after 40 minutes.<br><font color='#FF4949'>It its not recommended</font>."
-    "lodVotingSwitchTeamLine"                           "wants to <font color='#70EA72'>Switch Teams</font>"
-    "lodVotingSwitchTeamLineDescr"                      "This player has volunteered to switch teams to make the game more balanced.<br><font color='#70EA72'>It is recommended</font>."
-    "lodVotingAntiratLine"                           "wants to enable <font color='#70EA72'>Anti-Rat tower protection</font>"
-    "lodVotingAntiratLineDescr"                      "This requires all outer towers be destroyed before you can attack tier 3 towers.<br><font color='#70EA72'>It is recommended</font>."
-    "lodVotingDoubleCreepsLine"                           "wants to enable <font color='#70EA72'>Double Neutral Creeps</font>"
-    "lodVotingDoubleCreepsLineDescr"                      "This will double the amount of neutral creeps.<br><font color='#70EA72'>It is recommended</font>."
+    "lodVotingSwitchTeamLine"                       "wants to <font color='#70EA72'>Switch Teams</font>"
+    "lodVotingSwitchTeamLineDescr"                  "This player has volunteered to switch teams to make the game more balanced.<br><font color='#70EA72'>It is recommended</font>."
+    "lodVotingAntiratLine"                          "wants to enable <font color='#70EA72'>Anti-Rat tower protection</font>"
+    "lodVotingAntiratLineDescr"                     "This requires all outer towers be destroyed before you can attack tier 3 towers.<br><font color='#70EA72'>It is recommended</font>."
+    "lodVotingDoubleCreepsLine"                     "wants to enable <font color='#70EA72'>Double Neutral Creeps</font>"
+    "lodVotingDoubleCreepsLineDescr"                "This will double the amount of neutral creeps.<br><font color='#70EA72'>It is recommended</font>."
+    "lodVotingBanningBlockTrollCombosLine"          "wants to enable <font color='#FF4949'>Troll Combos</font>"
+    "lodVotingBanningBlockTrollCombosLineDescr"     "This will unblock certain combinations of skills that are traditionally used to troll people / make a game aweful to play."
+    "lodVotingAdvancedOPAbilitiesLine"              "wants to enable <font color='#FF4949'>OP Abilities</font>"
+    "lodVotingAdvancedOPAbilitiesLineDescr"         "This will enable all skills that are considered to be over powered"
 
 
 	// Minimap Menu and In-Game Hero Builder

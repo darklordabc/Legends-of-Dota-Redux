@@ -3911,15 +3911,10 @@ function buildAdvancedOptionsCategories( mutatorList ) {
                                 // When the checkbox has been toggled
                                 var checkboxToggled = function() {
                                     // Check if it is checked or not
-                                    if(hostPanel.checked) {
-                                        setOption(fieldName, 1);
-                                        hostPanel.text = values[1].text;
-                                        slavePanel.text = $.Localize(values[1].text);
-                                    } else {
-                                        setOption(fieldName, 0);
-                                        hostPanel.text = values[0].text;
-                                        slavePanel.text = $.Localize(values[0].text);
-                                    }
+                                    setOption(fieldName, hostPanel.checked);
+                                    if (info.requiresServerCheck) hostPanel.checked = false;
+                                    hostPanel.text = values[hostPanel.checked ? 1 : 0].text;
+                                    slavePanel.text = $.Localize(values[hostPanel.checked ? 1 : 0].text);
                                 }
 
                                 // When the data changes
