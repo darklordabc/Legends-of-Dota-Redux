@@ -748,47 +748,6 @@ function otherTeam(team)
     return -1
 end
 
-function Ingame:acceptedPlayerTeamSwap(x, y)
-    local newTeam = otherTeam(PlayerResource:GetCustomTeamAssignment(x))
-    local oldTeam = otherTeam(PlayerResource:GetCustomTeamAssignment(y))
-
-    local xuMoney = PlayerResource:GetUnreliableGold(x)
-    local yuMoney = PlayerResource:GetUnreliableGold(y)
-    local xrMoney = PlayerResource:GetReliableGold(x)
-    local yrMoney = PlayerResource:GetReliableGold(y)
-
-    local newTeamPC = GameRules:GetCustomGameTeamMaxPlayers(newTeam)
-    local oldTeamPC = GameRules:GetCustomGameTeamMaxPlayers(oldTeam)
-
-    GameRules:SetCustomGameTeamMaxPlayers(newTeam, newTeamPC + 1)
-    GameRules:SetCustomGameTeamMaxPlayers(oldTeam, oldTeamPC + 1)
-
-    self:balancePlayer(x, newTeam)
-    self:balancePlayer(y, oldTeam)
-
-    GameRules:SetCustomGameTeamMaxPlayers(newTeam, newTeamPC)
-    GameRules:SetCustomGameTeamMaxPlayers(oldTeam, oldTeamPC)
-
-    PlayerResource:SetGold(x, xuMoney, false)
-    PlayerResource:SetGold(y, yuMoney, false)
-    PlayerResource:SetGold(x, xrMoney, true)
-    PlayerResource:SetGold(y, yrMoney, true)
-    
-    for i = 0, PlayerResource:GetNumCouriersForTeam(newTeam) - 1 do
-        local cour = PlayerResource:GetNthCourierForTeam(i, newTeam)
-        cour:SetControllableByPlayer(x, false)
-        for j=0, 5 do
-            local item = cour:GetItemInSlot(j)
-            if item and item:GetPurchaser():GetPlayerID() == y then
-                PlayerResource:ModifyGold(y, item:GetCost(), true, 0)
-                cour:RemoveItem(item)
-            end
-        end
-    end
-
-    self.teamSwitchCode = ""
-end
-
 -- Sets it to no team balancing is required
 function Ingame:setNoTeamBalanceNeeded()
     -- Store state informatiion about team balance
