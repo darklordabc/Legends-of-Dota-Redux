@@ -1148,7 +1148,7 @@ function Ingame:handleRespawnModifier()
                             -- Imbalanced-Comepenstation Mechanic End
                             ------
 
-                                                        -------
+                            -------
                             -- Anti-Kamikaze Mechanic START
                             -- This is designed to stop players from spawning very quicky and dying very quickly, e.g pushing towers
                             -------
