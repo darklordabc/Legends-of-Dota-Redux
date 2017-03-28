@@ -439,32 +439,32 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "bonus_attack_speed"    "30"
+                "assault_bonus_attack_speed"    "30"
             }
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "bonus_armor"           "10"
+                "assault_bonus_armor"           "10"
             }
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "aura_radius"           "900"
+                "assault_aura_radius"           "900"
             }
             "04"
             {
                 "var_type"              "FIELD_INTEGER"
-                "aura_attack_speed"     "25"
+                "assault_aura_attack_speed"     "25"
             }
             "05"
             {
                 "var_type"              "FIELD_INTEGER"
-                "aura_positive_armor"   "5"
+                "assault_aura_positive_armor"   "5"
             }
             "06"
             {
                 "var_type"              "FIELD_INTEGER"
-                "aura_negative_armor"   "-5"
+                "assault_aura_negative_armor"   "-5"
             }           
         }
     }
