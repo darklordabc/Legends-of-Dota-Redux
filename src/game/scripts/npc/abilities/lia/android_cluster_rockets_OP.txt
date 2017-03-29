@@ -170,5 +170,6 @@
         }
         "ReduxPerks"                                                           "scientific"
         "ReduxCost"                                                            "100"
+        "ReduxFlags"                                                           "SuperOP"
     }
 }

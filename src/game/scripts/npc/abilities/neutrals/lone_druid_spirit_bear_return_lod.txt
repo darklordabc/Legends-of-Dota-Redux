@@ -8,7 +8,7 @@
         "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
         "AbilityCooldown"                                                      "250 200 150"
         "AbilityManaCost"                                                      "300 300 300"
-        "ReduxFlags"                                                           "mobility"
+        "ReduxFlags"                                                           "mobility | doNotRandom"
         "ReduxPerks"                                                           "neutral | mobility | teleport"
     }
 }

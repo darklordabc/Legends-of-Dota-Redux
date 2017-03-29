@@ -25,5 +25,6 @@
         }
         "ReduxCost"                                                            "90"
         "ReduxBans"                                                            "dragon_knight_dragon_blood"
+        "ReduxFlags"                                                           "SuperOP"
     }
 }

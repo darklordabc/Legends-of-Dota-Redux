@@ -58,5 +58,6 @@
         }
         "ReduxPerks"                                                           "enemyMoving"
         "ReduxCost"                                                            "100"
+        "ReduxFlags"                                                           "SuperOP"
     }
 }

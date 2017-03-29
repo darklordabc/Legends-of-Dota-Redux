@@ -44,7 +44,7 @@
                 "redirect_range_tooltip_scepter"                       "900"
             }
         }
-        "ReduxFlags"                                                           "upgradeable"
+        "ReduxFlags"                                                           "upgradeable | wtfAutoBan"
         "ReduxCost"                                                            "30"
         "ReduxBans"                                                            "furion_teleportation | tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux | meepo_divided_we_stand | phoenix_supernova"
     }

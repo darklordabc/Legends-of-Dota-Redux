@@ -17,7 +17,7 @@
                 "maxmeleecreeps"                                       "2 3 4 5"
             }
         }
-        "ReduxFlags"                                                           "summon"
+        "ReduxFlags"                                                           "summon | doNotRandom"
         "ReduxPerks"                                                           "summon_non_ult"
         "ReduxCost"                                                            "30"
     }

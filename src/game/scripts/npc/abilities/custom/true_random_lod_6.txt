@@ -54,5 +54,6 @@
             }
         }
         "ReduxCost"                                                            "-1"
+        "ReduxFlags"                                                           "OPSkillsList"
     }
 }

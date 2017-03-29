@@ -166,6 +166,6 @@
                 "EffectName"                                           "particles/undying_decay_agility_buff.vpcf"
             }
         }
-        "ReduxFlags"                                                           "dota_custom"
+        "ReduxFlags"                                                           "dota_custom | doNotRandom"
     }
 }

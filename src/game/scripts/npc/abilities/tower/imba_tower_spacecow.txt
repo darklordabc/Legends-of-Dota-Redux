@@ -45,7 +45,7 @@
                 }
             }
         }
-        "ReduxFlags"                                                           "stun"
+        "ReduxFlags"                                                           "stun | SuperOP"
         "ReduxPerks"                                                           "enemyMoving"
         "ReduxCost"                                                            "100"
     }

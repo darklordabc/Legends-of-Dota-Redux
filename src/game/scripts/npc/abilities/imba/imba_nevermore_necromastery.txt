@@ -1,171 +1,183 @@
-"DOTAAbilities" {
-	"imba_nevermore_necromastery" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName" "nevermore_necromastery"
-
-		"precache" {
-			"particle" "particles/hero/nevermore/nevermore_soul_projectile.vpcf"
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
-		}
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"damage_per_soul" "3"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"max_souls" "18 24 30 36"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"max_souls_scepter" "22 30 38 46"
-			}
-
-			"04" {
-				"var_type" "FIELD_FLOAT"
-				"soul_release" "0.5"
-			}
-
-			"05" {
-				"var_type" "FIELD_INTEGER"
-				"creep_kill_souls" "1"
-			}
-
-			"06" {
-				"var_type" "FIELD_INTEGER"
-				"hero_kill_souls" "12"
-			}
-
-			"07" {
-				"var_type" "FIELD_INTEGER"
-				"temp_soul_duration" "20 30 40 50"
-			}
-
-			"08" {
-				"var_type" "FIELD_INTEGER"
-				"hero_attack_souls" "2"
-			}
-
-			"09" {
-				"var_type" "FIELD_INTEGER"
-				"soul_projectile_speed" "1500"
-			}
-
-			"10" {
-				"var_type" "FIELD_INTEGER"
-				"harvest_levels_per_soul" "15"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_imba_necromastery" {
-				"Passive" "1"
-				"IsHidden" "1"
-				"IsPurgable" "0"
-				"IsBuff" "1"
-				"Attributes" "MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-
-				"OnCreated" {
-					"RunScript" {
-						"ScriptFile" "lib/util_imba.lua"
-						"Function" "IllusionPassiveRemover"
-						"modifier" "modifier_imba_necromastery"
-					}
-				}
-
-				"OnDeath" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_nevermore.lua"
-						"Function" "NecromasteryDeath"
-						"modifier_souls" "modifier_imba_necromastery_souls"
-						"modifier_souls_dummy" "modifier_imba_necromastery_souls_dummy"
-						"ability_requiem" "imba_nevermore_requiem"
-					}
-				}
-
-				"OnKill" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_nevermore.lua"
-						"Function" "NecromasteryKill"
-						"modifier_souls" "modifier_imba_necromastery_souls"
-						"modifier_souls_temp" "modifier_imba_necromastery_souls_temp"
-						"modifier_souls_dummy" "modifier_imba_necromastery_souls_dummy"
-						"particle_projectile" "particles/hero/nevermore/nevermore_soul_projectile.vpcf"
-					}
-				}
-
-				"OnAttackLanded" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_nevermore.lua"
-						"Function" "NecromasteryAttack"
-						"modifier_souls_temp" "modifier_imba_necromastery_souls_temp"
-						"particle_projectile" "particles/hero/nevermore/nevermore_soul_projectile.vpcf"
-					}
-				}
-			}
-
-			"modifier_imba_necromastery_souls" {
-				"Passive" "1"
-				"IsHidden" "1"
-				"IsPurgable" "0"
-				"IsBuff" "1"
-				"Attributes" "MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%damage_per_soul"
-				}
-			}
-
-			"modifier_imba_necromastery_souls_temp" {
-				"Passive" "0"
-				"IsHidden" "1"
-				"IsPurgable" "0"
-				"IsBuff" "1"
-				"Attributes" "MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_MULTIPLE | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-				"Duration" "%temp_soul_duration"
-
-				"OnCreated" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_nevermore.lua"
-						"Function" "NecromasteryDummySoulsUp"
-						"modifier_souls_dummy" "modifier_imba_necromastery_souls_dummy"
-					}
-				}
-
-				"OnDestroy" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_nevermore.lua"
-						"Function" "NecromasteryDummySoulsDown"
-						"modifier_souls_temp" "modifier_imba_necromastery_souls_temp"
-						"modifier_souls_dummy" "modifier_imba_necromastery_souls_dummy"
-					}
-				}
-
-				"Properties" {
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%damage_per_soul"
-				}
-			}
-
-			"modifier_imba_necromastery_souls_dummy" {
-				"Passive" "1"
-				"IsHidden" "0"
-				"IsPurgable" "0"
-				"IsBuff" "1"
-				"Attributes" "MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-
-				"OnDestroy" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_nevermore.lua"
-						"Function" "NecromasteryTempSoulsOver"
-						"modifier_souls" "modifier_imba_necromastery_souls"
-						"modifier_souls_dummy" "modifier_imba_necromastery_souls_dummy"
-					}
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_nevermore_necromastery"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "nevermore_necromastery"
+        "precache"
+        {
+            "particle"                                                     "particles/hero/nevermore/nevermore_soul_projectile.vpcf"
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
+        }
+        "AbilitySpecial"
+        {
+            "10"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "harvest_levels_per_soul"                              "15"
+            }
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage_per_soul"                                      "3"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "max_souls"                                            "18 24 30 36"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "max_souls_scepter"                                    "22 30 38 46"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "soul_release"                                         "0.5"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "creep_kill_souls"                                     "1"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "hero_kill_souls"                                      "12"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "temp_soul_duration"                                   "20 30 40 50"
+            }
+            "08"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "hero_attack_souls"                                    "2"
+            }
+            "09"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "soul_projectile_speed"                                "1500"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_necromastery"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "IsPurgable"                                           "0"
+                "IsBuff"                                               "1"
+                "Attributes"                                           "MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "lib/util_imba.lua"
+                        "Function"                             "IllusionPassiveRemover"
+                        "modifier"                             "modifier_imba_necromastery"
+                    }
+                }
+                "OnDeath"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_nevermore.lua"
+                        "Function"                             "NecromasteryDeath"
+                        "modifier_souls"                       "modifier_imba_necromastery_souls"
+                        "modifier_souls_dummy"                 "modifier_imba_necromastery_souls_dummy"
+                        "ability_requiem"                      "imba_nevermore_requiem"
+                    }
+                }
+                "OnKill"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_nevermore.lua"
+                        "Function"                             "NecromasteryKill"
+                        "modifier_souls"                       "modifier_imba_necromastery_souls"
+                        "modifier_souls_temp"                  "modifier_imba_necromastery_souls_temp"
+                        "modifier_souls_dummy"                 "modifier_imba_necromastery_souls_dummy"
+                        "particle_projectile"                  "particles/hero/nevermore/nevermore_soul_projectile.vpcf"
+                    }
+                }
+                "OnAttackLanded"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_nevermore.lua"
+                        "Function"                             "NecromasteryAttack"
+                        "modifier_souls_temp"                  "modifier_imba_necromastery_souls_temp"
+                        "particle_projectile"                  "particles/hero/nevermore/nevermore_soul_projectile.vpcf"
+                    }
+                }
+            }
+            "modifier_imba_necromastery_souls"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "IsPurgable"                                           "0"
+                "IsBuff"                                               "1"
+                "Attributes"                                           "MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"     "%damage_per_soul"
+                }
+            }
+            "modifier_imba_necromastery_souls_temp"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsPurgable"                                           "0"
+                "IsBuff"                                               "1"
+                "Attributes"                                           "MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_MULTIPLE | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+                "Duration"                                             "%temp_soul_duration"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_nevermore.lua"
+                        "Function"                             "NecromasteryDummySoulsUp"
+                        "modifier_souls_dummy"                 "modifier_imba_necromastery_souls_dummy"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_nevermore.lua"
+                        "Function"                             "NecromasteryDummySoulsDown"
+                        "modifier_souls_temp"                  "modifier_imba_necromastery_souls_temp"
+                        "modifier_souls_dummy"                 "modifier_imba_necromastery_souls_dummy"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"     "%damage_per_soul"
+                }
+            }
+            "modifier_imba_necromastery_souls_dummy"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "0"
+                "IsPurgable"                                           "0"
+                "IsBuff"                                               "1"
+                "Attributes"                                           "MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_nevermore.lua"
+                        "Function"                             "NecromasteryTempSoulsOver"
+                        "modifier_souls"                       "modifier_imba_necromastery_souls"
+                        "modifier_souls_dummy"                 "modifier_imba_necromastery_souls_dummy"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

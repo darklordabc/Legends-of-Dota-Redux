@@ -1518,6 +1518,7 @@ function Pregame:networkHeroes()
 
     -- Store the inverse flags list
     self.flagsInverse = flagsInverse
+    self.flags = flags
 
     -- Maps to convert hashes
     self.hashToSkill = {}
@@ -1936,11 +1937,11 @@ function Pregame:loadTrollCombos()
 
     -- Create the stores
     self.banList = {}
-    self.wtfAutoBan = tempBanList.wtfAutoBan
-    self.OPSkillsList = tempBanList.OPSkillsList
-    self.noHero = tempBanList.noHero
-    self.SuperOP = tempBanList.SuperOP
-    self.doNotRandom = tempBanList.doNotRandom
+    self.wtfAutoBan = self.flags.wtfautoban
+    self.OPSkillsList = self.flags.opskillslist
+    self.noHero = self.flags.nohero
+    self.SuperOP = self.flags.superop
+    self.doNotRandom = self.flags.donotrandom
 
     -- All SUPER OP skills should be added to the OP ban list
     --for skillName,_ in pairs(self.lodBanList) do

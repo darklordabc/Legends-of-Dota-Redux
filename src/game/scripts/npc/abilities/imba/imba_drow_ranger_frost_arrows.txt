@@ -1,138 +1,147 @@
-"DOTAAbilities" {
-	"imba_drow_ranger_frost_arrows" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
-		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName" "drow_ranger_frost_arrows"
-		"AbilityCastRange" "625"
-		"AbilityCastPoint" "0.0"
-		"AbilityCooldown" "0.0"
-		"AbilityDamage" "0"
-		"AbilityManaCost" "9"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"frost_arrows_slow" "-20 -35 -50 -65"
-			}
-
-			"02" {
-				"var_type" "FIELD_FLOAT"
-				"frost_arrows_hero_duration" "1.75"
-			}
-
-			"03" {
-				"var_type" "FIELD_FLOAT"
-				"frost_arrows_creep_duration" "10.0"
-			}
-
-			"04" {
-				"var_type" "FIELD_INTEGER"
-				"stacks_to_freeze" "4"
-			}
-
-			"05" {
-				"var_type" "FIELD_FLOAT"
-				"freeze_duration" "1.75"
-			}
-		}
-
-		"precache" {
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
-			"particle" "particles/status_fx/status_effect_frost.vpcf"
-		}
-
-		"Modifiers" {
-			"modifier_imba_frost_arrows_caster" {
-				"Passive" "1"
-				"IsHidden" "1"
-				"IsPurgable" "0"
-
-				"Orb" {
-					"Priority" "DOTA_ORB_PRIORITY_ABILITY"
-					"ProjectileName" "particles/units/heroes/hero_drow/drow_frost_arrow.vpcf"
-					"CastAttack" "1"
-				}
-
-				"OnOrbFire" {
-					"FireSound" {
-						"EffectName" "Hero_DrowRanger.FrostArrows"
-						"Target" "CASTER"
-					}
-
-					"SpendMana" {
-						"Mana" "%AbilityManaCost"
-					}
-				}
-
-				"OnOrbImpact" {
-					"ApplyModifier" {
-						"Target" {
-							"Center" "TARGET"
-							"Types" "DOTA_UNIT_TARGET_HERO"
-						}
-						"ModifierName" "modifier_imba_frost_arrows_slow"
-						"Duration" "%frost_arrows_hero_duration"
-					}
-
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_drow_ranger.lua"
-						"Function" "FrostArrows"
-
-						"Target" {
-							"Center" "TARGET"
-							"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-						}
-						"stack_modifier" "modifier_imba_frost_arrows_slow_stacks"
-						"freeze_modifier" "modifier_imba_frost_arrows_frozen"
-					}
-				}
-			}
-
-			"modifier_imba_frost_arrows_slow" {
-				"Passive" "0"
-				"IsHidden" "1"
-				"IsDebuff" "1"
-				"IsPurgable" "1"
-				"EffectName" "particles/generic_gameplay/generic_slowed_cold.vpcf"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%frost_arrows_slow"
-				}
-			}
-
-			"modifier_imba_frost_arrows_slow_stacks" {
-				"Passive" "0"
-				"IsHidden" "0"
-				"IsDebuff" "1"
-				"IsPurgable" "1"
-				"Duration" "%frost_arrows_hero_duration"
-			}
-
-			"modifier_imba_frost_arrows_frozen" {
-				"Passive" "0"
-				"IsHidden" "0"
-				"IsDebuff" "1"
-				"IsPurgable" "1"
-				"Duration" "%freeze_duration"
-				"TextureName" "custom/imba_drow_ranger_frost_arrows"
-				"EffectName" "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
-				"StatusEffectName" "particles/status_fx/status_effect_frost.vpcf"
-				"StatusEffectPriority" "10"
-
-				"OnCreated" {
-					"FireSound" {
-						"Target" "TARGET"
-						"EffectName" "hero_Crystal.frostbite"
-					}
-				}
-
-				"States" {
-					"MODIFIER_STATE_ROOTED" "MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_drow_ranger_frost_arrows"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityTextureName"                                                   "drow_ranger_frost_arrows"
+        "AbilityCastRange"                                                     "625"
+        "AbilityCastPoint"                                                     "0.0"
+        "AbilityCooldown"                                                      "0.0"
+        "AbilityDamage"                                                        "0"
+        "AbilityManaCost"                                                      "9"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "frost_arrows_slow"                                    "-20 -35 -50 -65"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "frost_arrows_hero_duration"                           "1.75"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "frost_arrows_creep_duration"                          "10.0"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "stacks_to_freeze"                                     "4"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "freeze_duration"                                      "1.75"
+            }
+        }
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
+            "particle"                                                     "particles/status_fx/status_effect_frost.vpcf"
+        }
+        "Modifiers"
+        {
+            "modifier_imba_frost_arrows_caster"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "IsPurgable"                                           "0"
+                "Orb"
+                {
+                    "Priority"                                     "DOTA_ORB_PRIORITY_ABILITY"
+                    "ProjectileName"                               "particles/units/heroes/hero_drow/drow_frost_arrow.vpcf"
+                    "CastAttack"                                   "1"
+                }
+                "OnOrbFire"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"                           "Hero_DrowRanger.FrostArrows"
+                        "Target"                               "CASTER"
+                    }
+                    "SpendMana"
+                    {
+                        "Mana"                                 "%AbilityManaCost"
+                    }
+                }
+                "OnOrbImpact"
+                {
+                    "ApplyModifier"
+                    {
+                        "Target"
+                        {
+                            "Center"                       "TARGET"
+                            "Types"                        "DOTA_UNIT_TARGET_HERO"
+                        }
+                        "ModifierName"                         "modifier_imba_frost_arrows_slow"
+                        "Duration"                             "%frost_arrows_hero_duration"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_drow_ranger.lua"
+                        "Function"                             "FrostArrows"
+                        "Target"
+                        {
+                            "Center"                       "TARGET"
+                            "Types"                        "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                        }
+                        "stack_modifier"                       "modifier_imba_frost_arrows_slow_stacks"
+                        "freeze_modifier"                      "modifier_imba_frost_arrows_frozen"
+                    }
+                }
+            }
+            "modifier_imba_frost_arrows_slow"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "1"
+                "EffectName"                                           "particles/generic_gameplay/generic_slowed_cold.vpcf"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%frost_arrows_slow"
+                }
+            }
+            "modifier_imba_frost_arrows_slow_stacks"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "1"
+                "Duration"                                             "%frost_arrows_hero_duration"
+            }
+            "modifier_imba_frost_arrows_frozen"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "1"
+                "Duration"                                             "%freeze_duration"
+                "TextureName"                                          "custom/imba_drow_ranger_frost_arrows"
+                "EffectName"                                           "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
+                "StatusEffectName"                                     "particles/status_fx/status_effect_frost.vpcf"
+                "StatusEffectPriority"                                 "10"
+                "OnCreated"
+                {
+                    "FireSound"
+                    {
+                        "Target"                               "TARGET"
+                        "EffectName"                           "hero_Crystal.frostbite"
+                    }
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_ROOTED"                        "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

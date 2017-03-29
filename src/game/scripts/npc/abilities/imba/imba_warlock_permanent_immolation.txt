@@ -42,7 +42,7 @@
                 }
             }
         }
-        "ReduxFlags"                                                           "aoe_attack"
+        "ReduxFlags"                                                           "aoe_attack | doNotRandom"
         "ReduxPerks"                                                           "fire | aura"
     }
 }

@@ -20,7 +20,7 @@
                 "teleport_delay"                                       "5.0 4.0 3.0 2.0"
             }
         }
-        "ReduxFlags"                                                           "support"
+        "ReduxFlags"                                                           "support | doNotRandom"
         "ReduxPerks"                                                           "support"
     }
 }

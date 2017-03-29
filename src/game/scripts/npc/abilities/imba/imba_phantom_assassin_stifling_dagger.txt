@@ -127,5 +127,6 @@
             }
         }
         "ReduxPerks"                                                           "dagger"
+        "ReduxFlags"                                                           "doNotRandom"
     }
 }

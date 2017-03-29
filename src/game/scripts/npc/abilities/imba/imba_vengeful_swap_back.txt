@@ -1,21 +1,25 @@
-"DOTAAbilities" {
-	"imba_vengeful_swap_back" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"MaxLevel" "1"
-		"AbilityTextureName" "custom/vengeful_swap_back"
-		"AbilityCastPoint" "0.2"
-		"AbilityCooldown" "1.0"
-		"AbilityManaCost" "0"
-
-		"OnSpellStart" {
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_vengeful.lua"
-				"Function" "NetherSwapBack"
-				"ability_swap" "imba_vengeful_nether_swap"
-				"sound_swap" "Hero_VengefulSpirit.NetherSwap"
-				"particle_caster" "particles/units/heroes/hero_vengeful/vengeful_nether_swap.vpcf"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_vengeful_swap_back"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+        "MaxLevel"                                                             "1"
+        "AbilityTextureName"                                                   "custom/vengeful_swap_back"
+        "AbilityCastPoint"                                                     "0.2"
+        "AbilityCooldown"                                                      "1.0"
+        "AbilityManaCost"                                                      "0"
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_vengeful.lua"
+                "Function"                                             "NetherSwapBack"
+                "ability_swap"                                         "imba_vengeful_nether_swap"
+                "sound_swap"                                           "Hero_VengefulSpirit.NetherSwap"
+                "particle_caster"                                      "particles/units/heroes/hero_vengeful/vengeful_nether_swap.vpcf"
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

@@ -50,5 +50,6 @@
         "ReduxPerks"                                                           "aura"
         "ReduxCost"                                                            "120"
         "ReduxBans"                                                            "abyssal_underlord_atrophy_aura"
+        "ReduxFlags"                                                           "SuperOP"
     }
 }

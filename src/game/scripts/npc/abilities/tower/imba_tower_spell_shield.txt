@@ -51,7 +51,7 @@
                 }
             }
         }
-        "ReduxFlags"                                                           "tank"
+        "ReduxFlags"                                                           "tank | SuperOP"
         "ReduxPerks"                                                           "aura"
         "ReduxCost"                                                            "120"
     }

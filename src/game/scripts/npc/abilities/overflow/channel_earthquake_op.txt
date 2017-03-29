@@ -55,5 +55,6 @@
             "particle"                                                     "particles/units/heroes/hero_earth_spirit/espirit_spawn.vpcf"
         }
         "ReduxCost"                                                            "100"
+        "ReduxFlags"                                                           "SuperOP"
     }
 }

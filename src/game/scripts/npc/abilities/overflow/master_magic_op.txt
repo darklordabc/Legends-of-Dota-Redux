@@ -35,5 +35,6 @@
             "particle"                                                     "particles/master_magic.vpcf"
         }
         "ReduxCost"                                                            "100"
+        "ReduxFlags"                                                           "SuperOP"
     }
 }

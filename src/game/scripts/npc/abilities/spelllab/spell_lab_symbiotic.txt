@@ -53,7 +53,7 @@
             "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"
             "particle"                                                     "particles/spell_lab/symbiotic_overhead.vpcf"
         }
-        "ReduxFlags"                                                           "upgradeable | support | mobility"
+        "ReduxFlags"                                                           "upgradeable | support | mobility | doNotRandom"
         "ReduxPerks"                                                           "support | mobility"
         "ReduxCost"                                                            "40"
     }

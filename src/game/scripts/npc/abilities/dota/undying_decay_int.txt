@@ -167,6 +167,6 @@
                 "IsBuff"                                               "1"
             }
         }
-        "ReduxFlags"                                                           "dota_custom"
+        "ReduxFlags"                                                           "dota_custom | doNotRandom"
     }
 }

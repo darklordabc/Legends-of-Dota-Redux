@@ -105,5 +105,6 @@
         }
         "ReduxPerks"                                                           "aura"
         "ReduxCost"                                                            "30"
+        "ReduxFlags"                                                           "doNotRandom"
     }
 }

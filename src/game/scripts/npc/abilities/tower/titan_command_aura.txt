@@ -70,7 +70,7 @@
                 }
             }
         }
-        "ReduxFlags"                                                           "support"
+        "ReduxFlags"                                                           "support | SuperOP"
         "ReduxPerks"                                                           "support | aura"
         "ReduxCost"                                                            "80"
     }

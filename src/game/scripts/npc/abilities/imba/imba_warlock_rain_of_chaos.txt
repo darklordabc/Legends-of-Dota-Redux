@@ -135,7 +135,7 @@
                 }
             }
         }
-        "ReduxFlags"                                                           "upgradeable | stun | summon"
+        "ReduxFlags"                                                           "upgradeable | stun | summon | doNotRandom"
         "ReduxPerks"                                                           "fire"
     }
 }

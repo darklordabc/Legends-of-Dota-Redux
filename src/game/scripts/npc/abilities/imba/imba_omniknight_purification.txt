@@ -96,5 +96,6 @@
             }
         }
         "ReduxCost"                                                            "10"
+        "ReduxFlags"                                                           "doNotRandom"
     }
 }

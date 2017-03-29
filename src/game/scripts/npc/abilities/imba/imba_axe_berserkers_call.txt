@@ -1,77 +1,83 @@
-"DOTAAbilities" {
-	"imba_axe_berserkers_call" {
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_YES"
-		"FightRecapLevel" "1"
-		"BaseClass" "ability_datadriven"
-		"AbilityTextureName" "axe_berserkers_call"
-		"AbilityCastPoint" "0.3"
-		"AbilityCastRange" "300 325 350 375"
-		"AbilityCooldown" "10"
-		"AbilityDamage" "0"
-		"AbilityManaCost" "80"
-
-		"precache" {
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_axe.vsndevts"
-			"particle" "particles/status_fx/status_effect_beserkers_call.vpcf"
-		}
-
-		"OnSpellStart" {
-			"ApplyModifier" {
-				"ModifierName" "modifier_axe_berserkers_call_armor"
-				"Duration" "%duration"
-				"Target" "CASTER"
-			}
-
-			"FireEffect" {
-				"EffectName" "particles/econ/items/axe/axe_helm_shoutmask/axe_beserkers_call_owner_shoutmask.vpcf"
-				"EffectAttachType" "follow_origin"
-
-				"ControlPoints" {
-					"01" "0 0 0"
-					"02" "%radius 0 0"
-					"03" "0 0 0"
-				}
-			}
-
-			"FireSound" {
-				"EffectName" "Hero_Axe.Berserkers_Call"
-				"Target" "CASTER"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_axe_berserkers_call_as" {
-				"IsDebuff" "1"
-				"IsPurgable" "0"
-				"IsHidden" "1"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_as"
-				}
-			}
-		}
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"radius" "300 325 350 375"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"bonus_armor" "200"
-			}
-
-			"03" {
-				"var_type" "FIELD_FLOAT"
-				"duration" "2.0 2.4 2.8 3.2"
-			}
-
-			"04" {
-				"var_type" "FIELD_INTEGER"
-				"bonus_as" "30 60 90 120"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_axe_berserkers_call"
+    {
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_YES"
+        "FightRecapLevel"                                                      "1"
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityTextureName"                                                   "axe_berserkers_call"
+        "AbilityCastPoint"                                                     "0.3"
+        "AbilityCastRange"                                                     "300 325 350 375"
+        "AbilityCooldown"                                                      "10"
+        "AbilityDamage"                                                        "0"
+        "AbilityManaCost"                                                      "80"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_axe.vsndevts"
+            "particle"                                                     "particles/status_fx/status_effect_beserkers_call.vpcf"
+        }
+        "OnSpellStart"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"                                         "modifier_axe_berserkers_call_armor"
+                "Duration"                                             "%duration"
+                "Target"                                               "CASTER"
+            }
+            "FireEffect"
+            {
+                "EffectName"                                           "particles/econ/items/axe/axe_helm_shoutmask/axe_beserkers_call_owner_shoutmask.vpcf"
+                "EffectAttachType"                                     "follow_origin"
+                "ControlPoints"
+                {
+                    "01"                                           "0 0 0"
+                    "02"                                           "%radius 0 0"
+                    "03"                                           "0 0 0"
+                }
+            }
+            "FireSound"
+            {
+                "EffectName"                                           "Hero_Axe.Berserkers_Call"
+                "Target"                                               "CASTER"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_axe_berserkers_call_as"
+            {
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "0"
+                "IsHidden"                                             "1"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_as"
+                }
+            }
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "300 325 350 375"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_armor"                                          "200"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                             "2.0 2.4 2.8 3.2"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_as"                                             "30 60 90 120"
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

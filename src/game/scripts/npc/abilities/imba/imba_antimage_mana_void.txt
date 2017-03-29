@@ -1,116 +1,123 @@
-"DOTAAbilities" {
-	"imba_antimage_mana_void" {
-		"BaseClass" "ability_datadriven"
-		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_PURE"
-		"FightRecapLevel" "2"
-		"AbilityTextureName" "antimage_mana_void"
-		"AOERadius" "%mana_void_aoe_radius"
-
-		"precache" {
-			"particle" "particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_manavoid_basher_cast.vpcf"
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
-		}
-		"AbilityCastRange" "600"
-		"AbilityCastPoint" "0.3"
-		"AbilityCastAnimation" "ACT_DOTA_CAST_ABILITY_4"
-		"AbilityCooldown" "70.0"
-		"AbilityManaCost" "0"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_FLOAT"
-				"mana_void_damage_per_mana" "0.6 0.8 1.0"
-			}
-
-			"02" {
-				"var_type" "FIELD_FLOAT"
-				"mana_void_ministun" "0.3"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"mana_void_aoe_radius" "500"
-			}
-
-			"04" {
-				"var_type" "FIELD_INTEGER"
-				"mana_void_mana_burn_pct" "25 30 35"
-			}
-
-			"05" {
-				"var_type" "FIELD_INTEGER"
-				"secondary_mana_scepter" "100"
-			}
-		}
-
-		"OnAbilityPhaseStart" {
-			"FireSound" {
-				"EffectName" "Hero_Antimage.ManaVoidCast"
-
-				"Target" {
-					"Center" "TARGET"
-					"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-				}
-			}
-		}
-
-		"OnSpellStart" {
-			"FireSound" {
-				"EffectName" "Hero_Antimage.ManaVoid"
-
-				"Target" {
-					"Center" "TARGET"
-					"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-				}
-			}
-
-			"AttachEffect" {
-				"EffectName" "particles/units/heroes/hero_antimage/antimage_manavoid.vpcf"
-				"EffectAttachType" "attach_hitloc"
-
-				"Target" {
-					"Center" "TARGET"
-					"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-				}
-
-				"ControlPoints" {
-					"00" "0 0 0"
-					"01" "%mana_void_aoe_radius 0 0"
-				}
-			}
-
-			"ApplyModifier" {
-				"ModifierName" "modifier_imba_mana_void_ministun"
-
-				"Target" {
-					"Center" "TARGET"
-					"Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-				}
-			}
-
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_antimage.lua"
-				"Function" "ManaVoid"
-				"Target" "TARGET"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_imba_mana_void_ministun" {
-				"Duration" "%mana_void_ministun"
-				"IsDebuff" "1"
-				"IsPurgable" "0"
-
-				"States" {
-					"MODIFIER_STATE_STUNNED" "MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_antimage_mana_void"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetFlags"                                               "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_PURE"
+        "FightRecapLevel"                                                      "2"
+        "AbilityTextureName"                                                   "antimage_mana_void"
+        "AOERadius"                                                            "%mana_void_aoe_radius"
+        "precache"
+        {
+            "particle"                                                     "particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_manavoid_basher_cast.vpcf"
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
+        }
+        "AbilityCastRange"                                                     "600"
+        "AbilityCastPoint"                                                     "0.3"
+        "AbilityCastAnimation"                                                 "ACT_DOTA_CAST_ABILITY_4"
+        "AbilityCooldown"                                                      "70.0"
+        "AbilityManaCost"                                                      "0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "mana_void_damage_per_mana"                            "0.6 0.8 1.0"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "mana_void_ministun"                                   "0.3"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "mana_void_aoe_radius"                                 "500"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "mana_void_mana_burn_pct"                              "25 30 35"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "secondary_mana_scepter"                               "100"
+            }
+        }
+        "OnAbilityPhaseStart"
+        {
+            "FireSound"
+            {
+                "EffectName"                                           "Hero_Antimage.ManaVoidCast"
+                "Target"
+                {
+                    "Center"                                       "TARGET"
+                    "Flags"                                        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+                }
+            }
+        }
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "EffectName"                                           "Hero_Antimage.ManaVoid"
+                "Target"
+                {
+                    "Center"                                       "TARGET"
+                    "Flags"                                        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+                }
+            }
+            "AttachEffect"
+            {
+                "EffectName"                                           "particles/units/heroes/hero_antimage/antimage_manavoid.vpcf"
+                "EffectAttachType"                                     "attach_hitloc"
+                "Target"
+                {
+                    "Center"                                       "TARGET"
+                    "Flags"                                        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+                }
+                "ControlPoints"
+                {
+                    "00"                                           "0 0 0"
+                    "01"                                           "%mana_void_aoe_radius 0 0"
+                }
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"                                         "modifier_imba_mana_void_ministun"
+                "Target"
+                {
+                    "Center"                                       "TARGET"
+                    "Flags"                                        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+                }
+            }
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_antimage.lua"
+                "Function"                                             "ManaVoid"
+                "Target"                                               "TARGET"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_mana_void_ministun"
+            {
+                "Duration"                                             "%mana_void_ministun"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "0"
+                "States"
+                {
+                    "MODIFIER_STATE_STUNNED"                       "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

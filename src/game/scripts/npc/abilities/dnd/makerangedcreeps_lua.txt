@@ -17,7 +17,7 @@
                 "maxrangedcreeps"                                      "1 1 2 3"
             }
         }
-        "ReduxFlags"                                                           "summon"
+        "ReduxFlags"                                                           "summon | doNotRandom"
         "ReduxPerks"                                                           "summon_non_ult"
         "ReduxCost"                                                            "30"
     }

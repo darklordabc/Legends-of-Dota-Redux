@@ -166,7 +166,7 @@
                 }
             }
         }
-        "ReduxFlags"                                                           "stun"
+        "ReduxFlags"                                                           "stun | SuperOP"
         "ReduxPerks"                                                           "channeled | enemyMoving"
         "ReduxCost"                                                            "90"
     }

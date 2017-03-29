@@ -1,53 +1,55 @@
-"DOTAAbilities" {
-	"imba_tower_death_pulse" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName" "custom/imba_tower_death_pulse"
-		"MaxLevel" "3"
-		"AbilitySharedWithTeammates" "1"
-		"AbilityCastRange" "800 1000 1200"
-		"AbilityCooldown" "6"
-		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-
-		"precache" {
-			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts"
-			"particle"			"particles/units/heroes/hero_necrolyte/necrolyte_pulse_enemy.vpcf"
-			"particle"			"particles/units/heroes/hero_necrolyte/necrolyte_pulse_friend.vpcf"
-		}
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"area_of_effect"		"900"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"healdamage"					"100 200 300"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"projectile_speed"		"400"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_imba_tower_death_pulse" {
-				"Passive" "1"
-				"IsHidden" "1"
-				"ThinkInterval" "0.5"
-
-				"OnIntervalThink" {
-					"RunScript" {
-						"ScriptFile" "abilities/tower_abilities.lua"
-						"Function" "DeathPulse"
-					}
-				}
-			}
-
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_tower_death_pulse"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "custom/imba_tower_death_pulse"
+        "MaxLevel"                                                             "3"
+        "AbilitySharedWithTeammates"                                           "1"
+        "AbilityCastRange"                                                     "800 1000 1200"
+        "AbilityCooldown"                                                      "6"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_necrolyte/necrolyte_pulse_enemy.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "area_of_effect"                                       "900"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "healdamage"                                           "100 200 300"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "projectile_speed"                                     "400"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_tower_death_pulse"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "ThinkInterval"                                        "0.5"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/tower_abilities.lua"
+                        "Function"                             "DeathPulse"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "SuperOP"
+    }
 }

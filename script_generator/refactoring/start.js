@@ -3,14 +3,12 @@ var deepmerge = require("deepmerge")
 var vdf = require("./simple-vdf")
 
 //Parse input kvs
-var flags = vdf.parse(fs.readFileSync("../../src/game/scripts/kv/flags.kv", 'utf-8'))
-flags = flags[Object.keys(flags)[0]]
-var balance_mode = vdf.parse(fs.readFileSync("../../src/game/scripts/kv/balance_mode.kv", 'utf-8'))
-balance_mode = balance_mode[Object.keys(balance_mode)[0]]
-var bans = vdf.parse(fs.readFileSync("../../src/game/scripts/kv/bans.kv", 'utf-8'))
-bans = bans[Object.keys(bans)[0]]
-var perks = vdf.parse(fs.readFileSync("../../src/game/scripts/kv/perks.kv", 'utf-8'))
-perks = perks[Object.keys(perks)[0]]
+var flags, balance_mode, bans, perks;
+
+try {flags = vdf.parse(fs.readFileSync("../../src/game/scripts/kv/flags.kv", 'utf-8'))} catch(e) {}
+try {balance_mode = vdf.parse(fs.readFileSync("../../src/game/scripts/kv/balance_mode.kv", 'utf-8'))} catch(e) {}
+try {bans = vdf.parse(fs.readFileSync("../../src/game/scripts/kv/bans.kv", 'utf-8'))} catch(e) {}
+try {perks = vdf.parse(fs.readFileSync("../../src/game/scripts/kv/perks.kv", 'utf-8'))} catch(e) {}
 
 //Read possible outputs to find files, that contains certain abilities
 var npc_abilities_override = vdf.parse(fs.readFileSync("../../src/game/scripts/npc/npc_abilities_override.txt", 'utf-8'))
@@ -39,63 +37,97 @@ function DecidePath(ability) {
 var abilityNewFlags = {}
 
 //Parse flags
-for (var groupName in flags) {
-	var group = flags[groupName]
-	for (var ability in group) {
-		if (!abilityNewFlags[ability]) abilityNewFlags[ability] = {};
-		abilityNewFlags[ability].ReduxFlags = abilityNewFlags[ability].ReduxFlags == null ? groupName : abilityNewFlags[ability].ReduxFlags + " | " + groupName
+if (flags) {
+	flags = flags[Object.keys(flags)[0]]
+	for (var groupName in flags) {
+		var group = flags[groupName]
+		for (var ability in group) {
+			if (!abilityNewFlags[ability]) abilityNewFlags[ability] = {};
+			abilityNewFlags[ability].ReduxFlags = abilityNewFlags[ability].ReduxFlags == null ? groupName : abilityNewFlags[ability].ReduxFlags + " | " + groupName
+		}
 	}
 }
 
 //Parse perks
-for (var groupName in perks) {
-	var group = perks[groupName]
-	for (var ability in group) {
-		if (!(/^\d+$/.test(ability)) && !ability.startsWith("npc_")) {
-			if (!abilityNewFlags[ability]) abilityNewFlags[ability] = {};
-			abilityNewFlags[ability].ReduxPerks = abilityNewFlags[ability].ReduxPerks == null ? groupName : abilityNewFlags[ability].ReduxPerks + " | " + groupName
+if (perks) {
+	perks = perks[Object.keys(perks)[0]]
+	for (var groupName in perks) {
+		var group = perks[groupName]
+		for (var ability in group) {
+			if (!(/^\d+$/.test(ability)) && !ability.startsWith("npc_")) {
+				if (!abilityNewFlags[ability]) abilityNewFlags[ability] = {};
+				abilityNewFlags[ability].ReduxPerks = abilityNewFlags[ability].ReduxPerks == null ? groupName : abilityNewFlags[ability].ReduxPerks + " | " + groupName
+			}
+			
 		}
-		
 	}
 }
 
 //Parse balance mode values
-var tierMap = {
-	"tier_1": 120,
-	"tier_2": 100,
-	"tier_3": 90,
-	"tier_4": 80,
-	"tier_5": 70,
-	"tier_6": 60,
-	"tier_7": 50,
-	"tier_8": 40,
-	"tier_9": 30,
-	"tier_10": 20,
-	"tier_11": 10,
-	"tier_0": -1,
-}
-for (var groupName in balance_mode) {
-	var cost = tierMap[groupName]
-	if (cost) {
-		for (var ability in balance_mode[groupName]) {
-			if (!abilityNewFlags[ability]) abilityNewFlags[ability] = {};
-			abilityNewFlags[ability].ReduxCost = cost
+if (balance_mode) {
+	balance_mode = balance_mode[Object.keys(balance_mode)[0]]
+	var tierMap = {
+		"tier_1": 120,
+		"tier_2": 100,
+		"tier_3": 90,
+		"tier_4": 80,
+		"tier_5": 70,
+		"tier_6": 60,
+		"tier_7": 50,
+		"tier_8": 40,
+		"tier_9": 30,
+		"tier_10": 20,
+		"tier_11": 10,
+		"tier_0": -1,
+	}
+	for (var groupName in balance_mode) {
+		var cost = tierMap[groupName]
+		if (cost) {
+			for (var ability in balance_mode[groupName]) {
+				if (!abilityNewFlags[ability]) abilityNewFlags[ability] = {};
+				abilityNewFlags[ability].ReduxCost = cost
+			}
 		}
 	}
 }
+
 //Parse troll combos
-for (var ban_ability in bans.BannedCombinations) {
-	for (var ability in bans.BannedCombinations[ban_ability]) {
-		if (!abilityNewFlags[ability]) abilityNewFlags[ability] = {};
-		abilityNewFlags[ability].ReduxBans = abilityNewFlags[ability].ReduxBans == null ? ban_ability : abilityNewFlags[ability].ReduxBans + " | " + ban_ability
+if (bans) {
+	bans = bans[Object.keys(bans)[0]]
+	
+	
+	for (var banGroup in bans) {
+		switch(banGroup) {
+			case "BannedCombinations":
+				for (var ban_ability in bans[banGroup]) {
+					for (var ability in bans.BannedCombinations[ban_ability]) {
+						if (!abilityNewFlags[ability]) abilityNewFlags[ability] = {};
+						abilityNewFlags[ability].ReduxBans = abilityNewFlags[ability].ReduxBans == null ? ban_ability : abilityNewFlags[ability].ReduxBans + " | " + ban_ability
+					}
+				}
+				break;
+			case "CategoryBans":
+				for (var ability in bans[banGroup]) {
+					if (!abilityNewFlags[ability]) abilityNewFlags[ability] = {};
+					for (var i in bans.CategoryBans[ability]) {
+						var bc = bans.CategoryBans[ability][i]
+						abilityNewFlags[ability].ReduxBanCategory = abilityNewFlags[ability].ReduxBanCategory == null ? bc : abilityNewFlags[ability].ReduxBanCategory + " | " + bc
+					}
+				}
+				break;
+			//These are just flags
+			case "wtfAutoBan":
+			case "doNotRandom":
+			case "OPSkillsList":
+			case "noHero":
+			case "SuperOP":
+				for (var ability in bans[banGroup]) {
+					if (!abilityNewFlags[ability]) abilityNewFlags[ability] = {};
+					abilityNewFlags[ability].ReduxFlags = abilityNewFlags[ability].ReduxFlags == null ? banGroup : abilityNewFlags[ability].ReduxFlags + " | " + banGroup
+				}
+		}
 	}
-}
-for (var ability in bans.CategoryBans) {
-	if (!abilityNewFlags[ability]) abilityNewFlags[ability] = {};
-	for (var i in bans.CategoryBans[ability]) {
-		var bc = bans.CategoryBans[ability][i]
-		abilityNewFlags[ability].ReduxBanCategory = abilityNewFlags[ability].ReduxBanCategory == null ? bc : abilityNewFlags[ability].ReduxBanCategory + " | " + bc
-	}
+
 }
 
 //Compile

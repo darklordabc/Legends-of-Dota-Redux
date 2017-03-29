@@ -163,7 +163,7 @@
                 }
             }
         }
-        "ReduxFlags"                                                           "upgradeable"
+        "ReduxFlags"                                                           "upgradeable | doNotRandom"
         "ReduxPerks"                                                           "attack_modifier | rage"
     }
 }

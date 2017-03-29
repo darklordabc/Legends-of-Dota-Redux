@@ -83,7 +83,7 @@
                 }
             }
         }
-        "ReduxFlags"                                                           "support"
+        "ReduxFlags"                                                           "support | SuperOP"
         "ReduxPerks"                                                           "support"
         "ReduxCost"                                                            "90"
     }

@@ -100,7 +100,7 @@
                 }
             }
         }
-        "ReduxFlags"                                                           "mobility"
+        "ReduxFlags"                                                           "mobility | doNotRandom"
         "ReduxPerks"                                                           "mobility"
     }
 }

@@ -211,7 +211,7 @@
                 }
             }
         }
-        "ReduxFlags"                                                           "support"
+        "ReduxFlags"                                                           "support | doNotRandom"
         "ReduxPerks"                                                           "support"
     }
 }

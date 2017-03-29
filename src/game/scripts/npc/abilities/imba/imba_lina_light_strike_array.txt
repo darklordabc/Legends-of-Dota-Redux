@@ -1,74 +1,80 @@
-"DOTAAbilities" {
-	"imba_lina_light_strike_array" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel" "1"
-		"AbilityTextureName" "lina_light_strike_array"
-		"AbilityCastRange" "900 1100 1300 1500"
-		"AbilityCastPoint" "0.35"
-		"AOERadius" "%aoe_radius"
-
-		"precache" {
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
-			"particle" "particles/generic_gameplay/generic_stunned.vpcf"
-		}
-		"AbilityCooldown" "7"
-		"AbilityManaCost" "90 100 110 120"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"aoe_radius" "230"
-			}
-
-			"02" {
-				"var_type" "FIELD_FLOAT"
-				"cast_delay" "0.4"
-			}
-
-			"03" {
-				"var_type" "FIELD_FLOAT"
-				"stun_duration" "1.6 1.9 2.2 2.5"
-			}
-
-			"04" {
-				"var_type" "FIELD_INTEGER"
-				"damage" "80 120 160 200"
-			}
-
-			"05" {
-				"var_type" "FIELD_FLOAT"
-				"secondary_delay" "0.09"
-			}
-
-			"06" {
-				"var_type" "FIELD_INTEGER"
-				"cast_range" "900 1100 1300 1500"
-			}
-		}
-
-		"OnUpgrade" {
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_lina.lua"
-				"Function" "BlazingAbilityLevel"
-				"ability_fiery" "imba_lina_light_strike_array_fiery"
-			}
-		}
-
-		"OnSpellStart" {
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_lina.lua"
-				"Function" "LightStrikeArray"
-				"Target" "POINT"
-				"particle_cast" "particles/units/heroes/hero_lina/lina_spell_light_strike_array_ray_team.vpcf"
-				"particle_blast" "particles/units/heroes/hero_lina/lina_spell_light_strike_array.vpcf"
-				"sound_cast" "Ability.PreLightStrikeArray"
-				"sound_blast" "Ability.LightStrikeArray"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_lina_light_strike_array"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "FightRecapLevel"                                                      "1"
+        "AbilityTextureName"                                                   "lina_light_strike_array"
+        "AbilityCastRange"                                                     "900 1100 1300 1500"
+        "AbilityCastPoint"                                                     "0.35"
+        "AOERadius"                                                            "%aoe_radius"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
+            "particle"                                                     "particles/generic_gameplay/generic_stunned.vpcf"
+        }
+        "AbilityCooldown"                                                      "7"
+        "AbilityManaCost"                                                      "90 100 110 120"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "aoe_radius"                                           "230"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "cast_delay"                                           "0.4"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "stun_duration"                                        "1.6 1.9 2.2 2.5"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage"                                               "80 120 160 200"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "secondary_delay"                                      "0.09"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "cast_range"                                           "900 1100 1300 1500"
+            }
+        }
+        "OnUpgrade"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_lina.lua"
+                "Function"                                             "BlazingAbilityLevel"
+                "ability_fiery"                                        "imba_lina_light_strike_array_fiery"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_lina.lua"
+                "Function"                                             "LightStrikeArray"
+                "Target"                                               "POINT"
+                "particle_cast"                                        "particles/units/heroes/hero_lina/lina_spell_light_strike_array_ray_team.vpcf"
+                "particle_blast"                                       "particles/units/heroes/hero_lina/lina_spell_light_strike_array.vpcf"
+                "sound_cast"                                           "Ability.PreLightStrikeArray"
+                "sound_blast"                                          "Ability.LightStrikeArray"
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

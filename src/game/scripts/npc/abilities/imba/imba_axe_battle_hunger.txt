@@ -1,125 +1,135 @@
-"DOTAAbilities" {
-	"imba_axe_battle_hunger" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_PURE"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel" "1"
-		"AbilityTextureName" "axe_battle_hunger"
-
-		"precache" {
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_axe.vsndevts"
-			"particle" "particles/status_fx/status_effect_battle_hunger.vpcf"
-		}
-		"AbilityCastPoint" "0.2"
-		"AbilityCooldown" "16.0 12.0 8.0 4.0"
-		"AbilityManaCost" "60"
-		"AbilityCastRange" "750"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"slow" "-12"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"speed_bonus" "12"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"base_damage" "10"
-			}
-
-			"04" {
-				"var_type" "FIELD_FLOAT"
-				"extra_damage" "1.0 1.5 2.0 2.5"
-			}
-		}
-
-		"OnSpellStart" {
-			"FireSound" {
-				"EffectName" "Hero_Axe.Battle_Hunger"
-				"Target" "TARGET"
-			}
-
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_axe.lua"
-				"Function" "CastBattleHunger"
-				"Target" "TARGET"
-				"modifier_debuff" "modifier_imba_axe_battle_hunger_enemy"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_imba_axe_battle_hunger_caster" {
-				"IsBuff" "1"
-				"IsPurgable" "0"
-			}
-
-			"modifier_imba_axe_battle_hunger_caster_speed" {
-				"IsHidden" "1"
-				"IsPurgable" "0"
-				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%speed_bonus"
-				}
-			}
-
-			"modifier_imba_axe_battle_hunger_enemy" {
-				"IsDebuff" "1"
-				"IsPurgable" "1"
-				"StatusEffectName" "particles/status_fx/status_effect_battle_hunger.vpcf"
-				"StatusEffectPriority" "9"
-				"ThinkInterval" "0.5"
-
-				"OnIntervalThink" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_axe.lua"
-						"Function" "BattleHungerTick"
-						"Target" "TARGET"
-						"modifier_stacks" "modifier_imba_axe_battle_hunger_stacks"
-						"modifier_enemy" "modifier_imba_axe_battle_hunger_enemy"
-					}
-				}
-
-				"OnCreated" {
-					"AttachEffect" {
-						"EffectName" "particles/units/heroes/hero_axe/axe_battle_hunger.vpcf"
-						"EffectAttachType" "follow_overhead"
-						"Target" "TARGET"
-					}
-
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_axe.lua"
-						"Function" "BattleHungerStart"
-						"caster_modifier" "modifier_imba_axe_battle_hunger_caster"
-						"speed_modifier" "modifier_imba_axe_battle_hunger_caster_speed"
-					}
-				}
-
-				"OnDestroy" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_axe.lua"
-						"Function" "BattleHungerEnd"
-						"caster_modifier" "modifier_imba_axe_battle_hunger_caster"
-						"speed_modifier" "modifier_imba_axe_battle_hunger_caster_speed"
-					}
-				}
-
-				"OnKill" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_axe.lua"
-						"Function" "BattleHungerKill"
-						"modifier" "modifier_imba_axe_battle_hunger_enemy"
-					}
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_axe_battle_hunger"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetFlags"                                               "DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_PURE"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "FightRecapLevel"                                                      "1"
+        "AbilityTextureName"                                                   "axe_battle_hunger"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_axe.vsndevts"
+            "particle"                                                     "particles/status_fx/status_effect_battle_hunger.vpcf"
+        }
+        "AbilityCastPoint"                                                     "0.2"
+        "AbilityCooldown"                                                      "16.0 12.0 8.0 4.0"
+        "AbilityManaCost"                                                      "60"
+        "AbilityCastRange"                                                     "750"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "slow"                                                 "-12"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "speed_bonus"                                          "12"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "base_damage"                                          "10"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "extra_damage"                                         "1.0 1.5 2.0 2.5"
+            }
+        }
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "EffectName"                                           "Hero_Axe.Battle_Hunger"
+                "Target"                                               "TARGET"
+            }
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_axe.lua"
+                "Function"                                             "CastBattleHunger"
+                "Target"                                               "TARGET"
+                "modifier_debuff"                                      "modifier_imba_axe_battle_hunger_enemy"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_axe_battle_hunger_caster"
+            {
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+            }
+            "modifier_imba_axe_battle_hunger_caster_speed"
+            {
+                "IsHidden"                                             "1"
+                "IsPurgable"                                           "0"
+                "Attributes"                                           "MODIFIER_ATTRIBUTE_MULTIPLE"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%speed_bonus"
+                }
+            }
+            "modifier_imba_axe_battle_hunger_enemy"
+            {
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "1"
+                "StatusEffectName"                                     "particles/status_fx/status_effect_battle_hunger.vpcf"
+                "StatusEffectPriority"                                 "9"
+                "ThinkInterval"                                        "0.5"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_axe.lua"
+                        "Function"                             "BattleHungerTick"
+                        "Target"                               "TARGET"
+                        "modifier_stacks"                      "modifier_imba_axe_battle_hunger_stacks"
+                        "modifier_enemy"                       "modifier_imba_axe_battle_hunger_enemy"
+                    }
+                }
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "EffectName"                           "particles/units/heroes/hero_axe/axe_battle_hunger.vpcf"
+                        "EffectAttachType"                     "follow_overhead"
+                        "Target"                               "TARGET"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_axe.lua"
+                        "Function"                             "BattleHungerStart"
+                        "caster_modifier"                      "modifier_imba_axe_battle_hunger_caster"
+                        "speed_modifier"                       "modifier_imba_axe_battle_hunger_caster_speed"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_axe.lua"
+                        "Function"                             "BattleHungerEnd"
+                        "caster_modifier"                      "modifier_imba_axe_battle_hunger_caster"
+                        "speed_modifier"                       "modifier_imba_axe_battle_hunger_caster_speed"
+                    }
+                }
+                "OnKill"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_axe.lua"
+                        "Function"                             "BattleHungerKill"
+                        "modifier"                             "modifier_imba_axe_battle_hunger_enemy"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

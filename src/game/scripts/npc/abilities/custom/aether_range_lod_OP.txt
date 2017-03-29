@@ -31,5 +31,6 @@
         }
         "ReduxCost"                                                            "100"
         "ReduxBans"                                                            "aether_range_lod"
+        "ReduxFlags"                                                           "SuperOP"
     }
 }

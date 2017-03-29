@@ -1,130 +1,138 @@
-"DOTAAbilities" {
-	"imba_pugna_decrepify" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
-		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_BOTH"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName" "pugna_decrepify"
-		"AbilityCastRange" "700"
-		"AbilityCastPoint" "0.2"
-		"AbilityCooldown" "12 10 8 6"
-		"AbilityManaCost" "60"
-
-		"precache" {
-			"particle" "particles/units/heroes/hero_pugna/pugna_netherblast_pre.vpcf"
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_pugna.vsndevts"
-		}
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"magic_amp" "-30 -40 -50 -60"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"slow" "-30 -40 -50 -60"
-			}
-
-			"03" {
-				"var_type" "FIELD_FLOAT"
-				"duration" "3.5"
-			}
-
-			"04" {
-				"var_type" "FIELD_INTEGER"
-				"blast_damage" "60"
-			}
-
-			"05" {
-				"var_type" "FIELD_INTEGER"
-				"structure_damage" "30"
-			}
-
-			"06" {
-				"var_type" "FIELD_FLOAT"
-				"blast_delay" "0.9"
-			}
-
-			"07" {
-				"var_type" "FIELD_INTEGER"
-				"blast_radius" "500"
-			}
-		}
-
-		"OnSpellStart" {
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_pugna.lua"
-				"Function" "Decrepify"
-				"sound_cast" "Hero_Pugna.Decrepify"
-				"modifier_ally" "modifier_imba_decrepify_ally"
-				"modifier_enemy" "modifier_imba_decrepify_enemy"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_imba_decrepify_ally" {
-				"Passive" "0"
-				"IsBuff" "1"
-				"IsHidden" "0"
-				"IsPurgable" "1"
-				"Duration" "%duration"
-				"EffectName" "particles/units/heroes/hero_pugna/pugna_decrepify.vpcf"
-				"EffectAttachType" "follow_origin"
-
-				"OnDestroy" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_pugna.lua"
-						"Function" "DecrepifyBlast"
-						"sound_pre_blast" "Hero_Pugna.NetherBlastPreCast"
-						"sound_blast" "Hero_Pugna.NetherBlast"
-						"particle_pre_blast" "particles/units/heroes/hero_pugna/pugna_netherblast_pre.vpcf"
-						"particle_blast" "particles/units/heroes/hero_pugna/pugna_netherblast.vpcf"
-					}
-				}
-
-				"Properties" {
-					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL" "1"
-				}
-
-				"States" {
-					"MODIFIER_STATE_ATTACK_IMMUNE" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_DISARMED" "MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-
-			"modifier_imba_decrepify_enemy" {
-				"Passive" "0"
-				"IsDebuff" "1"
-				"IsHidden" "0"
-				"IsPurgable" "1"
-				"Duration" "%duration"
-				"EffectName" "particles/units/heroes/hero_pugna/pugna_decrepify.vpcf"
-				"EffectAttachType" "follow_origin"
-
-				"OnDestroy" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_pugna.lua"
-						"Function" "DecrepifyBlast"
-						"sound_pre_blast" "Hero_Pugna.NetherBlastPreCast"
-						"sound_blast" "Hero_Pugna.NetherBlast"
-						"particle_pre_blast" "particles/units/heroes/hero_pugna/pugna_netherblast_pre.vpcf"
-						"particle_blast" "particles/units/heroes/hero_pugna/pugna_netherblast.vpcf"
-					}
-				}
-
-				"Properties" {
-					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_DECREPIFY_UNIQUE" "%magic_amp"
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow"
-					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL" "1"
-				}
-
-				"States" {
-					"MODIFIER_STATE_ATTACK_IMMUNE" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_DISARMED" "MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_pugna_decrepify"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityTextureName"                                                   "pugna_decrepify"
+        "AbilityCastRange"                                                     "700"
+        "AbilityCastPoint"                                                     "0.2"
+        "AbilityCooldown"                                                      "12 10 8 6"
+        "AbilityManaCost"                                                      "60"
+        "precache"
+        {
+            "particle"                                                     "particles/units/heroes/hero_pugna/pugna_netherblast_pre.vpcf"
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_pugna.vsndevts"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "magic_amp"                                            "-30 -40 -50 -60"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "slow"                                                 "-30 -40 -50 -60"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                             "3.5"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "blast_damage"                                         "60"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "structure_damage"                                     "30"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "blast_delay"                                          "0.9"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "blast_radius"                                         "500"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_pugna.lua"
+                "Function"                                             "Decrepify"
+                "sound_cast"                                           "Hero_Pugna.Decrepify"
+                "modifier_ally"                                        "modifier_imba_decrepify_ally"
+                "modifier_enemy"                                       "modifier_imba_decrepify_enemy"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_decrepify_ally"
+            {
+                "Passive"                                              "0"
+                "IsBuff"                                               "1"
+                "IsHidden"                                             "0"
+                "IsPurgable"                                           "1"
+                "Duration"                                             "%duration"
+                "EffectName"                                           "particles/units/heroes/hero_pugna/pugna_decrepify.vpcf"
+                "EffectAttachType"                                     "follow_origin"
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_pugna.lua"
+                        "Function"                             "DecrepifyBlast"
+                        "sound_pre_blast"                      "Hero_Pugna.NetherBlastPreCast"
+                        "sound_blast"                          "Hero_Pugna.NetherBlast"
+                        "particle_pre_blast"                   "particles/units/heroes/hero_pugna/pugna_netherblast_pre.vpcf"
+                        "particle_blast"                       "particles/units/heroes/hero_pugna/pugna_netherblast.vpcf"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL""1"
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_ATTACK_IMMUNE"                 "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_DISARMED"                      "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+            "modifier_imba_decrepify_enemy"
+            {
+                "Passive"                                              "0"
+                "IsDebuff"                                             "1"
+                "IsHidden"                                             "0"
+                "IsPurgable"                                           "1"
+                "Duration"                                             "%duration"
+                "EffectName"                                           "particles/units/heroes/hero_pugna/pugna_decrepify.vpcf"
+                "EffectAttachType"                                     "follow_origin"
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_pugna.lua"
+                        "Function"                             "DecrepifyBlast"
+                        "sound_pre_blast"                      "Hero_Pugna.NetherBlastPreCast"
+                        "sound_blast"                          "Hero_Pugna.NetherBlast"
+                        "particle_pre_blast"                   "particles/units/heroes/hero_pugna/pugna_netherblast_pre.vpcf"
+                        "particle_blast"                       "particles/units/heroes/hero_pugna/pugna_netherblast.vpcf"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_DECREPIFY_UNIQUE""%magic_amp"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow"
+                    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL""1"
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_ATTACK_IMMUNE"                 "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_DISARMED"                      "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

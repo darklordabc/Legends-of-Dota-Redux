@@ -1,65 +1,74 @@
-"DOTAAbilities" {
-	"imba_faceless_void_timelord" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO"
-		"MaxLevel" "4"
-		"AbilityTextureName" "custom/faceless_void_timelord"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"maximum_as" "1000"
-			}
-
-			"02" {
-				"var_type" "FIELD_FLOAT"
-				"cooldown_increase" "0.2 0.3 0.4 0.5"
-			}
-
-			"03" {
-				"var_type" "FIELD_FLOAT"
-				"original_BAT" "1.7"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_imba_timelord" {
-				"Passive" "1"
-				"IsHidden" "1"
-				"IsBuff" "1"
-				"IsPurgable" "0"
-				"ThinkInterval" "0.5"
-
-				"OnIntervalThink" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_faceless_void.lua"
-						"Function" "Timelord"
-					}
-				}
-
-				"OnAttackLanded" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_faceless_void.lua"
-						"Function" "TimelordStrike"
-					}
-				}
-
-				"OnCreated" {
-					"RunScript" {
-						"ScriptFile" "lib/util_imba.lua"
-						"Function" "IllusionPassiveRemover"
-						"modifier" "modifier_imba_timelord"
-					}
-				}
-
-				"OnDestroy" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_faceless_void.lua"
-						"Function" "TimelordEnd"
-					}
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_faceless_void_timelord"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO"
+        "MaxLevel"                                                             "4"
+        "AbilityTextureName"                                                   "custom/faceless_void_timelord"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "maximum_as"                                           "1000"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "cooldown_increase"                                    "0.2 0.3 0.4 0.5"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "original_BAT"                                         "1.7"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_timelord"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "ThinkInterval"                                        "0.5"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_faceless_void.lua"
+                        "Function"                             "Timelord"
+                    }
+                }
+                "OnAttackLanded"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_faceless_void.lua"
+                        "Function"                             "TimelordStrike"
+                    }
+                }
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "lib/util_imba.lua"
+                        "Function"                             "IllusionPassiveRemover"
+                        "modifier"                             "modifier_imba_timelord"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_faceless_void.lua"
+                        "Function"                             "TimelordEnd"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

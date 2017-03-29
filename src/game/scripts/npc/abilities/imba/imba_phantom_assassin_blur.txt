@@ -87,6 +87,6 @@
                 }
             }
         }
-        "ReduxFlags"                                                           "tank"
+        "ReduxFlags"                                                           "tank | doNotRandom"
     }
 }

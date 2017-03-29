@@ -1,108 +1,117 @@
-"DOTAAbilities" {
-	"imba_wraith_king_vampiric_aura" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
-		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityTextureName" "skeleton_king_vampiric_aura"
-
-		"precache" {
-			"particle" "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf"
-		}
-		"AbilityCastRange" "1200"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"radius" "1200"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"lifesteal_ally" "15 20 25 30"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"lifesteal_self" "25 30 35 40"
-			}
-		}
-
-		"OnToggleOn" {
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_skeleton_king.lua"
-				"Function" "VampiricAuraOn"
-				"modifier_aura" "modifier_imba_vampiric_aura_creep"
-			}
-		}
-
-		"OnToggleOff" {
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_skeleton_king.lua"
-				"Function" "VampiricAuraOff"
-				"modifier_aura" "modifier_imba_vampiric_aura_creep"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_imba_vampiric_aura_hero" {
-				"Passive" "1"
-				"IsHidden" "1"
-				"IsBuff" "1"
-				"IsPurgable" "0"
-				"Aura" "modifier_imba_vampiric_aura_effect_hero"
-				"Aura_Radius" "%radius"
-				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types" "DOTA_UNIT_TARGET_HERO"
-				"Aura_Flags" "DOTA_UNIT_TARGET_FLAG_NONE"
-				"Aura_ApplyToCaster" "1"
-			}
-
-			"modifier_imba_vampiric_aura_creep" {
-				"Passive" "0"
-				"IsHidden" "1"
-				"IsBuff" "1"
-				"IsPurgable" "0"
-				"Aura" "modifier_imba_vampiric_aura_effect_creep"
-				"Aura_Radius" "%radius"
-				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types" "DOTA_UNIT_TARGET_BASIC"
-				"Aura_Flags" "DOTA_UNIT_TARGET_FLAG_NONE"
-				"Aura_ApplyToCaster" "0"
-			}
-
-			"modifier_imba_vampiric_aura_effect_hero" {
-				"Passive" "0"
-				"IsHidden" "0"
-				"IsBuff" "1"
-				"IsPurgable" "0"
-
-				"OnDealDamage" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_skeleton_king.lua"
-						"Function" "VampiricAuraHit"
-						"damage" "%attack_damage"
-						"particle_heal" "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf"
-					}
-				}
-			}
-
-			"modifier_imba_vampiric_aura_effect_creep" {
-				"Passive" "0"
-				"IsHidden" "0"
-				"IsBuff" "1"
-				"IsPurgable" "0"
-
-				"OnAttackLanded" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_skeleton_king.lua"
-						"Function" "VampiricAuraCreepHit"
-						"damage" "%attack_damage"
-						"particle_heal" "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf"
-					}
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_wraith_king_vampiric_aura"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityTextureName"                                                   "skeleton_king_vampiric_aura"
+        "precache"
+        {
+            "particle"                                                     "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf"
+        }
+        "AbilityCastRange"                                                     "1200"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "1200"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "lifesteal_ally"                                       "15 20 25 30"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "lifesteal_self"                                       "25 30 35 40"
+            }
+        }
+        "OnToggleOn"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_skeleton_king.lua"
+                "Function"                                             "VampiricAuraOn"
+                "modifier_aura"                                        "modifier_imba_vampiric_aura_creep"
+            }
+        }
+        "OnToggleOff"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_skeleton_king.lua"
+                "Function"                                             "VampiricAuraOff"
+                "modifier_aura"                                        "modifier_imba_vampiric_aura_creep"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_vampiric_aura_hero"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "Aura"                                                 "modifier_imba_vampiric_aura_effect_hero"
+                "Aura_Radius"                                          "%radius"
+                "Aura_Teams"                                           "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+                "Aura_Types"                                           "DOTA_UNIT_TARGET_HERO"
+                "Aura_Flags"                                           "DOTA_UNIT_TARGET_FLAG_NONE"
+                "Aura_ApplyToCaster"                                   "1"
+            }
+            "modifier_imba_vampiric_aura_creep"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "Aura"                                                 "modifier_imba_vampiric_aura_effect_creep"
+                "Aura_Radius"                                          "%radius"
+                "Aura_Teams"                                           "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+                "Aura_Types"                                           "DOTA_UNIT_TARGET_BASIC"
+                "Aura_Flags"                                           "DOTA_UNIT_TARGET_FLAG_NONE"
+                "Aura_ApplyToCaster"                                   "0"
+            }
+            "modifier_imba_vampiric_aura_effect_hero"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "OnDealDamage"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_skeleton_king.lua"
+                        "Function"                             "VampiricAuraHit"
+                        "damage"                               "%attack_damage"
+                        "particle_heal"                        "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf"
+                    }
+                }
+            }
+            "modifier_imba_vampiric_aura_effect_creep"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "OnAttackLanded"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_skeleton_king.lua"
+                        "Function"                             "VampiricAuraCreepHit"
+                        "damage"                               "%attack_damage"
+                        "particle_heal"                        "particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

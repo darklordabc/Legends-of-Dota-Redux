@@ -31,5 +31,6 @@
         }
         "ReduxCost"                                                            "120"
         "ReduxBans"                                                            "shredder_reactive_armor"
+        "ReduxFlags"                                                           "SuperOP"
     }
 }

@@ -151,7 +151,7 @@
                 "Duration"                                             "%crit_increase_duration"
             }
         }
-        "ReduxFlags"                                                           "crit | attack_modifier"
+        "ReduxFlags"                                                           "crit | attack_modifier | doNotRandom"
         "ReduxPerks"                                                           "attack_modifier"
     }
 }

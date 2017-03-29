@@ -108,6 +108,6 @@
                 }
             }
         }
-        "ReduxFlags"                                                           "stun"
+        "ReduxFlags"                                                           "stun | doNotRandom"
     }
 }

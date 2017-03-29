@@ -34,5 +34,6 @@
         }
         "ReduxCost"                                                            "100"
         "ReduxBans"                                                            "zhanhun"
+        "ReduxFlags"                                                           "SuperOP"
     }
 }

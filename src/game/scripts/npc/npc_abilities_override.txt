@@ -27,7 +27,7 @@
     {
         "MaxLevel"                                                             "4"
         "AbilityManaCost"                                                      "120 80 40 0"
-        "ReduxFlags"                                                           "support"
+        "ReduxFlags"                                                           "support | doNotRandom"
         "ReduxPerks"                                                           "support | neutral"
     }
     "lone_druid_true_form_battle_cry"
@@ -35,6 +35,7 @@
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_TYPE_ULTIMATE"
         "ReduxPerks"                                                           "rage"
         "ReduxCost"                                                            "10"
+        "ReduxFlags"                                                           "doNotRandom"
     }
     "lone_druid_spirit_bear_entangle"
     {
@@ -47,11 +48,12 @@
     {
         "MaxLevel"                                                             "1"
         "ReduxCost"                                                            "70"
+        "ReduxFlags"                                                           "OPSkillsList"
     }
     "roshan_bash"
     {
         "MaxLevel"                                                             "1"
-        "ReduxFlags"                                                           "bash | attack_modifier"
+        "ReduxFlags"                                                           "bash | attack_modifier | OPSkillsList"
         "ReduxPerks"                                                           "neutral | bash | attack_modifier"
         "ReduxCost"                                                            "40"
     }
@@ -67,6 +69,7 @@
             }
         }
         "ReduxPerks"                                                           "neutral"
+        "ReduxFlags"                                                           "doNotRandom"
     }
     "polar_furbolg_ursa_warrior_thunder_clap"
     {
@@ -102,7 +105,7 @@
                 "hero_duration"                                        "10.0 20.0 30.0 40.0"
             }
         }
-        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "attack_modifier | doNotRandom"
         "ReduxPerks"                                                           "neutral | attack_modifier"
     }
     "roshan_slam"
@@ -120,11 +123,12 @@
     "lone_druid_spirit_bear_return"
     {
         "MaxLevel"                                                             "1"
+        "ReduxFlags"                                                           "noHero | OPSkillsList"
     }
     "brewmaster_earth_hurl_boulder"
     {
         "MaxLevel"                                                             "1"
-        "ReduxFlags"                                                           "stun"
+        "ReduxFlags"                                                           "stun | OPSkillsList"
         "ReduxPerks"                                                           "earth"
         "ReduxCost"                                                            "80"
         "ReduxBans"                                                            "death_prophet_witchcraft"
@@ -137,21 +141,24 @@
     {
         "MaxLevel"                                                             "1"
         "ReduxPerks"                                                           "earth"
+        "ReduxFlags"                                                           "doNotRandom | OPSkillsList"
     }
     "brewmaster_storm_dispel_magic"
     {
         "MaxLevel"                                                             "1"
         "ReduxCost"                                                            "80"
+        "ReduxFlags"                                                           "OPSkillsList"
     }
     "brewmaster_storm_cyclone"
     {
         "MaxLevel"                                                             "1"
         "ReduxCost"                                                            "80"
+        "ReduxFlags"                                                           "OPSkillsList"
     }
     "brewmaster_storm_wind_walk"
     {
         "MaxLevel"                                                             "3"
-        "ReduxFlags"                                                           "mobility | invis"
+        "ReduxFlags"                                                           "mobility | invis | doNotRandom | OPSkillsList"
         "ReduxPerks"                                                           "mobility"
     }
     "brewmaster_fire_permanent_immolation"
@@ -160,11 +167,12 @@
         "ReduxPerks"                                                           "fire"
         "ReduxCost"                                                            "80"
         "ReduxBans"                                                            "batrider_sticky_napalm"
+        "ReduxFlags"                                                           "OPSkillsList"
     }
     "broodmother_poison_sting"
     {
         "MaxLevel"                                                             "1"
-        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "attack_modifier | doNotRandom"
         "ReduxPerks"                                                           "neutral | attack_modifier | poison"
     }
     "broodmother_spawn_spiderite"
@@ -571,6 +579,7 @@
         }
         "ReduxPerks"                                                           "lightning"
         "ReduxBans"                                                            "tinker_rearm"
+        "ReduxFlags"                                                           "doNotRandom"
     }
     "sniper_assassinate"
     {
@@ -578,13 +587,13 @@
     }
     "abaddon_borrowed_time"
     {
-        "ReduxFlags"                                                           "upgradeable"
+        "ReduxFlags"                                                           "upgradeable | wtfAutoBan | OPSkillsList"
         "ReduxCost"                                                            "70"
         "ReduxBans"                                                            "furion_teleportation | tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux | meepo_divided_we_stand | phoenix_supernova"
     }
     "ancient_apparition_ice_blast"
     {
-        "ReduxFlags"                                                           "upgradeable"
+        "ReduxFlags"                                                           "upgradeable | wtfAutoBan"
         "ReduxPerks"                                                           "ice | skillshot"
         "ReduxCost"                                                            "20"
         "ReduxBans"                                                            "tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux | meepo_divided_we_stand"
@@ -772,7 +781,7 @@
     }
     "luna_eclipse"
     {
-        "ReduxFlags"                                                           "upgradeable"
+        "ReduxFlags"                                                           "upgradeable | doNotRandom"
         "ReduxCost"                                                            "10"
     }
     "magnataur_empower"
@@ -783,7 +792,7 @@
     }
     "meepo_divided_we_stand"
     {
-        "ReduxFlags"                                                           "upgradeable"
+        "ReduxFlags"                                                           "upgradeable | doNotRandom | SuperOP"
         "ReduxCost"                                                            "-2"
         "ReduxBans"                                                            "arc_warden_tempest_double | arc_warden_tempest_double_redux | meepo_divided_we_stand | spell_lab_symbiotic"
     }
@@ -794,7 +803,7 @@
     }
     "furion_wrath_of_nature"
     {
-        "ReduxFlags"                                                           "upgradeable"
+        "ReduxFlags"                                                           "upgradeable | wtfAutoBan"
         "ReduxCost"                                                            "10"
         "ReduxBans"                                                            "tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux | meepo_divided_we_stand"
     }
@@ -806,7 +815,7 @@
     }
     "omniknight_guardian_angel"
     {
-        "ReduxFlags"                                                           "upgradeable | support"
+        "ReduxFlags"                                                           "upgradeable | support | wtfAutoBan"
         "ReduxPerks"                                                           "support | light"
         "ReduxBans"                                                            "tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux"
     }
@@ -869,17 +878,17 @@
     }
     "nevermore_requiem"
     {
-        "ReduxFlags"                                                           "upgradeable"
+        "ReduxFlags"                                                           "upgradeable | doNotRandom"
     }
     "shadow_shaman_mass_serpent_ward"
     {
-        "ReduxFlags"                                                           "upgradeable"
+        "ReduxFlags"                                                           "upgradeable | wtfAutoBan"
         "ReduxCost"                                                            "20"
         "ReduxBans"                                                            "tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux"
     }
     "silencer_global_silence"
     {
-        "ReduxFlags"                                                           "upgradeable | support | silence"
+        "ReduxFlags"                                                           "upgradeable | support | silence | wtfAutoBan"
         "ReduxPerks"                                                           "support | silence"
         "ReduxBans"                                                            "tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux"
     }
@@ -906,7 +915,7 @@
     }
     "techies_remote_mines"
     {
-        "ReduxFlags"                                                           "upgradeable"
+        "ReduxFlags"                                                           "upgradeable | doNotRandom"
         "ReduxPerks"                                                           "scientific | trap | explosive"
         "ReduxBans"                                                            "arc_warden_tempest_double | arc_warden_tempest_double_redux"
     }
@@ -959,7 +968,7 @@
     }
     "warlock_rain_of_chaos"
     {
-        "ReduxFlags"                                                           "upgradeable | stun | summon"
+        "ReduxFlags"                                                           "upgradeable | stun | summon | wtfAutoBan"
         "ReduxPerks"                                                           "fire"
         "ReduxCost"                                                            "20"
         "ReduxBans"                                                            "tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux"
@@ -987,13 +996,13 @@
     }
     "skeleton_king_reincarnation"
     {
-        "ReduxFlags"                                                           "upgradeable"
+        "ReduxFlags"                                                           "upgradeable | wtfAutoBan | OPSkillsList"
         "ReduxCost"                                                            "10"
         "ReduxBans"                                                            "tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux"
     }
     "zuus_thundergods_wrath"
     {
-        "ReduxFlags"                                                           "upgradeable"
+        "ReduxFlags"                                                           "upgradeable | wtfAutoBan"
         "ReduxPerks"                                                           "lightning"
         "ReduxCost"                                                            "20"
         "ReduxBans"                                                            "tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux | meepo_divided_we_stand"
@@ -1039,7 +1048,7 @@
     }
     "dazzle_shallow_grave"
     {
-        "ReduxFlags"                                                           "support"
+        "ReduxFlags"                                                           "support | wtfAutoBan"
         "ReduxPerks"                                                           "support"
     }
     "enchantress_natures_attendants"
@@ -1114,7 +1123,7 @@
     }
     "templar_assassin_psionic_trap"
     {
-        "ReduxFlags"                                                           "support"
+        "ReduxFlags"                                                           "support | doNotRandom"
         "ReduxPerks"                                                           "support | trap"
     }
     "tusk_snowball"
@@ -1195,7 +1204,7 @@
     }
     "chen_test_of_faith"
     {
-        "ReduxFlags"                                                           "support"
+        "ReduxFlags"                                                           "support | doNotRandom"
         "ReduxPerks"                                                           "support | light"
     }
     "chen_hand_of_god"
@@ -1230,7 +1239,7 @@
     }
     "life_stealer_assimilate"
     {
-        "ReduxFlags"                                                           "support"
+        "ReduxFlags"                                                           "support | doNotRandom"
         "ReduxPerks"                                                           "support"
         "ReduxCost"                                                            "10"
         "ReduxBans"                                                            "spell_lab_symbiotic"
@@ -1369,7 +1378,7 @@
     }
     "riki_permanent_invisibility"
     {
-        "ReduxFlags"                                                           "mobility | invis"
+        "ReduxFlags"                                                           "mobility | invis | OPSkillsList"
         "ReduxPerks"                                                           "mobility"
         "ReduxCost"                                                            "120"
     }
@@ -1405,7 +1414,7 @@
     }
     "nyx_assassin_burrow"
     {
-        "ReduxFlags"                                                           "mobility | invis"
+        "ReduxFlags"                                                           "mobility | invis | OPSkillsList"
         "ReduxPerks"                                                           "mobility | earth"
         "ReduxCost"                                                            "10"
     }
@@ -1424,7 +1433,7 @@
     }
     "weaver_shukuchi"
     {
-        "ReduxFlags"                                                           "mobility | invis"
+        "ReduxFlags"                                                           "mobility | invis | OPSkillsList"
         "ReduxPerks"                                                           "mobility"
         "ReduxCost"                                                            "80"
     }
@@ -1504,7 +1513,7 @@
     }
     "lone_druid_savage_roar"
     {
-        "ReduxFlags"                                                           "mobility"
+        "ReduxFlags"                                                           "mobility | doNotRandom"
         "ReduxPerks"                                                           "mobility"
     }
     "phantom_lancer_phantom_edge"
@@ -1568,7 +1577,7 @@
     }
     "alchemist_chemical_rage"
     {
-        "ReduxFlags"                                                           "tank"
+        "ReduxFlags"                                                           "tank | OPSkillsList"
         "ReduxPerks"                                                           "scientific | rage"
         "ReduxCost"                                                            "70"
         "ReduxBans"                                                            "meepo_divided_we_stand"
@@ -1580,7 +1589,7 @@
     }
     "morphling_morph_str"
     {
-        "ReduxFlags"                                                           "tank"
+        "ReduxFlags"                                                           "tank | doNotRandom"
         "ReduxPerks"                                                           "water"
         "ReduxCost"                                                            "20"
     }
@@ -1735,17 +1744,17 @@
     }
     "giant_wolf_critical_strike"
     {
-        "ReduxFlags"                                                           "crit | attack_modifier"
+        "ReduxFlags"                                                           "crit | attack_modifier | doNotRandom"
         "ReduxPerks"                                                           "neutral | attack_modifier"
     }
     "alpha_wolf_critical_strike"
     {
-        "ReduxFlags"                                                           "crit | attack_modifier"
+        "ReduxFlags"                                                           "crit | attack_modifier | doNotRandom"
         "ReduxPerks"                                                           "neutral | attack_modifier"
     }
     "warlock_golem_flaming_fists"
     {
-        "ReduxFlags"                                                           "aoe_attack | attack_modifier"
+        "ReduxFlags"                                                           "aoe_attack | attack_modifier | OPSkillsList"
         "ReduxPerks"                                                           "neutral | attack_modifier | fire"
         "ReduxCost"                                                            "120"
     }
@@ -1821,7 +1830,7 @@
     }
     "ursa_fury_swipes"
     {
-        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "attack_modifier | OPSkillsList"
         "ReduxPerks"                                                           "attack_modifier"
         "ReduxCost"                                                            "80"
     }
@@ -1867,7 +1876,7 @@
     }
     "slark_essence_shift"
     {
-        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "attack_modifier | OPSkillsList"
         "ReduxPerks"                                                           "attack_modifier"
         "ReduxCost"                                                            "40"
     }
@@ -1925,7 +1934,7 @@
     }
     "phantom_lancer_juxtapose"
     {
-        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "attack_modifier | OPSkillsList"
         "ReduxPerks"                                                           "attack_modifier"
         "ReduxCost"                                                            "50"
     }
@@ -2103,7 +2112,7 @@
     }
     "earth_spirit_boulder_smash"
     {
-        "ReduxFlags"                                                           "stun"
+        "ReduxFlags"                                                           "stun | doNotRandom"
         "ReduxPerks"                                                           "earth | skillshot | enemyMoving"
     }
     "techies_stasis_trap"
@@ -2148,7 +2157,7 @@
     }
     "earthshaker_aftershock"
     {
-        "ReduxFlags"                                                           "stun"
+        "ReduxFlags"                                                           "stun | wtfAutoBan | OPSkillsList"
         "ReduxPerks"                                                           "earth"
         "ReduxCost"                                                            "120"
         "ReduxBans"                                                            "death_prophet_witchcraft | zuus_arc_lightning | storm_spirit_ball_lightning | storm_spirit_static_remnant | obsidian_destroyer_arcane_orb"
@@ -2213,12 +2222,12 @@
     }
     "enigma_demonic_conversion"
     {
-        "ReduxFlags"                                                           "summon"
+        "ReduxFlags"                                                           "summon | wtfAutoBan"
         "ReduxPerks"                                                           "summon_non_ult"
     }
     "invoker_forge_spirit"
     {
-        "ReduxFlags"                                                           "summon"
+        "ReduxFlags"                                                           "summon | doNotRandom"
         "ReduxPerks"                                                           "summon_non_ult"
     }
     "lycan_summon_wolves"
@@ -2228,7 +2237,7 @@
     }
     "furion_force_of_nature"
     {
-        "ReduxFlags"                                                           "summon"
+        "ReduxFlags"                                                           "summon | wtfAutoBan"
         "ReduxPerks"                                                           "summon_non_ult"
     }
     "undying_tombstone"
@@ -2306,7 +2315,7 @@
     }
     "spectre_haunt"
     {
-        "ReduxFlags"                                                           "illusion"
+        "ReduxFlags"                                                           "illusion | wtfAutoBan | doNotRandom"
         "ReduxPerks"                                                           "illusion"
         "ReduxBans"                                                            "tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux"
     }
@@ -2317,7 +2326,7 @@
     }
     "terrorblade_conjure_image"
     {
-        "ReduxFlags"                                                           "illusion"
+        "ReduxFlags"                                                           "illusion | wtfAutoBan"
         "ReduxPerks"                                                           "illusion"
     }
     "big_thunder_lizard_slam"
@@ -2327,21 +2336,25 @@
     "blue_dragonspawn_overseer_evasion"
     {
         "ReduxPerks"                                                           "neutral"
+        "ReduxFlags"                                                           "doNotRandom"
     }
     "blue_dragonspawn_sorcerer_evasion"
     {
         "ReduxPerks"                                                           "neutral"
+        "ReduxFlags"                                                           "doNotRandom"
     }
     "warlock_golem_permanent_immolation"
     {
         "ReduxPerks"                                                           "neutral | fire | aura"
         "ReduxCost"                                                            "120"
         "ReduxBans"                                                            "batrider_sticky_napalm"
+        "ReduxFlags"                                                           "OPSkillsList"
     }
     "batrider_sticky_napalm"
     {
         "ReduxPerks"                                                           "fire"
         "ReduxCost"                                                            "80"
+        "ReduxFlags"                                                           "OPSkillsList"
     }
     "lina_dragon_slave"
     {
@@ -2353,6 +2366,7 @@
         "ReduxCost"                                                            "80"
         "ReduxBans"                                                            "death_prophet_witchcraft | storm_spirit_ball_lightning | obsidian_destroyer_arcane_orb"
         "ReduxBanCategory"                                                     "ToggleSpells"
+        "ReduxFlags"                                                           "OPSkillsList"
     }
     "dragon_knight_breathe_fire"
     {
@@ -2369,6 +2383,7 @@
     "ember_spirit_fire_remnant"
     {
         "ReduxPerks"                                                           "fire"
+        "ReduxFlags"                                                           "doNotRandom"
     }
     "ember_spirit_flame_guard"
     {
@@ -2432,6 +2447,7 @@
     "shadow_demon_shadow_poison"
     {
         "ReduxPerks"                                                           "poison | skillshot"
+        "ReduxFlags"                                                           "doNotRandom"
     }
     "viper_nethertoxin"
     {
@@ -2450,6 +2466,7 @@
         "ReduxPerks"                                                           "lightning"
         "ReduxCost"                                                            "60"
         "ReduxBans"                                                            "tinker_rearm"
+        "ReduxFlags"                                                           "OPSkillsList"
     }
     "disruptor_glimpse_op"
     {
@@ -2509,11 +2526,13 @@
         "ReduxCost"                                                            "40"
         "ReduxBans"                                                            "death_prophet_witchcraft | storm_spirit_ball_lightning | storm_spirit_static_remnant | earthshaker_enchant_totem"
         "ReduxBanCategory"                                                     "SpammableSpells"
+        "ReduxFlags"                                                           "wtfAutoBan | OPSkillsList"
     }
     "morphling_morph_agi"
     {
         "ReduxPerks"                                                           "water"
         "ReduxCost"                                                            "20"
+        "ReduxFlags"                                                           "doNotRandom"
     }
     "morphling_morph_replicate"
     {
@@ -2543,6 +2562,7 @@
     "earth_spirit_magnetize"
     {
         "ReduxPerks"                                                           "earth"
+        "ReduxFlags"                                                           "doNotRandom"
     }
     "earth_spirit_rolling_boulder"
     {
@@ -2551,6 +2571,7 @@
     "earth_spirit_stone_caller"
     {
         "ReduxPerks"                                                           "earth"
+        "ReduxFlags"                                                           "doNotRandom"
     }
     "meepo_poof"
     {
@@ -2573,6 +2594,7 @@
     {
         "ReduxPerks"                                                           "scientific | skillshot | explosive"
         "ReduxBans"                                                            "tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux | meepo_divided_we_stand"
+        "ReduxFlags"                                                           "wtfAutoBan"
     }
     "gyrocopter_rocket_barrage"
     {
@@ -2586,10 +2608,12 @@
     "rattletrap_rocket_flare"
     {
         "ReduxPerks"                                                           "scientific | skillshot | explosive"
+        "ReduxFlags"                                                           "wtfAutoBan"
     }
     "shredder_chakram"
     {
         "ReduxPerks"                                                           "scientific | skillshot"
+        "ReduxFlags"                                                           "doNotRandom"
     }
     "shredder_return_chakram"
     {
@@ -2599,6 +2623,7 @@
     {
         "ReduxPerks"                                                           "scientific"
         "ReduxCost"                                                            "10"
+        "ReduxFlags"                                                           "wtfAutoBan"
     }
     "techies_land_mines"
     {
@@ -2614,6 +2639,7 @@
         "ReduxPerks"                                                           "scientific | channeled"
         "ReduxCost"                                                            "-2"
         "ReduxBans"                                                            "arc_warden_tempest_double | arc_warden_tempest_double_redux"
+        "ReduxFlags"                                                           "OPSkillsList"
     }
     "chen_penitence"
     {
@@ -2623,6 +2649,7 @@
     {
         "ReduxPerks"                                                           "light | teleport"
         "ReduxBans"                                                            "invoker_retro_betrayal"
+        "ReduxFlags"                                                           "doNotRandom"
     }
     "keeper_of_the_light_blinding_light"
     {
@@ -2631,10 +2658,12 @@
     "keeper_of_the_light_spirit_form"
     {
         "ReduxPerks"                                                           "light"
+        "ReduxFlags"                                                           "doNotRandom"
     }
     "puck_illusory_orb"
     {
         "ReduxPerks"                                                           "light | skillshot"
+        "ReduxFlags"                                                           "doNotRandom"
     }
     "skywrath_mage_arcane_bolt"
     {
@@ -2828,14 +2857,17 @@
     "nevermore_shadowraze1"
     {
         "ReduxPerks"                                                           "skillshot"
+        "ReduxFlags"                                                           "doNotRandom"
     }
     "nevermore_shadowraze2"
     {
         "ReduxPerks"                                                           "skillshot"
+        "ReduxFlags"                                                           "doNotRandom"
     }
     "nevermore_shadowraze3"
     {
         "ReduxPerks"                                                           "skillshot"
+        "ReduxFlags"                                                           "doNotRandom"
     }
     "troll_warlord_whirling_axes_ranged"
     {
@@ -2964,6 +2996,7 @@
         "ReduxCost"                                                            "80"
         "ReduxBans"                                                            "death_prophet_witchcraft | storm_spirit_ball_lightning | obsidian_destroyer_arcane_orb"
         "ReduxBanCategory"                                                     "ToggleSpells"
+        "ReduxFlags"                                                           "OPSkillsList"
     }
     "item_mask_of_madness"
     {
@@ -2976,6 +3009,7 @@
     "templar_assassin_trap"
     {
         "ReduxPerks"                                                           "trap"
+        "ReduxFlags"                                                           "doNotRandom"
     }
     "bane_nightmare"
     {
@@ -2984,6 +3018,7 @@
     "death_prophet_witchcraft"
     {
         "ReduxCost"                                                            "120"
+        "ReduxFlags"                                                           "OPSkillsList"
     }
     "sniper_take_aim"
     {
@@ -3000,6 +3035,7 @@
     "earth_spirit_petrify"
     {
         "ReduxCost"                                                            "20"
+        "ReduxFlags"                                                           "doNotRandom"
     }
     "ember_spirit_sleight_of_fist"
     {
@@ -3013,6 +3049,7 @@
     "ogre_magi_multicast"
     {
         "ReduxCost"                                                            "10"
+        "ReduxFlags"                                                           "doNotRandom"
     }
     "enchantress_enchant"
     {
@@ -3021,6 +3058,7 @@
     "life_stealer_consume"
     {
         "ReduxCost"                                                            "10"
+        "ReduxFlags"                                                           "doNotRandom"
     }
     "lycan_feral_impulse"
     {
@@ -3037,6 +3075,7 @@
     "techies_focused_detonate"
     {
         "ReduxBans"                                                            "arc_warden_tempest_double | arc_warden_tempest_double_redux"
+        "ReduxFlags"                                                           "doNotRandom"
     }
     "alchemist_chemical_rage_lod"
     {
@@ -3045,5 +3084,49 @@
     "bristleback_quill_spray"
     {
         "ReduxBans"                                                            "death_prophet_witchcraft"
+    }
+    "elder_titan_return_spirit"
+    {
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+    "puck_ethereal_jaunt"
+    {
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+    "shredder_chakram_2"
+    {
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+    "ember_spirit_activate_fire_remnant"
+    {
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+    "spectre_reality"
+    {
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+    "shadow_demon_shadow_poison_release"
+    {
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+    "rubick_spell_steal"
+    {
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+    "monkey_king_mischief"
+    {
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+    "monkey_king_wukongs_command"
+    {
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+    "neutral_spell_immunity"
+    {
+        "ReduxFlags"                                                           "OPSkillsList"
+    }
+    "backdoor_protection"
+    {
+        "ReduxFlags"                                                           "OPSkillsList"
     }
 }

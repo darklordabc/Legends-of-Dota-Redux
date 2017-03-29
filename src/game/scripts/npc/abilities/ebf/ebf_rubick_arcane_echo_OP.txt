@@ -42,5 +42,6 @@
         }
         "ReduxCost"                                                            "120"
         "ReduxBans"                                                            "ogre_magi_multicast_lod | ebf_rubick_arcane_echo"
+        "ReduxFlags"                                                           "SuperOP"
     }
 }

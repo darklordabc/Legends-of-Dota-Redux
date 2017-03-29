@@ -9,7 +9,7 @@
         "AbilityTextureName"                                                   "custom/lone_druid_spirit_bear_return_lod_OP"
         "AbilityCooldown"                                                      "60 40 20"
         "AbilityManaCost"                                                      "100 150 200"
-        "ReduxFlags"                                                           "mobility"
+        "ReduxFlags"                                                           "mobility | SuperOP"
         "ReduxPerks"                                                           "mobility | teleport"
         "ReduxCost"                                                            "100"
     }

@@ -1,175 +1,185 @@
-"DOTAAbilities" {
-	"imba_dazzle_poison_touch" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel" "1"
-		"AbilityTextureName" "dazzle_poison_touch"
-
-		"precache" {
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
-			"particle" "particles/status_fx/status_effect_poison_dazzle.vpcf"
-		}
-		"AbilityCastRange" "750"
-		"AbilityCastPoint" "0.2"
-		"AbilityCooldown" "13 11 9 7"
-		"AbilityManaCost" "50"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"slow_duration" "7"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"initial_slow" "-20"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"slow_per_hit" "-10 -12 -14 -16"
-			}
-
-			"04" {
-				"var_type" "FIELD_FLOAT"
-				"stun_duration" "1.0"
-			}
-
-			"05" {
-				"var_type" "FIELD_INTEGER"
-				"projectile_speed" "1300"
-			}
-
-			"06" {
-				"var_type" "FIELD_INTEGER"
-				"damage" "20 30 40 50"
-			}
-
-			"07" {
-				"var_type" "FIELD_INTEGER"
-				"stun_damage" "40 60 80 100"
-			}
-
-			"08" {
-				"var_type" "FIELD_FLOAT"
-				"tick_interval" "1.0"
-			}
-
-			"09" {
-				"var_type" "FIELD_INTEGER"
-				"stacks_to_stun" "8 7 6 5"
-			}
-		}
-
-		"OnSpellStart" {
-			"FireSound" {
-				"EffectName" "Hero_Dazzle.Poison_Cast"
-				"Target" "CASTER"
-			}
-
-			"TrackingProjectile" {
-				"Target" "TARGET"
-				"EffectName" "particles/units/heroes/hero_dazzle/dazzle_poison_touch.vpcf"
-				"Dodgeable" "1"
-				"ProvidesVision" "0"
-				"MoveSpeed" "%projectile_speed"
-				"SourceAttachment" "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
-			}
-		}
-
-		"OnProjectileHitUnit" {
-			"DeleteOnHit" "1"
-
-			"FireSound" {
-				"EffectName" "Hero_Dazzle.Poison_Touch"
-				"Target" "TARGET"
-			}
-
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_dazzle.lua"
-				"Function" "PoisonTouchHit"
-				"Target" "TARGET"
-				"modifier_debuff" "modifier_imba_poison_touch_base_slow"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_imba_poison_touch_base_slow" {
-				"Passive" "0"
-				"IsDebuff" "1"
-				"IsHidden" "0"
-				"IsPurgable" "1"
-				"Duration" "%slow_duration"
-				"EffectName" "particles/units/heroes/hero_dazzle/dazzle_poison_debuff.vpcf"
-				"EffectAttachType" "follow_origin"
-				"ThinkInterval" "%tick_interval"
-
-				"OnIntervalThink" {
-					"Damage" {
-						"Target" "TARGET"
-						"Type" "DAMAGE_TYPE_PHYSICAL"
-						"Damage" "%damage"
-					}
-				}
-
-				"OnTakeDamage" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_dazzle.lua"
-						"Function" "PoisonTouch"
-						"Target" "TARGET"
-						"modifier_slow_stack" "modifier_imba_poison_touch_slow_stack"
-						"modifier_stun" "modifier_imba_poison_touch_stun"
-					}
-				}
-
-				"OnDestroy" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_dazzle.lua"
-						"Function" "PoisonTouchEnd"
-						"Target" "TARGET"
-						"modifier_slow_stack" "modifier_imba_poison_touch_slow_stack"
-					}
-				}
-
-				"Properties" {
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%initial_slow"
-				}
-			}
-
-			"modifier_imba_poison_touch_slow_stack" {
-				"Passive" "0"
-				"IsHidden" "1"
-				"IsDebuff" "1"
-				"IsPurgable" "0"
-				"StatusEffectName" "particles/status_fx/status_effect_poison_dazzle.vpcf"
-				"StatusEffectPriority" "10"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow_per_hit"
-				}
-			}
-
-			"modifier_imba_poison_touch_stun" {
-				"Passive" "0"
-				"IsHidden" "1"
-				"IsDebuff" "1"
-				"IsPurgable" "0"
-				"StatusEffectName" "particles/status_fx/status_effect_poison_dazzle.vpcf"
-				"StatusEffectPriority" "10"
-				"Duration" "%stun_duration"
-
-				"OnCreated" {
-					"Damage" {
-						"Target" "TARGET"
-						"Type" "DAMAGE_TYPE_PHYSICAL"
-						"Damage" "%stun_damage"
-					}
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_dazzle_poison_touch"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_PHYSICAL"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "FightRecapLevel"                                                      "1"
+        "AbilityTextureName"                                                   "dazzle_poison_touch"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
+            "particle"                                                     "particles/status_fx/status_effect_poison_dazzle.vpcf"
+        }
+        "AbilityCastRange"                                                     "750"
+        "AbilityCastPoint"                                                     "0.2"
+        "AbilityCooldown"                                                      "13 11 9 7"
+        "AbilityManaCost"                                                      "50"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "slow_duration"                                        "7"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "initial_slow"                                         "-20"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "slow_per_hit"                                         "-10 -12 -14 -16"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "stun_duration"                                        "1.0"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "projectile_speed"                                     "1300"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage"                                               "20 30 40 50"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "stun_damage"                                          "40 60 80 100"
+            }
+            "08"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "tick_interval"                                        "1.0"
+            }
+            "09"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "stacks_to_stun"                                       "8 7 6 5"
+            }
+        }
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "EffectName"                                           "Hero_Dazzle.Poison_Cast"
+                "Target"                                               "CASTER"
+            }
+            "TrackingProjectile"
+            {
+                "Target"                                               "TARGET"
+                "EffectName"                                           "particles/units/heroes/hero_dazzle/dazzle_poison_touch.vpcf"
+                "Dodgeable"                                            "1"
+                "ProvidesVision"                                       "0"
+                "MoveSpeed"                                            "%projectile_speed"
+                "SourceAttachment"                                     "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+            }
+        }
+        "OnProjectileHitUnit"
+        {
+            "DeleteOnHit"                                                  "1"
+            "FireSound"
+            {
+                "EffectName"                                           "Hero_Dazzle.Poison_Touch"
+                "Target"                                               "TARGET"
+            }
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_dazzle.lua"
+                "Function"                                             "PoisonTouchHit"
+                "Target"                                               "TARGET"
+                "modifier_debuff"                                      "modifier_imba_poison_touch_base_slow"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_poison_touch_base_slow"
+            {
+                "Passive"                                              "0"
+                "IsDebuff"                                             "1"
+                "IsHidden"                                             "0"
+                "IsPurgable"                                           "1"
+                "Duration"                                             "%slow_duration"
+                "EffectName"                                           "particles/units/heroes/hero_dazzle/dazzle_poison_debuff.vpcf"
+                "EffectAttachType"                                     "follow_origin"
+                "ThinkInterval"                                        "%tick_interval"
+                "OnIntervalThink"
+                {
+                    "Damage"
+                    {
+                        "Target"                               "TARGET"
+                        "Type"                                 "DAMAGE_TYPE_PHYSICAL"
+                        "Damage"                               "%damage"
+                    }
+                }
+                "OnTakeDamage"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_dazzle.lua"
+                        "Function"                             "PoisonTouch"
+                        "Target"                               "TARGET"
+                        "modifier_slow_stack"                  "modifier_imba_poison_touch_slow_stack"
+                        "modifier_stun"                        "modifier_imba_poison_touch_stun"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_dazzle.lua"
+                        "Function"                             "PoisonTouchEnd"
+                        "Target"                               "TARGET"
+                        "modifier_slow_stack"                  "modifier_imba_poison_touch_slow_stack"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%initial_slow"
+                }
+            }
+            "modifier_imba_poison_touch_slow_stack"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "0"
+                "StatusEffectName"                                     "particles/status_fx/status_effect_poison_dazzle.vpcf"
+                "StatusEffectPriority"                                 "10"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow_per_hit"
+                }
+            }
+            "modifier_imba_poison_touch_stun"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "0"
+                "StatusEffectName"                                     "particles/status_fx/status_effect_poison_dazzle.vpcf"
+                "StatusEffectPriority"                                 "10"
+                "Duration"                                             "%stun_duration"
+                "OnCreated"
+                {
+                    "Damage"
+                    {
+                        "Target"                               "TARGET"
+                        "Type"                                 "DAMAGE_TYPE_PHYSICAL"
+                        "Damage"                               "%stun_damage"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

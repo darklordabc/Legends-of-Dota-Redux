@@ -1,114 +1,120 @@
-"DOTAAbilities" {
-	"imba_mirana_leap" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityTextureName" "mirana_leap"
-
-		"precache" {
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
-		}
-		"AbilityCastRange" "25000"
-		"AbilityCooldown" "30 23 16 9"
-		"AbilityManaCost" "0"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"base_distance" "1000"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"min_speed" "3000"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"buff_radius" "1200"
-			}
-
-			"04" {
-				"var_type" "FIELD_INTEGER"
-				"leap_speedbonus" "14 16 18 20"
-			}
-
-			"05" {
-				"var_type" "FIELD_INTEGER"
-				"leap_speedbonus_as" "20 30 40 50"
-			}
-
-			"06" {
-				"var_type" "FIELD_INTEGER"
-				"buff_duration" "10"
-			}
-
-			"07" {
-				"var_type" "FIELD_FLOAT"
-				"max_time" "3.0"
-			}
-
-			"08" {
-				"var_type" "FIELD_INTEGER"
-				"cooldown_increase" "5"
-			}
-
-			"09" {
-				"var_type" "FIELD_INTEGER"
-				"base_height" "200"
-			}
-
-			"10" {
-				"var_type" "FIELD_INTEGER"
-				"height_step" "50"
-			}
-
-			"11" {
-				"var_type" "FIELD_INTEGER"
-				"max_height" "700"
-			}
-		}
-
-		"OnSpellStart" {
-			"FireSound" {
-				"EffectName" "Ability.Leap"
-				"Target" "CASTER"
-			}
-
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_mirana.lua"
-				"Function" "Leap"
-				"Target" "POINT"
-				"root_modifier" "modifier_imba_leap_self_root"
-				"buff_modifier" "modifier_imba_leap"
-				"sound_cast" "Ability.Leap"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_imba_leap" {
-				"Passive" "0"
-				"IsHidden" "0"
-				"IsPurgable" "1"
-				"IsBuff" "1"
-				"Duration" "%buff_duration"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%leap_speedbonus_as"
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%leap_speedbonus"
-				}
-			}
-
-			"modifier_imba_leap_self_root" {
-				"IsHidden" "1"
-				"IsPurgable" "0"
-				"IsDebuff" "1"
-
-				"States" {
-					"MODIFIER_STATE_ROOTED" "MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_mirana_leap"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityTextureName"                                                   "mirana_leap"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
+        }
+        "AbilityCastRange"                                                     "25000"
+        "AbilityCooldown"                                                      "30 23 16 9"
+        "AbilityManaCost"                                                      "0"
+        "AbilitySpecial"
+        {
+            "10"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "height_step"                                          "50"
+            }
+            "11"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "max_height"                                           "700"
+            }
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "base_distance"                                        "1000"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "min_speed"                                            "3000"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "buff_radius"                                          "1200"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "leap_speedbonus"                                      "14 16 18 20"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "leap_speedbonus_as"                                   "20 30 40 50"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "buff_duration"                                        "10"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "max_time"                                             "3.0"
+            }
+            "08"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "cooldown_increase"                                    "5"
+            }
+            "09"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "base_height"                                          "200"
+            }
+        }
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "EffectName"                                           "Ability.Leap"
+                "Target"                                               "CASTER"
+            }
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_mirana.lua"
+                "Function"                                             "Leap"
+                "Target"                                               "POINT"
+                "root_modifier"                                        "modifier_imba_leap_self_root"
+                "buff_modifier"                                        "modifier_imba_leap"
+                "sound_cast"                                           "Ability.Leap"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_leap"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsPurgable"                                           "1"
+                "IsBuff"                                               "1"
+                "Duration"                                             "%buff_duration"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%leap_speedbonus_as"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%leap_speedbonus"
+                }
+            }
+            "modifier_imba_leap_self_root"
+            {
+                "IsHidden"                                             "1"
+                "IsPurgable"                                           "0"
+                "IsDebuff"                                             "1"
+                "States"
+                {
+                    "MODIFIER_STATE_ROOTED"                        "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

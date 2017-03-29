@@ -25,7 +25,7 @@
                 "radius"                                               "900"
             }
         }
-        "ReduxFlags"                                                           "support | tank"
+        "ReduxFlags"                                                           "support | tank | SuperOP"
         "ReduxPerks"                                                           "support | aura"
         "ReduxCost"                                                            "100"
         "ReduxBans"                                                            "octarine_vampirism_lod"

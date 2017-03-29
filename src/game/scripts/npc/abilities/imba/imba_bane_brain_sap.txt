@@ -1,68 +1,75 @@
-"DOTAAbilities" {
-	"imba_bane_brain_sap" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_PURE"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel" "1"
-		"AbilityTextureName" "bane_brain_sap"
-
-		"precache" {
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_nyx_assassin.vsndevts"
-			"particle" "particles/units/heroes/hero_bane/bane_sap.vpcf"
-		}
-		"AbilityCastPoint" "0.3"
-		"AbilityCastRange" "650"
-		"AbilityCooldown" "10.0"
-		"AbilityManaCost" "60 90 120 150"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"heal_amt" "100 175 250 325"
-			}
-
-			"02" {
-				"var_type" "FIELD_FLOAT"
-				"duration" "3.5"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"mana_percent" "25 30 35 40"
-			}
-		}
-
-		"OnSpellStart" {
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_bane.lua"
-				"Function" "BrainSap"
-				"sound_cast" "Hero_Bane.BrainSap"
-				"sound_target" "Hero_Bane.BrainSap.Target"
-				"modifier_sap" "modifier_imba_bane_brain_sap"
-				"particle_sap" "particles/units/heroes/hero_bane/bane_sap.vpcf"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_imba_bane_brain_sap" {
-				"IsDebuff" "1"
-				"IsPurgable" "1"
-				"Duration" "%duration"
-
-				"OnSpentMana" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_bane.lua"
-						"Function" "BrainSapSpellCast"
-						"sound_manaburn" "Hero_NyxAssassin.ManaBurn.Target"
-						"modifier_sap" "modifier_imba_bane_brain_sap"
-						"particle_manaburn" "particles/generic_gameplay/generic_manaburn.vpcf"
-						"particle_sap" "particles/units/heroes/hero_bane/bane_sap.vpcf"
-					}
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_bane_brain_sap"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_PURE"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "FightRecapLevel"                                                      "1"
+        "AbilityTextureName"                                                   "bane_brain_sap"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_nyx_assassin.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_bane/bane_sap.vpcf"
+        }
+        "AbilityCastPoint"                                                     "0.3"
+        "AbilityCastRange"                                                     "650"
+        "AbilityCooldown"                                                      "10.0"
+        "AbilityManaCost"                                                      "60 90 120 150"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "heal_amt"                                             "100 175 250 325"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                             "3.5"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "mana_percent"                                         "25 30 35 40"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_bane.lua"
+                "Function"                                             "BrainSap"
+                "sound_cast"                                           "Hero_Bane.BrainSap"
+                "sound_target"                                         "Hero_Bane.BrainSap.Target"
+                "modifier_sap"                                         "modifier_imba_bane_brain_sap"
+                "particle_sap"                                         "particles/units/heroes/hero_bane/bane_sap.vpcf"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_bane_brain_sap"
+            {
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "1"
+                "Duration"                                             "%duration"
+                "OnSpentMana"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_bane.lua"
+                        "Function"                             "BrainSapSpellCast"
+                        "sound_manaburn"                       "Hero_NyxAssassin.ManaBurn.Target"
+                        "modifier_sap"                         "modifier_imba_bane_brain_sap"
+                        "particle_manaburn"                    "particles/generic_gameplay/generic_manaburn.vpcf"
+                        "particle_sap"                         "particles/units/heroes/hero_bane/bane_sap.vpcf"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

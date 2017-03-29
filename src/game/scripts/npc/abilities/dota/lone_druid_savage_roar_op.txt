@@ -31,5 +31,6 @@
         }
         "ReduxCost"                                                            "90"
         "ReduxBans"                                                            "tinker_rearm"
+        "ReduxFlags"                                                           "SuperOP"
     }
 }
