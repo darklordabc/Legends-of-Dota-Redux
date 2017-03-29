@@ -726,8 +726,7 @@
     "hintBalancing"  "A balanced game is a fun game. But balance needs you! If you know a playstyle or ability which is too easy to win with (even if its your favourite), do your part, and report it to the developers."
     "hintGoldBorder"  "Ultimate Abilities have a gold border."
     "hintAntiKamikaze"  "Anti-Kamikaze mechanic: If you die more than 3 times within 60 seconds, you will be penalized with extra respawn time. This is to prevent players taking advantage of lowered respawn."
-    "hintChatCheats"  "You can use cheats in any single player game (even without sv_cheats enabled) like: '-gold x' '-lvlup x' '-lvlmax'
-'-dagger' '-teleport' '-startgame' '-respawn' '-refresh' '-item x'"
+    "hintChatCheats"  "You can use cheats in any single player game (even without sv_cheats enabled) like: '-gold x' '-lvlup x' '-lvlmax' '-dagger' '-teleport' '-startgame' '-respawn' '-refresh' '-item x'"
 
     // Perk-related Hints
     "hintLina"                          "Lina's intelligence increases by 3 for each level put in Fire abilities"
@@ -8592,6 +8591,27 @@
     "DOTA_Tooltip_ability_lone_druid_savage_roar_op_Note1"                         "Cooldown is shared with Spirit Bear."
     "DOTA_Tooltip_ability_lone_druid_savage_roar_op_bonus_speed"                   "%ENEMY MOVEMENT SPEED BONUS:"
     "DOTA_Tooltip_ability_lone_druid_savage_roar_op_duration"                      "DURATION:"
+
+    "DOTA_Tooltip_modifier_item_greater_crit_consumable"                            "Consumed Daedaulous"
+    "DOTA_Tooltip_modifier_item_greater_crit_consumable_Description" "Permanently gained benefits of Daedaulous"
+
+    "DOTA_Tooltip_modifier_item_skadi_consumable" "Consumed Eye of Skadi"
+    "DOTA_Tooltip_modifier_item_skadi_consumable_Description" "Permanently gained benefits of Eye of Skadi"
+
+    "DOTA_Tooltip_modifier_item_octarine_core_consumable" "Consumed Octarine"
+    "DOTA_Tooltip_modifier_item_octarine_core_consumable_Description" "Permanently gained benefits of Octarine Core"
+
+    "DOTA_Tooltip_modifier_item_heart_consumable" "Consumed Heart"
+    "DOTA_Tooltip_modifier_item_heart_consumable_Description" "Permanently gained benefits of Heart of Tarrasque"
+
+    "DOTA_Tooltip_modifier_item_assault_consumable" "Cuirass Synth Aura"
+    "DOTA_Tooltip_modifier_item_assault_consumable_Description" "Permanently gained benefits of Assault Cuirass"
+
+    "DOTA_Tooltip_modifier_item_assault_consumable_aura" "Consumed Cuirass"
+    "DOTA_Tooltip_modifier_item_assault_consumable_aura_Description" "Attack Speed and Armor is increased or reduced, depending on if your ally or enemy with owner of this aura"
+
+    "DOTA_Tooltip_modifier_item_desolator_consumable" "Consumed Desolator"
+    "DOTA_Tooltip_modifier_item_desolator_consumable_Description" "Permanently gained benefits of Desolator"
 
 }
 
