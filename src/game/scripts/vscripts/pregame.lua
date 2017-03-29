@@ -6609,6 +6609,36 @@ function Pregame:isValidSkill( build, playerID, abilityName, slotNumber )
     return true
 end
 
+-- Use free ability points
+function Pregame:levelUpAbilities(hero)
+    local points = hero:GetAbilityPoints()
+
+    local upgrades = 0
+
+    if points >= 1 then
+        for p=1,points do
+            for i = 0, 23 do
+                if upgrades >= points then
+                    break
+                end
+
+                if hero:GetAbilityByIndex(i) then
+                    local ability = hero:GetAbilityByIndex(i)
+                    local function attemptUpgrade( ability )
+                        if ability and ability:GetLevel() < ability:GetMaxLevel() and not ability:IsHidden() and not string.match(ability:GetName(), "special") and upgrades < points then
+                            ability:UpgradeAbility(false)
+                            upgrades = upgrades + 1
+                            attemptUpgrade( ability )
+                        end
+                    end
+                    attemptUpgrade( ability )
+                end
+            end
+        end
+
+        hero:SetAbilityPoints(points - upgrades)
+    end
+end
 
 -- Spawns bots
 function Pregame:hookBotStuff()
@@ -6717,7 +6747,9 @@ function Pregame:hookBotStuff()
                                 break
                             end
                         end 
-                    end     
+                    end  
+
+                    self:levelUpAbilities(hero)
                 end
             end, DoUniqueString('levelUpTalents'), 2.0)
         end
