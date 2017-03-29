@@ -591,6 +591,7 @@
         "ItemCost"                      "5500"
         "AbilityGoldCost"               "5500"
         "ItemPurchasable"              "0"
+        "AbilityCooldown"               "7.0"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
