@@ -438,6 +438,8 @@
         
         // Special  
         //-------------------------------------------------------------------------------------------------------------
+        
+        // THESE VALUES ARE PURELY FOR THE TOOLTIPS, REAL VALUES ARE IN ABILITY "ability_consumable_item_container"
         "AbilitySpecial"
         {
             "01"
@@ -486,6 +488,8 @@
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
         "ItemCost"                      "5775"
+        "AbilityGoldCost"               "5775"
+        "ItemPurchasable"              "0"
         "ItemShopTags"                  "agi;str;int;hard_to_tag;mana_pool;health_pool;unique"
         "ItemPurchasable"              "0"
         "ItemQuality"                   "artifact"
@@ -493,7 +497,9 @@
         
         // Special  
         //-------------------------------------------------------------------------------------------------------------
-        // Skadi
+        // 
+        
+        // THESE VALUES ARE PURELY FOR THE TOOLTIPS, REAL VALUES ARE IN ABILITY "ability_consumable_item_container"
         "AbilitySpecial"
         {
             "01"
@@ -549,10 +555,15 @@
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
         "ItemCost"                      "3500"
+        "AbilityGoldCost"               "3500"
+        "ItemPurchasable"              "0"
         
         
         // Special  
         //-------------------------------------------------------------------------------------------------------------
+        //
+
+        // THESE VALUES ARE PURELY FOR THE TOOLTIPS, REAL VALUES ARE IN ABILITY "ability_consumable_item_container"
         "AbilitySpecial"
         {
             "01"
@@ -578,6 +589,8 @@
         //-------------------------------------------------------------------------------------------------------------
         "ID"                            "2114"                                                       
         "ItemCost"                      "5500"
+        "AbilityGoldCost"               "5500"
+        "ItemPurchasable"              "0"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
@@ -587,6 +600,9 @@
         
         // Special  
         //-------------------------------------------------------------------------------------------------------------
+        //
+
+        // THESE VALUES ARE PURELY FOR THE TOOLTIPS, REAL VALUES ARE IN ABILITY "ability_consumable_item_container"
         "AbilitySpecial"
         {
             "01"
@@ -631,9 +647,14 @@
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
         "ItemCost"                      "5520"
+        "AbilityGoldCost"               "5520"
+        "ItemPurchasable"              "0"
         
         // Special  
         //-------------------------------------------------------------------------------------------------------------
+        //
+
+        // THESE VALUES ARE PURELY FOR THE TOOLTIPS, REAL VALUES ARE IN ABILITY "ability_consumable_item_container"
         "AbilitySpecial"
         {
             "01"
@@ -649,7 +670,7 @@
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "greater_crit_crit_multiplier"       "230"
+                "greater_crit_crit_multiplier"       "235"
             }
         }
     }
@@ -669,6 +690,8 @@
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
         "ItemCost"                      "5900"
+        "AbilityGoldCost"               "5900"
+        "ItemPurchasable"              "0"
 
         "precache"
         {
@@ -677,6 +700,9 @@
         
         // Special  
         //-------------------------------------------------------------------------------------------------------------
+        //
+
+        // THESE VALUES ARE PURELY FOR THE TOOLTIPS, REAL VALUES ARE IN ABILITY "ability_consumable_item_container"
         "AbilitySpecial"
         {
             "01"
