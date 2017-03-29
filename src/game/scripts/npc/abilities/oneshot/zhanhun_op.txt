@@ -1,35 +1,38 @@
-"DOTAAbilities" {
-	"zhanhun_op"
-	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"custom/zhanhun_op"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"HotKeyOverride"	"C"
-		"Modifiers"
-		{
-			"modifier_zhanhun"
-			{
-				"Passive"	"1"
-				"IsHidden"	"1"
-				"OnAbilityExecuted"
-				{
-					"RunScript"
-					{
-						"Target"	"CASTER"
-						"ScriptFile"	"scripts/vscripts/abilities/oneshotonekill/speed_ninja.lua"
-						"Function"	"zhanhun"
-						"reduce"	"%reduce_per"
-					}
-				}
-			}
-		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"reduce_per"	"1 2 3 4"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "zhanhun_op"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityTextureName"                                                   "custom/zhanhun_op"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "HotKeyOverride"                                                       "C"
+        "Modifiers"
+        {
+            "modifier_zhanhun"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "OnAbilityExecuted"
+                {
+                    "RunScript"
+                    {
+                        "Target"                               "CASTER"
+                        "ScriptFile"                           "scripts/vscripts/abilities/oneshotonekill/speed_ninja.lua"
+                        "Function"                             "zhanhun"
+                        "reduce"                               "%reduce_per"
+                    }
+                }
+            }
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "reduce_per"                                           "1 2 3 4"
+            }
+        }
+        "ReduxCost"                                                            "100"
+        "ReduxBans"                                                            "zhanhun"
+    }
 }

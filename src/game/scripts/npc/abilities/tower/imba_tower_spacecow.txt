@@ -1,44 +1,52 @@
-"DOTAAbilities" {
-	"imba_tower_spacecow" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName" "custom/imba_tower_spacecow"
-		"MaxLevel" "3"
-		"AbilitySharedWithTeammates" "1"
-		"AbilityCooldown" "5 4 3"
-		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"knockback_damage" "50 75 100"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"knockback_distance" "450 600 750"
-			}
-
-			"03" {
-				"var_type" "FIELD_FLOAT"
-				"knockback_duration" "0.6"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_imba_tower_spacecow" {
-				"Passive" "1"
-				"IsHidden" "1"
-
-				"OnAttackLanded" {
-					"RunScript" {
-						"ScriptFile" "abilities/tower_abilities.lua"
-						"Function" "Spacecow"
-						"sound_creep" "Hero_Spirit_Breaker.GreaterBash.Creep"
-						"sound_hero" "Hero_Spirit_Breaker.GreaterBash"
-					}
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_tower_spacecow"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "custom/imba_tower_spacecow"
+        "MaxLevel"                                                             "3"
+        "AbilitySharedWithTeammates"                                           "1"
+        "AbilityCooldown"                                                      "5 4 3"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "knockback_damage"                                     "50 75 100"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "knockback_distance"                                   "450 600 750"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "knockback_duration"                                   "0.6"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_tower_spacecow"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "OnAttackLanded"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/tower_abilities.lua"
+                        "Function"                             "Spacecow"
+                        "sound_creep"                          "Hero_Spirit_Breaker.GreaterBash.Creep"
+                        "sound_hero"                           "Hero_Spirit_Breaker.GreaterBash"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "stun"
+        "ReduxPerks"                                                           "enemyMoving"
+        "ReduxCost"                                                            "100"
+    }
 }

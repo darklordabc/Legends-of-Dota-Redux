@@ -1,124 +1,131 @@
-"DOTAAbilities" {
-	"imba_phantom_assassin_stifling_dagger" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_PURE"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName" "phantom_assassin_stifling_dagger"
-
-		"precache" {
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
-			"particle" "particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf"
-		}
-		"AbilityCastRange" "1400"
-		"AbilityCastPoint" "0.2"
-		"AbilityCooldown" "6"
-		"AbilityDuration" "4.0"
-		"AbilityManaCost" "30 25 20 15"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"move_slow" "-20 -30 -40 -50"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"dagger_speed" "1400"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"slow_duration" "4"
-			}
-
-			"04" {
-				"var_type" "FIELD_FLOAT"
-				"silence_duration" "0.1"
-			}
-
-			"05" {
-				"var_type" "FIELD_INTEGER"
-				"bonus_damage" "25 50 75 100"
-			}
-		}
-
-		"OnSpellStart" {
-			"TrackingProjectile" {
-				"Target" "TARGET"
-				"EffectName" "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf"
-				"Dodgeable" "1"
-				"ProvidesVision" "1"
-				"VisionRadius" "600"
-				"MoveSpeed" "%dagger_speed"
-				"SourceAttachment" "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
-			}
-
-			"FireSound" {
-				"EffectName" "Hero_PhantomAssassin.Dagger.Cast"
-				"Target" "CASTER"
-			}
-		}
-
-		"OnProjectileHitUnit" {
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_phantom_assassin.lua"
-				"Function" "StiflingDaggerHit"
-				"Target" "TARGET"
-				"sound_hit" "Hero_PhantomAssassin.Dagger.Target"
-				"ability_crit" "imba_phantom_assassin_coup_de_grace"
-				"modifier_crit" "modifier_imba_coup_de_grace_crit"
-				"modifier_stacks" "modifier_imba_coup_de_grace_stacks"
-				"modifier_kill" "modifier_imba_coup_de_grace_kill"
-				"modifier_silence" "modifier_imba_stifling_dagger_silence"
-				"modifier_slow" "modifier_imba_stifling_dagger_slow"
-				"modifier_damage" "modifier_imba_stifling_dagger_bonus_damage"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_imba_stifling_dagger_slow" {
-				"IsDebuff" "1"
-				"IsPurgable" "1"
-				"Duration" "%slow_duration"
-				"EffectName" "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger_debuff.vpcf"
-				"EffectAttachType" "follow_origin"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%move_slow"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%move_slow"
-				}
-
-				"States" {
-					"MODIFIER_STATE_PROVIDES_VISION" "MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-
-			"modifier_imba_stifling_dagger_silence" {
-				"IsDebuff" "1"
-				"IsHidden" "1"
-				"IsPurgable" "1"
-				"Duration" "%silence_duration"
-				"EffectName" "particles/generic_gameplay/generic_silenced.vpcf"
-				"EffectAttachType" "follow_overhead"
-
-				"States" {
-					"MODIFIER_STATE_SILENCED" "MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-
-			"modifier_imba_stifling_dagger_bonus_damage" {
-				"IsBuff" "1"
-				"IsPurgable" "0"
-				"IsHidden" "1"
-				"Duration" "0.01"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%bonus_damage"
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_phantom_assassin_stifling_dagger"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_PURE"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityTextureName"                                                   "phantom_assassin_stifling_dagger"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf"
+        }
+        "AbilityCastRange"                                                     "1400"
+        "AbilityCastPoint"                                                     "0.2"
+        "AbilityCooldown"                                                      "6"
+        "AbilityDuration"                                                      "4.0"
+        "AbilityManaCost"                                                      "30 25 20 15"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "move_slow"                                            "-20 -30 -40 -50"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "dagger_speed"                                         "1400"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "slow_duration"                                        "4"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "silence_duration"                                     "0.1"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_damage"                                         "25 50 75 100"
+            }
+        }
+        "OnSpellStart"
+        {
+            "TrackingProjectile"
+            {
+                "Target"                                               "TARGET"
+                "EffectName"                                           "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger.vpcf"
+                "Dodgeable"                                            "1"
+                "ProvidesVision"                                       "1"
+                "VisionRadius"                                         "600"
+                "MoveSpeed"                                            "%dagger_speed"
+                "SourceAttachment"                                     "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+            }
+            "FireSound"
+            {
+                "EffectName"                                           "Hero_PhantomAssassin.Dagger.Cast"
+                "Target"                                               "CASTER"
+            }
+        }
+        "OnProjectileHitUnit"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_phantom_assassin.lua"
+                "Function"                                             "StiflingDaggerHit"
+                "Target"                                               "TARGET"
+                "sound_hit"                                            "Hero_PhantomAssassin.Dagger.Target"
+                "ability_crit"                                         "imba_phantom_assassin_coup_de_grace"
+                "modifier_crit"                                        "modifier_imba_coup_de_grace_crit"
+                "modifier_stacks"                                      "modifier_imba_coup_de_grace_stacks"
+                "modifier_kill"                                        "modifier_imba_coup_de_grace_kill"
+                "modifier_silence"                                     "modifier_imba_stifling_dagger_silence"
+                "modifier_slow"                                        "modifier_imba_stifling_dagger_slow"
+                "modifier_damage"                                      "modifier_imba_stifling_dagger_bonus_damage"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_stifling_dagger_slow"
+            {
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "1"
+                "Duration"                                             "%slow_duration"
+                "EffectName"                                           "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger_debuff.vpcf"
+                "EffectAttachType"                                     "follow_origin"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%move_slow"
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%move_slow"
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_PROVIDES_VISION"               "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+            "modifier_imba_stifling_dagger_silence"
+            {
+                "IsDebuff"                                             "1"
+                "IsHidden"                                             "1"
+                "IsPurgable"                                           "1"
+                "Duration"                                             "%silence_duration"
+                "EffectName"                                           "particles/generic_gameplay/generic_silenced.vpcf"
+                "EffectAttachType"                                     "follow_overhead"
+                "States"
+                {
+                    "MODIFIER_STATE_SILENCED"                      "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+            "modifier_imba_stifling_dagger_bonus_damage"
+            {
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "IsHidden"                                             "1"
+                "Duration"                                             "0.01"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"     "%bonus_damage"
+                }
+            }
+        }
+        "ReduxPerks"                                                           "dagger"
+    }
 }

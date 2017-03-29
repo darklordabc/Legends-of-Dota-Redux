@@ -14,7 +14,6 @@ Constants.PHASE_ITEM_PICKING = 10       -- Item picking phase
 Constants.PHASE_INGAME = 11             -- Game has started
 
 -- Balance Mode Values
-Constants.TIER = {120, 100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 0}
 Constants.BALANCE_MODE_POINTS = 120
 
 -- EXP Needed for each level

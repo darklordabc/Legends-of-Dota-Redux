@@ -13,6 +13,16 @@ local Ingame = class({})
 
 local ts_entities = LoadKeyValues('scripts/kv/ts_entities.kv')
 GameRules.perks = LoadKeyValues('scripts/kv/perks.kv')
+for k,v in pairs(util:getAbilityKV()) do
+    if v and v["ReduxPerks"] then
+        local abilityPerks = util:split(v["ReduxPerks"], " | ")
+        for _,perk in ipairs(abilityPerks) do
+            local perk = string.lower(perk)
+            GameRules.perks[perk] = GameRules.perks[perk] or {}
+            GameRules.perks[perk][k] = true
+        end
+    end
+end
 GameRules.hero_perks = LoadKeyValues('scripts/kv/hero_perks.kv')
 
 -- Init Ingame stuff, sets up all ingame related features

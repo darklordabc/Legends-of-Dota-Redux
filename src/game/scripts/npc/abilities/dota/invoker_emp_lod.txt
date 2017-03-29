@@ -1,35 +1,39 @@
-"DOTAAbilities" {
-	"invoker_emp_lod" {
-		"BaseClass" "invoker_emp"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"MaxLevel" "4"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_PURE"
-		"RequiredLevel" "1"
-		"AbilityCastRange" "950"
-		"AbilityCastPoint" "0"
-		"AbilityCooldown" "30"
-		"AbilityManaCost" "125"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_FLOAT"
-				"delay" "2.9"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"area_of_effect" "675"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"mana_burned" "100 250 400 550"
-			}
-
-			"04" {
-				"var_type" "FIELD_INTEGER"
-				"damage_per_mana_pct" "50"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "invoker_emp_lod"
+    {
+        "BaseClass"                                                            "invoker_emp"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "MaxLevel"                                                             "4"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_PURE"
+        "RequiredLevel"                                                        "1"
+        "AbilityCastRange"                                                     "950"
+        "AbilityCastPoint"                                                     "0"
+        "AbilityCooldown"                                                      "30"
+        "AbilityManaCost"                                                      "125"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "delay"                                                "2.9"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "area_of_effect"                                       "675"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "mana_burned"                                          "100 250 400 550"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage_per_mana_pct"                                  "50"
+            }
+        }
+        "ReduxPerks"                                                           "lightning | drain | skillshot"
+    }
 }

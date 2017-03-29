@@ -1,52 +1,58 @@
-"DOTAAbilities" {
-	"angel_arena_nether_ritual" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName" "custom/angel_arena_nether_ritual"
-		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-		"MaxLevel" "3"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_FLOAT"
-				"bonus_hp_regen" "15.0 18.0 20.0"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"bonus_armor" "4 8 10"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"bonus_damage" "5 6 8"
-			}
-
-			"04" {
-				"var_type" "FIELD_INTEGER"
-				"bonus_movespeed" "2 4 6"
-			}
-
-			"05" {
-				"var_type" "FIELD_FLOAT"
-				"base_attack_time" "1.6 1.54 1.52"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_nether_ritual" {
-				"isBuff" "1"
-				"Passive" "1"
-				"isHidden" "0"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE" "%bonus_damage"
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%bonus_armor"
-					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%bonus_hp_regen"
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%bonus_movespeed"
-					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT" "%base_attack_time"
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "angel_arena_nether_ritual"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "custom/angel_arena_nether_ritual"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "MaxLevel"                                                             "3"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "bonus_hp_regen"                                       "15.0 18.0 20.0"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_armor"                                          "4 8 10"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_damage"                                         "5 6 8"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_movespeed"                                      "2 4 6"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "base_attack_time"                                     "1.6 1.54 1.52"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_nether_ritual"
+            {
+                "isBuff"                                               "1"
+                "Passive"                                              "1"
+                "isHidden"                                             "0"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE""%bonus_damage"
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"       "%bonus_armor"
+                    "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"      "%bonus_hp_regen"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%bonus_movespeed"
+                    "MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"  "%base_attack_time"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "tank"
+        "ReduxCost"                                                            "100"
+    }
 }

@@ -1,21 +1,26 @@
-"DOTAAbilities" {
-	"keeper_of_the_light_recall_lod" {
-		"BaseClass" "keeper_of_the_light_recall"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
-		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_CUSTOM"
-		"MaxLevel" "4"
-		"AbilityCastPoint" "0.3 0.3 0.3 0.3"
-		"AbilityCastRange" "0"
-		"AbilityCooldown" "15.0 15.0 15.0 15.0"
-		"AbilityManaCost" "100 100 100 100"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_FLOAT"
-				"teleport_delay" "5.0 4.0 3.0 2.0"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "keeper_of_the_light_recall_lod"
+    {
+        "BaseClass"                                                            "keeper_of_the_light_recall"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetFlags"                                               "DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_CUSTOM"
+        "MaxLevel"                                                             "4"
+        "AbilityCastPoint"                                                     "0.3 0.3 0.3 0.3"
+        "AbilityCastRange"                                                     "0"
+        "AbilityCooldown"                                                      "15.0 15.0 15.0 15.0"
+        "AbilityManaCost"                                                      "100 100 100 100"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "teleport_delay"                                       "5.0 4.0 3.0 2.0"
+            }
+        }
+        "ReduxFlags"                                                           "support"
+        "ReduxPerks"                                                           "support"
+    }
 }

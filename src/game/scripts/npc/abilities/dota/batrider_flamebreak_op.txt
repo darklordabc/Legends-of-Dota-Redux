@@ -1,90 +1,75 @@
-"DOTAAbilities" {
-	"batrider_flamebreak_op"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"					"batrider_flamebreak"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"FightRecapLevel"				"1"
-		"AbilityTextureName"		"custom/batrider_flamebreak_op"
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"3000"
-		"AbilityCastPoint"				"0.2 0.2 0.2 0.2"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"17.0"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"110 120 130 140"
-
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityModifierSupportValue"	"1.0"
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_per_second"		"25 30 35 40"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage_duration"		"4 5 6 7"
-				"CalculateSpellDamageTooltip"	"0"
-			}			
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage_total_tooltip"		"200 300 400 500"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"explosion_radius"		"375"
-				"LinkedSpecialBonus"	"special_bonus_unique_batrider_2"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"collision_radius"		"100 100 100 100"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"stun_duration"			"1.0"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"900 900 900 900"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"knockback_max_distance"	"1200"
-				"LinkedSpecialBonus"	"special_bonus_unique_batrider_2"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"knockback_height"		"300 300 300 300"
-			}
-			"10"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"knockback_duration"	"1.5"
-			}			
-		}
-	}
+"DOTAAbilities"
+{
+    "batrider_flamebreak_op"
+    {
+        "BaseClass"                                                            "batrider_flamebreak"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"                                                 "SPELL_DISPELLABLE_YES"
+        "FightRecapLevel"                                                      "1"
+        "AbilityTextureName"                                                   "custom/batrider_flamebreak_op"
+        "AbilityCastRange"                                                     "3000"
+        "AbilityCastPoint"                                                     "0.2 0.2 0.2 0.2"
+        "AbilityCooldown"                                                      "17.0"
+        "AbilityManaCost"                                                      "110 120 130 140"
+        "AbilityModifierSupportValue"                                          "1.0"
+        "AbilitySpecial"
+        {
+            "10"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "knockback_duration"                                   "1.5"
+            }
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage_per_second"                                    "25 30 35 40"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "damage_duration"                                      "4 5 6 7"
+                "CalculateSpellDamageTooltip"                          "0"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "damage_total_tooltip"                                 "200 300 400 500"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "explosion_radius"                                     "375"
+                "LinkedSpecialBonus"                                   "special_bonus_unique_batrider_2"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "collision_radius"                                     "100 100 100 100"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "stun_duration"                                        "1.0"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "speed"                                                "900 900 900 900"
+            }
+            "08"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "knockback_max_distance"                               "1200"
+                "LinkedSpecialBonus"                                   "special_bonus_unique_batrider_2"
+            }
+            "09"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "knockback_height"                                     "300 300 300 300"
+            }
+        }
+        "ReduxCost"                                                            "90"
+    }
 }

@@ -1,88 +1,97 @@
-"DOTAAbilities" {
-	"holdout_arcane_aura" {
-		"BaseClass" "ability_datadriven"
-		"AbilityTextureName" "custom/crystal_maiden_brilliance_aura_lod"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_BOTH"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO"
-		"AbilityCooldown" "10.0"
-		"AbilityManaCost" "40 45 50 55"
-
-		"OnSpellStart" {
-			"ApplyModifier" {
-				"Target" "TARGET"
-				"Duration" "%buff_duration"
-				"ModifierName" "modifier_holdout_arcane_aura_buff"
-			}
-
-			"FireSound" {
-				"EffectName" "hero_Crystal.freezingField.explosion"
-				"Target" "CASTER"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_holdout_arcane_aura_aura" {
-				"Passive" "1"
-				"IsHidden" "1"
-				"Aura" "modifier_holdout_arcane_aura_aura_effect"
-				"Aura_Radius" "99999"
-				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
-				"Aura_ApplyToCaster" "0"
-			}
-
-			"modifier_holdout_arcane_aura_aura_effect" {
-				"Properties" {
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%mana_regen"
-				}
-			}
-
-			"modifier_holdout_arcane_aura_self_aura_effect" {
-				"Passive" "1"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%self_mana_regen"
-				}
-			}
-
-			"modifier_holdout_arcane_aura_buff" {
-				"StatusEffectName" "status_effect_frost"
-
-				"OnCreated" {
-					"AttachEffect" {
-						"EffectName" "maiden_holdout_arcane_buff"
-						"EffectAttachType" "follow_origin"
-						"Target" "TARGET"
-					}
-				}
-
-				"Properties" {
-					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "%mana_regen_pct"
-				}
-			}
-		}
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_FLOAT"
-				"mana_regen" "1.0 1.5 2.0 2.5"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"mana_regen_pct" "200 250 300 350"
-			}
-
-			"03" {
-				"var_type" "FIELD_FLOAT"
-				"buff_duration" "25.0"
-			}
-
-			"04" {
-				"var_type" "FIELD_FLOAT"
-				"self_mana_regen" "2.0 3.0 4.0 5.0"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "holdout_arcane_aura"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityTextureName"                                                   "custom/crystal_maiden_brilliance_aura_lod"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO"
+        "AbilityCooldown"                                                      "10.0"
+        "AbilityManaCost"                                                      "40 45 50 55"
+        "OnSpellStart"
+        {
+            "ApplyModifier"
+            {
+                "Target"                                               "TARGET"
+                "Duration"                                             "%buff_duration"
+                "ModifierName"                                         "modifier_holdout_arcane_aura_buff"
+            }
+            "FireSound"
+            {
+                "EffectName"                                           "hero_Crystal.freezingField.explosion"
+                "Target"                                               "CASTER"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_holdout_arcane_aura_aura"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "Aura"                                                 "modifier_holdout_arcane_aura_aura_effect"
+                "Aura_Radius"                                          "99999"
+                "Aura_Teams"                                           "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+                "Aura_Types"                                           "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+                "Aura_ApplyToCaster"                                   "0"
+            }
+            "modifier_holdout_arcane_aura_aura_effect"
+            {
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"        "%mana_regen"
+                }
+            }
+            "modifier_holdout_arcane_aura_self_aura_effect"
+            {
+                "Passive"                                              "1"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"        "%self_mana_regen"
+                }
+            }
+            "modifier_holdout_arcane_aura_buff"
+            {
+                "StatusEffectName"                                     "status_effect_frost"
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "EffectName"                           "maiden_holdout_arcane_buff"
+                        "EffectAttachType"                     "follow_origin"
+                        "Target"                               "TARGET"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"      "%mana_regen_pct"
+                }
+            }
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "mana_regen"                                           "1.0 1.5 2.0 2.5"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "mana_regen_pct"                                       "200 250 300 350"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "buff_duration"                                        "25.0"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "self_mana_regen"                                      "2.0 3.0 4.0 5.0"
+            }
+        }
+        "ReduxFlags"                                                           "support"
+        "ReduxPerks"                                                           "support"
+    }
 }

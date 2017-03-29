@@ -1,50 +1,58 @@
-"DOTAAbilities" {
-	"true_random_lod_5" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName" "custom/true_random_lod_5"
-		"AbilityCooldown" "10"
-
-		"precache" {
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_vengefulspirit"
-			"particle" "particles/true_random_lod/true_random_lod_swap.vpcf"
-		}
-
-		"OnAbilityPhaseStart" {
-			"RunScript" {
-				"ScriptFile" "abilities/true_random_lod.lua"
-				"Function" "RandomGet"
-			}
-		}
-
-		"OnChannelFinish" {
-			"RunScript" {
-				"ScriptFile" "abilities/true_random_lod.lua"
-				"Function" "RandomRemove"
-			}
-		}
-
-		"Modifiers" {
-			"true_random_modifier_lod" {
-				"Passive" "1"
-				"IsHidden" "1"
-
-				"OnCreated" {
-					"RunScript" {
-						"ScriptFile" "abilities/true_random_lod.lua"
-						"Function" "RandomInit"
-					}
-				}
-				"ThinkInterval" "0.5"
-
-				"OnIntervalThink" {
-					"RunScript" {
-						"ScriptFile" "abilities/true_random_lod.lua"
-						"Function" "Particles"
-						"particle" "particles/true_random_lod/true_random_lod_swap.vpcf"
-					}
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "true_random_lod_5"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityTextureName"                                                   "custom/true_random_lod_5"
+        "AbilityCooldown"                                                      "10"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_vengefulspirit"
+            "particle"                                                     "particles/true_random_lod/true_random_lod_swap.vpcf"
+        }
+        "OnAbilityPhaseStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/true_random_lod.lua"
+                "Function"                                             "RandomGet"
+            }
+        }
+        "OnChannelFinish"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/true_random_lod.lua"
+                "Function"                                             "RandomRemove"
+            }
+        }
+        "Modifiers"
+        {
+            "true_random_modifier_lod"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/true_random_lod.lua"
+                        "Function"                             "RandomInit"
+                    }
+                }
+                "ThinkInterval"                                        "0.5"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/true_random_lod.lua"
+                        "Function"                             "Particles"
+                        "particle"                             "particles/true_random_lod/true_random_lod_swap.vpcf"
+                    }
+                }
+            }
+        }
+        "ReduxCost"                                                            "-1"
+    }
 }

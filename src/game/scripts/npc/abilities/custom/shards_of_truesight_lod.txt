@@ -1,82 +1,89 @@
-"DOTAAbilities" {
-	"shards_of_truesight_lod" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityTextureName" "custom/shards_of_truesight_lod"
-		"AbilityCooldown" "30 25 20 15"
-		"AbilityManaCost" "100"
-		"AbilityCastRange" "%radius"
-
-		"precache" {
-			"particle" "particles/true_sight/true_sight_debuff.vpcf"
-			"sound" "sounds/items/dust_of_appearance.vsnd"
-		}
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"ms_boost" "25"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"duration" "5"
-			}
-
-			"03" {
-				"var_type" "FIELD_FLOAT"
-				"radius" "600 700 800 900"
-			}
-		}
-
-		"OnSpellStart" {
-			"ApplyModifier" {
-				"ModifierName" "truesight_aura"
-				"Target" "CASTER"
-				"Duration" "%duration"
-			}
-
-			"FireEffect" {
-				"EffectName" "particles/true_sight/dust_of_gem.vpcf"
-				"EffectAttachType" "attach_origin"
-
-				"ControlPoints" {
-					"01" "%radius %radius %radius"
-				}
-			}
-
-			"FireSound" {
-				"EffectName" "DOTA_Item.DustOfAppearance.Activate"
-				"Target" "CASTER"
-			}
-		}
-
-		"Modifiers" {
-			"truesight_aura" {
-				"IsHidden" "0"
-				"IsPurgable" "0"
-				"EffectName" "particles/true_sight/true_sight_debuff.vpcf"
-				"EffectAttachType" "follow_overhead"
-				"Aura" "truesight_aura_debuff"
-				"Aura_Radius" "%radius"
-				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"Aura_Types" "DOTA_UNIT_TARGET_ALL"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "%ms_boost"
-					"MODIFIER_PROPERTY_TOOLTIP" "%radius"
-				}
-			}
-
-			"truesight_aura_debuff" {
-				"IsDebuff" "1"
-				"IsPurgable" "0"
-				"Priority" "MODIFIER_PRIORITY_HIGH"
-
-				"States" {
-					"MODIFIER_STATE_INVISIBLE" "MODIFIER_STATE_VALUE_DISABLED"
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "shards_of_truesight_lod"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityTextureName"                                                   "custom/shards_of_truesight_lod"
+        "AbilityCooldown"                                                      "30 25 20 15"
+        "AbilityManaCost"                                                      "100"
+        "AbilityCastRange"                                                     "%radius"
+        "precache"
+        {
+            "particle"                                                     "particles/true_sight/true_sight_debuff.vpcf"
+            "sound"                                                        "sounds/items/dust_of_appearance.vsnd"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "ms_boost"                                             "25"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "duration"                                             "5"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "radius"                                               "600 700 800 900"
+            }
+        }
+        "OnSpellStart"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"                                         "truesight_aura"
+                "Target"                                               "CASTER"
+                "Duration"                                             "%duration"
+            }
+            "FireEffect"
+            {
+                "EffectName"                                           "particles/true_sight/dust_of_gem.vpcf"
+                "EffectAttachType"                                     "attach_origin"
+                "ControlPoints"
+                {
+                    "01"                                           "%radius %radius %radius"
+                }
+            }
+            "FireSound"
+            {
+                "EffectName"                                           "DOTA_Item.DustOfAppearance.Activate"
+                "Target"                                               "CASTER"
+            }
+        }
+        "Modifiers"
+        {
+            "truesight_aura"
+            {
+                "IsHidden"                                             "0"
+                "IsPurgable"                                           "0"
+                "EffectName"                                           "particles/true_sight/true_sight_debuff.vpcf"
+                "EffectAttachType"                                     "follow_overhead"
+                "Aura"                                                 "truesight_aura_debuff"
+                "Aura_Radius"                                          "%radius"
+                "Aura_Teams"                                           "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                "Aura_Types"                                           "DOTA_UNIT_TARGET_ALL"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"   "%ms_boost"
+                    "MODIFIER_PROPERTY_TOOLTIP"                    "%radius"
+                }
+            }
+            "truesight_aura_debuff"
+            {
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "0"
+                "Priority"                                             "MODIFIER_PRIORITY_HIGH"
+                "States"
+                {
+                    "MODIFIER_STATE_INVISIBLE"                     "MODIFIER_STATE_VALUE_DISABLED"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "support"
+        "ReduxPerks"                                                           "support"
+    }
 }

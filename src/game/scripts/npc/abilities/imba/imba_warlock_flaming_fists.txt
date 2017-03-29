@@ -1,40 +1,47 @@
-"DOTAAbilities" {
-	"imba_warlock_flaming_fists" {
-		"BaseClass" "ability_datadriven"
-		"AbilityType" "DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_PURE"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityTextureName" "warlock_golem_flaming_fists"
-		"MaxLevel" "1"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"damage_pct" "40"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"radius" "300"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_imba_golem_flaming_fists" {
-				"Passive" "1"
-				"IsHidden" "1"
-				"IsBuff" "1"
-				"IsPurgable" "0"
-
-				"OnAttackLanded" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_warlock.lua"
-						"Function" "GolemFlamingFists"
-					}
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_warlock_flaming_fists"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_PURE"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityTextureName"                                                   "warlock_golem_flaming_fists"
+        "MaxLevel"                                                             "1"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage_pct"                                           "40"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "300"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_golem_flaming_fists"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "OnAttackLanded"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_warlock.lua"
+                        "Function"                             "GolemFlamingFists"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "aoe_attack | attack_modifier"
+        "ReduxPerks"                                                           "attack_modifier | fire"
+    }
 }

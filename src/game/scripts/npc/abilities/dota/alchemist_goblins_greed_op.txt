@@ -1,41 +1,39 @@
-"DOTAAbilities" {
-	"alchemist_goblins_greed_op"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"							"alchemist_goblins_greed"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"			"custom/alchemist_goblins_greed_op"
-
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"90"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_gold"			"6 8 10 12"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_bonus_gold"		"3"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_gold_cap"		"99999"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bounty_multiplier_tooltip"		"2"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "alchemist_goblins_greed_op"
+    {
+        "BaseClass"                                                            "alchemist_goblins_greed"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "custom/alchemist_goblins_greed_op"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "duration"                                             "90"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_gold"                                           "6 8 10 12"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_bonus_gold"                                     "3"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_gold_cap"                                       "99999"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bounty_multiplier_tooltip"                            "2"
+            }
+        }
+        "ReduxCost"                                                            "90"
+        "ReduxBans"                                                            "alchemist_goblins_greed"
+    }
 }

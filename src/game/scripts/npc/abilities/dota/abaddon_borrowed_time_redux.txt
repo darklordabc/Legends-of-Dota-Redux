@@ -1,59 +1,51 @@
-"DOTAAbilities" {
-	"abaddon_borrowed_time_redux"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"							"abaddon_borrowed_time"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
-		"AbilityTextureName" "custom/abaddon_borrowed_time_redux"
-		"FightRecapLevel"				"2"
-
-		"HasScepterUpgrade"			"1"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"75.0 62.5 50.0"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"0 0 0"
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"hp_threshold"				"400"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"3.0 3.75 4.5"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration_scepter"			"3.75 4.5 5.25"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"redirect"					"0.5"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"redirect_pct_tooltip_scepter"					"50"
-			}
-			"06"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"redirect_range_tooltip_scepter"		"900"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "abaddon_borrowed_time_redux"
+    {
+        "BaseClass"                                                            "abaddon_borrowed_time"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "SpellDispellableType"                                                 "SPELL_DISPELLABLE_NO"
+        "AbilityTextureName"                                                   "custom/abaddon_borrowed_time_redux"
+        "FightRecapLevel"                                                      "2"
+        "HasScepterUpgrade"                                                    "1"
+        "AbilityCooldown"                                                      "75.0 62.5 50.0"
+        "AbilityManaCost"                                                      "0 0 0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "hp_threshold"                                         "400"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                             "3.0 3.75 4.5"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration_scepter"                                     "3.75 4.5 5.25"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "redirect"                                             "0.5"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "redirect_pct_tooltip_scepter"                         "50"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "redirect_range_tooltip_scepter"                       "900"
+            }
+        }
+        "ReduxFlags"                                                           "upgradeable"
+        "ReduxCost"                                                            "30"
+        "ReduxBans"                                                            "furion_teleportation | tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux | meepo_divided_we_stand | phoenix_supernova"
+    }
 }

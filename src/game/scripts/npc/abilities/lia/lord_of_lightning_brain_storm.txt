@@ -1,88 +1,96 @@
-"DOTAAbilities" {
-	"lord_of_lightning_brain_storm" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName" "custom/lord_of_lightning_brain_storm"
-		"AoERadius" "500"
-		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-		"MaxLevel" "3"
-		"RequiredLevel" "6"
-		"AbilityCastRange" "800"
-		"AbilityCastPoint" "0"
-		"AbilityCooldown" "80 70 60"
-		"AbilityManaCost" "150 200 250"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"reduce_spell_damage_pct" "-40"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"reduce_movement_speed" "-20"
-			}
-
-			"03" {
-				"var_type" "FIELD_FLOAT"
-				"duration" "6 8 10"
-			}
-
-			"04" {
-				"var_type" "FIELD_INTEGER"
-				"radius" "500"
-			}
-		}
-
-		"precache" {
-			"particle" "particles/units/heroes/hero_pugna/pugna_decrepify.vpcf"
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_pugna.vsndevts"
-		}
-
-		"OnSpellStart" {
-			"ActOnTargets" {
-				"Target" {
-					"Center" "POINT"
-					"Radius" "%radius"
-					"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-				}
-
-				"Action" {
-					"ApplyModifier" {
-						"ModifierName" "modifier_brain_storm_decrepify"
-						"Duration" "%duration"
-						"Target" "TARGET"
-					}
-
-					"FireSound" {
-						"EffectName" "Hero_Pugna.Decrepify"
-						"Target" "TARGET"
-					}
-				}
-			}
-		}
-
-		"Modifiers" {
-			"modifier_brain_storm_decrepify" {
-				"IsDebuff" "1"
-				"EffectName" "particles/units/heroes/hero_pugna/pugna_decrepify.vpcf"
-				"EffectAttachType" "follow_origin"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_DECREPIFY_UNIQUE" "%reduce_spell_damage_pct"
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%reduce_movement_speed"
-					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL" "1"
-				}
-
-				"States" {
-					"MODIFIER_STATE_DISARMED" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_LOW_ATTACK_PRIORITY" "MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "lord_of_lightning_brain_storm"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityTextureName"                                                   "custom/lord_of_lightning_brain_storm"
+        "AoERadius"                                                            "500"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "MaxLevel"                                                             "3"
+        "RequiredLevel"                                                        "6"
+        "AbilityCastRange"                                                     "800"
+        "AbilityCastPoint"                                                     "0"
+        "AbilityCooldown"                                                      "80 70 60"
+        "AbilityManaCost"                                                      "150 200 250"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "reduce_spell_damage_pct"                              "-40"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "reduce_movement_speed"                                "-20"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                             "6 8 10"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "500"
+            }
+        }
+        "precache"
+        {
+            "particle"                                                     "particles/units/heroes/hero_pugna/pugna_decrepify.vpcf"
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_pugna.vsndevts"
+        }
+        "OnSpellStart"
+        {
+            "ActOnTargets"
+            {
+                "Target"
+                {
+                    "Center"                                       "POINT"
+                    "Radius"                                       "%radius"
+                    "Teams"                                        "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                    "Types"                                        "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                }
+                "Action"
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"                         "modifier_brain_storm_decrepify"
+                        "Duration"                             "%duration"
+                        "Target"                               "TARGET"
+                    }
+                    "FireSound"
+                    {
+                        "EffectName"                           "Hero_Pugna.Decrepify"
+                        "Target"                               "TARGET"
+                    }
+                }
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_brain_storm_decrepify"
+            {
+                "IsDebuff"                                             "1"
+                "EffectName"                                           "particles/units/heroes/hero_pugna/pugna_decrepify.vpcf"
+                "EffectAttachType"                                     "follow_origin"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_DECREPIFY_UNIQUE""%reduce_spell_damage_pct"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%reduce_movement_speed"
+                    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL""1"
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_DISARMED"                      "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_LOW_ATTACK_PRIORITY"           "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "disarm_break"
+    }
 }

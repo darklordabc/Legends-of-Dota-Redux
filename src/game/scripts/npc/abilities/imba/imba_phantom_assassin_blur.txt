@@ -1,84 +1,92 @@
-"DOTAAbilities" {
-	"imba_phantom_assassin_blur" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName" "phantom_assassin_blur"
-		"AbilityCastRange" "1600"
-
-		"precache" {
-			"particle" "particles/hero/phantom_assassin/blur_status_fx.vpcf"
-		}
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"evasion" "25 35 45 55"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"radius" "1600"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"blur_ms" "12"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_imba_blur" {
-				"Passive" "1"
-				"IsHidden" "1"
-				"IsBuff" "1"
-				"IsPurgable" "0"
-				"ThinkInterval" "0.2"
-
-				"OnIntervalThink" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_phantom_assassin.lua"
-						"Function" "Blur"
-						"modifier_blur" "modifier_imba_blur_blur"
-					}
-				}
-
-				"Properties" {
-					"MODIFIER_PROPERTY_EVASION_CONSTANT" "%evasion"
-				}
-			}
-
-			"modifier_imba_blur_blur" {
-				"Passive" "0"
-				"IsHidden" "1"
-				"IsBuff" "1"
-				"IsPurgable" "0"
-				"StatusEffectName" "particles/hero/phantom_assassin/blur_status_fx.vpcf"
-				"StatusEffectPriority" "11"
-				"EffectName" "particles/units/heroes/hero_phantom_assassin/phantom_assassin_blur.vpcf"
-				"EffectAttachType" "follow_origin"
-
-				"OnCreated" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_phantom_assassin.lua"
-						"Function" "BlurStart"
-					}
-				}
-
-				"OnDestroy" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_phantom_assassin.lua"
-						"Function" "BlurEnd"
-					}
-				}
-
-				"Properties" {
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%blur_ms"
-				}
-
-				"States" {
-					"MODIFIER_STATE_NOT_ON_MINIMAP_FOR_ENEMIES" "MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_phantom_assassin_blur"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "phantom_assassin_blur"
+        "AbilityCastRange"                                                     "1600"
+        "precache"
+        {
+            "particle"                                                     "particles/hero/phantom_assassin/blur_status_fx.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "evasion"                                              "25 35 45 55"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "1600"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "blur_ms"                                              "12"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_blur"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "ThinkInterval"                                        "0.2"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_phantom_assassin.lua"
+                        "Function"                             "Blur"
+                        "modifier_blur"                        "modifier_imba_blur_blur"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_EVASION_CONSTANT"           "%evasion"
+                }
+            }
+            "modifier_imba_blur_blur"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "StatusEffectName"                                     "particles/hero/phantom_assassin/blur_status_fx.vpcf"
+                "StatusEffectPriority"                                 "11"
+                "EffectName"                                           "particles/units/heroes/hero_phantom_assassin/phantom_assassin_blur.vpcf"
+                "EffectAttachType"                                     "follow_origin"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_phantom_assassin.lua"
+                        "Function"                             "BlurStart"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_phantom_assassin.lua"
+                        "Function"                             "BlurEnd"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%blur_ms"
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_NOT_ON_MINIMAP_FOR_ENEMIES"    "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "tank"
+    }
 }

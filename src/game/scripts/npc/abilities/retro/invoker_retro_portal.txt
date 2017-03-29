@@ -1,63 +1,70 @@
-"DOTAAbilities" {
-	"invoker_retro_portal" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
-		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES | DOTA_UNIT_TARGET_FLAG_CHECK_DISABLE_HELP"
-		"AbilityTextureName" "custom/invoker_retro_portal"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
-		"AbilityCastAnimation" "ACT_DOTA_CAST_SUN_STRIKE"
-		"FightRecapLevel" "1"
-		"MaxLevel" "4"
-		"AbilityProcsMagicStick" "1"
-		"CastFilterRejectCaster" "1"
-		"AbilityCooldown" "30 28 26 24"
-		"AbilityManaCost" "100"
-		"AbilityCastRange" "800 1000 1300 1600"
-		"AbilityCastPoint" ".75"
-
-		"precache" {
-			"particle" "particles/units/heroes/hero_invoker/invoker_retro_portal_drain.vpcf"
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_meepo.vsndevts"
-		}
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"damage" "0"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"cast_range" "800 1000 1300 1600"
-			}
-
-			"03" {
-				"var_type" "FIELD_FLOAT"
-				"cast_point" ".75"
-			}
-
-			"04" {
-				"var_type" "FIELD_FLOAT"
-				"pip_current" "1"
-			}
-		}
-
-		"OnAbilityPhaseStart" {
-			"RunScript" {
-				"ScriptFile" "abilities/retro_dota/invoker_retro_portal.lua"
-				"Function" "invoker_retro_portal_on_ability_phase_start"
-				"CastPoint" "%cast_point"
-			}
-		}
-
-		"OnSpellStart" {
-			"RunScript" {
-				"ScriptFile" "abilities/retro_dota/invoker_retro_portal.lua"
-				"Function" "invoker_retro_portal_on_spell_start"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "invoker_retro_portal"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+        "AbilityUnitTargetFlags"                                               "DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES | DOTA_UNIT_TARGET_FLAG_CHECK_DISABLE_HELP"
+        "AbilityTextureName"                                                   "custom/invoker_retro_portal"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "AbilityCastAnimation"                                                 "ACT_DOTA_CAST_SUN_STRIKE"
+        "FightRecapLevel"                                                      "1"
+        "MaxLevel"                                                             "4"
+        "AbilityProcsMagicStick"                                               "1"
+        "CastFilterRejectCaster"                                               "1"
+        "AbilityCooldown"                                                      "30 28 26 24"
+        "AbilityManaCost"                                                      "100"
+        "AbilityCastRange"                                                     "800 1000 1300 1600"
+        "AbilityCastPoint"                                                     ".75"
+        "precache"
+        {
+            "particle"                                                     "particles/units/heroes/hero_invoker/invoker_retro_portal_drain.vpcf"
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_meepo.vsndevts"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage"                                               "0"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "cast_range"                                           "800 1000 1300 1600"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "cast_point"                                           ".75"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "pip_current"                                          "1"
+            }
+        }
+        "OnAbilityPhaseStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/retro_dota/invoker_retro_portal.lua"
+                "Function"                                             "invoker_retro_portal_on_ability_phase_start"
+                "CastPoint"                                            "%cast_point"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/retro_dota/invoker_retro_portal.lua"
+                "Function"                                             "invoker_retro_portal_on_spell_start"
+            }
+        }
+        "ReduxFlags"                                                           "support | mobility"
+        "ReduxPerks"                                                           "support | mobility"
+    }
 }

@@ -1,41 +1,48 @@
-"DOTAAbilities" {
-	"imba_warlock_permanent_immolation" {
-		"BaseClass" "ability_datadriven"
-		"AbilityType" "DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName" "warlock_golem_permanent_immolation"
-		"MaxLevel" "1"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"radius" "375"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"damage_pct" "3"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_imba_golem_permanent_immolation" {
-				"Passive" "1"
-				"IsHidden" "1"
-				"IsBuff" "1"
-				"IsPurgable" "0"
-				"ThinkInterval" "1.0"
-
-				"OnIntervalThink" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_warlock.lua"
-						"Function" "GolemPermanentImmolation"
-					}
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_warlock_permanent_immolation"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityTextureName"                                                   "warlock_golem_permanent_immolation"
+        "MaxLevel"                                                             "1"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "375"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage_pct"                                           "3"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_golem_permanent_immolation"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "ThinkInterval"                                        "1.0"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_warlock.lua"
+                        "Function"                             "GolemPermanentImmolation"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "aoe_attack"
+        "ReduxPerks"                                                           "fire | aura"
+    }
 }

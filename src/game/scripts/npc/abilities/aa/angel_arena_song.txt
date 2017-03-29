@@ -1,77 +1,86 @@
-"DOTAAbilities" {
-	"angel_arena_song" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName" "custom/angel_arena_song"
-		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-
-		"precache" {
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"
-			"particle" "particles/units/heroes/hero_siren/naga_siren_song_debuff.vpcf"
-		}
-		"MaxLevel" "3"
-		"AbilityCooldown" "100 90 80"
-		"AbilityManaCost" "100 150 200"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"radius" "650"
-			}
-
-			"02" {
-				"var_type" "FIELD_FLOAT"
-				"duration" "4.0 5.0 7.0"
-			}
-		}
-
-		"OnSpellStart" {
-			"FireSound" {
-				"EffectName" "Hero_Bane.FiendsGrip.Cast"
-				"Target" "CASTER"
-			}
-
-			"FireEffect" {
-				"EffectName" "particles/units/heroes/hero_siren/naga_siren_siren_song_cast.vpcf"
-				"EffectAttachType" "start_at_customorigin"
-
-				"ControlPointEntities" {
-					"CASTER" "follow_origin"
-				}
-			}
-
-			"ActOnTargets" {
-				"Target" {
-					"Center" "CASTER"
-					"Radius" "%radius"
-					"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-				}
-
-				"Action" {
-					"ApplyModifier" {
-						"ModifierName" "modifier_naga_siren_song"
-						"Target" "TARGET"
-						"Duration" "%duration"
-					}
-				}
-			}
-		}
-
-		"Modifiers" {
-			"modifier_naga_siren_song" {
-				"IsPurgable" "1"
-				"IsDebuff" "1"
-
-				"States" {
-					"MODIFIER_STATE_SILENCED" "MODIFIER_STATE_VALUE_ENABLED"
-				}
-
-				"Properties" {
-					"MODIFIER_PROPERTY_MISS_PERCENTAGE" "100"
-				}
-				"EffectName" "particles/units/heroes/hero_siren/naga_siren_song_debuff.vpcf"
-				"EffectAttachType" "follow_origin"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "angel_arena_song"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityTextureName"                                                   "custom/angel_arena_song"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_siren/naga_siren_song_debuff.vpcf"
+        }
+        "MaxLevel"                                                             "3"
+        "AbilityCooldown"                                                      "100 90 80"
+        "AbilityManaCost"                                                      "100 150 200"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "650"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                             "4.0 5.0 7.0"
+            }
+        }
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "EffectName"                                           "Hero_Bane.FiendsGrip.Cast"
+                "Target"                                               "CASTER"
+            }
+            "FireEffect"
+            {
+                "EffectName"                                           "particles/units/heroes/hero_siren/naga_siren_siren_song_cast.vpcf"
+                "EffectAttachType"                                     "start_at_customorigin"
+                "ControlPointEntities"
+                {
+                    "CASTER"                                       "follow_origin"
+                }
+            }
+            "ActOnTargets"
+            {
+                "Target"
+                {
+                    "Center"                                       "CASTER"
+                    "Radius"                                       "%radius"
+                    "Teams"                                        "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                }
+                "Action"
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"                         "modifier_naga_siren_song"
+                        "Target"                               "TARGET"
+                        "Duration"                             "%duration"
+                    }
+                }
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_naga_siren_song"
+            {
+                "IsPurgable"                                           "1"
+                "IsDebuff"                                             "1"
+                "States"
+                {
+                    "MODIFIER_STATE_SILENCED"                      "MODIFIER_STATE_VALUE_ENABLED"
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MISS_PERCENTAGE"            "100"
+                }
+                "EffectName"                                           "particles/units/heroes/hero_siren/naga_siren_song_debuff.vpcf"
+                "EffectAttachType"                                     "follow_origin"
+            }
+        }
+        "ReduxFlags"                                                           "silence | disarm_break"
+        "ReduxPerks"                                                           "silence"
+    }
 }
