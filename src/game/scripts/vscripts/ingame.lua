@@ -392,10 +392,13 @@ dc_table = {};
 -- Called when the game starts
 function Ingame:onStart()
     local this = self
+    
+    -- Thinker to check for items that can be consumable and converts them if any are found to the consumable version
     Timers:CreateTimer(function ()
         this:CheckConsumableItems()
-        return 0.1
-    end, 'check_consumable_items', 0.1)
+        return 1
+    end, 'check_consumable_items', 1)
+
     -- Force bots to take a defensive pose until the first tower has been destroyed. This is top stop bots from straight away pushing lanes when they hit level 6
     Timers:CreateTimer(function ()
                GameRules:GetGameModeEntity():SetBotsInLateGame(self.botsInLateGameMode)
@@ -574,6 +577,7 @@ end
 
 -- Called every 0.1 second to check and convert consumable items into actual consumable items
 function Ingame:CheckConsumableItems()
+
     local itemTable = LoadKeyValues('scripts/kv/consumable_items.kv')
     for i=0,PlayerResource:GetTeamPlayerCount() do
         if PlayerResource:IsValidTeamPlayerID(i) and not util:isPlayerBot(i) then
