@@ -428,7 +428,9 @@
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
         "ItemCost"                      "5250"
+        "AbilityGoldCost"               "5250"
         "ItemShopTags"                  "attack_speed;armor;hard_to_tag"
+        "ItemPurchasable"              "0"
         "ItemQuality"                   "epic"
         "ItemAliases"                   "ac;assault cuirass"
         "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
@@ -482,8 +484,9 @@
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
-        "ItemCost"                      "5675"
+        "ItemCost"                      "5775"
         "ItemShopTags"                  "agi;str;int;hard_to_tag;mana_pool;health_pool;unique"
+        "ItemPurchasable"              "0"
         "ItemQuality"                   "artifact"
         "ItemAliases"                   "eos;eye of skadi"
         
