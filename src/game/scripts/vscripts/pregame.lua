@@ -1826,7 +1826,7 @@ function Pregame:onOptionChanged(eventSourceIndex, args)
         }
         if voteRequiredOptions[optionName] and voteRequiredOptions[optionName].value == optionValue then
             self:setOption(optionName, voteRequiredOptions[optionName].value == 1 and 0 or 1)
-            util:CreateVoting(, playerID, 20, percentNeeded, function()
+            util:CreateVoting(voteRequiredOptions[optionName].votingName, playerID, 20, percentNeeded, function()
                 self:setOption(optionName, voteRequiredOptions[optionName].value)
             end)
         else
