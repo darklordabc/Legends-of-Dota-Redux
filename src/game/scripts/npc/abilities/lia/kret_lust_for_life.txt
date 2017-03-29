@@ -22,16 +22,5 @@
 				"health_regen_percent" "0.10 0.15 0.20 .25"
 			}
 		}
-
-		"Modifiers" {
-			"modifier_lust_for_life_health_regen" {
-				"IsHidden" "1"
-				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE" "%health_regen_percent"
-				}
-			}
-		}
 	}
 }

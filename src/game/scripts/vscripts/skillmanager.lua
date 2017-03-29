@@ -3,8 +3,7 @@
 ]]
 
 -- Load requires
-local OptionManager = require('optionmanager')
-local util = require('util')
+
 local Network = require('network')
 local constants = require('constants')
 local Timers = require('easytimers')

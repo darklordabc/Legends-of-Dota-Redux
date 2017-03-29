@@ -65,6 +65,11 @@ function modifier_archmage_magic_barrier:OnAbilityExecuted(params)
 			return 
 		end
 
+		-- Does not work for spells with no cooldown, like arcane orb
+		if eventAbility:GetCooldown(eventAbility:GetLevel()) == 0 then
+			return
+		end
+
 		self:GetAbility().barrierMana = self:GetAbility().barrierMana + eventAbility:GetManaCost(-1)*self.barrierManaPercent
 		self:GetAbility().state = { barrierMana = self:GetAbility().barrierMana }
 		--print("Archmage[Mana barrier]: Added "..eventAbility:GetManaCost(-1)*self.barrierManaPercent.." mana",self:GetAbility().barrierMana)

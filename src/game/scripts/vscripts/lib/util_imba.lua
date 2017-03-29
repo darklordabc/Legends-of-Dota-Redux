@@ -1,5 +1,3 @@
-local util = require('util')
-
 function DebugPrint(...)
 	--local spew = Convars:GetInt('barebones_spew') or -1
 	--if spew == -1 and BAREBONES_DEBUG_SPEW then
@@ -91,6 +89,172 @@ function RandomFromTable(table)
 	if n == 0 then return nil end
 
 	return array[RandomInt(1,n)]
+end
+
+function TableHasValue(val, checkTable)
+	for k,v in pairs(checkTable) do
+		if v == val then return true end
+	end
+	return false
+end
+
+function CheckTrollCombo(tower, newAbility, banList)
+	local build = {}
+	for i=0,23 do
+		local ab = tower:GetAbilityByIndex(i)
+		if ab then
+			table.insert(build, ab:GetName())
+			-- print("existing: ", ab:GetName())
+		end
+	end
+
+	table.insert(build, newAbility)
+	-- print("existing+: ", newAbility)
+
+    for i=1,util:getTableLength(build) do
+        local ab1 = build[i]
+        if ab1 ~= nil and banList[ab1] then
+            for j=(i+1),util:getTableLength(build) do
+                local ab2 = build[j]
+
+                if ab2 ~= nil and banList[ab1][ab2] then
+                    -- Ability should be banned
+
+                    return true, ab1, ab2
+                end
+            end
+        end
+    end
+
+    return false
+end
+
+function PullTowerAbility(towerTable, usedTable, trollCombos, abilityTable,difference, baseMax,tower)
+	local array = {}
+	local n = 0
+	local maxDiff = 5 -- Change this to narrow search parameters
+	
+	local searchParamMax = math.abs(difference)
+	local searchParamMin = math.abs(difference) - maxDiff
+	if searchParamMax <= 0 then 
+		searchParamMax = baseMax - maxDiff
+		searchParamMin = baseMax - maxDiff * 2
+	end
+	if searchParamMin < 0 then searchParamMin = 0 end
+	
+	local escape = 0
+	while n == 0 do
+		escape = escape + 1
+		searchParamMax = searchParamMax + maxDiff -- Broadens search params on fail
+		if searchParamMin > maxDiff then 
+			searchParamMin = searchParamMin - maxDiff
+		else searchParamMin = 0 end
+		for k,v in pairs(towerTable) do
+			if not usedTable[k] and not TableHasValue(k, abilityTable) and tonumber(v) <= searchParamMax and tonumber(v) > math.abs(searchParamMin) then
+				table.insert(array, k)
+				n = n + 1
+			end
+		end  
+		if escape >= util:getTableLength(towerTable) then usedTable = {} end -- clears used abilities
+		-- print(escape)
+	end
+	ShuffleArray(array)
+	for k,v in pairs(array) do
+		if not CheckTrollCombo(tower, v, trollCombos) then
+			return v
+		end
+	end
+end
+
+function GetTowerAbilityPowerValue(tower, kv)
+	tower.strongTowerAbilities = tower.strongTowerAbilities or {}
+	local powerVal = 0
+	for amount,abName in pairs(tower.strongTowerAbilities) do
+		powerVal = powerVal + kv[abName]
+	end
+	return powerVal
+end
+
+function GetEquivalentTowerAbilityPowerValue(tower, kv, limit)
+	tower.strongTowerAbilities = tower.strongTowerAbilities or {}
+	local powerVal = 0
+	for amount,abName in pairs(tower.strongTowerAbilities) do
+		if amount < limit then
+			powerVal = powerVal + kv[abName]
+		else 
+			break
+		end
+	end
+	return powerVal
+end
+
+MAX_RADIANT = Vector(-4820, -4478)
+MAX_DIRE = Vector(4594, 4038)
+MAP_OFFSET_MID = Vector(-569, -285)
+MAP_OFFSET_LANE_X = Vector(3000,-3000)
+
+RADIANT_TOP_MIN = Vector(-7564, -3557)
+RADIANT_TOP_MAX = Vector(-4939, 7533)
+
+DIRE_TOP_MIN = Vector(-6800, 4928)
+DIRE_TOP_MAX = Vector(3899, 6683)
+
+RADIANT_BOT_MIN = Vector(-4317, -7097)
+RADIANT_BOT_MAX = Vector(6809, -5342)
+
+DIRE_BOT_MIN = Vector(5739, -6711)
+DIRE_BOT_MAX = Vector(6852, 3088)
+
+function FindSisterTower(tower)
+	if tower.sisterTower then
+		return tower.sisterTower
+	else
+		if tower:GetLevel() < 4 then
+			if tower:GetUnitName() ~= "npc_dota_tower" then
+				local originalTeam = "goodguys"
+				local sisterTeam = "badguys"
+				if tower:GetTeamNumber() == DOTA_TEAM_BADGUYS then
+					originalTeam = "badguys"
+					sisterTeam = "goodguys"
+				end
+				local sisterTowerName = string.gsub(tower:GetName(), originalTeam, sisterTeam)
+				sisterTower = Entities:FindByName(nil, sisterTowerName)
+				tower.sisterTower = sisterTower
+				sisterTower.sisterTower = tower
+				print(sisterTower:GetAbsOrigin(), "normal")
+				return sisterTower
+			else
+				local sisterTowerLoc = tower:GetAbsOrigin()
+				local towerLoc = tower:GetAbsOrigin()
+				if towerLoc.x > MAX_RADIANT.x and towerLoc.y > MAX_RADIANT.y and towerLoc.x < MAX_DIRE.x and towerLoc.y < MAX_DIRE.y then --find if mid tower
+					sisterTowerLoc = -towerLoc + MAP_OFFSET
+				else
+					-- Vector(2, -1) -> Vector(1, -2)
+					if (towerLoc.x > DIRE_TOP_MIN.x and towerLoc.y > DIRE_TOP_MIN.y and towerLoc.x < DIRE_TOP_MAX.x and towerLoc.y < DIRE_TOP_MAX.y ) or (towerLoc.x > RADIANT_TOP_MIN.x and towerLoc.y > RADIANT_TOP_MIN.y and towerLoc.x < RADIANT_TOP_MAX.x and towerLoc.y < RADIANT_TOP_MAX.y ) then -- TOP TOWERS
+						if math.abs(towerLoc.x) < math.abs(towerLoc.y) then -- radiant
+							towerLoc.x = towerLoc.x + 3000
+						else -- dire
+							towerLoc.y = towerLoc.y + 3000
+						end
+					elseif (towerLoc.x > DIRE_BOT_MIN.x and towerLoc.y > DIRE_BOT_MIN.y and towerLoc.x < DIRE_BOT_MAX.x and towerLoc.y < DIRE_BOT_MAX.y ) or (towerLoc.x > RADIANT_BOT_MIN.x and towerLoc.y > RADIANT_BOT_MIN.y and towerLoc.x < RADIANT_BOT_MAX.x and towerLoc.y < RADIANT_BOT_MAX.y ) then -- BOT TOWERS
+						if math.abs(towerLoc.x) < math.abs(towerLoc.y) then -- radiant
+							towerLoc.x = towerLoc.x - 3000
+						else -- dire
+							towerLoc.y = towerLoc.y - 3000
+						end
+					end
+					sisterTowerLoc.y = -towerLoc.x
+					sisterTowerLoc.y = -towerLoc.y
+				end
+				sisterTower = Entities:FindByNameNearest(tower:GetUnitName(), sisterTowerLoc, 800)
+				tower.sisterTower = sisterTower
+				sisterTower.sisterTower = tower
+				print(sisterTower:GetAbsOrigin(), "extra")
+				return sisterTower
+			end
+		end
+	end
+	return nil
 end
 
 -------------------------------------------------------------------------------------------------
@@ -978,18 +1142,20 @@ function UpgradeTower( tower )
 			util:MergeTables(oldAbList, oldAbList3)
 
             local towerSkills = {}
-                for skill_name in pairs(oldAbList) do
-                    table.insert(towerSkills, skill_name)
-                end
+            for skill_name in pairs(oldAbList) do
+                table.insert(towerSkills, skill_name)
+            end
             local new_ability = RandomFromTable(towerSkills)
             while not IsUniqueAbility(abilities, new_ability) do
             	new_ability = RandomFromTable(towerSkills)
             end
 
             -- Add the new ability
-            tower:AddAbility(new_ability)
-            new_ability = tower:FindAbilityByName(new_ability)
-            new_ability:SetLevel(1)
+            if not tower:HasAbility(new_ability) then
+	            tower:AddAbility(new_ability)
+	            new_ability = tower:FindAbilityByName(new_ability)
+	            new_ability:SetLevel(1)
+            end
 
             return nil
         end

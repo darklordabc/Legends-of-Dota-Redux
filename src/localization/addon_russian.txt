@@ -923,7 +923,7 @@
     "heroStats_projectileSpeed"                     "СКОРОСТь СНАРЯДА"
 
     "heroStats_strength"                            "СИЛА"
-    "heroStats_agility"                             "ЛОВКОСТь"
+    "heroStats_agility"                             "ЛОВКОСТЬ"
     "heroStats_intelligence"                        "ИНТЕЛЛЕКТ"
 
     "heroStats_attributes_starting"                 "СУММАРНО СТАРТОВЫХ АТРИБУТОВ"

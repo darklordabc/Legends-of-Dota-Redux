@@ -7,8 +7,8 @@
 		"ScriptFile"					"abilities/overflow/eldri_anti_magic/ability.lua"
 		"AbilityTextureName"			"custom/eldri_anti_magic"
 		"AbilityCastPoint"              "0.1"
-		"AbilityCooldown"               "30.0"
-		"AbilityManaCost"               "100"
+		"AbilityCooldown"               "60.0"
+		"AbilityManaCost"               "150"
 		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		 "AbilityCastRange"              "400"
 		"AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_CUSTOM"
@@ -27,12 +27,12 @@
 			"01"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"15.0"
+				"duration"				"30.0"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"			"800"
+				"radius"			"1600"
 			}
 			"03"
 			{

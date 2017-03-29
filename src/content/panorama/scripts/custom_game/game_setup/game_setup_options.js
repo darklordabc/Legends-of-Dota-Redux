@@ -118,21 +118,21 @@ var basicOptions = {
                                 'lodOptionGameSpeedRespawnTimePercentage': 5
                             }
                         }
-                    },
-                    {
-                        name: 'lodOptionCommonMaxUlts',
-                        default: {
-                            'lodMutatorMaxUlts1': 2
-                        },
-                        states: {
-                            'lodMutatorMaxUlts2': 3,
-                            'lodMutatorMaxUlts3': 4,
-                            'lodMutatorMaxUlts4': 6
-                        }
-                    },                  
+                    },                               
                     {
                         name: 'lodOptionGameSpeedStrongTowers',
                         about: 'lodMutatorStrongTowers'
+                    },
+                    {
+                        about: 'lodMutatorDoubleTowers',
+                        values: {
+                            enabled: {
+                                'lodOptionGameSpeedTowersPerLane': 5
+                            },
+                            disabled: {
+                                'lodOptionGameSpeedTowersPerLane': 3
+                            }
+                        }
                     },
                     {
                         name: 'lodOptionCreepPower',
@@ -145,6 +145,10 @@ var basicOptions = {
                             'lodMutatorCreepPowerExtreme': 30
                         }
                     },
+                    {
+                        name: 'lodOptionLaneMultiply',
+                        about: 'lodMutatorDoubleCreeps'
+                    }, 
                     {
                         name: 'lodOptionNeutralCreepPower',
                         default: {
@@ -166,22 +170,18 @@ var basicOptions = {
                             'lodMutatorCreepTriple': 3,
                             'lodMutatorCreepQuadruple': 4
                         }
-                    },
+                    },                     
                     {
-                        name: 'lodOptionLaneMultiply',
-                        about: 'lodMutatorDoubleCreeps'
-                    }, 
-                    {
-                        about: 'lodMutatorDoubleTowers',
-                        values: {
-                            enabled: {
-                                'lodOptionGameSpeedTowersPerLane': 5
-                            },
-                            disabled: {
-                                'lodOptionGameSpeedTowersPerLane': 3
-                            }
+                        name: 'lodOptionCommonMaxUlts',
+                        default: {
+                            'lodMutatorMaxUlts1': 2
+                        },
+                        states: {
+                            'lodMutatorMaxUlts2': 3,
+                            'lodMutatorMaxUlts3': 4,
+                            'lodMutatorMaxUlts4': 6
                         }
-                    },                    
+                    },                                  
                     {
                         name: 'lodOptionAdvancedCustomSkills',
                         about: 'lodMutatorCustomSkills'
@@ -231,7 +231,7 @@ var basicOptions = {
                         },
                         states: {
                             'lodMutatorGoldTickRate2': 2,
-                            'lodMutatorGoldTickRate3': 3
+                         //   'lodMutatorGoldTickRate3': 3
                         }
                     },
                     {
@@ -353,11 +353,11 @@ var basicOptions = {
                             }
                         }
                     },
-					{
-                        name: 'lodOptionDuels',
-                        extraInfo: 'lodOptionAboutDuels',
-                        about: 'lodMutatorDuel'
-                    },
+					//{
+                    //    name: 'lodOptionDuels',
+                    //    extraInfo: 'lodOptionAboutDuels',
+                    //    about: 'lodMutatorDuel'
+                    //},
                     {
                         name: 'lodOptionRefreshCooldownsOnDeath',
                         about: 'lodMutatorRefreshCooldownsOnDeath'
@@ -427,6 +427,11 @@ var basicOptions = {
                         name: 'lodOptionBlackForest',
                         extraInfo: 'lodOptionAboutBlackForest',
                         about: 'lodMutatorBlackForest'
+                    },
+                    {
+                        name: 'lodOptionAntiRat',
+                        extraInfo: 'lodOptionAboutAntiRat',
+                        about: 'lodMutatorAntiRat'
                     },
                 ]
             }
@@ -524,6 +529,16 @@ var advancedOptions = {
                 ]
             },
             {
+                name: 'lodOptionBalanceModePoints',
+                des: 'lodOptionDesBalanceModePoints',
+                about: 'lodOptionAboutBalanceModePoints',
+                sort: 'range',
+                min: 60,
+                max: 400,
+                step: 10,
+                default: 120
+            },
+            {
                 name: 'lodOptionDuels',
                 des: 'lodOptionDesDuels',
                 about: 'lodOptionAboutDuels',
@@ -564,6 +579,257 @@ var advancedOptions = {
                 max: 180,
                 step: 1,
                 default: 0,
+            },
+        ]
+    },
+    
+    // Advanced stuff, for pros
+    advanced_selection: {
+        custom: true,
+        fields: [
+            {
+                name: 'lodOptionAdvancedHeroAbilities',
+                des: 'lodOptionDesAdvancedHeroAbilities',
+                about: 'lodOptionAboutAdvancedHeroAbilities',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionAdvancedNeutralAbilities',
+                des: 'lodOptionDesAdvancedNeutralAbilities',
+                about: 'lodOptionAboutAdvancedNeutralAbilities',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionAdvancedCustomSkills',
+                des: 'lodOptionDesAdvancedCustomSkills',
+                about: 'lodOptionAboutAdvancedCustomSkills',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionAdvancedImbaAbilities',
+                des: 'lodOptionDesAdvancedIMBASkills',
+                about: 'lodOptionAboutAdvancedIMBASkills',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionAdvancedHidePicks',
+                des: 'lodOptionDesAdvancedHidePicks',
+                about: 'lodOptionAboutAdvancedHidePicks',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionAdvancedUniqueSkills',
+                des: 'lodOptionDesAdvancedUniqueSkills',
+                about: 'lodOptionAboutAdvancedUniqueSkills',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodUniqueSkillsOff',
+                        value: 0
+                    },
+                    {
+                        text: 'lodUniqueSkillsTeam',
+                        value: 1
+                    },
+                    {
+                        text: 'lodUniqueSkillsGlobal',
+                        value: 2
+                    },
+                ]
+            },
+            {
+                name: 'lodOptionAdvancedUniqueHeroes',
+                des: 'lodOptionDesAdvancedUniqueHeroes',
+                about: 'lodOptionAboutAdvancedUniqueHeroes',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionAdvancedSelectPrimaryAttr',
+                des: 'lodOptionDesAdvancedSelectPrimaryAttr',
+                about: 'lodOptionAboutAdvancedSelectPrimaryAttr',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionGameSpeedFreeCourier',
+                des: 'lodOptionDesGameSpeedFreeCourier',
+                about: 'lodOptionAboutGameSpeedFreeCourier',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionExtraAbility',
+                des: 'lodOptionDesExtraAbility',
+                about: 'lodOptionAboutExtraAbility',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_gemini_unstable_rift',
+                        value: 1
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_imba_dazzle_shallow_grave_passive',
+                        value: 2
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_imba_tower_forest',
+                        value: 3
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_ebf_rubick_arcane_echo',
+                        value: 4
+                    },
+                    {
+                        text: 'lodMutatorFleashHeaps',
+                        value: 5
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_ursa_fury_swipes',
+                        value: 6
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_spirit_breaker_greater_bash',
+                        value: 7
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_death_prophet_witchcraft',
+                        value: 8
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_sniper_take_aim',
+                        value: 9
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_aether_range_lod',
+                        value: 10
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_alchemist_goblins_greed',
+                        value: 11
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_angel_arena_nether_ritual',
+                        value: 12
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_slark_essence_shift',
+                        value: 13
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_ogre_magi_multicast',
+                        value: 14
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_phantom_assassin_coup_de_grace',
+                        value: 15
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_riki_permanent_invisibility',
+                        value: 16
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_imba_tower_multihit',
+                        value: 17
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_skeleton_king_reincarnation',
+                        value: 18
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_ebf_clinkz_trickshot_passive',
+                        value: 19
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_abaddon_borrowed_time',
+                        value: 20
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_summoner_tesla_coil',
+                        value: 21
+                    }
+                ]
             },
         ]
     },
@@ -908,6 +1174,22 @@ var advancedOptions = {
                 ]
             },
             {
+                name: 'lodOptionAntiRat',
+                des: 'lodOptionDesAntiRat',
+                about: 'lodOptionAboutAntiRat',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
                 name: 'lodOptionCreepPower',
                 des: 'lodOptionDesCreepPower',
                 about: 'lodOptionAboutCreepPower',
@@ -992,257 +1274,6 @@ var advancedOptions = {
                     {
                         text: 'lodOptionYes',
                         value: 1
-                    }
-                ]
-            },
-        ]
-    },
-
-    // Advanced stuff, for pros
-    advanced_selection: {
-        custom: true,
-        fields: [
-            {
-                name: 'lodOptionAdvancedHeroAbilities',
-                des: 'lodOptionDesAdvancedHeroAbilities',
-                about: 'lodOptionAboutAdvancedHeroAbilities',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
-            {
-                name: 'lodOptionAdvancedNeutralAbilities',
-                des: 'lodOptionDesAdvancedNeutralAbilities',
-                about: 'lodOptionAboutAdvancedNeutralAbilities',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
-            {
-                name: 'lodOptionAdvancedCustomSkills',
-                des: 'lodOptionDesAdvancedCustomSkills',
-                about: 'lodOptionAboutAdvancedCustomSkills',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
-            {
-                name: 'lodOptionAdvancedImbaAbilities',
-                des: 'lodOptionDesAdvancedIMBASkills',
-                about: 'lodOptionAboutAdvancedIMBASkills',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
-            {
-                name: 'lodOptionAdvancedHidePicks',
-                des: 'lodOptionDesAdvancedHidePicks',
-                about: 'lodOptionAboutAdvancedHidePicks',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
-            {
-                name: 'lodOptionAdvancedUniqueSkills',
-                des: 'lodOptionDesAdvancedUniqueSkills',
-                about: 'lodOptionAboutAdvancedUniqueSkills',
-                sort: 'dropdown',
-                values: [
-                    {
-                        text: 'lodUniqueSkillsOff',
-                        value: 0
-                    },
-                    {
-                        text: 'lodUniqueSkillsTeam',
-                        value: 1
-                    },
-                    {
-                        text: 'lodUniqueSkillsGlobal',
-                        value: 2
-                    },
-                ]
-            },
-            {
-                name: 'lodOptionAdvancedUniqueHeroes',
-                des: 'lodOptionDesAdvancedUniqueHeroes',
-                about: 'lodOptionAboutAdvancedUniqueHeroes',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
-            {
-                name: 'lodOptionAdvancedSelectPrimaryAttr',
-                des: 'lodOptionDesAdvancedSelectPrimaryAttr',
-                about: 'lodOptionAboutAdvancedSelectPrimaryAttr',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
-	        {
-                name: 'lodOptionGameSpeedFreeCourier',
-                des: 'lodOptionDesGameSpeedFreeCourier',
-                about: 'lodOptionAboutGameSpeedFreeCourier',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
-            {
-                name: 'lodOptionExtraAbility',
-                des: 'lodOptionDesExtraAbility',
-                about: 'lodOptionAboutExtraAbility',
-                sort: 'dropdown',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_gemini_unstable_rift',
-                        value: 1
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_imba_dazzle_shallow_grave_passive',
-                        value: 2
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_imba_tower_forest',
-                        value: 3
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_ebf_rubick_arcane_echo',
-                        value: 4
-                    },
-                    {
-                        text: 'lodMutatorFleashHeaps',
-                        value: 5
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_ursa_fury_swipes',
-                        value: 6
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_spirit_breaker_greater_bash',
-                        value: 7
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_death_prophet_witchcraft',
-                        value: 8
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_sniper_take_aim',
-                        value: 9
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_aether_range_lod',
-                        value: 10
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_alchemist_goblins_greed',
-                        value: 11
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_angel_arena_nether_ritual',
-                        value: 12
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_slark_essence_shift',
-                        value: 13
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_ogre_magi_multicast',
-                        value: 14
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_phantom_assassin_coup_de_grace',
-                        value: 15
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_riki_permanent_invisibility',
-                        value: 16
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_imba_tower_multihit',
-                        value: 17
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_skeleton_king_reincarnation',
-                        value: 18
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_ebf_clinkz_trickshot_passive',
-                        value: 19
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_abaddon_borrowed_time',
-                        value: 20
-                    },
-                    {
-                        text: 'DOTA_Tooltip_ability_summoner_tesla_coil',
-                        value: 21
                     }
                 ]
             },

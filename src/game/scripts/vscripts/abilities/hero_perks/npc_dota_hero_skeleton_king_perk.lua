@@ -1,5 +1,4 @@
 local Timers = require('easytimers')
-local Options = require('optionmanager')
 --------------------------------------------------------------------------------------------------------
 --
 --      Hero: Wraith King

@@ -35,6 +35,11 @@
             "life_stealer_feast"            "1" // Cray Cray HP steal!
         }
 
+        // Multishot abuse
+        "pudge_rot" {
+            "berserker"  "1"
+        }
+
         // Thundergods's Wrath and Arcane echo is a bit silly
         "ogre_magi_multicast_lod" {
             "ebf_rubick_arcane_echo"  "1"
@@ -96,6 +101,12 @@
 
         // Rearm Abuse
         "tinker_rearm" {
+            "ancient_last_resort"   "1"
+            "zuus_cloud"    "1"
+            "global_stun"     "1"
+            "silencer_global_break" "1"
+            "silencer_global_disarm"    "1"
+            "lone_druid_savage_roar_op"   "1"
             "abaddon_borrowed_time"             "1"
             "abaddon_borrowed_time_redux"   "1"
             "ancient_apparition_ice_blast"      "1"
@@ -125,6 +136,7 @@
 
         // Arc warden's ult is basically like rearm
         "arc_warden_tempest_double" {
+            "arc_warden_tempest_double_redux"         "1"
             "abaddon_borrowed_time_redux"             "1"
             "abaddon_borrowed_time"             "1"
             "ancient_apparition_ice_blast"      "1"
@@ -276,6 +288,19 @@
             "storm_spirit_ball_lightning"       "1"
         }
 
+        "nyx_assassin_burrow_redux" {
+            // Crazy damage reduction
+            "bristleback_bristleback"           "1"
+            "spectre_dispersion"                "1"
+
+            // Movement while burrowed
+            "furion_teleportation"              "1"
+            "queenofpain_blink"                 "1"
+            "riki_blink_strike"                 "1"
+            "antimage_blink"                    "1"
+            "storm_spirit_ball_lightning"       "1"
+        }
+
         "spell_lab_symbiotic" {
             "life_stealer_assimilate"           "1" //Cant touch this.
             "legion_commander_duel_imba"   "1" //quite unfair
@@ -285,6 +310,65 @@
             "techies_suicide"             "1" // Self-harming ability
             "huskar_burning_spear"        "1" // Self-harming ability
             "meepo_divided_we_stand"            "1" // HUGE fps drop, need to fix
+            "huskar_life_break"            "1" // Self-harming ability
+        }
+
+        // They dont stack properly
+        "alchemist_goblins_greed" {
+            "alchemist_goblins_greed_op"  "1"
+        }
+        "shredder_reactive_armor" {
+            "shredder_reactive_armor_op"  "1"
+        }
+        "shredder_reactive_armor" {
+            "shredder_reactive_armor_op"  "1"
+        }
+        "dragon_knight_dragon_blood" {
+            "dragon_knight_dragon_blood_OP"  "1"
+        }
+        "nevermore_necromastery" {
+            "nevermore_necromastery_op"  "1"
+        }
+        "ebf_rubick_arcane_echo" {
+            "ebf_rubick_arcane_echo_OP"  "1"
+        }
+        "octarine_vampirism_lod" {
+            "octarine_vampirism_lod_OP"  "1"
+        }
+        "lord_of_lightning_holy_wrath" {
+            "lord_of_lightning_holy_wrath_OP"  "1"
+        }
+        "angel_arena_razor_power" {
+            "angel_arena_razor_power_OP"  "1"
+        }
+        "frost_lord_freezing" {
+            "frost_lord_freezing_OP"  "1"
+        }
+        "aether_range_lod" {
+            "aether_range_lod_OP"  "1"
+        }
+        "spell_reflect" {
+            "spell_reflect_op"  "1"
+        }
+        "jingtong" {
+            "jingtong_op"  "1"
+        }
+        "zhanhun" {
+            "zhanhun_op"  "1"
+        }
+
+        //"imba_tower_machinegun" {
+        //    "imba_tower_fervor"             "1"
+        //    "imba_tower_multishot"              "1"
+        //    "imba_tower_split"              "1"
+        //    "imba_tower_multihit"             "1"
+        //}
+        // Only one super speed ability allowed
+    }
+
+    "BannedTowerCombinations" {
+        "imba_tower_multihit" {
+            "imba_tower_machinegun"              "1"
         }
     }
 
@@ -391,6 +475,7 @@
             "life_stealer_assimilate"           "1"
             "life_stealer_infest"               "1" // You get consume, which can be spammmmed
             "nyx_assassin_burrow"               "1" // Why you do this, valve?
+            "nyx_assassin_burrow_redux"         "1"
             "spectre_reality"                   "1" // Can be used over and over
             "skeleton_king_vampiric_aura"       "1" // New update allows it to be toggled
             "life_stealer_assimilate"           "1"
@@ -456,6 +541,16 @@
         }
     }
 
+    "BannedTowerGroups" {
+        "1" {
+            "imba_tower_fervor"             "1"
+            "imba_tower_berserk"   "1"
+            "imba_tower_machinegun"              "1"
+            "imba_tower_essence_drain"              "1"
+            "imba_tower_multihit"             "1"
+        }
+    }
+
     // Stop multicast on these spells
     "noMulticast" {
         "enraged_wildkin_tornado"           "1"
@@ -493,7 +588,55 @@
         "tusk_snowball"			    "1"
         "spell_lab_symbiotic"			    "1"
         "arcane_mastery"                    "1"
+        "angel_arena_tome_lvlup"  "1"
+        "angel_arena_tome_gods"  "1"
+        "angel_arena_tome_int"  "1"
+        "angel_arena_tome_str"  "1"
+        "angel_arena_tome_agi"  "1"
+        "angel_arena_tome_med"  "1"
+        "angel_arena_tome_lvlup_op"  "1"
+        "angel_arena_tome_gods_op"  "1"
+        "angel_arena_tome_int_op"  "1"
+        "angel_arena_tome_str_op"  "1"
+        "angel_arena_tome_agi_op"  "1"
+        "angel_arena_tome_med_op"  "1"
+    }
 
+    "noSpellEcho" {
+        "witch_doctor_paralyzing_cask"            "1"
+        "angel_arena_tome_lvlup"  "1"
+        "angel_arena_tome_gods"  "1"
+        "angel_arena_tome_int"  "1"
+        "angel_arena_tome_str"  "1"
+        "angel_arena_tome_agi"  "1"
+        "angel_arena_tome_med"  "1"
+        "angel_arena_tome_lvlup_op"  "1"
+        "angel_arena_tome_gods_op"  "1"
+        "angel_arena_tome_int_op"  "1"
+        "angel_arena_tome_str_op"  "1"
+        "angel_arena_tome_agi_op"  "1"
+        "angel_arena_tome_med_op"  "1"
+        "shredder_chakram"  "1"
+        "shredder_chakram_return"   "1"
+        "shredder_chakram_2"    "1"
+        "shredder_return_chakram_2" "1"
+        "arc_warden_tempest_double" "1"
+        "alchemist_unstable_concoction" "1"
+        "alchemist_unstable_concoction_throw"   "1"
+        "vengefulspirit_nether_swap"    "1"
+        "juggernaut_omni_slash" "1"
+        "rubick_telekinesis_land"   "1"
+        "antimage_blink"    "1"
+        "queenofpain_blink" "1"
+        "phoenix_icarus_dive"   "1"
+        "phoenix_icarus_dive_stop"  "1"
+        "phoenix_fire_spirits"  "1"
+        "phoenix_sun_ray_stop"  "1"
+        "phoenix_sun_ray"   "1"
+        "phoenix_sun_ray_toggle_move"   "1"
+        "phoenix_supernova" "1"
+        "phoenix_launch_fire_spirit"    "1"
+        "spell_lab_symbiotic"  "1"               
     }
 
     // Abiltiies that won't have their cooldowns lowered by our patch
@@ -573,6 +716,9 @@
 
     // Prevents the following skills from being randomed
     "doNotRandom" {
+        "night_stalker_innate_redux"    "1"
+        "keeper_of_the_light_innate_redux"  "1"
+        "zuus_cloud"                     "1"
         "monkey_king_jingu_mastery_lod_ranged"   "1"
         "ebf_underlord_expulsion"   "1"
         "undying_decay_agi"            "1"
@@ -583,7 +729,6 @@
         "spell_lab_symbiotic"       "1"
         "paladin_blizzard"      "1"
         "spawnlord_master_freeze_creep" "1"
-        "chaos_knight_chaos_strike_gyro"    "1"
         "brewmaster_storm_wind_walk"            "1"
         "brewmaster_earth_pulverize"    "1"
         "paladin_blizzard"  "1"
@@ -957,6 +1102,27 @@
     // Single Player Abilities that will be banned by default in multiplayer LoD
     // This list is up for debate
     "SuperOP" {
+        "imba_tower_death_pulse"      "1"
+        "imba_tower_plasma_field"     "1"
+        "omniknight_degen_aura_tower"   "1"
+        "omniknight_degen_aura_damage_tower"    "1"
+        "batrider_flamebreak_op"      "1"
+        "lone_druid_savage_roar_op"   "1"
+        "dragon_knight_dragon_blood_OP"     "1"
+        "alchemist_goblins_greed_op"  "1"
+        "shredder_reactive_armor_op"  "1"
+        "nevermore_necromastery_op"   "1"
+        "abyssal_underlord_dark_rift_op"   "1"
+        "invoker_chaos_meteor_op"   "1"
+        "ogre_magi_bloodlust_op"              "1"
+        "ogre_magi_bloodlust_reverse"           "1"
+        "dark_seer_vacuum_op"   "1"
+        "angel_arena_tome_lvlup_op"  "1"
+        "angel_arena_tome_gods_op"  "1"
+        "angel_arena_tome_int_op"  "1"
+        "angel_arena_tome_str_op"  "1"
+        "angel_arena_tome_agi_op"  "1"
+        "angel_arena_tome_med_op"  "1"
         "zhanhun_op"    "1"
         "jingtong_op"    "1"
         "spell_reflect_op"    "1"
@@ -1016,5 +1182,6 @@
 		"serpent_queen_ball_lightning_op"	"1"
         "zuus_lightning_bolt_global"   "1"
         "meepo_divided_we_stand"      "1"
+        "tusk_walrus_kick_op"   "1"
     }
 }

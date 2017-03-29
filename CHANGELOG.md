@@ -2,7 +2,104 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 6.5 - Development Version
+## 7.2 - Development Version
+- Removed Strategy time
+- Fixed Tempest Double
+- Added 5 tower abilities: Degen Aura, Degen Aura Attack Damage, Plasma Field, Death pules tower, Invsibility aura
+- IMBA Spell Dampener no longer gives spell immunity, nor 100% resistance to magic damage
+- You can now vote to enable anti rat protection '-antirat' or '-ar'
+- Trickshot passive now gets disabled when hero is broken
+- Bots no longer get taunted by towers with antirat protection
+- Anti-Kamikaze penalty now calculates after team-imbalance calculations, meaning, you will keep high respawn times if peanlized by anti-kamikaze
+- Beast master perk now gives 12 bonus strength is the neutral ability only has 1 level
+
+## 7.1 - Steam Version
+- Added Dagon and Spawn golem cheat
+- Readded Juxtapose
+- 4 previously disabled bots are re-enabled
+- Side gunner is now available in normal games
+- Re-Enabled Wukong Command, seems non-buggy in testing, please report if it causes lag
+- Single player abilities can now be used in VS multiplayer, not so much an issue now as most games are played on standard. Still need better solution.
+- Added 6 OP ability variants
+- Increased Manacost and Cooldown of Eldritch: Anti Magic
+- Arcane Echoed Spells now cost half-mana.
+- Bristleback bot doesnt get dispersion anymore
+- Increased Manacost and Cooldown of Fireball
+- IMBA abilities can be enabled with normal abilities if game is coop vs bots
+- Strong towers no longer gives 4 towers per lane
+- Added "all_allowed" map
+- Reduced Motherlods bounty increase
+- Added a few more spells to rearm troll combo.
+- In Standard map, you can only vote for "extra" points, no longer double
+- Increased price of starfall and shallow grave
+- Side Gunner now procs on attack effects
+
+
+## 7.0 
+- You can now use '-bot mode' chat command to see what mode bots are in (early game or late game). '-bot switch' can be used to alternative between modes, but can only be used when cheats are enable or in single player. 
+- Added cooldown to chaos meteor OP
+- Added '-god' and '-regen' cheat commands
+- Revamped the ingame cheat menu, it is now a "command menu" which will house all added user commands. It is now accessible in all games not just ones with cheats mode on.
+- Optimized the ingame hero builder menu, should no longer cause instability or lags. 
+- Added a ingame filter to see hero perk related abiliites. 
+- Added cheats '-wtf' and '-scepter' that can be used in games without sv_cheats
+- Made attempt at fixing bots having boots in their backpack.
+- Top hero bar now updates with correct team compositions. 
+- Tower abiltiies have been reworked, so should try to keep comparable power to their equivalent tower on the enemy side. Power counter added to towers, they should also try to avoid duplicate abiliteis. 
+- Added Anti-Rat mutator
+- Added New Map 'Standard'
+
+
+## 6.9 
+- You can enable cheats in a multiplayer games now if everbody types '-enablecheats'
+- Reduced the amount of health neutral power modifier gives per level (100 to 80)
+- Added extra cheats that can be used in non sv_cheats server: '-giveability x' '-removeability x'
+- Added chat commands that can be used to disable some game mechanics: Disable the increasing respawn time mechanic (-enablerespawn or -er), disable the anti-kamikaze mechanic (-enablekamikaze or -ek), you can also use -ec to enable cheats.
+- Fixed global tusk kick and increased its kick distance
+- Temporarily blocked single player abilities in multiplayer VS games until better solution can be found. They can still be used if all human players are on the same team (coop).
+- Improved Cluster Rockets OP
+- Added Single Player OP versions of the following abilities: Dark Rift, Vacumn, Chaos Meteor and versions of OP BloodLust 
+- Increased Portal cast range
+
+## 6.8 
+- Tomes now get lower cooldown on levelup
+- Magic Barrier decay reduced to 3 per second instead of 5, but no longer works with abilities with 0 cooldown (e.g. Arcane Orb)
+- You can now use the cheats '-gold', '-respawn' and '-refresh' in any single player game, with or without sv_cheats being activated.
+- Burrow Redux is now troll combo with the same stuff Burrow regular is, like Dispersion. 
+- Temporarily disabled Juxtapose and Forest ability because of allegations of lag creating. 
+- Added levels to GIGA GRAVITON
+- The following cheats can be used in all single player games, you no longer need sv_cheats 1 enabled: '-gold x' '-lvlup x' '-lvlmax'
+'-dagger' '-teleport' '-startgame' '-respawn' '-refresh' '-item x'
+- Berserk and Rot is now a troll combo.
+- Added Anti-Kamikaze Mechanic: If a hero dies more than 3 times within 60 seconds, they will incur a 20 second extra respawn time penalty, if they again die 3 times within 60 seconds, that penalty will increase by 30 seconds each times.
+- Re-Enabled Chaos Knight perk
+
+## 6.7 
+- Disease Tower saps 5 less attributes
+- Anomaly now has fixed 6 second duration but lower manacost
+- Cask does not proc spell echo or anomaly cause its bugged
+- Spell Echo now starts at delay of 2.0 and levels up to 0.5
+- Default Respawn Rate is now 70% instead of 100%
+- Dazzle's perk now gives shallow grave global cast range, but no cooldown reduction.
+- Possibly Fixed Sniper getting Assassinate and Shaprnel when he didnt pick them.
+- Fixed tooltip on toggle rifle OP
+- If Free Scepter mutator is on, Aghmanin scepter giving abilities are banned (no need for them)
+- Fixed Wind Soul working with toggles
+- Tree Eater Duration increased from 15 to 30 seconds
+- Discontinued 'custom_bot' and 'custom' maps
+- Enabled Ingame hero builder in all games, until talents/abilities problem can be fixed
+
+## 6.6 
+- Removed the backpack blocking items from the bots, they dont seem to need them anymore. 
+- Added OP Walrus Kick
+- Potential fix for gold loss at start of game
+- Timbersaw's perk no longer gives EXP but now gives 1% of Timbersaws max health/mana. 
+- Added 6 Tomes from Angel Arena Reborn (as abilities not items). Also an additional 6 OP Variants. 
+- Roshanify becomes a passive while you hold the aegis of immortal
+- You can now enable IMBA abilities and other abilities IF its a single player game. Note for players: IMBA has an upcoming major patch, no IMBA abilities will be added until after that megapatch, which may be a few weeks away.
+- Added Arcane Art from Angel Arena: Black Star
+
+## 6.5 
 ### Bug Fixing/New Features
 - Updated Map to 7.02
 - Changed spawn method to avoid crashes
@@ -24,7 +121,7 @@ All notable changes to this project will be documented in this file.
 ### Balance
 - Arc Warden's perk can now be used on Tome of Knowledge
 
-## 6.4 - Development Version
+## 6.4 
 ### Bug Fixing/New Features
 - Roshanify now has max move speed of 270 and lower bash chance.
 - Fixed Gale Force not causing damage
@@ -38,7 +135,7 @@ All notable changes to this project will be documented in this file.
 - Hopefully busted the ghost wisps from appearing
 - Divided We Stand is troll combo with Arcane Symbiosis until we can fix the FPS drop problem
 
-## 6.3 - Steam Version
+## 6.3 
 ### Bug Fixing/New Features
 - Battle Cry can now be skilled without True Form
 - Fixed and Re-Enabled Blizzard

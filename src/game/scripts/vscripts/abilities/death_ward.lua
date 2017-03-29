@@ -10,6 +10,7 @@ function CreateWard(keys)
 	local ability = keys.ability
 	local position = ability:GetCursorPosition()
 	local ability_level = ability:GetLevel() - 1
+	local duration = ability:GetLevelSpecialValueFor( "duration" , ability_level )
 	print (ability_level)
 	-- Creates the death ward (There is no way to control the default ward, so this is a custom one)
 	if ability_level == 0 then
@@ -19,8 +20,8 @@ function CreateWard(keys)
 	elseif ability_level == 2 then
 		caster.death_ward = CreateUnitByName("npc_dota_armoured_centipede_ward_3", position, true, caster, nil, caster:GetTeam())
 	end
-
-	caster.death_ward:AddNewModifier(caster, ability, "modifier_kill", {duration = 16})		
+	
+	caster.death_ward:AddNewModifier(caster, ability, "modifier_kill", {duration = duration})		
 	caster.death_ward:SetControllableByPlayer(caster:GetPlayerID(), true)
 	caster.death_ward:SetOwner(caster)
 	Timers:CreateTimer(.5, function()

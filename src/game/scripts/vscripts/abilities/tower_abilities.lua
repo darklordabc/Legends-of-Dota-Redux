@@ -3,9 +3,6 @@
 
 require('lib/timers')
 require('lib/util_imba')
-local util = require('util')
-
-
 
 function AIControl( keys )
     local caster = keys.caster
@@ -71,11 +68,14 @@ function AIControl( keys )
 	                        enemy:ModifyGold(100, false, 0) 
 	                    end
 	                end)
-	            else
-					local invulnerable = (caster:HasModifier("modifier_invulnerable") or caster:HasModifier("modifier_backdoor_protection_active"))
+	            else 
+					local invulnerable = caster:HasModifier("modifier_tower_anti_rat") or caster:HasModifier("modifier_invulnerable") or caster:HasModifier("modifier_backdoor_protection_active")
 	                if distance < veryClose then
 	                    if invulnerable then
-	                        abilityRoar = caster:FindAbilityByName("lone_druid_savage_roar_tower")    
+	                    	if caster:HasModifier("modifier_tower_anti_rat") then
+	                       	 	enemy:AddNewModifier(enemy, nil, "modifier_chen_test_of_faith_teleport", {duration = 4}) 
+	                    	end
+	                        abilityRoar = caster:FindAbilityByName("lone_druid_savage_roar_tower")   
 	                        caster:CastAbilityImmediately(abilityRoar, caster:GetPlayerOwnerID())
 	                        enemy:AddNewModifier(caster, ability, "modifier_phased", {duration = 4})
 	                        enemy:AddNewModifier(caster, ability, "modifier_dark_seer_surge", {duration = 4})
@@ -901,6 +901,88 @@ function Mindblast( keys )
 		for _,enemy in pairs(heroes) do
 			ability:ApplyDataDrivenModifier(caster, enemy, modifier_silence, {})
 		end
+
+		-- Put the ability on cooldown
+		ability:StartCooldown(ability:GetCooldown(ability_level))
+	end
+end
+
+function PlasmaField( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local ability_level = ability:GetLevel()
+	--local sound_silence = keys.sound_silence
+	if not ability:IsCooldownReady() then
+		return nil
+	end
+
+	if caster:PassivesDisabled() then return end
+
+	if not caster:IsRealHero() and not caster:IsBuilding() then return nil end
+	
+	-- Parameters
+	local plasma_radius = ability:GetLevelSpecialValueFor("plasma_radius", ability_level-1)
+	local tower_loc = caster:GetAbsOrigin()
+
+	-- Find nearby enemies
+	local heroes = FindUnitsInRadius(caster:GetTeamNumber(), tower_loc, nil, plasma_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)
+	local creeps = FindUnitsInRadius(caster:GetTeamNumber(), tower_loc, nil, plasma_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)
+
+	-- Check if the ability should be cast
+	if #heroes >= 1 or #creeps > 1 then
+		local plasma = caster:FindAbilityByName("plasma_internal_tower")
+		if not plasma then
+			caster:AddAbility("plasma_internal_tower")
+			plasma = caster:FindAbilityByName("plasma_internal_tower")
+			plasma:SetHidden(true)
+			plasma:SetLevel(ability_level)
+		end
+		plasma:SetLevel(ability_level)
+		print(plasma:GetLevel())
+		--Below doesnt work, I dont know how to make it play the sound
+		--caster:EmitSound("Ability.PlasmaField")
+		plasma:OnSpellStart()
+
+		-- Put the ability on cooldown
+		ability:StartCooldown(ability:GetCooldown(ability_level))
+	end
+end
+
+function DeathPulse( keys )
+	local caster = keys.caster
+	local ability = keys.ability
+	local ability_level = ability:GetLevel()
+	--local sound_silence = keys.sound_silence
+	if not ability:IsCooldownReady() then
+		return nil
+	end
+
+	if caster:PassivesDisabled() then return end
+
+	if not caster:IsRealHero() and not caster:IsBuilding() then return nil end
+	
+	-- Parameters
+	local plasma_radius = ability:GetLevelSpecialValueFor("area_of_effect", ability_level-1)
+	local tower_loc = caster:GetAbsOrigin()
+
+	-- Find nearby enemies
+	local heroes = FindUnitsInRadius(caster:GetTeamNumber(), tower_loc, nil, 900, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)
+	local creeps = FindUnitsInRadius(caster:GetTeamNumber(), tower_loc, nil, 900, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE, FIND_ANY_ORDER, false)
+
+	-- Check if the ability should be cast
+	if #heroes >= 1 or #creeps >= 1 then
+		local pulse = caster:FindAbilityByName("necrolyte_death_pulse_tower")
+		if not pulse then
+			caster:AddAbility("necrolyte_death_pulse_tower")
+			pulse = caster:FindAbilityByName("necrolyte_death_pulse_tower")
+			pulse:SetHidden(true)
+			pulse:SetLevel(ability_level)
+		end
+		pulse:SetLevel(ability_level)
+		print(pulse:GetLevel())
+		--Below doesnt work, I dont know how to make it play the sound
+		--caster:EmitSound("Ability.PlasmaField")
+		pulse:OnSpellStart()
 
 		-- Put the ability on cooldown
 		ability:StartCooldown(ability:GetCooldown(ability_level))

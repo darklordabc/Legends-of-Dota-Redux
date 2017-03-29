@@ -9,8 +9,8 @@
 		"FightRecapLevel" "1"
 		"AbilityCastRange" "1000"
 		"AbilityCastPoint" "0.3 0.3 0.3 0.3"
-		"AbilityCooldown" "10"
-		"AbilityManaCost" "100"
+		"AbilityCooldown" "30 28 26 22"
+		"AbilityManaCost" "100 125 150 175"
 
 		"AbilitySpecial" {
 			"01" {

@@ -8061,7 +8061,7 @@
 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-		"vscripts"					"dota2horde/UnitAI.lua"
+		"vscripts"					"abilities/dota2horde/UnitAI.lua"
 	
 		//Precache
 		//---------------------------------------------------------------------
@@ -8203,7 +8203,7 @@
 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-		"vscripts"				"dota2horde/UnitAI.lua"
+		"vscripts"				"abilities/dota2horde/UnitAI.lua"
 	}
 
 	//=================================================================================
@@ -8284,7 +8284,7 @@
 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-		"vscripts"				"dota2horde/UnitAI.lua"
+		"vscripts"				"abilities/dota2horde/UnitAI.lua"
 
 		// Creature Data
         		//----------------------------------------------------------------------------------------------------------------------
@@ -8409,7 +8409,7 @@
 		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-		"vscripts"				"dota2horde/UnitAI.lua"
+		"vscripts"				"abilities/dota2horde/UnitAI.lua"
 
 		// Creature Data
         		//----------------------------------------------------------------------------------------------------------------------

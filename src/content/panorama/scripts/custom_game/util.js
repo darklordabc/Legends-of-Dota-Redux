@@ -10,6 +10,13 @@ Util.secondsToHHMMSS = (function (d) {
 	return ((h > 0 ? h + ":" + (m < 10 ? "0" : "") : "") + m + ":" + (s < 10 ? "0" : "") + s); 
 });
 
+Util.secondsToMMSS = (function (d) {
+    d = Number(d);
+    var m = Math.floor(d / 60);
+    var s = Math.floor(d % 60);
+    return (m + ":" + (s < 10 ? "0" : "") + s); 
+});
+
 Util.getSteamID32 = (function () {
     var playerInfo = Game.GetPlayerInfo(Game.GetLocalPlayerID());
 

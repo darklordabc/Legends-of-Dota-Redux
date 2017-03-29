@@ -22,6 +22,32 @@
             <Panel class="mutatorImage">
             </Panel>
         </snippet>
+        <snippet name="optionVotePhase">
+            <Panel class="optionVotePhase">
+                <Panel class="optionVoteInfoHeader">
+                    <Label class="optionVoteHeader" text="{s:title}" />
+                    <Panel class="VotingOptionInfo" id="VotingOptionInfo" onmouseout="UIHideCustomLayoutTooltip( voteOptionInfoTooltip )">  
+                        <Image hittest="false" id="infoImage" src="file://{images}/custom_game/infoTooltip.png" />
+                    </Panel>
+                </Panel>
+                <Panel class="optionVoteOptions">
+                    <Panel class="optionVoteRoot">
+                        <Button id="optionVoteNo" class="votingButtonSlots makeThePlayerNoticeThisButton votingButton">
+                            <Label text="lodOptionNo" />
+                            <Label id="voteCountNo" class="premiumFeature" />
+                        </Button>
+                        <Label text="0%" class="voteCountPercentage" id="voteCountNoPercentage" />
+                    </Panel>
+                    <Panel class="optionVoteRoot">
+                        <Button id="optionVoteYes" class="votingButtonSlots makeThePlayerNoticeThisButton votingButton">
+                            <Label text="lodOptionYes" />
+                            <Label id="voteCountYes" class="premiumFeature" />
+                        </Button>
+                        <Label text="0%" class="voteCountPercentage" id="voteCountYesPercentage" />
+                    </Panel>
+                </Panel>
+            </Panel>
+        </snippet>
     </snippets>
     <Panel class="lodOptionsInterface" hittest="false">
 		<Panel class="workingPanel" id="tipPanel">
@@ -98,188 +124,7 @@
 
                         <Panel id="optionVoting" class="workingPanel">
                             <Label class="optionVoteMainHeader" text="lodOptionVotingHeader" />
-
-                            <Panel id="maxSlotsVotingContainer" class="optionVoteMaxSlots">
-                                <Label class="optionVoteHeader" text="lodHowManySlots" />
-                                <Panel class="maxSlotsVote">
-                                    <Panel class="maxSlotsVoteOption">
-                                        <DOTAAbilityImage abilityname="life_stealer_empty_1" />
-                                    </Panel>
-
-                                    <Panel class="maxSlotsVoteOption">
-                                        <DOTAAbilityImage abilityname="life_stealer_empty_1" />
-                                    </Panel>
-
-                                    <Panel class="maxSlotsVoteOption">
-                                        <DOTAAbilityImage abilityname="life_stealer_empty_1" />
-                                    </Panel>
-
-                                    <Panel class="maxSlotsVoteOption">
-                                        <Panel id="optionVotingSlotAnswer4">
-                                            <DOTAAbilityImage abilityname="life_stealer_empty_1" />
-                                            <Label id="voteCountSlots4" class="voteCountSlots premiumFeature" />
-                                        </Panel>
-
-                                        <Button id="optionVoteMaxSlots4" class="votingButtonSlots makeThePlayerNoticeThisButton" onactivate="onPlayerCastVote('slots', 4)">
-                                            <Label text="voteMaxSlots4" />
-                                        </Button>
-                                    </Panel>
-
-                                    <Panel class="maxSlotsVoteOption">
-                                        <Panel id="optionVotingSlotAnswer5">
-                                            <DOTAAbilityImage abilityname="life_stealer_empty_1" />
-                                            <Label id="voteCountSlots5" class="voteCountSlots premiumFeature" />
-                                        </Panel>
-
-                                        <Button id="optionVoteMaxSlots5" class="votingButtonSlots makeThePlayerNoticeThisButton" onactivate="onPlayerCastVote('slots', 5)">
-                                            <Label text="voteMaxSlots5" />
-                                        </Button>
-                                    </Panel>
-
-                                    <Panel class="maxSlotsVoteOption">
-                                        <Panel id="optionVotingSlotAnswer6">
-                                            <DOTAAbilityImage abilityname="life_stealer_empty_1" />
-                                            <Label id="voteCountSlots6" class="voteCountSlots premiumFeature" />
-                                        </Panel>
-
-                                        <Button id="optionVoteMaxSlots6" class="votingButtonSlots makeThePlayerNoticeThisButton" onactivate="onPlayerCastVote('slots', 6)">
-                                            <Label text="voteMaxSlots6" />
-                                        </Button>
-                                    </Panel>
-                                </Panel>                         
-                            </Panel>
-
-                            <Panel class="optionVotePhase">
-                                <Label class="optionVoteHeader" text="lodBanningPhase" />
-                                <Panel class="optionVoteOptions">
-                                    <Panel class="optionVoteRoot">
-                                        <Button id="optionVoteBanningNo" class="votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('banning', false)">
-                                            <Label text="lodOptionNo" />
-                                            <Label id="voteCountNo" class="premiumFeature" />
-                                        </Button>
-
-                                        <Label text="0%" class="voteCountPercentage" id="voteCountNoPercentage" />
-                                    </Panel>
-
-                                    <Panel class="optionVoteRoot">
-                                        <Button id="optionVoteBanningYes" class="votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('banning', true)">
-                                            <Label text="lodOptionYes" />
-                                            <Label id="voteCountYes" class="premiumFeature" />
-                                        </Button>
-
-                                        <Label text="0%" class="voteCountPercentage" id="voteCountYesPercentage" />
-                                    </Panel>
-                                </Panel>
-                            </Panel>
-
-                            <Panel class="optionVotePhase">
-                                <Panel class="optionVoteInfoHeader">
-                                    <Label class="optionVoteHeader" text="lodFastStart" />
-                                    <Panel class="VotingOptionInfo" id="FastStartInfo" onmouseover="UIShowCustomLayoutParametersTooltip( FastStartTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=textFSTooltip )" onmouseout="UIHideCustomLayoutTooltip( FastStartTooltip )">  
-                                        <Image hittest="false" id="infoImage" src="file://{images}/custom_game/infoTooltip.png" />
-                                    </Panel>
-                                </Panel>
-                                <Panel class="optionVoteOptions">
-                                    <Panel class="optionVoteRoot">
-                                        <Button id="optionVoteFastStartNo" class="votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('faststart', false)">
-                                            <Label text="lodOptionNo" />
-                                            <Label id="voteCountNoFS" class="premiumFeature" />
-                                        </Button>
-
-                                        <Label text="0%" class="voteCountPercentage" id="voteCountNoPercentageFS" />
-                                    </Panel>
-
-                                    <Panel class="optionVoteRoot">
-                                        <Button id="optionVoteFastStartYes" class="votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('faststart', true)">
-                                            <Label text="lodOptionYes" />
-                                            <Label id="voteCountYesFS" class="premiumFeature" />
-                                        </Button>
-
-                                        <Label text="0%" class="voteCountPercentage" id="voteCountYesPercentageFS" />
-                                    </Panel>
-                                </Panel>
-                            </Panel>
-
-                            <Panel class="optionVotePhase">
-                                <Panel class="optionVoteInfoHeader">
-                                    <Label class="optionVoteHeader" text="lodBalanceMode" />
-                                    <Panel class="VotingOptionInfo" id="BalanceModeInfo" onmouseover="UIShowCustomLayoutParametersTooltip( BalanceModeTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=textBMTooltip )" onmouseout="UIHideCustomLayoutTooltip( BalanceModeTooltip )">  
-                                        <Image hittest="false" id="infoImage" src="file://{images}/custom_game/infoTooltip.png" />
-                                    </Panel>
-                                </Panel>
-                                <Panel class="optionVoteOptions">
-                                    <Panel class="optionVoteRoot">
-                                        <Button id="optionVoteBalanceModeNo" class="votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('balancemode', false)">
-                                            <Label text="lodOptionNo" />
-                                            <Label id="voteCountNoBM" class="premiumFeature" />
-                                        </Button>
-
-                                        <Label text="0%" class="voteCountPercentage" id="voteCountNoPercentageBM" />
-                                    </Panel>
-
-                                    <Panel class="optionVoteRoot">
-                                        <Button id="optionVoteBalanceModeYes" class="votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('balancemode', true)">
-                                            <Label text="lodOptionYes" />
-                                            <Label id="voteCountYesBM" class="premiumFeature" />
-                                        </Button>
-                                        <Label text="0%" class="voteCountPercentage" id="voteCountYesPercentageBM" />
-                                    </Panel>
-                                </Panel>
-                            </Panel>
-
-                            <Panel class="optionVotePhase">
-                                <Panel class="optionVoteInfoHeader">
-                                    <Label class="optionVoteHeader" text="lodStrongTower" />
-                                    <Panel class="VotingOptionInfo" id="StrongTowerInfo" onmouseover="UIShowCustomLayoutParametersTooltip( StrongTowersTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=textSTTooltip )" onmouseout="UIHideCustomLayoutTooltip( StrongTowersTooltip )">  
-                                        <Image hittest="false" id="infoImage" src="file://{images}/custom_game/infoTooltip.png" />
-                                    </Panel>
-                                    </Panel>
-                                    <Panel class="optionVoteOptions">
-                                        <Panel class="optionVoteRoot">
-                                            <Button id="optionVoteStrongTowersNo" class="votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('strongtowers', false)">
-                                                <Label text="lodOptionNo" />
-                                                <Label id="voteCountNoST" class="premiumFeature" />
-                                            </Button>
-
-                                            <Label text="0%" class="voteCountPercentage" id="voteCountNoPercentageST" />
-                                        </Panel>
-
-                                        <Panel class="optionVoteRoot">
-                                            <Button id="optionVoteStrongTowersYes" class="votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('strongtowers', true)">
-                                                <Label text="lodOptionYes" />
-                                                <Label id="voteCountYesST" class="premiumFeature" />
-                                            </Button>
-                                            <Label text="0%" class="voteCountPercentage" id="voteCountYesPercentageST" />
-                                        </Panel>
-                                    </Panel>
-                                </Panel>
-
-                            <Panel class="optionVotePhase">
-                                <Panel class="optionVoteInfoHeader">
-                                    <Label class="optionVoteHeader" text="lodDuels" />
-                                    <Panel class="VotingOptionInfo" id="DuelsInfo" onmouseover="UIShowCustomLayoutParametersTooltip( DuelsTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=textDTooltip )" onmouseout="UIHideCustomLayoutTooltip( DuelsTooltip )">  
-                                        <Image hittest="false" id="infoImage" src="file://{images}/custom_game/infoTooltip.png" />
-                                    </Panel>
-                                </Panel>
-                                <Panel class="optionVoteOptions">
-                                    <Panel class="optionVoteRoot">
-                                        <Button id="optionVoteDuelsNo" class="votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('duels', false)">
-                                            <Label text="lodOptionNo" />
-                                            <Label id="voteCountNoD" class="premiumFeature" />
-                                        </Button>
-
-                                        <Label text="0%" class="voteCountPercentage" id="voteCountNoPercentageD" />
-                                    </Panel>
-
-                                    <Panel class="optionVoteRoot">
-                                        <Button id="optionVoteDuelsYes" class="votingButtonSlots makeThePlayerNoticeThisButton votingButton" onactivate="onPlayerCastVote('duels', true)">
-                                            <Label text="lodOptionYes" />
-                                            <Label id="voteCountYesD" class="premiumFeature" />
-                                        </Button>
-                                        <Label text="0%" class="voteCountPercentage" id="voteCountYesPercentageD" />
-                                    </Panel>
-                                </Panel>
-                            </Panel>
+                            <Panel id="optionVotePhasesList" />
                         </Panel>
 
                         <Panel id="optionSelection" class="workingPanel">
@@ -294,6 +139,7 @@
                                     <Image class="optionImageCached" src="file://{images}/custom_game/options/option5.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/options/option6.png"></Image>
 
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorAntiRat.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBanningBanInvis.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBanningBanInvis2.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorUpgradedUlts.png"></Image>
@@ -919,6 +765,7 @@
                                             <ToggleButton id="buttonHeroGrouping" text="groupHeroAbilities" onactivate="toggleHeroGrouping()" />
                                             <ToggleButton id="buttonShowBanned" text="showBannedSkills" onactivate="toggleShowBanned()" />
                                             <ToggleButton text="showDisallowedSkills" onactivate="toggleShowDisallowed()" />
+                                            <ToggleButton text="showOnlyHeroPerkRelativeSkills" onactivate="toggleShowPerkRelative()" />
 
                                             <ToggleButton id="toggleShowDraftAblilities" text="Show Non Draft Skills" onactivate="toggleShowDraftSkills()" />
                                             <ToggleButton id="lodToggleButton" text="Show Taken Skills" onactivate="toggleShowTaken()" />                                        

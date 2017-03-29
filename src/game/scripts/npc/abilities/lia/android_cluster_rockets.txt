@@ -27,7 +27,7 @@
 		"AbilitySpecial" {
 			"01" {
 				"var_type" "FIELD_INTEGER"
-				"damage" "60"
+				"damage" "75"
 			}
 
 			"02" {

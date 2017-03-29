@@ -4,7 +4,7 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_datadriven"
-		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -12,8 +12,8 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 		"AbilityTextureName"			"custom\ancient_giga_graviton"
-		"MaxLevel"						"1"
-		"AbilitySharedWithTeammates" 	"1"
+		"MaxLevel"						"3"
+		"AbilitySharedWithTeammates" 	"3"
 	
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -22,7 +22,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"180"
+		"AbilityCooldown"				"21 14 7"
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -46,6 +46,11 @@
 				"var_type"					"FIELD_INTEGER"
 				"radius"					"1250"
 			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"hpthreshhold"					"33 44 66"
+			}
 		}
 		
 		"precache"
@@ -68,7 +73,7 @@
 					{
 						"RunScript"
 						{
-							"ScriptFile"	"buildings/ancient_abilities.lua"
+							"ScriptFile"	"abilities/dusk/ancient_abilities.lua"
 							"Function"		"d_waves"
 						}
 					}

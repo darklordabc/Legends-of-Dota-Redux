@@ -17,6 +17,15 @@ require('lib/StatUploaderFunctions')
 -- Precache obstacles
 require('obstacles')
 
+-- Misc functions
+require('util')
+
+-- Option storage
+require('optionmanager')
+
+-- Networking functions
+require('network')
+
 -- Precaching
 function Precache(context)
     local soundList = LoadKeyValues('scripts/kv/sounds.kv')
@@ -66,7 +75,7 @@ function Activate()
     math.randomseed(tonumber(timeTxt))
 
     -- Load specific modules
-    local network = require('network')
+    
     local pregame = require('pregame')
     local ingame = require('ingame')
 
@@ -77,7 +86,6 @@ function Activate()
     
     -- Store references (mostly used for debugging)
     GameRules.util = require('util')
-    GameRules.network = network
     GameRules.pregame = pregame
     GameRules.ingame = ingame
 

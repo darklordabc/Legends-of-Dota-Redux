@@ -92,7 +92,7 @@ end
 
 function CalculateNewStats(unit, stacks, firstInstance)
 	if IsServer() then
-		local health_per_stack = 100	
+		local health_per_stack = 80	
 		local extra_gold_per_stack = 5
 		local extra_exp_per_stack = 5
 		local model_scale_per_stack = 0.02

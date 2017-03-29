@@ -1,5 +1,4 @@
 local Timers = require('easytimers')
-local util = require('util')
 local skillManager = require('skillmanager')
 local pregame = require('pregame')
 

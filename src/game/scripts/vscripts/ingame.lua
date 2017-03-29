@@ -1,7 +1,4 @@
-local util = require('util')
 local constants = require('constants')
-local network = require('network')
-local OptionManager = require('optionmanager')
 local Timers = require('easytimers')
 require('lib/util_imba')
 require('abilities/hero_perks/hero_perks_filters')
@@ -9,11 +6,14 @@ require('abilities/epic_boss_fight/ebf_mana_fiend_essence_amp')
 require('abilities/global_mutators/global_mutator')
 require('abilities/global_mutators/memes_redux')
 
+require('commands')
+
 -- Create the class for it
 local Ingame = class({})
 
 local ts_entities = LoadKeyValues('scripts/kv/ts_entities.kv')
 GameRules.perks = LoadKeyValues('scripts/kv/perks.kv')
+GameRules.hero_perks = LoadKeyValues('scripts/kv/hero_perks.kv')
 
 -- Init Ingame stuff, sets up all ingame related features
 function Ingame:init()
@@ -24,6 +24,7 @@ function Ingame:init()
 
     -- Init stronger towers
     self:addStrongTowers()
+    self:loadTrollCombos()
     self:AddTowerBotController()
     self:fixRuneBug()
 
@@ -48,9 +49,24 @@ function Ingame:init()
     self.playerColors[18]  = { 58.43 * 2.55, 58.82 * 2.55, 59.21 * 2.55 }
     self.playerColors[19]  = { 49.41 * 2.55, 74.90 * 2.55, 94.51 * 2.55 }
 
-    -- -- 40 minutes
+    -- When to increase respawn rates - 40 minutes
     self.timeToIncreaseRespawnRate = 2400
     self.timeToIncreaseRepawnInterval = 600
+
+    -- These are optional votes that can enable or disable game mechanics
+    self.voteEnabledCheatMode = false
+    self.voteDisableAntiKamikaze = false
+    self.voteDisableRespawnLimit = false
+    self.voteEnableBuilder = false
+    self.voteAntiRat = false
+    self.origianlRespawnRate = nil
+    self.timeImbalanceStarted = 0
+	self.radiantBalanceMoney = 0
+    self.direBalanceMoney = 0
+    self.shownCheats = {}
+    self.heard = {}
+
+    self.botsInLateGameMode = false
 
     -- Setup standard rules
     GameRules:GetGameModeEntity():SetTowerBackdoorProtectionEnabled(true)
@@ -83,16 +99,20 @@ function Ingame:init()
         local code = DoUniqueString("team_switch")
         self.teamSwitchCode = code
         Timers:CreateTimer(function ()
-            this:swapPlayers(args.x, args.y, code)
+            self:swapPlayers(args.x, args.y, code)
         end, 'switch_warning', 5)
     end)
 
     CustomGameEventManager:RegisterListener( 'declined', function (eventSourceIndex)
-        this:declined(eventSourceIndex)
+        self:declined(eventSourceIndex)
     end)
 
     CustomGameEventManager:RegisterListener( 'ask_custom_team_info', function(eventSourceIndex, args)
-        this:returnCustomTeams(eventSourceIndex, args)
+        self:returnCustomTeams(eventSourceIndex, args)
+    end)
+    
+    CustomGameEventManager:RegisterListener('lodRequestCheatData', function(eventSourceIndex, args)
+        network:updateCheatPanelStatus(self.voteEnabledCheatMode, args.PlayerID)
     end)
 end   
 
@@ -165,8 +185,45 @@ end
 function Ingame:OnPlayerPurchasedItem(keys)
     -- Bots will get items auto-delievered to them
     self:checkIfRespawnRate()
+    self:balanceGold()
     if util:isPlayerBot(keys.PlayerID) then
-        local hero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()      
+        local hero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()
+        -- If bots buy boots remove first instances of cheap items they have, this is a fix for them having boots in backpack
+        if string.find(keys.itemname, "boots") or keys.itemname == "item_power_treads" then
+            local tangos = hero:FindItemByName("item_tango")
+            local mangos = hero:FindItemByName("item_enchanted_mango")
+            local clarity = hero:FindItemByName("item_clarity")
+            local faerie = hero:FindItemByName("item_faerie_fire")
+            local flask = hero:FindItemByName("item_flask")
+
+            if tangos then
+            local refund = tangos:GetCost()
+            hero:ModifyGold(refund, false, 0)
+            tangos:RemoveSelf()
+            end
+            if mangos then
+                local refund = mangos:GetCost()
+                hero:ModifyGold(refund, false, 0)
+                mangos:RemoveSelf()
+            end
+            if clarity then
+                local refund = clarity:GetCost() * clarity:GetCurrentCharges()
+                hero:ModifyGold(refund, false, 0)
+                clarity:RemoveSelf()
+            end
+            if faerie then
+                local refund = faerie:GetCost()
+                hero:ModifyGold(refund, false, 0)
+                faerie:RemoveSelf()
+            end
+            if flask then
+                local refund = flask:GetCost() * flask:GetCurrentCharges()
+                hero:ModifyGold(refund, false, 0)
+                flask:RemoveSelf()
+            end
+        end
+
+              
             for slot =  DOTA_STASH_SLOT_1, DOTA_STASH_SLOT_6 do
                 item = hero:GetItemInSlot(slot)
                 if item ~= nil then
@@ -341,7 +398,7 @@ function Ingame:onStart()
     end, 'check_consumable_items', 0.1)
     -- Force bots to take a defensive pose until the first tower has been destroyed. This is top stop bots from straight away pushing lanes when they hit level 6
     Timers:CreateTimer(function ()
-               GameRules:GetGameModeEntity():SetBotsInLateGame(false)
+               GameRules:GetGameModeEntity():SetBotsInLateGame(self.botsInLateGameMode)
                --print("bots will only defend")
             end, 'forceBotsToDefend', 0.5)
     
@@ -360,19 +417,7 @@ function Ingame:onStart()
            
     --Attempt to enable cheats
     Convars:SetBool("sv_cheats", true)
-    local isCheatsEnabled = Convars:GetBool("sv_cheats")
-    local maxPlayers = 24
-    local count = 0
-    for playerID=0,(maxPlayers-1) do
-        if not util:isPlayerBot(playerID) then
-            count = count + 1
-        end
-    end
-    local options = {
-        players = count,
-        cheats = isCheatsEnabled
-    }
-    network:showCheatPanel(options)
+    
     if OptionManager:GetOption('allowIngameHeroBuilder') then
         network:enableIngameHeroEditor()
         
@@ -398,11 +443,16 @@ function Ingame:onStart()
     end, nil)
 
     CustomGameEventManager:RegisterListener('lodOnCheats', function(eventSourceIndex, args)
-        if args.status == 'ok' then
-            GameRules:SendCustomMessage("#cheat_activated", 0, 0)
-            this:onPlayerCheat(eventSourceIndex, args)
-        elseif args.status == 'error' then
-            --GameRules:SendCustomMessage("#cheat_rejection", 0, 0)
+        if args.command then
+            Commands:OnPlayerChat({
+                teamonly = true,
+                playerid = args.PlayerID,
+                text = "-" .. args.command
+            })
+        end
+
+        if args.consoleCommand and (util:isSinglePlayerMode() or Convars:GetBool("sv_cheats") or self.voteEnabledCheatMode) then
+            SendToServerConsole(args.consoleCommand)
         end
     end)
 
@@ -484,10 +534,26 @@ function Ingame:onStart()
     ListenToGameEvent('dota_player_gained_level', Dynamic_Wrap(Ingame, 'OnHeroLeveledUp'), self)
 
     ListenToGameEvent("player_reconnected", Dynamic_Wrap(Ingame, 'OnPlayerReconnect'), self)
+
+    ListenToGameEvent("player_chat", Dynamic_Wrap(Commands, 'OnPlayerChat'), self)
     
-    -- -- Set it to no team balance
+    -- Set it to no team balance
     self:setNoTeamBalanceNeeded()
 end
+
+function Ingame:CommandNotification(command, message, cooldown)
+    print(command)
+    if not self.shownCheats[command] then
+        GameRules:SendCustomMessage(message, 0, 0) 
+        self.shownCheats[command] = true
+    end
+    if cooldown and cooldown > 0 then
+        Timers:CreateTimer(function() 
+            self.shownCheats[command] = false
+        end, DoUniqueString('temporaryblockcommand'), cooldown)
+    end
+end
+
 
 function Ingame:fixRuneBug()
     ListenToGameEvent('game_rules_state_change', function(keys)
@@ -885,34 +951,6 @@ function Ingame:checkBalanceTeamsNextTick()
     end, DoUniqueString('balanceChecker'), 0)
 end
 
-function Ingame:onPlayerCheat(eventSourceIndex, args)
-    local command = args.command
-    local value = args.value
-    local playerID = args.playerID
-    local isCustom = tonumber(args.isCustom) == 1 and true or false
-    if isCustom then
-        -- Lvl-up hero
-        local player = PlayerResource:GetSelectedHeroEntity(playerID)
-        if command == 'lvl_up' then
-            for i=0,value-1 do
-                player:HeroLevelUp(true)
-            end
-        elseif command == 'give_gold' then
-            player:ModifyGold(value, true, DOTA_ModifyGold_CheatCommand)
-        elseif command == 'hero_respawn' then
-            player:RespawnUnit()
-        elseif command == 'create_item' then
-            player:AddItemByName(value)
-        end
-    end
-    if type(value) ~= 'table' then
-        value = tonumber(value) == 1 and true or false
-        Convars:SetBool(command, value)
-    else
-        SendToServerConsole(command)
-    end
-end
-
 -- Called to check if teams need to be balanced
 function Ingame:checkBalanceTeams()
     local maxPlayers = 24
@@ -954,16 +992,102 @@ function Ingame:checkBalanceTeams()
     end
 end
 
+function Ingame:balanceGold()
+	-- If game not started dont check balance
+	if (GameRules:GetDOTATime(false,false) == 0 or util:isCoop()) and not IsInToolsMode() then
+		return
+	end
+
+	local RadiantPlayers = util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS)
+	local DirePlayers = util:GetActivePlayerCountForTeam(DOTA_TEAM_BADGUYS)
+	local losingTeam = nil
+	local fountainArea = nil
+
+	-- If balance returns, clear the slate
+	if RadiantPlayers == DirePlayers then
+		self.timeImbalanceStarted = 0
+		self.radiantBalanceMoney = 0
+		self.direBalanceMoney = 0
+		return
+	end
+
+	if RadiantPlayers < DirePlayers then
+		losingTeam = "goodGuys"
+		fountainArea = Vector(-6327.858398, -5892.900391, 384.000000)
+	else
+		losingTeam = "badGuys"
+		fountainArea = Vector(6234.006348, 5780.487305, 384.000000)
+	end
+
+	if self.timeImbalanceStarted == 0 then
+		self.timeImbalanceStarted = GameRules:GetDOTATime(false,false)	
+	end
+
+	local timeSinceLastCheck = GameRules:GetDOTATime(false,false) - self.timeImbalanceStarted
+	--print(timeSinceLastCheck)
+	
+	if timeSinceLastCheck > 180 then
+		local multiplier = 1	
+		if losingTeam == "goodGuys" then
+			multiplier = DirePlayers - RadiantPlayers
+		else
+			multiplier = RadiantPlayers - DirePlayers
+		end
+
+		local moneyToGive = (180 * multiplier) * OptionManager:GetOption('goldPerTick')
+
+		if losingTeam == "goodGuys" then
+			self.radiantBalanceMoney = self.radiantBalanceMoney + moneyToGive
+		else
+			self.direBalanceMoney = self.direBalanceMoney + moneyToGive
+		end
+
+		self.timeImbalanceStarted = GameRules:GetDOTATime(false,false)
+		--print(moneyToGive)
+		--print(self.radiantBalanceMoney)
+		--print(self.direBalanceMoney)
+	end
+
+	local moneySize = 10
+	if self.direBalanceMoney >= 200 or self.radiantBalanceMoney >= 200 then
+		moneySize = 20
+	end
+
+	if self.radiantBalanceMoney >= moneySize * 10 or self.direBalanceMoney >= moneySize * 10 then
+		for playerID=0,24-1 do
+	      local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+	      if hero and PlayerResource:IsValidPlayerID(playerID) and IsValidEntity(hero) then                           
+	          local state = PlayerResource:GetConnectionState(playerID)
+	          if state == 1 or state == 2 then
+	          	if losingTeam == "goodGuys" and hero:GetTeam() == DOTA_TEAM_GOODGUYS and self.radiantBalanceMoney >= 1 then
+	          		hero:ModifyGold(moneySize, false, 0)
+	          		SendOverheadEventMessage(hero:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, hero, moneySize, nil)
+	          		self.radiantBalanceMoney = self.radiantBalanceMoney - moneySize
+	          	elseif losingTeam == "badGuys" and hero:GetTeam() == DOTA_TEAM_BADGUYS and self.direBalanceMoney >= 1 then
+	          		hero:ModifyGold(moneySize, false, 0)
+	          		SendOverheadEventMessage(hero:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, hero, moneySize, nil)
+	          		self.direBalanceMoney = self.direBalanceMoney - moneySize
+	          	end
+	          end
+	      end
+	    end
+	
+	end
+end
+
 -- Increases respawn rate if the game has been going longer than 40 minutes, increases every 10 minutes after that
 function Ingame:checkIfRespawnRate()
     if util:isSinglePlayerMode() then return end
     local respawnModifierPercentage = OptionManager:GetOption('respawnModifierPercentage')
-    if GameRules:GetDOTATime(false,false) > self.timeToIncreaseRespawnRate and respawnModifierPercentage < 50  then
+    if GameRules:GetDOTATime(false,false) > self.timeToIncreaseRespawnRate and respawnModifierPercentage < 50 and self.voteDisableRespawnLimit == false then
+        if self.origianlRespawnRate == nil then
+            self.origianlRespawnRate = respawnModifierPercentage
+        end
         local newRespawnRate = respawnModifierPercentage + 10
         if newRespawnRate > 50 then
             newRespawnRate = 50
         end
-        GameRules:SendCustomMessage("Games has been going for too long, respawn rates have increased by 10%. New respawn rate is " .. newRespawnRate .. "%", 0, 0)
+        GameRules:SendCustomMessage("Games has been going for too long, respawn rates have increased by 10%. New respawn rate is " .. newRespawnRate .. "%. Use -enablerespawn (-er) to disable this safeguard.", 0, 0)
         OptionManager:SetOption('respawnModifierPercentage', newRespawnRate)
 
         self.timeToIncreaseRespawnRate = self.timeToIncreaseRespawnRate + self.timeToIncreaseRepawnInterval
@@ -979,6 +1103,7 @@ function Ingame:handleRespawnModifier()
         local respawnModifierConstant = OptionManager:GetOption('respawnModifierConstant')
 
         self:checkIfRespawnRate()
+        self:balanceGold()
 
         --if respawnModifierPercentage == 100 and respawnModifierConstant == 0 then return end
 
@@ -1029,9 +1154,100 @@ function Ingame:handleRespawnModifier()
                                 timeLeft = timeLeft / respawnModifier
                             end]]
 
-                            -- Set the time left until we respawn
+                            -- If the game is single player, it should let players know that they can force respawn. Notify after first death, and notified a second time if their respawn time is longer than 30 seconds. 
+                            --print(RespawnNotificationLevel)
+                            if not util:isPlayerBot(playerID) then
+                                if util:isSinglePlayerMode() or Convars:GetBool("sv_cheats") or self.voteEnabledCheatMode then
+    	                            if not hero.RespawnNotificationLevel then
+    	                                hero.RespawnNotificationLevel = 0
+    	                            end
+    	                            if hero.RespawnNotificationLevel < 2 then
+    	                                if hero.RespawnNotificationLevel == 0 then
+    	                                    GameRules:SendCustomMessage('#respawnCheatNotification', 0, 0) 
+    	                                    hero.RespawnNotificationLevel = 1
+    	                                elseif hero.RespawnNotificationLevel == 1 and timeLeft > 30 then
+    	                                    GameRules:SendCustomMessage('#respawnCheatNotification', 0, 0) 
+    	                                    hero.RespawnNotificationLevel = 2
+    	                                end
+    	                            end
+                                end
+                        	end
+
+                            -------
+                            -- Imbalanced-Comepenstation Mechanic Start
+                            -------
+                            if not util:isCoop() then
+                                local herosTeam = util:GetActivePlayerCountForTeam(hero:GetTeamNumber())
+                                local opposingTeam = util:GetActivePlayerCountForTeam(otherTeam(hero:GetTeamNumber()))
+                                local difference = herosTeam - opposingTeam
+                                
+                                -- 10 seconds per player difference, if addedTime is positive, it means the player team has an advantage, if its a negative it means they are disadvantaged
+                                local addedTime = difference * 10
+                                timeLeft = timeLeft + addedTime
+                                if timeLeft < 1 then
+                                    timeLeft = 1
+                                end   
+
+                                -- Display message once, informing players of balance mechanic in use
+                                if addedTime ~= 0 and self.heard["imbalancedTeams"] ~= true then
+                                    GameRules:SendCustomMessage("#imbalance_notification", 0, 0) 
+                                    self.heard["imbalancedTeams"] = true
+                                    
+                                    -- Show the warning again after 10 minutes
+                                    Timers:CreateTimer( function()
+                                        self.heard["imbalancedTeams"] = false
+                                    end, DoUniqueString('showNotifAgain'), 600)
+                                end   
+                            end
+
+                            -------
+                            -- Imbalanced-Comepenstation Mechanic End
+                            ------
+
+                            -------
+                            -- Anti-Kamikaze Mechanic START
+                            -- This is designed to stop players from spawning very quicky and dying very quickly, e.g pushing towers
+                            -------
+                            if not util:isPlayerBot(playerID) and self.voteDisableAntiKamikaze == false then
+                                local allowableSecsBetweenDeaths = 60
+                                if not hero.lastDeath then
+                                    hero.lastDeath = GameRules:GetDOTATime(false, false)
+                                else
+                                    timeSinceLastDeath = GameRules:GetDOTATime(false, false) - hero.lastDeath 
+                                    hero.lastDeath = GameRules:GetDOTATime(false, false)
+                                    -- If they have died a few seconds after respawning, increase Kamikaze rating
+                                    if timeSinceLastDeath <= allowableSecsBetweenDeaths then
+                                        if not hero.KamikazeRating then
+                                            hero.KamikazeRating = 1
+                                        else
+                                            hero.KamikazeRating = hero.KamikazeRating +1
+                                            if hero.KamikazeRating > 2 then
+                                                GameRules:SendCustomMessage('Player '..PlayerResource:GetPlayerName(playerID)..' has died at least 3 times in the last ' .. allowableSecsBetweenDeaths .. " seconds. To prevent Kamikaze tactics, they have incured <font color=\'#FF4949\'>extra respawn time</font>. Use -enablekamikaze (-ek) to disable this safeguard." , 0, 0)
+                                                -- If they continue this strat, extra respawn peanlty increases by 10 seconds
+                                                if not hero.KamikazePenalty then
+                                                    hero.KamikazePenalty = 1
+                                                else
+                                                    hero.KamikazePenalty = hero.KamikazePenalty + 1
+                                                end
+                                                timeLeft = timeLeft + (hero.KamikazePenalty * 10)
+                                            end
+                                        end
+
+                                        -- After the the allowable time between deaths, lower the rating
+                                        Timers:CreateTimer( function()
+                                            if hero.KamikazeRating and hero.KamikazeRating > 0 then
+                                               hero.KamikazeRating = hero.KamikazeRating - 1   
+                                            end
+                                        end, DoUniqueString('lowerKamikazeRating'), allowableSecsBetweenDeaths)
+                                    end
+                                end
+                            end
+                            -------
+                            -- Anti-Kamikaze Mechanic END
+                            -------
+
                             hero:SetTimeUntilRespawn(timeLeft)
-                            
+
                             -- Give 322 gold if enabled
                             if OptionManager:GetOption('322') == 1 then
                                 hero:ModifyGold(322,false,0)
@@ -1304,7 +1520,7 @@ function Ingame:AddTowerBotController()
             local radiantBots = false
             -- CHECK ALL PLAYERS TO SEE WHICH TEAM HAS BOT(S)
             for playerID=0,(maxPlayers-1) do
-                if  util:isPlayerBot(playerID) and PlayerResource:GetTeam(playerID) == DOTA_TEAM_GOODGUYS then
+                if util:isPlayerBot(playerID) and PlayerResource:GetTeam(playerID) == DOTA_TEAM_GOODGUYS then
                     radiantBots = true
                 elseif util:isPlayerBot(playerID) and PlayerResource:GetTeam(playerID) == DOTA_TEAM_BADGUYS then
                     direBots = true
@@ -1338,11 +1554,79 @@ function Ingame:AddTowerBotController()
  
 end
 
+function Ingame:loadTrollCombos()
+    -- Load in the ban list
+    local tempBanList = LoadKeyValues('scripts/kv/bans.kv')
+
+    -- Create the stores
+    self.banList = {}
+
+    -- Bans a skill combo
+    local function banCombo(a, b)
+        self.banList[a] = self.banList[a] or {}
+        self.banList[b] = self.banList[b] or {}
+
+        self.banList[a][b] = true
+        self.banList[b][a] = true
+    end
+
+    -- Loop over the banned combinations
+    for skillName, group in pairs(tempBanList.BannedTowerCombinations) do
+        for skillName2,_ in pairs(group) do
+            banCombo(skillName, skillName2)
+        end
+    end
+
+    -- Ban the group bans
+    for _,group in pairs(tempBanList.BannedTowerGroups) do
+        for skillName,__ in pairs(group) do
+            for skillName2,___ in pairs(group) do
+                banCombo(skillName, skillName2)
+            end
+        end
+    end
+end
+
+function Ingame:giveAntiRatProtection()
+    local towers = Entities:FindAllByClassname('npc_dota_tower')
+
+    self.destroyedTowers = self.destroyedTowers or {}
+
+    local radiantTowers = 0
+    local direTowers = 0
+    for k,v in pairs(towers) do
+        if not v:IsNull() and v:IsAlive() then
+            if v:GetTeamNumber() == 2 then
+                radiantTowers = radiantTowers + 1
+            else
+                direTowers = direTowers + 1
+            end
+        end
+    end
+    --print(radiantTowers)
+    --print(direTowers)
+    -- If either team's towers is at the point where anti-rat is disabled, do nothing.
+    if direTowers <= 5 or radiantTowers <=5 then
+        return
+    end
+
+    for k,v in pairs(towers) do
+        table.insert(self.destroyedTowers, v)
+        if string.match(v:GetUnitName(), "3") then
+            v:AddAbility("tower_anti_rat"):SetLevel(1)
+        end
+    end
+end
+
 function Ingame:addStrongTowers()
     ListenToGameEvent('game_rules_state_change', function(keys)
-
         local newState = GameRules:State_Get()
-        if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS and OptionManager:GetOption('strongTowers') then
+        if newState == DOTA_GAMERULES_STATE_PRE_GAME then
+            if OptionManager:GetOption('antiRat') == 1 then
+                self:giveAntiRatProtection()
+            end
+        elseif newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+            if OptionManager:GetOption('strongTowers') then
                 local maxPlayers = 24
                 local botsEnabled = false
                 for playerID=0,(maxPlayers-1) do
@@ -1350,80 +1634,51 @@ function Ingame:addStrongTowers()
                         botsEnabled = true
                     end
                 end
-
-                local oldAbList = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers_weak
-                local oldAbList2 = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers_medium
-                local oldAbList3 = LoadKeyValues('scripts/kv/abilities.kv').skills.custom.imba_towers_strong
-
-                local weakTowerSkills = {}
-                local mediumTowerSkills = {}
-                local strongTowerSkills = {}
-
-                for skill_name in pairs(oldAbList) do
-                    if botsEnabled == true then
-                        -- Disable troublesome abilities that break bots
-                        if skill_name ~= "imba_tower_vicious" and skill_name ~= "imba_tower_forest" and skill_name ~= "imba_tower_disease" then
-                            table.insert(weakTowerSkills, skill_name)   
-                        end
-                    else 
-                        table.insert(weakTowerSkills, skill_name)                                                                               
-                    end
-                end
-
-                for skill_name in pairs(oldAbList2) do
-                    if botsEnabled == true then
-                        -- Disable troublesome abilities that break bots
-                        if skill_name ~= "imba_tower_vicious" and skill_name ~= "imba_tower_forest" and skill_name ~= "imba_tower_disease" then
-                            table.insert(mediumTowerSkills, skill_name)   
-                        end
-                    else 
-                        table.insert(mediumTowerSkills, skill_name)                                                                               
-                    end
-                end
-
-                for skill_name in pairs(oldAbList3) do
-                    if botsEnabled == true then
-                        -- Disable troublesome abilities that break bots
-                        if skill_name ~= "imba_tower_vicious" and skill_name ~= "imba_tower_forest" and skill_name ~= "imba_tower_disease" then
-                            table.insert(strongTowerSkills, skill_name)   
-                        end
-                    else 
-                        table.insert(strongTowerSkills, skill_name)                                                                               
-                    end
-                end
+                
+                self.towerList = LoadKeyValues('scripts/kv/towers.kv')
+                self.usedRandomTowers = {}
 
                 local towers = Entities:FindAllByClassname('npc_dota_tower')
+                local handledTowers = {}
+                
                 for _, tower in pairs(towers) do
-                    -- If Tower is level 1, give it a weak ability
-                    if tower:GetLevel() == 1 then
-                        local ability_name = RandomFromTable(weakTowerSkills)
-                        tower:AddAbility(ability_name)
-                        local ability = tower:FindAbilityByName(ability_name)
-                        ability:SetLevel(1)
-                    -- If a Tower is level 2, it has 50% chance of getting weak ability, and 50% chance of getting medium ability
-                    elseif tower:GetLevel() == 2 then
-                        local random = RandomInt(1,2)
-                        if random == 1 then 
-                            local ability_name = RandomFromTable(weakTowerSkills)
-                            tower:AddAbility(ability_name)
-                            local ability = tower:FindAbilityByName(ability_name)
-                            ability:SetLevel(1) 
-                        elseif random == 2 then
-                            local ability_name = RandomFromTable(mediumTowerSkills)
-                            tower:AddAbility(ability_name)
-                            local ability = tower:FindAbilityByName(ability_name)
-                            ability:SetLevel(1) 
-                        end  
-                    -- If a Tower is level 3 or higher, the tower will get a strong ability                                       
-                    elseif tower:GetLevel() > 2 then
-                        local ability_name = RandomFromTable(strongTowerSkills)
-                        tower:AddAbility(ability_name)
-                        local ability = tower:FindAbilityByName(ability_name)
-                        ability:SetLevel(1)
-                    end
+                    if not handledTowers[tower] then
+                        -- Main ability handling
+                        local difference = 0 -- will always be 0 anyway
+                        tower.strongTowerAbilities = tower.strongTowerAbilities or {}
+                        local abName = PullTowerAbility(self.towerList, self.usedRandomTowers, self.banList, tower.strongTowerAbilities, difference, tower:GetLevel() * 10, tower)
+                        if not tower:HasAbility(abName) and abName then
+                            tower:AddAbility(abName):SetLevel(1) 
+                            self.usedRandomTowers[abName] = true
+                            handledTowers[tower] = true
+                            table.insert(tower.strongTowerAbilities, abName)
+                        end        
 
-                   
+                        -- Find sister tower, only relevant for tiers below 4
+                        if tower:GetLevel() < 4 then
+                            local sisterTower = FindSisterTower(tower)
+                            -- Sister ability handling
+                            difference = GetTowerAbilityPowerValue(sisterTower, self.towerList) - GetTowerAbilityPowerValue(tower, self.towerList)
+                            sisterTower.strongTowerAbilities = sisterTower.strongTowerAbilities or {}
+                            local sisterAbName = PullTowerAbility(self.towerList, self.usedRandomTowers, self.banList, tower.strongTowerAbilities, difference, sisterTower:GetLevel() * 10, tower)
+                            if not tower:HasAbility(abName) and abName then
+                                sisterTower:AddAbility(sisterAbName):SetLevel(1)
+                                self.usedRandomTowers[sisterAbName] = true
+                                handledTowers[sisterTower] = true
+                                table.insert(sisterTower.strongTowerAbilities, sisterAbName)
+                            end
+                            -- Assign sister towers permanently
+                            tower.sisterTower = sisterTower
+                            sisterTower.sisterTower = tower
+                            print(tower:GetUnitName(), sisterTower:GetUnitName())
+                        end
+
+                        tower:AddAbility("imba_tower_counter")
+                        tower:FindAbilityByName("imba_tower_counter"):SetLevel(1)
+                    end
                 end
+                print("lul")
+            end
         end
     end, nil)
     ListenToGameEvent('dota_tower_kill', function (keys)
@@ -1431,14 +1686,45 @@ function Ingame:addStrongTowers()
         local switchAI = (RandomInt(1,3))
         if switchAI == 1 then
             --print("bots are in early game behaviour")
-            GameRules:GetGameModeEntity():SetBotsInLateGame(false)
+            self.botsInLateGameMode = false
+            GameRules:GetGameModeEntity():SetBotsInLateGame(self.botsInLateGameMode)
             Timers:CreateTimer(function()
-                GameRules:GetGameModeEntity():SetBotsInLateGame(true)
-                --print("bots have gone back to pushing")
+                self.botsInLateGameMode = true
+                GameRules:GetGameModeEntity():SetBotsInLateGame(self.botsInLateGameMode)
             end, DoUniqueString('makesBotsLateGameAgain'), 180)
         else
             --print("bots are in late game behaviour")
-            GameRules:GetGameModeEntity():SetBotsInLateGame(true)        
+            self.botsInLateGameMode = true
+            GameRules:GetGameModeEntity():SetBotsInLateGame(self.botsInLateGameMode)        
+        end
+
+        if OptionManager:GetOption('antiRat') == 1 then
+            local towers = Entities:FindAllByClassname('npc_dota_tower')
+
+            local direIsDead = 0
+            local radiantIsDead = 0
+
+            for k,v in pairs(towers) do
+                if not v:IsNull() and v:IsAlive() then
+                    if v:GetTeamNumber() == 2 then
+                        radiantIsDead = radiantIsDead + 1
+                    else
+                        direIsDead = direIsDead + 1
+                    end
+                end
+            end
+
+            for k,v in pairs(towers) do
+                if string.match(v:GetUnitName(), "3") then
+                    if radiantIsDead == 5 and v:GetTeamNumber() == 2 then
+                        v:RemoveAbility("tower_anti_rat")
+                        v:RemoveModifierByName("modifier_tower_anti_rat")
+                    elseif direIsDead == 5 and v:GetTeamNumber() == 3 then
+                        v:RemoveAbility("tower_anti_rat")
+                        v:RemoveModifierByName("modifier_tower_anti_rat")
+                    end
+                end
+            end
         end
         
         if OptionManager:GetOption('strongTowers') then
@@ -1446,7 +1732,7 @@ function Ingame:addStrongTowers()
             local towers = Entities:FindAllByClassname('npc_dota_tower')
             for _, tower in pairs(towers) do
                 if tower:GetTeamNumber() == tower_team then
-                    UpgradeTower(tower)
+                    self:UpgradeTower(tower)
                 end
             end
 
@@ -1468,6 +1754,30 @@ function Ingame:addStrongTowers()
             end
         end
     end, nil)
+end
+
+function Ingame:UpgradeTower( tower )
+    -- Fetch tower abilities
+    for _,abName in pairs(tower.strongTowerAbilities) do
+		print(abName)
+        local upgradeAb = tower:FindAbilityByName(abName)
+		if upgradeAb:GetLevel() < upgradeAb:GetMaxLevel() then
+			upgradeAb:SetLevel( upgradeAb:GetLevel() + 1 )
+			return
+		end
+    end
+	local sisterTower = FindSisterTower(tower)
+	local difference = 0
+	if sisterTower then
+		local difference = GetEquivalentTowerAbilityPowerValue(sisterTower, self.towerList, #tower.strongTowerAbilities) - GetTowerAbilityPowerValue(tower, self.towerList)
+	end
+	tower.strongTowerAbilities = tower.strongTowerAbilities or {}
+	local towerAbName = PullTowerAbility(self.towerList, self.usedRandomTowers, self.banList, tower.strongTowerAbilities, difference, tower:GetLevel() * 10, tower)
+	if towerAbName then
+        tower:AddAbility(towerAbName):SetLevel(1)
+        table.insert(tower.strongTowerAbilities, towerAbName)
+        self.usedRandomTowers[towerAbName] = true
+    end
 end
 
 function Ingame:initGlobalMutator()
@@ -1588,14 +1898,14 @@ function Ingame:SetPlayerColors( )
     end
 end
 
-local _instance = Ingame()
+ingame = Ingame()
 
 ListenToGameEvent('game_rules_state_change', function(keys)
     local newState = GameRules:State_Get()
     if newState == DOTA_GAMERULES_STATE_HERO_SELECTION then
-        _instance:SetPlayerColors()
+        ingame:SetPlayerColors()
     end
 end, nil)
 
 -- Return an instance of it
-return _instance
+return ingame

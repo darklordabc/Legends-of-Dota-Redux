@@ -2640,6 +2640,7 @@ Button:enabled:hover {
 }
 
 .optionVoteHeader {
+    margin-left: 18px;
     horizontal-align: middle;
 }
 
@@ -2693,9 +2694,8 @@ Button:enabled:hover {
 
 .optionVoteInfoHeader {
     flow-children: right;
-    horizontal-align: middle;
+    align: center center;
 	
-	margin-left: 23px;
 }
 
 .VotingOptionInfo {
@@ -3499,4 +3499,9 @@ Button:enabled:hover {
 
 .ingame_menu #optionSelection, .ingame_menu #pickingPhase{
 	height: 825px;
+}
+
+#optionVotePhasesList
+{
+    flow-children: down;
 }

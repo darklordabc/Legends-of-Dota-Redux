@@ -162,54 +162,42 @@ function SpellEcho(keys)
 	local echo = keys.event_ability
 	if echo:IsItem() then return end
 	if echo:GetChannelTime() > 0 then return end -- ignore channeled abilities because theyre obnoxious
+	
 	local delay = ability:GetLevelSpecialValueFor("delay",ability:GetLevel()-1)
-	local no_echo = {["shredder_chakram"] = true,
-					 ["shredder_chakram_return"] = true,
-					 ["shredder_chakram_2"] = true,
-					 ["shredder_return_chakram_2"] = true,
-					 ["arc_warden_tempest_double"] = true,
-					 ["alchemist_unstable_concoction"] = true,
-					 ["alchemist_unstable_concoction_throw"] = true,
-					 ["vengefulspirit_nether_swap"] = true,
-					 ["juggernaut_omni_slash"] = true,
-					 ["rubick_telekinesis_land"] = true,
-					 ["antimage_blink"] = true,
-					 ["queenofpain_blink"] = true,
-					 ["phoenix_icarus_dive"] = true,
-					 ["phoenix_icarus_dive_stop"] = true,
-					 ["phoenix_fire_spirits"] = true,
-					 ["phoenix_sun_ray_stop"] = true,
-					 ["phoenix_sun_ray"] = true,
-					 ["phoenix_sun_ray_toggle_move"] = true,
-					 ["phoenix_supernova"] = true,
-					 ["phoenix_launch_fire_spirit"] = true,
-					 ["spell_lab_symbiotic"] = true
-					}
+  local tempBanList = LoadKeyValues('scripts/kv/bans.kv')
+  local no_echo = tempBanList.noSpellEcho
 	if echo and caster:IsRealHero() and not no_echo[ echo:GetName() ] then
 		local cooldown = ability:GetTrueCooldown()
 		Timers:CreateTimer(delay + echo:GetChannelTime(),
                         function()
 							if keys.target then
 								caster:SetCursorCastTarget(keys.target)
-								print("target")
+								--print("target")
 							elseif echo:GetCursorPosition() then
 								local position = keys.target_points[1] + Vector(math.random(150), math.random(150), 0)
 								if (position - caster:GetAbsOrigin()):Length2D() > echo:GetCastRange() then
 									position = caster:GetAbsOrigin() + Vector(math.random(echo:GetCastRange()/2), math.random(echo:GetCastRange()/2), 0)
 								end
-								print(position, caster:GetAbsOrigin())
+								--print(position, caster:GetAbsOrigin())
 								caster:SetCursorPosition(position)
 							else
 								caster:SetCursorTargetingNothing(true)
-								print("nothing")
+								--print("nothing")
 							end
 							local echo_effect = ParticleManager:CreateParticle("particles/rubick_spell_echo.vpcf", PATTACH_ABSORIGIN , caster)
-							ParticleManager:SetParticleControl(echo_effect, 0, caster:GetAbsOrigin())
-							ParticleManager:SetParticleControl(echo_effect, 1, Vector(1,0,0))
-							caster:StartGesture(ACT_DOTA_CAST_ABILITY_5)
-                            echo:OnSpellStart()
-							ability:StartCooldown(cooldown)
-              ParticleManager:ReleaseParticleIndex(echo_effect)
+							local halfManacost = echo:GetManaCost(echo:GetLevel() - 1) /  2
+							--print(halfManacost)
+							if caster:GetMana() >= halfManacost then 
+								ParticleManager:SetParticleControl(echo_effect, 0, caster:GetAbsOrigin())
+								ParticleManager:SetParticleControl(echo_effect, 1, Vector(1,0,0))
+								caster:StartGesture(ACT_DOTA_CAST_ABILITY_5)
+	                            echo:OnSpellStart()
+								ability:StartCooldown(cooldown)
+	            				ParticleManager:ReleaseParticleIndex(echo_effect)
+								--print("not enough mana to echo")
+								caster:SpendMana(halfManacost, ability)
+							end
+							
                         end, DoUniqueString('ebf_rubick_spell_echo'))
 	end
 end

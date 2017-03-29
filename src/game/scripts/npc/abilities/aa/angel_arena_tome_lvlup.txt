@@ -1,0 +1,48 @@
+"DOTAAbilities" {
+	"angel_arena_tome_lvlup"
+    {       
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_datadriven"
+        "ID"                            "1192"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityCooldown"				"80 70 60 50"
+        "AbilityGoldCost"            "1000 1500 2000"
+        "AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+        "MaxLevel"                  "3"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+
+        "AbilityTextureName"            "custom/tome_lvlup"
+
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastPoint"              "0.0"
+
+        "AbilitySpecial" 
+        {
+			"01" 
+			{
+				"var_type" "FIELD_FLOAT"
+				"exp" "50 75 100"
+			}
+			
+			"02" // This is for the tooltips
+			{
+				"var_type" "FIELD_FLOAT"
+				"gold_cost_toolip" "1000 1500 2000"
+			}
+		}
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "Target"            "CASTER"
+                "ScriptFile"        "abilities/angel_arena_reborn/tome.lua"
+                "Function"          "tome_levelup"
+            }       
+        }
+    }
+}

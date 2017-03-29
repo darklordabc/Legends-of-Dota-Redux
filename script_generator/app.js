@@ -33,7 +33,7 @@ var abilities = {};
     Prepare language files
 */
 
-var langs = ['english', 'schinese', 'russian'];
+var langs = ['english', 'schinese', 'russian', 'korean', 'koreana'];
 var langIn = {};
 var langOut = {};
 var specialChar;    // Special character needed for doto encoding
@@ -103,6 +103,10 @@ function prepareLanguageFiles(next) {
             if(lang == 'english') {
                 ourData = ''+fs.readFileSync(langDir + 'addon_' + lang + '.txt');
             } else if(lang == 'russian') {
+                ourData = ''+fs.readFileSync(langDir + 'addon_' + lang + '.txt');
+            } else if(lang == 'korean') {
+                ourData = ''+fs.readFileSync(langDir + 'addon_' + lang + '.txt');
+            } else if(lang == 'koreana') {
                 ourData = ''+fs.readFileSync(langDir + 'addon_' + lang + '.txt');
             } else {
                 ourData = ''+fs.readFileSync(langDir + 'addon_' + lang + '.txt', 'utf16le').substring(1);
@@ -174,7 +178,7 @@ function generatePrecacheData(next) {
                     Enabled: data.Enabled
                 }
 
-                if(data.BotImplemented == 1 || ignoreSpecialAbilities[name]) {
+                if(true) { //data.BotImplemented == 1 || ignoreSpecialAbilities[name]
                     for(var i=10;i<=17;++i) {
                         if(heroes[name]['Ability' + i]) {
                             newKV[name+'_lod']['Ability' + i] = '';

@@ -25,7 +25,7 @@
 		"AbilitySpecial" {
 			"01" {
 				"var_type" "FIELD_INTEGER"
-				"damage" "80"
+				"damage" "80 160 260 360"
 			}
 
 			"02" {
@@ -45,7 +45,7 @@
 
 			"05" {
 				"var_type" "FIELD_INTEGER"
-				"projectile_speed" "550"
+				"projectile_speed" "550 650 750 950"
 			}
 
 			"06" {
