@@ -63,7 +63,7 @@ function modifier_item_assault_consumable:IsAura()
 end
 
 function modifier_item_assault_consumable:GetAuraSearchTeam()
-  return DOTA_UNIT_TARGET_TEAM_BOTH
+  return DOTA_UNIT_TARGET_TEAM_FRIENDLY
 end
 
 function modifier_item_assault_consumable:GetAuraSearchType()
@@ -89,6 +89,28 @@ end
 function modifier_item_assault_consumable:GetModifierAttackSpeedBonus_Constant()
   return self:GetAbility():GetSpecialValueFor("assault_bonus_attack_speed")
 end
+
+-- Create enemy aura
+function modifier_item_assault_consumable:OnCreated()
+  if IsServer() then
+    self:StartIntervalThink(1/30)
+  end
+end
+
+function modifier_item_assault_consumable:OnIntervalThink()
+  local caster = self:GetCaster()
+  local radius = self:GetAbility():GetSpecialValueFor("assault_aura_radius")
+  local units = FindUnitsInRadius(caster:GetTeam(),caster:GetAbsOrigin(),nil,radius,DOTA_UNIT_TARGET_TEAM_ENEMY,DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_CREEP+DOTA_UNIT_TARGET_BUILDING,DOTA_UNIT_TARGET_FLAG_NONE,FIND_ANY_ORDER,false)
+  for k,v in pairs(units) do
+    if not v:HasModifier("modifier_item_assault_consumable_aura_enemies") then
+      local modifier = v:AddNewModifier(caster,self:GetAbility(),"modifier_item_assault_consumable_aura_enemies",{})
+      modifier:SetDuration(0.5,false)
+    else
+      v:FindModifierByName("modifier_item_assault_consumable_aura_enemies"):SetDuration(0.5,false)
+    end
+  end
+end
+
 
 
 LinkLuaModifier("modifier_item_assault_consumable_aura","abilities/items/assault.lua",LUA_MODIFIER_MOTION_NONE)
@@ -139,6 +161,48 @@ end
 function modifier_item_assault_consumable_aura:IsHidden()
   return self:GetCaster() == self:GetParent()
 end
+
+LinkLuaModifier("modifier_item_assault_consumable_aura_enemies","abilities/items/assault.lua",LUA_MODIFIER_MOTION_NONE)
+modifier_item_assault_consumable_aura_enemies = class({})
+
+function modifier_item_assault_consumable_aura_enemies:GetTexture()
+  return "item_assault"
+end
+
+function modifier_item_assault_consumable_aura_enemies:DeclareFunctions()
+  local funcs = {
+    MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+  }
+  return funcs
+end 
+
+function modifier_item_assault_consumable_aura_enemies:GetModifierPhysicalArmorBonus()
+  if not self:GetAbility() or not self:GetAbility():GetSpecialValueFor("assault_aura_armor") then self:Destroy() return end
+  return -self:GetAbility():GetSpecialValueFor("assault_aura_armor")
+end
+
+
+
+function modifier_item_assault_consumable_aura_enemies:IsDebuff()
+  return true
+end
+function modifier_item_assault_consumable_aura_enemies:OnCreated()
+  self:StartIntervalThink(1/30)
+end
+
+function modifier_item_assault_consumable_aura_enemies:OnIntervalThink()
+  if IsServer() then
+    if self:GetParent():CanEntityBeSeenByMyTeam(self:GetCaster()) then
+      self:SetStackCount(0)
+    else
+      self:SetStackCount(1)
+    end
+  end
+end
+function modifier_item_assault_consumable_aura_enemies:IsHidden()
+  return self:GetStackCount() == 1
+end
+
 
 
 

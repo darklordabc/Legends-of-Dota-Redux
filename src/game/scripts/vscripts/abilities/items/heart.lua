@@ -52,6 +52,9 @@ end
 function modifier_item_heart_consumable:IsPermanent()
   return true
 end
+function modifier_item_heart_consumable:IsHidden()
+  return self:GetAbility().IsItem
+end
 function modifier_item_heart_consumable:GetAttributes()
   return MODIFIER_ATTRIBUTE_MULTIPLE
 end
