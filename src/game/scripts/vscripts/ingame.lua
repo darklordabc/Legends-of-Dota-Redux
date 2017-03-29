@@ -153,34 +153,6 @@ function Ingame:OnHeroLeveledUp(keys)
     -- print(hero:GetUnitName(), level, hero:GetDeathXP(), GetXPForLevel( level ))
 end
 
-function Ingame:FilterItemsInventory(keys)
-    --[[local hero = EntIndexToHScript(keys.inventory_parent_entindex_const)
-    local item = EntIndexToHScript(keys.item_entindex_const)
-    local itemName = item:GetAbilityName()
-    local itemTable = LoadKeyValues('scripts/kv/consumable_items.kv')
-    if not util:isPlayerBot(hero:GetPlayerOwnerID()) then
-        -- Convert certain items to consumable items
-        --if OptionManager:GetOption('ConsumableItems') then 
-             Timers:CreateTimer(function ()
-                for i=0,14 do
-                    local hItem = hero:GetItemInSlot(i)
-                    if hItem then
-                        local name = hItem:GetAbilityName()
-                        if itemTable[name] then
-                            hero:RemoveItem(hItem)
-                            hero:AddItemByName(name.."_consumable")
-                            local nSlot, hUseless = hero:FindItemByNameEverywhere(name.."_consumable")
-                            hero:SwapItems(i,nSlot)
-                            break
-                        end
-                    end
-                end
-            end, 'waitForItemToBeMerged', 0.1)
-        --end
-    end]]
-    return true
-end
-
 
 function Ingame:OnPlayerPurchasedItem(keys)
     -- Bots will get items auto-delievered to them
@@ -526,7 +498,6 @@ function Ingame:onStart()
     GameRules:GetGameModeEntity():SetTrackingProjectileFilter(Dynamic_Wrap(Ingame, 'FilterProjectiles'), self)
     GameRules:GetGameModeEntity():SetModifierGainedFilter(Dynamic_Wrap(Ingame, 'FilterModifiers'),self)  
     GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(Ingame, 'FilterDamage'),self)
-    GameRules:GetGameModeEntity():SetItemAddedToInventoryFilter(Dynamic_Wrap(Ingame, 'FilterItemsInventory'),self)
 
     -- -- Listen if abilities are being used.
     --ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(Ingame, 'OnAbilityUsed'), self)
