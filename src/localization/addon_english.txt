@@ -8604,10 +8604,10 @@
     "DOTA_Tooltip_modifier_item_heart_consumable" "Consumed Heart"
     "DOTA_Tooltip_modifier_item_heart_consumable_Description" "Permanently gained benefits of Heart of Tarrasque"
 
-    "DOTA_Tooltip_modifier_item_assault_consumable" "Cuirass Synth Aura"
+    "DOTA_Tooltip_modifier_item_assault_consumable" "Consumed Cuirass"
     "DOTA_Tooltip_modifier_item_assault_consumable_Description" "Permanently gained benefits of Assault Cuirass"
 
-    "DOTA_Tooltip_modifier_item_assault_consumable_aura" "Consumed Cuirass"
+    "DOTA_Tooltip_modifier_item_assault_consumable_aura" "Cuirass Synth Aura"
     "DOTA_Tooltip_modifier_item_assault_consumable_aura_Description" "Attack Speed and Armor is increased or reduced, depending on if your ally or enemy with owner of this aura"
 
     "DOTA_Tooltip_modifier_item_desolator_consumable" "Consumed Desolator"

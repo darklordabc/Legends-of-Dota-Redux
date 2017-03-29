@@ -19,7 +19,7 @@
       "01"
       {
         "var_type"              "FIELD_INTEGER"
-        "assault_bonus_attack_speed"    "35"
+        "assault_bonus_attack_speed"    "30"
       }
       "02"
       {
@@ -34,7 +34,7 @@
       "04"
       {
         "var_type"              "FIELD_INTEGER"
-        "assault_aura_attack_speed"     "20"
+        "assault_aura_attack_speed"     "25"
       }
       "05"
       {
@@ -77,6 +77,7 @@
         "var_type"        "FIELD_FLOAT"
         "skadi_cold_duration_ranged"  "2.5"
       }
+      // Desolator
       "13"
       {
         "var_type"              "FIELD_INTEGER"
@@ -92,6 +93,7 @@
         "var_type"              "FIELD_FLOAT"
         "desolator_corruption_duration"   "15.0"
       }
+      // Heart
       "16"
       {
         "var_type"              "FIELD_INTEGER"
@@ -117,6 +119,7 @@
         "var_type"              "FIELD_INTEGER"
         "heart_cooldown_ranged_tooltip"       "7"
       }
+      // Daedalous
       "21"
       {
         "var_type"              "FIELD_INTEGER"
@@ -130,8 +133,9 @@
       "23"
       {
         "var_type"              "FIELD_INTEGER"
-        "greater_crit_crit_multiplier"       "230"
+        "greater_crit_crit_multiplier"       "235"
       }
+      // Octarine Core
       "24"
       {
         "var_type"              "FIELD_INTEGER"
