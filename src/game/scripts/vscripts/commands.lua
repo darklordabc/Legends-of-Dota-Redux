@@ -35,6 +35,100 @@ function Commands:OnPlayerChat(keys)
         end
     end
 
+    ----------------------------
+    -- Vote Commands
+    ----------------------------
+    if string.find(text, "-antirat") or string.find(text, "-ar")then
+        if OptionManager:GetOption('antiRat') == 0 and not ingame.voteEnabledCheatMode then
+            -- In all_allowed map, votes needed is only 50% of players (rounded up)
+            local percentNeeded = 100
+            if GetMapName() == 'all_allowed' then
+                percentNeeded = 50
+            end
+            util:CreateVoting("lodVotingAntirat", playerID, 20, percentNeeded, function()
+                OptionManager:SetOption('antiRat', 1) 
+                ingame:giveAntiRatProtection()
+                ingame.voteAntiRat = true
+                EmitGlobalSound("Event.CheatEnabled")
+                GameRules:SendCustomMessage('Enough players voted to enable anti-rat protection. <font color=\'#70EA72\'>Tier 3 towers cannot be destroyed until all other towers are gone.</font>.',0,0)
+            end)
+        end
+    elseif string.find(text, "-doublecreeps") or string.find(text, "-dc") then
+       if not ingame.voteDoubleCreeps then 
+            local percentNeeded = 100
+            if GetMapName() == 'all_allowed' then
+                percentNeeded = 50
+            end
+            util:CreateVoting("lodVotingDoubleCreeps", playerID, 20, percentNeeded, function()
+                OptionManager:SetOption('neutralMultiply', 2)
+               -- pregame:multiplyNeutrals()
+                ingame.voteDoubleCreeps = true
+                EmitGlobalSound("Event.CheatEnabled")
+                GameRules:SendCustomMessage('Enough players voted to enable double neutrals. <font color=\'#70EA72\'>Neutral creep camps are now doubled</font>.',0,0)
+            end)
+        end
+    elseif string.find(text, "-enablecheat") or string.find(text, "-ec") then
+        if not ingame.voteEnabledCheatMode then       
+            util:CreateVoting("lodVotingEnableCheatMode", playerID, 20, 100, function()
+                ingame.voteEnabledCheatMode = true
+                EmitGlobalSound("Event.CheatEnabled")
+                GameRules:SendCustomMessage('<font color=\'#70EA72\'>Everbody voted to enable cheat mode. Cheat mode enabled</font>.',0,0)
+            end)
+        end
+    elseif string.find(text, "-enablekamikaze") or string.find(text, "-ek") then
+        if not ingame.voteDisableAntiKamikaze then
+            util:CreateVoting("lodVotingEnableKamikaze", playerID, 20, 100, function()
+                ingame.voteDisableAntiKamikaze = true
+                EmitGlobalSound("Event.CheatEnabled")
+                GameRules:SendCustomMessage('Everbody voted to disable the anti-Kamikaze mechanic. <font color=\'#70EA72\'>No more peanlty for dying 3 times within 60 seconds</font>.',0,0)
+            end)
+        end
+    elseif string.find(text, "-enablebuilder") or string.find(text, "-eb") and OptionManager:GetOption('allowIngameHeroBuilder') == false then
+        if not ingame.voteEnableBuilder then
+            util:CreateVoting("lodVotingEnableHeroBuilder", playerID, 20, 100, function()
+                network:enableIngameHeroEditor()
+                OptionManager:SetOption('allowIngameHeroBuilder', 1)
+                if util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS) > 0 and util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS) > 0 then
+                    OptionManager:SetOption('ingameBuilderPenalty', 30)
+                end
+                ingame.voteEnableBuilder = true
+                EmitGlobalSound("Event.CheatEnabled")
+                GameRules:SendCustomMessage('Everbody voted to enable the ingame hero builder. <font color=\'#70EA72\'>You can now change your hero build mid-game</font>.',0,0)
+            end)
+        end
+    elseif string.find(text, "-enablerespawn") or string.find(text, "-er") then
+        if not ingame.voteDisableRespawnLimit then
+            util:CreateVoting("lodVotingEnableRespawn", playerID, 20, 100, function()
+                ingame.voteDisableRespawnLimit = true
+                if ingame.origianlRespawnRate ~= nil then
+                    OptionManager:SetOption('respawnModifierPercentage', ingame.origianlRespawnRate)
+                end
+                EmitGlobalSound("Event.CheatEnabled")
+                GameRules:SendCustomMessage('Everbody voted to disable the increasing-spawn-rate mechanic. <font color=\'#70EA72\'>Respawn rates no longer increase after 40 minutes</font>. Respawn rate is now '.. OptionManager:GetOption('respawnModifierPercentage') .. '%.',0,0)
+            end)
+        end
+    elseif string.find(text, "-switchteam") then
+        local team = PlayerResource:GetTeam(playerID)
+        if (ingame.needsTeamBalance and ingame.takeFromTeam == team) or util:isSinglePlayerMode() or IsInToolsMode() then
+            util:CreateVoting("lodVotingSwitchTeam", playerID, 20, 100, function()
+                local oldTeam = PlayerResource:GetCustomTeamAssignment(playerID)
+                local newTeam = otherTeam(oldTeam)
+                local uMoney = PlayerResource:GetUnreliableGold(playerID)
+                local rMoney = PlayerResource:GetReliableGold(playerID)
+
+                GameRules:SetCustomGameTeamMaxPlayers(newTeam, GameRules:GetCustomGameTeamMaxPlayers(newTeam) + 1)
+
+                ingame:balancePlayer(playerID, newTeam)
+                PlayerResource:SetGold(playerID, uMoney, false)
+                PlayerResource:SetGold(playerID, rMoney, true)
+
+                GameRules:SetCustomGameTeamMaxPlayers(oldTeam, GameRules:GetCustomGameTeamMaxPlayers(oldTeam) - 1)
+            end)
+        else
+            --Failed, error message
+        end
+    end
+
     local hero = PlayerResource:GetSelectedHeroEntity(playerID) 
     -- If not valid hero, return
     if not hero then return end
@@ -145,99 +239,6 @@ function Commands:OnPlayerChat(keys)
                 SendToServerConsole('say "Post this to the LoD comments section: '..err2:gsub('"',"''")..'"')
             end
         end, DoUniqueString('fixcasting'), .5)
-    end
-    ----------------------------
-    -- Vote Commands
-    ----------------------------
-    if string.find(text, "-antirat") or string.find(text, "-ar")then
-        if OptionManager:GetOption('antiRat') == 0 and not ingame.voteEnabledCheatMode then
-        	-- In all_allowed map, votes needed is only 50% of players (rounded up)
-            local percentNeeded = 100
-            if GetMapName() == 'all_allowed' then
-                percentNeeded = 50
-            end
-        	util:CreateVoting("lodVotingAntirat", playerID, 20, percentNeeded, function()
-                OptionManager:SetOption('antiRat', 1) 
-                ingame:giveAntiRatProtection()
-                ingame.voteAntiRat = true
-                EmitGlobalSound("Event.CheatEnabled")
-                GameRules:SendCustomMessage('Enough players voted to enable anti-rat protection. <font color=\'#70EA72\'>Tier 3 towers cannot be destroyed until all other towers are gone.</font>.',0,0)
-        	end)
-        end
-    elseif string.find(text, "-doublecreeps") or string.find(text, "-dc") then
-       if not ingame.voteDoubleCreeps then 
-	        local percentNeeded = 100
-	        if GetMapName() == 'all_allowed' then
-	            percentNeeded = 50
-	        end
-	    	util:CreateVoting("lodVotingDoubleCreeps", playerID, 20, percentNeeded, function()
-	    		OptionManager:SetOption('neutralMultiply', 2)
-	           -- pregame:multiplyNeutrals()
-	            ingame.voteDoubleCreeps = true
-	            EmitGlobalSound("Event.CheatEnabled")
-	            GameRules:SendCustomMessage('Enough players voted to enable double neutrals. <font color=\'#70EA72\'>Neutral creep camps are now doubled</font>.',0,0)
-	    	end)
-        end
-    elseif string.find(text, "-enablecheat") or string.find(text, "-ec") then
-        if not ingame.voteEnabledCheatMode then       
-            util:CreateVoting("lodVotingEnableCheatMode", playerID, 20, 100, function()
-                ingame.voteEnabledCheatMode = true
-                EmitGlobalSound("Event.CheatEnabled")
-                GameRules:SendCustomMessage('<font color=\'#70EA72\'>Everbody voted to enable cheat mode. Cheat mode enabled</font>.',0,0)
-            end)
-        end
-    elseif string.find(text, "-enablekamikaze") or string.find(text, "-ek") then
-        if not ingame.voteDisableAntiKamikaze then
-            util:CreateVoting("lodVotingEnableKamikaze", playerID, 20, 100, function()
-                ingame.voteDisableAntiKamikaze = true
-                EmitGlobalSound("Event.CheatEnabled")
-                GameRules:SendCustomMessage('Everbody voted to disable the anti-Kamikaze mechanic. <font color=\'#70EA72\'>No more peanlty for dying 3 times within 60 seconds</font>.',0,0)
-            end)
-        end
-    elseif string.find(text, "-enablebuilder") or string.find(text, "-eb") and OptionManager:GetOption('allowIngameHeroBuilder') == false then
-        if not ingame.voteEnableBuilder then
-            util:CreateVoting("lodVotingEnableHeroBuilder", playerID, 20, 100, function()
-                network:enableIngameHeroEditor()
-                OptionManager:SetOption('allowIngameHeroBuilder', 1)
-                if util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS) > 0 and util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS) > 0 then
-                    OptionManager:SetOption('ingameBuilderPenalty', 30)
-                end
-                ingame.voteEnableBuilder = true
-                EmitGlobalSound("Event.CheatEnabled")
-                GameRules:SendCustomMessage('Everbody voted to enable the ingame hero builder. <font color=\'#70EA72\'>You can now change your hero build mid-game</font>.',0,0)
-            end)
-        end
-    elseif string.find(text, "-enablerespawn") or string.find(text, "-er") then
-        if not ingame.voteDisableRespawnLimit then
-            util:CreateVoting("lodVotingEnableRespawn", playerID, 20, 100, function()
-                ingame.voteDisableRespawnLimit = true
-                if ingame.origianlRespawnRate ~= nil then
-                    OptionManager:SetOption('respawnModifierPercentage', ingame.origianlRespawnRate)
-                end
-                EmitGlobalSound("Event.CheatEnabled")
-                GameRules:SendCustomMessage('Everbody voted to disable the increasing-spawn-rate mechanic. <font color=\'#70EA72\'>Respawn rates no longer increase after 40 minutes</font>. Respawn rate is now '.. OptionManager:GetOption('respawnModifierPercentage') .. '%.',0,0)
-            end)
-        end
-    elseif string.find(text, "-switchteam") then
-        local team = PlayerResource:GetTeam(playerID)
-        if (ingame.needsTeamBalance and ingame.takeFromTeam == team) or util:isSinglePlayerMode() or IsInToolsMode() then
-            util:CreateVoting("lodVotingSwitchTeam", playerID, 20, 100, function()
-                local oldTeam = PlayerResource:GetCustomTeamAssignment(playerID)
-                local newTeam = otherTeam(oldTeam)
-                local uMoney = PlayerResource:GetUnreliableGold(playerID)
-                local rMoney = PlayerResource:GetReliableGold(playerID)
-
-                GameRules:SetCustomGameTeamMaxPlayers(newTeam, GameRules:GetCustomGameTeamMaxPlayers(newTeam) + 1)
-
-                ingame:balancePlayer(playerID, newTeam)
-                PlayerResource:SetGold(playerID, uMoney, false)
-                PlayerResource:SetGold(playerID, rMoney, true)
-
-                GameRules:SetCustomGameTeamMaxPlayers(oldTeam, GameRules:GetCustomGameTeamMaxPlayers(oldTeam) - 1)
-            end)
-        else
-            --Failed, error message
-        end
     end
     ----------------------------
     -- Cheat Commands
