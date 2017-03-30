@@ -1,43 +1,40 @@
-"DOTAAbilities" {
-	"master_magic_op"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"				"ability_lua"
-		"ScriptFile"					"abilities/overflow/master_magic/ability_op.lua"
-		"AbilityTextureName"			"custom/master_magic_op"
-		"AbilityCooldown"               "20"
-		"AbilityManaCost"               "150"
-		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"FightRecapLevel"               "1"
-		"HasScepterUpgrade"			"1"
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"                  "FIELD_INTEGER"
-				"stacks"					"1 2 3"
-			}
-			"02"
-			{
-				"var_type"                  "FIELD_INTEGER"
-				"chance_scepter"			"25"
-			}
-			"03"
-			{
-				"var_type"                  "FIELD_FLOAT"
-				"duration"			"20.0"
-			}
-		}
-
-		"precache"
-		{
-			"soundfile"                 "soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts"
-			"particle"                  "particles/master_magic.vpcf"
-		}
-	}
+"DOTAAbilities"
+{
+    "master_magic_op"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/overflow/master_magic/ability_op.lua"
+        "AbilityTextureName"                                                   "custom/master_magic_op"
+        "AbilityCooldown"                                                      "20"
+        "AbilityManaCost"                                                      "150"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "FightRecapLevel"                                                      "1"
+        "HasScepterUpgrade"                                                    "1"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "stacks"                                               "1 2 3"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "chance_scepter"                                       "25"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                             "20.0"
+            }
+        }
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts"
+            "particle"                                                     "particles/master_magic.vpcf"
+        }
+        "ReduxCost"                                                            "100"
+        "ReduxFlags"                                                           "SuperOP"
+    }
 }

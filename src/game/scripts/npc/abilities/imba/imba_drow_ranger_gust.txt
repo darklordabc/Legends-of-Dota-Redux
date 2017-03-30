@@ -1,134 +1,140 @@
-"DOTAAbilities" {
-	"imba_drow_ranger_gust" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel" "1"
-		"AbilityTextureName" "drow_ranger_wave_of_silence"
-		"AbilityCastRange" "1150"
-		"AbilityCastPoint" "0.1"
-		"AbilityCooldown" "13"
-		"AbilityManaCost" "90"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_FLOAT"
-				"wave_speed" "2000.0"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"wave_range" "900"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"wave_width" "250"
-			}
-
-			"04" {
-				"var_type" "FIELD_INTEGER"
-				"attack_slow" "-20"
-			}
-
-			"05" {
-				"var_type" "FIELD_INTEGER"
-				"move_slow" "-20"
-			}
-
-			"06" {
-				"var_type" "FIELD_FLOAT"
-				"silence_duration" "3 4 5 6"
-			}
-
-			"07" {
-				"var_type" "FIELD_FLOAT"
-				"knockback_duration" "0.9"
-			}
-
-			"08" {
-				"var_type" "FIELD_INTEGER"
-				"knockback_height" "30"
-			}
-
-			"09" {
-				"var_type" "FIELD_FLOAT"
-				"self_knockback_duration" "0.3"
-			}
-
-			"10" {
-				"var_type" "FIELD_INTEGER"
-				"damage" "50"
-			}
-
-			"11" {
-				"var_type" "FIELD_INTEGER"
-				"wave_range_tooltip" "1150"
-			}
-		}
-
-		"precache" {
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_drowranger.vsndevts"
-			"particle" "particles/units/heroes/hero_tusk/tusk_frozen_sigil_status.vpcf"
-		}
-
-		"OnSpellStart" {
-			"LinearProjectile" {
-				"Target" "POINT"
-				"EffectName" "particles/units/heroes/hero_drow/drow_silence_wave.vpcf"
-				"MoveSpeed" "%wave_speed"
-				"StartRadius" "%wave_width"
-				"StartPosition" "attach_attack1"
-				"EndRadius" "%wave_width"
-				"FixedDistance" "%wave_range"
-				"TargetTeams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"TargetTypes" "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
-				"HasFrontalCone" "0"
-			}
-
-			"FireSound" {
-				"EffectName" "Hero_DrowRanger.Silence"
-				"Target" "CASTER"
-			}
-		}
-
-		"OnProjectileHitUnit" {
-			"DeleteOnHit" "0"
-
-			"Damage" {
-				"Target" "TARGET"
-				"Type" "DAMAGE_TYPE_MAGICAL"
-				"Damage" "%damage"
-			}
-
-			"ApplyModifier" {
-				"ModifierName" "modifier_imba_drow_ranger_gust_debuff"
-				"Target" "TARGET"
-			}
-
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_drow_ranger.lua"
-				"Function" "Gust"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_imba_drow_ranger_gust_debuff" {
-				"IsDebuff" "1"
-				"IsPurgable" "1"
-				"Duration" "%silence_duration"
-				"EffectName" "particles/generic_gameplay/generic_silence.vpcf"
-				"EffectAttachType" "follow_overhead"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%attack_slow"
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%move_slow"
-				}
-
-				"States" {
-					"MODIFIER_STATE_SILENCED" "MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_drow_ranger_gust"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "FightRecapLevel"                                                      "1"
+        "AbilityTextureName"                                                   "drow_ranger_wave_of_silence"
+        "AbilityCastRange"                                                     "1150"
+        "AbilityCastPoint"                                                     "0.1"
+        "AbilityCooldown"                                                      "13"
+        "AbilityManaCost"                                                      "90"
+        "AbilitySpecial"
+        {
+            "10"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage"                                               "50"
+            }
+            "11"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "wave_range_tooltip"                                   "1150"
+            }
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "wave_speed"                                           "2000.0"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "wave_range"                                           "900"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "wave_width"                                           "250"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "attack_slow"                                          "-20"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "move_slow"                                            "-20"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "silence_duration"                                     "3 4 5 6"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "knockback_duration"                                   "0.9"
+            }
+            "08"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "knockback_height"                                     "30"
+            }
+            "09"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "self_knockback_duration"                              "0.3"
+            }
+        }
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_drowranger.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_tusk/tusk_frozen_sigil_status.vpcf"
+        }
+        "OnSpellStart"
+        {
+            "LinearProjectile"
+            {
+                "Target"                                               "POINT"
+                "EffectName"                                           "particles/units/heroes/hero_drow/drow_silence_wave.vpcf"
+                "MoveSpeed"                                            "%wave_speed"
+                "StartRadius"                                          "%wave_width"
+                "StartPosition"                                        "attach_attack1"
+                "EndRadius"                                            "%wave_width"
+                "FixedDistance"                                        "%wave_range"
+                "TargetTeams"                                          "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                "TargetTypes"                                          "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+                "HasFrontalCone"                                       "0"
+            }
+            "FireSound"
+            {
+                "EffectName"                                           "Hero_DrowRanger.Silence"
+                "Target"                                               "CASTER"
+            }
+        }
+        "OnProjectileHitUnit"
+        {
+            "DeleteOnHit"                                                  "0"
+            "Damage"
+            {
+                "Target"                                               "TARGET"
+                "Type"                                                 "DAMAGE_TYPE_MAGICAL"
+                "Damage"                                               "%damage"
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"                                         "modifier_imba_drow_ranger_gust_debuff"
+                "Target"                                               "TARGET"
+            }
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_drow_ranger.lua"
+                "Function"                                             "Gust"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_drow_ranger_gust_debuff"
+            {
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "1"
+                "Duration"                                             "%silence_duration"
+                "EffectName"                                           "particles/generic_gameplay/generic_silence.vpcf"
+                "EffectAttachType"                                     "follow_overhead"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%attack_slow"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%move_slow"
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_SILENCED"                      "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

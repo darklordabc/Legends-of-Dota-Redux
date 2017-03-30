@@ -1,75 +1,84 @@
-"DOTAAbilities" {
-	"ebf_clinkz_trickshot" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
-		"FightRecapLevel" "1"
-		"AbilityTextureName" "custom/ebf_clinkz_trickshot"
-		"HasScepterUpgrade" "1"
-		"AbilityCooldown" "40.0"
-		"AbilityCastPoint" "0.0 0.0 0.0 0.0"
-		"AbilityManaCost" "150"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_FLOAT"
-				"duration" "6.0"
-			}
-
-			"02" {
-				"var_type" "FIELD_FLOAT"
-				"double_interval" "2.0 1.5 1.0 0.8"
-			}
-
-			"03" {
-				"var_type" "FIELD_FLOAT"
-				"targets_scepter" "4"
-			}
-		}
-
-		"precache" {
-			"particle" "particles/units/heroes/hero_clinkz/clinkz_strafe_fire.vpcf"
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
-		}
-
-		"OnSpellStart" {
-			"FireSound" {
-				"EffectName" "Hero_Clinkz.Strafe"
-				"Target" "CASTER"
-			}
-
-			"ApplyModifier" {
-				"ModifierName" "modifier_strafe"
-				"Target" "CASTER"
-				"Duration" "%duration"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_strafe" {
-				"EffectName" "particles/units/heroes/hero_clinkz/clinkz_strafe.vpcf"
-				"EffectAttachType" "follow_origin"
-
-				"OnCreated" {
-					"AttachEffect" {
-						"EffectName" "particles/units/heroes/hero_clinkz/clinkz_strafe_fire.vpcf"
-						"EffectAttachType" "follow_origin"
-						"Target" "CASTER"
-					}
-
-					"RunScript" {
-						"ScriptFile" "abilities/epic_boss_fight/ebf_clinkz_trickshot"
-						"Function" "StrafeAttack"
-					}
-				}
-				"ThinkInterval" "%double_interval"
-
-				"OnIntervalThink" {
-					"RunScript" {
-						"ScriptFile" "abilities/epic_boss_fight/ebf_clinkz_trickshot"
-						"Function" "StrafeAttack"
-					}
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "ebf_clinkz_trickshot"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+        "FightRecapLevel"                                                      "1"
+        "AbilityTextureName"                                                   "custom/ebf_clinkz_trickshot"
+        "HasScepterUpgrade"                                                    "1"
+        "AbilityCooldown"                                                      "40.0"
+        "AbilityCastPoint"                                                     "0.0 0.0 0.0 0.0"
+        "AbilityManaCost"                                                      "150"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                             "6.0"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "double_interval"                                      "2.0 1.5 1.0 0.8"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "targets_scepter"                                      "4"
+            }
+        }
+        "precache"
+        {
+            "particle"                                                     "particles/units/heroes/hero_clinkz/clinkz_strafe_fire.vpcf"
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
+        }
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "EffectName"                                           "Hero_Clinkz.Strafe"
+                "Target"                                               "CASTER"
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"                                         "modifier_strafe"
+                "Target"                                               "CASTER"
+                "Duration"                                             "%duration"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_strafe"
+            {
+                "EffectName"                                           "particles/units/heroes/hero_clinkz/clinkz_strafe.vpcf"
+                "EffectAttachType"                                     "follow_origin"
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "EffectName"                           "particles/units/heroes/hero_clinkz/clinkz_strafe_fire.vpcf"
+                        "EffectAttachType"                     "follow_origin"
+                        "Target"                               "CASTER"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/epic_boss_fight/ebf_clinkz_trickshot"
+                        "Function"                             "StrafeAttack"
+                    }
+                }
+                "ThinkInterval"                                        "%double_interval"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/epic_boss_fight/ebf_clinkz_trickshot"
+                        "Function"                             "StrafeAttack"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "aoe_attack"
+        "ReduxCost"                                                            "20"
+    }
 }

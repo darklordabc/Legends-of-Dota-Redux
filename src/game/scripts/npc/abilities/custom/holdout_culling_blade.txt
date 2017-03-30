@@ -1,74 +1,78 @@
-"DOTAAbilities" {
-	"holdout_culling_blade" {
-		"AbilityTextureName" "custom/holdout_culling_blade"
-		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
-		"AbilityCastRange" "500 600 700"
-		"AbilityCastPoint" "0.0"
-		"AbilityCooldown" "15.0 12.5 10.0"
-		"AbilityManaCost" "100 75 50"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"leap_distance" "500 600 700"
-			}
-
-			"02" {
-				"var_type" "FIELD_FLOAT"
-				"leap_speed" "1000 1100 1200"
-			}
-
-			"03" {
-				"var_type" "FIELD_FLOAT"
-				"leap_acceleration" "7000.0"
-			}
-
-			"04" {
-				"var_type" "FIELD_INTEGER"
-				"leap_radius" "175 225 275"
-			}
-
-			"05" {
-				"var_type" "FIELD_INTEGER"
-				"kill_threshold" "250 350 450"
-			}
-
-			"06" {
-				"var_type" "FIELD_INTEGER"
-				"damage" "150 250 350"
-			}
-
-			"07" {
-				"var_type" "FIELD_INTEGER"
-				"speed_bonus" "40"
-			}
-
-			"08" {
-				"var_type" "FIELD_FLOAT"
-				"speed_duration" "6"
-			}
-
-			"09" {
-				"var_type" "FIELD_INTEGER"
-				"speed_aoe" "900"
-			}
-
-			"10" {
-				"var_type" "FIELD_FLOAT"
-				"cooldown_scepter" "6.0 6.0 6.0"
-			}
-
-			"11" {
-				"var_type" "FIELD_INTEGER"
-				"kill_threshold_scepter" "300 450 625"
-			}
-
-			"12" {
-				"var_type" "FIELD_FLOAT"
-				"speed_duration_scepter" "10"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "holdout_culling_blade"
+    {
+        "AbilityTextureName"                                                   "custom/holdout_culling_blade"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "AbilityCastRange"                                                     "500 600 700"
+        "AbilityCastPoint"                                                     "0.0"
+        "AbilityCooldown"                                                      "15.0 12.5 10.0"
+        "AbilityManaCost"                                                      "100 75 50"
+        "AbilitySpecial"
+        {
+            "10"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "cooldown_scepter"                                     "6.0 6.0 6.0"
+            }
+            "11"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "kill_threshold_scepter"                               "300 450 625"
+            }
+            "12"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "speed_duration_scepter"                               "10"
+            }
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "leap_distance"                                        "500 600 700"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "leap_speed"                                           "1000 1100 1200"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "leap_acceleration"                                    "7000.0"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "leap_radius"                                          "175 225 275"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "kill_threshold"                                       "250 350 450"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage"                                               "150 250 350"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "speed_bonus"                                          "40"
+            }
+            "08"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "speed_duration"                                       "6"
+            }
+            "09"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "speed_aoe"                                            "900"
+            }
+        }
+        "ReduxCost"                                                            "20"
+    }
 }

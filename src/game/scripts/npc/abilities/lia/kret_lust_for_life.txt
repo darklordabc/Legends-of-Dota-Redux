@@ -1,26 +1,31 @@
-"DOTAAbilities" {
-	"kret_lust_for_life" {
-		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/life_in_arena/kret_lust_for_life"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName" "custom/kret_lust_for_life"
-		"MaxLevel" "4"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"intellect_sacrifice" "-5 -10 -15 -25"
-			}
-
-			"02" {
-				"var_type" "FIELD_FLOAT"
-				"tolltip" "15"
-			}
-
-			"03" {
-				"var_type" "FIELD_FLOAT"
-				"health_regen_percent" "0.10 0.15 0.20 .25"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "kret_lust_for_life"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/life_in_arena/kret_lust_for_life"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "custom/kret_lust_for_life"
+        "MaxLevel"                                                             "4"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "intellect_sacrifice"                                  "-5 -10 -15 -25"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "tolltip"                                              "15"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "health_regen_percent"                                 "0.10 0.15 0.20 .25"
+            }
+        }
+        "ReduxFlags"                                                           "tank"
+        "ReduxCost"                                                            "30"
+    }
 }

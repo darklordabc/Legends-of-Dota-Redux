@@ -1,72 +1,63 @@
-"DOTAAbilities" {
-	"tusk_walrus_kick_op"{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"tusk_walrus_kick"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"AbilityTextureName"			"custom/tusk_walrus_kick_op"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"MaxLevel"						"3"
-		"FightRecapLevel"				"1"
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.2"
-		"AbilityCastRange"				"150"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"8"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"crit_multiplier"			"0.0"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"air_time"					"1.0"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"push_length"				"1500 2500 3500"
-			}			
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"move_slow"					"40"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"slow_duration"				"4"
-			}			
-			"06"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"cooldown_scepter"			"8"
-			}
-			"07"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"350"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "tusk_walrus_kick_op"
+    {
+        "BaseClass"                                                            "tusk_walrus_kick"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetFlags"                                               "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+        "AbilityTextureName"                                                   "custom/tusk_walrus_kick_op"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_YES"
+        "SpellDispellableType"                                                 "SPELL_DISPELLABLE_YES"
+        "MaxLevel"                                                             "3"
+        "FightRecapLevel"                                                      "1"
+        "AbilityCastPoint"                                                     "0.2"
+        "AbilityCastRange"                                                     "150"
+        "AbilityCooldown"                                                      "8"
+        "AbilityManaCost"                                                      "100"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "crit_multiplier"                                      "0.0"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "air_time"                                             "1.0"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "push_length"                                          "1500 2500 3500"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "move_slow"                                            "40"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "slow_duration"                                        "4"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "cooldown_scepter"                                     "8"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage"                                               "350"
+            }
+        }
+        "ReduxPerks"                                                           "enemyMoving"
+        "ReduxCost"                                                            "100"
+        "ReduxFlags"                                                           "SuperOP"
+    }
 }

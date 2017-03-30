@@ -1,55 +1,61 @@
-"DOTAAbilities" {
-	"invoker_retro_scout" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName" "custom/invoker_retro_scout"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
-		"AbilityCastAnimation" "ACT_DOTA_CAST_FORGE_SPIRIT"
-		"FightRecapLevel" "1"
-		"MaxLevel" "4"
-		"AbilityProcsMagicStick" "1"
-		"AbilityCooldown" "60"
-		"AbilityManaCost" "175"
-
-		"precache" {
-			"particle" "particles/units/heroes/hero_bloodseeker/bloodseeker_thirst_owner.vpcf"
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
-			"model" "models/items/courier/snowl/snowl_flying.vmdl"
-		}
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"owl_duration" "30 35 40 45"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"owl_vision" "500"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"owl_movespeed" "200 250 300 350"
-			}
-
-			"04" {
-				"var_type" "FIELD_FLOAT"
-				"pip_current" "1"
-			}
-		}
-
-		"OnSpellStart" {
-			"FireSound" {
-				"EffectName" "Hero_Mirana.Leap.Owlcat"
-				"Target" "CASTER"
-			}
-
-			"RunScript" {
-				"ScriptFile" "abilities/retro_dota/invoker_retro_scout.lua"
-				"Function" "invoker_retro_scout_on_spell_start"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "invoker_retro_scout"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityTextureName"                                                   "custom/invoker_retro_scout"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "AbilityCastAnimation"                                                 "ACT_DOTA_CAST_FORGE_SPIRIT"
+        "FightRecapLevel"                                                      "1"
+        "MaxLevel"                                                             "4"
+        "AbilityProcsMagicStick"                                               "1"
+        "AbilityCooldown"                                                      "60"
+        "AbilityManaCost"                                                      "175"
+        "precache"
+        {
+            "particle"                                                     "particles/units/heroes/hero_bloodseeker/bloodseeker_thirst_owner.vpcf"
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
+            "model"                                                        "models/items/courier/snowl/snowl_flying.vmdl"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "owl_duration"                                         "30 35 40 45"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "owl_vision"                                           "500"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "owl_movespeed"                                        "200 250 300 350"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "pip_current"                                          "1"
+            }
+        }
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "EffectName"                                           "Hero_Mirana.Leap.Owlcat"
+                "Target"                                               "CASTER"
+            }
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/retro_dota/invoker_retro_scout.lua"
+                "Function"                                             "invoker_retro_scout_on_spell_start"
+            }
+        }
+        "ReduxFlags"                                                           "support | invis | summon"
+        "ReduxPerks"                                                           "support | summon_non_ult"
+    }
 }

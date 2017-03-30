@@ -1,44 +1,43 @@
-"DOTAAbilities" {
-	"nevermore_necromastery_op"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"					"nevermore_necromastery"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"OnCastbar"					"0"
-		"HasScepterUpgrade"			"1"
-		"AbilityTextureName"		"custom/nevermore_necromastery_op"
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"necromastery_damage_per_soul"	"2"
-				"LinkedSpecialBonus"			"special_bonus_unique_nevermore_1"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"necromastery_max_souls"	"54 72 90 108"
-			}
-			"03"
-			{
-				"var_type"						"FIELD_FLOAT"
-				"necromastery_soul_release"		"0.5"
-			}
-			"04"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"necromastery_souls_hero_bonus"	"33"
-			}
-			"05"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"necromastery_max_souls_scepter" "66 90 114 138"
-			}			
-		}
-	}
+"DOTAAbilities"
+{
+    "nevermore_necromastery_op"
+    {
+        "BaseClass"                                                            "nevermore_necromastery"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "OnCastbar"                                                            "0"
+        "HasScepterUpgrade"                                                    "1"
+        "AbilityTextureName"                                                   "custom/nevermore_necromastery_op"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "necromastery_damage_per_soul"                         "2"
+                "LinkedSpecialBonus"                                   "special_bonus_unique_nevermore_1"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "necromastery_max_souls"                               "54 72 90 108"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "necromastery_soul_release"                            "0.5"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "necromastery_souls_hero_bonus"                        "33"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "necromastery_max_souls_scepter"                       "66 90 114 138"
+            }
+        }
+        "ReduxCost"                                                            "90"
+        "ReduxBans"                                                            "nevermore_necromastery"
+        "ReduxFlags"                                                           "SuperOP"
+    }
 }

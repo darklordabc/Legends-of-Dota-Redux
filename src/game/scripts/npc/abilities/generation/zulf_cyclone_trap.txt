@@ -1,202 +1,216 @@
-"DOTAAbilities" {
-	"zulf_cyclone_trap" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE_TARGET"
-		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityTextureName" "custom/zulf_cyclone_trap2"
-		"AbilityProcsMagicStick" "1"
-		"AbilityCastPoint" "0.4 0.4 0.4 0.4"
-		"AbilityCastRange" "750 1000 1250 1500"
-		"AOERadius" "100"
-		"AbilityCooldown" "16 13 10 7"
-		"AbilityManaCost" "55 60 65 70"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"cast_range" "750 1000 1250 1500"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"radius" "100"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"cyclone_delay" "2.5"
-			}
-
-			"04" {
-				"var_type" "FIELD_FLOAT"
-				"cyclone_duration" "1.5"
-			}
-
-			"05" {
-				"var_type" "FIELD_INTEGER"
-				"armor_reduction" "-3 -4 -5 -6"
-			}
-
-			"06" {
-				"var_type" "FIELD_INTEGER"
-				"armor_duration" "8"
-			}
-
-			"07" {
-				"var_type" "FIELD_INTEGER"
-				"duration" "60"
-			}
-		}
-
-		"precache" {
-			"particle" "particles/customgames/capturepoints/cp_wind.vpcf"
-			"soundfile" "sounds/items/dota_item_cyclone.vsnd"
-		}
-
-		"OnSpellStart" {
-			"CreateThinker" {
-				"Modifier" "modifier_cyclone_thinker"
-				"Target" "POINT"
-				"Duration" "%cyclone_delay"
-			}
-
-			"SpawnUnit" {
-				"UnitName" "npc_dummy_unit"
-				"UnitCount" "1"
-				"SpawnRadius" "1"
-				"Duration" "%duration"
-				"Target" "POINT"
-				"GrantsGold" "0"
-				"GrantsXP" "0"
-
-				"OnSpawn" {
-					"ApplyModifier" {
-						"ModifierName" "modifier_cyclone_trap"
-						"Target" "TARGET"
-						"Duration" "1.5"
-					}
-				}
-			}
-		}
-
-		"Modifiers" {
-			"modifier_cyclone_trap" {
-				"IsHidden" "1"
-				"Passive" "0"
-
-				"States" {
-					"MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NOT_ON_MINIMAP" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_PROVIDES_VISION" "MODIFIER_STATE_VALUE_DISABLED"
-					"MODIFIER_STATE_ROOTED" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_DISARMED" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_INVULNERABLE" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_INVISIBLE" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_LOW_ATTACK_PRIORITY" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_BLOCK_DISABLED" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NO_HEALTH_BAR" "MODIFIER_STATE_VALUE_ENABLED"
-				}
-
-				"Properties" {
-					"MODIFIER_PROPERTY_BONUS_DAY_VISION" "400"
-					"MODIFIER_PROPERTY_BONUS_NIGHT_VISION" "400"
-				}
-
-				"OnCreated" {
-					"AttachEffect" {
-						"EffectName" "particles/units/heroes/hero_juggernaut/juggernaut_ward_create.vpcf"
-						"EffectAttachType" "attach_origin"
-						"Target" "TARGET"
-					}
-				}
-
-				"OnDestroy" {
-					"ApplyModifier" {
-						"ModifierName" "modifier_cyclone_trap_set"
-						"Target" "TARGET"
-					}
-				}
-			}
-
-			"modifier_cyclone_trap_set" {
-				"IsHidden" "1"
-				"Passive" "0"
-
-				"States" {
-					"MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NOT_ON_MINIMAP" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_PROVIDES_VISION" "MODIFIER_STATE_VALUE_DISABLED"
-					"MODIFIER_STATE_ROOTED" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_DISARMED" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_INVULNERABLE" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_INVISIBLE" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_LOW_ATTACK_PRIORITY" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_BLOCK_DISABLED" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_OUT_OF_GAME" "MODIFIER_STATE_VALUE_ENABLED"
-				}
-
-				"Properties" {
-					"MODIFIER_PROPERTY_BONUS_DAY_VISION" "400"
-					"MODIFIER_PROPERTY_BONUS_NIGHT_VISION" "400"
-				}
-				"ThinkInterval" "0.1"
-
-				"OnCreated" {
-					"AttachEffect" {
-						"EffectName" "particles/customgames/capturepoints/cp_wind.vpcf"
-						"EffectAttachType" "follow_overhead"
-						"Target" "TARGET"
-
-						"ControlPoints" {
-							"01" "%radius 0 0"
-							"05" "%radius 0 0"
-						}
-					}
-				}
-
-				"OnIntervalThink" {
-					"RunScript" {
-						"ScriptFile" "abilities/zulf_cyclone_trap.lua"
-						"Function" "CycloneCheck"
-						"radius" "%radius"
-					}
-				}
-			}
-
-			"modifier_cyclone_immunity" {
-				"Passive" "0"
-				"IsHidden" "1"
-				"IsPurgable" "0"
-				"IsBuff" "1"
-				"Duration" "3.0"
-
-				"OnCreated" {
-					"DelayedAction" {
-						"Delay" "2.55"
-
-						"Action" {
-							"ApplyModifier" {
-								"ModifierName" "modifier_cyclone_armor_reduction"
-								"Target" "TARGET"
-								"Duration" "%armor_duration"
-							}
-						}
-					}
-				}
-			}
-
-			"modifier_cyclone_armor_reduction" {
-				"Passive" "0"
-				"IsHidden" "0"
-				"IsDebuff" "1"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_reduction"
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "zulf_cyclone_trap"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE_TARGET"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityTextureName"                                                   "custom/zulf_cyclone_trap2"
+        "AbilityProcsMagicStick"                                               "1"
+        "AbilityCastPoint"                                                     "0.4 0.4 0.4 0.4"
+        "AbilityCastRange"                                                     "750 1000 1250 1500"
+        "AOERadius"                                                            "100"
+        "AbilityCooldown"                                                      "16 13 10 7"
+        "AbilityManaCost"                                                      "55 60 65 70"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "cast_range"                                           "750 1000 1250 1500"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "100"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "cyclone_delay"                                        "2.5"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "cyclone_duration"                                     "1.5"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "armor_reduction"                                      "-3 -4 -5 -6"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "armor_duration"                                       "8"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "duration"                                             "60"
+            }
+        }
+        "precache"
+        {
+            "particle"                                                     "particles/customgames/capturepoints/cp_wind.vpcf"
+            "soundfile"                                                    "sounds/items/dota_item_cyclone.vsnd"
+        }
+        "OnSpellStart"
+        {
+            "CreateThinker"
+            {
+                "Modifier"                                             "modifier_cyclone_thinker"
+                "Target"                                               "POINT"
+                "Duration"                                             "%cyclone_delay"
+            }
+            "SpawnUnit"
+            {
+                "UnitName"                                             "npc_dummy_unit"
+                "UnitCount"                                            "1"
+                "SpawnRadius"                                          "1"
+                "Duration"                                             "%duration"
+                "Target"                                               "POINT"
+                "GrantsGold"                                           "0"
+                "GrantsXP"                                             "0"
+                "OnSpawn"
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"                         "modifier_cyclone_trap"
+                        "Target"                               "TARGET"
+                        "Duration"                             "1.5"
+                    }
+                }
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_cyclone_trap"
+            {
+                "IsHidden"                                             "1"
+                "Passive"                                              "0"
+                "States"
+                {
+                    "MODIFIER_STATE_UNSELECTABLE"                  "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NO_UNIT_COLLISION"             "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NOT_ON_MINIMAP"                "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_PROVIDES_VISION"               "MODIFIER_STATE_VALUE_DISABLED"
+                    "MODIFIER_STATE_ROOTED"                        "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_DISARMED"                      "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_INVULNERABLE"                  "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_INVISIBLE"                     "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_LOW_ATTACK_PRIORITY"           "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_BLOCK_DISABLED"                "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NO_HEALTH_BAR"                 "MODIFIER_STATE_VALUE_ENABLED"
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_BONUS_DAY_VISION"           "400"
+                    "MODIFIER_PROPERTY_BONUS_NIGHT_VISION"         "400"
+                }
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "EffectName"                           "particles/units/heroes/hero_juggernaut/juggernaut_ward_create.vpcf"
+                        "EffectAttachType"                     "attach_origin"
+                        "Target"                               "TARGET"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"                         "modifier_cyclone_trap_set"
+                        "Target"                               "TARGET"
+                    }
+                }
+            }
+            "modifier_cyclone_trap_set"
+            {
+                "IsHidden"                                             "1"
+                "Passive"                                              "0"
+                "States"
+                {
+                    "MODIFIER_STATE_UNSELECTABLE"                  "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NO_UNIT_COLLISION"             "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NOT_ON_MINIMAP"                "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_PROVIDES_VISION"               "MODIFIER_STATE_VALUE_DISABLED"
+                    "MODIFIER_STATE_ROOTED"                        "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_DISARMED"                      "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_INVULNERABLE"                  "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_INVISIBLE"                     "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_LOW_ATTACK_PRIORITY"           "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_BLOCK_DISABLED"                "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_OUT_OF_GAME"                   "MODIFIER_STATE_VALUE_ENABLED"
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_BONUS_DAY_VISION"           "400"
+                    "MODIFIER_PROPERTY_BONUS_NIGHT_VISION"         "400"
+                }
+                "ThinkInterval"                                        "0.1"
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "EffectName"                           "particles/customgames/capturepoints/cp_wind.vpcf"
+                        "EffectAttachType"                     "follow_overhead"
+                        "Target"                               "TARGET"
+                        "ControlPoints"
+                        {
+                            "01"                           "%radius 0 0"
+                            "05"                           "%radius 0 0"
+                        }
+                    }
+                }
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/zulf_cyclone_trap.lua"
+                        "Function"                             "CycloneCheck"
+                        "radius"                               "%radius"
+                    }
+                }
+            }
+            "modifier_cyclone_immunity"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsPurgable"                                           "0"
+                "IsBuff"                                               "1"
+                "Duration"                                             "3.0"
+                "OnCreated"
+                {
+                    "DelayedAction"
+                    {
+                        "Delay"                                "2.55"
+                        "Action"
+                        {
+                            "ApplyModifier"
+                            {
+                                "ModifierName"         "modifier_cyclone_armor_reduction"
+                                "Target"               "TARGET"
+                                "Duration"             "%armor_duration"
+                            }
+                        }
+                    }
+                }
+            }
+            "modifier_cyclone_armor_reduction"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsDebuff"                                             "1"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"       "%armor_reduction"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "stun"
+        "ReduxPerks"                                                           "trap"
+    }
 }

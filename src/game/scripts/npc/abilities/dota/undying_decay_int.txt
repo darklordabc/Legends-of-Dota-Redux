@@ -1,157 +1,172 @@
-"DOTAAbilities" {
-	"undying_decay_int" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
-		"SpellDispellableType" "SPELL_DISPELLABLE_NO"
-		"HasScepterUpgrade" "1"
-		"AbilityCastRange" "625"
-		"AbilityCastPoint" "0.45 0.45 0.45 0.45"
-		"FightRecapLevel" "1"
-		"AbilityTextureName" "custom/undying_decay_int"
-		"AOERadius" "325"
-		"AbilityCooldown" "10.0 8.0 6.0 4.0"
-		"AbilityManaCost" "70 90 110 130"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"decay_damage" "20 60 100 140"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"int_steal" "4"
-			}
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"int_steal_enemy" "-4"
-			}
-			"04" {
-				"var_type" "FIELD_FLOAT"
-				"decay_duration" "45.0"
-			}
-			"05" {
-				"var_type" "FIELD_INTEGER"
-				"int_steal_scepter" "10"
-			}
-			"06" {
-				"var_type" "FIELD_INTEGER"
-				"int_steal_enemy_scepter" "-10"
-			}
-
-			"07" {
-				"var_type" "FIELD_INTEGER"
-				"stat_scale_up" "2"
-			}
-			"08" {
-				"var_type" "FIELD_INTEGER"
-				"radius" "325"
-			}
-		}
-
-		"precache" {
-			"soundfile" "sounds/weapons/hero/undying/decay_cast.vsnd"
-			"particle" "particles/undying_decay_fakeprojectile_glow_int.vpcf"
-			"EffectName" "particles/undying_decay_intelligence_buff.vpcf"
-		}
-
-		"OnSpellStart" {
-			"FireSound" {
-				"EffectName" "Hero_Undying.Decay.Cast"
-				"Target" "CASTER"
-			}
-
-			"RunScript" {
-				"ScriptFile" "abilities/undying_decay"
-				"Function" "ApplyParticles"
-				"Target" "POINT"
-				"particleRadius" "particles/units/heroes/hero_undying/undying_decay.vpcf"
-			}
-
-			"ActOnTargets" {
-				"Target" {
-					"Center" "POINT"
-					"Radius" "%radius"
-					"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Types" "DOTA_UNIT_TARGET_HERO"
-				}
-
-				"Action" {
-					"RunScript" {
-						"ScriptFile" "abilities/undying_decay"
-						"Function" "ScepterCheck"
-						"Target" "POINT"
-						"modifierAlly" "modifier_decay_bonus_intelligence_buff"
-						"modifierEnemy" "modifier_decay_bonus_intelligence_steal"
-						"modifierCounter" "modifier_decay_bonus_int_counter"
-						"particleLink" "particles/undying_decay_fakeprojectile_glow_int.vpcf"
-						"stacks" "%int_steal"
-						"scepterstacks" "%int_steal_scepter"
-					}
-				}
-			}
-		}
-
-		"Modifiers" {
-			"modifier_decay_bonus_intelligence_buff" {
-				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
-				"IsHidden" "1"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%int_steal"
-				}
-
-				"OnDestroy" {
-					"RunScript" {
-						"ScriptFile" "abilities/undying_decay"
-						"Function" "DecreaseModelSize"
-						"modifierCounter" "modifier_decay_bonus_int_counter"
-						"stacks" "%int_steal"
-					}
-				}
-			}
-
-			"modifier_decay_bonus_intelligence_steal" {
-				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%int_steal_enemy"
-				}
-			}
-
-			"modifier_decay_bonus_intelligence_buff_scepter" {
-				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
-				"IsHidden" "1"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%int_steal_scepter"
-				}
-
-				"OnDestroy" {
-					"RunScript" {
-						"ScriptFile" "abilities/undying_decay"
-						"Function" "DecreaseModelSize"
-						"modifierCounter" "modifier_decay_bonus_int_counter"
-						"stacks" "%int_steal_scepter"
-					}
-				}
-			}
-
-			"modifier_decay_bonus_intelligence_steal_scepter" {
-				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS" "%int_steal_enemy_scepter"
-				}
-			}
-
-			"modifier_decay_bonus_int_counter" {
-				"EffectName" "particles/undying_decay_intelligence_buff.vpcf"
-				"IsBuff" "1"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "undying_decay_int"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"                                                 "SPELL_DISPELLABLE_NO"
+        "HasScepterUpgrade"                                                    "1"
+        "AbilityCastRange"                                                     "625"
+        "AbilityCastPoint"                                                     "0.45 0.45 0.45 0.45"
+        "FightRecapLevel"                                                      "1"
+        "AbilityTextureName"                                                   "custom/undying_decay_int"
+        "AOERadius"                                                            "325"
+        "AbilityCooldown"                                                      "10.0 8.0 6.0 4.0"
+        "AbilityManaCost"                                                      "70 90 110 130"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "decay_damage"                                         "20 60 100 140"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "int_steal"                                            "4"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "int_steal_enemy"                                      "-4"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "decay_duration"                                       "45.0"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "int_steal_scepter"                                    "10"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "int_steal_enemy_scepter"                              "-10"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "stat_scale_up"                                        "2"
+            }
+            "08"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "325"
+            }
+        }
+        "precache"
+        {
+            "soundfile"                                                    "sounds/weapons/hero/undying/decay_cast.vsnd"
+            "particle"                                                     "particles/undying_decay_fakeprojectile_glow_int.vpcf"
+            "EffectName"                                                   "particles/undying_decay_intelligence_buff.vpcf"
+        }
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "EffectName"                                           "Hero_Undying.Decay.Cast"
+                "Target"                                               "CASTER"
+            }
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/undying_decay"
+                "Function"                                             "ApplyParticles"
+                "Target"                                               "POINT"
+                "particleRadius"                                       "particles/units/heroes/hero_undying/undying_decay.vpcf"
+            }
+            "ActOnTargets"
+            {
+                "Target"
+                {
+                    "Center"                                       "POINT"
+                    "Radius"                                       "%radius"
+                    "Teams"                                        "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                    "Types"                                        "DOTA_UNIT_TARGET_HERO"
+                }
+                "Action"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/undying_decay"
+                        "Function"                             "ScepterCheck"
+                        "Target"                               "POINT"
+                        "modifierAlly"                         "modifier_decay_bonus_intelligence_buff"
+                        "modifierEnemy"                        "modifier_decay_bonus_intelligence_steal"
+                        "modifierCounter"                      "modifier_decay_bonus_int_counter"
+                        "particleLink"                         "particles/undying_decay_fakeprojectile_glow_int.vpcf"
+                        "stacks"                               "%int_steal"
+                        "scepterstacks"                        "%int_steal_scepter"
+                    }
+                }
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_decay_bonus_intelligence_buff"
+            {
+                "Attributes"                                           "MODIFIER_ATTRIBUTE_MULTIPLE"
+                "IsHidden"                                             "1"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"      "%int_steal"
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/undying_decay"
+                        "Function"                             "DecreaseModelSize"
+                        "modifierCounter"                      "modifier_decay_bonus_int_counter"
+                        "stacks"                               "%int_steal"
+                    }
+                }
+            }
+            "modifier_decay_bonus_intelligence_steal"
+            {
+                "Attributes"                                           "MODIFIER_ATTRIBUTE_MULTIPLE"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"      "%int_steal_enemy"
+                }
+            }
+            "modifier_decay_bonus_intelligence_buff_scepter"
+            {
+                "Attributes"                                           "MODIFIER_ATTRIBUTE_MULTIPLE"
+                "IsHidden"                                             "1"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"      "%int_steal_scepter"
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/undying_decay"
+                        "Function"                             "DecreaseModelSize"
+                        "modifierCounter"                      "modifier_decay_bonus_int_counter"
+                        "stacks"                               "%int_steal_scepter"
+                    }
+                }
+            }
+            "modifier_decay_bonus_intelligence_steal_scepter"
+            {
+                "Attributes"                                           "MODIFIER_ATTRIBUTE_MULTIPLE"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"      "%int_steal_enemy_scepter"
+                }
+            }
+            "modifier_decay_bonus_int_counter"
+            {
+                "EffectName"                                           "particles/undying_decay_intelligence_buff.vpcf"
+                "IsBuff"                                               "1"
+            }
+        }
+        "ReduxFlags"                                                           "dota_custom | doNotRandom"
+    }
 }

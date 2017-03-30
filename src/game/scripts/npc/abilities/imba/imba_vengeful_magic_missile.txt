@@ -1,71 +1,76 @@
-"DOTAAbilities" {
-	"imba_vengeful_magic_missile" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel" "1"
-		"AbilityTextureName" "vengefulspirit_magic_missile"
-
-		"precache" {
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_vengefulspirit.vsndevts"
-			"particle" "particles/hero/vengeful/rancor_magic_missile.vpcf"
-		}
-		"AbilityCastRange" "650"
-		"AbilityCastPoint" "0.2"
-		"AbilityCooldown" "12 11 10 9"
-		"AbilityManaCost" "110 120 130 140"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"base_damage" "100 175 250 325"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"rancor_damage" "20 30 40 50"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"rancor_radius" "600 700 800 900"
-			}
-
-			"04" {
-				"var_type" "FIELD_INTEGER"
-				"speed" "1350"
-			}
-
-			"05" {
-				"var_type" "FIELD_FLOAT"
-				"stun_duration" "1.35 1.5 1.65 1.8"
-			}
-		}
-
-		"OnSpellStart" {
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_vengeful.lua"
-				"Function" "MagicMissile"
-				"sound_cast" "Hero_VengefulSpirit.MagicMissile"
-				"particle_missile" "particles/units/heroes/hero_vengeful/vengeful_magic_missle.vpcf"
-				"particle_rancor" "particles/hero/vengeful/rancor_magic_missile.vpcf"
-				"modifier_rancor" "modifier_imba_rancor"
-			}
-		}
-
-		"OnProjectileHitUnit" {
-			"DeleteOnHit" "1"
-
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_vengeful.lua"
-				"Function" "MagicMissileHit"
-				"sound_hit" "Hero_VengefulSpirit.MagicMissileImpact"
-				"particle_rancor" "particles/hero/vengeful/rancor_magic_missile.vpcf"
-				"modifier_rancor" "modifier_imba_rancor"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_vengeful_magic_missile"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "FightRecapLevel"                                                      "1"
+        "AbilityTextureName"                                                   "vengefulspirit_magic_missile"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_vengefulspirit.vsndevts"
+            "particle"                                                     "particles/hero/vengeful/rancor_magic_missile.vpcf"
+        }
+        "AbilityCastRange"                                                     "650"
+        "AbilityCastPoint"                                                     "0.2"
+        "AbilityCooldown"                                                      "12 11 10 9"
+        "AbilityManaCost"                                                      "110 120 130 140"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "base_damage"                                          "100 175 250 325"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "rancor_damage"                                        "20 30 40 50"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "rancor_radius"                                        "600 700 800 900"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "speed"                                                "1350"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "stun_duration"                                        "1.35 1.5 1.65 1.8"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_vengeful.lua"
+                "Function"                                             "MagicMissile"
+                "sound_cast"                                           "Hero_VengefulSpirit.MagicMissile"
+                "particle_missile"                                     "particles/units/heroes/hero_vengeful/vengeful_magic_missle.vpcf"
+                "particle_rancor"                                      "particles/hero/vengeful/rancor_magic_missile.vpcf"
+                "modifier_rancor"                                      "modifier_imba_rancor"
+            }
+        }
+        "OnProjectileHitUnit"
+        {
+            "DeleteOnHit"                                                  "1"
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_vengeful.lua"
+                "Function"                                             "MagicMissileHit"
+                "sound_hit"                                            "Hero_VengefulSpirit.MagicMissileImpact"
+                "particle_rancor"                                      "particles/hero/vengeful/rancor_magic_missile.vpcf"
+                "modifier_rancor"                                      "modifier_imba_rancor"
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

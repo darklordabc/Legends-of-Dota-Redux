@@ -1,48 +1,55 @@
-"DOTAAbilities" {
-	"imba_techies_remote_auto_creep" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_TOGGLE"
-		"AbilityTextureName" "custom/imba_techies_remote_auto_creep"
-		"MaxLevel" "1"
-		"AbilityCastPoint" "0.0"
-		"AbilityCooldown" "0.0"
-		"AbilityManaCost" "0"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"radius" "450"
-			}
-		}
-
-		"OnToggleOn" {
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_techies.lua"
-				"Function" "RemoteMineAutoCreep"
-				"modifier_unselect" "imba_techies_remote_auto_creep_unselect"
-				"sound_cast" "DotaSOS.TestBeep"
-			}
-		}
-
-		"OnToggleOff" {
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_techies.lua"
-				"Function" "RemoteMineAutoCreepEnd"
-			}
-		}
-
-		"Modifiers" {
-			"imba_techies_remote_auto_creep_unselect" {
-				"Passive" "0"
-				"IsHidden" "1"
-				"IsDebuff" "1"
-				"IsPurgable" "0"
-				"Duration" "0.1"
-
-				"States" {
-					"MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_techies_remote_auto_creep"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_TOGGLE"
+        "AbilityTextureName"                                                   "custom/imba_techies_remote_auto_creep"
+        "MaxLevel"                                                             "1"
+        "AbilityCastPoint"                                                     "0.0"
+        "AbilityCooldown"                                                      "0.0"
+        "AbilityManaCost"                                                      "0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "450"
+            }
+        }
+        "OnToggleOn"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_techies.lua"
+                "Function"                                             "RemoteMineAutoCreep"
+                "modifier_unselect"                                    "imba_techies_remote_auto_creep_unselect"
+                "sound_cast"                                           "DotaSOS.TestBeep"
+            }
+        }
+        "OnToggleOff"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_techies.lua"
+                "Function"                                             "RemoteMineAutoCreepEnd"
+            }
+        }
+        "Modifiers"
+        {
+            "imba_techies_remote_auto_creep_unselect"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "0"
+                "Duration"                                             "0.1"
+                "States"
+                {
+                    "MODIFIER_STATE_UNSELECTABLE"                  "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

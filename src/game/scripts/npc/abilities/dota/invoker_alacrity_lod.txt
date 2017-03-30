@@ -1,32 +1,37 @@
-"DOTAAbilities" {
-	"invoker_alacrity_lod" {
-		"BaseClass" "invoker_alacrity"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"MaxLevel" "4"
-		"RequiredLevel" "1"
-		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
-		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
-		"AbilityCastRange" "650"
-		"AbilityCastPoint" "0"
-		"AbilityCooldown" "15"
-		"AbilityManaCost" "45"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"bonus_attack_speed" "20 40 60 80"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"bonus_damage" "20 40 60 80"
-			}
-
-			"03" {
-				"var_type" "FIELD_FLOAT"
-				"duration" "9"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "invoker_alacrity_lod"
+    {
+        "BaseClass"                                                            "invoker_alacrity"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "MaxLevel"                                                             "4"
+        "RequiredLevel"                                                        "1"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+        "AbilityUnitTargetFlags"                                               "DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+        "AbilityCastRange"                                                     "650"
+        "AbilityCastPoint"                                                     "0"
+        "AbilityCooldown"                                                      "15"
+        "AbilityManaCost"                                                      "45"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_attack_speed"                                   "20 40 60 80"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_damage"                                         "20 40 60 80"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                             "9"
+            }
+        }
+        "ReduxFlags"                                                           "support"
+        "ReduxPerks"                                                           "support | lightning"
+    }
 }

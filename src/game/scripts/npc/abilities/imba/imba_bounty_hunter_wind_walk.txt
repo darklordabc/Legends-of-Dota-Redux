@@ -1,118 +1,129 @@
-"DOTAAbilities" {
-	"imba_bounty_hunter_wind_walk" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
-		"AbilityTextureName" "bounty_hunter_wind_walk"
-
-		"precache" {
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
-			"particle" "particles/generic_hero_status/status_invisibility_start.vpcf"
-		}
-		"AbilityCooldown" "10.0"
-		"AbilityCastPoint" "0.0"
-		"AbilityManaCost" "50"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_FLOAT"
-				"duration" "40.0"
-			}
-
-			"02" {
-				"var_type" "FIELD_FLOAT"
-				"fade_time" "0.5"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"bonus_damage" "30 60 90 120"
-			}
-
-			"04" {
-				"var_type" "FIELD_INTEGER"
-				"move_speed" "8 12 16 20"
-			}
-		}
-
-		"OnSpellStart" {
-			"FireEffect" {
-				"EffectName" "particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
-				"Target" "CASTER"
-				"EffectAttachType" "attach_origin"
-			}
-
-			"FireSound" {
-				"Target" "CASTER"
-				"EffectName" "Hero_BountyHunter.WindWalk"
-			}
-
-			"ApplyModifier" {
-				"Target" "CASTER"
-				"ModifierName" "modifier_imba_wind_walk_fade"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_imba_wind_walk_fade" {
-				"Duration" "%fade_time"
-				"IsBuff" "1"
-				"IsPurgable" "0"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%bonus_damage"
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%move_speed"
-				}
-
-				"OnDestroy" {
-					"ApplyModifier" {
-						"Target" "CASTER"
-						"ModifierName" "modifier_invisible"
-					}
-				}
-			}
-
-			"modifier_imba_wind_walk" {
-				"Duration" "%duration"
-				"IsBuff" "1"
-				"IsPurgable" "0"
-
-				"OnAttackLanded" {
-					"RemoveModifier" {
-						"Target" "CASTER"
-						"ModifierName" "modifier_imba_wind_walk"
-					}
-				}
-
-				"OnAbilityExecuted" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_bounty_hunter.lua"
-						"Function" "WindWalk"
-						"modifier" "modifier_imba_wind_walk"
-					}
-				}
-
-				"Properties" {
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%bonus_damage"
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%move_speed"
-				}
-
-				"States" {
-					"MODIFIER_STATE_INVISIBLE" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"
-				}
-
-				"OnDestroy" {
-					"RemoveModifier" {
-						"Target" {
-							"Center" "CASTER"
-							"Flags" "DOTA_UNIT_TARGET_FLAG_DEAD"
-						}
-						"ModifierName" "modifier_invisible"
-					}
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_bounty_hunter_wind_walk"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_PHYSICAL"
+        "AbilityTextureName"                                                   "bounty_hunter_wind_walk"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_bounty_hunter.vsndevts"
+            "particle"                                                     "particles/generic_hero_status/status_invisibility_start.vpcf"
+        }
+        "AbilityCooldown"                                                      "10.0"
+        "AbilityCastPoint"                                                     "0.0"
+        "AbilityManaCost"                                                      "50"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                             "40.0"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "fade_time"                                            "0.5"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_damage"                                         "30 60 90 120"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "move_speed"                                           "8 12 16 20"
+            }
+        }
+        "OnSpellStart"
+        {
+            "FireEffect"
+            {
+                "EffectName"                                           "particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
+                "Target"                                               "CASTER"
+                "EffectAttachType"                                     "attach_origin"
+            }
+            "FireSound"
+            {
+                "Target"                                               "CASTER"
+                "EffectName"                                           "Hero_BountyHunter.WindWalk"
+            }
+            "ApplyModifier"
+            {
+                "Target"                                               "CASTER"
+                "ModifierName"                                         "modifier_imba_wind_walk_fade"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_wind_walk_fade"
+            {
+                "Duration"                                             "%fade_time"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"     "%bonus_damage"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%move_speed"
+                }
+                "OnDestroy"
+                {
+                    "ApplyModifier"
+                    {
+                        "Target"                               "CASTER"
+                        "ModifierName"                         "modifier_invisible"
+                    }
+                }
+            }
+            "modifier_imba_wind_walk"
+            {
+                "Duration"                                             "%duration"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "OnAttackLanded"
+                {
+                    "RemoveModifier"
+                    {
+                        "Target"                               "CASTER"
+                        "ModifierName"                         "modifier_imba_wind_walk"
+                    }
+                }
+                "OnAbilityExecuted"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_bounty_hunter.lua"
+                        "Function"                             "WindWalk"
+                        "modifier"                             "modifier_imba_wind_walk"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"     "%bonus_damage"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%move_speed"
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_INVISIBLE"                     "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NO_UNIT_COLLISION"             "MODIFIER_STATE_VALUE_ENABLED"
+                }
+                "OnDestroy"
+                {
+                    "RemoveModifier"
+                    {
+                        "Target"
+                        {
+                            "Center"                       "CASTER"
+                            "Flags"                        "DOTA_UNIT_TARGET_FLAG_DEAD"
+                        }
+                        "ModifierName"                         "modifier_invisible"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

@@ -1,96 +1,105 @@
-"DOTAAbilities" {
-	"imba_sniper_take_aim_near" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityTextureName" "custom/sniper_take_aim_near"
-		"AbilityCastRange" "300"
-		"AbilityCastPoint" "0.0"
-		"AbilityCooldown" "8.0 7.0 6.0 5.0"
-		"AbilitySharedCooldown" "imba_sniper_take_aim"
-		"AbilityManaCost" "0"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"range" "-250"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"damage_reduction" "-30"
-			}
-
-			"03" {
-				"var_type" "FIELD_FLOAT"
-				"BAT" "0.9 0.8 0.7 0.6"
-			}
-
-			"04" {
-				"var_type" "FIELD_INTEGER"
-				"move_speed" "8"
-			}
-
-			"05" {
-				"var_type" "FIELD_INTEGER"
-				"range_tooltip" "300"
-			}
-		}
-
-		"OnUpgrade" {
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_sniper.lua"
-				"Function" "TakeAimUpgrade"
-				"near_skill" "imba_sniper_take_aim_near"
-				"normal_skill" "imba_sniper_take_aim_normal"
-				"far_skill" "imba_sniper_take_aim_far"
-				"modifier_near" "modifier_imba_take_aim_near"
-				"modifier_normal" "modifier_imba_take_aim_normal"
-				"modifier_far" "modifier_imba_take_aim_far"
-			}
-		}
-
-		"OnSpellStart" {
-			"FireSound" {
-				"EffectName" "Ability.AssassinateLoad"
-				"Target" "CASTER"
-			}
-
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_sniper.lua"
-				"Function" "TakeAimNear"
-				"modifier_near" "modifier_imba_take_aim_near"
-				"modifier_normal" "modifier_imba_take_aim_normal"
-				"modifier_far" "modifier_imba_take_aim_far"
-				"normal_skill_name" "imba_sniper_take_aim_normal"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_imba_take_aim_near" {
-				"Passive" "0"
-				"IsPurgable" "0"
-				"IsHidden" "0"
-
-				"OnCreated" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_sniper.lua"
-						"Function" "TakeAimNearBatStart"
-					}
-				}
-
-				"OnDestroy" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_sniper.lua"
-						"Function" "TakeAimNearBatEnd"
-					}
-				}
-
-				"Properties" {
-					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS" "%range"
-					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE" "%damage_reduction"
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%move_speed"
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_sniper_take_aim_near"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityTextureName"                                                   "custom/sniper_take_aim_near"
+        "AbilityCastRange"                                                     "300"
+        "AbilityCastPoint"                                                     "0.0"
+        "AbilityCooldown"                                                      "8.0 7.0 6.0 5.0"
+        "AbilitySharedCooldown"                                                "imba_sniper_take_aim"
+        "AbilityManaCost"                                                      "0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "range"                                                "-250"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage_reduction"                                     "-30"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "BAT"                                                  "0.9 0.8 0.7 0.6"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "move_speed"                                           "8"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "range_tooltip"                                        "300"
+            }
+        }
+        "OnUpgrade"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_sniper.lua"
+                "Function"                                             "TakeAimUpgrade"
+                "near_skill"                                           "imba_sniper_take_aim_near"
+                "normal_skill"                                         "imba_sniper_take_aim_normal"
+                "far_skill"                                            "imba_sniper_take_aim_far"
+                "modifier_near"                                        "modifier_imba_take_aim_near"
+                "modifier_normal"                                      "modifier_imba_take_aim_normal"
+                "modifier_far"                                         "modifier_imba_take_aim_far"
+            }
+        }
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "EffectName"                                           "Ability.AssassinateLoad"
+                "Target"                                               "CASTER"
+            }
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_sniper.lua"
+                "Function"                                             "TakeAimNear"
+                "modifier_near"                                        "modifier_imba_take_aim_near"
+                "modifier_normal"                                      "modifier_imba_take_aim_normal"
+                "modifier_far"                                         "modifier_imba_take_aim_far"
+                "normal_skill_name"                                    "imba_sniper_take_aim_normal"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_take_aim_near"
+            {
+                "Passive"                                              "0"
+                "IsPurgable"                                           "0"
+                "IsHidden"                                             "0"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_sniper.lua"
+                        "Function"                             "TakeAimNearBatStart"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_sniper.lua"
+                        "Function"                             "TakeAimNearBatEnd"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"         "%range"
+                    "MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"  "%damage_reduction"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%move_speed"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

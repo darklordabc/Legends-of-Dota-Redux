@@ -1,91 +1,101 @@
-"DOTAAbilities" {
-	"imba_omniknight_purification" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_PURE"
-		"FightRecapLevel" "1"
-		"AbilityTextureName" "custom/imba_omniknight_purification"
-		"AbilityCastRange" "%radius"
-		"AbilityCastPoint" "0.25"
-		"AbilityCooldown" "25"
-
-		"precache" {
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
-			"particle" "particles/units/heroes/hero_omniknight/omniknight_purification_cast.vpcf"
-		}
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"heal_base" "90 180 270 360"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"heal_pct" "12"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"damage_factor" "70"
-			}
-
-			"04" {
-				"var_type" "FIELD_INTEGER"
-				"radius" "300"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_imba_purification_passive" {
-				"Passive" "1"
-				"IsHidden" "1"
-				"IsBuff" "1"
-				"IsPurgable" "0"
-				"Attributes" "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
-
-				"OnCreated" {
-					"RunScript" {
-						"ScriptFile" "abilities/hero_omniknight.lua"
-						"Function" "DisplayManager"
-						"modifier_display" "modifier_omniguard_display"
-					}
-				}
-				"ThinkInterval" "0.1"
-
-				"OnIntervalThink" {
-					"RunScript" {
-						"ScriptFile" "abilities/hero_omniknight.lua"
-						"Function" "DisplayManager"
-						"modifier_display" "modifier_omniguard_display"
-					}
-				}
-
-				"OnTakeDamage" {
-					"RunScript" {
-						"ScriptFile" "abilities/hero_omniknight.lua"
-						"Function" "PurificationDeath"
-						"cast_sound" "Hero_Omniknight.Purification"
-						"aoe_particle" "particles/units/heroes/hero_omniknight/omniknight_purification.vpcf"
-						"cast_particle" "particles/units/heroes/hero_omniknight/omniknight_purification_cast.vpcf"
-						"hit_particle" "particles/units/heroes/hero_omniknight/omniknight_purification_hit.vpcf"
-						"cooldown_modifier" "modifier_imba_purification_passive_cooldown"
-					}
-				}
-			}
-
-			"modifier_omniguard_display" {
-				"IsBuff" "1"
-
-				"OnDestroy" {
-					"FireSound" {
-						"EffectName" "Hero_Omniknight.Purification"
-						"Target" "CASTER"
-					}
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_omniknight_purification"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_PURE"
+        "FightRecapLevel"                                                      "1"
+        "AbilityTextureName"                                                   "custom/imba_omniknight_purification"
+        "AbilityCastRange"                                                     "%radius"
+        "AbilityCastPoint"                                                     "0.25"
+        "AbilityCooldown"                                                      "25"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_omniknight/omniknight_purification_cast.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "heal_base"                                            "90 180 270 360"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "heal_pct"                                             "12"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage_factor"                                        "70"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "300"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_purification_passive"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "Attributes"                                           "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/hero_omniknight.lua"
+                        "Function"                             "DisplayManager"
+                        "modifier_display"                     "modifier_omniguard_display"
+                    }
+                }
+                "ThinkInterval"                                        "0.1"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/hero_omniknight.lua"
+                        "Function"                             "DisplayManager"
+                        "modifier_display"                     "modifier_omniguard_display"
+                    }
+                }
+                "OnTakeDamage"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/hero_omniknight.lua"
+                        "Function"                             "PurificationDeath"
+                        "cast_sound"                           "Hero_Omniknight.Purification"
+                        "aoe_particle"                         "particles/units/heroes/hero_omniknight/omniknight_purification.vpcf"
+                        "cast_particle"                        "particles/units/heroes/hero_omniknight/omniknight_purification_cast.vpcf"
+                        "hit_particle"                         "particles/units/heroes/hero_omniknight/omniknight_purification_hit.vpcf"
+                        "cooldown_modifier"                    "modifier_imba_purification_passive_cooldown"
+                    }
+                }
+            }
+            "modifier_omniguard_display"
+            {
+                "IsBuff"                                               "1"
+                "OnDestroy"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"                           "Hero_Omniknight.Purification"
+                        "Target"                               "CASTER"
+                    }
+                }
+            }
+        }
+        "ReduxCost"                                                            "10"
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

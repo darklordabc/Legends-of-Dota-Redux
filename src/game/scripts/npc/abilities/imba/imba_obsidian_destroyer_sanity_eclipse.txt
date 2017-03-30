@@ -1,80 +1,85 @@
-"DOTAAbilities" {
-	"imba_obsidian_destroyer_sanity_eclipse" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_PURE"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel" "2"
-		"AbilityTextureName" "obsidian_destroyer_sanity_eclipse"
-		"AbilityCastRange" "700"
-		"AbilityCastPoint" "0.2"
-		"AOERadius" "%radius"
-
-		"precache" {
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_obsidian_destroyer.vsndevts"
-			"particle" "particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_prison.vpcf"
-		}
-		"AbilityCooldown" "160.0"
-		"AbilityManaCost" "200 350 500"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"damage_multiplier" "6 8 10"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"radius" "400 500 600"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"cast_range" "700"
-			}
-
-			"04" {
-				"var_type" "FIELD_INTEGER"
-				"mana_burn_pct" "50"
-			}
-		}
-
-		"OnSpellStart" {
-			"FireSound" {
-				"EffectName" "Hero_ObsidianDestroyer.SanityEclipse"
-				"Target" "POINT"
-			}
-
-			"FireEffect" {
-				"EffectName" "particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_sanity_eclipse_area.vpcf"
-				"EffectAttachType" "start_at_customorigin"
-				"TargetPoint" "POINT"
-
-				"ControlPoints" {
-					"00" "POINT"
-					"01" "%radius 0 0"
-					"02" "%radius 0 0"
-					"03" "%radius 0 0"
-				}
-			}
-
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_outhouse_decorator.lua"
-				"Function" "SanityEclipse"
-				"Target" "POINT"
-				"ability_arcane_orb" "imba_obsidian_destroyer_arcane_orb"
-				"ability_astral" "imba_obsidian_destroyer_astral_imprisonment"
-				"astral_modifier" "modifier_imba_astral_imprisonment"
-				"astral_sound" "Hero_ObsidianDestroyer.AstralImprisonment"
-				"int_gain_counter" "modifier_imba_obsidian_destroyer_int_gain_counter"
-				"int_gain_modifier" "modifier_imba_obsidian_destroyer_int_gain"
-				"int_loss_modifier" "modifier_imba_obsidian_destroyer_int_steal"
-				"particle_mana_burn" "particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_sanity_eclipse_mana_loss.vpcf"
-				"particle_damage" "particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_sanity_eclipse_damage.vpcf"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_obsidian_destroyer_sanity_eclipse"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_PURE"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "FightRecapLevel"                                                      "2"
+        "AbilityTextureName"                                                   "obsidian_destroyer_sanity_eclipse"
+        "AbilityCastRange"                                                     "700"
+        "AbilityCastPoint"                                                     "0.2"
+        "AOERadius"                                                            "%radius"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_obsidian_destroyer.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_prison.vpcf"
+        }
+        "AbilityCooldown"                                                      "160.0"
+        "AbilityManaCost"                                                      "200 350 500"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage_multiplier"                                    "6 8 10"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "400 500 600"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "cast_range"                                           "700"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "mana_burn_pct"                                        "50"
+            }
+        }
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "EffectName"                                           "Hero_ObsidianDestroyer.SanityEclipse"
+                "Target"                                               "POINT"
+            }
+            "FireEffect"
+            {
+                "EffectName"                                           "particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_sanity_eclipse_area.vpcf"
+                "EffectAttachType"                                     "start_at_customorigin"
+                "TargetPoint"                                          "POINT"
+                "ControlPoints"
+                {
+                    "00"                                           "POINT"
+                    "01"                                           "%radius 0 0"
+                    "02"                                           "%radius 0 0"
+                    "03"                                           "%radius 0 0"
+                }
+            }
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_outhouse_decorator.lua"
+                "Function"                                             "SanityEclipse"
+                "Target"                                               "POINT"
+                "ability_arcane_orb"                                   "imba_obsidian_destroyer_arcane_orb"
+                "ability_astral"                                       "imba_obsidian_destroyer_astral_imprisonment"
+                "astral_modifier"                                      "modifier_imba_astral_imprisonment"
+                "astral_sound"                                         "Hero_ObsidianDestroyer.AstralImprisonment"
+                "int_gain_counter"                                     "modifier_imba_obsidian_destroyer_int_gain_counter"
+                "int_gain_modifier"                                    "modifier_imba_obsidian_destroyer_int_gain"
+                "int_loss_modifier"                                    "modifier_imba_obsidian_destroyer_int_steal"
+                "particle_mana_burn"                                   "particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_sanity_eclipse_mana_loss.vpcf"
+                "particle_damage"                                      "particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_sanity_eclipse_damage.vpcf"
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

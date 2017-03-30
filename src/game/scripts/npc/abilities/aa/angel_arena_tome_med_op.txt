@@ -1,53 +1,44 @@
-"DOTAAbilities" {
-	"angel_arena_tome_med_op"
-    {       
-        // General
-        //-------------------------------------------------------------------------------------------------------------
-        "BaseClass"                     "ability_datadriven"
-        "ID"                            "1193"
-        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-        "AbilityCooldown"               "60 40 30 15"
-        "AbilityGoldCost"            "150 125 100 60"
-        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
-        
-        "AbilityTextureName"            "custom/tome_med_op"
-
-
-        // Stats
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilityCastPoint"              "0.0"
-        
-        "AbilitySpecial" 
+"DOTAAbilities"
+{
+    "angel_arena_tome_med_op"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "ID"                                                                   "1193"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityCooldown"                                                      "60 40 30 15"
+        "AbilityGoldCost"                                                      "150 125 100 60"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO"
+        "AbilityTextureName"                                                   "custom/tome_med_op"
+        "AbilityCastPoint"                                                     "0.0"
+        "AbilitySpecial"
         {
-            "01" // Health and Mana are not hooked into anything, values are hardcoded in 'modifier_medical_tractate'
+            "01"
             {
-                "var_type" "FIELD_INTEGER"
-                "health" "40"
-            }   
-
-            "02" 
-            {
-                "var_type" "FIELD_INTEGER"
-                "mana" "20"
+                "var_type"                                             "FIELD_INTEGER"
+                "health"                                               "40"
             }
-            
-            "03" // This is for the tooltips
+            "02"
             {
-                "var_type" "FIELD_FLOAT"
-                "gold_cost_toolip" "150 125 100 60"
+                "var_type"                                             "FIELD_INTEGER"
+                "mana"                                                 "20"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "gold_cost_toolip"                                     "150 125 100 60"
             }
         }
-
         "OnSpellStart"
         {
             "RunScript"
             {
-                "Target"            "CASTER"
-                "ScriptFile"        "abilities/angel_arena_reborn/tome.lua"
-                "Function"          "MedicalTractat"
-            }       
+                "Target"                                               "CASTER"
+                "ScriptFile"                                           "abilities/angel_arena_reborn/tome.lua"
+                "Function"                                             "MedicalTractat"
+            }
         }
-
+        "ReduxCost"                                                            "100"
+        "ReduxFlags"                                                           "SuperOP"
     }
 }

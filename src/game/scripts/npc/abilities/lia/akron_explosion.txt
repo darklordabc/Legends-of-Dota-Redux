@@ -1,79 +1,88 @@
-"DOTAAbilities" {
-	"akron_explosion" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
-		"AbilityTextureName" "custom/golem_explosion"
-		"AbilityCooldown" "24 22 20 18"
-		"AbilityCastRange" "0"
-		"AbilityManaCost" "70 80 90 100"
-		"AoERadius" "225"
-		"MaxLevel" "4"
-		"AbilityCastPoint" "0.2"
-
-		"precache" {
-			"particle" "particles/units/heroes/hero_jakiro/jakiro_liquid_fire_debuff.vpcf"
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
-		}
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"radius" "225"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"hp_prc_dmg" "10 15 20 30"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"burn_damage" "20 40 60 80"
-			}
-
-			"04" {
-				"var_type" "FIELD_FLOAT"
-				"duration" "3"
-			}
-		}
-
-		"OnSpellStart" {
-			"RunScript" {
-				"ScriptFile" "abilities/life_in_arena/Explosion.lua"
-				"Function" "Explosion"
-			}
-
-			"FireSound" {
-				"EffectName" "Hero_EarthShaker.EchoSlam"
-				"Target" "CASTER"
-			}
-
-			"AttachEffect" {
-				"EffectName" "particles/units/heroes/hero_techies/techies_suicide.vpcf"
-				"EffectAttachType" "attach_origin"
-				"Target" "CASTER"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_akron_explosion_burn" {
-				"Passive" "0"
-				"IsHidden" "0"
-				"IsDebuff" "1"
-				"EffectName" "particles/units/heroes/hero_jakiro/jakiro_liquid_fire_debuff.vpcf"
-				"EffectAttachType" "follow_origin"
-				"Duration" "%duration"
-				"ThinkInterval" "0.25"
-
-				"OnIntervalThink" {
-					"Damage" {
-						"Target" "TARGET"
-						"Type" "DAMAGE_TYPE_MAGICAL"
-						"Damage" "%burn_damage / 4"
-					}
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "akron_explosion"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "AbilityTextureName"                                                   "custom/golem_explosion"
+        "AbilityCooldown"                                                      "24 22 20 18"
+        "AbilityCastRange"                                                     "0"
+        "AbilityManaCost"                                                      "70 80 90 100"
+        "AoERadius"                                                            "225"
+        "MaxLevel"                                                             "4"
+        "AbilityCastPoint"                                                     "0.2"
+        "precache"
+        {
+            "particle"                                                     "particles/units/heroes/hero_jakiro/jakiro_liquid_fire_debuff.vpcf"
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "225"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "hp_prc_dmg"                                           "10 15 20 30"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "burn_damage"                                          "20 40 60 80"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                             "3"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/life_in_arena/Explosion.lua"
+                "Function"                                             "Explosion"
+            }
+            "FireSound"
+            {
+                "EffectName"                                           "Hero_EarthShaker.EchoSlam"
+                "Target"                                               "CASTER"
+            }
+            "AttachEffect"
+            {
+                "EffectName"                                           "particles/units/heroes/hero_techies/techies_suicide.vpcf"
+                "EffectAttachType"                                     "attach_origin"
+                "Target"                                               "CASTER"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_akron_explosion_burn"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsDebuff"                                             "1"
+                "EffectName"                                           "particles/units/heroes/hero_jakiro/jakiro_liquid_fire_debuff.vpcf"
+                "EffectAttachType"                                     "follow_origin"
+                "Duration"                                             "%duration"
+                "ThinkInterval"                                        "0.25"
+                "OnIntervalThink"
+                {
+                    "Damage"
+                    {
+                        "Target"                               "TARGET"
+                        "Type"                                 "DAMAGE_TYPE_MAGICAL"
+                        "Damage"                               "%burn_damage / 4"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "tank"
+        "ReduxPerks"                                                           "self_damage"
+        "ReduxBans"                                                            "spell_lab_symbiotic"
+    }
 }

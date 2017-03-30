@@ -1,18 +1,24 @@
-"DOTAAbilities" {
-	"makemeleecreeps_lua" {
-		"BaseClass" "ability_lua"
-		"AbilityTextureName" "custom/spawnmeleecreep"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"ScriptFile" "abilities/definitely not dota/makemeleecreeps_lua"
-		"AbilityCastPoint" "0.0"
-		"AbilityCooldown" "45 36 36 24"
-		"AbilityManaCost" "0"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"maxmeleecreeps" "2 3 4 5"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "makemeleecreeps_lua"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "AbilityTextureName"                                                   "custom/spawnmeleecreep"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "ScriptFile"                                                           "abilities/definitely not dota/makemeleecreeps_lua"
+        "AbilityCastPoint"                                                     "0.0"
+        "AbilityCooldown"                                                      "45 36 36 24"
+        "AbilityManaCost"                                                      "0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "maxmeleecreeps"                                       "2 3 4 5"
+            }
+        }
+        "ReduxFlags"                                                           "summon | doNotRandom"
+        "ReduxPerks"                                                           "summon_non_ult"
+        "ReduxCost"                                                            "30"
+    }
 }

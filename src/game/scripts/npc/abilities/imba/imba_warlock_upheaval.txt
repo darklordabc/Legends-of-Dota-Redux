@@ -1,159 +1,168 @@
-"DOTAAbilities" {
-	"imba_warlock_upheaval" {
-		"BaseClass" "ability_datadriven"
-		"AbilityTextureName" "warlock_upheaval"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_BOTH"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel" "1"
-		"AbilityCastPoint" "0.35"
-		"AbilityCastRange" "1200"
-		"AbilityCastAnimation" "ACT_DOTA_CAST_ABILITY_2"
-		"AOERadius" "%slow_radius"
-		"AbilityCooldown" "50 46 42 38"
-		"AbilityManaCost" "100 110 120 130"
-
-		"precache" {
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_warlock.vsndevts"
-			"particle" "particles/units/heroes/hero_warlock/warlock_upheaval_debuff_creep.vpcf"
-		}
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"duration" "16"
-			}
-
-			"02" {
-				"var_type" "FIELD_FLOAT"
-				"tick_interval" "0.5"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"slow_radius" "725"
-			}
-
-			"04" {
-				"var_type" "FIELD_INTEGER"
-				"move_slow_tooltip" "-7 -14 -21 -28"
-			}
-
-			"05" {
-				"var_type" "FIELD_INTEGER"
-				"attack_slow_tooltip" "-5 -10 -15 -20"
-			}
-
-			"06" {
-				"var_type" "FIELD_FLOAT"
-				"move_slow_stack" "-3.5 -7 -10.5 -14"
-			}
-
-			"07" {
-				"var_type" "FIELD_FLOAT"
-				"attack_slow_stack" "-2.5 -5 -7.5 -10"
-			}
-
-			"08" {
-				"var_type" "FIELD_INTEGER"
-				"health" "16 20 24 28"
-			}
-
-			"09" {
-				"var_type" "FIELD_INTEGER"
-				"hero_attacks_to_kill" "4 5 6 7"
-			}
-
-			"10" {
-				"var_type" "FIELD_INTEGER"
-				"hero_damage" "4"
-			}
-
-			"11" {
-				"var_type" "FIELD_INTEGER"
-				"slow_duration" "3"
-			}
-		}
-
-		"OnSpellStart" {
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_warlock.lua"
-				"Function" "Upheaval"
-				"Target" "POINT"
-				"sound_loop" "Hero_Warlock.Upheaval"
-				"modifier_tower" "modifier_imba_upheaval_aura"
-				"particle_aura" "particles/units/heroes/hero_warlock/warlock_upheaval.vpcf"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_imba_upheaval_aura" {
-				"Passive" "0"
-				"IsBuff" "1"
-				"IsHidden" "1"
-				"IsPurgable" "0"
-				"ThinkInterval" "%tick_interval"
-
-				"OnIntervalThink" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_warlock.lua"
-						"Function" "UpheavalTowerAura"
-						"modifier_hero" "modifier_imba_upheaval_aura_debuff"
-						"modifier_creep" "modifier_imba_upheaval_aura_debuff_creep"
-					}
-				}
-
-				"OnAttacked" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_warlock.lua"
-						"Function" "UpheavalTowerDamage"
-						"sound_loop" "Hero_Warlock.Upheaval"
-						"sound_end" "Hero_Warlock.Upheaval.Stop"
-					}
-				}
-
-				"Properties" {
-					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL" "1"
-					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL" "1"
-					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE" "1"
-					"MODIFIER_PROPERTY_DISABLE_HEALING" "1"
-				}
-
-				"States" {
-					"MODIFIER_STATE_MAGIC_IMMUNE" "MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-
-			"modifier_imba_upheaval_aura_debuff" {
-				"Passive" "0"
-				"IsDebuff" "1"
-				"IsHidden" "1"
-				"IsPurgable" "1"
-				"Duration" "%slow_duration"
-				"EffectName" "particles/units/heroes/hero_warlock/warlock_upheaval_debuff.vpcf"
-				"EffectAttachType" "follow_origin"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%move_slow_stack"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%attack_slow_stack"
-				}
-			}
-
-			"modifier_imba_upheaval_aura_debuff_creep" {
-				"Passive" "0"
-				"IsDebuff" "1"
-				"IsHidden" "1"
-				"IsPurgable" "1"
-				"Duration" "%slow_duration"
-				"EffectName" "particles/units/heroes/hero_warlock/warlock_upheaval_debuff_creep.vpcf"
-				"EffectAttachType" "follow_origin"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%move_slow_stack"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%attack_slow_stack"
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_warlock_upheaval"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityTextureName"                                                   "warlock_upheaval"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "FightRecapLevel"                                                      "1"
+        "AbilityCastPoint"                                                     "0.35"
+        "AbilityCastRange"                                                     "1200"
+        "AbilityCastAnimation"                                                 "ACT_DOTA_CAST_ABILITY_2"
+        "AOERadius"                                                            "%slow_radius"
+        "AbilityCooldown"                                                      "50 46 42 38"
+        "AbilityManaCost"                                                      "100 110 120 130"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_warlock.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_warlock/warlock_upheaval_debuff_creep.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "10"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "hero_damage"                                          "4"
+            }
+            "11"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "slow_duration"                                        "3"
+            }
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "duration"                                             "16"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "tick_interval"                                        "0.5"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "slow_radius"                                          "725"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "move_slow_tooltip"                                    "-7 -14 -21 -28"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "attack_slow_tooltip"                                  "-5 -10 -15 -20"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "move_slow_stack"                                      "-3.5 -7 -10.5 -14"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "attack_slow_stack"                                    "-2.5 -5 -7.5 -10"
+            }
+            "08"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "health"                                               "16 20 24 28"
+            }
+            "09"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "hero_attacks_to_kill"                                 "4 5 6 7"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_warlock.lua"
+                "Function"                                             "Upheaval"
+                "Target"                                               "POINT"
+                "sound_loop"                                           "Hero_Warlock.Upheaval"
+                "modifier_tower"                                       "modifier_imba_upheaval_aura"
+                "particle_aura"                                        "particles/units/heroes/hero_warlock/warlock_upheaval.vpcf"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_upheaval_aura"
+            {
+                "Passive"                                              "0"
+                "IsBuff"                                               "1"
+                "IsHidden"                                             "1"
+                "IsPurgable"                                           "0"
+                "ThinkInterval"                                        "%tick_interval"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_warlock.lua"
+                        "Function"                             "UpheavalTowerAura"
+                        "modifier_hero"                        "modifier_imba_upheaval_aura_debuff"
+                        "modifier_creep"                       "modifier_imba_upheaval_aura_debuff_creep"
+                    }
+                }
+                "OnAttacked"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_warlock.lua"
+                        "Function"                             "UpheavalTowerDamage"
+                        "sound_loop"                           "Hero_Warlock.Upheaval"
+                        "sound_end"                            "Hero_Warlock.Upheaval.Stop"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL""1"
+                    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL" "1"
+                    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE"    "1"
+                    "MODIFIER_PROPERTY_DISABLE_HEALING"            "1"
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_MAGIC_IMMUNE"                  "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+            "modifier_imba_upheaval_aura_debuff"
+            {
+                "Passive"                                              "0"
+                "IsDebuff"                                             "1"
+                "IsHidden"                                             "1"
+                "IsPurgable"                                           "1"
+                "Duration"                                             "%slow_duration"
+                "EffectName"                                           "particles/units/heroes/hero_warlock/warlock_upheaval_debuff.vpcf"
+                "EffectAttachType"                                     "follow_origin"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%move_slow_stack"
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%attack_slow_stack"
+                }
+            }
+            "modifier_imba_upheaval_aura_debuff_creep"
+            {
+                "Passive"                                              "0"
+                "IsDebuff"                                             "1"
+                "IsHidden"                                             "1"
+                "IsPurgable"                                           "1"
+                "Duration"                                             "%slow_duration"
+                "EffectName"                                           "particles/units/heroes/hero_warlock/warlock_upheaval_debuff_creep.vpcf"
+                "EffectAttachType"                                     "follow_origin"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%move_slow_stack"
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%attack_slow_stack"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "support | doNotRandom"
+        "ReduxPerks"                                                           "support"
+    }
 }

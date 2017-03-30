@@ -1,24 +1,28 @@
-"DOTAAbilities" {
-	"imba_bane_nightmare_end" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_BOTH"
-		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
-		"MaxLevel" "1"
-		"AbilityTextureName" "bane_nightmare_end"
-		"AbilityCastPoint" "0.0"
-		"AbilityCastRange" "25000"
-		"AbilityCooldown" "0.0"
-		"AbilityManaCost" "0"
-
-		"OnSpellStart" {
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_bane.lua"
-				"Function" "NightmareEndCast"
-				"modifier_nightmare" "modifier_imba_bane_nightmare"
-				"modifier_invul" "modifier_imba_bane_nightmare_invul"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_bane_nightmare_end"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "AbilityUnitTargetFlags"                                               "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+        "MaxLevel"                                                             "1"
+        "AbilityTextureName"                                                   "bane_nightmare_end"
+        "AbilityCastPoint"                                                     "0.0"
+        "AbilityCastRange"                                                     "25000"
+        "AbilityCooldown"                                                      "0.0"
+        "AbilityManaCost"                                                      "0"
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_bane.lua"
+                "Function"                                             "NightmareEndCast"
+                "modifier_nightmare"                                   "modifier_imba_bane_nightmare"
+                "modifier_invul"                                       "modifier_imba_bane_nightmare_invul"
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

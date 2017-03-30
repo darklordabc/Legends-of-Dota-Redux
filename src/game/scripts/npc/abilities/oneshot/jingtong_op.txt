@@ -1,29 +1,34 @@
-"DOTAAbilities" {
-	"jingtong_op"	{
-		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"custom/jingtong_op"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"HotKeyOverride"	"C"
-		"Modifiers"
-		{
-			"modifier_jingtong"
-			{
-				"Passive"	"1"
-				"IsHidden"	"1"
-				"IsBuff"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE"	"%reduce"
-				}
-			}
-		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"reduce"	"10 20 30 50"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "jingtong_op"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityTextureName"                                                   "custom/jingtong_op"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "HotKeyOverride"                                                       "C"
+        "Modifiers"
+        {
+            "modifier_jingtong"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "IsBuff"                                               "1"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE"        "%reduce"
+                }
+            }
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "reduce"                                               "10 20 30 50"
+            }
+        }
+        "ReduxCost"                                                            "100"
+        "ReduxBans"                                                            "jingtong"
+        "ReduxFlags"                                                           "SuperOP"
+    }
 }

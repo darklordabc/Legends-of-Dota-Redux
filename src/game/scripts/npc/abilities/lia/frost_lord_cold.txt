@@ -1,112 +1,121 @@
-"DOTAAbilities" {
-	"frost_lord_cold" {
-		"BaseClass" "ability_datadriven"
-		"AbilityType" "DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
-		"AbilityTextureName" "custom/frost_lord_cold"
-
-		"precache" {
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
-			"particle" "particles/units/heroes/hero_crystalmaiden/maiden_crystal_nova.vpcf"
-		}
-		"MaxLevel" "3"
-		"RequiredLevel" "1"
-		"LevelsBetweenUpgrades" "2"
-		"AoERadius" "300"
-		"AbilityCastRange" "700"
-		"AbilityCastPoint" "0.0"
-		"AbilityCooldown" "18"
-		"AbilityManaCost" "100 140 180"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"damage" "20 30 40"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"add_damage" "10 20 30"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"movement_speed_slow" "-20 -30 -40"
-			}
-
-			"04" {
-				"var_type" "FIELD_INTEGER"
-				"attack_speed_slow" "-10 -20 -30"
-			}
-
-			"05" {
-				"var_type" "FIELD_FLOAT"
-				"duration" "8"
-			}
-
-			"06" {
-				"var_type" "FIELD_INTEGER"
-				"radius" "300"
-			}
-		}
-
-		"OnSpellStart" {
-			"FireEffect" {
-				"EffectName" "particles/units/heroes/hero_crystalmaiden/maiden_crystal_nova.vpcf"
-				"EffectAttachType" "start_at_customorigin"
-				"TargetPoint" "POINT"
-
-				"ControlPoints" {
-					"01" "%radius 0 0"
-				}
-			}
-
-			"FireSound" {
-				"EffectName" "Hero_Crystal.CrystalNova"
-				"Target" "CASTER"
-			}
-
-			"ActOnTargets" {
-				"Target" {
-					"Center" "POINT"
-					"Radius" "%radius"
-					"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Type" "DOTA_UNIT_TARGET_HERO"
-				}
-
-				"Action" {
-					"ApplyModifier" {
-						"ModifierName" "modifier_frost_lord_cold"
-						"Target" "TARGET"
-						"Duration" "%duration"
-					}
-				}
-			}
-		}
-
-		"Modifiers" {
-			"modifier_frost_lord_cold" {
-				"IsDebuff" "1"
-				"Duration" "%duration"
-				"IsPurgable" "1"
-				"StatusEffectName" "particles/status_fx/status_effect_frost_lich.vpcf"
-				"StatusEffectPriority" "10"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%movement_speed_slow"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%attack_speed_slow"
-				}
-				"ThinkInterval" "1.0"
-
-				"OnIntervalThink" {
-					"RunScript" {
-						"ScriptFile" "abilities/life_in_arena/Cold.lua"
-						"Function" "Cold"
-					}
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "frost_lord_cold"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "AbilityTextureName"                                                   "custom/frost_lord_cold"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_crystalmaiden/maiden_crystal_nova.vpcf"
+        }
+        "MaxLevel"                                                             "3"
+        "RequiredLevel"                                                        "1"
+        "LevelsBetweenUpgrades"                                                "2"
+        "AoERadius"                                                            "300"
+        "AbilityCastRange"                                                     "700"
+        "AbilityCastPoint"                                                     "0.0"
+        "AbilityCooldown"                                                      "18"
+        "AbilityManaCost"                                                      "100 140 180"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage"                                               "20 30 40"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "add_damage"                                           "10 20 30"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "movement_speed_slow"                                  "-20 -30 -40"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "attack_speed_slow"                                    "-10 -20 -30"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                             "8"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "300"
+            }
+        }
+        "OnSpellStart"
+        {
+            "FireEffect"
+            {
+                "EffectName"                                           "particles/units/heroes/hero_crystalmaiden/maiden_crystal_nova.vpcf"
+                "EffectAttachType"                                     "start_at_customorigin"
+                "TargetPoint"                                          "POINT"
+                "ControlPoints"
+                {
+                    "01"                                           "%radius 0 0"
+                }
+            }
+            "FireSound"
+            {
+                "EffectName"                                           "Hero_Crystal.CrystalNova"
+                "Target"                                               "CASTER"
+            }
+            "ActOnTargets"
+            {
+                "Target"
+                {
+                    "Center"                                       "POINT"
+                    "Radius"                                       "%radius"
+                    "Teams"                                        "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                    "Type"                                         "DOTA_UNIT_TARGET_HERO"
+                }
+                "Action"
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"                         "modifier_frost_lord_cold"
+                        "Target"                               "TARGET"
+                        "Duration"                             "%duration"
+                    }
+                }
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_frost_lord_cold"
+            {
+                "IsDebuff"                                             "1"
+                "Duration"                                             "%duration"
+                "IsPurgable"                                           "1"
+                "StatusEffectName"                                     "particles/status_fx/status_effect_frost_lich.vpcf"
+                "StatusEffectPriority"                                 "10"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%movement_speed_slow"
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%attack_speed_slow"
+                }
+                "ThinkInterval"                                        "1.0"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/life_in_arena/Cold.lua"
+                        "Function"                             "Cold"
+                    }
+                }
+            }
+        }
+        "ReduxPerks"                                                           "ice"
+    }
 }

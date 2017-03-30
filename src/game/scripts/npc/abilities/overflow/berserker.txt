@@ -1,41 +1,38 @@
-"DOTAAbilities" {
-	"berserker"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"				"ability_lua"
-		"ScriptFile"					"abilities/overflow/berserker/passive.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"			"custom/berserker"
-		//"MaxLevel"	"7"
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"precache"
-		{
-			"particle"	"particles/berserker.vpcf"
-		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"2"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"speed"					"10"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"1.6"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"max"					"10 20 30 40"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "berserker"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/overflow/berserker/passive.lua"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityTextureName"                                                   "custom/berserker"
+        "precache"
+        {
+            "particle"                                                     "particles/berserker.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage"                                               "2"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "speed"                                                "10"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                             "1.6"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "max"                                                  "10 20 30 40"
+            }
+        }
+        "ReduxBans"                                                            "pudge_rot"
+    }
 }

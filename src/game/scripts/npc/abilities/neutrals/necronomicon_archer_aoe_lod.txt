@@ -1,31 +1,29 @@
-"DOTAAbilities" {
-	"necronomicon_archer_aoe_lod" {	
-		// General
-		//-------------------------------------------------------------------------------------------------------------													// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"BaseClass" "necronomicon_archer_aoe"
-		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"900"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"ms_bonus"			"5 7 9 12"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"as_bonus"			"5 7 9 12"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "necronomicon_archer_aoe_lod"
+    {
+        "BaseClass"                                                            "necronomicon_archer_aoe"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "900"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "ms_bonus"                                             "5 7 9 12"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "as_bonus"                                             "5 7 9 12"
+            }
+        }
+        "ReduxFlags"                                                           "support"
+        "ReduxPerks"                                                           "support | neutral | aura"
+    }
 }
