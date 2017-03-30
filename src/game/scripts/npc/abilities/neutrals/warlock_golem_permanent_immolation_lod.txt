@@ -1,22 +1,27 @@
-"DOTAAbilities" {
-	"warlock_golem_permanent_immolation_lod" {
-		"BaseClass" "brewmaster_fire_permanent_immolation"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"MaxLevel" "4"
-		"AbilityTextureName" "custom/warlock_golem_permanent_immolation_lod"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"damage" "15 25 35 50"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"radius" "300 300 300 300"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "warlock_golem_permanent_immolation_lod"
+    {
+        "BaseClass"                                                            "brewmaster_fire_permanent_immolation"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "MaxLevel"                                                             "4"
+        "AbilityTextureName"                                                   "custom/warlock_golem_permanent_immolation_lod"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage"                                               "15 25 35 50"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "300 300 300 300"
+            }
+        }
+        "ReduxFlags"                                                           "aoe_attack"
+        "ReduxPerks"                                                           "neutral | fire | aura"
+    }
 }

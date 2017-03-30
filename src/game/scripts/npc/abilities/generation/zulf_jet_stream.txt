@@ -1,221 +1,236 @@
-"DOTAAbilities" {
-	"zulf_jet_stream" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
-		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_CUSTOM"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityTextureName" "custom/zulf_jet_stream"
-		"AbilityProcsMagicStick" "1"
-		"AbilityCastPoint" "0.4 0.4 0.4 0.4"
-		"AbilityCastRange" "1500 1750 2000 2250"
-		"AbilityCooldown" "55 50 45 40"
-		"AbilityManaCost" "140 150 160 170"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"length" "1500 1750 2000 2250"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"width" "250"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"duration" "20"
-			}
-
-			"04" {
-				"var_type" "FIELD_INTEGER"
-				"speed_buff" "10"
-			}
-
-			"05" {
-				"var_type" "FIELD_INTEGER"
-				"speed_debuff" "-10"
-			}
-
-			"06" {
-				"var_type" "FIELD_INTEGER"
-				"speed_increase" "2 3 4 5"
-			}
-
-			"07" {
-				"var_type" "FIELD_INTEGER"
-				"speed_decrease" "-2 -3 -4 -5"
-			}
-
-			"08" {
-				"var_type" "FIELD_INTEGER"
-				"max_speed" "10"
-			}
-		}
-
-		"precache" {
-			"particle" "particles/zulf_jet_stream.vpcf"
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts"
-		}
-
-		"OnSpellStart" {
-			"RunScript" {
-				"ScriptFile" "abilities/zulf_jet_stream.lua"
-				"Function" "JetStreamGetLocation"
-				"Target" "POINT"
-			}
-
-			"FireSound" {
-				"EffectName" "Ability.Focusfire"
-				"Target" "CASTER"
-			}
-
-			"ApplyModifier" {
-				"ModifierName" "modifier_jet_stream_start"
-				"Target" "CASTER"
-				"Duration" "%duration"
-			}
-		}
-
-		"OnProjectileHitUnit" {
-			"DeleteOnHit" "0"
-
-			"RunScript" {
-				"ScriptFile" "abilities/zulf_jet_stream.lua"
-				"Function" "JetStreamEffect"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_jet_stream_start" {
-				"Passive" "0"
-				"IsHidden" "1"
-				"ThinkInterval" "0.25"
-
-				"OnIntervalThink" {
-					"RunScript" {
-						"ScriptFile" "abilities/zulf_jet_stream.lua"
-						"Function" "JetStreamProjectile"
-						"wave_particle" "particles/zulf_jet_stream.vpcf"
-					}
-				}
-			}
-
-			"modifier_jet_stream_buff" {
-				"Passive" "0"
-				"IsHidden" "0"
-				"IsBuff" "1"
-				"Duration" "1.5"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%speed_buff"
-				}
-
-				"States" {
-					"MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY" "MODIFIER_STATE_VALUE_ENABLED"
-				}
-				"ThinkInterval" "0.25"
-
-				"OnIntervalThink" {
-					"RunScript" {
-						"ScriptFile" "abilities/zulf_jet_stream.lua"
-						"Function" "JetStreamBuff"
-					}
-				}
-
-				"OnDestroy" {
-					"RemoveModifier" {
-						"ModifierName" "modifier_jet_stream_buff_flying"
-						"Target" "TARGET"
-					}
-
-					"DestroyTrees" {
-						"Target" "TARGET"
-						"Radius" "150"
-					}
-				}
-			}
-
-			"modifier_jet_stream_debuff" {
-				"Passive" "0"
-				"IsHidden" "0"
-				"IsDebuff" "1"
-				"Duration" "1.5"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%speed_debuff"
-				}
-				"ThinkInterval" "0.25"
-
-				"OnIntervalThink" {
-					"RunScript" {
-						"ScriptFile" "abilities/zulf_jet_stream.lua"
-						"Function" "JetStreamDebuff"
-					}
-				}
-
-				"OnDestroy" {
-					"RemoveModifier" {
-						"ModifierName" "modifier_jet_stream_debuff_decrease"
-						"Target" "TARGET"
-					}
-				}
-			}
-
-			"modifier_jet_stream_buff_increase" {
-				"Passive" "0"
-				"IsHidden" "0"
-				"IsBuff" "1"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%speed_increase"
-				}
-				"ThinkInterval" "0.5"
-
-				"OnIntervalThink" {
-					"RunScript" {
-						"ScriptFile" "abilities/zulf_jet_stream.lua"
-						"Function" "JetStreamCheck"
-					}
-				}
-			}
-
-			"modifier_jet_stream_debuff_decrease" {
-				"Passive" "0"
-				"IsHidden" "0"
-				"IsDebuff" "1"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%speed_decrease"
-				}
-				"ThinkInterval" "0.5"
-
-				"OnIntervalThink" {
-					"RunScript" {
-						"ScriptFile" "abilities/zulf_jet_stream.lua"
-						"Function" "JetStreamCheck"
-					}
-				}
-			}
-
-			"modifier_jet_stream_debuff_knockback" {
-				"Passive" "0"
-				"IsHidden" "1"
-				"IsDebuff" "1"
-				"Duration" "0.1"
-
-				"OnCreated" {
-					"Knockback" {
-						"Target" "TARGET"
-						"Center" "TARGET"
-						"Distance" "100"
-						"Duration" "0.1"
-						"Height" "30"
-						"IsFixedDistance" "1"
-						"ShouldStun" "0"
-					}
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "zulf_jet_stream"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_CUSTOM"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityTextureName"                                                   "custom/zulf_jet_stream"
+        "AbilityProcsMagicStick"                                               "1"
+        "AbilityCastPoint"                                                     "0.4 0.4 0.4 0.4"
+        "AbilityCastRange"                                                     "1500 1750 2000 2250"
+        "AbilityCooldown"                                                      "55 50 45 40"
+        "AbilityManaCost"                                                      "140 150 160 170"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "length"                                               "1500 1750 2000 2250"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "width"                                                "250"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "duration"                                             "20"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "speed_buff"                                           "10"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "speed_debuff"                                         "-10"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "speed_increase"                                       "2 3 4 5"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "speed_decrease"                                       "-2 -3 -4 -5"
+            }
+            "08"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "max_speed"                                            "10"
+            }
+        }
+        "precache"
+        {
+            "particle"                                                     "particles/zulf_jet_stream.vpcf"
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_windrunner.vsndevts"
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/zulf_jet_stream.lua"
+                "Function"                                             "JetStreamGetLocation"
+                "Target"                                               "POINT"
+            }
+            "FireSound"
+            {
+                "EffectName"                                           "Ability.Focusfire"
+                "Target"                                               "CASTER"
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"                                         "modifier_jet_stream_start"
+                "Target"                                               "CASTER"
+                "Duration"                                             "%duration"
+            }
+        }
+        "OnProjectileHitUnit"
+        {
+            "DeleteOnHit"                                                  "0"
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/zulf_jet_stream.lua"
+                "Function"                                             "JetStreamEffect"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_jet_stream_start"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "ThinkInterval"                                        "0.25"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/zulf_jet_stream.lua"
+                        "Function"                             "JetStreamProjectile"
+                        "wave_particle"                        "particles/zulf_jet_stream.vpcf"
+                    }
+                }
+            }
+            "modifier_jet_stream_buff"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsBuff"                                               "1"
+                "Duration"                                             "1.5"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%speed_buff"
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY""MODIFIER_STATE_VALUE_ENABLED"
+                }
+                "ThinkInterval"                                        "0.25"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/zulf_jet_stream.lua"
+                        "Function"                             "JetStreamBuff"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RemoveModifier"
+                    {
+                        "ModifierName"                         "modifier_jet_stream_buff_flying"
+                        "Target"                               "TARGET"
+                    }
+                    "DestroyTrees"
+                    {
+                        "Target"                               "TARGET"
+                        "Radius"                               "150"
+                    }
+                }
+            }
+            "modifier_jet_stream_debuff"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsDebuff"                                             "1"
+                "Duration"                                             "1.5"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%speed_debuff"
+                }
+                "ThinkInterval"                                        "0.25"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/zulf_jet_stream.lua"
+                        "Function"                             "JetStreamDebuff"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RemoveModifier"
+                    {
+                        "ModifierName"                         "modifier_jet_stream_debuff_decrease"
+                        "Target"                               "TARGET"
+                    }
+                }
+            }
+            "modifier_jet_stream_buff_increase"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsBuff"                                               "1"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%speed_increase"
+                }
+                "ThinkInterval"                                        "0.5"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/zulf_jet_stream.lua"
+                        "Function"                             "JetStreamCheck"
+                    }
+                }
+            }
+            "modifier_jet_stream_debuff_decrease"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsDebuff"                                             "1"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%speed_decrease"
+                }
+                "ThinkInterval"                                        "0.5"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/zulf_jet_stream.lua"
+                        "Function"                             "JetStreamCheck"
+                    }
+                }
+            }
+            "modifier_jet_stream_debuff_knockback"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsDebuff"                                             "1"
+                "Duration"                                             "0.1"
+                "OnCreated"
+                {
+                    "Knockback"
+                    {
+                        "Target"                               "TARGET"
+                        "Center"                               "TARGET"
+                        "Distance"                             "100"
+                        "Duration"                             "0.1"
+                        "Height"                               "30"
+                        "IsFixedDistance"                      "1"
+                        "ShouldStun"                           "0"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "mobility"
+        "ReduxPerks"                                                           "mobility"
+    }
 }

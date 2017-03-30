@@ -1,47 +1,51 @@
-"DOTAAbilities" {
-	"imba_lina_dragon_slave_aux" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		"AbilityTextureName" "lina_dragon_slave"
-		"AbilityCastPoint" "0"
-		"AbilityCooldown" "0"
-		"AbilityManaCost" "0"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"secondary_speed" "1200"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"secondary_start_width" "125"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"secondary_end_width" "250"
-			}
-
-			"04" {
-				"var_type" "FIELD_INTEGER"
-				"secondary_distance" "700"
-			}
-
-			"05" {
-				"var_type" "FIELD_INTEGER"
-				"secondary_damage" "60 90 120 150"
-			}
-		}
-
-		"OnProjectileHitUnit" {
-			"DeleteOnHit" "0"
-
-			"Damage" {
-				"Target" "TARGET"
-				"Type" "DAMAGE_TYPE_MAGICAL"
-				"Damage" "%secondary_damage"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_lina_dragon_slave_aux"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"                                                   "lina_dragon_slave"
+        "AbilityCastPoint"                                                     "0"
+        "AbilityCooldown"                                                      "0"
+        "AbilityManaCost"                                                      "0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "secondary_speed"                                      "1200"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "secondary_start_width"                                "125"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "secondary_end_width"                                  "250"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "secondary_distance"                                   "700"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "secondary_damage"                                     "60 90 120 150"
+            }
+        }
+        "OnProjectileHitUnit"
+        {
+            "DeleteOnHit"                                                  "0"
+            "Damage"
+            {
+                "Target"                                               "TARGET"
+                "Type"                                                 "DAMAGE_TYPE_MAGICAL"
+                "Damage"                                               "%secondary_damage"
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

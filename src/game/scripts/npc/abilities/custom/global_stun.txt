@@ -1,31 +1,38 @@
-"DOTAAbilities" {
-	"global_stun" {
-		"BaseClass" "centaur_khan_war_stomp"
-		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
-		"AbilityTextureName" "custom/global_stun"
-		"MaxLevel" "3"
-		"AbilityCastPoint" "1"
-		"AbilityCooldown" "100.0 80.0 60.0 40.0"
-		"AbilityDamage" "25"
-		"AbilityManaCost" "100"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"radius" "99999"
-			}
-
-			"02" {
-				"var_type" "FIELD_FLOAT"
-				"non_hero_stun_duration" "3.0"
-			}
-
-			"03" {
-				"var_type" "FIELD_FLOAT"
-				"hero_stun_duration" "2.0"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "global_stun"
+    {
+        "BaseClass"                                                            "centaur_khan_war_stomp"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "AbilityTextureName"                                                   "custom/global_stun"
+        "MaxLevel"                                                             "3"
+        "AbilityCastPoint"                                                     "1"
+        "AbilityCooldown"                                                      "100.0 80.0 60.0 40.0"
+        "AbilityDamage"                                                        "25"
+        "AbilityManaCost"                                                      "100"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "99999"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "non_hero_stun_duration"                               "3.0"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "hero_stun_duration"                                   "2.0"
+            }
+        }
+        "ReduxFlags"                                                           "stun | SuperOP"
+        "ReduxPerks"                                                           "earth"
+        "ReduxCost"                                                            "120"
+        "ReduxBans"                                                            "tinker_rearm"
+    }
 }

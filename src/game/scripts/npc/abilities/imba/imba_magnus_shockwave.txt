@@ -1,86 +1,92 @@
-"DOTAAbilities" {
-	"imba_magnus_shockwave" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityTextureName" "magnataur_shockwave"
-		"AbilityCastRange" "1800"
-		"AbilityCastPoint" "0.3"
-		"AbilityCooldown" "10.0 9.0 8.0 7.0"
-		"AbilityManaCost" "90"
-
-		"precache" {
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
-			"particle" "particles/units/heroes/hero_magnataur/magnataur_shockwave_hit.vpcf"
-		}
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"shock_speed" "1600"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"shock_width" "175"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"shock_damage" "90 160 230 300"
-			}
-
-			"04" {
-				"var_type" "FIELD_INTEGER"
-				"secondary_damage" "30 45 60 75"
-			}
-
-			"05" {
-				"var_type" "FIELD_INTEGER"
-				"shock_distance" "1800"
-			}
-
-			"06" {
-				"var_type" "FIELD_INTEGER"
-				"secondary_angle" "72"
-			}
-
-			"07" {
-				"var_type" "FIELD_INTEGER"
-				"max_secondary" "3"
-			}
-		}
-
-		"OnAbilityPhaseStart" {
-			"FireSound" {
-				"EffectName" "Hero_Magnataur.ShockWave.Cast"
-				"Target" "CASTER"
-			}
-		}
-
-		"OnSpellStart" {
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_magnus.lua"
-				"Function" "Shockwave"
-				"Target" "POINT"
-				"sound_cast" "Hero_Magnataur.ShockWave.Particle"
-				"particle_projectile" "particles/units/heroes/hero_magnataur/magnataur_shockwave.vpcf"
-			}
-		}
-
-		"OnProjectileHitUnit" {
-			"DeleteOnHit" "0"
-
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_magnus.lua"
-				"Function" "ShockwaveHit"
-				"sound_hit" "Hero_Magnataur.ShockWave.Target"
-				"particle_projectile" "particles/units/heroes/hero_magnataur/magnataur_shockwave.vpcf"
-				"particle_hit" "particles/units/heroes/hero_magnataur/magnataur_shockwave_hit.vpcf"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_magnus_shockwave"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityTextureName"                                                   "magnataur_shockwave"
+        "AbilityCastRange"                                                     "1800"
+        "AbilityCastPoint"                                                     "0.3"
+        "AbilityCooldown"                                                      "10.0 9.0 8.0 7.0"
+        "AbilityManaCost"                                                      "90"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_magnataur/magnataur_shockwave_hit.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "shock_speed"                                          "1600"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "shock_width"                                          "175"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "shock_damage"                                         "90 160 230 300"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "secondary_damage"                                     "30 45 60 75"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "shock_distance"                                       "1800"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "secondary_angle"                                      "72"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "max_secondary"                                        "3"
+            }
+        }
+        "OnAbilityPhaseStart"
+        {
+            "FireSound"
+            {
+                "EffectName"                                           "Hero_Magnataur.ShockWave.Cast"
+                "Target"                                               "CASTER"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_magnus.lua"
+                "Function"                                             "Shockwave"
+                "Target"                                               "POINT"
+                "sound_cast"                                           "Hero_Magnataur.ShockWave.Particle"
+                "particle_projectile"                                  "particles/units/heroes/hero_magnataur/magnataur_shockwave.vpcf"
+            }
+        }
+        "OnProjectileHitUnit"
+        {
+            "DeleteOnHit"                                                  "0"
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_magnus.lua"
+                "Function"                                             "ShockwaveHit"
+                "sound_hit"                                            "Hero_Magnataur.ShockWave.Target"
+                "particle_projectile"                                  "particles/units/heroes/hero_magnataur/magnataur_shockwave.vpcf"
+                "particle_hit"                                         "particles/units/heroes/hero_magnataur/magnataur_shockwave_hit.vpcf"
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

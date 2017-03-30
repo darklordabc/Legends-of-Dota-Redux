@@ -1,145 +1,153 @@
-"DOTAAbilities" {
-	"imba_faceless_void_chronosphere" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_YES"
-		"FightRecapLevel" "2"
-		"AbilityTextureName" "faceless_void_chronosphere"
-
-		"precache" {
-			"soundfile" "soundevents/imba_soundevents.vsndevts"
-			"particle" "particles/units/heroes/hero_faceless_void/faceless_void_chrono_speed.vpcf"
-		}
-		"AbilityCastRange" "600"
-		"AbilityCastPoint" "0.3"
-		"AbilityCooldown" "110.0 100.0 90.0"
-		"AbilityManaCost" "200"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"base_radius" "425"
-			}
-
-			"02" {
-				"var_type" "FIELD_FLOAT"
-				"base_duration" "4.0 4.5 5.0"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"extra_radius" "25"
-			}
-
-			"04" {
-				"var_type" "FIELD_FLOAT"
-				"tick_interval" "0.03"
-			}
-
-			"05" {
-				"var_type" "FIELD_INTEGER"
-				"bonus_as" "20 30 40"
-			}
-
-			"06" {
-				"var_type" "FIELD_INTEGER"
-				"slow_scepter" "-70"
-			}
-
-			"07" {
-				"var_type" "FIELD_INTEGER"
-				"chrono_ms" "1000"
-			}
-		}
-
-		"OnUpgrade" {
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_faceless_void.lua"
-				"Function" "TimelordUpgrade"
-				"ability_timelord" "imba_faceless_void_timelord"
-			}
-		}
-
-		"OnSpellStart" {
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_faceless_void.lua"
-				"Function" "Chronosphere"
-				"Target" "POINT"
-				"sound_cast" "Hero_FacelessVoid.Chronosphere"
-				"sound_za_warudo" "Imba.FacelessZaWarudo"
-				"particle_chrono" "particles/units/heroes/hero_faceless_void/faceless_void_chronosphere.vpcf"
-				"modifier_caster" "modifier_imba_chronosphere_caster"
-				"modifier_enemy" "modifier_imba_chronosphere_enemy"
-				"modifier_ally" "modifier_imba_chronosphere_ally_scepter"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_imba_chronosphere_caster" {
-				"Passive" "0"
-				"IsHidden" "1"
-				"IsBuff" "1"
-				"IsPurgable" "0"
-				"Duration" "%linger_duration"
-				"EffectName" "particles/units/heroes/hero_faceless_void/faceless_void_chrono_speed.vpcf"
-				"EffectAttachType" "follow_origin"
-
-				"OnDestroy" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_faceless_void.lua"
-						"Function" "ChronoBuffEnd"
-					}
-
-					"DestroyTrees" {
-						"Target" "TARGET"
-						"Radius" "200"
-					}
-				}
-
-				"Properties" {
-					"MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE" "%chrono_ms"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_as"
-				}
-
-				"States" {
-					"MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-
-			"modifier_imba_chronosphere_enemy" {
-				"Passive" "0"
-				"IsHidden" "1"
-				"IsDebuff" "1"
-				"IsPurgable" "0"
-				"StatusEffectName" "particles/status_fx/status_effect_faceless_chronosphere.vpcf"
-				"StatusEffectPriority" "1"
-
-				"States" {
-					"MODIFIER_STATE_STUNNED" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_SILENCED" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_FROZEN" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_PROVIDES_VISION" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_INVISIBLE" "MODIFIER_STATE_VALUE_DISABLED"
-				}
-			}
-
-			"modifier_imba_chronosphere_ally_scepter" {
-				"Passive" "0"
-				"IsHidden" "1"
-				"IsDebuff" "1"
-				"IsPurgable" "0"
-				"Duration" "%linger_duration"
-				"StatusEffectName" "particles/status_fx/status_effect_faceless_chronosphere.vpcf"
-				"StatusEffectPriority" "1"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE" "%slow_scepter"
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow_scepter"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "-200"
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_faceless_void_chronosphere"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_YES"
+        "FightRecapLevel"                                                      "2"
+        "AbilityTextureName"                                                   "faceless_void_chronosphere"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/imba_soundevents.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_faceless_void/faceless_void_chrono_speed.vpcf"
+        }
+        "AbilityCastRange"                                                     "600"
+        "AbilityCastPoint"                                                     "0.3"
+        "AbilityCooldown"                                                      "110.0 100.0 90.0"
+        "AbilityManaCost"                                                      "200"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "base_radius"                                          "425"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "base_duration"                                        "4.0 4.5 5.0"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "extra_radius"                                         "25"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "tick_interval"                                        "0.03"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_as"                                             "20 30 40"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "slow_scepter"                                         "-70"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "chrono_ms"                                            "1000"
+            }
+        }
+        "OnUpgrade"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_faceless_void.lua"
+                "Function"                                             "TimelordUpgrade"
+                "ability_timelord"                                     "imba_faceless_void_timelord"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_faceless_void.lua"
+                "Function"                                             "Chronosphere"
+                "Target"                                               "POINT"
+                "sound_cast"                                           "Hero_FacelessVoid.Chronosphere"
+                "sound_za_warudo"                                      "Imba.FacelessZaWarudo"
+                "particle_chrono"                                      "particles/units/heroes/hero_faceless_void/faceless_void_chronosphere.vpcf"
+                "modifier_caster"                                      "modifier_imba_chronosphere_caster"
+                "modifier_enemy"                                       "modifier_imba_chronosphere_enemy"
+                "modifier_ally"                                        "modifier_imba_chronosphere_ally_scepter"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_chronosphere_caster"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "Duration"                                             "%linger_duration"
+                "EffectName"                                           "particles/units/heroes/hero_faceless_void/faceless_void_chrono_speed.vpcf"
+                "EffectAttachType"                                     "follow_origin"
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_faceless_void.lua"
+                        "Function"                             "ChronoBuffEnd"
+                    }
+                    "DestroyTrees"
+                    {
+                        "Target"                               "TARGET"
+                        "Radius"                               "200"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE"         "%chrono_ms"
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_as"
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY""MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NO_UNIT_COLLISION"             "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+            "modifier_imba_chronosphere_enemy"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "0"
+                "StatusEffectName"                                     "particles/status_fx/status_effect_faceless_chronosphere.vpcf"
+                "StatusEffectPriority"                                 "1"
+                "States"
+                {
+                    "MODIFIER_STATE_STUNNED"                       "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_SILENCED"                      "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_FROZEN"                        "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_PROVIDES_VISION"               "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_INVISIBLE"                     "MODIFIER_STATE_VALUE_DISABLED"
+                }
+            }
+            "modifier_imba_chronosphere_ally_scepter"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "0"
+                "Duration"                                             "%linger_duration"
+                "StatusEffectName"                                     "particles/status_fx/status_effect_faceless_chronosphere.vpcf"
+                "StatusEffectPriority"                                 "1"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE"       "%slow_scepter"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow_scepter"
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "-200"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

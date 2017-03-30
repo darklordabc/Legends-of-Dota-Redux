@@ -1,28 +1,36 @@
-"DOTAAbilities" {
-	"aether_range_lod_OP" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName" "custom/aether_range_lod_OP"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"cast_range_bonus" "300 500 700 900"
-			}
-		}
-
-		"OnOwnerSpawned" {
-			"RunScript" {
-				"ScriptFile" "abilities/aether_range_lod.lua"
-				"Function" "SetCastRange"
-			}
-		}
-
-		"OnUpgrade" {
-			"RunScript" {
-				"ScriptFile" "abilities/aether_range_lod.lua"
-				"Function" "SetCastRange"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "aether_range_lod_OP"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "custom/aether_range_lod_OP"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "cast_range_bonus"                                     "300 500 700 900"
+            }
+        }
+        "OnOwnerSpawned"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/aether_range_lod.lua"
+                "Function"                                             "SetCastRange"
+            }
+        }
+        "OnUpgrade"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/aether_range_lod.lua"
+                "Function"                                             "SetCastRange"
+            }
+        }
+        "ReduxCost"                                                            "100"
+        "ReduxBans"                                                            "aether_range_lod"
+        "ReduxFlags"                                                           "SuperOP"
+    }
 }

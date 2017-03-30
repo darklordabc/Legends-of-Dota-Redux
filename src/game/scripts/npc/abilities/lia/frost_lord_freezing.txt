@@ -1,71 +1,80 @@
-"DOTAAbilities" {
-	"frost_lord_freezing" {
-		"BaseClass" "ability_datadriven"
-		"AbilityTextureName" "custom/frost_lord_freezing"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
-		"AbilityDamage" "25 50 100 150"
-		"MaxLevel" "4"
-		"RequiredLevel" "1"
-		"LevelsBetweenUpgrades" "2"
-
-		"precache" {
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
-			"particle" "particles/units/heroes/hero_crystalmaiden/maiden_frostbite.vpcf"
-		}
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"freezing_chance" "9 10 11 12"
-			}
-
-			"02" {
-				"var_type" "FIELD_FLOAT"
-				"stun_hero_duration" "0.25 0.5 1.0 1.5"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_frost_lord_freezing" {
-				"Passive" "1"
-				"IsHidden" "1"
-
-				"OnAttacked" {
-					"Random" {
-						"Chance" "%freezing_chance"
-						"PseudoRandom" "DOTA_PSEUDO_RANDOM_FACELESS_BASH"
-
-						"OnSuccess" {
-							"FireSound" {
-								"EffectName" "hero_Crystal.frostbite"
-								"Target" "ATTACKER"
-							}
-
-							"ApplyModifier" {
-								"ModifierName" "modifier_frost_lord_freezing_block"
-								"Target" "ATTACKER"
-								"Duration" "%stun_hero_duration"
-							}
-
-							"Damage" {
-								"Target" "ATTACKER"
-								"Type" "DAMAGE_TYPE_MAGICAL"
-								"Damage" "%AbilityDamage"
-							}
-						}
-					}
-				}
-			}
-
-			"modifier_frost_lord_freezing_block" {
-				"EffectName" "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
-
-				"States" {
-					"MODIFIER_STATE_STUNNED" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_FROZEN" "MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "frost_lord_freezing"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityTextureName"                                                   "custom/frost_lord_freezing"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "AbilityDamage"                                                        "25 50 100 150"
+        "MaxLevel"                                                             "4"
+        "RequiredLevel"                                                        "1"
+        "LevelsBetweenUpgrades"                                                "2"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_crystalmaiden.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_crystalmaiden/maiden_frostbite.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "freezing_chance"                                      "9 10 11 12"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "stun_hero_duration"                                   "0.25 0.5 1.0 1.5"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_frost_lord_freezing"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "OnAttacked"
+                {
+                    "Random"
+                    {
+                        "Chance"                               "%freezing_chance"
+                        "PseudoRandom"                         "DOTA_PSEUDO_RANDOM_FACELESS_BASH"
+                        "OnSuccess"
+                        {
+                            "FireSound"
+                            {
+                                "EffectName"           "hero_Crystal.frostbite"
+                                "Target"               "ATTACKER"
+                            }
+                            "ApplyModifier"
+                            {
+                                "ModifierName"         "modifier_frost_lord_freezing_block"
+                                "Target"               "ATTACKER"
+                                "Duration"             "%stun_hero_duration"
+                            }
+                            "Damage"
+                            {
+                                "Target"               "ATTACKER"
+                                "Type"                 "DAMAGE_TYPE_MAGICAL"
+                                "Damage"               "%AbilityDamage"
+                            }
+                        }
+                    }
+                }
+            }
+            "modifier_frost_lord_freezing_block"
+            {
+                "EffectName"                                           "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
+                "States"
+                {
+                    "MODIFIER_STATE_STUNNED"                       "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_FROZEN"                        "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "tank"
+        "ReduxPerks"                                                           "ice"
+        "ReduxCost"                                                            "40"
+    }
 }

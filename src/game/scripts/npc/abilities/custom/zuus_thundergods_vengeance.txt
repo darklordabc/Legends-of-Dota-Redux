@@ -1,53 +1,59 @@
-"DOTAAbilities" {
-	"zuus_thundergods_vengeance" {
-		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
-		"AbilityTextureName" "custom/zuus_thundergods_wrath_lod"
-		"AbilityCastPoint" "0.4 0.4 0.4 0.4"
-		"AbilityCooldown" "90.0"
-		"AbilityManaCost" "225 325 450"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"true_sight_radius" "900 900 900"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"sight_radius_day" "1000 1000 1000 1000"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"sight_radius_night" "1000 1000 1000 1000"
-			}
-
-			"04" {
-				"var_type" "FIELD_FLOAT"
-				"sight_duration" "3.0 3.0 3.0 3.0"
-			}
-
-			"05" {
-				"var_type" "FIELD_INTEGER"
-				"damage" "200 300 400"
-			}
-
-			"06" {
-				"var_type" "FIELD_INTEGER"
-				"damage_scepter" "400 500 600"
-			}
-
-			"07" {
-				"var_type" "FIELD_INTEGER"
-				"num_targets" "10"
-			}
-
-			"08" {
-				"var_type" "FIELD_INTEGER"
-				"range" "1500"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "zuus_thundergods_vengeance"
+    {
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "AbilityTextureName"                                                   "custom/zuus_thundergods_wrath_lod"
+        "AbilityCastPoint"                                                     "0.4 0.4 0.4 0.4"
+        "AbilityCooldown"                                                      "90.0"
+        "AbilityManaCost"                                                      "225 325 450"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "true_sight_radius"                                    "900 900 900"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "sight_radius_day"                                     "1000 1000 1000 1000"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "sight_radius_night"                                   "1000 1000 1000 1000"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "sight_duration"                                       "3.0 3.0 3.0 3.0"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage"                                               "200 300 400"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage_scepter"                                       "400 500 600"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "num_targets"                                          "10"
+            }
+            "08"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "range"                                                "1500"
+            }
+        }
+        "ReduxFlags"                                                           "support | wtfAutoBan"
+        "ReduxPerks"                                                           "support"
+        "ReduxBans"                                                            "tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux | meepo_divided_we_stand"
+    }
 }

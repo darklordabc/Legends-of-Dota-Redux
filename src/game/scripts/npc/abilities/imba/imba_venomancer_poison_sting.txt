@@ -1,106 +1,116 @@
-"DOTAAbilities" {
-	"imba_venomancer_poison_sting" {
-		"BaseClass" "ability_datadriven"
-		"AbilityType" "DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityTextureName" "venomancer_poison_sting"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"stack_decay" "10"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"stack_decay_min" "2"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"caster_stacks" "3 4 5 6"
-			}
-
-			"04" {
-				"var_type" "FIELD_INTEGER"
-				"initial_stacks" "4 8 12 16"
-			}
-
-			"05" {
-				"var_type" "FIELD_INTEGER"
-				"dmg_per_stack" "1"
-			}
-
-			"06" {
-				"var_type" "FIELD_INTEGER"
-				"slow_per_stack" "-1"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_imba_poison_sting_caster" {
-				"Passive" "1"
-				"IsHidden" "1"
-				"IsBuff" "1"
-				"IsPurgable" "0"
-
-				"OnAttackLanded" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_venomancer.lua"
-						"Function" "PoisonSting"
-						"modifier_sting" "modifier_imba_poison_sting"
-					}
-				}
-
-				"OnCreated" {
-					"RunScript" {
-						"ScriptFile" "lib/util_imba.lua"
-						"Function" "IllusionPassiveRemover"
-						"modifier" "modifier_imba_poison_sting_caster"
-					}
-				}
-			}
-
-			"modifier_imba_poison_sting" {
-				"Passive" "0"
-				"IsHidden" "0"
-				"IsDebuff" "1"
-				"IsPurgable" "0"
-				"ThinkInterval" "1.0"
-
-				"OnIntervalThink" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_venomancer.lua"
-						"Function" "PoisonStingTick"
-						"modifier_sting" "modifier_imba_poison_sting"
-					}
-				}
-
-				"OnCreated" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_venomancer.lua"
-						"Function" "Toxicity"
-						"ability_poison" "imba_venomancer_toxicity"
-						"modifier_poison" "modifier_imba_toxicity"
-					}
-				}
-
-				"OnDestroy" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_venomancer.lua"
-						"Function" "ToxicityDown"
-						"ability_poison" "imba_venomancer_toxicity"
-						"modifier_poison" "modifier_imba_toxicity"
-					}
-				}
-
-				"Properties" {
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow_per_stack"
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_venomancer_poison_sting"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityTextureName"                                                   "venomancer_poison_sting"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "stack_decay"                                          "10"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "stack_decay_min"                                      "2"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "caster_stacks"                                        "3 4 5 6"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "initial_stacks"                                       "4 8 12 16"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "dmg_per_stack"                                        "1"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "slow_per_stack"                                       "-1"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_poison_sting_caster"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "OnAttackLanded"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_venomancer.lua"
+                        "Function"                             "PoisonSting"
+                        "modifier_sting"                       "modifier_imba_poison_sting"
+                    }
+                }
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "lib/util_imba.lua"
+                        "Function"                             "IllusionPassiveRemover"
+                        "modifier"                             "modifier_imba_poison_sting_caster"
+                    }
+                }
+            }
+            "modifier_imba_poison_sting"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "0"
+                "ThinkInterval"                                        "1.0"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_venomancer.lua"
+                        "Function"                             "PoisonStingTick"
+                        "modifier_sting"                       "modifier_imba_poison_sting"
+                    }
+                }
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_venomancer.lua"
+                        "Function"                             "Toxicity"
+                        "ability_poison"                       "imba_venomancer_toxicity"
+                        "modifier_poison"                      "modifier_imba_toxicity"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_venomancer.lua"
+                        "Function"                             "ToxicityDown"
+                        "ability_poison"                       "imba_venomancer_toxicity"
+                        "modifier_poison"                      "modifier_imba_toxicity"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow_per_stack"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

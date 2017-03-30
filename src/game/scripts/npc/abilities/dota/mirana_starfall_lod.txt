@@ -1,95 +1,103 @@
-"DOTAAbilities" {
-	"mirana_starfall_lod" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
-		"FightRecapLevel" "1"
-		"AbilityTextureName" "mirana_starfall"
-
-		"precache" {
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
-			"particle" "particles/units/heroes/hero_mirana/mirana_starfall_circle.vpcf"
-			"particle"  "particles/units/heroes/hero_mirana/mirana_starfall_attack.vpcf"
-		}
-		"AbilityCastPoint" "0.5 0.5 0.5 0.5"
-		"AbilityCooldown" "12.0 12.0 12.0 12.0"
-		"AbilityDuration" "10.0 10.0 10.0 10.0"
-		"AbilityDamage" "75 150 225 300"
-		"AbilityManaCost" "100 120 140 160"
-		"AbilityCastAnimation" "ACT_DOTA_CAST_ABILITY_1"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"starfall_radius" "625"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"starfall_secondary_radius" "175"
-			}
-
-			"03" {
-				"var_type" "FIELD_FLOAT"
-				"starfall_delay" "0.57"
-			}
-
-			"04" {
-				"var_type" "FIELD_FLOAT"
-				"starfall_secondary_damage_pct" "0.75"
-			}
-
-			"05" {
-				"var_type" "FIELD_INTEGER"
-				"starfall_secondary_targets" "1"
-			}
-
-			"06" {
-				"var_type" "FIELD_FLOAT"
-				"scepter_interval" "8.0"
-			}
-		}
-
-		"OnSpellStart" {
-			"RunScript" {
-				"ScriptFile" "abilities/mirana_starfall_lod.lua"
-				"Function" "Starfall"
-				"ambient_sound" "Ability.Starfall"
-				"hit_sound" "Ability.StarfallImpact"
-				"ambient_particle" "particles/units/heroes/hero_mirana/mirana_starfall_circle.vpcf"
-				"hit_particle" "particles/units/heroes/hero_mirana/mirana_starfall_attack.vpcf"
-				"modifier_debuff" "modifier_imba_starfall_debuff"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_mirana_starfall_scepter_cooldown" {
-				"Duration" "%scepter_interval"
-				"IsHidden" "1"
-				"IsDebuff" "0"
-
-				"OnDestroy" {
-					"ApplyModifier" {
-						"ModifierName" "modifier_mirana_starfall_scepter_thinker"
-						"Target" "CASTER"
-					}
-				}
-			}
-
-			"modifier_mirana_starfall_scepter_thinker" {
-				"Passive" "1"
-				"IsHidden" "1"
-				"IsDebuff" "0"
-				"ThinkInterval" "1.0"
-
-				"OnIntervalThink" {
-					"RunScript" {
-						"ScriptFile" "abilities/mirana_starfall_lod.lua"
-						"Function" "ScepterStarfallCheck"
-					}
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "mirana_starfall_lod"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "FightRecapLevel"                                                      "1"
+        "AbilityTextureName"                                                   "mirana_starfall"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_mirana/mirana_starfall_circle.vpcf"
+        }
+        "AbilityCastPoint"                                                     "0.5 0.5 0.5 0.5"
+        "AbilityCooldown"                                                      "12.0 12.0 12.0 12.0"
+        "AbilityDuration"                                                      "10.0 10.0 10.0 10.0"
+        "AbilityDamage"                                                        "75 150 225 300"
+        "AbilityManaCost"                                                      "100 120 140 160"
+        "AbilityCastAnimation"                                                 "ACT_DOTA_CAST_ABILITY_1"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "starfall_radius"                                      "625"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "starfall_secondary_radius"                            "175"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "starfall_delay"                                       "0.57"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "starfall_secondary_damage_pct"                        "0.75"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "starfall_secondary_targets"                           "1"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "scepter_interval"                                     "8.0"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/mirana_starfall_lod.lua"
+                "Function"                                             "Starfall"
+                "ambient_sound"                                        "Ability.Starfall"
+                "hit_sound"                                            "Ability.StarfallImpact"
+                "ambient_particle"                                     "particles/units/heroes/hero_mirana/mirana_starfall_circle.vpcf"
+                "hit_particle"                                         "particles/units/heroes/hero_mirana/mirana_starfall_attack.vpcf"
+                "modifier_debuff"                                      "modifier_imba_starfall_debuff"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_mirana_starfall_scepter_cooldown"
+            {
+                "Duration"                                             "%scepter_interval"
+                "IsHidden"                                             "1"
+                "IsDebuff"                                             "0"
+                "OnDestroy"
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"                         "modifier_mirana_starfall_scepter_thinker"
+                        "Target"                               "CASTER"
+                    }
+                }
+            }
+            "modifier_mirana_starfall_scepter_thinker"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "IsDebuff"                                             "0"
+                "ThinkInterval"                                        "1.0"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/mirana_starfall_lod.lua"
+                        "Function"                             "ScepterStarfallCheck"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "upgradeable"
+        "ReduxCost"                                                            "10"
+    }
 }

@@ -1,77 +1,85 @@
-"DOTAAbilities" {
-	"lich_cold_aura" {
-		"BaseClass" "ability_datadriven"
-		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
-		"FightRecapLevel" "1"
-		"AbilityTextureName" "custom/lich_cold_aura"
-		"MaxLevel" "3"
-		"AbilityCastRange" "700"
-		"AbilityCastPoint" "0"
-		"AbilityCooldown" "0"
-		"AbilityManaCost" "0"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"slow" "-10 -15 -20"
-			}
-
-			"02" {
-				"var_type" "FIELD_FLOAT"
-				"damage" "1.0 1.5 2.0"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"armor_bonus" "0"
-			}
-
-			"04" {
-				"var_type" "FIELD_INTEGER"
-				"radius" "700"
-			}
-		}
-
-		"precache" {
-		}
-
-		"Modifiers" {
-			"lich_cold_aura_mod" {
-				"Passive" "1"
-				"IsHidden" "1"
-				"Aura" "lich_cold_aura_effect_mod"
-				"Aura_Radius" "%radius"
-				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"Aura_Types" "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_bonus"
-				}
-			}
-
-			"lich_cold_aura_effect_mod" {
-				"IsHidden" "0"
-				"StatusEffectName" "particles/status_fx/status_effect_frost_lich.vpcf"
-				"StatusEffectPriority" "10"
-				"ThinkInterval" "0.5"
-
-				"OnIntervalThink" {
-					"Damage" {
-						"Damage" "%damage"
-						"MaxHealthPercentBasedDamage" "1"
-						"Target" "TARGET"
-						"Type" "DAMAGE_TYPE_PHYSICAL"
-					}
-				}
-
-				"Properties" {
-					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%slow"
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "lich_cold_aura"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_PHYSICAL"
+        "FightRecapLevel"                                                      "1"
+        "AbilityTextureName"                                                   "custom/lich_cold_aura"
+        "MaxLevel"                                                             "3"
+        "AbilityCastRange"                                                     "700"
+        "AbilityCastPoint"                                                     "0"
+        "AbilityCooldown"                                                      "0"
+        "AbilityManaCost"                                                      "0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "slow"                                                 "-10 -15 -20"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "damage"                                               "1.0 1.5 2.0"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "armor_bonus"                                          "0"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "700"
+            }
+        }
+        "precache"
+        {
+        }
+        "Modifiers"
+        {
+            "lich_cold_aura_mod"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "Aura"                                                 "lich_cold_aura_effect_mod"
+                "Aura_Radius"                                          "%radius"
+                "Aura_Teams"                                           "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                "Aura_Types"                                           "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"       "%armor_bonus"
+                }
+            }
+            "lich_cold_aura_effect_mod"
+            {
+                "IsHidden"                                             "0"
+                "StatusEffectName"                                     "particles/status_fx/status_effect_frost_lich.vpcf"
+                "StatusEffectPriority"                                 "10"
+                "ThinkInterval"                                        "0.5"
+                "OnIntervalThink"
+                {
+                    "Damage"
+                    {
+                        "Damage"                               "%damage"
+                        "MaxHealthPercentBasedDamage"          "1"
+                        "Target"                               "TARGET"
+                        "Type"                                 "DAMAGE_TYPE_PHYSICAL"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow"
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%slow"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "tank | SuperOP"
+        "ReduxPerks"                                                           "ice | aura"
+        "ReduxCost"                                                            "100"
+    }
 }

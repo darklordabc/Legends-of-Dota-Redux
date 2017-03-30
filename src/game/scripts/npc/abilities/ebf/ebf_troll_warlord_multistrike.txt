@@ -1,45 +1,53 @@
-"DOTAAbilities" {
-	"ebf_troll_warlord_multistrike" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName" "custom/troll_multistrike"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"max_stacks" "10"
-			}
-
-			"02" {
-				"var_type" "FIELD_FLOAT"
-				"chance_per_stack" "1.5 3 4.5 6"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"stack_duration" "10"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_fervor_datadriven" {
-				"Passive" "1"
-				"IsHidden" "1"
-				"IsDebuff" "0"
-
-				"OnAttack" {
-					"RunScript" {
-						"ScriptFile" "abilities/epic_boss_fight/ebf_troll_warlord_multistrike"
-						"Function" "Fervor"
-						"modifier" "modifier_fervor_stack_datadriven"
-					}
-				}
-			}
-
-			"modifier_fervor_stack_datadriven" {
-				"IsBuff" "1"
-				"IsPurgable" "0"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "ebf_troll_warlord_multistrike"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "custom/troll_multistrike"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "max_stacks"                                           "10"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "chance_per_stack"                                     "1.5 3 4.5 6"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "stack_duration"                                       "10"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_fervor_datadriven"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "IsDebuff"                                             "0"
+                "OnAttack"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/epic_boss_fight/ebf_troll_warlord_multistrike"
+                        "Function"                             "Fervor"
+                        "modifier"                             "modifier_fervor_stack_datadriven"
+                    }
+                }
+            }
+            "modifier_fervor_stack_datadriven"
+            {
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+            }
+        }
+        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxPerks"                                                           "attack_modifier | rage"
+        "ReduxCost"                                                            "20"
+    }
 }

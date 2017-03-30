@@ -1,32 +1,38 @@
-"DOTAAbilities" {
-	"imba_queenofpain_delightful_torment" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO"
-		"MaxLevel" "1"
-		"AbilityTextureName" "custom/queenofpain_delightful_torment"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_FLOAT"
-				"cooldown_reduction" "0.25"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_imba_delightful_torment" {
-				"Passive" "1"
-				"IsBuff" "1"
-				"IsPurgable" "0"
-				"IsHidden" "1"
-
-				"OnDealDamage" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_queen_of_pain.lua"
-						"Function" "Torment"
-					}
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_queenofpain_delightful_torment"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO"
+        "MaxLevel"                                                             "1"
+        "AbilityTextureName"                                                   "custom/queenofpain_delightful_torment"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "cooldown_reduction"                                   "0.25"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_delightful_torment"
+            {
+                "Passive"                                              "1"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "IsHidden"                                             "1"
+                "OnDealDamage"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_queen_of_pain.lua"
+                        "Function"                             "Torment"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

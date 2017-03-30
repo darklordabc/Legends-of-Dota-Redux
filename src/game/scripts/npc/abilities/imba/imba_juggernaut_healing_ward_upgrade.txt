@@ -1,49 +1,54 @@
-"DOTAAbilities" {
-	"imba_juggernaut_healing_ward_upgrade" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityTextureName" "custom/imba_healing_ward_upgrade"
-		"AbilityCastRange" "750"
-		"AbilityCastPoint" "0.0"
-		"AbilityCooldown" "0"
-		"AbilityManaCost" "0"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"health" "12 12 15 18"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"heal_radius" "750"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"radius_bonus_totem" "250"
-			}
-
-			"04" {
-				"var_type" "FIELD_INTEGER"
-				"heal_bonus_totem" "2"
-			}
-
-			"05" {
-				"var_type" "FIELD_INTEGER"
-				"health_bonus_totem" "9"
-			}
-		}
-
-		"OnSpellStart" {
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_juggernaut.lua"
-				"Function" "HealingWardUpgrade"
-				"sound_cast" "Hero_Juggernaut.HealingWard.Cast"
-				"sound_loop" "Hero_Juggernaut.HealingWard.Loop"
-				"particle_ward" "particles/econ/items/juggernaut/bladekeeper_healing_ward/juggernaut_healing_ward_dc.vpcf"
-				"particle_eruption" "particles/econ/items/juggernaut/bladekeeper_healing_ward/juggernaut_healing_ward_eruption_dc.vpcf"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_juggernaut_healing_ward_upgrade"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityTextureName"                                                   "custom/imba_healing_ward_upgrade"
+        "AbilityCastRange"                                                     "750"
+        "AbilityCastPoint"                                                     "0.0"
+        "AbilityCooldown"                                                      "0"
+        "AbilityManaCost"                                                      "0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "health"                                               "12 12 15 18"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "heal_radius"                                          "750"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius_bonus_totem"                                   "250"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "heal_bonus_totem"                                     "2"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "health_bonus_totem"                                   "9"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_juggernaut.lua"
+                "Function"                                             "HealingWardUpgrade"
+                "sound_cast"                                           "Hero_Juggernaut.HealingWard.Cast"
+                "sound_loop"                                           "Hero_Juggernaut.HealingWard.Loop"
+                "particle_ward"                                        "particles/econ/items/juggernaut/bladekeeper_healing_ward/juggernaut_healing_ward_dc.vpcf"
+                "particle_eruption"                                    "particles/econ/items/juggernaut/bladekeeper_healing_ward/juggernaut_healing_ward_eruption_dc.vpcf"
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

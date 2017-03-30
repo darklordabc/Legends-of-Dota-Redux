@@ -1,91 +1,97 @@
-"DOTAAbilities" {
-	"imba_lina_laguna_blade" {
-		"BaseClass" "ability_datadriven"
-		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
-		"FightRecapLevel" "2"
-		"AbilityTextureName" "lina_laguna_blade"
-
-		"precache" {
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
-			"particle" "particles/units/heroes/hero_lina/lina_spell_laguna_blade.vpcf"
-		}
-		"AbilityCastRange" "700 850 1000"
-		"AbilityCastPoint" "0.35"
-		"AbilityCooldown" "70 60 50"
-		"AbilityManaCost" "280 420 560"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"damage" "450 650 850"
-			}
-
-			"02" {
-				"var_type" "FIELD_FLOAT"
-				"int_damage_scepter" "1.0"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"projectile_speed" "4000"
-			}
-
-			"04" {
-				"var_type" "FIELD_INTEGER"
-				"start_width" "125"
-			}
-
-			"05" {
-				"var_type" "FIELD_INTEGER"
-				"end_width" "200"
-			}
-
-			"06" {
-				"var_type" "FIELD_INTEGER"
-				"total_length" "900 1050 1200"
-			}
-		}
-
-		"OnUpgrade" {
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_lina.lua"
-				"Function" "BlazingAbilityLevel"
-				"ability_fiery" "imba_lina_laguna_blade_fiery"
-			}
-		}
-
-		"OnSpellStart" {
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_lina.lua"
-				"Function" "LagunaBlade"
-				"sound_cast" "Ability.LagunaBlade"
-			}
-		}
-
-		"OnProjectileHitUnit" {
-			"DeleteOnHit" "0"
-
-			"FireEffect" {
-				"EffectName" "particles/units/heroes/hero_lina/lina_spell_laguna_blade.vpcf"
-				"EffectAttachType" "start_at_customorigin"
-
-				"ControlPointEntities" {
-					"CASTER" "attach_attack1"
-					"TARGET" "attach_hitloc"
-				}
-			}
-
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_lina.lua"
-				"Function" "LagunaBladeHit"
-				"sound_hit" "Ability.LagunaBladeImpact"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_lina_laguna_blade"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetFlags"                                               "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "FightRecapLevel"                                                      "2"
+        "AbilityTextureName"                                                   "lina_laguna_blade"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_lina/lina_spell_laguna_blade.vpcf"
+        }
+        "AbilityCastRange"                                                     "700 850 1000"
+        "AbilityCastPoint"                                                     "0.35"
+        "AbilityCooldown"                                                      "70 60 50"
+        "AbilityManaCost"                                                      "280 420 560"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage"                                               "450 650 850"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "int_damage_scepter"                                   "1.0"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "projectile_speed"                                     "4000"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "start_width"                                          "125"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "end_width"                                            "200"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "total_length"                                         "900 1050 1200"
+            }
+        }
+        "OnUpgrade"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_lina.lua"
+                "Function"                                             "BlazingAbilityLevel"
+                "ability_fiery"                                        "imba_lina_laguna_blade_fiery"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_lina.lua"
+                "Function"                                             "LagunaBlade"
+                "sound_cast"                                           "Ability.LagunaBlade"
+            }
+        }
+        "OnProjectileHitUnit"
+        {
+            "DeleteOnHit"                                                  "0"
+            "FireEffect"
+            {
+                "EffectName"                                           "particles/units/heroes/hero_lina/lina_spell_laguna_blade.vpcf"
+                "EffectAttachType"                                     "start_at_customorigin"
+                "ControlPointEntities"
+                {
+                    "CASTER"                                       "attach_attack1"
+                    "TARGET"                                       "attach_hitloc"
+                }
+            }
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_lina.lua"
+                "Function"                                             "LagunaBladeHit"
+                "sound_hit"                                            "Ability.LagunaBladeImpact"
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

@@ -1,72 +1,77 @@
-"DOTAAbilities" {
-	"imba_pugna_nether_ward" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_YES"
-		"FightRecapLevel" "1"
-		"AbilityTextureName" "pugna_nether_ward"
-		"AbilityCastRange" "500"
-		"AbilityCastPoint" "0.2"
-		"AbilityCooldown" "30.0"
-		"AbilityManaCost" "80"
-
-		"precache" {
-			"particle" "particles/econ/items/pugna/pugna_ward_ti5/pugna_ward_attack_light_ti_5.vpcf"
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_pugna.vsndevts"
-			"model" "models/heroes/pugna/pugna_ward.vmdl"
-		}
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"radius" "1600"
-			}
-
-			"02" {
-				"var_type" "FIELD_FLOAT"
-				"mana_multiplier" "1.25 1.5 1.75 2.0"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"mana_regen" "-1"
-			}
-
-			"04" {
-				"var_type" "FIELD_INTEGER"
-				"ward_health" "20 24 28 32"
-			}
-
-			"05" {
-				"var_type" "FIELD_INTEGER"
-				"hero_damage" "4"
-			}
-
-			"06" {
-				"var_type" "FIELD_INTEGER"
-				"spell_damage" "4"
-			}
-
-			"07" {
-				"var_type" "FIELD_INTEGER"
-				"duration" "35"
-			}
-
-			"08" {
-				"var_type" "FIELD_INTEGER"
-				"mana_regen_tooltip" "1"
-			}
-		}
-
-		"OnSpellStart" {
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_pugna.lua"
-				"Function" "NetherWard"
-				"Target" "POINT"
-				"sound_cast" "Hero_Pugna.NetherWard"
-				"ability_ward" "imba_pugna_nether_ward_aura"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_pugna_nether_ward"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_YES"
+        "FightRecapLevel"                                                      "1"
+        "AbilityTextureName"                                                   "pugna_nether_ward"
+        "AbilityCastRange"                                                     "500"
+        "AbilityCastPoint"                                                     "0.2"
+        "AbilityCooldown"                                                      "30.0"
+        "AbilityManaCost"                                                      "80"
+        "precache"
+        {
+            "particle"                                                     "particles/econ/items/pugna/pugna_ward_ti5/pugna_ward_attack_light_ti_5.vpcf"
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_pugna.vsndevts"
+            "model"                                                        "models/heroes/pugna/pugna_ward.vmdl"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "1600"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "mana_multiplier"                                      "1.25 1.5 1.75 2.0"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "mana_regen"                                           "-1"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "ward_health"                                          "20 24 28 32"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "hero_damage"                                          "4"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "spell_damage"                                         "4"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "duration"                                             "35"
+            }
+            "08"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "mana_regen_tooltip"                                   "1"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_pugna.lua"
+                "Function"                                             "NetherWard"
+                "Target"                                               "POINT"
+                "sound_cast"                                           "Hero_Pugna.NetherWard"
+                "ability_ward"                                         "imba_pugna_nether_ward_aura"
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

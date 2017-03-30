@@ -1,49 +1,56 @@
-"DOTAAbilities" {
-	"imba_sandking_treacherous_sands" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
-		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"MaxLevel" "1"
-		"AbilityTextureName" "custom/sandking_treacherous_sands"
-
-		"OnToggleOn" {
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_sandking.lua"
-				"Function" "SandsOn"
-				"modifier_sands" "modifier_imba_sandking_treacherous_sands"
-			}
-		}
-
-		"OnToggleOff" {
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_sandking.lua"
-				"Function" "SandsOff"
-				"modifier_sands" "modifier_imba_sandking_treacherous_sands"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_imba_sandking_treacherous_sands_toggler" {
-				"Passive" "1"
-				"IsBuff" "1"
-				"IsPurgable" "0"
-				"IsHidden" "1"
-
-				"OnCreated" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_sandking.lua"
-						"Function" "SandsRespawnToggle"
-					}
-				}
-			}
-
-			"modifier_imba_sandking_treacherous_sands" {
-				"Passive" "0"
-				"IsBuff" "1"
-				"IsPurgable" "0"
-				"IsHidden" "1"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_sandking_treacherous_sands"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "MaxLevel"                                                             "1"
+        "AbilityTextureName"                                                   "custom/sandking_treacherous_sands"
+        "OnToggleOn"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_sandking.lua"
+                "Function"                                             "SandsOn"
+                "modifier_sands"                                       "modifier_imba_sandking_treacherous_sands"
+            }
+        }
+        "OnToggleOff"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_sandking.lua"
+                "Function"                                             "SandsOff"
+                "modifier_sands"                                       "modifier_imba_sandking_treacherous_sands"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_sandking_treacherous_sands_toggler"
+            {
+                "Passive"                                              "1"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "IsHidden"                                             "1"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_sandking.lua"
+                        "Function"                             "SandsRespawnToggle"
+                    }
+                }
+            }
+            "modifier_imba_sandking_treacherous_sands"
+            {
+                "Passive"                                              "0"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "IsHidden"                                             "1"
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

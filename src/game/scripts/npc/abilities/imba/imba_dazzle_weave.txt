@@ -1,217 +1,229 @@
-"DOTAAbilities" {
-	"imba_dazzle_weave" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_YES"
-		"FightRecapLevel" "2"
-		"AbilityTextureName" "dazzle_weave"
-		"AOERadius" "%radius"
-
-		"precache" {
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
-			"particle" "particles/units/heroes/hero_dazzle/dazzle_armor_enemy.vpcf"
-		}
-		"AbilityCastRange" "2000"
-		"AbilityCastPoint" "0.2"
-		"AbilityCooldown" "40"
-		"AbilityManaCost" "100"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"radius" "575 675 775"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"vision" "800"
-			}
-
-			"03" {
-				"var_type" "FIELD_FLOAT"
-				"armor_per_second" "0.75 1 1.25"
-			}
-
-			"04" {
-				"var_type" "FIELD_FLOAT"
-				"duration" "24.0"
-			}
-
-			"05" {
-				"var_type" "FIELD_FLOAT"
-				"armor_per_second_scepter" "1.25 1.5 1.75"
-			}
-
-			"06" {
-				"var_type" "FIELD_FLOAT"
-				"negative_armor_per_second" "-0.75 -1 -1.25"
-			}
-
-			"07" {
-				"var_type" "FIELD_FLOAT"
-				"negative_armor_per_second_scepter" "-1.25 -1.5 -1.75"
-			}
-
-			"08" {
-				"var_type" "FIELD_FLOAT"
-				"tick_interval" "1.0"
-			}
-
-			"09" {
-				"var_type" "FIELD_FLOAT"
-				"vision_duration" "3.0"
-			}
-
-			"10" {
-				"var_type" "FIELD_FLOAT"
-				"armor_bonus" "3 5 7"
-			}
-
-			"11" {
-				"var_type" "FIELD_FLOAT"
-				"negative_armor" "-3 -5 -7"
-			}
-		}
-
-		"OnSpellStart" {
-			"FireSound" {
-				"EffectName" "Hero_Dazzle.Weave"
-				"Target" "CASTER"
-			}
-
-			"FireEffect" {
-				"EffectName" "particles/units/heroes/hero_dazzle/dazzle_weave.vpcf"
-				"EffectAttachType" "start_at_customorigin"
-				"TargetPoint" "POINT"
-
-				"ControlPoints" {
-					"01" "%radius 0 0"
-				}
-			}
-
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_dazzle.lua"
-				"Function" "Weave"
-				"Target" "POINT"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_imba_weave_friendly" {
-				"Passive" "0"
-				"IsHidden" "0"
-				"IsBuff" "1"
-				"IsPurgable" "0"
-				"Duration" "%duration"
-
-				"OnCreated" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_dazzle.lua"
-						"Function" "WeaveParticle"
-						"particle_name" "particles/units/heroes/hero_dazzle/dazzle_armor_friend.vpcf"
-						"modifier" "modifier_imba_weave_friendly"
-					}
-				}
-				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
-				"ThinkInterval" "%tick_interval"
-
-				"OnIntervalThink" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_dazzle.lua"
-						"Function" "WeaveInterval"
-					}
-				}
-
-				"OnDestroy" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_dazzle.lua"
-						"Function" "EndWeaveParticle"
-						"modifier" "modifier_imba_weave_friendly"
-					}
-				}
-
-				"Properties" {
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_bonus"
-				}
-			}
-
-			"modifier_imba_weave_enemy" {
-				"IsDebuff" "1"
-				"IsHidden" "0"
-				"IsPurgable" "0"
-				"Duration" "%duration"
-
-				"OnCreated" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_dazzle.lua"
-						"Function" "WeaveParticle"
-						"particle_name" "particles/units/heroes/hero_dazzle/dazzle_armor_enemy.vpcf"
-						"modifier" "modifier_imba_weave_enemy"
-					}
-				}
-				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
-				"ThinkInterval" "%tick_interval"
-
-				"OnIntervalThink" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_dazzle.lua"
-						"Function" "WeaveInterval"
-					}
-				}
-
-				"OnDestroy" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_dazzle.lua"
-						"Function" "EndWeaveParticle"
-						"modifier" "modifier_imba_weave_enemy"
-					}
-				}
-
-				"Properties" {
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%negative_armor"
-				}
-			}
-
-			"modifier_imba_weave_positive" {
-				"IsHidden" "1"
-				"IsPurgable" "0"
-				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_per_second"
-				}
-			}
-
-			"modifier_imba_weave_positive_scepter" {
-				"IsHidden" "1"
-				"IsPurgable" "0"
-				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_per_second_scepter"
-				}
-			}
-
-			"modifier_imba_weave_negative" {
-				"IsHidden" "1"
-				"IsPurgable" "0"
-				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%negative_armor_per_second"
-				}
-			}
-
-			"modifier_imba_weave_negative_scepter" {
-				"IsHidden" "1"
-				"IsPurgable" "0"
-				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
-
-				"Properties" {
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%negative_armor_per_second_scepter"
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_dazzle_weave"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_YES"
+        "FightRecapLevel"                                                      "2"
+        "AbilityTextureName"                                                   "dazzle_weave"
+        "AOERadius"                                                            "%radius"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_dazzle/dazzle_armor_enemy.vpcf"
+        }
+        "AbilityCastRange"                                                     "2000"
+        "AbilityCastPoint"                                                     "0.2"
+        "AbilityCooldown"                                                      "40"
+        "AbilityManaCost"                                                      "100"
+        "AbilitySpecial"
+        {
+            "10"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "armor_bonus"                                          "3 5 7"
+            }
+            "11"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "negative_armor"                                       "-3 -5 -7"
+            }
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "575 675 775"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "vision"                                               "800"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "armor_per_second"                                     "0.75 1 1.25"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                             "24.0"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "armor_per_second_scepter"                             "1.25 1.5 1.75"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "negative_armor_per_second"                            "-0.75 -1 -1.25"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "negative_armor_per_second_scepter"                    "-1.25 -1.5 -1.75"
+            }
+            "08"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "tick_interval"                                        "1.0"
+            }
+            "09"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "vision_duration"                                      "3.0"
+            }
+        }
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "EffectName"                                           "Hero_Dazzle.Weave"
+                "Target"                                               "CASTER"
+            }
+            "FireEffect"
+            {
+                "EffectName"                                           "particles/units/heroes/hero_dazzle/dazzle_weave.vpcf"
+                "EffectAttachType"                                     "start_at_customorigin"
+                "TargetPoint"                                          "POINT"
+                "ControlPoints"
+                {
+                    "01"                                           "%radius 0 0"
+                }
+            }
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_dazzle.lua"
+                "Function"                                             "Weave"
+                "Target"                                               "POINT"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_weave_friendly"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "Duration"                                             "%duration"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_dazzle.lua"
+                        "Function"                             "WeaveParticle"
+                        "particle_name"                        "particles/units/heroes/hero_dazzle/dazzle_armor_friend.vpcf"
+                        "modifier"                             "modifier_imba_weave_friendly"
+                    }
+                }
+                "Attributes"                                           "MODIFIER_ATTRIBUTE_MULTIPLE"
+                "ThinkInterval"                                        "%tick_interval"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_dazzle.lua"
+                        "Function"                             "WeaveInterval"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_dazzle.lua"
+                        "Function"                             "EndWeaveParticle"
+                        "modifier"                             "modifier_imba_weave_friendly"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"       "%armor_bonus"
+                }
+            }
+            "modifier_imba_weave_enemy"
+            {
+                "IsDebuff"                                             "1"
+                "IsHidden"                                             "0"
+                "IsPurgable"                                           "0"
+                "Duration"                                             "%duration"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_dazzle.lua"
+                        "Function"                             "WeaveParticle"
+                        "particle_name"                        "particles/units/heroes/hero_dazzle/dazzle_armor_enemy.vpcf"
+                        "modifier"                             "modifier_imba_weave_enemy"
+                    }
+                }
+                "Attributes"                                           "MODIFIER_ATTRIBUTE_MULTIPLE"
+                "ThinkInterval"                                        "%tick_interval"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_dazzle.lua"
+                        "Function"                             "WeaveInterval"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_dazzle.lua"
+                        "Function"                             "EndWeaveParticle"
+                        "modifier"                             "modifier_imba_weave_enemy"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"       "%negative_armor"
+                }
+            }
+            "modifier_imba_weave_positive"
+            {
+                "IsHidden"                                             "1"
+                "IsPurgable"                                           "0"
+                "Attributes"                                           "MODIFIER_ATTRIBUTE_MULTIPLE"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"       "%armor_per_second"
+                }
+            }
+            "modifier_imba_weave_positive_scepter"
+            {
+                "IsHidden"                                             "1"
+                "IsPurgable"                                           "0"
+                "Attributes"                                           "MODIFIER_ATTRIBUTE_MULTIPLE"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"       "%armor_per_second_scepter"
+                }
+            }
+            "modifier_imba_weave_negative"
+            {
+                "IsHidden"                                             "1"
+                "IsPurgable"                                           "0"
+                "Attributes"                                           "MODIFIER_ATTRIBUTE_MULTIPLE"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"       "%negative_armor_per_second"
+                }
+            }
+            "modifier_imba_weave_negative_scepter"
+            {
+                "IsHidden"                                             "1"
+                "IsPurgable"                                           "0"
+                "Attributes"                                           "MODIFIER_ATTRIBUTE_MULTIPLE"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"       "%negative_armor_per_second_scepter"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

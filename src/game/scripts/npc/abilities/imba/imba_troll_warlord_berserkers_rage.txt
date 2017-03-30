@@ -1,61 +1,69 @@
-"DOTAAbilities" {
-	"imba_troll_warlord_berserkers_rage" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"MaxLevel" "1"
-		"AbilityTextureName" "custom/troll_warlord_berserkers_rage"
-
-		"precache" {
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_troll_warlord.vsndevts"
-		}
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"bash_chance" "10"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"bash_damage" "20"
-			}
-
-			"03" {
-				"var_type" "FIELD_FLOAT"
-				"bash_duration" "2.0"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_imba_berserkers_rage" {
-				"Passive" "1"
-				"IsHidden" "1"
-				"IsBuff" "1"
-				"IsPurgable" "0"
-
-				"OnAttackStart" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_troll_warlord.lua"
-						"Function" "BerserkersRageAttackStart"
-					}
-				}
-
-				"OnAttackLanded" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_troll_warlord.lua"
-						"Function" "BerserkersRageAttack"
-						"sound_bash" "Hero_TrollWarlord.BerserkersRage.Stun"
-					}
-				}
-
-				"OnCreated" {
-					"RunScript" {
-						"ScriptFile" "lib/util_imba.lua"
-						"Function" "IllusionPassiveRemover"
-						"modifier" "modifier_imba_berserkers_rage"
-					}
-				}
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_troll_warlord_berserkers_rage"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+        "MaxLevel"                                                             "1"
+        "AbilityTextureName"                                                   "custom/troll_warlord_berserkers_rage"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_troll_warlord.vsndevts"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bash_chance"                                          "10"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bash_damage"                                          "20"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "bash_duration"                                        "2.0"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_berserkers_rage"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "OnAttackStart"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_troll_warlord.lua"
+                        "Function"                             "BerserkersRageAttackStart"
+                    }
+                }
+                "OnAttackLanded"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_troll_warlord.lua"
+                        "Function"                             "BerserkersRageAttack"
+                        "sound_bash"                           "Hero_TrollWarlord.BerserkersRage.Stun"
+                    }
+                }
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "lib/util_imba.lua"
+                        "Function"                             "IllusionPassiveRemover"
+                        "modifier"                             "modifier_imba_berserkers_rage"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

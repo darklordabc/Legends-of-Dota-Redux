@@ -1,16 +1,20 @@
-"DOTAAbilities" {
-	"brewmaster_earth_pulverize_redux" {
-		"BaseClass" "brewmaster_earth_pulverize"
-		"ID" "54065406"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"MaxLevel" "7"
-		"LevelsBetweenUpgrades" "2"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"bonus_building_damage" "25 50 100 150 200 300 350"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "brewmaster_earth_pulverize_redux"
+    {
+        "BaseClass"                                                            "brewmaster_earth_pulverize"
+        "ID"                                                                   "54065406"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "MaxLevel"                                                             "7"
+        "LevelsBetweenUpgrades"                                                "2"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_building_damage"                                "25 50 100 150 200 300 350"
+            }
+        }
+        "ReduxCost"                                                            "80"
+    }
 }

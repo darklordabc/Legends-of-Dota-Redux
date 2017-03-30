@@ -1,32 +1,37 @@
-"DOTAAbilities" {
-	"imba_necrolyte_death_pulse_aux" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"MaxLevel" "1"
-		"AbilityTextureName" "necrolyte_death_pulse"
-		"AbilityCastRange" "0"
-		"AbilityCastPoint" "0.0"
-		"AbilityCooldown" "0.0"
-		"AbilityManaCost" "0"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_FLOAT"
-				"self_heal_creep_pct" "0.25"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"stack_power" "4"
-			}
-		}
-
-		"OnProjectileHitUnit" {
-			"RunScript" {
-				"ScriptFile" "abilities/dota imba/hero_necrolyte.lua"
-				"Function" "DeathPulseCreepHit"
-				"modifier_heal_bonus" "modifier_imba_heartstopper_heal_bonus"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_necrolyte_death_pulse_aux"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+        "MaxLevel"                                                             "1"
+        "AbilityTextureName"                                                   "necrolyte_death_pulse"
+        "AbilityCastRange"                                                     "0"
+        "AbilityCastPoint"                                                     "0.0"
+        "AbilityCooldown"                                                      "0.0"
+        "AbilityManaCost"                                                      "0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "self_heal_creep_pct"                                  "0.25"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "stack_power"                                          "4"
+            }
+        }
+        "OnProjectileHitUnit"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_necrolyte.lua"
+                "Function"                                             "DeathPulseCreepHit"
+                "modifier_heal_bonus"                                  "modifier_imba_heartstopper_heal_bonus"
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

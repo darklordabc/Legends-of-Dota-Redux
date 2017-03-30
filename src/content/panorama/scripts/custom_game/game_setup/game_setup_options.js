@@ -118,21 +118,21 @@ var basicOptions = {
                                 'lodOptionGameSpeedRespawnTimePercentage': 5
                             }
                         }
-                    },
-                    {
-                        name: 'lodOptionCommonMaxUlts',
-                        default: {
-                            'lodMutatorMaxUlts1': 2
-                        },
-                        states: {
-                            'lodMutatorMaxUlts2': 3,
-                            'lodMutatorMaxUlts3': 4,
-                            'lodMutatorMaxUlts4': 6
-                        }
-                    },                  
+                    },                               
                     {
                         name: 'lodOptionGameSpeedStrongTowers',
                         about: 'lodMutatorStrongTowers'
+                    },
+                    {
+                        about: 'lodMutatorDoubleTowers',
+                        values: {
+                            enabled: {
+                                'lodOptionGameSpeedTowersPerLane': 5
+                            },
+                            disabled: {
+                                'lodOptionGameSpeedTowersPerLane': 3
+                            }
+                        }
                     },
                     {
                         name: 'lodOptionCreepPower',
@@ -145,6 +145,10 @@ var basicOptions = {
                             'lodMutatorCreepPowerExtreme': 30
                         }
                     },
+                    {
+                        name: 'lodOptionLaneMultiply',
+                        about: 'lodMutatorDoubleCreeps'
+                    }, 
                     {
                         name: 'lodOptionNeutralCreepPower',
                         default: {
@@ -166,22 +170,18 @@ var basicOptions = {
                             'lodMutatorCreepTriple': 3,
                             'lodMutatorCreepQuadruple': 4
                         }
-                    },
+                    },                     
                     {
-                        name: 'lodOptionLaneMultiply',
-                        about: 'lodMutatorDoubleCreeps'
-                    }, 
-                    {
-                        about: 'lodMutatorDoubleTowers',
-                        values: {
-                            enabled: {
-                                'lodOptionGameSpeedTowersPerLane': 5
-                            },
-                            disabled: {
-                                'lodOptionGameSpeedTowersPerLane': 3
-                            }
+                        name: 'lodOptionCommonMaxUlts',
+                        default: {
+                            'lodMutatorMaxUlts1': 2
+                        },
+                        states: {
+                            'lodMutatorMaxUlts2': 3,
+                            'lodMutatorMaxUlts3': 4,
+                            'lodMutatorMaxUlts4': 6
                         }
-                    },                    
+                    },                                  
                     {
                         name: 'lodOptionAdvancedCustomSkills',
                         about: 'lodMutatorCustomSkills'
@@ -231,7 +231,7 @@ var basicOptions = {
                         },
                         states: {
                             'lodMutatorGoldTickRate2': 2,
-                            'lodMutatorGoldTickRate3': 3
+                         //   'lodMutatorGoldTickRate3': 3
                         }
                     },
                     {
@@ -353,11 +353,11 @@ var basicOptions = {
                             }
                         }
                     },
-					{
-                        name: 'lodOptionDuels',
-                        extraInfo: 'lodOptionAboutDuels',
-                        about: 'lodMutatorDuel'
-                    },
+					//{
+                    //    name: 'lodOptionDuels',
+                    //    extraInfo: 'lodOptionAboutDuels',
+                    //    about: 'lodMutatorDuel'
+                    //},
                     {
                         name: 'lodOptionRefreshCooldownsOnDeath',
                         about: 'lodMutatorRefreshCooldownsOnDeath'
@@ -527,6 +527,16 @@ var advancedOptions = {
                         value: 1
                     }
                 ]
+            },
+            {
+                name: 'lodOptionBalanceModePoints',
+                des: 'lodOptionDesBalanceModePoints',
+                about: 'lodOptionAboutBalanceModePoints',
+                sort: 'range',
+                min: 60,
+                max: 400,
+                step: 10,
+                default: 120
             },
             {
                 name: 'lodOptionDuels',

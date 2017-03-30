@@ -1,32 +1,37 @@
-"DOTAAbilities" {
-	"ogre_magi_multicast_lod" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"MaxLevel" "3"
-		"AbilityTextureName" "custom/ogre_magi_multicast_lod"
-		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityCooldown" "30 15 10"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_FLOAT"
-				"multicast_2_times" "25 40 50"
-			}
-
-			"02" {
-				"var_type" "FIELD_FLOAT"
-				"multicast_3_times" "0 20 25"
-			}
-
-			"03" {
-				"var_type" "FIELD_FLOAT"
-				"multicast_4_times" "0 0 12.5"
-			}
-
-			"04" {
-				"var_type" "FIELD_FLOAT"
-				"delay" "0.1"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "ogre_magi_multicast_lod"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "MaxLevel"                                                             "3"
+        "AbilityTextureName"                                                   "custom/ogre_magi_multicast_lod"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityCooldown"                                                      "30 15 10"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "multicast_2_times"                                    "25 40 50"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "multicast_3_times"                                    "0 20 25"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "multicast_4_times"                                    "0 0 12.5"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "delay"                                                "0.1"
+            }
+        }
+        "ReduxCost"                                                            "40"
+        "ReduxBans"                                                            "meepo_divided_we_stand"
+    }
 }

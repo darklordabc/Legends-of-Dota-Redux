@@ -1,98 +1,109 @@
-"DOTAAbilities" {
-	"imba_troll_warlord_fervor" {
-		"BaseClass" "ability_datadriven"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName" "troll_warlord_fervor"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"bonus_as" "15 20 25 30"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"duration" "4"
-			}
-		}
-
-		"Modifiers" {
-			"modifier_imba_fervor" {
-				"Passive" "1"
-				"IsHidden" "1"
-				"IsBuff" "1"
-				"IsPurgable" "0"
-				"ThinkInterval" "0.2"
-
-				"OnIntervalThink" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_troll_warlord.lua"
-						"Function" "FervorLimitBreak"
-					}
-				}
-
-				"OnAttackLanded" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_troll_warlord.lua"
-						"Function" "FervorAttack"
-						"modifier_stacks" "modifier_imba_fervor_stacks"
-					}
-				}
-
-				"OnCreated" {
-					"RunScript" {
-						"ScriptFile" "lib/util_imba.lua"
-						"Function" "IllusionPassiveRemover"
-						"modifier" "modifier_imba_fervor"
-					}
-				}
-
-				"OnDestroy" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_troll_warlord.lua"
-						"Function" "FervorLimitBreakEnd"
-						"modifier_stacks" "modifier_imba_fervor_stacks"
-						"modifier_dummy" "modifier_imba_fervor_dummy"
-					}
-				}
-			}
-
-			"modifier_imba_fervor_stacks" {
-				"Passive" "0"
-				"IsHidden" "1"
-				"IsBuff" "1"
-				"IsPurgable" "0"
-				"Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Duration" "%duration"
-
-				"OnCreated" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_troll_warlord.lua"
-						"Function" "FervorStackUp"
-						"modifier_dummy" "modifier_imba_fervor_dummy"
-					}
-				}
-
-				"OnDestroy" {
-					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_troll_warlord.lua"
-						"Function" "FervorStackDown"
-						"modifier_dummy" "modifier_imba_fervor_dummy"
-					}
-				}
-
-				"Properties" {
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_as"
-				}
-			}
-
-			"modifier_imba_fervor_dummy" {
-				"Passive" "0"
-				"IsHidden" "0"
-				"IsBuff" "1"
-				"IsPurgable" "0"
-				"Duration" "%duration"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "imba_troll_warlord_fervor"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "troll_warlord_fervor"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_as"                                             "15 20 25 30"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "duration"                                             "4"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_fervor"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "ThinkInterval"                                        "0.2"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_troll_warlord.lua"
+                        "Function"                             "FervorLimitBreak"
+                    }
+                }
+                "OnAttackLanded"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_troll_warlord.lua"
+                        "Function"                             "FervorAttack"
+                        "modifier_stacks"                      "modifier_imba_fervor_stacks"
+                    }
+                }
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "lib/util_imba.lua"
+                        "Function"                             "IllusionPassiveRemover"
+                        "modifier"                             "modifier_imba_fervor"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_troll_warlord.lua"
+                        "Function"                             "FervorLimitBreakEnd"
+                        "modifier_stacks"                      "modifier_imba_fervor_stacks"
+                        "modifier_dummy"                       "modifier_imba_fervor_dummy"
+                    }
+                }
+            }
+            "modifier_imba_fervor_stacks"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "Attributes"                                           "MODIFIER_ATTRIBUTE_MULTIPLE"
+                "Duration"                                             "%duration"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_troll_warlord.lua"
+                        "Function"                             "FervorStackUp"
+                        "modifier_dummy"                       "modifier_imba_fervor_dummy"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_troll_warlord.lua"
+                        "Function"                             "FervorStackDown"
+                        "modifier_dummy"                       "modifier_imba_fervor_dummy"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_as"
+                }
+            }
+            "modifier_imba_fervor_dummy"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "Duration"                                             "%duration"
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

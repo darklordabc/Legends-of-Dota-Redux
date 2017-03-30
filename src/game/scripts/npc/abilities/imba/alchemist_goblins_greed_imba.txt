@@ -1,33 +1,37 @@
-"DOTAAbilities" {
-	"alchemist_goblins_greed_imba" {
-		"BaseClass" "alchemist_goblins_greed"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-
-		"AbilitySpecial" {
-			"01" {
-				"var_type" "FIELD_INTEGER"
-				"duration" "35"
-			}
-
-			"02" {
-				"var_type" "FIELD_INTEGER"
-				"bonus_gold" "8 10 12 14"
-			}
-
-			"03" {
-				"var_type" "FIELD_INTEGER"
-				"bonus_bonus_gold" "5"
-			}
-
-			"04" {
-				"var_type" "FIELD_INTEGER"
-				"bonus_gold_cap" "28 40 52 64"
-			}
-
-			"05" {
-				"var_type" "FIELD_INTEGER"
-				"bounty_multiplier_tooltip" "4"
-			}
-		}
-	}
+"DOTAAbilities"
+{
+    "alchemist_goblins_greed_imba"
+    {
+        "BaseClass"                                                            "alchemist_goblins_greed"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "duration"                                             "35"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_gold"                                           "8 10 12 14"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_bonus_gold"                                     "5"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_gold_cap"                                       "28 40 52 64"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bounty_multiplier_tooltip"                            "4"
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
 }

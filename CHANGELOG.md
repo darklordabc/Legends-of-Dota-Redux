@@ -5,11 +5,13 @@ All notable changes to this project will be documented in this file.
 ## 7.2 - Development Version
 - Removed Strategy time
 - Fixed Tempest Double
-- Added 4 tower abilities: Degen Aura, Degen Aura Attack Damage, Plasma Field, Death pules tower
+- Added 5 tower abilities: Degen Aura, Degen Aura Attack Damage, Plasma Field, Death pules tower, Invsibility aura
 - IMBA Spell Dampener no longer gives spell immunity, nor 100% resistance to magic damage
 - You can now vote to enable anti rat protection '-antirat' or '-ar'
 - Trickshot passive now gets disabled when hero is broken
 - Bots no longer get taunted by towers with antirat protection
+- Anti-Kamikaze penalty now calculates after team-imbalance calculations, meaning, you will keep high respawn times if peanlized by anti-kamikaze
+- Beast master perk now gives 12 bonus strength is the neutral ability only has 1 level
 
 ## 7.1 - Steam Version
 - Added Dagon and Spawn golem cheat

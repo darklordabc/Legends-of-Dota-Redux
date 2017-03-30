@@ -349,7 +349,7 @@ function util:fetchPlayerData()
         }
 
         -- Make the request
-        local req = CreateHTTPRequest('POST', gameInfoHost)
+        local req = CreateHTTPRequestVM('POST', gameInfoHost)
 
         if not req then return end
         this.fetchedPlayerData = true
@@ -669,11 +669,7 @@ function util:RandomChoice(input)
 end
 
 function CDOTABaseAbility:HasAbilityFlag(flag)
-    if GameRules.perks[flag][self:GetAbilityName()] then
-        return true
-    else
-        return false
-    end
+    return GameRules.perks[flag][self:GetAbilityName()] ~= nil
 end
 
 function util:split(s, delimiter)
@@ -726,11 +722,7 @@ function IsCustomAbilityByName(name)
 end
 
 function CDOTA_BaseNPC:HasUnitFlag(flag)
-    if GameRules.perks[flag][self:GetName()] then
-        return true
-    else
-        return false
-    end
+    return GameRules.perks[flag][self:GetName()] ~= nil
 end
 
 function GetRandomAbilityFromListForPerk(flag)
@@ -755,17 +747,7 @@ end
 
 
 function CDOTA_BaseNPC:IsSleeping()
-    if self:HasModifier("modifier_bane_nightmare") then 
-        return true
-    elseif self:HasModifier("modifier_elder_titan_echo_stomp") then 
-        return true
-    elseif self:HasModifier("modifier_sleep_cloud_effect") then 
-        return true
-    elseif self:HasModifier("modifier_naga_siren_song_of_the_siren") then 
-        return true
-    else
-        return false
-    end
+    return self:HasModifier("modifier_bane_nightmare") or self:HasModifier("modifier_elder_titan_echo_stomp") or self:HasModifier("modifier_sleep_cloud_effect") or self:HasModifier("modifier_naga_siren_song_of_the_siren")
 end
 
 function CDOTA_BaseNPC:FindItemByName(item_name)
@@ -872,48 +854,56 @@ function util:CreateVoting(votingName, initiator, duration, percent, onaccept, o
 end
 
 function CDOTA_BaseNPC:PopupNumbers(target, pfx, color, lifetime, number, presymbol, postsymbol)
-     local armor = target:GetPhysicalArmorValue()
-     local damageReduction = ((0.02 * armor) / (1 + 0.02 * armor))
-     number = number - (number * damageReduction)
-     local lens_count = 0
-     for i=0,5 do
-        local item = self:GetItemInSlot(i)
-        if item ~= nil and item:GetName() == "item_aether_lens" then
-            lens_count = lens_count + 1
-        end
-     end
-     number = number * (1 + (.08 * lens_count) + (self:GetIntellect()/1600))
+    local armor = target:GetPhysicalArmorValue()
+    local damageReduction = ((0.02 * armor) / (1 + 0.02 * armor))
+    number = number - (number * damageReduction)
+    local lens_count = 0
+    for i=0,5 do
+       local item = self:GetItemInSlot(i)
+       if item ~= nil and item:GetName() == "item_aether_lens" then
+           lens_count = lens_count + 1
+       end
+    end
+    number = number * (1 + (.08 * lens_count) + (self:GetIntellect()/1600))
 
-     number = math.floor(number)
-     local pfxPath = string.format("particles/msg_fx/msg_%s.vpcf", pfx)		
-     local pidx		
-     if pfx == "gold" or pfx == "lumber" then		
-         pidx = ParticleManager:CreateParticleForTeam(pfxPath, PATTACH_CUSTOMORIGIN, target, target:GetTeamNumber())		
-     else		
-         pidx = ParticleManager:CreateParticle(pfxPath, PATTACH_CUSTOMORIGIN, target)		
-     end		
+    number = math.floor(number)
+    local pfxPath = string.format("particles/msg_fx/msg_%s.vpcf", pfx)		
+    local pidx		
+    if pfx == "gold" or pfx == "lumber" then		
+        pidx = ParticleManager:CreateParticleForTeam(pfxPath, PATTACH_CUSTOMORIGIN, target, target:GetTeamNumber())		
+    else		
+        pidx = ParticleManager:CreateParticle(pfxPath, PATTACH_CUSTOMORIGIN, target)		
+    end		
  		
-     local digits = 0		
-     if number ~= nil then		
-         digits = #tostring(number)		
-     end		
-     if presymbol ~= nil then		
-         digits = digits + 1		
-     end		
-     if postsymbol ~= nil then		
-         digits = digits + 1		
-     end		
+    local digits = 0		
+    if number ~= nil then		
+        digits = #tostring(number)		
+    end		
+    if presymbol ~= nil then		
+        digits = digits + 1		
+    end		
+    if postsymbol ~= nil then		
+        digits = digits + 1		
+    end		
  		
-     ParticleManager:SetParticleControl(pidx, 0, target:GetAbsOrigin())		
-     ParticleManager:SetParticleControl(pidx, 1, Vector(tonumber(presymbol), tonumber(number), tonumber(postsymbol)))		
-     ParticleManager:SetParticleControl(pidx, 2, Vector(lifetime, digits, 0))		
-     ParticleManager:SetParticleControl(pidx, 3, color)		
- end
+    ParticleManager:SetParticleControl(pidx, 0, target:GetAbsOrigin())		
+    ParticleManager:SetParticleControl(pidx, 1, Vector(tonumber(presymbol), tonumber(number), tonumber(postsymbol)))		
+    ParticleManager:SetParticleControl(pidx, 2, Vector(lifetime, digits, 0))		
+    ParticleManager:SetParticleControl(pidx, 3, color)		
+end
 
 -- Returns a set of abilities that won't trigger stuff like aftershock / essence aura
 local toIgnore
 function util:getToggleIgnores()
     return toIgnore
+end
+
+local abilityKVs = {}
+function util:getAbilityKV(ability)
+    if ability == nil then
+        return abilityKVs
+    end
+    return abilityKVs[ability]
 end
 
 (function()
@@ -928,18 +918,20 @@ end
         eat_tree_eldri = true,
     }
 
-    local abs = LoadKeyValues('scripts/npc/npc_abilities.txt')
+    abilityKVs = LoadKeyValues('scripts/npc/npc_abilities.txt')
+    local absOverride = LoadKeyValues('scripts/npc/npc_abilities_override.txt')
     local absCustom = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
 
-    for k,v in pairs(absCustom) do
-        abs[k] = v
-    end
+    util:MergeTables(abilityKVs, absOverride)
+    util:MergeTables(abilityKVs, absCustom)
 
-    for abilityName,data in pairs(abs) do
+    for abilityName,data in pairs(abilityKVs) do
         if type(data) == 'table' then
             if data.AbilityBehavior and string.match(data.AbilityBehavior, 'DOTA_ABILITY_BEHAVIOR_TOGGLE') then
                 toIgnore[abilityName] = true
             end
+        else
+            abilityKVs[abilityName] = nil
         end
     end
 
@@ -948,4 +940,5 @@ end
     for abilityName,data in pairs(items) do
         toIgnore[abilityName] = true
     end
+
 end)()

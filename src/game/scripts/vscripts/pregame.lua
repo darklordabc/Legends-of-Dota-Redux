@@ -1443,11 +1443,24 @@ function Pregame:networkHeroes()
     local heroList = LoadKeyValues('scripts/npc/herolist.txt')
     local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
     local allHeroesCustom = LoadKeyValues('scripts/npc/npc_heroes_custom.txt')
-    local flags = LoadKeyValues('scripts/kv/flags.kv')
+
     local oldAbList = LoadKeyValues('scripts/kv/abilities.kv')
     local hashCollisions = LoadKeyValues('scripts/kv/hashes.kv')
 
     local heroToSkillMap = oldAbList.heroToSkillMap
+
+    -- Parse flags
+    local flags = {}
+    for k,v in pairs(util:getAbilityKV()) do
+        if v and v["ReduxFlags"] then
+            local abilityFlags = util:split(v["ReduxFlags"], " | ")
+            for _,flag in pairs(abilityFlags) do
+                local flag = string.lower(flag)
+                flags[flag] = flags[flag] or {}
+                flags[flag][k] = 1
+            end
+        end
+    end
 
     -- Prepare flags
     local flagsInverse = {}
@@ -1505,6 +1518,7 @@ function Pregame:networkHeroes()
 
     -- Store the inverse flags list
     self.flagsInverse = flagsInverse
+    self.flags = flags
 
     -- Maps to convert hashes
     self.hashToSkill = {}
@@ -1931,6 +1945,7 @@ end
 function Pregame:loadTrollCombos()
     -- Load in the ban list
     local tempBanList = LoadKeyValues('scripts/kv/bans.kv')
+    local abilityList = util:getAbilityKV()
 
     -- Store no multicast
     SpellFixes:SetNoCasting(tempBanList.noMulticast, tempBanList.noWitchcraft)
@@ -1941,11 +1956,11 @@ function Pregame:loadTrollCombos()
 
     -- Create the stores
     self.banList = {}
-    self.wtfAutoBan = tempBanList.wtfAutoBan
-    self.OPSkillsList = tempBanList.OPSkillsList
-    self.noHero = tempBanList.noHero
-    self.SuperOP = tempBanList.SuperOP
-    self.doNotRandom = tempBanList.doNotRandom
+    self.wtfAutoBan = self.flags.wtfautoban
+    self.OPSkillsList = self.flags.opskillslist
+    self.noHero = self.flags.nohero
+    self.SuperOP = self.flags.superop
+    self.doNotRandom = self.flags.donotrandom
 
     -- All SUPER OP skills should be added to the OP ban list
     --for skillName,_ in pairs(self.lodBanList) do
@@ -1965,13 +1980,6 @@ function Pregame:loadTrollCombos()
         network:addTrollCombo(a,b)
     end
 
-    -- Loop over the banned combinations
-    for skillName, group in pairs(tempBanList.BannedCombinations) do
-        for skillName2,_ in pairs(group) do
-            banCombo(skillName, skillName2)
-        end
-    end
-
     -- Function to do a category ban
     local doCatBan
     doCatBan = function(skillName, cat)
@@ -1986,10 +1994,18 @@ function Pregame:loadTrollCombos()
         end
     end
 
-
-    -- Loop over category bans
-    for skillName,cat in pairs(tempBanList.CategoryBans) do
-        doCatBan(skillName, cat)
+    -- Loop over the banned combinations and category bans
+    for abilityName, abilityData in pairs(abilityList) do
+        if abilityData.ReduxBans then
+            for _,abilityName2 in ipairs(util:split(abilityData.ReduxBans, " | ")) do
+                banCombo(abilityName, abilityName2)
+            end
+        end
+        if abilityData.ReduxBanCategory then
+            for _,categoty in ipairs(util:split(abilityData.ReduxBanCategory, " | ")) do
+                doCatBan(abilityName, categoty)
+            end
+        end
     end
 
     -- Ban the group bans
@@ -2260,7 +2276,13 @@ function Pregame:initOptionSelector()
         end,
 
         lodOptionBalanceModePoints = function(value)
-            return type(value) ~= 'number' and math.floor(value) ~= value
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 60 or value > 400 then return false end
+
+            -- Valid
+            return true
         end,
 
         -- Balance Mode ban list
@@ -3570,6 +3592,7 @@ function Pregame:processOptions()
 
         -- Gold per interval
         GameRules:SetGoldPerTick(this.optionStore['lodOptionGameSpeedGoldTickRate'])
+        OptionManager:SetOption('goldPerTick', this.optionStore['lodOptionGameSpeedGoldTickRate'])
         OptionManager:SetOption('goldModifier', this.optionStore['lodOptionGameSpeedGoldModifier'])
         OptionManager:SetOption('expModifier', this.optionStore['lodOptionGameSpeedEXPModifier'])
         OptionManager:SetOption('sharedXP', this.optionStore['lodOptionGameSpeedSharedEXP'])
@@ -3586,21 +3609,15 @@ function Pregame:processOptions()
 
         -- Enable Balance Mode (disables ban lists)
         -- Load balance mode stats
-        local balanceMode = LoadKeyValues('scripts/kv/balance_mode.kv')
         self.spellCosts = {}
-        for tier, tierList in pairs(balanceMode) do
-            -- Check whether price list or ban list
-            local tierNum = tonumber(string.sub(tier, 6))
-            if tierNum == 0 and this.optionStore['lodOptionBalanceMode'] == 1 then
-                -- Ban List
-                for abilityName,nothing in pairs(tierList) do
+        for abilityName, abilityData in pairs(util:getAbilityKV()) do
+            if abilityData.ReduxCost then
+                if abilityData.ReduxCost == -1 and this.optionStore['lodOptionBalanceMode'] == 1 then
+                    -- Ban List
                     this:banAbility(abilityName)
-                end
-            else
-                -- Spell Shop
-                local price = constants.TIER[tierNum]
-
-                for abilityName,nothing in pairs(tierList) do
+                else
+                    -- Spell Shop
+                    local price = abilityData.ReduxCost
                     self.spellCosts[abilityName] = price
                     network:sendSpellPrice(abilityName, price)
                 end
@@ -6623,6 +6640,36 @@ function Pregame:isValidSkill( build, playerID, abilityName, slotNumber )
     return true
 end
 
+-- Use free ability points
+function Pregame:levelUpAbilities(hero)
+    local points = hero:GetAbilityPoints()
+
+    local upgrades = 0
+
+    if points >= 1 then
+        for p=1,points do
+            for i = 0, 23 do
+                if upgrades >= points then
+                    break
+                end
+
+                if hero:GetAbilityByIndex(i) then
+                    local ability = hero:GetAbilityByIndex(i)
+                    local function attemptUpgrade( ability )
+                        if ability and ability:GetLevel() < ability:GetMaxLevel() and not ability:IsHidden() and not string.match(ability:GetName(), "special") and upgrades < points then
+                            ability:UpgradeAbility(false)
+                            upgrades = upgrades + 1
+                            attemptUpgrade( ability )
+                        end
+                    end
+                    attemptUpgrade( ability )
+                end
+            end
+        end
+
+        hero:SetAbilityPoints(points - upgrades)
+    end
+end
 
 -- Spawns bots
 function Pregame:hookBotStuff()
@@ -6642,97 +6689,100 @@ function Pregame:hookBotStuff()
 
         -- Is this player a bot?
         if PlayerResource:GetConnectionState(playerID) == 1 then
-            local hero = PlayerResource:GetSelectedHeroEntity(playerID)
-            if IsValidEntity(hero) then
-                local build = this.selectedSkills[playerID]
+            Timers:CreateTimer(function ()
+                local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+                if IsValidEntity(hero) then
+                    local build = this.selectedSkills[playerID]
 
-                local heroName = hero:GetClassname()
-                local defaultSkills = {}
-                for k,abilityName in pairs(this.botHeroes[heroName] or {}) do
-                    defaultSkills[abilityName] = true
-                end
+                    local heroName = hero:GetClassname()
+                    local defaultSkills = {}
+                    for k,abilityName in pairs(this.botHeroes[heroName] or {}) do
+                        defaultSkills[abilityName] = true
+                    end
 
-                local lowestLevel = 25
-                local lowestAb
+                    local lowestLevel = 25
+                    local lowestAb
 
-                for k,abilityName in pairs(build) do
-                    -- We are not going to touch hero default skills
-                    if not defaultSkills[abilityName] then
-                        local ab = hero:FindAbilityByName(abilityName)
-                        if ab then
-                            local abLevel = ab:GetLevel()
+                    for k,abilityName in pairs(build) do
+                        -- We are not going to touch hero default skills
+                        if not defaultSkills[abilityName] then
+                            local ab = hero:FindAbilityByName(abilityName)
+                            if ab then
+                                local abLevel = ab:GetLevel()
 
-                            -- Has it already hit it's max level?
-                            if abLevel < ab:GetMaxLevel() then
-                                -- Work out what level we need to be to legally skill this ability
-                                local nextUpgrade = abLevel * 2 + 1
-                                if SkillManager:isUlt(abilityName) then
-                                    nextUpgrade = 6 + 5 * abLevel
-                                end
+                                -- Has it already hit it's max level?
+                                if abLevel < ab:GetMaxLevel() then
+                                    -- Work out what level we need to be to legally skill this ability
+                                    local nextUpgrade = abLevel * 2 + 1
+                                    if SkillManager:isUlt(abilityName) then
+                                        nextUpgrade = 6 + 5 * abLevel
+                                    end
 
-                                -- Can we legally skill this ability?
-                                if nextUpgrade <= level then
-                                    -- Is this the lowest level skill?
-                                    if abLevel < lowestLevel then
+                                    -- Can we legally skill this ability?
+                                    if nextUpgrade <= level then
+                                        -- Is this the lowest level skill?
+                                        if abLevel < lowestLevel then
 
 
 
-                                        lowestLevel = abLevel
-                                        lowestAb = ab
+                                            lowestLevel = abLevel
+                                            lowestAb = ab
+                                        end
                                     end
                                 end
                             end
                         end
                     end
-                end
 
-                -- Apply the point
-                if lowestAb ~= nil then
-                    lowestAb:SetLevel(lowestLevel + 1)
-                end
-
-                -- Leveling the talents for bots
-                if keys.level == 10 then
-                    for i=1,23 do
-                        local abName = hero:GetAbilityByIndex(i):GetAbilityName()
-                        if abName and string.find(abName, "special_bonus") then
-                            local random = RandomInt(0,1)
-                            hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
-                            break
-                        end
-                    end
-                elseif keys.level == 15 then
-                    for i=1,23 do
-                        local abName = hero:GetAbilityByIndex(i):GetAbilityName()
-                        if abName and string.find(abName, "special_bonus") then
-                            local random = RandomInt(2,3)
-                            hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
-                            break
-                        end
+                    -- Apply the point
+                    if lowestAb ~= nil then
+                        lowestAb:SetLevel(lowestLevel + 1)
                     end
 
-                elseif keys.level == 20 then
-                    for i=1,23 do
-                        local abName = hero:GetAbilityByIndex(i):GetAbilityName()
-                        if abName and string.find(abName, "special_bonus") then
-                            local random = RandomInt(4,5)
-                            hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
-                            break
+                    -- Leveling the talents for bots
+                    if keys.level == 10 then
+                        for i=1,23 do
+                            local ab = hero:GetAbilityByIndex(i)
+                            if ab and string.find(ab:GetAbilityName(), "special_bonus") then
+                                local random = RandomInt(0,1)
+                                hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                                break
+                            end
                         end
-                    end
+                    elseif keys.level == 15 then
+                        for i=1,23 do
+                            local ab = hero:GetAbilityByIndex(i)
+                            if ab and string.find(ab:GetAbilityName(), "special_bonus") then
+                                local random = RandomInt(2,3)
+                                hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                                break
+                            end
+                        end
 
-                elseif keys.level == 25 then
-                    for i=1,23 do
-                        local abName = hero:GetAbilityByIndex(i):GetAbilityName()
-                        if abName and string.find(abName, "special_bonus") then
-                            local random = RandomInt(6,7)
-                            hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
-                            break
+                    elseif keys.level == 20 then
+                        for i=1,23 do
+                            local ab = hero:GetAbilityByIndex(i)
+                            if ab and string.find(ab:GetAbilityName(), "special_bonus") then
+                                local random = RandomInt(4,5)
+                                hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                                break
+                            end
                         end
-                    end 
+
+                    elseif keys.level == 25 then
+                        for i=1,23 do
+                            local ab = hero:GetAbilityByIndex(i)
+                            if ab and string.find(ab:GetAbilityName(), "special_bonus") then
+                                local random = RandomInt(6,7)
+                                hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                                break
+                            end
+                        end 
+                    end  
+
+                    self:levelUpAbilities(hero)
                 end
-
-            end
+            end, DoUniqueString('levelUpTalents'), 2.0)
         end
     end, nil)
 end

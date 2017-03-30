@@ -13,6 +13,16 @@ local Ingame = class({})
 
 local ts_entities = LoadKeyValues('scripts/kv/ts_entities.kv')
 GameRules.perks = LoadKeyValues('scripts/kv/perks.kv')
+for k,v in pairs(util:getAbilityKV()) do
+    if v and v["ReduxPerks"] then
+        local abilityPerks = util:split(v["ReduxPerks"], " | ")
+        for _,perk in ipairs(abilityPerks) do
+            local perk = string.lower(perk)
+            GameRules.perks[perk] = GameRules.perks[perk] or {}
+            GameRules.perks[perk][k] = true
+        end
+    end
+end
 GameRules.hero_perks = LoadKeyValues('scripts/kv/hero_perks.kv')
 
 -- Init Ingame stuff, sets up all ingame related features
@@ -61,6 +71,9 @@ function Ingame:init()
     self.voteEnableBuilder = false
     self.voteAntiRat = false
     self.origianlRespawnRate = nil
+    self.timeImbalanceStarted = 0
+	self.radiantBalanceMoney = 0
+    self.direBalanceMoney = 0
     self.shownCheats = {}
     self.heard = {}
 
@@ -143,6 +156,7 @@ end
 function Ingame:OnPlayerPurchasedItem(keys)
     -- Bots will get items auto-delievered to them
     self:checkIfRespawnRate()
+    self:balanceGold()
     if util:isPlayerBot(keys.PlayerID) then
         local hero = PlayerResource:GetPlayer(keys.PlayerID):GetAssignedHero()
         -- If bots buy boots remove first instances of cheap items they have, this is a fix for them having boots in backpack
@@ -835,6 +849,89 @@ function Ingame:checkBalanceTeams()
     end
 end
 
+function Ingame:balanceGold()
+	-- If game not started dont check balance
+	if (GameRules:GetDOTATime(false,false) == 0 or util:isCoop()) and not IsInToolsMode() then
+		return
+	end
+
+	local RadiantPlayers = util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS)
+	local DirePlayers = util:GetActivePlayerCountForTeam(DOTA_TEAM_BADGUYS)
+	local losingTeam = nil
+	local fountainArea = nil
+
+	-- If balance returns, clear the slate
+	if RadiantPlayers == DirePlayers then
+		self.timeImbalanceStarted = 0
+		self.radiantBalanceMoney = 0
+		self.direBalanceMoney = 0
+		return
+	end
+
+	if RadiantPlayers < DirePlayers then
+		losingTeam = "goodGuys"
+		fountainArea = Vector(-6327.858398, -5892.900391, 384.000000)
+	else
+		losingTeam = "badGuys"
+		fountainArea = Vector(6234.006348, 5780.487305, 384.000000)
+	end
+
+	if self.timeImbalanceStarted == 0 then
+		self.timeImbalanceStarted = GameRules:GetDOTATime(false,false)	
+	end
+
+	local timeSinceLastCheck = GameRules:GetDOTATime(false,false) - self.timeImbalanceStarted
+	--print(timeSinceLastCheck)
+	
+	if timeSinceLastCheck > 180 then
+		local multiplier = 1	
+		if losingTeam == "goodGuys" then
+			multiplier = DirePlayers - RadiantPlayers
+		else
+			multiplier = RadiantPlayers - DirePlayers
+		end
+
+		local moneyToGive = (180 * multiplier) * OptionManager:GetOption('goldPerTick')
+
+		if losingTeam == "goodGuys" then
+			self.radiantBalanceMoney = self.radiantBalanceMoney + moneyToGive
+		else
+			self.direBalanceMoney = self.direBalanceMoney + moneyToGive
+		end
+
+		self.timeImbalanceStarted = GameRules:GetDOTATime(false,false)
+		--print(moneyToGive)
+		--print(self.radiantBalanceMoney)
+		--print(self.direBalanceMoney)
+	end
+
+	local moneySize = 10
+	if self.direBalanceMoney >= 200 or self.radiantBalanceMoney >= 200 then
+		moneySize = 20
+	end
+
+	if self.radiantBalanceMoney >= moneySize * 10 or self.direBalanceMoney >= moneySize * 10 then
+		for playerID=0,24-1 do
+	      local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+	      if hero and PlayerResource:IsValidPlayerID(playerID) and IsValidEntity(hero) then                           
+	          local state = PlayerResource:GetConnectionState(playerID)
+	          if state == 1 or state == 2 then
+	          	if losingTeam == "goodGuys" and hero:GetTeam() == DOTA_TEAM_GOODGUYS and self.radiantBalanceMoney >= 1 then
+	          		hero:ModifyGold(moneySize, false, 0)
+	          		SendOverheadEventMessage(hero:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, hero, moneySize, nil)
+	          		self.radiantBalanceMoney = self.radiantBalanceMoney - moneySize
+	          	elseif losingTeam == "badGuys" and hero:GetTeam() == DOTA_TEAM_BADGUYS and self.direBalanceMoney >= 1 then
+	          		hero:ModifyGold(moneySize, false, 0)
+	          		SendOverheadEventMessage(hero:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, hero, moneySize, nil)
+	          		self.direBalanceMoney = self.direBalanceMoney - moneySize
+	          	end
+	          end
+	      end
+	    end
+	
+	end
+end
+
 -- Increases respawn rate if the game has been going longer than 40 minutes, increases every 10 minutes after that
 function Ingame:checkIfRespawnRate()
     if util:isSinglePlayerMode() then return end
@@ -863,6 +960,7 @@ function Ingame:handleRespawnModifier()
         local respawnModifierConstant = OptionManager:GetOption('respawnModifierConstant')
 
         self:checkIfRespawnRate()
+        self:balanceGold()
 
         --if respawnModifierPercentage == 100 and respawnModifierConstant == 0 then return end
 
@@ -933,6 +1031,37 @@ function Ingame:handleRespawnModifier()
                         	end
 
                             -------
+                            -- Imbalanced-Comepenstation Mechanic Start
+                            -------
+                            if not util:isCoop() then
+                                local herosTeam = util:GetActivePlayerCountForTeam(hero:GetTeamNumber())
+                                local opposingTeam = util:GetActivePlayerCountForTeam(otherTeam(hero:GetTeamNumber()))
+                                local difference = herosTeam - opposingTeam
+                                
+                                -- 10 seconds per player difference, if addedTime is positive, it means the player team has an advantage, if its a negative it means they are disadvantaged
+                                local addedTime = difference * 10
+                                timeLeft = timeLeft + addedTime
+                                if timeLeft < 1 then
+                                    timeLeft = 1
+                                end   
+
+                                -- Display message once, informing players of balance mechanic in use
+                                if addedTime ~= 0 and self.heard["imbalancedTeams"] ~= true then
+                                    GameRules:SendCustomMessage("#imbalance_notification", 0, 0) 
+                                    self.heard["imbalancedTeams"] = true
+                                    
+                                    -- Show the warning again after 10 minutes
+                                    Timers:CreateTimer( function()
+                                        self.heard["imbalancedTeams"] = false
+                                    end, DoUniqueString('showNotifAgain'), 600)
+                                end   
+                            end
+
+                            -------
+                            -- Imbalanced-Comepenstation Mechanic End
+                            ------
+
+                            -------
                             -- Anti-Kamikaze Mechanic START
                             -- This is designed to stop players from spawning very quicky and dying very quickly, e.g pushing towers
                             -------
@@ -973,37 +1102,6 @@ function Ingame:handleRespawnModifier()
                             -------
                             -- Anti-Kamikaze Mechanic END
                             -------
-
-                            -------
-                            -- Imbalanced-Comepenstation Mechanic Start
-                            -------
-                            if not util:isCoop() then
-                                local herosTeam = util:GetActivePlayerCountForTeam(hero:GetTeamNumber())
-                                local opposingTeam = util:GetActivePlayerCountForTeam(otherTeam(hero:GetTeamNumber()))
-                                local difference = herosTeam - opposingTeam
-                                
-                                -- 10 seconds per player difference, if addedTime is positive, it means the player team has an advantage, if its a negative it means they are disadvantaged
-                                local addedTime = difference * 10
-                                timeLeft = timeLeft + addedTime
-                                if timeLeft < 1 then
-                                    timeLeft = 1
-                                end   
-
-                                -- Display message once, informing players of balance mechanic in use
-                                if addedTime ~= 0 and self.heard["imbalancedTeams"] ~= true then
-                                    GameRules:SendCustomMessage("#imbalance_notification", 0, 0) 
-                                    self.heard["imbalancedTeams"] = true
-                                    
-                                    -- Show the warning again after 10 minutes
-                                    Timers:CreateTimer( function()
-                                        self.heard["imbalancedTeams"] = false
-                                    end, DoUniqueString('showNotifAgain'), 600)
-                                end   
-                            end
-
-                            -------
-                            -- Imbalanced-Comepenstation Mechanic End
-                            ------
 
                             hero:SetTimeUntilRespawn(timeLeft)
 
