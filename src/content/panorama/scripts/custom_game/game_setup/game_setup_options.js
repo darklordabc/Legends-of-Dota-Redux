@@ -886,6 +886,7 @@ var advancedOptions = {
                 des: 'lodOptionDesBanningUseBanList',
                 about: 'lodOptionAboutBanningUseBanList',
                 sort: 'toggle',
+                requiresServerCheck: true,
                 values: [
                     {
                         text: 'lodOptionNo',
@@ -901,7 +902,6 @@ var advancedOptions = {
                 name: 'lodOptionAdvancedOPAbilities',
                 des: 'lodOptionDesAdvancedOPAbilities',
                 about: 'lodOptionAboutAdvancedOPAbilities',
-                requiresServerCheck: true,
                 sort: 'toggle',
                 values: [
                     {

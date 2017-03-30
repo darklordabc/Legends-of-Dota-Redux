@@ -509,10 +509,9 @@
     "lodVotingDoubleCreepsLine"                     "wants to enable <font color='#70EA72'>Double Neutral Creeps</font>"
     "lodVotingDoubleCreepsLineDescr"                "This will double the amount of neutral creeps.<br><font color='#70EA72'>It is recommended</font>."
     "lodVotingBanningBlockTrollCombosLine"          "wants to enable <font color='#FF4949'>Troll Combos</font>"
-    "lodVotingBanningBlockTrollCombosLineDescr"     "This will unblock certain combinations of skills that are traditionally used to troll people / make a game aweful to play."
-    "lodVotingAdvancedOPAbilitiesLine"              "wants to enable <font color='#FF4949'>OP Abilities</font>"
-    "lodVotingAdvancedOPAbilitiesLineDescr"         "This will enable all skills that are considered to be over powered"
-
+    "lodVotingBanningBlockTrollCombosLineDescr"     "This will unblock certain combinations of skills that are traditionally used to troll people and make a game aweful to play.<br><font color='#FF4949'>It its not recommended</font>."
+    "lodVotingAdvancedOPAbilitiesLine"              "wants to enable <font color='#FF4949'>Single Player Abilities</font>"
+    "lodVotingAdvancedOPAbilitiesLineDescr"         "This will allow SUPER OP abilities that are not balanced and are way too strong.<br><font color='#FF4949'>It its not recommended</font>."
 
 	// Minimap Menu and In-Game Hero Builder
     "minimapMenuCredits"                            "Credits"

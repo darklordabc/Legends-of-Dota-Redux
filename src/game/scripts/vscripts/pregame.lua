@@ -1816,11 +1816,12 @@ function Pregame:onOptionChanged(eventSourceIndex, args)
         --Enabling these properties requires an agree by all players
         local voteRequiredOptions = {
             ["lodOptionBanningBlockTrollCombos"] = {
-                value = 1,
+                value = 0,
                 votingName = "lodVotingBanningBlockTrollCombos"
             },
-            ["lodOptionAdvancedOPAbilities"] = {
-                value = 1,
+
+            ["lodOptionBanningUseBanList"] = {
+                value = 0,
                 votingName = "lodVotingAdvancedOPAbilities"
             },
         }
