@@ -4408,8 +4408,11 @@ function OnPhaseChanged(table_name, key, data) {
                 //     groupBlocks[group].SetHasClass('draftSkills', false)
 
                 // }
-            }
 
+                if (optionValueList['lodOptionBanningHostBanning'] == 1 && !isHost()) {
+                    $('#pickingPhaseBans').visible = false;
+                }
+            }
 
             // Message for players selecting skills
             if(currentPhase == PHASE_SELECTION) { 
