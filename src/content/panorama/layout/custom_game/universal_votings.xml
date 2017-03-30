@@ -3,8 +3,8 @@
 		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
 		<include src="file://{resources}/styles/custom_game/universal_votings.css" />
 	</styles>
-	<Panel class="voting" hittest="false">
-		<Panel class='dialog'>
+	<Panel class="voting dialog_hidden" hittest="true">
+		<Panel class='dialog dialog_offset'>
 			<Label class='title' text='TEAM SWITCH' id="titleLabel" />
 			<Panel class='bar_border' >
 				<Panel class='bar_inner' id='vote_timer' />

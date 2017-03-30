@@ -41,9 +41,11 @@ function createVoting(playerInfo, votingName, votingTitle, votingLine, acceptCal
         panel.DeleteAsync(10);
 
         label.visible = true;
+        panel.hittest = false;
     });
 
     panel.SetHasClass("dialog_hidden", false);
+    panel.GetChild(0).SetHasClass("dialog_offset", false);
     panel.FindChildTraverse("choice").RemoveClass('hiddenoccupy');
 
     VotingCallbacks[votingName] = function(accepted) {
@@ -63,6 +65,7 @@ function createVoting(playerInfo, votingName, votingTitle, votingLine, acceptCal
         panel.DeleteAsync(10);
 
         label.visible = true;
+        panel.hittest = false;
     }
 
     label.visible = false;

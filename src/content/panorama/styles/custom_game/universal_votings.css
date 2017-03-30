@@ -7,7 +7,8 @@
     width: 100%;
     height: 100%;
 
-    /*background-color: #0000008C;*/
+    background-color: #00000077;
+
     transition-property: transform, opacity;
     transition-duration: 0.4s;
     transition-timing-function: ease-in;
@@ -23,7 +24,7 @@
 .dialog {
     width: 640px;
     
-    background-color: #000000F0;
+    background-color: #000000F7;
     box-shadow: #000000bb -5px -5px 10px 10px;
 
     border-radius: 5px;
@@ -46,6 +47,9 @@
 
 .dialog_hidden {
     opacity: 0.0;
+}
+
+.dialog_offset {
     transform: translateY(-100px);
 }
 
