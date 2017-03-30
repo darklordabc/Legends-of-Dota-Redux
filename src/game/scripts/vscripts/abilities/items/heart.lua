@@ -33,16 +33,14 @@ LinkLuaModifier("modifier_item_heart_consumable","abilities/items/heart.lua",LUA
 modifier_item_heart_consumable = class({})
 
 function modifier_item_heart_consumable:GetTexture()
-  if self:GetRemainingTime() <= 0 then
+  if self:GetRemainingTime() <= 0 or self:GetRemainingTime() >= 20 then
     return "item_heart"
   else
     return "custom/item_heart_disabled"
   end
 end
 
-function modifier_item_heart_consumable:IsPassive()
-  return true
-end
+
 function modifier_item_heart_consumable:RemoveOnDeath()
   return false
 end
@@ -78,25 +76,28 @@ end
 
 function modifier_item_heart_consumable:GetModifierHealthRegenPercentage()
   if IsServer() then
-    if self:GetRemainingTime() <= 0 then
+    if self:GetRemainingTime() <= 0 or self:GetRemainingTime() >= 20 then
       return self:GetAbility():GetSpecialValueFor("heart_health_regen_rate")
     end
     return 0
   end
 end
 
+
 function modifier_item_heart_consumable:DestroyOnExpire()
   return false
 end
 
 function modifier_item_heart_consumable:OnTakeDamage(keys)
-  if IsServer() and keys.unit == self:GetCaster() and keys.attacker:IsHero() and self:GetCaster():IsRealHero() then
+  if keys.unit == self:GetCaster() and (keys.attacker:IsHero() or keys.attacker:GetUnitName() == "npc_dota_roshan" )and self:GetCaster():IsRealHero() then
     local cooldown = self:GetAbility():GetSpecialValueFor("heart_cooldown_melee")
     if self:GetCaster():IsRangedAttacker() then
-      cooldown = self:GetAbility():GetSpecialValueFor("heart_cooldown_ranged_tooltip")
+      local cooldown = self:GetAbility():GetSpecialValueFor("heart_cooldown_ranged_tooltip")
     end
     if self:GetAbility():IsItem() then
-      self:GetAbility():StartCooldown(cooldown)
+      if IsServer() then
+        self:GetAbility():StartCooldown(cooldown)
+      end
     end
     self:SetDuration(cooldown,true)
   end

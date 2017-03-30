@@ -104,8 +104,10 @@ function modifier_item_assault_consumable:OnIntervalThink()
   for k,v in pairs(units) do
     if not v:HasModifier("modifier_item_assault_consumable_aura_enemies") then
       local modifier = v:AddNewModifier(caster,self:GetAbility(),"modifier_item_assault_consumable_aura_enemies",{})
+      modifier:SetDuration(-1,true)
       modifier:SetDuration(0.5,false)
     else
+      v:FindModifierByName("modifier_item_assault_consumable_aura_enemies"):SetDuration(-1,true)
       v:FindModifierByName("modifier_item_assault_consumable_aura_enemies"):SetDuration(0.5,false)
     end
   end
