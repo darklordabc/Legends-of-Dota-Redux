@@ -2257,7 +2257,13 @@ function Pregame:initOptionSelector()
         end,
 
         lodOptionBalanceModePoints = function(value)
-            return type(value) ~= 'number' and math.floor(value) ~= value
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 60 or value > 400 then return false end
+
+            -- Valid
+            return true
         end,
 
         -- Balance Mode ban list
@@ -6613,6 +6619,36 @@ function Pregame:isValidSkill( build, playerID, abilityName, slotNumber )
     return true
 end
 
+-- Use free ability points
+function Pregame:levelUpAbilities(hero)
+    local points = hero:GetAbilityPoints()
+
+    local upgrades = 0
+
+    if points >= 1 then
+        for p=1,points do
+            for i = 0, 23 do
+                if upgrades >= points then
+                    break
+                end
+
+                if hero:GetAbilityByIndex(i) then
+                    local ability = hero:GetAbilityByIndex(i)
+                    local function attemptUpgrade( ability )
+                        if ability and ability:GetLevel() < ability:GetMaxLevel() and not ability:IsHidden() and not string.match(ability:GetName(), "special") and upgrades < points then
+                            ability:UpgradeAbility(false)
+                            upgrades = upgrades + 1
+                            attemptUpgrade( ability )
+                        end
+                    end
+                    attemptUpgrade( ability )
+                end
+            end
+        end
+
+        hero:SetAbilityPoints(points - upgrades)
+    end
+end
 
 -- Spawns bots
 function Pregame:hookBotStuff()
@@ -6632,97 +6668,100 @@ function Pregame:hookBotStuff()
 
         -- Is this player a bot?
         if PlayerResource:GetConnectionState(playerID) == 1 then
-            local hero = PlayerResource:GetSelectedHeroEntity(playerID)
-            if IsValidEntity(hero) then
-                local build = this.selectedSkills[playerID]
+            Timers:CreateTimer(function ()
+                local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+                if IsValidEntity(hero) then
+                    local build = this.selectedSkills[playerID]
 
-                local heroName = hero:GetClassname()
-                local defaultSkills = {}
-                for k,abilityName in pairs(this.botHeroes[heroName] or {}) do
-                    defaultSkills[abilityName] = true
-                end
+                    local heroName = hero:GetClassname()
+                    local defaultSkills = {}
+                    for k,abilityName in pairs(this.botHeroes[heroName] or {}) do
+                        defaultSkills[abilityName] = true
+                    end
 
-                local lowestLevel = 25
-                local lowestAb
+                    local lowestLevel = 25
+                    local lowestAb
 
-                for k,abilityName in pairs(build) do
-                    -- We are not going to touch hero default skills
-                    if not defaultSkills[abilityName] then
-                        local ab = hero:FindAbilityByName(abilityName)
-                        if ab then
-                            local abLevel = ab:GetLevel()
+                    for k,abilityName in pairs(build) do
+                        -- We are not going to touch hero default skills
+                        if not defaultSkills[abilityName] then
+                            local ab = hero:FindAbilityByName(abilityName)
+                            if ab then
+                                local abLevel = ab:GetLevel()
 
-                            -- Has it already hit it's max level?
-                            if abLevel < ab:GetMaxLevel() then
-                                -- Work out what level we need to be to legally skill this ability
-                                local nextUpgrade = abLevel * 2 + 1
-                                if SkillManager:isUlt(abilityName) then
-                                    nextUpgrade = 6 + 5 * abLevel
-                                end
+                                -- Has it already hit it's max level?
+                                if abLevel < ab:GetMaxLevel() then
+                                    -- Work out what level we need to be to legally skill this ability
+                                    local nextUpgrade = abLevel * 2 + 1
+                                    if SkillManager:isUlt(abilityName) then
+                                        nextUpgrade = 6 + 5 * abLevel
+                                    end
 
-                                -- Can we legally skill this ability?
-                                if nextUpgrade <= level then
-                                    -- Is this the lowest level skill?
-                                    if abLevel < lowestLevel then
+                                    -- Can we legally skill this ability?
+                                    if nextUpgrade <= level then
+                                        -- Is this the lowest level skill?
+                                        if abLevel < lowestLevel then
 
 
 
-                                        lowestLevel = abLevel
-                                        lowestAb = ab
+                                            lowestLevel = abLevel
+                                            lowestAb = ab
+                                        end
                                     end
                                 end
                             end
                         end
                     end
-                end
 
-                -- Apply the point
-                if lowestAb ~= nil then
-                    lowestAb:SetLevel(lowestLevel + 1)
-                end
-
-                -- Leveling the talents for bots
-                if keys.level == 10 then
-                    for i=1,23 do
-                        local abName = hero:GetAbilityByIndex(i):GetAbilityName()
-                        if abName and string.find(abName, "special_bonus") then
-                            local random = RandomInt(0,1)
-                            hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
-                            break
-                        end
-                    end
-                elseif keys.level == 15 then
-                    for i=1,23 do
-                        local abName = hero:GetAbilityByIndex(i):GetAbilityName()
-                        if abName and string.find(abName, "special_bonus") then
-                            local random = RandomInt(2,3)
-                            hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
-                            break
-                        end
+                    -- Apply the point
+                    if lowestAb ~= nil then
+                        lowestAb:SetLevel(lowestLevel + 1)
                     end
 
-                elseif keys.level == 20 then
-                    for i=1,23 do
-                        local abName = hero:GetAbilityByIndex(i):GetAbilityName()
-                        if abName and string.find(abName, "special_bonus") then
-                            local random = RandomInt(4,5)
-                            hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
-                            break
+                    -- Leveling the talents for bots
+                    if keys.level == 10 then
+                        for i=1,23 do
+                            local ab = hero:GetAbilityByIndex(i)
+                            if ab and string.find(ab:GetAbilityName(), "special_bonus") then
+                                local random = RandomInt(0,1)
+                                hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                                break
+                            end
                         end
-                    end
+                    elseif keys.level == 15 then
+                        for i=1,23 do
+                            local ab = hero:GetAbilityByIndex(i)
+                            if ab and string.find(ab:GetAbilityName(), "special_bonus") then
+                                local random = RandomInt(2,3)
+                                hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                                break
+                            end
+                        end
 
-                elseif keys.level == 25 then
-                    for i=1,23 do
-                        local abName = hero:GetAbilityByIndex(i):GetAbilityName()
-                        if abName and string.find(abName, "special_bonus") then
-                            local random = RandomInt(6,7)
-                            hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
-                            break
+                    elseif keys.level == 20 then
+                        for i=1,23 do
+                            local ab = hero:GetAbilityByIndex(i)
+                            if ab and string.find(ab:GetAbilityName(), "special_bonus") then
+                                local random = RandomInt(4,5)
+                                hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                                break
+                            end
                         end
-                    end 
+
+                    elseif keys.level == 25 then
+                        for i=1,23 do
+                            local ab = hero:GetAbilityByIndex(i)
+                            if ab and string.find(ab:GetAbilityName(), "special_bonus") then
+                                local random = RandomInt(6,7)
+                                hero:GetAbilityByIndex(i+random):UpgradeAbility(true)
+                                break
+                            end
+                        end 
+                    end  
+
+                    self:levelUpAbilities(hero)
                 end
-
-            end
+            end, DoUniqueString('levelUpTalents'), 2.0)
         end
     end, nil)
 end
@@ -6913,11 +6952,11 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                     spawnedUnit:RemoveAbility("monkey_king_jingu_mastery_lod_melee")
             end
             -- Change infernal blade on gyro to critical strike
-            if this.optionStore['lodOptionBanningUseBanList'] == 1 and spawnedUnit:HasAbility("doom_bringer_infernal_blade") and spawnedUnit:GetUnitName() == "npc_dota_hero_gyrocopter" and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("doom_bringer_infernal_blade"):IsHidden() then
-                    spawnedUnit:AddAbility("chaos_knight_chaos_strike_gyro")
-                    spawnedUnit:SwapAbilities("doom_bringer_infernal_blade","chaos_knight_chaos_strike_gyro",false,true)
-                    spawnedUnit:RemoveAbility("doom_bringer_infernal_blade")
-            end
+            --if this.optionStore['lodOptionBanningUseBanList'] == 1 and spawnedUnit:HasAbility("doom_bringer_infernal_blade") and spawnedUnit:GetUnitName() == "npc_dota_hero_gyrocopter" and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("doom_bringer_infernal_blade"):IsHidden() then
+           --         spawnedUnit:AddAbility("chaos_knight_chaos_strike_gyro")
+           --         spawnedUnit:SwapAbilities("doom_bringer_infernal_blade","chaos_knight_chaos_strike_gyro",false,true)
+            --        spawnedUnit:RemoveAbility("doom_bringer_infernal_blade")
+            --end
             -- Custom Flesh Heap fixes
             for abilitySlot=0,6 do
                 local abilityTemp = spawnedUnit:GetAbilityByIndex(abilitySlot)

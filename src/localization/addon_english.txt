@@ -324,6 +324,8 @@
 
     "lodOptionDesBalanceMode"                       "Points Mode"
 
+    "lodOptionDesBalanceModePoints"                 "Points"
+
     "lodOptionDesBanningHostBanning"                "Host has unlimited bans"
     "lodOptionAboutHostBanning"                     "This option will allow the host to ban as many heroes and abilities as they like."
     "lodOptionDesBanningMaxBans"                    "Max Ability Bans"
@@ -564,6 +566,7 @@
     "lodOptionAboutCommonMaxSkills"                 "The max number of regular abilities a player is allowed to select for their hero. (0 - 6)"
     "lodOptionAboutCommonMaxUlts"                   "The max number of ultimate abilities a player is allowed to select for their hero. (0 - 6)"
     "lodOptionAboutBalanceMode"                     "This option will give abilities cost values associated with how strong they are in the meta and limit players to only pick abilities adding up to at most a certain cost. Automatically unticks most bans."
+    "lodOptionAboutBalanceModePoints"               "Amount of points that are allocated when points mode is enabled."
     "lodOptionAboutCommonDraftAbilities"            "The number of abilities each player will receive to draft from."
     "lodOptionAboutBanningMaxBans"                  "The max number of abilities each player can ban."
     "lodOptionAboutBanningMaxHeroBans"              "The max number of heroes each player can ban."
@@ -4013,6 +4016,12 @@
     "DOTA_Tooltip_Ability_invoker_retro_invisibility_aura_Note0"                      "Like with most other auras, Invisibility Aura's effect lingers for .5 seconds."
     "DOTA_Tooltip_Ability_invoker_retro_invisibility_aura_radius"                     "RADIUS:"
     "DOTA_Tooltip_Ability_invoker_retro_invisibility_aura_fade_time"                     "FADE TIME:"
+
+    "DOTA_Tooltip_Ability_invoker_retro_invisibility_aura_tower"                            "Invisibility Aura Tower"
+    "DOTA_Tooltip_Ability_invoker_retro_invisibility_aura_tower_Description"                "Other nearby friendly units become invisible after a fade time.  Owner of aura does not turn invisible.\n\n<font color=\'#7D7D7D\'>Imported from <font color='#ee39a2'>R</font><font color='#f03f95'>e</font><font color='#f24688'>t</font><font color='#f44c7b'>r</font><font color='#f6526e'>o</font><font color='#f75961'> </font><font color='#f95f54'>D</font><font color='#fb6547'>o</font><font color='#fd6c3a'>t</font><font color='#ff722d'>a</font>\n"
+    "DOTA_Tooltip_Ability_invoker_retro_invisibility_aura_tower_Note0"                      "Like with most other auras, Invisibility Aura's effect lingers for .5 seconds."
+    "DOTA_Tooltip_Ability_invoker_retro_invisibility_aura_tower_radius"                     "RADIUS:"
+    "DOTA_Tooltip_Ability_invoker_retro_invisibility_aura_tower_fade_time"                     "FADE TIME:"
 
     "DOTA_Tooltip_modifier_invoker_retro_invisibility_aura_effect"                    "Invisibility Aura"
     "DOTA_Tooltip_modifier_invoker_retro_invisibility_aura_effect_Description"        "Invisible while you remain near owner of aura."
@@ -8042,13 +8051,6 @@
         "DOTA_Tooltip_ability_side_gunner_redux_interval_scepter"    "INTERVAL WITH SCEPTER:"
         "DOTA_Tooltip_ability_side_gunner_redux_range"          "RANGE:"
         "DOTA_Tooltip_ability_side_gunner_redux_aghanim_description"  "Reduces interval by 1 on each level."
-
-        "DOTA_Tooltip_ability_chaos_knight_chaos_strike_gyro"                "Infernal Blade Replacement"
-        "DOTA_Tooltip_ability_chaos_knight_chaos_strike_gyro_Description"    "Gyrocopter cannot use Infernal blade unless 'Single Player' abilities are enabled. There is a bug where infernal blade never goes on cooldown if Gryo attacks via using his side-gunner that is enabled with Aghs. This is a replacement ability, which is based on Chaos Knight's Chaos Strike."
-        "DOTA_Tooltip_ability_chaos_knight_chaos_strike_gyro_Lore"           "Gyrocopter OP power bludgeons those who he passes, crushing the thickest of armors ... until an evil wizard nerfed him."
-        "DOTA_Tooltip_ability_chaos_knight_chaos_strike_gyro_crit_chance"    "%CRITICAL CHANCE:"
-        "DOTA_Tooltip_ability_chaos_knight_chaos_strike_gyro_crit_damage"    "%CRITICAL DAMAGE:"
-        "DOTA_Tooltip_ability_chaos_knight_chaos_strike_gyro_lifesteal"  "%CRITICAL LIFESTEAL:"
 
         "DOTA_Tooltip_ability_spawnlord_master_freeze_creep"              "Lucifer's Petrify"
         "DOTA_Tooltip_ability_spawnlord_master_freeze_creep_Description"  "Causes the next attack to petrify the enemy, rooting them and dealing %damage% damage per second."

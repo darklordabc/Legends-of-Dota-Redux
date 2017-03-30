@@ -16,7 +16,7 @@ function SU:SendRequest( requestParams, successCallback )
   -- DeepPrintTable(requestParams)
 
   -- Create the request
-  local request = CreateHTTPRequest('POST', SU.StatSettings.Host)
+  local request = CreateHTTPRequestScriptVM('POST', SU.StatSettings.Host)
   request:SetHTTPRequestGetOrPostParameter('CommandParams', json.encode(requestParams))
 
   -- Send the request
