@@ -8639,11 +8639,20 @@
     "DOTA_Tooltip_modifier_item_assault_consumable" "Consumed Cuirass"
     "DOTA_Tooltip_modifier_item_assault_consumable_Description" "Permanently gained benefits of Assault Cuirass"
 
-    "DOTA_Tooltip_modifier_item_assault_consumable_aura" "Cuirass Synth Aura"
-    "DOTA_Tooltip_modifier_item_assault_consumable_aura_Description" "Attack Speed and Armor is increased or reduced, depending on if your ally or enemy with owner of this aura"
+    "DOTA_Tooltip_modifier_item_assault_consumable_aura" "Assault Cuirass"
+    "DOTA_Tooltip_modifier_item_assault_consumable_aura_Description" "Armor enhanced by %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%.\nAttack speed increased by %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT%."
 
     "DOTA_Tooltip_modifier_item_desolator_consumable" "Consumed Desolator"
     "DOTA_Tooltip_modifier_item_desolator_consumable_Description" "Permanently gained benefits of Desolator"
 
+    "DOTA_Tooltip_modifier_item_desolator_consumable_corruption"    "Desolator"
+    "DOTA_Tooltip_modifier_item_desolator_consumable_corruption_Description"    "Desolator attacks reduced your armor by %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%."
+
+    "DOTA_Tooltip_modifier_item_assault_consumable_aura_enemies" "Assault Cuirass"
+    "DOTA_Tooltip_modifier_item_assault_consumable_aura_enemies_Description" "Armor reduced by %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%"
+
+    "DOTA_Tooltip_modifier_item_skadi_consumable_slow" "Eye of Skadi Cold Attack"
+    "DOTA_Tooltip_modifier_item_skadi_consumable_slow_Description"     "Movement speed reduced by %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%% and attack speed reduced by %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT%."
 }
+
 
