@@ -6942,6 +6942,13 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                     end
                 end
             end
+
+            -- 'No Charges' fix for Gyro Homing Missle
+            if spawnedUnit:HasAbility('gyrocopter_homing_missile') and spawnedUnit:GetUnitName() ~= "npc_dota_hero_gyrocopter" then
+                Timers:CreateTimer(function()
+                    spawnedUnit:RemoveModifierByName("modifier_gyrocopter_homing_missile_charge_counter")
+                end, DoUniqueString('gyroFix'), 1)
+            end
             
             -- Change sniper assassinate to our custom version to work with aghs
             if spawnedUnit:HasAbility("sniper_assassinate") and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("sniper_assassinate"):IsHidden() then
