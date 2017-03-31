@@ -17,6 +17,10 @@ function Commands:OnPlayerChat(keys)
         end
     end
 
+    if not command or not playerID then
+        return
+    end
+
     local ply = PlayerResource:GetPlayer(playerID)
 
     if not ply then
