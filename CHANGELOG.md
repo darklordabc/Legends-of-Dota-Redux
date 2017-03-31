@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file.
 - Added Consumeable Items: Some late game items can be consumed for a permanent buff
 - Increased price of rapid fire and wukong command
 - Arcane Barrage Cooldown now a result of dividing by 15 not 10
+- Using '-remove' and '-remove all' cheat will now refund the ability points spent
 
 ## 7.1 - Steam Version
 - Added Dagon and Spawn golem cheat
