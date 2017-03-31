@@ -19,6 +19,7 @@ All notable changes to this project will be documented in this file.
 - Fixed Homing Missle
 - Dispersion and Centaur's Return is now a troll combo
 - Increased Cooldown of eyes in the forest
+- Added 8 loadscreen images by Exchy
 
 ## 7.1 - Steam Version
 - Added Dagon and Spawn golem cheat
