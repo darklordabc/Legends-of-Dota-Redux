@@ -5185,6 +5185,14 @@ function SetBalanceModePoints(value) {
     $('#balanceModePointsSkills').SetDialogVariableInt( 'points', currentBalance );
 }
 
+function onVotingOpenCallback() {
+    $("#lodOptionsRoot").style.blur = "gaussian( 2.5 );";
+}
+
+function onVotingCloseCallback() {
+    $("#lodOptionsRoot").style.blur = "none;";
+}
+
 //--------------------------------------------------------------------------------------------------
 // Entry point called when the team select panel is created
 //--------------------------------------------------------------------------------------------------
@@ -5205,6 +5213,8 @@ function SetBalanceModePoints(value) {
         g_TeamPanels.push( teamNode );
     }*/
 
+    $.GetContextPanel().onVotingOpenCallback = onVotingOpenCallback;
+    $.GetContextPanel().onVotingCloseCallback = onVotingCloseCallback;
     
     // Grab the map's name
     var mapName = Game.GetMapInfo().map_display_name; 

@@ -3,6 +3,10 @@ var VotingCallbacks = {};
 var hud, label;
 
 function createVoting(playerInfo, votingName, votingTitle, votingLine, acceptCallback, declineCallback, voteDuration) {
+    if ($.GetContextPanel().onVotingOpenCallback) {
+        $.GetContextPanel().onVotingOpenCallback();
+    }
+
     var panel = $.CreatePanel("Panel", $.GetContextPanel(), "voting_" + votingName);
     panel.BLoadLayout('file://{resources}/layout/custom_game/universal_votings.xml', false, false);
 
@@ -40,6 +44,10 @@ function createVoting(playerInfo, votingName, votingTitle, votingLine, acceptCal
 
         panel.DeleteAsync(10);
 
+        if ($.GetContextPanel().onVotingCloseCallback) {
+            $.GetContextPanel().onVotingCloseCallback();
+        }
+
         label.visible = true;
         panel.hittest = false;
     });
@@ -58,6 +66,10 @@ function createVoting(playerInfo, votingName, votingTitle, votingLine, acceptCal
         halt_transition(panel.FindChildTraverse("vote_timer"), 'shrink');
         $.Schedule(2, function() {
             panel.AddClass('dialog_hidden');
+
+            if ($.GetContextPanel().onVotingCloseCallback) {
+                $.GetContextPanel().onVotingCloseCallback();
+            }
         })
         $.Schedule(4, function() {
             panel.RemoveClass(accepted ? 'accepted' : 'declined');
