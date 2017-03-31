@@ -471,7 +471,7 @@
     "treant_eyes_in_the_forest"
     {
         "MaxLevel"                                                             "4"
-        "AbilityCooldown"                                                      "60 45 30 15"
+        "AbilityCooldown"                                                      "80 65 50 25"
         "ReduxFlags"                                                           "support | invis"
         "ReduxPerks"                                                           "support"
         "ReduxCost"                                                            "20"
