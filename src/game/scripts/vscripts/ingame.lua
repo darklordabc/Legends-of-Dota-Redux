@@ -366,10 +366,12 @@ function Ingame:onStart()
     local this = self
     
     -- Thinker to check for items that can be consumable and converts them if any are found to the consumable version
-    Timers:CreateTimer(function ()
-        this:CheckConsumableItems()
-        return 1
-    end, 'check_consumable_items', 1)
+    if OptionManager:GetOption('consumeItems') == 1 then
+        Timers:CreateTimer(function ()
+            this:CheckConsumableItems()
+            return 1
+        end, 'check_consumable_items', 1)
+    end
 
     -- Force bots to take a defensive pose until the first tower has been destroyed. This is top stop bots from straight away pushing lanes when they hit level 6
     Timers:CreateTimer(function ()

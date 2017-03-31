@@ -455,6 +455,11 @@
     "lodOptionAboutAntiRat"                             "When Anti-Rat is enabled, Tier3 towers cannot be destroyed unless all the outer towers are dead."
     "lodMutatorAntiRat"                                 "Anti-Rat"
 
+    "lodOptionConsumeItems"                                  "Consumable Items"
+    "lodOptionDesConsumeItems"                               "Enable Consumable Items"
+    "lodOptionAboutConsumeItems"                             "This enables some late game items to be able to be consumed and gained as a permanent buff (for the cost of the original price)."
+    "lodMutatorConsumeItems"                                 "Consumable Items"
+
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"
     "lodOptionDesAdvancedNeutralAbilities"          "Allow Neutral Abilities"
     "lodOptionDesAdvancedCustomSkills"              "Allow Custom Abilities"
