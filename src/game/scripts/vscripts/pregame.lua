@@ -6340,6 +6340,10 @@ function Pregame:generateBotBuilds()
 
     end
 
+    local ignoreAbilities = {
+        zuus_cloud = true
+    }
+
     -- Generate a list of possible heroes
     local possibleHeroes = {}
     for k,v in pairs(self.botHeroes) do
@@ -6373,7 +6377,7 @@ function Pregame:generateBotBuilds()
         local defaultSkills = self.botHeroes[heroName]
         if defaultSkills then
             for _, abilityName in pairs(defaultSkills) do
-                if self.flagsInverse[abilityName] or self.uniqueSkills['replaced_skills'][abilityName] then
+                if (self.flagsInverse[abilityName] or self.uniqueSkills['replaced_skills'][abilityName]) and not ignoreAbilities[abilityName] then
                     local newAb = self.uniqueSkills['replaced_skills'][abilityName] and self.uniqueSkills['replaced_skills'][abilityName] or abilityName
                     build[skillID] = newAb
                     skillID = skillID + 1
@@ -6426,6 +6430,15 @@ function Pregame:getSkillforBot( botInfo, botSkills )
     local heroName = botInfo.heroName
     local skills = botSkills[heroName]
     local isAdded
+
+    local customSlots = {
+        npc_dota_hero_nevermore = 8
+    }
+
+    if customSlots[heroName] then
+        maxSlots = customSlots[heroName]
+    end
+
     if skills then
         for k, abilityName in pairs(skills) do
             if skillID > maxSlots then break end
