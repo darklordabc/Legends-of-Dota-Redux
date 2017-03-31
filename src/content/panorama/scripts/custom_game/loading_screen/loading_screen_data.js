@@ -1,5 +1,16 @@
 "use strict";
 var backList = [
+	{ img: "12b5d5e1c6ee823697971e6c8819c8f4-min.jpg" },
+	{ img: "5268964-invoker-dota-2-wallpaper-min.jpg" },
+	{ img: "6867008-dota-2-wallpaper-min.jpg" },
+	{ img: "47092266-min.jpg" },
+	{ img: "931662123-min.jpg"},
+	{ img: "17222449699_039f5c5869_b-min.jpg" },
+	{ img: "au4f5GX-min.jpg"},
+	{ img: "dota-2-terrorblade-wallpaper-hd-min.jpg"},
+	{ img: "Terrorblade-Dota-2-Wallpaper-HD-min.jpg" },
+	{ img: "wallpapersdota2.com-695-min.jpg"},
+	{ img: "3_Dota2-Timbersaw-min.jpg" },
 	{ img: "doom2-min.jpg", author: "Exchy", url: "http:prayer324.deviantart.com/"  },
 	{ img: "dkend8-min.jpg", author: "Exchy", url: "http:prayer324.deviantart.com/"  },
 	{ img: "Dragon7-min.jpg", author: "Exchy", url: "http:prayer324.deviantart.com/"  },
