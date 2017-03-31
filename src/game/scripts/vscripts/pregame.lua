@@ -534,6 +534,9 @@ function Pregame:loadDefaultSettings()
     self:setOption('lodOptionBalanceMode', 0, true)
     self:setOption('lodOptionBalanceModePoints', 120, true)
 
+    -- Consumeable Items
+    self:setOption('lodOptionConsumeItems', 1, false)
+
     -- Anti Rat option
     self:setOption('lodOptionAntiRat', 0, false)
 
@@ -2426,6 +2429,11 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
+        -- Consumeable Items
+        lodOptionConsumeItems = function(value)
+            return value == 0 or value == 1
+        end,
+
         -- Game Speed - Scepter Upgraded
         lodOptionGameSpeedUpgradedUlts = function(value)
             return value == 0 or value == 1 or value == 2
@@ -3559,6 +3567,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('blackForest', this.optionStore['lodOptionBlackForest'])
         OptionManager:SetOption('banInvis', this.optionStore['lodOptionBanningBanInvis'])
         OptionManager:SetOption('antiRat', this.optionStore['lodOptionAntiRat'])
+        OptionManager:SetOption('consumeItems', this.optionStore['lodOptionConsumeItems'])
 
         -- Enforce max level
         if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -3819,6 +3828,7 @@ function Pregame:processOptions()
                     ['Bans: Block OP Abilities'] = this.optionStore['lodOptionAdvancedOPAbilities'],
                     ['Bans: Block Troll Combos'] = this.optionStore['lodOptionBanningBlockTrollCombos'],
                     ['Bans: Disable Perks'] = this.optionStore['lodOptionDisablePerks'],
+                    ['Bans: Consumeable Items'] = this.optionStore['lodOptionConsumeItems'],
                     ['Bans: Host Banning'] = this.optionStore['lodOptionBanningHostBanning'],
                     ['Bans: Max Ability Bans'] = this.optionStore['lodOptionBanningMaxBans'],
                     ['Bans: Max Hero Bans'] = this.optionStore['lodOptionBanningMaxHeroBans'],

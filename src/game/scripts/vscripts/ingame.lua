@@ -164,7 +164,6 @@ function Ingame:OnHeroLeveledUp(keys)
 end
 
 
-
 function Ingame:OnPlayerPurchasedItem(keys)
     -- Bots will get items auto-delievered to them
     self:checkIfRespawnRate()
@@ -375,6 +374,14 @@ dc_table = {};
 -- Called when the game starts
 function Ingame:onStart()
     local this = self
+    
+    -- Thinker to check for items that can be consumable and converts them if any are found to the consumable version
+    if OptionManager:GetOption('consumeItems') == 1 then
+        Timers:CreateTimer(function ()
+            this:CheckConsumableItems()
+            return 1
+        end, 'check_consumable_items', 1)
+    end
 
     -- Force bots to take a defensive pose until the first tower has been destroyed. This is top stop bots from straight away pushing lanes when they hit level 6
     Timers:CreateTimer(function ()
@@ -549,6 +556,32 @@ function Ingame:fixRuneBug()
             end, "botRune", 6)
         end
     end, nil)
+end
+
+-- Called every 0.1 second to check and convert consumable items into actual consumable items
+function Ingame:CheckConsumableItems()
+
+    local itemTable = LoadKeyValues('scripts/kv/consumable_items.kv')
+    for i=0,PlayerResource:GetTeamPlayerCount() do
+        if PlayerResource:IsValidTeamPlayerID(i) and not util:isPlayerBot(i) then
+            local hero = PlayerResource:GetSelectedHeroEntity(i)
+            if hero and IsValidEntity(hero) then
+                for i=0,14 do
+                    local hItem = hero:GetItemInSlot(i)
+                    if hItem then
+                        local name = hItem:GetAbilityName()
+                        if itemTable[name] then
+                            hero:RemoveItem(hItem)
+                            hero:AddItemByName(name.."_consumable")
+                            local nSlot, hUseless = hero:FindItemByNameEverywhere(name.."_consumable")
+                            hero:SwapItems(i,nSlot)
+                            break
+                        end
+                    end
+                end
+            end
+        end
+    end
 end
 
 --General Fat-O-Meter thinker. Runs infrequently (i.e. once every 10 seconds minimum, more likely 30-60). dt is measured in seconds, not ticks.

@@ -433,6 +433,11 @@ var basicOptions = {
                         extraInfo: 'lodOptionAboutAntiRat',
                         about: 'lodMutatorAntiRat'
                     },
+                    {
+                        name: 'lodOptionConsumeItems',
+                        extraInfo: 'lodOptionAboutConsumeItems',
+                        about: 'lodMutatorConsumeItems'
+                    },
                 ]
             }
         ]
@@ -963,6 +968,22 @@ var advancedOptions = {
                 name: 'lodOptionDisablePerks',
                 des: 'lodOptionDesDisablePerks',
                 about: 'lodOptionAboutDisablePerks',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionConsumeItems',
+                des: 'lodOptionDesConsumeItems',
+                about: 'lodOptionAboutConsumeItems',
                 sort: 'toggle',
                 values: [
                     {
