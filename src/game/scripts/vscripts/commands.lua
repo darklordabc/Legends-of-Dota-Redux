@@ -35,6 +35,12 @@ function Commands:OnPlayerChat(keys)
         end
     end
 
+    local ply = PlayerResource:GetPlayer(playerID)
+
+    if not ply then
+        return
+    end
+
     ----------------------------
     -- Vote Commands
     ----------------------------
