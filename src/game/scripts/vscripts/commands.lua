@@ -494,13 +494,18 @@ function Commands:OnPlayerChat(keys)
                         local abil = hero:GetAbilityByIndex(i)
                         if abil then
                             if splitedText[2] == "all" then
+                                hero:SetAbilityPoints(hero:GetAbilityPoints() + abil:GetLevel())
                                 hero:RemoveAbility(abil:GetName())
                             elseif string.find(abil:GetName(), splitedText[2]) then
                                 splitedText[2] = abil:GetName()
                             end
                         end
                     end
-                    hero:RemoveAbility(splitedText[2])
+                    local removedAbilty = hero:FindAbilityByName(splitedText[2])
+                    if removedAbilty then
+                        hero:SetAbilityPoints(hero:GetAbilityPoints() + removedAbilty:GetLevel())
+                        hero:RemoveAbility(splitedText[2])
+                    end
                 end
                 if validAbility then
                     ingame:CommandNotification("-removeability", 'Cheat Used (-removeability): -removeability used by  '.. PlayerResource:GetPlayerName(playerID)) 
