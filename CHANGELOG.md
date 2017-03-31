@@ -13,6 +13,8 @@ All notable changes to this project will be documented in this file.
 - Anti-Kamikaze penalty now calculates after team-imbalance calculations, meaning, you will keep high respawn times if peanlized by anti-kamikaze
 - Beast master perk now gives 12 bonus strength is the neutral ability only has 1 level
 - Added Consumeable Items: Some late game items can be consumed for a permanent buff
+- Increased price of rapid fire and wukong command
+- Arcane Barrage Cooldown now a result of dividing by 15 not 10
 
 ## 7.1 - Steam Version
 - Added Dagon and Spawn golem cheat
@@ -34,7 +36,6 @@ All notable changes to this project will be documented in this file.
 - In Standard map, you can only vote for "extra" points, no longer double
 - Increased price of starfall and shallow grave
 - Side Gunner now procs on attack effects
-- Increased price of rapid fire and wukong command
 
 
 ## 7.0 

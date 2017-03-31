@@ -15,6 +15,7 @@ function Damage( event )
 		ApplyDamage({ victim = v, attacker = caster, damage = dmg, damage_type = DAMAGE_TYPE_MAGICAL, ability = ability })
 		local particle = ParticleManager:CreateParticle("particles/leshrac_diabolic_edict_custom.vpcf", PATTACH_WORLDORIGIN, caster)
 		ParticleManager:SetParticleControl(particle, 1, v:GetAbsOrigin())
+		ParticleManager:ReleaseParticleIndex(particle)
 	end
 	
 	caster:ShowPopup( {
@@ -25,11 +26,15 @@ function Damage( event )
 		pfx = "spell_custom"} )
 							
 	caster:SpendMana(dmg, ability)
+
+	local particle1 = ParticleManager:CreateParticle("particles/lion_spell_voodoo.vpcf", PATTACH_ABSORIGIN, caster)
+	ParticleManager:SetParticleControl(particle1, 1, caster:GetAbsOrigin())
+	ParticleManager:ReleaseParticleIndex(particle1)
 	
-	if dmg/10 < minimumCooldown then
+	if dmg/15 < minimumCooldown then
 		ability:StartCooldown(minimumCooldown)
 	else
-		ability:StartCooldown(dmg/10)
+		ability:StartCooldown(dmg/15)
 	end
 	
 end
