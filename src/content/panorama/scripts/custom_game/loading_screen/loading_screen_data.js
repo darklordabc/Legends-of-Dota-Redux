@@ -1,5 +1,13 @@
 "use strict";
 var backList = [
+	{ img: "doom2.png", author: "Exchy", url: "http:prayer324.deviantart.com/"  },
+	{ img: "dkend8.png", author: "Exchy", url: "http:prayer324.deviantart.com/"  },
+	{ img: "Dragon7.png", author: "Exchy", url: "http:prayer324.deviantart.com/"  },
+	{ img: "screen.png", author: "Exchy", url: "http:prayer324.deviantart.com/"  },
+	{ img: "Necrosp4.png", author: "Exchy", url: "http:prayer324.deviantart.com/"  },
+	{ img: "venge.png", author: "Exchy", url: "http:prayer324.deviantart.com/"  },
+	{ img: "PAcombine.png", author: "Exchy", url: "http:prayer324.deviantart.com/"  },
+	{ img: "Salofinish4.png", author: "Exchy", url: "http:prayer324.deviantart.com/" },
     { img: "abaddon.jpg" },
 	{ img: "calmbeforehorn.jpg", author: "Eran Fowler", url: "http://eranfolio.deviantart.com/" },
 	{ img: "dragonknight.jpg" },
