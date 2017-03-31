@@ -16,6 +16,8 @@ All notable changes to this project will be documented in this file.
 - Increased price of rapid fire and wukong command
 - Arcane Barrage Cooldown now a result of dividing by 15 not 10
 - Using '-remove' and '-remove all' cheat will now refund the ability points spent
+- Fixed Homing Missle
+- Dispersion and Centaur's Return is now a troll combo
 
 ## 7.1 - Steam Version
 - Added Dagon and Spawn golem cheat

@@ -1608,7 +1608,7 @@
     {
         "ReduxFlags"                                                           "tank"
         "ReduxCost"                                                            "40"
-        "ReduxBans"                                                            "furion_teleportation | nyx_assassin_burrow | nyx_assassin_burrow_redux"
+        "ReduxBans"                                                            "furion_teleportation | centaur_return | nyx_assassin_burrow | nyx_assassin_burrow_redux"
     }
     "phantom_assassin_blur"
     {

@@ -3595,7 +3595,7 @@
 
     //Arcane Barrage
     "DOTA_Tooltip_ability_ancient_priestess_surge_of_intelligence"  "Arcane Barrage"
-    "DOTA_Tooltip_ability_ancient_priestess_surge_of_intelligence_Description"  "Ancient Priestess deals magic damage to all enemies in a 500 area of effect. This damage is equal to intelligence multiplies by a certain number. Damage includes only half of bonus intelligence.\n\n<font color='#00A3DB'>Manacost is equal to the amount of damage</font>.\n\nCooldown is equal to the amount of damage divided by 10."
+    "DOTA_Tooltip_ability_ancient_priestess_surge_of_intelligence_Description"  "Ancient Priestess deals magic damage to all enemies in a 500 area of effect. This damage is equal to intelligence multiplies by a certain number. Damage includes only half of bonus intelligence.\n\n<font color='#00A3DB'>Manacost is equal to the amount of damage</font>.\n\nCooldown is equal to the amount of damage divided by 15."
     "DOTA_Tooltip_ability_ancient_priestess_surge_of_intelligence_koef_damage"  "INTELLIGENCE MULTIPLIER:"
     "DOTA_Tooltip_ability_ancient_priestess_surge_of_intelligence_Note0"    "Minimum Cooldown is 8 seconds."
 
