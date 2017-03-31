@@ -1465,13 +1465,22 @@ function Pregame:networkHeroes()
         end
     end
 
+    local internalFlags = {
+        wtfautoban = true,
+        opskillslist = true,
+        nohero = true,
+        superop = true,
+        donotrandom = true,
+    }
     -- Prepare flags
     local flagsInverse = {}
     for flagName,abilityList in pairs(flags) do
-        for abilityName,nothing in pairs(abilityList) do
-            -- Ensure a store exists
-            flagsInverse[abilityName] = flagsInverse[abilityName] or {}
-            flagsInverse[abilityName][flagName] = true
+        if not internalFlags[flagName] then
+            for abilityName,nothing in pairs(abilityList) do
+                -- Ensure a store exists
+                flagsInverse[abilityName] = flagsInverse[abilityName] or {}
+                flagsInverse[abilityName][flagName] = true
+            end
         end
     end
 
