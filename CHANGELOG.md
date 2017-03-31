@@ -34,6 +34,7 @@ All notable changes to this project will be documented in this file.
 - In Standard map, you can only vote for "extra" points, no longer double
 - Increased price of starfall and shallow grave
 - Side Gunner now procs on attack effects
+- Increased price of rapid fire and wukong command
 
 
 ## 7.0 

@@ -70,5 +70,6 @@
             }
         }
         "ReduxBans"                                                            "doom_bringer_infernal_blade"
+        "ReduxCost"                                                            "20"
     }
 }

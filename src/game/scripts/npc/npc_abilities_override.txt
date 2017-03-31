@@ -3119,6 +3119,7 @@
     }
     "monkey_king_wukongs_command"
     {
+        "ReduxCost"                                                            "20"
         "ReduxFlags"                                                           "doNotRandom"
     }
     "neutral_spell_immunity"
