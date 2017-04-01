@@ -155,6 +155,22 @@ function Pregame:init()
                 self:setOption('lodOptionAdvancedCustomSkills', 0, true)
             end
         },
+        OPAbilities = {
+            onselected = function(self)
+                self:setOption('lodOptionAdvancedOPAbilities', 0, true)
+            end,
+            onunselected = function(self)
+                self:setOption('lodOptionAdvancedOPAbilities', 1, true)
+            end
+        },
+        heroPerks = {
+            onselected = function(self)
+                self:setOption('lodOptionDisablePerks', 0, true)
+            end,
+            onunselected = function(self)
+                self:setOption('lodOptionDisablePerks', 1, true)
+            end
+        },
         doubledAbilityPoints = {
             onselected = function(self)
                 self:setOption('lodOptionBalanceModePoints', 180, true)
@@ -429,7 +445,8 @@ function Pregame:init()
         self.useOptionVoting = true
     end
 
-    if mapName == 'all_allowed' then
+    if mapName == 'all_allowed' then   
+        self:setOption('lodOptionAdvancedOPAbilities', 1, true)
     	self:setOption('lodOptionGameSpeedMaxLevel', 100, true)
     	self:setOption('lodOptionBanningUseBanList', 1, true)
     	self:setOption('lodOptionGamemode', 1)

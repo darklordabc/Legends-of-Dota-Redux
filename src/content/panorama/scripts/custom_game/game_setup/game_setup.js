@@ -5412,7 +5412,7 @@ function SetBalanceModePoints(value) {
     }
 
     if (mapName == "all_allowed"){
-	    $.Each(["fastStart", "banning", "strongTowers", "customAbilities", "singlePlayerAbilities"], function(name) {
+	    $.Each(["fastStart", "banning", "strongTowers", "OPAbilities", "heroPerks"], function(name) {
 	        addVotingOption(name);
 	    })
     }

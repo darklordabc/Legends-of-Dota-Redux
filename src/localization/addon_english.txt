@@ -977,7 +977,11 @@
     "option_vote_entry_title_strongTowers"          "Enable Stronger Towers"
     "option_vote_entry_title_customAbilities"       "Enable Custom Abilities"
     "option_vote_entry_title_singlePlayerAbilities" "Enable SUPER-OP Abilities"
+    "option_vote_entry_title_OPAbilities"           "Enable OP Abilities"
+    "option_vote_entry_title_heroPerks"             "Enable Hero Perks"
 
+    "option_vote_entry_info_OPAbilities"            "Enable the abilities regarded as too powerful for balanced games."
+    "option_vote_entry_info_heroPerks"              "Enable unique perks innate to each Hero."
     "option_vote_entry_info_banning"                "Players get 30 seconds to ban 2 abilities and 1 hero, each."
     "option_vote_entry_info_fastStart"              "Everyone starts at level 6 and receives 1000 bonus gold."
     "option_vote_entry_info_doubledAbilityPoints"   "Players can spend 180 points on abilities instead of 120"
