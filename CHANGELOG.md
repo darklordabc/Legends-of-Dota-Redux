@@ -22,6 +22,7 @@ All notable changes to this project will be documented in this file.
 - Added 8 loadscreen images by Exchy and several others.
 - "all_allowed" map has been changed to be more like original LoD to be less confronting to new players.
 - Tiny bot will now level craggy exterior and his other abilities to max level. Zeus bot no longer gets Nimbus cloud. 
+- If teams are imbalanced, disadvantaged team will gain increased passive gold income. 
 
 ## 7.1 - Steam Version
 - Added Dagon and Spawn golem cheat
