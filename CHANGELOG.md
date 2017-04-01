@@ -20,6 +20,7 @@ All notable changes to this project will be documented in this file.
 - Dispersion and Centaur's Return is now a troll combo
 - Increased Cooldown of eyes in the forest
 - Added 8 loadscreen images by Exchy
+- "all_allowed" map has been changed to be more like original LoD to be less confronting to new players.
 
 ## 7.1 - Steam Version
 - Added Dagon and Spawn golem cheat
