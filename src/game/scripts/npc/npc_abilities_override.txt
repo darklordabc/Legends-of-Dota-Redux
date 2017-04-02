@@ -471,7 +471,7 @@
     "treant_eyes_in_the_forest"
     {
         "MaxLevel"                                                             "4"
-        "AbilityCooldown"                                                      "60 45 30 15"
+        "AbilityCooldown"                                                      "80 65 50 25"
         "ReduxFlags"                                                           "support | invis"
         "ReduxPerks"                                                           "support"
         "ReduxCost"                                                            "20"
@@ -1608,7 +1608,7 @@
     {
         "ReduxFlags"                                                           "tank"
         "ReduxCost"                                                            "40"
-        "ReduxBans"                                                            "furion_teleportation | nyx_assassin_burrow | nyx_assassin_burrow_redux"
+        "ReduxBans"                                                            "furion_teleportation | centaur_return | nyx_assassin_burrow | nyx_assassin_burrow_redux"
     }
     "phantom_assassin_blur"
     {
@@ -3119,6 +3119,7 @@
     }
     "monkey_king_wukongs_command"
     {
+        "ReduxCost"                                                            "20"
         "ReduxFlags"                                                           "doNotRandom"
     }
     "neutral_spell_immunity"

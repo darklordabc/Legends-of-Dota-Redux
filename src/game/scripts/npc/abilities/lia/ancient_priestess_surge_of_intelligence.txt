@@ -9,6 +9,8 @@
 
 		"precache" {
 			"particle" "particles/leshrac_diabolic_edict_custom.vpcf"
+			"particle" "particles/lion_spell_voodoo.vpcf"
+
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
 		}
 

@@ -149,6 +149,7 @@
                                     <Image class="optionImageCached" src="file://{images}/custom_game/options/option6.png"></Image>
 
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorAntiRat.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorConsumeItems.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBanningBanInvis.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBanningBanInvis2.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorUpgradedUlts.png"></Image>
@@ -351,9 +352,35 @@
                             <!-- Uncomment the text below to recompile the load screen images. If you add more load screens, add them to the list below. -->
                             <!--<Panel id="loadscreen"> 
                                 <Image src="file://{images}/custom_game/loading_screens/bristle.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/wind1-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/vs2-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/vs1-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/ursa1-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/timbersaw1-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/thebattle-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/tempest1-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/alch1-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/bane1-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/barfight-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/bh1-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/calm-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/deforestation-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/disruptor1-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/drow1-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/facelessrex-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/iceandfire-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/lina1-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/medusa1-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/ns1-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/phantom1-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/pugna1-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/razor1-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/roshan1-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/sd1-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/sniper1-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/techiesvsjakiro-min.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/doom.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/venomancer.jpg" /> 
-                                <Image src="file://{images}/custom_game/loading_screens/bristle.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/ck.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/clink.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/clockwerk.jpg" />
@@ -415,6 +442,25 @@
                                 <Image src="file://{images}/custom_game/loading_screens/direteam.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/radiantteam.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/01vNZZh.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/dkend8-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/doom2-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/Dragon7-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/3_Dota2-Timbersaw-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/12b5d5e1c6ee823697971e6c8819c8f4-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/5268964-invoker-dota-2-wallpaper-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/6867008-dota-2-wallpaper-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/47092266-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/931662123-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/17222449699_039f5c5869_b-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/au4f5GX-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/dota-2-terrorblade-wallpaper-hd-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/Terrorblade-Dota-2-Wallpaper-HD-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/wallpapersdota2.com-695-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/Necrosp4-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/PAcombine-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/Salofinish4-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/venge-min.jpg" />
+                                <Image src="file://{images}/custom_game/loading_screens/screen-min.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/0w5fIvW.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/10EpFKt.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/18wahBc.jpg" />

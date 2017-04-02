@@ -1,0 +1,176 @@
+"DOTAAbilities" 
+{
+  "ability_consumable_item_container"
+  {
+    "BaseClass"                        "ability_datadriven"
+    // Add an icon for this
+    "AbilityTextureName"               ""
+    "AbilityBehavior"                  "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "MaxLevel"                         "1"
+
+    "precache"
+    {
+      "particle"  "particles/items3_fx/octarine_core_lifesteal.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+      // Assault
+      "01"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "assault_bonus_attack_speed"    "30"
+      }
+      "02"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "assault_bonus_armor"           "10"
+      }
+      "03"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "assault_aura_radius"           "900"
+      }
+      "04"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "assault_aura_attack_speed"     "25"
+      }
+      "05"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "assault_aura_armor"   "5"
+      }
+      // Skadi
+      "06"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "skadi_bonus_all_stats"   "25"
+      }
+      "07"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "skadi_bonus_health"      "225"
+      }
+      "08"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "skadi_bonus_mana"      "250"
+      }
+      "09"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "skadi_cold_movement_speed" "-35"
+      }
+      "10"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "skadi_cold_attack_speed"   "-45"
+      }
+      "11"
+      {
+        "var_type"        "FIELD_FLOAT"
+        "skadi_cold_duration_melee" "5.0"
+      }
+      "12"
+      {
+        "var_type"        "FIELD_FLOAT"
+        "skadi_cold_duration_ranged"  "2.5"
+      }
+      // Desolator
+      "13"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "desolator_bonus_damage"          "50"
+      }
+      "14"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "desolator_corruption_armor"      "-7"
+      }
+      "15"
+      {
+        "var_type"              "FIELD_FLOAT"
+        "desolator_corruption_duration"   "15.0"
+      }
+      // Heart
+      "16"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "heart_bonus_strength"        "45"
+      }
+      "17"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "heart_bonus_health"          "250"
+      }
+      "18"
+      {
+        "var_type"              "FIELD_FLOAT"
+        "heart_health_regen_rate"     "7"
+      }
+      "19"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "heart_cooldown_melee"        "5"
+      }
+      "20"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "heart_cooldown_ranged_tooltip"       "7"
+      }
+      // Daedalous
+      "21"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "greater_crit_bonus_damage"          "76"
+      }
+      "22"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "greater_crit_crit_chance"           "30"
+      }
+      "23"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "greater_crit_crit_multiplier"       "235"
+      }
+      // Octarine Core
+      "24"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "octarine_core_bonus_intelligence"    "25"
+      }
+      "25"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "octarine_core_bonus_health"          "425"
+      }
+      "26"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "octarine_core_bonus_mana"            "425"
+      }
+      "27"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "octarine_core_bonus_cooldown"        "25"
+      }
+      "28"
+      {
+        "var_type"              "FIELD_FLOAT"
+        "octarine_core_hero_lifesteal"        "25"
+      }           
+      "29"
+      {
+        "var_type"              "FIELD_FLOAT"
+        "octarine_core_creep_lifesteal"       "5"
+      }   
+      "30"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "octarine_core_active_duration"       "7"
+      }
+    }
+  }
+}

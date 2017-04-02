@@ -155,6 +155,22 @@ function Pregame:init()
                 self:setOption('lodOptionAdvancedCustomSkills', 0, true)
             end
         },
+        OPAbilities = {
+            onselected = function(self)
+                self:setOption('lodOptionAdvancedOPAbilities', 0, true)
+            end,
+            onunselected = function(self)
+                self:setOption('lodOptionAdvancedOPAbilities', 1, true)
+            end
+        },
+        heroPerks = {
+            onselected = function(self)
+                self:setOption('lodOptionDisablePerks', 0, true)
+            end,
+            onunselected = function(self)
+                self:setOption('lodOptionDisablePerks', 1, true)
+            end
+        },
         doubledAbilityPoints = {
             onselected = function(self)
                 self:setOption('lodOptionBalanceModePoints', 180, true)
@@ -429,7 +445,8 @@ function Pregame:init()
         self.useOptionVoting = true
     end
 
-    if mapName == 'all_allowed' then
+    if mapName == 'all_allowed' then   
+        self:setOption('lodOptionAdvancedOPAbilities', 1, true)
     	self:setOption('lodOptionGameSpeedMaxLevel', 100, true)
     	self:setOption('lodOptionBanningUseBanList', 1, true)
     	self:setOption('lodOptionGamemode', 1)
@@ -533,6 +550,9 @@ function Pregame:loadDefaultSettings()
     -- Balance Mode disabled by default
     self:setOption('lodOptionBalanceMode', 0, true)
     self:setOption('lodOptionBalanceModePoints', 120, true)
+
+    -- Consumeable Items
+    self:setOption('lodOptionConsumeItems', 1, false)
 
     -- Anti Rat option
     self:setOption('lodOptionAntiRat', 0, false)
@@ -1462,13 +1482,22 @@ function Pregame:networkHeroes()
         end
     end
 
+    local internalFlags = {
+        wtfautoban = true,
+        opskillslist = true,
+        nohero = true,
+        superop = true,
+        donotrandom = true,
+    }
     -- Prepare flags
     local flagsInverse = {}
     for flagName,abilityList in pairs(flags) do
-        for abilityName,nothing in pairs(abilityList) do
-            -- Ensure a store exists
-            flagsInverse[abilityName] = flagsInverse[abilityName] or {}
-            flagsInverse[abilityName][flagName] = true
+        if not internalFlags[flagName] then
+            for abilityName,nothing in pairs(abilityList) do
+                -- Ensure a store exists
+                flagsInverse[abilityName] = flagsInverse[abilityName] or {}
+                flagsInverse[abilityName][flagName] = true
+            end
         end
     end
 
@@ -2442,6 +2471,11 @@ function Pregame:initOptionSelector()
 
         -- AntiRat
         lodOptionAntiRat = function(value)
+            return value == 0 or value == 1
+        end,
+
+        -- Consumeable Items
+        lodOptionConsumeItems = function(value)
             return value == 0 or value == 1
         end,
 
@@ -3578,6 +3612,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('blackForest', this.optionStore['lodOptionBlackForest'])
         OptionManager:SetOption('banInvis', this.optionStore['lodOptionBanningBanInvis'])
         OptionManager:SetOption('antiRat', this.optionStore['lodOptionAntiRat'])
+        OptionManager:SetOption('consumeItems', this.optionStore['lodOptionConsumeItems'])
 
         -- Enforce max level
         if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -3838,6 +3873,7 @@ function Pregame:processOptions()
                     ['Bans: Block OP Abilities'] = this.optionStore['lodOptionAdvancedOPAbilities'],
                     ['Bans: Block Troll Combos'] = this.optionStore['lodOptionBanningBlockTrollCombos'],
                     ['Bans: Disable Perks'] = this.optionStore['lodOptionDisablePerks'],
+                    ['Bans: Consumeable Items'] = this.optionStore['lodOptionConsumeItems'],
                     ['Bans: Host Banning'] = this.optionStore['lodOptionBanningHostBanning'],
                     ['Bans: Max Ability Bans'] = this.optionStore['lodOptionBanningMaxBans'],
                     ['Bans: Max Hero Bans'] = this.optionStore['lodOptionBanningMaxHeroBans'],
@@ -6351,6 +6387,10 @@ function Pregame:generateBotBuilds()
 
     end
 
+    local ignoreAbilities = {
+        zuus_cloud = true
+    }
+
     -- Generate a list of possible heroes
     local possibleHeroes = {}
     for k,v in pairs(self.botHeroes) do
@@ -6384,7 +6424,7 @@ function Pregame:generateBotBuilds()
         local defaultSkills = self.botHeroes[heroName]
         if defaultSkills then
             for _, abilityName in pairs(defaultSkills) do
-                if self.flagsInverse[abilityName] or self.uniqueSkills['replaced_skills'][abilityName] then
+                if (self.flagsInverse[abilityName] or self.uniqueSkills['replaced_skills'][abilityName]) and not ignoreAbilities[abilityName] then
                     local newAb = self.uniqueSkills['replaced_skills'][abilityName] and self.uniqueSkills['replaced_skills'][abilityName] or abilityName
                     build[skillID] = newAb
                     skillID = skillID + 1
@@ -6437,6 +6477,15 @@ function Pregame:getSkillforBot( botInfo, botSkills )
     local heroName = botInfo.heroName
     local skills = botSkills[heroName]
     local isAdded
+
+    local customSlots = {
+        npc_dota_hero_nevermore = 8
+    }
+
+    if customSlots[heroName] then
+        maxSlots = customSlots[heroName]
+    end
+
     if skills then
         for k, abilityName in pairs(skills) do
             if skillID > maxSlots then break end
@@ -6952,6 +7001,13 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                         kotlInnate:UpgradeAbility(false)
                     end
                 end
+            end
+
+            -- 'No Charges' fix for Gyro Homing Missle
+            if spawnedUnit:HasAbility('gyrocopter_homing_missile') and spawnedUnit:GetUnitName() ~= "npc_dota_hero_gyrocopter" then
+                Timers:CreateTimer(function()
+                    spawnedUnit:RemoveModifierByName("modifier_gyrocopter_homing_missile_charge_counter")
+                end, DoUniqueString('gyroFix'), 1)
             end
             
             -- Change sniper assassinate to our custom version to work with aghs

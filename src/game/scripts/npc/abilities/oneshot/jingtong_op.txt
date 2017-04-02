@@ -2,23 +2,10 @@
 {
     "jingtong_op"
     {
-        "BaseClass"                                                            "ability_datadriven"
+        "BaseClass"                                                            "ability_lua"
         "AbilityTextureName"                                                   "custom/jingtong_op"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "HotKeyOverride"                                                       "C"
-        "Modifiers"
-        {
-            "modifier_jingtong"
-            {
-                "Passive"                                              "1"
-                "IsHidden"                                             "1"
-                "IsBuff"                                               "1"
-                "Properties"
-                {
-                    "MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE"        "%reduce"
-                }
-            }
-        }
+        "ScriptFile"                                                           "abilities/jingtong_op.lua"
         "AbilitySpecial"
         {
             "01"

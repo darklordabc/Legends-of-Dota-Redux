@@ -12,6 +12,17 @@ All notable changes to this project will be documented in this file.
 - Bots no longer get taunted by towers with antirat protection
 - Anti-Kamikaze penalty now calculates after team-imbalance calculations, meaning, you will keep high respawn times if peanlized by anti-kamikaze
 - Beast master perk now gives 12 bonus strength is the neutral ability only has 1 level
+- Added Consumeable Items: Some late game items can be consumed for a permanent buff
+- Increased price of rapid fire and wukong command
+- Arcane Barrage Cooldown now a result of dividing by 15 not 10
+- Using '-remove' and '-remove all' cheat will now refund the ability points spent
+- Fixed Homing Missle
+- Dispersion and Centaur's Return is now a troll combo
+- Increased Cooldown of eyes in the forest
+- Added 8 loadscreen images by Exchy and several others.
+- "all_allowed" map has been changed to be more like original LoD to be less confronting to new players.
+- Tiny bot will now level craggy exterior and his other abilities to max level. Zeus bot no longer gets Nimbus cloud. 
+- If teams are imbalanced, disadvantaged team will gain increased passive gold income. 
 
 ## 7.1 - Steam Version
 - Added Dagon and Spawn golem cheat

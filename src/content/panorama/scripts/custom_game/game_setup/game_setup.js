@@ -4403,8 +4403,11 @@ function OnPhaseChanged(table_name, key, data) {
                 //     groupBlocks[group].SetHasClass('draftSkills', false)
 
                 // }
-            }
 
+                if (optionValueList['lodOptionBanningHostBanning'] == 1 && !isHost()) {
+                    $('#pickingPhaseBans').visible = false;
+                }
+            }
 
             // Message for players selecting skills
             if(currentPhase == PHASE_SELECTION) { 
@@ -5414,7 +5417,7 @@ function onVotingCloseCallback() {
     }
 
     if (mapName == "all_allowed"){
-	    $.Each(["fastStart", "banning", "strongTowers", "customAbilities", "singlePlayerAbilities"], function(name) {
+	    $.Each(["fastStart", "banning", "strongTowers", "OPAbilities", "heroPerks"], function(name) {
 	        addVotingOption(name);
 	    })
     }

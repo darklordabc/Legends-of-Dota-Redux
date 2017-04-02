@@ -760,6 +760,7 @@ function CDOTA_BaseNPC:FindItemByName(item_name)
     return nil
 end
 
+
 function util:CreateVoting(votingName, initiator, duration, percent, onaccept, onvote, ondecline, voteForInitiator)
     if self.activeVoting then
         if self.activeVoting.name == votingName and Time() >= self.activeVoting.recieveStartTime then
@@ -851,6 +852,17 @@ function util:CreateVoting(votingName, initiator, duration, percent, onaccept, o
     if voteForInitiator ~= false then
         _onvote(initiator, true)
     end
+end
+
+function CDOTA_BaseNPC:FindItemByNameEverywhere(item_name)
+    for i=0,14 do
+        local item = self:GetItemInSlot(i)
+        if item and item:GetAbilityName() == item_name then
+            return i,item
+        end
+    end
+    return nil,nil
+
 end
 
 function CDOTA_BaseNPC:PopupNumbers(target, pfx, color, lifetime, number, presymbol, postsymbol)

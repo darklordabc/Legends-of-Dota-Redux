@@ -455,6 +455,11 @@
     "lodOptionAboutAntiRat"                             "When Anti-Rat is enabled, Tier3 towers cannot be destroyed unless all the outer towers are dead."
     "lodMutatorAntiRat"                                 "Anti-Rat"
 
+    "lodOptionConsumeItems"                                  "Consumable Items"
+    "lodOptionDesConsumeItems"                               "Enable Consumable Items"
+    "lodOptionAboutConsumeItems"                             "This enables some late game items to be able to be consumed and gained as a permanent buff (for the cost of the original price)."
+    "lodMutatorConsumeItems"                                 "Consumable Items"
+
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"
     "lodOptionDesAdvancedNeutralAbilities"          "Allow Neutral Abilities"
     "lodOptionDesAdvancedCustomSkills"              "Allow Custom Abilities"
@@ -746,8 +751,7 @@
     "hintBalancing"  "A balanced game is a fun game. But balance needs you! If you know a playstyle or ability which is too easy to win with (even if its your favourite), do your part, and report it to the developers."
     "hintGoldBorder"  "Ultimate Abilities have a gold border."
     "hintAntiKamikaze"  "Anti-Kamikaze mechanic: If you die more than 3 times within 60 seconds, you will be penalized with extra respawn time. This is to prevent players taking advantage of lowered respawn."
-    "hintChatCheats"  "You can use cheats in any single player game (even without sv_cheats enabled) like: '-gold x' '-lvlup x' '-lvlmax'
-'-dagger' '-teleport' '-startgame' '-respawn' '-refresh' '-item x'"
+    "hintChatCheats"  "You can use cheats in any single player game (even without sv_cheats enabled) like: '-gold x' '-lvlup x' '-lvlmax' '-dagger' '-teleport' '-startgame' '-respawn' '-refresh' '-item x'"
 
     // Perk-related Hints
     "hintLina"                          "Lina's intelligence increases by 3 for each level put in Fire abilities"
@@ -993,7 +997,11 @@
     "option_vote_entry_title_strongTowers"          "Enable Stronger Towers"
     "option_vote_entry_title_customAbilities"       "Enable Custom Abilities"
     "option_vote_entry_title_singlePlayerAbilities" "Enable SUPER-OP Abilities"
+    "option_vote_entry_title_OPAbilities"           "Enable OP Abilities"
+    "option_vote_entry_title_heroPerks"             "Enable Hero Perks"
 
+    "option_vote_entry_info_OPAbilities"            "Enable the abilities regarded as too powerful for balanced games."
+    "option_vote_entry_info_heroPerks"              "Enable unique perks innate to each Hero."
     "option_vote_entry_info_banning"                "Players get 30 seconds to ban 2 abilities and 1 hero, each."
     "option_vote_entry_info_fastStart"              "Everyone starts at level 6 and receives 1000 bonus gold."
     "option_vote_entry_info_doubledAbilityPoints"   "Players can spend 180 points on abilities instead of 120"
@@ -3616,7 +3624,7 @@
 
     //Arcane Barrage
     "DOTA_Tooltip_ability_ancient_priestess_surge_of_intelligence"  "Arcane Barrage"
-    "DOTA_Tooltip_ability_ancient_priestess_surge_of_intelligence_Description"  "Ancient Priestess deals magic damage to all enemies in a 500 area of effect. This damage is equal to intelligence multiplies by a certain number. Damage includes only half of bonus intelligence.\n\n<font color='#00A3DB'>Manacost is equal to the amount of damage</font>.\n\nCooldown is equal to the amount of damage divided by 10."
+    "DOTA_Tooltip_ability_ancient_priestess_surge_of_intelligence_Description"  "Ancient Priestess deals magic damage to all enemies in a 500 area of effect. This damage is equal to intelligence multiplies by a certain number. Damage includes only half of bonus intelligence.\n\n<font color='#00A3DB'>Manacost is equal to the amount of damage</font>.\n\nCooldown is equal to the amount of damage divided by 15."
     "DOTA_Tooltip_ability_ancient_priestess_surge_of_intelligence_koef_damage"  "INTELLIGENCE MULTIPLIER:"
     "DOTA_Tooltip_ability_ancient_priestess_surge_of_intelligence_Note0"    "Minimum Cooldown is 8 seconds."
 
@@ -8416,7 +8424,8 @@
         "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_mana_burn_burrow_range_tooltip"       "BURROW MANA BURN RANGE:"
         "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_impale_burrow_range_tooltip" "BURROW IMPALE RANGE:"
         "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_impale_burrow_cooldown_tooltip"       "BURROW IMPALE COOLDOWN:"
-        "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_carapace_burrow_range_tooltip"        "BURROW SPIKED CARAPACE RANGE:"     
+        "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_carapace_burrow_range_tooltip"        "BURROW SPIKED CARAPACE RANGE:" 
+        "DOTA_Tooltip_ability_nyx_assassin_burrow_redux_carapace_burrow_range_tooltip"        "BURROW SPIKED CARAPACE RANGE:"      
 
         "DOTA_Tooltip_ability_tusk_walrus_kick_op"                     "King Walrus Kick"
         "DOTA_Tooltip_ability_tusk_walrus_kick_op_Description"         "Kicks the target unit back, damaging them and slowing their movement speed. <font color=\'#70EA72\'>Kick distance is much greater.</font> "
@@ -8596,4 +8605,88 @@
     "DOTA_Tooltip_ability_lone_druid_savage_roar_op_bonus_speed"                   "%ENEMY MOVEMENT SPEED BONUS:"
     "DOTA_Tooltip_ability_lone_druid_savage_roar_op_duration"                      "DURATION:"
 
+    "DOTA_Tooltip_ability_item_assault_consumable"                                     "Assault Cuirass"
+    "DOTA_Tooltip_ability_item_assault_consumable_Description"                           "Passive: Assault Aura - Grants attack speed and armor to nearby allied units and structures, and decreases the armor of nearby enemies.\n\n <font color=\'#70EA72\'>Consume the Assault Cuirass to permanently gain its effects.</font>\n\nMultiple instances of Assault Aura do not stack."
+    "DOTA_Tooltip_ability_item_assault_consumable_Lore"                                "Forged in the depths of the nether reaches, this hellish mail provides an army with increased armor and attack speed."
+    "DOTA_Tooltip_ability_item_assault_consumable_assault_bonus_attack_speed"                  "+$attack"
+    "DOTA_Tooltip_ability_item_assault_consumable_assault_bonus_armor"                         "+$armor"
+    "DOTA_Tooltip_ability_item_assault_consumable_assault_aura_attack_speed"                   "AURA ATTACK SPEED:"
+    "DOTA_Tooltip_ability_item_assault_consumable_assault_aura_positive_armor"                 "AURA ALLY BONUS ARMOR:"
+    "DOTA_Tooltip_ability_item_assault_consumable_assault_aura_negative_armorr"                 "AURA ENEMY ARMOR REDUCTION:"
+
+    "DOTA_Tooltip_ability_item_skadi_consumable"                           "Eye of Skadi"
+    "DOTA_Tooltip_ability_item_skadi_consumable_Description"                           "Passive: Cold Attack - Each attack slows the movement and attack speed of the target. The duration of the slow is based on whether the equipped hero is melee or ranged.\n\n <font color=\'#70EA72\'>Consume the Eye of Skadi to permanently gain its effects.\n</font>"
+    "DOTA_Tooltip_ability_item_skadi_consumable_Lore"                                  "Extremely rare artifact, guarded by the azure dragons."
+    "DOTA_Tooltip_ability_item_skadi_consumable_Note0"                                 "Lasts 5 seconds with melee Eye of Skadi, 2.5 seconds with ranged Eye of Skadi."        
+    "DOTA_Tooltip_ability_item_skadi_consumable_skadi_bonus_all_stats"                       "+$all"
+    "DOTA_Tooltip_ability_item_skadi_consumable_skadi_bonus_health"                          "+$health"
+    "DOTA_Tooltip_ability_item_skadi_consumable_skadi_bonus_mana"                            "+$mana"
+    "DOTA_Tooltip_ability_item_skadi_consumable_skadi_cold_movement_speed"                   "%COLD MOVE SLOW:"
+    "DOTA_Tooltip_ability_item_skadi_consumable_skadi_cold_attack_speed"                     "COLD ATTACK SLOW:"
+    "DOTA_Tooltip_ability_item_skadi_consumable_skadi_cold_duration_melee"                       "COLD MELEE DURATION:"
+    "DOTA_Tooltip_ability_item_skadi_consumable_skadi_cold_duration_ranged"                  "COLD RANGED DURATION:"
+
+    "DOTA_Tooltip_Ability_item_desolator_consumable"               "Desolator"
+    "DOTA_Tooltip_ability_item_desolator_consumable_Description"                       "Passive: Corruption - Your attacks reduce target's armor for 15 seconds.\n\nDesolator is a Unique Attack Modifier, and does not stack with other Unique Attack Modifiers.\n\n <font color=\'#70EA72\'>Consume the Desolator to permanently gain its effects.\n</font>"
+    "DOTA_Tooltip_ability_item_desolator_consumable_Lore"                          "A wicked weapon, used in torturing political criminals."
+    "DOTA_Tooltip_ability_item_desolator_consumable_Note0"                             "Armor reduction works on buildings."
+    "DOTA_Tooltip_ability_item_desolator_consumable_corruption_armor"                  "ARMOR REDUCTION:"
+    "DOTA_Tooltip_ability_item_desolator_consumable_desolator_bonus_damage"                      "+$damage"
+
+    "DOTA_Tooltip_Ability_item_greater_crit_consumable"            "Daedalus"
+    "DOTA_Tooltip_ability_item_greater_crit_consumable_Description"                    "Passive: Critical Strike - Grants each attack a chance to deal additional damage. Critical Strike does not work against buildings.\n\n <font color=\'#70EA72\'>Consume the Daedalus to permanently gain its effects.\n</font>"
+    "DOTA_Tooltip_ability_item_greater_crit_consumable_Lore"                       "A weapon of incredible power that is difficult for even the strongest of warriors to control."
+    "DOTA_Tooltip_ability_item_greater_crit_consumable_greater_crit_crit_chance"                    "%CRITICAL CHANCE:"
+    "DOTA_Tooltip_ability_item_greater_crit_consumable_greater_crit_crit_multiplier"                "%CRITICAL DAMAGE:"
+    "DOTA_Tooltip_ability_item_greater_crit_consumable_greater_crit_bonus_damage"                   "+$damage"
+
+    "DOTA_Tooltip_Ability_item_octarine_core_consumable"           "Octarine Core"
+    "DOTA_Tooltip_ability_item_octarine_core_consumable_Description"                       "Passive: Cooldown Reduction - Reduces the cooldown time of all spells and items by %octarine_core_bonus_cooldown%%%.\nPassive: Spell Lifesteal - A percentage of damage caused by spells is returned to the caster as health.\n\n <font color=\'#70EA72\'>Consume the Octarine Core to permanently gain its effects.\n</font>"
+    "DOTA_Tooltip_ability_item_octarine_core_consumable_octarine_core_bonus_intelligence"        "+$int"
+    "DOTA_Tooltip_ability_item_octarine_core_consumable_octarine_core_bonus_health"              "+$health"
+    "DOTA_Tooltip_ability_item_octarine_core_consumable_octarine_core_bonus_mana"                "+$mana"
+    "DOTA_Tooltip_ability_item_octarine_core_consumable_octarine_core_bonus_cooldown"            "%COOLDOWN REDUCTION:"
+    "DOTA_Tooltip_ability_item_octarine_core_consumable_octarine_core_hero_lifesteal"                "%HERO SPELL LIFESTEAL:"
+    "DOTA_Tooltip_ability_item_octarine_core_consumable_octarine_core_creep_lifesteal"               "%CREEP SPELL LIFESTEAL:"
+    "DOTA_Tooltip_ability_item_octarine_core_consumable_Lore"                      "At the core of spellcraft are spectrums only the very gifted can sense."
+
+    "DOTA_Tooltip_Ability_item_heart_consumable"               "Heart of Tarrasque"
+    "DOTA_Tooltip_ability_item_heart_consumable_Description"                           "Passive: Health Regeneration - Restores a percentage of max health per second. If damage is taken from an enemy hero or Roshan, this ability is disabled for %heart_cooldown_melee% seconds for melee heroes, or %heart_cooldown_ranged_tooltip% seconds for ranged heroes.\n\n <font color=\'#70EA72\'>Consume the Octarine Core to permanently gain its effects.\n</font>"
+    "DOTA_Tooltip_ability_item_heart_consumable_Lore"                              "Preserved heart of an extinct monster, it bolsters the bearer's fortitude."
+    "DOTA_Tooltip_ability_item_heart_consumable_heart_bonus_strength"                        "+$str"
+    "DOTA_Tooltip_ability_item_heart_consumable_heart_bonus_health"                          "+$health"
+    "DOTA_Tooltip_ability_item_heart_consumable_heart_health_regen_rate"                     "%HEALTH RESTORED PER SECOND:"
+
+
+    "DOTA_Tooltip_modifier_item_greater_crit_consumable"                            "Consumed Daedaulous"
+    "DOTA_Tooltip_modifier_item_greater_crit_consumable_Description" "Permanently gained benefits of Daedaulous"
+
+    "DOTA_Tooltip_modifier_item_skadi_consumable" "Consumed Eye of Skadi"
+    "DOTA_Tooltip_modifier_item_skadi_consumable_Description" "Permanently gained benefits of Eye of Skadi"
+
+    "DOTA_Tooltip_modifier_item_octarine_core_consumable" "Consumed Octarine"
+    "DOTA_Tooltip_modifier_item_octarine_core_consumable_Description" "Permanently gained benefits of Octarine Core"
+
+    "DOTA_Tooltip_modifier_item_heart_consumable" "Consumed Heart"
+    "DOTA_Tooltip_modifier_item_heart_consumable_Description" "Permanently gained benefits of Heart of Tarrasque"
+
+    "DOTA_Tooltip_modifier_item_assault_consumable" "Consumed Cuirass"
+    "DOTA_Tooltip_modifier_item_assault_consumable_Description" "Permanently gained benefits of Assault Cuirass"
+
+    "DOTA_Tooltip_modifier_item_assault_consumable_aura" "Assault Cuirass"
+    "DOTA_Tooltip_modifier_item_assault_consumable_aura_Description" "Armor enhanced by %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%.\nAttack speed increased by %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT%."
+
+    "DOTA_Tooltip_modifier_item_desolator_consumable" "Consumed Desolator"
+    "DOTA_Tooltip_modifier_item_desolator_consumable_Description" "Permanently gained benefits of Desolator"
+
+    "DOTA_Tooltip_modifier_item_desolator_consumable_corruption"    "Desolator"
+    "DOTA_Tooltip_modifier_item_desolator_consumable_corruption_Description"    "Desolator attacks reduced your armor by %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%."
+
+    "DOTA_Tooltip_modifier_item_assault_consumable_aura_enemies" "Assault Cuirass"
+    "DOTA_Tooltip_modifier_item_assault_consumable_aura_enemies_Description" "Armor reduced by %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%"
+
+    "DOTA_Tooltip_modifier_item_skadi_consumable_slow" "Eye of Skadi Cold Attack"
+    "DOTA_Tooltip_modifier_item_skadi_consumable_slow_Description"     "Movement speed reduced by %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%% and attack speed reduced by %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT%."
 }
+
+
