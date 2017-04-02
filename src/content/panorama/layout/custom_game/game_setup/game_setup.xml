@@ -10,6 +10,7 @@
         <include src="file://{resources}/scripts/custom_game/loading_screen/loading_screen_tips.js" />
         <include src="file://{resources}/scripts/custom_game/game_setup/game_setup_options.js" />
         <include src="file://{resources}/scripts/custom_game/game_setup/game_setup.js" />
+        <include src="file://{resources}/scripts/custom_game/universal_votings.js" />
     </scripts>
     <snippets>
         <snippet name="BoosterPack">
@@ -129,8 +130,16 @@
 
                         <Panel id="optionSelection" class="workingPanel">
                             <Panel id="optionsPanel">
-                                <Panel id="optionBasic"> 
+                                <Panel id="optionBasic">         
                                     <!--
+									<Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingAntirat.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingBanningBlockTrollCombos.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingAdvancedOPAbilities.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingDoubleCreeps.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableCheatMode.png"></Image>
+									<Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableHeroBuilder.png"></Image> 
+									<Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableKamikaze.png"></Image> 
+									<Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableRespawn.png"></Image> 
                                     <Image class="optionImageCached" src="file://{images}/custom_game/options/option0.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/options/option1.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/options/option2.png"></Image>

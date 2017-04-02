@@ -1856,8 +1856,27 @@ function Pregame:onOptionChanged(eventSourceIndex, args)
         local optionName = args.k
         local optionValue = args.v
 
-        -- Option values and names are validated at a later stage
-        self:setOption(optionName, optionValue)
+        --Enabling these properties requires an agree by all players
+        local voteRequiredOptions = {
+            ["lodOptionBanningBlockTrollCombos"] = {
+                value = 0,
+                votingName = "lodVotingBanningBlockTrollCombos"
+            },
+
+            ["lodOptionBanningUseBanList"] = {
+                value = 0,
+                votingName = "lodVotingAdvancedOPAbilities"
+            },
+        }
+        if voteRequiredOptions[optionName] and voteRequiredOptions[optionName].value == optionValue then
+            self:setOption(optionName, voteRequiredOptions[optionName].value == 1 and 0 or 1)
+            util:CreateVoting(voteRequiredOptions[optionName].votingName, playerID, 20, percentNeeded, function()
+                self:setOption(optionName, voteRequiredOptions[optionName].value)
+            end)
+        else
+            -- Option values and names are validated at a later stage
+            self:setOption(optionName, optionValue)
+        end
     end
 end
 
@@ -6002,7 +6021,9 @@ end
 function Pregame:multiplyNeutrals()
         ListenToGameEvent('entity_hurt', function(keys)
             local this = self
-            if this.optionStore['lodOptionNeutralMultiply'] == 1 then return end
+            --print(OptionManager:GetOption('neutralMultiply'))
+            --print(this.optionStore['lodOptionNeutralMultiply'])
+            if OptionManager:GetOption('neutralMultiply') == 1 then return end
 
             -- Grab the entity that was hurt
             local ent = EntIndexToHScript(keys.entindex_killed)         
@@ -6019,7 +6040,7 @@ function Pregame:multiplyNeutrals()
                     local lastHits = PlayerResource:GetLastHits(attacker:GetOwner():GetPlayerID())
                     local lastHits = PlayerResource:GetLastHits(attacker:GetOwner():GetPlayerID()) + 1
                     --print(lastHits)
-                    self:MultiplyNeutralUnit( ent, attacker, this.optionStore['lodOptionNeutralMultiply'], lastHits )
+                    self:MultiplyNeutralUnit( ent, attacker, OptionManager:GetOption('neutralMultiply'), lastHits )
 
                 end
             end

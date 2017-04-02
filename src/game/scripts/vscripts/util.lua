@@ -760,6 +760,100 @@ function CDOTA_BaseNPC:FindItemByName(item_name)
     return nil
 end
 
+
+function util:CreateVoting(votingName, initiator, duration, percent, onaccept, onvote, ondecline, voteForInitiator)
+    if self.activeVoting then
+        if self.activeVoting.name == votingName and Time() >= self.activeVoting.recieveStartTime then
+            self.activeVoting.onvote(initiator, true)
+        else
+            --TODO: Display error message - Can't start a new voting while there is another ongoing voting
+        end
+        return
+    end
+    local CheckForEnd = function()
+        local votesAccepted = 0
+        local totalPlayers = 0
+        for PlayerID = 0, 23 do
+            if PlayerResource:IsValidPlayerID(PlayerID) and not util:isPlayerBot(PlayerID) then                            
+                local state = PlayerResource:GetConnectionState(PlayerID)
+                if state == 1 or state == 2 then
+                    if self.activeVoting.votes[PlayerID] ~= nil then
+                        if self.activeVoting.votes[PlayerID] then
+                            votesAccepted = votesAccepted + 1
+                        end
+                    end
+                    totalPlayers = totalPlayers + 1
+                end
+            end
+        end
+        
+        if votesAccepted / totalPlayers >= (percent or 100) * 0.01 then
+            if onaccept then
+                onaccept()
+            end
+            return true
+        end
+        return false
+    end
+
+    local pauseChecker = Timers:CreateTimer({
+        useGameTime = false,
+        callback = function()
+            if not GameRules:IsGamePaused() then
+                PauseGame(true)
+            end
+            return 1/30
+        end
+    })
+    local vote_counter = Timers:CreateTimer({
+        useGameTime = false,
+        endTime = duration,
+        callback = function()
+            if ondecline and not CheckForEnd() then
+                ondecline()
+            end
+            --[[for PlayerID = 0, 23 do
+                if not Util:isPlayerBot(PlayerID) then                            
+                    local state = PlayerResource:GetConnectionState(PlayerID)
+                    if (state == 1 or state == 2) and self.activeVoting.votes[PlayerID] == nil then
+                        CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(PlayerID), "universalVotingsPlayerUpdate", {votingName = votingName, accept = false})
+                    end
+                end
+            end]]
+            Timers:RemoveTimer(pauseChecker)
+            self.activeVoting = nil
+            PauseGame(false)
+        end
+    })
+    local _onvote = function(pid, accepted)
+        self.activeVoting.votes[pid] = accepted
+        CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(pid), "universalVotingsPlayerUpdate", {votingName = votingName, accept = accepted})
+        if onvote then
+            onvote(pid, accepted)
+        end
+        if CheckForEnd() then
+            Timers:RemoveTimer(pauseChecker)
+            Timers:RemoveTimer(vote_counter)
+            self.activeVoting = nil
+            PauseGame(false)
+        end
+    end
+    self.activeVoting = {
+        name = votingName,
+        votes = {},
+        recieveStartTime = Time() + 5,
+        onvote = _onvote
+    }
+    CustomGameEventManager:Send_ServerToAllClients("lodCreateUniversalVoting", {
+        title = votingName,
+        initiator = initiator,
+        duration = duration
+    })
+    if voteForInitiator ~= false then
+        _onvote(initiator, true)
+    end
+end
+
 function CDOTA_BaseNPC:FindItemByNameEverywhere(item_name)
     for i=0,14 do
         local item = self:GetItemInSlot(i)
@@ -768,6 +862,7 @@ function CDOTA_BaseNPC:FindItemByNameEverywhere(item_name)
         end
     end
     return nil,nil
+
 end
 
 function CDOTA_BaseNPC:PopupNumbers(target, pfx, color, lifetime, number, presymbol, postsymbol)

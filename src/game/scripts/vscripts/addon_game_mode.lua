@@ -26,6 +26,9 @@ require('optionmanager')
 -- Networking functions
 require('network')
 
+-- Chat commands
+require('commands')
+
 -- Precaching
 function Precache(context)
     local soundList = LoadKeyValues('scripts/kv/sounds.kv')

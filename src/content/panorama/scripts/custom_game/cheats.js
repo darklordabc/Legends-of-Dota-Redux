@@ -22,6 +22,12 @@ var commandList = [{
 	},{
 		title: "voteEnableKamikaze",
 		chatCommand: "enablekamikaze",
+	},{
+		title: "voteDoubleCreeps",
+		chatCommand: "doublecreeps",
+	},{
+		title: "voteSwitchTeam",
+		chatCommand: "switchteam",
 	},]
 }, {
 	title: "game",
@@ -29,6 +35,14 @@ var commandList = [{
 	commands: [{
 		title: "toggleWtf",
 		chatCommand: "wtfmenu",
+		isCheat: true,
+	},{
+		title: "nofog",
+		chatCommand: "nofog",
+		isCheat: true,
+	},{
+		title: "fog",
+		chatCommand: "fog",
 		isCheat: true,
 	}, {
 		title: "toggleAllVision",

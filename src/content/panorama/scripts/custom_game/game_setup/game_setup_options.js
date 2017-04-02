@@ -884,6 +884,7 @@ var advancedOptions = {
                 des: 'lodOptionDesBanningBlockTrollCombos',
                 about: 'lodOptionAboutBanningBlockTrollCombos',
                 sort: 'toggle',
+                requiresServerCheck: true,
                 values: [
                     {
                         text: 'lodOptionNo',
@@ -900,6 +901,7 @@ var advancedOptions = {
                 des: 'lodOptionDesBanningUseBanList',
                 about: 'lodOptionAboutBanningUseBanList',
                 sort: 'toggle',
+                requiresServerCheck: true,
                 values: [
                     {
                         text: 'lodOptionNo',

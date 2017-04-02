@@ -6,8 +6,6 @@ require('abilities/epic_boss_fight/ebf_mana_fiend_essence_amp')
 require('abilities/global_mutators/global_mutator')
 require('abilities/global_mutators/memes_redux')
 
-require('commands')
-
 -- Create the class for it
 local Ingame = class({})
 
@@ -65,6 +63,7 @@ function Ingame:init()
 
     -- These are optional votes that can enable or disable game mechanics
     self.voteEnabledCheatMode = false
+    self.voteDoubleCreeps = false
     self.voteDisableAntiKamikaze = false
     self.voteDisableRespawnLimit = false
     self.voteEnableBuilder = false
@@ -94,31 +93,18 @@ function Ingame:init()
         CreateUnitByName('npc_precache_always', Vector(-10000, -10000, 0), false, nil, nil, 0)
     end)
 
-    -- Balance Player
-    CustomGameEventManager:RegisterListener('swapPlayers', function(_, args)
-        if not CustomNetTables:GetTableValue("phase_ingame","balance_players") then
-            CustomNetTables:SetTableValue("phase_ingame","balance_players",{swapInProgress = 0})
-        elseif CustomNetTables:GetTableValue("phase_ingame","balance_players").swapInProgress == 1 then
-            return
-        end
-
-        CustomNetTables:SetTableValue("phase_ingame","balance_players",{swapInProgress = 1})
-
-        GameRules:SendCustomMessage("#teamSwitch_notification", 0, 0)
-
-        local code = DoUniqueString("team_switch")
-        self.teamSwitchCode = code
-        Timers:CreateTimer(function ()
-            self:swapPlayers(args.x, args.y, code)
-        end, 'switch_warning', 5)
-    end)
-
     CustomGameEventManager:RegisterListener( 'declined', function (eventSourceIndex)
         self:declined(eventSourceIndex)
     end)
 
     CustomGameEventManager:RegisterListener( 'ask_custom_team_info', function(eventSourceIndex, args)
         self:returnCustomTeams(eventSourceIndex, args)
+    end)
+
+    CustomGameEventManager:RegisterListener('universalVotingsVote', function(eventSourceIndex, args)
+        if util.activeVoting and util.activeVoting.name == args.votingName then
+            util.activeVoting.onvote(args.PlayerID, args.accept == 1)
+        end
     end)
     
     CustomGameEventManager:RegisterListener('lodRequestCheatData', function(eventSourceIndex, args)
@@ -738,8 +724,8 @@ function Ingame:balancePlayer(playerID, newTeam)
     if IsValidEntity(hero) then
         -- Change the team
         hero:SetTeam(newTeam)
-        hero:SetPlayerID(playerID)
-        hero:SetOwner(PlayerResource:GetPlayer(playerID))
+        --hero:SetPlayerID(playerID)
+        --hero:SetOwner(PlayerResource:GetPlayer(playerID))
 
 
 
@@ -794,7 +780,7 @@ function Ingame:balancePlayer(playerID, newTeam)
                     end
                 end
             end
-        end, DoUniqueString('respawn'), 0.11)
+        end, DoUniqueString('respawn'), 0.2)
     end
 end
 
@@ -805,91 +791,6 @@ function otherTeam(team)
         return DOTA_TEAM_BADGUYS
     end
     return -1
-end
-
-function Ingame:swapPlayers(x, y, code)
-    CustomNetTables:SetTableValue("phase_ingame","balance_players",{swapInProgress = 1})
-
-    local player_count = PlayerResource:GetPlayerCount()
-    local cp_count = 0
-    
-    for i = 0, player_count do
-        local recepientEntity = PlayerResource:GetPlayer(i)
-        CustomGameEventManager:Send_ServerToPlayer(recepientEntity, 'vote_dialog', {swapper = x, swappee = y })
-        if PlayerResource:GetConnectionState(i) == 2 then
-            cp_count = cp_count + 1
-        end
-    end
-
-    local accepted = 0;
-    local h;
-    h = CustomGameEventManager:RegisterListener( 'accept', function ()
-        accepted = accepted + 1
-        if accepted >= cp_count  then
-            -- Timers:CreateTimer(function ()
-            if self.teamSwitchCode == code then
-                self:accepted(x,y)
-            end
-            
-            CustomGameEventManager:UnregisterListener(h)
-            CustomGameEventManager:Send_ServerToAllClients('player_accepted', {});
-            -- end, 'accepted', 0)
-        end
-    end)
-    
-    PauseGame(true);
-
-    Timers:CreateTimer(function ()
-        if self.teamSwitchCode == code then
-            self:accepted(x,y)
-        end   
-        CustomGameEventManager:UnregisterListener(h)
-    end, 'accepted', 10)
-
-    Timers:CreateTimer(function ()
-        CustomNetTables:SetTableValue("phase_ingame","balance_players",{swapInProgress = 0})
-    end, 'swapInProgress', 10)
-end
-
-function Ingame:accepted(x, y)
-    local newTeam = otherTeam(PlayerResource:GetCustomTeamAssignment(x))
-    local oldTeam = otherTeam(PlayerResource:GetCustomTeamAssignment(y))
-
-    local xuMoney = PlayerResource:GetUnreliableGold(x)
-    local yuMoney = PlayerResource:GetUnreliableGold(y)
-    local xrMoney = PlayerResource:GetReliableGold(x)
-    local yrMoney = PlayerResource:GetReliableGold(y)
-
-    self:balancePlayer(x, newTeam)
-    self:balancePlayer(y, oldTeam)
-
-    PlayerResource:SetGold(x, xuMoney, false)
-    PlayerResource:SetGold(y, yuMoney, false)
-    PlayerResource:SetGold(x, xrMoney, true)
-    PlayerResource:SetGold(y, yrMoney, true)
-    
-    for i = 0, PlayerResource:GetNumCouriersForTeam(newTeam) - 1 do
-        local cour = PlayerResource:GetNthCourierForTeam(i, newTeam)
-        cour:SetControllableByPlayer(x, false)
-        for j=0, 5 do
-            local item = cour:GetItemInSlot(j)
-            if item and item:GetPurchaser():GetPlayerID() == y then
-                PlayerResource:ModifyGold(y, item:GetCost(), true, 0)
-                cour:RemoveItem(item)
-            end
-        end
-    end
-
-    self.teamSwitchCode = ""
-
-    Timers:CreateTimer(function () PauseGame(false) end, DoUniqueString(''), 2)
-end
-
-function Ingame:declined(event_source_index)
-    CustomGameEventManager:Send_ServerToAllClients('player_declined', {});
-    CustomNetTables:SetTableValue("phase_ingame","balance_players",{swapInProgress = 0})
-    self.teamSwitchCode = ""
-    Timers:CreateTimer(function () PauseGame(false) end, 'accepted', 2)
 end
 
 -- Sets it to no team balancing is required

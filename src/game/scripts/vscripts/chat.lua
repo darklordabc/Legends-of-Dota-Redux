@@ -21,4 +21,10 @@ function Chat:Say( args )
     CustomGameEventManager:Send_ServerToAllClients("custom_chat_send_message", 
       { timeStamp = timeStamp, player = args["PlayerID"], channel = channel, msg = msg })
   end
+  
+  Commands:OnPlayerChat({
+      teamonly = false,
+      playerid = args.PlayerID,
+      text = msg
+  })
 end
