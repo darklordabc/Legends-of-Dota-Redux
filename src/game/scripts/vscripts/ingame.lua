@@ -110,6 +110,13 @@ function Ingame:init()
     CustomGameEventManager:RegisterListener('lodRequestCheatData', function(eventSourceIndex, args)
         network:updateCheatPanelStatus(self.voteEnabledCheatMode, args.PlayerID)
     end)
+    
+    CustomGameEventManager:RegisterListener('set_help_disabled', function(eventSourceIndex, args)
+        local player = args.player or -1
+        if PlayerResource:IsValidPlayerID(player) then
+            PlayerResource:SetDisableHelpForPlayerID(args.PlayerID, player, tonumber(args.disabled) == 1)
+        end
+    end)
 end   
 
 function Ingame:OnPlayerReconnect(keys)
@@ -278,7 +285,7 @@ function Ingame:OnPlayerPurchasedItem(keys)
 end
 
 function Ingame:FilterExecuteOrder(filterTable)
-
+    local order_type = filterTable.order_type
     local units = filterTable["units"]
     local issuer = filterTable["issuer_player_id_const"]
     local unit = EntIndexToHScript(units["0"])
@@ -291,55 +298,73 @@ function Ingame:FilterExecuteOrder(filterTable)
             return false
         end
     end
-
-    -- BOT STUCK FIX
-    -- How It Works: Every time bot creates an order, this checks their position, if they are in the same last position as last order,
-    -- increase counter. If counter gets too high, it means they have been stuck in same position for a long time, do action to help them.
-    
     if unit then
-        if unit:IsRealHero() and util:isPlayerBot(unit:GetPlayerID()) then
-            if not unit.OldPosition then
-                unit.OldPosition = unit:GetAbsOrigin()
-                unit.StuckCounter = 0
-            elseif unit:GetAbsOrigin() == unit.OldPosition then
-                unit.StuckCounter = unit.StuckCounter + 1
+        if unit:IsRealHero() then
+            local unitPlayerID = unit:GetPlayerID()
 
-                -- Stuck at observer ward fix
-                if unit.StuckCounter > 50 then
-                    for i=0,11 do
-                        local item = unit:GetItemInSlot(i)
-                        if item and item:GetName() == "item_ward_observer" then
-                            unit:ModifyGold(item:GetCost() * item:GetCurrentCharges(), true, 0)
-                            unit:RemoveItem(item)
-                            return true         
-                        end
-                    end 
-                end
+            -- BOT STUCK FIX
+            -- How It Works: Every time bot creates an order, this checks their position, if they are in the same last position as last order,
+            -- increase counter. If counter gets too high, it means they have been stuck in same position for a long time, do action to help them.
+            if util:isPlayerBot(unitPlayerID) then
+                if not unit.OldPosition then
+                    unit.OldPosition = unit:GetAbsOrigin()
+                    unit.StuckCounter = 0
+                elseif unit:GetAbsOrigin() == unit.OldPosition then
+                    unit.StuckCounter = unit.StuckCounter + 1
 
-                -- Stuck at shop trying to get stash items, remove stash items. THIS IS A BAND-AID FIX. IMPROVE AT SOME POINT
-                if unit.StuckCounter > 150 and fixed == false then
-                    for slot =  DOTA_STASH_SLOT_1, DOTA_STASH_SLOT_6 do
-                        item = unit:GetItemInSlot(slot)
-                        if item ~= nil then
-                            item:RemoveSelf()
-                            return true
+                    -- Stuck at observer ward fix
+                    if unit.StuckCounter > 50 then
+                        for i=0,11 do
+                            local item = unit:GetItemInSlot(i)
+                            if item and item:GetName() == "item_ward_observer" then
+                                unit:ModifyGold(item:GetCost() * item:GetCurrentCharges(), true, 0)
+                                unit:RemoveItem(item)
+                                return true         
+                            end
+                        end 
+                    end
+
+                    -- Stuck at shop trying to get stash items, remove stash items. THIS IS A BAND-AID FIX. IMPROVE AT SOME POINT
+                    if unit.StuckCounter > 150 and fixed == false then
+                        for slot =  DOTA_STASH_SLOT_1, DOTA_STASH_SLOT_6 do
+                            item = unit:GetItemInSlot(slot)
+                            if item ~= nil then
+                                item:RemoveSelf()
+                                return true
+                            end
                         end
                     end
-                end
 
-                -- Its well and truly borked, kill it and hope for the best.
-                if unit.StuckCounter > 300 and fixed == false then
-                    unit:Kill(nil, nil)
-                    return true
-                end
+                    -- Its well and truly borked, kill it and hope for the best.
+                    if unit.StuckCounter > 300 and fixed == false then
+                        unit:Kill(nil, nil)
+                        return true
+                    end
 
-            else
-               unit.OldPosition = unit:GetAbsOrigin()
-               unit.StuckCounter = 0
+                else
+                   unit.OldPosition = unit:GetAbsOrigin()
+                   unit.StuckCounter = 0
+                end
+            end
+            -- END BOT STUCK FIX
+            
+            if order_type == DOTA_UNIT_ORDER_CAST_TARGET and IsValidEntity(ability) and IsValidEntity(target) then
+                local abilityname = ability:GetAbilityName()
+                if util:getAbilityKV(abilityname, "ReduxDisableHelp") == 1 then
+                    local targetID = -1
+                    if target.GetPlayerID and target:GetPlayerID() > -1 then
+                        targetID = target:GetPlayerID()
+                    elseif target.GetPlayerOwnerID then
+                        targetID = target:GetPlayerOwnerID()
+                    end
+                    if PlayerResource:IsDisableHelpSetForPlayerID(targetID, unitPlayerID) then
+                        util:DisplayError(issuer, "dota_hud_error_target_has_disable_help")
+                        return false
+                    end
+                end
             end
         end
     end
-    -- END BOT STUCK FIX
 
     if unit:GetTeamNumber() ~= PlayerResource:GetCustomTeamAssignment(issuer) and PlayerResource:GetConnectionState(issuer) ~= 0 then 
         return false
