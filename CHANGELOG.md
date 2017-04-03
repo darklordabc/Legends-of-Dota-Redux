@@ -28,6 +28,7 @@ All notable changes to this project will be documented in this file.
 - Added Keen heroes abilities from Next Generation mod (4 abilities)
 - Added most Uther heroes abilities from Next Generation mod (3 abilities)
 - Added Hylonome heroes abilities from Next Generation mod (4 abilities)
+- Shadow Fiend Bot now gets 2 extra abiliites like the other bots
 
 ## 7.1 - Steam Version
 - Added Dagon and Spawn golem cheat
