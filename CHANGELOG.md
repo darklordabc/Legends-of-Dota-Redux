@@ -26,6 +26,7 @@ All notable changes to this project will be documented in this file.
 - Revamped Voting: Added GUI popup, Troll Combos and Single Player abilities now require a vote. 
 - Cheats can now be applied to other heros (as if they used it) by using #1-20, type -pid to see valid player ids to use
 - Added Keen heroes abilities from Next Generation mod (4 abilities)
+- Added most of Uther's abilities from next generation mod (3 abilities)
 
 ## 7.1 - Steam Version
 - Added Dagon and Spawn golem cheat

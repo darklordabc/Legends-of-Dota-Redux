@@ -8760,6 +8760,55 @@
     "DOTA_Tooltip_Modifier_slag_armor_debuff"                                       "Slag Armor"
     "DOTA_Tooltip_Modifier_slag_armor_debuff_Description"                           "Armor reduced by %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS% per stack."
  
+     //-------------------------------------------------------------------
+    // Uther, the Lightbringer
+    //-------------------------------------------------------------------
+    "DOTA_Tooltip_ability_uther_Hurl_Hammer"                                "Hurl Hammer"
+    "DOTA_Tooltip_ability_uther_Hurl_Hammer_Description"                    "Hurls the Lightbringer's hammer at the targeted location, dealing magical damage and stunning nearby units upon landing. Lightbringer can't attack enemies without his hammer, but is able to run faster. After 2 seconds, Lightbringer is able to retrieve his hammer with a subability. \nUpgradable by Aghanim's Scepter."
+    "DOTA_Tooltip_ability_uther_Hurl_Hammer_Aghanim_description"            "Doubles the size of the hammer and increases damage."
+    "DOTA_Tooltip_ability_uther_Hurl_Hammer_Note0"                          "Lightbringer can still attack allies with Argent Smite if he doesn't wield his hammer."
+    "DOTA_Tooltip_ability_uther_Hurl_Hammer_Lore"                           "The lightbringers hammer has smote many an undead ghoul, and never does it leave his hands for long."
+    "DOTA_Tooltip_ability_uther_Hurl_Hammer_Hammer_Size"                    "HAMMER SIZE:"
+    "DOTA_Tooltip_ability_uther_Hurl_Hammer_scepter_Hammer_Size"            "SCEPTER HAMMER SIZE:"
+    "DOTA_Tooltip_ability_uther_Hurl_Hammer_stun_duration"                  "STUN DURATION:"
+    "DOTA_Tooltip_ability_uther_Hurl_Hammer_Movement_Speed_Bonus"           "%MOVEMENT SPEED BONUS:"
+    "DOTA_Tooltip_ability_uther_Hurl_Hammer_Automatic_Return"               "AUTOMATIC RETURN:"
+    "DOTA_Tooltip_ability_uther_Hurl_Hammer_ministun_duration"              "MINISTUN DURATION:"
+    "DOTA_Tooltip_ability_uther_Hurl_Hammer_hammer_speed"                   "HAMMER SPEED:"
+    "DOTA_Tooltip_ability_uther_Hurl_Hammer_scepter_damage"                 "SCEPTER DAMAGE:"
+    "DOTA_Tooltip_modifier_hammer_thrown"                               "Hammer Thrown"
+    "DOTA_Tooltip_modifier_hammer_thrown_Description"                   "You have lost your hammer, you can't attack enemies."
+    "DOTA_Tooltip_modifier_hammer_stun"                                 "Stunned"
+    "DOTA_Tooltip_modifier_hammer_stun_Description"                     "Stunned by Lightbringer's hammer."
+
+    "DOTA_Tooltip_ability_uther_Hail_Back"                             "Hail Back"
+    "DOTA_Tooltip_ability_uther_Hail_Back_Description"                 "Pull Lightbringer's hammer back to himself."
+
+
+    "DOTA_Tooltip_ability_uther_Threatening_Bolt"                                           "Threatening Bolt"
+    "DOTA_Tooltip_ability_uther_Threatening_Bolt_Description"                               "Throw a bolt towards the targeted location, which can be controlled and turned while it travels. The bolt explodes upon dying, traveling a certain distance, or striking the Lightbringer's Hammer, dealing heavy magical damage."
+    "DOTA_Tooltip_ability_uther_Threatening_Bolt_Lore"                                      "The Lightbringer has mastered the use of summoning holy spirits to release their power with a strike of his hammer."
+    "DOTA_Tooltip_ability_uther_Threatening_Bolt_bolt_speed"                                "BOLT SPEED:"
+    "DOTA_Tooltip_ability_uther_Threatening_Bolt_damage"                                    "DAMAGE:"
+    "DOTA_Tooltip_ability_uther_Threatening_Bolt_attacks_needed"                            "ATTACKS NEEDED:"
+    "DOTA_Tooltip_ability_uther_Threatening_Bolt_explosion_radius"                          "EXPLOSION RADIUS:"
+
+
+    "DOTA_Tooltip_ability_uther_Argent_Smite"                                               "Argent Smite"
+    "DOTA_Tooltip_ability_uther_Argent_Smite_Description"                                   "While toggled, allows Lightbringer to heal allied units and towers by attacking them.  Heal amount is based on his base attack damage and has a cooldown per hit. Grants bonus attack range when attacking allies."
+    "DOTA_Tooltip_ability_uther_Argent_Smite_Lore"                                          "Miraculous power flows from the lightbringers hand, and that which crushes instead mends and makes whole again."
+    "DOTA_Tooltip_ability_uther_Argent_Smite_Cooldown_Factor"                               "COOLDOWN PER HIT:"
+    "DOTA_Tooltip_ability_uther_Argent_Smite_Range_Bonus"                                   "RANGE BONUS:"
+    "DOTA_Tooltip_ability_uther_Argent_Smite_Heal_Factor"                                   "HEAL FACTOR:"
+    "DOTA_Tooltip_ability_uther_Argent_Smite_Tower_Heal_Factor"                             "TOWER HEAL FACTOR:"
+
+
+    "DOTA_Tooltip_ability_uther_Omniscience_wave"                           "Global Dispel"
+    "DOTA_Tooltip_ability_uther_Omniscience_wave_Description"               "The Lightbringer creates an expanding wave of light, dispelling magic from allies and enemies as it travels across the map."
+    "DOTA_Tooltip_ability_uther_Omniscience_wave_Lore"                      "The light of heaven shines with the brilliance of a thousand suns."
+
+    "npc_bolt_unit"     "Threatening Bolt"
+    "npc_hammer_unit"   "The Lightbringer"
 
 }
 
