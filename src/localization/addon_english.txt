@@ -1425,6 +1425,10 @@
     "credit_garden_blue_blossom_base"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
     "credit_garden_yellow_daisy_base"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
     "credit_garden_purple_lotus_base"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
+    "credit_keen_commander_mortar_shot"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
+    "credit_keen_commander_recon_systems"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
+    "credit_keen_commander_siege_mode"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
+    "credit_keen_commander_slag_armor"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
     "credit_imba_omniknight_degen_aura"         "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_omniknight_purification"        "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_dazzle_shallow_grave"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
@@ -8687,6 +8691,76 @@
 
     "DOTA_Tooltip_modifier_item_skadi_consumable_slow" "Eye of Skadi Cold Attack"
     "DOTA_Tooltip_modifier_item_skadi_consumable_slow_Description"     "Movement speed reduced by %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%% and attack speed reduced by %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT%."
+
+    //-------------------------------------------------------------------
+    // Karnage, the Keen Commander
+    //-------------------------------------------------------------------
+    "DOTA_Tooltip_ability_keen_commander_recon_systems"                               "Recon Systems"
+    "DOTA_Tooltip_ability_keen_commander_recon_systems_Description"                   "Karnage embeds a recon bot in a nearby tree. Recon bots will cause a damaging shock which purges enemies who enter their area of effect, and can only be destroyed by destroying their parent tree."
+    "DOTA_Tooltip_ability_keen_commander_recon_systems_Lore"                          "Unlike one of his cousins, Karnage realized the potential of using surrounding flora to gain a tactical advantage"
+    "DOTA_Tooltip_ability_keen_commander_recon_systems_shock_range"                   "SHOCK RANGE:"
+    "DOTA_Tooltip_ability_keen_commander_recon_systems_slow_duration"                 "PURGE DURATION:"
+    "DOTA_Tooltip_ability_keen_commander_recon_systems_shock_damage"                  "SHOCK DAMAGE:"
+    "DOTA_Tooltip_ability_keen_commander_recon_systems_shock_null_duration"           "SHOCK INTERVAL:"
+    "DOTA_Tooltip_ability_keen_commander_recon_systems_shock_bot_duration"            "BOT DURATION:"
+    "DOTA_Tooltip_Modifier_recon_systems_bot_aura"                                    "Recon Aura"
+    "DOTA_Tooltip_Modifier_recon_systems_bot_aura_Description"                        "Shocks nearby enemies, purging them for a duration. "
+    "DOTA_Tooltip_Modifier_recon_systems_bot_slow"                                    "Shocked!"
+    "DOTA_Tooltip_Modifier_recon_systems_bot_slow_Description"                        "Purged. Movement slowed by 100%d%%"
+    "npc_dota_unit_recon"   "Recon Bot"
+    
+    "DOTA_Tooltip_ability_keen_commander_guerrilla_mode"                              "Guerrilla Mode"
+    "DOTA_Tooltip_ability_keen_commander_guerrilla_mode_Description"                  "Karnage packs up his Siege Equipment, regaining his mobility and losing any bonuses he gained while in Siege Mode."
+    "DOTA_Tooltip_ability_keen_commander_guerrilla_mode_Lore"                         "Karnage is ready to roll out!"
+    
+    "DOTA_Tooltip_ability_keen_commander_mortar_shot"                                 "Mortar Shots"
+    "DOTA_Tooltip_ability_keen_commander_mortar_shot_Description"                     "Karnage fires a barrage of mortar shots, starting from maximum range and gradually reducing range with each shot. While in Siege Mode, Karnage can raze large areas at a much greater range in half the time."
+    "DOTA_Tooltip_ability_keen_commander_mortar_shot_Lore"                            "The resounding booms of Karnage's mortar strikes - and his subsequent cackling - can be heard for miles across the battlefield."
+    "DOTA_Tooltip_ability_keen_commander_mortar_shot_radius"                          "RADIUS:"
+    "DOTA_Tooltip_ability_keen_commander_mortar_shot_shots"                           "SHOTS:"  
+    "DOTA_Tooltip_ability_keen_commander_mortar_shot_mortar_damage"                   "MORTAR DAMAGE:"
+    "DOTA_Tooltip_ability_keen_commander_mortar_shot_shot_interval"                   "SHOT INTERVAL:"
+    "DOTA_Tooltip_ability_keen_commander_mortar_shot_debuff_duration"                 "DEBUFF DURATION:"
+
+    "DOTA_Tooltip_ability_keen_commander_siege_mode"                                  "Siege Mode"
+    "DOTA_Tooltip_ability_keen_commander_siege_mode_Description"                      "Karnage deploys and mans his armored siege equipment, increasing the range and potency of his abilities at the cost of mobility, a fixed attack time, and a 'blind spot' which affects his minimum attack range. Karnage's heavy siege cannon also grants him greater damage and a splash effect with each basic attack. While in Siege Mode, this ability is replaced with Guerrilla Mode."
+    "DOTA_Tooltip_ability_keen_commander_siege_mode_Lore"                             "Karnage is ready to gear up!"
+    "DOTA_Tooltip_ability_keen_commander_siege_mode_armor_bonus"                      "ARMOR BONUS:"
+    "DOTA_Tooltip_ability_keen_commander_siege_mode_turn_rate_slow"                   "TURN RATE SLOW:"
+    "DOTA_Tooltip_ability_keen_commander_siege_mode_splash_radius"                    "SPLASH RADIUS:"
+    "DOTA_Tooltip_ability_keen_commander_siege_mode_transform_time"                   "TRANSFORM TIME:"
+    "DOTA_Tooltip_ability_keen_commander_siege_mode_mortar_shot_range"                "MORTAR SHOT RANGE:"
+    "DOTA_Tooltip_ability_keen_commander_siege_mode_missile_speed"                    "MISSILE SPEED:"
+    "DOTA_Tooltip_ability_keen_commander_siege_mode_attack_bonus"                     "ATTACK BONUS:"
+    "DOTA_Tooltip_ability_keen_commander_siege_mode_attack_bonus_range"               "ATTACK BONUS RANGE:"
+    "DOTA_Tooltip_ability_keen_commander_siege_mode_attack_min_range"                 "ATTACK MIN RANGE:"
+    "DOTA_Tooltip_ability_keen_commander_siege_mode_seconds_per_attack"               "SECONDS PER ATTACK:"
+    "DOTA_Tooltip_Modifier_siege_mode"                                              "Siege Mode"
+    "DOTA_Tooltip_Modifier_siege_mode_Description"                                  "Increases armor, attack damage, and attack range significantly at the cost of mobility, a fixed attackspeed, and a minimum attack range."
+    "DOTA_Tooltip_Modifier_siege_silence"                                           "Transforming"
+    
+    "DOTA_Tooltip_ability_keen_commander_mortar_shot_siege"                           "Mortar Shot"
+    "DOTA_Tooltip_ability_keen_commander_mortar_shot_siege_Description"               "Karnage targets an area with an explosive mortar shot, dealing damage."
+    "DOTA_Tooltip_ability_keen_commander_mortar_shot_siege_radius"                    "RADIUS:"
+    "DOTA_Tooltip_ability_keen_commander_mortar_shot_siege_duration"                  "DURATION:"
+    "DOTA_Tooltip_ability_keen_commander_mortar_shot_siege_mortar_damage"             "MORTAR DAMAGE:"
+    "DOTA_Tooltip_ability_keen_commander_mortar_shot_siege_debuff_duration"           "DEBUFF DURATION:"
+
+    "DOTA_Tooltip_ability_keen_commander_slag_armor"                                  "Slag Armor"
+    "DOTA_Tooltip_ability_keen_commander_slag_armor_Description"                      "Karnage empowers his next shot with a powerful anti-armor solution that reduces armor and deals damage over time. When fired in Siege Mode, it will apply Slag Armor to multiple units through splash damage."
+    "DOTA_Tooltip_ability_keen_commander_slag_armor_Note0"                            "Armor reduction stacks, but damage doesn't."
+    "DOTA_Tooltip_ability_keen_commander_slag_armor_Lore"                             "The Keen Commander's enemies dread this scalding and remarkably stinky substance that eats away at their armor."
+    "DOTA_Tooltip_ability_keen_commander_slag_armor_damage_per_second"                "DAMAGE PER SECOND:"
+    "DOTA_Tooltip_ability_keen_commander_slag_armor_duration"                         "DURATION:"
+    "DOTA_Tooltip_ability_keen_commander_slag_armor_armor_reduction"                  "ARMOR REDUCTION:"
+    "DOTA_Tooltip_ability_keen_commander_slag_armor_slow_duration"                    "SLOW DURATION:"
+    "DOTA_Tooltip_ability_keen_commander_slag_armor_ms_slow"                          "MS SLOW:"
+    "DOTA_Tooltip_ability_keen_commander_slag_armor_siege_radius"                     "SIEGE RADIUS:"
+    "DOTA_Tooltip_ability_keen_commander_slag_armor_Aghanim_Description"              "Slag Armor deals 5 more damage per second for every 1 armor on enemy units."
+    "DOTA_Tooltip_Modifier_slag_armor_debuff"                                       "Slag Armor"
+    "DOTA_Tooltip_Modifier_slag_armor_debuff_Description"                           "Armor reduced by %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS% per stack."
+ 
+
 }
 
 

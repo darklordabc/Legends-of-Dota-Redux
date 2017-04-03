@@ -208,6 +208,7 @@
 #base "abilities\ebf\ebf_rubick_arcane_echo_OP.txt"
 #base "abilities\ebf\ebf_troll_warlord_multistrike.txt"
 #base "abilities\ebf\ebf_underlord_expulsion.txt"
+#base "abilities\generation\keen.txt"
 #base "abilities\generation\cherub_explosive_spore.txt"
 #base "abilities\generation\cherub_flower_garden.txt"
 #base "abilities\generation\cherub_sleep_cloud.txt"
