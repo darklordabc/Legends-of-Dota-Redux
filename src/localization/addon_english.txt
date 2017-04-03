@@ -8879,6 +8879,64 @@
     "DOTA_Tooltip_ability_hylonome_ultimate_lore"                   "Simply drawing blood gives the weilder a glimpse of this accursed sword's power."
     "DOTA_Tooltip_ability_hylonome_ulitmate_description"                "Dark tendrils burst forth from Hylonome's chest that lash out at nearby enemies. Each tendril's attack deals Pure damage based on a percentage of Hylonome's base damage."
 
+    //------------------------------------------------------------------
+    // Scaw'mar, the Wildwing Scryer
+    //------------------------------------------------------------------
+    "DOTA_Tooltip_Ability_scawmar_illusion_line"            "Illusion Line"
+    "DOTA_Tooltip_Ability_scawmar_illusion_line_Description"    "Scaw'mar soars to the targeted area along with four illusions shuffled in a horizontal line, disjointing projectiles and becoming invulnerable briefly. If Scaw'mar resides in the spirit realm, a fifth illusion will be spawned and Scaw'mar will remain at his current position."
+    "DOTA_Tooltip_Ability_scawmar_illusion_line_Range"              "RANGE:"
+    "DOTA_Tooltip_Ability_scawmar_illusion_line_Illusion_count"     "NUMBER OF ILLUSIONS:"
+    "DOTA_Tooltip_Ability_scawmar_illusion_line_Incoming_damage"        "%ILLUSION INCOMING DAMAGE:"
+    "DOTA_Tooltip_Ability_scawmar_illusion_line_Outgoing_damage_display"    "%ILLUSION OUTGOING DAMAGE:"
+    "DOTA_Tooltip_Ability_scawmar_illusion_line_Duration"                   "ILLUSION DURATION:"
+
+    // Old spell
+    "DOTA_Tooltip_Ability_scawmar_fade_blink"           "Fade Blink"
+    "DOTA_Tooltip_Ability_scawmar_fade_blink_Description"    "CHANNELED - Fade out over a duration, then blink to the targeted location and fade back in. While fading out, Scaw'mar becomes invisible. While fading in, he cannot move, attack, or cast spells."
+    "DOTA_Tooltip_Ability_scawmar_fade_blink_Fade_time"     "FADE TIME:"
+    "DOTA_Tooltip_Ability_scawmar_fade_blink_Fade_delay"    "INVISIBILITY DELAY:"
+    "DOTA_Tooltip_Ability_scawmar_fade_blink_Range"         "CAST RANGE:"
+
+    // New spell
+    "DOTA_Tooltip_Ability_scawmar_spirits_away"         "Spirited Away"
+    "DOTA_Tooltip_Ability_scawmar_spirits_away_Description"     "CHANNELED - Scaw'mar fades into the spirit realm after 2 seconds, becoming invulnerable and completely undetectable for a duration, as well as gaining flying movement. Scaw'mar cannot attack in the spirit realm, but can cast spells. When the effect ends, Scaw'mar must fade back to reality, becoming vulnerable again."
+    "DOTA_Tooltip_Ability_scawmar_spirits_away_Note0"           "Scaw'mar is considered stunned when fading in, and can be targeted with attacks or spells. His health bar will remain hidden until he finishes."
+    "DOTA_Tooltip_Ability_scawmar_spirits_away_Fade_time"       "FADE TIME:"
+    "DOTA_Tooltip_Ability_scawmar_spirits_away_Duration"        "DURATION:"
+
+    "DOTA_Tooltip_modifier_spirit_realm"                    "Spirit Realm"
+    "DOTA_Tooltip_modifier_spirit_realm_Description"        "Scaw'mar is completely invulnerable and undetectable with flying movement. Cannot attack."
+    "DOTA_Tooltip_modifier_spirit_return"                   "Spirit Return"
+
+
+    "DOTA_Tooltip_Ability_scawmar_scryers_circle"           "Scryer's Circle"
+    "DOTA_Tooltip_Ability_scawmar_scryers_circle_Description"   "Scaw'mar surrounds a targeted area with nine Scryer illusions. Scryer illusions cannot be controlled and will automatically begin channeling fire bombs targeted at the center of the circle, dealing heavy magical damage in a radius after a delay."
+    "DOTA_Tooltip_Ability_scawmar_scryers_circle_Radius"            "CIRCLE RADIUS:"
+    "DOTA_Tooltip_Ability_scawmar_scryers_circle_Illusion_count"        "SCRYER ILLUSIONS:"
+    "DOTA_Tooltip_Ability_scawmar_scryers_circle_Illusion_damage_taken" "%ILLUSION INCOMING DAMAGE:"
+    "DOTA_Tooltip_Ability_scawmar_scryers_circle_Fire_bomb_delay_tt"    "FIRE BOMB DELAY:"
+    "DOTA_Tooltip_Ability_scawmar_scryers_circle_Fire_bomb_damage"      "FIRE BOMB DAMAGE:"
+    "DOTA_Tooltip_Ability_scawmar_scryers_circle_Fire_bomb_radius"      "FIRE BOMB RADIUS:"
+
+    "DOTA_Tooltip_Ability_scryer_fire_bomb"         "Fire Bomb"
+
+    "DOTA_Tooltip_Ability_scawmar_mind_control"         "Mesmerize"
+    "DOTA_Tooltip_Ability_scawmar_mind_control_Description"     "Scaw'mar mesmerizes an enemy hero, causing the hero to lose all vision and walk uncontrollably towards Scaw'mar at a reduced movement speed. The effect ends if the mesmerized hero takes a certain amount of damage. Mesmerized targets can be attacked by both teams.\nUpgradable by Aghanim's Scepter."
+    "DOTA_Tooltip_Ability_scawmar_mind_control_Duration"            "MAX DURATION:"
+    "DOTA_Tooltip_Ability_scawmar_mind_control_Damage_threshold"    "DAMAGE TO BREAK:"
+    "DOTA_Tooltip_Ability_scawmar_mind_control_Movement_slow"       "%MOVEMENT SLOW:"
+    "DOTA_Tooltip_Ability_scawmar_mind_control_Aghanim_Description"     "Mesmerize now has 3 charges."
+
+    
+    
+    // Modifiers
+    "DOTA_Tooltip_Modifier_fade_blink"          "Fading In"
+
+    "DOTA_Tooltip_Modifier_mind_control"        "Mesmerized"
+    "DOTA_Tooltip_Modifier_mind_control_Description"        "This hero is uncontrollably walking towards Scaw'mar."
+
+    "DOTA_Tooltip_Modifier_mesmerize_charges"       "Mesmerize Charges"
+
 
 }
 

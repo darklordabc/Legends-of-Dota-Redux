@@ -1,0 +1,1068 @@
+"DOTAAbilities"
+{
+    //=================================================================================================================
+    //
+    //
+    //
+    //
+    //
+    //
+    //                                  Scaw'mar, the Wildwing Scryer   
+    //
+    //
+    //
+    //
+    //
+    //
+    //=================================================================================================================
+    //=================================================================================================================
+    // Scaw'mar - Spirited Away
+    //=================================================================================================================
+    "scawmar_spirits_away"
+    {
+        "BaseClass"             "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"        
+        "FightRecapLevel"               "1"
+        "AbilityTextureName"            "custom/scawmar_fade_blink"
+        "AbilityProcsMagicStick"        "0"
+        "AbilityCastAnimation"          "ACT_DOTA_CHANNEL_ABILITY_1"
+
+        "AbilityChannelTime"            "2.0"
+        "AbilityCooldown"               "80 60 40 20"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "fade_time"                 "2.0"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "duration"                  "8"
+            }
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "channel_time"              "3"
+            }
+        }
+        "precache"
+        {
+            "particle"  "particles/econ/items/puck/puck_alliance_set/puck_illusory_orb_sphere_halo_whirl_aproset.vpcf"
+            "particle"  "particles/units/heroes/hero_phoenix/phoenix_death.vpcf"
+            "particle"  "particles/status_fx/status_effect_item_editor.vpcf" 
+            "particle"  "particles/econ/items/invoker/invoker_ti6/invoker_tornado_child_ti6.vpcf"
+            "particle"  "particles/scawmar_spirit_return.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts"
+        }
+        "OnSpellStart"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_spirited_away"
+                "Target"
+                {
+                    "Center"    "CASTER"
+                    "Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+                }
+                "Duration"      "%channel_time"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Hero_Nevermore.ROS_Cast_Flames"
+                "Target"
+                {
+                    "Center"    "CASTER"
+                    "Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+                }
+            }
+        }
+        "OnChannelInterrupted"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/nextgeneration/hero_scaw/fade_blink.lua"
+                "Function"      "StopChannelingSound"
+            }
+            "RemoveModifier"
+            {
+                "ModifierName"  "modifier_spirited_away"
+                "Target"        "CASTER"
+            }
+        }
+        "OnChannelSucceeded"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_spirit_ghost"
+                "Target"        "CASTER"
+                "Duration"      "%duration + %fade_time"
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_spirit_realm"
+                "Target"        "CASTER"
+                "Duration"      "%duration"
+            }   
+        }
+        
+        "Modifiers"
+        {
+            "modifier_spirited_away"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsBuff"            "1"
+                "IsPurgable"        "0"
+
+                "EffectName"        "particles/units/heroes/hero_phoenix/phoenix_death.vpcf"
+                "EffectAttachType"  "follow_origin"
+
+            }
+            "modifier_spirit_realm"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsBuff"            "1"
+                "IsPurgable"        "0"
+                "StatusEffectName"      "particles/status_fx/status_effect_item_editor.vpcf"       
+                "StatusEffectPriority"  "20"
+            
+                "States"
+                {
+                    "MODIFIER_STATE_INVULNERABLE"       "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_ATTACK_IMMUNE"      "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_INVISIBLE"          "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_TRUESIGHT_IMMUNE"   "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NO_UNIT_COLLISION"  "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_FLYING"             "MODIFIER_STATE_VALUE_ENABLED"
+                }
+                "OnCreated"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Nevermore.ROS_Flames"
+                        "Target"        "CASTER"
+                    }
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_DeathProphet.Exorcism"
+                        "Target"        "CASTER"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "modifier_spirit_return"
+                        "Target"
+                        {
+                            "Center"    "CASTER"
+                            "Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+                        }
+                        "Duration"      "%fade_time"
+                    }
+                }
+            }
+            "modifier_spirit_ghost"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsBuff"            "1"
+                "IsPurgable"        "0"
+                "OverrideAnimation"     "ACT_DOTA_CHANNEL_ABILITY_1"
+
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "EffectName"        "particles/econ/items/invoker/invoker_ti6/invoker_tornado_child_ti6.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"            "CASTER"
+                    }
+                }
+            
+                "States"
+                {
+                    "MODIFIER_STATE_NO_HEALTH_BAR"      "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NOT_ON_MINIMAP"     "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_DISARMED"           "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+            "modifier_spirit_return"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsBuff"            "1"
+                "IsPurgable"        "0"
+
+                "OnCreated"
+                {
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/scawmar_spirit_return.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"
+                        {
+                            "Center"    "CASTER"
+                            "Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+                        }
+                    }
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Nevermore.ROS_Flames"
+                        "Target"
+                        {
+                            "Center"    "CASTER"
+                            "Flags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+                        }
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_scaw/fade_blink.lua"
+                        "Function"      "StopChannelingLoop"
+                    }
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_STUNNED"        "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+    }
+    //=================================================================================================================
+    // Scaw'mar - Fade Blink
+    //=================================================================================================================
+    "scawmar_fade_blink"
+    {
+        "BaseClass"             "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"     
+        "FightRecapLevel"               "1"
+        "AbilityTextureName"            "custom/scawmar_fade_blink"
+        "AbilityProcsMagicStick"        "1"
+    
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "particle"  "particles/units/heroes/hero_clinkz/clinkz_loadout.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
+        }
+    
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastPoint"              "0.0"
+        "AbilityChannelTime"            "2.5 2.2 1.9 1.6"
+        "AbilityCastRange"              "2400"
+        "AnimationPlaybackRate"         "1.5"
+    
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "25 20 15 10"
+    
+    
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "90"
+    
+    
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "range"                     "2400"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "fade_time"                 "2.5 2.2 1.9 1.6"
+            }           
+            "03"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "fade_delay"                "1.5 1.2 0.9 0.6"
+            }
+            "04"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "fade_invis_time"           "2.0"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/nextgeneration/hero_scaw/fade_blink.lua"
+                "Function"      "FadeBlinkSetPosition"
+                "Target"        "POINT"
+            }
+            "DelayedAction"
+            {
+                "Delay"     "%fade_delay"
+                "Action"    
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_scaw/fade_blink"
+                        "Function"      "ApplyInvisibility"
+                    }
+                }
+            }
+        }
+        "OnChannelSucceeded"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_fade_blink"
+                "Target"        "CASTER"
+                "Duration"      "%fade_time"
+            }
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/nextgeneration/hero_scaw/fade_blink.lua"
+                "Function"      "FadeBlinkActive"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_fade_blink"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "0"
+    
+                "OverrideAnimation"     "ACT_DOTA_CHANNEL_ABILITY_1"
+                
+                "States"
+                {
+                    "MODIFIER_STATE_STUNNED"        "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+            "modifier_fade_invis"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+            
+                "OnCreated"
+                {
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/units/heroes/hero_clinkz/clinkz_loadout.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"        
+                        {
+                            "Center"    "CASTER"
+                            "Flags"     "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+                        }
+                    }
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Jakiro.LiquidFire"
+                        "Target"        "CASTER"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/units/heroes/hero_clinkz/clinkz_loadout.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"        
+                        {
+                            "Center"    "CASTER"
+                            "Flags"     "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+                        }
+                    }
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Jakiro.LiquidFire"
+                        "Target"        "CASTER"
+                    }
+                }
+            }   
+        }
+    }
+    //=================================================================================================================
+    // Scaw'mar - Illusion Line
+    //=================================================================================================================
+    "scawmar_illusion_line"
+    {
+        "BaseClass"             "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT_TARGET"        
+        "FightRecapLevel"               "1"
+        "AbilityTextureName"            "custom/scawmar_illusion_line"
+        "AbilityProcsMagicStick"        "1"
+        "AbilityCastAnimation"          "ACT_DOTA_ATTACK"
+    
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "model"     "models/creeps/neutral_creeps/n_creep_vulture_a/n_creep_vulture_a.vmdl"
+            "particle"  "particles/units/heroes/hero_phoenix/phoenix_ambient.vpcf"
+            "particle"  "particles/scawmar_illusion_line_fireball.vpcf"
+            "particle"  "particles/units/heroes/hero_clinkz/clinkz_loadout.vpcf"
+            "particle"  "particles/units/heroes/hero_ember_spirit/ember_spirit_fire_remnant_trail.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
+        }
+    
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastPoint"              "0.25"
+        "AbilityCastRange"              "600 700 800 900"
+
+    
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "27 24 21 18"
+    
+    
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "110 120 130 140"
+    
+    
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "range"                             "600 700 800 900"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "illusion_delay"                    "0.8"
+            }
+            "03"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "illusion_count"                    "4"
+            }
+            "04"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "incoming_damage"                   "1000 800 600 400"
+            }
+            "05"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "outgoing_damage"                   "-90 -88 -86 -84"
+            }
+            "06"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "outgoing_damage_display"           "10 12 14 16"
+            }
+            "07"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "duration"                          "12"
+            }
+        }   
+        "OnSpellStart"
+        {
+            "CreateThinker"
+            {
+                "ModifierName"  "modifier_disappear_thinker"
+                "Target"        "CASTER"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Hero_Jakiro.LiquidFire"
+                "Target"        "CASTER"
+            }
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/nextgeneration/hero_scaw/illusion_line.lua"
+                "Function"      "CreateIllusions"
+                "Target"        "POINT"
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_illusion_fade_out"
+                "Target"        "CASTER"
+                "Duration"      "%illusion_delay"
+            }
+        }
+
+        "Modifiers"
+        {
+            "modifier_disappear_thinker"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+                "Duration"          "1"
+            
+                "EffectName"        "particles/units/heroes/hero_clinkz/clinkz_loadout.vpcf"
+                "EffectAttachType"  "follow_origin"
+            }
+            "modifier_illusion_fade_out"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+            
+                "States"
+                {
+                    "MODIFIER_STATE_INVISIBLE"          "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_TRUESIGHT_IMMUNE"   "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_ROOTED"         "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_INVULNERABLE"   "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+            "modifier_fire_spawn"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+                "Duration"          "0.5"
+            
+                "OnCreated"
+                {
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/units/heroes/hero_clinkz/clinkz_loadout.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"        
+                        {
+                            "Center"    "TARGET"
+                            "Flags"     "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+                        }
+                    }
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Jakiro.LiquidFire"
+                        "Target"        "TARGET"
+                    }
+                }
+            }
+        }
+    }
+    //=================================================================================================================
+    // Scaw'mar - Mind Control
+    //=================================================================================================================
+    "scawmar_mind_control"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET" 
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO" 
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "FightRecapLevel"               "2"
+        "AbilityTextureName"            "custom/scawmar_mesmerize"
+        "AbilityProcsMagicStick"        "1"
+        "HasScepterUpgrade"             "1"
+    
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastPoint"              "0.9"
+        "AbilityCastRange"              "400 500 600 700"
+        "AbilityCastRangeBuffer"        "200"
+        "AbilityCastAnimation"          "ACT_DOTA_CHANNEL_ABILITY_1"
+        "AnimationPlaybackRate"         "0.7"
+    
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "25"
+    
+    
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "150 175 200 225"
+    
+    
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "duration"                      "2.5 3.0 3.5 4.0"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "damage_threshold"              "100"
+            }
+            "03"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "movement_slow"                 "-40"
+            }
+            "04"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "scepter_maximum_charges"           "3"
+            }
+            "05"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "scepter_cooldown"                  "25"
+            }
+        }
+        "precache"
+        {
+            "particle"  "particles/scawmar_mind_control.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_puck.vsndevts"
+        }
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "EffectName"    "Hero_Puck.Phase_Shift"
+                "Target"        
+                {
+                    "Center"    "CASTER"
+                    "Flags"     "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+                }
+            }
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/nextgeneration/hero_scaw/mind_control.lua"
+                "Function"      "MindControlAdd"
+            }
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/nextgeneration/hero_scaw/mind_control.lua"
+                "Function"      "Mesmerize"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_mind_control_aghs"
+            {
+                "Passive"           "1"
+                "IsHidden"          "1"
+    
+                "ThinkInterval"  "1.0"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_scaw/mind_control.lua"
+                        "Function"      "CheckAghs"
+                    }
+                }
+            }
+            "modifier_mesmerize_charges"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsPurgable"        "0"
+                "IsBuff"            "1"
+    
+            }
+            "modifier_mind_control"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsPurgable"        "0"
+        
+                "EffectName"        "particles/scawmar_mind_control.vpcf"
+                "EffectAttachType"  "follow_overhead"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%movement_slow" 
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_SILENCED"           "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_DISARMED"           "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_COMMAND_RESTRICTED" "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_MUTED"              "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_PROVIDES_VISION"    "MODIFIER_STATE_VALUE_DISABLED"
+                }
+                "OnCreated"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Enigma.Midnight_Pulse"
+                        "Target"        "TARGET"
+                    }
+                }
+                "ThinkInterval"  "1"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_scaw/mind_control"
+                        "Function"      "MindControlThink"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_scaw/mind_control.lua"
+                        "Function"      "MindControlRemove"
+                    }
+                }       
+                "OnTakeDamage"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_scaw/mind_control.lua"
+                        "Function"      "MindControlDamageCheck"
+                        "DamageTaken"       "%attack_damage"
+                    }
+                }
+            }
+        }
+    }
+    //=================================================================================================================
+    // Scaw'mar - Scryer's Circle
+    //=================================================================================================================
+    "scawmar_scryers_circle"
+    {
+        "BaseClass"             "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "FightRecapLevel"               "1"
+        "AbilityTextureName"            "custom/scawmar_scryers_circle"
+        "AbilityProcsMagicStick"        "1"
+    
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "soundfile"         "soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
+            "soundfile"         "soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
+            "soundfile"         "soundevents/game_sounds_heroes/game_sounds_ogre_magi.vsndevts"
+            "soundfile"         "soundevents/game_sounds_heroes/game_sounds_phoenix.vsndevts"
+            "particle"          "particles/econ/items/magnataur/shock_of_the_anvil/magnataur_shockanvil.vpcf"
+            "particle"          "particles/units/heroes/hero_lina/lina_spell_light_strike_array.vpcf"
+            "particle"          "particles/units/heroes/hero_lina/lina_spell_light_strike_array_ray_team.vpcf"
+            "particle"          "particles/world_environmental_fx/fire_camp_01.vpcf"
+            "particle"          "particles/units/heroes/hero_warlock/warlock_rain_of_chaos_start.vpcf"
+            "particle"          "particles/units/heroes/hero_warlock/warlock_rain_of_chaos_explosion.vpcf"
+        }
+    
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastPoint"              "0.5"
+        "AbilityCastRange"              "1400"
+        "AOERadius"                 "600"
+    
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "65 55 45"
+    
+    
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "300 500 700"
+    
+    
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "radius"                        "600"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "illusion_count"                    "9"
+            }
+            "03"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "illusion_damage_taken"             "1000"
+            }
+            "04"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "fire_bomb_delay"                   "4.5"
+            }
+            "05"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "fire_bomb_delay_tt"                "5.0"
+            }
+            "06"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "fire_bomb_damage"                  "65 90 115"
+            }
+            "07"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "fire_bomb_radius"                  "600"
+            }
+            "08"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "spawn_delay"                   "0.5"
+            }
+        }
+        "OnUpgrade"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/nextgeneration/hero_scaw/scryers_circle.lua"
+                "Function"      "LevelUpAbility"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/nextgeneration/hero_scaw/scryers_circle.lua"
+                "Function"      "ScryerProjectiles"
+                "Target"        "POINT"
+            }
+            "CreateThinker"
+            {
+                "ModifierName"  "modifier_scryer_circle_spawn"
+                "Target"        "POINT"
+            }
+            "DelayedAction"
+            {
+                "Delay"     "%spawn_delay"
+                "Action"    
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_scaw/scryers_circle.lua"
+                        "Function"      "CreateScryerIllusions"
+                        "Target"        "POINT"
+                    }
+                    "CreateThinker"
+                    {
+                        "ModifierName"  "modifier_scryer_circle_countdown"
+                        "Target"        "POINT"
+                    }
+                }
+            }
+            
+        }
+        "Modifiers"
+        {
+            "modifier_scryer_circle_spawn"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+                "Duration"          "%spawn_delay"
+                "OnCreated"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Magnataur.ShockWave.Particle.Anvil"
+                        "Target"        "TARGET"
+                    }
+                }
+            }
+            "modifier_scryer_circle_countdown"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "0"
+                "Duration"          "%fire_bomb_delay_tt"
+            
+                "OnCreated"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Phoenix.FireSpirits.Cast"
+                        "Target"        "CASTER"
+                    }
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Phoenix.FireSpirits.Launch"
+                        "Target"        "TARGET"
+                    }
+                    "AttachEffect"
+                    {
+                        "EffectName"        "particles/world_environmental_fx/fire_camp_01.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"            "TARGET"
+                    }
+                }
+                "ThinkInterval"  "0.75" 
+                "OnIntervalThink"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Phoenix.FireSpirits.Launch"
+                        "Target"        "TARGET"
+                    }
+                }
+            }
+        }
+    }
+    "scryer_fire_bomb"
+    {
+        "BaseClass"             "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "FightRecapLevel"               "1"
+        "AbilityTextureName"            "custom/scawmar_scryers_circle"
+        "AbilityCastAnimation"          "ACT_DOTA_CHANNEL_ABILITY_1"
+    
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastPoint"              "0.0"
+        "AbilityChannelTime"                "4.5"
+        
+    
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "0"
+    
+    
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "radius"                        "600"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "illusion_count"                    "9"
+            }
+            "03"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "illusion_damage_taken"                 "1000"
+            }
+            "04"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "fire_bomb_delay"                   "4.5"
+            }
+            "05"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "fire_bomb_damage"                  "65 90 115"
+            }
+        }
+        "OnSpellStart"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_fire_bomb"
+                "Target"        "CASTER"
+            }
+        }
+        "OnChannelSucceeded"
+        {
+            "FireSound"
+            {
+                "EffectName"    "Hero_Phoenix.FireSpirits.Launch"
+                "Target"        "CASTER"
+            }
+    
+            "FireEffect"
+            {
+                "EffectName"    "particles/units/heroes/hero_warlock/warlock_rain_of_chaos_start.vpcf"
+                "EffectAttachType"  "start_at_customorigin"
+                "TargetPoint"       "POINT"
+    
+                "ControlPoints"
+                {
+                    "01"    "%radius 0 0"
+                    "03"    "0 0 0"
+                }
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_bomb_finish"
+                "Target"        "CASTER"
+            }
+            "DelayedAction"
+            {
+                "Delay"     "0.1"
+    
+                "Action"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_OgreMagi.Fireblast.Target"
+                        "Target"        "CASTER"
+                    }
+    
+                    "FireEffect"
+                    {
+                        "EffectName"    "particles/units/heroes/hero_warlock/warlock_rain_of_chaos_explosion.vpcf"
+                        "EffectAttachType"  "start_at_customorigin"
+                        "TargetPoint"       "POINT"
+    
+                        "ControlPoints"
+                        {
+                            "00"    "POINT"
+                            "01"    "%radius 0 0"
+                            "03"    "0 0 0"
+                        }
+                    }
+                
+                    "DestroyTrees"
+                    {
+                        "Target"    "POINT"
+                        "Radius"    "%radius"
+                    }
+    
+                    "ActOnTargets"
+                    {
+                        "Target"
+                        {
+                            "Center" "POINT"
+                            "Radius" "%radius"
+                            "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY" 
+                            "Types" "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+                        }
+    
+                        "Action"
+                        {
+                            "Damage"
+                            {
+                                "Target"    "TARGET"
+                                "Type"      "DAMAGE_TYPE_MAGICAL"
+                                "Damage"    "%fire_bomb_damage"
+                            }                   
+                        }
+                    }               
+                }
+            }
+        }   
+        "Modifiers"
+        {
+            "modifier_fire_bomb"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+                "States"
+                {
+                    "MODIFIER_STATE_COMMAND_RESTRICTED"     "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+            "modifier_bomb_finish"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+            
+                "OverrideAnimation"     "ACT_DOTA_CHANNEL_ABILITY_1"
+    
+                "States"
+                {
+                    "MODIFIER_STATE_STUNNED"        "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }   
+    }
+}

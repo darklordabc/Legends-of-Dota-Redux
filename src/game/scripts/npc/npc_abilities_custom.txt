@@ -211,6 +211,7 @@
 #base "abilities\generation\keen.txt"
 #base "abilities\generation\uther.txt"
 #base "abilities\generation\hylonome.txt"
+#base "abilities\generation\scaw.txt"
 #base "abilities\generation\cherub_explosive_spore.txt"
 #base "abilities\generation\cherub_flower_garden.txt"
 #base "abilities\generation\cherub_sleep_cloud.txt"
