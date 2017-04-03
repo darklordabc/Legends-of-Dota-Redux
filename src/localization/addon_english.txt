@@ -1412,6 +1412,8 @@
     "credit_mirana_starfall_lod"           "<font color=\'#7D7D7D\'>Credits: Fixed by TideSofDarK | github.com/TideSofDarK</font>"
     "credit_sniper_assassinate_redux"           "<font color=\'#7D7D7D\'>Credits: Fixed by Wouterz90 | github.com/Wouterz90</font></font>"
     "credit_skywrath_mage_concussive_break"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_uther_Hurl_Hammer"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
+    "credit_uther_Threatening_Bolt"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
     "credit_cherub_sleep_cloud"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
     "credit_cherub_synthesis"           "<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"  
     "credit_angel_arena_archmage_anomaly"           "<font color=\'#7D7D7D\'>Fixed by Yahnich | github.com/Yahnich</font>"
@@ -8804,11 +8806,79 @@
 
 
     "DOTA_Tooltip_ability_uther_Omniscience_wave"                           "Global Dispel"
-    "DOTA_Tooltip_ability_uther_Omniscience_wave_Description"               "The Lightbringer creates an expanding wave of light, dispelling magic from allies and enemies as it travels across the map."
+    "DOTA_Tooltip_ability_uther_Omniscience_wave_Description"               "The Lightbringer creates an expanding wave of light, dispelling magic from allies and enemies as it travels across the map.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"
     "DOTA_Tooltip_ability_uther_Omniscience_wave_Lore"                      "The light of heaven shines with the brilliance of a thousand suns."
 
     "npc_bolt_unit"     "Threatening Bolt"
     "npc_hammer_unit"   "The Lightbringer"
+
+    //-------------------------------------------------------------------
+    // Hylonome
+    //-------------------------------------------------------------------
+    "DOTA_Tooltip_ability_hylonome_eldritch_pull"                   "Eldritch Pull"
+    "DOTA_Tooltip_ability_hylonome_eldritch_pull_lore"              "Eldritch rends the life out of Hylonome's foes."
+    "DOTA_Tooltip_ability_hylonome_eldritch_pull_description"       "Pulls the target enemy toward Hylonome and damages them. Target is stunned while pulled, then slowed.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
+    "DOTA_Tooltip_ability_hylonome_eldritch_pull_cast_range"            "CAST RANGE:"
+    "DOTA_Tooltip_ability_hylonome_eldritch_pull_distance"              "PULL DISTANCE:"
+    "DOTA_Tooltip_ability_hylonome_eldritch_pull_move_slow"             "%MOVEMENT SLOW:"
+    "DOTA_Tooltip_ability_hylonome_eldritch_pull_duration"              "DURATION:"
+    "DOTA_Tooltip_modifier_hylonome_eldritch_pull_debuff"               "Ethereal Rip"
+    "DOTA_Tooltip_modifier_hylonome_eldritch_pull_debuff_description"           "Slowed by %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%."
+
+    "DOTA_Tooltip_ability_hylonome_laceration"                  "Laceration"
+    "DOTA_Tooltip_ability_hylonome_laceration_lore"                 "While unskilled in swordplay, her blade cuts through armor effortlessly."
+    "DOTA_Tooltip_ability_hylonome_laceration_description"              "Hylonome lunges her blade forward, unleashing a beam of dark energy that pierces any target hit.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
+    "DOTA_Tooltip_ability_hylonome_laceration_damage"               "DAMAGE:"
+
+    "DOTA_Tooltip_ability_hylonome_battle_rhythm"                   "Battle Rhythm"
+    "DOTA_Tooltip_ability_hylonome_battle_rhythm_lore"              "A four-legged creature has never possessed such a rhythm to fighting as that of Hylonome."
+    "DOTA_Tooltip_ability_hylonome_battle_rhythm_description"       "Hylonome treads swiftly across the battlefield, passively gaining bonus evasion and movement speed whenever she attacks a new target. Each new target refreshes and adds a stack, up to a maximum. When the stacks expire, the list of targets she attacked resets.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
+    "DOTA_Tooltip_ability_hylonome_battle_rhythm_bonus_evasion"             "%EVASION PER STACK:"
+    "DOTA_Tooltip_ability_hylonome_battle_rhythm_bonus_movement_speed"      "%MOVEMENT SPEED PER STACK:"
+    "DOTA_Tooltip_ability_hylonome_battle_rhythm_max_stacks"                "MAX STACKS:"
+    "DOTA_Tooltip_ability_hylonome_battle_rhythm_duration"                  "DURATION:"
+    "DOTA_Tooltip_modifier_battle_rhythm"                       "Battle Rhythm"
+    "DOTA_Tooltip_modifier_battle_rhythm_Description"           "Increased evasion and movement speed per stack."
+
+
+    "DOTA_Tooltip_ability_hylonome_anemic_aura"                 "Anemic Aura"
+    "DOTA_Tooltip_ability_hylonome_anemic_aura_Lore"                "Every Centaur was left brittle in Hylonome's wake, just as she once was."
+    "DOTA_Tooltip_ability_hylonome_anemic_aura_description"             "Hylonome's presence causes her foes to turn pale and weak-kneed. Reduces all incoming healing, and enemies who are damaged by heroes within this aura have a chance to bleed, taking 3%% of their max health as damage per second.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
+    "DOTA_Tooltip_ability_hylonome_anemic_aura_radius"              "RADIUS:"
+    "DOTA_Tooltip_ability_hylonome_anemic_aura_heal_reduction"          "%REDUCED HEALING:"
+    "DOTA_Tooltip_ability_hylonome_anemic_aura_chance"              "%BLEED CHANCE:"
+    "DOTA_Tooltip_ability_hylonome_anemic_aura_bleed_damage"            "%CURRENT HEALTH AS DAMAGE:"
+    "DOTA_Tooltip_ability_hylonome_anemic_aura_duration"                "BLEED DURATION:"
+    "DOTA_Tooltip_modifier_hylonome_anemic_aura"                    "Anemic Aura"
+    "DOTA_Tooltip_modifier_hylonome_anemic_aura_description"            "Reduces enemy's incoming healing and strength."
+
+    "DOTA_Tooltip_modifier_hylonome_anemic_aura_debuff"                 "Anemic Aura"
+    "DOTA_Tooltip_modifier_hylonome_anemic_aura_debuff_description"             "All incoming healing and strength is reduced."
+    "DOTA_Tooltip_modifier_hylonome_anemic_aura_thinker"                "Bleeding"
+    "DOTA_Tooltip_modifier_hylonome_anemic_aura_thinker_description"            "Taking 3%d%% of max health as damage each second."
+
+
+
+    "DOTA_Tooltip_ability_hylonome_libation"                    "Libation"
+    "DOTA_Tooltip_ability_hylonome_libation_lore"                   "Simply drawing blood gives the weilder a glimpse of this accursed sword's power."
+    "DOTA_Tooltip_ability_hylonome_libation_description"                "Dark tendrils burst forth from Hylonome, latching onto any enemy she strikes for a duration. Deals pure damage over time and slows, healing Hylonome for 50% of the damage dealt. Breaks upon separating from Hylonome, based on a maximum distance.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
+    "DOTA_Tooltip_ability_hylonome_libation_damage_per_second"          "DAMAGE PER SECOND:"
+    "DOTA_Tooltip_ability_hylonome_libation_interval"                   "%DAMAGE INTERVAL:"
+    "DOTA_Tooltip_ability_hylonome_libation_movement_slow"              "%MOVEMENT SLOW:"
+    "DOTA_Tooltip_ability_hylonome_libation_distance"                   "MAX DISTANCE:"
+    "DOTA_Tooltip_ability_hylonome_libation_duration"                   "BUFF DURATION:"
+    "DOTA_Tooltip_ability_hylonome_libation_radius_scepter"             "SCEPTER LATCH RADIUS:"
+    "DOTA_Tooltip_ability_hylonome_libation_Aghanim_description"        "When activating Libation, all enemy units within a 400 radius will be instantly latched. "
+
+    "DOTA_Tooltip_modifier_libation_active"                     "Libation"
+    "DOTA_Tooltip_modifier_libation_active_Description"         "Attacking an enemy will latch them to your sword, dealing pure damage, slowing, and stealing life from them."
+    "DOTA_Tooltip_modifier_libation_debuff"                     "Libation"
+    "DOTA_Tooltip_modifier_libation_debuff_Description"         "Slowed and taking pure damage over time."
+
+    "DOTA_Tooltip_ability_hylonome_ultimate"                    "Libation"
+    "DOTA_Tooltip_ability_hylonome_ultimate_lore"                   "Simply drawing blood gives the weilder a glimpse of this accursed sword's power."
+    "DOTA_Tooltip_ability_hylonome_ulitmate_description"                "Dark tendrils burst forth from Hylonome's chest that lash out at nearby enemies. Each tendril's attack deals Pure damage based on a percentage of Hylonome's base damage."
+
 
 }
 

@@ -1,0 +1,897 @@
+"DOTAAbilities"
+{
+    //=================================================================================================================
+    //
+    //
+    //
+    //
+    //
+    //                              Hylonome
+    //                              Concept and code from slayer
+    //
+    //
+    //
+    //
+    //=================================================================================================================
+    //=================================================================================================================
+    // Hylonome: Eldritch Blast
+    //=================================================================================================================
+    "hylonome_eldritch_pull"
+    {
+
+        // Overview
+        //-------------------------------------------------------------------------------------------------------------
+        // Ability is mostly working as intended.
+        // Visually, she's supposed to unleash a tentacle out of her hand that latches onto her target and pulls it toward her.
+        //-------------------------------------------------------------------------------------------------------------
+
+        // General
+        //--------------------------------------------------------------------------------------------------------
+        "AbilityName"               "hylonome_eldritch_pull"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_2"
+        "AbilityTextureName"                        "custom/hylonome_ethereal_rip"
+        "AbilityCooldown"               "12"
+        "AbilityCastPoint"              "0.3"
+        "AbilityManaCost"               "100 110 120 130"
+        "AbilityCastRange"              "%cast_range"
+        "BaseClass"                 "ability_datadriven"
+        "AbilityProcsMagicStick"        "1"
+
+        "AbilityDamage"             "60 130 200 270"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "cast_range"            "600"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "distance"              "-150 -200 -250 -300"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "move_slow"             "-27"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "duration"              "5"
+            }   
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "damage"                "85"
+            }
+        }
+        "precache"
+        {
+            "particle"          "particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf"
+            "particle"          "particles/units/heroes/hero_bounty_hunter/bounty_hunter_jinda_slow.vpcf"
+            "soundfile"         "soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
+            "soundfile"         "soundevents/game_sounds_heroes/game_sounds_bloodseeker.vsndevts"
+        }
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"        "abilities/nextgeneration/hero_hylonome/hylonome_ethereal_rip.lua"
+                "Function"          "SpellStart"
+            }
+        }
+
+        // Modifiers
+        //-------------------------------------------------------------------------------------------------------------
+        "Modifiers"
+        {
+            "modifier_hylonome_eldritch_pull"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+            
+                "OnCreated"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"        "hero_bloodseeker.bloodRite.silence"
+                        "Target"            "TARGET"
+                    }
+                    "FireSound"
+                    {
+                        "EffectName"        "Hero_PhantomAssassin.Arcana_Layer"
+                        "Target"            "TARGET"
+                    }
+                    "FireEffect"
+                    {
+                        "EffectName"            "particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf"
+                        "EffectAttachType"          "start_at_customorigin"
+                        "ControlPointEntities"
+                        {
+                            "TARGET"        "follow_origin"
+                            "TARGET"        "follow_origin"
+                        }
+                    }
+                    "FireEffect"
+                    {
+                        "EffectName"    "particles/units/heroes/hero_bounty_hunter/bounty_hunter_jinda_slow.vpcf"
+                        "EffectAttachType"  "attach_hitloc"
+                        "Target"        "TARGET"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"        "abilities/nextgeneration/hero_hylonome/hylonome_ethereal_rip.lua"
+                        "Function"          "Interrupt"
+                    }
+                    "ApplyModifier"
+                    {
+                        "ModifierName"          "modifier_hylonome_eldritch_pull_debuff"
+                        "Target"                "TARGET"
+                    }
+                    "Damage"
+                    {
+                        "Target"        "TARGET"
+                        "Type"          "DAMAGE_TYPE_MAGICAL"
+                        "Damage"        "%AbilityDamage"
+                    }
+                    "Knockback"
+                    {
+                        "Target"        "TARGET"
+                        "Center"        "CASTER"
+                        "Duration"      "0.15"
+                        "Distance"  "%distance"
+                        "Height"        "0"
+                        "IsFixedDistance"   "0"
+                        "ShouldStun"    "1"
+                    }
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "modifier_hylonome_eldritch_pull"
+                        "Target"        "TARGET"
+                    }
+                }
+            }
+            "modifier_hylonome_eldritch_pull_debuff"
+            {
+                "IsDebuff"              "1"
+                "IsPurgable"            "1"
+                "IsHidden"          "0"
+                "Duration"              "%duration"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%move_slow"
+                }
+            }
+        }
+    }
+    //=================================================================================================================
+    // Hylonome: Laceration
+    //================================================================================================================= 
+    "hylonome_battle_rhythm"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "custom/hylonome_battle_rhythm"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "bonus_evasion"         "5 7.5 10 12.5"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "bonus_movement_speed"  "3 4 5 6"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "max_stacks"        "5"
+            }
+            "04"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "duration"          "8"
+            }
+        }
+
+        "precache"
+        {
+            "particle"  "particles/units/heroes/hero_centaur/centaur_stampede_haste.vpcf"
+        }
+        "Modifiers"
+        {
+            "modifier_battle_rhythm_passive"
+            {
+                "Passive"           "1"
+                "IsHidden"          "1"
+            
+                "OnAttackLanded"
+                // "%attack_damage" is set to the damage value before mitigation
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"        "abilities/nextgeneration/hero_hylonome/hylonome_battle_rhythm.lua"
+                        "Function"          "ModifyStacks"
+                    }
+                }
+            }
+            "modifier_battle_rhythm"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsBuff"            "1"
+                "Duration"          "%duration"
+        
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_EVASION_CONSTANT"            "%bonus_evasion"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%bonus_movement_speed" 
+                }
+
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"        "abilities/nextgeneration/hero_hylonome/hylonome_battle_rhythm.lua"
+                        "Function"          "ResetTargetTable"
+                    }
+                }
+            }
+        }
+    }
+
+    //=================================================================================================================
+    // Hylonome: Laceration (old)
+    //================================================================================================================= 
+    "hylonome_laceration"
+    {
+
+        // Overview
+        //-------------------------------------------------------------------------------------------------------------
+        // Ability needs to be renamed to something more fitting. Almost working as intended.
+        // On death, the modifiers reset regardless of the ability's cooldown. Not sure how to fix.
+        //-------------------------------------------------------------------------------------------------------------
+
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityName"                   "hylonome_laceration"
+        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitDamageType"             "DAMAGE_TYPE_PHYSICAL"
+        "AbilityTextureName"                            "hylonome_laceration"
+        "BaseClass"                     "ability_datadriven"
+        "AbilityCooldown"                   "65.0 55.0 45.0 35.0"
+
+        "precache"
+        {
+            "particle"      "particles/units/heroes/hero_hylonome/hylonome_armor_buff.vpcf"
+            "particle"      "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodrage_eztzhok_ovr_arc.vpcf"
+            "soundfile" "soundevents/game_sounds_items.vsndevts"
+        }
+
+        "OnSpellStart"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"      "modifier_hylonome_check_health"
+                "Target"            "CASTER"
+            }
+        }
+        
+        // Modifiers
+        //-------------------------------------------------------------------------------------------------------------
+        "Modifiers"
+        {
+            "modifier_hylonome_check_health"
+            {
+                "Passive"               "1"
+                "IsHidden"          "0"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MIN_HEALTH"      "1"
+                }
+                "OnTakeDamage"
+                {
+                    "RunScript"
+                    {
+                        "Target"            "CASTER"
+                        "ScriptFile"        "abilities/nextgeneration/hero_hylonome/hylonome_laceration.lua"
+                        "Function"          "checkHealth"
+                    }
+                }
+            }
+            "modifier_hylonome_laceration_buff"
+            {
+                "Passive"               "0"
+                "IsHidden"          "1"
+                "Duration"              "%duration"
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "EffectName"            "particles/units/heroes/hero_hylonome/hylonome_armor_buff.vpcf"
+                        "EffectAttachType"          "follow_origin"
+                        "Target"                "CASTER"
+                    }
+                }
+                "OnTakeDamage"
+                {
+                    "RunScript"
+                    {
+                        "Target"            "CASTER"
+                        "ScriptFile"        "abilities/nextgeneration/hero_hylonome/hylonome_laceration.lua"
+                        "Function"          "removeStack"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL"      "1"
+                    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL"     "1"
+                    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE"     "1"
+                    "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"      "%bonus_damage"
+                }
+                "OnDestroy"
+                {
+                    "RemoveModifier"
+                    {
+                        "ModifierName"      "modifier_hylonome_laceration_stack"
+                        "Target"            "CASTER"
+                    }
+                }
+            }
+            "modifier_hylonome_laceration_stack"
+            {
+                "Passive"               "0"
+                "IsHidden"          "0"
+                "Duration"              "%duration"
+                //Check LUA to see if all stacks have been removed during the duration, if YES then remove the buff modifier
+            }
+            "modifier_hylonome_laceration_cooldown"
+            {
+                "Passive"               "0"
+                "IsHidden"          "1"
+                "Duration"              "65.0 55.0 45.0 35.0"
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "Target"            "CASTER"
+                        "ScriptFile"        "abilities/nextgeneration/hero_hylonome/hylonome_laceration.lua"
+                        "Function"          "reapplyAbility"
+                    }
+                }
+            }
+        }
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "bonus_damage"      "500"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "stacks"            "5"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "duration"          "15"
+            }
+        }
+    }
+
+    //=================================================================================================================
+    // Hylonome: Anemic Aura
+    //================================================================================================================= 
+    "hylonome_anemic_aura"
+    {
+
+        // Overview
+        //-------------------------------------------------------------------------------------------------------------
+        // Ability is mostly working as intended.
+        // The only issue at the moment is that the bleed damage can re-proc the debuff creating an endless loop.
+        //-------------------------------------------------------------------------------------------------------------
+        
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityName"                   "hylonome_anemic_aura"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityTextureName"            "custom/hylonome_anemic_aura"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "AOERadius"                 "%radius"
+        "BaseClass"                     "ability_datadriven"    
+
+        "precache"
+        {
+            "particle"  "particles/items3_fx/star_emblem_shield_glow.vpcf"
+        }
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "radius"            "400"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "heal_reduction"    "20 30 40 50"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "chance"            "15 20 25 30"
+            }
+            "05"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "bleed_damage"      "3"
+            }
+            "04"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "duration"          "7"
+            }
+        }
+
+        //Ability
+        //-------------------------------------------------------------------------------------------------------------
+
+        "OnSpellStart"
+        {
+            "ApplyModifier"
+            {
+                "Target"            "CASTER"
+                "ModifierName"          "modifier_hylonome_anemic_aura"
+            }
+        }
+
+        // Modifiers
+        //-------------------------------------------------------------------------------------------------------------
+        "Modifiers"
+        {
+            "modifier_hylonome_anemic_aura"
+            {
+                "Aura"              "modifier_hylonome_anemic_aura_debuff"
+                "Aura_Radius"           "%radius"
+                "Aura_Teams"            "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                "Aura_Types"            "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                "Aura_Flags"            "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+                "Passive"               "1"
+                "AllowIllusionDuplicate"        "0"
+                "IsHidden"          "0"
+            }
+            "modifier_hylonome_anemic_aura_debuff"
+            {
+                "IsHidden"          "0"
+                "IsDebuff"              "1"
+                "IsPurgable"            "0"
+                "StatusEffectName"          "particles/status_fx/status_effect_rupture.vpcf"
+                "StatusEffectPriority"      "1"
+                "EffectName"            "particles/items3_fx/star_emblem_shield_glow.vpcf"
+                "EffectAttachType"          "attach_origin"
+                "OnTakeDamage"
+                {
+                    "RunScript"
+                    {
+                        "Target"            "UNIT"
+                        "ScriptFile"        "abilities/nextgeneration/hero_hylonome/hylonome_anemic_aura.lua"
+                        "Function"          "takeDamage"
+                    }
+                    "Random"
+                    {
+                        "Chance"                "%chance"
+                        "OnSuccess"
+                        {
+                            "RunScript"
+                            {
+                                "ScriptFile"    "abilities/nextgeneration/hero_hylonome/hylonome_anemic_aura.lua"
+                                "Function"      "ApplyBleed"
+                            }
+                        }
+                    }
+                }
+                "OnHealthGained"
+                {
+                    "RunScript"
+                    {
+                        "Target"            "UNIT"
+                        "ScriptFile"        "abilities/nextgeneration/hero_hylonome/hylonome_anemic_aura.lua"
+                        "Function"          "anemicAura"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "Target"            "UNIT"
+                        "ScriptFile"        "abilities/nextgeneration/hero_hylonome/hylonome_anemic_aura.lua"
+                        "Function"          "removeAnemic"
+                    }
+                }
+            }
+            "modifier_hylonome_anemic_aura_thinker"
+            {
+                "IsHidden"          "0"
+                "IsDebuff"              "1"
+                "IsPurgable"            "1"
+                "Duration"              "%duration"
+                "ThinkInterval"         "1"
+                "OnIntervalThink"
+                {
+                    "FireEffect"
+                    {
+                        "EffectName"            "particles/units/heroes/hero_ogre_magi/ogre_magi_bloodlust_buff_arcs.vpcf"
+                        "EffectAttachType"          "follow_origin"
+                        "Target"
+                        {
+                            "Center"        "TARGET"
+                            "Flags"         "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+                        }
+                    }
+                    "RunScript"
+                    {
+                        "Target"            "TARGET"
+                        "ScriptFile"        "abilities/nextgeneration/hero_hylonome/hylonome_anemic_aura.lua"
+                        "Function"          "bleedDamage"
+                    }
+                }
+            }
+        }
+    }
+    //=================================================================================================================
+    // Hylonome: Libation
+    //=================================================================================================================
+    "hylonome_libation"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "custom/hylonome_libation"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+
+        "AbilityCooldown"               "50"
+        "AbilityManaCost"               "150 175 200"
+
+        "AbilityCastRange"              "550 650 750"
+        "AbilityCastPoint"              "0.3"
+        "AbilityCastAnimation"          "ACT_DOTA_ATTACK_EVENT"
+        "AbilityProcsMagicStick"        "1"
+        "HasScepterUpgrade"             "1"
+
+        "precache"
+        {
+            "particle"  "particles/libation_casting_blade_kill.vpcf"
+            "particle"  "particles/hylonome_tentacle_tako.vpcf"
+            "particle"  "particles/other/hylonome_libation_attack_buff.vpcf"
+            "particle"  "particles/hylonome_libation.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_undying.vsndevts"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_shadow_demon.vsndevts"
+        }
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "damage_per_second"     "60 95 130"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "movement_slow"         "-15 -20 -25"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "interval"          "0.1"
+            }
+            "04"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "lifesteal"             "50"
+            }
+            "05"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "distance"              "550 650 750"
+            }
+            "06"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "duration"              "12.0"
+            }
+            "07"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "radius_scepter"        "400"
+            }
+        }
+        "OnSpellStart"
+        {
+            "FireEffect"
+            {
+                "EffectName"        "particles/libation_casting_blade_kill.vpcf"
+                "EffectAttachType"  "follow_origin"
+                "Target"            "CASTER"
+                "ControlPointEntities"
+                {
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                    "CASTER"    "attach_hitloc"
+                }
+            }
+            "FireEffect"
+            {
+                "EffectName"        "particles/hylonome_tentacle_tako.vpcf"
+                "EffectAttachType"  "follow_origin"
+                "Target"            "CASTER"
+                "ControlPoints"
+                {
+                    "01"    "300 0 0"
+                }
+            }
+            "FireSound"
+            {
+                "EffectName"    "Hero_ShadowDemon.ShadowPoison.Impact"
+                "Target"        "CASTER"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Hero_ShadowDemon.Soul_Catcher.Cast"
+                "Target"        "CASTER"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Hero_PhantomAssassin.Spatter"
+                "Target"        "CASTER"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Hero_PhantomAssassin.CoupDeGrace"
+                "Target"        "CASTER"
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_libation_active"
+                "Target"        "CASTER"
+                "Duration"      "%duration"
+            }
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/nextgeneration/hero_hylonome/hylonome_libation.lua"
+                "Function"      "ScepterLatch"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_libation_active"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "0"
+
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "Target"                    "CASTER"
+                        "EffectName"                "particles/other/hylonome_libation_attack_buff.vpcf"
+                        "EffectAttachType"          "start_at_customorigin"
+                        "ControlPointEntities"
+                        {
+                            "CASTER"                "attach_attack1"
+                            "CASTER"                "attach_attack1"
+                        }
+                    }
+                }
+        
+                "OnAttackLanded"
+                // "%attack_damage" is set to the damage value before mitigation
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "modifier_libation_debuff"
+                        "Target"
+                        {
+                            "Center"    "TARGET"
+                            "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                            "Types"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                        }
+                    }
+                }
+            }
+            "modifier_libation_debuff"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "1"
+                "IsPurgable"        "1"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%movement_slow" 
+                }
+                "OnCreated"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Undying.SoulRip.Cast"
+                        "Target"        "TARGET"
+                    }
+                    "AttachEffect"
+                    {
+                        "EffectName"        "particles/hylonome_libation.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"            "TARGET"
+                        "ControlPointEntities"
+                        {
+                            "TARGET"    "attach_hitloc"
+                            "CASTER"    "attach_attack1"
+                        }
+                    }
+                }
+                "ThinkInterval"  "%interval"
+                "OnIntervalThink"
+                {
+                    "Damage"
+                    {
+                        "Target"        "TARGET"
+                        "Type"          "DAMAGE_TYPE_PURE"
+                        "Damage"        "%damage_per_second * %interval"
+                    }
+                    "Heal"
+                    {
+                        "Target"        "CASTER"
+                        "HealAmount"    "%damage_per_second * %interval * %lifesteal / 100"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_hylonome/hylonome_libation.lua"
+                        "Function"      "CheckDistance"
+                    }
+                }
+            }
+        }
+    }
+    //=================================================================================================================
+    // Hylonome: Phantasmal Force
+    //=================================================================================================================
+    "hylonome_ultimate"
+    {
+
+        // Overview
+        //-------------------------------------------------------------------------------------------------------------
+        // This is supposed to create an area of darkness that prevents enemies from seeing into it, as well as greatly reducing their vision inside.
+        // It's not supposed to remove shared vision, just block vision (as if it was a larger Sprout ability without the trees).
+        // No current way to block vision other than spawning trees?
+        // Might do some other cool things too.
+        //-------------------------------------------------------------------------------------------------------------
+
+        // General
+        //--------------------------------------------------------------------------------------------------------
+        "AbilityType"               "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCastAnimation"          "ACT_DOTA_SHARPEN_WEAPON_OUT"
+        "AbilityCastPoint"              "0.7"
+        "AbilityTextureName"            "custom/hylonome_libation"
+        "AbilityCooldown"               "1"
+        "BaseClass"                 "ability_datadriven"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "test"              "2"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "radius"                "1200"
+            }
+        }
+        
+        "precache"
+        {
+            "particle"      "particles/units/heroes/hero_earthshaker/earthshaker_echoslam_start_fallback_mid.vpcf"
+            "particle"      "particles/units/heroes/hero_hylonome/hylonome_ultimate_tendrils.vpcf"
+            "particle"      "particles/units/heroes/hero_hylonome/hylonome_chronosphere.vpcf"
+        }
+        "OnSpellStart"
+        {
+            "FireEffect"
+            {
+                "EffectName"            "particles/units/heroes/hero_earthshaker/earthshaker_echoslam_start_fallback_mid.vpcf"
+                "EffectAttachType"      "attach_origin"
+                "Target"                "CASTER"
+            }
+            "RunScript"
+            {
+                "ScriptFile"        "abilities/nextgeneration/hero_hylonome/hylonome_ultimate.lua"
+                "Function"          "Chronosphere"
+                "Target"            "CASTER"
+                "dummy_aura"        "modifier_hylonome_ult"
+            }
+        }
+            
+        // Modifiers
+        //-------------------------------------------------------------------------------------------------------------
+        "Modifiers"
+        {
+            "modifier_hylonome_ult"
+            {
+                "IsHidden"          "0"
+                "IsDebuff"              "0"
+                "IsPurgable"            "0"
+                "Duration"              "10"
+                "OnCreated"
+                {
+                    //"AttachEffect"
+                    //{
+                    //  "EffectName"        "particles/units/heroes/hero_hylonome/hylonome_ultimate_tendrils.vpcf"
+                    //  "EffectAttachType"      "attach_origin"
+                    //  "Target"            "TARGET"
+                    //}
+                    "AttachEffect"
+                    {
+                        "EffectName"    "particles/units/heroes/hero_hylonome/hylonome_chronosphere.vpcf"
+                        "EffectAttachType"  "attach_origin"
+                        "Target"        "TARGET"
+    
+                        "ControlPoints"
+                        {
+                            "01"    "%radius %radius 0"
+                        }
+                    }
+
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_INVULNERABLE"       "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NO_HEALTH_BAR"  "MODIFIER_STATE_VALUE_ENABLED"              
+                    "MODIFIER_STATE_NOT_ON_MINIMAP" "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_UNSELECTABLE"       "MODIFIER_STATE_VALUE_ENABLED"
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"        "abilities/nextgeneration/hero_hylonome/hylonome_ultimate.lua"
+                        "Function"          "killDummy"
+                        "Target"            "TARGET"
+                    }
+                }
+            }
+        }
+    }
+}

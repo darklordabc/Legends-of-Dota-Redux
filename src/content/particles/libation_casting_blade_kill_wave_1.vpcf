@@ -1,0 +1,165 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 96
+	m_nGroupID = 3
+	m_flMaxDrawDistance = 2000.0
+	m_bShouldSort = false
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
+			m_nOrientationType = 3
+			m_flStartFadeSize = 0.675
+			m_flEndFadeSize = 0.75
+			m_flMaxSize = 0.85
+			m_hTexture = resource:"materials/particle/water_splash/water_splash.vtex"
+			m_flAnimationRate = 1.0
+			m_flOpTimeOffsetMax = 1.0
+			m_flOpStrengthMinScale = 0.0
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_Gravity = [ 0.0, 0.0, -600.0 ]
+			m_fDrag = 0.05
+			m_flOpTimeOffsetMax = 1.0
+			m_flOpStrengthMinScale = 0.0
+		},
+		{
+			_class = "C_OP_Spin"
+			m_nSpinRateDegrees = 4
+			m_fSpinRateStopTime = 1.0
+			m_flOpTimeOffsetMax = 1.0
+			m_flOpStrengthMinScale = 0.0
+		},
+		{
+			_class = "C_OP_FadeOut"
+			m_flFadeOutTimeMin = 0.125
+			m_flFadeOutTimeMax = 0.2
+			m_bProportional = false
+			m_bEaseInAndOut = false
+			m_flOpTimeOffsetMax = 1.0
+			m_flOpStrengthMinScale = 0.0
+		},
+		{
+			_class = "C_OP_Decay"
+			m_flOpTimeOffsetMax = 1.0
+			m_flOpStrengthMinScale = 0.0
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndScale = 3.0
+			m_flBias = 0.6
+			m_flOpTimeOffsetMax = 1.0
+			m_flOpStrengthMinScale = 0.0
+		},
+		{
+			_class = "C_OP_RemapDirectionToCPToVector"
+			m_bNormalize = true
+			m_nFieldOutput = 21
+			m_nCP = 2
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_ColorFade = [ 33, 0, 0, 255 ]
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMin = 16.0
+			m_flRadiusMax = 48.0
+			m_flOpTimeOffsetMax = 1.0
+			m_flOpStrengthMinScale = 0.0
+		},
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMin = 0.7
+			m_fLifetimeMax = 1.25
+			m_flOpTimeOffsetMax = 1.0
+			m_flOpStrengthMinScale = 0.0
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+			m_flOpTimeOffsetMax = 1.0
+			m_flOpStrengthMinScale = 0.0
+		},
+		{
+			_class = "C_INIT_RandomAlpha"
+			m_flOpTimeOffsetMax = 1.0
+			m_flOpStrengthMinScale = 0.0
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 78, 0, 0, 255 ]
+			m_ColorMax = [ 108, 0, 0, 255 ]
+			m_TintMax = [ 32, 0, 0, 255 ]
+			m_flOpTimeOffsetMax = 1.0
+			m_flOpStrengthMinScale = 0.0
+		},
+		{
+			_class = "C_INIT_RandomYawFlip"
+			m_flOpTimeOffsetMax = 1.0
+			m_flOpStrengthMinScale = 0.0
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 32, 0, 0, 255 ]
+			m_ColorMax = [ 38, 0, 0, 255 ]
+			m_flTintPerc = 0.35
+			m_TintMin = [ 0, 0, 0, 255 ]
+			m_TintMax = [ 48, 0, 0, 255 ]
+			m_nFieldOutput = 22
+			m_flOpTimeOffsetMax = 1.0
+			m_flOpStrengthMinScale = 0.0
+		},
+		{
+			_class = "C_INIT_InitialVelocityNoise"
+			m_bLocalSpace = true
+			m_vecOutputMax = [ 180.0, -300.0, 500.0 ]
+			m_vecOutputMin = [ -180.0, -500.0, 400.0 ]
+			m_flNoiseScaleLoc = 25.0
+			m_flNoiseScale = 5.0
+			m_nControlPointNumber = 3
+		},
+		{
+			_class = "C_INIT_RemapScalar"
+			m_bScaleInitialRange = true
+			m_flOutputMax = 0.0
+			m_flOutputMin = 1.0
+			m_flInputMax = 0.75
+			m_flInputMin = 0.25
+		},
+		{
+			_class = "C_INIT_CreateWithinSphere"
+			m_nControlPointNumber = 4
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_bLocalCoords = true
+			m_OffsetMax = [ 32.0, 0.0, 64.0 ]
+			m_OffsetMin = [ -32.0, 0.0, 64.0 ]
+			m_nControlPointNumber = 4
+		},
+		{
+			_class = "C_INIT_PositionWarp"
+			m_vecWarpMax = [ 1.0, 1.0, 0.1 ]
+			m_flWarpTime = 1.0
+			m_nControlPointNumber = 4
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmissionDuration = 0.75
+			m_flEmitRate = 108.0
+		},
+	]
+}
