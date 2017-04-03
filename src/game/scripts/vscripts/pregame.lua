@@ -206,7 +206,7 @@ function Pregame:init()
     GameRules:GetGameModeEntity():SetBotThinkingEnabled(true)
     GameRules:SetStrategyTime( 0 )
     GameRules:SetShowcaseTime( 0 )
-    -- GameRules:GetGameModeEntity():SetCustomGameForceHero("npc_dota_hero_wisp")
+    GameRules:GetGameModeEntity():SetCustomGameForceHero("npc_dota_hero_wisp")
 
     -- Rune fix
     local totalRunes = 0
@@ -1026,6 +1026,8 @@ function Pregame:onThink()
 
     -- Selection phase
     if ourPhase == constants.PHASE_SELECTION then
+        GameRules:GetGameModeEntity():SetCustomGameForceHero("")
+        
         if self.useDraftArrays and not self.draftArrays then
             self:buildDraftArrays()
 
