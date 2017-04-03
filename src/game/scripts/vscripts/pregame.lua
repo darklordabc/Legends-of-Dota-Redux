@@ -6410,12 +6410,25 @@ function Pregame:generateBotBuilds()
         DOTA_TEAM_GOODGUYS = false
     }
 
+    local forceBotHeroes = {
+        -- npc_dota_hero_nevermore = true
+    }
+
     for playerID,botInfo in pairs(self.botPlayers.all) do
         local build = {}
         local skillID = 1
         local heroName = 'npc_dota_hero_pudge'
         if #possibleHeroes > 0 then
-            heroName = table.remove(possibleHeroes, math.random(#possibleHeroes))
+            if util:getTableLength(forceBotHeroes) > 0 then
+                for k,v in pairs(forceBotHeroes) do
+                    if v == true then
+                        heroName = k
+                        forceBotHeroes[k] = nil
+                    end
+                end
+            else
+                heroName = table.remove(possibleHeroes, math.random(#possibleHeroes))
+            end
         end
 
         -- Generate build
@@ -6478,7 +6491,7 @@ function Pregame:getSkillforBot( botInfo, botSkills )
     local skills = botSkills[heroName]
     local isAdded
 
-    local customSlots = {
+    customSlots = {
         npc_dota_hero_nevermore = 8
     }
 
@@ -7100,6 +7113,13 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                 if botAIModifier[abilityName] then
                     abModifierName = "modifier_" .. abilityName .. "_ai"
                     spawnedUnit:AddNewModifier(spawnedUnit, nil, abModifierName, {})
+                end
+            end
+
+            for i=0,23 do
+                local ab = spawnedUnit:GetAbilityByIndex(i)
+                if ab and not string.match(ab:GetName(), "special") and not string.match(ab:GetName(), "perk") and customSlots[spawnedUnit:GetUnitName()] then
+                    ab:SetHidden(false)
                 end
             end
         end

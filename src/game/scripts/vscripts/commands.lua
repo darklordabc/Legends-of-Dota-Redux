@@ -130,6 +130,34 @@ function Commands:OnPlayerChat(keys)
     ----------------------------
     if string.find(command, "-test") then 
         GameRules:SendCustomMessage('testing testing 1. 2. 3.', 0, 0)
+    elseif string.find(command, "-printabilities") then
+        print("-------------HERO STATS------------")
+        print("HP: "..tostring(hero:GetHealth()).."/"..tostring(hero:GetMaxHealth()))
+        print("EP: "..tostring(hero:GetMana()).."/"..tostring(hero:GetMaxMana()))
+        print("-----------------------------------")
+        print("MR: "..tostring(hero:GetMagicalArmorValue()))
+        print("ARMOR: "..tostring(hero:GetPhysicalArmorValue()))
+        print("-----------------------------------")
+        print("STR: "..tostring(hero:GetStrength()))
+        print("AGI: "..tostring(hero:GetAgility()))
+        print("INT: "..tostring(hero:GetIntellect()))
+        print("-----------------------------------")
+        print("AD: "..tostring(hero:GetAverageTrueAttackDamage(hero)))
+        print("AS: "..tostring(hero:GetAttackSpeed()))
+        print("ApS: "..tostring(hero:GetAttacksPerSecond()))
+        print("-----------------------------------")
+        print("MODIFIER COUNT: "..tostring(hero:GetModifierCount()))
+        print("-----------------------------------")
+        for i=0,hero:GetModifierCount() do
+            print(hero:GetModifierNameByIndex(i), hero:GetModifierStackCount(hero:GetModifierNameByIndex(i), hero))
+        end
+        for i=0,32 do
+            local abil = hero:GetAbilityByIndex(i)
+            if abil then
+                print(abil:GetName(), abil:IsHidden(), abil:IsActivated())
+            end
+        end
+        print("-----------------------------------")
     elseif string.find(command, "gg") and not string.find(command, "dagger")  then
         if OptionManager:GetOption('memesRedux') == 1 then
             if ingame.heard["gg"] ~= true then
