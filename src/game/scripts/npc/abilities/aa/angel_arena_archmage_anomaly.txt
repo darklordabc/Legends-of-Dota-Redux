@@ -19,6 +19,7 @@
 		"AbilityCastPoint" "0.3"
 		"AbilityCooldown" "60"
 		"AbilityManaCost" "375 300 225"
+		"ReduxBans"              "furion_wrath_of_nature"
 
 		"AbilitySpecial" {
 			"01" {
