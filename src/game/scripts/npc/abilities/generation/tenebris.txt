@@ -1,0 +1,621 @@
+"DOTAAbilities"
+{
+    //=================================================================================================================
+    //
+    //
+    //
+    //
+    //
+    //
+    //                                  Tenebris
+    //                                  Original concept by MeatScythe from Hammer's Heroes                         
+    //
+    //
+    //
+    //
+    //
+    //=================================================================================================================
+    "tenebris_blood_ward"
+    {
+        "BaseClass"         "ability_datadriven"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "SpellImmunityType"     "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityUnitDamageType"     "DAMAGE_TYPE_PHYSICAL"
+        "FightRecapLevel"       "1"
+ 
+        "AbilityTextureName"        "pugna_nether_ward"
+ 
+        //Casting
+        "AbilityCastPoint"      "0.5"
+        "AbilityCastRange"      "150"
+        "AbilityCooldown"       "35.0"
+        "AbilityManaCost"       "100"
+        "AOERadius"         "%radius"
+ 
+        // Special
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"      "FIELD_FLOAT"
+                "dps"           "6 9 12 15"
+            }
+            "02"
+            {
+                "var_type"      "FIELD_FLOAT"
+                "reflect"       "45 50 55 60"
+            }
+            "03"
+            {
+                "var_type"      "FIELD_INTEGER"
+                "radius"        "1200 1300 1400 1500"
+            }
+            "04"
+            {
+                "var_type"      "FIELD_INTEGER"
+                "duration"      "30"
+            }
+            "05" //Must be double attacks to destroy
+            {
+                "var_type"      "FIELD_INTEGER"
+                "maximum_reflections"   "6 8 10 12"
+            }
+            "06" //Must be one half number of maximum reflections
+            {
+                "var_type"      "FIELD_INTEGER"
+                "attacks_to_destroy"    "3 4 5 6"
+            }
+            "07"
+            {
+                "var_type"      "FIELD_INTEGER"
+                "hero_value"        "4"
+            }
+        }
+ 
+        "precache"
+        {
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_visage.vsndevts"
+            "particle"  "particles/units/heroes/hero_witchdoctor/witchdoctor_maledict_dot.vpcf"
+        }
+ 
+        "OnSpellStart"
+        {
+            "SpawnUnit"
+            {
+                "UnitName"  "npc_dota_tenebris_blood_ward"
+                "UnitCount" "1"
+                "SpawnRadius"   "10"
+                "Duration"  "%duration"
+                "Target"    "POINT"
+                "GrantsGold"    "1"
+                "GrantsXP"  "1"
+                "OnSpawn"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Visage.SummonFamiliars.Cast"
+                        "Target"    "TARGET"
+                    }
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "modifier_phased"
+                        "Target"    "TARGET"
+                        "Duration"  "0.03"
+                    }
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "tenebris_blood_ward_modifier"
+                        "Target"    "TARGET"
+                    }
+                }
+            }
+        }
+ 
+        "Modifiers"
+        {
+            "tenebris_blood_ward_modifier"
+            {
+                "IsHidden"      "1"
+                "EffectName"        "particles/units/heroes/hero_witchdoctor/witchdoctor_maledict_dot.vpcf"
+                "EffectAttachType"  "follow_origin"
+
+                "Aura"              "tenebris_blood_ward_modifier_debuff"
+                "Aura_Radius"       "%radius"
+                "Aura_Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                "Aura_Types"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                "Aura_Flags"     "DOTA_UNIT_TARGET_FLAG_PLAYER_CONTROLLED"
+                "Aura_ApplyToCaster" "1"
+ 
+                "States"
+                {
+                    "MODIFIER_STATE_STUNNED"        "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_MAGIC_IMMUNE"       "MODIFIER_STATE_VALUE_ENABLED"
+                }
+ 
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_tenebris/tenebris.lua"
+                        "Function"  "BloodWard_OnCreated"
+                    }
+                }
+ 
+                "OnTakeDamage"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_tenebris/tenebris.lua"
+                        "Function"  "BloodWard_OnTakeDamage"
+                    }
+                }
+            }
+            "tenebris_blood_ward_modifier_debuff"
+            {
+                "IsDebuff"  "1"
+                "IsPurgable"    "1"
+                "Attributes"        "MODIFIER_ATTRIBUTE_MULTIPLE"
+ 
+                "ThinkInterval"     "0.1"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_tenebris/tenebris.lua"
+                        "Function"  "BloodWard_OnThink"
+                    }
+                }
+ 
+                "OnAttackLanded"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_tenebris/tenebris.lua"
+                        "Function"  "BloodWard_OnAttackLanded"
+                        "damage"    "%attack_damage"
+                    }
+                }
+            }
+        }
+    }
+    "tenebris_effigy"
+    {
+        "BaseClass"         "ability_datadriven"
+        "ScriptFile"            "tenebris_lua"
+        "AbilityType"           "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitTargetFlags"    "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+        "SpellImmunityType"     "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityUnitDamageType"     "DAMAGE_TYPE_PURE" 
+        "FightRecapLevel"       "2"
+        "HasScepterUpgrade"             "1"
+ 
+        "AbilityTextureName"        "dark_seer_vacuum"
+ 
+        //Casting
+        "AbilityCastRange"      "%range"
+        "AbilityCastPoint"      "0.5"
+        "AbilityCooldown"       "80 70 60"
+        "AbilityManaCost"       "200 225 250"
+ 
+        //Misc
+        "AbilityProcsMagicStick" "1"
+ 
+        //Special
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"  "FIELD_INTEGER"
+                "range"     "900"
+            }
+            "02"
+            {
+                "var_type"  "FIELD_FLOAT"
+                "duration"  "6 8 10"
+            }
+            "03"
+            {
+                "var_type"  "FIELD_INTEGER"
+                "scepter_duration"    "10 15 20"
+            }
+            "04"
+            {
+                "var_type"  "FIELD_INTEGER"
+                "radius"    "900"
+            }
+            
+        }
+ 
+        "precache"
+        {
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_visage.vsndevts"
+            "particle"  "particles/econ/items/abaddon/abaddon_alliance/abaddon_death_coil_alliance.vpcf"
+            "particle"  "particles/units/heroes/hero_witchdoctor/witchdoctor_maledict_dot.vpcf"
+            "particle"  "particles/units/heroes/hero_dazzle/dazzle_shadow_wave.vpcf"
+        }
+ 
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "EffectName"    "Hero_Visage.GraveChill.Cast"
+                "Target"    "CASTER"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Hero_Visage.GraveChill.Target"
+                "Target"    "TARGET"
+            }
+            "FireEffect"
+            {
+                "EffectName"        "particles/econ/items/abaddon/abaddon_alliance/abaddon_death_coil_alliance.vpcf"
+                "EffectAttachType"  "follow_customorigin"
+                "Target"        "TARGET"
+ 
+                "ControlPointEntities"
+                {
+                    "CASTER" "attach_hitloc"
+                    "TARGET" "attach_hitloc"
+                }
+            }
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/nextgeneration/hero_tenebris/tenebris.lua"
+                "Function"  "Effigy_OnSpellStart"
+            }
+        }
+ 
+        //Modifiers
+        "Modifiers"
+        {
+            "tenebris_effigy_modifier_buff"
+            {
+                "OnDealDamage"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_tenebris/tenebris.lua"
+                        "Function"  "Effigy_OnDealDamage"
+                        "damage"    "%attack_damage"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_tenebris/tenebris.lua"
+                        "Function"  "Effigy_OnDestroy"
+                    }
+                }
+            }
+ 
+            "tenebris_effigy_modifier_debuff"
+            {
+                "IsDebuff"      "1"
+                "EffectName"        "particles/units/heroes/hero_witchdoctor/witchdoctor_maledict_dot.vpcf"
+                "EffectAttachType"  "follow_origin"
+ 
+                "OnTakeDamage"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_tenebris/tenebris.lua"
+                        "Function"  "MortalCoil_OnTakeDamage"
+                        "damage"    "%attack_damage"
+                    }
+                }
+ 
+                "OnDeath"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_tenebris/tenebris.lua"
+                        "Function"  "Effigy_OnDeath"
+                    }
+                }
+            }
+ 
+            "tenebris_effigy_modifier_timer"
+            {
+                "IsHidden"  "1"
+                "Duration"  "1"
+ 
+                "OnCreated"
+                {
+                    "DelayedAction"
+                    {
+                        "Delay" "0.03"
+                        "Action"
+                        {
+                            "ApplyModifier"
+                            {
+                                "Target"    "CASTER"
+                                "ModifierName"  "tenebris_effigy_modifier_buff"
+                            }
+                            "ApplyModifier"
+                            {
+                                "Target"    "TARGET"
+                                "ModifierName"  "tenebris_effigy_modifier_debuff"
+                            }
+                            "RemoveModifier"
+                            {
+                                "Target"    "TARGET"
+                                "ModifierName"  "tenebris_effigy_modifier_timer"
+                            }
+                        }
+                    }
+                }
+                "OnDeath"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_tenebris/tenebris.lua"
+                        "Function"  "Effigy_OnDeath"
+                    }
+                }
+            }
+        }
+    }
+     "tenebris_fade_strike"
+    {
+        "BaseClass"         "ability_datadriven"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+        "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "SpellImmunityType"     "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityUnitDamageType"     "DAMAGE_TYPE_PHYSICAL"
+ 
+        "AbilityTextureName"        "abaddon_frostmourne"
+ 
+        //Casting
+        "AbilityCastRange"      "128"
+        "AbilityCooldown"       "3"
+        "AbilityManaCost"       "25 30 35 40"
+ 
+        // Special
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"      "FIELD_INTEGER"
+                "bonus_damage"      "25 40 55 70"
+            }
+            "02"
+            {
+                "var_type"      "FIELD_FLOAT"
+                "duration_buff"     "1.5 2.0 2.5 3.0"
+            }
+            "03"
+            {
+                "var_type"      "FIELD_FLOAT"
+                "duration_debuff"   "3.0"
+            }
+        }
+ 
+        "precache"
+        {
+            "particle"  "particles/units/heroes/hero_riki/riki_blink_strike.vpcf"
+            "particle"  "particles/units/heroes/hero_dazzle/dazzle_shadow_wave_impact_damage.vpcf"
+            "particle"  "particles/units/heroes/hero_invoker/invoker_deafening_blast_disarm_debuff.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_visage.vsndevts"
+        }
+ 
+        //Modifiers
+        "Modifiers"
+        {
+            "tenebris_fade_strike_modifier"
+            {
+                "Passive"   "1"
+                "IsHidden"  "1"
+ 
+                "Orb"
+                {
+                    "Priority"              "DOTA_ORB_PRIORITY_ABILITY"
+                    "CastAttack"                "1"
+                }
+ 
+                "OnOrbFire"
+                {
+                    "SpendMana"
+                    {
+                        "Mana"              "%AbilityManaCost"
+                    }
+                }
+ 
+                "OnOrbImpact"
+                {
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/units/heroes/hero_riki/riki_blink_strike.vpcf"
+                        "EffectAttachType"  "follow_customorigin"
+                        "Target"        "TARGET"
+ 
+                        "ControlPointEntities"
+                        {
+                            "CASTER" "attach_origin"
+                            "TARGET" "attach_hitloc"
+                        }
+                    }
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/units/heroes/hero_dazzle/dazzle_shadow_wave_impact_damage.vpcf"
+                        "EffectAttachType"  "attach_hitloc"
+                        "Target"        "TARGET"
+                    }
+                    "FireSound"
+                    {
+                        "EffectName"        "Hero_Visage.SoulAssumption.Cast"
+                        "Target"        "CASTER"
+                    }
+                    "FireSound"
+                    {
+                        "EffectName"        "Hero_Visage.SoulAssumption.Target"
+                        "Target"        "TARGET"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"        "abilities/nextgeneration/hero_tenebris/tenebris.lua"
+                        "Function"      "FadeStrike_OnOrbImpact"
+                        "damage"        "%attack_damage"
+                    }
+                    "ApplyModifier"
+                    {
+                        "ModifierName"      "tenebris_fade_strike_modifier_debuff"
+                        "Target"        "CASTER"
+                    }
+                }
+            }
+            "tenebris_fade_strike_modifier_debuff"
+            {
+                "IsDebuff"      "1"
+                "Duration"      "%duration_debuff"
+                "EffectName"        "particles/units/heroes/hero_invoker/invoker_deafening_blast_disarm_debuff.vpcf"
+                "EffectAttachType"  "follow_overhead"
+
+                "States"
+                {
+                    "MODIFIER_STATE_DISARMED"       "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+    }
+    "tenebris_mortal_coil"
+    {
+        "BaseClass"         "ability_datadriven"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "SpellImmunityType"     "SPELL_IMMUNITY_ENEMIES_NO"
+ 
+        "AbilityTextureName"        "enigma_midnight_pulse"
+ 
+        //Casting
+        "AbilityCastRange"      "%radius"
+ 
+        // Special
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"      "FIELD_FLOAT"
+                "ias"           "1.25 1.5 1.75 2.0"
+            }
+            "02"
+            {
+                "var_type"      "FIELD_INTEGER"
+                "radius"        "250"
+            }
+            "03"
+            {
+                "var_type"      "FIELD_FLOAT"
+                "duration_max"      "1.2 1.6 2.0 2.4"
+            }
+        }
+ 
+        "precache"
+        {
+            "particle"  "particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf"
+        }
+ 
+        "Modifiers"
+        {
+            "tenebris_mortal_coil_modifier"
+            {
+                "Passive"       "1"
+                "IsHidden"      "1"
+ 
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_tenebris/tenebris.lua"
+                        "Function"      "MortalCoil_OnCreated"
+                    }
+                }
+ 
+                "ThinkInterval"     "0.1"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_tenebris/tenebris.lua"
+                        "Function"      "MortalCoil_OnIntervalThink"
+                    }
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "tenebris_mortal_coil_modifier_timer"
+                        "Target"
+                        {
+                            "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                            "Types"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                            "Center"    "CASTER"
+                            "Radius"    "%radius"
+                        }
+                    }
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "tenebris_mortal_coil_modifier_aura"
+                        "Target"
+                        {
+                            "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                            "Types"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                            "Center"    "CASTER"
+                            "Radius"    "%radius"
+                        }
+                    }
+                }
+            }
+ 
+            "tenebris_mortal_coil_modifier_timer"
+            {
+                "IsHidden"  "1"
+                "IsDebuff"  "1"
+                "IsPurgable"    "1"
+                "IsHidden"  "1"
+                "Duration"  "0.6"
+ 
+                "OnDestroy"
+                {
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "tenebris_mortal_coil_modifier_aura"
+                        "Target"    "TARGET"
+                    }
+                }
+            }
+ 
+            "tenebris_mortal_coil_modifier_aura"
+            {
+                "IsDebuff"  "1"
+                "IsPurgable"    "1"
+ 
+                "OnTakeDamage"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_tenebris/tenebris.lua"
+                        "Function"  "MortalCoil_OnTakeDamage"
+                        "damage"    "%attack_damage"
+                    }
+                }
+            }
+ 
+            "tenebris_mortal_coil_modifier_debuff"
+            {
+                "IsDebuff"      "1"
+                "IsPurgable"        "1"
+                "EffectName"        "particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf"
+                "EffectAttachType"  "follow_overhead"
+ 
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "-10000"
+                }
+            }
+        }
+    }
+    //=================================================================================================================
+}

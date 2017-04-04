@@ -1,0 +1,687 @@
+"DOTAAbilities"
+{
+    //=================================================================================================================
+    //
+    //
+    //
+    //
+    //
+    //
+    //                                  Sirocco, the Dust Devil
+    // 
+    //
+    //
+    //
+    //
+    //
+    //=================================================================================================================
+    //=================================================================================================================
+    // Sirocco - Shifting Sands
+    //=================================================================================================================
+    "sirocco_shifting_sands"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityTextureName"            "custom/shifting_sands"
+
+        "precache"
+        {
+            "particle"              "particles/units/heroes/hero_alchemist/alchemist_acid_spray.vpcf"
+            "particle"              "particles/units/heroes/hero_sandking/sandking_sandstorm.vpcf"
+            "particle"              "particles/generic_gameplay/generic_stunned_old.vpcf"
+            "particle"              "particles/units/heroes/hero_sandking/sandking_epicenter.vpcf"
+            "soundfile"             "soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
+            "soundfile"             "soundevents/game_sounds_heroes/game_sounds_sandking.vsndevts"
+        }
+
+        "AbilityCastPoint"              "0.12 0.12 0.12 0.12"
+        "AbilityCooldown"               "24.0"
+        "AbilityManaCost"               "125"
+        "AbilityCastRange"              "750"
+
+        "AoERadius"                     "425 450 475 500"
+        "AbilityProcsMagicStick"        "1"
+        
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "duration"              "6"
+            }
+            
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "eruption_duration"     "2"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "ministun_duration"     "0.25"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "damage"                "60 80 100 120"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "radius"                "425 450 475 500"
+            }
+            "06"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "slow_pct"              "-15 -20 -25 -30"
+            }
+        }
+
+        "OnSpellStart"
+        {
+            "CreateThinker"
+            {
+                "ModifierName"  "modifier_shifting_sand"
+                "Target"        "POINT"
+            }
+            "CreateThinker"
+            {
+                "ModifierName"  "modifier_shifting_sand_2"
+                "Target"        "POINT"
+            }
+        }
+
+        "Modifiers"
+        {
+            "modifier_shifting_sand"
+            {
+                "Aura"                  "modifier_shifting_sand_debuff"
+                "Aura_Radius"           "%radius"
+                "Aura_Teams"            "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                "Aura_Types"            "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+                "Duration"              "%duration"
+        
+                "OnCreated"
+                {
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/units/heroes/hero_sandking/sandking_sandstorm.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"            "TARGET"
+                        "ControlPoints"
+                        {
+                            "00" "0 0 0"
+                            "01" "%radius %radius %radius"
+                        }
+                    }
+                    "FireSound"
+                    {
+                        "EffectName"    "Ability.SandKing_SandStorm.start"
+                        "Target"        "TARGET"
+                    }
+                }
+            }
+            "modifier_shifting_sand_2"
+            {
+                "duration"          "%duration + 0.5"
+                "ThinkInterval" "%eruption_duration"
+                "OnIntervalThink"
+                {
+                    "AttachEffect"
+                    {
+                        "EffectName"        "particles/units/heroes/hero_sandking/sandking_epicenter.vpcf"
+                        "EffectAttachType"  "start_at_customorigin"
+                        "Target"            "TARGET"
+                        "ControlPoints"
+                        {
+                            "01"            "%radius %radius %radius"
+                        }
+                    }
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Leshrac.Split_Earth"
+                        "Target"        "TARGET"
+                    }
+                    "ApplyModifier"
+                    {
+                        "Target"
+                        {
+                            "Center"        "TARGET"
+                            "Radius"        "%radius"
+                            "Teams"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                            "Types"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                        }
+                        "ModifierName"  "modifier_shifting_sand_stun"
+                    }
+                    
+                    "Damage"
+                    {
+                        "Target"
+                        {
+                            "Center"        "TARGET"
+                            "Radius"        "%radius"
+                            "Teams"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                            "Types"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                        }
+                        "Type"      "DAMAGE_TYPE_MAGICAL"
+                        "Damage"    "%damage"
+                    }
+                }
+            }
+            "modifier_shifting_sand_debuff"
+            {
+                "IsDebuff"      "1"
+                "Duration"          "0.2"
+                
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%slow_pct"
+                }
+            }
+            "modifier_shifting_sand_stun"
+            {
+                "Duration"                  "%ministun_duration"
+
+                "OverrideAnimation"         "ACT_DOTA_DISABLED"
+                "IsDebuff"                  "1"
+                "IsStunDebuff"              "1"
+                "IsPurgable"                "0"
+
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "EffectName"            "particles/generic_gameplay/generic_stunned_old.vpcf"
+                        "EffectAttachType"      "attach_origin"
+                        "Target"                "TARGET"
+                    }
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_STUNNED"        "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+    }
+    //=================================================================================================================
+    // Sirocco - Mirage
+    //=================================================================================================================
+    "sirocco_mirage"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_4"
+        "AbilityTextureName"            "custom/mirage"
+
+        "AbilityCastRange"              "350"
+        "AbilityCastPoint"              "0.35 0.35 0.35 0.35"
+
+        "AbilityCooldown"               "19.0 14.0 9.0 4.0"
+        "AbilityProcsMagicStick"        "1"
+
+        "precache"
+        {
+            "model"                     "models/heroes/sand_king/sand_king.vmdl"
+            "particle"                  "particles/econ/items/lina/lina_ti6/lina_ti6_laguna_blade.vpcf"
+            "particle"                  "particles/units/heroes/hero_sandking/sandking_loadout.vpcf"
+            "soundfile"                 "soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts"
+        }
+
+        "AbilityDamage"                 "90 130 170 210"
+
+        "AbilityManaCost"               "60 65 70 75"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "duration"                  "15"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "illusion_taken"            "475"
+            }
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "illusion_dealt"            "-50"
+            }
+            "04"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "illusion_taken_tt"         "575"
+            }
+            "05"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "illusion_dealt_tt"         "50"
+            }
+        }
+
+        "OnSpellStart"
+        {
+            "FireEffect"
+            {
+                "EffectName"            "particles/econ/items/lina/lina_ti6/lina_ti6_laguna_blade.vpcf"
+                "EffectAttachType"      "start_at_customorigin"
+                "ControlPointEntities"
+                {
+                    "TARGET"            "attach_attack1"
+                    "TARGET"            "attach_hitloc"
+                }
+            }
+            "FireEffect"
+            {
+                "EffectName"            "particles/units/heroes/hero_sandking/sandking_loadout.vpcf"
+                "EffectAttachType"      "follow_origin"
+                "Target"                "CASTER"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Hero_Terrorblade.Reflection"
+                "Target"        "TARGET"
+            }
+            "Damage"
+            {
+                "Target"                "TARGET"
+                "Damage"                "%AbilityDamage"
+                "Type"                  "DAMAGE_TYPE_MAGICAL"
+            }
+            "RunScript"
+            {
+                "ScriptFile"            "abilities/nextgeneration/hero_sirocco/mirage.lua"
+                "Function"              "mirage"
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"          "modifier_invisa"
+                "Target"                "CASTER"
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"          "modifier_invisible"
+                "Target"                "CASTER"
+                "duration"              "%duration"
+            }
+        }
+
+        "Modifiers"
+        {
+            "modifier_invisa"
+            {
+                "duration"              "%duration"
+                "IsHidden"              "1"
+                "IsDebuff"              "0"
+                "IsBuff"                "1"
+                "IsPurgable"            "1"
+                "OnAttackLanded"
+                {
+                    "RemoveModifier"
+                    {
+                        "Target"            "CASTER"
+                        "ModifierName"      "modifier_invisa"
+                    }
+                    "RemoveModifier"
+                    {
+                        "Target"            "CASTER"
+                        "ModifierName"      "modifier_invisible"
+                    }
+                }
+                "OnAbilityExecuted"
+                {
+                    "RemoveModifier"
+                    {
+                        "Target"            "CASTER"
+                        "ModifierName"      "modifier_invisa"
+                    }
+                    "RemoveModifier"
+                    {
+                        "Target"            "CASTER"
+                        "ModifierName"      "modifier_invisible"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RemoveModifier"
+                    {
+                        "Target"
+                        {
+                            "Center"        "CASTER"
+                            "Flags"         "DOTA_UNIT_TARGET_FLAG_DEAD"
+                        }
+                        "ModifierName"      "modifier_invisible"
+                    }
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_NO_UNIT_COLLISION"      "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_INVISIBLE"      "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+    }
+    //=================================================================================================================
+    // Sirocco - Dehydration Aura
+    //=================================================================================================================
+    "sirocco_dehydration_aura"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityTextureName"            "custom/dehydration_aura"
+
+        "precache"
+        {
+            "particle"  "particles/sirocco_dessication_aura.vpcf"
+        }
+
+        "AbilityCastRange"              "750"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "aoe"               "750"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "resistance_loss"   "-3 -4 -5 -6"
+            }  
+        }
+        "Modifiers"
+        {
+            "modifier_resistance_reduction_aura"
+            {
+                "Passive"               "1"
+                "IsBuff"                "1"
+                "IsPurgable"            "0"
+                "Aura"                  "modifier_reduction_aura"
+                "Aura_Radius"           "%aoe"
+                "Aura_Teams"            "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                "Aura_Types"            "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+            }
+            "modifier_reduction_aura"
+            {
+                "IsHidden"  "1"
+                "IsDebuff"  "1"
+                "ThinkInterval" "0.1"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "abilities/nextgeneration/hero_sirocco/dehydration_aura.lua"
+                        "Function"              "aura"
+                        "resistance_loss"               "modifier_resistance_loss"
+                    }
+                }
+            }
+            "modifier_resistance_loss"
+            {
+                "IsHidden"  "0"
+                "IsDebuff"  "1"
+                "IsPurgable"    "0"
+                "EffectName"    "particles/sirocco_dessication_aura.vpcf"
+                "EffectAttachType" "follow_origin"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"        "%resistance_loss"
+                }
+
+                "ThinkInterval" "0.5"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "abilities/nextgeneration/hero_sirocco/dehydration_aura.lua"
+                        "Function"              "stacktrack"
+                    }
+                }
+            }
+        }
+    }
+    //=================================================================================================================
+    // Sirocco - Desert Curse
+    //=================================================================================================================
+    "sirocco_desert_curse"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_2"
+
+        "AbilityTextureName"            "custom/desert_curse"
+
+        "AbilityCastRange"              "600"
+        "AbilityCastPoint"              "0.12 0.12 0.12 0.12"
+
+        "AbilityCooldown"               "130.0 100.0 70.0"
+        "AbilityProcsMagicStick"        "1"
+        "HasScepterUpgrade"             "1"
+
+        "precache"
+        {
+            "particle"      "particles/sirocco_desert_curse_projectile.vpcf"
+            "particle"      "particles/sirocco_desert_curse.vpcf"
+            "particle"      "particles/generic_gameplay/generic_manaburn.vpcf"
+            "particle"      "particles/units/heroes/hero_lich/lich_frost_nova.vpcf"
+            "particle"      "particles/econ/items/necrolyte/necronub_ambient/necrolyte_ambient_trail_ka_sand.vpcf"
+            "soundfile"     "soundevents/game_sounds_heroes/game_sounds_sirocco.vsndevts"
+        }
+
+        "AbilityManaCost"               "150 325 500"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "MaxLevel"                      "3"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "projectle_speed"           "600"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "mana_damage_lost"          "20 30 40"
+            }
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "attack_lost"           "-10 -15 -20"
+            }
+            "04"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "damage_multiplier"     "15 20 25" 
+            }
+            "05"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "blast_radius"              "225"
+            }
+            "06"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "duration"                  "6"
+            }
+            "07"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "scepter_duration"          "10"
+            }
+        }
+
+        "OnSpellStart"
+        {
+            "TrackingProjectile"
+            {
+                "Target"            "TARGET"
+                "EffectName"        "particles/sirocco_desert_curse_projectile.vpcf"
+                "Dodgeable"         "1"
+                "ProvidesVision"    "0"
+                "MoveSpeed"         "%projectle_speed"
+                "SourceAttachment"  "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+            }
+        }
+
+        "OnProjectileHitUnit"
+        {
+            "RunScript"
+            {
+                "ScriptFile"            "abilities/nextgeneration/hero_sirocco/desert_curse.lua"
+                "Function"              "ScepterCheck"
+                "plague"                "modifier_plague"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Hero_Sirocco.DesertCurse.Impact"
+                "Target"        "TARGET"
+            }
+        }
+
+        "Modifiers"
+        {
+            "modifier_plague"
+            {
+                "IsHidden"  "0"
+                "IsDebuff"  "1"
+                "IsPurgable"    "0"
+                "EffectName"    "particles/sirocco_desert_curse.vpcf"
+                "EffectAttachType" "follow_overhead"
+
+                "OnAttack"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "abilities/nextgeneration/hero_sirocco/desert_curse.lua"
+                        "Function"              "stacks_attack"
+                        "stacks_modifier"       "stacks_modifier"
+                    }
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/generic_gameplay/generic_manaburn.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"            "TARGET"
+                    }
+                }
+                "OnAttacked"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "abilities/nextgeneration/hero_sirocco/desert_curse.lua"
+                        "Function"              "stacks_attacked"
+                        "stacks_modifier"       "stacks_modifier"
+                    }
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/generic_gameplay/generic_manaburn.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"            "TARGET"
+                    }
+                }
+                "ThinkInterval"  "2.0"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "abilities/nextgeneration/hero_sirocco/desert_curse.lua"
+                        "Function"              "damage_cursed"
+                        "plague"                "modifier_plague"
+                        "plague_shared"         "modifier_plague_shared"
+                    }
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Sirocco.DesertCurse.Damage"
+                        "Target"        "TARGET"
+                    }
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/units/heroes/hero_lich/lich_frost_nova.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"            "TARGET"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "stacks_modifier"
+                        "Target"        "TARGET"
+                    }
+                }
+            }
+            "modifier_plague_shared"
+            {
+                "Duration"      "3"
+                "IsHidden"      "0"
+                "IsDebuff"      "1"
+                "IsPurgable"    "0"
+                "EffectName"    "particles/sirocco_desert_curse.vpcf"
+                "EffectAttachType" "follow_overhead"
+
+                "OnAttack"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "abilities/nextgeneration/hero_sirocco/desert_curse.lua"
+                        "Function"              "stacks_attack"
+                        "stacks_modifier"       "stacks_modifier"
+                    }
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/generic_gameplay/generic_manaburn.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"            "TARGET"
+                    }
+                }
+                "OnAttacked"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "abilities/nextgeneration/hero_sirocco/desert_curse.lua"
+                        "Function"              "stacks_attacked"
+                        "stacks_modifier"       "stacks_modifier"
+                    }
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/generic_gameplay/generic_manaburn.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"            "TARGET"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "stacks_modifier"
+                        "Target"        "TARGET"
+                    }
+                }
+            }
+            "stacks_modifier"
+            {
+                "Passive"                   "0"
+                "IsHidden"                  "1"
+                "IsDebuff"                  "1"
+                "IsPurgable"                "0"
+                "EffectName"                "particles/econ/items/necrolyte/necronub_ambient/necrolyte_ambient_trail_ka_sand.vpcf"
+                "EffectAttachType"          "follow_origin"
+                
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"  "%attack_lost"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,74 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 2
+	m_flCullRadius = -1.000000
+	m_flConstantLifespan = 0.500000
+	m_ConstantColor =
+	[
+		92,
+		143,
+		151,
+		155,
+	]
+	m_Children =
+	[
+		{
+			m_ChildRef = resource:"particles/bloodrakemarker_puddle.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/bloodrakemarker_wake.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/bloodrakemarker_splash.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/bloodrakemarker_ripple.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/bloodrakemarker_splash_ring.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_flDelay = 0.400000
+			m_ChildRef = resource:"particles/bloodrakemarker_ring_small.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/bloodrakemarker_air.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/bloodrakemarker_x.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/bloodrakemarker_b.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/bloodrakemarker_wake_center.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/bloodrakemarker_bubbles.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/bloodrakemarker_ripple_alt.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/bloodrakemarker_glow.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/bloodrakemarker_warp.vpcf"
+			m_bDisableChild = true
+		},
+	]
+}

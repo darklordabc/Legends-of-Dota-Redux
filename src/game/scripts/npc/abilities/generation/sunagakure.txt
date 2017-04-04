@@ -1,0 +1,1126 @@
+"DOTAAbilities"
+{
+    //=================================================================================================================
+    //
+    //
+    //
+    //
+    //
+    //
+    //                                  Sunagakure, the Puppeteer   
+    // 
+    //
+    //
+    //
+    //
+    //
+    //=================================================================================================================
+    //=================================================================================================================
+    // Suna - Blight & Wither
+    //=================================================================================================================
+    "suna_blight_and_wither"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "custom/suna_blight_and_wither"
+        "MaxLevel"                      "4"
+    
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    
+        "AbilityCastRange"              "675 750 825 900"
+        "AbilityCastPoint"              "0.3"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
+        "AnimationPlaybackRate"         "1.2"
+        "AbilityProcsMagicStick"        "1"
+    
+        "AOERadius"                     "275"
+    
+        "AbilityCooldown"               "26 22 18 14"
+        "AbilityManaCost"               "120"
+        "AbilityDamage"                 "10 14 18 22"
+    
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "radius"        "275"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "movement_slow"     "-2.0 -2.5 -3.0 -3.5"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "movement_slow_display"     "2.0 2.5 3.0 3.5"
+            }
+            "04"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "armor_reduction"       "-0.2 -0.25 -0.3 -0.35"
+            }
+            "05"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "duration"          "7"
+            }
+            "06"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "creep_damage"      "5 7 9 11"
+            }
+            "07"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "creep_duration"    "14"
+            }
+        }
+        "precache"
+        {
+            "particle"  "particles/suna_blight_and_wither.vpcf"
+            "particle"  "particles/status_fx/status_effect_slardar_amp_damage.vpcf"
+            "particle"  "particles/econ/items/pudge/pudge_tassles_of_black_death/pudge_black_death_rot_body_start.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_undying.vsndevts"
+        }
+        "OnSpellStart"
+        {
+            "FireEffect"
+            {
+                "EffectName"        "particles/suna_blight_and_wither.vpcf"
+                "EffectAttachType"  "start_at_customorigin"
+                "Target"            "CASTER"
+                "EffectRadius"          "%radius"
+                "ControlPoints"
+                {
+                    "00"                "POINT"
+                }
+            }
+            "CreateThinker"
+            {
+                "ModifierName"  "modifier_blight_thinker"
+                "Target"        "POINT"
+            }
+            "ActOnTargets"
+            {
+                "Target"
+                {
+                    "Center"    "POINT"
+                    "Radius"    "%radius"
+                    "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                    "Types"     "DOTA_UNIT_TARGET_HERO"
+                }
+            
+                "Action"    
+                {
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Undying.Decay.Target"
+                        "Target"        "TARGET"
+                    }
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "modifier_blight_debuff_hero"
+                        "Target"        "TARGET"
+                        "Duration"      "%duration"
+                    }
+                }
+            }
+            "ActOnTargets"
+            {
+                "Target"
+                {
+                    "Center"    "POINT"
+                    "Radius"    "%radius"
+                    "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                    "Types"     "DOTA_UNIT_TARGET_BASIC"
+                }
+            
+                "Action"    
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "modifier_blight_debuff_creep"
+                        "Target"        "TARGET"
+                        "Duration"      "%creep_duration"
+                    }
+                }
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_blight_thinker"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "0"
+                "Duration"          "3.0"
+            
+                "OnCreated"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Undying.Decay.Cast"
+                        "Target"        "TARGET"
+                    }
+                }
+            }
+            "modifier_blight_debuff_hero"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "1"
+    
+                "StatusEffectName"  "particles/status_fx/status_effect_slardar_amp_damage.vpcf"
+                "StatusEffectPriority"  "10"
+    
+                "OnAttack"
+                {
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/econ/items/pudge/pudge_tassles_of_black_death/pudge_black_death_rot_body_start.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"            "ATTACKER"
+                    }
+                    "Damage"
+                    {   
+                        "Target"        "ATTACKER"
+                        "Type"          "DAMAGE_TYPE_MAGICAL"
+                        "Damage"        "%AbilityDamage"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_suna/blight_and_wither"
+                        "Function"      "ApplySlowStacksOnAttack"
+                    }
+                }
+                "OnAttacked"
+                // "%attack_damage" is set to the damage value after mitigation
+                {
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/econ/items/pudge/pudge_tassles_of_black_death/pudge_black_death_rot_body_start.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"            "TARGET"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_suna/blight_and_wither"
+                        "Function"      "ApplyBlightDamage"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_suna/blight_and_wither"
+                        "Function"      "ApplySlowStacksOnAttacked"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "modifier_blight_slow_stack"
+                        "Target"        "TARGET"
+                    }
+                }
+            }
+            "modifier_blight_debuff_creep"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "1"
+    
+                "StatusEffectName"  "particles/status_fx/status_effect_slardar_amp_damage.vpcf"
+                "StatusEffectPriority"  "10"
+        
+                "OnAttack"
+                {
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/econ/items/pudge/pudge_tassles_of_black_death/pudge_black_death_rot_body_start.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"            "ATTACKER"
+                    }
+                    "Damage"
+                    {
+                        "Target"        "ATTACKER"
+                        "Type"          "DAMAGE_TYPE_MAGICAL"
+                        "Damage"        "%creep_damage"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_suna/blight_and_wither"
+                        "Function"      "ApplySlowStacksOnAttack"
+                    }
+                }
+                "OnAttacked"
+                // "%attack_damage" is set to the damage value after mitigation
+                {
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/econ/items/pudge/pudge_tassles_of_black_death/pudge_black_death_rot_body_start.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"            "TARGET"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_suna/blight_and_wither"
+                        "Function"      "ApplyBlightDamage"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_suna/blight_and_wither"
+                        "Function"      "ApplySlowStacksOnAttacked"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "modifier_blight_slow_stack"
+                        "Target"        "TARGET"
+                    }
+                }
+            }
+            "modifier_blight_slow_stack"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "1"
+            
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%movement_slow" 
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"    "%armor_reduction"
+                }
+            }
+        }
+    }
+    //=================================================================================================================
+    // Suna - Dead Man's Chest
+    //=================================================================================================================
+    "suna_dead_mans_chest"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "custom/suna_dead_mans_chest"
+        "MaxLevel"                      "3"
+    
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityProcsMagicStick"        "1"
+    
+        "AbilityCastRange"              "525"
+        "AbilityCastPoint"              "0.0"
+    
+        "AbilityCooldown"               "130 115 100"
+        "AbilityManaCost"               "160 190 220"
+        "HasScepterUpgrade"             "1"
+    
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"      "FIELD_FLOAT"
+                "duration"      "5 7 9"
+            }
+        }
+        "precache"
+        {
+            "particle"  "particles/status_fx/status_effect_ghost.vpcf"
+        }
+        "OnUpgrade"
+        {
+            "LevelUpAbility"
+            {
+                "Target"        "CASTER"
+                "AbilityName"   "suna_kyonshi"
+            }
+        }
+        "OnSpellStart"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_dead_man"
+                "Target"        "TARGET"
+                "Duration"      "%duration"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_dead_man"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "0"
+        
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MIN_HEALTH" "1" 
+                }
+                "OnTakeDamage"
+                // "%attack_damage" is set to the damage value after mitigation
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_suna/dead_mans_chest.lua"
+                        "Function"      "CheckForDeath"
+                        "Damage"        "%attack_damage"
+                    }
+                }
+            }
+            "modifier_dead_man_contain"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "0"
+                "Attributes"        "MODIFIER_ATTRIBUTE_PERMANENT"
+            
+                "OnRespawn"
+                {
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "modifier_dead_man_contain"
+                        "Target"        "UNIT"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_suna/dead_mans_chest.lua"
+                        "Function"      "KyonshiSwap"
+                    }
+                }
+            }
+        }
+    }
+    //=================================================================================================================
+    // Suna - Kyonshi
+    //=================================================================================================================
+    "suna_kyonshi"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "custom/suna_kyonshi"
+        "MaxLevel"                      "3"
+    
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityProcsMagicStick"        "1"
+    
+        "AbilityCooldown"               "2.0"
+        "AbilityManaCost"               "120 140 160"
+    
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "duration"      "6.5 7.75 9.0"
+            }
+        }
+    
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/nextgeneration/hero_suna/dead_mans_chest.lua"
+                "Function"      "KyonshiRevive"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_kyonshi"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsPurgable"        "0"
+        
+                "StatusEffectName"      "particles/status_fx/status_effect_ghost.vpcf"     
+                "StatusEffectPriority"  "10"
+            }
+            "modifier_kyonshi_aghs"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsBuff"            "1"
+                "IsPurgable"        "1"
+            
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE" "522"
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_MAGIC_IMMUNE"       "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+    }
+    "suna_mind_control"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "custom/suna_vicissitude"
+        "MaxLevel"                      "4"
+    
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_ALERT_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    
+        "AbilityCastRange"              "475"
+        "AbilityCastPoint"              "0.0"
+        "AbilityChannelTime"            "2.5 3.0 3.5 4.0"
+        "AbilityManaCost"               "110 130 150 170"
+        "AbilityCooldown"               "2.0"
+        "AnimationPlaybackRate"         "0.3"
+        "AbilityProcsMagicStick"        "1"
+    
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "duration"          "2.5 3.0 3.5 4.0"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "movement_slow"     "-55 -50 -45 -40"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "dummy_duration"    "2.4 2.9 3.4 3.9"
+            }
+        }
+        "OnSpellStart"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_vicissitude_effect"
+                "Target"        "CASTER"
+                "Duration"      "%duration"
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_vicissitude"
+                "Target"        "TARGET"
+                "Duration"      "%duration"
+            }
+            "RemoveModifier"
+            {
+                "ModifierName"  "modifier_vicissitude_burrow"
+                "Target"        "CASTER"
+            }
+        }
+        "OnChannelFinish"
+        {
+            "RemoveModifier"
+            {
+                "ModifierName"  "modifier_vicissitude"
+                "Target"        
+                {
+                    "Center"    "TARGET"
+                    "Flags"     "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+                }
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_vicissitude_effect"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "0"
+            }
+            "modifier_vicissitude"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "1"
+                "IsPurgeable"       "1"
+    
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%movement_slow" 
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_NO_UNIT_COLLISION"  "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_COMMAND_RESTRICTED" "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_DISARMED"           "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_INVULNERABLE"       "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_SILENCED"           "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_MUTED"              "MODIFIER_STATE_VALUE_ENABLED"
+                }
+                "OnCreated"
+                {
+                    "DelayedAction"
+                    {
+                        "Delay"     "0.05"
+                        "Action"    
+                        {
+                            "RunScript"
+                            {
+                                "ScriptFile"    "abilities/nextgeneration/hero_suna/vicissitude.lua"
+                                "Function"      "MindControlAdd"
+                            }
+                        }
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_suna/vicissitude.lua"
+                        "Function"      "MindControlRemove"
+                    }
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "modifier_vicissitude_effect"
+                        "Target"        "CASTER"
+                    }
+                }
+            }
+            "modifier_vicissitude_dummy"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "0"
+                "Duration"          "%dummy_duration"
+                "States"
+                {
+                    "MODIFIER_STATE_NO_HEALTH_BAR"      "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_INVULNERABLE"       "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_SILENCED"           "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_MUTED"              "MODIFIER_STATE_VALUE_ENABLED"
+                }
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "EffectName"        "particles/suna_puppeteer.vpcf"
+                        "EffectAttachType"  "attach_hitloc"
+                        "Target"            "TARGET"
+                        
+                        "ControlPointEntities"
+                        {
+                            "CASTER"    "attach_attack1"
+                            "TARGET"    "attach_attack1"
+                        }
+                    }
+                    "AttachEffect"
+                    {
+                        "EffectName"        "particles/suna_puppeteer.vpcf"
+                        "EffectAttachType"  "attach_hitloc"
+                        "Target"            "TARGET"
+                        
+                        "ControlPointEntities"
+                        {
+                            "CASTER"    "attach_attack2"
+                            "TARGET"    "attach_attack2"
+                        }
+                    }
+                }
+                "OnDestroy"
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "modifier_vicissitude_despawn"
+                        "Target"        "TARGET"
+                        "Duration"      "0.5"
+                    }
+                }
+            }
+            "modifier_vicissitude_despawn"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+            
+                "States"
+                {
+                    "MODIFIER_STATE_NO_UNIT_COLLISION"  "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_COMMAND_RESTRICTED" "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_DISARMED"           "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_INVULNERABLE"       "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_SILENCED"           "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_MUTED"              "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+            "modifier_vicissitude_aghs"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsBuff"            "1"
+                "IsPurgable"        "1"
+            
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE" "522"
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_MAGIC_IMMUNE"       "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+    }
+    //=================================================================================================================
+    // Suna - Skeleton Puppets
+    //=================================================================================================================
+    "suna_puppeteer"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "custom/suna_skeleton_puppets"
+        "MaxLevel"                      "4"
+    
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT_TARGET"
+    
+        "AbilityCastRange"              "465"
+        "AbilityCastPoint"              "1.0"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_3"
+        "AnimationPlaybackRate"         "0.6"
+        "AbilityProcsMagicStick"        "1"
+    
+        "AbilityCooldown"               "17 14 11 8"
+        "AbilityManaCost"               "40"
+    
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "skeleton_count"        "2 3 4 5"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "skeleton_movespeed"    "320 340 360 380"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "duration"              "30"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "attackspeed_bonus"     "50"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "regen_bonus"           "30"
+            }
+            "06" //Must be 300 less than skeleton_movespeed
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_movement_speed"  "20 40 60 80"
+            }
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "max_distance"          "1600"
+            }
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "buff_duration"         "6.0"
+            }
+        }
+        "precache"
+        {
+            "particle"  "particles/neutral_fx/skeleton_spawn.vpcf"
+            "particle"  "particles/suna_puppeteer.vpcf"
+            "particle"  "particles/status_fx/status_effect_overpower.vpcf"
+            "model"     "models/creeps/neutral_creeps/n_creep_troll_skeleton/n_creep_skeleton_melee.vmdl"
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/nextgeneration/hero_suna/skeleton_puppets.lua"
+                "Function"      "CheckPuppets"
+            }
+            "SpawnUnit"
+            {
+                "UnitName"      "skeleton_puppet"
+                "Target"        "POINT"
+                "UnitCount"     "1"
+                "UnitLimit"     "%skeleton_count"
+                "GrantsGold"    "1"
+                "GrantsXP"      "1"
+                "SpawnRadius"   "10"
+                "OnSpawn"
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "modifier_phased"
+                        "Target"        "TARGET"
+                        "Duration"      "0.03"
+                    }
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "modifier_puppet"
+                        "Target"        "TARGET"
+                    }
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/neutral_fx/skeleton_spawn.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"            "TARGET"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_suna/skeleton_puppets.lua"
+                        "Function"      "SetForwardVector"
+                    }
+                }
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_puppet_death"
+            {
+                "Passive"           "1"
+                "IsHidden"          "1"
+            
+                "OnDeath"
+                {
+                    "ActOnTargets"
+                    {
+                        "Target"
+                        {
+                            "Center"    "CASTER"
+                            "Radius"    "2000"
+                            "Teams"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+                            "Types"     "DOTA_UNIT_TARGET_BASIC"
+                        }
+                    
+                        "Action"    
+                        {
+                            "RemoveModifier"
+                            {
+                                "ModifierName"  "modifier_puppet"
+                                "Target"        "TARGET"
+                            }
+                        }
+                    }
+                }
+            }
+            "modifier_puppet"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+        
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "%bonus_movement_speed" 
+                }
+                "OnAttack"
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "modifier_puppet"
+                        "Target"        "ATTACKER"
+                        "Duration"      "%duration"
+                    }
+                }
+                "ThinkInterval"  "0.1"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_suna/skeleton_puppets.lua"
+                        "Function"      "PuppetDistanceCheck"
+                    }
+                }
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "EffectName"        "particles/suna_puppeteer.vpcf"
+                        "EffectAttachType"  "attach_hitloc"
+                        "Target"            "TARGET"
+                        
+                        "ControlPointEntities"
+                        {
+                            "CASTER"    "attach_attack1"
+                            "TARGET"    "attach_hitloc"
+                        }
+                    }
+                }
+                "OnOwnerDied"
+                {
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "modifier_puppet"
+                        "Target"        "TARGET"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_suna/skeleton_puppets.lua"
+                        "Function"      "KillPuppets"
+                    }
+                    "ActOnTargets"
+                    {
+                        "Target"
+                        {
+                            "Center"    "CASTER"
+                            "Radius"    "9000"
+                            "Teams"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+                            "Types"     "DOTA_UNIT_TARGET_BASIC"
+                        }
+                    
+                        "Action"    
+                        {
+                            "RunScript"
+                            {
+                                "ScriptFile"    "abilities/nextgeneration/hero_suna/skeleton_puppets.lua"
+                                "Function"      "PuppetDeathBonus"
+                            }
+                        }
+                    }
+                }
+            }
+            "modifier_puppet_attackspeed_bonus"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsPurgeable"       "0"
+                "Attributes"        "MODIFIER_ATTRIBUTE_MULTIPLE"
+                "Duration"          "%buff_duration"
+            
+                "StatusEffectName"      "particles/status_fx/status_effect_overpower.vpcf"     
+                "StatusEffectPriority"  "10"
+            
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"      "%attackspeed_bonus"
+                    "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"           "%regen_bonus"
+                }
+            }
+        }           
+    }
+    //=================================================================================================================
+    // Suna - Vicissitude
+    //=================================================================================================================
+    "suna_vicissitude"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "custom/suna_vicissitude"
+        "MaxLevel"                      "4"
+    
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    
+        "AbilityCastRange"              "475"
+        "AbilityCastPoint"              "1.0"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_4"
+    
+        "AbilityCooldown"               "19.0"
+        "AbilityManaCost"               "0"
+    
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "duration"          "8.0 10.0 12.0 14.0"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "vicissitude_duration"  "2.5 3.0 3.5 4.0"
+            }
+        }
+        "precache"
+        {
+            "particle"  "particles/units/heroes/hero_nyx_assassin/nyx_assassin_burrow.vpcf"
+            "particle"  "particles/units/heroes/hero_nyx_assassin/nyx_assassin_burrow_exit.vpcf"
+            "particle"  "particles/status_fx/status_effect_invisible.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_nyx_assassin.vsndevts"
+        }
+        "OnUpgrade"
+        {
+            "LevelUpAbility"
+            {
+                "Target"        "CASTER"
+                "AbilityName"   "suna_mind_control"
+            }
+        }
+        "OnAbilityPhaseStart"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_vicissitude_delay"
+                "Target"        "CASTER"
+                "Duration"      "1.0"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Hero_NyxAssassin.CastBurrow"
+                "Target"        "CASTER"
+            }
+        }
+        "OnSpellStart"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_vicissitude_burrow"
+                "Target"        "CASTER"
+                "Duration"      "%duration"
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_vicissitude_disarm"
+                "Target"        "CASTER"
+                "Duration"      "1.65"
+            }
+            "SpawnUnit"
+            {
+                "UnitName"      "dummy_unit"
+                "Target"        "CASTER"
+                "Duration"      "%duration"
+                "UnitCount"     "1"
+                "UnitLimit"     "0"
+                "GrantsGold"    "0"
+                "GrantsXP"      "0"
+                "SpawnRadius"   "1"
+                "OnSpawn"
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "modifier_burrow_particles"
+                        "Target"        "TARGET"
+                        "Duration"      "%duration"
+                    }
+                }
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_vicissitude_delay"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "0"
+            
+                "EffectName"        "particles/units/heroes/hero_nyx_assassin/nyx_assassin_burrow.vpcf"
+                "EffectAttachType"  "follow_origin"
+    
+                "OnOrder"
+                // Triggers on Move/Casting/Hold/Stop
+                {
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "modifier_vicissitude_delay"
+                        "Target"        "CASTER"
+                    }
+                }
+            }
+            "modifier_vicissitude_disarm"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+            
+                "States"
+                {
+                    "MODIFIER_STATE_DISARMED"       "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+            "modifier_vicissitude_burrow"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsBuff"            "1"
+        
+                "States"
+                {
+                    "MODIFIER_STATE_NO_UNIT_COLLISION"  "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY"               "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_INVISIBLE"          "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_TRUESIGHT_IMMUNE"   "MODIFIER_STATE_VALUE_ENABLED"
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_DISABLE_AUTOATTACK"  "1"
+                }
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_suna/vicissitude.lua"
+                        "Function"      "SwapVicissitude"
+                    }
+                }
+                "OnAttack"
+                {
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "modifier_vicissitude_burrow"
+                        "Target"        "ATTACKER"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/units/heroes/hero_nyx_assassin/nyx_assassin_burrow_exit.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"            "CASTER"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_suna/vicissitude.lua"
+                        "Function"      "SwapMindControl"
+                    }
+                }
+            }
+            "modifier_burrow_particles"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+            
+                "EffectName"        "particles/econ/items/natures_prophet/natures_prophet_weapon_sufferwood/furion_teleport_end_team_sufferwood_ground_soft.vpcf"      
+                "EffectAttachType"  "follow_origin"
+    
+                "States"
+                {
+                    "MODIFIER_STATE_NO_HEALTH_BAR"      "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NOT_ON_MINIMAP"     "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_INVULNERABLE"       "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_UNSELECTABLE"       "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NO_UNIT_COLLISION"  "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY"               "MODIFIER_STATE_VALUE_ENABLED"
+                }
+    
+                "ThinkInterval"  "0.03"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_suna/vicissitude.lua"
+                        "Function"      "SetBurrowLocation"
+                    }
+                }
+            }
+        }
+    }
+}
