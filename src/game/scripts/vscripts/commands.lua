@@ -130,6 +130,7 @@ function Commands:OnPlayerChat(keys)
     ----------------------------
     if string.find(command, "-test") then 
         GameRules:SendCustomMessage('testing testing 1. 2. 3.', 0, 0)
+        util:DisplayError(playerID, "tested")
     elseif string.find(command, "-printabilities") then
         print("-------------HERO STATS------------")
         print("HP: "..tostring(hero:GetHealth()).."/"..tostring(hero:GetMaxHealth()))

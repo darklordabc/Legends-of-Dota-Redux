@@ -18,6 +18,14 @@
         GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_HERO_SELECTION_CLOCK, false);
 
         GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_ENDGAME, false);
+
+        GameEvents.Subscribe("lodCreateIngameErrorMessage", function(data) {
+            GameEvents.SendEventClientSide("dota_hud_error_message", {
+                "splitscreenplayer": 0,
+                "reason": data.reason || 80,
+                "message": data.message
+            })
+        })
     </script>
 
 	<Panel>
@@ -38,10 +46,10 @@
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/duel_ui.xml" />
 
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/hud_hack_700.xml" />
-
-        <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/scoreboard_hack.xml" />
-
-        <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/top_scoreboard.xml" />
+        
+        <CustomUIElement type="HudTopBar" layoutfile="file://{resources}/layout/custom_game/top_scoreboard.xml" />
+        
+        <CustomUIElement type="FlyoutScoreboard" layoutfile="file://{resources}/layout/custom_game/scoreboard_flyout.xml" />
 
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/ingame_votings.xml" />
         <!-- Textures compiling stuff 

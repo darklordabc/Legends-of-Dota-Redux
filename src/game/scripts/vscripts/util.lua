@@ -904,6 +904,26 @@ function CDOTA_BaseNPC:PopupNumbers(target, pfx, color, lifetime, number, presym
     ParticleManager:SetParticleControl(pidx, 3, color)		
 end
 
+DisableHelpStates = DisableHelpStates or {}
+function CDOTA_PlayerResource:SetDisableHelpForPlayerID(nPlayerID, nOtherPlayerID, disabled)
+    if nPlayerID ~= nOtherPlayerID then
+        DisableHelpStates[nPlayerID] = DisableHelpStates[nPlayerID] or {}
+        DisableHelpStates[nPlayerID][nOtherPlayerID] = disabled
+        CustomNetTables:SetTableValue("phase_ingame", "disable_help_data", DisableHelpStates)
+    end
+end
+
+function CDOTA_PlayerResource:IsDisableHelpSetForPlayerID(nPlayerID, nOtherPlayerID)
+    return DisableHelpStates[nPlayerID] ~= nil and DisableHelpStates[nPlayerID][nOtherPlayerID] and PlayerResource:GetTeam(nPlayerID) == PlayerResource:GetTeam(nOtherPlayerID)
+end
+
+function util:DisplayError(pid, message)
+    local player = PlayerResource:GetPlayer(pid)
+    if player then
+        CustomGameEventManager:Send_ServerToPlayer(player, "lodCreateIngameErrorMessage", {message=message})
+    end
+end
+
 -- Returns a set of abilities that won't trigger stuff like aftershock / essence aura
 local toIgnore
 function util:getToggleIgnores()
@@ -911,11 +931,16 @@ function util:getToggleIgnores()
 end
 
 local abilityKVs = {}
-function util:getAbilityKV(ability)
-    if ability == nil then
+function util:getAbilityKV(ability, key)
+    if key then
+        if abilityKVs[ability] then
+            return abilityKVs[ability][key]
+        end
+    elseif ability then
+        return abilityKVs[ability]
+    else
         return abilityKVs
     end
-    return abilityKVs[ability]
 end
 
 (function()
