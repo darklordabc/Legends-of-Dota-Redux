@@ -1897,6 +1897,9 @@ function Pregame:onIngameBuilder(eventSourceIndex, args)
             network:setOption('lodOptionBalanceMode', true)
         end, "changeBalanceMode", 0.5)
     end
+    if IsValidEntity(hero) and hero:IsAlive() == false then
+        util:DisplayError(playerID, "#dead_cant_use")
+    end
 end
 
 -- Player wants to cast a vote
