@@ -1,0 +1,44 @@
+"DOTAAbilities" {
+  "morph_str_int_redux"
+  {
+    // General
+    //-------------------------------------------------------------------------------------------------------------
+    "BaseClass"           "ability_lua"
+    "ScriptFile"          "abilities\morphling_morph_str_int.lua"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+    "AbilityTextureName"      "morphling_morph_int"
+    "FightRecapLevel"       "1"
+    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_3"
+    
+    // Time   
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilityCooldown"       "0.0"
+
+    "precache"
+    {
+      "particle"      "particles/morphling_morph_int.vpcf"
+      "soundfile"     "soundevents/game_sounds_heroes/game_sounds_morphling.vsndevts"
+    }
+    
+    // Special
+    //-------------------------------------------------------------------------------------------------------------
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "mana_per_second"  "30 30 30 30"
+      }
+      "02"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "stats_per_second"   "2 4 8 16"
+      }
+      "03"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "bonus_int"     "3 4 5 6"
+      }
+    }
+  }
+}
