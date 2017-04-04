@@ -30,6 +30,7 @@ All notable changes to this project will be documented in this file.
 - Added Hylonome heroes abilities from Next Generation mod (4 abilities)
 - Shadow Fiend Bot now gets 2 extra abiliites like the other bots
 - Added Proteus heroes abilities from Next Generation mod (4 abilities)
+- Anomaly and Wraith of Nature is now troll combo
 - Revamped scoreboard, should no longer having spacing problems. 
 
 ## 7.1 - Steam Version
