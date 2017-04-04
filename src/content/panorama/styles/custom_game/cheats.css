@@ -26,6 +26,15 @@
 	transform: translate3d( 105%, 0px, 0px );
 }
 
+.commandMenuBlock 
+{
+	width: 100%;
+}
+
+#closeCheatsButton {
+	horizontal-align: right;
+}
+
 #commandMenuTitle {
 	margin-top: 10px;
 	margin-bottom: 10px;
