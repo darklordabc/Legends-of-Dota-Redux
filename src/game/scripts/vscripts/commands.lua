@@ -1,5 +1,14 @@
 Commands = Commands or class({})
 
+function Commands:CheckArgs( args, toCheck )
+    for k,v in pairs(args) do
+        if string.match(args, v) then
+            return true
+        end
+    end
+    return false
+end
+
 function Commands:OnPlayerChat(keys)    
     local teamonly = keys.teamonly
     local playerID = keys.playerid
@@ -7,6 +16,7 @@ function Commands:OnPlayerChat(keys)
     local text = string.lower(keys.text)
 
     local command
+    local arguments = {}
 
     for k,v in pairs(util:split(text, " ")) do
         if string.match(v, "-") then
@@ -14,6 +24,8 @@ function Commands:OnPlayerChat(keys)
         elseif string.match(v, "#") then
             print(string.sub(v, 2))
             playerID = tonumber(string.sub(v, 2)) 
+        else
+            table.insert(arguments, v)
         end
     end
 
@@ -470,9 +482,9 @@ function Commands:OnPlayerChat(keys)
                 ingame.heard["freestuff"] = true
             end   
             local goldAmount = 100000
-            local splitedcommand = util:split(command, " ")       
-            if splitedcommand[2] and tonumber(splitedcommand[2])then
-                goldAmount = tonumber(splitedcommand[2])
+            local splitedcommand = arguments       
+            if splitedcommand[1] and tonumber(splitedcommand[1])then
+                goldAmount = tonumber(splitedcommand[1])
             end
 
             Timers:CreateTimer(function()  
@@ -571,9 +583,9 @@ function Commands:OnPlayerChat(keys)
         elseif string.find(command, "-lvlup") then 
             -- Give user 1 level, unless they specify a number after
             local levels = 1
-            local splitedcommand = util:split(command, " ")       
-            if splitedcommand[2] and tonumber(splitedcommand[2]) then
-                levels = tonumber(splitedcommand[2])
+            local splitedcommand = arguments       
+            if splitedcommand[1] and tonumber(splitedcommand[1]) then
+                levels = tonumber(splitedcommand[1])
             end
             Timers:CreateTimer(function()  
                 for i=0,levels-1 do
@@ -585,32 +597,32 @@ function Commands:OnPlayerChat(keys)
         elseif string.find(command, "-item") then 
             -- Give user 1 level, unless they specify a number after
             Timers:CreateTimer(function()  
-                local splitedcommand = util:split(command, " ")       
+                local splitedcommand = arguments       
                 local validItem = false
-                if splitedcommand[2] then
-                    hero:AddItemByName(splitedcommand[2])
-                    local findItem = hero:FindItemByName(splitedcommand[2])
+                if splitedcommand[1] then
+                    hero:AddItemByName(splitedcommand[1])
+                    local findItem = hero:FindItemByName(splitedcommand[1])
                     if findItem then validItem = true end
                 end
                 if validItem then
-                    ingame:CommandNotification("-item", 'Cheat Used (-item): Given ' .. splitedcommand[2] .. ' to '.. PlayerResource:GetPlayerName(playerID)) 
+                    ingame:CommandNotification("-item", 'Cheat Used (-item): Given ' .. splitedcommand[1] .. ' to '.. PlayerResource:GetPlayerName(playerID)) 
                 end
             end, DoUniqueString('cheat'), .1)
 
         elseif string.find(command, "-addability") or string.find(command, "-giveability") or string.find(command, "-add") then 
             -- Give user 1 level, unless they specify a number after
             Timers:CreateTimer(function()  
-              local splitedcommand = util:split(command, " ")       
-              if splitedcommand[2] then 
+              local splitedcommand = arguments       
+              if splitedcommand[1] then 
                 local absCustom = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
                 for k,v in pairs(absCustom) do
                     --print(k)
-                    if string.find(k, splitedcommand[2]) then
-                      splitedcommand[2] = k
+                    if string.find(k, splitedcommand[1]) then
+                      splitedcommand[1] = k
                     end
                 end
-                hero:AddAbility(splitedcommand[2])
-                    local findAbility = hero:FindAbilityByName(splitedcommand[2])
+                hero:AddAbility(splitedcommand[1])
+                    local findAbility = hero:FindAbilityByName(splitedcommand[1])
                     if findAbility then validAbility = true end
                 end
                 if validAbility then
@@ -623,7 +635,7 @@ function Commands:OnPlayerChat(keys)
                             end
                         end
                     end
-                    ingame:CommandNotification("-addability", 'Cheat Used (-addability): Given ' .. splitedcommand[2] .. ' to '.. PlayerResource:GetPlayerName(playerID)) 
+                    ingame:CommandNotification("-addability", 'Cheat Used (-addability): Given ' .. splitedcommand[1] .. ' to '.. PlayerResource:GetPlayerName(playerID)) 
                 end
             end, DoUniqueString('cheat'), .1)
 
@@ -635,7 +647,7 @@ function Commands:OnPlayerChat(keys)
                     local golem = CreateUnitByName("npc_dota_warlock_golem_1", spawnLoc, true, nil, nil, otherTeam(hero:GetTeamNumber()))
                 end
 
-                --ingame:CommandNotification("-addability", 'Cheat Used (-addability): Given ' .. splitedcommand[2] .. ' to '.. PlayerResource:GetPlayerName(playerID)) 
+                --ingame:CommandNotification("-addability", 'Cheat Used (-addability): Given ' .. splitedcommand[1] .. ' to '.. PlayerResource:GetPlayerName(playerID)) 
         
             end, DoUniqueString('cheat'), .1)
 
@@ -643,13 +655,13 @@ function Commands:OnPlayerChat(keys)
             -- Give user 1 level, unless they specify a number after
 
             Timers:CreateTimer(function()  
-                local splitedcommand = util:split(command, " ")       
+                local splitedcommand = arguments   
                 local validAbility = false
-                if splitedcommand[2] then    
+                if splitedcommand[1] then    
                     for i=0,32 do
                         local abil = hero:GetAbilityByIndex(i)
                         if abil then
-                            if splitedcommand[2] == "all" then
+                            if splitedcommand[1] == "all" then
                                 hero:SetAbilityPoints(hero:GetAbilityPoints() + abil:GetLevel())
                                 hero:RemoveAbility(abil:GetName())
                             elseif string.find(abil:GetName(), splitedText[2]) then
@@ -660,7 +672,7 @@ function Commands:OnPlayerChat(keys)
                     local removedAbilty = hero:FindAbilityByName(splitedText[2])
                     if removedAbilty then
                         hero:SetAbilityPoints(hero:GetAbilityPoints() + removedAbilty:GetLevel())
-                        hero:RemoveAbility(splitedcommand[2])
+                        hero:RemoveAbility(splitedcommand[1])
                     end
                 end
                 if validAbility then
