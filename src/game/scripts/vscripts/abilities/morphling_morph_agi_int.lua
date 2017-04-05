@@ -2,6 +2,8 @@ morph_int_agi_redux = class({})
 LinkLuaModifier("modifier_morph_int_agi","abilities/morphling_morph_agi_int",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_morph_int_agi_passive","abilities/morphling_morph_agi_int",LUA_MODIFIER_MOTION_NONE)
 
+-- Don't think this is needed in redux, also it needs to compare levels because in this state it keeps setting levels for their counterparts 
+
 --[[function morph_int_agi_redux:OnUpgrade()
   if self:GetCaster():HasAbility("morph_agi_int_redux") then
     self:GetCaster():FindAbilityByName("morph_agi_int_redux"):SetLevel(self:GetLevel())
@@ -68,7 +70,7 @@ function modifier_morph_int_agi:OnIntervalThink()
 
   -- Check if the caster has mana
   if self:GetCaster():GetMana() < mana_per_second then
-    self:GetAbility():ToggleAbility()
+    --self:GetAbility():ToggleAbility()
     return
   end
 
@@ -79,7 +81,7 @@ function modifier_morph_int_agi:OnIntervalThink()
   end
   local ability = self:GetAbility()
   local interval = 1/ ability:GetSpecialValueFor("stats_per_second")
-  self:GetCaster():SpendMana(mana_per_second/interval,self:GetAbility())
+  self:GetCaster():SpendMana(mana_per_second*interval,self:GetAbility())
   self:GetCaster():ModifyIntellect(-1)
   self:GetCaster():ModifyAgility(1)
   --self:GetCaster():ReduceMana(12) -- Reduce 12 mana ( Not sure if the % from the int reduction should be refunded)
@@ -114,8 +116,8 @@ function morph_agi_int_redux:OnToggle()
   end
 
   -- Toggle the oppositie off
-  if self:GetCaster():HasAbility("morph_agi_int_redux") and self:GetCaster():FindAbilityByName("morph_agi_int_redux"):GetToggleState() then
-    self:GetCaster():FindAbilityByName("morph_agi_int_redux"):ToggleAbility()
+  if self:GetCaster():HasAbility("morph_int_agi_redux") and self:GetCaster():FindAbilityByName("morph_int_agi_redux"):GetToggleState() then
+    self:GetCaster():FindAbilityByName("morph_int_agi_redux"):ToggleAbility()
   end
 end
 
@@ -166,7 +168,7 @@ function modifier_morph_agi_int:OnIntervalThink()
 
   -- Check if the caster has mana
   if self:GetCaster():GetMana() < mana_per_second then
-    self:GetAbility():ToggleAbility()
+    --self:GetAbility():ToggleAbility()
     return
   end
 
@@ -178,7 +180,7 @@ function modifier_morph_agi_int:OnIntervalThink()
 
   local ability = self:GetAbility()
   local interval = 1/ ability:GetSpecialValueFor("stats_per_second")
-  self:GetCaster():SpendMana(mana_per_second/interval,self:GetAbility())
+  self:GetCaster():SpendMana(mana_per_second*interval,self:GetAbility())
   self:GetCaster():ModifyIntellect(1)
   self:GetCaster():ModifyAgility(-1)
   --self:GetCaster():GiveMana(12) -- Add 12 mana ( Not sure if the % from the int addition should be refunded)

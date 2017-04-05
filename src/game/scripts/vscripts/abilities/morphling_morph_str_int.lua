@@ -69,7 +69,7 @@ function modifier_morph_int_str:OnIntervalThink()
 
   -- Check if the caster has mana
   if self:GetCaster():GetMana() < mana_per_second then
-    self:GetAbility():ToggleAbility()
+    --self:GetAbility():ToggleAbility()
     return
   end
 
@@ -80,7 +80,7 @@ function modifier_morph_int_str:OnIntervalThink()
   end
   local ability = self:GetAbility()
   local interval = 1/ ability:GetSpecialValueFor("stats_per_second")
-  self:GetCaster():SpendMana(mana_per_second/interval,self:GetAbility())
+  self:GetCaster():SpendMana(mana_per_second*interval,self:GetAbility())
   self:GetCaster():ModifyIntellect(-1)
   self:GetCaster():ModifyStrength(1)
   --self:GetCaster():ReduceMana(12) -- Reduce 12 mana ( Not sure if the % from the int reduction should be refunded)
@@ -114,8 +114,8 @@ function morph_str_int_redux:OnToggle()
   end
 
   -- Toggle the oppositie off
-  if self:GetCaster():HasAbility("morph_str_int_redux") and self:GetCaster():FindAbilityByName("morph_str_int_redux"):GetToggleState() then
-    self:GetCaster():FindAbilityByName("morph_str_int_redux"):ToggleAbility()
+  if self:GetCaster():HasAbility("morph_int_str_redux") and self:GetCaster():FindAbilityByName("morph_int_str_redux"):GetToggleState() then
+    self:GetCaster():FindAbilityByName("morph_int_str_redux"):ToggleAbility()
   end
 end
 
@@ -165,7 +165,7 @@ function modifier_morph_str_int:OnIntervalThink()
 
   -- Check if the caster has mana
   if self:GetCaster():GetMana() < mana_per_second then
-    self:GetAbility():ToggleAbility()
+    --self:GetAbility():ToggleAbility()
     return
   end
 
@@ -176,7 +176,7 @@ function modifier_morph_str_int:OnIntervalThink()
   end
   local ability = self:GetAbility()
   local interval = 1/ ability:GetSpecialValueFor("stats_per_second")
-  self:GetCaster():SpendMana(mana_per_second/interval,self:GetAbility())
+  self:GetCaster():SpendMana(mana_per_second*interval,self:GetAbility())
   self:GetCaster():ModifyIntellect(1)
   self:GetCaster():ModifyStrength(-1)
 
