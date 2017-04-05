@@ -1416,7 +1416,7 @@
     {
         "ReduxFlags"                                                           "mobility | invis | OPSkillsList"
         "ReduxPerks"                                                           "mobility | earth"
-        "ReduxCost"                                                            "10"
+        "ReduxCost"                                                            "20"
     }
     "slark_shadow_dance"
     {
