@@ -5,11 +5,16 @@ function item_greater_crit_consumable:GetIntrinsicModifierName()
 end
 
 function item_greater_crit_consumable:OnSpellStart()
-
-  if self:GetCursorTarget() == self:GetCaster() then
-    self:ConsumeItem(self:GetCaster())
-  end
+  self:ConsumeItem(self:GetCaster())
 end
+
+function item_greater_crit_consumable:CastFilterResultTarget(target)
+  if self:GetCaster() ~= target then
+    return UF_FAIL_CUSTOM
+  end
+  return UF_SUCCESS
+end
+
 
 
 function item_greater_crit_consumable:ConsumeItem(hCaster)
