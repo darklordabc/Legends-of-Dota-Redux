@@ -6,9 +6,9 @@ function zhanhun( keys )
 	local abilityCooldown = ability:GetCooldown(ability:GetLevel())
 
 	--Does not proc for abilities with zero cooldown or very little cooldown
-	if keys.ability:GetName() == "zhanhun" then
-		if abilityCooldown < 3 then return nil end
-	end
+	--if keys.ability:GetName() == "zhanhun" then
+	if abilityCooldown < 3 then return nil end
+	--end
 
 	for i = 0,10 do
 		local ability = caster:GetAbilityByIndex(i)

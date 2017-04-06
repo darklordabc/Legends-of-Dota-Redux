@@ -8139,7 +8139,7 @@
         "DOTA_Tooltip_ability_zhanhun_reduce_per"   "COOLDOWN REDUCTION:"
 
         "DOTA_Tooltip_ability_zhanhun_op"  "Wind soul OP"
-        "DOTA_Tooltip_ability_zhanhun_op_Description"  "Each time you cast a spell, all of your abilities' cooldown will reduce a bit. <font color='#70EA72'>Larger cooldown reduction and no maximum cooldown requirement</font>."
+        "DOTA_Tooltip_ability_zhanhun_op_Description"  "Each time you cast a spell, all of your abilities' cooldown will reduce a bit. <font color='#70EA72'>Larger cooldown reduction</font>."
         "DOTA_Tooltip_ability_zhanhun_op_reduce_per"   "COOLDOWN REDUCTION:"
         
         "DOTA_Tooltip_ability_jingtong" "Elemental Mystery"
