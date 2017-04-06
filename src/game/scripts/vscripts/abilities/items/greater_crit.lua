@@ -32,7 +32,7 @@ end
 
 function item_greater_crit_consumable:GetCustomCastErrorTarget(target)
   if self:GetCaster() ~= target then
-    return return "#consumable_items_only_self"
+    return "#consumable_items_only_self"
   end
   local ab  = self:GetCaster():FindAbilityByName("ability_consumable_item_container")
   if not ab then
