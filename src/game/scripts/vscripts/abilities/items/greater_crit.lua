@@ -8,7 +8,7 @@ function item_greater_crit_consumable:OnSpellStart()
   self:ConsumeItem(self:GetCaster())
 end
 
-function item_assault_consumable:CastFilterResultTarget(target)
+function item_greater_crit_consumable:CastFilterResultTarget(target)
   -- Check if its the caster thats targetted
   if self:GetCaster() ~= target then
     return UF_FAIL_CUSTOM
@@ -30,7 +30,7 @@ function item_assault_consumable:CastFilterResultTarget(target)
   return UF_SUCCESS
 end
 
-function item_assault_consumable:GetCustomCastErrorTarget(target)
+function item_greater_crit_consumable:GetCustomCastErrorTarget(target)
   if self:GetCaster() ~= target then
     return return "#consumable_items_only_self"
   end
