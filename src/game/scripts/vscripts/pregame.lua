@@ -6989,84 +6989,6 @@ function Pregame:fixSpawnedHero( spawnedUnit )
         --end
     end, DoUniqueString('addTalents'), 1.5)
 
-    -- Various fixes
-    Timers:CreateTimer(function()
-        if IsValidEntity(spawnedUnit) then
-            -- Silencer Fix
-            if spawnedUnit:HasAbility('silencer_glaives_of_wisdom_steal') then
-                if not spawnedUnit:HasModifier('modifier_silencer_int_steal') then
-                    spawnedUnit:AddNewModifier(spawnedUnit, spawnedUnit:FindAbilityByName("silencer_glaives_of_wisdom_steal"), 'modifier_silencer_int_steal', {})
-                end
-            else
-                spawnedUnit:RemoveModifierByName('modifier_silencer_int_steal')
-            end
-
-            -- Stalker Innate Auto-Level
-            if spawnedUnit:HasAbility('night_stalker_innate_redux') then
-                local stalkerInnate = spawnedUnit:FindAbilityByName('night_stalker_innate_redux')
-                if stalkerInnate then
-                    if stalkerInnate:GetLevel() ~= 1 then
-                        stalkerInnate:UpgradeAbility(false)
-                    end
-                end
-            end
-
-            -- KOTL Innate Auto-Level
-            if spawnedUnit:HasAbility('keeper_of_the_light_innate_redux') then
-                local kotlInnate = spawnedUnit:FindAbilityByName('keeper_of_the_light_innate_redux')
-                if kotlInnate then
-                    if kotlInnate:GetLevel() ~= 1 then
-                        kotlInnate:UpgradeAbility(false)
-                    end
-                end
-            end
-
-            -- 'No Charges' fix for Gyro Homing Missle
-            if spawnedUnit:HasAbility('gyrocopter_homing_missile') and spawnedUnit:GetUnitName() ~= "npc_dota_hero_gyrocopter" then
-                Timers:CreateTimer(function()
-                    spawnedUnit:RemoveModifierByName("modifier_gyrocopter_homing_missile_charge_counter")
-                end, DoUniqueString('gyroFix'), 1)
-            end
-            
-            -- Change sniper assassinate to our custom version to work with aghs
-            if spawnedUnit:HasAbility("sniper_assassinate") and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("sniper_assassinate"):IsHidden() then
-                    spawnedUnit:AddAbility("sniper_assassinate_redux")
-                    spawnedUnit:SwapAbilities("sniper_assassinate","sniper_assassinate_redux",false,true)
-                    spawnedUnit:RemoveAbility("sniper_assassinate")
-            end
-            -- Change juxtapose to juxtapose ranged, for ranged heros
-            if spawnedUnit:HasAbility("phantom_lancer_juxtapose_melee") and spawnedUnit:IsRangedAttacker() then
-                    spawnedUnit:AddAbility("phantom_lancer_juxtapose_ranged")
-                    spawnedUnit:SwapAbilities("phantom_lancer_juxtapose_melee","phantom_lancer_juxtapose_ranged",false,true)
-                    spawnedUnit:RemoveAbility("phantom_lancer_juxtapose_melee")
-            end
-            -- Change Jingu to Jingu ranged, for ranged heros
-            if spawnedUnit:HasAbility("monkey_king_jingu_mastery_lod_melee") and spawnedUnit:IsRangedAttacker() then
-                    spawnedUnit:AddAbility("monkey_king_jingu_mastery_lod_ranged")
-                    spawnedUnit:SwapAbilities("monkey_king_jingu_mastery_lod_melee","monkey_king_jingu_mastery_lod_ranged",false,true)
-                    spawnedUnit:RemoveAbility("monkey_king_jingu_mastery_lod_melee")
-            end
-            -- Change infernal blade on gyro to critical strike
-            --if this.optionStore['lodOptionBanningUseBanList'] == 1 and spawnedUnit:HasAbility("doom_bringer_infernal_blade") and spawnedUnit:GetUnitName() == "npc_dota_hero_gyrocopter" and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("doom_bringer_infernal_blade"):IsHidden() then
-           --         spawnedUnit:AddAbility("chaos_knight_chaos_strike_gyro")
-           --         spawnedUnit:SwapAbilities("doom_bringer_infernal_blade","chaos_knight_chaos_strike_gyro",false,true)
-            --        spawnedUnit:RemoveAbility("doom_bringer_infernal_blade")
-            --end
-            -- Custom Flesh Heap fixes
-            for abilitySlot=0,6 do
-                local abilityTemp = spawnedUnit:GetAbilityByIndex(abilitySlot)
-                if abilityTemp then 
-                    if string.find(abilityTemp:GetAbilityName(),"flesh_heap_") then
-                        local abilityName = abilityTemp:GetAbilityName()
-                        local modifierName = "modifier"..string.sub(abilityName,6)
-                        spawnedUnit:AddNewModifier(spawnedUnit,abilityTemp,modifierName,{})
-                        
-                    end
-                end
-            end
-        end
-    end, DoUniqueString('silencerFix'), 2)
-
 --[[
     Timers:CreateTimer(function()
         if IsValidEntity(spawnedUnit) and not spawnedUnit.hasTalents then 
@@ -7442,11 +7364,87 @@ function Pregame:fixSpawningIssues()
                         end, DoUniqueString('makeMonster4'), 1)    
                     end 
                 end
+
+                -- Various fixes
+                Timers:CreateTimer(function()
+                    if IsValidEntity(spawnedUnit) then
+                        -- Silencer Fix
+                        if spawnedUnit:HasAbility('silencer_glaives_of_wisdom_steal') then
+                            if not spawnedUnit:HasModifier('modifier_silencer_int_steal') then
+                                spawnedUnit:AddNewModifier(spawnedUnit, spawnedUnit:FindAbilityByName("silencer_glaives_of_wisdom_steal"), 'modifier_silencer_int_steal', {})
+                            end
+                        else
+                            spawnedUnit:RemoveModifierByName('modifier_silencer_int_steal')
+                        end
+
+                        -- Stalker Innate Auto-Level
+                        if spawnedUnit:HasAbility('night_stalker_innate_redux') then
+                            local stalkerInnate = spawnedUnit:FindAbilityByName('night_stalker_innate_redux')
+                            if stalkerInnate then
+                                if stalkerInnate:GetLevel() ~= 1 then
+                                    stalkerInnate:UpgradeAbility(false)
+                                end
+                            end
+                        end
+
+                        -- KOTL Innate Auto-Level
+                        if spawnedUnit:HasAbility('keeper_of_the_light_innate_redux') then
+                            local kotlInnate = spawnedUnit:FindAbilityByName('keeper_of_the_light_innate_redux')
+                            if kotlInnate then
+                                if kotlInnate:GetLevel() ~= 1 then
+                                    kotlInnate:UpgradeAbility(false)
+                                end
+                            end
+                        end
+
+                        -- 'No Charges' fix for Gyro Homing Missle
+                        if spawnedUnit:HasAbility('gyrocopter_homing_missile') and spawnedUnit:GetUnitName() ~= "npc_dota_hero_gyrocopter" then
+                            Timers:CreateTimer(function()
+                                spawnedUnit:RemoveModifierByName("modifier_gyrocopter_homing_missile_charge_counter")
+                            end, DoUniqueString('gyroFix'), 1)
+                        end
+                        
+                        -- Change sniper assassinate to our custom version to work with aghs
+                        if spawnedUnit:HasAbility("sniper_assassinate") and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("sniper_assassinate"):IsHidden() then
+                                spawnedUnit:AddAbility("sniper_assassinate_redux")
+                                spawnedUnit:SwapAbilities("sniper_assassinate","sniper_assassinate_redux",false,true)
+                                spawnedUnit:RemoveAbility("sniper_assassinate")
+                        end
+                        -- Change juxtapose to juxtapose ranged, for ranged heros
+                        if spawnedUnit:HasAbility("phantom_lancer_juxtapose_melee") and spawnedUnit:IsRangedAttacker() then
+                                spawnedUnit:AddAbility("phantom_lancer_juxtapose_ranged")
+                                spawnedUnit:SwapAbilities("phantom_lancer_juxtapose_melee","phantom_lancer_juxtapose_ranged",false,true)
+                                spawnedUnit:RemoveAbility("phantom_lancer_juxtapose_melee")
+                        end
+                        -- Change Jingu to Jingu ranged, for ranged heros
+                        if spawnedUnit:HasAbility("monkey_king_jingu_mastery_lod_melee") and spawnedUnit:IsRangedAttacker() then
+                                spawnedUnit:AddAbility("monkey_king_jingu_mastery_lod_ranged")
+                                spawnedUnit:SwapAbilities("monkey_king_jingu_mastery_lod_melee","monkey_king_jingu_mastery_lod_ranged",false,true)
+                                spawnedUnit:RemoveAbility("monkey_king_jingu_mastery_lod_melee")
+                        end
+                        -- Change infernal blade on gyro to critical strike
+                        --if this.optionStore['lodOptionBanningUseBanList'] == 1 and spawnedUnit:HasAbility("doom_bringer_infernal_blade") and spawnedUnit:GetUnitName() == "npc_dota_hero_gyrocopter" and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("doom_bringer_infernal_blade"):IsHidden() then
+                       --         spawnedUnit:AddAbility("chaos_knight_chaos_strike_gyro")
+                       --         spawnedUnit:SwapAbilities("doom_bringer_infernal_blade","chaos_knight_chaos_strike_gyro",false,true)
+                        --        spawnedUnit:RemoveAbility("doom_bringer_infernal_blade")
+                        --end
+                        -- Custom Flesh Heap fixes
+                        for abilitySlot=0,6 do
+                            local abilityTemp = spawnedUnit:GetAbilityByIndex(abilitySlot)
+                            if abilityTemp then 
+                                if string.find(abilityTemp:GetAbilityName(),"flesh_heap_") then
+                                    local abilityName = abilityTemp:GetAbilityName()
+                                    local modifierName = "modifier"..string.sub(abilityName,6)
+                                    spawnedUnit:AddNewModifier(spawnedUnit,abilityTemp,modifierName,{})
+                                    
+                                end
+                            end
+                        end
+                    end
+                end, DoUniqueString('silencerFix'), 2)
             end
             -- Make sure it is a hero
-            if spawnedUnit:IsHero() then
-
-            elseif string.match(spawnedUnit:GetUnitName(), "creep") or string.match(spawnedUnit:GetUnitName(), "siege") then
+            if string.match(spawnedUnit:GetUnitName(), "creep") or string.match(spawnedUnit:GetUnitName(), "siege") then
                 if this.optionStore['lodOptionCreepPower'] > 0 then
                     local dotaTime = GameRules:GetDOTATime(false, false)
                     local level = math.ceil(dotaTime / this.optionStore['lodOptionCreepPower'])
