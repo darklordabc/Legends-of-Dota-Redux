@@ -8982,7 +8982,57 @@
     "DOTA_Tooltip_modifier_proteus_rarefaction_debuff"              "Rarefaction"
     "DOTA_Tooltip_modifier_proteus_rarefaction_debuff_Description"      "Increases damage taken by %dMODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE% %d%%."
     
+    "DOTA_Tooltip_ability_morph_int_str_redux"                                      "Morph (INT to STR)"
+    "DOTA_Tooltip_ability_morph_int_str_redux_Description"                          "Morphling shifts its form, pulling points from Intelligence and pouring them into Strength. The process is reversible.  Additional points in Morph increase the rate of stat change.  Passively grants bonus Strength."
+    "DOTA_Tooltip_ability_morph_int_str_redux_Lore"                                 "Shifting water makes it difficult to discern the nature of Morphling."
+    "DOTA_Tooltip_ability_morph_int_str_redux_Note0"                                "Morph can be activated or deactivated while Morphling is disabled, but not while silenced."
+    "DOTA_Tooltip_ability_morph_int_str_redux_Note1"                                "Morph can't convert stats from items."
+    "DOTA_Tooltip_ability_morph_int_str_redux_points_per_tick"                      "POINTS PER SHIFT:"
+    "DOTA_Tooltip_ability_morph_int_str_redux_mana_per_second"                            "MANA PER SECOND:"
+    "DOTA_Tooltip_ability_morph_int_str_redux_stats_per_second"                       "SHIFT RATE:"
+    "DOTA_Tooltip_ability_morph_int_str_redux_bonus_str"                     "BONUS STRENGTH:"
 
+    "DOTA_Tooltip_modifier_morph_int_str"              "Morph (INT to STR)"
+    "DOTA_Tooltip_modifier_morph_int_str_Description"      "Converting Intelligence into Strength."
+
+    "DOTA_Tooltip_ability_morph_str_int_redux"                                      "Morph (STR to INT)"
+    "DOTA_Tooltip_ability_morph_str_int_redux_Description"                          "Morphling shifts its form, pulling points from Strength and pouring them into Intelligence. The process is reversible.  Additional points in Morph increase the rate of stat change.  Passively grants bonus Intelligence."
+    "DOTA_Tooltip_ability_morph_str_int_redux_Lore"                                 "Shifting water makes it difficult to discern the nature of Morphling."
+    "DOTA_Tooltip_ability_morph_str_int_redux_Note0"                                "Morph can be activated or deactivated while Morphling is disabled, but not while silenced."
+    "DOTA_Tooltip_ability_morph_str_int_redux_Note1"                                "Morph can't convert stats from items."
+    "DOTA_Tooltip_ability_morph_str_int_redux_points_per_tick"                      "POINTS PER SHIFT:"
+    "DOTA_Tooltip_ability_morph_str_int_redux_mana_per_second"                            "MANA PER SECOND:"
+    "DOTA_Tooltip_ability_morph_str_int_redux_stats_per_second"                       "SHIFT RATE:"
+    "DOTA_Tooltip_ability_morph_str_int_redux_bonus_int"                     "BONUS INTELLIGENCE:"
+
+    "DOTA_Tooltip_modifier_morph_str_int"              "Morph (STR to INT)"
+    "DOTA_Tooltip_modifier_morph_str_int_Description"      "Converting Strength into Intelligence."
+
+    "DOTA_Tooltip_ability_morph_agi_int_redux"                                      "Morph (AGI to INT)"
+    "DOTA_Tooltip_ability_morph_agi_int_redux_Description"                          "Morphling shifts its form, pulling points from Agility and pouring them into Intelligence. The process is reversible.  Additional points in Morph increase the rate of stat change.  Passively grants bonus Intelligence."
+    "DOTA_Tooltip_ability_morph_agi_int_redux_Lore"                                 "Shifting water makes it difficult to discern the nature of Morphling."
+    "DOTA_Tooltip_ability_morph_agi_int_redux_Note0"                                "Morph can be activated or deactivated while Morphling is disabled, but not while silenced."
+    "DOTA_Tooltip_ability_morph_agi_int_redux_Note1"                                "Morph can't convert stats from items."
+    "DOTA_Tooltip_ability_morph_agi_int_redux_points_per_tick"                      "POINTS PER SHIFT:"
+    "DOTA_Tooltip_ability_morph_agi_int_redux_mana_per_second"                            "MANA PER SECOND:"
+    "DOTA_Tooltip_ability_morph_agi_int_redux_stats_per_second"                       "SHIFT RATE:"
+    "DOTA_Tooltip_ability_morph_agi_int_redux_bonus_int"                     "BONUS INTELLIGENCE:"
+
+    "DOTA_Tooltip_modifier_morph_agi_int"              "Morph (AGI to INT)"
+    "DOTA_Tooltip_modifier_morph_agi_int_Description"      "Converting Agility into Intelligence."
+
+    "DOTA_Tooltip_ability_morph_int_agi_redux"                                      "Morph (INT to AGI)"
+    "DOTA_Tooltip_ability_morph_int_agi_redux_Description"                          "Morphling shifts its form, pulling points from Intelligence and pouring them into Agility. The process is reversible.  Additional points in Morph increase the rate of stat change.  Passively grants bonus Agility."
+    "DOTA_Tooltip_ability_morph_int_agi_redux_Lore"                                 "Shifting water makes it difficult to discern the nature of Morphling."
+    "DOTA_Tooltip_ability_morph_int_agi_redux_Note0"                                "Morph can be activated or deactivated while Morphling is disabled, but not while silenced."
+    "DOTA_Tooltip_ability_morph_int_agi_redux_Note1"                                "Morph can't convert stats from items."
+    "DOTA_Tooltip_ability_morph_int_agi_redux_points_per_tick"                      "POINTS PER SHIFT:"
+    "DOTA_Tooltip_ability_morph_int_agi_redux_mana_per_second"                            "MANA PER SECOND:"
+    "DOTA_Tooltip_ability_morph_int_agi_redux_stats_per_second"                       "SHIFT RATE:"
+    "DOTA_Tooltip_ability_morph_int_agi_redux_bonus_agi"                     "BONUS AGILITY:"
+
+    "DOTA_Tooltip_modifier_morph_int_agi"              "Morph (INT to AGI)"
+    "DOTA_Tooltip_modifier_morph_int_agi_Description"      "Converting Intelligence into Agility."
 
 
 }
