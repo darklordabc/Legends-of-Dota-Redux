@@ -1,4 +1,4 @@
-"addon"
+c"addon"
 {
     // The name of the game
     "ADDON_GAME_NAME"                               "Legends of Dota: Redux"
@@ -976,6 +976,10 @@
     "lodBoosterDraftStart"                          "Booster Draft: Drafting Phase"
     "lodBoosterDraftEnd"                            "Booster Draft: Building Phase"
     "lodBoosterDraftWait"                           "Booster Draft: Waiting for Next Set"
+    
+    "consumable_items_only_self"	"Only you can consume your items." 
+    "consumable_items_no_available_slot"	"There is no free ability slot to consume items." 
+    "consumable_items_already_consumed"		"You have already consumed this item."
 
     // Success Messages
     "lodSuccessBanAbility"                          "'{abilityName}' was banned."
