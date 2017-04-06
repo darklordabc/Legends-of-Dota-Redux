@@ -3997,7 +3997,7 @@
     "DOTA_Tooltip_modifier_dark_knight_dark_forces" "Dark Forces"
 
     "DOTA_Tooltip_ability_android_pocket_factory"   "Pocket Factory"
-    "DOTA_Tooltip_ability_android_pocket_factory_Description"   "Creates a factory which automatically constructs a Clockwerk Goblin every 2 seconds."
+    "DOTA_Tooltip_ability_android_pocket_factory_Description"   "Creates a factory which automatically constructs a Clockwerk Goblin every 2 seconds. Only 70 goblins can exist at any time. After 50 goblins, they gain max movespeed and phased movement but only half duration."
     "DOTA_Tooltip_ability_android_pocket_factory_factory_duration"  "FACTORY DURATION:"
     "DOTA_Tooltip_ability_android_pocket_factory_goblin_hp" "GOBLIN HEALTH:"
     "DOTA_Tooltip_ability_android_pocket_factory_goblin_damage" "GOBLIN DAMAGE:"

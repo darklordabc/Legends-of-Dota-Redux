@@ -205,7 +205,7 @@ function Pregame:init()
     GameRules:SetHeroSelectionTime(0)   -- Hero selection is done elsewhere, hero selection should be instant
     GameRules:GetGameModeEntity():SetBotThinkingEnabled(true)
     GameRules:SetStrategyTime( 0 )
-    GameRules:SetShowcaseTime( 0 )
+    GameRules:SetShowcaseTime( 10 )
     GameRules:GetGameModeEntity():SetCustomGameForceHero("npc_dota_hero_wisp")
 
     -- Rune fix
