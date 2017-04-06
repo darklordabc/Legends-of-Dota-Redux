@@ -5,15 +5,12 @@ function item_desolator_consumable:GetIntrinsicModifierName()
 end
 
 function item_desolator_consumable:OnSpellStart()
-  self:ConsumeItem(self:GetCaster())
+
+  if self:GetCursorTarget() == self:GetCaster() then
+    self:ConsumeItem(self:GetCaster())
+  end
 end
 
-function item_desolator_consumable:CastFilterResultTarget(target)
-  if self:GetCaster() ~= target then
-    return UF_FAIL_CUSTOM
-  end
-  return UF_SUCCESS
-end
 
 function item_desolator_consumable:ConsumeItem(hCaster)
   
