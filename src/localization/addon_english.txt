@@ -8945,14 +8945,14 @@
     // Proteus, the Kracken Offspring
     //-------------------------------------------------------------------
     "DOTA_Tooltip_Ability_proteus_razorwind"                        "Razor Wind"
-    "DOTA_Tooltip_Ability_proteus_razorwind_Description"            "Delivers a blast of air that pushes the target away from Proteus, dealing damage to enemies or healing allies. The target goes further the closer they are to Proteus."
+    "DOTA_Tooltip_Ability_proteus_razorwind_Description"            "Delivers a blast of air that pushes the target away from Proteus, dealing damage to enemies or healing allies. The target goes further the closer they are to Proteus.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
     "DOTA_Tooltip_Ability_proteus_razorwind_damage_heal"            "DAMAGE/HEAL:"
     "DOTA_Tooltip_Ability_proteus_razorwind_max_push_distance"      "MAX PUSH DISTANCE:"
     "DOTA_Tooltip_Ability_proteus_razorwind_push_speed"             "PUSH SPEED:"
     "DOTA_Tooltip_modifier_proteus_razorwind_push"                  "Pushed"
 
     "DOTA_Tooltip_Ability_proteus_polyp"                        "Polyp"
-    "DOTA_Tooltip_Ability_proteus_polyp_Description"            "Proteus attaches a small piece of itself to the target ally in the form of a Polyp, providing the host ally with a base amount of bonus health that regenerates over time. Whenever the host attacks, the Polyp will drop down to its base health value, converting 50% of extra health into physical damage."
+    "DOTA_Tooltip_Ability_proteus_polyp_Description"            "Proteus attaches a small piece of itself to the target ally in the form of a Polyp, providing the host ally with a base amount of bonus health that regenerates over time. Whenever the host attacks, the Polyp will drop down to its base health value, converting 50% of extra health into physical damage.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
     "DOTA_Tooltip_Ability_proteus_polyp_base_polyp_health"          "POLYP BASE HEALTH:"
     "DOTA_Tooltip_Ability_proteus_polyp_polyp_regen"                "POLYP REGEN RATE:"
     "DOTA_Tooltip_Ability_proteus_polyp_max_polyp_health"           "MAX POLYP HEALTH:"
@@ -8967,7 +8967,7 @@
 
 
     "DOTA_Tooltip_Ability_proteus_jet"                          "Jet"
-    "DOTA_Tooltip_Ability_proteus_jet_Description"              "Propels Proteus a short distance forward using its water jets, autocasting the ability if Proteus issues a move command to a location more than 900 units in front of the hero. Proteus's survival instincts are so strong that it may cast Jet even while stunned, silenced, hexed, or otherwise affected by any spell which restricts movement. Jet may only be fully disabled by applying a break effect on Proteus."
+    "DOTA_Tooltip_Ability_proteus_jet_Description"              "Propels Proteus a short distance forward using its water jets, autocasting the ability if Proteus issues a move command to a location more than 900 units in front of the hero. Proteus's survival instincts are so strong that it may cast Jet even while stunned, silenced, hexed, or otherwise affected by any spell which restricts movement. Jet may only be fully disabled by applying a break effect on Proteus.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
     "DOTA_Tooltip_Ability_proteus_jet_jet_distance"             "JET DISTANCE:"
     "DOTA_Tooltip_Ability_proteus_jet_jet_speed"                "JET SPEED:"
     "DOTA_Tooltip_Ability_proteus_jet_Aghanim_description"      "After using Rarefaction, Jet will gain 2 charges, allowing the spell to be cast three times before it triggers a cooldown."
@@ -8975,7 +8975,7 @@
 
 
     "DOTA_Tooltip_Ability_proteus_rarefaction"                          "Rarefaction"
-    "DOTA_Tooltip_Ability_proteus_rarefaction_Description"              "Proteus reduces non-ultimate cooldowns by manipulating the nervous system's acute response to fear, dilating perception for allies in a radius around Proteus, but causing Proteus to take bonus damage from all sources for the cooldown duration of this ability."
+    "DOTA_Tooltip_Ability_proteus_rarefaction_Description"              "Proteus reduces non-ultimate cooldowns by manipulating the nervous system's acute response to fear, dilating perception for allies in a radius around Proteus, but causing Proteus to take bonus damage from all sources for the cooldown duration of this ability.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
     "DOTA_Tooltip_Ability_proteus_rarefaction_cooldown_reduction"       "COOLDOWN REDUCTION:"
     "DOTA_Tooltip_Ability_proteus_rarefaction_self_bonus_damage"        "%BONUS DAMAGE TAKEN:"
     "DOTA_Tooltip_Ability_proteus_rarefaction_radius"               "RADIUS:"
