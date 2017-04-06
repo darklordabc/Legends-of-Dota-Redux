@@ -65,8 +65,21 @@ Dota 2 Redux
  - You might need to save it as unicode, if non standard characters are used
 
 ### Credits ###
+## Emoji key
+
+Emoji | Represents | 
+:---: | --- |
+🌟 | Original Creator of LoD | 
+😈 | Redux Director
+👑 | Developer
+🍭 | Custom Ability Creator
+🌴 | Hero Perk Creator
+🚀 | Panorama
+😜 | Memes Redux Creator
+🚩 | Game Logic
+
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-| [<img src="https://avatars.githubusercontent.com/u/1500684?v=3" width="100px;"/><br /><sub>Kent C. Dodds</sub>](https://kentcdodds.com)<br />💁 [📖](https://github.com/kentcdodds/all-contributors/commits?author=kentcdodds) 👀 📢 | [<img src="https://avatars.githubusercontent.com/u/6177621?v=3" width="100px;"/><br /><sub>Divjot Singh</sub>](http://bogas04.github.io)<br />[📖](https://github.com/kentcdodds/all-contributors/commits?author=bogas04) 👀 | [<img src="https://avatars.githubusercontent.com/u/1282980?v=3" width="100px;"/><br /><sub>Ben Briggs</sub>](http://beneb.info)<br />[📖](https://github.com/kentcdodds/all-contributors/commits?author=ben-eb) 👀 | [<img src="https://avatars.githubusercontent.com/u/2037007?v=3" width="100px;"/><br /><sub>James Monger</sub>](https://github.com/Jameskmonger)<br />[📖](https://github.com/kentcdodds/all-contributors/commits?author=Jameskmonger) | [<img src="https://avatars.githubusercontent.com/u/3869412?v=3" width="100px;"/><br /><sub>Jeroen Engels</sub>](https://github.com/jfmengels)<br />[📖](https://github.com/kentcdodds/all-contributors/commits?author=jfmengels) 👀 🔧 | [<img src="https://avatars.githubusercontent.com/u/4249591?v=3" width="100px;"/><br /><sub>Chris Simpkins</sub>](https://github.com/chrissimpkins)<br />[📖](https://github.com/kentcdodds/all-contributors/commits?author=chrissimpkins) 👀 | [<img src="https://avatars.githubusercontent.com/u/153481?v=3" width="100px;"/><br /><sub>F. Hemberger</sub>](https://github.com/fhemberger)<br />[📖](https://github.com/kentcdodds/all-contributors/commits?author=fhemberger) |
+| [<img src="https://avatars2.githubusercontent.com/u/3754510?v=3&s=400" width="100px;"/><br /><sub>ash47</sub>](https://github.com/ash47)<br />🌟| [<img src="https://avatars2.githubusercontent.com/u/16277198?v=3&u=74f7571b7e976b4e58cf57ffdc9f2b375d1b3634&s=400" width="100px;"/><br /><sub>darklordabc</sub>](https://github.com/darklordabc)<br />😈 | [<img src="https://avatars3.githubusercontent.com/u/10674957?v=3&s=400" width="100px;"/><br /><sub>SwordBacon</sub>](https://github.com/SwordBacon)<br /> 👑 🍭🌴😜| [<img src="https://avatars3.githubusercontent.com/u/1160901?v=3&s=400" width="100px;"/><br /><sub>TideSofDarK</sub>](https://github.com/TideSofDarK)<br /> 👑🍭🌴🚀🚩| [<img src="https://avatars.githubusercontent.com/u/3869412?v=3" width="100px;"/><br /><sub>Jeroen Engels</sub>](https://github.com/jfmengels)<br />[📖](https://github.com/kentcdodds/all-contributors/commits?author=jfmengels) 👀 🔧 | [<img src="https://avatars.githubusercontent.com/u/4249591?v=3" width="100px;"/><br /><sub>Chris Simpkins</sub>](https://github.com/chrissimpkins)<br />[📖](https://github.com/kentcdodds/all-contributors/commits?author=chrissimpkins) 👀 | [<img src="https://avatars.githubusercontent.com/u/153481?v=3" width="100px;"/><br /><sub>F. Hemberger</sub>](https://github.com/fhemberger)<br />[📖](https://github.com/kentcdodds/all-contributors/commits?author=fhemberger) |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | [<img src="https://avatars.githubusercontent.com/u/3982200?v=3" width="100px;"/><br /><sub>Daniel Kraft</sub>](https://github.com/frigginglorious)<br />[📖](https://github.com/kentcdodds/all-contributors/commits?author=frigginglorious) | [<img src="https://avatars.githubusercontent.com/u/8503331?v=3" width="100px;"/><br /><sub>Mayank Badola</sub>](https://github.com/mbad0la)<br />[📖](https://github.com/kentcdodds/all-contributors/commits?author=mbad0la) 🔧 | [<img src="https://avatars.githubusercontent.com/u/5244986?v=3" width="100px;"/><br /><sub>Marco Biedermann</sub>](https://www.marcobiedermann.com)<br />🎨 | [<img src="https://avatars.githubusercontent.com/u/22768990?v=3" width="100px;"/><br /><sub>Itai Steinherz</sub>](https://github.com/itaisteinherz)<br />[📖](https://github.com/kentcdodds/all-contributors/commits?author=itaisteinherz) |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
