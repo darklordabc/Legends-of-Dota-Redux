@@ -1,4 +1,4 @@
-c"addon"
+"addon"
 {
     // The name of the game
     "ADDON_GAME_NAME"                               "Legends of Dota: Redux"
