@@ -1332,6 +1332,7 @@
     "warning_meepo_divided_we_stand"            "<font color=\'#FF4949\'>Warning:</font> If a clone is killed, death timer percentage reductions will not apply."
     "warning_invoker_alacrity_lod" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
     "warning_invoker_chaos_meteor_lod" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
+    "warning_invoker_chaos_meteor_op" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
     "warning_invoker_cold_snap_lod" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
     "warning_invoker_emp_lod" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
     "warning_invoker_forge_spirit_lod" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
