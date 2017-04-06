@@ -9,11 +9,16 @@ function item_skadi_consumable:GetIntrinsicModifierName()
 end
 
 function item_skadi_consumable:OnSpellStart()
-
-  if self:GetCursorTarget() == self:GetCaster() then
-    self:ConsumeItem(self:GetCaster())
-  end
+  self:ConsumeItem(self:GetCaster())
 end
+
+function item_skadi_consumable:CastFilterResultTarget(target)
+  if self:GetCaster() ~= target then
+    return UF_FAIL_CUSTOM
+  end
+  return UF_SUCCESS
+end
+
 
 
 function item_skadi_consumable:ConsumeItem(hCaster)
