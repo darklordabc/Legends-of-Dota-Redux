@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 
 ## 7.4 - Development Version
-
+- Added 4 new versions of Morph
 
 ## 7.3 - Steam Version
 - Fixed Single player abilities not being enabled if vote passed
