@@ -183,7 +183,7 @@ function modifier_morph_agi_int:OnIntervalThink()
   end
 
   local ability = self:GetAbility()
-  local interval = 1/ ability:GetSpecialValueFor("stats_per_second")
+  local interval = ability:GetSpecialValueFor("stats_per_second")
   self:GetCaster():SpendMana(mana_per_second*interval,self:GetAbility())
   self:GetCaster():ModifyIntellect(1)
   self:GetCaster():ModifyAgility(-1)
