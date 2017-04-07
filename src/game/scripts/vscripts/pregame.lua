@@ -205,7 +205,7 @@ function Pregame:init()
     GameRules:SetHeroSelectionTime(0)   -- Hero selection is done elsewhere, hero selection should be instant
     GameRules:GetGameModeEntity():SetBotThinkingEnabled(true)
     GameRules:SetStrategyTime( 0 )
-    GameRules:SetShowcaseTime( 0 )
+    GameRules:SetShowcaseTime( 10 )
     GameRules:GetGameModeEntity():SetCustomGameForceHero("npc_dota_hero_wisp")
 
     -- Rune fix
@@ -2338,13 +2338,13 @@ function Pregame:initOptionSelector()
 
         -- Common use ban list
         lodOptionBanningUseBanList = function(value)
-                Timers:CreateTimer(function()
+               -- Timers:CreateTimer(function()
                     -- Only allow if all players on one side (i.e. coop or singleplayer)                  
-                    if not util:isCoop() and GetMapName() ~= "all_allowed" then
-                        self:setOption('lodOptionBanningUseBanList', 1, true)
-                    end
+                   -- if not util:isCoop() and GetMapName() ~= "all_allowed" then
+                    --    self:setOption('lodOptionBanningUseBanList', 1, true)
+                   -- end
 
-                end, DoUniqueString('disallowOP'), 0.1)
+               -- end, DoUniqueString('disallowOP'), 0.1)
             
             return value == 0 or value == 1
         end,
@@ -3561,9 +3561,9 @@ function Pregame:processOptions()
     end
 
     -- Only allow single player abilities if all players on one side (i.e. coop or singleplayer)
-    if not util:isCoop() and GetMapName() ~= "all_allowed" then
-        self:setOption('lodOptionBanningUseBanList', 1, true)
-    end
+    --if not util:isCoop() and GetMapName() ~= "all_allowed" then
+    --    self:setOption('lodOptionBanningUseBanList', 1, true)
+    --end
 
     -- This is a fix to deal with how votes are executed
     if GetMapName() == "all_allowed" then
@@ -6877,7 +6877,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
 
     local disabledPerks = {
         --npc_dota_hero_disruptor = true,
-        -- npc_dota_hero_shadow_demon = true,
+        npc_dota_hero_shadow_demon = true,
         -- npc_dota_hero_spirit_breaker = true,
         --npc_dota_hero_spirit_slardar = true,
         -- npc_dota_hero_chaos_knight = true,

@@ -570,7 +570,7 @@
     "balance_mode_points"                           "Points Remaining: {d:points}"
 
     "acceptHosting"                                 "Ok, I understand"
-    "lodWelcomeMessage"                             "<font color='#ffffff'><font color='#70EA72'>Thanks for playing Legends of Dota: Redux</font>. <br><br> <font color='#70EA72'>Redux 7.1:</font></font><br>- Added Dagon and Spawn golem cheat<br>- Readded Juxtapose<br>- 4 previously disabled bots are re-enabled<br>- Side gunner is now available in normal games<br>- Re-Enabled Wukong Command, seems non-buggy in testing, please report if it causes lag<br>- Single player abilities can now be used in VS multiplayer, not so much an issue now as most games are played on standard. Still need better solution.<br>- Added 6 OP ability variants<br>- Increased Manacost and Cooldown of Eldritch: Anti Magic<br>- Arcane Echoed Spells now cost half-mana.<br>- Bristleback bot doesnt get dispersion anymore<br>- Increased Manacost and Cooldown of Fireball<br>- IMBA abilities can be enabled with normal abilities if game is coop vs bots<br>- Strong towers no longer gives 4 towers per lane<br>- Added 'all_allowed' map<br>- Reduced Motherlods bounty increase<br>- Added a few more spells to rearm troll combo.<br>- In Standard map, you can only vote for 'extra' points, no longer double<br>- Increased price of starfall and shallow grave<br>- Side Gunner now procs on attack effects"
+    "lodWelcomeMessage"                             "<font color='#ffffff'><font color='#70EA72'>Thanks for playing Legends of Dota: Redux</font>. <br><br> <font color='#70EA72'>Redux 7.3:</font></font><br>- Fixed Single player abilities not being enabled if vote passed<br>- Fixed Monkey king perk<br>- Added close button on commands menu<br>- Pocket factory can now now only have 70 goblins, globally. After 50, they gain max move speed, and phased movement.<br>- Disabled Shadow Demons perk until exploit is patched. <br>- Wind Soul OP now also requires minimum cooldown<br>- Reduced Vacumn OP radius"
     "lodPickingMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked.<br><br><font color='#70EA72'>Remeber to pick a hero before time runs out or else you will get stuck with a random hero.</font>"
     "lodBanningMessage"                             "<font color='#70EA72'>This is the banning phase</font>. You can ban heroes and abilities to prevent players from selecting them in this match.<br><br> If you dont want to ban or have finished banning, <font color='#70EA72'>press the 'Finish Banning' button</font> to confirm your ready and to speed up the game."
     "lodBalanceMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked. <br><br><font color='#70EA72'>Points Mode is on.</font> In Points Mode you have limited points to spend on abilities. Abilities are priced by how powerful they are and abilities with no price tags are free. Have fun!"
@@ -834,7 +834,7 @@
     "hintRazor"                         "Reduces the manacost and cooldown of all abilities by 25% when Razor is Static Linked to an enemy."
     "hintRubick"                         "Rubick gains 1 free level of Null Field, whether he has it or not."
     "hintSandKing"                         "Sand King refunds 30% of the manacost of any Channeled abilities he casts."
-    "hintShadowDemon"                         "When Shadow Demon buys an item that is limited by stock, he gains a permanent +1 to all attributes. "
+    //"hintShadowDemon"                         "When Shadow Demon buys an item that is limited by stock, he gains a permanent +1 to all attributes. "
     "hintSilencer"                         "Silence effects applied by Silencer last 25% longer."
     "hintSkywrath"                         "Skywrath Mage refunds 15% of the manacost of spells with a cooldown of 7 seconds or less."
     "hintSlardar"                         "Slardar has an innate Sprint active ability."
@@ -976,6 +976,10 @@
     "lodBoosterDraftStart"                          "Booster Draft: Drafting Phase"
     "lodBoosterDraftEnd"                            "Booster Draft: Building Phase"
     "lodBoosterDraftWait"                           "Booster Draft: Waiting for Next Set"
+    
+    "consumable_items_only_self"	"Only you can consume your items." 
+    "consumable_items_no_available_slot"	"There is no free ability slot to consume items." 
+    "consumable_items_already_consumed"		"You have already consumed this item."
 
     // Success Messages
     "lodSuccessBanAbility"                          "'{abilityName}' was banned."
@@ -1202,7 +1206,7 @@
     "unique_mechanic_riki"                  "Riki's health regeneration is increased by 4 while invisible."
     "unique_mechanic_rubick"                        "Rubick gains 1 free level of <font color=\'#ffd966\'>Null Field</font>, whether he has it or not. "
     "unique_mechanic_sand_king"                        "Refund 30% of the manacost of <font color=\'#ffd966\'>Channeled</font> abilities. "
-    "unique_mechanic_shadow_demon"                        "When Shadow Demon buys an item that is limited by stock, he gains a permanent +1 to all attributes."
+    //"unique_mechanic_shadow_demon"                        "When Shadow Demon buys an item that is limited by stock, he gains a permanent +1 to all attributes."
     "unique_mechanic_nevermore"             "At the start of the game, Shadow Fiend gains a free level of <font color=\'#ffd966\'>Necromastery</font>, whether he has it or not."
     "unique_mechanic_shadow_shaman"             "When Shadow Shaman is targeted by an enemy spell, they will get Hexed for 3 seconds. Has 60 second cooldown."
     "unique_mechanic_silencer"                        "<font color=\'#ffd966\'>Silence</font> effects applied by Silencer last 25% longer."
@@ -1332,6 +1336,7 @@
     "warning_meepo_divided_we_stand"            "<font color=\'#FF4949\'>Warning:</font> If a clone is killed, death timer percentage reductions will not apply."
     "warning_invoker_alacrity_lod" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
     "warning_invoker_chaos_meteor_lod" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
+    "warning_invoker_chaos_meteor_op" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
     "warning_invoker_cold_snap_lod" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
     "warning_invoker_emp_lod" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
     "warning_invoker_forge_spirit_lod" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
@@ -3997,7 +4002,7 @@
     "DOTA_Tooltip_modifier_dark_knight_dark_forces" "Dark Forces"
 
     "DOTA_Tooltip_ability_android_pocket_factory"   "Pocket Factory"
-    "DOTA_Tooltip_ability_android_pocket_factory_Description"   "Creates a factory which automatically constructs a Clockwerk Goblin every 2 seconds."
+    "DOTA_Tooltip_ability_android_pocket_factory_Description"   "Creates a factory which automatically constructs a Clockwerk Goblin every 2 seconds. Only 70 goblins can exist at any time. After 50 goblins, they gain max movespeed and phased movement but only half duration."
     "DOTA_Tooltip_ability_android_pocket_factory_factory_duration"  "FACTORY DURATION:"
     "DOTA_Tooltip_ability_android_pocket_factory_goblin_hp" "GOBLIN HEALTH:"
     "DOTA_Tooltip_ability_android_pocket_factory_goblin_damage" "GOBLIN DAMAGE:"
@@ -8139,7 +8144,7 @@
         "DOTA_Tooltip_ability_zhanhun_reduce_per"   "COOLDOWN REDUCTION:"
 
         "DOTA_Tooltip_ability_zhanhun_op"  "Wind soul OP"
-        "DOTA_Tooltip_ability_zhanhun_op_Description"  "Each time you cast a spell, all of your abilities' cooldown will reduce a bit. <font color='#70EA72'>Larger cooldown reduction and no maximum cooldown requirement</font>."
+        "DOTA_Tooltip_ability_zhanhun_op_Description"  "Each time you cast a spell, all of your abilities' cooldown will reduce a bit. <font color='#70EA72'>Larger cooldown reduction</font>."
         "DOTA_Tooltip_ability_zhanhun_op_reduce_per"   "COOLDOWN REDUCTION:"
         
         "DOTA_Tooltip_ability_jingtong" "Elemental Mystery"
@@ -8945,14 +8950,14 @@
     // Proteus, the Kracken Offspring
     //-------------------------------------------------------------------
     "DOTA_Tooltip_Ability_proteus_razorwind"                        "Razor Wind"
-    "DOTA_Tooltip_Ability_proteus_razorwind_Description"            "Delivers a blast of air that pushes the target away from Proteus, dealing damage to enemies or healing allies. The target goes further the closer they are to Proteus."
+    "DOTA_Tooltip_Ability_proteus_razorwind_Description"            "Delivers a blast of air that pushes the target away from Proteus, dealing damage to enemies or healing allies. The target goes further the closer they are to Proteus.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
     "DOTA_Tooltip_Ability_proteus_razorwind_damage_heal"            "DAMAGE/HEAL:"
     "DOTA_Tooltip_Ability_proteus_razorwind_max_push_distance"      "MAX PUSH DISTANCE:"
     "DOTA_Tooltip_Ability_proteus_razorwind_push_speed"             "PUSH SPEED:"
     "DOTA_Tooltip_modifier_proteus_razorwind_push"                  "Pushed"
 
     "DOTA_Tooltip_Ability_proteus_polyp"                        "Polyp"
-    "DOTA_Tooltip_Ability_proteus_polyp_Description"            "Proteus attaches a small piece of itself to the target ally in the form of a Polyp, providing the host ally with a base amount of bonus health that regenerates over time. Whenever the host attacks, the Polyp will drop down to its base health value, converting 50% of extra health into physical damage."
+    "DOTA_Tooltip_Ability_proteus_polyp_Description"            "Proteus attaches a small piece of itself to the target ally in the form of a Polyp, providing the host ally with a base amount of bonus health that regenerates over time. Whenever the host attacks, the Polyp will drop down to its base health value, converting 50% of extra health into physical damage.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
     "DOTA_Tooltip_Ability_proteus_polyp_base_polyp_health"          "POLYP BASE HEALTH:"
     "DOTA_Tooltip_Ability_proteus_polyp_polyp_regen"                "POLYP REGEN RATE:"
     "DOTA_Tooltip_Ability_proteus_polyp_max_polyp_health"           "MAX POLYP HEALTH:"
@@ -8967,7 +8972,7 @@
 
 
     "DOTA_Tooltip_Ability_proteus_jet"                          "Jet"
-    "DOTA_Tooltip_Ability_proteus_jet_Description"              "Propels Proteus a short distance forward using its water jets, autocasting the ability if Proteus issues a move command to a location more than 900 units in front of the hero. Proteus's survival instincts are so strong that it may cast Jet even while stunned, silenced, hexed, or otherwise affected by any spell which restricts movement. Jet may only be fully disabled by applying a break effect on Proteus."
+    "DOTA_Tooltip_Ability_proteus_jet_Description"              "Propels Proteus a short distance forward using its water jets, autocasting the ability if Proteus issues a move command to a location more than 900 units in front of the hero. Proteus's survival instincts are so strong that it may cast Jet even while stunned, silenced, hexed, or otherwise affected by any spell which restricts movement. Jet may only be fully disabled by applying a break effect on Proteus.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
     "DOTA_Tooltip_Ability_proteus_jet_jet_distance"             "JET DISTANCE:"
     "DOTA_Tooltip_Ability_proteus_jet_jet_speed"                "JET SPEED:"
     "DOTA_Tooltip_Ability_proteus_jet_Aghanim_description"      "After using Rarefaction, Jet will gain 2 charges, allowing the spell to be cast three times before it triggers a cooldown."
@@ -8975,13 +8980,280 @@
 
 
     "DOTA_Tooltip_Ability_proteus_rarefaction"                          "Rarefaction"
-    "DOTA_Tooltip_Ability_proteus_rarefaction_Description"              "Proteus reduces non-ultimate cooldowns by manipulating the nervous system's acute response to fear, dilating perception for allies in a radius around Proteus, but causing Proteus to take bonus damage from all sources for the cooldown duration of this ability."
+    "DOTA_Tooltip_Ability_proteus_rarefaction_Description"              "Proteus reduces non-ultimate cooldowns by manipulating the nervous system's acute response to fear, dilating perception for allies in a radius around Proteus, but causing Proteus to take bonus damage from all sources for the cooldown duration of this ability.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
     "DOTA_Tooltip_Ability_proteus_rarefaction_cooldown_reduction"       "COOLDOWN REDUCTION:"
     "DOTA_Tooltip_Ability_proteus_rarefaction_self_bonus_damage"        "%BONUS DAMAGE TAKEN:"
     "DOTA_Tooltip_Ability_proteus_rarefaction_radius"               "RADIUS:"
     "DOTA_Tooltip_modifier_proteus_rarefaction_debuff"              "Rarefaction"
     "DOTA_Tooltip_modifier_proteus_rarefaction_debuff_Description"      "Increases damage taken by %dMODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE% %d%%."
+
+    //-------------------------------------------------------------------
+        // Tenebris
+        //-------------------------------------------------------------------
+        // Fade Strike
+        "DOTA_Tooltip_tenebris_fade_strike_modifier_buff"       "Fade Strike"
+        "DOTA_Tooltip_tenebris_fade_strike_modifier_buff_Description"   "Invisible."
+        "DOTA_Tooltip_tenebris_fade_strike_modifier_debuff"     "Fade Strike"
+        "DOTA_Tooltip_tenebris_fade_strike_modifier_debuff_Description" "Disarmed."
+        "DOTA_Tooltip_ability_tenebris_fade_strike"         "Fade Strike"
+        "DOTA_Tooltip_ability_tenebris_fade_strike_Description"     "A powerful strike that converts a percentage of attack speed into bonus damage and provides brief invisibility, but prevents Tenebris from attacking again for a short duration."
+        "DOTA_Tooltip_ability_tenebris_fade_strike_Lore"        "Tag, no tag backs."
+        "DOTA_Tooltip_ability_tenebris_fade_strike_bonus_damage"    "%BONUS DAMAGE:"
+        "DOTA_Tooltip_ability_tenebris_fade_strike_duration_buff"   "INVISIBILITY DURATION:"
+        "DOTA_Tooltip_ability_tenebris_fade_strike_duration_debuff" "DISARM DURATION:"
+ 
+        // Blood Ward
+        "npc_dota_tenebris_blood_ward"                  "Blood Ward"
+        "DOTA_Tooltip_tenebris_blood_ward_modifier_debuff"      "Blood Ward"
+        "DOTA_Tooltip_tenebris_blood_ward_modifier_debuff_Description"  "Losing life and takes damage when attacking."
+        "DOTA_Tooltip_ability_tenebris_blood_ward"          "Blood Ward"
+        "DOTA_Tooltip_ability_tenebris_blood_ward_Description"      "Tenebris places a blood ward which causes enemy heroes within range to lose health and take damage when they attack."
+        "DOTA_Tooltip_ability_tenebris_blood_ward_Lore"         "Blood is paid for in blood."
+        "DOTA_Tooltip_ability_tenebris_blood_ward_dps"          "DAMAGE PER SECOND:"
+        "DOTA_Tooltip_ability_tenebris_blood_ward_reflect"      "%DAMAGE REFLECTION:"
+        "DOTA_Tooltip_ability_tenebris_blood_ward_radius"       "RANGE:"
+        "DOTA_Tooltip_ability_tenebris_blood_ward_duration"     "WARD DURATION:"
+        "DOTA_Tooltip_ability_tenebris_blood_ward_attacks_to_destroy"   "ATTACKS TO DESTROY:"
+        "DOTA_Tooltip_ability_tenebris_blood_ward_maximum_reflections"  "MAXIMUM REFLECTIONS:"
+ 
+        // Mortal Coil
+        "DOTA_Tooltip_tenebris_mortal_coil_modifier_buff"       "Mortal Coil"
+        "DOTA_Tooltip_tenebris_mortal_coil_modifier_buff_Description"       "Agility increases attackspeed by a greater amount"
+        "DOTA_Tooltip_tenebris_mortal_coil_modifier_aura"       "Mortal Coil"
+        "DOTA_Tooltip_tenebris_mortal_coil_modifier_aura_Description"   "Movement speed stopped when taking damage."
+        "DOTA_Tooltip_tenebris_mortal_coil_modifier_debuff"     "Mortal Coil"
+        "DOTA_Tooltip_tenebris_mortal_coil_modifier_debuff_Description" "Movement stopped."
+        "DOTA_Tooltip_ability_tenebris_mortal_coil"         "Mortal Coil"
+        "DOTA_Tooltip_ability_tenebris_mortal_coil_Description"     "Passively increases the attackspeed bonus provided per point of agility, and causes nearby enemies to have their movement stopped depending on the amount of damage it takes compared to its maximum life. Enemies with Effigy are always affected by Mortal Coil."
+        "DOTA_Tooltip_ability_tenebris_mortal_coil_Lore"        "Death is knocking at the door."
+        "DOTA_Tooltip_ability_tenebris_mortal_coil_ias"         "ATTACK SPEED PER AGILITY:"
+        "DOTA_Tooltip_ability_tenebris_mortal_coil_radius"      "RADIUS:"
+        "DOTA_Tooltip_ability_tenebris_mortal_coil_duration_max"    "MAXIMUM DURATION:"
+ 
+        // Effigy
+        "DOTA_Tooltip_tenebris_effigy_modifier_buff"            "Effigy"
+        "DOTA_Tooltip_tenebris_effigy_modifier_buff_Description"    "Deals damage to all enemies with Effigy."
+        "DOTA_Tooltip_tenebris_effigy_modifier_debuff"          "Effigy"
+        "DOTA_Tooltip_tenebris_effigy_modifier_debuff_Description"  "Takes all damage dealt from the source of Effigy."
+        "DOTA_Tooltip_ability_tenebris_effigy"              "Effigy"
+        "DOTA_Tooltip_ability_tenebris_effigy_Description"      "Curses a target, causing it to suffer all damage Tenebris deals to other heroes. Upon death the curse spreads to the closest enemy hero within range of the target or Tenebris."
+        "DOTA_Tooltip_ability_tenebris_effigy_Lore"         "The weakest link breaks the chain."
+        "DOTA_Tooltip_ability_tenebris_effigy_range"            "RANGE:"
+        "DOTA_Tooltip_ability_tenebris_effigy_duration"         "DURATION:"
+        "DOTA_Tooltip_ability_tenebris_effigy_scepter_duration" "SCEPTER DURATION:"
+        "DOTA_Tooltip_ability_tenebris_effigy_radius"           "DEATH SEARCH RADIUS:"
+        "DOTA_Tooltip_ability_tenebris_effigy_Aghanim_Description"  "Increases the duration of Effigy."
     
+        //------------------------------------------------------------------
+        // Sunagakure, the Puppeteer
+        //------------------------------------------------------------------
+        "DOTA_Tooltip_Ability_suna_blight_and_wither"           "Blight & Wither"
+        "DOTA_Tooltip_Ability_suna_blight_and_wither_Description"       "Saps enemies in a small AoE, making them suffer extra damage when exchanging hits, and exhausting the flesh, substance and spirit in their bodies. The more they attack and the more they're attacked, the slower they will move."
+        "DOTA_Tooltip_Ability_suna_blight_and_wither_Note0"             "Attacks made and taken by non hero units causes half the damage, 5/7/9/11"
+        "DOTA_Tooltip_Ability_suna_blight_and_wither_Note1"             "Lasts twice its duration on non hero units, 14 seconds."
+        "DOTA_Tooltip_Ability_suna_blight_and_wither_Note2"             "Blight shows no effect on cast nor anything on its affected units aside a debuff icon; it only starts to show a smooth animation if the slow starts to stack heavily."
+        "DOTA_Tooltip_Ability_suna_blight_and_wither_Movement_slow_display"     "%MOVEMENT SLOW PER HIT:"
+        "DOTA_Tooltip_Ability_suna_blight_and_wither_Armor_reduction"           "ARMOR REDUCTION PER HIT:"
+        "DOTA_Tooltip_Ability_suna_blight_and_wither_Duration"          "DURATION:"
+
+        "DOTA_Tooltip_Ability_suna_vicissitude"                 "Burrow"
+        "DOTA_Tooltip_Ability_suna_vicissitude_Description"     "Suna burrows into the ground, becoming nearly undetectable while moving. Grants a sub-ability, Vicissitude."
+        "DOTA_Tooltip_Ability_suna_vicissitude_Duration"                "MAX DURATION:"
+        "DOTA_Tooltip_Ability_suna_vicissitude_Vicissitude_duration"    "VICISSITUDE DURATION:"
+
+        "DOTA_Tooltip_Ability_suna_mind_control"                    "Vicissitude"
+        "DOTA_Tooltip_Ability_suna_mind_control_Description"        "Surface from the ground and control the body of an enemy unit, allowing you to attack and move with them while channeling.\nUpgradable by Aghanim's Scepter."
+        "DOTA_Tooltip_Ability_suna_mind_control_Duration"               "MAX DURATION:"
+        "DOTA_Tooltip_Ability_suna_mind_control_Movement_slow"          "%MOVEMENT SPEED SLOW:"
+
+        "DOTA_Tooltip_Ability_suna_puppeteer"                   "Skeleton Puppets"
+        "DOTA_Tooltip_Ability_suna_puppeteer_Description"       "Suna strings a skeleton puppet to himself, which can be controlled and used to fight. If the strings are broken by walking a maximum distance, the skeletons will instantly die. Whenever a skeletal puppet dies, any other puppets strung to Suna will receive bonus attackspeed and health regeneration temporarily."
+        "DOTA_Tooltip_Ability_suna_puppeteer_Note0"             "Skeleton puppets have 305 health, 5 armor, 35 magic resistance, and 310/325/340/355 movespeed. Skeleton puppets will despawn if they are idle for 30 seconds."
+        "DOTA_Tooltip_Ability_suna_puppeteer_Skeleton_count"            "MAXIMUM PUPPETS:"
+        "DOTA_Tooltip_Ability_suna_puppeteer_Max_distance"              "MAX DISTANCE:"
+        "DOTA_Tooltip_Ability_suna_puppeteer_Attackspeed_bonus"         "BONUS ATTACKSPEED ON DEATH:"
+        "DOTA_Tooltip_Ability_suna_puppeteer_Regen_bonus"               "BONUS HEALTH REGEN ON DEATH:"
+        "DOTA_Tooltip_Ability_suna_puppeteer_Buff_duration"                 "BONUS DURATION:"
+        "skeleton_puppet"   "Skeleton Puppet"
+
+        "DOTA_Tooltip_Ability_suna_dead_mans_chest"             "Dead Man's Chest"
+        "DOTA_Tooltip_Ability_suna_dead_mans_chest_Description"         "Applies a buff to the targeted allied hero that lasts for a few seconds. If that hero dies, they will be denied by Suna instead of killed, having their respawning time reduced by half. If the ally does die, Suna can summon them to the battlefield once again, briefly, with a sub-ability.\nUpgradable by Aghanim's Scepter."
+        "DOTA_Tooltip_Ability_suna_dead_mans_chest_Duration"            "DURATION:"
+        "DOTA_Tooltip_Ability_suna_dead_mans_chest_Aghanim_Description"         "Vicissitude and Kyonshi grant haste and magic immunity to affected targets."
+
+        "DOTA_Tooltip_Ability_suna_kyonshi"                     "Kyonshi"
+        "DOTA_Tooltip_Ability_suna_kyonshi_Description"             "Summons the dead hero targeted by Dead Man's Chest back to the battlefield."
+        "DOTA_Tooltip_Ability_suna_kyonshi_Duration"                "DURATION:"
+
+
+        
+        
+        // Modifiers
+        "DOTA_Tooltip_Modifier_blight_slow_stack"           "Blight"
+        "DOTA_Tooltip_Modifier_blight_slow_stack_Description"       "This unit is losing movement speed and taking magic damage with every attack they deal and take."
+
+        "DOTA_Tooltip_Modifier_vicissitude"                 "Vicissitude"
+        "DOTA_Tooltip_Modifier_vicissitude_Description"         "This hero is being controlled."
+        
+        "DOTA_Tooltip_Modifier_vicissitude_dummy"                   "Vicissitude"
+        "DOTA_Tooltip_Modifier_vicissitude_dummy_Description"           "This hero is being controlled."
+        
+        "DOTA_Tooltip_Modifier_vicissitude_effect"                  "Vicissitude"
+        "DOTA_Tooltip_Modifier_vicissitude_effect_Description"          "This hero is controlling a unit."
+        
+        
+        "DOTA_Tooltip_Modifier_puppet_attackspeed_bonus"            "Puppet Rage"
+        "DOTA_Tooltip_Modifier_puppet_attackspeed_bonus_Description"    "Increased attackspeed and health regeneration."
+        
+        "DOTA_Tooltip_Modifier_dead_man"                    "Dead Man"
+        
+        "DOTA_Tooltip_Modifier_dead_man_contain"            "Contained"
+        "DOTA_Tooltip_Modifier_dead_man_contain_Description"    "Sunagakure may revive you and use your body."
+        
+        "DOTA_Tooltip_Modifier_kyonshi"                 "Kyonshi"
+        "DOTA_Tooltip_Modifier_kyonshi_Description"             "Sunagakure is using your body to fight."
+        
+        //-------------------------------------------------------------------
+        // Sirocco, the Dust Devil
+        //-------------------------------------------------------------------
+        "DOTA_Tooltip_ability_sirocco_shifting_sands"               "Shifting Sands"
+        "DOTA_Tooltip_ability_sirocco_shifting_sands_Description"   "Sirocco creates a vortex of quicksand in a target area that slows enemies for 6 seconds. Every 2 seconds, the earth erupts, damaging and mini-stunning those unfortunate enough to be caught inside."
+        "DOTA_Tooltip_ability_sirocco_shifting_sands_Lore"          "Sirocco bends the earth to his will, creating a turbulent maelstrom of soil and stone."
+        "DOTA_Tooltip_ability_sirocco_shifting_sands_Duration"              "DURATION:"
+        //"DOTA_Tooltip_ability_sirocco_shifting_sands_Eruption_duration"       "ERUPTION DURATION:"
+        "DOTA_Tooltip_ability_sirocco_shifting_sands_Ministun_duration"     "MINISTUN DURATION:"
+        "DOTA_Tooltip_ability_sirocco_shifting_sands_Damage"                "DAMAGE:"
+        "DOTA_Tooltip_ability_sirocco_shifting_sands_Radius"                "RADIUS:"
+        "DOTA_Tooltip_ability_sirocco_shifting_sands_Slow_pct"              "%MOVEMENT SLOW:"
+        "DOTA_Tooltip_modifier_shifting_sand_debuff"                    "Shifting Sands"
+        "DOTA_Tooltip_modifier_shifting_sand_debuff_Description"        "Reduces movement speed by %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE% %d%%"
+        "DOTA_Tooltip_modifier_shifting_sand_stun"                  "Ministunned"
+
+        "DOTA_Tooltip_ability_sirocco_mirage"                   "Mirage"
+        "DOTA_Tooltip_ability_sirocco_mirage_Description"       "Sirocco confounds an enemy hero and renders himself invisible, dealing damage and leaving an illusion behind."
+        "DOTA_Tooltip_ability_sirocco_mirage_Lore"              "In the blistering desert heat, nothing is as it seems."
+        "DOTA_Tooltip_ability_sirocco_mirage_Duration"          "DURATION:"
+        "DOTA_Tooltip_ability_sirocco_mirage_Illusion_taken_tt" "%ILLUSION DAMAGE INCOMING:"
+        "DOTA_Tooltip_ability_sirocco_mirage_Illusion_dealt_tt" "%ILLUSION DAMAGE OUTGOING:"
+
+        "DOTA_Tooltip_ability_sirocco_dehydration_aura"                 "Dessication Aura"
+        "DOTA_Tooltip_ability_sirocco_dehydration_aura_Description"     "The loss of precious mana wounds enemies that draw too close to Sirocco, reducing their magic resistance for every 10% of their max mana that is lost."
+        "DOTA_Tooltip_ability_sirocco_dehydration_aura_Lore"            "Sirocco strips away the resistance of his foes as their magical essences run dry."
+        "DOTA_Tooltip_ability_sirocco_dehydration_aura_Aoe"                 "RADIUS:"
+        "DOTA_Tooltip_ability_sirocco_dehydration_aura_Resistance_loss"     "%RESISTANCE LOST PER 10% MANA LOST:"
+        "DOTA_Tooltip_modifier_resistance_reduction_aura"       "Dessication Aura"
+        "DOTA_Tooltip_modifier_resistance_reduction_aura_Description"       "Reduces nearby enemy's magic resistance based on their missing mana."
+        "DOTA_Tooltip_modifier_resistance_loss"                 "Dessication"
+        "DOTA_Tooltip_modifier_resistance_loss_Description"     "Reduces magic resistance by %dMODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS% %d%% for every 10%d%% mana missing."
+
+
+        "DOTA_Tooltip_ability_sirocco_desert_curse"                     "Desert Curse"
+        "DOTA_Tooltip_ability_sirocco_desert_curse_Description"         "Sirocco inflicts an ancient curse on an enemy hero for 6 seconds, causing the hero to lose attack damage and mana whenever it attacks or is attacked. Every 2 seconds, a blast of enchanted sand strikes the target, dealing magic damage to the hero and nearby enemies, based on their current health. Secondary targets have a 3 second version of the curse applied to them."
+        "DOTA_Tooltip_ability_sirocco_desert_curse_Lore"                "Neither warrior nor mage can defend themselves from Sirocco's insidious curses."
+        "DOTA_Tooltip_ability_sirocco_desert_curse_Mana_damage_lost"    "MANA LOST PER ATTACK:"
+        "DOTA_Tooltip_ability_sirocco_desert_curse_Attack_lost"         "ATTACK DAMAGE LOST PER ATTACK:"
+        "DOTA_Tooltip_ability_sirocco_desert_curse_Damage_multiplier"   "%CURSE DAMAGE (CURRENT HEALTH):"
+        "DOTA_Tooltip_ability_sirocco_desert_curse_Blast_radius"        "CURSE RADIUS:"
+        "DOTA_Tooltip_ability_sirocco_desert_curse_Duration"            "DURATION:"
+        "DOTA_Tooltip_ability_sirocco_desert_curse_Scepter_duration"    "SCEPTER DURATION:"
+        "DOTA_Tooltip_ability_sirocco_desert_curse_Aghanim_Description" "Increases duration. "
+
+        "DOTA_Tooltip_modifier_plague"                  "DESERT CURSE"
+        "DOTA_Tooltip_modifier_plague_Description"      "Reduces mana and attack damage each time you attack or are attacked. Every 2 seconds, deals magical damage based on current health to all units within a 225 radius."
+        "DOTA_Tooltip_modifier_plague_shared"               "DESERT CURSE"
+        "DOTA_Tooltip_modifier_plague_shared_Description"   "Reduces mana and attack damage each time you attack or are attacked."
+        "DOTA_Tooltip_stacks_modifier"                  "DAMAGE REDUCTION"
+        "DOTA_Tooltip_stacks_modifier-Description"      "Reduces attack damage by %dMODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE% per stack."
+        
+        //-------------------------------------------------------------------
+        // Bellatrix Venai, the Blood Cultist
+        //-------------------------------------------------------------------
+        "DOTA_Tooltip_Ability_bellatrix_Blood_Rake"                                                 "Blood Rake"
+        "DOTA_Tooltip_Ability_bellatrix_Blood_Rake_Description"                                     "Bellatrix uses to Kru'or's tainted edge to slice open her waist, launching impaling torrents of demonic blood. Enemies hit by the torrents will suffer magical damage and be transported to the original cast location after delay."
+        "DOTA_Tooltip_Ability_bellatrix_Blood_Rake_Lore"                                            "There will be blood."
+        "DOTA_Tooltip_Ability_bellatrix_Blood_Rake_health_cost"                                       "HEALTH COST:"
+        "DOTA_Tooltip_Ability_bellatrix_Blood_Rake_buff_duration"                                     "TRANSPORT DELAY:"
+        "DOTA_Tooltip_ability_bellatrix_Blood_Rake_cast_range"                                        "CAST RANGE:"
+        "DOTA_Tooltip_ability_bellatrix_Blood_Rake_start_radius"                                      "START RADIUS:"
+        "DOTA_Tooltip_ability_bellatrix_Blood_Rake_end_radius"                                        "END RADIUS:"
+        //"DOTA_Tooltip_ability_bellatrix_Blood_Rake_torrent_speed"                                   "TORRENT SPEED:"
+        //"DOTA_Tooltip_ability_bellatrix_Blood_Rake_pullback_time"                                   "PULLBACK TIME:"
+        //"DOTA_Tooltip_ability_bellatrix_Blood_Rake_returned_time"                                   "RETURNED TIME:"
+        //"DOTA_Tooltip_ability_bellatrix_Blood_Rake_buff_duration"                                   "BUFF DURATION:"
+        //"DOTA_Tooltip_ability_bellatrix_Blood_Rake_blood_range"                                     "BLOOD RANGE:"
+        //"DOTA_Tooltip_ability_bellatrix_Blood_Rake_vision_radius"                                   "VISION RADIUS:"
+        //"DOTA_Tooltip_ability_bellatrix_Blood_Rake_animation"                                       "ANIMATION:"
+
+
+        "DOTA_Tooltip_Ability_bellatrix_blood_cross"                                                "Sanguine Cross"
+        "DOTA_Tooltip_Ability_bellatrix_blood_cross_Description"                                    "Bellatrix sacrifices the blood of the targeted ally or enemy to Kru'or, causing them rise and take pure damage after 1.5 seconds. After damage is taken, unholy projectiles will seek nearby enemies which deal similar damage and heal the original target for a percentage of damage dealt."
+        "DOTA_Tooltip_Ability_bellatrix_blood_cross_Lore"                                           "Blood for the Blood Demon!"
+        "DOTA_Tooltip_Ability_bellatrix_blood_cross_Range"                                          "CAST RANGE:"                       
+        "DOTA_Tooltip_Ability_bellatrix_blood_cross_Radius"                                         "RADIUS:"
+        "DOTA_Tooltip_Ability_bellatrix_blood_cross_Lifesteal"                                      "%HEAL:"
+
+        "DOTA_Tooltip_Ability_bellatrix_Live_Transfusion"                                           "Live Transfusion"
+        "DOTA_Tooltip_Ability_bellatrix_Live_Transfusion_Description"                               "Bellatrix thrusts Kru'or forwards with such force that it tears her apart, launching her forwards in a ball of blood and absorbing the life force of those who stand in her path. This bloody maneuver leaves a trail of slippery, corrupted gore in her wake, speeding up allies while slowing and damaging enemies. Has 3 charges, starts with 1.\nUpgradable by Aghanim's Scepter."
+        "DOTA_Tooltip_Ability_bellatrix_Live_Transfusion_Lore"                                      "E'kündut'sä'ang's most devout followers can manipulate their bodies to extreme degrees."
+        "DOTA_Tooltip_ability_bellatrix_Live_Transfusion_effect_radius"                             "RADIUS:"
+        "DOTA_Tooltip_ability_bellatrix_Live_Transfusion_effect_radius_scepter"                     "SCEPTER RADIUS:"
+        "DOTA_Tooltip_ability_bellatrix_Live_Transfusion_buff_ms"                                   "%MOVESPEED BONUS:"
+        "DOTA_Tooltip_ability_bellatrix_Live_Transfusion_hp_cost"                                   "HP COST PER 100 UNITS:"
+        "DOTA_Tooltip_ability_bellatrix_Live_Transfusion_impact_heal"                               "IMPACT HEAL:"
+        //"DOTA_Tooltip_ability_bellatrix_Live_Transfusion_vision_radius"                           "VISION RADIUS:"
+        "DOTA_Tooltip_ability_bellatrix_Live_Transfusion_transfusion_speed"                         "TRANSFUSION SPEED:"
+        "DOTA_Tooltip_ability_bellatrix_Live_Transfusion_ally_regen"                              "ALLY REGEN:"
+        "DOTA_Tooltip_ability_bellatrix_Live_Transfusion_slow_ms"                                   "%MOVEMENT SLOW:"
+        "DOTA_Tooltip_ability_bellatrix_Live_Transfusion_max_charges"                             "MAX CHARGES:"
+        "DOTA_Tooltip_ability_bellatrix_Live_Transfusion_Range"                                     "MAX RANGE:"
+        "DOTA_Tooltip_Ability_bellatrix_Live_Transfusion_Aghanim_Description"               "Increases radius. Blood trails now heal Bellatrix per damage dealt."
+
+        "DOTA_Tooltip_Ability_bellatrix_Unholy_Ecstasy"                                             "Unholy Ecstasy"
+        "DOTA_Tooltip_Ability_bellatrix_Unholy_Ecstasy_description"                                 "Bellatrix douses herself or an ally in a fraction of the corrupted blood that resides in Kru'or, sending her target into a state of manic ecstasy that reduces incoming damage while dealing periodic, non-lethal damage every half second. At the end of the buff's duration, Bellatrix will restore mana and gain bonus magical damage on her next attack, based on a percentage of the damage negated."
+        "DOTA_Tooltip_Ability_bellatrix_Unholy_Ecstasy_Lore"                                        "Reveling in E'kündut'sä'ang's is said to bring unimaginable ecstasy."
+        "DOTA_Tooltip_Ability_bellatrix_Unholy_Ecstasy_damage_reduction"                            "%DAMAGE REDUCTION:"
+        "DOTA_Tooltip_Ability_bellatrix_Unholy_Ecstasy_bonus_damage"                                "%DAMAGE RETURN/MANA RESTORE:"
+        "DOTA_Tooltip_ability_bellatrix_Unholy_Ecstasy_damage_cap"                                  "DAMAGE CAP:"
+        "DOTA_Tooltip_ability_bellatrix_Unholy_Ecstasy_buff_duration"                               "BUFF DURATION:"
+    
+<<<<<<< HEAD
+    
+        "DOTA_Tooltip_BloodRake_hit"                                                      "BloodRake"
+        "DOTA_Tooltip_BloodRake_hit_Description"                                          "You were hit by bloodrake, you will soon be pulled to the sword."
+
+        "DOTA_Tooltip_MarkLocation"                                                       "MarkLocation"
+        "DOTA_Tooltip_MarkLocation_Description"                                           ""
+
+        "DOTA_Tooltip_Blood_Visual"                                                       "BLOOD POOL"
+        "DOTA_Tooltip_Blood_Visual_Description"                                           ""
+
+        "DOTA_Tooltip_modifier_bellatrix_thinker_buff_aura"                               "Bellatrix Thinker Buff Aura"
+        "DOTA_Tooltip_modifier_bellatrix_thinker_buff_aura_Description"                   ""
+
+        "DOTA_Tooltip_modifier_live_transfusion_buff"                                     "Live Transfusion"
+        "DOTA_Tooltip_modifier_live_transfusion_buff_Description"                         "You stand in Bellatrix blood, your movement speed is increased."
+
+        "DOTA_Tooltip_modifier_bellatrix_thinker_debuff_aura"                             "Bellatrix Thinker Debuff Aura"
+        "DOTA_Tooltip_modifier_bellatrix_thinker_debuff_aura_Description"                 ""
+
+        "DOTA_Tooltip_modifier_live_transfusion_debuff"                                   "Live Transfusion"
+        "DOTA_Tooltip_modifier_live_transfusion_debuff_Description"                       "You stand in Bellatrix blood, your movement speed is decreased and you take damage over time based on your health"
+
+        "DOTA_Tooltip_modifier_live_transfusion_stack_counter_datadriven"                 "Transfusion Stacks"
+        "DOTA_Tooltip_modifier_live_transfusion_stack_counter_datadriven_Description"     ""
+
+        "DOTA_Tooltip_Damage_Reduction"                                                   "Damage Reduction"
+        "DOTA_Tooltip_Damage_Reduction_Description"                                       "You take less damage by the ecstasy of caused by your pain."
+
+        "DOTA_Tooltip_Unholy_Ecstasy_Bonus_Damage"                                        "Unholy Ecstasy"
+        "DOTA_Tooltip_Unholy_Ecstasy_Bonus_Damage_Description"                            "Your next attack deals extra damage based on the damage that was dealt to you during Unholy Ecstasy"
+        
+        
+        
+        
+
+
+=======
     "DOTA_Tooltip_ability_morph_int_str_redux"                                      "Morph (INT to STR)"
     "DOTA_Tooltip_ability_morph_int_str_redux_Description"                          "Morphling shifts its form, pulling points from Intelligence and pouring them into Strength. The process is reversible.  Additional points in Morph increase the rate of stat change.  Passively grants bonus Strength."
     "DOTA_Tooltip_ability_morph_int_str_redux_Lore"                                 "Shifting water makes it difficult to discern the nature of Morphling."
@@ -9033,6 +9305,7 @@
 
     "DOTA_Tooltip_modifier_morph_int_agi"              "Morph (INT to AGI)"
     "DOTA_Tooltip_modifier_morph_int_agi_Description"      "Converting Intelligence into Agility."
+>>>>>>> 709ad62333ab74e0db373790328ce975d3c3d706
 
 
 }

@@ -1,5 +1,14 @@
 Commands = Commands or class({})
 
+function Commands:CheckArgs( args, toCheck )
+    for k,v in pairs(args) do
+        if string.match(args, v) then
+            return true
+        end
+    end
+    return false
+end
+
 function Commands:OnPlayerChat(keys)    
     local teamonly = keys.teamonly
     local playerID = keys.playerid
@@ -7,6 +16,7 @@ function Commands:OnPlayerChat(keys)
     local text = string.lower(keys.text)
 
     local command
+    local arguments = {}
 
     for k,v in pairs(util:split(text, " ")) do
         if string.match(v, "-") then
@@ -14,6 +24,8 @@ function Commands:OnPlayerChat(keys)
         elseif string.match(v, "#") then
             print(string.sub(v, 2))
             playerID = tonumber(string.sub(v, 2)) 
+        else
+            table.insert(arguments, v)
         end
     end
 
@@ -262,201 +274,6 @@ function Commands:OnPlayerChat(keys)
         end, DoUniqueString('fixcasting'), .5)
     end
     ----------------------------
-    -- Vote Commands
-    ----------------------------
-    if string.find(text, "-antirat") or text == "-ar" then
-        if OptionManager:GetOption('antiRat') == 0 then
-            Timers:CreateTimer(function()
-                if not PlayerResource:GetPlayer(playerID).antirat then
-                    PlayerResource:GetPlayer(playerID).antirat = true
-                    
-                    local votesReceived = 1
-                    local activePlayers = 1
-                    
-                    for player_ID = 0,(24-1) do                        
-                        if not util:isPlayerBot(player_ID) and PlayerResource:GetPlayer(playerID) ~= PlayerResource:GetPlayer(player_ID) then                            
-                            local state = PlayerResource:GetConnectionState(player_ID)
-                            if state == 1 or state == 2 then
-                                activePlayers = activePlayers + 1
-                                if PlayerResource:GetPlayer(player_ID).antirat then
-                                    votesReceived = votesReceived + 1
-                                end
-                            end
-                        end
-                    end
-
-                    -- In all_allowed map, votes needed is only 50% of players (rounded up)
-                    if GetMapName() == 'all_allowed' then
-                        activePlayers = math.ceil(activePlayers/2)
-                    end
-
-                    local steamID = PlayerResource:GetSteamAccountID(playerID)
-
-                    if votesReceived >= activePlayers or steamID == 93913347 then
-                        OptionManager:SetOption('antiRat', 1) 
-                        ingame:giveAntiRatProtection()
-                        ingame.voteAntiRat = true
-                        EmitGlobalSound("Event.CheatEnabled")
-                        GameRules:SendCustomMessage('Enough players voted to enable anti-rat protection. <font color=\'#70EA72\'>Tier 3 towers cannot be destroyed until all other towers are gone.</font>.',0,0)
-                    else
-                        EmitGlobalSound("Event.VoteRecieved")
-                        local votesRequired = activePlayers - votesReceived
-                        GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to enable anti-rat protection. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -antirat (-ar) to vote to enable.',0,0)
-                    end
-
-                    --print(votesRequired)
-
-                end
-            end, DoUniqueString('antirat'), .1)
-        end
-
-    elseif string.find(text, "-enablecheat") or text == "-ec" then 
-        Timers:CreateTimer(function()
-            if not PlayerResource:GetPlayer(playerID).enableCheats then
-                PlayerResource:GetPlayer(playerID).enableCheats = true
-                
-                local votesRequired = 0
-                
-                for player_ID = 0,(24-1) do                        
-                    if not util:isPlayerBot(player_ID) and PlayerResource:GetPlayer(playerID) ~= PlayerResource:GetPlayer(player_ID) then                            
-                        local state = PlayerResource:GetConnectionState(player_ID)
-                        if state == 1 or state == 2 then
-                            if not PlayerResource:GetPlayer(player_ID).enableCheats then
-                                votesRequired = votesRequired + 1
-                            end
-                        end
-                    end
-                end
-
-                if votesRequired == 0 then
-                    ingame.voteEnabledCheatMode = true
-                    network:updateCheatPanelStatus(ingame.voteEnabledCheatMode)
-                    EmitGlobalSound("Event.CheatEnabled") 
-                    GameRules:SendCustomMessage('<font color=\'#70EA72\'>Everbody voted to enable cheat mode. Cheat mode enabled</font>.',0,0)
-                else
-                    EmitGlobalSound("Event.VoteRecieved")
-                    GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to enable cheat mode. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablecheats (-ec) to vote to enable',0,0)
-                end
-
-                --print(votesRequired)
-
-            end
-        end, DoUniqueString('enableCheat'), .1)
-
-    elseif string.find(text, "-enablekamikaze") or text == "-ek" then 
-        Timers:CreateTimer(function()
-            if not PlayerResource:GetPlayer(playerID).enableKamikaze then
-                PlayerResource:GetPlayer(playerID).enableKamikaze = true
-                
-                local votesRequired = 0
-                
-                for player_ID = 0,(24-1) do                        
-                    if not util:isPlayerBot(player_ID) and PlayerResource:GetPlayer(playerID) ~= PlayerResource:GetPlayer(player_ID) then                            
-                        local state = PlayerResource:GetConnectionState(player_ID)
-                        if state == 1 or state == 2 then
-                            if not PlayerResource:GetPlayer(player_ID).enableKamikaze then
-                                votesRequired = votesRequired + 1
-                            end
-                        end
-                    end
-                end
-
-                if votesRequired == 0 then
-                    ingame.voteDisableAntiKamikaze = true
-                    EmitGlobalSound("Event.CheatEnabled")
-                    GameRules:SendCustomMessage('Everbody voted to disable the anti-Kamikaze mechanic. <font color=\'#70EA72\'>No more peanlty for dying 3 times within 60 seconds</font>.',0,0)
-                else
-                    EmitGlobalSound("Event.VoteRecieved")
-                    GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to disable anti-Kamikaze safeguard. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablekamikaze (-ek) to vote to disable.',0,0)
-                end
-
-                --print(votesRequired)
-
-            end
-        end, DoUniqueString('enableKamikaze'), .1)
-
-    elseif (string.find(text, "-enablebuilder") or text == "-eb") and OptionManager:GetOption('allowIngameHeroBuilder') == false then 
-        Timers:CreateTimer(function()
-            if not PlayerResource:GetPlayer(playerID).enableBuilder then
-                PlayerResource:GetPlayer(playerID).enableBuilder = true
-                
-                local votesReceived = 1
-                local activePlayers = 1
-                
-                for player_ID = 0,(24-1) do                        
-                    if not util:isPlayerBot(player_ID) and PlayerResource:GetPlayer(playerID) ~= PlayerResource:GetPlayer(player_ID) then                            
-                        local state = PlayerResource:GetConnectionState(player_ID)
-                        if state == 1 or state == 2 then
-                            activePlayers = activePlayers + 1
-                            if PlayerResource:GetPlayer(player_ID).enableBuilder then
-                                votesReceived = votesReceived + 1
-                            end
-                        end
-                    end
-                end
-
-                -- In all_allowed map, votes needed is only 50% of players (rounded up)
-                if GetMapName() == 'all_allowed' then
-                    activePlayers = math.ceil(activePlayers/2)
-                end
-
-                if votesReceived >= activePlayers then
-                    network:enableIngameHeroEditor()
-                    OptionManager:SetOption('allowIngameHeroBuilder', 1)
-                    -- If its a versus game set a penalty for using the builder
-                    if util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS) > 0 and util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS) > 0 then
-                            OptionManager:SetOption('ingameBuilderPenalty', 30)
-                    end
-                    ingame.voteEnableBuilder = true
-                    EmitGlobalSound("Event.CheatEnabled")
-                    GameRules:SendCustomMessage('Everbody voted to enable the ingame hero builder. <font color=\'#70EA72\'>You can now change your hero build mid-game</font>.',0,0)
-                else
-                    EmitGlobalSound("Event.VoteRecieved")
-                    local votesRequired = activePlayers - votesReceived
-                    GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to enable ingame hero builder. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablebuilder (-eb) to vote to enable.',0,0)
-                end
-
-                --print(votesRequired)
-
-            end
-        end, DoUniqueString('enablebuilder'), .1)
-
-    elseif string.find(text, "-enablerespawn") or text == "-er" then 
-        Timers:CreateTimer(function()
-            if not PlayerResource:GetPlayer(playerID).enableRespawn then
-                PlayerResource:GetPlayer(playerID).enableRespawn = true
-                
-                local votesRequired = 0
-                
-                for player_ID = 0,(24-1) do                        
-                    if not util:isPlayerBot(player_ID) and PlayerResource:GetPlayer(playerID) ~= PlayerResource:GetPlayer(player_ID) then                            
-                        local state = PlayerResource:GetConnectionState(player_ID)
-                        if state == 1 or state == 2 then
-                            if not PlayerResource:GetPlayer(player_ID).enableRespawn then
-                                votesRequired = votesRequired + 1
-                            end
-                        end
-                    end
-                end
-
-                if votesRequired == 0 then
-                    ingame.voteDisableRespawnLimit = true
-                    if ingame.origianlRespawnRate ~= nil then
-                        OptionManager:SetOption('respawnModifierPercentage', ingame.origianlRespawnRate)
-                    end        
-                    EmitGlobalSound("Event.CheatEnabled")
-                    GameRules:SendCustomMessage('Everbody voted to disable the increasing-spawn-rate mechanic. <font color=\'#70EA72\'>Respawn rates no longer increase after 40 minutes</font>. Respawn rate is now '.. OptionManager:GetOption('respawnModifierPercentage') .. '%.',0,0)
-                else
-                    EmitGlobalSound("Event.VoteRecieved")
-                    GameRules:SendCustomMessage(PlayerResource:GetPlayerName(playerID) .. ' voted to disable increasing-spawn-rate safeguard. <font color=\'#70EA72\'>'.. votesRequired .. ' more votes are required</font>, type -enablerespawn (-er) to vote to disable.',0,0)
-                end
-
-                --print(votesRequired)
-
-            end
-        end, DoUniqueString('enableRespawn'), .1)
-    end
-    ----------------------------
     -- Cheat Commands
     ----------------------------
     if util:isSinglePlayerMode() or Convars:GetBool("sv_cheats") or ingame.voteEnabledCheatMode then
@@ -470,9 +287,9 @@ function Commands:OnPlayerChat(keys)
                 ingame.heard["freestuff"] = true
             end   
             local goldAmount = 100000
-            local splitedcommand = util:split(command, " ")       
-            if splitedcommand[2] and tonumber(splitedcommand[2])then
-                goldAmount = tonumber(splitedcommand[2])
+            local splitedcommand = arguments       
+            if splitedcommand[1] and tonumber(splitedcommand[1])then
+                goldAmount = tonumber(splitedcommand[1])
             end
 
             Timers:CreateTimer(function()  
@@ -571,9 +388,9 @@ function Commands:OnPlayerChat(keys)
         elseif string.find(command, "-lvlup") then 
             -- Give user 1 level, unless they specify a number after
             local levels = 1
-            local splitedcommand = util:split(command, " ")       
-            if splitedcommand[2] and tonumber(splitedcommand[2]) then
-                levels = tonumber(splitedcommand[2])
+            local splitedcommand = arguments       
+            if splitedcommand[1] and tonumber(splitedcommand[1]) then
+                levels = tonumber(splitedcommand[1])
             end
             Timers:CreateTimer(function()  
                 for i=0,levels-1 do
@@ -585,32 +402,32 @@ function Commands:OnPlayerChat(keys)
         elseif string.find(command, "-item") then 
             -- Give user 1 level, unless they specify a number after
             Timers:CreateTimer(function()  
-                local splitedcommand = util:split(command, " ")       
+                local splitedcommand = arguments       
                 local validItem = false
-                if splitedcommand[2] then
-                    hero:AddItemByName(splitedcommand[2])
-                    local findItem = hero:FindItemByName(splitedcommand[2])
+                if splitedcommand[1] then
+                    hero:AddItemByName(splitedcommand[1])
+                    local findItem = hero:FindItemByName(splitedcommand[1])
                     if findItem then validItem = true end
                 end
                 if validItem then
-                    ingame:CommandNotification("-item", 'Cheat Used (-item): Given ' .. splitedcommand[2] .. ' to '.. PlayerResource:GetPlayerName(playerID)) 
+                    ingame:CommandNotification("-item", 'Cheat Used (-item): Given ' .. splitedcommand[1] .. ' to '.. PlayerResource:GetPlayerName(playerID)) 
                 end
             end, DoUniqueString('cheat'), .1)
 
         elseif string.find(command, "-addability") or string.find(command, "-giveability") or string.find(command, "-add") then 
             -- Give user 1 level, unless they specify a number after
             Timers:CreateTimer(function()  
-              local splitedcommand = util:split(command, " ")       
-              if splitedcommand[2] then 
+              local splitedcommand = arguments       
+              if splitedcommand[1] then 
                 local absCustom = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
                 for k,v in pairs(absCustom) do
                     --print(k)
-                    if string.find(k, splitedcommand[2]) then
-                      splitedcommand[2] = k
+                    if string.find(k, splitedcommand[1]) then
+                      splitedcommand[1] = k
                     end
                 end
-                hero:AddAbility(splitedcommand[2])
-                    local findAbility = hero:FindAbilityByName(splitedcommand[2])
+                hero:AddAbility(splitedcommand[1])
+                    local findAbility = hero:FindAbilityByName(splitedcommand[1])
                     if findAbility then validAbility = true end
                 end
                 if validAbility then
@@ -623,7 +440,7 @@ function Commands:OnPlayerChat(keys)
                             end
                         end
                     end
-                    ingame:CommandNotification("-addability", 'Cheat Used (-addability): Given ' .. splitedcommand[2] .. ' to '.. PlayerResource:GetPlayerName(playerID)) 
+                    ingame:CommandNotification("-addability", 'Cheat Used (-addability): Given ' .. splitedcommand[1] .. ' to '.. PlayerResource:GetPlayerName(playerID)) 
                 end
             end, DoUniqueString('cheat'), .1)
 
@@ -635,7 +452,7 @@ function Commands:OnPlayerChat(keys)
                     local golem = CreateUnitByName("npc_dota_warlock_golem_1", spawnLoc, true, nil, nil, otherTeam(hero:GetTeamNumber()))
                 end
 
-                --ingame:CommandNotification("-addability", 'Cheat Used (-addability): Given ' .. splitedcommand[2] .. ' to '.. PlayerResource:GetPlayerName(playerID)) 
+                --ingame:CommandNotification("-addability", 'Cheat Used (-addability): Given ' .. splitedcommand[1] .. ' to '.. PlayerResource:GetPlayerName(playerID)) 
         
             end, DoUniqueString('cheat'), .1)
 
@@ -643,13 +460,13 @@ function Commands:OnPlayerChat(keys)
             -- Give user 1 level, unless they specify a number after
 
             Timers:CreateTimer(function()  
-                local splitedcommand = util:split(command, " ")       
+                local splitedcommand = arguments   
                 local validAbility = false
-                if splitedcommand[2] then    
+                if splitedcommand[1] then    
                     for i=0,32 do
                         local abil = hero:GetAbilityByIndex(i)
                         if abil then
-                            if splitedcommand[2] == "all" then
+                            if splitedcommand[1] == "all" then
                                 hero:SetAbilityPoints(hero:GetAbilityPoints() + abil:GetLevel())
                                 hero:RemoveAbility(abil:GetName())
                             elseif string.find(abil:GetName(), splitedText[2]) then
@@ -660,7 +477,7 @@ function Commands:OnPlayerChat(keys)
                     local removedAbilty = hero:FindAbilityByName(splitedText[2])
                     if removedAbilty then
                         hero:SetAbilityPoints(hero:GetAbilityPoints() + removedAbilty:GetLevel())
-                        hero:RemoveAbility(splitedcommand[2])
+                        hero:RemoveAbility(splitedcommand[1])
                     end
                 end
                 if validAbility then

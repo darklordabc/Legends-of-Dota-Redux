@@ -8719,6 +8719,81 @@
 		"AttackDesire" "1.5" // How much bots want to attack them vs other non-hero things
 	}
 
+	"npc_dota_tenebris_blood_ward"
+	    {                                      
+	        // General
+	        //----------------------------------------------------------------
+	        "Model"             "models/heroes/visage/visage_familiar.vmdl"
+	        "BaseClass"         "npc_dota_base_additive"
+	        "SoundSet"          "Visage_Familiar"
+	        "Level"             "0"
+	        "ModelScale"            "0.5"
+	        "wearable"          "600"
+	 
+	        // Abilities
+	        //----------------------------------------------------------------
+	        "Ability1"          ""
+	        "Ability2"          ""
+	        "Ability3"          ""
+	        "Ability4"          ""
+	 
+	        // Armor
+	        //----------------------------------------------------------------
+	        "ArmorPhysical"         "0"
+	 
+	        // Attack
+	        //----------------------------------------------------------------
+	        "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
+	        "AttackDamageMin"       "0"
+	        "AttackDamageMax"       "0"
+	        "AttackRate"            "1.0"
+	        "AttackAnimationPoint"      "0.0"
+	        "AttackAcquisitionRange"    "0"
+	        "AttackRange"           "0"
+	        "ProjectileModel"       ""
+	        "ProjectileSpeed"       "0"
+	 
+	        // Bounds
+	        //----------------------------------------------------------------
+	        "HealthBarOffset"       "145"
+	        "BoundsHullName"        "DOTA_HULL_SIZE_SMALL"
+	 
+	        // Bounty
+	        //----------------------------------------------------------------
+	        "BountyXP"          "31"
+	        "BountyGoldMin"         "50"
+	        "BountyGoldMax"         "50"
+	 
+	        // Movement
+	        //----------------------------------------------------------------
+	        "MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_GROUND"
+	        "MovementTurnRate"      "0"
+	        "MovementSpeed"         "0"
+	 
+	        // Status
+	        //----------------------------------------------------------------
+	        "StatusHealth"          "100"
+	        "StatusHealthRegen"     "0.0"
+	       
+	        // Vision
+	        //----------------------------------------------------------------
+	        "VisionDaytimeRange"        "600"
+	        "VisionNighttimeRange"      "600"
+	 
+	        // Team
+	        //----------------------------------------------------------------
+	        "TeamName"          "DOTA_TEAM_NEUTRALS"
+	        "CombatClassAttack"     "DOTA_COMBAT_CLASS_ATTACK_BASIC"
+	        "CombatClassDefend"     "DOTA_COMBAT_CLASS_DEFEND_STRONG"
+	        "UnitRelationshipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+	 
+	        // Bots
+	        //----------------------------------------------------------------
+	        "AttackDesire"          "1.5"
+	 
+	        "IdleSoundLoop"             ""
+	    }
+
 	// Made by BMD
 	"npc_dota_unit_recon"
 	{

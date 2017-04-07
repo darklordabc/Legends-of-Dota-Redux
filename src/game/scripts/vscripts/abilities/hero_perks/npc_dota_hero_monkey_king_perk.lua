@@ -36,6 +36,7 @@ function modifier_npc_dota_hero_monkey_king_perk:OnCreated(keys)
 
         if Mischief​ then
             Mischief​:UpgradeAbility(false)
+            Mischief​:SetHidden(false)
         else 
             Mischief​ = caster:AddAbility("monkey_king_mischief")
             caster:AddAbility("monkey_king_untransform")

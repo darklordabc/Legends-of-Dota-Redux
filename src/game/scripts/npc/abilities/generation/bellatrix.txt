@@ -1,0 +1,953 @@
+"DOTAAbilities"
+{
+    //=================================================================================================================
+    //
+    //
+    //
+    //
+    //
+    //
+    //                                  Bellatrix Venai, the Blood Cultist
+    //                                  Original concept by Eli_Green, coded by Pongping
+    //
+    //
+    //
+    //
+    //
+    //=================================================================================================================
+    //=================================================================================================================
+    // Bellatrix - Sanguine Cross (New)
+    //=================================================================================================================
+    "bellatrix_blood_cross"
+    {
+        //General
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "custom/Bellatrix_RipandTear"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"  
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "FightRecapLevel"               "1"
+        "AbilityProcsMagicStick"        "1"
+    
+        // Casting
+        "AbilityCastPoint"              "0.5"
+        "AbilityCastRange"              "550 650 750 850"
+        "AnimationPlaybackRate"         "1.2"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_2"
+    
+        //Time
+        "AbilityCooldown"               "35 30 25 20"
+        "AbilityDuration"               "1.5"
+        "AbilityDamage"                 "120 180 240 300"
+    
+        //Cost
+        "AbilityManaCost"               "135 150 165 180"
+    
+    
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "range"         "550 650 750 850"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "radius"        "550"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "delay"         "1.5"
+            }
+            "04"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "buff_duration"     "2"
+            }
+            "05"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "lifesteal"         "75"
+            }
+        }
+        "precache"
+        {
+            "particle"      "particles/bellatrix_blood_cross_ring.vpcf"
+            "particle"      "particles/bellatrix_blood_cross_wrath.vpcf"
+            "particle"      "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodrage_ground_eztzhok_arc.vpcf"
+            "particle"      "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodbath_eztzhok.vpcf"
+            "particle"      "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodritual_impact.vpcf"
+            "particle"      "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodritual_explode.vpcf"
+            "particle"      "particles/bellatrix_blood_cross_projectile.vpcf"
+            "particle"      "particles/units/heroes/hero_sandking/sandking_caustic_finale_explode.vpcf"
+            "particle"      "particles/items2_fx/soul_ring_blood.vpcf"
+            "particle"      "particles/generic_gameplay/generic_lifesteal_old.vpcf"
+            "soundfile"     "soundevents/game_sounds_heroes/game_sounds_bloodseeker.vsndevts"
+            "soundfile"     "soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
+        }
+    
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "EffectName"    "hero_bloodseeker.bloodRite"
+                "Target"        "TARGET"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Hero_Bloodseeker.BloodRite.Cast"
+                "Target"        "CASTER"
+            }
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/nextgeneration/hero_bellatrix/BloodCross.lua"
+                "Function"      "BloodCrossInitiate"
+            }
+            "CreateThinker"
+            {
+                "ModifierName"  "modifier_cross_dummy"
+                "Target"        "TARGET"
+            }
+        }
+        "OnProjectileHitUnit"
+        {
+            "FireEffect"
+            {
+                "EffectName"        "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodritual_explode.vpcf"
+                "EffectAttachType"  "follow_origin"
+                "Target"            "TARGET"
+                "ControlPoints"
+                {
+                    "01"    "100 100 100"
+                }
+            }
+            "FireSound"
+            {
+                "EffectName"    "Hero_Nevermore.Shadowraze"
+                "Target"        "TARGET"
+            }
+            "Damage"
+            {
+                "Target"        "TARGET"
+                "Type"          "DAMAGE_TYPE_PURE"
+                "Damage"        "%AbilityDamage"
+            }
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/nextgeneration/hero_bellatrix/BloodCross.lua"
+                "Function"      "BloodCrossHeal"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_cross_dummy"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "0"
+                "Duration"          "%delay"
+    
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "EffectName"        "particles/bellatrix_blood_cross_ring.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"            "TARGET"
+                        "EffectRadius"      "200"
+                        "ControlPoints"
+                        {
+                            "01"    "200 200 200"
+                            "02"    "0 0 0"
+                        }
+                    }
+                }
+            }
+            "modifier_cross_fall"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "0"
+                "OverrideAnimation"     "ACT_DOTA_FLAIL"
+                "Attributes"        "MODIFIER_ATTRIBUTE_PERMANENT"
+    
+                "States"
+                {
+                    "MODIFIER_STATE_STUNNED"            "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NO_UNIT_COLLISION"  "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+            "modifier_blood_cross_heal"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "Attributes"        "MODIFIER_ATTRIBUTE_MULTIPLE"
+                "Duration"          "0.1"
+    
+                "OnCreated"
+                {
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/generic_gameplay/generic_lifesteal_old.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"            "TARGET"
+                    }
+                }
+            }
+            "modifier_cross_effect"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+                "Attributes"        "MODIFIER_ATTRIBUTE_PERMANENT"
+                "Duration"              "%delay"
+    
+                "EffectName" "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodrage_ground_eztzhok_arc.vpcf"
+                "EffectAttachType"  "follow_origin"
+    
+                "States"
+                {
+                    "MODIFIER_STATE_STUNNED"            "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NO_UNIT_COLLISION"  "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            
+                "OnCreated"
+                {
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodritual_explode.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"            "TARGET"
+                        "ControlPoints"
+                        {
+                            "01"    "200 200 200"
+                        }
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_bellatrix/BloodCross.lua"
+                        "Function"      "BloodCrossRise"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"    "hero_bloodseeker.bloodRite.silence"
+                        "Target"        "TARGET"
+                    }
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/items2_fx/soul_ring_blood.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"            "TARGET"
+                    }
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/units/heroes/hero_sandking/sandking_caustic_finale_explode.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"            "TARGET"
+                    }
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodbath_eztzhok.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"            "TARGET"
+                    }
+                    "Damage"
+                    {
+                        "Target"        "TARGET"
+                        "Type"          "DAMAGE_TYPE_PURE"
+                        "Damage"        "%AbilityDamage"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_bellatrix/BloodCross.lua"
+                        "Function"      "BloodCrossProjectile"
+                        "Radius"        "%radius"
+                    }
+                }
+            }
+            "modifier_cross_effect_2"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "Duration"          "1.175"
+            
+                "OnDestroy"
+                {
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/bellatrix_blood_cross_wrath.vpcf"
+                        "EffectAttachType"  "start_at_customorigin"
+                        "Target"            "TARGET"
+                        "ControlPointEntities"
+                        {
+                            "TARGET"    "attach_hitloc"
+                            "TARGET"    "attach_hitloc"
+                            "TARGET"    "attach_hitloc"
+                        }
+                    }
+                }
+            }
+        }
+    }
+    //=================================================================================================================
+    // Bellatrix - Blood Rake
+    //=================================================================================================================
+    "bellatrix_blood_rake"
+    {
+        //General
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "custom/Bellatrix_BloodRake"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "FightRecapLevel"               "1"
+    
+        // Casting
+        "AbilityCastPoint"              "0.5"
+        "AbilityCastRange"              "450 550 650 750"
+        "AnimationPlaybackRate"         "0.7"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_4"
+    
+        //Time
+        "AbilityCooldown"               "14 13 12 11"
+        "AbilityDuration"               "1.0"
+        //Damage
+        "AbilityDamage"                 "80 130 180 230"
+        //Cost
+        "AbilityManaCost"               "80 90 100 110"
+        "AbilityProcsMagicStick"        "1"
+
+
+        "Precache"
+        {
+            "particle"              "particles/bellatrix/bellatrix_bloodrake1.vpcf"
+            "particle"              "particles/bellatrix/bellatrix_bloodrake2.vpcf"
+            "particle"              "particles/bellatrix/bellatrix_bloodrake3.vpcf"
+            "particle"              "particles/bellatrix/bellatrix_bloodrake4.vpcf"
+            "particle"              "particles/bloodrakemarker.vpcf"
+            "particle"              "particles/bellatrix_bloodrake_cut.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "cast_range"        "450 550 650 750"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "start_radius"      "150"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "end_radius"        "225"
+            }
+            "04"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "torrent_speed"     "1600"
+            }
+            "05"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "pullback_time"     "0.3"
+            }
+            "06"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "returned_time"     "0.45"
+            }
+            "07"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "buff_duration"     "1.0"
+            }
+            "08"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "blood_range"       "450 550 650 750"
+            }
+            "09"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "vision_radius"     "200"
+            }
+            "10"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "health_cost"       "75 100 125 150"
+            }
+            "11"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "animation"         "425 525 625 725"
+            }
+        }
+    
+        "OnSpellStart"
+        {   
+            "FireEffect"
+            {
+                "EffectName"        "particles/bellatrix_bloodrake_cut.vpcf"
+                "EffectAttachType"  "follow_origin"
+                "Target"            "CASTER"
+            }
+            "FireSound"
+            {
+                "EffectName"    "hero_bloodseeker.rupture.cast"
+                "Target"        "CASTER"
+            }
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/nextgeneration/hero_bellatrix/BloodRake"
+                "Function"      "BloodRakeSelfDamage"
+            }
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/nextgeneration/hero_bellatrix/BloodRake"
+                "Function"      "CasterStartLoc"
+                "bloodeffect1"  "particles/bellatrix/bellatrix_bloodrake1.vpcf"
+                "bloodeffect2"  "particles/bellatrix/bellatrix_bloodrake2.vpcf"
+                "bloodeffect3"  "particles/bellatrix/bellatrix_bloodrake3.vpcf"
+                "bloodeffect4"  "particles/bellatrix/bellatrix_bloodrake4.vpcf"
+                "TARGET"        "POINT"
+            }   
+        }
+        "OnProjectileHitUnit"
+        {
+            "DeleteOnHit"   "0"
+    
+            "Damage"
+            {
+                "Target"        "TARGET"
+                "Type"          "DAMAGE_TYPE_MAGICAL"
+                "Damage"        "%AbilityDamage"
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"  "BloodRake_hit"
+                "Target"        "TARGET"
+                "Duration"      "%buff_duration"
+            }
+        }
+        "Modifiers"
+        {
+            "dummy_bloodrake_return"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+                
+                "States"
+                {
+                    "MODIFIER_STATE_INVULNERABLE"                   "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NO_HEALTH_BAR"                  "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NO_UNIT_COLLISION"              "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NOT_ON_MINIMAP"                 "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_UNSELECTABLE"                   "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_COMMAND_RESTRICTED"             "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_DISARMED"                       "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_INVISIBLE"                      "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_TRUESIGHT_IMMUNE"               "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+            "BloodRake_hit"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "0"
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_bellatrix/BloodRake"
+                        "Function"      "TeleportInFront"
+                    }
+                }
+            }
+            "MarkLocation"
+            {
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "EffectName"        "particles/bloodrakemarker.vpcf"
+                        "EffectAttachType"  "attach_origin"
+                        "Target"            "TARGET"
+                    }
+                }
+            }
+        }
+    }
+    //=================================================================================================================
+    // Bellatrix - Live Transfusion
+    //=================================================================================================================
+    "bellatrix_live_transfusion"
+    {
+        //General
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "custom/Bellatrix_LiveTransfusion"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "FightRecapLevel"               "1"
+        "MaxLevel"                      "3"
+        "RequiredLevel"                 "6"
+        "LevelsBetweenUpgrades"         "5"
+        "AbilityProcsMagicStick"        "1"
+        "HasScepterUpgrade"             "1"
+    
+        // Casting
+        "AbilityCastRange"              "1000 1500 2000"
+        "AbilityCastPoint"              "0.5"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
+        "AnimationPlaybackRate"         "0.6"
+    
+        //Time
+        "AbilityCooldown"               "30"
+        "AbilityDuration"               "8"
+        //Damage
+        "AbilityDamage"                 "120 160 200"
+        //Cost
+        "AbilityManaCost"               "200"
+    
+        "Precache"
+        {
+            "particle"                  "particles/bellatrix/bellatrix_live_transfusion.vpcf"
+            "particle"                  "particles/bellatrix/blood_trail.vpcf"
+            "soundfile"                 "soundevents/game_sounds_heroes/game_sounds_morphling.vsndevts"
+        }
+    
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "effect_radius"     "200"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "effect_radius_scepter" "350"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "buff_ms"           "5 10 15"
+            }
+            "04"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "PercentDamage"     "3 4 5"
+            }
+            "05"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "hp_cost"           "30 40 50"
+            }
+            "06"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "impact_heal"       "60 80 100"
+            }
+            "07"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "vision_radius"     "200"
+            }
+            "08"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "transfusion_speed" "2000"
+            }
+            "09"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "slow_ms"           "-5 -10 -15"
+            }
+            "10"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "max_charges"       "3"
+            }
+            "11"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "charge_replenish_time" "30"
+            }
+            "12"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "range"         "1200 1600 2000"
+            }
+        }
+        "OnUpgrade"
+        {
+            "RunScript"
+            {
+                "ScriptFile"            "abilities/nextgeneration/hero_bellatrix/LiveTransfusion.lua"
+                "Function"              "live_transfusion_start_charge"
+            }
+        }
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "EffectName"    "Hero_Morphling.Waveform"
+                "Target"        "CASTER"
+            }
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/nextgeneration/hero_bellatrix/LiveTransfusion.lua"
+                "Function"      "LiveTransfusion"
+                "Target"        "POINT"
+            }
+        }
+        "OnProjectileHitUnit"
+        {
+            "DeleteOnHit"   "0"
+            "Damage"
+            {
+                "Target"    "TARGET"
+                "Type"      "DAMAGE_TYPE_MAGICAL"
+                "Damage"    "%AbilityDamage"
+            }
+            "Heal"
+            {
+                "Target"        "CASTER"
+                "HealAmount"    "%impact_heal"
+            }
+        }
+        "Modifiers"
+        {
+            "Blood_Visual"
+            {
+                "Passive"   "0"
+                "IsHidden"  "0"
+    
+                "Attributes"        "MODIFIER_ATTRIBUTE_PERMANENT"
+    
+                "States"
+                {
+                    "MODIFIER_STATE_DISARMED"       "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_ROOTED"         "MODIFIER_STATE_VALUE_ENABLED"
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MIN_HEALTH" "1"
+                }
+                "OnDestroy"
+                {
+                    "DestroyTrees"
+                    {
+                        "Target"        "CASTER"
+                        "Radius"        "200"
+                    }
+                }
+            }
+            "modifier_bellatrix_thinker_buff_aura"
+            {
+                "Aura"                  "modifier_live_transfusion_buff"
+                "Aura_Radius"           "%effect_radius"
+                "Aura_Teams"            "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+                "Aura_Types"            "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+                "Duration"              "%AbilityDuration"
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "EffectName"        "particles/bellatrix/blood_trail.vpcf"
+                        "EffectAttachType"  "attach_origin"
+                        "Target"            "TARGET"
+                        "ControlPoints"
+                        {
+                            "00" "0 0 0"
+                            "01" "%effect_radius 1 1"
+                            "15" "0 5 0"
+                            "16" "1 0 0"
+                        }
+                    }
+                }
+            }
+            "modifier_bellatrix_thinker_buff_aura_scepter"
+            {
+                "Aura"                  "modifier_live_transfusion_buff"
+                "Aura_Radius"           "%effect_radius_scepter"
+                "Aura_Teams"            "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+                "Aura_Types"            "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+                "Duration"              "%AbilityDuration"
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "EffectName"        "particles/bellatrix/blood_trail.vpcf"
+                        "EffectAttachType"  "attach_origin"
+                        "Target"            "TARGET"
+                        "ControlPoints"
+                        {
+                            "00" "0 0 0"
+                            "01" "%effect_radius_scepter 1 1"
+                            "15" "0 5 0"
+                            "16" "1 0 0"
+                        }
+                    }
+                }
+            }
+    
+    
+            "modifier_live_transfusion_buff"
+            {
+                "IsHidden"              "0"
+                "Duration"              "1"
+                
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%buff_ms" 
+                }
+            }
+            "modifier_bellatrix_thinker_debuff_aura"
+            {
+                "Aura"                  "modifier_live_transfusion_debuff"
+                "Aura_Radius"           "%effect_radius"
+                "Aura_Teams"            "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                "Aura_Types"            "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+                "Aura_Flags"            "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+                "Duration"              "%AbilityDuration"
+            }
+            "modifier_bellatrix_thinker_debuff_aura_scepter"
+            {
+                "Aura"                  "modifier_live_transfusion_debuff"
+                "Aura_Radius"           "%effect_radius_scepter"
+                "Aura_Teams"            "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                "Aura_Types"            "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+                "Aura_Flags"            "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+                "Duration"              "%AbilityDuration"
+            }
+            "modifier_live_transfusion_debuff"
+            {
+                "Duration"              "1"
+                "IsHidden"              "0"
+                "IsDebuff"              "1"
+                "ThinkInterval"         "0.1"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_bellatrix/LiveTransfusion.lua"
+                        "Function"      "DamageInterval"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow_ms"
+                }
+            }
+            "modifier_live_transfusion_stack_counter_datadriven"
+            {
+                "Passive"               "1"
+                "IsHidden"              "0"
+                "IsPurgable"            "0"
+                "IsDebuff"              "0"
+            }
+        }       
+    }
+    //=================================================================================================================
+    // Bellatrix - Unholy Ecstasy
+    //=================================================================================================================
+    "bellatrix_unholy_ecstasy"
+    {
+        //General
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "custom/Bellatrix_Unholy_Ecstasy"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "FightRecapLevel"               "1"
+        "AbilityProcsMagicStick"        "1"
+    
+        // Casting
+        "AbilityCastPoint"              "0.5"
+        "AnimationPlaybackRate"         "1.4"
+        "AbilityCastRange"              "600"
+        "AbilityDamage"                 "10"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
+    
+            
+        //Time
+        "AbilityCooldown"               "16"
+        "AbilityDuration"               "4"
+    
+        "Precache"
+        {
+            "particle"          "particles/units/heroes/hero_bloodseeker/bloodseeker_rupture_nuke.vpcf"
+            "particle"          "particles/bellatrix/bellatrix_unholy_ecstasy.vpcf"
+            "particle"          "particles/bellatrix/bellatrix_unholy_bonus.vpcf"
+            "particle"          "particles/bellatrix_unholy_ecstasy_orb.vpcf"
+            "soundfile"         "soundevents/game_sounds_heroes/game_sounds_bloodseeker.vsndevts"   
+        }
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "damage_reduction"  "-25 -30 -35 -40"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "bonus_damage"      "100"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "damage_cap"        "100 200 300 400"
+            }
+            "04"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "buff_duration"     "4"
+            }
+            "05"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "orb_duration"      "8"
+            }
+        }
+        "OnSpellStart"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"  "damage_reduction"
+                "Target"        "TARGET"
+                "Duration"      "%AbilityDuration"
+            }
+            "FireSound"
+            {
+                "EffectName"    "hero_bloodseeker.bloodRage"
+                "Target"        "TARGET"
+            }
+        }
+        "Modifiers"
+        {
+            "Damage_Reduction"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "0"
+                "IsBuff"            "1"
+                "IsPurgable"        "1"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "%damage_reduction"
+                }
+                "ThinkInterval"  "0.5"
+    
+                "OnIntervalThink"
+                {
+                    "AttachEffect"
+                    {
+                        "EffectName"        "particles/bellatrix/bellatrix_unholy_ecstasy.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"            "TARGET"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_bellatrix/UnholyEcstasy.lua"
+                        "Function"      "UnholyEcstasyDamage"
+                    }
+                }
+    
+                "OnTakeDamage"
+                // "%attack_damage" is set to the damage value after mitigation
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_bellatrix/UnholyEcstasy.lua"
+                        "Function"      "UnholyEcstasy"
+                        "DamageTaken"   "%attack_damage"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "Unholy_Ecstasy_Bonus_Damage"
+                        "Target"        "CASTER"
+                        "Duration"      "%orb_duration"
+                    }
+                }
+            }
+            "Unholy_Ecstasy_Bonus_Damage"
+            {
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "Target"                    "TARGET"
+                        "EffectName"                "particles/bellatrix_unholy_ecstasy_orb.vpcf"
+                        "EffectAttachType"          "start_at_customorigin"
+                        "ControlPointEntities"
+                        {
+                            "CASTER"                "attach_hitloc"
+                            "CASTER"                "attach_hitloc"
+                            "CASTER"                "attach_hitloc"
+                        }
+                    }
+                    "AttachEffect"
+                    {
+                        "EffectName"        "particles/bellatrix/bellatrix_unholy_bonus.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"            "TARGET"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_bellatrix/UnholyEcstasy.lua"
+                        "Function"      "BonusMana"
+                    }
+                }
+                
+                "OnAttackLanded"
+                // "%attack_damage" is set to the damage value before mitigation
+                {
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/units/heroes/hero_bloodseeker/bloodseeker_rupture_nuke.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"            "TARGET"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_bellatrix/UnholyEcstasy.lua"
+                        "Function"      "BonusDamage"
+                        "Target"        "TARGET"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_bellatrix/UnholyEcstasy.lua"
+                        "Function"      "ResetDamage"
+                    }
+                }
+            }
+        }
+    }
+}

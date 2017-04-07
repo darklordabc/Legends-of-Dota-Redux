@@ -26,7 +26,10 @@
 	</snippets>
 	<Panel class="cheatsRoot" hittest="false">
 		<Panel id="cheatsDisplay" class="cheatsDisplayHidden" hittest="false">
-			<Label id="commandMenuTitle" text="Command Menu" />
+			<Panel class="commandMenuBlock">
+				<Label id="commandMenuTitle" text="Command Menu" />
+				<Button id="closeCheatsButton" class="CloseButton" onactivate='toggleCheats()'/>
+			</Panel>
 			<Panel id="commandList" />
 		</Panel>
 	</Panel>

@@ -72,32 +72,50 @@ function StartGoblinSpawn( event )
 
 	-- Start the repeated spawn
 	Timers:CreateTimer(spawn_ratio, function()
+		
+		local allRobots = Entities:FindAllByModel("models/heroes/rattletrap/rattletrap.vmdl")
+		
+
 
 		if caster and IsValidEntity(caster) and caster:IsAlive() then
 			--print("Create Goblin")
 			-- Start another cooldown
 			ability:StartCooldown(spawn_ratio)
 			-- Create the unit, making it controllable by the building owner, and time out after a duration.
-			local goblin = CreateUnitByName(unit_name, pointToCreate, true, hero, hero, caster:GetTeamNumber())
-			local sizeUnit = goblin:GetPaddedCollisionRadius()
-			Timers:CreateTimer(0.01,
-			function()
-				ResolveNPCPositions(pointToCreate,sizeUnit*2)
-				FindClearSpaceForUnit(goblin, pointToCreate, false)
-			end)
-			goblin:SetControllableByPlayer(player, true)
-			goblin:AddNewModifier(caster, nil, "modifier_kill", {duration = goblin_duration})
-
 			
-			-- Add the ability and set its level to the main ability level
-			goblin:AddAbility(goblin_ability_name)
-			local goblin_ability = goblin:FindAbilityByName(goblin_ability_name)
-			goblin_ability:SetLevel(ability_level)
-			local goblin_ability = goblin:FindAbilityByName(goblin_ability_bash)
-			goblin_ability:SetLevel(1)
+			if #allRobots <= 70 then
 
-			-- Spawn sound
-			goblin:EmitSound("Hero_Tinker.March_of_the_Machines.Cast")
+				local goblin = CreateUnitByName(unit_name, pointToCreate, true, hero, hero, caster:GetTeamNumber())
+					
+				local sizeUnit = goblin:GetPaddedCollisionRadius()
+				Timers:CreateTimer(0.01,
+				function()
+					ResolveNPCPositions(pointToCreate,sizeUnit*2)
+					FindClearSpaceForUnit(goblin, pointToCreate, false)
+				end)
+				goblin:SetControllableByPlayer(player, true)
+				
+				-- If too many goblins, give them phase movement and half life time
+				if #allRobots >= 50 then
+					goblin:AddNewModifier(caster, nil, "modifier_kill", {duration = goblin_duration/2})
+					goblin:AddNewModifier(caster, nil, "modifier_phased", {duration = goblin_duration/2})
+					goblin:AddNewModifier(caster, nil, "modifier_dark_seer_surge", {duration = goblin_duration/2})
+				else
+					goblin:AddNewModifier(caster, nil, "modifier_kill", {duration = goblin_duration})
+				end
+				
+
+				
+				-- Add the ability and set its level to the main ability level
+				goblin:AddAbility(goblin_ability_name)
+				local goblin_ability = goblin:FindAbilityByName(goblin_ability_name)
+				goblin_ability:SetLevel(ability_level)
+				local goblin_ability = goblin:FindAbilityByName(goblin_ability_bash)
+				goblin_ability:SetLevel(1)
+
+				-- Spawn sound
+				goblin:EmitSound("Hero_Tinker.March_of_the_Machines.Cast")
+			end
 
 			return spawn_ratio
 		end
