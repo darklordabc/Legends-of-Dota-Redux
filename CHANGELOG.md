@@ -2,7 +2,19 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 7.2 - Development Version
+## 7.4 - Development Version
+
+
+## 7.3 - Steam Version
+- Fixed Single player abilities not being enabled if vote passed
+- Fixed Monkey king perk
+- Added close button on commands menu
+- Pocket factory can now now only have 70 goblins, globally. After 50, they gain max move speed, and phased movement.
+- Disabled Shadow Demons perk until exploit is patched. 
+- Wind Soul OP now also requires minimum cooldown
+- Reduced Vacumn OP radius
+
+## 7.2 
 - Removed Strategy time
 - Fixed Tempest Double
 - Added 5 tower abilities: Degen Aura, Degen Aura Attack Damage, Plasma Field, Death pules tower, Invsibility aura
@@ -33,7 +45,7 @@ All notable changes to this project will be documented in this file.
 - Anomaly and Wraith of Nature is now troll combo
 - Revamped scoreboard, should no longer having spacing problems. 
 
-## 7.1 - Steam Version
+## 7.1 
 - Added Dagon and Spawn golem cheat
 - Readded Juxtapose
 - 4 previously disabled bots are re-enabled
