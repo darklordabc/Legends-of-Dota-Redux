@@ -82,7 +82,7 @@ function modifier_morph_int_str:OnIntervalThink()
   end
   local ability = self:GetAbility()
   local interval = ability:GetSpecialValueFor("stats_per_second")
-  self:GetCaster():SpendMana(mana_per_second*interval,self:GetAbility())
+  self:GetCaster():SpendMana(mana_per_tick,self:GetAbility())
   self:GetCaster():ModifyIntellect(-1)
   self:GetCaster():ModifyStrength(1)
   --self:GetCaster():ReduceMana(12) -- Reduce 12 mana ( Not sure if the % from the int reduction should be refunded)
@@ -180,7 +180,7 @@ function modifier_morph_str_int:OnIntervalThink()
   end
   local ability = self:GetAbility()
   local interval = ability:GetSpecialValueFor("stats_per_second")
-  self:GetCaster():SpendMana(mana_per_second*interval,self:GetAbility())
+  self:GetCaster():SpendMana(mana_per_tick,self:GetAbility())
   self:GetCaster():ModifyIntellect(1)
   self:GetCaster():ModifyStrength(-1)
 
