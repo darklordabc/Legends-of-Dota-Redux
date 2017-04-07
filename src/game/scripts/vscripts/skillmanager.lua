@@ -384,6 +384,16 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
     local isRealHero = false
     if hero:IsHero() then
         playerID = hero:GetPlayerID()
+
+        if hero and playerID and not util:isPlayerBot(playerID) then
+            for i=1,23 do
+                local ab = hero:GetAbilityByIndex(i)
+                if ab then
+                    hero:RemoveAbility(ab:GetName())
+                end
+            end
+        end
+
         local realHero = PlayerResource:GetSelectedHeroEntity(playerID)
 
         -- Grab cooldowns       

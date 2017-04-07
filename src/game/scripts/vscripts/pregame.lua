@@ -7284,10 +7284,11 @@ function Pregame:fixSpawningIssues()
     ListenToGameEvent('npc_spawned', function(keys)
         -- Grab the unit that spawned
         local spawnedUnit = EntIndexToHScript(keys.entindex)
+        local playerID = 0
 
         -- Grab their playerID
         if spawnedUnit.GetPlayerID then
-            local playerID = spawnedUnit:GetPlayerID()
+            playerID = spawnedUnit:GetPlayerID()
 
             local mainHero = PlayerResource:GetSelectedHeroEntity(playerID)
 
@@ -7510,6 +7511,7 @@ ListenToGameEvent('game_rules_state_change', function(keys)
                 local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 
                 if hero ~= nil and IsValidEntity(hero) then
+
                     _instance:fixSpawnedHero( hero )
                 end
             end
