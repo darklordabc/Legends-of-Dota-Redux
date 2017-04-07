@@ -349,7 +349,7 @@ function util:fetchPlayerData()
         }
 
         -- Make the request
-        local req = CreateHTTPRequestVM('POST', gameInfoHost)
+        local req = CreateHTTPRequestScriptVM('POST', gameInfoHost)
 
         if not req then return end
         this.fetchedPlayerData = true
