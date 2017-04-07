@@ -12,8 +12,10 @@ function morph_int_str_redux:OnToggle()
   -- Determine if the toggle is on or off and act on it
   if self:GetToggleState() then
     self:GetCaster():AddNewModifier(self:GetCaster(),self,"modifier_morph_int_str",{})
+    self:GetCaster():EmitSound("Hero_Morphling.MorphStrength")
   else
     self:GetCaster():RemoveModifierByName("modifier_morph_int_str")
+    self:GetCaster():StopSound("Hero_Morphling.MorphStrength")
   end
 
   -- Toggle the oppositie off
@@ -52,7 +54,7 @@ modifier_morph_int_str = class({})
 function modifier_morph_int_str:OnCreated()
   if IsServer() then
     local ability = self:GetAbility()
-    local interval = 1/ ability:GetSpecialValueFor("stats_per_second")
+    local interval = ability:GetSpecialValueFor("stats_per_second")
 
     self:StartIntervalThink(interval)
   end
@@ -65,10 +67,10 @@ function modifier_morph_int_str:OnIntervalThink()
     return 
   end
 
-  local mana_per_second = self:GetAbility():GetSpecialValueFor("mana_per_second")
+  local mana_per_tick = self:GetAbility():GetSpecialValueFor("mana_per_second") * self:GetAbility():GetSpecialValueFor("stats_per_second")
 
   -- Check if the caster has mana
-  if self:GetCaster():GetMana() < mana_per_second then
+  if self:GetCaster():GetMana() < mana_per_tick then
     --self:GetAbility():ToggleAbility()
     return
   end
@@ -79,7 +81,7 @@ function modifier_morph_int_str:OnIntervalThink()
     return
   end
   local ability = self:GetAbility()
-  local interval = 1/ ability:GetSpecialValueFor("stats_per_second")
+  local interval = ability:GetSpecialValueFor("stats_per_second")
   self:GetCaster():SpendMana(mana_per_second*interval,self:GetAbility())
   self:GetCaster():ModifyIntellect(-1)
   self:GetCaster():ModifyStrength(1)
@@ -109,8 +111,10 @@ function morph_str_int_redux:OnToggle()
   -- Determine if the toggle is on or off and act on it
   if self:GetToggleState() then
     self:GetCaster():AddNewModifier(self:GetCaster(),self,"modifier_morph_str_int",{})
+    self:GetCaster():EmitSound("Hero_Morphling.MorphAgility")
   else
     self:GetCaster():RemoveModifierByName("modifier_morph_str_int")
+    self:GetCaster():StopSound("Hero_Morphling.MorphAgility")
   end
 
   -- Toggle the oppositie off
@@ -148,7 +152,7 @@ modifier_morph_str_int = class({})
 function modifier_morph_str_int:OnCreated()
   if IsServer() then
     local ability = self:GetAbility()
-    local interval = 1/ ability:GetSpecialValueFor("stats_per_second")
+    local interval = ability:GetSpecialValueFor("stats_per_second")
 
     self:StartIntervalThink(interval)
   end
@@ -161,10 +165,10 @@ function modifier_morph_str_int:OnIntervalThink()
     return 
   end
 
-  local mana_per_second = self:GetAbility():GetSpecialValueFor("mana_per_second")
+  local mana_per_tick = self:GetAbility():GetSpecialValueFor("mana_per_second") * self:GetAbility():GetSpecialValueFor("stats_per_second")
 
   -- Check if the caster has mana
-  if self:GetCaster():GetMana() < mana_per_second then
+  if self:GetCaster():GetMana() < mana_per_tick then
     --self:GetAbility():ToggleAbility()
     return
   end
@@ -175,7 +179,7 @@ function modifier_morph_str_int:OnIntervalThink()
     return
   end
   local ability = self:GetAbility()
-  local interval = 1/ ability:GetSpecialValueFor("stats_per_second")
+  local interval = ability:GetSpecialValueFor("stats_per_second")
   self:GetCaster():SpendMana(mana_per_second*interval,self:GetAbility())
   self:GetCaster():ModifyIntellect(1)
   self:GetCaster():ModifyStrength(-1)
