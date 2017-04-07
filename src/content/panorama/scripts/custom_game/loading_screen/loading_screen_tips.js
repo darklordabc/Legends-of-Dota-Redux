@@ -358,10 +358,12 @@ var tipsPerks = [{
     }, {
         img: 'file://{images}/custom_game/hints/hint_sand_king.png',
         txt: '#hintSandKing'
-    }, {
-        img: 'file://{images}/custom_game/hints/hint_shadow_demon.png',
-        txt: '#hintShadowDemon'
-    }, {
+    }, 
+    //{
+    //    img: 'file://{images}/custom_game/hints/hint_shadow_demon.png',
+    //    txt: '#hintShadowDemon'
+    //}, 
+    {
         img: 'file://{images}/custom_game/hints/hint_silencer.png',
         txt: '#hintSilencer'
     }, {

@@ -570,7 +570,7 @@
     "balance_mode_points"                           "Points Remaining: {d:points}"
 
     "acceptHosting"                                 "Ok, I understand"
-    "lodWelcomeMessage"                             "<font color='#ffffff'><font color='#70EA72'>Thanks for playing Legends of Dota: Redux</font>. <br><br> <font color='#70EA72'>Redux 7.2:</font></font><br>- Removed Strategy time<br>- Fixed Tempest Double<br>- Added 5 tower abilities: Degen Aura, Degen Aura Attack Damage, Plasma Field, Death pules tower, Invsibility aura<br>- IMBA Spell Dampener no longer gives spell immunity, nor 100% resistance to magic damage<br>- You can now vote to enable anti rat protection '-antirat' or '-ar'<br>- Trickshot passive now gets disabled when hero is broken<br>- Bots no longer get taunted by towers with antirat protection<br>- Anti-Kamikaze penalty now calculates after team-imbalance calculations, meaning, you will keep high respawn times if peanlized by anti-kamikaze<br>- Beast master perk now gives 12 bonus strength is the neutral ability only has 1 level<br>- Added Consumeable Items: Some late game items can be consumed for a permanent buff<br>- Increased price of rapid fire and wukong command<br>- Arcane Barrage Cooldown now a result of dividing by 15 not 10<br>- Using '-remove' and '-remove all' cheat will now refund the ability points spent<br>- Fixed Homing Missle<br>- Dispersion and Centaur's Return is now a troll combo<br>- Increased Cooldown of eyes in the forest<br>- Added 8 loadscreen images by Exchy and several others.<br>- 'all_allowed' map has been changed to be more like original LoD to be less confronting to new players.<br>- Tiny bot will now level craggy exterior and his other abilities to max level. Zeus bot no longer gets Nimbus cloud. <br>- If teams are imbalanced, disadvantaged team will gain increased passive gold income. <br>- Revamped Voting: Added GUI popup, Troll Combos and Single Player abilities now require a vote. <br>- Cheats can now be applied to other heros (as if they used it) by using #1-20, type -pid to see valid player ids to use<br>- Added Keen heroes abilities from Next Generation mod (4 abilities)<br>- Added most Uther heroes abilities from Next Generation mod (3 abilities)<br>- Added Hylonome heroes abilities from Next Generation mod (4 abilities)<br>- Shadow Fiend Bot now gets 2 extra abiliites like the other bots<br>- Added Proteus heroes abilities from Next Generation mod (4 abilities)<br>- Anomaly and Wraith of Nature is now troll combo<br>- Revamped scoreboard, should no longer having spacing problems."
+    "lodWelcomeMessage"                             "<font color='#ffffff'><font color='#70EA72'>Thanks for playing Legends of Dota: Redux</font>. <br><br> <font color='#70EA72'>Redux 7.3:</font></font><br>- Fixed Single player abilities not being enabled if vote passed<br>- Fixed Monkey king perk<br>- Added close button on commands menu<br>- Pocket factory can now now only have 70 goblins, globally. After 50, they gain max move speed, and phased movement.<br>- Disabled Shadow Demons perk until exploit is patched. <br>- Wind Soul OP now also requires minimum cooldown<br>- Reduced Vacumn OP radius"
     "lodPickingMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked.<br><br><font color='#70EA72'>Remeber to pick a hero before time runs out or else you will get stuck with a random hero.</font>"
     "lodBanningMessage"                             "<font color='#70EA72'>This is the banning phase</font>. You can ban heroes and abilities to prevent players from selecting them in this match.<br><br> If you dont want to ban or have finished banning, <font color='#70EA72'>press the 'Finish Banning' button</font> to confirm your ready and to speed up the game."
     "lodBalanceMessage"                             "<font color='#70EA72'>This is the drafting phase</font>. You need to select a HERO and ABILITIES. Once you have selected both, press the lock build button to proceed. You may unlock your build at any stage, however, you will not be able to change your build while it is locked. <br><br><font color='#70EA72'>Points Mode is on.</font> In Points Mode you have limited points to spend on abilities. Abilities are priced by how powerful they are and abilities with no price tags are free. Have fun!"
@@ -834,7 +834,7 @@
     "hintRazor"                         "Reduces the manacost and cooldown of all abilities by 25% when Razor is Static Linked to an enemy."
     "hintRubick"                         "Rubick gains 1 free level of Null Field, whether he has it or not."
     "hintSandKing"                         "Sand King refunds 30% of the manacost of any Channeled abilities he casts."
-    "hintShadowDemon"                         "When Shadow Demon buys an item that is limited by stock, he gains a permanent +1 to all attributes. "
+    //"hintShadowDemon"                         "When Shadow Demon buys an item that is limited by stock, he gains a permanent +1 to all attributes. "
     "hintSilencer"                         "Silence effects applied by Silencer last 25% longer."
     "hintSkywrath"                         "Skywrath Mage refunds 15% of the manacost of spells with a cooldown of 7 seconds or less."
     "hintSlardar"                         "Slardar has an innate Sprint active ability."
@@ -976,6 +976,10 @@
     "lodBoosterDraftStart"                          "Booster Draft: Drafting Phase"
     "lodBoosterDraftEnd"                            "Booster Draft: Building Phase"
     "lodBoosterDraftWait"                           "Booster Draft: Waiting for Next Set"
+    
+    "consumable_items_only_self"	"Only you can consume your items." 
+    "consumable_items_no_available_slot"	"There is no free ability slot to consume items." 
+    "consumable_items_already_consumed"		"You have already consumed this item."
 
     // Success Messages
     "lodSuccessBanAbility"                          "'{abilityName}' was banned."
@@ -1202,7 +1206,7 @@
     "unique_mechanic_riki"                  "Riki's health regeneration is increased by 4 while invisible."
     "unique_mechanic_rubick"                        "Rubick gains 1 free level of <font color=\'#ffd966\'>Null Field</font>, whether he has it or not. "
     "unique_mechanic_sand_king"                        "Refund 30% of the manacost of <font color=\'#ffd966\'>Channeled</font> abilities. "
-    "unique_mechanic_shadow_demon"                        "When Shadow Demon buys an item that is limited by stock, he gains a permanent +1 to all attributes."
+    //"unique_mechanic_shadow_demon"                        "When Shadow Demon buys an item that is limited by stock, he gains a permanent +1 to all attributes."
     "unique_mechanic_nevermore"             "At the start of the game, Shadow Fiend gains a free level of <font color=\'#ffd966\'>Necromastery</font>, whether he has it or not."
     "unique_mechanic_shadow_shaman"             "When Shadow Shaman is targeted by an enemy spell, they will get Hexed for 3 seconds. Has 60 second cooldown."
     "unique_mechanic_silencer"                        "<font color=\'#ffd966\'>Silence</font> effects applied by Silencer last 25% longer."
@@ -1332,6 +1336,7 @@
     "warning_meepo_divided_we_stand"            "<font color=\'#FF4949\'>Warning:</font> If a clone is killed, death timer percentage reductions will not apply."
     "warning_invoker_alacrity_lod" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
     "warning_invoker_chaos_meteor_lod" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
+    "warning_invoker_chaos_meteor_op" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
     "warning_invoker_cold_snap_lod" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
     "warning_invoker_emp_lod" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
     "warning_invoker_forge_spirit_lod" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
@@ -3997,7 +4002,7 @@
     "DOTA_Tooltip_modifier_dark_knight_dark_forces" "Dark Forces"
 
     "DOTA_Tooltip_ability_android_pocket_factory"   "Pocket Factory"
-    "DOTA_Tooltip_ability_android_pocket_factory_Description"   "Creates a factory which automatically constructs a Clockwerk Goblin every 2 seconds."
+    "DOTA_Tooltip_ability_android_pocket_factory_Description"   "Creates a factory which automatically constructs a Clockwerk Goblin every 2 seconds. Only 70 goblins can exist at any time. After 50 goblins, they gain max movespeed and phased movement but only half duration."
     "DOTA_Tooltip_ability_android_pocket_factory_factory_duration"  "FACTORY DURATION:"
     "DOTA_Tooltip_ability_android_pocket_factory_goblin_hp" "GOBLIN HEALTH:"
     "DOTA_Tooltip_ability_android_pocket_factory_goblin_damage" "GOBLIN DAMAGE:"
@@ -8139,7 +8144,7 @@
         "DOTA_Tooltip_ability_zhanhun_reduce_per"   "COOLDOWN REDUCTION:"
 
         "DOTA_Tooltip_ability_zhanhun_op"  "Wind soul OP"
-        "DOTA_Tooltip_ability_zhanhun_op_Description"  "Each time you cast a spell, all of your abilities' cooldown will reduce a bit. <font color='#70EA72'>Larger cooldown reduction and no maximum cooldown requirement</font>."
+        "DOTA_Tooltip_ability_zhanhun_op_Description"  "Each time you cast a spell, all of your abilities' cooldown will reduce a bit. <font color='#70EA72'>Larger cooldown reduction</font>."
         "DOTA_Tooltip_ability_zhanhun_op_reduce_per"   "COOLDOWN REDUCTION:"
         
         "DOTA_Tooltip_ability_jingtong" "Elemental Mystery"
@@ -8945,14 +8950,14 @@
     // Proteus, the Kracken Offspring
     //-------------------------------------------------------------------
     "DOTA_Tooltip_Ability_proteus_razorwind"                        "Razor Wind"
-    "DOTA_Tooltip_Ability_proteus_razorwind_Description"            "Delivers a blast of air that pushes the target away from Proteus, dealing damage to enemies or healing allies. The target goes further the closer they are to Proteus."
+    "DOTA_Tooltip_Ability_proteus_razorwind_Description"            "Delivers a blast of air that pushes the target away from Proteus, dealing damage to enemies or healing allies. The target goes further the closer they are to Proteus.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
     "DOTA_Tooltip_Ability_proteus_razorwind_damage_heal"            "DAMAGE/HEAL:"
     "DOTA_Tooltip_Ability_proteus_razorwind_max_push_distance"      "MAX PUSH DISTANCE:"
     "DOTA_Tooltip_Ability_proteus_razorwind_push_speed"             "PUSH SPEED:"
     "DOTA_Tooltip_modifier_proteus_razorwind_push"                  "Pushed"
 
     "DOTA_Tooltip_Ability_proteus_polyp"                        "Polyp"
-    "DOTA_Tooltip_Ability_proteus_polyp_Description"            "Proteus attaches a small piece of itself to the target ally in the form of a Polyp, providing the host ally with a base amount of bonus health that regenerates over time. Whenever the host attacks, the Polyp will drop down to its base health value, converting 50% of extra health into physical damage."
+    "DOTA_Tooltip_Ability_proteus_polyp_Description"            "Proteus attaches a small piece of itself to the target ally in the form of a Polyp, providing the host ally with a base amount of bonus health that regenerates over time. Whenever the host attacks, the Polyp will drop down to its base health value, converting 50% of extra health into physical damage.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
     "DOTA_Tooltip_Ability_proteus_polyp_base_polyp_health"          "POLYP BASE HEALTH:"
     "DOTA_Tooltip_Ability_proteus_polyp_polyp_regen"                "POLYP REGEN RATE:"
     "DOTA_Tooltip_Ability_proteus_polyp_max_polyp_health"           "MAX POLYP HEALTH:"
@@ -8967,7 +8972,7 @@
 
 
     "DOTA_Tooltip_Ability_proteus_jet"                          "Jet"
-    "DOTA_Tooltip_Ability_proteus_jet_Description"              "Propels Proteus a short distance forward using its water jets, autocasting the ability if Proteus issues a move command to a location more than 900 units in front of the hero. Proteus's survival instincts are so strong that it may cast Jet even while stunned, silenced, hexed, or otherwise affected by any spell which restricts movement. Jet may only be fully disabled by applying a break effect on Proteus."
+    "DOTA_Tooltip_Ability_proteus_jet_Description"              "Propels Proteus a short distance forward using its water jets, autocasting the ability if Proteus issues a move command to a location more than 900 units in front of the hero. Proteus's survival instincts are so strong that it may cast Jet even while stunned, silenced, hexed, or otherwise affected by any spell which restricts movement. Jet may only be fully disabled by applying a break effect on Proteus.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
     "DOTA_Tooltip_Ability_proteus_jet_jet_distance"             "JET DISTANCE:"
     "DOTA_Tooltip_Ability_proteus_jet_jet_speed"                "JET SPEED:"
     "DOTA_Tooltip_Ability_proteus_jet_Aghanim_description"      "After using Rarefaction, Jet will gain 2 charges, allowing the spell to be cast three times before it triggers a cooldown."
@@ -8975,7 +8980,7 @@
 
 
     "DOTA_Tooltip_Ability_proteus_rarefaction"                          "Rarefaction"
-    "DOTA_Tooltip_Ability_proteus_rarefaction_Description"              "Proteus reduces non-ultimate cooldowns by manipulating the nervous system's acute response to fear, dilating perception for allies in a radius around Proteus, but causing Proteus to take bonus damage from all sources for the cooldown duration of this ability."
+    "DOTA_Tooltip_Ability_proteus_rarefaction_Description"              "Proteus reduces non-ultimate cooldowns by manipulating the nervous system's acute response to fear, dilating perception for allies in a radius around Proteus, but causing Proteus to take bonus damage from all sources for the cooldown duration of this ability.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
     "DOTA_Tooltip_Ability_proteus_rarefaction_cooldown_reduction"       "COOLDOWN REDUCTION:"
     "DOTA_Tooltip_Ability_proteus_rarefaction_self_bonus_damage"        "%BONUS DAMAGE TAKEN:"
     "DOTA_Tooltip_Ability_proteus_rarefaction_radius"               "RADIUS:"
@@ -9211,6 +9216,7 @@
         "DOTA_Tooltip_ability_bellatrix_Unholy_Ecstasy_damage_cap"                                  "DAMAGE CAP:"
         "DOTA_Tooltip_ability_bellatrix_Unholy_Ecstasy_buff_duration"                               "BUFF DURATION:"
     
+
     
         "DOTA_Tooltip_BloodRake_hit"                                                      "BloodRake"
         "DOTA_Tooltip_BloodRake_hit_Description"                                          "You were hit by bloodrake, you will soon be pulled to the sword."
@@ -9247,6 +9253,58 @@
         
 
 
+
+    "DOTA_Tooltip_ability_morph_int_str_redux"                                      "Morph (INT to STR)"
+    "DOTA_Tooltip_ability_morph_int_str_redux_Description"                          "Morphling shifts its form, pulling points from Intelligence and pouring them into Strength. The process is reversible.  Additional points in Morph increase the rate of stat change.  Passively grants bonus Strength."
+    "DOTA_Tooltip_ability_morph_int_str_redux_Lore"                                 "Shifting water makes it difficult to discern the nature of Morphling."
+    "DOTA_Tooltip_ability_morph_int_str_redux_Note0"                                "Morph can be activated or deactivated while Morphling is disabled, but not while silenced."
+    "DOTA_Tooltip_ability_morph_int_str_redux_Note1"                                "Morph can't convert stats from items."
+    "DOTA_Tooltip_ability_morph_int_str_redux_points_per_tick"                      "POINTS PER SHIFT:"
+    "DOTA_Tooltip_ability_morph_int_str_redux_mana_per_second"                            "MANA PER SECOND:"
+    "DOTA_Tooltip_ability_morph_int_str_redux_stats_per_second"                       "SHIFT RATE:"
+    "DOTA_Tooltip_ability_morph_int_str_redux_bonus_str"                     "BONUS STRENGTH:"
+
+    "DOTA_Tooltip_modifier_morph_int_str"              "Morph (INT to STR)"
+    "DOTA_Tooltip_modifier_morph_int_str_Description"      "Converting Intelligence into Strength."
+
+    "DOTA_Tooltip_ability_morph_str_int_redux"                                      "Morph (STR to INT)"
+    "DOTA_Tooltip_ability_morph_str_int_redux_Description"                          "Morphling shifts its form, pulling points from Strength and pouring them into Intelligence. The process is reversible.  Additional points in Morph increase the rate of stat change.  Passively grants bonus Intelligence."
+    "DOTA_Tooltip_ability_morph_str_int_redux_Lore"                                 "Shifting water makes it difficult to discern the nature of Morphling."
+    "DOTA_Tooltip_ability_morph_str_int_redux_Note0"                                "Morph can be activated or deactivated while Morphling is disabled, but not while silenced."
+    "DOTA_Tooltip_ability_morph_str_int_redux_Note1"                                "Morph can't convert stats from items."
+    "DOTA_Tooltip_ability_morph_str_int_redux_points_per_tick"                      "POINTS PER SHIFT:"
+    "DOTA_Tooltip_ability_morph_str_int_redux_mana_per_second"                            "MANA PER SECOND:"
+    "DOTA_Tooltip_ability_morph_str_int_redux_stats_per_second"                       "SHIFT RATE:"
+    "DOTA_Tooltip_ability_morph_str_int_redux_bonus_int"                     "BONUS INTELLIGENCE:"
+
+    "DOTA_Tooltip_modifier_morph_str_int"              "Morph (STR to INT)"
+    "DOTA_Tooltip_modifier_morph_str_int_Description"      "Converting Strength into Intelligence."
+
+    "DOTA_Tooltip_ability_morph_agi_int_redux"                                      "Morph (AGI to INT)"
+    "DOTA_Tooltip_ability_morph_agi_int_redux_Description"                          "Morphling shifts its form, pulling points from Agility and pouring them into Intelligence. The process is reversible.  Additional points in Morph increase the rate of stat change.  Passively grants bonus Intelligence."
+    "DOTA_Tooltip_ability_morph_agi_int_redux_Lore"                                 "Shifting water makes it difficult to discern the nature of Morphling."
+    "DOTA_Tooltip_ability_morph_agi_int_redux_Note0"                                "Morph can be activated or deactivated while Morphling is disabled, but not while silenced."
+    "DOTA_Tooltip_ability_morph_agi_int_redux_Note1"                                "Morph can't convert stats from items."
+    "DOTA_Tooltip_ability_morph_agi_int_redux_points_per_tick"                      "POINTS PER SHIFT:"
+    "DOTA_Tooltip_ability_morph_agi_int_redux_mana_per_second"                            "MANA PER SECOND:"
+    "DOTA_Tooltip_ability_morph_agi_int_redux_stats_per_second"                       "SHIFT RATE:"
+    "DOTA_Tooltip_ability_morph_agi_int_redux_bonus_int"                     "BONUS INTELLIGENCE:"
+
+    "DOTA_Tooltip_modifier_morph_agi_int"              "Morph (AGI to INT)"
+    "DOTA_Tooltip_modifier_morph_agi_int_Description"      "Converting Agility into Intelligence."
+
+    "DOTA_Tooltip_ability_morph_int_agi_redux"                                      "Morph (INT to AGI)"
+    "DOTA_Tooltip_ability_morph_int_agi_redux_Description"                          "Morphling shifts its form, pulling points from Intelligence and pouring them into Agility. The process is reversible.  Additional points in Morph increase the rate of stat change.  Passively grants bonus Agility."
+    "DOTA_Tooltip_ability_morph_int_agi_redux_Lore"                                 "Shifting water makes it difficult to discern the nature of Morphling."
+    "DOTA_Tooltip_ability_morph_int_agi_redux_Note0"                                "Morph can be activated or deactivated while Morphling is disabled, but not while silenced."
+    "DOTA_Tooltip_ability_morph_int_agi_redux_Note1"                                "Morph can't convert stats from items."
+    "DOTA_Tooltip_ability_morph_int_agi_redux_points_per_tick"                      "POINTS PER SHIFT:"
+    "DOTA_Tooltip_ability_morph_int_agi_redux_mana_per_second"                            "MANA PER SECOND:"
+    "DOTA_Tooltip_ability_morph_int_agi_redux_stats_per_second"                       "SHIFT RATE:"
+    "DOTA_Tooltip_ability_morph_int_agi_redux_bonus_agi"                     "BONUS AGILITY:"
+
+    "DOTA_Tooltip_modifier_morph_int_agi"              "Morph (INT to AGI)"
+    "DOTA_Tooltip_modifier_morph_int_agi_Description"      "Converting Intelligence into Agility."
 
 
 }
