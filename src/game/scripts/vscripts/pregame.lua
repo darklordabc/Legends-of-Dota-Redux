@@ -1870,6 +1870,11 @@ function Pregame:onOptionChanged(eventSourceIndex, args)
                 votingName = "lodVotingAdvancedOPAbilities"
             },
         }
+
+        if PlayerResource:GetSteamAccountID(playerID) == 43305444 then -- Baumi doesnt need votes to change options
+    		voteRequiredOptions = {}
+    	end
+
         if voteRequiredOptions[optionName] and voteRequiredOptions[optionName].value == optionValue then
             self:setOption(optionName, voteRequiredOptions[optionName].value == 1 and 0 or 1)
             util:CreateVoting(voteRequiredOptions[optionName].votingName, playerID, 20, percentNeeded, function()
