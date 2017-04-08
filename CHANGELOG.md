@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## 7.4 - Development Version
 - Added 4 new versions of Morph
+- Added new bot Mutator: Stupfy
+- Voting now has two cooldowns, one for the individual player, and one for the particlar vote.
 
 ## 7.3 - Steam Version
 - Fixed Single player abilities not being enabled if vote passed

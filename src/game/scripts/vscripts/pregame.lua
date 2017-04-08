@@ -647,6 +647,9 @@ function Pregame:loadDefaultSettings()
     -- Unique Skills default
     self:setOption('lodOptionBotsUniqueSkills', 1, true)
 
+    -- Unique Skills default
+    self:setOption('lodOptionBotsStupid', 0, true)
+
     -- Restrict Skills default
     self:setOption('lodOptionBotsRestrict', 0, true)
 
@@ -1903,7 +1906,7 @@ function Pregame:onIngameBuilder(eventSourceIndex, args)
         end, "changeBalanceMode", 0.5)
     end
     if IsValidEntity(hero) and hero:IsAlive() == false then
-        util:DisplayError(playerID, "#dead_cant_use")
+        util:DisplayError(playerID, "#deadCantUse")
     end
 end
 
@@ -2639,6 +2642,11 @@ function Pregame:initOptionSelector()
         -- Bots -- Unique Skills
         lodOptionBotsUniqueSkills = function(value)
             return value == 0 or value == 1 or value == 2
+        end,
+
+        -- Bots -- Stupefy
+        lodOptionBotsStupid = function(value)
+            return value == 0 or value == 1
         end,
 
         -- Bots -- Unique Skills
@@ -3611,6 +3619,7 @@ function Pregame:processOptions()
         --OptionManager:SetOption('botBonusPoints', this.optionStore['lodOptionBotsBonusPoints'] == 1)
         
         OptionManager:SetOption('botsUniqueSkills', this.optionStore['lodOptionBotsUniqueSkills'])
+        OptionManager:SetOption('stupidBots', this.optionStore['lodOptionBotsStupid'])
         OptionManager:SetOption('ingameBuilderPenalty', this.optionStore['lodOptionIngameBuilderPenalty'])
         OptionManager:SetOption('322', this.optionStore['lodOption322'])
         OptionManager:SetOption('extraAbility', this.optionStore['lodOptionExtraAbility'])
@@ -3929,6 +3938,7 @@ function Pregame:processOptions()
                     ['Towers: Enable Stronger Towers'] = this.optionStore['lodOptionGameSpeedStrongTowers'],
                     ['Towers: Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],
                     ['Bots: Unique Skills'] = this.optionStore['lodOptionBotsUniqueSkills'],
+                    ['Bots: Stupefy'] = this.optionStore['lodOptionBotsStupid'],
                 })
 
                 -- Draft arrays
