@@ -72,6 +72,8 @@ function Ingame:init()
     self.timeImbalanceStarted = 0
 	self.radiantBalanceMoney = 0
     self.direBalanceMoney = 0
+    self.radiantTotalBalanceMoney = 0
+    self.direTotalBalanceMoney = 0
     self.shownCheats = {}
     self.heard = {}
 
@@ -976,16 +978,36 @@ function Ingame:balanceGold()
 	          		hero:ModifyGold(moneySize, false, 0)
 	          		SendOverheadEventMessage(hero:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, hero, moneySize, nil)
 	          		self.radiantBalanceMoney = self.radiantBalanceMoney - moneySize
+                    self.radiantTotalBalanceMoney = self.radiantTotalBalanceMoney + moneySize
 	          	elseif losingTeam == "badGuys" and hero:GetTeam() == DOTA_TEAM_BADGUYS and self.direBalanceMoney >= 1 then
 	          		hero:ModifyGold(moneySize, false, 0)
 	          		SendOverheadEventMessage(hero:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, hero, moneySize, nil)
 	          		self.direBalanceMoney = self.direBalanceMoney - moneySize
+                    self.direTotalBalanceMoney = self.direTotalBalanceMoney + moneySize
 	          	end
 	          end
 	      end
 	    end
-	
 	end
+
+    -- Display message once every while, informing players of balance mechanic in use
+    if self.heard["balanceGold"] ~= true and (self.radiantTotalBalanceMoney > 0 or self.direTotalBalanceMoney > 0) then
+        
+        if losingTeam == "goodGuys" then
+            GameRules:SendCustomMessage("Radiant Team has recieved the following total bonus gold due to team-imbalance: <font color=\'#FFDD2C\'>" .. self.radiantTotalBalanceMoney .. "</font>", 0, 0) 
+        else
+            GameRules:SendCustomMessage("Dire Team has recieved the following total bonus gold due to team-imbalance: <font color=\'#FFDD2C\'>" .. self.direTotalBalanceMoney .. "</font>", 0, 0)
+        end
+
+        
+        self.heard["balanceGold"] = true
+
+        -- Show the warning again after 10 minutes
+        Timers:CreateTimer( function()
+            self.heard["balanceGold"] = false
+        end, DoUniqueString('showNotifAgain'), 600)
+    end 
+
 end
 
 -- Increases respawn rate if the game has been going longer than 40 minutes, increases every 10 minutes after that
@@ -1101,7 +1123,7 @@ function Ingame:handleRespawnModifier()
                                     timeLeft = 1
                                 end   
 
-                                -- Display message once, informing players of balance mechanic in use
+                                -- Display message once every while, informing players of balance mechanic in use
                                 if addedTime ~= 0 and self.heard["imbalancedTeams"] ~= true then
                                     GameRules:SendCustomMessage("#imbalance_notification", 0, 0) 
                                     self.heard["imbalancedTeams"] = true
