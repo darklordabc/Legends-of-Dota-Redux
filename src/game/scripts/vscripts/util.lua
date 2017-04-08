@@ -638,7 +638,7 @@ function CDOTABaseAbility:GetTrueCooldown()
 		cooldown = 0
 	end
 	local octarineMult = 1
-	if hero:HasModifier("modifier_item_octarine_core") then octarineMult = 0.75 end
+	if hero:HasModifier("modifier_item_octarine_core") or hero:HasModifier("modifier_item_octarine_core_consumable") then octarineMult = 0.75 end
 	cooldown = cooldown * octarineMult
 	return cooldown
 end
@@ -760,41 +760,49 @@ function CDOTA_BaseNPC:FindItemByName(item_name)
     return nil
 end
 
-
+local voteCooldown = 300
+util.votesBlocked = {}
+util.votesRejected = {}
 function util:CreateVoting(votingName, initiator, duration, percent, onaccept, onvote, ondecline, voteForInitiator)
-    if self.activeVoting then
-        if self.activeVoting.name == votingName and Time() >= self.activeVoting.recieveStartTime then
-            self.activeVoting.onvote(initiator, true)
+    percent = percent or 100
+    if util.activeVoting then
+        if util.activeVoting.name == votingName and Time() >= util.activeVoting.recieveStartTime then
+            util.activeVoting.onvote(initiator, true)
         else
             --TODO: Display error message - Can't start a new voting while there is another ongoing voting
         end
         return
     end
-    local CheckForEnd = function()
-        local votesAccepted = 0
-        local totalPlayers = 0
-        for PlayerID = 0, 23 do
-            if PlayerResource:IsValidPlayerID(PlayerID) and not util:isPlayerBot(PlayerID) then                            
-                local state = PlayerResource:GetConnectionState(PlayerID)
-                if state == 1 or state == 2 then
-                    if self.activeVoting.votes[PlayerID] ~= nil then
-                        if self.activeVoting.votes[PlayerID] then
-                            votesAccepted = votesAccepted + 1
-                        end
-                    end
-                    totalPlayers = totalPlayers + 1
-                end
-            end
-        end
-        
-        if votesAccepted / totalPlayers >= (percent or 100) * 0.01 then
-            if onaccept then
-                onaccept()
-            end
-            return true
-        end
-        return false
+
+    if util.votesRejected[initiator] and util.votesRejected[initiator] >= 2 then
+        util:DisplayError(initiator, "#votingPlayerBanned")
+        return
     end
+
+    -- If a vote fails, players cannot call another vote for 5 minutes, to prevent abuse.
+    if util.votesBlocked[initiator] then 
+        util:DisplayError(initiator, "#votingCooldown")
+        return
+    end
+
+    -- If a vote has been called of this type recently, block 
+    if util.votesBlocked[votingName] then
+        util:DisplayError(initiator, "#voteCooldown")
+        return
+    end
+
+    -- Temporarily block future votes if the vote is not succesful
+    util.votesBlocked[votingName] = true
+    util.votesBlocked[initiator] = true
+
+    Timers:CreateTimer({
+        useGameTime = false,
+        endTime = voteCooldown,
+        callback = function()
+            util.votesBlocked[votingName] = false
+            util.votesBlocked[initiator] = false
+        end
+    })
 
     local pauseChecker = Timers:CreateTimer({
         useGameTime = false,
@@ -809,39 +817,71 @@ function util:CreateVoting(votingName, initiator, duration, percent, onaccept, o
         useGameTime = false,
         endTime = duration,
         callback = function()
-            if ondecline and not CheckForEnd() then
-                ondecline()
-            end
-            --[[for PlayerID = 0, 23 do
-                if not Util:isPlayerBot(PlayerID) then                            
-                    local state = PlayerResource:GetConnectionState(PlayerID)
-                    if (state == 1 or state == 2) and self.activeVoting.votes[PlayerID] == nil then
-                        CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(PlayerID), "universalVotingsPlayerUpdate", {votingName = votingName, accept = false})
-                    end
-                end
-            end]]
-            Timers:RemoveTimer(pauseChecker)
-            self.activeVoting = nil
-            PauseGame(false)
+            CheckForEnd()
         end
     })
-    local _onvote = function(pid, accepted)
-        self.activeVoting.votes[pid] = accepted
-        CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(pid), "universalVotingsPlayerUpdate", {votingName = votingName, accept = accepted})
-        if onvote then
-            onvote(pid, accepted)
+
+    local CheckForEnd = function()
+        local votesAccepted = 0
+        local totalPlayers = 0
+        local votesDeclined = 0
+        for PlayerID = 0, 23 do
+            if PlayerResource:IsValidPlayerID(PlayerID) and not util:isPlayerBot(PlayerID) then                            
+                local state = PlayerResource:GetConnectionState(PlayerID)
+                if state == 1 or state == 2 then
+                    if util.activeVoting.votes[PlayerID] ~= nil then
+                        if util.activeVoting.votes[PlayerID] then
+                            votesAccepted = votesAccepted + 1
+                        else
+                            votesDeclined = votesDeclined + 1
+                        end
+                    end
+                    totalPlayers = totalPlayers + 1
+                end
+            end
         end
-        if CheckForEnd() then
+        local accept
+        --If voting was declined x players, so percent can't be reached
+        if votesDeclined > 0 and votesDeclined / totalPlayers >= 1 - (percent * 0.01) then
+            accept = false
+        end
+        --If voting was accepted by % players
+        if votesAccepted / totalPlayers >= percent * 0.01 then
+            accept = true
+        end
+        --print(accept, votesAccepted, votesDeclined, totalPlayers)
+        if accept ~= nil then
+            if accept then
+                util.votesBlocked[initiator] = false
+                if onaccept then
+                    onaccept()
+                end
+            else
+                if ondecline then
+                    ondecline()
+                end
+                util.votesRejected[initiator] = (util.votesRejected[initiator] or 0) + 1
+            end
+
             Timers:RemoveTimer(pauseChecker)
             Timers:RemoveTimer(vote_counter)
-            self.activeVoting = nil
+            CustomGameEventManager:Send_ServerToAllClients("universalVotingsUpdate", {votingName = votingName, accept = accept})
+            util.activeVoting = nil
             PauseGame(false)
         end
     end
-    self.activeVoting = {
+
+    local _onvote = function(pid, accepted)
+        util.activeVoting.votes[pid] = accepted
+        if onvote then
+            onvote(pid, accepted)
+        end
+        CheckForEnd()
+    end
+    util.activeVoting = {
         name = votingName,
         votes = {},
-        recieveStartTime = Time() + 5,
+        recieveStartTime = Time() + 3,
         onvote = _onvote
     }
     CustomGameEventManager:Send_ServerToAllClients("lodCreateUniversalVoting", {
@@ -850,7 +890,7 @@ function util:CreateVoting(votingName, initiator, duration, percent, onaccept, o
         duration = duration
     })
     if voteForInitiator ~= false then
-        _onvote(initiator, true)
+        --_onvote(initiator, true)
     end
 end
 

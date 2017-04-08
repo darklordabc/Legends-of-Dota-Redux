@@ -539,6 +539,7 @@
     "deadCantUse"                                   "Cannot use hero builder while dead"
     "votingCooldown"                                "Voting is on cooldown for you"
     "voteCooldown"                                  "This vote is on cooldown"
+    "votingPlayerBanned"                            "You can't initiate votings, because too much of your votings were rejected"
 
     "antiRatAlreadyOn"                              "Anti-Rat protection already on"
     "multiplyAlreadyOn"                             "Neutrals already multiplied"

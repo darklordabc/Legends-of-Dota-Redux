@@ -76,7 +76,6 @@ function Ingame:init()
     self.direTotalBalanceMoney = 0
     self.shownCheats = {}
     self.heard = {}
-    self.votesBlocked = {}
 
     self.botsInLateGameMode = false
 

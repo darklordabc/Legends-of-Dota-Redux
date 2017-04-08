@@ -43,39 +43,9 @@ function Commands:OnPlayerChat(keys)
     ----------------------------
     -- Vote Commands
     ----------------------------
-    -- If a vote fails, players cannot call another vote for 5 minutes, to prevent abuse.
-    if ingame.votesBlocked[playerID] == true then 
-        util:DisplayError(0, "#votingCooldown")
-        return
-    end
-    local voteCooldown = 300
-
     if string.find(command, "-antirat") or string.find(command, "-ar")then
         if OptionManager:GetOption('antiRat') == 0 and not ingame.voteEnabledCheatMode then
-            
-            -- If a vote has been called of this type recently, block 
-            if ingame.votesBlocked["antirat"] == true then
-                util:DisplayError(0, "#voteCooldown")
-                return
-            end
-
-            ingame.votesBlocked["antirat"] = true
-            -- Temporarily block future votes if the vote is not succesful
-            ingame.votesBlocked[playerID] = true          
-            
-            Timers:CreateTimer( function()
-                ingame.votesBlocked["antirat"] = false
-                ingame.votesBlocked[playerID] = false
-            end, DoUniqueString('voteTempBlock'), voteCooldown)
-
-            -- In all_allowed map, votes needed is only 50% of players (rounded up)
-            local percentNeeded = 100
-            if GetMapName() == 'all_allowed' then
-                percentNeeded = 50
-            end
-          
-            util:CreateVoting("lodVotingAntirat", playerID, 20, percentNeeded, function()
-                ingame.votesBlocked[playerID] = false
+            util:CreateVoting("lodVotingAntirat", playerID, 10, GetMapName() == 'all_allowed' and 50 or 100, function()
                 OptionManager:SetOption('antiRat', 1) 
                 ingame:giveAntiRatProtection()
                 ingame.voteAntiRat = true
@@ -86,28 +56,8 @@ function Commands:OnPlayerChat(keys)
             util:DisplayError(0, "#antiRatAlreadyOn")
         end
     elseif string.find(command, "-doublecreeps") or string.find(command, "-dc") then
-       if not ingame.voteDoubleCreeps and OptionManager:GetOption('neutralMultiply') < 2 then 
-            
-            if ingame.votesBlocked["doublecreeps"] == true then
-                util:DisplayError(0, "#voteCooldown")
-                return
-            end
-
-            ingame.votesBlocked["doublecreeps"] = true
-            ingame.votesBlocked[playerID] = true 
-
-            Timers:CreateTimer( function()
-                ingame.votesBlocked[playerID] = false
-                ingame.votesBlocked["doublecreeps"] = false
-            end, DoUniqueString('voteTempBlock'), voteCooldown)
-
-            local percentNeeded = 100
-            if GetMapName() == 'all_allowed' then
-                percentNeeded = 50
-            end
-
-            util:CreateVoting("lodVotingDoubleCreeps", playerID, 20, percentNeeded, function()
-                ingame.votesBlocked[playerID] = false
+       if not ingame.voteDoubleCreeps and OptionManager:GetOption('neutralMultiply') < 2 then
+            util:CreateVoting("lodVotingDoubleCreeps", playerID, 10, GetMapName() == 'all_allowed' and 50 or 100, function()
                 OptionManager:SetOption('neutralMultiply', 2)
                -- pregame:multiplyNeutrals()
                 ingame.voteDoubleCreeps = true
@@ -119,24 +69,7 @@ function Commands:OnPlayerChat(keys)
         end
     elseif string.find(command, "-enablecheat") or string.find(command, "-ec") then
         if not ingame.voteEnabledCheatMode and not Convars:GetBool("sv_cheats") then
-            -- Check if this particular vote has been called recently, if so ignore it
-            if ingame.votesBlocked["enablecheat"] == true then
-                util:DisplayError(0, "#voteCooldown")
-                return
-            end
-
-            -- Block starting votes for the player and the particular vote, temporarily
-            ingame.votesBlocked["enablecheat"] = true
-            ingame.votesBlocked[playerID] = true         
-            
-            --Re-allow the player to vote, and the particlar vote to be called, after a timer
-            Timers:CreateTimer( function()
-                ingame.votesBlocked["enablecheat"] = false
-                ingame.votesBlocked[playerID] = false   
-            end, DoUniqueString('voteTempBlock'), voteCooldown)
-
-            util:CreateVoting("lodVotingEnableCheatMode", playerID, 20, 100, function()
-                ingame.votesBlocked[playerID] = false
+            util:CreateVoting("lodVotingEnableCheatMode", playerID, 10, 100, function()
                 ingame.voteEnabledCheatMode = true
                 EmitGlobalSound("Event.CheatEnabled")
                 GameRules:SendCustomMessage('<font color=\'#70EA72\'>Everbody voted to enable cheat mode. Cheat mode enabled</font>.',0,0)
@@ -146,22 +79,7 @@ function Commands:OnPlayerChat(keys)
         end
     elseif string.find(command, "-enablekamikaze") or string.find(command, "-ek") then
         if not ingame.voteDisableAntiKamikaze then
-
-            if ingame.votesBlocked["enablekamikaze"] == true then
-                util:DisplayError(0, "#voteCooldown")
-                return
-            end
-
-            ingame.votesBlocked["enablekamikaze"] = true
-            ingame.votesBlocked[playerID] = true    
-
-            Timers:CreateTimer( function()
-                ingame.votesBlocked["enablekamikaze"] = false
-                ingame.votesBlocked[playerID] = false
-            end, DoUniqueString('voteTempBlock'), voteCooldown)
-
-            util:CreateVoting("lodVotingEnableKamikaze", playerID, 20, 100, function()
-                ingame.votesBlocked[playerID] = false 
+            util:CreateVoting("lodVotingEnableKamikaze", playerID, 10, 100, function()
                 ingame.voteDisableAntiKamikaze = true
                 EmitGlobalSound("Event.CheatEnabled")
                 GameRules:SendCustomMessage('Everbody voted to disable the anti-Kamikaze mechanic. <font color=\'#70EA72\'>No more peanlty for dying 3 times within 60 seconds</font>.',0,0)
@@ -171,22 +89,7 @@ function Commands:OnPlayerChat(keys)
         end
     elseif string.find(command, "-enablebuilder") or string.find(command, "-eb") and OptionManager:GetOption('allowIngameHeroBuilder') == false then
         if not ingame.voteEnableBuilder and OptionManager:GetOption('allowIngameHeroBuilder') ~= true then
-            
-            if ingame.votesBlocked["enablebuilder"] == true then
-                util:DisplayError(0, "#voteCooldown")
-                return
-            end
-
-            ingame.votesBlocked["enablebuilder"] = true
-            ingame.votesBlocked[playerID] = true          
-            
-            Timers:CreateTimer( function()
-                ingame.votesBlocked[playerID] = false
-                ingame.votesBlocked["enablebuilder"] = false
-            end, DoUniqueString('voteTempBlock'), voteCooldown)
-
-            util:CreateVoting("lodVotingEnableHeroBuilder", playerID, 20, 100, function()
-                ingame.votesBlocked[playerID] = false
+            util:CreateVoting("lodVotingEnableHeroBuilder", playerID, 10, 100, function()
                 network:enableIngameHeroEditor()
                 OptionManager:SetOption('allowIngameHeroBuilder', 1)
                 if util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS) > 0 and util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS) > 0 then
@@ -201,22 +104,7 @@ function Commands:OnPlayerChat(keys)
         end
     elseif string.find(command, "-enablerespawn") or string.find(command, "-er") then
         if not ingame.voteDisableRespawnLimit then
-            
-            if ingame.votesBlocked["enablerespawn"] == true then
-                util:DisplayError(0, "#voteCooldown")
-                return
-            end
-
-            ingame.votesBlocked["enablerespawn"] = true
-            ingame.votesBlocked[playerID] = true          
-            
-            Timers:CreateTimer( function()
-                ingame.votesBlocked["enablerespawn"] = false
-                ingame.votesBlocked[playerID] = false
-            end, DoUniqueString('voteTempBlock'), voteCooldown)
-
-            util:CreateVoting("lodVotingEnableRespawn", playerID, 20, 100, function()
-                ingame.votesBlocked[playerID] = false
+            util:CreateVoting("lodVotingEnableRespawn", playerID, 10, 100, function()
                 ingame.voteDisableRespawnLimit = true
                 if ingame.origianlRespawnRate ~= nil then
                     OptionManager:SetOption('respawnModifierPercentage', ingame.origianlRespawnRate)
@@ -230,22 +118,7 @@ function Commands:OnPlayerChat(keys)
     elseif string.find(command, "-switchteam") then
         local team = PlayerResource:GetTeam(playerID)
         if (ingame.needsTeamBalance and ingame.takeFromTeam == team) or util:isSinglePlayerMode() or IsInToolsMode() then
-            
-            if ingame.votesBlocked["switchteam"] == true then
-                util:DisplayError(0, "#voteCooldown")
-                return
-            end
-
-            ingame.votesBlocked["switchteam"] = true          
-            ingame.votesBlocked[playerID] = true          
-            
-            Timers:CreateTimer( function()
-                ingame.votesBlocked["switchteam"] = false
-                ingame.votesBlocked[playerID] = false
-            end, DoUniqueString('voteTempBlock'), voteCooldown)
-
-            util:CreateVoting("lodVotingSwitchTeam", playerID, 20, 100, function()
-                ingame.votesBlocked[playerID] = false
+            util:CreateVoting("lodVotingSwitchTeam", playerID, 10, 100, function()
                 local oldTeam = PlayerResource:GetCustomTeamAssignment(playerID)
                 local newTeam = otherTeam(oldTeam)
                 local uMoney = PlayerResource:GetUnreliableGold(playerID)

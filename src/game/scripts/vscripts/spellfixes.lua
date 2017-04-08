@@ -460,7 +460,7 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
 
                             -- Octarine Core fix
                             --if GameRules:isSource1() then
-                                if hero:HasModifier('modifier_item_octarine_core') then
+                                if hero:HasModifier('modifier_item_octarine_core') or hero:HasModifier("modifier_item_octarine_core_consumable") then
                                     reduction = reduction * 0.75
                                 end
                             --end
