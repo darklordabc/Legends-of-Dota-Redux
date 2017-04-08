@@ -809,31 +809,25 @@ function util:CreateVoting(votingName, initiator, duration, percent, onaccept, o
         useGameTime = false,
         endTime = duration,
         callback = function()
-            if ondecline and not CheckForEnd() then
+            local accepted = CheckForEnd()
+            if ondecline and not accepted then
                 ondecline()
             end
-            --[[for PlayerID = 0, 23 do
-                if not Util:isPlayerBot(PlayerID) then                            
-                    local state = PlayerResource:GetConnectionState(PlayerID)
-                    if (state == 1 or state == 2) and self.activeVoting.votes[PlayerID] == nil then
-                        CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(PlayerID), "universalVotingsPlayerUpdate", {votingName = votingName, accept = false})
-                    end
-                end
-            end]]
             Timers:RemoveTimer(pauseChecker)
+            CustomGameEventManager:Send_ServerToAllClients("universalVotingsUpdate", {votingName = votingName, accept = accepted})
             self.activeVoting = nil
             PauseGame(false)
         end
     })
     local _onvote = function(pid, accepted)
         self.activeVoting.votes[pid] = accepted
-        CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(pid), "universalVotingsPlayerUpdate", {votingName = votingName, accept = accepted})
         if onvote then
             onvote(pid, accepted)
         end
         if CheckForEnd() then
             Timers:RemoveTimer(pauseChecker)
             Timers:RemoveTimer(vote_counter)
+            CustomGameEventManager:Send_ServerToAllClients("universalVotingsUpdate", {votingName = votingName, accept = true})
             self.activeVoting = nil
             PauseGame(false)
         end
