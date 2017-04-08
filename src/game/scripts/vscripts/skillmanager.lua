@@ -386,7 +386,7 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
         playerID = hero:GetPlayerID()
 
         if hero and playerID and not util:isPlayerBot(playerID) then
-            for i=1,23 do
+            for i=0,23 do
                 local ab = hero:GetAbilityByIndex(i)
                 if ab then
                     hero:RemoveAbility(ab:GetName())
