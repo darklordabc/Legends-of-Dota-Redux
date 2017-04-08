@@ -294,6 +294,11 @@ var basicOptions = {
                         }
                     },
                     {
+                        name: 'lodOptionBotsStupid',
+                        extraInfo: 'lodOptionAboutBotsStupid',
+                        about: 'lodMutatorBotsStupid'
+                    },
+                    {
                         name: 'lodOptionAdvancedUniqueSkills',
 						extraInfo: 'lodOptionAboutAdvancedUniqueSkills',
                         default: {
@@ -1353,6 +1358,22 @@ var advancedOptions = {
                     {
                         text: 'lodOptionUniqueGlobal',
                         value: 2
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionBotsStupid',
+                des: 'lodOptionDesBotsStupid',
+                about: 'lodOptionAboutBotsStupid',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
                     }
                 ]
             },

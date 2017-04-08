@@ -308,6 +308,28 @@ function Ingame:FilterExecuteOrder(filterTable)
             -- How It Works: Every time bot creates an order, this checks their position, if they are in the same last position as last order,
             -- increase counter. If counter gets too high, it means they have been stuck in same position for a long time, do action to help them.
             if util:isPlayerBot(unitPlayerID) then
+                if OptionManager:GetOption('stupidBots') == 1 then
+                    if unit.blocked == true then 
+                        return false
+                    end
+
+                    -- Abiliites have a 50% chance to misfire and go on cooldown
+                    if ability and ability.GetCooldownTimeRemaining then
+                        if RollPercentage(50) then
+                            ability:StartCooldown(3)
+                            GameRules:SendCustomMessage(tostring(ability:GetName()), 0, 0)
+                        end
+                    end
+
+                    --- Blocks an only make one order per 3 seconds, abilities dont count
+                    if unit.blocked ~= true and not ability.GetCooldownTimeRemaining then
+                        unit.blocked = true
+                        Timers:CreateTimer(function() 
+                            unit.blocked = false
+                        end, DoUniqueString('temporaryBlocked'), 3)
+                    end
+                end
+
                 if not unit.OldPosition then
                     unit.OldPosition = unit:GetAbsOrigin()
                     unit.StuckCounter = 0

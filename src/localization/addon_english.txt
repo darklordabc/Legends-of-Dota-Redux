@@ -413,6 +413,11 @@
     "lodOptionAbout322"                             "Heroes gain 322 gold upon dying instead of losing gold."
     "lodMutator322"                                 "322"
 
+    "lodOptionBotsStupid"                                  "Stupfy Bots"
+    "lodOptionDesBotsStupid"                               "Make Bots Stupidier"
+    "lodOptionAboutBotsStupid"                             "Bots have slower reaction times and use abilities less often."
+    "lodMutatorBotsStupid"                                 "Stupfy Bots"
+
     "lodOptionDesGottaGoFast"                               "Movespeed Multiplier"
     "lodOptionGottaGoFastOff"                               "Normal Movespeed"
     "lodOptionGottaGoQuickOn"                                "+15% movespeed."
