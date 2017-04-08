@@ -16,7 +16,7 @@ function Shot( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 
-	if caster:PassivesDisabled() or caster:IsInvisible() then
+	if caster:PassivesDisabled() or caster:IsInvisible() or caster:IsIllusion() then
 		return false
 	end
 

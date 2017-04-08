@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 - Added 4 new versions of Morph
 - Added new bot Mutator: Stupfy
 - Voting now has two cooldowns, one for the individual player, and one for the particlar vote.
+- Side gunner no longer works on illusions
 
 ## 7.3 - Steam Version
 - Fixed Single player abilities not being enabled if vote passed
