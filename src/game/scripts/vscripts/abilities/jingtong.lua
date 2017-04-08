@@ -37,7 +37,7 @@ if IsServer() then
     local caster = self:GetParent()
 
     local core = 0
-    if caster:FindItemByName("item_octarine_core") then
+    if caster:FindItemByName("item_octarine_core") or caster:FindItemByName("item_octarine_core_consumable") or caster:HasModifier("modifier_item_octarine_core_consumable") then
       core = 25
     end
 

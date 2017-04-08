@@ -4,7 +4,7 @@ if IsServer() then
     function modifier_charges:Update()
         if self:GetDuration() == -1 then
 			local octarine = 1
-			if self:GetParent():HasModifier("modifier_item_octarine_core") then
+			if self:GetParent():HasModifier("modifier_item_octarine_core") or self:GetParent():HasModifier("modifier_item_octarine_core_consumable") then
 				octarine = 0.75
 			end
             self:SetDuration(self.kv.replenish_time*octarine, true)
@@ -59,7 +59,7 @@ if IsServer() then
     function modifier_charges:OnIntervalThink()
         local stacks = self:GetStackCount()
 		local octarine = 1
-		if self:GetParent():HasModifier("modifier_item_octarine_core") then
+		if self:GetParent():HasModifier("modifier_item_octarine_core") or self:GetParent():HasModifier("modifier_item_octarine_core_consumable") then
 			octarine = 0.75
 		end
 

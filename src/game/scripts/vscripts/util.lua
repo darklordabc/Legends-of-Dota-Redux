@@ -638,7 +638,7 @@ function CDOTABaseAbility:GetTrueCooldown()
 		cooldown = 0
 	end
 	local octarineMult = 1
-	if hero:HasModifier("modifier_item_octarine_core") then octarineMult = 0.75 end
+	if hero:HasModifier("modifier_item_octarine_core") or hero:HasModifier("modifier_item_octarine_core_consumable") then octarineMult = 0.75 end
 	cooldown = cooldown * octarineMult
 	return cooldown
 end
