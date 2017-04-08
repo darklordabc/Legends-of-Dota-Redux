@@ -2637,7 +2637,7 @@
     "tinker_rearm"
     {
         "ReduxPerks"                                                           "scientific | channeled"
-        "ReduxCost"                                                            "-2"
+        "ReduxCost"                                                            "120"
         "ReduxBans"                                                            "arc_warden_tempest_double | arc_warden_tempest_double_redux"
         "ReduxFlags"                                                           "OPSkillsList"
     }
