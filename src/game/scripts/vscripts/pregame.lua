@@ -118,12 +118,12 @@ function Pregame:init()
                 self:setOption('lodOptionBanningMaxHeroBans', 1, true)
             end,
             onunselected = function(self)
-            	-- If single players are activated, do not cancel bans
-            	if self.optionStore['lodOptionBanningUseBanList'] == 1 then
-	                self:setOption('lodOptionBanning', 1, true)
-	                self:setOption('lodOptionBanningMaxBans', 0, true)
-	                self:setOption('lodOptionBanningMaxHeroBans', 0, true)
-               	end
+                -- If single players are activated, do not cancel bans
+                if self.optionStore['lodOptionBanningUseBanList'] == 1 then
+                    self:setOption('lodOptionBanning', 1, true)
+                    self:setOption('lodOptionBanningMaxBans', 0, true)
+                    self:setOption('lodOptionBanningMaxHeroBans', 0, true)
+                end
             end
         },
         fastStart = {
@@ -178,7 +178,7 @@ function Pregame:init()
                     self:setOption('lodOptionBanningUseBanList', 1, true)
                 end   
                 if mapName == 'all_allowed' then
-                	self:setOption('lodOptionBanningUseBanList', 0, true)
+                    self:setOption('lodOptionBanningUseBanList', 0, true)
                 end
 
             end,
@@ -188,7 +188,7 @@ function Pregame:init()
         },
         singlePlayerAbilities = {
         onselected = function(self)
-        	self:setOption('lodOptionAdvancedCustomSkills', 1, true)
+            self:setOption('lodOptionAdvancedCustomSkills', 1, true)
             self:setOption('lodOptionBanningUseBanList', 0, true)
             self:setOption('lodOptionBanning', 3, true)
             self:setOption('lodOptionBanningMaxBans', 4, true)
@@ -447,17 +447,17 @@ function Pregame:init()
 
     if mapName == 'all_allowed' then   
         self:setOption('lodOptionAdvancedOPAbilities', 1, true)
-    	self:setOption('lodOptionGameSpeedMaxLevel', 100, true)
-    	self:setOption('lodOptionBanningUseBanList', 1, true)
-    	self:setOption('lodOptionGamemode', 1)
+        self:setOption('lodOptionGameSpeedMaxLevel', 100, true)
+        self:setOption('lodOptionBanningUseBanList', 1, true)
+        self:setOption('lodOptionGamemode', 1)
         OptionManager:SetOption('banningTime', 30)
-		self:setOption('lodOptionBalanceMode', 0, true)
-		self:setOption('lodOptionAdvancedHidePicks', 0, true)
-		self:setOption('lodOptionCommonMaxUlts', 2, true)
-		self:setOption('lodOptionGameSpeedRespawnTimePercentage', 25, true)
-		self.useOptionVoting = true
+        self:setOption('lodOptionBalanceMode', 0, true)
+        self:setOption('lodOptionAdvancedHidePicks', 0, true)
+        self:setOption('lodOptionCommonMaxUlts', 2, true)
+        self:setOption('lodOptionGameSpeedRespawnTimePercentage', 25, true)
+        self.useOptionVoting = true
         self.optionVoteSettings.doubledAbilityPoints = nil
-	end
+    end
 
     -- Mirror Draft Only
     if mapName == 'mirror_draft' then
@@ -840,41 +840,37 @@ end
 function Pregame:applyBuilds()
     local maxPlayerID = 24
     for playerID=0,maxPlayerID-1 do
-        Timers:CreateTimer(function()
-            local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+        local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 
-            if hero ~= nil and IsValidEntity(hero) then
-                local build = self.selectedSkills[playerID]
+        if hero ~= nil and IsValidEntity(hero) then
+            local build = self.selectedSkills[playerID]
 
-                if build then
-                    local status2,err2 = pcall(function()
-                        SkillManager:ApplyBuild(hero, build or {})
+            if build then
+                local status2,err2 = pcall(function()
+                    SkillManager:ApplyBuild(hero, build or {})
 
-                        buildBackups[playerID] = build
+                    buildBackups[playerID] = build
 
-                        if self.selectedPlayerAttr[playerID] ~= nil then
-                            local toSet = 0
+                    if self.selectedPlayerAttr[playerID] ~= nil then
+                        local toSet = 0
 
-                            if self.selectedPlayerAttr[playerID] == 'str' then
-                                toSet = 0
-                            elseif self.selectedPlayerAttr[playerID] == 'agi' then
-                                toSet = 1
-                            elseif self.selectedPlayerAttr[playerID] == 'int' then
-                                toSet = 2
-                            end
-
-                            Timers:CreateTimer(function()
-                                if IsValidEntity(hero) then
-                                    hero:SetPrimaryAttribute(toSet)
-                                end
-                            end, DoUniqueString('primaryAttrFix'), 0.1)
+                        if self.selectedPlayerAttr[playerID] == 'str' then
+                            toSet = 0
+                        elseif self.selectedPlayerAttr[playerID] == 'agi' then
+                            toSet = 1
+                        elseif self.selectedPlayerAttr[playerID] == 'int' then
+                            toSet = 2
                         end
-                    end)
-                end
 
-                self:fixSpawnedHero( hero )
+                        Timers:CreateTimer(function()
+                            if IsValidEntity(hero) then
+                                hero:SetPrimaryAttribute(toSet)
+                            end
+                        end, DoUniqueString('primaryAttrFix'), 0.1)
+                    end
+                end)
             end
-        end, DoUniqueString('fixHero'), playerID)
+        end
     end
 end
 
@@ -1879,8 +1875,8 @@ function Pregame:onOptionChanged(eventSourceIndex, args)
         }
 
         if PlayerResource:GetSteamAccountID(playerID) == 43305444 then -- Baumi doesnt need votes to change options
-    		voteRequiredOptions = {}
-    	end
+            voteRequiredOptions = {}
+        end
 
         if voteRequiredOptions[optionName] and voteRequiredOptions[optionName].value == optionValue then
             self:setOption(optionName, voteRequiredOptions[optionName].value == 1 and 0 or 1)
@@ -3585,13 +3581,13 @@ function Pregame:processOptions()
     -- This is a fix to deal with how votes are executed
     if GetMapName() == "all_allowed" then
         if self.optionStore['lodOptionBanningMaxBans'] == 2 and self.optionStore['lodOptionBanningUseBanList'] == 0 and self.optionStore['lodOptionAdvancedCustomSkills'] == 1 then
-        	self:setOption('lodOptionBanningMaxBans', 6, true)
+            self:setOption('lodOptionBanningMaxBans', 6, true)
         end
         if self.optionStore['lodOptionBanningMaxBans'] == 4 and self.optionStore['lodOptionAdvancedCustomSkills'] == 0 then
-        	self:setOption('lodOptionBanningMaxBans', 0, true)
-        	self:setOption('lodOptionBanningMaxHeroBans', 0, true)
+            self:setOption('lodOptionBanningMaxBans', 0, true)
+            self:setOption('lodOptionBanningMaxHeroBans', 0, true)
         end
-        	
+            
     end
 
     -- Only process options once
@@ -7381,11 +7377,10 @@ function Pregame:fixSpawningIssues()
     ListenToGameEvent('npc_spawned', function(keys)
         -- Grab the unit that spawned
         local spawnedUnit = EntIndexToHScript(keys.entindex)
-        local playerID = 0
 
         -- Grab their playerID
         if spawnedUnit.GetPlayerID then
-            playerID = spawnedUnit:GetPlayerID()
+            local playerID = spawnedUnit:GetPlayerID()
 
             local mainHero = PlayerResource:GetSelectedHeroEntity(playerID)
 
@@ -7525,16 +7520,17 @@ ListenToGameEvent('game_rules_state_change', function(keys)
     if newState == DOTA_GAMERULES_STATE_PRE_GAME then
         local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
         
-        -- Fix heroes
+        -- Add talents
         Timers:CreateTimer(function()
             local maxPlayerID = 24
             for playerID=0,maxPlayerID-1 do
                 local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+
                 if hero ~= nil and IsValidEntity(hero) then
-                    -- _instance:fixSpawnedHero( hero )
+                    _instance:fixSpawnedHero( hero )
                 end
             end
-        end, DoUniqueString('fixHeroes'), 2.0)
+        end, DoUniqueString('addTalents'), 2.0)
     elseif newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
         if IsDedicatedServer() then
           SU:SendPlayerBuild( buildBackups )
