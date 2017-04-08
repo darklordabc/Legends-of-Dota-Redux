@@ -840,37 +840,39 @@ end
 function Pregame:applyBuilds()
     local maxPlayerID = 24
     for playerID=0,maxPlayerID-1 do
-        local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+        Timers:CreateTimer(function()
+            local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 
-        if hero ~= nil and IsValidEntity(hero) then
-            local build = self.selectedSkills[playerID]
+            if hero ~= nil and IsValidEntity(hero) then
+                local build = self.selectedSkills[playerID]
 
-            if build then
-                local status2,err2 = pcall(function()
-                    SkillManager:ApplyBuild(hero, build or {})
+                if build then
+                    local status2,err2 = pcall(function()
+                        SkillManager:ApplyBuild(hero, build or {})
 
-                    buildBackups[playerID] = build
+                        buildBackups[playerID] = build
 
-                    if self.selectedPlayerAttr[playerID] ~= nil then
-                        local toSet = 0
+                        if self.selectedPlayerAttr[playerID] ~= nil then
+                            local toSet = 0
 
-                        if self.selectedPlayerAttr[playerID] == 'str' then
-                            toSet = 0
-                        elseif self.selectedPlayerAttr[playerID] == 'agi' then
-                            toSet = 1
-                        elseif self.selectedPlayerAttr[playerID] == 'int' then
-                            toSet = 2
-                        end
-
-                        Timers:CreateTimer(function()
-                            if IsValidEntity(hero) then
-                                hero:SetPrimaryAttribute(toSet)
+                            if self.selectedPlayerAttr[playerID] == 'str' then
+                                toSet = 0
+                            elseif self.selectedPlayerAttr[playerID] == 'agi' then
+                                toSet = 1
+                            elseif self.selectedPlayerAttr[playerID] == 'int' then
+                                toSet = 2
                             end
-                        end, DoUniqueString('primaryAttrFix'), 0.1)
-                    end
-                end)
+
+                            Timers:CreateTimer(function()
+                                if IsValidEntity(hero) then
+                                    hero:SetPrimaryAttribute(toSet)
+                                end
+                            end, DoUniqueString('primaryAttrFix'), 0.1)
+                        end
+                    end)
+                end
             end
-        end
+        end, DoUniqueString('fixHero'), playerID)
     end
 end
 
@@ -7527,9 +7529,7 @@ ListenToGameEvent('game_rules_state_change', function(keys)
             for playerID=0,maxPlayerID-1 do
                 local hero = PlayerResource:GetSelectedHeroEntity(playerID)
                 if hero ~= nil and IsValidEntity(hero) then
-                    Timers:CreateTimer(function()
-                        _instance:fixSpawnedHero( hero )
-                    end, DoUniqueString('fixHero'), playerID)
+                    _instance:fixSpawnedHero( hero )
                 end
             end
         end, DoUniqueString('fixHeroes'), 2.0)
