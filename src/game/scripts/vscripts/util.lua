@@ -852,7 +852,7 @@ function util:CreateVoting(votingName, initiator, duration, percent, onaccept, o
         --print(accept, votesAccepted, votesDeclined, totalPlayers)
         if accept ~= nil then
             if accept then
-                ingame.votesBlocked[initiator] = false
+                util.votesBlocked[initiator] = false
                 if onaccept then
                     onaccept()
                 end
