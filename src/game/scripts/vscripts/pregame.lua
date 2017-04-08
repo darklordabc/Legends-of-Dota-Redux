@@ -871,6 +871,8 @@ function Pregame:applyBuilds()
                         end
                     end)
                 end
+
+                self:fixSpawnedHero( hero )
             end
         end, DoUniqueString('fixHero'), playerID)
     end
@@ -7529,7 +7531,7 @@ ListenToGameEvent('game_rules_state_change', function(keys)
             for playerID=0,maxPlayerID-1 do
                 local hero = PlayerResource:GetSelectedHeroEntity(playerID)
                 if hero ~= nil and IsValidEntity(hero) then
-                    _instance:fixSpawnedHero( hero )
+                    -- _instance:fixSpawnedHero( hero )
                 end
             end
         end, DoUniqueString('fixHeroes'), 2.0)
