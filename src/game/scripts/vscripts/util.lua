@@ -794,7 +794,7 @@ function util:CreateVoting(votingName, initiator, duration, percent, onaccept, o
         endTime = voteCooldown,
         callback = function()
             ingame.votesBlocked[votingName] = false
-            ingame.votesBlocked[playerID] = false
+            ingame.votesBlocked[initiator] = false
         end
     })
 
