@@ -76,6 +76,7 @@ function Ingame:init()
     self.direTotalBalanceMoney = 0
     self.shownCheats = {}
     self.heard = {}
+    self.votesBlocked = {}
 
     self.botsInLateGameMode = false
 
@@ -317,7 +318,6 @@ function Ingame:FilterExecuteOrder(filterTable)
                     if ability and ability.GetCooldownTimeRemaining then
                         if RollPercentage(50) then
                             ability:StartCooldown(3)
-                            GameRules:SendCustomMessage(tostring(ability:GetName()), 0, 0)
                         end
                     end
 

@@ -536,6 +536,17 @@
     "tempDuelBlock"                     "<font color='#FF0000'>Duels are temporarily disabled due to a crash issue. They will be reenabled soon. Sorry about that.</font>"
     "respawnCheatNotification"  "You can use the chat command cheat '-respawn' to force your hero to respawn, this cheat is only available in single player mode or with cheats mode."
 
+    "deadCantUse"                                   "Cannot use hero builder while dead"
+    "votingCooldown"                                "Voting is on cooldown for you"
+    "voteCooldown"                                  "This vote is on cooldown"
+
+    "antiRatAlreadyOn"                              "Anti-Rat protection already on"
+    "multiplyAlreadyOn"                             "Neutrals already multiplied"
+    "cheatModeAlreadyOn"                            "Cheat mode already on"
+    "kamikazeAlreadyDeactivated"                    "Kamikaze mechanic already deactivated"
+    "heroBuilderAlreadyOn"                          "Hero builder already on"
+    "respawnAlreadyDeactivated"                     "Respawn increasing already deactivated"
+
     "lodUniqueSkillsOff"                            "Disabled"
     "lodUniqueSkillsTeam"                           "Unique Team Skills"
     "lodUniqueSkillsGlobal"                         "Unique Global Skills"

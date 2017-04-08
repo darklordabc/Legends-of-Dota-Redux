@@ -1906,7 +1906,7 @@ function Pregame:onIngameBuilder(eventSourceIndex, args)
         end, "changeBalanceMode", 0.5)
     end
     if IsValidEntity(hero) and hero:IsAlive() == false then
-        util:DisplayError(playerID, "#dead_cant_use")
+        util:DisplayError(playerID, "#deadCantUse")
     end
 end
 
