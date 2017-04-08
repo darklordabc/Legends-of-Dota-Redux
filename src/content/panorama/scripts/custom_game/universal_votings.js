@@ -11,7 +11,6 @@ function createVoting(playerInfo, votingName, votingTitle, votingLine, acceptCal
     panel.BLoadLayout('file://{resources}/layout/custom_game/universal_votings.xml', false, false);
 
     panel.FindChildTraverse("titleLabel").text = $.Localize(votingTitle);
-    panel.FindChildTraverse("lineLabel").html = true;
     panel.FindChildTraverse("lineLabel").text = playerInfo.player_name + " " + $.Localize(votingLine);
     panel.FindChildTraverse("descriptionLabel").text = $.Localize(votingLine + "Descr");
 
@@ -19,7 +18,7 @@ function createVoting(playerInfo, votingName, votingTitle, votingLine, acceptCal
 
     panel.FindChildTraverse("acceptButton").enabled = false;
     panel.FindChildTraverse("declineButton").enabled = false;
-    $.Schedule(5, function() {
+    $.Schedule(3, function() {
         panel.FindChildTraverse("acceptButton").enabled = true;
         panel.FindChildTraverse("declineButton").enabled = true;
     });

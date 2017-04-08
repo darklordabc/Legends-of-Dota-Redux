@@ -13,7 +13,7 @@
 				<Panel id='swapper_switch' class='player_info'>
 					<Image id="picture"/>
 				</Panel>
-				<Label id="lineLabel" text='would like to switch with'/>
+				<Label id="lineLabel" html='true'/>
 			</Panel>
 			<Label html="true" id="descriptionLabel" text='description'/>
 			<Panel id='choice' class='choice' >

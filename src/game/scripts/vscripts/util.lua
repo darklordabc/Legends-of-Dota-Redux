@@ -873,7 +873,7 @@ function util:CreateVoting(votingName, initiator, duration, percent, onaccept, o
     self.activeVoting = {
         name = votingName,
         votes = {},
-        recieveStartTime = Time() + 5,
+        recieveStartTime = Time() + 3,
         onvote = _onvote
     }
     CustomGameEventManager:Send_ServerToAllClients("lodCreateUniversalVoting", {
