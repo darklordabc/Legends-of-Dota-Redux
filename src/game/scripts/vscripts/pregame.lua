@@ -7521,18 +7521,18 @@ ListenToGameEvent('game_rules_state_change', function(keys)
     if newState == DOTA_GAMERULES_STATE_PRE_GAME then
         local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
         
-        -- Add talents
+        -- Fix heroes
         Timers:CreateTimer(function()
             local maxPlayerID = 24
             for playerID=0,maxPlayerID-1 do
                 local hero = PlayerResource:GetSelectedHeroEntity(playerID)
-
                 if hero ~= nil and IsValidEntity(hero) then
-
-                    _instance:fixSpawnedHero( hero )
+                    Timers:CreateTimer(function()
+                        _instance:fixSpawnedHero( hero )
+                    end, DoUniqueString('fixHero'), playerID)
                 end
             end
-        end, DoUniqueString('addTalents'), 2.0)
+        end, DoUniqueString('fixHeroes'), 2.0)
     elseif newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
         if IsDedicatedServer() then
           SU:SendPlayerBuild( buildBackups )
