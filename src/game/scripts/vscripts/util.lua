@@ -761,40 +761,46 @@ function CDOTA_BaseNPC:FindItemByName(item_name)
 end
 
 local voteCooldown = 300
+util.votesBlocked = {}
+util.votesRejected = {}
 function util:CreateVoting(votingName, initiator, duration, percent, onaccept, onvote, ondecline, voteForInitiator)
     percent = percent or 100
-    if self.activeVoting then
-        if self.activeVoting.name == votingName and Time() >= self.activeVoting.recieveStartTime then
-            self.activeVoting.onvote(initiator, true)
+    if util.activeVoting then
+        if util.activeVoting.name == votingName and Time() >= util.activeVoting.recieveStartTime then
+            util.activeVoting.onvote(initiator, true)
         else
             --TODO: Display error message - Can't start a new voting while there is another ongoing voting
         end
         return
     end
 
+    if util.votesRejected[initiator] and util.votesRejected[initiator] >= 2 then
+        util:DisplayError(initiator, "#votingPlayerBanned")
+        return
+    end
+
     -- If a vote fails, players cannot call another vote for 5 minutes, to prevent abuse.
-    if ingame.votesBlocked[initiator] then 
+    if util.votesBlocked[initiator] then 
         util:DisplayError(initiator, "#votingCooldown")
         return
     end
 
     -- If a vote has been called of this type recently, block 
-    if ingame.votesBlocked[votingName] then
+    if util.votesBlocked[votingName] then
         util:DisplayError(initiator, "#voteCooldown")
         return
     end
 
-
     -- Temporarily block future votes if the vote is not succesful
-    ingame.votesBlocked[votingName] = true
-    ingame.votesBlocked[initiator] = true
+    util.votesBlocked[votingName] = true
+    util.votesBlocked[initiator] = true
 
     Timers:CreateTimer({
         useGameTime = false,
         endTime = voteCooldown,
         callback = function()
-            ingame.votesBlocked[votingName] = false
-            ingame.votesBlocked[initiator] = false
+            util.votesBlocked[votingName] = false
+            util.votesBlocked[initiator] = false
         end
     })
 
@@ -823,8 +829,8 @@ function util:CreateVoting(votingName, initiator, duration, percent, onaccept, o
             if PlayerResource:IsValidPlayerID(PlayerID) and not util:isPlayerBot(PlayerID) then                            
                 local state = PlayerResource:GetConnectionState(PlayerID)
                 if state == 1 or state == 2 then
-                    if self.activeVoting.votes[PlayerID] ~= nil then
-                        if self.activeVoting.votes[PlayerID] then
+                    if util.activeVoting.votes[PlayerID] ~= nil then
+                        if util.activeVoting.votes[PlayerID] then
                             votesAccepted = votesAccepted + 1
                         else
                             votesDeclined = votesDeclined + 1
@@ -850,27 +856,29 @@ function util:CreateVoting(votingName, initiator, duration, percent, onaccept, o
                 if onaccept then
                     onaccept()
                 end
-            end
-            if not accept and ondecline then
-                ondecline()
+            else
+                if ondecline then
+                    ondecline()
+                end
+                util.votesRejected[initiator] = (util.votesRejected[initiator] or 0) + 1
             end
 
             Timers:RemoveTimer(pauseChecker)
             Timers:RemoveTimer(vote_counter)
             CustomGameEventManager:Send_ServerToAllClients("universalVotingsUpdate", {votingName = votingName, accept = accept})
-            self.activeVoting = nil
+            util.activeVoting = nil
             PauseGame(false)
         end
     end
 
     local _onvote = function(pid, accepted)
-        self.activeVoting.votes[pid] = accepted
+        util.activeVoting.votes[pid] = accepted
         if onvote then
             onvote(pid, accepted)
         end
         CheckForEnd()
     end
-    self.activeVoting = {
+    util.activeVoting = {
         name = votingName,
         votes = {},
         recieveStartTime = Time() + 3,
@@ -882,7 +890,7 @@ function util:CreateVoting(votingName, initiator, duration, percent, onaccept, o
         duration = duration
     })
     if voteForInitiator ~= false then
-        _onvote(initiator, true)
+        --_onvote(initiator, true)
     end
 end
 
