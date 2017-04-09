@@ -2174,7 +2174,7 @@
 
     "DOTA_Tooltip_ability_pudge_flesh_heap_cooldown_reduction"         "Flesh Heap - Cooldown Reduction"
     "DOTA_Tooltip_ability_pudge_flesh_heap_cooldown_reduction_Description" "<font color='#70EA72'>Gives cooldown reduction that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Cooldown Reduction is retroactive, meaning it can gain charges before it is skilled, which then become active."
-    "DOTA_Tooltip_ability_pudge_flesh_heap_cooldown_reduction_flesh_heap_value_buff_amount"  "CD REDUCTION PER STACK:"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_cooldown_reduction_flesh_heap_value_buff_amount"  "%CD REDUCTION PER STACK:"
     "DOTA_Tooltip_ability_pudge_flesh_heap_cooldown_reduction_flesh_heap_range"            "RANGE:"
 
     "DOTA_Tooltip_ability_pudge_flesh_heap_evasion"         "Flesh Heap - Evasion"
