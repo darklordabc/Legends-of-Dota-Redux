@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ## 7.4 - Development Version
 - Added 4 new versions of Morph
+- Added 3 new fleah heaps
 - Added new bot Mutator: Stupfy
 - Voting now has two cooldowns, one for the individual player, and one for the particlar vote.
 - Side gunner no longer works on illusions
