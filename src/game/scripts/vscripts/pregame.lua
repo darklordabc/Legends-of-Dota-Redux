@@ -571,6 +571,9 @@ function Pregame:loadDefaultSettings()
     -- Set banning
     self:setOption('lodOptionBanning', 1)
 
+    -- Single player abilities should be banned
+    self:setOption('lodOptionBanningUseBanList', 1)
+
     -- Block troll combos is always on
     self:setOption('lodOptionBanningBlockTrollCombos', 1, true)
 
