@@ -114,12 +114,28 @@
         "AbilityCooldown"                                                      "10 8 6 4"
         "ReduxPerks"                                                           "neutral"
     }
+    
     "lone_druid_spirit_bear_demolish"
     {
-        "MaxLevel"                                                             "1"
+        "MaxLevel"                                                             "4"
         "ReduxFlags"                                                           "attack_modifier"
         "ReduxPerks"                                                           "neutral | attack_modifier"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "spell_resistance"      "33"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_building_damage"     "5 10 15 20"
+            }
+        }
     }
+
     "lone_druid_spirit_bear_return"
     {
         "MaxLevel"                                                             "1"
