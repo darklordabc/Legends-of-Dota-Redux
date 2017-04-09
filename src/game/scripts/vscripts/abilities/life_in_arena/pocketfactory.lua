@@ -83,7 +83,7 @@ function StartGoblinSpawn( event )
 			ability:StartCooldown(spawn_ratio)
 			-- Create the unit, making it controllable by the building owner, and time out after a duration.
 			
-			if #allRobots <= 70 then
+			if #allRobots <= 50 then
 
 				local goblin = CreateUnitByName(unit_name, pointToCreate, true, hero, hero, caster:GetTeamNumber())
 					
@@ -96,7 +96,7 @@ function StartGoblinSpawn( event )
 				goblin:SetControllableByPlayer(player, true)
 				
 				-- If too many goblins, give them phase movement and half life time
-				if #allRobots >= 50 then
+				if #allRobots >= 30 then
 					goblin:AddNewModifier(caster, nil, "modifier_kill", {duration = goblin_duration/2})
 					goblin:AddNewModifier(caster, nil, "modifier_phased", {duration = goblin_duration/2})
 					goblin:AddNewModifier(caster, nil, "modifier_dark_seer_surge", {duration = goblin_duration/2})
