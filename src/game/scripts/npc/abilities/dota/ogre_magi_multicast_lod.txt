@@ -32,6 +32,6 @@
             }
         }
         "ReduxCost"                                                            "40"
-        "ReduxBans"                                                            "meepo_divided_we_stand"
+        "ReduxBans"                                                            "meepo_divided_we_stand | android_pocket_factory | monkey_king_wukongs_command"
     }
 }

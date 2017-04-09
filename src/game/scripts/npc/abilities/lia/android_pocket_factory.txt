@@ -52,5 +52,6 @@
         }
         "ReduxFlags"                                                           "summon"
         "ReduxPerks"                                                           "scientific | summon_non_ult"
+        "ReduxBans"                                                            "tinker_rearm"
     }
 }
