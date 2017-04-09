@@ -25,7 +25,7 @@ var backList = [
     { img: "tempest1-min.jpg", title: "\"The Fractured Guardian\"", author: "Jigglypuff", url: "http://steamcommunity.com/sharedfiles/filedetails/?id=687819399&searchtext="  },
     { img: "wind1-min.jpg", title: "\"Song of the Blue Bird\"", author: "Graff", url: "http://steamcommunity.com/sharedfiles/filedetails/?id=679386940&searchtext="  },
     { img: "ursa1-min.jpg", title: "\"Ursa the Pride of North\"", author: "solologan", url: "http://steamcommunity.com/sharedfiles/filedetails/?id=289762031&searchtext="  },
-    { img: "thebattle-min.jpg", title: "\"The Battle\"", author: "Willypup", url: "http://steamcommunity.com/sharedfiles/filedetails/?id=271181742&searchtext="  },
+    { img: "thebattle-min.jpg", title: "\"The Battle\"", author: "Willypup", url: "https://steamcommunity.com/sharedfiles/filedetails/?id=308182990&searchtext="  },
     { img: "vs1-min.jpg", title: "\"Vengeful Spirit\"", author: "MugenMcFugen", url: "http://steamcommunity.com/sharedfiles/filedetails/?id=231516618&searchtext="  },
     { img: "vs2-min.jpg", title: "\"The Dark Throne\"", author: "Meshroom", url: "http://steamcommunity.com/sharedfiles/filedetails/?id=288256307&searchtext="  },
 	{ img: "12b5d5e1c6ee823697971e6c8819c8f4-min.jpg" },
