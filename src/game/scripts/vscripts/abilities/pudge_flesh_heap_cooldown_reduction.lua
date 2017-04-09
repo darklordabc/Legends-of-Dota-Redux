@@ -123,7 +123,7 @@ end
 
 function modifier_flesh_heap_cooldown_reduction:DeclareFunctions()
   local funcs = {
-    MODIFIER_PROPERTY_EVASION_CONSTANT,
+    MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
     MODIFIER_EVENT_ON_DEATH,
   }
   return funcs
