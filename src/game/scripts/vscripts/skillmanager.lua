@@ -775,7 +775,16 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
             if inSlot then
                 local ab = hero:FindAbilityByName(inSlot)
                 if ab and not isTower then
-                    ab:SetHidden(true)
+                    local hide = true
+                    for _,buildAb in pairs(build) do
+                        if buildAb == inSlot then
+                            hide = false
+                            break
+                        end
+                    end
+                    if hide then
+                        ab:SetHidden(true)
+                    end
                 end
             end
         end
