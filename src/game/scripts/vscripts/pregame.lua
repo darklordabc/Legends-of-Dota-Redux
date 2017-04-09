@@ -118,17 +118,15 @@ function Pregame:init()
                 self:setOption('lodOptionBanningMaxHeroBans', 1, true)
             end,
             onunselected = function(self)
-                -- If single players are activated, do not cancel bans
-                if self.optionStore['lodOptionBanningUseBanList'] == 1 then
-                    self:setOption('lodOptionBanning', 1, true)
-                    self:setOption('lodOptionBanningMaxBans', 0, true)
-                    self:setOption('lodOptionBanningMaxHeroBans', 0, true)
-                end
+                OptionManager:SetOption('banningTime', 15)
+                self:setOption('lodOptionBanning', 3, true)
+                self:setOption('lodOptionBanningMaxBans', 1, true)
+                self:setOption('lodOptionBanningMaxHeroBans', 1, true)
             end
         },
         fastStart = {
             onselected = function(self)
-                self:setOption('lodOptionGameSpeedStartingLevel', 6, true)
+                self:setOption('lodOptionGameSpeedStartingLevel', 3, true)
                 self:setOption('lodOptionGameSpeedStartingGold', 1000, true)
             end,
             onunselected = function(self)

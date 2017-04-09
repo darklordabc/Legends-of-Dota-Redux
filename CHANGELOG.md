@@ -3,14 +3,7 @@
 All notable changes to this project will be documented in this file.
 
 ## 7.5 - Development Version
-- Added 4 new versions of Morph
-- Added 3 new fleah heaps
-- Added new bot Mutator: Stupfy
-- Voting now has two cooldowns, one for the individual player, and one for the particlar vote.
-- Side gunner no longer works on illusions
-- Fixed bug where players wouldnt get abilities that were default to their selected hero
-- Option voting is no longer required if the game is single player
-- If a player calls for 2 failed votes, he/she cannot call anymore votes for the rest of the game. 
+- Fast start vote option now only starts at level 3 instead of 6. In vote maps, players always have a chance to ban an ability.
 
 ## 7.4 - Steam Version
 - Added 4 new versions of Morph

@@ -94,7 +94,7 @@ var basicOptions = {
                         values: {
                             enabled: {
                                 'lodOptionGameSpeedStartingGold': 1000,
-                                'lodOptionGameSpeedStartingLevel': 6
+                                'lodOptionGameSpeedStartingLevel': 3
                             },
                             disabled: {
                                 'lodOptionGameSpeedStartingGold': 0,
