@@ -1984,10 +1984,6 @@
         "ReduxFlags"                                                           "attack_modifier"
         "ReduxPerks"                                                           "neutral | attack_modifier"
     }
-    "angel_arena_rifle"
-    {
-        "ReduxFlags"                                                           "attack_modifier"
-    }
     "spawnlord_master_stomp"
     {
         "ReduxFlags"                                                           "stun"
