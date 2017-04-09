@@ -609,7 +609,7 @@ function Ingame:CheckConsumableItems()
                             hero:AddItemByName(name.."_consumable")
                             local nSlot, hUseless = hero:FindItemByNameEverywhere(name.."_consumable")
                             hero:SwapItems(i,nSlot)
-                            break
+                            --break
                         end
                     end
                 end
