@@ -3121,6 +3121,7 @@
     {
         "ReduxCost"                                                            "20"
         "ReduxFlags"                                                           "doNotRandom"
+        "ReduxBans"                                                            "tinker_rearm"
     }
     "neutral_spell_immunity"
     {
