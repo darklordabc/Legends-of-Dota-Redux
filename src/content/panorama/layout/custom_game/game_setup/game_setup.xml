@@ -139,7 +139,8 @@
                                     <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableCheatMode.png"></Image>
 									<Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableHeroBuilder.png"></Image> 
 									<Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableKamikaze.png"></Image> 
-									<Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableRespawn.png"></Image> 
+									<Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableRespawn.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingSwitchTeam.png"></Image>  
                                     <Image class="optionImageCached" src="file://{images}/custom_game/options/option0.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/options/option1.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/options/option2.png"></Image>
