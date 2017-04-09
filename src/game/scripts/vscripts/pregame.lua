@@ -851,27 +851,29 @@ function Pregame:applyBuilds()
                     SkillManager:ApplyBuild(hero, build or {})
 
                     buildBackups[playerID] = build
-
-                    if self.selectedPlayerAttr[playerID] ~= nil then
-                        local toSet = 0
-
-                        if self.selectedPlayerAttr[playerID] == 'str' then
-                            toSet = 0
-                        elseif self.selectedPlayerAttr[playerID] == 'agi' then
-                            toSet = 1
-                        elseif self.selectedPlayerAttr[playerID] == 'int' then
-                            toSet = 2
-                        end
-
-                        Timers:CreateTimer(function()
-                            if IsValidEntity(hero) then
-                                hero:SetPrimaryAttribute(toSet)
-                            end
-                        end, DoUniqueString('primaryAttrFix'), 0.1)
-                    end
                 end)
             end
         end
+    end
+end
+
+function Pregame:applyPrimaryAttribute(playerID, hero)
+    if self.selectedPlayerAttr[playerID] ~= nil then
+        local toSet = 0
+
+        if self.selectedPlayerAttr[playerID] == 'str' then
+            toSet = 0
+        elseif self.selectedPlayerAttr[playerID] == 'agi' then
+            toSet = 1
+        elseif self.selectedPlayerAttr[playerID] == 'int' then
+            toSet = 2
+        end
+
+        Timers:CreateTimer(function()
+            if IsValidEntity(hero) then
+                hero:SetPrimaryAttribute(toSet)
+            end
+        end, DoUniqueString('primaryAttrFix'), 0.1)
     end
 end
 
@@ -6904,6 +6906,10 @@ function Pregame:fixSpawnedHero( spawnedUnit )
     local playerID = spawnedUnit:GetPlayerID()
 
     local mainHero = PlayerResource:GetSelectedHeroEntity(playerID)
+
+    if mainHero and mainHero:IsRealHero() then
+        self:applyPrimaryAttribute(playerID, mainHero)
+    end
 
     -- Fix meepo clones and illusions
     if mainHero and mainHero ~= spawnedUnit and self.spawnedHeroesFor[playerID] then
