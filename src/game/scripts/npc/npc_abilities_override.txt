@@ -584,6 +584,7 @@
     "sniper_assassinate"
     {
         "ReduxFlags"                                                           "upgradeable"
+        "ReduxBans"                                                            "earthshaker_enchant_totem"
     }
     "abaddon_borrowed_time"
     {
