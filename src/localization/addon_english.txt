@@ -8705,7 +8705,7 @@
     "DOTA_Tooltip_ability_item_octarine_core_consumable_Lore"                      "At the core of spellcraft are spectrums only the very gifted can sense."
 
     "DOTA_Tooltip_Ability_item_heart_consumable"               "Heart of Tarrasque"
-    "DOTA_Tooltip_ability_item_heart_consumable_Description"                           "Passive: Health Regeneration - Restores a percentage of max health per second. If damage is taken from an enemy hero or Roshan, this ability is disabled for %heart_cooldown_melee% seconds for melee heroes, or %heart_cooldown_ranged_tooltip% seconds for ranged heroes.\n\n <font color=\'#70EA72\'>Consume the Octarine Core to permanently gain its effects.\n</font>"
+    "DOTA_Tooltip_ability_item_heart_consumable_Description"                           "Passive: Health Regeneration - Restores a percentage of max health per second. If damage is taken from an enemy hero or Roshan, this ability is disabled for %heart_cooldown_melee% seconds for melee heroes, or %heart_cooldown_ranged_tooltip% seconds for ranged heroes.\n\n <font color=\'#70EA72\'>Consume the Heart of Tarrasque to permanently gain its effects.\n</font>"
     "DOTA_Tooltip_ability_item_heart_consumable_Lore"                              "Preserved heart of an extinct monster, it bolsters the bearer's fortitude."
     "DOTA_Tooltip_ability_item_heart_consumable_heart_bonus_strength"                        "+$str"
     "DOTA_Tooltip_ability_item_heart_consumable_heart_bonus_health"                          "+$health"
