@@ -57,13 +57,13 @@ function heroPerksOrderFilter(filterTable)
   -- Uther controls
   AllowAlliedAttacks(unit,target,order_type)
   if CancelOtherAlliedAttacks(unit,target,order_type) == false then
-    
-    -- Proteus order filters
-    jetOrder(filterTable)
-    
     --return false -- I think this can be skipped
   end
   StopAllowingAlliedAttacks(unit,target,order_type)
+  
+  -- Proteus order filters
+  jetOrder(filterTable)
+  
   return filterTable
 end
 
