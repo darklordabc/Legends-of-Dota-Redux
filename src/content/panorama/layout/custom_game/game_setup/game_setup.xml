@@ -705,7 +705,8 @@
                                         </Button>
                                         <Button id="heroBuilderLockButton" class="makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
                                             <Image src="s2r://panorama/images/control_icons/lock_medium_png.vtex" />
-                                        </Button>                                    
+                                        </Button>  
+                                        <Panel id="cooldownOverlay" hittest="false"/>                                  
                                     </Panel>
 
                                     <Panel id="pickingPhaseBuildSkills">

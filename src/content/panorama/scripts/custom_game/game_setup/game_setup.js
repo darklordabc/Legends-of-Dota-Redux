@@ -4413,11 +4413,18 @@ function OnPhaseChanged(table_name, key, data) {
             if(currentPhase == PHASE_SELECTION) { 
                 // Enable tabs
                 $("#tabsSelector").visible = true;
-                
-                // Update selection
-                // if (currentSelectedHero) {
-                    setSelectedHelperHero();
-                // }
+
+                setSelectedHelperHero();
+
+                // 30 second lock
+                if (!$.GetContextPanel().isSinglePlayer) {
+                    $('#heroBuilderLockButton').enabled = false;
+                    $('#cooldownOverlay').AddClass("ready");
+                    $.Schedule(30.0, function () {
+                        $('#heroBuilderLockButton').enabled = true;
+                    })
+                    $('#heroBuilderLockButton').SetHasClass('pressed', !$('#heroBuilderLockButton').BHasClass('pressed'));
+                }
 
                 // Set main tab activated
                 if (!isTabSwitched){
@@ -4565,7 +4572,6 @@ function OnOptionChanged(table_name, key, data) {
         case 'lodOptionAdvancedImbaAbilities':
             onAllowedCategoriesChanged();
             break;
-
         // Check if it's the number of slots allowed
         case 'lodOptionCommonMaxSkills':
         case 'lodOptionCommonMaxSlots':
@@ -5249,6 +5255,10 @@ function onVotingCloseCallback() {
         // Change to option voting interface
         $.GetContextPanel().SetHasClass('option_voting_enabled', true);
     }
+
+    GameEvents.Subscribe("lodSinglePlayer", function () {
+        $.GetContextPanel().isSinglePlayer = true;
+    })
 
     // Automatically assign players to teams.
     Game.AutoAssignPlayersToTeams();

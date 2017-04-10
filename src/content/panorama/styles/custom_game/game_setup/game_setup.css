@@ -1042,6 +1042,31 @@ Button:enabled:hover {
     height: 100%;
 }
 
+#cooldownOverlay {
+    width: 48px;
+    height: 48px;
+
+    align: right center;
+    margin-right: 20px;
+
+    border-radius: 50%;
+    padding: 7px;
+
+    background-color: #000000bb;
+    clip: radial(50% 50%, 0deg, -360deg);
+
+    transition-property: clip;
+    transition-duration: 30s;
+    transition-timing-function: linear;
+
+    visibility: collapse;
+}
+
+#cooldownOverlay.ready {
+    visibility: visible;
+    clip: radial(50% 50%, 0deg, 0deg);
+}
+
 .phase_selection #heroBuilderLockButton {
     visibility: visible;
 }

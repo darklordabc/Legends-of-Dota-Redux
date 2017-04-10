@@ -961,6 +961,11 @@ function Pregame:onThink()
                     end
                 end
             end
+
+            -- Is it single player game
+            if util:isSinglePlayerMode() or IsInToolsMode() then
+                CustomGameEventManager:Send_ServerToAllClients("lodSinglePlayer",{})
+            end
         end
         -- Is it over?
         if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
