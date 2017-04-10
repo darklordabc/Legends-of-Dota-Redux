@@ -67,5 +67,6 @@
         }
         "ReduxCost"                                                            "120"
         "ReduxFlags"                                                           "SuperOP"
+        "ReduxPerks"                                                           "light"
     }
 }

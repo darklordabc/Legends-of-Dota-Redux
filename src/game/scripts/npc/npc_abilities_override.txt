@@ -21,7 +21,7 @@
     "black_dragon_fireball"
     {
         "MaxLevel"                                                             "1"
-        "ReduxPerks"                                                           "fire"
+        "ReduxPerks"                                                           "fire | explosive"
     }
     "satyr_trickster_purge"
     {
@@ -106,7 +106,7 @@
             }
         }
         "ReduxFlags"                                                           "attack_modifier | doNotRandom"
-        "ReduxPerks"                                                           "neutral | attack_modifier"
+        "ReduxPerks"                                                           "neutral | attack_modifier | poison"
     }
     "roshan_slam"
     {
@@ -313,7 +313,7 @@
             }
         }
         "ReduxFlags"                                                           "support | tank"
-        "ReduxPerks"                                                           "support | neutral | aura"
+        "ReduxPerks"                                                           "earth | support | neutral | aura"
     }
     "enraged_wildkin_toughness_aura"
     {
@@ -558,7 +558,7 @@
             }
         }
         "ReduxFlags"                                                           "stun"
-        "ReduxPerks"                                                           "fire"
+        "ReduxPerks"                                                           "fire | explosive"
         "ReduxCost"                                                            "10"
     }
     "zuus_cloud"
@@ -2741,7 +2741,7 @@
     }
     "elder_titan_natural_order"
     {
-        "ReduxPerks"                                                           "aura"
+        "ReduxPerks"                                                           "aura | earth"
     }
     "leoric_lifesteal_aura"
     {

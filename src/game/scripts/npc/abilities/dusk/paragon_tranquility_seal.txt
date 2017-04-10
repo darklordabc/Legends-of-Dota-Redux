@@ -11,6 +11,7 @@
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"custom/paragon_tranquility_seal"
 	
+		"ReduxPerks"                                                           "light"
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"800"

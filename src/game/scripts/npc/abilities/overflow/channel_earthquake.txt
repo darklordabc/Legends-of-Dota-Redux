@@ -15,6 +15,7 @@
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
 		"AbilityManaCost"               "150"
 		"AbilityChannelTime"      "10 14 18 22"
+		"ReduxPerks"                                                           "earth"
 		"AbilitySpecial"
 		{
 			"01"

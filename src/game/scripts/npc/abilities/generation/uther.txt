@@ -16,6 +16,165 @@
     //
     //
     //=================================================================================================================
+    "uther_Argent_Smite"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "uther/uther_Argent_Smite"
+        "MaxLevel"                      "4"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_TOGGLE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityCastRange"              "550"
+    
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "Cooldown_Factor"   "3.0"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "Range_Bonus"       "400"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "Heal_Factor"       "0.75 1 1.25 1.5"
+            }
+            "04"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "Tower_Heal_Factor"     "0.3 0.4 0.5 0.6"
+            }
+        }
+    
+        "precache"
+        {
+            "particle"  "particles/ui/ui_godrays.vpcf"
+            "particle"  "particles/uther/argent_smite.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
+        }
+        "OnToggleOn"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_argent_smite_passive"
+                "Target"        "CASTER"
+            }
+        }
+        "OnToggleOff"
+        {
+            "RemoveModifier"
+            {
+                "ModifierName"  "modifier_argent_smite_passive"
+                "Target"        "CASTER"
+            }
+        }
+    
+        "Modifiers"
+        {
+            "modifier_specially_deniable"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "0" 
+    
+                "States"
+                {
+                    "MODIFIER_STATE_SPECIALLY_DENIABLE"     "MODIFIER_STATE_VALUE_ENABLED"
+                }
+    
+                "OnAttacked"
+                // "%attack_damage" is set to the damage value after mitigation
+                {
+                    
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_uther/Argent_Smite.lua"
+                        "Function"      "HealingAttack"
+                        "DamageTaken"   "%attack_damage"
+                    }
+                }
+    
+                "OnDeath"
+                {
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "modifier_argent_smite"
+                        "Target"        "CASTER"
+                    }
+                }
+                "OnTeleported"
+                {
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "modifier_argent_smite"
+                        "Target"        "CASTER"
+                    }
+                }
+            }
+            "modifier_argent_smite_passive"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+    
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_uther/Argent_Smite.lua"
+                        "Function"      "GiveUtherNewHammer"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_uther/Argent_Smite.lua"
+                        "Function"      "GiveUtherOldHammer"
+                    }
+                }
+                "OnAttack"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_uther/Argent_Smite.lua"
+                        "Function"      "SetCooldown"
+                    }
+                }
+            }
+    
+            "modifier_argent_smite"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+                
+                "EffectName"        "particles/ui/ui_godrays.vpcf"
+                "EffectAttachType"  "follow_origin"
+    
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ATTACK_RANGE_BONUS" "%Range_Bonus" 
+                }
+            }
+            "modifier_argent_smite_orb"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+                "Orb"
+                {
+                    "Priority"          "DOTA_ORB_PRIORITY_ABILITY"
+                    "ProjectileName"    ""
+                    "CastAttack"        "1"
+                }
+            }
+        }
+    }
     "uther_compass"
     {
       "BaseClass"                 "ability_datadriven"
@@ -157,6 +316,8 @@
 
         "AbilityDuration"               "8"
         "AoERadius"                     "250"
+
+        "ReduxPerks"                                                           "light"
     
         "AbilitySpecial"
         {
@@ -568,6 +729,7 @@
         "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
         "AbilityManaCost"               "70 80 90 100"
         "AbilityProcsMagicStick"        "1"
+        "ReduxPerks"                                                           "light"
     
         "precache"
         {
@@ -670,6 +832,7 @@
         "FightRecapLevel"               "2"
         "AbilityTextureName"            "custom/uther_omniscience"
         "AbilityProcsMagicStick"        "1"
+        "ReduxPerks"                                                           "light"
 
         // Casting
         //-------------------------------------------------------------------------------------------------------------

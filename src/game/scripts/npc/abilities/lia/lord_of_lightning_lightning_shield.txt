@@ -73,6 +73,6 @@
             }
         }
         "ReduxFlags"                                                           "support"
-        "ReduxPerks"                                                           "support"
+        "ReduxPerks"                                                           "support | lightning"
     }
 }

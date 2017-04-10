@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ## 7.5 - Development Version
 - Fast start vote option now only starts at level 3 instead of 6. In vote maps, players always have a chance to ban an ability.
+- Added some abilities to perk categories
+- Lock build button now has 30 second cooldown before u can lock
+- Buyback reseting to full amount when you respawn has been fixed
+- Fixed Libation not working as intended
+- Fixed Monkey King not getting his selected primary attirbute
+- Brewmasters Demolish ability now regarded as single player ability
+- Lone Druids Demolish now has 4 levels, and has lower max damage bonus, is also troll combo with Brewmasters Demolish
+- Assassinate and Enchant Totem now troll combo
+- Lowered limits of Rocket Factory to prevent lag, but made them get speed bonus earlier
+- Wukong and Pocket Factoy has been made troll combos with spells that allow very fast casting of them, rearm, multicast, spell echo etc, this is because they are likely cause memory leaks and lag
 
 ## 7.4 - Steam Version
 - Added 4 new versions of Morph

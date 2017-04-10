@@ -962,7 +962,7 @@ function Pregame:onThink()
                 end
             end
 
-            -- Is it single player game
+            -- Is it single player game do not have the cooldown on the lock build button
             if util:isSinglePlayerMode() or IsInToolsMode() then
                 CustomGameEventManager:Send_ServerToAllClients("lodSinglePlayer",{})
             end

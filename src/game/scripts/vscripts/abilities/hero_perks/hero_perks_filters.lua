@@ -16,6 +16,11 @@ require('abilities/hero_perks/npc_dota_hero_drow_ranger_perk')
 require('abilities/hero_perks/npc_dota_hero_abaddon_perk')
 require('abilities/hero_perks/npc_dota_hero_slardar_perk')
 
+-- Uther (added it here because I dont want it in the ingame files)
+require('abilities/nextgeneration/hero_uther/Argent_Smite')
+-- Proteus
+require('abilities/nextgeneration/hero_proteus/proteus_jet')
+
 function heroPerksProjectileFilter(filterTable)
   local targetIndex = filterTable["entindex_target_const"]
   local target = EntIndexToHScript(targetIndex)
@@ -42,10 +47,23 @@ function heroPerksOrderFilter(filterTable)
   local issuer = filterTable["issuer_player_id_const"]
   local abilityIndex = filterTable["entindex_ability"]
   local targetIndex = filterTable["entindex_target"]
+  local unit = EntIndexToHScript(units["0"])
+  local target = EntIndexToHScript(targetIndex)
+  local ability = EntIndexToHScript(abilityIndex)
 
     -- Perk for Shadow Demon
   perkShadowDemon(filterTable)
 
+  -- Uther controls
+  AllowAlliedAttacks(unit,target,order_type)
+  if CancelOtherAlliedAttacks(unit,target,order_type) == false then
+    --return false -- I think this can be skipped
+  end
+  StopAllowingAlliedAttacks(unit,target,order_type)
+  
+  -- Proteus order filters
+  jetOrder(filterTable)
+  
   return filterTable
 end
 
@@ -59,6 +77,9 @@ function heroPerksModifierFilter(filterTable)
   local parent = EntIndexToHScript( parent_index )
   local caster = EntIndexToHScript( caster_index )
   local ability = EntIndexToHScript( ability_index )
+
+  -- Uther argent smite
+  argentSmiteDoNotDebuffAllies(filterTable)
   
   targetPerks_modifier = {
     npc_dota_hero_dragon_knight_perk = true,
@@ -98,6 +119,9 @@ function heroPerksModifierFilter(filterTable)
   perkSpaceCow(filterTable)
   -- Perk for Troll Warlord
   perkTrollWarlord(filterTable)
+  
+  
+  
   -- Returning the filterTable
   return filterTable
 end
@@ -111,6 +135,9 @@ function heroPerksDamageFilter(filterTable)
     end
     local parent = EntIndexToHScript( victim_index )
     local caster = EntIndexToHScript( attacker_index )
+
+    -- Argent smite not hurting allies
+    damageFilterArgentSmite(filterTable)
   
   targetPerks_damage = {
     npc_dota_hero_abaddon_perk = true,
@@ -127,6 +154,8 @@ function heroPerksDamageFilter(filterTable)
    -- Perk for Bane
   PerkBane(filterTable)
 
+  
+  
   return filterTable
 end
 
