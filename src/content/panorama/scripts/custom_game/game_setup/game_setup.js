@@ -4418,9 +4418,11 @@ function OnPhaseChanged(table_name, key, data) {
 
                 // 30 second lock
                 if (!$.GetContextPanel().isSinglePlayer) {
+                    $('#heroBuilderLockButton').SetHasClass("makeThePlayerNoticeThisButton", false) 
                     $('#heroBuilderLockButton').enabled = false;
                     $('#cooldownOverlay').AddClass("ready");
                     $.Schedule(30.0, function () {
+                        $('#heroBuilderLockButton').SetHasClass("makeThePlayerNoticeThisButton", true) 
                         $('#heroBuilderLockButton').enabled = true;
                     })
                     $('#heroBuilderLockButton').SetHasClass('pressed', !$('#heroBuilderLockButton').BHasClass('pressed'));
