@@ -760,17 +760,17 @@
                 "ThinkInterval"  "%interval"
                 "OnIntervalThink"
                 {
-                    "Damage"
-                    {
-                        "Target"        "TARGET"
-                        "Type"          "DAMAGE_TYPE_PURE"
-                        "Damage"        "%damage_per_second * %interval"
-                    }
-                    "Heal"
-                    {
-                        "Target"        "CASTER"
-                        "HealAmount"    "%damage_per_second * %interval * %lifesteal / 100"
-                    }
+                    //"Damage"
+                    //{
+                    //    "Target"        "TARGET"
+                    //    "Type"          "DAMAGE_TYPE_PURE"
+                    //    "Damage"        "%damage_per_second * %interval"
+                    //}
+                    //"Heal"
+                    //{
+                    //    "Target"        "CASTER"
+                    //    "HealAmount"    "%damage_per_second * %interval * %lifesteal / 100"
+                    //} THIS GETS DONE INSIDE THE SCRIPT NOW
                     "RunScript"
                     {
                         "ScriptFile"    "abilities/nextgeneration/hero_hylonome/hylonome_libation.lua"

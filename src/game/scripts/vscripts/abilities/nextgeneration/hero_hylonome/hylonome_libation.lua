@@ -7,6 +7,17 @@ function CheckDistance(keys)
 
 	if (target:GetAbsOrigin() - caster:GetAbsOrigin()):Length2D() > max_distance then 
 		target:RemoveModifierByName("modifier_libation_debuff")
+	else
+		local damageTable = {
+			attacker = caster,
+			ability = ability,
+			victim = target,
+			damage = ability:GetSpecialValueFor("damage_per_second") * ability:GetSpecialValueFor("interval"),
+			damage_type = DAMAGE_TYPE_PURE,
+		}
+		ApplyDamage(damageTable)
+		
+		caster:Heal(ability:GetSpecialValueFor("damage_per_second")*ability:GetSpecialValueFor("lifesteal")*0.01 * ability:GetSpecialValueFor("interval"),caster)
 	end
 end
 
