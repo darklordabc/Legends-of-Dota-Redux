@@ -16,6 +16,7 @@
         "AbilityCastPoint"              "0.4"
         "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
         "AbilityProcsMagicStick"        "1"
+        "ReduxPerks"                                                           "explosive"
     
         "precache"
         {
@@ -237,6 +238,7 @@
         "AbilityCastPoint"              "0.3"
         "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
         "AbilityProcsMagicStick"    "1"
+        "ReduxPerks"                                                           "trap"     
         
         "precache"
         {

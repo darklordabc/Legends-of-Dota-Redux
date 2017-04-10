@@ -131,6 +131,6 @@
             }
         }
         "ReduxFlags"                                                           "support"
-        "ReduxPerks"                                                           "support | channeled"
+        "ReduxPerks"                                                           "support | channeled | light"
     }
 }

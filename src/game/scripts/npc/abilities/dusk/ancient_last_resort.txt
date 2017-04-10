@@ -19,6 +19,7 @@
         "AbilityCooldown"                                                      "300 250 200"
         "AbilityManaCost"                                                      "0"
         "AbilityModifierSupportValue"                                          "0.0"
+        "ReduxPerks"                                                           "light"
         "AbilitySpecial"
         {
             "01"

@@ -35,6 +35,6 @@
             }
         }
         "ReduxFlags"                                                           "support"
-        "ReduxPerks"                                                           "support"
+        "ReduxPerks"                                                           "support | light"
     }
 }

@@ -82,7 +82,7 @@
             }
         }
         "ReduxFlags"                                                           "tank"
-        "ReduxPerks"                                                           "self_damage"
+        "ReduxPerks"                                                           "self_damage | explosive"
         "ReduxBans"                                                            "spell_lab_symbiotic"
     }
 }

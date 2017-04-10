@@ -53,7 +53,7 @@
             }
         }
         "ReduxFlags"                                                           "support | wtfAutoBan"
-        "ReduxPerks"                                                           "support"
+        "ReduxPerks"                                                           "support | lightning"
         "ReduxBans"                                                            "tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux | meepo_divided_we_stand"
     }
 }

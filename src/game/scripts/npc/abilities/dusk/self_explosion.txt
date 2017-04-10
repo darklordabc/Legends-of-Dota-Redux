@@ -150,5 +150,6 @@
             }
         }
         "ReduxBans"                                                            "spell_lab_symbiotic"
+        "ReduxPerks"                                                           "scientific | trap | explosive"
     }
 }

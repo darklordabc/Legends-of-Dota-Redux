@@ -7,6 +7,7 @@
 		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityTextureName" "sandking_caustic_finale"
+		"ReduxPerks"                                                           "poison"
 
 		"precache" {
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_sandking.vsndevts"

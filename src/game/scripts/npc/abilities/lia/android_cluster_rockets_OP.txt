@@ -168,8 +168,9 @@
                 }
             }
         }
-        "ReduxPerks"                                                           "scientific"
+        "ReduxPerks"                                                           "trap | explosive"
         "ReduxCost"                                                            "100"
         "ReduxFlags"                                                           "SuperOP"
+
     }
 }
