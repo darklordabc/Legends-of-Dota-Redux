@@ -71,6 +71,9 @@ function heroPerksModifierFilter(filterTable)
   local parent = EntIndexToHScript( parent_index )
   local caster = EntIndexToHScript( caster_index )
   local ability = EntIndexToHScript( ability_index )
+
+  -- Uther argent smite
+  argentSmiteDoNotDebuffAllies(filterTable)
   
   targetPerks_modifier = {
     npc_dota_hero_dragon_knight_perk = true,
@@ -111,8 +114,7 @@ function heroPerksModifierFilter(filterTable)
   -- Perk for Troll Warlord
   perkTrollWarlord(filterTable)
   
-  -- Uther argent smite
-  argentSmiteDoNotDebuffAllies(filterTable)
+  
   
   -- Returning the filterTable
   return filterTable
@@ -127,6 +129,9 @@ function heroPerksDamageFilter(filterTable)
     end
     local parent = EntIndexToHScript( victim_index )
     local caster = EntIndexToHScript( attacker_index )
+
+    -- Argent smite not hurting allies
+    damageFilterArgentSmite(filterTable)
   
   targetPerks_damage = {
     npc_dota_hero_abaddon_perk = true,
@@ -143,8 +148,7 @@ function heroPerksDamageFilter(filterTable)
    -- Perk for Bane
   PerkBane(filterTable)
 
-  -- Argent smite not hurting allies
-  damageFilterArgentSmite(filterTable)
+  
   
   return filterTable
 end
