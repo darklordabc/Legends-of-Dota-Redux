@@ -1448,7 +1448,7 @@ function Ingame:checkBuybackStatus()
                 function()
                     if IsValidEntity(unit) then
                         local buyBackLeft = unit:GetBuybackCooldownTime()
-                        if buyBackLeft ~= 0 then
+                        if buyBackLeft >= 420 then
                             local maxCooldown = OptionManager:GetOption('buybackCooldownConstant')
                             if buyBackLeft > maxCooldown then
                                 unit:SetBuybackCooldownTime(maxCooldown)
