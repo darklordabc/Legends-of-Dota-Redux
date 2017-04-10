@@ -92,7 +92,7 @@
                     
                     "RunScript"
                     {
-                        "ScriptFile"    "heroes/hero_uther/Argent_Smite.lua"
+                        "ScriptFile"    "abilities/nextgeneration/hero_uther/Argent_Smite.lua"
                         "Function"      "HealingAttack"
                         "DamageTaken"   "%attack_damage"
                     }
@@ -125,7 +125,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "heroes/hero_uther/Argent_Smite.lua"
+                        "ScriptFile"    "abilities/nextgeneration/hero_uther/Argent_Smite.lua"
                         "Function"      "GiveUtherNewHammer"
                     }
                 }
@@ -133,7 +133,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "heroes/hero_uther/Argent_Smite.lua"
+                        "ScriptFile"    "abilities/nextgeneration/hero_uther/Argent_Smite.lua"
                         "Function"      "GiveUtherOldHammer"
                     }
                 }
@@ -141,7 +141,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"    "heroes/hero_uther/Argent_Smite.lua"
+                        "ScriptFile"    "abilities/nextgeneration/hero_uther/Argent_Smite.lua"
                         "Function"      "SetCooldown"
                     }
                 }
