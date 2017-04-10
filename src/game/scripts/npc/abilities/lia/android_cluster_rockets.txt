@@ -20,8 +20,9 @@
         "AbilityChannelTime"                                                   "1.01"
         "precache"
         {
-            "particle"                                                     "particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
-            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_gyrocopter.vsndevts"
+            "particle"                                                      "particles/units/heroes/hero_tinker/tinker_missile.vpcf"
+            "particle"                                                      "particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
+            "soundfile"                                                     "soundevents/game_sounds_heroes/game_sounds_gyrocopter.vsndevts"
         }
         "AbilitySpecial"
         {
