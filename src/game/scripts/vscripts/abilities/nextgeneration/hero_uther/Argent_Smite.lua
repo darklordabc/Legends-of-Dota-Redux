@@ -37,7 +37,10 @@ function SetCooldown(keys)
 	local ability = attacker:FindAbilityByName("uther_Argent_Smite")
 
 	if ability and target:GetTeam() == attacker:GetTeam() and target:HasModifier("modifier_specially_deniable") then
-		ability:StartCooldown(ability:GetSpecialValueFor("Cooldown_Factor"))
+		ability:StartCooldown(ability:GetSpecialValueFor("Cooldown_Factor")) 
+		if target:IsBuilding() then
+			ability:StartCooldown(ability:GetSpecialValueFor("Cooldown_Factor_Building"))
+		end
 		Timers:CreateTimer(0.03, function()
 			attacker:RemoveModifierByName("modifier_argent_smite")
 			if not target:IsNull() then target:RemoveModifierByName("modifier_specially_deniable") end

@@ -8848,6 +8848,7 @@
     "DOTA_Tooltip_ability_uther_Argent_Smite_Description"                                   "While toggled, allows Lightbringer to heal allied units and towers by attacking them.  Heal amount is based on his base attack damage and has a cooldown per hit. Grants bonus attack range when attacking allies."
     "DOTA_Tooltip_ability_uther_Argent_Smite_Lore"                                          "Miraculous power flows from the lightbringers hand, and that which crushes instead mends and makes whole again."
     "DOTA_Tooltip_ability_uther_Argent_Smite_Cooldown_Factor"                               "COOLDOWN PER HIT:"
+    "DOTA_Tooltip_ability_uther_Argent_Smite_Cooldown_Factor_Building"                               "COOLDOWN PER HIT (BUILDING):"
     "DOTA_Tooltip_ability_uther_Argent_Smite_Range_Bonus"                                   "RANGE BONUS:"
     "DOTA_Tooltip_ability_uther_Argent_Smite_Heal_Factor"                                   "HEAL FACTOR:"
     "DOTA_Tooltip_ability_uther_Argent_Smite_Tower_Heal_Factor"                             "TOWER HEAL FACTOR:"
