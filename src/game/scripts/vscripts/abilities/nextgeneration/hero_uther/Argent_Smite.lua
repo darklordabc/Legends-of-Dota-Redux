@@ -17,7 +17,7 @@ function HealingAttack (keys)
 	end
 end
 
-function GiveUtherNewHammer(keys) -- HasHammer gets first declared in the game INIT phase and Activating HurlHammer sets it to false, getting the hammer back is true again
+--[[function GiveUtherNewHammer(keys) -- HasHammer gets first declared in the game INIT phase and Activating HurlHammer sets it to false, getting the hammer back is true again
 	local caster = keys.caster
 	if caster.HasHammer == true then
 		CosmeticLib:ReplaceWithSlotName( keys.caster, "weapon", 7580 )
@@ -29,7 +29,7 @@ function GiveUtherOldHammer(keys)
 	if caster.HasHammer == true then
 		CosmeticLib:ReplaceWithSlotName( keys.caster, "weapon", 4246 )
 	end
-end
+end]]
 
 function SetCooldown(keys)
 	local attacker = keys.attacker
