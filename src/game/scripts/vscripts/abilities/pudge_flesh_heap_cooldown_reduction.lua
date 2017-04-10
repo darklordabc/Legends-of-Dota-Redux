@@ -176,6 +176,12 @@ end
 
 function modifier_flesh_heap_cooldown_reduction:GetModifierPercentageCooldown()
   local value = (100-math.pow(1-(0.01*self.flesh_heap_value_buff_amount), self:GetStackCount()) * 100) 
+  -- Rounding the value to 1
+  if math.fmod(value) > 0.5 then
+    value = math.ceil(value)
+  else
+    value = math.floor(value)
+  end
   return value
 end
 
