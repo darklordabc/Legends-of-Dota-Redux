@@ -18,6 +18,8 @@ require('abilities/hero_perks/npc_dota_hero_slardar_perk')
 
 -- Uther (added it here because I dont want it in the ingame files)
 require('abilities/nextgeneration/hero_uther/Argent_Smite')
+-- Proteus
+require('abilities/nextgeneration/hero_proteus/proteus_jet')
 
 function heroPerksProjectileFilter(filterTable)
   local targetIndex = filterTable["entindex_target_const"]
@@ -55,6 +57,10 @@ function heroPerksOrderFilter(filterTable)
   -- Uther controls
   AllowAlliedAttacks(unit,target,order_type)
   if CancelOtherAlliedAttacks(unit,target,order_type) == false then
+    
+    -- Proteus order filters
+    jetOrder(filterTable)
+    
     --return false -- I think this can be skipped
   end
   StopAllowingAlliedAttacks(unit,target,order_type)
