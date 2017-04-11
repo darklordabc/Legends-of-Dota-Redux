@@ -938,10 +938,11 @@
     "lod_cat_stun"                                  "Stun, Shackle and Root"
     "lod_cat_isUlt"                                 "Ultimate Ability"
     "lod_cat_summon"                                "Summon"
-    "lod_cat_silence"                  "Silence"
-    "lod_cat_disarm_break"                  "Disarm and Break"
-    "lod_cat_illusion"                  "Illusion"
-    "lod_cat_dota_custom"                  "Dota Related Customs"
+    "lod_cat_silence"                               "Silence"
+    "lod_cat_disarm_break"                          "Disarm and Break"
+    "lod_cat_illusion"                              "Illusion"
+    "lod_cat_dota_custom"                           "Dota Related Customs"
+    "lod_cat_passive"                               "Passive Ability"
 
     // Categories
     "lodCategory_main"                              "Hero Abilities"

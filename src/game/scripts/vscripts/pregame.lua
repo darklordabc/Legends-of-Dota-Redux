@@ -1485,12 +1485,18 @@ function Pregame:networkHeroes()
     -- Parse flags
     local flags = {}
     for k,v in pairs(util:getAbilityKV()) do
-        if v and v["ReduxFlags"] then
-            local abilityFlags = util:split(v["ReduxFlags"], " | ")
-            for _,flag in pairs(abilityFlags) do
-                local flag = string.lower(flag)
-                flags[flag] = flags[flag] or {}
-                flags[flag][k] = 1
+        if v then
+            if v["ReduxFlags"] then
+                local abilityFlags = util:split(v["ReduxFlags"], " | ")
+                for _,flag in pairs(abilityFlags) do
+                    local flag = string.lower(flag)
+                    flags[flag] = flags[flag] or {}
+                    flags[flag][k] = 1
+                end  
+            end
+            if v["AbilityBehavior"] and string.match(v["AbilityBehavior"], "DOTA_ABILITY_BEHAVIOR_PASSIVE") then
+                flags["passive"] = flags["passive"] or {}
+                flags["passive"][k] = 1
             end
         end
     end
