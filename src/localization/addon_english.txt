@@ -942,7 +942,7 @@
     "lod_cat_disarm_break"                          "Disarm and Break"
     "lod_cat_illusion"                              "Illusion"
     "lod_cat_dota_custom"                           "Dota Related Customs"
-    "lod_cat_passive"                               "Passive Ability"
+    "lod_cat_passive"                               "Passive"
 
     // Categories
     "lodCategory_main"                              "Hero Abilities"
