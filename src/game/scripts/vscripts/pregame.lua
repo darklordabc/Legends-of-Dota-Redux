@@ -1494,7 +1494,7 @@ function Pregame:networkHeroes()
                     flags[flag][k] = 1
                 end  
             end
-            if v["AbilityBehavior"] and string.match(v["AbilityBehavior"], "DOTA_ABILITY_BEHAVIOR_PASSIVE") then
+            if v["AbilityBehavior"] and string.match(v["AbilityBehavior"], "DOTA_ABILITY_BEHAVIOR_PASSIVE") and not string.match(k, "special_bonus_") and not string.match(k, "perk") then
                 flags["passive"] = flags["passive"] or {}
                 flags["passive"][k] = 1
             end
