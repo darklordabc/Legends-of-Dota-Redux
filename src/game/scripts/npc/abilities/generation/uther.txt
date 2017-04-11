@@ -19,7 +19,7 @@
     "uther_Argent_Smite"
     {
         "BaseClass"                     "ability_datadriven"
-        "AbilityTextureName"            "uther/uther_Argent_Smite"
+        "AbilityTextureName"            "custom/uther_Argent_Smite"
         "MaxLevel"                      "4"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_TOGGLE"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -36,14 +36,19 @@
             "02"
             {
                 "var_type"          "FIELD_FLOAT"
-                "Range_Bonus"       "400"
+                "Cooldown_Factor_Building"   "13.0"
             }
             "03"
             {
                 "var_type"          "FIELD_FLOAT"
-                "Heal_Factor"       "0.75 1 1.25 1.5"
+                "Range_Bonus"       "400"
             }
             "04"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "Heal_Factor"       "0.75 1 1.25 1.5"
+            }
+            "05"
             {
                 "var_type"          "FIELD_FLOAT"
                 "Tower_Heal_Factor"     "0.3 0.4 0.5 0.6"

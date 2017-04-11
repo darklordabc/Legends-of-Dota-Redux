@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
 - Assassinate and Enchant Totem now troll combo
 - Lowered limits of Rocket Factory to prevent lag, but made them get speed bonus earlier
 - Wukong and Pocket Factoy has been made troll combos with spells that allow very fast casting of them, rearm, multicast, spell echo etc, this is because they are likely cause memory leaks and lag
+- Added Argent Smite
 
 ## 7.4 - Steam Version
 - Added 4 new versions of Morph
