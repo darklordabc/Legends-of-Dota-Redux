@@ -5,6 +5,7 @@ require('abilities/hero_perks/hero_perks_filters')
 require('abilities/epic_boss_fight/ebf_mana_fiend_essence_amp')
 require('abilities/global_mutators/global_mutator')
 require('abilities/global_mutators/memes_redux')
+require('abilities/nextgeneration/orderfilter')
 
 -- Create the class for it
 local Ingame = class({})
@@ -392,7 +393,9 @@ function Ingame:FilterExecuteOrder(filterTable)
     if unit:GetTeamNumber() ~= PlayerResource:GetCustomTeamAssignment(issuer) and PlayerResource:GetConnectionState(issuer) ~= 0 then 
         return false
     end
-    
+    -- Next Gen hackery
+    filterTable = nextGenOrderFilter(filterTable)
+
     if not OptionManager:GetOption('disablePerks') then
         filterTable = heroPerksOrderFilter(filterTable)
     end
@@ -1811,7 +1814,8 @@ function Ingame:FilterDamage( filterTable )
     if not OptionManager:GetOption('disablePerks') then
         filterTable = heroPerksDamageFilter(filterTable)
     end
-
+    -- Next Gen
+    filterTable = nextGenDamageFilter(filterTable)
     -- Memes
     if OptionManager:GetOption('memesRedux') == 1 then
         filterTable = memesDamageFilter(filterTable)
@@ -1836,7 +1840,8 @@ function Ingame:FilterModifiers( filterTable )
     if not OptionManager:GetOption('disablePerks') then
         filterTable = heroPerksModifierFilter(filterTable)
     end
-
+    -- Next gen
+    filterTable = nextGenModifierFilter(filterTable)
     -- Memes
     if OptionManager:GetOption('memesRedux') == 1 then
         filterTable = memesModifierFilter(filterTable)
