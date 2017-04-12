@@ -109,6 +109,8 @@ function Pregame:init()
     self.chanceToHearMeme = 1
     self.freeAbility = nil
 
+    self.heard = {}
+
     self.votingStatFlags = {}
     self.optionVoteSettings = {
         banning = {
@@ -4194,7 +4196,7 @@ function Pregame:setSelectedHero(playerID, heroName, force)
     if self.selectedHeroes[playerID] ~= heroName then
         -- Update local store
         self.selectedHeroes[playerID] = heroName
-
+        EmitGlobalSound("Event.Click")
         -- Update the selected hero
         network:setSelectedHero(playerID, heroName)
 
@@ -4594,7 +4596,10 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
 
         -- Toggle their state
         self.isReady[playerID] = (self.isReady[playerID] == 1 and 0) or 1
-
+        if not self.heard[playerID] then
+            self.heard[playerID] = true
+            EmitGlobalSound("Event.LockBuild")
+        end
         -- Checks if people are ready
         self:checkForReady()
     end
@@ -5525,6 +5530,8 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                     else
                         EmitGlobalSound("Memes.SnipeHit")
                     end
+                else
+                    EmitGlobalSound("Event.Click")
                 end
             end
         end

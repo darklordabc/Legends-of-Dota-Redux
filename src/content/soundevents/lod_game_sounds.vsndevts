@@ -242,6 +242,112 @@
 	}
 }
 
+"Event.Click"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/ui/tutorial_ui_click_01.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"		"1.900000"
+					}
+					"pitch_rand_min"
+					{
+						"value"		"-0.300000"
+					}
+					"pitch_rand_max"
+					{
+						"value"		"-0.250000"
+					}
+					"pitch"
+					{
+						"value"		"0.900000"
+					}
+					"soundlevel"
+					{
+						"value"		"78.000000"
+					}
+					"distance_max"
+					{
+						"value"		"2500.000000"
+					}
+					"limiter_on"
+					{
+						"value"		"0.000000"
+					}
+				}
+			}
+		}
+	}
+}
+
+"Event.LockBuild"
+{
+	"operator_stacks"
+	{
+		"update_stack"
+		{
+			"reference_operator"
+			{
+				"operator"		"sos_reference_stack"
+				"reference_stack"		"dota_src1_3d"
+				"operator_variables"
+				{
+					"vsnd_files"
+					{
+						"value"
+						{
+							"value0"		"sounds/ui/drafted_01.vsnd"
+						}
+					}
+					"volume"
+					{
+						"value"		"1.900000"
+					}
+					"pitch_rand_min"
+					{
+						"value"		"-0.300000"
+					}
+					"pitch_rand_max"
+					{
+						"value"		"-0.250000"
+					}
+					"pitch"
+					{
+						"value"		"0.900000"
+					}
+					"soundlevel"
+					{
+						"value"		"78.000000"
+					}
+					"distance_max"
+					{
+						"value"		"2500.000000"
+					}
+					"limiter_on"
+					{
+						"value"		"0.000000"
+					}
+				}
+			}
+		}
+	}
+}
+
 "BoosterDraft.Round"
 {
 	"operator_stacks"
