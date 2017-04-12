@@ -45,7 +45,7 @@ function BonusMana(keys)
 
 	amount = math.floor(damagedone)
 
-	PopupNumbers(target, "mana_add", Vector(0, 204, 255), 2.0, amount, POPUP_SYMBOL_PRE_PLUS, nil)
+	target:PopupNumbers(target, "mana_add", Vector(0, 204, 255), 2.0, amount, POPUP_SYMBOL_PRE_PLUS, nil)
 end
 
 function BonusDamage(keys)
