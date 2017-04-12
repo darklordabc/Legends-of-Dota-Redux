@@ -165,6 +165,7 @@
 #base "abilities\dota\pudge_flesh_heap_armor.txt"
 #base "abilities\dota\pudge_flesh_heap_spell_lifesteal.txt"
 #base "abilities\dota\pudge_flesh_heap_lifesteal.txt"
+#base "abilities\dota\pudge_flesh_heap_cast_range.txt"
 #base "abilities\dota\riki_backstab_lod.txt"
 #base "abilities\dota\riki_permanent_invisibility_lod.txt"
 #base "abilities\dota\sandking_caustic_finale_redux.txt"
