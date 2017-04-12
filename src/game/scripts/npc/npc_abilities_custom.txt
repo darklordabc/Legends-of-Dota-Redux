@@ -162,6 +162,9 @@
 #base "abilities\dota\pudge_flesh_heap_evasion.txt"
 #base "abilities\dota\pudge_flesh_heap_magic_resistance.txt"
 #base "abilities\dota\pudge_flesh_heap_cooldown_reduction.txt"
+#base "abilities\dota\pudge_flesh_heap_armor.txt"
+#base "abilities\dota\pudge_flesh_heap_spell_lifesteal.txt"
+#base "abilities\dota\pudge_flesh_heap_lifesteal.txt"
 #base "abilities\dota\riki_backstab_lod.txt"
 #base "abilities\dota\riki_permanent_invisibility_lod.txt"
 #base "abilities\dota\sandking_caustic_finale_redux.txt"
@@ -834,5 +837,5 @@
 #base "abilities\unpickable\treant_eyes_in_the_forest_notification.txt"
 
 "DOTAAbilities" {
-	
+  
 }
