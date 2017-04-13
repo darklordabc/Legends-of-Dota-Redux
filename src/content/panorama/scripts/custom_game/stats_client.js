@@ -51,11 +51,3 @@ function LoadFavBuilds() {
 		})
 	});
 }
-GetDataFromServer("getPlayerData", {steamID: Game.GetLocalPlayerInfo().player_steamid}).then(function(data) {
-	var con = $("#pickingPhaseRecommendedBuildContainer");
-	var favoriteBuilds = [];
-	
-	$.Each(con.Children(), function(child) {
-		child.setFavorite(favoriteBuilds.indexOf(child.buildID) != -1);
-	})
-});
