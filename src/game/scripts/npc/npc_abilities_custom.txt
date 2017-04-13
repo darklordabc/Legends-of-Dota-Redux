@@ -203,6 +203,7 @@
 #base "abilities\dusk\ptomely.txt"
 #base "abilities\dusk\erra.txt"
 #base "abilities\dusk\hero.txt"
+#base "abilities\dusk\lich.txt"
 #base "abilities\dusk\alchemist_motherloads.txt"
 #base "abilities\dusk\alchemist_alchemise.txt"
 #base "abilities\dusk\crimson_blood_sorcery.txt"

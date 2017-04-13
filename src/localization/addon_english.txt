@@ -9710,6 +9710,62 @@
     "DOTA_Tooltip_ability_hero_hyper_kick_slow"                                     "%SLOW:"
     "DOTA_Tooltip_ability_hero_hyper_kick_duration"                                 "DURATION:"
 
+    //--------------------
+    //LICH
+    //--------------------
+    "DOTA_Tooltip_ability_lich_traveling_frost" "Traveling Frost"
+    "DOTA_Tooltip_ability_lich_traveling_frost_description" "Fires a rolling wave of ice towards a target point.  The first enemy it hits is damaged and frozen in place for a short time."
+    "DOTA_Tooltip_ability_lich_traveling_frost_Lore" "It was ICE knowing you."
+    "DOTA_Tooltip_ability_lich_traveling_frost_damage" "DAMAGE:"
+    "DOTA_Tooltip_ability_lich_traveling_frost_stun" "STUN:"
+    
+    "DOTA_Tooltip_ability_lich_winters_requiem" "Winter's Requiem"
+    "DOTA_Tooltip_ability_lich_winters_requiem_description" "Creates a large amount of icy explosions in random locations around the Lich, dealing damage and slowing enemies.  At the end of the duration, the explosions become more violent.  Lasts 4s."
+    "DOTA_Tooltip_ability_lich_winters_requiem_Lore" "Are you feeling cold?"
+    "DOTA_Tooltip_ability_lich_winters_requiem_damage" "DAMAGE:"
+    "DOTA_Tooltip_ability_lich_winters_requiem_interval" "INTERVAL:"
+    "DOTA_Tooltip_ability_lich_winters_requiem_slow" "%SLOW:"
+    "DOTA_Tooltip_ability_lich_winters_requiem_attack_slow" "ATTACK SLOW:"
+    "DOTA_Tooltip_ability_lich_winters_requiem_slow_duration" "SLOW DURATION:"
+    
+    
+    "DOTA_Tooltip_ability_lich_cold_aura_dusk" "Cold Aura"
+    "DOTA_Tooltip_ability_lich_cold_aura_dusk_description" "Enemies within a short radius of the Lich are slowed and take damage over time based upon their max health total.  Passively grants the Lich bonus Armor as well."
+    "DOTA_Tooltip_ability_lich_cold_aura_dusk_Lore" "Brrr."
+    "DOTA_Tooltip_ability_lich_cold_aura_dusk_damage" "%DAMAGE:"
+    "DOTA_Tooltip_ability_lich_cold_aura_dusk_slow" "%SLOW:"
+    "DOTA_Tooltip_ability_lich_cold_aura_dusk_armor_bonus" "ARMOR:"
+    
+    "DOTA_Tooltip_ability_lich_absolute_zero" "Absolute Zero"
+    "DOTA_Tooltip_ability_lich_absolute_zero_description" "Chills the entire map, causing all creeps and heroes on the enemy team to be slowed, take damage over time, and ignore healing. Creeps take 0.25x damage from this ability.\n\nUpgradable by Aghanim's Scepter."
+    "DOTA_Tooltip_ability_lich_absolute_zero_Lore" "Netflix and chill."
+    "DOTA_Tooltip_ability_lich_absolute_zero_aghanim_description" "Increases duration, slow and damage."
+    "DOTA_Tooltip_ability_lich_absolute_zero_damage" "DAMAGE PER SECOND:"
+    "DOTA_Tooltip_ability_lich_absolute_zero_slow" "%SLOW:"
+    "DOTA_Tooltip_ability_lich_absolute_zero_duration" "DURATION:"
+    "DOTA_Tooltip_ability_lich_absolute_zero_duration_scepter" "SCEPTER DURATION:"
+    "DOTA_Tooltip_ability_lich_absolute_zero_slow_scepter" "%SCEPTER SLOW:"
+    "DOTA_Tooltip_ability_lich_absolute_zero_damage_scepter" "SCEPTER DAMAGE:"
+
+    "DOTA_Tooltip_lich_traveling_frost_mod"                                           "Traveling Frost Stun"
+    "DOTA_Tooltip_lich_traveling_frost_mod_description"                               ""
+
+    "DOTA_Tooltip_lich_winters_requiem_slow_mod"                                      "Winter's Requiem Slow"
+    "DOTA_Tooltip_lich_winters_requiem_slow_mod_description"                          ""
+
+    "DOTA_Tooltip_lich_winters_requiem_cast_mod"                                      "Winter's Requiem"
+    "DOTA_Tooltip_lich_winters_requiem_cast_mod_description"                          "You cold hearted bastard."
+
+    "DOTA_Tooltip_lich_winters_requiem_cast_l_mod"                                    "Winter's R-R-R-Requiem"
+    "DOTA_Tooltip_lich_winters_requiem_cast_l_mod_description"                        "FASTER!  FASTER!"
+
+    "DOTA_Tooltip_lich_absolute_zero_slow_mod"                                        "Absolute Zero"
+    "DOTA_Tooltip_lich_absolute_zero_slow_mod_description"                            "Being slowed, taking periodic damage, and unable to heal."
+
+    "DOTA_Tooltip_lich_absolute_zero_scepter_mod"                                     "Absolute Zero"
+    "DOTA_Tooltip_lich_absolute_zero_scepter_mod_description"                         "Being slowed, taking periodic damage, and unable to heal."
+
+
 }
 
 
