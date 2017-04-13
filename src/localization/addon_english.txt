@@ -9350,6 +9350,52 @@
     "DOTA_Tooltip_modifier_morph_int_agi"              "Morph (INT to AGI)"
     "DOTA_Tooltip_modifier_morph_int_agi_Description"      "Converting Intelligence into Agility."
 
+    //-------------------------------------------------------------------
+    // Achlys
+    //-------------------------------------------------------------------
+    "DOTA_Tooltip_ability_achlys_miserable_claws"                                               "Miserable Claws"
+    "DOTA_Tooltip_ability_achlys_miserable_claws_Description"                                   "Achlys' sinks her claws into her foe, poisoning their minds and withering their resolve, lowering their movement speed and armor with every stack, rooting them when their movement speed reaches the minimum. The target remains rooted for 3 seconds or until they face Achlys.\n\nThis ability is a Unique Attack Modifier and does not stack with other UAMs."
+    "DOTA_Tooltip_ability_achlys_miserable_claws_Note0"                                         "Root cannot be reapplied while active."
+    "DOTA_Tooltip_ability_achlys_miserable_claws_Lore"                                          "The claws of the Eternal Night are truly a terrifying sight to see."
+    "DOTA_Tooltip_ability_achlys_miserable_claws_slow_per_stack"                                "%SLOW PER STACK:"
+    "DOTA_Tooltip_ability_achlys_miserable_claws_armor_per_stack"                               "ARMOR LOSS PER STACK:"
+    "DOTA_Tooltip_ability_achlys_miserable_claws_duration"                                      "STACK DURATION:"
+    "DOTA_Tooltip_ability_achlys_miserable_claws_cursed_duration"                               "MINIMUM SPEED FOR ROOT:"
+    "DOTA_Tooltip_ability_achlys_miserable_claws_root_duration"                                 "ROOT DURATION:"
+    "DOTA_Tooltip_modifier_achlys_miserable_claws_debuff_counter"                       "Misery"
+    "DOTA_Tooltip_modifier_achlys_miserable_claws_debuff_counter_Description"           "Reduced armor and movement speed."
+    "DOTA_Tooltip_modifier_achlys_miserable_claws_root"                                 "ROOTED"
+            
+    "DOTA_Tooltip_ability_achlys_nights_embrace"                                              "Night's Embrace"
+    "DOTA_Tooltip_ability_achlys_nights_embrace_Description"                                  "Achlys becomes the Night itself and fades away, turning invisible and feeding off the shadows until she is ready to unleash. On her next attack, deals magical damage based upon time spent unseen while under this effect. If Achlys is seen while invisible, the damage bonus resets."
+    "DOTA_Tooltip_ability_achlys_nights_embrace_Note0"                                        "Invisibility will be broken if Achlys runs out of mana."
+    "DOTA_Tooltip_ability_achlys_nights_embrace_Lore"                                         "None survive in her shadows."
+    "DOTA_Tooltip_ability_achlys_nights_embrace_mana_cost_pct"                                "%MANA COST PER SECOND:"
+    "DOTA_Tooltip_ability_achlys_nights_embrace_damage_per_sec"                               "DAMAGE INCREASE PER SECOND:"
+    "DOTA_Tooltip_ability_achlys_nights_embrace_duration"                                     "DURATION:"
+    "DOTA_Tooltip_ability_achlys_nights_embrace_fade_time"                                    "FADE TIME:"
+    "DOTA_Tooltip_ability_achlys_nights_embrace_Aghanim_Description"                    "Night's Embrace no longer reveals Achlys if he attacks or casts spells."
+    "DOTA_Tooltip_modifier_achlys_nights_embrace"                                       "Night's Embrace"
+    "DOTA_Tooltip_modifier_achlys_nights_embrace_Description"                           "Invisible. Losing mana and gaining attack damage on your next attack."
+            
+    "DOTA_Tooltip_ability_achlys_sorrow_rising"                                               "Sorrow Rising"
+    "DOTA_Tooltip_ability_achlys_sorrow_rising_Description"                                   "Achlys becomes harder to hit for every percent of max health missing, and hits harder for every percent of her max mana missing."
+    "DOTA_Tooltip_ability_achlys_sorrow_rising_Lore"                                          "As the physical breaks, the Night becomes less bound to the world and harder to hit. As the ethereal breaks the Night is bound stronger to it and her attacks more solid."
+    "DOTA_Tooltip_ability_achlys_sorrow_rising_evasion_per_hp_pct"                            "%EVASION BONUS PER HEALTH% MISSING:"
+    "DOTA_Tooltip_ability_achlys_sorrow_rising_damage_per_mana_pct"                           "%DAMAGE BONUS PER MANA% MISSING:"
+            
+    "DOTA_Tooltip_ability_achlys_death_mist"                                             "Death Mist"
+    "DOTA_Tooltip_ability_achlys_death_mist_Description"                                 "Achlys unleashes the Death Mist, tearing herself apart in the process. Deals damage to herself and burns her own mana based on their current values to deal damage and manaburn all foes within the mist's radius."
+    "DOTA_Tooltip_ability_achlys_death_mist_Lore"                                           "Achlys revels in misery and is glad to spread it."
+    "DOTA_Tooltip_ability_achlys_death_mist_self_damage"                                "%CURRENT HEALTH SACRIFICED:"
+    "DOTA_Tooltip_ability_achlys_death_mist_damage_per_health"                           "%DAMAGE PER HEALTH SACRIFICED:"
+    "DOTA_Tooltip_ability_achlys_death_mist_self_burn"                                  "%CURRENT MANA BURNED:"
+    "DOTA_Tooltip_ability_achlys_death_mist_burn_per_mana"                              "%MANA BURN PER MANA SACRIFICED:"
+    "DOTA_Tooltip_ability_achlys_death_mist_damage_duration"                            "MIST DURATION:"
+    "DOTA_Tooltip_ability_achlys_death_mist_damage_radius"                               "MIST RADIUS:"
+    "DOTA_Tooltip_modifier_achlys_death_mist"                               "Death Mist"
+    "DOTA_Tooltip_modifier_achlys_death_mist_Description"                   "Taking damage and losing mana."
+
 
 }
 
