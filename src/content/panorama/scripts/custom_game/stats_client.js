@@ -43,11 +43,15 @@ function SaveFavBuilds(builds) {
 }
 
 function LoadFavBuilds() {
-	GetDataFromServer("getPlayerData", {steamID: Game.GetLocalPlayerInfo().player_steamid}).then(function(data) {
-		var con = $("#pickingPhaseRecommendedBuildContainer");
-		var favoriteBuilds = Object.keys(data.favoriteBuilds || {}).map(function (key) { return data.favoriteBuilds[key]; });
-		$.Each(con.Children(), function(child) {
-			child.setFavorite(favoriteBuilds.indexOf(child.buildID) != -1);
-		})
-	});
+	if (!Game.GetLocalPlayerInfo()) {
+		$.Schedule(0.1, LoadFavBuilds)
+	} else {
+		GetDataFromServer("getPlayerData", {steamID: Game.GetLocalPlayerInfo().player_steamid}).then(function(data) {
+			var con = $("#pickingPhaseRecommendedBuildContainer");
+			var favoriteBuilds = Object.keys(data.favoriteBuilds || {}).map(function (key) { return data.favoriteBuilds[key]; });
+			$.Each(con.Children(), function(child) {
+				child.setFavorite(favoriteBuilds.indexOf(child.buildID) != -1);
+			})
+		});
+	}
 }
