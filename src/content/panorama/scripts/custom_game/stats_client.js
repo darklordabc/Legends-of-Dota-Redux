@@ -8,7 +8,7 @@ function GetDataFromServer(path, params) {
 		$.AsyncWebRequest(ServerAddress + path + encodedParams, {
 			type: "GET",
 			success: function(data) {
-				resolve(data/* || {}*/)
+				resolve(data || {})
 			},
 			error: reject
 		});
@@ -24,23 +24,22 @@ function CreateSkillBuild(title, description) {
 }
 
 function LoadBuilds(filter) {
-	GetDataFromServer("getSkillBuilds", filter == null ? null : {filter: filter}).then(function(builds) {
-		$.Msg("SB Loading - 1")
-		if (builds) {
-			for (var i = 0; i < builds.length; i++) {
-				addRecommendedBuild(builds[i]);
+	try {
+		GetDataFromServer("getSkillBuilds", filter == null ? null : {filter: filter}).then(function(builds) {
+			if (builds) {
+				for (var i = 0; i < builds.length; i++) {
+					addRecommendedBuild(builds[i]);
+				}
 			}
-		}
-		$.Msg("SB Loading - 2")
-		LoadFavBuilds();
-		$.Msg("SB Loading - 3")
-		$("#buildLoadingIndicator").visible = false;
+			LoadFavBuilds();
+			$("#buildLoadingIndicator").visible = false;
 
-		$("#pickingPhaseRecommendedBuildContainer").GetParent().visible = true;
-	}, function() {
-		$("#buildLoadingSpinner").visible = false;
-		$("#buildLoadingIndicatorText").text = $.Localize("#unableLoadingBuilds");
-	});
+			$("#pickingPhaseRecommendedBuildContainer").GetParent().visible = true;
+		}, function() {
+			$("#buildLoadingSpinner").visible = false;
+			$("#buildLoadingIndicatorText").text = $.Localize("#unableLoadingBuilds");
+		});
+	} catch (e) {$.Msg(e.stack)}
 }
 
 function SaveFavBuilds(builds) {
@@ -48,7 +47,6 @@ function SaveFavBuilds(builds) {
 }
 
 function LoadFavBuilds() {
-		$.Msg("SB Loading - LFB")
 	if (!Game.GetLocalPlayerInfo()) {
 		$.Schedule(0.1, LoadFavBuilds)
 	} else {
