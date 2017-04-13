@@ -9475,6 +9475,84 @@
     "DOTA_Tooltip_Modifier_gerrymander_debuff"      "Gerrymander"
     "DOTA_Tooltip_Modifier_gerrymander_debuff_Description"          "A percentage of all damage dealt is healed after a delay."
     
+    //------------------------------------------------------------------
+    // Veera, the Plains Runner
+    //------------------------------------------------------------------
+    "DOTA_Tooltip_Ability_veera_toxic_darts"            "Toxic Darts"
+    "DOTA_Tooltip_Ability_veera_toxic_darts_Description"        "Veera throws a dart towards the targeted direction, dealing physical damage when contacting an enemy and providing brief vision, while also applying a stackable toxic effect. The toxic effect deals physical damage each second and reduces armor, stunning the target when the effect expires. Each new stack reduces the remaining duration and increases the stun duration and armor reduction. This ability uses charges which restore over time.  </font>"
+    "DOTA_Tooltip_Ability_veera_toxic_darts_Note0"              "Darts will provide vision within a 100 radius for 1.5 seconds."
+    "DOTA_Tooltip_Ability_veera_toxic_darts_Note2"              "Stacks do not affect toxic damage."
+    "DOTA_Tooltip_Ability_veera_toxic_darts_Lore"               "Veera, a masterful dart thrower, makes use of several toxic substances she finds on her journey, including venom from the Jidi Isles, ooze from the Bleeding Hills, bone powder from Prefectura voodoo rituals, and acid from a family of Darkbrew alchemists."
+    "DOTA_Tooltip_Ability_veera_toxic_darts_Damage"                 "DAMAGE:"
+    "DOTA_Tooltip_Ability_veera_toxic_darts_Maximum_charges"        "MAXIMUM DARTS:"
+    "DOTA_Tooltip_Ability_veera_toxic_darts_Charge_replenish_time"  "DART REPLENISH TIME:"
+    "DOTA_Tooltip_Ability_veera_toxic_darts_Length"                 "DART RANGE:"
+    "DOTA_Tooltip_Ability_veera_toxic_darts_Duration"               "TOXIC DURATION:"
+    "DOTA_Tooltip_Ability_veera_toxic_darts_Duration_decrease"      "DURATION DECREASE PER STACK:"
+    "DOTA_Tooltip_Ability_veera_toxic_darts_Toxic_damage"           "TOXIC DAMAGE PER SECOND:"
+    "DOTA_Tooltip_Ability_veera_toxic_darts_Armor_reduction_tt"     "ARMOR REDUCTION PER STACK:"
+    "DOTA_Tooltip_Ability_veera_toxic_darts_Stun_duration"          "STUN DURATION PER STACK:"
+
+    //Old Ability
+    "DOTA_Tooltip_Ability_veera_evasive_roll"           "Evasive Backflip (Old)"
+    "DOTA_Tooltip_Ability_veera_evasive_roll_Description"       "Veera jumps backwards from her position, doing a backflip and disjointing projectiles. Distance is based on Veera's current movement speed plus a bonus."
+    "DOTA_Tooltip_Ability_veera_evasive_roll_Lore"          "Engage – Disengage. Veera knows when to strike her prey."
+    "DOTA_Tooltip_Ability_veera_evasive_roll_Bonus_Speed"   "BONUS ROLL SPEED:"
+    "DOTA_Tooltip_Ability_veera_evasive_roll_Duration"      "DURATION:"
+    
+    //new Ability
+    "DOTA_Tooltip_Ability_veera_pursuit"            "Predator Strike"
+    "DOTA_Tooltip_Ability_veera_pursuit_Description"    "Veera delivers a vicious blow on her next attack and disengages, performing a backflip. Veera's attack will apply a debuff that slows enemy movement speed and deals physical damage every second, plus additional damage based on Veera's extra movement speed. Debuff lasts longer on creeps."
+    "DOTA_Tooltip_Ability_veera_pursuit_Lore"           "Engage – Disengage. Veera knows when to strike her prey."
+    "DOTA_Tooltip_Ability_veera_pursuit_Note0"          "Extra movespeed is calculated as Veera's total movement speed subtracted by her base movement speed (300)."
+    "DOTA_Tooltip_Ability_veera_pursuit_Note1"          "The backflip distance is proportional to your movement speed."
+    "DOTA_Tooltip_Ability_veera_pursuit_Note2"          "Backflip disjoints projectiles. "
+    "DOTA_Tooltip_Ability_veera_pursuit_Movement_bonus"     "%BONUS MOVESPEED:"
+    "DOTA_Tooltip_Ability_veera_pursuit_Base_damage"        "BASE DAMAGE:"
+    "DOTA_Tooltip_Ability_veera_pursuit_Movement_damage"    "%DAMAGE PER EXTRA MOVESPEED:"
+    "DOTA_Tooltip_Ability_veera_pursuit_Movement_slow"      "%MOVEMENT SLOW:"
+    "DOTA_Tooltip_Ability_veera_pursuit_Duration"           "DURATION:"
+    "DOTA_Tooltip_Ability_veera_pursuit_Creep_Duration"     "CREEP DURATION:"
+
+    "DOTA_Tooltip_Ability_veera_plains_runner"          "Plains Runner"
+    "DOTA_Tooltip_Ability_veera_plains_runner_Description"      "Increases Veera’s movement speed for every 150 units she travels, lasting 3 seconds and refreshing with each new stack. Veera will gain 10 stacks for every level of terrain she descends, but will lose half of her stacks when ascending terrain or when turning 180 degrees. Veera also gains a higher movespeed cap and bonus agility based on a percentage of her extra movement speed."
+    "DOTA_Tooltip_Ability_veera_plains_runner_Lore"         "The vastness of the plains brings swiftness to the hunter."
+    "DOTA_Tooltip_Ability_veera_plains_runner_Movespeed_bonus"  "MOVESPEED BONUS PER STACK:"
+    "DOTA_Tooltip_Ability_veera_plains_runner_Movespeed_limit"  "MOVESPEED LIMIT:"
+    "DOTA_Tooltip_Ability_veera_plains_runner_Agility_bonus"    "%AGILITY PER EXTRA MOVESPEED:"
+
+    "DOTA_Tooltip_Ability_veera_thrill_of_the_hunt"             "Thrill of the Hunt"    
+    "DOTA_Tooltip_Ability_veera_thrill_of_the_hunt_Description"     "Veera engages in a hunting spree, causing her to receive a number of bonuses. While active, increases her field of view based on her level of elevation, increases vision, dramatically reduces her cooldowns and cast points, quadruples her turn rate, and removes the turning penalty from Plains Runner.\nUpgradable by Aghanim's Scepter."
+    "DOTA_Tooltip_Ability_veera_thrill_of_the_hunt_Lore"                "Nothing escapes the sights of the plains runner."
+    "DOTA_Tooltip_Ability_veera_thrill_of_the_hunt_Bonus_Vision"        "BONUS VISION:"
+    "DOTA_Tooltip_Ability_veera_thrill_of_the_hunt_Bonus_camera_view"   "BONUS CAMERA DISTANCE:"
+    "DOTA_Tooltip_Ability_veera_thrill_of_the_hunt_Cooldown_reduction"  "%COOLDOWN/CASTPOINT REDUCTION:"
+    "DOTA_Tooltip_Ability_veera_thrill_of_the_hunt_Duration"            "DURATION:"
+    "DOTA_Tooltip_Ability_veera_thrill_of_the_hunt_Aghanim_Description" "Doubles Veera's movespeed limit while Thrill of the Hunt is active."
+    
+    
+    
+    // Modifiers
+    "DOTA_Tooltip_Modifier_toxic_dart_stack_count"      "Toxic Dart Charges"
+    "DOTA_Tooltip_Modifier_toxic_dart_effect"                   "Toxic" 
+    "DOTA_Tooltip_Modifier_toxic_dart_effect_Description"       "Taking physical damage every second. When the effect expires, stuns you based on how many stacks you have."    
+
+    "DOTA_Tooltip_Modifier_toxic_dart_stun"                 "STUNNED"   
+
+    
+    "DOTA_Tooltip_Modifier_pursuit_buff"            "Pursuing"
+    "DOTA_Tooltip_Modifier_pursuit_buff_Description"    "Pursuing the target with 50%d%% bonus movement speed and free pathing."    
+    "DOTA_Tooltip_Modifier_pursuit_debuff"          "Predator Strike"
+    "DOTA_Tooltip_Modifier_pursuit_debuff_Description"  "Slowed by %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%d%% and taking physical damage every second based on Veera's extra movement speed. "
+    "DOTA_Tooltip_Modifier_pursuit_vision"          "Pursued"
+    "DOTA_Tooltip_Modifier_pursuit_vision_Description"  "Being pursued."
+    
+    "DOTA_Tooltip_Modifier_plains_runner_bonus"         "Plains Runner"
+    "DOTA_Tooltip_Modifier_plains_runner_bonus_Description"         "Increases movement speed per stack."
+
+
+    "DOTA_Tooltip_Modifier_thrill_active"           "Thrill of the Hunt"        
+    "DOTA_Tooltip_Modifier_thrill_active_Description"   "Veera has drastically reduced cooldowns and cast points, as well as increased vision, camera view, and turn rate."
 
 
 }
