@@ -442,6 +442,8 @@ function Pregame:init()
         --self:setOption('lodOptionBanningBalanceMode', 1, true)
         --self:setOption('lodOptionGameSpeedRespawnTimePercentage', 70, true)
         --self:setOption('lodOptionBuybackCooldownTimeConstant', 210, true)
+        self:setOption('lodOptionGameSpeedGoldModifier', 150, true)
+        self:setOption('lodOptionGameSpeedEXPModifier', 200, true)
         self.useOptionVoting = true
     end
 
@@ -452,6 +454,8 @@ function Pregame:init()
         self:setOption('lodOptionGamemode', 1)
         OptionManager:SetOption('banningTime', 30)
         self:setOption('lodOptionBalanceMode', 0, true)
+        self:setOption('lodOptionGameSpeedGoldModifier', 150, true)
+        self:setOption('lodOptionGameSpeedEXPModifier', 200, true)
         self:setOption('lodOptionAdvancedHidePicks', 0, true)
         self:setOption('lodOptionCommonMaxUlts', 2, true)
         self:setOption('lodOptionGameSpeedRespawnTimePercentage', 25, true)
