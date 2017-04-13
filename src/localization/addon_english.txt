@@ -9633,6 +9633,44 @@
     "DOTA_Tooltip_ability_ptomely_spell_reflect_Description"                          ""
     "DOTA_Tooltip_ability_ptomely_spell_reflect_duration"                             "DURATION:"
 
+    //--------------------
+    // ERRA
+    //--------------------
+    "DOTA_Tooltip_ability_erra_deathtouch"                                            "Deathtouch"
+    "DOTA_Tooltip_ability_erra_deathtouch_Description"                                "With but a touch, Erra rends the target's soul asunder, dealing massive Magical damage, then damage over time."
+    "DOTA_Tooltip_ability_erra_deathtouch_dot_amount"                                 "DAMAGE OVER TIME:"
+    "DOTA_Tooltip_ability_erra_deathtouch_dot_duration"                               "DURATION:"
+
+    "DOTA_Tooltip_ability_erra_grave_guard"                                           "Grave Guard"
+    "DOTA_Tooltip_ability_erra_grave_guard_Description"                               "When Erra drops below certain threshold of Health, he gains bonus Health and Mana regeneration for a short time to combat it."
+    "DOTA_Tooltip_ability_erra_grave_guard_duration"                                  "DURATION:"
+    "DOTA_Tooltip_ability_erra_grave_guard_hp_recovery"                               "HP RECOVERY:"
+    "DOTA_Tooltip_ability_erra_grave_guard_mp_recovery"                               "MP RECOVERY:"
+    "DOTA_Tooltip_ability_erra_grave_guard_threshold"                                 "%HEALTH THRESHOLD:"
+
+    "DOTA_Tooltip_ability_erra_morbid_blade"                                          "Morbid Blade"
+    "DOTA_Tooltip_ability_erra_morbid_blade_Description"                              "Summons forth the winds of the Black Tide to slice through all enemies caught in them. Deals Physical damage, but if any enemy is below a Health threshold, it deals Pure damage, and its cooldown is halved. A portion of the target's missing Health is granted as healing to Erra."
+    "DOTA_Tooltip_ability_erra_morbid_blade_pure_threshold"                           "%PURE DAMAGE HEALTH THRESHOLD:"
+    "DOTA_Tooltip_ability_erra_morbid_blade_radius"                                   "RADIUS:"
+    "DOTA_Tooltip_ability_erra_morbid_blade_lifesteal"                                "%MISSING HEALTH LIFESTEAL:"
+
+    "DOTA_Tooltip_ability_erra_to_dust"                                               "To Dust"
+    "DOTA_Tooltip_ability_erra_to_dust_Description"                                   "Revelling in the pain of his enemies, Erra drinks in their dwindling lifeforce, converting the entropy to damage. Grants bonus attack damage based on the amount of missing Health of all the enemies in the radius given."
+    "DOTA_Tooltip_ability_erra_to_dust_hp_to_bonus_damage"                            "%MISSING HEALTH TO BONUS DAMAGE (HEROES):"
+    "DOTA_Tooltip_ability_erra_to_dust_creep_hp_to_bonus_damage"                      "%MISSING HEALTH TO BONUS DAMAGE (CREEPS):"
+    "DOTA_Tooltip_ability_erra_to_dust_duration"                                      "DURATION:"
+    "DOTA_Tooltip_ability_erra_to_dust_radius"                                        "RADIUS:"
+
+    "DOTA_Tooltip_modifier_deathtouch_dot"                                            "Deathtouch"
+    "DOTA_Tooltip_modifier_deathtouch_dot_Description"                                "Taking damage over time."
+
+    "DOTA_Tooltip_modifier_erra_grave_guard_recovery"                                 "Grave Guard Recovery Buff"
+    "DOTA_Tooltip_modifier_erra_grave_guard_recovery_Description"                     "Gaining bonus Health and Mana regen over time."
+
+    "DOTA_Tooltip_modifier_to_dust_show"                                              "To Dust"
+    "DOTA_Tooltip_modifier_to_dust_show_Description"                                  "Granted bonus attack damage based on missing Health of nearby enemies when cast."
+
+
 
 }
 
