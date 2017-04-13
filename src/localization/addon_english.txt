@@ -9133,6 +9133,9 @@
         "DOTA_Tooltip_Modifier_blight_slow_stack"           "Blight"
         "DOTA_Tooltip_Modifier_blight_slow_stack_Description"       "This unit is losing movement speed and taking magic damage with every attack they deal and take."
 
+        "DOTA_Tooltip_modifier_blight_debuff_creep" "Blight"
+        "DOTA_Tooltip_modifier_blight_debuff_creep_Description" "This unit is losing movement speed and taking magic damage with every attack they deal and take."
+
         "DOTA_Tooltip_Modifier_vicissitude"                 "Vicissitude"
         "DOTA_Tooltip_Modifier_vicissitude_Description"         "This hero is being controlled."
         

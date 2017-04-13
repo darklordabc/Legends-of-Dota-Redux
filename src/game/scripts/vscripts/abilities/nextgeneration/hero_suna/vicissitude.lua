@@ -33,7 +33,7 @@ function SwapMindControl( keys )
 	caster:RemoveNoDraw()
 end
 
-LinkLuaModifier( "vicissitude_super_illusion", "heroes/hero_suna/modifiers/vicissitude_super_illusion.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "vicissitude_super_illusion", "abilities/nextgeneration/hero_suna/modifiers/vicissitude_super_illusion.lua", LUA_MODIFIER_MOTION_NONE )
 
 function MindControlAdd( keys )
 	local caster = keys.caster
