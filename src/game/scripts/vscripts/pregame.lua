@@ -185,16 +185,16 @@ function Pregame:init()
             end
         },
         singlePlayerAbilities = {
-        onselected = function(self)
-            self:setOption('lodOptionAdvancedCustomSkills', 1, true)
-            self:setOption('lodOptionBanningUseBanList', 0, true)
-            self:setOption('lodOptionBanning', 3, true)
-            self:setOption('lodOptionBanningMaxBans', 4, true)
-            self:setOption('lodOptionBanningMaxHeroBans', 1, true)
-        end,
-        onunselected = function(self)
-            self:setOption('lodOptionBanningUseBanList', 1, true)
-        end
+            onselected = function(self)
+                self:setOption('lodOptionAdvancedCustomSkills', 1, true)
+                self:setOption('lodOptionBanningUseBanList', 0, true)
+                self:setOption('lodOptionBanning', 3, true)
+                self:setOption('lodOptionBanningMaxBans', 4, true)
+                self:setOption('lodOptionBanningMaxHeroBans', 1, true)
+            end,
+            onunselected = function(self)
+                self:setOption('lodOptionBanningUseBanList', 1, true)
+            end
         },
     }
 

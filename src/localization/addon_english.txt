@@ -1005,6 +1005,18 @@
     "lodSuccessSavedBans"                           "'{entries}' bans were saved to local storage."
     "lodSuccessLoadBans"                            "'{entries}' bans were loaded from local storage."
 
+    //Server Messages
+    "lodServerFailedCreateSkillBuildText"           "Your title or description has invalid length or contains invalid characters"
+    "lodServerFailedCreateSkillBuildUnfinished"     "Finish your build before posing it!"
+    "lodServerFailedCreateSkillBuildFound"          "There is same build on server"
+    "lodServerSuccessCreateSkillBuild"              "Build has been saved successfully!"
+    "lodServerSuccessRemoveSkillBuild"              "Build has been removed successfully"
+    "lodServerFailedRemoveSkillBuild"               "Something went wrong while removing that build"
+
+    "lodPickingPhaseSaveCurrentBuildTitle"          "Title..."
+    "lodPickingPhaseSaveCurrentBuildDescription"    "Description..."
+    "lodPickingPhaseSaveCurrentBuildSubmit"         "Submit Skill Build"
+
     // Upgrade Towers Notifications
     "radiantTowersUpgraded"                          "<font color='#70EA72'>Radiant towers have been upgraded.</font>"
     "direTowersUpgraded"                             "<font color='#70EA72'>Dire towers have been upgraded.</font>"

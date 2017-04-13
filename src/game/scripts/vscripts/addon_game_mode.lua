@@ -89,6 +89,7 @@ function Activate()
     network:init()
     pregame:init()
     ingame:init()
+    StatsClient:SubscribeToClientEvents()
     
     -- Store references (mostly used for debugging)
     GameRules.util = require('util')

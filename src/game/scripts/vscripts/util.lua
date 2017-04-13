@@ -863,8 +863,8 @@ function util:CreateVoting(votingName, initiator, duration, percent, onaccept, o
                 util.votesRejected[initiator] = (util.votesRejected[initiator] or 0) + 1
             end
 
-            Timers:RemoveTimer(pauseChecker)
-            Timers:RemoveTimer(vote_counter)
+            Timers:RemoveTimer(util.activeVoting.pauseChecker)
+            Timers:RemoveTimer(util.activeVoting.vote_counter)
             CustomGameEventManager:Send_ServerToAllClients("universalVotingsUpdate", {votingName = votingName, accept = accept})
             util.activeVoting = nil
             PauseGame(false)
@@ -882,7 +882,9 @@ function util:CreateVoting(votingName, initiator, duration, percent, onaccept, o
         name = votingName,
         votes = {},
         recieveStartTime = Time() + 3,
-        onvote = _onvote
+        onvote = _onvote,
+        pauseChecker = pauseChecker,
+        vote_counter = vote_counter
     }
     CustomGameEventManager:Send_ServerToAllClients("lodCreateUniversalVoting", {
         title = votingName,
@@ -890,7 +892,7 @@ function util:CreateVoting(votingName, initiator, duration, percent, onaccept, o
         duration = duration
     })
     if voteForInitiator ~= false then
-        --_onvote(initiator, true)
+        _onvote(initiator, true)
     end
 end
 

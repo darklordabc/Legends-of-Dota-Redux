@@ -207,6 +207,8 @@ util.reviewOptions = false;
 // Search filters
 var tabsSearchFilter = {};
 
+var inBuildSaveMode = false
+
 // Is ingame builder
 $.GetContextPanel().isIngameBuilder = false;
 
@@ -1007,19 +1009,6 @@ function updateAllRandomHighlights() {
 
 // When the lock build button is pressed
 function onLockBuildButtonPressed() {
-    // Save build only on review phase
-    if (currentPhase == PHASE_REVIEW) {
-        var con = $('#pickingPhaseRecommendedBuildContainer');
-        var favBuilds = [];
-        for (var i = 0; i < con.GetChildCount(); i++) {
-            var child = con.GetChild(i);
-            if (child.isFavorite)
-            	favBuilds.push(child.buildID);
-        }
-
-    	SaveFavBuilds( favBuilds ); 
-    }
-
     $('#heroBuilderLockButton').SetHasClass('pressed', !$('#heroBuilderLockButton').BHasClass('pressed'));
 
     // Tell the server we clicked it
@@ -1639,21 +1628,23 @@ function showBuilderTab(tabName) {
     $('#lodSearchInput').text = tabsSearchFilter[currentTab] == undefined ? '' : tabsSearchFilter[currentTab];
 
     // Hide all panels
-    var mainPanel = $('#pickingPhaseTabs');
-    mainPanel.SetFocus();
+    if (!inBuildSaveMode) {
+        var mainPanel = $('#pickingPhaseTabs');
+        mainPanel.SetFocus();
 
-    $.Each(mainPanel.Children(), function(panelTab) {
-        if (currentPhase == PHASE_BANNING && panelTab.id == "pickingPhaseHeroTab") {
-            return;
-        }
+        $.Each(mainPanel.Children(), function(panelTab) {
+            if (currentPhase == PHASE_BANNING && panelTab.id == "pickingPhaseHeroTab") {
+                return;
+            }
 
-        panelTab.visible = false;
+            panelTab.visible = false;
 
-        var tab = $('#' + panelTab.id + "Root");
-        if (tab) {
-            tab.SetHasClass("tabHighlight", panelTab.id == tabName);
-        }
-    });
+            var tab = $('#' + panelTab.id + "Root");
+            if (tab) {
+                tab.SetHasClass("tabHighlight", panelTab.id == tabName);
+            }
+        });
+    }
 
     var mainContentPanel = $('#pickingPhaseTabsContent');
     $.Each(mainContentPanel.Children(), function(panelTab) {
@@ -1662,7 +1653,7 @@ function showBuilderTab(tabName) {
 
     // Show our tab
     var ourTab = $('#' + tabName);
-    if(ourTab != null) ourTab.visible = true;
+    if(!inBuildSaveMode && ourTab != null) ourTab.visible = true;
 
     // Try to move the hero preview
     var heroPreview = $('#buildingHelperHeroPreview');
@@ -2009,7 +2000,7 @@ function onHeroFilterPressed(filterName) {
 var firstBuildTabCall = true;
 function OnMainSelectionTabShown() {
     if(firstBuildTabCall) {
-    	LoadBuilds( '' );
+    	LoadBuilds();
 
         // Only do this once
         firstBuildTabCall = false; 
@@ -2019,15 +2010,14 @@ function OnMainSelectionTabShown() {
 // Adds a build to the main selection tab
 var recBuildCounter = 0;
 var recommenedBuildContainerList = [];
-function addRecommendedBuild(con, build) {
-    var buildCon = $.CreatePanel('Panel', con, 'recBuild_' + (++recBuildCounter));
+function addRecommendedBuild(build) {
+    var buildCon = $.CreatePanel('Panel', $("#pickingPhaseRecommendedBuildContainer"), 'recBuild_' + (++recBuildCounter));
     buildCon.BLoadLayout('file://{resources}/layout/custom_game/game_setup/recommended_build.xml', false, false);
     buildCon.balanceMode = $.GetContextPanel().balanceMode;
     buildCon.setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, build, balanceMode);
     buildCon.updateFilters(getSkillFilterInfo, getHeroFilterInfo); 
-
     // Store the container
-    recommenedBuildContainerList.push(buildCon); 
+    recommenedBuildContainerList.push(buildCon);
 }
 
 // Updates the filters applied to recommended builds
@@ -4479,7 +4469,19 @@ function OnPhaseChanged(table_name, key, data) {
                 for(var playerID in activeReviewPanels) {
                     activeReviewPanels[playerID].OnReviewPhaseStart();
                 }
+
+                // Save build only on review phase
+                var con = $('#pickingPhaseRecommendedBuildContainer');
+                var favBuilds = [];
+                for (var i = 0; i < con.GetChildCount(); i++) {
+                    var child = con.GetChild(i);
+                    if (child.isFavorite)
+                        favBuilds.push(child.buildID);
+                }
+
+                SaveFavBuilds( favBuilds ); 
             }
+
             break;
 
         case 'endOfTimer':
@@ -5202,6 +5204,25 @@ function onVotingOpenCallback() {
 
 function onVotingCloseCallback() {
     $("#lodOptionsRoot").style.blur = "none;";
+}
+
+function saveCurrentBuildToggleWindow(state) {
+    var context = $.GetContextPanel()
+    inBuildSaveMode = state == null ? !inBuildSaveMode : state
+    if (inBuildSaveMode) {
+        var mainPanel = $('#pickingPhaseTabs');
+        $.Each(mainPanel.Children(), function(panelTab) {
+            panelTab.visible = false;
+        });
+        $("#pickingPhaseSaveCurrentBuild").visible = true;
+    } else {
+        showBuilderTab(currentTab)
+    }
+}
+
+function saveCurrentBuild() {
+    CreateSkillBuild($("#pickingPhaseSaveCurrentBuildTitle").text, $("#pickingPhaseSaveCurrentBuildDescription").text)
+    saveCurrentBuildToggleWindow(false)
 }
 
 //--------------------------------------------------------------------------------------------------
