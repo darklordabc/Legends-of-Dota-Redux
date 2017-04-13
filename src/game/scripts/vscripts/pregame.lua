@@ -109,6 +109,8 @@ function Pregame:init()
     self.chanceToHearMeme = 1
     self.freeAbility = nil
 
+    self.heard = {}
+
     self.votingStatFlags = {}
     self.optionVoteSettings = {
         banning = {
@@ -118,7 +120,7 @@ function Pregame:init()
                 self:setOption('lodOptionBanningMaxHeroBans', 1, true)
             end,
             onunselected = function(self)
-                OptionManager:SetOption('banningTime', 15)
+                OptionManager:SetOption('banningTime', 25)
                 self:setOption('lodOptionBanning', 3, true)
                 self:setOption('lodOptionBanningMaxBans', 1, true)
                 self:setOption('lodOptionBanningMaxHeroBans', 1, true)
@@ -436,10 +438,13 @@ function Pregame:init()
     if mapName == 'standard' then
         self:setOption('lodOptionGamemode', 1)
         self:setOption('lodOptionBalanceMode', 1, true)
-        OptionManager:SetOption('banningTime', 30)
+        OptionManager:SetOption('banningTime', 45)
         --self:setOption('lodOptionBanningBalanceMode', 1, true)
         --self:setOption('lodOptionGameSpeedRespawnTimePercentage', 70, true)
         --self:setOption('lodOptionBuybackCooldownTimeConstant', 210, true)
+        self:setOption('lodOptionGameSpeedGoldModifier', 150, true)
+        self:setOption('lodOptionGameSpeedEXPModifier', 200, true)
+        self:setOption('lodOptionGameSpeedRespawnTimePercentage', 35, true)
         self.useOptionVoting = true
     end
 
@@ -448,11 +453,13 @@ function Pregame:init()
         self:setOption('lodOptionGameSpeedMaxLevel', 100, true)
         self:setOption('lodOptionBanningUseBanList', 1, true)
         self:setOption('lodOptionGamemode', 1)
-        OptionManager:SetOption('banningTime', 30)
+        OptionManager:SetOption('banningTime', 45)
         self:setOption('lodOptionBalanceMode', 0, true)
+        self:setOption('lodOptionGameSpeedGoldModifier', 150, true)
+        self:setOption('lodOptionGameSpeedEXPModifier', 200, true)
         self:setOption('lodOptionAdvancedHidePicks', 0, true)
         self:setOption('lodOptionCommonMaxUlts', 2, true)
-        self:setOption('lodOptionGameSpeedRespawnTimePercentage', 25, true)
+        self:setOption('lodOptionGameSpeedRespawnTimePercentage', 35, true)
         self.useOptionVoting = true
         self.optionVoteSettings.doubledAbilityPoints = nil
     end
@@ -1494,7 +1501,7 @@ function Pregame:networkHeroes()
                     flags[flag][k] = 1
                 end  
             end
-            if v["AbilityBehavior"] and string.match(v["AbilityBehavior"], "DOTA_ABILITY_BEHAVIOR_PASSIVE") then
+            if v["AbilityBehavior"] and string.match(v["AbilityBehavior"], "DOTA_ABILITY_BEHAVIOR_PASSIVE") and not string.match(k, "special_bonus_") and not string.match(k, "perk") then
                 flags["passive"] = flags["passive"] or {}
                 flags["passive"][k] = 1
             end
@@ -4194,7 +4201,7 @@ function Pregame:setSelectedHero(playerID, heroName, force)
     if self.selectedHeroes[playerID] ~= heroName then
         -- Update local store
         self.selectedHeroes[playerID] = heroName
-
+        EmitGlobalSound("Event.Click")
         -- Update the selected hero
         network:setSelectedHero(playerID, heroName)
 
@@ -4594,7 +4601,10 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
 
         -- Toggle their state
         self.isReady[playerID] = (self.isReady[playerID] == 1 and 0) or 1
-
+        if not self.heard[playerID] then
+            self.heard[playerID] = true
+            EmitGlobalSound("Event.LockBuild")
+        end
         -- Checks if people are ready
         self:checkForReady()
     end
@@ -5525,6 +5535,8 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
                     else
                         EmitGlobalSound("Memes.SnipeHit")
                     end
+                else
+                    EmitGlobalSound("Event.Click")
                 end
             end
         end

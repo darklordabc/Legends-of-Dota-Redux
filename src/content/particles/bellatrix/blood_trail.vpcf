@@ -3,14 +3,9 @@
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 32
-	m_BoundingBoxMax =
-	[
-		1200.000000,
-		1200.000000,
-		500.000000,
-	]
-	m_flCullRadius = 550.000000
-	m_Operators =
+	m_BoundingBoxMax = [ 1200.0, 1200.0, 500.0 ]
+	m_flCullRadius = 550.0
+	m_Operators = 
 	[
 		{
 			_class = "C_OP_Decay"
@@ -18,140 +13,99 @@
 		},
 		{
 			_class = "C_OP_ColorInterpolate"
-			m_ColorFade =
-			[
-				170,
-				0,
-				0,
-				255,
-			]
+			m_ColorFade = [ 170, 0, 0, 255 ]
 		},
 	]
-	m_Initializers =
+	m_Initializers = 
 	[
 		{
 			_class = "C_INIT_CreateSpiralSphere"
 			m_bUseParticleCount = true
 			m_nOverrideCP = 1
 			m_nDensity = 2
-			m_flInitialRadius = 0.900000
+			m_flInitialRadius = 0.9
 		},
 		{
 			_class = "C_INIT_PositionWarp"
-			m_vecWarpMin =
-			[
-				1.000000,
-				1.000000,
-				0.000000,
-			]
-			m_vecWarpMax =
-			[
-				1.000000,
-				1.000000,
-				0.000000,
-			]
+			m_vecWarpMin = [ 1.0, 1.0, 0.0 ]
+			m_vecWarpMax = [ 1.0, 1.0, 0.0 ]
 		},
 		{
 			_class = "C_INIT_VelocityRandom"
-			m_LocalCoordinateSystemSpeedMax =
-			[
-				0.000000,
-				0.000000,
-				-1000.000000,
-			]
-			m_LocalCoordinateSystemSpeedMin =
-			[
-				0.000000,
-				0.000000,
-				-1000.000000,
-			]
+			m_LocalCoordinateSystemSpeedMax = [ 0.0, 0.0, -1000.0 ]
+			m_LocalCoordinateSystemSpeedMin = [ 0.0, 0.0, -1000.0 ]
 		},
 		{
 			_class = "C_INIT_PositionOffset"
-			m_OffsetMin =
-			[
-				0.000000,
-				0.000000,
-				512.000000,
-			]
-			m_OffsetMax =
-			[
-				0.000000,
-				0.000000,
-				512.000000,
-			]
+			m_OffsetMin = [ 0.0, 0.0, 512.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 512.0 ]
 		},
 		{
 			_class = "C_INIT_LifespanFromVelocity"
 			m_nMaxPlanes = 32
-			m_flMaxTraceLength = 2048.000000
+			m_flMaxTraceLength = 2048.0
 			m_CollisionGroupName = "DEBRIS"
 		},
 		{
 			_class = "C_INIT_RandomColor"
-			m_ColorMin =
-			[
-				170,
-				0,
-				0,
-				255,
-			]
-			m_ColorMax =
-			[
-				255,
-				0,
-				0,
-				255,
-			]
-			m_TintMax =
-			[
-				170,
-				0,
-				0,
-				255,
-			]
+			m_ColorMin = [ 170, 0, 0, 255 ]
+			m_ColorMax = [ 255, 0, 0, 255 ]
+			m_TintMax = [ 170, 0, 0, 255 ]
 		},
 	]
-	m_Emitters =
+	m_Emitters = 
 	[
 		{
 			_class = "C_OP_InstantaneousEmitter"
 			m_nParticlesToEmit = 32
 		},
 	]
-	m_Children =
+	m_Children = 
 	[
 		{
-			m_ChildRef = resource:"particles/blood_trail_i.vpcf"
+			m_ChildRef = resource:"particles/bellatrix/blood_trail_a.vpcf"
 		},
 		{
-			m_ChildRef = resource:"particles/blood_trail_h.vpcf"
+			m_ChildRef = resource:"particles/bellatrix/blood_trail_b.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/bellatrix/blood_trail_c.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/bellatrix/blood_trail_cinside.vpcf"
 			m_bDisableChild = true
 		},
 		{
-			m_ChildRef = resource:"particles/blood_trail_a.vpcf"
-			m_bDisableChild = true
+			m_ChildRef = resource:"particles/bellatrix/blood_trail_e.vpcf"
 		},
 		{
-			m_ChildRef = resource:"particles/blood_trail_b.vpcf"
-			m_bDisableChild = true
+			m_ChildRef = resource:"particles/bellatrix/blood_trail_f.vpcf"
 		},
 		{
-			m_ChildRef = resource:"particles/blood_trail_c.vpcf"
-		},
-		{
-			m_ChildRef = resource:"particles/blood_trail_f.vpcf"
-		},
-		{
-			m_ChildRef = resource:"particles/blood_trail_j.vpcf"
-			m_bDisableChild = true
+			m_ChildRef = resource:"particles/bellatrix/blood_trail_h.vpcf"
 		},
 	]
-	m_ConstantColor =
+	m_ConstantColor = [ 255, 0, 0, 255 ]
+	m_controlPointConfigurations = 
 	[
-		255,
-		0,
-		0,
-		255,
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 1.0, 1.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
+		},
 	]
 }

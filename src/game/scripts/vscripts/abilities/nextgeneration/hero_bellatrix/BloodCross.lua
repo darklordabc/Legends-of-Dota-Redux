@@ -107,6 +107,6 @@ function BloodCrossHeal( keys )
 
 	if sourceTarget:IsAlive() then
 		ability:ApplyDataDrivenModifier(caster, sourceTarget, "modifier_blood_cross_heal", {})
-		PopupNumbers(sourceTarget, "heal", Vector(0, 255, 0), 2.0, heal_amount, POPUP_SYMBOL_PRE_PLUS, nil)
+		sourceTarget:PopupNumbers(sourceTarget, "heal", Vector(0, 255, 0), 2.0, heal_amount, POPUP_SYMBOL_PRE_PLUS, nil)
 	end
 end

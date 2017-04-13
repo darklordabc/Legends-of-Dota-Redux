@@ -56,6 +56,8 @@ function modifier_octarine_vampirism_lod_buff:OnTakeDamage(params)
     local nHeroHeal = self.hero_lifesteal / 100
     local nCreepHeal = self.creep_lifesteal / 100
     if params.inflictor then
+        if params.inflictor:GetAbilityName() == "item_blademail" then return end
+
         if params.attacker == hero then
             local heal_amount = 0
             if params.unit:IsCreep() then
@@ -67,8 +69,10 @@ function modifier_octarine_vampirism_lod_buff:OnTakeDamage(params)
             end
             if heal_amount > 0 and hero:GetHealth() ~= hero:GetMaxHealth() then
                 local healthCalculated = hero:GetHealth() + heal_amount
-                hero:Heal(heal_amount, self:GetAbility())
-                ParticleManager:CreateParticle("particles/items3_fx/octarine_core_lifesteal.vpcf",PATTACH_ABSORIGIN_FOLLOW, hero)
+                if hero:IsAlive() then
+                    hero:Heal(heal_amount, self:GetAbility())
+                    ParticleManager:CreateParticle("particles/items3_fx/octarine_core_lifesteal.vpcf",PATTACH_ABSORIGIN_FOLLOW, hero)
+                end
             end
         end
     end

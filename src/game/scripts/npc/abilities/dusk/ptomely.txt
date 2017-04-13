@@ -1,0 +1,610 @@
+"DOTAAbilities"
+{
+    //=====================================================================================================
+    // PTOMELY: Astralise
+    //=====================================================================================================
+    "ptomely_astralise"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_datadriven"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "AbilityCastAnimation"          "ACT_DOTA_ATTACK"
+        "AoERadius"                     "400"
+        "AbilityTextureName"            "custom/ptomely_astralise"
+    
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "475"
+        "AbilityCastPoint"              "0.30"
+        
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "12"
+    
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "120 130 140 150"
+        
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityModifierSupportValue"   "0.0"   // All about the damage
+    
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "damage"                    "100 150 200 250"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "radius"                    "400"
+            }
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "pulse_damage"              "50 60 70 80"
+            }
+            "04"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "interval"                  "0.5"
+            }
+            "05"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "duration"                  "1.5 2.0 2.5 3.0"
+            }
+            "06"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "pulse_duration"            "1.0 1.5 2.0 2.5"
+            }
+            "07"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "ally_heal"                 "20"
+            }
+        }
+        
+        "precache"
+            {
+            "particle" "particles\units\heroes\hero_ptomely\astralise_unit_buff.vpcf"
+            "particle" "particles\units\heroes\hero_ptomely\astralise_ghost.vpcf"
+            "particle" "particles\units\heroes\hero_ptomely\astralise_pulse.vpcf"
+            "particle" "particles\units\heroes\hero_ancient_apparition\ancient_apparition_cold_feet_frozen.vpcf"
+            "soundfile" "soundevents\hero_ptomely.vsndevts"
+            }
+            
+        "OnSpellStart"
+            {
+                "RunScript"
+                {
+                    "ScriptFile"    "abilities/dusk/ptomely_abilities.lua"
+                    "Function"      "astralise"
+                    "duration"      "%duration"
+                    "p_duration"    "%pulse_duration"
+                    "damage"        "%damage"
+                }
+            }
+        
+        "Modifiers"
+            {
+                "modifier_astralise"
+                {
+                    "Passive"           "0"
+                    "IsHidden"          "0"
+                    "IsDebuff"          "1"
+                
+                    "EffectName"        "particles\units\heroes\hero_ptomely\astralise_unit_buff.vpcf"
+                    "EffectAttachType"  "follow_origin"
+                
+                    "OverrideAnimation"     "ACT_DOTA_DISABLED"
+    
+                    "Properties"
+                    {
+                        "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL" "1"
+                    }
+    
+                    "States"
+                    {
+                        "MODIFIER_STATE_STUNNED"        "MODIFIER_STATE_VALUE_ENABLED"
+                    }
+                }
+    
+                "modifier_astralise_pulse"
+                {
+                    "Passive"           "0"
+                    "IsHidden"          "1"
+                    "IsDebuff"          "0"
+                
+                    "ThinkInterval"  "%interval"
+                    "OnIntervalThink"
+                    {
+                        "RunScript"
+                        {
+                            "ScriptFile"    "abilities/dusk/ptomely_abilities.lua"
+                            "Function"      "astralise_pulse"
+                            "radius"        "%radius"
+                            "damage"        "%pulse_damage"
+                        }
+                    }
+                }
+    
+                "modifier_astralise_ally"
+                {
+                    "Passive"           "0"
+                    "IsHidden"          "1"
+                    "IsDebuff"          "0"
+                }
+            }
+    }
+    //=====================================================================================================
+    // PTOMELY: Enthrall
+    //=====================================================================================================
+    "ptomely_enthrall"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_datadriven"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_3"
+        "AbilityTextureName"            "custom/ptomely_enthrall"
+    
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "775"
+        "AbilityCastPoint"              "0.45"
+        
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "14"
+    
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "100"
+        
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityModifierSupportValue"   "0.0"   // All about the damage
+    
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "magic_resistance_reduction" "-20 -24 -28 -32"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "magic_resistance_reduction_ally" "-20 -16 -12 -8"
+            }
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "duration"                  "8"
+            }
+        }
+        
+        "precache"
+            {
+            "particle" "particles\units\heroes\hero_ptomely\enthrall.vpcf"
+            "particle" "particles\units\heroes\hero_ancient_apparition\ancient_apparition_cold_feet_frozen.vpcf"
+            "soundfile" "soundevents\hero_ptomely.vsndevts"
+            }
+            
+        "OnSpellStart"
+            {
+                "FireSound"
+                {
+                    "EffectName"    "Ptomely.Enthrall"
+                    "Target"        "TARGET"
+                }
+                "ApplyModifier"
+                {
+                    "ModifierName"  "modifier_enthralled"
+                    "Target"
+                    {
+                        "Center"    "TARGET"
+                        "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                        "Types"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                    }
+                    "Duration"      "%duration"
+                }
+    
+                "ApplyModifier"
+                {
+                    "ModifierName"  "modifier_enthralled_ally"
+                    "Target"
+                    {
+                        "Center"    "TARGET"
+                        "Teams"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+                        "Types"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                    }
+                    "Duration"      "%duration"
+                }
+            }
+        
+        "Modifiers"
+            {
+                "modifier_enthralled"
+                {
+                    "Passive"           "0"
+                    "IsHidden"          "0"
+                    "IsDebuff"          "1"
+                
+                    "EffectName"        "particles\units\heroes\hero_ptomely\enthrall.vpcf"
+                    "EffectAttachType"  "follow_origin"
+                
+                    "Properties"
+                    {
+                        "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance_reduction"
+                    }
+                }
+    
+                "modifier_enthralled_ally"
+                {
+                    "Passive"           "0"
+                    "IsHidden"          "0"
+                    "IsDebuff"          "1"
+                
+                    "EffectName"        "particles\units\heroes\hero_ptomely\enthrall.vpcf"
+                    "EffectAttachType"  "follow_origin"
+                
+                    "Properties"
+                    {
+                        "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance_reduction_ally"
+                    }
+                }
+            }
+    }
+    //=====================================================================================================
+    // PTOMELY: Expunge
+    //=====================================================================================================
+    "ptomely_expunge"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_datadriven"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_2"
+        "AbilityTextureName"            "custom/ptomely_expunge"
+    
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "450 900 1350"
+        "AbilityCastPoint"              "0.40"
+        
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "90 80 70"
+    
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "200 300 400"
+        
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityModifierSupportValue"   "0.0"   // All about the damage
+    
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "mana_drain"                "30 40 50"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "radius"                    "575"
+            }
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "slow"                      "-75"
+            }
+            "04"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "scepter_mana_drain"        "15 20 25"
+            }
+            "05"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "base_drain"                "175 250 325"
+            }
+        }
+        
+        "precache"
+            {
+            "particle" "particles\units\heroes\hero_ptomely\expunge.vpcf"
+            "particle" "particles\units\heroes\hero_ptomely\expunge_drain.vpcf"
+            "soundfile" "soundevents\hero_ptomely.vsndevts"
+            }
+            
+        "OnSpellStart"
+            {
+                "RunScript"
+                {
+                    "ScriptFile"    "abilities/dusk/ptomely_abilities.lua"
+                    "Function"      "expunge"
+                    "radius"        "%radius"
+                    "pct"           "%mana_drain"
+                    "aghs_pct"      "%scepter_mana_drain"
+                    "base"          "%base_drain"
+                }
+            }
+        
+        "Modifiers"
+            {
+                "modifier_expunge"
+                {
+                    "Passive"           "0"
+                    "IsHidden"          "0"
+                    "IsDebuff"          "1"
+                    "Duration"          "2.5"
+    
+                    "ThinkInterval"  "0.1"
+                    "OnIntervalThink"
+                    {
+                        "RunScript"
+                        {
+                            "ScriptFile"    "abilities/dusk/ptomely_abilities.lua"
+                            "Function"      "expunge_drain"
+                        }
+                    }
+    
+                    "OnDestroy"
+                    {
+                        "RunScript"
+                        {
+                            "ScriptFile"    "abilities/dusk/ptomely_abilities.lua"
+                            "Function"      "expunge_end"
+                        }
+                    }
+    
+                    "Properties"
+                    {
+                        "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow"
+                    }
+                }
+            }
+    }
+    "ptomely_mirror_blade"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"             "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityCastAnimation"          "ACT_DOTA_ATTACK"
+        "AnimationPlaybackRate"         "1"
+        "FightRecapLevel"               "1"
+        "AbilityTextureName"            "custom/ptomely_mirror_blade"
+        
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "1400"
+        "AbilityCastPoint"              "0.25"
+    
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "8"
+    
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "65 80 95 110"
+    
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityModifierSupportValue"   "0.5"   // Applies two modifiers
+    
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "damage"                "0.60"
+            }
+            
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "blades"                "3 4 5 6"
+            }
+    
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "projectile_speed"      "2000"
+            }
+    
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "radius"                "165"
+            }
+    
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "range"                 "1500"
+            }
+    
+            "06"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "vision_radius"         "400"
+            }
+        }
+    
+        "precache"
+        {
+            "soundfile" "soundevents/hero_erra.vsndevts"
+            "particle"  "particles/units/heroes/hero_ptomely/mirror_blade.vpcf"
+            "particle"  "particles/units/heroes/hero_ptomely/mirror_blade_hit.vpcf"
+        }
+    
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/dusk/ptomely_abilities.lua"
+                "Function"      "mirror_blade"
+                "projectile_speed" "%projectile_speed"
+                "radius" "%radius"
+                "range" "%range"
+                "vision_radius" "%vision_radius"
+                "blades" "%blades"
+            }
+        }
+    
+        "OnProjectileHitUnit"
+        {
+            "DeleteOnHit"    "0"
+            
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/dusk/ptomely_abilities.lua"
+                "Function"      "mirror_blade_damage"
+                "dmg"           "%damage"
+            }
+    
+            "FireEffect"
+            {
+                "EffectName"        "particles/units/heroes/hero_ptomely/mirror_blade_hit.vpcf"
+                "EffectAttachType"  "attach_origin"
+                "Target"            "TARGET"
+            }
+        }
+    
+        "Modifiers"
+        {
+            "modifier_mirror_blade_fire"
+            {
+                "Passive"            "0"
+                "IsHidden"            "1"
+                "IsDebuff"            "0"
+                "Duration"            "0.75"
+            
+                "ThinkInterval"  "0.15"
+                "OnIntervalThink"
+                {
+                }
+    
+                "States"
+                {
+                    "MODIFIER_STATE_ROOTED"        "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+    }
+    //=====================================================================================================
+    // PTOMELY: Enthrall
+    //=====================================================================================================
+    "ptomely_spell_reflect"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_datadriven"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_3"
+        "AbilityTextureName"            "custom/ptomely_enthrall"
+    
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "1000"
+        "AbilityCastPoint"              "0.45"
+        
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "60"
+    
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "100"
+        
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityModifierSupportValue"   "0.0"   // All about the damage
+    
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "duration"                  "8 10 12"
+            }
+        }
+        
+        "precache"
+            {
+            "particle" "particles\units\heroes\hero_ptomely\enthrall.vpcf"
+            "particle" "particles\units\heroes\hero_ancient_apparition\ancient_apparition_cold_feet_frozen.vpcf"
+            "soundfile" "soundevents\hero_ptomely.vsndevts"
+            }
+            
+        "OnSpellStart"
+            {
+                "ApplyModifier"
+                {
+                    "ModifierName"  "modifier_spell_reflect"
+                    "Target" "TARGET"
+                    "Duration"      "%duration"
+                }
+            }
+        
+        "Modifiers"
+            {
+                "modifier_spell_reflect"
+                {
+                    "Passive"           "0"
+                    "IsHidden"          "0"
+                    "IsDebuff"          "0"
+                
+                    "EffectName"        "particles\units\heroes\hero_ptomely\enthrall.vpcf"
+                    "EffectAttachType"  "follow_origin"
+                
+                    "Properties"
+                    {
+                        "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance_reduction"
+                    }
+                }
+            }
+    }
+}
