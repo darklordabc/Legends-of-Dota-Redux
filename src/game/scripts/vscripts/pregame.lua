@@ -187,16 +187,16 @@ function Pregame:init()
             end
         },
         singlePlayerAbilities = {
-        onselected = function(self)
-            self:setOption('lodOptionAdvancedCustomSkills', 1, true)
-            self:setOption('lodOptionBanningUseBanList', 0, true)
-            self:setOption('lodOptionBanning', 3, true)
-            self:setOption('lodOptionBanningMaxBans', 4, true)
-            self:setOption('lodOptionBanningMaxHeroBans', 1, true)
-        end,
-        onunselected = function(self)
-            self:setOption('lodOptionBanningUseBanList', 1, true)
-        end
+            onselected = function(self)
+                self:setOption('lodOptionAdvancedCustomSkills', 1, true)
+                self:setOption('lodOptionBanningUseBanList', 0, true)
+                self:setOption('lodOptionBanning', 3, true)
+                self:setOption('lodOptionBanningMaxBans', 4, true)
+                self:setOption('lodOptionBanningMaxHeroBans', 1, true)
+            end,
+            onunselected = function(self)
+                self:setOption('lodOptionBanningUseBanList', 1, true)
+            end
         },
     }
 
@@ -7086,11 +7086,12 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                     spawnedUnit:RemoveAbility("phantom_lancer_juxtapose_melee")
             end
             -- Change Jingu to Jingu ranged, for ranged heros
-            if spawnedUnit:HasAbility("monkey_king_jingu_mastery_lod_melee") and spawnedUnit:IsRangedAttacker() then
-                    spawnedUnit:AddAbility("monkey_king_jingu_mastery_lod_ranged")
-                    spawnedUnit:SwapAbilities("monkey_king_jingu_mastery_lod_melee","monkey_king_jingu_mastery_lod_ranged",false,true)
-                    spawnedUnit:RemoveAbility("monkey_king_jingu_mastery_lod_melee")
+            if spawnedUnit:HasAbility("life_stealer_feast_melee") and spawnedUnit:IsRangedAttacker() then
+                    spawnedUnit:AddAbility("life_stealer_feast_ranged")
+                    spawnedUnit:SwapAbilities("life_stealer_feast_melee","life_stealer_feast_ranged",false,true)
+                    spawnedUnit:RemoveAbility("life_stealer_feast_melee")
             end
+
             -- Change infernal blade on gyro to critical strike
             --if this.optionStore['lodOptionBanningUseBanList'] == 1 and spawnedUnit:HasAbility("doom_bringer_infernal_blade") and spawnedUnit:GetUnitName() == "npc_dota_hero_gyrocopter" and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("doom_bringer_infernal_blade"):IsHidden() then
            --         spawnedUnit:AddAbility("chaos_knight_chaos_strike_gyro")

@@ -6,10 +6,10 @@
     "addonname_description"                         "Based on the official Legends of Dota by Ash47"
     "game_mode_15_desc"                             "Make Modding Great Again"
 
-	"game_mode_15"              "Legends of Dota: Redux"
-	"ADDON_GAME_NAME"           "Legends of Dota: Redux"
-	"addon_game_name"           "Legends of Dota: Redux"
-	"addonname"                 "Legends of Dota: Redux"
+    "game_mode_15"              "Legends of Dota: Redux"
+    "ADDON_GAME_NAME"           "Legends of Dota: Redux"
+    "addon_game_name"           "Legends of Dota: Redux"
+    "addonname"                 "Legends of Dota: Redux"
 
     // Contributors
     "76561197988355984" "Ash47"
@@ -67,10 +67,10 @@
     "lodStageSpawnHeroes"                     ""
     "lodStageReview"                          "Review"
     "lodStageIngame"                          "Ingame"
-	
-	// Review Options Button
-	"reviewOptions"                           "Review Host Settings"
-	"reviewReturn"                            "Return to Hero Builder"
+    
+    // Review Options Button
+    "reviewOptions"                           "Review Host Settings"
+    "reviewReturn"                            "Return to Hero Builder"
 
     // Chat channels
     "channelAll"                              "All"
@@ -525,12 +525,12 @@
     "lodVotingAdvancedOPAbilitiesLine"              "wants to enable <font color='#FF4949'>Single Player Abilities</font>"
     "lodVotingAdvancedOPAbilitiesLineDescr"         "This will allow SUPER OP abilities that are not balanced and are way too strong.<br><font color='#FF4949'>It its not recommended</font>."
 
-	// Minimap Menu and In-Game Hero Builder
+    // Minimap Menu and In-Game Hero Builder
     "minimapMenuCredits"                            "Credits"
     "minimapMenuCheats"                             "Commands"
     "minimapMenuReviewGameOptions"                  "Review Game Settings"
     "minimapMenuHeroBuilder"                        "Hero Builder"
-	
+    
     "ingameBuilderNotification"                     "<font color='#70EA72'>Ingame Build Switch is Enabled. Click on the change build icon in the bottom left corner to change your abilities/hero/primaray stat.</font>"
     "ingameBuilderReminder"                     "<font color='#70EA72'>Don't forget. Ingame Build Switch is Enabled. Click on the change build icon in the bottom left corner to change your abilities/hero/primaray stat.</font>"
     "tempDuelBlock"                     "<font color='#FF0000'>Duels are temporarily disabled due to a crash issue. They will be reenabled soon. Sorry about that.</font>"
@@ -987,7 +987,7 @@
     "lodFailedWrongPhaseBanning"                    "You can only ban abilities during the banning phase."
     "lodFailedWrongPhaseAllRandom"                  "You can only select your All Random build during the selection phase."
     "lodFailedWrongPhaseSelection"                  "You can only select abilities during the selection phase."
-    "lodHeroAndAbilityAreLocked" 		    "You can't remove this skill from this hero"
+    "lodHeroAndAbilityAreLocked"            "You can't remove this skill from this hero"
     "lodFailedPlayerIsReady"                        "You need to unlock your build in order to change your build."
     "lodFailedBalanceMode"                          "'{ab}' exceeds your points remaining by {points} points."
     "lodBoosterDraftRound"                          "Booster Draft: Round {round}"
@@ -995,15 +995,27 @@
     "lodBoosterDraftEnd"                            "Booster Draft: Building Phase"
     "lodBoosterDraftWait"                           "Booster Draft: Waiting for Next Set"
     
-    "consumable_items_only_self"	"Only you can consume your items." 
-    "consumable_items_no_available_slot"	"There is no free ability slot to consume items." 
-    "consumable_items_already_consumed"		"You have already consumed this item."
+    "consumable_items_only_self"    "Only you can consume your items." 
+    "consumable_items_no_available_slot"    "There is no free ability slot to consume items." 
+    "consumable_items_already_consumed"     "You have already consumed this item."
 
     // Success Messages
     "lodSuccessBanAbility"                          "'{abilityName}' was banned."
     "lodSuccessBanHero"                             "'{heroName}' was banned."
     "lodSuccessSavedBans"                           "'{entries}' bans were saved to local storage."
     "lodSuccessLoadBans"                            "'{entries}' bans were loaded from local storage."
+
+    //Server Messages
+    "lodServerFailedCreateSkillBuildText"           "Your title or description has invalid length or contains invalid characters"
+    "lodServerFailedCreateSkillBuildUnfinished"     "Finish your build before posing it!"
+    "lodServerFailedCreateSkillBuildFound"          "There is same build on server"
+    "lodServerSuccessCreateSkillBuild"              "Build has been saved successfully!"
+    "lodServerSuccessRemoveSkillBuild"              "Build has been removed successfully"
+    "lodServerFailedRemoveSkillBuild"               "Something went wrong while removing that build"
+
+    "lodPickingPhaseSaveCurrentBuildTitle"          "Title..."
+    "lodPickingPhaseSaveCurrentBuildDescription"    "Description..."
+    "lodPickingPhaseSaveCurrentBuildSubmit"         "Submit Skill Build"
 
     // Upgrade Towers Notifications
     "radiantTowersUpgraded"                          "<font color='#70EA72'>Radiant towers have been upgraded.</font>"
@@ -1294,8 +1306,8 @@
     "command_menu_group_game"                           "Cheats | Game"
     "command_menu_command_toggleWtf"                    "Toggle Free Spells"
     "command_menu_command_toggleAllVision"              "Toggle All Vision"
-    "command_menu_command_nofog"             			"Remove Fog of War"
-    "command_menu_command_fog"              			"Add Fog of War"
+    "command_menu_command_nofog"                        "Remove Fog of War"
+    "command_menu_command_fog"                          "Add Fog of War"
     "command_menu_command_setTimescale"                 "Set Timescale"
     "command_menu_command_startGame"                    "Force Start Game"
     "command_menu_command_spawnGolem"                   "Spawn Golem"
@@ -2965,14 +2977,14 @@
     "DOTA_Tooltip_ability_imba_tower_plasma_field_Note0"                                   "Activates when at least one enemy hero enters its range."
     "DOTA_Tooltip_ability_imba_tower_plasma_field_Lore"                                    "The wave of death is unstoppable but avoidable."
     "DOTA_Tooltip_ability_imba_tower_plasma_field_plasma_radius"                          "PLASMA WAVE RADIUS:"
-    "DOTA_Tooltip_ability_imba_tower_plasma_field_plasma_damage_min"					  "DAMAGE MIN:"
-    "DOTA_Tooltip_ability_imba_tower_plasma_field_plasma_damage_max"					  "DAMAGE MAX:" 
+    "DOTA_Tooltip_ability_imba_tower_plasma_field_plasma_damage_min"                      "DAMAGE MIN:"
+    "DOTA_Tooltip_ability_imba_tower_plasma_field_plasma_damage_max"                      "DAMAGE MAX:" 
 
     "DOTA_Tooltip_ability_imba_tower_death_pulse"                                         "Death Pulse Tower"
     "DOTA_Tooltip_ability_imba_tower_death_pulse_Description"                             "Tower releases a wave of death around it, dealing damage to enemy units and healing allied units."
     "DOTA_Tooltip_ability_imba_tower_death_pulse_Lore"                                    "Combining its tower monk heritage with its newfound affinity for plague has a menacing result."
     "DOTA_Tooltip_ability_imba_tower_death_pulse_area_of_effect"                          "RADIUS:"
-    "DOTA_Tooltip_ability_imba_tower_death_pulse_healdamage"					  "DAMAGE/HEAL:" 
+    "DOTA_Tooltip_ability_imba_tower_death_pulse_healdamage"                      "DAMAGE/HEAL:" 
 
     "DOTA_Tooltip_ability_imba_tower_atrophy"                                           "Atrophy Tower"
     "DOTA_Tooltip_ability_imba_tower_atrophy_Description"                               "Reduces the attack damage of all nearby units."
@@ -3012,7 +3024,7 @@
     "DOTA_Tooltip_ability_imba_tower_salvo_salvo_aoe" "DAMAGE RADIUS:"
 
 
-	"DOTA_Tooltip_ability_omniknight_degen_aura_tower"                                   "Degen Aura Tower"
+    "DOTA_Tooltip_ability_omniknight_degen_aura_tower"                                   "Degen Aura Tower"
     "DOTA_Tooltip_ability_omniknight_degen_aura_tower_Description"                       "Greatly degenerates the movement capabilities of nearby enemies. Continuously reduces enemy movement speed while they are inside aura's effect."
     "DOTA_Tooltip_ability_omniknight_degen_aura_tower_Lore"                              "The holy embodiment of Purist Thunderwrath is enough to weaken those of lesser faith."
     "DOTA_Tooltip_ability_omniknight_degen_aura_tower_radius"                 "RADIUS:"
@@ -4386,11 +4398,11 @@
     "DOTA_Tooltip_ability_alchemist_chemical_rage_redux_bonus_mana_regen"             "BONUS MANA REGEN:"
     "DOTA_Tooltip_ability_alchemist_chemical_rage_redux_bonus_movespeed"              "BONUS MOVE SPEED:"
 
-    "DOTA_Tooltip_ability_alchemist_transmuted_scepter" 							  "Transmuted Scepter" 
-    "DOTA_Tooltip_ability_alchemist_transmuted_scepter_Description" 	    		  "Forges a replica of Aghnaim Scepter that can be embedded into the hero's weapon. Casting Transmuted Scepter on any allied hero, including yourself, grants the Aghnaim's Scepter bonuses permanently. <font color='#FFDD2C'>This ability costs 4200 gold to cast.</font>"
-    "DOTA_Tooltip_ability_alchemist_transmuted_scepter_Lore" 					      "There is almost nothing that a master Alchemist cannot transmute - not even a legendary staff."
-    "DOTA_Tooltip_modifier_alchemist_transmuted_scepter"	  						  "Transmuted Scepter"
-    "DOTA_Tooltip_modifier_alchemist_transmuted_scepter_Description" 				  "Permanently gaining Aghnaim's Scepter's bonuses."
+    "DOTA_Tooltip_ability_alchemist_transmuted_scepter"                               "Transmuted Scepter" 
+    "DOTA_Tooltip_ability_alchemist_transmuted_scepter_Description"                   "Forges a replica of Aghnaim Scepter that can be embedded into the hero's weapon. Casting Transmuted Scepter on any allied hero, including yourself, grants the Aghnaim's Scepter bonuses permanently. <font color='#FFDD2C'>This ability costs 4200 gold to cast.</font>"
+    "DOTA_Tooltip_ability_alchemist_transmuted_scepter_Lore"                          "There is almost nothing that a master Alchemist cannot transmute - not even a legendary staff."
+    "DOTA_Tooltip_modifier_alchemist_transmuted_scepter"                              "Transmuted Scepter"
+    "DOTA_Tooltip_modifier_alchemist_transmuted_scepter_Description"                  "Permanently gaining Aghnaim's Scepter's bonuses."
 
     "DOTA_Tooltip_ability_abaddon_borrowed_time_redux"                "Borrowed Time Redux"
     "DOTA_Tooltip_ability_abaddon_borrowed_time_redux_Description"    "When activated, all damage dealt to you will heal instead of harm. Most negative buffs will also be removed. If the ability is not on cooldown, it will automatically activate if your health falls below %hp_threshold%. <font color='#70EA72'>25% shorter duration and 25% longer cooldown.</font>\n\nUpgradable by Aghanim's Scepter.\n\nDISPEL TYPE: Strong Dispel"
@@ -8149,12 +8161,12 @@
         "DOTA_Tooltip_ability_spell_lab_symbiotic_Description" "You bind yourself to target allied hero. You may cast spells as normal but you share manapool. If host is out of mana your spells take spell cost from host's health. If your symbiotic host dies, you die as well.\nWhen host takes damage ending symbiosis is put on 3s cooldown.\nHost hero is granted bonus to all stats and mana regen while reducing magic resistance and armor.\n\n Upgradeable by Aghanim's Scepter"
         "DOTA_Tooltip_ability_spell_lab_symbiotic_Note0"           "Temporarily breaks invisibility of host when you cast spell or attack. 3s/2.5s/2s"
         
-		"DOTA_Tooltip_ability_spell_lab_symbiotic_bonus" "BONUS STAT:"
-		"DOTA_Tooltip_ability_spell_lab_symbiotic_mana_regen" "%BONUS MANA REGEN"
-		"DOTA_Tooltip_ability_spell_lab_symbiotic_magic_armor" "%MAGIC RESISTANCE REDUCTION:"
-		"DOTA_Tooltip_ability_spell_lab_symbiotic_physical_armor" "ARMOR REDUCTION:"
-		
-		"DOTA_Tooltip_ability_spell_lab_symbiotic_Aghanim_Description"	"Allows you to attack while in symbiosis."
+        "DOTA_Tooltip_ability_spell_lab_symbiotic_bonus" "BONUS STAT:"
+        "DOTA_Tooltip_ability_spell_lab_symbiotic_mana_regen" "%BONUS MANA REGEN"
+        "DOTA_Tooltip_ability_spell_lab_symbiotic_magic_armor" "%MAGIC RESISTANCE REDUCTION:"
+        "DOTA_Tooltip_ability_spell_lab_symbiotic_physical_armor" "ARMOR REDUCTION:"
+        
+        "DOTA_Tooltip_ability_spell_lab_symbiotic_Aghanim_Description"  "Allows you to attack while in symbiosis."
         "DOTA_Tooltip_spell_lab_symbiotic_modifier" "Arcance Symbiosis"
         "DOTA_Tooltip_spell_lab_symbiotic_modifier_Description" "You share mana pool with a host hero."
         "DOTA_Tooltip_spell_lab_symbiotic_target"   "Arcance Symbiosis: Host"
@@ -9349,7 +9361,24 @@
 
     "DOTA_Tooltip_modifier_morph_int_agi"              "Morph (INT to AGI)"
     "DOTA_Tooltip_modifier_morph_int_agi_Description"      "Converting Intelligence into Agility."
+    
+    "DOTA_Tooltip_ability_life_stealer_feast_melee"                                       "Feast Redux"
+    "DOTA_Tooltip_ability_life_stealer_feast_melee_Description"                           "Lifestealer's attacks damage enemies and heal himself for a percentage of his target's current health. <font color='#70EA72'>Half as effective on ranged heroes.</font>"        
+    "DOTA_Tooltip_ability_life_stealer_feast_melee_Lore"                                  "After escaping from his cell in Devarque, N'aix subsisted on flesh and bones of those unfortunate to cross his path." 
+    "DOTA_Tooltip_ability_life_stealer_feast_melee_Note0"                                 "Does not affect Roshan."
+    "DOTA_Tooltip_ability_life_stealer_feast_melee_Note1"                                 "Affects Spell Immune units."
+    "DOTA_Tooltip_ability_life_stealer_feast_melee_Note2"                                 "The heal is independent of the damage."
+    "DOTA_Tooltip_ability_life_stealer_feast_melee_Note3"                                 "Stacks additively with other sources of Lifesteal."
+    "DOTA_Tooltip_ability_life_stealer_feast_melee_hp_leech_percent"                      "%LIFE LEECH:"
 
+    "DOTA_Tooltip_ability_life_stealer_feast_ranged"                                       "Feast Ranged"
+    "DOTA_Tooltip_ability_life_stealer_feast_ranged_Description"                           "Lifestealer's attacks damage enemies and heal himself for a percentage of his target's current health."        
+    "DOTA_Tooltip_ability_life_stealer_feast_ranged_Lore"                                  "After escaping from his cell in Devarque, N'aix subsisted on flesh and bones of those unfortunate to cross his path." 
+    "DOTA_Tooltip_ability_life_stealer_feast_ranged_Note0"                                 "Does not affect Roshan."
+    "DOTA_Tooltip_ability_life_stealer_feast_ranged_Note1"                                 "Affects Spell Immune units."
+    "DOTA_Tooltip_ability_life_stealer_feast_ranged_Note2"                                 "The heal is independent of the damage."
+    "DOTA_Tooltip_ability_life_stealer_feast_ranged_Note3"                                 "Stacks additively with other sources of Lifesteal."
+    "DOTA_Tooltip_ability_life_stealer_feast_ranged_hp_leech_percent" 
     //-------------------------------------------------------------------
     // Achlys
     //-------------------------------------------------------------------
@@ -9767,5 +9796,4 @@
 
 
 }
-
 
