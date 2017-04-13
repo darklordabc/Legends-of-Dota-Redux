@@ -9396,6 +9396,86 @@
     "DOTA_Tooltip_modifier_achlys_death_mist"                               "Death Mist"
     "DOTA_Tooltip_modifier_achlys_death_mist_Description"                   "Taking damage and losing mana."
 
+    //-------------------------------------------------------------------
+    // Zeros, the Dreaded Archduke of Stonehall
+    //-------------------------------------------------------------------
+    "DOTA_Tooltip_Ability_zeros_impose_tax"                     "Impose Tax"    
+    "DOTA_Tooltip_Ability_zeros_impose_tax_Description"         "Zeros imposes a tax upon an enemy hero, causing Zeros to take a percentage of all gold they earned from creeps in the last 20 seconds and dealing damage per gold taken."
+    "DOTA_Tooltip_Ability_zeros_impose_tax_Gold_loss_pct"       "%STEAL AMOUNT:"
+    "DOTA_Tooltip_Ability_zeros_impose_tax_Damage_per_gold"     "DAMAGE PER GOLD STOLEN:"
+
+    "DOTA_Tooltip_Ability_zeros_royal_statue"               "Royal Statue"
+    "DOTA_Tooltip_Ability_zeros_royal_statue_Description"       "Zeros places a royal golden statue on the ground, causing creeps in a radius to drop bonus gold when killed. Enemies who attack the statue will lose attack damage and have a chance to be affected by malice if Zeros has Blade of Malice leveled."
+    "DOTA_Tooltip_Ability_zeros_royal_statue_Note0"             "Statue provides 800/800 vision."
+    "DOTA_Tooltip_Ability_zeros_royal_statue_Duration"              "STATUE DURATION:"
+    "DOTA_Tooltip_Ability_zeros_royal_statue_Health"                "STATUE HEALTH:"
+    "DOTA_Tooltip_Ability_zeros_royal_statue_Bounty"                "STATUE BOUNTY:"
+    "DOTA_Tooltip_Ability_zeros_royal_statue_Bonus_gold"            "CREEP BONUS GOLD:"
+    "DOTA_Tooltip_Ability_zeros_royal_statue_Radius"                "CREEP AURA RADIUS:"
+    "DOTA_Tooltip_Ability_zeros_royal_statue_Debuff_duration"       "DEBUFF DURATION:"
+    "golden_statue" "Golden Statue"
+    "DOTA_Tooltip_Ability_item_bag_of_gold"                     "Cursed Gold"
+
+    "DOTA_Tooltip_Ability_zeros_blade_of_malice"                "Blade of Malice"
+    "DOTA_Tooltip_Ability_zeros_blade_of_malice_Description"    "Whenever Zeros is attacked, there is a chance that the attacker will be affected by malice. When Zeros attacks an enemy with malice, he will deal critical damage and stun them, removing the malice effect. Zeros gains vision of units with malice and bonus movement speed for every unit affected by malice."
+    "DOTA_Tooltip_Ability_zeros_blade_of_malice_Proc_chance"        "%TRIGGER CHANCE:"
+    "DOTA_Tooltip_Ability_zeros_blade_of_malice_Crit_damage"        "%CRITCAL DAMAGE:"
+    "DOTA_Tooltip_Ability_zeros_blade_of_malice_Stun_duration"      "STUN DURATION:"    
+    "DOTA_Tooltip_Ability_zeros_blade_of_malice_Duration"           "MALICE DURATION:"  
+    "DOTA_Tooltip_Ability_zeros_blade_of_malice_Bonus_movement_speed"       "%BONUS MOVEMENT SPEED:"
+
+    "DOTA_Tooltip_Ability_zeros_fanaticism"                     "Fanaticism (Old)"
+    "DOTA_Tooltip_Ability_zeros_fanaticism_Description"         "Zeros embraces fanaticism, granting him powerful bonuses retroactively when he is 1800 units away from his allies. Increases all damage dealt and reduces all damage received, but also drastically reduces his sight range. "
+    "DOTA_Tooltip_Ability_zeros_fanaticism_Duration"                "DURATION:"
+    "DOTA_Tooltip_Ability_zeros_fanaticism_Bonus_damage_pct"        "%BONUS DAMAGE:"
+    "DOTA_Tooltip_Ability_zeros_fanaticism_Damage_reduction_pct"    "%DAMAGE REDUCTION:"
+    "DOTA_Tooltip_Ability_zeros_fanaticism_Day_vision"              "DAY VISION:"
+    "DOTA_Tooltip_Ability_zeros_fanaticism_Night_vision"            "NIGHT VISION:"
+    
+    "DOTA_Tooltip_Ability_zeros_gerrymandering"                     "Gerrymandering"
+    "DOTA_Tooltip_Ability_zeros_gerrymandering_Description"         "Zeros spends mana and a portion of his gold to rig the numbers in favour of his team. When used on an ally, a percentage of damage taken will be healed per instance after a delay. When used on an enemy, a percentage of damage dealt will be healed per instance after a delay. Also increases/decreases movement speed depending on whether tha hero is an ally or enemy.\nUpgradable by Aghanim's Scepter"
+    "DOTA_Tooltip_Ability_zeros_gerrymandering_Gold_cost"           "GOLD COST:"
+    "DOTA_Tooltip_Ability_zeros_gerrymandering_Bonus_effect"        "%DAMAGE HEAL EFFECT:"
+    "DOTA_Tooltip_Ability_zeros_gerrymandering_Delay"               "EFFECT DELAY:"
+    "DOTA_Tooltip_Ability_zeros_gerrymandering_Movespeed_bonus"     "%MOVEMENT SPEED CHANGE:"
+    "DOTA_Tooltip_Ability_zeros_gerrymandering_Duration"            "DURATION:"
+    "DOTA_Tooltip_Ability_zeros_gerrymandering_Aghanim_description" "Buying back no longer has a cooldown or gold penalty. If any other hero buys back, Zeros gains gold equal to 60% of their buyback cost."
+    
+    
+    "DOTA_Tooltip_Modifier_poverty"             "Poverty"
+    "DOTA_Tooltip_Modifier_poverty_Description"         "Slowed and losing gold equal to 10%d%% of their death cost per second. Give Zeros a last hit, or keep suffering from poverty!"
+
+    "DOTA_Tooltip_Modifier_statue_aura_creep"           "Golden Statue"
+    "DOTA_Tooltip_Modifier_statue_aura_creep_Description"           "Emitting Golden Aura, increasing creep bounties by %dMODIFIER_PROPERTY_ATTACK_RANGE_BONUS%."
+
+    "DOTA_Tooltip_Modifier_statue_effect_creep"         "Golden Aura"
+    "DOTA_Tooltip_Modifier_statue_effect_creep_Description"     "Increased Bounty."
+
+    "DOTA_Tooltip_Modifier_statue_debuff_stack"     "Damage Reduction Stacks"
+    "DOTA_Tooltip_Modifier_statue_debuff_stack_Description"     "Losing damage from attacking the statue. "
+
+    "DOTA_Tooltip_Modifier_malice_debuff"       "Malice"
+    "DOTA_Tooltip_Modifier_malice_debuff_Description"       "Will be critically struck and stunned if attacked by Zeros. You made him angry!"
+
+    "DOTA_Tooltip_Modifier_malice_buff"         "Malice Buff"
+    "DOTA_Tooltip_Modifier_modifier_malice_buff_Description"    "Increased movement speed. KILL THOSE PEASANTS!"
+
+    "DOTA_Tooltip_Modifier_malice_stun"         "Stunned"
+    "DOTA_Tooltip_Modifier_malice_stun_Description"     "You have been struck by the blade of malice for daring to oppose the Archduke of Stonehall."
+
+    "DOTA_Tooltip_Modifier_fanatic"             "Fanatic"
+    "DOTA_Tooltip_Modifier_fanatic_Description"         "Deals more damage and takes less damage when 1800 units away from his allies. Has drastically reduced vision."
+
+    "DOTA_Tooltip_Modifier_fanatic_buff"        "Fanatic Bonus"
+    "DOTA_Tooltip_Modifier_fanatic_buff_Description"            "Increases damage done and reduces all damage taken."
+    
+    "DOTA_Tooltip_Modifier_gerrymander_buff"        "Gerrymander"
+    "DOTA_Tooltip_Modifier_gerrymander_buff_Description"            "A percentage of all damage taken is healed after a delay."
+                           
+    "DOTA_Tooltip_Modifier_gerrymander_debuff"      "Gerrymander"
+    "DOTA_Tooltip_Modifier_gerrymander_debuff_Description"          "A percentage of all damage dealt is healed after a delay."
+    
+
 
 }
 

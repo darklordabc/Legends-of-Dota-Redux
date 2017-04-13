@@ -216,6 +216,7 @@
 #base "abilities\ebf\ebf_troll_warlord_multistrike.txt"
 #base "abilities\ebf\ebf_underlord_expulsion.txt"
 #base "abilities\generation\achlys.txt"  
+#base "abilities\generation\zeros.txt"  
 #base "abilities\generation\keen.txt"  
 #base "abilities\generation\proteus.txt" 
 #base "abilities\generation\uther.txt"
