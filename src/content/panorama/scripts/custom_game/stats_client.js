@@ -1,4 +1,5 @@
-var ServerAddress = (Game.IsInToolsMode() ? "http://127.0.0.1:3333" : "https://lodr-ark120202.rhcloud.com") + "/lodServer/"
+var debug = false;
+var ServerAddress = (Game.IsInToolsMode() && debug ? "http://127.0.0.1:3333" : "https://lodr-ark120202.rhcloud.com") + "/lodServer/"
 
 function GetDataFromServer(path, params, resolve, reject) {
 	var encodedParams = params == null ? "" : "?" + Object.keys(params).map(function(key) {
@@ -8,13 +9,14 @@ function GetDataFromServer(path, params, resolve, reject) {
 	$.AsyncWebRequest(ServerAddress + path + encodedParams, {
 		type: "GET",
 		success: function(data) {
-			resolve(data || {})
+			if (resolve) resolve(data || {});
 		},
-		error: reject
+		error: function(e) {
+			if (reject) reject(e);
+		}
 	});
 	//})
 }
-
 
 function CreateSkillBuild(title, description) {
 	GameEvents.SendCustomGameEventToServer("stats_client_create_skill_build", {
@@ -25,14 +27,16 @@ function CreateSkillBuild(title, description) {
 
 function LoadBuilds(filter) {
 	GetDataFromServer("getSkillBuilds", filter == null ? null : {filter: filter}, function(builds) {
-		$("#buildLoadingIndicator").visible = false;
-		$("#pickingPhaseRecommendedBuildContainer").GetParent().visible = true;
 		if (builds) {
 			for (var i = 0; i < builds.length; i++) {
 				addRecommendedBuild(builds[i]);
 			}
 		}
+
 		LoadFavBuilds();
+
+		$("#buildLoadingIndicator").visible = false;
+		$("#pickingPhaseRecommendedBuildContainer").GetParent().visible = true;
 	}, function() {
 		$("#buildLoadingSpinner").visible = false;
 		$("#buildLoadingIndicatorText").text = $.Localize("#unableLoadingBuilds");
@@ -47,12 +51,12 @@ function LoadFavBuilds() {
 	if (!Game.GetLocalPlayerInfo()) {
 		$.Schedule(0.1, LoadFavBuilds)
 	} else {
-		GetDataFromServer("getPlayerData", {steamID: Game.GetLocalPlayerInfo().player_steamid}).then(function(data) {
+		GetDataFromServer("getPlayerData", {steamID: Game.GetLocalPlayerInfo().player_steamid}, function(data) {
 			var con = $("#pickingPhaseRecommendedBuildContainer");
 			var favoriteBuilds = Object.keys(data.favoriteBuilds || {}).map(function (key) { return data.favoriteBuilds[key]; });
 			$.Each(con.Children(), function(child) {
 				child.setFavorite(favoriteBuilds.indexOf(child.buildID) != -1);
 			})
-		});
+		})
 	}
 }
