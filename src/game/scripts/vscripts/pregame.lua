@@ -444,6 +444,7 @@ function Pregame:init()
         --self:setOption('lodOptionBuybackCooldownTimeConstant', 210, true)
         self:setOption('lodOptionGameSpeedGoldModifier', 150, true)
         self:setOption('lodOptionGameSpeedEXPModifier', 200, true)
+        self:setOption('lodOptionGameSpeedRespawnTimePercentage', 35, true)
         self.useOptionVoting = true
     end
 
@@ -458,7 +459,7 @@ function Pregame:init()
         self:setOption('lodOptionGameSpeedEXPModifier', 200, true)
         self:setOption('lodOptionAdvancedHidePicks', 0, true)
         self:setOption('lodOptionCommonMaxUlts', 2, true)
-        self:setOption('lodOptionGameSpeedRespawnTimePercentage', 25, true)
+        self:setOption('lodOptionGameSpeedRespawnTimePercentage', 35, true)
         self.useOptionVoting = true
         self.optionVoteSettings.doubledAbilityPoints = nil
     end
