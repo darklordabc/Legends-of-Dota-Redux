@@ -1,4 +1,4 @@
-var ServerAddress = (Game.IsInToolsMode() ? "http://127.0.0.1:3333" : "https://lodr-ark120202.rhcloud.com") + "/lodServer/"
+var ServerAddress = (false ? "http://127.0.0.1:3333" : "https://lodr-ark120202.rhcloud.com") + "/lodServer/"
 
 function GetDataFromServer(path, params) {
 	var encodedParams = params == null ? "" : "?" + Object.keys(params).map(function(key) {
@@ -24,14 +24,16 @@ function CreateSkillBuild(title, description) {
 }
 
 function LoadBuilds(filter) {
-	try {
 		GetDataFromServer("getSkillBuilds", filter == null ? null : {filter: filter}).then(function(builds) {
-			if (builds) {
-				for (var i = 0; i < builds.length; i++) {
-					addRecommendedBuild(builds[i]);
+			try {
+				if (builds) {
+					for (var i = 0; i < builds.length; i++) {
+						addRecommendedBuild(builds[i]);
+					}
 				}
-			}
+			} catch (e) {$.Msg(e.stack)}
 			LoadFavBuilds();
+				throw new Error("asd");
 			$("#buildLoadingIndicator").visible = false;
 
 			$("#pickingPhaseRecommendedBuildContainer").GetParent().visible = true;
@@ -39,7 +41,6 @@ function LoadBuilds(filter) {
 			$("#buildLoadingSpinner").visible = false;
 			$("#buildLoadingIndicatorText").text = $.Localize("#unableLoadingBuilds");
 		});
-	} catch (e) {$.Msg(e.stack)}
 }
 
 function SaveFavBuilds(builds) {
