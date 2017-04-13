@@ -7,6 +7,9 @@
         "BaseClass"                            "life_stealer_feast"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxPerks"                                                           "attack_modifier"
+        "ReduxCost"                                                            "30"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -27,6 +30,7 @@
         "BaseClass"                            "life_stealer_feast"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+
 
         // Special
         //-------------------------------------------------------------------------------------------------------------

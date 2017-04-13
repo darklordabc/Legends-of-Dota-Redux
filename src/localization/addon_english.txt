@@ -9378,7 +9378,7 @@
     "DOTA_Tooltip_ability_life_stealer_feast_ranged_Note1"                                 "Affects Spell Immune units."
     "DOTA_Tooltip_ability_life_stealer_feast_ranged_Note2"                                 "The heal is independent of the damage."
     "DOTA_Tooltip_ability_life_stealer_feast_ranged_Note3"                                 "Stacks additively with other sources of Lifesteal."
-    "DOTA_Tooltip_ability_life_stealer_feast_ranged_hp_leech_percent" 
+    "DOTA_Tooltip_ability_life_stealer_feast_ranged_hp_leech_percent"                      "%LIFE LEECH:"
     //-------------------------------------------------------------------
     // Achlys
     //-------------------------------------------------------------------
