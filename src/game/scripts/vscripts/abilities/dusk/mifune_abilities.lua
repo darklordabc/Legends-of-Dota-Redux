@@ -138,7 +138,7 @@ function genso(event)
 			local abilityLevel = ability:GetLevel()
 			local abilityName = ability:GetName()
 			local illusionAbility = illusion:FindAbilityByName(abilityName)
-			--illusionAbility:SetLevel(abilityLevel)
+			illusionAbility:SetLevel(abilityLevel)
 		end
 	end
 
