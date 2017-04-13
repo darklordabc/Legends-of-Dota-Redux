@@ -9794,6 +9794,57 @@
     "DOTA_Tooltip_lich_absolute_zero_scepter_mod"                                     "Absolute Zero"
     "DOTA_Tooltip_lich_absolute_zero_scepter_mod_description"                         "Being slowed, taking periodic damage, and unable to heal."
 
+    //--------------------
+    //LIGHTNING
+    //--------------------
+    "DOTA_Tooltip_ability_lightning_blinding_speed"                                   "Blinding Speed"
+    "DOTA_Tooltip_ability_lightning_blinding_speed_description"                       "Lightning moves at extremely high speeds through obstacles for 6s, dealing a small amount of damage and slowing when she charges through her enemies.  She takes no damage while under the effects of this spell, but will be still be affected by buffs and debuffs.  If she stops moving for 1s, the effect will end prematurely."
+    "DOTA_Tooltip_ability_lightning_blinding_speed_aghanim_description"               "Drastically increases speed and purges debuffs over the duration."
+    "DOTA_Tooltip_ability_lightning_blinding_speed_speed"                             "SPEED:"
+    "DOTA_Tooltip_ability_lightning_blinding_speed_scepter_speed"                     "SCEPTER SPEED:"
+    "DOTA_Tooltip_ability_lightning_blinding_speed_damage"                            "DAMAGE:"
+    
+    "DOTA_Tooltip_ability_lightning_blinding_speed2"                                  "Blinding Speed"
+    "DOTA_Tooltip_ability_lightning_blinding_speed2_description"                      "Cumulatively grants Lightning bonus movespeed and attack speed as she uses her abilities.  When she hits max stacks, her BAT is reduced."
+    "DOTA_Tooltip_ability_lightning_blinding_speed2_Lore"                             "In tales, the Tijadi grow stronger and faster as the battle drags on."
+    "DOTA_Tooltip_ability_lightning_blinding_speed2_bonus_movespeed"                  "%BONUS MOVESPEED:"
+    "DOTA_Tooltip_ability_lightning_blinding_speed2_bonus_attackspeed"                "BONUS ATTACKSPEED:"
+    "DOTA_Tooltip_ability_lightning_blinding_speed2_base_attack_time"                 "BASE ATTACK TIME:"
+    "DOTA_Tooltip_ability_lightning_blinding_speed2_max_stack"                        "MAX STACK:"
+    "DOTA_Tooltip_ability_lightning_blinding_speed2_duration"                         "STACK DURATION:"
+    
+    "DOTA_Tooltip_ability_lightning_spark"                                            "Spark"
+    "DOTA_Tooltip_ability_lightning_spark_Description"                                "Each time Lightning casts a spell, enemies in a large radius around her take Magical damage and are slowed by a small amount. Only works with Lightning's default abilities."
+    "DOTA_Tooltip_ability_lightning_spark_Lore"                                       "A Tijadi's fury can set the very air of the battlefield crackling and ready to destroy their foes."
+    "DOTA_Tooltip_ability_lightning_spark_bonus_damage"                               "DAMAGE:"
+    "DOTA_Tooltip_ability_lightning_spark_radius"                                     "RADIUS:"
+    "DOTA_Tooltip_ability_lightning_spark_slow"                                       "%SLOW:"
+
+    "DOTA_Tooltip_ability_lightning_lightning_dagger2"                                 "Lightning Daggers"
+    "DOTA_Tooltip_ability_lightning_lightning_dagger2_description"                     "Lightning throws a dagger at the target enemy, dealing a small amount of Magical damage."
+    "DOTA_Tooltip_ability_lightning_lightning_dagger2_Lore"                            "The Tijadi have unending prowess with their throwing daggers, able to strike with pinpoint accuracy at the most elusive of foes."
+    "DOTA_Tooltip_ability_lightning_lightning_dagger2_Note0"                           "The initial slow is 100% and lasts for 0.75s."
+    "DOTA_Tooltip_ability_lightning_lightning_dagger2_mark_slow"                       "%MARK SLOW:"
+    "DOTA_Tooltip_ability_lightning_lightning_dagger2_mark_slow_duration"              "MARK SLOW DURATION:"
+    "DOTA_Tooltip_ability_lightning_lightning_dagger2_mark_damage"                     "MARK DAMAGE:"
+    "DOTA_Tooltip_ability_lightning_lightning_dagger2_mark_aoe"                           "MARK AOE:"
+
+    "DOTA_Tooltip_ability_lightning_overload"                                         "Overload"
+    "DOTA_Tooltip_ability_lightning_overload_description"                             "Slows and damages enemies in an area around Lightning."
+    "DOTA_Tooltip_ability_lightning_overload_Lore"                                    "Those who face the Tijadi in close combat rarely live long enough to see their full strength."
+    "DOTA_Tooltip_ability_lightning_overload_damage"                                  "DAMAGE:"
+    "DOTA_Tooltip_ability_lightning_overload_radius"                                  "RADIUS:"
+    "DOTA_Tooltip_ability_lightning_overload_move_slow"                               "%MOVE SLOW:"
+    "DOTA_Tooltip_ability_lightning_overload_attack_slow"                             "ATTACK SLOW:"
+    "DOTA_Tooltip_ability_lightning_overload_duration"                                "SLOW DURATION:"
+
+    "DOTA_Tooltip_ability_lightning_thunder_wave"                                     "Thunder Wave"
+    "DOTA_Tooltip_ability_lightning_thunder_wave_description"                         "Creates a travelling cacophony of electrical blasts, slowing and damaging enemies hit by it."
+    "DOTA_Tooltip_ability_lightning_thunder_wave_Lore"                                "While their preference is to fight face-to-face, magic is not beyond them."
+    "DOTA_Tooltip_ability_lightning_thunder_wave_damage"                              "DAMAGE:"
+    "DOTA_Tooltip_ability_lightning_thunder_wave_slow"                                "%SLOW:"
+    "DOTA_Tooltip_ability_lightning_thunder_wave_duration"                            "SLOW DURATION:"
+
 
 }
 
