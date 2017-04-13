@@ -200,6 +200,7 @@
 #base "abilities\dusk\hawkeye_ricochet.txt"
 #base "abilities\dusk\vassal_shield.txt"
 #base "abilities\dusk\mifune.txt"
+#base "abilities\dusk\ptomely.txt"
 #base "abilities\dusk\alchemist_motherloads.txt"
 #base "abilities\dusk\alchemist_alchemise.txt"
 #base "abilities\dusk\crimson_blood_sorcery.txt"

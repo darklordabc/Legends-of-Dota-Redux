@@ -9595,6 +9595,44 @@
     "DOTA_Tooltip_ability_mifune_zanmato_scepter_bonus_hero_damage"                           "BONUS HERO DAMAGE:"
     "DOTA_Tooltip_ability_mifune_zanmato_scepter_orb_damage"                                  "ORB DAMAGE:"
 
+    //--------------------
+    // PTOMELY
+    //--------------------
+    "DOTA_Tooltip_ability_ptomely_astralise"                                          "Astralise"
+    "DOTA_Tooltip_ability_ptomely_astralise_Description"                              "The targeted unit has its soul removed from its body, dealing damage to enemies, and emitting pulses that heal allies and damage enemies. Deals damage based on a percentage of the target's Intelligence. Heals for half the amount."
+    "DOTA_Tooltip_ability_ptomely_astralise_Note0"                                    "There is a 0.5s delay before pulses start."
+    "DOTA_Tooltip_ability_ptomely_astralise_damage"                                   "DAMAGE:"
+    "DOTA_Tooltip_ability_ptomely_astralise_radius"                                   "RADIUS:"
+    "DOTA_Tooltip_ability_ptomely_astralise_pulse_damage"                             "%INT TO DAMAGE (PULSE):"
+    "DOTA_Tooltip_ability_ptomely_astralise_interval"                                 "PULSE INTERVAL:"
+    "DOTA_Tooltip_ability_ptomely_astralise_duration"                                 "DURATION:"
+
+    "DOTA_Tooltip_ability_ptomely_enthrall"                                           "Enthrall"
+    "DOTA_Tooltip_ability_ptomely_enthrall_Description"                               "The targeted unit is afflicted with a powerful enchantment that lowers their Magic Resistance and converts all Physical damage taken to Magical damage before reductions. If the Physical damage would be negated absolutely (such as if the unit is Ethereal, or with Phantom's Shadowstep), the effect does not function."
+    "DOTA_Tooltip_ability_ptomely_enthrall_magic_resistance_reduction"                "%MAGIC RESISTANCE REDUCTION:"
+    "DOTA_Tooltip_ability_ptomely_enthrall_magic_resistance_reduction_ally"           "%MAGIC RESISTANCE REDUCTION (ALLY):"
+    "DOTA_Tooltip_ability_ptomely_enthrall_duration"                                  "DURATION:"
+
+    "DOTA_Tooltip_ability_ptomely_expunge"                                            "Expunge"
+    "DOTA_Tooltip_ability_ptomely_expunge_Description"                                "Drains a base amount plus a portion of current Mana out of the target unit, slowing them and creating an orb of energy above them. After a short delay, the orb explodes, dealing Magical damage equivalent to the amount drained, and restoring Mana to nearby allies equal to half of the amount drained. The damage cannot go below a minimum amount.\n\nUpgradable by Aghanim's Scepter."
+    "DOTA_Tooltip_ability_ptomely_expunge_aghanim_Description"                        "Causes the spell to drain a percentage of the target's Max Mana as well as their Current Mana."
+    "DOTA_Tooltip_ability_ptomely_expunge_mana_drain"                                 "%CURRENT MANA DRAIN:"
+    "DOTA_Tooltip_ability_ptomely_expunge_scepter_mana_drain"                         "%SCEPTER MAX MANA DRAIN:"
+    "DOTA_Tooltip_ability_ptomely_expunge_radius"                                     "RADIUS:"
+    "DOTA_Tooltip_ability_ptomely_expunge_slow"                                       "SLOW:"
+    "DOTA_Tooltip_ability_ptomely_expunge_base_drain"                                 "BASE MANA DRAIN:"
+
+    "DOTA_Tooltip_ability_ptomely_mirror_blade"                                       "Mirror Blade"
+    "DOTA_Tooltip_ability_ptomely_mirror_blade_Description"                           "Fires multiple blades of pure energy towards the target location, dealing Physical damage based upon Ptomely's Intelligence."
+    "DOTA_Tooltip_ability_ptomely_mirror_blade_damage"                                "DAMAGE PER INT:"
+    "DOTA_Tooltip_ability_ptomely_mirror_blade_blades"                                "BLADES:"
+    "DOTA_Tooltip_ability_ptomely_mirror_blade_radius"                                "HIT RADIUS:"
+    "DOTA_Tooltip_ability_ptomely_mirror_blade_range"                                 "RANGE:"
+
+    "DOTA_Tooltip_ability_ptomely_spell_reflect"                                      "Ptomely Spell Reflect"
+    "DOTA_Tooltip_ability_ptomely_spell_reflect_Description"                          ""
+    "DOTA_Tooltip_ability_ptomely_spell_reflect_duration"                             "DURATION:"
+
 
 }
 

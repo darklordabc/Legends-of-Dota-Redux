@@ -1,0 +1,209 @@
+"Ptomely.Astralise"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"          "sos_reference_stack"
+                "reference_stack"           "dota_update_default"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                            "value0"        "sounds/astralise.vsnd"
+                        }
+                    }
+                    "volume"
+                    {
+                        "value" "1.00"
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+"Ptomely.AstralisePulse"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"          "sos_reference_stack"
+                "reference_stack"           "dota_update_default"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                            "value0"        "sounds/astralise_pulse.vsnd"
+                        }
+                    }
+                    "volume"
+                    {
+                        "value" "1.00"
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+"Ptomely.MirrorBlade"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"          "sos_reference_stack"
+                "reference_stack"           "dota_update_default"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                            "value0"        "sounds/mirror_blade2.vsnd"
+                        }
+                    }
+                    "volume"
+                    {
+                        "value" "1.00"
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+"Ptomely.MirrorBladeHit"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"          "sos_reference_stack"
+                "reference_stack"           "dota_update_default"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                            "value0"        "sounds/mirror_blade_hit.vsnd"
+                        }
+                    }
+                    "volume"
+                    {
+                        "value" "0.60"
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+"Ptomely.Enthrall"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"          "sos_reference_stack"
+                "reference_stack"           "dota_update_default"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                            "value0"        "sounds/enthrall.vsnd"
+                        }
+                    }
+                    "volume"
+                    {
+                        "value" "1.00"
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+"Ptomely.ExpungeCharge"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"          "sos_reference_stack"
+                "reference_stack"           "dota_update_default"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                            "value0"        "sounds/expunge_startup.vsnd"
+                        }
+                    }
+                    "volume"
+                    {
+                        "value" "1.50"
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+"Ptomely.ExpungeBoom"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"          "sos_reference_stack"
+                "reference_stack"           "dota_update_default"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                            "value0"        "sounds/expunge_bang.vsnd"
+                        }
+                    }
+                    "volume"
+                    {
+                        "value" "2.00"
+                    }
+                }
+            }
+        }
+    }
+
+}
