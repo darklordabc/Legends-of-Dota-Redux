@@ -9670,7 +9670,45 @@
     "DOTA_Tooltip_modifier_to_dust_show"                                              "To Dust"
     "DOTA_Tooltip_modifier_to_dust_show_Description"                                  "Granted bonus attack damage based on missing Health of nearby enemies when cast."
 
+    //--------------------
+    //HERO
+    //--------------------
+    "DOTA_Tooltip_ability_hero_freedom_strike"                                        "Freedom Strike!"
+    "DOTA_Tooltip_ability_hero_freedom_strike_description"                            "For freedom!  Hero leaps into the air, and upon landing, deals damage and slows enemies in a short radius. If he has just used One Punch!! the ability jumps the same distance the punch propelled the enemy."
+    "DOTA_Tooltip_ability_hero_freedom_strike_charge"                                 "DISTANCE:"
+    "DOTA_Tooltip_ability_hero_freedom_strike_radius"                                 "RADIUS:"
+    "DOTA_Tooltip_ability_hero_freedom_strike_slow"                                   "%SLOW:"
+    "DOTA_Tooltip_ability_hero_freedom_strike_duration"                               "DURATION:"
 
+    "DOTA_Tooltip_ability_hero_heroic_soul"                                           "Heroic Soul"
+    "DOTA_Tooltip_ability_hero_heroic_soul_description"                               "For courage!  Hero unleashes a war cry that removes any negative effects he's experiencing and grants him bonus damage and move speed for a short time.  Can be cast while stunned.  The first 0.75s of the effect reduces the damage he takes by 60%%."
+    "DOTA_Tooltip_ability_hero_heroic_soul_bonus_damage"                              "DAMAGE:"
+    "DOTA_Tooltip_ability_hero_heroic_soul_bonus_movespeed"                           "%MOVE SPEED:"
+    "DOTA_Tooltip_ability_hero_heroic_soul_duration"                                  "DURATION:"
+
+    "DOTA_Tooltip_ability_hero_justice_kick"                                          "Justice Kick!"
+    "DOTA_Tooltip_ability_hero_justice_kick_description"                              "For justice!  Hero kicks the target enemy, knocking them back a short distance and slowing them."
+    "DOTA_Tooltip_ability_hero_justice_kick_damage"                                   "DAMAGE:"
+    "DOTA_Tooltip_ability_hero_justice_kick_knockback"                                "KNOCKBACK:"
+    "DOTA_Tooltip_ability_hero_justice_kick_slow"                                     "%SLOW:"
+    "DOTA_Tooltip_ability_hero_justice_kick_duration"                                 "DURATION:"
+
+    "DOTA_Tooltip_ability_hero_one_punch"                                             "One Punch!"
+    "DOTA_Tooltip_ability_hero_one_punch_description"                                 "Hero unleashes a devastating punch that deals massive critical damage and knocks back the target a large distance.  Has a small chance to deal insane critical damage instead. Increases his Freedom Strike! distance temporarily to match the distance the Punch propelled them.\n\nUpgradable by Aghanim's Scepter."
+    "DOTA_Tooltip_ability_hero_one_punch_aghanim_description"                         "Increases the mega crit percentage and the knockback of the punch."
+    "DOTA_Tooltip_ability_hero_one_punch_crit"                                        "%CRIT:"
+    "DOTA_Tooltip_ability_hero_one_punch_knockback"                                   "KNOCKBACK:"
+    "DOTA_Tooltip_ability_hero_one_punch_scepter_knockback"                           "SCEPTER KNOCKBACK:"
+    "DOTA_Tooltip_ability_hero_one_punch_scepter_mega_crit"                           "%SCEPTER MEGA CRIT:"
+    "DOTA_Tooltip_ability_hero_one_punch_mega_crit_chance"                            "%MEGA CRIT CHANCE:"
+    "DOTA_Tooltip_ability_hero_one_punch_mega_crit"                                   "%MEGA CRIT:"
+    
+    "DOTA_Tooltip_ability_hero_hyper_kick"                                          "Ultimate Saviour of the Downtrodden Hyper Justice Kick!"
+    "DOTA_Tooltip_ability_hero_hyper_kick_description"                              "For justice!  Hero kicks the target enemy, obliterating literally everything instantly."
+    "DOTA_Tooltip_ability_hero_hyper_kick_damage"                                   "DAMAGE:"
+    "DOTA_Tooltip_ability_hero_hyper_kick_knockback"                                "KNOCKBACK:"
+    "DOTA_Tooltip_ability_hero_hyper_kick_slow"                                     "%SLOW:"
+    "DOTA_Tooltip_ability_hero_hyper_kick_duration"                                 "DURATION:"
 
 }
 
