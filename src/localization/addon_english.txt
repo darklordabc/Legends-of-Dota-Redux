@@ -9554,6 +9554,47 @@
     "DOTA_Tooltip_Modifier_thrill_active"           "Thrill of the Hunt"        
     "DOTA_Tooltip_Modifier_thrill_active_Description"   "Veera has drastically reduced cooldowns and cast points, as well as increased vision, camera view, and turn rate."
 
+    //--------------------
+    //MIFUNE
+    //--------------------
+    "DOTA_Tooltip_ability_mifune_genso"                                               "Genso"
+    "DOTA_Tooltip_ability_mifune_genso_description"                                   "Creates an illusion to attack the targeted enemy.  The illusions can be killed and move slightly faster than Mifune himself, but cannot be controlled."
+    "DOTA_Tooltip_ability_mifune_genso_Note0"                                         "Illusions have a 15% movespeed bonus."
+    "DOTA_Tooltip_ability_mifune_genso_illusion_tooltip"                               "%ILLUSION OUTGOING DAMAGE:"
+    "DOTA_Tooltip_ability_mifune_genso_illusion_incoming"                             "%ILLUSION INCOMING DAMAGE:"
+    "DOTA_Tooltip_ability_mifune_genso_illusion_duration"                             "ILLUSION DURATION:"
+
+    "DOTA_Tooltip_ability_mifune_oiuchi"                                              "Oiuchi"
+    "DOTA_Tooltip_ability_mifune_oiuchi_description"                                  "Mifune strikes deathblows against low health enemies, dealing bonus damage based upon his Agility."
+    "DOTA_Tooltip_ability_mifune_oiuchi_Note0"                                        "Illusions created using Genso gain this ability, but deal 25% total damage with it."
+    "DOTA_Tooltip_ability_mifune_oiuchi_dmg_per_agi_pt"                               "DAMAGE PER POINT OF AGILITY:"
+    "DOTA_Tooltip_ability_mifune_oiuchi_threshold"                                    "%THRESHOLD:"
+
+    "DOTA_Tooltip_ability_mifune_raigeki"                                             "Raigeki"
+    "DOTA_Tooltip_ability_mifune_raigeki_description"                                 "Slashes to create a burst of energy that travels at speed towards the target point.  After a delay, a second shockwave explodes across the battlefield, dealing the same damage.  Both attacks slow the enemy."
+    "DOTA_Tooltip_ability_mifune_raigeki_initial_damage"                              "DAMAGE:"
+    "DOTA_Tooltip_ability_mifune_raigeki_slow"                                        "%SLOW:"
+    "DOTA_Tooltip_ability_mifune_raigeki_delay"                                       "DELAY:"
+
+    "DOTA_Tooltip_ability_mifune_zanmato"                                             "Zanmato"
+    "DOTA_Tooltip_ability_mifune_zanmato_description"                                 "Mifune focuses for a moment, then unleashes the most powerful ability in his arsenal; he slashes at blinding speed, attacking all enemies in the radius of the spell.  After this ends, the energy created from his attacks converges on the main target, dealing Magical damage for each enemy within the radius.  The main target is stunned while Mifune is slashing.  Deals bonus damage to Heroes."
+    "DOTA_Tooltip_ability_mifune_zanmato_aghanim_description"                         "Creates an illusion based on the current level of Genso for each target attacked."
+    "DOTA_Tooltip_ability_mifune_zanmato_Note0"                                       "The main target is stunned for a minimum of 1s."
+    "DOTA_Tooltip_ability_mifune_zanmato_Note1"                                       "The slash preserves procs and orb effects."
+    "DOTA_Tooltip_ability_mifune_zanmato_Note2"                                       "The Orbs deal Magical damage, and converge on the main target when the initial slashes end."
+    "DOTA_Tooltip_ability_mifune_zanmato_bonus_hero_damage"                           "BONUS HERO DAMAGE:"
+    "DOTA_Tooltip_ability_mifune_zanmato_orb_damage"                                  "ORB DAMAGE:"
+    "DOTA_Tooltip_ability_mifune_zanmato_radius"                                      "RADIUS:"
+    
+    "DOTA_Tooltip_ability_mifune_zanmato_scepter"                                     "Zanmato"
+    "DOTA_Tooltip_ability_mifune_zanmato_scepter_description"                                 "Mifune focuses for a moment, then unleashes the most powerful ability in his arsenal; he slashes at blinding speed, attacking all enemies in the radius of the spell.  After this ends, the energy created from his attacks converges on the main target, dealing Magical damage for each enemy within the radius.  The main target is stunned while Mifune is slashing.  Deals bonus damage to Heroes."
+    "DOTA_Tooltip_ability_mifune_zanmato_scepter_aghanim_description"                         "Increases cast range, damage, radius and reduces cooldown."
+    "DOTA_Tooltip_ability_mifune_zanmato_scepter_Note0"                                       "The main target is stunned for a minimum of 1s."
+    "DOTA_Tooltip_ability_mifune_zanmato_scepter_Note1"                                       "The slash preserves procs and orb effects."
+    "DOTA_Tooltip_ability_mifune_zanmato_scepter_Note2"                                       "The Orbs deal Magical damage, and converge on the main target when the initial slashes end."
+    "DOTA_Tooltip_ability_mifune_zanmato_scepter_bonus_hero_damage"                           "BONUS HERO DAMAGE:"
+    "DOTA_Tooltip_ability_mifune_zanmato_scepter_orb_damage"                                  "ORB DAMAGE:"
+
 
 }
 
