@@ -104,6 +104,9 @@ function modifier_item_monkey_king_bar_consumable:DeclareFunctions()
 end
 
 function modifier_item_monkey_king_bar_consumable:GetModifierPreAttack_BonusDamage()
+  if not self:GetAbility() then
+    self:Destroy()
+  end
   return self:GetAbility():GetSpecialValueFor("greater_crit_bonus_damage")
 end
 
@@ -118,9 +121,9 @@ end
 
 function modifier_item_monkey_king_bar_consumable:OnAttackLanded(keys)
   if IsServer() and keys.attacker == self:GetParent() then
-   
-
-
+    if not self:GetAbility() then
+      self:Destroy()
+    end
     self.bash_damage = nil
     local random = RandomInt(0,100)
     if random <= self:GetAbility():GetSpecialValueFor("monkey_king_bar_bash_chance") then
