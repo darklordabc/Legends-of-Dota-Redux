@@ -84,6 +84,10 @@ function modifier_item_heart_consumable:IsPermanent()
   return true
 end
 function modifier_item_heart_consumable:IsHidden()
+  if not self:GetAbility() then
+    self:Destroy()
+    return
+  end
   return self:GetAbility().IsItem
 end
 function modifier_item_heart_consumable:GetAttributes()
@@ -101,14 +105,26 @@ function modifier_item_heart_consumable:DeclareFunctions()
 end
 
 function modifier_item_heart_consumable:GetModifierBonusStats_Strength()
+  if not self:GetAbility() then
+    self:Destroy()
+    return
+  end
   return self:GetAbility():GetSpecialValueFor("heart_bonus_strength")
 end
 function modifier_item_heart_consumable:GetModifierHealthBonus()
+  if not self:GetAbility() then
+    self:Destroy()
+    return
+  end
   return self:GetAbility():GetSpecialValueFor("heart_bonus_health")
 end
 
 function modifier_item_heart_consumable:GetModifierHealthRegenPercentage()
   if IsServer() then
+    if not self:GetAbility() then
+      self:Destroy()
+      return
+    end
     if self:GetRemainingTime() <= 0 or self:GetRemainingTime() >= 20 then
       return self:GetAbility():GetSpecialValueFor("heart_health_regen_rate")
     end
@@ -123,6 +139,10 @@ end
 
 function modifier_item_heart_consumable:OnTakeDamage(keys)
   if keys.unit == self:GetCaster() and (keys.attacker:IsHero() or keys.attacker:GetUnitName() == "npc_dota_roshan" )and self:GetCaster():IsRealHero() then
+    if not self:GetAbility() then
+      self:Destroy()
+      return
+    end
     local cooldown = self:GetAbility():GetSpecialValueFor("heart_cooldown_melee")
     if self:GetCaster():IsRangedAttacker() then
       local cooldown = self:GetAbility():GetSpecialValueFor("heart_cooldown_ranged_tooltip")
