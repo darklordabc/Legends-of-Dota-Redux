@@ -93,11 +93,19 @@ function modifier_item_greater_crit_consumable:DeclareFunctions()
 end
 
 function modifier_item_greater_crit_consumable:GetModifierPreAttack_BonusDamage()
+  if not self:GetAbility() then
+    self:Destroy()
+    return
+  end
   return self:GetAbility():GetSpecialValueFor("greater_crit_bonus_damage")
 end
 
-function modifier_item_greater_crit_consumable:OnAttackStart()
-  if IsServer() then
+function modifier_item_greater_crit_consumable:OnAttackStart(keys)
+  if IsServer() and self:GetParent() == keys.attacker then
+    if not self:GetAbility() then
+      self:Destroy()
+      return
+    end
     self:GetParent():RemoveModifierByName("modifier_item_greater_crit_consumable_crit")
     local random = RandomInt(0,100)
     if random <= self:GetAbility():GetSpecialValueFor("greater_crit_crit_chance") then
