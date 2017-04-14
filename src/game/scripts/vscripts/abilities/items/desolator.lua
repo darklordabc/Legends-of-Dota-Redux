@@ -79,6 +79,10 @@ function modifier_item_desolator_consumable:IsPermanent()
   return true
 end
 function modifier_item_desolator_consumable:IsHidden()
+  if not self:GetAbility() then
+    self:Destroy()
+    return
+  end
   return self:GetAbility().IsItem
 end
 function modifier_item_desolator_consumable:GetAttributes()
@@ -95,12 +99,20 @@ function modifier_item_desolator_consumable:DeclareFunctions()
 end
 
 function modifier_item_desolator_consumable:GetModifierPreAttack_BonusDamage()
+  if not self:GetAbility() then
+    self:Destroy()
+    return
+  end
   return self:GetAbility():GetSpecialValueFor("desolator_bonus_damage")
 end
 
 
 function modifier_item_desolator_consumable:OnAttackLanded(keys)
   if IsServer() and keys.attacker == self:GetCaster() and keys.target:GetTeamNumber() ~= self:GetParent():GetTeamNumber() then
+    if not self:GetAbility() then
+      self:Destroy()
+      return
+    end
     local duration = self:GetAbility():GetSpecialValueFor("desolator_corruption_duration")
     keys.target:AddNewModifier(self:GetCaster(),self:GetAbility(),"modifier_item_desolator_consumable_corruption",{duration = duration})
   end
