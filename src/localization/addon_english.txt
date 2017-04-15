@@ -906,7 +906,7 @@
     "showDisallowedSkills"                          "Show Disallowed Skills"
     "showOnlyHeroPerkRelativeSkills"                "Show Only Hero Perk Relative Skills"
 
-    "txtRecommendedBuilds"                          "Recommended Builds:"
+    "txtRecommendedBuilds"                          "All Builds:"
 
     "lodBanningInstructions"                        "Drag abilities or heroes here to ban them."
 

@@ -3554,8 +3554,9 @@ Button:enabled:hover {
     transition-property: opacity;
     transition-duration: 0.2s;
     opacity: 0.6;
+    background-color : transparent;
 
-    background-image: url('s2r://panorama/images/control_icons/eye_png.vtex');
+    background-image: url("file://{images}/custom_game/savebuild.png");
     background-size: 100%;
 
     //visibility: collapse;
