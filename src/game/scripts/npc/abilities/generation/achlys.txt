@@ -419,6 +419,7 @@
         "BaseClass"             "ability_datadriven"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "AbilityTextureName"            "custom/achlys_sorrow_rising"
+        "ReduxCost"                                                            "30"
 
         // Precache
         //-------------------------------------------------------------------------------------------------------------
