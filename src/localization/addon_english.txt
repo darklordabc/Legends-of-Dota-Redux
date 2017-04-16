@@ -9845,6 +9845,61 @@
     "DOTA_Tooltip_ability_lightning_thunder_wave_slow"                                "%SLOW:"
     "DOTA_Tooltip_ability_lightning_thunder_wave_duration"                            "SLOW DURATION:"
 
+    //--------------------
+    //ALEXANDER
+    //--------------------
+    "DOTA_Tooltip_ability_alexander_godfall"                                          "Godfall"
+    "DOTA_Tooltip_ability_alexander_godfall_description"                              "Unleashing the true power of the Godslayer, after a short channeling Duration, the next attack Alexander makes deals bonus Pure damage as a percentage of his attack damage.  This skill purges positive buffs from the enemy."
+    "DOTA_Tooltip_ability_alexander_godfall_aghanim_description"                      "Deals a percentage of the Pure damage as beams from the sky to all other nearby enemies when striking the target.  Alexander regains half the damage the beams deal as health for each strike on creeps, and the full damage for Heroes."
+    "DOTA_Tooltip_ability_alexander_godfall_duration"                                 "RETAIN BUFF DURATION:"
+    "DOTA_Tooltip_ability_alexander_godfall_damage"                                   "%DAMAGE OUTPUT:"
+    "DOTA_Tooltip_ability_alexander_godfall_scepter_mult"                             "%SCEPTER DAMAGE:"
+
+    "DOTA_Tooltip_ability_alexander_radiant"                                          "Radiant"
+    "DOTA_Tooltip_ability_alexander_radiant_description"                              "Alexander is bathed in an unearthly light, a magick used oft by Paladins.  Causes opponents to miss attacks, as he rapidly recovers health over time."
+    "DOTA_Tooltip_ability_alexander_radiant_duration"                                 "DURATION:"
+    "DOTA_Tooltip_ability_alexander_radiant_regen"                                    "REGEN:"
+    "DOTA_Tooltip_ability_alexander_radiant_miss"                                     "%MISS CHANCE:"
+    "DOTA_Tooltip_ability_alexander_radiant_radius"                                   "RADIUS:"
+
+    "DOTA_Tooltip_ability_alexander_soulseal"                                         "Soulseal"
+    "DOTA_Tooltip_ability_alexander_soulseal_description"                             "Seals away the target's soul with the power of the Godslayer to slow and prevent them from casting spells for a short time."
+    "DOTA_Tooltip_ability_alexander_soulseal_Note0"                                   "Purgable."
+    "DOTA_Tooltip_ability_alexander_soulseal_duration"                                "DURATION:"
+    "DOTA_Tooltip_ability_alexander_soulseal_slow"                                    "%SLOW:"
+    
+    "DOTA_Tooltip_ability_alexander_elandras_blessing"                                "Elandra's Blessing"
+    "DOTA_Tooltip_ability_alexander_elandras_blessing_Description"                    "Blesses the target ally with bonus attack damage and Armor. When they are struck by an enemy, the attacker takes Magical damage based on the blessed ally's main Attribute."
+    "DOTA_Tooltip_ability_alexander_elandras_blessing_bonus_damage"                   "BONUS DAMAGE:"
+    "DOTA_Tooltip_ability_alexander_elandras_blessing_bonus_armor"                    "BONUS ARMOR:"
+    "DOTA_Tooltip_ability_alexander_elandras_blessing_duration"                       "DURATION:"
+    "DOTA_Tooltip_ability_alexander_elandras_blessing_reflect_damage"                 "%ATTRIBUTE DAMAGE:"
+
+    "DOTA_Tooltip_ability_alexander_steadfast"                                        "Greater Vitality"
+    "DOTA_Tooltip_ability_alexander_steadfast_description"                            "Alexander gains bonus damage and Armor based on the amount of Health he has. The more Health, the larger the bonuses."
+    "DOTA_Tooltip_ability_alexander_steadfast_hp_damage"                          "%CURRENT HEALTH AS DAMAGE:"
+    "DOTA_Tooltip_ability_alexander_steadfast_hp_armor"                          "%CURRENT HEALTH AS ARMOR:"
+
+    "DOTA_Tooltip_modifier_alexander_godfall"                                         "Godfall"
+    "DOTA_Tooltip_modifier_alexander_godfall_description"                             "The next attack made will deal Pure damage as a bonus."
+
+    "DOTA_Tooltip_modifier_alexander_radiant"                                         "Radiant"
+    "DOTA_Tooltip_modifier_alexander_radiant_description"                             "Recovering health and causing opponents to miss their attacks."
+
+    "DOTA_Tooltip_modifier_alexander_radiant_eff"                                     "Radiant"
+    "DOTA_Tooltip_modifier_alexander_radiant_eff_description"                         "Partially blinded, missing some attacks."
+
+    "DOTA_Tooltip_modifier_alexander_soulseal_silence"                                "Soulseal"
+    "DOTA_Tooltip_modifier_alexander_soulseal_silence_description"                    "Silenced."
+
+    "DOTA_Tooltip_modifier_alexander_steadfast_regen"                                 "Steadfast"
+    "DOTA_Tooltip_modifier_alexander_steadfast_regen_description"                     "Gaining bonus Armor and health regen while health is low."
+
+    "DOTA_Tooltip_modifier_elandras_blessing"                                         "Elandra's Blessing"
+    "DOTA_Tooltip_modifier_elandras_blessing_Description"                             "Receiving bonus damage and Armor, and dealing damage based on your main Attribute when attacked."
+    
+
+
 
 }
 

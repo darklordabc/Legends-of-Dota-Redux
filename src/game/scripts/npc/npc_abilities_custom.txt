@@ -190,6 +190,7 @@
 #base "abilities\dota\dragon_knight_dragon_blood_OP.txt"
 #base "abilities\dota\feast_redux.txt"
 #base "abilities\dusk\lightning.txt"
+#base "abilities\dusk\alexander.txt"
 #base "abilities\dusk\gemini_abyssal_vortex.txt"
 #base "abilities\dusk\gemini_unstable_rift.txt"
 #base "abilities\dusk\gemini_unstable_rift_one.txt"
