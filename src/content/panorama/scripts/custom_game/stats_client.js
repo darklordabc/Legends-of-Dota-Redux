@@ -26,7 +26,7 @@ function CreateSkillBuild(title, description) {
 }
 
 function LoadBuilds(filter) {
-	GetDataFromServer("getSkillBuilds", filter == null ? null : {filter: filter}, function(builds) {
+	GetDataFromServer("getSkillBuilds", {steamID: Game.GetLocalPlayerInfo().player_steamid, filter: filter || ""}, function(builds) {
 		if (builds) {
 			for (var i = 0; i < builds.length; i++) {
 				addRecommendedBuild(builds[i]);
