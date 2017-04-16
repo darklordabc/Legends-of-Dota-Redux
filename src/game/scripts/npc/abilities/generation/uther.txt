@@ -293,6 +293,7 @@
         "AbilityTextureName"            "custom/uther_hail_back"
         "MaxLevel"                      "1"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"    
+        "AbilityCooldown"        "2"
 
         "OnSpellStart"
         {
@@ -322,6 +323,7 @@
         "AbilityDuration"               "8"
         "AoERadius"                     "250"
 
+        "ReduxBans"                                                            "spell_lab_symbiotic"
         "ReduxPerks"                                                           "light"
     
         "AbilitySpecial"
