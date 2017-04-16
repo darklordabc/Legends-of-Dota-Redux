@@ -764,6 +764,9 @@ local voteCooldown = 300
 util.votesBlocked = {}
 util.votesRejected = {}
 function util:CreateVoting(votingName, initiator, duration, percent, onaccept, onvote, ondecline, voteForInitiator)
+    -- Temp disable votes because of buggy
+    if true then return end
+    
     percent = percent or 100
     if util.activeVoting then
         if util.activeVoting.name == votingName and Time() >= util.activeVoting.recieveStartTime then

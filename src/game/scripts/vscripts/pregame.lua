@@ -1936,6 +1936,9 @@ function Pregame:onPlayerCastVote(eventSourceIndex, args)
     -- Ensure we are in the options voting
     if self:getPhase() ~= constants.PHASE_OPTION_VOTING then return end
 
+    -- Temp disable votes because of buggy
+    if true then return end
+    
     -- Grab the data
     local optionName = args.optionName
     local optionValue = args.optionValue
