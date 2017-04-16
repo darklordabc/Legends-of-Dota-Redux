@@ -13,15 +13,16 @@ end
 
 function StatsClient:CreateSkillBuild(args)
 	local pregame = GameRules.pregame
-
 	local playerID = args.PlayerID
 	local steamID = tostring(PlayerResource:GetSteamID(playerID))
 	local title = args.title or ""
 	local description = args.description or ""
-	local abilities = pregame.selectedSkills[playerID] or {}
+	local abilities = util:DeepCopy(pregame.selectedSkills[playerID]) or {}
 	local heroName = pregame.selectedHeroes[playerID]
 	local attribute = pregame.selectedPlayerAttr[playerID]
-
+	for k,_ in pairs(abilities) do
+		if tonumber(k) == nil then abilities[k] = nil end
+	end
 	if util:getTableLength(abilities) < 6 or not heroName or (attribute ~= "str" and attribute ~= "agi" and attribute ~= "int") then
 		network:sendNotification(PlayerResource:GetPlayer(playerID), {
 			sort = 'lodDanger',
@@ -47,13 +48,15 @@ function StatsClient:CreateSkillBuild(args)
 		attribute = attribute,
 		tags = {},
 	}, function(response)
+		local player = PlayerResource:GetPlayer(playerID)
 		if response.success then
-			network:sendNotification(PlayerResource:GetPlayer(playerID), {
+			network:sendNotification(player, {
 				sort = 'lodSuccess',
 				text = 'lodServerSuccessCreateSkillBuild'
 			})
+			CustomGameEventManager:Send_ServerToPlayer(player, "lodReloadBuilds", {})
 		else
-			network:sendNotification(PlayerResource:GetPlayer(playerID), {
+			network:sendNotification(player, {
 				sort = 'lodDanger',
 				text = response.error or ''
 			})
@@ -73,13 +76,15 @@ function StatsClient:RemoveSkillBuild(args)
 		steamID = steamID,
 		id = id,
 	}, function(response)
+		local player = PlayerResource:GetPlayer(playerID)
 		if response.success then
-			network:sendNotification(PlayerResource:GetPlayer(playerID), {
+			network:sendNotification(player, {
 				sort = 'lodSuccess',
 				text = 'lodServerSuccessRemoveSkillBuild'
 			})
+			CustomGameEventManager:Send_ServerToPlayer(player, "lodReloadBuilds", {})
 		else
-			network:sendNotification(PlayerResource:GetPlayer(playerID), {
+			network:sendNotification(player, {
 				sort = 'lodDanger',
 				text = response.error or ''
 			})
@@ -104,7 +109,6 @@ end
 function StatsClient:SaveFavoriteBuilds(args)
 	local playerID = args.PlayerID
 	local steamID = tostring(PlayerResource:GetSteamID(playerID))
-	DeepPrintTable(args)
 	StatsClient:Send("updatePlayerData", {
 		steamID = steamID,
 		favoriteBuilds = type(args.builds) == "table" and args.builds or {}
@@ -132,8 +136,3 @@ function StatsClient:Send(path, data, callback, retryCount, protocol, _currentRe
 		end
 	end)
 end
---[[StatsClient:CreateSkillBuild({
-	PlayerID = 0,
-	title = "MY COOL BUILD",
-	description = "IT'S IMBALANCED!"
-})]]

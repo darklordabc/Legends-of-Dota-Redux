@@ -2009,27 +2009,20 @@ function OnMainSelectionTabShown() {
 
 // Adds a build to the main selection tab
 var recBuildCounter = 0;
-var recommenedBuildContainerList = [];
 function addRecommendedBuild(build) {
     var buildCon = $.CreatePanel('Panel', $("#pickingPhaseRecommendedBuildContainer"), 'recBuild_' + (++recBuildCounter));
     buildCon.BLoadLayout('file://{resources}/layout/custom_game/game_setup/recommended_build.xml', false, false);
     buildCon.balanceMode = $.GetContextPanel().balanceMode;
     buildCon.setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, build, balanceMode);
     buildCon.updateFilters(getSkillFilterInfo, getHeroFilterInfo); 
-    // Store the container
-    recommenedBuildContainerList.push(buildCon);
 }
 
 // Updates the filters applied to recommended builds
 function updateRecommendedBuildFilters() {
     // Loop over all recommended builds
-    for(var i=0; i<recommenedBuildContainerList.length; ++i) {
-        // Grab the con
-        var con = recommenedBuildContainerList[i];
-
-        // Push the filter function to the con
+    $.Each($("#pickingPhaseRecommendedBuildContainer").Children(), function(con) {
         con.updateFilters(getSkillFilterInfo, getHeroFilterInfo); 
-    }
+    })
 }
 
 // Updates the filters applied to the hero preview
@@ -5381,6 +5374,11 @@ function saveCurrentBuild() {
        trollCombos[ab1][ab2] = true;
        trollCombos[ab2][ab1] = true;
     });
+
+    GameEvents.Subscribe('lodReloadBuilds', function() {
+        $("#pickingPhaseRecommendedBuildContainer").RemoveAndDeleteChildren();
+        LoadBuilds();
+    })
 	
 	// Backtrack Review Option Button
     util.reviewOptionsChange = function(review) {

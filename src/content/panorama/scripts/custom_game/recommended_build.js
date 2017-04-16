@@ -76,7 +76,7 @@ function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, bu
     //Votes
     var currentScore = 0;
     for (var k in build.votes) {
-        build.votes[k] ? currentScore++ : currentScore--;
+        if (build.votes[k] != null) build.votes[k] ? currentScore++ : currentScore--;
     }
     $("#buildRating").text = currentScore;
     if (build.votes[localSteamID] != null) {
