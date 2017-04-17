@@ -826,7 +826,7 @@
     "doom_bringer_doom"
     {
         "ReduxFlags"                                                           "upgradeable | silence | disarm_break"
-        "ReduxPerks"                                                           "demon |fire | silence"
+        "ReduxPerks"                                                           "demon | fire | silence"
         "ReduxCost"                                                            "10"
     }
     "drow_ranger_marksmanship"
