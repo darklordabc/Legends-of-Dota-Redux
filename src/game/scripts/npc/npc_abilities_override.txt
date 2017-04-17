@@ -826,7 +826,7 @@
     "doom_bringer_doom"
     {
         "ReduxFlags"                                                           "upgradeable | silence | disarm_break"
-        "ReduxPerks"                                                           "fire | silence"
+        "ReduxPerks"                                                           "demon |fire | silence"
         "ReduxCost"                                                            "10"
     }
     "drow_ranger_marksmanship"
@@ -923,6 +923,7 @@
     {
         "ReduxFlags"                                                           "upgradeable"
         "ReduxCost"                                                            "20"
+        "ReduxPerks"                                                           "demon"
     }
     "lone_druid_spirit_bear"
     {
@@ -1021,6 +1022,7 @@
     "shadow_demon_demonic_purge"
     {
         "ReduxFlags"                                                           "upgradeable | disarm_break"
+        "ReduxPerks"                                                           "demon"
     }
     "nevermore_necromastery"
     {
@@ -1030,6 +1032,7 @@
     "nevermore_requiem"
     {
         "ReduxFlags"                                                           "upgradeable | doNotRandom"
+        "ReduxPerks"                                                           "demon"
     }
     "shadow_shaman_mass_serpent_ward"
     {
@@ -1282,7 +1285,7 @@
     "shadow_demon_disruption"
     {
         "ReduxFlags"                                                           "support | illusion"
-        "ReduxPerks"                                                           "support | illusion"
+        "ReduxPerks"                                                           "support | illusion | demon"
     }
     "skeleton_king_vampiric_aura"
     {
@@ -1903,7 +1906,7 @@
     "doom_bringer_infernal_blade"
     {
         "ReduxFlags"                                                           "crit | attack_modifier"
-        "ReduxPerks"                                                           "attack_modifier | fire | autocast_basic"
+        "ReduxPerks"                                                           "demon | attack_modifier | fire | autocast_basic"
         "ReduxCost"                                                            "20"
     }
     "phantom_assassin_coup_de_grace"
@@ -2262,7 +2265,7 @@
     "lion_voodoo"
     {
         "ReduxFlags"                                                           "stun"
-        "ReduxPerks"                                                           "hex"
+        "ReduxPerks"                                                           "hex | demon"
     }
     "earthshaker_fissure"
     {
@@ -2322,6 +2325,7 @@
     "enigma_malefice"
     {
         "ReduxFlags"                                                           "stun"
+        "ReduxPerks"                                                           "demon"
     }
     "dragon_knight_dragon_tail"
     {
@@ -2403,7 +2407,7 @@
     "lion_impale"
     {
         "ReduxFlags"                                                           "stun"
-        "ReduxPerks"                                                           "skillshot"
+        "ReduxPerks"                                                           "skillshot | demon"
     }
     "jakiro_ice_path"
     {
@@ -2516,7 +2520,7 @@
     "enigma_demonic_conversion"
     {
         "ReduxFlags"                                                           "summon | wtfAutoBan"
-        "ReduxPerks"                                                           "summon_non_ult"
+        "ReduxPerks"                                                           "summon_non_ult | demon"
     }
     "invoker_forge_spirit"
     {
@@ -2734,7 +2738,7 @@
     }
     "doom_bringer_scorched_earth"
     {
-        "ReduxPerks"                                                           "fire"
+        "ReduxPerks"                                                           "demon | fire"
         "ReduxBans"                                                            "batrider_sticky_napalm"
     }
     "batrider_flamebreak"
@@ -2780,7 +2784,7 @@
     }
     "shadow_demon_shadow_poison"
     {
-        "ReduxPerks"                                                           "poison | skillshot"
+        "ReduxPerks"                                                           "poison | skillshot | demon"
         "ReduxFlags"                                                           "doNotRandom"
     }
     "viper_nethertoxin"
@@ -3009,7 +3013,7 @@
     }
     "lion_mana_drain"
     {
-        "ReduxPerks"                                                           "drain | channeled"
+        "ReduxPerks"                                                           "drain | channeled | demon"
     }
     "death_prophet_spirit_siphon"
     {
@@ -3190,17 +3194,17 @@
     }
     "nevermore_shadowraze1"
     {
-        "ReduxPerks"                                                           "skillshot"
+        "ReduxPerks"                                                           "skillshot | demon"
         "ReduxFlags"                                                           "doNotRandom"
     }
     "nevermore_shadowraze2"
     {
-        "ReduxPerks"                                                           "skillshot"
+        "ReduxPerks"                                                           "skillshot | demon"
         "ReduxFlags"                                                           "doNotRandom"
     }
     "nevermore_shadowraze3"
     {
-        "ReduxPerks"                                                           "skillshot"
+        "ReduxPerks"                                                           "skillshot | demon"
         "ReduxFlags"                                                           "doNotRandom"
     }
     "troll_warlord_whirling_axes_ranged"

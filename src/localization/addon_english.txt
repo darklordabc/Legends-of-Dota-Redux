@@ -796,7 +796,7 @@
     "hintPhoenix"                         "Phoenix passively triggers Supernova when taking lethal damage. Requires level 6 or higher."
     "hintAncientApparition"                         "Ancient Apparition disables the health regeneration of targets when an Ice ability debuff is applied."
     "hintShadowShaman"                         "When Shadow Shaman is targeted by an enemy spell, they will get Hexed for 3 seconds. Has 60 second cooldown."
-    "hintDoom"                         "Doom is Unbreakable."
+    "hintDoom"                         "Demonic spells cast by Doom will have cooldowns reduced by 25%"
     "hintLich"                         "Lich heals himself for the mana gained when casting Sacrifice."
     "hintSpectre"                         "Spectre gains phased movement when casting abilities."
     "hintDarkSeer"                         "Dark Seer self-casts Surge and Ion Shell when casting them on allies."
@@ -1182,7 +1182,8 @@
     "unique_mechanic_dazzle"                        "<font color=\'#ffd966\'>Shallow Grave</font> has global cast range when picked by Dazzle."
     "unique_mechanic_death_prophet"                        "Any <font color=\'#ffd966\'>Silence</font> applied by Death Prophet also applies Mute."
     "unique_mechanic_disruptor"                        "Disruptor regenerates .5 mp/s for every 10% of mana he is missing."
-    "unique_mechanic_doom_bringer"          "Unbreakable."
+    "unique_mechanic_doom_bringer"          "<font color=\'#ffd966\'>Demonic
+</font> spells cast by Doom will have cooldowns reduced by 25%."
     "unique_mechanic_dragon_knight"             "While Dragon Knight is in <font color=\'#ffd966\'>Elder Dragon Form</font>, all of Dragon Knight's abilities apply Dragon Form debuffs. This includes towers."
     "unique_mechanic_drow_ranger"                        "<font color=\'#ffd966\'>Gust</font> also disarms enemies when cast by Drow Ranger."
     "unique_mechanic_earth_spirit"                        "Earth Spirit gains 3+ damage for each point in <font color=\'#ffd966\'>Earth</font> Abilities."
@@ -1349,7 +1350,6 @@
     "warning_life_stealer_infest"               "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Consume</font> and <font color=\'#70EA72\'>Control</font>."
     "warning_zuus_cloud"               "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Lighting Bolt</font>, for Nimbus to strike enemies."
     "warning_night_stalker_darkness"                "<font color=\'#FF4949\'>Hero Requirement:</font> You have to play as <font color=\'#70EA72\'>Night Stalker</font> to get the unobstructed vision bonus from Aghanim's Scepter."
-    "warning_doom_bringer_infernal_blade"                "<font color=\'#FF4949\'>Hero Requirement:</font> <font color=\'#70EA72\'>Gyrocopter</font> cannot use this ability unless 'Single Player' abilities are allowed."
     "warning_lone_druid_true_form"              "<font color=\'#FF4949\'>Hero Requirement:</font> Requires picking a hero with more than 400 range or else you will be unable to attack."
     "troll_warlord_berserkers_rage"              "<font color=\'#FF4949\'>Hero Requirement:</font> Requires picking a hero with more than 350 range or else you will be unable to attack."
     "warning_puck_illusory_orb"                 "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Ethereal Jaunt</font>."
@@ -3151,7 +3151,7 @@
 
     /// DOOM​
     "DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_perk" "Doom Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_perk_Description" "Doom's passives cannot be disabled.<br><br><font color=\'#7D7D7D\'>By TideSofDarK | github.com/TideSofDarK</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_doom_bringer_perk_Description" "Demonic spells cast by Doom will have cooldowns reduced by 25%d%.<br><br><font color=\'#7D7D7D\'>By TideSofDarK | github.com/TideSofDarK</font>"
 
     /// DRAGON KNIGHT​
     "DOTA_Tooltip_modifier_npc_dota_hero_dragon_knight_perk"    "Dragon Knight Perk"

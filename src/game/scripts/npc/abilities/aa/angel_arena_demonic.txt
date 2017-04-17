@@ -8,6 +8,7 @@
 		"AbilityCastPoint" "0.0"
 		"AbilityCooldown" "140.0"
 		"AbilityManaCost" "200 250 300"
+		"ReduxPerks"                                                           "demon"
 
 		"AbilitySpecial" {
 			"01" {
