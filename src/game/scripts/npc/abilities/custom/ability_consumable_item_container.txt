@@ -171,6 +171,26 @@
         "var_type"              "FIELD_INTEGER"
         "octarine_core_active_duration"       "7"
       }
+      "31"
+      {
+          "var_type"              "FIELD_INTEGER"
+          "monkey_king_bar_bonus_damage"          "66"
+      }
+      "32"
+      {
+          "var_type"              "FIELD_INTEGER"
+          "monkey_king_bar_bash_chance"           "35"
+      }
+      "33"
+      {
+          "var_type"              "FIELD_INTEGER"
+          "monkey_king_bar_bash_damage"           "160"
+      }
+      "34"
+      {
+          "var_type"              "FIELD_FLOAT"
+          "monkey_king_bar_bash_stun"             "0.01"
+      }
     }
   }
 }

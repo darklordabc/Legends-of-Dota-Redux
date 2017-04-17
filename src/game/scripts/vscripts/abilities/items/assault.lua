@@ -81,6 +81,10 @@ function modifier_item_assault_consumable:IsPermanent()
   return true
 end
 function modifier_item_assault_consumable:IsHidden()
+  if not self:GetAbility() then
+    self:Destroy()
+    return
+  end
   return self:GetAbility().IsItem
 end
 
@@ -116,10 +120,17 @@ function modifier_item_assault_consumable:DeclareFunctions()
 end
 
 function modifier_item_assault_consumable:GetModifierPhysicalArmorBonus()
+  if not self:GetAbility() then
+    self:Destroy()
+  end
   return self:GetAbility():GetSpecialValueFor("assault_bonus_armor")
 end
 
 function modifier_item_assault_consumable:GetModifierAttackSpeedBonus_Constant()
+  if not self:GetAbility() then
+    self:Destroy()
+    return
+  end
   return self:GetAbility():GetSpecialValueFor("assault_bonus_attack_speed")
 end
 
@@ -131,6 +142,10 @@ function modifier_item_assault_consumable:OnCreated()
 end
 
 function modifier_item_assault_consumable:OnIntervalThink()
+  if not self:GetAbility() then
+    self:Destroy()
+    return
+  end
   local caster = self:GetCaster()
   local radius = self:GetAbility():GetSpecialValueFor("assault_aura_radius")
   local units = FindUnitsInRadius(caster:GetTeam(),caster:GetAbsOrigin(),nil,radius,DOTA_UNIT_TARGET_TEAM_ENEMY,DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_CREEP+DOTA_UNIT_TARGET_BUILDING,DOTA_UNIT_TARGET_FLAG_NONE,FIND_ANY_ORDER,false)

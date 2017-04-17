@@ -86,6 +86,10 @@ function modifier_item_skadi_consumable:IsPermanent()
   return true
 end
 function modifier_item_skadi_consumable:IsHidden()
+  if not self:GetAbility() then
+    self:Destroy()
+    return
+  end
   return self:GetAbility().IsItem
 end
 function modifier_item_skadi_consumable:GetAttributes()
@@ -107,27 +111,51 @@ function modifier_item_skadi_consumable:DeclareFunctions()
 end
 
 function modifier_item_skadi_consumable:GetModifierBonusStats_Strength()
+  if not self:GetAbility() then
+    self:Destroy()
+    return
+  end
   return self:GetAbility():GetSpecialValueFor("skadi_bonus_all_stats")
 end
 
 function modifier_item_skadi_consumable:GetModifierBonusStats_Agility()
+  if not self:GetAbility() then
+    self:Destroy()
+    return
+  end
   return self:GetAbility():GetSpecialValueFor("skadi_bonus_all_stats")
 end
 
 function modifier_item_skadi_consumable:GetModifierBonusStats_Intellect()
+  if not self:GetAbility() then
+    self:Destroy()
+    return
+  end
   return self:GetAbility():GetSpecialValueFor("skadi_bonus_all_stats")
 end
 
 function modifier_item_skadi_consumable:GetModifierHealthBonus()
+  if not self:GetAbility() then
+    self:Destroy()
+    return
+  end
   return self:GetAbility():GetSpecialValueFor("skadi_bonus_health")
 end
 
 function modifier_item_skadi_consumable:GetModifierManaBonus()
+  if not self:GetAbility() then
+    self:Destroy()
+    return
+  end
   return self:GetAbility():GetSpecialValueFor("skadi_bonus_mana")
 end
 
 function modifier_item_skadi_consumable:OnAttackLanded(keys)
   if IsServer() and keys.attacker == self:GetCaster() and not keys.target:IsBuilding() then
+    if not self:GetAbility() then
+      self:Destroy()
+      return
+    end
     local duration = self:GetAbility():GetSpecialValueFor("skadi_cold_duration_melee")
     if keys.attacker:IsRangedAttacker() then
       duration = self:GetAbility():GetSpecialValueFor("skadi_cold_duration_ranged")
@@ -160,6 +188,10 @@ function modifier_item_skadi_consumable_slow:GetModifierAttackSpeedBonus_Constan
 end
 
 function modifier_item_skadi_consumable_slow:GetModifierMoveSpeedBonus_Percentage()
+  if not self:GetAbility() then
+    self:Destroy()
+    return
+  end
   return self:GetAbility():GetSpecialValueFor("skadi_cold_movement_speed")
 end
 
