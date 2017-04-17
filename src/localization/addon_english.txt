@@ -1182,8 +1182,7 @@
     "unique_mechanic_dazzle"                        "<font color=\'#ffd966\'>Shallow Grave</font> has global cast range when picked by Dazzle."
     "unique_mechanic_death_prophet"                        "Any <font color=\'#ffd966\'>Silence</font> applied by Death Prophet also applies Mute."
     "unique_mechanic_disruptor"                        "Disruptor regenerates .5 mp/s for every 10% of mana he is missing."
-    "unique_mechanic_doom_bringer"          "<font color=\'#ffd966\'>Demonic
-</font> spells cast by Doom will have cooldowns reduced by 25%."
+    "unique_mechanic_doom_bringer"          "<font color=\'#ffd966\'>Demonic</font> spells cast by Doom will have cooldowns reduced by 25%."
     "unique_mechanic_dragon_knight"             "While Dragon Knight is in <font color=\'#ffd966\'>Elder Dragon Form</font>, all of Dragon Knight's abilities apply Dragon Form debuffs. This includes towers."
     "unique_mechanic_drow_ranger"                        "<font color=\'#ffd966\'>Gust</font> also disarms enemies when cast by Drow Ranger."
     "unique_mechanic_earth_spirit"                        "Earth Spirit gains 3+ damage for each point in <font color=\'#ffd966\'>Earth</font> Abilities."
