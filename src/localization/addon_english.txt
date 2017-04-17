@@ -8723,6 +8723,15 @@
     "DOTA_Tooltip_ability_item_heart_consumable_heart_bonus_health"                          "+$health"
     "DOTA_Tooltip_ability_item_heart_consumable_heart_health_regen_rate"                     "%HEALTH RESTORED PER SECOND:"
 
+    "DOTA_Tooltip_Ability_item_monkey_king_bar_consumable"         "Monkey King Bar"
+    "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_Description"                 "Passive: Mini-Bash - Grants each attack a chance to deal bonus damage and deal a mini-stun.\nPassive: True Strike - Prevents your attacks from missing. True Strike does not work when attacking enemy structures."
+    "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_Lore"                    "A powerful staff used by a master warrior."
+    "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_monkey_king_bar_bonus_damage"                "+$damage"
+    "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_monkey_king_bar_bash_chance"                 "%MINI-BASH CHANCE:"
+    "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_monkey_king_bar_bash_damage"                 "MINI-BASH DAMAGE:"
+
+    "DOTA_Tooltip_modifier_item_monkey_king_bar_consumable"                            "Consumed MKB"
+    "DOTA_Tooltip_modifier_item_monkey_king_bar_consumable_Description" "Permanently gained benefits of Monkey King Bar"
 
     "DOTA_Tooltip_modifier_item_greater_crit_consumable"                            "Consumed Daedaulous"
     "DOTA_Tooltip_modifier_item_greater_crit_consumable_Description" "Permanently gained benefits of Daedaulous"
@@ -9896,9 +9905,6 @@
 
     "DOTA_Tooltip_modifier_elandras_blessing"                                         "Elandra's Blessing"
     "DOTA_Tooltip_modifier_elandras_blessing_Description"                             "Receiving bonus damage and Armor, and dealing damage based on your main Attribute when attacked."
-    
-
-
 
 }
 
