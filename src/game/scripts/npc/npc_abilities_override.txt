@@ -2,9 +2,22 @@
 {
     "spawnlord_master_freeze"
     {
-        "MaxLevel"                                                             "1"
+        "MaxLevel"                                                             "4"
         "ReduxFlags"                                                           "bash | attack_modifier"
         "ReduxPerks"                                                           "neutral | bash | attack_modifier | autocast_basic"
+        "AbilitySpecial"
+        {       
+            "01"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "duration"          "2.0"
+            }           
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "damage"            "75 100 130 170"
+            }           
+        }
     }
     "beastmaster_greater_boar_poison"
     {
@@ -43,19 +56,67 @@
         "ReduxFlags"                                                           "attack_modifier"
         "ReduxPerks"                                                           "neutral | attack_modifier"
         "ReduxCost"                                                            "20"
+
+        // Damage.
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityDamage"                 "60 70 80 90"
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "5.0"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "entangle_chance"       "20 21 22 23"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "hero_duration"         "3.0 3.2 3.4 3.6"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "creep_duration"        "9.0"
+            }
+        }
     }
     "roshan_spell_block"
     {
-        "MaxLevel"                                                             "1"
+        "MaxLevel"                                                             "4"
         "ReduxCost"                                                            "70"
         "ReduxFlags"                                                           "OPSkillsList"
+        "AbilityCooldown"               "15.0 13.0 11.0 9.0"
     }
     "roshan_bash"
     {
         "MaxLevel"                                                             "1"
         "ReduxFlags"                                                           "bash | attack_modifier | OPSkillsList"
         "ReduxPerks"                                                           "neutral | bash | attack_modifier"
-        "ReduxCost"                                                            "40"
+        "ReduxCost"                                                            "50"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "bash_chance"       "15"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "bonus_damage"      "50 70 90 110"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "stun_duration"     "1.65"
+            }
+        }
     }
     "satyr_soulstealer_mana_burn"
     {
@@ -177,6 +238,35 @@
         "ReduxFlags"                                                           "mobility | invis | doNotRandom | OPSkillsList"
         "ReduxPerks"                                                           "mobility"
     }
+    "mudgolem_cloak_aura"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "5688"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+        "MaxLevel"                      "4"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {           
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_magical_armor"   "5 10 15 20"
+            }   
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_magical_armor_creeps"    "20 25 30 35"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "radius"                    "900"
+            }
+        }
+    }
     "brewmaster_fire_permanent_immolation"
     {
         "MaxLevel"                                                             "3"
@@ -197,8 +287,52 @@
     }
     "big_thunder_lizard_wardrums_aura"
     {
-        "MaxLevel"                                                             "1"
+        "MaxLevel"                                                             "4"
+        "AbilitySpecial"
+        {           
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "speed_bonus"           "15 17 19 21"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "damage_bonus"          "15 17 19 21"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "radius"                "900 1000 1100 1200"
+            }
+        }
     }
+
+    "forest_troll_high_priest_mana_aura"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "5491"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+        "MaxLevel"              "4"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"     
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "mana_regen"        "3 4 5 6"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "radius"                "900"
+            }
+        }
+    }
+
     "forest_troll_high_priest_heal"
     {
         "MaxLevel"                                                             "4"
@@ -810,7 +944,7 @@
     "meepo_divided_we_stand"
     {
         "ReduxFlags"                                                           "upgradeable | doNotRandom | SuperOP"
-        "ReduxCost"                                                            "-2"
+        "ReduxCost"                                                            "400"
         "ReduxBans"                                                            "arc_warden_tempest_double | arc_warden_tempest_double_redux | meepo_divided_we_stand | spell_lab_symbiotic"
     }
     "naga_siren_song_of_the_siren"
@@ -1034,6 +1168,24 @@
         "ReduxFlags"                                                           "support"
         "ReduxPerks"                                                           "support | neutral | aura"
         "ReduxCost"                                                            "10"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "lifesteal"             "10 12 13 15"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "hp_regen"              "10"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "radius"    "900"
+            }
+        }
     }
     "abaddon_aphotic_shield"
     {
@@ -1340,14 +1492,44 @@
     }
     "big_thunder_lizard_frenzy"
     {
+        "MaxLevel"                      "4"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "attackspeed_bonus"     "75 85 95 105"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "duration"              "8.0"
+            }
+        }
+
         "ReduxFlags"                                                           "support"
         "ReduxPerks"                                                           "support | neutral"
     }
     "alpha_wolf_command_aura"
     {
+        "MaxLevel"                      "4"
         "ReduxFlags"                                                           "support | crit | attack_modifier"
         "ReduxPerks"                                                           "support | neutral | attack_modifier | aura"
         "ReduxCost"                                                            "20"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "bonus_damage_pct"  "30 33 36 40"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "radius"            "900"
+            }
+        }
     }
     "phantom_assassin_phantom_strike"
     {
@@ -1786,7 +1968,41 @@
     {
         "ReduxFlags"                                                           "aoe_attack | attack_modifier"
         "ReduxPerks"                                                           "neutral | attack_modifier"
-        "ReduxCost"                                                            "80"
+        "ReduxCost"                                                            "100"
+        "MaxLevel"                                                             "4"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "range_close"           "50"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "damage_percent_close"  "100.0"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "range_mid"             "150"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "damage_percent_mid"    "50.0 60.0 70.0 80.0"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "range_far"             "250"
+            }
+            "06"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "damage_percent_far"    "25.0 30.0 35.0 40.0"
+            }
+        }
     }
     "kunkka_tidebringer"
     {
@@ -1835,8 +2051,29 @@
     }
     "ghost_frost_attack"
     {
+        "MaxLevel"                                                             "4"
         "ReduxFlags"                                                           "attack_modifier"
         "ReduxPerks"                                                           "neutral | attack_modifier"
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "movespeed_slow"        "-20"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "attackspeed_slow"      "-20 -30 -40 -50"
+            }           
+            "03"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "duration"              "1.5 2.0 2.5 3.0"
+            }
+        }
     }
     "life_stealer_feast"
     {
@@ -1986,8 +2223,32 @@
     }
     "spawnlord_master_stomp"
     {
+        "MaxLevel"      "4"
         "ReduxFlags"                                                           "stun"
         "ReduxPerks"                                                           "neutral"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "radius"                        "300"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "damage"                        "200"
+            }
+            "03"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "duration"                      "6.0"
+            }
+            "04"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "armor_reduction_pct"           "50 60 70 90"
+            }
+        }
     }
     "monkey_king_boundless_strike"
     {
@@ -2155,8 +2416,27 @@
     }
     "mud_golem_hurl_boulder"
     {
+        "MaxLevel"  "4"
         "ReduxFlags"                                                           "stun"
         "ReduxPerks"                                                           "neutral | earth"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "damage"                    "125 175 225 275"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "duration"                  "0.6 0.8 1.0 1.5"
+            }
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "speed"                     "800"
+            }
+        }
     }
     "tidehunter_ravage"
     {
@@ -2344,6 +2624,36 @@
     }
     "big_thunder_lizard_slam"
     {
+        "MaxLevel"                      "4"
+        "AbilityDamage"                 "70 140 210 290"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "radius"                "250"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "movespeed_slow"        "-25"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "attack_slow_tooltip"   "-25"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "non_hero_duration"     "4.0"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "hero_duration"         "2.0 2.5 3.0 3.5"
+            }
+        }
         "ReduxPerks"                                                           "neutral"
     }
     "blue_dragonspawn_overseer_evasion"
@@ -2353,8 +2663,19 @@
     }
     "blue_dragonspawn_sorcerer_evasion"
     {
+        "MaxLevel"                      "4"
         "ReduxPerks"                                                           "neutral"
         "ReduxFlags"                                                           "doNotRandom"
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "evasion_chance_pct"    "15 30 45 60"
+            }
+        }
     }
     "warlock_golem_permanent_immolation"
     {

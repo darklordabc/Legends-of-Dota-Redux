@@ -15,7 +15,7 @@
                 "bonus_building_damage"                                "25 50 100 150 200 300 350"
             }
         }
-        "ReduxCost"                                                            "80"
+        "ReduxCost"                                                            "400"
         "ReduxFlags"                                                           "SuperOP"
         "ReduxBans"                                                            "lone_druid_spirit_bear_demolish"
     }
