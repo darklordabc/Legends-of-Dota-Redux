@@ -2,7 +2,29 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 7.5 - Development Version
+## 7.7 - Development Version
+
+## 7.6 - Steam Version
+- Added credits for most custom abiliites, made some icon changes. 
+- Changed Doom's Perk
+- All Neutral abilities have 4 abilities, some removed because they duplicate other other ones
+- Temporaily disable voting because of bug
+- Added user submitable builds (wip)
+- Grows are troll combos with themselves
+- Rapidfire no longer procs arcane echo
+- Overpower and Hero One Punch considered "One-Hit" family of bans, cannot be picked together
+- Added Alexander from Dusk
+- Fixed Consume item bugs when changing builds
+- Added Lightning from Dusk
+- Added Feast Redux
+- Increased Respawntimes to 35% in vote maps
+- Increase gold and exp modifier in vote maps
+- Added Lich from Dusk, Hero, Erra, Potmely, Mifune, Vera etc
+- Added "Passive" category of abilities
+- Fixed missing rockets in cluster rockets
+
+
+## 7.5 
 - Fast start vote option now only starts at level 3 instead of 6. In vote maps, players always have a chance to ban an ability.
 - Added some abilities to perk categories
 - Lock build button now has 30 second cooldown before u can lock
@@ -16,7 +38,8 @@ All notable changes to this project will be documented in this file.
 - Wukong and Pocket Factoy has been made troll combos with spells that allow very fast casting of them, rearm, multicast, spell echo etc, this is because they are likely cause memory leaks and lag
 - Added Argent Smite
 
-## 7.4 - Steam Version
+
+## 7.4 
 - Added 4 new versions of Morph
 - Added 3 new fleah heaps
 - Added new bot Mutator: Stupfy
