@@ -9461,7 +9461,7 @@
     "DOTA_Tooltip_Ability_zeros_blade_of_malice_Duration"           "MALICE DURATION:"  
     "DOTA_Tooltip_Ability_zeros_blade_of_malice_Bonus_movement_speed"       "%BONUS MOVEMENT SPEED:"
 
-    "DOTA_Tooltip_Ability_zeros_fanaticism"                     "Fanaticism (Old)"
+    "DOTA_Tooltip_Ability_zeros_fanaticism"                     "Fanaticism"
     "DOTA_Tooltip_Ability_zeros_fanaticism_Description"         "Zeros embraces fanaticism, granting him powerful bonuses retroactively when he is 1800 units away from his allies. Increases all damage dealt and reduces all damage received, but also drastically reduces his sight range. "
     "DOTA_Tooltip_Ability_zeros_fanaticism_Duration"                "DURATION:"
     "DOTA_Tooltip_Ability_zeros_fanaticism_Bonus_damage_pct"        "%BONUS DAMAGE:"
@@ -9531,7 +9531,7 @@
     "DOTA_Tooltip_Ability_veera_toxic_darts_Stun_duration"          "STUN DURATION PER STACK:"
 
     //Old Ability
-    "DOTA_Tooltip_Ability_veera_evasive_roll"           "Evasive Backflip (Old)"
+    "DOTA_Tooltip_Ability_veera_evasive_roll"           "Evasive Backflip"
     "DOTA_Tooltip_Ability_veera_evasive_roll_Description"       "Veera jumps backwards from her position, doing a backflip and disjointing projectiles. Distance is based on Veera's current movement speed plus a bonus."
     "DOTA_Tooltip_Ability_veera_evasive_roll_Lore"          "Engage – Disengage. Veera knows when to strike her prey."
     "DOTA_Tooltip_Ability_veera_evasive_roll_Bonus_Speed"   "BONUS ROLL SPEED:"

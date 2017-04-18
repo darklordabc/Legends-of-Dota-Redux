@@ -7,7 +7,7 @@
     {
         "BaseClass"             "ability_datadriven"
         "AbilityBehavior"           "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-        "AbilityTextureName"            "custom/veera_evasive_roll"
+        "AbilityTextureName"            "custom/veera_evasive_roll2"
         "AbilityProcsMagicStick"        "1"
     
         "AbilityCastPoint"          "0.2"
