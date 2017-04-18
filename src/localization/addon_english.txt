@@ -803,7 +803,7 @@
     "hintEnchantress"                         "Enchantress can grow plants without the health penalty."
     "hintInvoker"                         "Invoker gains +5 intelligence each time he uses a different ability, resetting when an ability has been used twice."
     "hintQOP"                         "Queen of Pain deals 10% more damage to male heroes, but receives 10% more damage from female heroes."
-    //"hintWisp"                         "Any spell Io casts on a Tethered Hero also gets cast on IO."
+    "hintWisp"                         "Wisp gains 1 free level of Essence Aura Redux, whether it has it or not."
     "hintMeepo"                         "Meepo's damage is increased by 5% for every other Meepo on his team. Takes 25% max health as damage whenever a Meepo dies."
     "hintPL"                         "At the start of the game, Phantom Lancer gains a free level of Phantom Rush, whether he has it or not."
     "hintCM"                         "Crystal Maiden gains +2 movement speed for each level she puts in Support skills."
@@ -1195,7 +1195,7 @@
     //"unique_mechanic_gyrocopter"                    "<font color=\'#ffd966\'>Aghanim's Scepter</font> will give Gyrocopter a side gunner. If 'Free Scepter' option is enabled, this hero will not benefit from it."
     "unique_mechanic_huskar"                        "Huskar regenerates 1hp/s for every 10% of health he is missing."
     "unique_mechanic_invoker"           "Invoker gains +5 intelligence each time he uses a different ability, resetting when an ability has been used twice."
-    //"unique_mechanic_wisp"                   "Any spell Io casts on a tethered Hero also gets cast on him."
+    "unique_mechanic_wisp"                   "Wisp gains 1 free level of <font color=\'#ffd966\'>Essence Aura Redux</font>, whether it has it or not."
     "unique_mechanic_jakiro"                        "<font color=\'#ffd966\'>Fire</font> and <font color=\'#ffd966\'>Ice</font> spells cast sequentially will refund 40% mana and have 20% reduced cooldowns. "
     "unique_mechanic_juggernaut"                        "<font color=\'#ffd966\'>Healing/Mana Ward</font> will have 100% of their mana cost refunded."
     "unique_mechanic_keeper_of_the_light"           "<font color=\'#ffd966\'>Aghanim's Scepter</font> will give KOTL unobstructed day vision. This innate vision bonus consumes an ability slot."
@@ -3209,7 +3209,7 @@
 
     /// IO​
     "DOTA_Tooltip_modifier_npc_dota_hero_wisp_perk" "Io Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_wisp_perk_Description" "Any spell Io casts on a Tethered Hero also gets cast on Io.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_wisp_perk_Description" "Gained a free level of Essence Aura Redux.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
     /// JAKIRO​
     "DOTA_Tooltip_modifier_npc_dota_hero_jakiro_perk"   "Jakiro Perk"

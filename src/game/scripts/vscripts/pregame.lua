@@ -6922,7 +6922,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
         -- npc_dota_hero_spirit_breaker = true,
         --npc_dota_hero_spirit_slardar = true,
         -- npc_dota_hero_chaos_knight = true,
-        npc_dota_hero_wisp = true
+        --npc_dota_hero_wisp = true
     }
 
     -- Grab their playerID
