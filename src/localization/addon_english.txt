@@ -4253,12 +4253,12 @@
 
 
     "DOTA_Tooltip_ability_ebf_rubick_arcane_echo"                                     "Arcane Echo"
-    "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_Description"                         "Rubick, being the grandest magus there is, casts the last ability he used a second time. Echoed spells require half the manacost. Certain spells will not echo for balance reasons."
+    "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_Description"                         "Rubick, being the grandest magus there is, casts the last ability he used a second time. Echoed spells still require mana. Certain spells will not echo for balance reasons."
     "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_Lore"                                 "A jester at heart, Rubick enjoys confusing his enemies."
     "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_delay"                                 "ECHO DELAY:"
     
     "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_OP"                                     "Arcane Echo OP"
-    "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_OP_Description"                         "Rubick, being the grandest magus there is, casts the last ability he used a second time. Echoed spells require half the manacost. Certain spells will not echo for balance reasons. <font color='#70EA72'>Shorter cooldown.</font>"
+    "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_OP_Description"                         "Rubick, being the grandest magus there is, casts the last ability he used a second time. Echoed spells still require mana. Certain spells will not echo for balance reasons. <font color='#70EA72'>Shorter cooldown.</font>"
     "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_OP_Lore"                                 "A jester at heart, Rubick enjoys confusing his enemies."
     "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_OP_delay"                                 "ECHO DELAY:"
 
@@ -9563,10 +9563,10 @@
     "DOTA_Tooltip_Ability_veera_pursuit_Creep_Duration"     "CREEP DURATION:"
 
     "DOTA_Tooltip_Ability_veera_plains_runner"          "Plains Runner"
-    "DOTA_Tooltip_Ability_veera_plains_runner_Description"      "Increases Veera’s movement speed for every 150 units she travels, lasting 3 seconds and refreshing with each new stack. Veera will gain 10 stacks for every level of terrain she descends, but will lose half of her stacks when ascending terrain or when turning 180 degrees. Veera also gains a higher movespeed cap and bonus agility based on a percentage of her extra movement speed.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
+    "DOTA_Tooltip_Ability_veera_plains_runner_Description"      "Increases Veera’s movement speed for every 250 units she travels, lasting 4 seconds and refreshing with each new stack. Veera will gain 10 stacks for every level of terrain she descends, but will lose half of her stacks when ascending terrain or when turning 180 degrees. Veera also gains bonus agility based on a percentage of her extra movement speed.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
     "DOTA_Tooltip_Ability_veera_plains_runner_Lore"         "The vastness of the plains brings swiftness to the hunter."
     "DOTA_Tooltip_Ability_veera_plains_runner_Movespeed_bonus"  "MOVESPEED BONUS PER STACK:"
-    "DOTA_Tooltip_Ability_veera_plains_runner_Movespeed_limit"  "MOVESPEED LIMIT:"
+    //"DOTA_Tooltip_Ability_veera_plains_runner_Movespeed_limit"  "MOVESPEED LIMIT:"
     "DOTA_Tooltip_Ability_veera_plains_runner_Agility_bonus"    "%AGILITY PER EXTRA MOVESPEED:"
 
     "DOTA_Tooltip_Ability_veera_thrill_of_the_hunt"             "Thrill of the Hunt"    

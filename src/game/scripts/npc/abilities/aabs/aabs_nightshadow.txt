@@ -5,6 +5,7 @@
 		"ID"							"10043"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"            "custom/nightshadow"
+		"ReduxCost"                                                            "10"
 		
 		"precache" {
 			"soundfile" "sounds/weapons/hero/riki/riki_attack1.vsnd"

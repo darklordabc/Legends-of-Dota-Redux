@@ -12,13 +12,13 @@ function PlainsRunnerInitialize( keys )
 	local level = ability:GetLevel() - 1
 	caster.movespeed_max = ability:GetLevelSpecialValueFor("movespeed_limit", level)
 
-	if level == 0 then
-		caster:AddNewModifier(caster, ability, 'modifier_movespeed_cap', {})
-	end
-	caster:SetModifierStackCount('modifier_movespeed_cap', ability, caster.movespeed_max)
-	if caster:HasModifier("modifier_thrill_active") and caster:HasScepter() then
-		caster:SetModifierStackCount('modifier_movespeed_cap', ability, caster.movespeed_max*2)
-	end
+	--if level == 0 then
+		--caster:AddNewModifier(caster, ability, 'modifier_movespeed_cap', {})
+	--end
+	--caster:SetModifierStackCount('modifier_movespeed_cap', ability, caster.movespeed_max)
+	--if caster:HasModifier("modifier_thrill_active") and caster:HasScepter() then
+	--	caster:SetModifierStackCount('modifier_movespeed_cap', ability, caster.movespeed_max*2)
+	--end
 end
 
 function PlainsRunnerDistanceCheck( keys )

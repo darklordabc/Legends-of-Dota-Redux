@@ -855,7 +855,7 @@
     {
         "ReduxFlags"                                                           "upgradeable | attack_modifier"
         "ReduxPerks"                                                           "attack_modifier | nature"
-        "ReduxCost"                                                            "10"
+        "ReduxCost"                                                            "20"
     }
     "enigma_black_hole"
     {
@@ -900,7 +900,7 @@
     {
         "ReduxFlags"                                                           "upgradeable | silence"
         "ReduxPerks"                                                           "silence"
-        "ReduxCost"                                                            "60"
+        "ReduxCost"                                                            "70"
         "ReduxBans"                                                            "spell_lab_symbiotic"
     }
     "leshrac_pulse_nova"
@@ -1018,7 +1018,7 @@
     {
         "ReduxFlags"                                                           "upgradeable | mobility | stun"
         "ReduxPerks"                                                           "mobility | earth"
-        "ReduxCost"                                                            "20"
+        "ReduxCost"                                                            "30"
     }
     "shadow_demon_demonic_purge"
     {
@@ -1805,7 +1805,7 @@
     "huskar_berserkers_blood"
     {
         "ReduxFlags"                                                           "tank"
-        "ReduxCost"                                                            "20"
+        "ReduxCost"                                                            "30"
     }
     "spectre_dispersion"
     {
@@ -1848,7 +1848,7 @@
     {
         "ReduxFlags"                                                           "tank | attack_modifier"
         "ReduxPerks"                                                           "attack_modifier | rage"
-        "ReduxCost"                                                            "10"
+        "ReduxCost"                                                            "20"
     }
     "enchantress_untouchable"
     {
@@ -2258,6 +2258,7 @@
     "monkey_king_boundless_strike"
     {
         "ReduxFlags"                                                           "stun"
+        "ReduxCost"                                                            "20"
     }
     "shadow_shaman_voodoo"
     {
@@ -2978,7 +2979,7 @@
     "tinker_rearm"
     {
         "ReduxPerks"                                                           "scientific | channeled"
-        "ReduxCost"                                                            "400"
+        "ReduxCost"                                                            "180"
         "ReduxBans"                                                            "dazzle_shallow_grave | lich_absolute_zero | arc_warden_tempest_double | arc_warden_tempest_double_redux"
         "ReduxFlags"                                                           "OPSkillsList"
     }

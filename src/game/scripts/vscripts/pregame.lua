@@ -128,7 +128,7 @@ function Pregame:init()
         },
         fastStart = {
             onselected = function(self)
-                self:setOption('lodOptionGameSpeedStartingLevel', 3, true)
+                self:setOption('lodOptionGameSpeedStartingLevel', 4, true)
                 self:setOption('lodOptionGameSpeedStartingGold', 1000, true)
             end,
             onunselected = function(self)

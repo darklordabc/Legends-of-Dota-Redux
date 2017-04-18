@@ -61,22 +61,22 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "movespeed_bonus"       "2 3 4 5"
+                "movespeed_bonus"       "1 2 2 3"
             }
             "02"
             {
                 "var_type"          "FIELD_FLOAT"
-                "duration"          "3.0"
+                "duration"          "4.0"
             }
             "03"
             {
                 "var_type"          "FIELD_FLOAT"
-                "distance"          "150"
+                "distance"          "250"
             }
             "04"
             {
                 "var_type"          "FIELD_INTEGER"
-                "movespeed_limit"       "600 700 800 900"
+                "movespeed_limit"       "550"
             }
             "05"
             {
