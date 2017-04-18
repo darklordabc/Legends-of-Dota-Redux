@@ -2975,8 +2975,8 @@
     "tinker_rearm"
     {
         "ReduxPerks"                                                           "scientific | channeled"
-        "ReduxCost"                                                            "120"
-        "ReduxBans"                                                            "lich_absolute_zero | arc_warden_tempest_double | arc_warden_tempest_double_redux"
+        "ReduxCost"                                                            "400"
+        "ReduxBans"                                                            "dazzle_shallow_grave | lich_absolute_zero | arc_warden_tempest_double | arc_warden_tempest_double_redux"
         "ReduxFlags"                                                           "OPSkillsList"
     }
     "chen_penitence"
