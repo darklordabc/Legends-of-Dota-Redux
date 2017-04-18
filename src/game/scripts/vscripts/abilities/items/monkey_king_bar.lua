@@ -107,7 +107,7 @@ function modifier_item_monkey_king_bar_consumable:GetModifierPreAttack_BonusDama
   if not self:GetAbility() then
     self:Destroy()
   end
-  return self:GetAbility():GetSpecialValueFor("greater_crit_bonus_damage")
+  return self:GetAbility():GetSpecialValueFor("monkey_king_bar_bonus_damage")
 end
 
 function modifier_item_monkey_king_bar_consumable:GetModifierPreAttack_BonusDamagePostCrit()
