@@ -1,11 +1,10 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Treant
---		Perk: Treant receives 3 charges of living armor. 
+--		Perk: Treant gets healed for the mana cost of any Nature ability he uses.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_treant_perk", "abilities/hero_perks/npc_dota_hero_treant_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier("modifier_charges", "abilities/modifiers/modifier_charges.lua", LUA_MODIFIER_MOTION_NONE)
 --------------------------------------------------------------------------------------------------------
 if npc_dota_hero_treant_perk ~= "" then npc_dota_hero_treant_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
@@ -31,52 +30,24 @@ end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
-function modifier_npc_dota_hero_treant_perk:OnCreated()
-	if IsServer() then
-		self.hook = self:GetCaster():FindAbilityByName("treant_living_armor")
-		if self.hook then
-			self:StartIntervalThink(0.1)
-		end
-	end
-end
-
-function modifier_npc_dota_hero_treant_perk:OnIntervalThink()
-	if not self.activated then
-		if self.hook:GetLevel() > 0 then
-			self:GetCaster():AddNewModifier(self:GetCaster(), self.hook, "modifier_charges",
-				{
-					max_count = 3,
-					start_count = 1,
-					replenish_time = self.hook:GetCooldown(-1)
-				}
-			)
-			self.activated = true
-		end
-	end
-end
-
-function modifier_npc_dota_hero_treant_perk:OnRefresh()
-	if IsServer() then
-		--self.damagecooldown = self.hook:GetCooldown(-1) -- Time before hook does damage again.
-		local modifier = self:GetParent():FindModifierByName("modifier_charges")
-		if modifier and modifier.kv.replenish_time ~= self.hook:GetCooldown(-1) then
-			modifier.kv.replenish_time = self.hook:GetCooldown(-1)
-		end
-	end
-end
-
 function modifier_npc_dota_hero_treant_perk:DeclareFunctions()
-	local funcs = {
-		MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
-	}
-	return funcs
+  local funcs = {
+    MODIFIER_EVENT_ON_ABILITY_FULLY_CAST
+  }
+  return funcs
 end
 
+function modifier_npc_dota_hero_treant_perk:OnAbilityFullyCast(keys)
 
-function modifier_npc_dota_hero_treant_perk:OnAbilityFullyCast(params)
-	if params.unit == self:GetParent() then
-		if params.ability == self.hook then
-			self:ForceRefresh()
-		end
-	end
+  if IsServer() then
+	if self:GetParent():GetHealth() == self:GetParent():GetMaxHealth() then return end
+    if keys.unit == self:GetParent() then
+      if keys.ability:HasAbilityFlag("nature") then
+        keys.unit:Heal(keys.ability:GetManaCost(keys.ability:GetLevel()-1) ,keys.ability)
+	      SendOverheadEventMessage(keys.unit,OVERHEAD_ALERT_HEAL,keys.unit,keys.ability:GetManaCost(keys.ability:GetLevel()-1),nil)
+        local healParticle = ParticleManager:CreateParticle("particles/units/heroes/hero_bloodseeker/bloodseeker_bloodbath_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.unit)
+        ParticleManager:SetParticleControl(healParticle, 1, Vector(radius, radius, radius))
+      end
+    end
+  end
 end

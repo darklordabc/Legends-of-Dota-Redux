@@ -863,7 +863,7 @@
     "hintTerrorblade"                         "Terrorblade Illusions deal 15% more damage, but also take 15% more damage. "
     "hintTinker"                         "When Tinker uses Scientific spells, there is a 7% chance for them to be instantly refreshed."
     "hintTiny"                         "Tiny does 10% increased damage to buildings."
-    "hintTreant"                         "Treant receives 3 charges of Living Armour."
+    "hintTreant"                         "Treant gets healed for the mana cost of any Nature ability he uses."
     "hintTrollWarlord"                         "Rage effects on Troll Warlord have 20% longer duration."
     "hintUnderlord"                         "Underlord gains +1 to all stats for each level put in a custom ability."
     "hintUndying"                         "Undying gains +1 strength per creep death or +4 strength per hero death in a 900 radius for 30 seconds."
@@ -1255,7 +1255,7 @@
     "unique_mechanic_shredder"                      "Timbersaw gains 1% of his max health and mana whenever a nearby tree is cut down."
     "unique_mechanic_tinker"                        "When Tinker uses <font color=\'#ffd966\'>Scientific</font> spells, there is a 7% chance for them to be instantly refreshed."
     "unique_mechanic_tiny"                        "Tiny deals 10% more damage to buildings."
-    "unique_mechanic_treant"                        "Treant receives 3 charges of <font color=\'#ffd966\'>Living Armor</font>."
+    "unique_mechanic_treant"                        "Treant gets healed for the mana cost of any <font color=\'#ffd966\'>Nature</font> ability he uses."
     "unique_mechanic_troll_warlord"                 "<font color=\'#ffd966\'>Skull Basher</font> and  <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero. <font color=\'#ffd966\'>Rage</font> effects on Troll Warlord have 20% longer duration."
     "unique_mechanic_tusk"           "<font color=\'#ffd966\'>Walrus Kick</font> and <font color=\'#ffd966\'>Walrus Punch</font> will refund their manacost when used by Tusk."
     "unique_mechanic_abyssal_underlord"                        "Underlord gains +1 to all stats for each level put in a <font color=\'#ffd966\'>Custom</font> ability."
@@ -3461,7 +3461,7 @@
 
     /// TREANT PROTECTOR​
     "DOTA_Tooltip_modifier_npc_dota_hero_treant_perk"   "Treant Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_treant_perk_Description"   "Treant receives 3 charges of Living Armor."
+    "DOTA_Tooltip_modifier_npc_dota_hero_treant_perk_Description"   "Treant gets healed for the mana cost of any Nature ability he uses."
 
     /// TROLL WARLORD​
     "DOTA_Tooltip_modifier_npc_dota_hero_troll_warlord_perk"  "Troll Warlord Perk"

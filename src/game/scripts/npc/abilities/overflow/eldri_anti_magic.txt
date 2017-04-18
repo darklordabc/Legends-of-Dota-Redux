@@ -14,7 +14,7 @@
 		"AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_CUSTOM"
 		"AbilityUnitTargetType"         "DOTA_UNIT_TARGET_TREE"
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
-		"ReduxPerks"                                                           "trap"
+		"ReduxPerks"                                                           "trap | nature"
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"precache"

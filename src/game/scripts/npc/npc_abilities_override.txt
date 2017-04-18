@@ -623,7 +623,7 @@
         "MaxLevel"                                                             "4"
         "AbilityCooldown"                                                      "80 65 50 25"
         "ReduxFlags"                                                           "support | invis"
-        "ReduxPerks"                                                           "support"
+        "ReduxPerks"                                                           "support | nature"
         "ReduxCost"                                                            "20"
     }
     "visage_summon_familiars_stone_form"
@@ -854,7 +854,7 @@
     "enchantress_impetus"
     {
         "ReduxFlags"                                                           "upgradeable | attack_modifier"
-        "ReduxPerks"                                                           "attack_modifier"
+        "ReduxPerks"                                                           "attack_modifier | nature"
         "ReduxCost"                                                            "10"
     }
     "enigma_black_hole"
@@ -955,6 +955,7 @@
     }
     "furion_wrath_of_nature"
     {
+        "ReduxPerks"                                                           "nature"
         "ReduxFlags"                                                           "upgradeable | wtfAutoBan"
         "ReduxCost"                                                            "10"
         "ReduxBans"                                                            "tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux | meepo_divided_we_stand"
@@ -1226,7 +1227,7 @@
     "enchantress_natures_attendants"
     {
         "ReduxFlags"                                                           "support"
-        "ReduxPerks"                                                           "support"
+        "ReduxPerks"                                                           "support | nature"
     }
     "huskar_inner_vitality"
     {
@@ -1397,7 +1398,7 @@
     "treant_living_armor"
     {
         "ReduxFlags"                                                           "support"
-        "ReduxPerks"                                                           "support"
+        "ReduxPerks"                                                           "support | nature"
     }
     "spirit_breaker_empowering_haste"
     {
@@ -1440,7 +1441,7 @@
     "furion_sprout"
     {
         "ReduxFlags"                                                           "support"
-        "ReduxPerks"                                                           "support"
+        "ReduxPerks"                                                           "support | nature"
     }
     "phoenix_sun_ray"
     {
@@ -1598,7 +1599,7 @@
     }
     "treant_natures_guise"
     {
-        "ReduxFlags"                                                           "mobility | invis"
+        "ReduxFlags"                                                           "mobility | invis | nature"
         "ReduxPerks"                                                           "mobility"
         "ReduxCost"                                                            "10"
     }
@@ -1669,7 +1670,7 @@
     "furion_teleportation"
     {
         "ReduxFlags"                                                           "mobility"
-        "ReduxPerks"                                                           "mobility | teleport"
+        "ReduxPerks"                                                           "mobility | teleport | nature"
         "ReduxCost"                                                            "20"
         "ReduxBans"                                                            "nyx_assassin_burrow | nyx_assassin_burrow_redux"
     }
@@ -1851,6 +1852,7 @@
     }
     "enchantress_untouchable"
     {
+        "ReduxPerks"                                                           "nature"
         "ReduxFlags"                                                           "tank"
         "ReduxCost"                                                            "10"
     }
@@ -2493,6 +2495,7 @@
     }
     "treant_overgrowth"
     {
+        "ReduxPerks"                                                           "nature"
         "ReduxFlags"                                                           "stun"
         "ReduxBans"                                                            "tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux"
     }
@@ -2535,7 +2538,7 @@
     "furion_force_of_nature"
     {
         "ReduxFlags"                                                           "summon | wtfAutoBan"
-        "ReduxPerks"                                                           "summon_non_ult"
+        "ReduxPerks"                                                           "summon_non_ult | nature"
     }
     "undying_tombstone"
     {
@@ -3026,7 +3029,7 @@
     }
     "treant_leech_seed"
     {
-        "ReduxPerks"                                                           "drain"
+        "ReduxPerks"                                                           "drain | nature"
     }
     "item_sheepstick"
     {
@@ -3170,7 +3173,7 @@
     }
     "tornado_tempest"
     {
-        "ReduxPerks"                                                           "channeled"
+        "ReduxPerks"                                                           "channeled | nature"
     }
     "windrunner_powershot"
     {
@@ -3392,6 +3395,7 @@
     "enchantress_enchant"
     {
         "ReduxCost"                                                            "10"
+        "ReduxPerks"                                                           "nature"
     }
     "life_stealer_consume"
     {
