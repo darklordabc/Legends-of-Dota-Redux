@@ -189,7 +189,7 @@ function modifier_flesh_heap_spell_lifesteal:GetModifierTotalDamageOutgoing_Perc
 
   if IsServer() and attacker == self:GetParent() then
     local healFactor = self:GetStackCount() * self.flesh_heap_value_buff_amount * 0.01
-    if not keys.unit:IsHero() then
+    if not keys.target:IsHero() then
       healFactor = healFactor/5
     end
     local heal = healFactor * keys.damage
