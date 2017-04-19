@@ -764,9 +764,6 @@ local voteCooldown = 300
 util.votesBlocked = {}
 util.votesRejected = {}
 function util:CreateVoting(votingName, initiator, duration, percent, onaccept, onvote, ondecline, voteForInitiator)
-    -- Temp disable votes because of buggy
-    if true then return end
-    
     percent = percent or 100
     if util.activeVoting then
         if util.activeVoting.name == votingName and Time() >= util.activeVoting.recieveStartTime then
@@ -807,24 +804,7 @@ function util:CreateVoting(votingName, initiator, duration, percent, onaccept, o
         end
     })
 
-    local pauseChecker = Timers:CreateTimer({
-        useGameTime = false,
-        callback = function()
-            if not GameRules:IsGamePaused() then
-                PauseGame(true)
-            end
-            return 1/30
-        end
-    })
-    local vote_counter = Timers:CreateTimer({
-        useGameTime = false,
-        endTime = duration,
-        callback = function()
-            CheckForEnd()
-        end
-    })
-
-    local CheckForEnd = function()
+    local CheckForEnd = function(force)
         local votesAccepted = 0
         local totalPlayers = 0
         local votesDeclined = 0
@@ -852,8 +832,10 @@ function util:CreateVoting(votingName, initiator, duration, percent, onaccept, o
         if votesAccepted / totalPlayers >= percent * 0.01 then
             accept = true
         end
-        --print(accept, votesAccepted, votesDeclined, totalPlayers)
-        if accept ~= nil then
+
+        if accept ~= nil or force then
+            if accept == nil then accept = false end
+
             if accept then
                 util.votesBlocked[initiator] = false
                 if onaccept then
@@ -874,6 +856,22 @@ function util:CreateVoting(votingName, initiator, duration, percent, onaccept, o
         end
     end
 
+    local pauseChecker = Timers:CreateTimer({
+        useGameTime = false,
+        callback = function()
+            if not GameRules:IsGamePaused() then
+                PauseGame(true)
+            end
+            return 1/30
+        end
+    })
+    local vote_counter = Timers:CreateTimer({
+        useGameTime = false,
+        endTime = duration,
+        callback = function()
+            CheckForEnd(true)
+        end
+    })
     local _onvote = function(pid, accepted)
         util.activeVoting.votes[pid] = accepted
         if onvote then
