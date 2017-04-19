@@ -833,7 +833,7 @@
     {
         "ReduxFlags"                                                           "upgradeable | aoe_attack | attack_modifier"
         "ReduxPerks"                                                           "attack_modifier"
-        "ReduxCost"                                                            "50"
+        "ReduxCost"                                                            "70"
     }
     "earth_spirit_geomagnetic_grip"
     {
@@ -2085,7 +2085,7 @@
         "ReduxFlags"                                                           "attack_modifier | OPSkillsList"
         "ReduxPerks"                                                           "attack_modifier"
         "ReduxCost"                                                            "70"
-        "ReduxBans"                                                            "holdout_multishot"
+        "ReduxBans"                                                            "holdout_multishot | life_stealer_feast_melee"
     }
     "ursa_fury_swipes"
     {
