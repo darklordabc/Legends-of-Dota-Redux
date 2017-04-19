@@ -55,7 +55,7 @@
         "MaxLevel"                                                             "1"
         "ReduxFlags"                                                           "attack_modifier"
         "ReduxPerks"                                                           "neutral | attack_modifier"
-        "ReduxCost"                                                            "20"
+        "ReduxCost"                                                            "40"
 
         // Damage.
         //-------------------------------------------------------------------------------------------------------------
