@@ -1139,10 +1139,16 @@ function Ingame:handleRespawnModifier()
                                 local herosTeam = util:GetActivePlayerCountForTeam(hero:GetTeamNumber())
                                 local opposingTeam = util:GetActivePlayerCountForTeam(otherTeam(hero:GetTeamNumber()))
                                 local difference = herosTeam - opposingTeam
+                                -- Disadvantaged teams gain 10 seconds faster respawn, advantaged team, 10 seconds longer
+                                local addedTime = 0
+                                if difference < 0 then
+                                    addedTime = -10
+                                elseif difference > 0 then
+                                    addedTime = 10
+                                end
                                 
-                                -- 10 seconds per player difference, if addedTime is positive, it means the player team has an advantage, if its a negative it means they are disadvantaged
-                                local addedTime = difference * 10
                                 timeLeft = timeLeft + addedTime
+                                
                                 if timeLeft < 1 then
                                     timeLeft = 1
                                 end   
