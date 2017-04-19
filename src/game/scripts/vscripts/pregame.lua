@@ -444,6 +444,7 @@ function Pregame:init()
         --self:setOption('lodOptionBuybackCooldownTimeConstant', 210, true)
         self:setOption('lodOptionGameSpeedGoldModifier', 150, true)
         self:setOption('lodOptionGameSpeedEXPModifier', 200, true)
+        self:setOption('lodOptionGameSpeedMaxLevel', 100, true)
         self:setOption('lodOptionGameSpeedRespawnTimePercentage', 35, true)
         self.useOptionVoting = true
     end
