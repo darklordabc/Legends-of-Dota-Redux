@@ -271,7 +271,7 @@
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
-        "AbilityTextureName"            "tusk_ice_shards"
+        "AbilityTextureName"            "custom/lich_traveling_frost"
     
         // Casting
         //-------------------------------------------------------------------------------------------------------------
