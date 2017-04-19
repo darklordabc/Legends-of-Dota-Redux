@@ -9778,7 +9778,7 @@
     
     
     "DOTA_Tooltip_ability_lich_cold_aura_dusk" "Cold Aura"
-    "DOTA_Tooltip_ability_lich_cold_aura_dusk_description" "Enemies within a short radius of the Lich are slowed and take damage over time based upon their max health total.  Passively grants the Lich bonus Armor as well.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
+    "DOTA_Tooltip_ability_lich_cold_aura_dusk_description" "Enemies within a 225 radius of the Lich are slowed and take damage over time based upon their max health total.  Passively grants the Lich bonus Armor as well.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
     "DOTA_Tooltip_ability_lich_cold_aura_dusk_Lore" "Brrr."
     "DOTA_Tooltip_ability_lich_cold_aura_dusk_damage" "%DAMAGE:"
     "DOTA_Tooltip_ability_lich_cold_aura_dusk_slow" "%SLOW:"
