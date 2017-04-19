@@ -7573,7 +7573,10 @@ ListenToGameEvent('game_rules_state_change', function(keys)
         end, DoUniqueString('addTalents'), 2.0)
     elseif newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
         if IsDedicatedServer() then
-          SU:SendPlayerBuild( buildBackups )
+            local mapName = GetMapName()
+            if mapName == 'standard' and not util:isCoop() then
+                SU:SendPlayerBuild( buildBackups )
+            end
         end
 
         WAVE = 0
