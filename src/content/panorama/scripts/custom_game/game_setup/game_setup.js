@@ -2013,7 +2013,7 @@ function addRecommendedBuild(build) {
     var buildCon = $.CreatePanel('Panel', $("#pickingPhaseRecommendedBuildContainer"), 'recBuild_' + (++recBuildCounter));
     buildCon.BLoadLayout('file://{resources}/layout/custom_game/game_setup/recommended_build.xml', false, false);
     buildCon.balanceMode = $.GetContextPanel().balanceMode;
-    buildCon.setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, build, balanceMode);
+    buildCon.setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, build, constantBalancePointsValue);
     buildCon.updateFilters(getSkillFilterInfo, getHeroFilterInfo); 
 }
 
