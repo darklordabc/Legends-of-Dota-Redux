@@ -40,7 +40,7 @@
             "05"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "physical_armor"                                       "-4.0"
+                "physical_armor"                                       "-6.0"
             }
             "06"
             {
