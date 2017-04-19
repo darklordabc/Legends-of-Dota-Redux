@@ -97,7 +97,7 @@ function modifier_flesh_heap_lifesteal:OnCreated( kv )
     self:GetParent():CalculateStatBonus()
     return
   end
-  self.flesh_heap_spell_amp_buff_amount = self:GetAbility():GetSpecialValueFor( "flesh_heap_spell_amp_buff_amount" ) or 0
+  self.flesh_heap_value_buff_amount = self:GetAbility():GetSpecialValueFor( "flesh_heap_value_buff_amount" ) or 0
   if IsServer() then
     self:SetStackCount( self:GetFleshHeapKills() )
     self:GetParent():CalculateStatBonus()
@@ -112,7 +112,7 @@ function modifier_flesh_heap_lifesteal:OnRefresh( kv )
     self:GetParent():CalculateStatBonus()
     return
   end
-  self.flesh_heap_spell_amp_buff_amount = self:GetAbility():GetSpecialValueFor( "flesh_heap_spell_amp_buff_amount" ) or 0
+  self.flesh_heap_value_buff_amount = self:GetAbility():GetSpecialValueFor( "flesh_heap_value_buff_amount" ) or 0
   if IsServer() then
     self:SetStackCount( self:GetFleshHeapKills() )
     self:GetParent():CalculateStatBonus()
