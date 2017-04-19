@@ -5,7 +5,7 @@
         "BaseClass"                                                            "ability_datadriven"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "AbilityTextureName"                                                   "custom/berserker_madness"
-        "AbilityCooldown"                                                      "80"
+        "AbilityCooldown"                                                      "80 70 60"
         "AbilityManacost"                                                      "125 150 175"
         "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
         "MaxLevel"                                                             "3"
