@@ -5,8 +5,9 @@ var buildData = null;
 // Tags for filter
 var searchTags = [];
 
-function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, build, balanceMode) {
-    var curBuild = build.abilities //balanceMode === 1 ? build.Balanced : build.Unbalanced
+function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, build, constantBalancePointsValue) {
+    var curBuild = build.abilities
+    $.GetContextPanel().constantBalancePointsValue = constantBalancePointsValue;
     // Push skills
     for(var slotID = 0; slotID < 6; slotID++) {
         var slot = $('#recommendedSkill' + (slotID + 1));
@@ -154,9 +155,10 @@ function updateFilters(getSkillFilterInfo, getHeroFilterInfo) {
 
     // Unavaliable skill count
     var unavalCount = 0;
+    var totalBuildCost = 0;
 
     // Filter each ability
-    for(var slotID = 1; slotID < 7; ++slotID) {
+    for(var slotID = 1; slotID <= 6; ++slotID) {
         // Grab the slot
         var slot = $('#recommendedSkill' + slotID);
 
@@ -173,6 +175,8 @@ function updateFilters(getSkillFilterInfo, getHeroFilterInfo) {
 
         if (filterInfo.disallowed || filterInfo.banned || filterInfo.taken || filterInfo.cantDraft || filterInfo.trollCombo)
             unavalCount++;
+        else if (GameUI.AbilityCosts.balanceModeEnabled)
+            totalBuildCost += filterInfo.cost
 
         if (GameUI.AbilityCosts.balanceModeEnabled) {
             // Set the label to the cost of the ability
@@ -181,7 +185,7 @@ function updateFilters(getSkillFilterInfo, getHeroFilterInfo) {
                 for (var i = 0; i < GameUI.AbilityCosts.TIER_COUNT; ++i) {
                     abCost.SetHasClass('tier' + (i + 1), filterInfo.cost == GameUI.AbilityCosts.TIER[i]);
                 }
-                abCost.text = (filterInfo.cost != GameUI.AbilityCosts.NO_COST)? filterInfo.cost: "";
+                abCost.text = filterInfo.cost != GameUI.AbilityCosts.NO_COST ? filterInfo.cost : "";
             }
         }
 
@@ -193,8 +197,9 @@ function updateFilters(getSkillFilterInfo, getHeroFilterInfo) {
         }
     }
 
-    // Hide build if more than 1 unavaliable skill
-    $.GetContextPanel().SetHasClass('disabled', unavalCount > 1);
+    // Hide build if more than 1 unavaliable skill or it wasn't designed for balance mode
+    $.Msg($.GetContextPanel().constantBalancePointsValue)
+    $.GetContextPanel().SetHasClass('disabled', unavalCount > 1 || totalBuildCost > $.GetContextPanel().constantBalancePointsValue);
 
     // Update hero
     var heroFilterInfo = getHeroFilterInfo(buildData.hero);
