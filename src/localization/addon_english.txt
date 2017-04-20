@@ -9934,5 +9934,17 @@
     "DOTA_Tooltip_ability_ursa_overpower_ranged_attack_speed_bonus_pct"                    "BONUS ATTACK SPEED:"       
     "DOTA_Tooltip_ability_ursa_overpower_ranged_duration_tooltip"                          "DURATION:"
 
+    "DOTA_Tooltip_ability_phantom_assassin_coup_de_grace_melee"                           "Coup de Grace Redux"
+    "DOTA_Tooltip_ability_phantom_assassin_coup_de_grace_melee_Description"               "Phantom Assassin refines her combat abilities, gaining a chance of delivering a devastating critical strike to enemy units. Stifling Dagger shares the same critical strike chance. <font color='#70EA72'>Less chance to proc for ranged heroes</font>."
+    "DOTA_Tooltip_ability_phantom_assassin_coup_de_grace_melee_Lore"                      "A divine strike, Mortred honors her opponent by choosing them for death."
+    "DOTA_Tooltip_ability_phantom_assassin_coup_de_grace_melee_crit_chance"               "%CRITICAL CHANCE:"
+    "DOTA_Tooltip_ability_phantom_assassin_coup_de_grace_melee_crit_bonus"                "%CRITICAL DAMAGE:"
+
+    "DOTA_Tooltip_ability_phantom_assassin_coup_de_grace_ranged"                           "Coup de Grace Ranged"
+    "DOTA_Tooltip_ability_phantom_assassin_coup_de_grace_ranged_Description"               "Phantom Assassin refines her combat abilities, gaining a chance of delivering a devastating critical strike to enemy units. Stifling Dagger shares the same critical strike chance. <font color='#70EA72'>Less chance to proc for ranged heroes</font>."
+    "DOTA_Tooltip_ability_phantom_assassin_coup_de_grace_ranged_Lore"                      "A divine strike, Mortred honors her opponent by choosing them for death."
+    "DOTA_Tooltip_ability_phantom_assassin_coup_de_grace_ranged_crit_chance"               "%CRITICAL CHANCE:"
+    "DOTA_Tooltip_ability_phantom_assassin_coup_de_grace_ranged_crit_bonus"                "%CRITICAL DAMAGE:"
+
 }
 

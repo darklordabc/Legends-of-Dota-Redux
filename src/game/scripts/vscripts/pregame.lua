@@ -7098,6 +7098,12 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                     spawnedUnit:SwapAbilities("ursa_overpower_melee","ursa_overpower_ranged",false,true)
                     spawnedUnit:RemoveAbility("ursa_overpower_melee")
             end
+    
+            if spawnedUnit:HasAbility("phantom_assassin_coup_de_grace_melee") and spawnedUnit:IsRangedAttacker() then
+                    spawnedUnit:AddAbility("phantom_assassin_coup_de_grace_ranged")
+                    spawnedUnit:SwapAbilities("phantom_assassin_coup_de_grace_melee","phantom_assassin_coup_de_grace_ranged",false,true)
+                    spawnedUnit:RemoveAbility("phantom_assassin_coup_de_grace_melee")
+            end
 
             -- Change infernal blade on gyro to critical strike
             --if this.optionStore['lodOptionBanningUseBanList'] == 1 and spawnedUnit:HasAbility("doom_bringer_infernal_blade") and spawnedUnit:GetUnitName() == "npc_dota_hero_gyrocopter" and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("doom_bringer_infernal_blade"):IsHidden() then

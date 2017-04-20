@@ -1915,9 +1915,10 @@
     }
     "phantom_assassin_coup_de_grace"
     {
-        "ReduxFlags"                                                           "crit | attack_modifier"
+        "ReduxFlags"                                                           "crit | attack_modifier | OPSkillsList"
         "ReduxPerks"                                                           "attack_modifier"
-        "ReduxCost"                                                            "50"
+        "ReduxCost"                                                            "80"
+        "ReduxBans"                                                            "phantom_assassin_coup_de_grace_melee"
     }
     "juggernaut_blade_dance"
     {
@@ -3322,9 +3323,10 @@
     }
     "ursa_overpower"
     {
+        "ReduxFlags"                                                           "OPSkillsList"
         "ReduxPerks"                                                           "rage"
         "ReduxCost"                                                            "70"
-        "ReduxBans"                                                            "OPSkillsList | tusk_walrus_punch | earthshaker_enchant_totem"
+        "ReduxBans"                                                            "ursa_overpower_melee | tusk_walrus_punch | earthshaker_enchant_totem"
     }
     "lycan_howl"
     {
