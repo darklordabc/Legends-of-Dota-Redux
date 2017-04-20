@@ -1170,6 +1170,7 @@
     }
     "spawnlord_aura"
     {
+        "MaxLevel"      "4"
         "ReduxFlags"                                                           "support"
         "ReduxPerks"                                                           "support | neutral | aura"
         "ReduxCost"                                                            "10"
