@@ -850,7 +850,7 @@
     {
         "ReduxFlags"                                                           "upgradeable | disarm_break"
         "ReduxPerks"                                                           "earth | skillshot | enemyMoving"
-        "ReduxCost"                                                            "10"
+        "ReduxCost"                                                            "0"
     }
     "enchantress_impetus"
     {
@@ -2982,7 +2982,7 @@
     "tinker_rearm"
     {
         "ReduxPerks"                                                           "scientific | channeled"
-        "ReduxCost"                                                            "180"
+        "ReduxCost"                                                            "400"
         "ReduxBans"                                                            "dazzle_shallow_grave | lich_absolute_zero | arc_warden_tempest_double | arc_warden_tempest_double_redux"
         "ReduxFlags"                                                           "OPSkillsList"
     }
