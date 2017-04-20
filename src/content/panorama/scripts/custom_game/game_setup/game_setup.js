@@ -5448,7 +5448,7 @@ function saveCurrentBuild() {
     }
 
     if (mapName == "all_allowed"){
-	    $.Each(["fastStart", "banning", "strongTowers", "OPAbilities", "heroPerks"], function(name) {
+	    $.Each(["fastStart", "banning", "strongTowers", "OPAbilities", "customAbilities"], function(name) {
 	        addVotingOption(name);
 	    })
     }

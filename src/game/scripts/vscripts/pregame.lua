@@ -450,9 +450,9 @@ function Pregame:init()
     end
 
     if mapName == 'all_allowed' then   
+        self:setOption('lodOptionBanningUseBanList', 1, true)
         self:setOption('lodOptionAdvancedOPAbilities', 1, true)
         self:setOption('lodOptionGameSpeedMaxLevel', 100, true)
-        self:setOption('lodOptionBanningUseBanList', 1, true)
         self:setOption('lodOptionGamemode', 1)
         OptionManager:SetOption('banningTime', 45)
         self:setOption('lodOptionBalanceMode', 0, true)
@@ -3603,16 +3603,16 @@ function Pregame:processOptions()
     --end
 
     -- This is a fix to deal with how votes are executed
-    if GetMapName() == "all_allowed" then
-        if self.optionStore['lodOptionBanningMaxBans'] == 2 and self.optionStore['lodOptionBanningUseBanList'] == 0 and self.optionStore['lodOptionAdvancedCustomSkills'] == 1 then
-            self:setOption('lodOptionBanningMaxBans', 6, true)
-        end
-        if self.optionStore['lodOptionBanningMaxBans'] == 4 and self.optionStore['lodOptionAdvancedCustomSkills'] == 0 then
-            self:setOption('lodOptionBanningMaxBans', 0, true)
-            self:setOption('lodOptionBanningMaxHeroBans', 0, true)
-        end
+   -- if GetMapName() == "all_allowed" then
+   --     if self.optionStore['lodOptionBanningMaxBans'] == 2 and self.optionStore['lodOptionBanningUseBanList'] == 0 and self.optionStore['lodOptionAdvancedCustomSkills'] == 1 then
+    --        self:setOption('lodOptionBanningMaxBans', 6, true)
+    --    end
+    --    if self.optionStore['lodOptionBanningMaxBans'] == 4 and self.optionStore['lodOptionAdvancedCustomSkills'] == 0 then
+    --        self:setOption('lodOptionBanningMaxBans', 0, true)
+    --        self:setOption('lodOptionBanningMaxHeroBans', 0, true)
+    --    end
             
-    end
+    --end
 
     -- Only process options once
     if self.processedOptions then return end
