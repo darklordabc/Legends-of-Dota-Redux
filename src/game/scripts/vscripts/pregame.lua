@@ -1896,7 +1896,9 @@ function Pregame:onOptionChanged(eventSourceIndex, args)
             },
         }
 
-        if PlayerResource:GetSteamAccountID(playerID) == 43305444 or util:isSinglePlayerMode() then -- Baumi doesnt need votes to change options
+       -- if PlayerResource:GetSteamAccountID(playerID) == 43305444 or util:isSinglePlayerMode() then -- Baumi doesnt need votes to change options
+        -- Temporarily require voting for options because its broken
+        if true then
             voteRequiredOptions = {}
         end
 
