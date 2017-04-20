@@ -128,8 +128,8 @@ function Pregame:init()
         },
         fastStart = {
             onselected = function(self)
-                self:setOption('lodOptionGameSpeedStartingLevel', 4, true)
-                self:setOption('lodOptionGameSpeedStartingGold', 1000, true)
+                self:setOption('lodOptionGameSpeedStartingLevel', 6, true)
+                self:setOption('lodOptionGameSpeedStartingGold', 2000, true)
             end,
             onunselected = function(self)
                 self:setOption('lodOptionGameSpeedStartingLevel', 1, true)
@@ -442,8 +442,8 @@ function Pregame:init()
         --self:setOption('lodOptionBanningBalanceMode', 1, true)
         --self:setOption('lodOptionGameSpeedRespawnTimePercentage', 70, true)
         --self:setOption('lodOptionBuybackCooldownTimeConstant', 210, true)
-        self:setOption('lodOptionGameSpeedGoldModifier', 150, true)
-        self:setOption('lodOptionGameSpeedEXPModifier', 200, true)
+        self:setOption('lodOptionGameSpeedGoldModifier', 225, true)
+        self:setOption('lodOptionGameSpeedEXPModifier', 225, true)
         self:setOption('lodOptionGameSpeedMaxLevel', 100, true)
         self:setOption('lodOptionGameSpeedRespawnTimePercentage', 35, true)
         self.useOptionVoting = true
