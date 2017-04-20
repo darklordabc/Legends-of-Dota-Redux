@@ -850,6 +850,7 @@
     {
         "ReduxFlags"                                                           "upgradeable | disarm_break"
         "ReduxPerks"                                                           "earth | skillshot | enemyMoving"
+        "ReduxCost"                                                            "10"
     }
     "enchantress_impetus"
     {
