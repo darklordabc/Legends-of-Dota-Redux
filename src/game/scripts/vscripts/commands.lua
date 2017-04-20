@@ -45,7 +45,7 @@ function Commands:OnPlayerChat(keys)
     ----------------------------
     if string.find(command, "-antirat") or string.find(command, "-ar")then
         if OptionManager:GetOption('antiRat') == 0 and not ingame.voteEnabledCheatMode then
-            util:CreateVoting("lodVotingAntirat", playerID, 10, GetMapName() == 'all_allowed' and 50 or 100, function()
+            util:CreateVoting("lodVotingAntirat", playerID, 10, OptionManager:GetOption('mapname') == 'all_allowed' and 50 or 100, function()
                 OptionManager:SetOption('antiRat', 1) 
                 ingame:giveAntiRatProtection()
                 ingame.voteAntiRat = true
@@ -57,7 +57,7 @@ function Commands:OnPlayerChat(keys)
         end
     elseif string.find(command, "-doublecreeps") or string.find(command, "-dc") then
        if not ingame.voteDoubleCreeps and OptionManager:GetOption('neutralMultiply') < 2 then
-            util:CreateVoting("lodVotingDoubleCreeps", playerID, 10, GetMapName() == 'all_allowed' and 50 or 100, function()
+            util:CreateVoting("lodVotingDoubleCreeps", playerID, 10, OptionManager:GetOption('mapname') == 'all_allowed' and 50 or 100, function()
                 OptionManager:SetOption('neutralMultiply', 2)
                -- pregame:multiplyNeutrals()
                 ingame.voteDoubleCreeps = true
@@ -147,6 +147,7 @@ function Commands:OnPlayerChat(keys)
     if string.find(command, "-test") then 
         GameRules:SendCustomMessage('testing testing 1. 2. 3.', 0, 0)
         util:DisplayError(playerID, "tested")
+        print(OptionManager:GetOption('mapname'))
     elseif string.find(command, "-printabilities") then
         print("-------------HERO STATS------------")
         print("HP: "..tostring(hero:GetHealth()).."/"..tostring(hero:GetMaxHealth()))

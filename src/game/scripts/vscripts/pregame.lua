@@ -61,6 +61,13 @@ function Pregame:init()
     -- Store for options
     self.optionStore = {} 
 
+    OptionManager:SetOption('mapname', GetMapName())
+
+    -- If single player redirect players to the more fully-featured map
+    if util:isSinglePlayerMode() and not IsInToolsMode() then
+        OptionManager:SetOption('mapname', 'dota')
+    end
+
     -- Store for selected heroes and skills
     self.selectedHeroes = {}
     self.selectedPlayerAttr = {}
@@ -420,7 +427,7 @@ function Pregame:init()
     end, DoUniqueString('checkSinglePlayer'), 1.5)
 
     -- Map enforcements
-    local mapName = GetMapName()
+    local mapName = OptionManager:GetOption('mapname')
 
     -- All Pick Only
     if mapName == 'all_pick' then
@@ -2144,7 +2151,7 @@ function Pregame:initOptionSelector()
             if type(value) ~= 'number' then return false end
 
             -- Map enforcements
-            local mapName = GetMapName()
+            local mapName = OptionManager:GetOption('mapname')
 
             -- All Pick Only
             if mapName == 'all_pick' then
@@ -3589,7 +3596,7 @@ end
 -- Processes options to push around to the rest of the systems
 function Pregame:processOptions()
     -- Check Map
-    local mapName = GetMapName()
+    local mapName = OptionManager:GetOption('mapname')
 
     -- Single Player Overrides
     if util:isSinglePlayerMode() then
@@ -7588,7 +7595,7 @@ ListenToGameEvent('game_rules_state_change', function(keys)
         end, DoUniqueString('addTalents'), 2.0)
     elseif newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
         if IsDedicatedServer() then
-            local mapName = GetMapName()
+            local mapName = OptionManager:GetOption('mapname')
             if mapName == 'standard' and not util:isCoop() then
                 SU:SendPlayerBuild( buildBackups )
             end

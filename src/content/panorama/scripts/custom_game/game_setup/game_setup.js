@@ -5247,6 +5247,15 @@ function saveCurrentBuild() {
     // Should we use option voting?
     var useOptionVoting = false;
 
+    GameEvents.Subscribe("lodSinglePlayer", function () {
+        $.GetContextPanel().isSinglePlayer = true;
+    })
+
+    // If the game is single player direct players to the map fully-featured map
+    if (!$.GetContextPanel().isSinglePlayer && Game.IsInToolsMode() == false) {
+        mapName = 'dota'
+    }
+
     // All Pick Only
     if(mapName == 'all_pick' || mapName == 'all_pick_fast' || mapName == 'mirror_draft' || mapName == 'all_random') {
         useOptionVoting = true;
@@ -5272,9 +5281,7 @@ function saveCurrentBuild() {
         $.GetContextPanel().SetHasClass('option_voting_enabled', true);
     }
 
-    GameEvents.Subscribe("lodSinglePlayer", function () {
-        $.GetContextPanel().isSinglePlayer = true;
-    })
+    
 
     // Automatically assign players to teams.
     Game.AutoAssignPlayersToTeams();
