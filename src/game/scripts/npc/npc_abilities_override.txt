@@ -3323,8 +3323,8 @@
     "ursa_overpower"
     {
         "ReduxPerks"                                                           "rage"
-        "ReduxCost"                                                            "40"
-        "ReduxBans"                                                            "tusk_walrus_punch | earthshaker_enchant_totem"
+        "ReduxCost"                                                            "70"
+        "ReduxBans"                                                            "OPSkillsList | tusk_walrus_punch | earthshaker_enchant_totem"
     }
     "lycan_howl"
     {

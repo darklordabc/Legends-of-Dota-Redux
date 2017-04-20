@@ -62,6 +62,9 @@ function Ingame:init()
     self.timeToIncreaseRespawnRate = 2400
     self.timeToIncreaseRepawnInterval = 600
 
+    -- What time to disable team balancing mechanic - 20 minutes
+    self.timeToStopBalancingMechanic = 1200
+
     -- These are optional votes that can enable or disable game mechanics
     self.voteEnabledCheatMode = false
     self.voteDoubleCreeps = false
@@ -1135,7 +1138,8 @@ function Ingame:handleRespawnModifier()
                             -------
                             -- Imbalanced-Comepenstation Mechanic Start
                             -------
-                            if not util:isCoop() then
+                            -- Do not trigger if game is coop or gametime is more than 20 minutes
+                            if not util:isCoop() and GameRules:GetDOTATime(false,false) < self.timeToStopBalancingMechanic then
                                 local herosTeam = util:GetActivePlayerCountForTeam(hero:GetTeamNumber())
                                 local opposingTeam = util:GetActivePlayerCountForTeam(otherTeam(hero:GetTeamNumber()))
                                 local difference = herosTeam - opposingTeam

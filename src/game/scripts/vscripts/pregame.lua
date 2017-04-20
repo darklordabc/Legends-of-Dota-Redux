@@ -7086,11 +7086,17 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                     spawnedUnit:SwapAbilities("phantom_lancer_juxtapose_melee","phantom_lancer_juxtapose_ranged",false,true)
                     spawnedUnit:RemoveAbility("phantom_lancer_juxtapose_melee")
             end
-            -- Change Jingu to Jingu ranged, for ranged heros
+            -- Change Feast to Feast ranged, for ranged heros
             if spawnedUnit:HasAbility("life_stealer_feast_melee") and spawnedUnit:IsRangedAttacker() then
                     spawnedUnit:AddAbility("life_stealer_feast_ranged")
                     spawnedUnit:SwapAbilities("life_stealer_feast_melee","life_stealer_feast_ranged",false,true)
                     spawnedUnit:RemoveAbility("life_stealer_feast_melee")
+            end
+            -- Change Overpower to Overpower ranged, for ranged heros
+            if spawnedUnit:HasAbility("ursa_overpower_melee") and spawnedUnit:IsRangedAttacker() then
+                    spawnedUnit:AddAbility("ursa_overpower_ranged")
+                    spawnedUnit:SwapAbilities("ursa_overpower_melee","ursa_overpower_ranged",false,true)
+                    spawnedUnit:RemoveAbility("ursa_overpower_melee")
             end
 
             -- Change infernal blade on gyro to critical strike
