@@ -8913,6 +8913,16 @@
     "DOTA_Tooltip_modifier_hylonome_eldritch_pull_debuff"               "Ethereal Rip"
     "DOTA_Tooltip_modifier_hylonome_eldritch_pull_debuff_description"           "Slowed by %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%."
 
+    "DOTA_Tooltip_ability_hylonome_eldritch_pull_OP"                   "Eldritch Pull OP"
+    "DOTA_Tooltip_ability_hylonome_eldritch_pull_OP_lore"              "Eldritch rends the life out of Hylonome's foes."
+    "DOTA_Tooltip_ability_hylonome_eldritch_pull_OP_description"       "Pulls the target enemy toward Hylonome and damages them. Target is stunned while pulled, then slowed. font color=\'#70EA72\'>Longer pull distance, more damage and greater slow.\n</font>\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
+    "DOTA_Tooltip_ability_hylonome_eldritch_pull_OP_cast_range"            "CAST RANGE:"
+    "DOTA_Tooltip_ability_hylonome_eldritch_pull_OP_distance"              "PULL DISTANCE:"
+    "DOTA_Tooltip_ability_hylonome_eldritch_pull_OP_move_slow"             "%MOVEMENT SLOW:"
+    "DOTA_Tooltip_ability_hylonome_eldritch_pull_OP_duration"              "DURATION:"
+    "DOTA_Tooltip_modifier_hylonome_eldritch_pull_debuff"               "Ethereal Rip"
+    "DOTA_Tooltip_modifier_hylonome_eldritch_pull_debuff_description"           "Slowed by %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%."
+
     "DOTA_Tooltip_ability_hylonome_laceration"                  "Laceration"
     "DOTA_Tooltip_ability_hylonome_laceration_lore"                 "While unskilled in swordplay, her blade cuts through armor effortlessly."
     "DOTA_Tooltip_ability_hylonome_laceration_description"              "Hylonome lunges her blade forward, unleashing a beam of dark energy that pierces any target hit.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
