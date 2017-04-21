@@ -143,6 +143,22 @@ function Pregame:init()
                 self:setOption('lodOptionGameSpeedStartingGold', 0, true)
             end
         },
+        noInvis = {
+            onselected = function(self)
+                self:setOption('lodOptionBanningBanInvis', 2, true)
+            end,
+            onunselected = function(self)
+                self:setOption('lodOptionBanningBanInvis', 0, true)
+            end
+        },
+        antirat = {
+            onselected = function(self)
+                self:setOption('lodOptionAntiRat', 1, false)
+            end,
+            onunselected = function(self)
+                self:setOption('lodOptionAntiRat', 0, false)
+            end
+        },
         strongTowers = {
             onselected = function(self)
                 self:setOption('lodOptionGameSpeedStrongTowers', 1, true)
@@ -461,6 +477,11 @@ function Pregame:init()
         self:setOption('lodOptionAdvancedOPAbilities', 1, true)
         self:setOption('lodOptionGameSpeedMaxLevel', 100, true)
         self:setOption('lodOptionGamemode', 1)
+        self:setOption('lodOptionGameSpeedStartingLevel', 6, true)
+        self:setOption('lodOptionGameSpeedStartingGold', 2000, true)
+        self:setOption('lodOptionGameSpeedStrongTowers', 1, true)
+        self:setOption('lodOptionCreepPower', 120, true)
+        self:setOption('lodOptionGameSpeedTowersPerLane', 3, true)
         OptionManager:SetOption('banningTime', 45)
         self:setOption('lodOptionBalanceMode', 0, true)
         self:setOption('lodOptionGameSpeedGoldModifier', 150, true)

@@ -1027,6 +1027,8 @@
 
     "option_vote_entry_title_banning"               "Enable Extra Bans"
     "option_vote_entry_title_fastStart"             "Enable Fast Start"
+    "option_vote_entry_title_noInvis"               "No Invisibility"
+    "option_vote_entry_title_antirat"               "Enable Anit-Rat"
     "option_vote_entry_title_doubledAbilityPoints"  "Extra Ability Points"
     "option_vote_entry_title_strongTowers"          "Enable Stronger Towers"
     "option_vote_entry_title_customAbilities"       "Enable Custom Abilities"
@@ -1034,10 +1036,14 @@
     "option_vote_entry_title_OPAbilities"           "Enable OP Abilities"
     "option_vote_entry_title_heroPerks"             "Enable Hero Perks"
 
+
+
     "option_vote_entry_info_OPAbilities"            "Enable the abilities regarded as too powerful for balanced games."
     "option_vote_entry_info_heroPerks"              "Enable unique perks innate to each Hero."
     "option_vote_entry_info_banning"                "Players get 15 extra seconds to ban 2 abilities and 1 hero, each."
     "option_vote_entry_info_fastStart"              "Everyone starts at level 3 and receives 1000 bonus gold."
+    "option_vote_entry_info_antirat"                "Tier 3 towers cannot be destroyed until all outer towers are gone."
+    "option_vote_entry_info_noInvis"                "Bans invisibility abilities and items."
     "option_vote_entry_info_doubledAbilityPoints"   "Players can spend 180 points on abilities instead of 120"
     "option_vote_entry_info_strongTowers"           "This will give Towers powerful abilities that upgrade each time a tower on their side dies. After 3 upgrades, a tower will receive a new ability."
     "option_vote_entry_info_customAbilities"        "Allows players to pick from custom and new abilities. If Points are doubled, the most OP abilities are banned."

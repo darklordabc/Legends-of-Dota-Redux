@@ -12,8 +12,7 @@
                 "reduce"	"3 7 11 15"
             }
         }
-        "ReduxCost"                                                            "100"
-        "ReduxBans"                                                            "jingtong"
-        "ReduxFlags"                                                           "SuperOP"
+        "ReduxCost"                                                            "20"
+        "ReduxBans"                                                            "jingtong_op"
 	}
 }
