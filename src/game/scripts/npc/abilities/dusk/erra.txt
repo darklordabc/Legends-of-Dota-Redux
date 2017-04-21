@@ -243,6 +243,107 @@
             }
         }
     }
+    "erra_grave_guard_op"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"             "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AnimationPlaybackRate"         "1"
+        "FightRecapLevel"               "1"
+        "AbilityTextureName"            "custom/erra_grave_guard_op"
+        
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "0"
+        "AbilityCastPoint"              "0.0"
+    
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "45"
+    
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "100"
+    
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityModifierSupportValue"   "0.5"   // Applies two modifiers
+    
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "duration"              "6"
+            }
+            
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "hp_recovery"           "120 160 200 240"
+            }
+    
+            "03"    
+            {
+                "var_type"              "FIELD_INTEGER"
+                "mp_recovery"           "30 60 90 120"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "threshold"             "25"
+            }
+        }
+    
+        "precache"
+        {
+            "soundfile" "soundevents/hero_erra.vsndevts"
+            "particle"  "particles/units/heroes/hero_erra/grave_guard.vpcf"
+            "particle"  "particles/units/heroes/hero_erra/grave_guard_unit.vpcf"
+        }
+    
+        "Modifiers"
+        {
+            "modifier_erra_grave_guard"
+            {
+                "Passive"            "1"
+                "IsHidden"            "1"
+                "IsDebuff"            "0"
+            
+                "OnTakeDamage"
+                // "%attack_damage" is set to the damage value after mitigation
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/dusk/erra_abilities.lua"
+                        "Function"      "GraveGuard"
+                        "threshold"     "%threshold"
+                    }
+                }
+            }
+            "modifier_erra_grave_guard_recovery"
+            {
+                "Passive"            "0"
+                "IsHidden"            "0"
+                "IsDebuff"            "0"
+                "Duration"            "%duration"
+    
+                "EffectName" "particles/units/heroes/hero_erra/grave_guard_unit.vpcf"
+                "EffectAttachType" "attach_origin"
+    
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%hp_recovery"
+                    "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%mp_recovery"
+                }
+            }
+        }
+    }
     "erra_morbid_blade"
     {
         // General

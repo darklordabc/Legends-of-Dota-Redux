@@ -9713,6 +9713,13 @@
     "DOTA_Tooltip_ability_erra_grave_guard_mp_recovery"                               "MP RECOVERY:"
     "DOTA_Tooltip_ability_erra_grave_guard_threshold"                                 "%HEALTH THRESHOLD:"
 
+    "DOTA_Tooltip_ability_erra_grave_guard_op"                                           "Grave Guard OP"
+    "DOTA_Tooltip_ability_erra_grave_guard_op_Description"                               "When Erra drops below certain threshold of Health, he gains bonus Health and Mana regeneration for a short time to combat it. <font color='#70EA72'>Double regeneration and shorter cooldown</font>.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
+    "DOTA_Tooltip_ability_erra_grave_guard_op_duration"                                  "DURATION:"
+    "DOTA_Tooltip_ability_erra_grave_guard_op_hp_recovery"                               "HP RECOVERY:"
+    "DOTA_Tooltip_ability_erra_grave_guard_op_mp_recovery"                               "MP RECOVERY:"
+    "DOTA_Tooltip_ability_erra_grave_guard_op_threshold"                                 "%HEALTH THRESHOLD
+
     "DOTA_Tooltip_ability_erra_morbid_blade"                                          "Morbid Blade"
     "DOTA_Tooltip_ability_erra_morbid_blade_Description"                              "Summons forth the winds of the Black Tide to slice through all enemies caught in them. Deals Physical damage, but if any enemy is below a Health threshold, it deals Pure damage, and its cooldown is halved. A portion of the target's missing Health is granted as healing to Erra.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
     "DOTA_Tooltip_ability_erra_morbid_blade_pure_threshold"                           "%PURE DAMAGE HEALTH THRESHOLD:"
