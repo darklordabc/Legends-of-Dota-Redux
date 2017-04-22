@@ -198,7 +198,6 @@ function updateFilters(getSkillFilterInfo, getHeroFilterInfo) {
     }
 
     // Hide build if more than 1 unavaliable skill or it wasn't designed for balance mode
-    $.Msg($.GetContextPanel().constantBalancePointsValue)
     $.GetContextPanel().SetHasClass('disabled', unavalCount > 1 || totalBuildCost > $.GetContextPanel().constantBalancePointsValue);
 
     // Update hero

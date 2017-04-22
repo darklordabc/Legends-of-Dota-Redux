@@ -25,15 +25,17 @@ function CreateSkillBuild(title, description) {
 	})
 }
 
-function LoadBuilds(filter) {
-	GetDataFromServer("getSkillBuilds", {steamID: Game.GetLocalPlayerInfo().player_steamid, filter: filter || ""}, function(builds) {
-		if (builds) {
+function LoadBuilds(startFrom) {
+	var req = {steamID: Game.GetLocalPlayerInfo().player_steamid};
+	if (startFrom) req.startFrom = startFrom;
+	GetDataFromServer("getSkillBuilds", req, function(builds) {
+		if (builds && builds.length > 0) {
 			for (var i = 0; i < builds.length; i++) {
 				addRecommendedBuild(builds[i]);
 			}
-		}
 
-		LoadFavBuilds();
+			LoadFavBuilds();
+		}
 
 		$("#buildLoadingIndicator").visible = false;
 		$("#pickingPhaseRecommendedBuildContainer").GetParent().visible = true;

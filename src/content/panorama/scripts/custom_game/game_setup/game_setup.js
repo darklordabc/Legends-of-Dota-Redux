@@ -2007,6 +2007,12 @@ function OnMainSelectionTabShown() {
     }
 }
 
+function LoadMoreBuilds() {
+    var cont = $("#pickingPhaseRecommendedBuildContainer");
+    var last = cont.GetChild(cont.GetChildCount() - 1)
+    if (last) LoadBuilds(last.buildID);
+}
+
 // Adds a build to the main selection tab
 var recBuildCounter = 0;
 function addRecommendedBuild(build) {

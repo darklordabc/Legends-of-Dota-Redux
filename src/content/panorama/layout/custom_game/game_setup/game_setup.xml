@@ -639,6 +639,7 @@
                                 <Panel id="pickingPhaseTabsContent">
                                     <Panel id="pickingPhaseMainTabContent" class="pickingPhaseTabContent">
                                         <Label class="buildCategoryLabel" text="txtRecommendedBuilds" />
+                                        <Label id="buildLoadMoreBuilds" text="txtLoadMoreBuilds" onactivate="LoadMoreBuilds()" />
                                         <Panel id="buildLoadingIndicator">
                                             <Panel id="buildLoadingSpinner" class="Spinner" />
                                             <Label id="buildLoadingIndicatorText" text="#loadingBuilds" />
