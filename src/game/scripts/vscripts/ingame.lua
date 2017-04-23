@@ -312,6 +312,11 @@ function Ingame:FilterExecuteOrder(filterTable)
             -- How It Works: Every time bot creates an order, this checks their position, if they are in the same last position as last order,
             -- increase counter. If counter gets too high, it means they have been stuck in same position for a long time, do action to help them.
             if util:isPlayerBot(unitPlayerID) then
+                -- Bot Armlet Fix: Bots do not know how to use armlets so return false if they attempt to and put on cooldown
+                if ability and ability:GetName() == "item_armlet" then
+                    ability:StartCooldown(200)
+                    return false
+                end
                 if OptionManager:GetOption('stupidBots') == 1 then
                     if unit.blocked == true then 
                         return false

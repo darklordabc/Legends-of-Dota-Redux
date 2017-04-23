@@ -4632,10 +4632,18 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
 
         -- Toggle their state
         self.isReady[playerID] = (self.isReady[playerID] == 1 and 0) or 1
-        if not self.heard[playerID] then
-            self.heard[playerID] = true
-            EmitGlobalSound("Event.LockBuild")
+        
+        -- Players can only trigger the locking sound twice, to prevent abuse
+        if self.heard[playerID] ~= 2 then
+            print(self.heard[playerID])
+            if not self.heard[playerID] then
+                self.heard[playerID] = 1
+            else
+                self.heard[playerID] = self.heard[playerID] + 1
+            end
+            EmitGlobalSound("Event.LockBuild") 
         end
+
         -- Checks if people are ready
         self:checkForReady()
     end
