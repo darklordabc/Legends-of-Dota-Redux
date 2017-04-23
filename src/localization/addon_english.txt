@@ -1331,6 +1331,7 @@
 
     "command_menu_group_player"                         "Cheats | Player"
     "command_menu_command_selfLevelUp"                  "Level Up"
+    "command_menu_command_selfFreePoints"               "Ability Points"
     "command_menu_command_selfGiveGold"                 "Give Gold"
     "command_menu_command_selfGetItem"                  "Give Item"
     "command_menu_command_refresh"                      "Refresh all abilities"
