@@ -16,7 +16,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "flesh_heap_value_buff_amount"                  "5 10 15 20"
+                "flesh_heap_value_buff_amount"                  "15 20 25 30"
             }
             "02"
             {
