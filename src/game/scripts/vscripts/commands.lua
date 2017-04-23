@@ -195,8 +195,6 @@ function Commands:OnPlayerChat(keys)
             end
         end
     elseif string.find(command, "-bot") then
-        print("bot something")
-        print(ingame.botsInLateGameMode)
         local splitedcommand = arguments 
         if splitedcommand[1] and splitedcommand[1] == "mode" then
             if not ingame.botsInLateGameMode then 
@@ -205,9 +203,7 @@ function Commands:OnPlayerChat(keys)
                 ingame:CommandNotification("-botmode", "Bots are in late game mode.", 10)   
             end 
         end
-       -- if string.find(command, "mode") then
-              
-        --end            
+         
     elseif string.find(command, "-pid") then
         --if not ingame.voteEnabledCheatMode then
             for playerID=0,24-1 do
