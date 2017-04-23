@@ -175,6 +175,166 @@
             }
         }
     }
+    "hylonome_eldritch_pull_op"
+    {
+
+        // Overview
+        //-------------------------------------------------------------------------------------------------------------
+        // Ability is mostly working as intended.
+        // Visually, she's supposed to unleash a tentacle out of her hand that latches onto her target and pulls it toward her.
+        //-------------------------------------------------------------------------------------------------------------
+
+        // General
+        //--------------------------------------------------------------------------------------------------------
+        "AbilityName"               "hylonome_eldritch_pull"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_2"
+        "AbilityTextureName"                        "custom/hylonome_ethereal_rip_op"
+        "AbilityCooldown"               "12"
+        "AbilityCastPoint"              "0.3"
+        "AbilityManaCost"               "100 110 120 130"
+        "AbilityCastRange"              "%cast_range"
+        "BaseClass"                 "ability_datadriven"
+        "AbilityProcsMagicStick"        "1"
+
+        "AbilityDamage"             "180 400 550 700"
+        "ReduxFlags"                                                           "SuperOP"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "cast_range"            "400 700 1000 1300"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "distance"              "-300 -600 -900 -1200"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "move_slow"             "-70"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "duration"              "5"
+            }   
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "damage"                "180 400 550 700"
+            }
+        }
+        "precache"
+        {
+            "particle"          "particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf"
+            "particle"          "particles/units/heroes/hero_bounty_hunter/bounty_hunter_jinda_slow.vpcf"
+            "soundfile"         "soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
+            "soundfile"         "soundevents/game_sounds_heroes/game_sounds_bloodseeker.vsndevts"
+        }
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"        "abilities/nextgeneration/hero_hylonome/hylonome_ethereal_rip.lua"
+                "Function"          "SpellStart"
+            }
+        }
+
+        // Modifiers
+        //-------------------------------------------------------------------------------------------------------------
+        "Modifiers"
+        {
+            "modifier_hylonome_eldritch_pull"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+            
+                "OnCreated"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"        "hero_bloodseeker.bloodRite.silence"
+                        "Target"            "TARGET"
+                    }
+                    "FireSound"
+                    {
+                        "EffectName"        "Hero_PhantomAssassin.Arcana_Layer"
+                        "Target"            "TARGET"
+                    }
+                    "FireEffect"
+                    {
+                        "EffectName"            "particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf"
+                        "EffectAttachType"          "start_at_customorigin"
+                        "ControlPointEntities"
+                        {
+                            "TARGET"        "follow_origin"
+                            "TARGET"        "follow_origin"
+                        }
+                    }
+                    "FireEffect"
+                    {
+                        "EffectName"    "particles/units/heroes/hero_bounty_hunter/bounty_hunter_jinda_slow.vpcf"
+                        "EffectAttachType"  "attach_hitloc"
+                        "Target"        "TARGET"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"        "abilities/nextgeneration/hero_hylonome/hylonome_ethereal_rip.lua"
+                        "Function"          "Interrupt"
+                    }
+                    "ApplyModifier"
+                    {
+                        "ModifierName"          "modifier_hylonome_eldritch_pull_debuff"
+                        "Target"                "TARGET"
+                    }
+                    "Damage"
+                    {
+                        "Target"        "TARGET"
+                        "Type"          "DAMAGE_TYPE_MAGICAL"
+                        "Damage"        "%AbilityDamage"
+                    }
+                    "Knockback"
+                    {
+                        "Target"        "TARGET"
+                        "Center"        "CASTER"
+                        "Duration"      "0.15"
+                        "Distance"  "%distance"
+                        "Height"        "0"
+                        "IsFixedDistance"   "0"
+                        "ShouldStun"    "1"
+                    }
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "modifier_hylonome_eldritch_pull"
+                        "Target"        "TARGET"
+                    }
+                }
+            }
+            "modifier_hylonome_eldritch_pull_debuff"
+            {
+                "IsDebuff"              "1"
+                "IsPurgable"            "1"
+                "IsHidden"          "0"
+                "Duration"              "%duration"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%move_slow"
+                }
+            }
+        }
+    }
     //=================================================================================================================
     // Hylonome: Laceration
     //================================================================================================================= 

@@ -2,9 +2,22 @@
 {
     "spawnlord_master_freeze"
     {
-        "MaxLevel"                                                             "1"
+        "MaxLevel"                                                             "4"
         "ReduxFlags"                                                           "bash | attack_modifier"
         "ReduxPerks"                                                           "neutral | bash | attack_modifier | autocast_basic"
+        "AbilitySpecial"
+        {       
+            "01"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "duration"          "2.0"
+            }           
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "damage"            "75 100 130 170"
+            }           
+        }
     }
     "beastmaster_greater_boar_poison"
     {
@@ -42,20 +55,68 @@
         "MaxLevel"                                                             "1"
         "ReduxFlags"                                                           "attack_modifier"
         "ReduxPerks"                                                           "neutral | attack_modifier"
-        "ReduxCost"                                                            "20"
+        "ReduxCost"                                                            "40"
+
+        // Damage.
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityDamage"                 "60 70 80 90"
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "5.0"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "entangle_chance"       "20 21 22 23"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "hero_duration"         "3.0 3.2 3.4 3.6"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "creep_duration"        "9.0"
+            }
+        }
     }
     "roshan_spell_block"
     {
-        "MaxLevel"                                                             "1"
+        "MaxLevel"                                                             "4"
         "ReduxCost"                                                            "70"
         "ReduxFlags"                                                           "OPSkillsList"
+        "AbilityCooldown"               "15.0 13.0 11.0 9.0"
     }
     "roshan_bash"
     {
         "MaxLevel"                                                             "1"
         "ReduxFlags"                                                           "bash | attack_modifier | OPSkillsList"
         "ReduxPerks"                                                           "neutral | bash | attack_modifier"
-        "ReduxCost"                                                            "40"
+        "ReduxCost"                                                            "50"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "bash_chance"       "15"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "bonus_damage"      "50 70 90 110"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "stun_duration"     "1.65"
+            }
+        }
     }
     "satyr_soulstealer_mana_burn"
     {
@@ -177,6 +238,35 @@
         "ReduxFlags"                                                           "mobility | invis | doNotRandom | OPSkillsList"
         "ReduxPerks"                                                           "mobility"
     }
+    "mudgolem_cloak_aura"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "5688"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+        "MaxLevel"                      "4"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {           
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_magical_armor"   "5 10 15 20"
+            }   
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_magical_armor_creeps"    "20 25 30 35"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "radius"                    "900"
+            }
+        }
+    }
     "brewmaster_fire_permanent_immolation"
     {
         "MaxLevel"                                                             "3"
@@ -197,8 +287,52 @@
     }
     "big_thunder_lizard_wardrums_aura"
     {
-        "MaxLevel"                                                             "1"
+        "MaxLevel"                                                             "4"
+        "AbilitySpecial"
+        {           
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "speed_bonus"           "15 17 19 21"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "damage_bonus"          "15 17 19 21"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "radius"                "900 1000 1100 1200"
+            }
+        }
     }
+
+    "forest_troll_high_priest_mana_aura"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "5491"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+        "MaxLevel"              "4"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"     
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "mana_regen"        "3 4 5 6"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "radius"                "900"
+            }
+        }
+    }
+
     "forest_troll_high_priest_heal"
     {
         "MaxLevel"                                                             "4"
@@ -489,7 +623,7 @@
         "MaxLevel"                                                             "4"
         "AbilityCooldown"                                                      "80 65 50 25"
         "ReduxFlags"                                                           "support | invis"
-        "ReduxPerks"                                                           "support"
+        "ReduxPerks"                                                           "support | nature"
         "ReduxCost"                                                            "20"
     }
     "visage_summon_familiars_stone_form"
@@ -692,14 +826,14 @@
     "doom_bringer_doom"
     {
         "ReduxFlags"                                                           "upgradeable | silence | disarm_break"
-        "ReduxPerks"                                                           "fire | silence"
+        "ReduxPerks"                                                           "demon | fire | silence"
         "ReduxCost"                                                            "10"
     }
     "drow_ranger_marksmanship"
     {
         "ReduxFlags"                                                           "upgradeable | aoe_attack | attack_modifier"
         "ReduxPerks"                                                           "attack_modifier"
-        "ReduxCost"                                                            "50"
+        "ReduxCost"                                                            "70"
     }
     "earth_spirit_geomagnetic_grip"
     {
@@ -716,12 +850,13 @@
     {
         "ReduxFlags"                                                           "upgradeable | disarm_break"
         "ReduxPerks"                                                           "earth | skillshot | enemyMoving"
+        "ReduxCost"                                                            "0"
     }
     "enchantress_impetus"
     {
         "ReduxFlags"                                                           "upgradeable | attack_modifier"
-        "ReduxPerks"                                                           "attack_modifier"
-        "ReduxCost"                                                            "10"
+        "ReduxPerks"                                                           "attack_modifier | nature"
+        "ReduxCost"                                                            "20"
     }
     "enigma_black_hole"
     {
@@ -766,7 +901,7 @@
     {
         "ReduxFlags"                                                           "upgradeable | silence"
         "ReduxPerks"                                                           "silence"
-        "ReduxCost"                                                            "60"
+        "ReduxCost"                                                            "70"
         "ReduxBans"                                                            "spell_lab_symbiotic"
     }
     "leshrac_pulse_nova"
@@ -789,6 +924,7 @@
     {
         "ReduxFlags"                                                           "upgradeable"
         "ReduxCost"                                                            "20"
+        "ReduxPerks"                                                           "demon"
     }
     "lone_druid_spirit_bear"
     {
@@ -810,7 +946,7 @@
     "meepo_divided_we_stand"
     {
         "ReduxFlags"                                                           "upgradeable | doNotRandom | SuperOP"
-        "ReduxCost"                                                            "-2"
+        "ReduxCost"                                                            "400"
         "ReduxBans"                                                            "arc_warden_tempest_double | arc_warden_tempest_double_redux | meepo_divided_we_stand | spell_lab_symbiotic"
     }
     "naga_siren_song_of_the_siren"
@@ -820,6 +956,7 @@
     }
     "furion_wrath_of_nature"
     {
+        "ReduxPerks"                                                           "nature"
         "ReduxFlags"                                                           "upgradeable | wtfAutoBan"
         "ReduxCost"                                                            "10"
         "ReduxBans"                                                            "tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux | meepo_divided_we_stand"
@@ -882,11 +1019,12 @@
     {
         "ReduxFlags"                                                           "upgradeable | mobility | stun"
         "ReduxPerks"                                                           "mobility | earth"
-        "ReduxCost"                                                            "20"
+        "ReduxCost"                                                            "30"
     }
     "shadow_demon_demonic_purge"
     {
         "ReduxFlags"                                                           "upgradeable | disarm_break"
+        "ReduxPerks"                                                           "demon"
     }
     "nevermore_necromastery"
     {
@@ -896,6 +1034,7 @@
     "nevermore_requiem"
     {
         "ReduxFlags"                                                           "upgradeable | doNotRandom"
+        "ReduxPerks"                                                           "demon"
     }
     "shadow_shaman_mass_serpent_ward"
     {
@@ -1031,9 +1170,28 @@
     }
     "spawnlord_aura"
     {
+        "MaxLevel"      "4"
         "ReduxFlags"                                                           "support"
         "ReduxPerks"                                                           "support | neutral | aura"
         "ReduxCost"                                                            "10"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "lifesteal"             "10 12 13 15"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "hp_regen"              "10"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "radius"    "900"
+            }
+        }
     }
     "abaddon_aphotic_shield"
     {
@@ -1071,7 +1229,7 @@
     "enchantress_natures_attendants"
     {
         "ReduxFlags"                                                           "support"
-        "ReduxPerks"                                                           "support"
+        "ReduxPerks"                                                           "support | nature"
     }
     "huskar_inner_vitality"
     {
@@ -1130,7 +1288,7 @@
     "shadow_demon_disruption"
     {
         "ReduxFlags"                                                           "support | illusion"
-        "ReduxPerks"                                                           "support | illusion"
+        "ReduxPerks"                                                           "support | illusion | demon"
     }
     "skeleton_king_vampiric_aura"
     {
@@ -1242,7 +1400,7 @@
     "treant_living_armor"
     {
         "ReduxFlags"                                                           "support"
-        "ReduxPerks"                                                           "support"
+        "ReduxPerks"                                                           "support | nature"
     }
     "spirit_breaker_empowering_haste"
     {
@@ -1285,7 +1443,7 @@
     "furion_sprout"
     {
         "ReduxFlags"                                                           "support"
-        "ReduxPerks"                                                           "support"
+        "ReduxPerks"                                                           "support | nature"
     }
     "phoenix_sun_ray"
     {
@@ -1340,14 +1498,44 @@
     }
     "big_thunder_lizard_frenzy"
     {
+        "MaxLevel"                      "4"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "attackspeed_bonus"     "75 85 95 105"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "duration"              "8.0"
+            }
+        }
+
         "ReduxFlags"                                                           "support"
         "ReduxPerks"                                                           "support | neutral"
     }
     "alpha_wolf_command_aura"
     {
+        "MaxLevel"                      "4"
         "ReduxFlags"                                                           "support | crit | attack_modifier"
         "ReduxPerks"                                                           "support | neutral | attack_modifier | aura"
         "ReduxCost"                                                            "20"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "bonus_damage_pct"  "30 33 36 40"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "radius"            "900"
+            }
+        }
     }
     "phantom_assassin_phantom_strike"
     {
@@ -1413,7 +1601,7 @@
     }
     "treant_natures_guise"
     {
-        "ReduxFlags"                                                           "mobility | invis"
+        "ReduxFlags"                                                           "mobility | invis | nature"
         "ReduxPerks"                                                           "mobility"
         "ReduxCost"                                                            "10"
     }
@@ -1484,7 +1672,7 @@
     "furion_teleportation"
     {
         "ReduxFlags"                                                           "mobility"
-        "ReduxPerks"                                                           "mobility | teleport"
+        "ReduxPerks"                                                           "mobility | teleport | nature"
         "ReduxCost"                                                            "20"
         "ReduxBans"                                                            "nyx_assassin_burrow | nyx_assassin_burrow_redux"
     }
@@ -1619,7 +1807,7 @@
     "huskar_berserkers_blood"
     {
         "ReduxFlags"                                                           "tank"
-        "ReduxCost"                                                            "20"
+        "ReduxCost"                                                            "30"
     }
     "spectre_dispersion"
     {
@@ -1662,10 +1850,11 @@
     {
         "ReduxFlags"                                                           "tank | attack_modifier"
         "ReduxPerks"                                                           "attack_modifier | rage"
-        "ReduxCost"                                                            "10"
+        "ReduxCost"                                                            "20"
     }
     "enchantress_untouchable"
     {
+        "ReduxPerks"                                                           "nature"
         "ReduxFlags"                                                           "tank"
         "ReduxCost"                                                            "10"
     }
@@ -1721,14 +1910,15 @@
     "doom_bringer_infernal_blade"
     {
         "ReduxFlags"                                                           "crit | attack_modifier"
-        "ReduxPerks"                                                           "attack_modifier | fire | autocast_basic"
+        "ReduxPerks"                                                           "demon | attack_modifier | fire | autocast_basic"
         "ReduxCost"                                                            "20"
     }
     "phantom_assassin_coup_de_grace"
     {
-        "ReduxFlags"                                                           "crit | attack_modifier"
+        "ReduxFlags"                                                           "crit | attack_modifier | OPSkillsList"
         "ReduxPerks"                                                           "attack_modifier"
-        "ReduxCost"                                                            "50"
+        "ReduxCost"                                                            "80"
+        "ReduxBans"                                                            "phantom_assassin_coup_de_grace_melee"
     }
     "juggernaut_blade_dance"
     {
@@ -1786,7 +1976,41 @@
     {
         "ReduxFlags"                                                           "aoe_attack | attack_modifier"
         "ReduxPerks"                                                           "neutral | attack_modifier"
-        "ReduxCost"                                                            "80"
+        "ReduxCost"                                                            "100"
+        "MaxLevel"                                                             "4"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "range_close"           "50"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "damage_percent_close"  "100.0"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "range_mid"             "150"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "damage_percent_mid"    "50.0 60.0 70.0 80.0"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "range_far"             "250"
+            }
+            "06"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "damage_percent_far"    "25.0 30.0 35.0 40.0"
+            }
+        }
     }
     "kunkka_tidebringer"
     {
@@ -1835,15 +2059,36 @@
     }
     "ghost_frost_attack"
     {
+        "MaxLevel"                                                             "4"
         "ReduxFlags"                                                           "attack_modifier"
         "ReduxPerks"                                                           "neutral | attack_modifier"
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "movespeed_slow"        "-20"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "attackspeed_slow"      "-20 -30 -40 -50"
+            }           
+            "03"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "duration"              "1.5 2.0 2.5 3.0"
+            }
+        }
     }
     "life_stealer_feast"
     {
-        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "attack_modifier | OPSkillsList"
         "ReduxPerks"                                                           "attack_modifier"
-        "ReduxCost"                                                            "40"
-        "ReduxBans"                                                            "holdout_multishot"
+        "ReduxCost"                                                            "70"
+        "ReduxBans"                                                            "holdout_multishot | life_stealer_feast_melee"
     }
     "ursa_fury_swipes"
     {
@@ -1986,12 +2231,37 @@
     }
     "spawnlord_master_stomp"
     {
+        "MaxLevel"      "4"
         "ReduxFlags"                                                           "stun"
         "ReduxPerks"                                                           "neutral"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "radius"                        "300"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "damage"                        "200"
+            }
+            "03"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "duration"                      "6.0"
+            }
+            "04"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "armor_reduction_pct"           "50 60 70 90"
+            }
+        }
     }
     "monkey_king_boundless_strike"
     {
         "ReduxFlags"                                                           "stun"
+        "ReduxCost"                                                            "20"
     }
     "shadow_shaman_voodoo"
     {
@@ -2001,7 +2271,7 @@
     "lion_voodoo"
     {
         "ReduxFlags"                                                           "stun"
-        "ReduxPerks"                                                           "hex"
+        "ReduxPerks"                                                           "hex | demon"
     }
     "earthshaker_fissure"
     {
@@ -2061,6 +2331,7 @@
     "enigma_malefice"
     {
         "ReduxFlags"                                                           "stun"
+        "ReduxPerks"                                                           "demon"
     }
     "dragon_knight_dragon_tail"
     {
@@ -2142,7 +2413,7 @@
     "lion_impale"
     {
         "ReduxFlags"                                                           "stun"
-        "ReduxPerks"                                                           "skillshot"
+        "ReduxPerks"                                                           "skillshot | demon"
     }
     "jakiro_ice_path"
     {
@@ -2155,8 +2426,27 @@
     }
     "mud_golem_hurl_boulder"
     {
+        "MaxLevel"  "4"
         "ReduxFlags"                                                           "stun"
         "ReduxPerks"                                                           "neutral | earth"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "damage"                    "125 175 225 275"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "duration"                  "0.6 0.8 1.0 1.5"
+            }
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "speed"                     "800"
+            }
+        }
     }
     "tidehunter_ravage"
     {
@@ -2209,6 +2499,7 @@
     }
     "treant_overgrowth"
     {
+        "ReduxPerks"                                                           "nature"
         "ReduxFlags"                                                           "stun"
         "ReduxBans"                                                            "tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux"
     }
@@ -2236,7 +2527,7 @@
     "enigma_demonic_conversion"
     {
         "ReduxFlags"                                                           "summon | wtfAutoBan"
-        "ReduxPerks"                                                           "summon_non_ult"
+        "ReduxPerks"                                                           "summon_non_ult | demon"
     }
     "invoker_forge_spirit"
     {
@@ -2251,7 +2542,7 @@
     "furion_force_of_nature"
     {
         "ReduxFlags"                                                           "summon | wtfAutoBan"
-        "ReduxPerks"                                                           "summon_non_ult"
+        "ReduxPerks"                                                           "summon_non_ult | nature"
     }
     "undying_tombstone"
     {
@@ -2344,6 +2635,36 @@
     }
     "big_thunder_lizard_slam"
     {
+        "MaxLevel"                      "4"
+        "AbilityDamage"                 "70 140 210 290"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "radius"                "250"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "movespeed_slow"        "-25"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "attack_slow_tooltip"   "-25"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "non_hero_duration"     "4.0"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "hero_duration"         "2.0 2.5 3.0 3.5"
+            }
+        }
         "ReduxPerks"                                                           "neutral"
     }
     "blue_dragonspawn_overseer_evasion"
@@ -2353,8 +2674,19 @@
     }
     "blue_dragonspawn_sorcerer_evasion"
     {
+        "MaxLevel"                      "4"
         "ReduxPerks"                                                           "neutral"
         "ReduxFlags"                                                           "doNotRandom"
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "evasion_chance_pct"    "15 30 45 60"
+            }
+        }
     }
     "warlock_golem_permanent_immolation"
     {
@@ -2413,7 +2745,7 @@
     }
     "doom_bringer_scorched_earth"
     {
-        "ReduxPerks"                                                           "fire"
+        "ReduxPerks"                                                           "demon | fire"
         "ReduxBans"                                                            "batrider_sticky_napalm"
     }
     "batrider_flamebreak"
@@ -2459,7 +2791,7 @@
     }
     "shadow_demon_shadow_poison"
     {
-        "ReduxPerks"                                                           "poison | skillshot"
+        "ReduxPerks"                                                           "poison | skillshot | demon"
         "ReduxFlags"                                                           "doNotRandom"
     }
     "viper_nethertoxin"
@@ -2650,8 +2982,8 @@
     "tinker_rearm"
     {
         "ReduxPerks"                                                           "scientific | channeled"
-        "ReduxCost"                                                            "120"
-        "ReduxBans"                                                            "arc_warden_tempest_double | arc_warden_tempest_double_redux"
+        "ReduxCost"                                                            "400"
+        "ReduxBans"                                                            "dazzle_shallow_grave | lich_absolute_zero | arc_warden_tempest_double | arc_warden_tempest_double_redux"
         "ReduxFlags"                                                           "OPSkillsList"
     }
     "chen_penitence"
@@ -2688,7 +3020,7 @@
     }
     "lion_mana_drain"
     {
-        "ReduxPerks"                                                           "drain | channeled"
+        "ReduxPerks"                                                           "drain | channeled | demon"
     }
     "death_prophet_spirit_siphon"
     {
@@ -2701,7 +3033,7 @@
     }
     "treant_leech_seed"
     {
-        "ReduxPerks"                                                           "drain"
+        "ReduxPerks"                                                           "drain | nature"
     }
     "item_sheepstick"
     {
@@ -2845,7 +3177,7 @@
     }
     "tornado_tempest"
     {
-        "ReduxPerks"                                                           "channeled"
+        "ReduxPerks"                                                           "channeled | nature"
     }
     "windrunner_powershot"
     {
@@ -2869,17 +3201,17 @@
     }
     "nevermore_shadowraze1"
     {
-        "ReduxPerks"                                                           "skillshot"
+        "ReduxPerks"                                                           "skillshot | demon"
         "ReduxFlags"                                                           "doNotRandom"
     }
     "nevermore_shadowraze2"
     {
-        "ReduxPerks"                                                           "skillshot"
+        "ReduxPerks"                                                           "skillshot | demon"
         "ReduxFlags"                                                           "doNotRandom"
     }
     "nevermore_shadowraze3"
     {
-        "ReduxPerks"                                                           "skillshot"
+        "ReduxPerks"                                                           "skillshot | demon"
         "ReduxFlags"                                                           "doNotRandom"
     }
     "troll_warlord_whirling_axes_ranged"
@@ -2991,9 +3323,10 @@
     }
     "ursa_overpower"
     {
+        "ReduxFlags"                                                           "OPSkillsList"
         "ReduxPerks"                                                           "rage"
-        "ReduxCost"                                                            "40"
-        "ReduxBans"                                                            "tusk_walrus_punch | earthshaker_enchant_totem"
+        "ReduxCost"                                                            "70"
+        "ReduxBans"                                                            "ursa_overpower_melee | tusk_walrus_punch | earthshaker_enchant_totem"
     }
     "lycan_howl"
     {
@@ -3067,6 +3400,7 @@
     "enchantress_enchant"
     {
         "ReduxCost"                                                            "10"
+        "ReduxPerks"                                                           "nature"
     }
     "life_stealer_consume"
     {

@@ -29,6 +29,9 @@ require('network')
 -- Chat commands
 require('commands')
 
+--Interaction with server (https://github.com/darklordabc/Legends-of-Dota-Server)
+require('stats_client')
+
 -- Precaching
 function Precache(context)
     local soundList = LoadKeyValues('scripts/kv/sounds.kv')
@@ -86,6 +89,7 @@ function Activate()
     network:init()
     pregame:init()
     ingame:init()
+    StatsClient:SubscribeToClientEvents()
     
     -- Store references (mostly used for debugging)
     GameRules.util = require('util')

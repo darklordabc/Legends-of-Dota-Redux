@@ -217,6 +217,7 @@
             "lich_frost_armor"            "1"
             "lich_frost_nova"            "1"
             "life_stealer_feast"            "1"
+            "life_stealer_feast_melee"      "1"
             "life_stealer_infest"            "1"
           //"life_stealer_control"              "1"
             "life_stealer_open_wounds"            "1"
@@ -310,6 +311,7 @@
             "oracle_purifying_flames"            "1"
             "phantom_assassin_blur"            "1"
             "phantom_assassin_coup_de_grace"            "1"
+            "phantom_assassin_coup_de_grace_melee"            "1"
             "phantom_assassin_phantom_strike"            "1"
             "phantom_assassin_stifling_dagger"            "1"
             "phantom_lancer_doppelwalk"            "1"
@@ -459,6 +461,7 @@
             "ursa_enrage"            "1"
             "ursa_fury_swipes"              "1"
             "ursa_overpower"            "1"
+            "ursa_overpower_melee"        "1"
             "vengefulspirit_command_aura"            "1"
             "vengefulspirit_magic_missile"            "1"
             "vengefulspirit_nether_swap"            "1"
@@ -533,7 +536,7 @@
             // Ogre magi ulty
             "ogre_magi_unrefined_fireblast"            "1"
             // Meepo Ulty
-            "meepo_divided_we_stand"            "1"
+            //"meepo_divided_we_stand"            "1"
             // Rearm
             "tinker_rearm"            "1"
             // Riki
@@ -547,11 +550,14 @@
         "neutral" {
             "alpha_wolf_group" {
                 "alpha_wolf_command_aura"                "1"
-                "alpha_wolf_critical_strike"                "1"
+                "beastmaster_boar_poison"                "1"
+                //"alpha_wolf_critical_strike"                "1"
+                "black_dragon_splash_attack"                "1"
+                "black_dragon_fireball_lod"                "1"
             }
             "beastmaster_boar_group" {
-                "beastmaster_boar_poison"                "1"
-                "beastmaster_greater_boar_poison"                "1"
+                
+                //"beastmaster_greater_boar_poison"                "1" //Duplicate
             }
             "big_thunder_lizard_group" {
                 "big_thunder_lizard_frenzy"                "1"
@@ -559,15 +565,15 @@
                 "big_thunder_lizard_wardrums_aura"                  "1"
             }
             "black_dragon_group" {
-                "black_dragon_splash_attack"                "1"
+                
                 // "black_dragon_fireball"                "1"
-            "black_dragon_fireball_lod"                "1"
+            
                 // "neutral_spell_immunity"                "1"
-                //"black_dragon_dragonhide_aura"                      "1"
+                // "black_dragon_dragonhide_aura"                      "1"
             }
             "blue_dragonspawn_group" {
                 "blue_dragonspawn_overseer_devotion_aura"                "1"
-                "blue_dragonspawn_overseer_evasion"                "1"
+                // "blue_dragonspawn_overseer_evasion"                "1"
                 "blue_dragonspawn_sorcerer_evasion"                "1"
             }
             "centaur_khan_group" {
@@ -587,6 +593,7 @@
                 "lone_druid_spirit_bear_entangle"                "1"
                 //"lone_druid_spirit_bear_return"                "1"
                 "lone_druid_spirit_bear_return_lod"                "1"
+                "visage_summon_familiars_stone_form"                "1"
             }
             "satyr_group" {
                 "satyr_hellcaller_shockwave"                "1"
@@ -619,7 +626,8 @@
             "misc_neutral_1_group" {
                 "forest_troll_high_priest_heal"                "1"
                 "forest_troll_high_priest_mana_aura"  "1"
-                "giant_wolf_critical_strike"                "1"
+                "ghost_frost_attack"                "1"
+                //"giant_wolf_critical_strike"                "1"
                 "gnoll_assassin_envenomed_weapon"                "1"
             }
             "misc_neutral_2_group" {
@@ -637,10 +645,10 @@
             }
             "misc_neutral_4_group" {
                 // Removed because its buggy "backdoor_protection"                "1"
-                "ghost_frost_attack"                "1"
-                "broodmother_poison_sting"                "1"
-                "visage_summon_familiars_stone_form"                "1"
-                "undying_tombstone_zombie_deathstrike"                "1"
+                
+                // "broodmother_poison_sting"                "1"
+                
+                // "undying_tombstone_zombie_deathstrike"                "1" //Broken
             }
         }
         // The custom skills in LoD
@@ -744,7 +752,7 @@
 
             "tenebris_abiliites"{
                   "tenebris_blood_ward"   "1" //CRASHES
-                  "tenebris_effigy" "1" // PARTICLES DOES NOT DISSAPEAR
+                  //"tenebris_effigy" "1" // PARTICLES DOES NOT DISSAPEAR
                   "tenebris_fade_strike"  "1"
                   "tenebris_mortal_coil"  "1"
             }
@@ -752,11 +760,35 @@
             "suna_abiliites"{
                   "suna_blight_and_wither"      "1"
                   "suna_dead_mans_chest"  "1"
-                  "suna_kyonshi"    "1"
-                  "suna_mind_control"     "1"
+            //    "suna_kyonshi"    "1"
+            //    "suna_mind_control"     "1" //SUB-ABILITY
                   "suna_puppeteer"  "1"
-                  //"suna_vicissitude"      "1"
-            }
+            //      "suna_vicissitude"      "1"
+           }
+
+           "veera"{
+                  "veera_evasive_roll"    "1"
+                  "veera_plains_runner"   "1"
+                  "veera_pursuit"   "1"
+                  "veera_thrill_of_the_hunt"    "1"
+                  //"veera_toxic_darts"     "1" //Charges dont work, doesnt apply debuff
+           }
+
+           "zeros"{
+                  "zeros_gerrymandering" "1"
+                  "zeros_impose_tax" "1"
+                  //"zeros_innate" "1"
+                  "zeros_royal_statue" "1"
+                  "zeros_blade_of_malice" "1"
+                  "zeros_fanaticism" "1"
+           }
+
+           "achlys"{
+                  "achlys_miserable_claws"      "1"
+                  "achlys_nights_embrace" "1"
+                  "achlys_sorrow_rising"  "1"
+                  "achlys_death_mist"     "1"
+           }
 
             "sirocco_abiliites"{
                   "sirocco_shifting_sands"      "1"
@@ -772,13 +804,13 @@
                   "bellatrix_unholy_ecstasy"    "1"
             }            
 
-            "scaw_abilities"{
-                  "scawmar_spirits_away"  "1"
-                  "scawmar_fade_blink"    "1"
-                  "scawmar_illusion_line" "1"
-                  "scawmar_mind_control"  "1"
-                  "scawmar_scryers_circle"      "1"
-            }
+            //"scaw_abilities"{
+            //      "scawmar_spirits_away"  "1"
+            //      "scawmar_fade_blink"    "1"
+            //      "scawmar_illusion_line" "1"
+            //      "scawmar_mind_control"  "1"
+            //      "scawmar_scryers_circle"      "1"
+            //}
 
             "hylonome_abilities"{
                   "hylonome_eldritch_pull"      "1"
@@ -792,6 +824,58 @@
                   "keen_commander_recon_systems"      "1"
                   "keen_commander_siege_mode"   "1"
                   "keen_commander_slag_armor"   "1"
+            }
+
+            "alexander_abilities"{
+                  "alexander_elandras_blessing" "1"
+                  "alexander_godfall"     "1"
+                  "alexander_radiant"     "1"
+                  "alexander_soulseal"    "1"
+               //   "alexander_steadfast"   "1"
+            }
+
+            "lightning_abilities"{
+                  "lightning_lightning_dagger2" "1"
+                  "lightning_overload"    "1"
+                  "lightning_spark" "1"
+                  "lightning_thunder_wave"     "1"
+            }
+
+            "ptomely_abilities"{
+                  //"ptomely_astralise"     "1" //Particles missing
+                  "ptomely_enthrall"      "1"
+                  "ptomely_expunge" "1"
+                  //"ptomely_mirror_blade"  "1" //Particles missing
+            }   
+
+            "mifune_abilities"{
+                  //"mifune_raigeki"    "1" // First wave doesnt shoot
+                  "mifune_oiuchi"   "1"
+                  //"mifune_genso"  "1" //All custom illsuion abilites are broken
+                 //"mifune_zanmato"  "1"
+            }
+
+            "erra_abilities"{
+                  "erra_deathtouch" "1"
+                  "erra_grave_guard"      "1"
+                  "erra_morbid_blade"     "1"
+                  "erra_to_dust"    "1"
+            }
+
+            "lich_abilities"{
+                  "lich_absolute_zero" "1"
+                  "lich_cold_aura_dusk"  "1"
+                  "lich_traveling_frost"  "1"
+                  "lich_winters_requiem"  "1"
+            }
+
+            "hero_abilities"{
+                  //"hero_hyper_kick" "1"
+                  "hero_justice_kick"     "1"
+                  "hero_one_punch"  "1"
+                  //"hints_attack_me_not"   "1"
+                  "hero_freedom_strike"   "1"
+                  "hero_heroic_soul"      "1"
             }
 
             "flower_abilities" {
@@ -981,7 +1065,8 @@
                   "hawkeye_ricochet" "1"
             }
 
-          "singlePlayer" {
+          "singlePlayer" {      
+                  "hylonome_eldritch_pull_op"      "1"
                   "batrider_flamebreak_op"      "1"
                   "lone_druid_savage_roar_op"   "1"
                   "abyssal_underlord_dark_rift_op"   "1"
@@ -1004,6 +1089,7 @@
                   "shards_of_truesight_lod_OP"  "1"
             }
              "singlePlayer_passive" {
+                  "erra_grave_guard_op"   "1"
                   "dragon_knight_dragon_blood_OP"     "1"
                   "alchemist_goblins_greed_op"  "1"
                   "shredder_reactive_armor_op"  "1"
@@ -1079,7 +1165,6 @@
                   "imba_lich_frost_nova"    "1"
                   "imba_lich_frost_armor"  "1"
                   "imba_lich_dark_ritual"      "1"
-                  "invoker_chaos_meteor_lod"      "1"
             }
             "imba_sven" {
                   "imba_sven_storm_bolt"    "1"
@@ -1535,6 +1620,16 @@
             "Ability8"            "invoker_sun_strike_lod"
             "Ability9"            "invoker_tornado_lod"
         }
+
+        "npc_dota_hero_life_stealer" {
+            "Ability1"            "life_stealer_rage"
+            "Ability2"            "life_stealer_feast"
+            "Ability3"            "life_stealer_feast_melee"
+            "Ability4"            "life_stealer_open_wounds"
+            "Ability5"            "life_stealer_infest"
+            "Ability6"            "life_stealer_assimilate"
+        }
+
         "npc_dota_hero_mirana" {
             "Ability1"            "mirana_starfall_lod"
             "Ability2"            "mirana_arrow"
@@ -1691,10 +1786,11 @@
         "npc_dota_hero_ursa" {
             "Ability1"            "ursa_earthshock"
             "Ability2"            "ursa_overpower"
-            "Ability3"            "ursa_fury_swipes"
-            "Ability4"            "ursa_fury_swipes_lod"
-            "Ability5"            "ursa_enrage"
-            "Ability6"            "ursa_enrage_old"
+            "Ability3"            "ursa_overpower_melee"
+            "Ability4"            "ursa_fury_swipes"
+            "Ability5"            "ursa_fury_swipes_lod"
+            "Ability6"            "ursa_enrage"
+            "Ability7"            "ursa_enrage_old"
         }
         "npc_dota_hero_omniknight" {
             "Ability1"            "omniknight_degen_aura"
@@ -1788,6 +1884,14 @@
             "Ability5"  "alchemist_chemical_rage_redux"
             "Ability6"  "alchemist_transmuted_scepter"
             "Ability7"  "alchemist_aghnaim_magic_redux"
+        }
+        "npc_dota_hero_phantom_assassin"
+        {
+            "Ability1"  "phantom_assassin_stifling_dagger"
+            "Ability2"  "phantom_assassin_phantom_strike"
+            "Ability3"  "phantom_assassin_blur"
+            "Ability4"  "phantom_assassin_coup_de_grace" 
+            "Ability5"  "phantom_assassin_coup_de_grace_melee"
         }
         "npc_dota_hero_abaddon"
         {

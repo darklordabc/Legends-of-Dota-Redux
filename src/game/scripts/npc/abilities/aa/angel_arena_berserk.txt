@@ -9,6 +9,7 @@
         "precache"
         {
             "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
+            "particle"          "particles/status_fx/status_effect_life_stealer_rage.vpcf"
         }
         "AbilityCooldown"                                                      "30.0 29.0 28.0 27.0"
         "AbilityCastPoint"                                                     "0.0 0.0 0.0 0.0"
@@ -70,7 +71,9 @@
                         "Damage"                               "%damage_pct"
                     }
                 }
-            }
+                "StatusEffectName"  "particles/status_fx/status_effect_life_stealer_rage.vpcf"
+                "StatusEffectPriority"  "10" 
+            } 
         }
         "ReduxPerks"                                                           "rage"
     }

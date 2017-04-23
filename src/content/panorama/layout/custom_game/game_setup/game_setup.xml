@@ -7,6 +7,7 @@
     </styles>
     <scripts>
         <include src="file://{resources}/scripts/custom_game/stat_uploader_functions.js" />
+        <include src="file://{resources}/scripts/custom_game/stats_client.js" />
         <include src="file://{resources}/scripts/custom_game/loading_screen/loading_screen_tips.js" />
         <include src="file://{resources}/scripts/custom_game/game_setup/game_setup_options.js" />
         <include src="file://{resources}/scripts/custom_game/game_setup/game_setup.js" />
@@ -638,6 +639,7 @@
                                 <Panel id="pickingPhaseTabsContent">
                                     <Panel id="pickingPhaseMainTabContent" class="pickingPhaseTabContent">
                                         <Label class="buildCategoryLabel" text="txtRecommendedBuilds" />
+                                        <Label id="buildLoadMoreBuilds" text="txtLoadMoreBuilds" onactivate="LoadMoreBuilds()" />
                                         <Panel id="buildLoadingIndicator">
                                             <Panel id="buildLoadingSpinner" class="Spinner" />
                                             <Label id="buildLoadingIndicatorText" text="#loadingBuilds" />
@@ -694,15 +696,12 @@
                                                 <Image text="Str" src="file://{images}/primary_attribute_icons/primary_attribute_icon_intelligence.psd" />
                                             </Button>
                                         </Panel>
-
                                         <Panel id="pickingPhaseSelectedHeroImageCon" class="no_hero_selected">
                                             <DOTAHeroImage id="pickingPhaseSelectedHeroImage" class="pickingPhaseSelectedHeroImage" heroname="" heroimagestyle="landscape" />
                                             <Image id="pickingPhaseSelectedHeroImageNone" class="pickingPhaseSelectedHeroImage" src="file://{images}/heroes/npc_dota_hero_default.png" />
                                             <Label id="pickingPhaseSelectedHeroText" text="Random" />
                                         </Panel>
-                                        <Button id="heroBuilderPerksButton" class="makeThePlayerNoticeThisButton" onactivate="">
-                                            <Image src="file://{images}/custom_game/perks.png" />
-                                        </Button>
+                                        <Button id="pickingPhaseSaveSelectedBuild" onactivate="saveCurrentBuildToggleWindow()" />
                                         <Button id="heroBuilderLockButton" class="makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
                                             <Image src="s2r://panorama/images/control_icons/lock_medium_png.vtex" />
                                         </Button>  
@@ -849,6 +848,13 @@
 
                                         <Panel id="boosterDraftBoosters" onmouseover="UIShowCustomLayoutParametersTooltip( BoosterDraftTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=boosterDraftTip1 )" onmouseout="UIHideCustomLayoutTooltip( BoosterDraftTooltip )">
                                         </Panel>
+                                    </Panel>
+                                    
+                                    <Panel id="pickingPhaseSaveCurrentBuild" class="pickingPhaseTab">
+                                        <!-- lodSearchText -->
+                                        <TextEntry id="pickingPhaseSaveCurrentBuildTitle" multiline="false" maxchars="64" placeholder="#lodPickingPhaseSaveCurrentBuildTitle" />
+                                        <TextEntry id="pickingPhaseSaveCurrentBuildDescription" multiline="true" maxchars="256" placeholder="#lodPickingPhaseSaveCurrentBuildDescription" />
+                                        <TextButton id="pickingPhaseSaveCurrentBuildSubmit" text="#lodPickingPhaseSaveCurrentBuildSubmit" onactivate="saveCurrentBuild()" class="ButtonBevel" />
                                     </Panel>
                                 </Panel>
                             </Panel>                        

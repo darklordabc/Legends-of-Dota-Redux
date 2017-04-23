@@ -12,7 +12,7 @@
         "MaxLevel"                  "3"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
-        
+        "ReduxCost"                     "10"
         "AbilityTextureName"            "custom/tome_un_3"
 
 

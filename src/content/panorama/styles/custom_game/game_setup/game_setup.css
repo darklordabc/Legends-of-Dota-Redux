@@ -1071,21 +1071,6 @@ Button:enabled:hover {
     visibility: visible;
 }
 
-#heroBuilderPerksButton {
-    align: right center;
-    margin-right: 80px;
-
-    // Hide for some time
-    visibility: collapse;
-}
-
-#heroBuilderPerksButton.makeThePlayerNoticeThisButton {
-    animation-name: lodButtonHighlightPerks;
-    animation-duration: 1.51s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-}
-
 @keyframes 'lodButtonHighlightPerks' {
     0% {
         box-shadow: #ffd966 0px 0px 1px 0px;
@@ -2373,6 +2358,24 @@ Button:enabled:hover {
     margin: 10px;
 }
 
+#buildLoadMoreBuilds
+{
+    font-size: 24px;
+    margin: 10px;
+    horizontal-align: right;
+    color: lightblue;
+}
+
+#buildLoadMoreBuilds:hover
+{
+    text-decoration: underline;
+}
+
+#buildLoadMoreBuilds:active
+{
+    color: blue;
+}
+
 .recommendedBuildContainerScrollWrapper{
     width: 100%;
 
@@ -2420,6 +2423,10 @@ Button:enabled:hover {
 }
 
 .recommendedBuild.disabled {
+    visibility: collapse;
+}
+
+.recommendedBuild.searchFilterHide {
     visibility: collapse;
 }
 
@@ -2496,7 +2503,8 @@ Button:enabled:hover {
     background-position: -5px 0;
 }
 
-.recommendedBuildVote.up:hover {
+.recommendedBuildVote.up:hover,
+.votedUp .recommendedBuildVote.up {
     background-position: -27px 0;
 }
 
@@ -2504,7 +2512,8 @@ Button:enabled:hover {
     background-position: -49px 0;
 }
 
-.recommendedBuildVote.down:hover {
+.recommendedBuildVote.down:hover,
+.votedDown .recommendedBuildVote.down {
     background-position: -71px 0;
 }
 
@@ -2537,15 +2546,36 @@ Button:enabled:hover {
 }
 
 
-#recommendedBuildSettings {
-    background-image: url("file://{images}/custom_game/build.png");
-    background-position: -137px 0;
+#recommendedBuildRemove {
     width: 17px;
     height: 17px;
+    visibility: collapse;
+
+    wash-color: #888;
+
+    background-image: url("s2r://panorama/images/control_icons/x_close_png.vtex");
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    
+    transition-property: wash-color, pre-transform-scale2d, background-color;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in;
+}
+#recommendedBuildRemove:hover
+{
+    wash-color: #bbb;
+}
+#recommendedBuildRemove:active
+{
+    wash-color: white;
+    background-size: 20px 20px;
+    sound: "ui_friends_slide_in";
 }
 
-#recommendedBuildSettings:hover {
-    background-position: -159px 0;
+.isLocalAuthor #recommendedBuildRemove
+{
+    visibility: visible;
 }
 
 .recommendedBuildHolder {
@@ -3529,4 +3559,53 @@ Button:enabled:hover {
 #optionVotePhasesList
 {
     flow-children: down;
+}
+
+
+#pickingPhaseSaveSelectedBuild {
+    width: 24px;
+    height: 24px;
+
+    align: left center;
+    margin-left: 43px;
+
+    transition-property: opacity;
+    transition-duration: 0.2s;
+    opacity: 0.6;
+    background-color : transparent;
+
+    background-image: url("file://{images}/custom_game/savebuild.png");
+    background-size: 100%;
+
+    //visibility: collapse;
+}
+#pickingPhaseSaveSelectedBuild:hover,
+#pickingPhaseSaveSelectedBuild:active {
+    opacity: 1;
+}
+
+
+#pickingPhaseSaveCurrentBuild
+{
+    flow-children: down;
+}
+
+#pickingPhaseSaveCurrentBuildTitle,
+#pickingPhaseSaveCurrentBuildDescription
+{
+    width: 100%;
+    margin: 0 25px;
+}
+
+#pickingPhaseSaveCurrentBuildDescription
+{
+    margin-top: 4px;
+    height: 72px;
+}
+
+#pickingPhaseSaveCurrentBuildSubmit
+{
+    margin-top: 12px;
+    horizontal-align: center;
+    width: 40%;
 }

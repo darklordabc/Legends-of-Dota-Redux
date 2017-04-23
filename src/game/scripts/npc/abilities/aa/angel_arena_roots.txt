@@ -121,6 +121,7 @@
             }
         }
         "ReduxFlags"                                                           "stun"
-        "ReduxPerks"                                                           "earth"
+        "ReduxPerks"                                                           "earth | demon"
+
     }
 }

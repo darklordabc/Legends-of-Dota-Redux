@@ -40,7 +40,7 @@
             "05"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "physical_armor"                                       "-4.0"
+                "physical_armor"                                       "-6.0"
             }
             "06"
             {
@@ -54,6 +54,7 @@
             "particle"                                                     "particles/spell_lab/symbiotic_overhead.vpcf"
         }
         "ReduxFlags"                                                           "upgradeable | support | mobility | doNotRandom"
+        "ReduxBans"                                                            "life_stealer_assimilate"
         "ReduxPerks"                                                           "support | mobility"
         "ReduxCost"                                                            "40"
     }

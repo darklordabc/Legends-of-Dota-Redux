@@ -5,6 +5,7 @@ require('abilities/hero_perks/hero_perks_filters')
 require('abilities/epic_boss_fight/ebf_mana_fiend_essence_amp')
 require('abilities/global_mutators/global_mutator')
 require('abilities/global_mutators/memes_redux')
+require('abilities/nextgeneration/orderfilter')
 
 -- Create the class for it
 local Ingame = class({})
@@ -60,6 +61,9 @@ function Ingame:init()
     -- When to increase respawn rates - 40 minutes
     self.timeToIncreaseRespawnRate = 2400
     self.timeToIncreaseRepawnInterval = 600
+
+    -- What time to disable team balancing mechanic - 20 minutes
+    self.timeToStopBalancingMechanic = 1200
 
     -- These are optional votes that can enable or disable game mechanics
     self.voteEnabledCheatMode = false
@@ -308,6 +312,11 @@ function Ingame:FilterExecuteOrder(filterTable)
             -- How It Works: Every time bot creates an order, this checks their position, if they are in the same last position as last order,
             -- increase counter. If counter gets too high, it means they have been stuck in same position for a long time, do action to help them.
             if util:isPlayerBot(unitPlayerID) then
+                -- Bot Armlet Fix: Bots do not know how to use armlets so return false if they attempt to and put on cooldown
+                if ability and ability:GetName() == "item_armlet" then
+                    ability:StartCooldown(200)
+                    return false
+                end
                 if OptionManager:GetOption('stupidBots') == 1 then
                     if unit.blocked == true then 
                         return false
@@ -392,7 +401,9 @@ function Ingame:FilterExecuteOrder(filterTable)
     if unit:GetTeamNumber() ~= PlayerResource:GetCustomTeamAssignment(issuer) and PlayerResource:GetConnectionState(issuer) ~= 0 then 
         return false
     end
-    
+    -- Next Gen hackery
+    filterTable = nextGenOrderFilter(filterTable)
+
     if not OptionManager:GetOption('disablePerks') then
         filterTable = heroPerksOrderFilter(filterTable)
     end
@@ -1132,14 +1143,21 @@ function Ingame:handleRespawnModifier()
                             -------
                             -- Imbalanced-Comepenstation Mechanic Start
                             -------
-                            if not util:isCoop() then
+                            -- Do not trigger if game is coop or gametime is more than 20 minutes
+                            if not util:isCoop() and GameRules:GetDOTATime(false,false) < self.timeToStopBalancingMechanic then
                                 local herosTeam = util:GetActivePlayerCountForTeam(hero:GetTeamNumber())
                                 local opposingTeam = util:GetActivePlayerCountForTeam(otherTeam(hero:GetTeamNumber()))
                                 local difference = herosTeam - opposingTeam
+                                -- Disadvantaged teams gain 10 seconds faster respawn, advantaged team, 10 seconds longer
+                                local addedTime = 0
+                                if difference < 0 then
+                                    addedTime = -10
+                                elseif difference > 0 then
+                                    addedTime = 10
+                                end
                                 
-                                -- 10 seconds per player difference, if addedTime is positive, it means the player team has an advantage, if its a negative it means they are disadvantaged
-                                local addedTime = difference * 10
                                 timeLeft = timeLeft + addedTime
+                                
                                 if timeLeft < 1 then
                                     timeLeft = 1
                                 end   
@@ -1347,13 +1365,14 @@ function Ingame:FilterModifyGold(filterTable)
         filterTable.gold = math.ceil(filterTable.gold * goldModifier / 100)
     end
 
+    -- Disabled this due to other balance mechanics being in play
     -- Slow down the gold intake for the team with more players
-    local ratio = enemyTeam / myTeam
-    if ratio < 1 then
-        ratio = 1 - (1 - ratio) / 2
-
-        filterTable.gold = math.ceil(filterTable.gold * ratio)
-    end
+    --local ratio = enemyTeam / myTeam
+    --if ratio < 1 then
+    --    ratio = 1 - (1 - ratio) / 2
+    --
+    --    filterTable.gold = math.ceil(filterTable.gold * ratio)
+    --end
 
     return true
 end
@@ -1811,7 +1830,8 @@ function Ingame:FilterDamage( filterTable )
     if not OptionManager:GetOption('disablePerks') then
         filterTable = heroPerksDamageFilter(filterTable)
     end
-
+    -- Next Gen
+    filterTable = nextGenDamageFilter(filterTable)
     -- Memes
     if OptionManager:GetOption('memesRedux') == 1 then
         filterTable = memesDamageFilter(filterTable)
@@ -1836,7 +1856,8 @@ function Ingame:FilterModifiers( filterTable )
     if not OptionManager:GetOption('disablePerks') then
         filterTable = heroPerksModifierFilter(filterTable)
     end
-
+    -- Next gen
+    filterTable = nextGenModifierFilter(filterTable)
     -- Memes
     if OptionManager:GetOption('memesRedux') == 1 then
         filterTable = memesModifierFilter(filterTable)

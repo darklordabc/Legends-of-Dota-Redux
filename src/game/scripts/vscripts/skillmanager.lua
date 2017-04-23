@@ -428,7 +428,7 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
                 -- Sprint is a item only for Slardar, do not replace
                 if item and item:GetName() ~= "item_sprint" then
                     items[i] = {
-                        class = item:GetClassname(),
+                        name = item:GetName(),
                         charges = item:GetCurrentCharges(),
                         purchaser = item:GetPurchaser(),
                         purchaseTime = item:GetPurchaseTime(),
@@ -493,7 +493,7 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
                         purchaser = hero
                     end
 
-                    local newItem = CreateItem(item.class, purchaser, purchaser)
+                    local newItem = CreateItem(item.name, purchaser, purchaser)
                     newItem:SetCurrentCharges(item.charges)
                     newItem:SetPurchaser(purchaser)
                     newItem:SetPurchaseTime(item.purchaseTime)

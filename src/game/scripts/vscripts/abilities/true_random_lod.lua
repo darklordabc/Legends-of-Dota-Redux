@@ -147,7 +147,7 @@ function RandomInit(keys)
 			local exAb = caster:FindAbilityByName(exclusion)
 			if not exAb:IsHidden() then
 				caster.ownedSkill[exclusion] = true
-			elseif exAb:GetName() ~= "attribute_bonus" and mainAbilities[exclusion] == nil and GetMapName() ~= "custom_bot" then -- do not remove attribute bonus or subabilities (exclude bots for now)
+			elseif exAb:GetName() ~= "attribute_bonus" and mainAbilities[exclusion] == nil and OptionManager:GetOption('mapname') ~= "custom_bot" then -- do not remove attribute bonus or subabilities (exclude bots for now)
 				caster:RemoveAbility(exclusion)
 			end
 		end

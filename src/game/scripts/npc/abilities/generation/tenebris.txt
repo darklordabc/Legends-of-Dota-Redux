@@ -23,7 +23,7 @@
         "AbilityUnitDamageType"     "DAMAGE_TYPE_PHYSICAL"
         "FightRecapLevel"       "1"
  
-        "AbilityTextureName"        "pugna_nether_ward"
+        "AbilityTextureName"        "custom/tenebris_blood_ward"
  
         //Casting
         "AbilityCastPoint"      "0.5"
@@ -368,7 +368,7 @@
         "SpellImmunityType"     "SPELL_IMMUNITY_ENEMIES_NO"
         "AbilityUnitDamageType"     "DAMAGE_TYPE_PHYSICAL"
  
-        "AbilityTextureName"        "abaddon_frostmourne"
+        "AbilityTextureName"        "custom/tenebris_fade_strike"
  
         //Casting
         "AbilityCastRange"      "128"
@@ -490,7 +490,7 @@
         "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "SpellImmunityType"     "SPELL_IMMUNITY_ENEMIES_NO"
  
-        "AbilityTextureName"        "enigma_midnight_pulse"
+        "AbilityTextureName"        "custom/tenebris_mortal_coil"
  
         //Casting
         "AbilityCastRange"      "%radius"

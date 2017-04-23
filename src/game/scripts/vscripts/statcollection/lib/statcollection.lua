@@ -260,7 +260,7 @@ function statCollection:sendStage1()
     statCollection:setFlags({ dedi = isDedicated })
 
     -- Grab the mapname
-    local mapName = GetMapName()
+    local mapName = OptionManager:GetOption('mapname')
     statCollection:setFlags({ map = mapName })
 
     -- Build the payload

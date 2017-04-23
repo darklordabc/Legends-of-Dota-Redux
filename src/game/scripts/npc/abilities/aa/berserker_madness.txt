@@ -5,7 +5,7 @@
         "BaseClass"                                                            "ability_datadriven"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "AbilityTextureName"                                                   "custom/berserker_madness"
-        "AbilityCooldown"                                                      "80"
+        "AbilityCooldown"                                                      "80 70 60"
         "AbilityManacost"                                                      "125 150 175"
         "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
         "MaxLevel"                                                             "3"
@@ -14,7 +14,10 @@
         "precache"
         {
             "particle"                                                     "particles/units/heroes/hero_ursa/ursa_enrage_buff.vpcf"
+            "particle"          "particles/status_fx/status_effect_gods_strength.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_ursa.vsndevts"
         }
+
         "AbilitySpecial"
         {
             "01"
@@ -30,6 +33,12 @@
         }
         "OnSpellStart"
         {
+            "FireSound"
+            {
+                "EffectName"    "Hero_Ursa.Enrage"
+                "Target"        "CASTER"
+            }
+
             "ApplyModifier"
             {
                 "Target"
@@ -55,6 +64,9 @@
                 }
                 "EffectName"                                           "particles/units/heroes/hero_ursa/ursa_enrage_buff.vpcf"
                 "EffectAttachType"                                     "follow_origin"
+
+                "StatusEffectName"  "particles/status_fx/status_effect_gods_strength.vpcf"
+                "StatusEffectPriority"  "10"
             }
         }
         "ReduxFlags"                                                           "tank"

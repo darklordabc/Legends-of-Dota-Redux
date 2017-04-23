@@ -11,6 +11,7 @@
 		"AbilityManaCost" "60"
 		"AbilityCastRange" "300"
 		"AbilityCastPoint" "0.3"
+		"ReduxPerks"                                                           "demon"
 
 		"precache" {
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_doombringer.vsndevts"

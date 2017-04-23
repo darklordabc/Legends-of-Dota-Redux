@@ -5,19 +5,17 @@ var buildData = null;
 // Tags for filter
 var searchTags = [];
 
-function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, build, balanceMode) {
-    var buildVariant = balanceMode === 1 ? build.Balanced : build.Unbalanced;
-
-    // Get abilities array from JSON string
-    var curBuild = JSON.parse(buildVariant.replace(/'/g, '"'))
+function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, build, constantBalancePointsValue) {
+    var curBuild = build.abilities
+    $.GetContextPanel().constantBalancePointsValue = constantBalancePointsValue;
     // Push skills
-    for(var slotID = 0; slotID < 6; ++slotID) {
+    for(var slotID = 0; slotID < 6; slotID++) {
         var slot = $('#recommendedSkill' + (slotID + 1));
 
         // Make it selectable and show info
         makeSkillSelectable(slot);
         
-        if(curBuild[slotID]) {
+        if (curBuild[slotID]) {
             slot.visible = true;
             slot.abilityname = curBuild[slotID];
             slot.SetAttributeString('abilityname', curBuild[slotID]);
@@ -30,37 +28,34 @@ function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, bu
         // Add abilities names
         searchTags.push($.Localize('DOTA_Tooltip_ability_' + slot.abilityname).toLowerCase());
     }
-
     // Set hero image
     var heroImageCon = $('#recommendedHeroImage');
-    heroImageCon.heroname = build.Hero;
-    heroImageCon.SetAttributeString('heroName', build.Hero);
+    heroImageCon.heroname = build.heroName;
+    heroImageCon.SetAttributeString('heroName', build.heroName);
     makeHeroSelectable(heroImageCon);
 
     // Add hero name
-    searchTags.push($.Localize(build.Hero).toLowerCase());
+    searchTags.push($.Localize(build.heroName).toLowerCase());
+
+    // Add tags
+    for (var i in build.tags) {
+        searchTags.push($.Localize(build.tags[i]).toLowerCase());
+    }
 
     // Set the title
     var titleLabel = $('#buildName');
-    if(build.Title != null) {
-        titleLabel.text = $.Localize(build.Title);
-        titleLabel.visible = true;
+    titleLabel.visible = build.title != null;
 
+    if(build.title != null) {
+        titleLabel.text = build.title;
         // Add title
-        searchTags.push(titleLabel.text.toLowerCase());
-    } else {
-        titleLabel.visible = false;
+        searchTags.push(build.title.toLowerCase());
     }
 
-    $('#buildDesc').text = $.Localize(build.Description); 
+    $('#buildDesc').text = build.description;
 
     // Set hero attribute
-    var attrImage = 'file://{images}/primary_attribute_icons/primary_attribute_icon_strength.psd';
-    if(build.Attr == 'agi') {
-        attrImage = 'file://{images}/primary_attribute_icons/primary_attribute_icon_agility.psd';
-    } else if(build.Attr == 'int') {
-        attrImage = 'file://{images}/primary_attribute_icons/primary_attribute_icon_intelligence.psd';
-    }
+    var attrImage = build.attribute == 'int' ? 'file://{images}/primary_attribute_icons/primary_attribute_icon_intelligence.psd' : build.attribute == 'agi' ? 'file://{images}/primary_attribute_icons/primary_attribute_icon_agility.psd' : 'file://{images}/primary_attribute_icons/primary_attribute_icon_strength.psd';
 
     $('#recommendedAttribute').SetImage(attrImage);
 
@@ -68,16 +63,37 @@ function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, bu
     var buildForSend = {};
     for(var slotID = 0; slotID < 6; ++slotID)
         buildForSend[slotID + 1] = curBuild[slotID];
+    
+    //author
+    var authorSteamID = build.steamID;
+    var localSteamID = Game.GetLocalPlayerInfo().player_steamid
+    $.GetContextPanel().SetHasClass("isLocalAuthor", authorSteamID == localSteamID)
+    if (authorSteamID != -1) {
+        $("#buildAuthor").steamid = authorSteamID;
+    } else {
+        $("#buildAuthor").text = "";
+    }
+
+    //Votes
+    var currentScore = 0;
+    for (var k in build.votes) {
+        if (build.votes[k] != null) build.votes[k] ? currentScore++ : currentScore--;
+    }
+    $("#buildRating").text = currentScore;
+    if (build.votes[localSteamID] != null) {
+        var vote = build.votes[localSteamID]
+        $.GetContextPanel().SetHasClass("votedUp", vote == true)
+        $.GetContextPanel().SetHasClass("votedDown", vote == false)
+    }
 
     // Store the build data
     buildData = {
-        hero: build.Hero,
-        attr: build.Attr,
+        hero: build.heroName,
+        attr: build.attribute,
         build: buildForSend,
-        id: build.ID
+        id: build._id
     };
-
-    $.GetContextPanel().buildID = build.ID;
+    $.GetContextPanel().buildID = build._id;
 }
 
 // When the build is selected
@@ -89,13 +105,45 @@ function onSelectBuildPressed() {
     GameEvents.SendCustomGameEventToServer('lodSelectBuild', buildData);
 }
 
-function setFavorite( flag ) {
+function setFavorite(flag) {
     $.GetContextPanel().isFavorite = flag;
     $('#recommendedBuildFavourite').SetHasClass('active', flag);
 }
 
 function onClickFav() {
-    setFavorite( !$.GetContextPanel().isFavorite );
+    setFavorite(!$.GetContextPanel().isFavorite);
+}
+
+function removeBuild() {
+    $("#recommendedBuildRemove").visible = false;
+    GameEvents.SendCustomGameEventToServer("stats_client_remove_skill_build", {
+        id: $.GetContextPanel().buildID
+    })
+}
+
+function onSelectBuildVoteUp() {
+    onSelectBuildVote($.GetContextPanel().BHasClass("votedUp") || $.GetContextPanel().BHasClass("votedDown") ? null : true)
+}
+
+function onSelectBuildVoteDown() {
+    onSelectBuildVote($.GetContextPanel().BHasClass("votedUp") || $.GetContextPanel().BHasClass("votedDown") ? null : false)
+}
+
+function onSelectBuildVote(vote) {
+    var score = Number($("#buildRating").text);
+    if (vote != null) {
+        vote ? score++ : score--
+    } else {
+        if ($.GetContextPanel().BHasClass("votedUp")) score--;
+        if ($.GetContextPanel().BHasClass("votedDown")) score++;
+    };
+    $("#buildRating").text = score;
+    $.GetContextPanel().SetHasClass("votedUp", vote == true)
+    $.GetContextPanel().SetHasClass("votedDown", vote == false)
+    GameEvents.SendCustomGameEventToServer("stats_client_vote_skill_build", {
+        id: $.GetContextPanel().buildID,
+        vote: vote
+    })
 }
 
 // Does filtering on the abilities
@@ -107,9 +155,10 @@ function updateFilters(getSkillFilterInfo, getHeroFilterInfo) {
 
     // Unavaliable skill count
     var unavalCount = 0;
+    var totalBuildCost = 0;
 
     // Filter each ability
-    for(var slotID = 1; slotID < 7; ++slotID) {
+    for(var slotID = 1; slotID <= 6; ++slotID) {
         // Grab the slot
         var slot = $('#recommendedSkill' + slotID);
 
@@ -126,6 +175,8 @@ function updateFilters(getSkillFilterInfo, getHeroFilterInfo) {
 
         if (filterInfo.disallowed || filterInfo.banned || filterInfo.taken || filterInfo.cantDraft || filterInfo.trollCombo)
             unavalCount++;
+        else if (GameUI.AbilityCosts.balanceModeEnabled)
+            totalBuildCost += filterInfo.cost
 
         if (GameUI.AbilityCosts.balanceModeEnabled) {
             // Set the label to the cost of the ability
@@ -134,7 +185,7 @@ function updateFilters(getSkillFilterInfo, getHeroFilterInfo) {
                 for (var i = 0; i < GameUI.AbilityCosts.TIER_COUNT; ++i) {
                     abCost.SetHasClass('tier' + (i + 1), filterInfo.cost == GameUI.AbilityCosts.TIER[i]);
                 }
-                abCost.text = (filterInfo.cost != GameUI.AbilityCosts.NO_COST)? filterInfo.cost: "";
+                abCost.text = filterInfo.cost != GameUI.AbilityCosts.NO_COST ? filterInfo.cost : "";
             }
         }
 
@@ -146,8 +197,8 @@ function updateFilters(getSkillFilterInfo, getHeroFilterInfo) {
         }
     }
 
-    // Hide build if more than 1 unavaliable skill
-    $.GetContextPanel().SetHasClass('disabled', unavalCount > 1);
+    // Hide build if more than 1 unavaliable skill or it wasn't designed for balance mode
+    $.GetContextPanel().SetHasClass('disabled', unavalCount > 1 || totalBuildCost > $.GetContextPanel().constantBalancePointsValue);
 
     // Update hero
     var heroFilterInfo = getHeroFilterInfo(buildData.hero);
@@ -156,13 +207,10 @@ function updateFilters(getSkillFilterInfo, getHeroFilterInfo) {
     heroImageCon.SetHasClass('takenHero', heroFilterInfo.takenHero);
 }
 
-function updateSearchFilter( searchStr ) {
-    if (searchStr == '' || searchStr == undefined || searchStr == null)
-        $.GetContextPanel().visible = true;
-
-    $.GetContextPanel().visible = searchTags.filter(function(tag){
+function updateSearchFilter(searchStr) {
+    $.GetContextPanel().SetHasClass('searchFilterHide', !searchStr ? false : searchTags.filter(function(tag){
         return tag.indexOf(searchStr) != -1;
-    }).length > 0;
+    }).length > 0);
 }
 
 // When this panel loads

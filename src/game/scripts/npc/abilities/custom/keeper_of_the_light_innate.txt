@@ -19,5 +19,6 @@
             }
         }
         "ReduxFlags"                                                           "doNotRandom"
+        "ReduxCost"                                                            "10"
     }
 }

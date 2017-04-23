@@ -82,6 +82,10 @@ function modifier_item_octarine_core_consumable:GetAttributes()
   return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 function modifier_item_octarine_core_consumable:IsHidden()
+  if not self:GetAbility() then
+    self:Destroy()
+    return
+  end
   return self:GetAbility().IsItem
 end
 
@@ -98,23 +102,45 @@ function modifier_item_octarine_core_consumable:DeclareFunctions()
 end
 
 function modifier_item_octarine_core_consumable:GetModifierBonusStats_Intellect()
+  if not self:GetAbility() then
+    self:Destroy()
+    return
+  end
   return self:GetAbility():GetSpecialValueFor("octarine_core_bonus_intelligence")
 end
 
 function modifier_item_octarine_core_consumable:GetModifierHealthBonus()
+  if not self:GetAbility() then
+    self:Destroy()
+    return
+  end
   return self:GetAbility():GetSpecialValueFor("octarine_core_bonus_health")
 end
 
 function modifier_item_octarine_core_consumable:GetModifierManaBonus()
+  if not self:GetAbility() then
+    self:Destroy()
+    return
+  end
   return self:GetAbility():GetSpecialValueFor("octarine_core_bonus_mana")
 end
 
 function modifier_item_octarine_core_consumable:GetModifierPercentageCooldown()
+  if not self:GetAbility() then
+    self:Destroy()
+    return
+  end
   return self:GetAbility():GetSpecialValueFor("octarine_core_bonus_cooldown")
 end
 
 function modifier_item_octarine_core_consumable:OnTakeDamage(keys)
   if IsServer() and keys.attacker == self:GetCaster() and keys.inflictor then
+
+    if not self:GetAbility() then
+      self:Destroy()
+      return
+    end
+    
     if keys.inflictor:GetAbilityName() == "item_blademail" then return end
     -- counting the amout of octarine cores
     local count = 0

@@ -185,9 +185,9 @@ function SpellEcho(keys)
 								--print("nothing")
 							end
 							local echo_effect = ParticleManager:CreateParticle("particles/rubick_spell_echo.vpcf", PATTACH_ABSORIGIN , caster)
-							local halfManacost = echo:GetManaCost(echo:GetLevel() - 1) /  2
+							local fullManacost = echo:GetManaCost(echo:GetLevel() - 1) 
 							--print(halfManacost)
-							if caster:GetMana() >= halfManacost then 
+							if caster:GetMana() >= fullManacost then 
 								ParticleManager:SetParticleControl(echo_effect, 0, caster:GetAbsOrigin())
 								ParticleManager:SetParticleControl(echo_effect, 1, Vector(1,0,0))
 								caster:StartGesture(ACT_DOTA_CAST_ABILITY_5)
@@ -195,9 +195,9 @@ function SpellEcho(keys)
 								ability:StartCooldown(cooldown)
 	            				ParticleManager:ReleaseParticleIndex(echo_effect)
 								--print("not enough mana to echo")
-								caster:SpendMana(halfManacost, ability)
+								caster:SpendMana(fullManacost, ability)
 							end
 							
-                        end, DoUniqueString('ebf_rubick_spell_echo'))
+      end, DoUniqueString('ebf_rubick_spell_echo'))
 	end
 end

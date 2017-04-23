@@ -61,6 +61,13 @@ function Pregame:init()
     -- Store for options
     self.optionStore = {} 
 
+    OptionManager:SetOption('mapname', GetMapName())
+
+    -- If single player redirect players to the more fully-featured map
+    if util:isSinglePlayerMode() and not IsInToolsMode() then
+        OptionManager:SetOption('mapname', 'dota')
+    end
+
     -- Store for selected heroes and skills
     self.selectedHeroes = {}
     self.selectedPlayerAttr = {}
@@ -120,7 +127,7 @@ function Pregame:init()
                 self:setOption('lodOptionBanningMaxHeroBans', 1, true)
             end,
             onunselected = function(self)
-                OptionManager:SetOption('banningTime', 15)
+                OptionManager:SetOption('banningTime', 25)
                 self:setOption('lodOptionBanning', 3, true)
                 self:setOption('lodOptionBanningMaxBans', 1, true)
                 self:setOption('lodOptionBanningMaxHeroBans', 1, true)
@@ -128,12 +135,28 @@ function Pregame:init()
         },
         fastStart = {
             onselected = function(self)
-                self:setOption('lodOptionGameSpeedStartingLevel', 3, true)
-                self:setOption('lodOptionGameSpeedStartingGold', 1000, true)
+                self:setOption('lodOptionGameSpeedStartingLevel', 6, true)
+                self:setOption('lodOptionGameSpeedStartingGold', 2000, true)
             end,
             onunselected = function(self)
                 self:setOption('lodOptionGameSpeedStartingLevel', 1, true)
                 self:setOption('lodOptionGameSpeedStartingGold', 0, true)
+            end
+        },
+        noInvis = {
+            onselected = function(self)
+                self:setOption('lodOptionBanningBanInvis', 2, true)
+            end,
+            onunselected = function(self)
+                self:setOption('lodOptionBanningBanInvis', 0, true)
+            end
+        },
+        antirat = {
+            onselected = function(self)
+                self:setOption('lodOptionAntiRat', 1, false)
+            end,
+            onunselected = function(self)
+                self:setOption('lodOptionAntiRat', 0, false)
             end
         },
         strongTowers = {
@@ -187,16 +210,16 @@ function Pregame:init()
             end
         },
         singlePlayerAbilities = {
-        onselected = function(self)
-            self:setOption('lodOptionAdvancedCustomSkills', 1, true)
-            self:setOption('lodOptionBanningUseBanList', 0, true)
-            self:setOption('lodOptionBanning', 3, true)
-            self:setOption('lodOptionBanningMaxBans', 4, true)
-            self:setOption('lodOptionBanningMaxHeroBans', 1, true)
-        end,
-        onunselected = function(self)
-            self:setOption('lodOptionBanningUseBanList', 1, true)
-        end
+            onselected = function(self)
+                self:setOption('lodOptionAdvancedCustomSkills', 1, true)
+                self:setOption('lodOptionBanningUseBanList', 0, true)
+                self:setOption('lodOptionBanning', 3, true)
+                self:setOption('lodOptionBanningMaxBans', 4, true)
+                self:setOption('lodOptionBanningMaxHeroBans', 1, true)
+            end,
+            onunselected = function(self)
+                self:setOption('lodOptionBanningUseBanList', 1, true)
+            end
         },
     }
 
@@ -420,7 +443,7 @@ function Pregame:init()
     end, DoUniqueString('checkSinglePlayer'), 1.5)
 
     -- Map enforcements
-    local mapName = GetMapName()
+    local mapName = OptionManager:GetOption('mapname')
 
     -- All Pick Only
     if mapName == 'all_pick' then
@@ -438,23 +461,34 @@ function Pregame:init()
     if mapName == 'standard' then
         self:setOption('lodOptionGamemode', 1)
         self:setOption('lodOptionBalanceMode', 1, true)
-        OptionManager:SetOption('banningTime', 30)
+        OptionManager:SetOption('banningTime', 45)
         --self:setOption('lodOptionBanningBalanceMode', 1, true)
         --self:setOption('lodOptionGameSpeedRespawnTimePercentage', 70, true)
         --self:setOption('lodOptionBuybackCooldownTimeConstant', 210, true)
+        self:setOption('lodOptionGameSpeedGoldModifier', 225, true)
+        self:setOption('lodOptionGameSpeedEXPModifier', 225, true)
+        self:setOption('lodOptionGameSpeedMaxLevel', 100, true)
+        self:setOption('lodOptionGameSpeedRespawnTimePercentage', 35, true)
         self.useOptionVoting = true
     end
 
     if mapName == 'all_allowed' then   
+        self:setOption('lodOptionBanningUseBanList', 1, true)
         self:setOption('lodOptionAdvancedOPAbilities', 1, true)
         self:setOption('lodOptionGameSpeedMaxLevel', 100, true)
-        self:setOption('lodOptionBanningUseBanList', 1, true)
         self:setOption('lodOptionGamemode', 1)
-        OptionManager:SetOption('banningTime', 30)
+        self:setOption('lodOptionGameSpeedStartingLevel', 6, true)
+        self:setOption('lodOptionGameSpeedStartingGold', 2000, true)
+        self:setOption('lodOptionGameSpeedStrongTowers', 1, true)
+        self:setOption('lodOptionCreepPower', 120, true)
+        self:setOption('lodOptionGameSpeedTowersPerLane', 3, true)
+        OptionManager:SetOption('banningTime', 45)
         self:setOption('lodOptionBalanceMode', 0, true)
+        self:setOption('lodOptionGameSpeedGoldModifier', 150, true)
+        self:setOption('lodOptionGameSpeedEXPModifier', 200, true)
         self:setOption('lodOptionAdvancedHidePicks', 0, true)
         self:setOption('lodOptionCommonMaxUlts', 2, true)
-        self:setOption('lodOptionGameSpeedRespawnTimePercentage', 25, true)
+        self:setOption('lodOptionGameSpeedRespawnTimePercentage', 35, true)
         self.useOptionVoting = true
         self.optionVoteSettings.doubledAbilityPoints = nil
     end
@@ -1890,7 +1924,9 @@ function Pregame:onOptionChanged(eventSourceIndex, args)
             },
         }
 
-        if PlayerResource:GetSteamAccountID(playerID) == 43305444 or util:isSinglePlayerMode() then -- Baumi doesnt need votes to change options
+       -- if PlayerResource:GetSteamAccountID(playerID) == 43305444 or util:isSinglePlayerMode() then -- Baumi doesnt need votes to change options
+        -- Temporarily require voting for options because its broken
+        if true then
             voteRequiredOptions = {}
         end
 
@@ -2136,7 +2172,7 @@ function Pregame:initOptionSelector()
             if type(value) ~= 'number' then return false end
 
             -- Map enforcements
-            local mapName = GetMapName()
+            local mapName = OptionManager:GetOption('mapname')
 
             -- All Pick Only
             if mapName == 'all_pick' then
@@ -3581,7 +3617,7 @@ end
 -- Processes options to push around to the rest of the systems
 function Pregame:processOptions()
     -- Check Map
-    local mapName = GetMapName()
+    local mapName = OptionManager:GetOption('mapname')
 
     -- Single Player Overrides
     if util:isSinglePlayerMode() then
@@ -3595,16 +3631,16 @@ function Pregame:processOptions()
     --end
 
     -- This is a fix to deal with how votes are executed
-    if GetMapName() == "all_allowed" then
-        if self.optionStore['lodOptionBanningMaxBans'] == 2 and self.optionStore['lodOptionBanningUseBanList'] == 0 and self.optionStore['lodOptionAdvancedCustomSkills'] == 1 then
-            self:setOption('lodOptionBanningMaxBans', 6, true)
-        end
-        if self.optionStore['lodOptionBanningMaxBans'] == 4 and self.optionStore['lodOptionAdvancedCustomSkills'] == 0 then
-            self:setOption('lodOptionBanningMaxBans', 0, true)
-            self:setOption('lodOptionBanningMaxHeroBans', 0, true)
-        end
+   -- if GetMapName() == "all_allowed" then
+   --     if self.optionStore['lodOptionBanningMaxBans'] == 2 and self.optionStore['lodOptionBanningUseBanList'] == 0 and self.optionStore['lodOptionAdvancedCustomSkills'] == 1 then
+    --        self:setOption('lodOptionBanningMaxBans', 6, true)
+    --    end
+    --    if self.optionStore['lodOptionBanningMaxBans'] == 4 and self.optionStore['lodOptionAdvancedCustomSkills'] == 0 then
+    --        self:setOption('lodOptionBanningMaxBans', 0, true)
+    --        self:setOption('lodOptionBanningMaxHeroBans', 0, true)
+    --    end
             
-    end
+    --end
 
     -- Only process options once
     if self.processedOptions then return end
@@ -4596,10 +4632,18 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
 
         -- Toggle their state
         self.isReady[playerID] = (self.isReady[playerID] == 1 and 0) or 1
-        if not self.heard[playerID] then
-            self.heard[playerID] = true
-            EmitGlobalSound("Event.LockBuild")
+        
+        -- Players can only trigger the locking sound twice, to prevent abuse
+        if self.heard[playerID] ~= 2 then
+            print(self.heard[playerID])
+            if not self.heard[playerID] then
+                self.heard[playerID] = 1
+            else
+                self.heard[playerID] = self.heard[playerID] + 1
+            end
+            EmitGlobalSound("Event.LockBuild") 
         end
+
         -- Checks if people are ready
         self:checkForReady()
     end
@@ -6917,7 +6961,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
         -- npc_dota_hero_spirit_breaker = true,
         --npc_dota_hero_spirit_slardar = true,
         -- npc_dota_hero_chaos_knight = true,
-        npc_dota_hero_wisp = true
+        --npc_dota_hero_wisp = true
     }
 
     -- Grab their playerID
@@ -7080,12 +7124,25 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                     spawnedUnit:SwapAbilities("phantom_lancer_juxtapose_melee","phantom_lancer_juxtapose_ranged",false,true)
                     spawnedUnit:RemoveAbility("phantom_lancer_juxtapose_melee")
             end
-            -- Change Jingu to Jingu ranged, for ranged heros
-            if spawnedUnit:HasAbility("monkey_king_jingu_mastery_lod_melee") and spawnedUnit:IsRangedAttacker() then
-                    spawnedUnit:AddAbility("monkey_king_jingu_mastery_lod_ranged")
-                    spawnedUnit:SwapAbilities("monkey_king_jingu_mastery_lod_melee","monkey_king_jingu_mastery_lod_ranged",false,true)
-                    spawnedUnit:RemoveAbility("monkey_king_jingu_mastery_lod_melee")
+            -- Change Feast to Feast ranged, for ranged heros
+            if spawnedUnit:HasAbility("life_stealer_feast_melee") and spawnedUnit:IsRangedAttacker() then
+                    spawnedUnit:AddAbility("life_stealer_feast_ranged")
+                    spawnedUnit:SwapAbilities("life_stealer_feast_melee","life_stealer_feast_ranged",false,true)
+                    spawnedUnit:RemoveAbility("life_stealer_feast_melee")
             end
+            -- Change Overpower to Overpower ranged, for ranged heros
+            if spawnedUnit:HasAbility("ursa_overpower_melee") and spawnedUnit:IsRangedAttacker() then
+                    spawnedUnit:AddAbility("ursa_overpower_ranged")
+                    spawnedUnit:SwapAbilities("ursa_overpower_melee","ursa_overpower_ranged",false,true)
+                    spawnedUnit:RemoveAbility("ursa_overpower_melee")
+            end
+    
+            if spawnedUnit:HasAbility("phantom_assassin_coup_de_grace_melee") and spawnedUnit:IsRangedAttacker() then
+                    spawnedUnit:AddAbility("phantom_assassin_coup_de_grace_ranged")
+                    spawnedUnit:SwapAbilities("phantom_assassin_coup_de_grace_melee","phantom_assassin_coup_de_grace_ranged",false,true)
+                    spawnedUnit:RemoveAbility("phantom_assassin_coup_de_grace_melee")
+            end
+
             -- Change infernal blade on gyro to critical strike
             --if this.optionStore['lodOptionBanningUseBanList'] == 1 and spawnedUnit:HasAbility("doom_bringer_infernal_blade") and spawnedUnit:GetUnitName() == "npc_dota_hero_gyrocopter" and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("doom_bringer_infernal_blade"):IsHidden() then
            --         spawnedUnit:AddAbility("chaos_knight_chaos_strike_gyro")
@@ -7567,7 +7624,10 @@ ListenToGameEvent('game_rules_state_change', function(keys)
         end, DoUniqueString('addTalents'), 2.0)
     elseif newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
         if IsDedicatedServer() then
-          SU:SendPlayerBuild( buildBackups )
+            local mapName = OptionManager:GetOption('mapname')
+            if mapName == 'standard' and not util:isCoop() then
+                SU:SendPlayerBuild( buildBackups )
+            end
         end
 
         WAVE = 0

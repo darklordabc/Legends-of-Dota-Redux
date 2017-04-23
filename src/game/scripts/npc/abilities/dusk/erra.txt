@@ -1,0 +1,532 @@
+"DOTAAbilities"
+{
+    "erra_deathtouch"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"             "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AnimationPlaybackRate"         "0.5"
+        "FightRecapLevel"               "1"
+        "AbilityTextureName"            "custom/erra_deathtouch"
+        
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "150"
+        "AbilityCastPoint"              "1.0"
+    
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "135.0 90.0 45.0"
+    
+        // Damage.
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityDamage"                 "400 560 720"
+    
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "200 325 450"
+    
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "dot_amount"            "50 70 90"
+            }
+            
+            "02"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "dot_duration"          "8.0"
+            }
+        }
+    
+        "precache"
+        {
+            "soundfile" "soundevents/hero_erra.vsndevts"
+            "particle"  "particles/units/heroes/hero_erra/deathtouch.vpcf"
+            "particle"  "particles/units/heroes/hero_erra/deathtouch_unit.vpcf"
+        }
+    
+        "OnAbilityPhaseStart"
+        {
+            "FireSound"
+            {
+                "EffectName"    "Erra.DeathtouchPrecast"
+                "Target"         "CASTER"
+            }
+        }
+    
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "internal/util.lua"
+                "Function"      "StopUnit"
+            }
+            "RunScript"
+            {
+                "ScriptFile"    "internal/util.lua"
+                "Function"      "StopCaster"
+            }
+            "Damage"
+            {
+                "Target"        "TARGET"
+                "Type"          "DAMAGE_TYPE_MAGICAL"
+                "Damage"        "%AbilityDamage"
+            }
+            "FireEffect"
+            {
+                "EffectName"        "particles/units/heroes/hero_erra/deathtouch.vpcf"
+                "EffectAttachType"  "follow_origin"
+                "Target"
+                {
+                    "Center"      "TARGET"
+                    "Radius"     "1"
+                    "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                    "Types"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                    "Flags"     "DOTA_UNIT_TARGET_FLAG_DEAD"
+                }
+            }
+            "FireEffect"
+            {
+                "EffectName"        "particles/units/heroes/hero_erra/deathtouch.vpcf"
+                "EffectAttachType"  "follow_origin"
+                "Target"            "TARGET"
+            }
+    
+            "FireSound"
+            {
+                "EffectName"    "Erra.Deathtouch"
+                "Target"        "CASTER"
+            }
+    
+            "ApplyModifier"
+            {
+                "ModifierName"   "modifier_deathtouch_dot"
+                "Target"         "TARGET"
+            }
+        }
+    
+        "Modifiers"
+        {
+    
+            "modifier_deathtouch_dot"
+            {
+                "IsHidden"  "0"
+                "IsDebuff"  "1"
+                "Duration"  "%dot_duration"
+                "Attributes" "MODIFIER_ATTRIBUTE_MULTIPLE"
+    
+                "EffectName" "particles/units/heroes/hero_erra/deathtouch_unit.vpcf"
+                "EffectAttachType" "attach_origin"
+    
+                "ThinkInterval"     "1"
+                "OnIntervalThink"
+                {
+                    "Damage"
+                    {
+                        "Target"    "TARGET"
+                        "Type"      "DAMAGE_TYPE_MAGICAL"
+                        "Damage"    "%dot_amount"
+                    }
+                }
+            }
+        }
+    }
+    "erra_grave_guard"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"             "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AnimationPlaybackRate"         "1"
+        "FightRecapLevel"               "1"
+        "AbilityTextureName"            "custom/erra_grave_guard"
+        
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "0"
+        "AbilityCastPoint"              "0.0"
+    
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "60"
+    
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "100"
+    
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityModifierSupportValue"   "0.5"   // Applies two modifiers
+    
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "duration"              "6"
+            }
+            
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "hp_recovery"           "60 80 100 120"
+            }
+    
+            "03"    
+            {
+                "var_type"              "FIELD_INTEGER"
+                "mp_recovery"           "15 30 45 60"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "threshold"             "25"
+            }
+        }
+    
+        "precache"
+        {
+            "soundfile" "soundevents/hero_erra.vsndevts"
+            "particle"  "particles/units/heroes/hero_erra/grave_guard.vpcf"
+            "particle"  "particles/units/heroes/hero_erra/grave_guard_unit.vpcf"
+        }
+    
+        "Modifiers"
+        {
+            "modifier_erra_grave_guard"
+            {
+                "Passive"            "1"
+                "IsHidden"            "1"
+                "IsDebuff"            "0"
+            
+                "OnTakeDamage"
+                // "%attack_damage" is set to the damage value after mitigation
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/dusk/erra_abilities.lua"
+                        "Function"      "GraveGuard"
+                        "threshold"     "%threshold"
+                    }
+                }
+            }
+            "modifier_erra_grave_guard_recovery"
+            {
+                "Passive"            "0"
+                "IsHidden"            "0"
+                "IsDebuff"            "0"
+                "Duration"            "%duration"
+    
+                "EffectName" "particles/units/heroes/hero_erra/grave_guard_unit.vpcf"
+                "EffectAttachType" "attach_origin"
+    
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%hp_recovery"
+                    "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%mp_recovery"
+                }
+            }
+        }
+    }
+    "erra_grave_guard_op"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"             "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AnimationPlaybackRate"         "1"
+        "FightRecapLevel"               "1"
+        "AbilityTextureName"            "custom/erra_grave_guard_op"
+        "ReduxFlags"                                                           "SuperOP"
+        
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "0"
+        "AbilityCastPoint"              "0.0"
+    
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "45"
+    
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "100"
+    
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityModifierSupportValue"   "0.5"   // Applies two modifiers
+    
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "duration"              "6"
+            }
+            
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "hp_recovery"           "120 160 200 240"
+            }
+    
+            "03"    
+            {
+                "var_type"              "FIELD_INTEGER"
+                "mp_recovery"           "30 60 90 120"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "threshold"             "25"
+            }
+        }
+    
+        "precache"
+        {
+            "soundfile" "soundevents/hero_erra.vsndevts"
+            "particle"  "particles/units/heroes/hero_erra/grave_guard.vpcf"
+            "particle"  "particles/units/heroes/hero_erra/grave_guard_unit.vpcf"
+        }
+    
+        "Modifiers"
+        {
+            "modifier_erra_grave_guard"
+            {
+                "Passive"            "1"
+                "IsHidden"            "1"
+                "IsDebuff"            "0"
+            
+                "OnTakeDamage"
+                // "%attack_damage" is set to the damage value after mitigation
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/dusk/erra_abilities.lua"
+                        "Function"      "GraveGuard"
+                        "threshold"     "%threshold"
+                    }
+                }
+            }
+            "modifier_erra_grave_guard_recovery"
+            {
+                "Passive"            "0"
+                "IsHidden"            "0"
+                "IsDebuff"            "0"
+                "Duration"            "%duration"
+    
+                "EffectName" "particles/units/heroes/hero_erra/grave_guard_unit.vpcf"
+                "EffectAttachType" "attach_origin"
+    
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%hp_recovery"
+                    "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%mp_recovery"
+                }
+            }
+        }
+    }
+    "erra_morbid_blade"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"             "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AnimationPlaybackRate"         "1"
+        "FightRecapLevel"               "1"
+        "AbilityTextureName"            "custom/erra_morbid_blade"
+        "AoERadius"                     "%radius"
+        
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "500"
+        "AbilityCastPoint"              "0.3"
+    
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "9 8 7 6"
+    
+        // Damage.
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityDamage"                 "75 125 175 225"
+    
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "80 90 100 110"
+    
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityModifierSupportValue"   "0.5"   // Applies two modifiers
+    
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "pure_threshold"        "40"
+            }
+            
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "radius"                "325"
+            }
+    
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "lifesteal"             "4 8 12 16"
+            }
+        }
+    
+        "precache"
+        {
+            "soundfile" "soundevents/hero_erra.vsndevts"
+            "particle"  "particles/units/heroes/hero_erra/morbid_blade.vpcf"
+        }
+    
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/dusk/erra_abilities.lua"
+                "Function"        "MorbidBlade"
+                "dmg"           "%AbilityDamage"
+                "radius"        "%radius"
+                "threshold"     "%pure_threshold"
+                "lifesteal"     "%lifesteal"
+            }
+        }
+    
+        "Modifiers"
+        {
+        }
+    }
+    "erra_to_dust"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"             "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AnimationPlaybackRate"         "1"
+        "FightRecapLevel"               "1"
+        "AbilityTextureName"            "custom/erra_to_dust"
+        
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "875"
+        "AbilityCastPoint"              "0.3"
+    
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "45"
+    
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "115"
+    
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityModifierSupportValue"   "0.5"   // Applies two modifiers
+    
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "hp_to_bonus_damage"    "4 6 8 10"
+            }
+            
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "creep_hp_to_bonus_damage" "2"
+            }
+    
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "duration"              "10"
+            }
+    
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "radius"                "875"
+            }
+        }
+    
+        "precache"
+        {
+            "soundfile" "soundevents/hero_erra.vsndevts"
+            "particle"  "particles/units/heroes/hero_erra/to_dust.vpcf"
+            "particle"  "particles/units/heroes/hero_erra/to_dust_affected_unit.vpcf"
+        }
+    
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/dusk/erra_abilities.lua"
+                "Function"      "ToDust"
+                "dmg"           "%hp_to_bonus_damage"
+                "dmg_creep"     "%creep_hp_to_bonus_damage"
+                "radius"        "%radius"
+            }
+        }
+    
+        "Modifiers"
+        {
+            "modifier_to_dust_damage"
+            {
+                "Passive"            "0"
+                "IsHidden"            "1"
+                "IsDebuff"            "0"
+                "Duration"            "%duration"
+            
+                "EffectName"        "particles/units/heroes/hero_erra/to_dust.vpcf"
+                "EffectAttachType"    "follow_origin"
+            
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "1"
+                }
+            }
+            "modifier_to_dust_show"
+            {
+                "Passive"            "0"
+                "IsHidden"            "0"
+                "IsDebuff"            "0"
+                "Duration"            "%duration"
+            }
+        }
+    }
+}

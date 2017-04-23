@@ -1,0 +1,56 @@
+"DOTAAbilities"
+{
+    "phantom_assassin_coup_de_grace_melee"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                    "phantom_assassin_coup_de_grace"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityTextureName"            "custom/phantom_assassin_coup_de_grace_melee"
+        "ReduxCost"                     "40"
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "crit_bonus"                "230 340 450"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "crit_chance"               "15"
+            }
+        }
+    }
+
+    "phantom_assassin_coup_de_grace_ranged"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                    "phantom_assassin_coup_de_grace"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityTextureName"            "custom/phantom_assassin_coup_de_grace_melee"
+    
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "crit_bonus"                "230 340 450"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "crit_chance"               "8"
+            }
+        }
+    }
+}

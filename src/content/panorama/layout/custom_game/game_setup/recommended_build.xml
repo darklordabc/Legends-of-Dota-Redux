@@ -9,13 +9,13 @@
         <Panel class="recommendedBuildContainer">
             <Panel class="recommendedBuildLeftSide">
                 <Panel class="recommendedBuildRating">
-                    <Panel id="recommendedBuildUpVote" class="recommendedBuildVote up" onactivate="onSelectBuildVotedUp()"></Panel>
+                    <Panel id="recommendedBuildUpVote" class="recommendedBuildVote up" onactivate="onSelectBuildVoteUp()" />
                     <Label id="buildRating" text="0" />
-                    <Panel id="recommendedBuildDownVote" class="recommendedBuildVote down" onactivate="onSelectBuildVotedDown()"></Panel>
+                    <Panel id="recommendedBuildDownVote" class="recommendedBuildVote down" onactivate="onSelectBuildVoteDown()" />
                 </Panel>
                 <Panel class="recommendedBuildActions">
-                    <Panel id="recommendedBuildFavourite" class="active" onactivate="onClickFav()"></Panel>
-                    <Panel id="recommendedBuildSettings" onactivate="onSelectBuildPressed()"></Panel>
+                    <Panel id="recommendedBuildFavourite" onactivate="onClickFav()" />
+                    <Panel id="recommendedBuildRemove" onactivate="removeBuild()" />
                 </Panel>
             </Panel>
             <Panel class="recommendedBuildRightSide">
@@ -48,9 +48,9 @@
                 <Panel class="recommendedBuildBottomRow">
                     <Panel class="recommendedBuildTitle">
                         <Label id="buildName" text="Build Name" />
-                        <Label id="buildAuthor" text="" />
+                        <DOTAUserName id="buildAuthor" />
                     </Panel>
-                    <Label id="buildDesc" html="true" text="Lorem ipsum dolor sit amet, consectetur adipiscing. Pellentesque semper dui mollis ante aliquam." />
+                    <Label id="buildDesc" />
                 </Panel>
             </Panel>
         </Panel>
