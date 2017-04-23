@@ -140,7 +140,15 @@ var commandList = [{
 		title: "dagon",
 		chatCommand: "dagon",
 		isCheat: true,
-	},  {
+	}, {
+		title: "selfFreePoints",
+		chatCommand: "points",
+		"getArgs": function(settings) {
+			return settings.GetChild(0).value
+		},
+		customXmlPanel: "<root><Panel><NumberEntry value='1' min='1' max='100'/></Panel></root>",
+		isCheat: true,
+	}, {
 		title: "selfLevelUp",
 		chatCommand: "lvlup",
 		"getArgs": function(settings) {

@@ -195,13 +195,19 @@ function Commands:OnPlayerChat(keys)
             end
         end
     elseif string.find(command, "-bot") then
-        if string.find(command, "mode") then
+        print("bot something")
+        print(ingame.botsInLateGameMode)
+        local splitedcommand = arguments 
+        if splitedcommand[1] and splitedcommand[1] == "mode" then
             if not ingame.botsInLateGameMode then 
                 ingame:CommandNotification("-botmode", "Bots are in early game mode.", 10)  
             elseif ingame.botsInLateGameMode then 
                 ingame:CommandNotification("-botmode", "Bots are in late game mode.", 10)   
-            end   
-        end            
+            end 
+        end
+       -- if string.find(command, "mode") then
+              
+        --end            
     elseif string.find(command, "-pid") then
         --if not ingame.voteEnabledCheatMode then
             for playerID=0,24-1 do
@@ -307,9 +313,23 @@ function Commands:OnPlayerChat(keys)
                 ingame:CommandNotification("-gold", 'Cheat Used (-gold): Given ' .. goldAmount .. ' gold to '.. PlayerResource:GetPlayerName(playerID)) 
             end, DoUniqueString('cheat'), .1)
 
+        elseif string.find(command, "-points") then 
+            -- Give user max gold, unless they specify a number  
+            local pointsAmount = 1
+            local splitedcommand = arguments       
+            if splitedcommand[1] and tonumber(splitedcommand[1])then
+                pointsAmount = tonumber(splitedcommand[1])
+            end
+
+            Timers:CreateTimer(function()  
+                hero:SetAbilityPoints(pointsAmount)  
+                ingame:CommandNotification("-points", 'Free Ability Points Used (-points): Given ' .. pointsAmount .. ' ability points to '.. PlayerResource:GetPlayerName(playerID)) 
+            end, DoUniqueString('cheat'), .1)
+
         -- Some Bot commands are cheats
         elseif string.find(command, "-bot") then
-            if string.find(command, "switch") then
+            local splitedcommand = arguments 
+            if splitedcommand[1] and splitedcommand[1] == "switch" then
                 if ingame.botsInLateGameMode then
                     ingame.botsInLateGameMode = false
                     GameRules:GetGameModeEntity():SetBotsInLateGame(ingame.botsInLateGameMode)
@@ -318,7 +338,7 @@ function Commands:OnPlayerChat(keys)
                     GameRules:GetGameModeEntity():SetBotsInLateGame(ingame.botsInLateGameMode)
                 end
                 ingame:CommandNotification("-switched", "Bots have switched modes.", 5)
-            end
+            end    
         
         elseif string.find(command, "-god") then 
             Timers:CreateTimer(function()  
