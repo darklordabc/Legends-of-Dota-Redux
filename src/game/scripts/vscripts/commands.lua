@@ -118,7 +118,12 @@ function Commands:OnPlayerChat(keys)
     elseif string.find(command, "-switchteam") then
         local team = PlayerResource:GetTeam(playerID)
         if (ingame.needsTeamBalance and ingame.takeFromTeam == team) or util:isSinglePlayerMode() or IsInToolsMode() then
-            util:CreateVoting("lodVotingSwitchTeam", playerID, 10, 100, function()
+            local requiredPercentage = 100
+            -- If game is less than 20 minutes in, you only require 50% of the vote to switch teams
+            if GameRules:GetDOTATime(false,false) < 1200 then
+                requiredPercentage = 50
+            end
+            util:CreateVoting("lodVotingSwitchTeam", playerID, 10, requiredPercentage, function()
                 local oldTeam = PlayerResource:GetCustomTeamAssignment(playerID)
                 local newTeam = otherTeam(oldTeam)
                 local uMoney = PlayerResource:GetUnreliableGold(playerID)
