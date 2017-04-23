@@ -1452,6 +1452,13 @@
     "credit_pudge_flesh_heap_move_speed"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
     "credit_pudge_flesh_heap_spell_amp"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
     "credit_pudge_flesh_heap_bonus_vision"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_pudge_flesh_heap_evasion"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_pudge_flesh_heap_cast_range"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_pudge_flesh_heap_magic_resistance"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_pudge_flesh_heap_spell_lifesteal"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_pudge_flesh_heap_lifesteal"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_pudge_flesh_heap_armor"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_pudge_flesh_heap_cooldown_reduction"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
     "credit_silencer_global_break"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
     "credit_tinker_rearm_lod"           "<font color=\'#7D7D7D\'>Credits: Myrl | github.com/Myrl</font>"    
     "credit_ursa_enrage_old"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
@@ -2216,6 +2223,43 @@
     "DOTA_Tooltip_ability_pudge_flesh_heap_magic_resistance_Description" "<font color='#70EA72'>Gives bonus magic resistance that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Magic Resistance is retroactive, meaning it can gain charges before it is skilled, which then become active."
     "DOTA_Tooltip_ability_pudge_flesh_heap_magic_resistance_flesh_heap_value_buff_amount"  "RESISTANCE PER STACK:"
     "DOTA_Tooltip_ability_pudge_flesh_heap_magic_resistance_flesh_heap_range"            "RANGE:"
+
+
+
+
+
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_cast_range"         "Flesh Heap - Cast Range"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_cast_range_Description" "<font color='#70EA72'>Gives bonus cast range that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Magic Resistance is retroactive, meaning it can gain charges before it is skilled, which then become active."
+    "DOTA_Tooltip_ability_pudge_flesh_heap_cast_range_flesh_heap_value_buff_amount"  "CAST RANGE PER STACK:"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_cast_range_flesh_heap_range"            "RANGE:"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_spell_lifesteal"         "Flesh Heap - Spell Life Steal"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_spell_lifesteal_Description" "<font color='#70EA72'>Gives bonus magic life steal that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Magic Resistance is retroactive, meaning it can gain charges before it is skilled, which then become active."
+    "DOTA_Tooltip_ability_pudge_flesh_heap_spell_lifesteal_flesh_heap_value_buff_amount"  "SPELL LIFE STEAL PER STACK:"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_spell_lifesteal_flesh_heap_range"            "RANGE:"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_lifesteal"         "Flesh Heap - Life Steal"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_lifesteal_Description" "<font color='#70EA72'>Gives bonus life steal that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Magic Resistance is retroactive, meaning it can gain charges before it is skilled, which then become active."
+    "DOTA_Tooltip_ability_pudge_flesh_heap_lifesteal_flesh_heap_value_buff_amount"  "LIFE STEAL PER STACK:"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_lifesteal_flesh_heap_range"            "RANGE:"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_armor"         "Flesh Heap - Armor"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_armor_Description" "<font color='#70EA72'>Gives bonus armor that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Magic Resistance is retroactive, meaning it can gain charges before it is skilled, which then become active."
+    "DOTA_Tooltip_ability_pudge_flesh_heap_armor_flesh_heap_value_buff_amount"  "ARMOR PER STACK:"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_armor_flesh_heap_range"            "RANGE:"
+
+    "DOTA_Tooltip_modifier_flesh_heap_cast_range"                                              "Cast Range"
+    "DOTA_Tooltip_modifier_flesh_heap_cast_range_Description"                                  "Gaining extra cast range per stack"
+
+    "DOTA_Tooltip_modifier_flesh_heap_spell_lifesteal"                                              "Spell Life Steal"
+    "DOTA_Tooltip_modifier_flesh_heap_spell_lifesteal_Description"                                  "Gaining extra spell life steal per stack"
+
+    "DOTA_Tooltip_modifier_flesh_heap_lifesteal"                                              "Life Steal"
+    "DOTA_Tooltip_modifier_flesh_heap_lifesteal_Description"                                  "Gaining life steal per stack"
+
+    "DOTA_Tooltip_modifier_flesh_heap_armor"                                              "Armor"
+    "DOTA_Tooltip_modifier_flesh_heap_armor_Description"                                  "Gaining extra armor per stack"
 
     "DOTA_Tooltip_modifier_flesh_heap_magic_resistance"                                              "Magic Resistance"
     "DOTA_Tooltip_modifier_flesh_heap_magic_resistance_Description"                                  "Gaining extra magic resitance per stack"
