@@ -547,6 +547,7 @@
     "kamikazeAlreadyDeactivated"                    "Kamikaze mechanic already deactivated"
     "heroBuilderAlreadyOn"                          "Hero builder already on"
     "respawnAlreadyDeactivated"                     "Respawn increasing already deactivated"
+    "invisbilityItemsAreBanned"                     "Invisibility items are banned"
 
     "lodUniqueSkillsOff"                            "Disabled"
     "lodUniqueSkillsTeam"                           "Unique Team Skills"

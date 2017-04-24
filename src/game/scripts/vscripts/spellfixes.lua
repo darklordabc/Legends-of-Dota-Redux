@@ -104,6 +104,7 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
                             local punishAmount = 500
                             hero:ModifyGold(item:GetCost() - punishAmount , false, 0)
                             hero:RemoveItem(item)
+                            util:DisplayError(keys.PlayerID, "invisbilityItemsAreBanned")
                             break
                         end
                     end
