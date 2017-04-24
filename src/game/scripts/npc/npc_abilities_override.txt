@@ -1601,8 +1601,8 @@
     }
     "treant_natures_guise"
     {
-        "ReduxFlags"                                                           "mobility | invis | nature"
-        "ReduxPerks"                                                           "mobility"
+        "ReduxFlags"                                                           "mobility | invis"
+        "ReduxPerks"                                                           "mobility | nature"
         "ReduxCost"                                                            "10"
     }
     "broodmother_spin_web"
