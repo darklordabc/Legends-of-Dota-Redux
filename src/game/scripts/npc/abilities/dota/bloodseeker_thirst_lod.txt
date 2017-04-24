@@ -69,7 +69,7 @@
                 "IsHidden"                                             "1"
                 "Properties"
                 {
-                    "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"     "%bonus_damage_per_stack"
+                    "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"     "%bonus_damage_per_stack"
                     "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%bonus_movement_speed_per_stack"
                 }
             }
