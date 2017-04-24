@@ -1,5 +1,58 @@
 "DOTAAbilities"
 {
+    "zuus_arc_lightning_op"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                    "zuus_arc_lightning"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityTextureName"                                                   "custom/zuus_arc_lightning_op"
+        "ReduxFlags"                                                           "SuperOP"
+        "ReduxPerks"                                                           "lightning"
+        
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "850"
+        "AbilityCastPoint"              "0.2"
+
+        // Damage.
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityDamage"                 "85 130 145 175"
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "1.6"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "65 70 75 80"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "radius"                "5000"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "jump_count"            "100"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "jump_delay"            "0.25 0.25 0.25 0.25"
+            }
+        }
+    }
+
     "lich_chain_frost_op"
     {
         // General
