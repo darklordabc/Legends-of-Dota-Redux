@@ -1073,8 +1073,6 @@ function Pregame:onThink()
 
     -- Selection phase
     if ourPhase == constants.PHASE_SELECTION then
-        GameRules:GetGameModeEntity():SetCustomGameForceHero("")
-        
         if self.useDraftArrays and not self.draftArrays then
             self:buildDraftArrays()
 
@@ -1360,12 +1358,32 @@ end
 -- Spawns a given player
 function Pregame:spawnPlayer(playerID, callback)
     if PlayerResource:GetConnectionState(playerID) >= 1 then
-        if self.spawnedHeroesFor[playerID] then return end
-        self.spawnedHeroesFor[playerID] = true
+        local player = PlayerResource:GetPlayer(playerID)
+        if player ~= nil then
+            local heroName = self.selectedHeroes[playerID] or self:getRandomHero()
 
-        table.insert(self.spawnQueue, playerID)
+            PrecacheUnitByNameAsync(heroName, function()
+                local wisp = PlayerResource:GetSelectedHeroEntity(playerID)
+                wisp:SetRespawnsDisabled(true)
 
-        self:actualSpawnPlayer()
+                local hero = PlayerResource:ReplaceHeroWith(playerID, heroName, 0, 0 )
+                self.spawnedHeroesFor[playerID] = true
+
+                self:fixSpawnedHero(hero)
+
+                local build = self.selectedSkills[playerID]
+
+                if build then
+                    local status2,err2 = pcall(function()
+                        SkillManager:ApplyBuild(hero, build or {})
+
+                        buildBackups[playerID] = build
+                    end)
+                end
+
+                UTIL_Remove(wisp)
+            end, playerID)
+        end
     end
 end
 
@@ -7622,16 +7640,16 @@ ListenToGameEvent('game_rules_state_change', function(keys)
         local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
         
         -- Add talents
-        Timers:CreateTimer(function()
-            local maxPlayerID = 24
-            for playerID=0,maxPlayerID-1 do
-                local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+        -- Timers:CreateTimer(function()
+        --     local maxPlayerID = 24
+        --     for playerID=0,maxPlayerID-1 do
+        --         local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 
-                if hero ~= nil and IsValidEntity(hero) then
-                    _instance:fixSpawnedHero( hero )
-                end
-            end
-        end, DoUniqueString('addTalents'), 2.0)
+        --         if hero ~= nil and IsValidEntity(hero) then
+        --             _instance:fixSpawnedHero( hero )
+        --         end
+        --     end
+        -- end, DoUniqueString('addTalents'), 2.0)
     elseif newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
         if IsDedicatedServer() then
             local mapName = OptionManager:GetOption('mapname')
