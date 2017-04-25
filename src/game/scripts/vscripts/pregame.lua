@@ -6089,6 +6089,16 @@ function Pregame:addExtraTowers()
             local ent = EntIndexToHScript(keys.entindex_killed)
             --local attacker = EntIndexToHScript( keys.entindex_attacker )
             
+            -- Filter gold modifier here instead of in filtergold in ingame because this makes the popup correct
+            if ent:GetHealth() <= 0 then
+                local goldModifier = OptionManager:GetOption('goldModifier')
+                if goldModifier ~= 1 then
+                    local newBounty = ent:GetGoldBounty() * goldModifier / 100
+                    ent:SetMaximumGoldBounty(newBounty) 
+                    ent:SetMinimumGoldBounty(newBounty)
+                end
+            
+            end
             -- Check for tower connections
             if ent:GetHealth() <= 0 and this.towerConnectors[ent] then
                 local tower = this.towerConnectors[ent]
