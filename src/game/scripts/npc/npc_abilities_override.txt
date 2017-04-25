@@ -2869,7 +2869,7 @@
     {
         "ReduxPerks"                                                           "lightning | aura"
         "ReduxCost"                                                            "40"
-        "ReduxBans"                                                            "death_prophet_witchcraft | storm_spirit_ball_lightning | storm_spirit_static_remnant | earthshaker_enchant_totem"
+        "ReduxBans"                                                            "obsidian_destroyer_arcane_orb | death_prophet_witchcraft | storm_spirit_ball_lightning | storm_spirit_static_remnant | earthshaker_enchant_totem"
         "ReduxBanCategory"                                                     "SpammableSpells"
         "ReduxFlags"                                                           "wtfAutoBan | OPSkillsList"
     }
