@@ -367,7 +367,8 @@
         "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "SpellImmunityType"     "SPELL_IMMUNITY_ENEMIES_NO"
         "AbilityUnitDamageType"     "DAMAGE_TYPE_PHYSICAL"
- 
+        "ReduxFlags"                                                           "invis"
+        
         "AbilityTextureName"        "custom/tenebris_fade_strike"
  
         //Casting

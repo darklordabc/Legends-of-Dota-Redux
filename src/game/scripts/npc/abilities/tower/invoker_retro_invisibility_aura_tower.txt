@@ -8,7 +8,7 @@
 		"FightRecapLevel" "1"
 		"MaxLevel" "3"
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-		"ReduxFlags"                                                           "SuperOP"
+		"ReduxFlags"                                                           "invis | SuperOP"
 		
 		"precache" {
 			"particle" "particles/units/heroes/hero_invoker/invoker_retro_invisibility_aura.vpcf"
