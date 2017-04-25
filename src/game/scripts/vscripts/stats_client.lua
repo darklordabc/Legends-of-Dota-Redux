@@ -94,15 +94,10 @@ function StatsClient:RemoveSkillBuild(args)
 end
 
 function StatsClient:VoteSkillBuild(args)
-	local playerID = args.PlayerID
-	local steamID = tostring(PlayerResource:GetSteamID(playerID))
-	local id = args.id
-	local vote
-	if type(args.vote) == "number" then vote = args.vote == 1 end
 	StatsClient:Send("voteSkillBuild", {
-		steamID = steamID,
-		id = id,
-		vote = vote
+		steamID = tostring(PlayerResource:GetSteamID(args.PlayerID)),
+		id = args.id or "",
+		vote = type(args.vote) == "number" and args.vote or 0
 	})
 end
 

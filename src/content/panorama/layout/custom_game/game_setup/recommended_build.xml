@@ -9,9 +9,9 @@
         <Panel class="recommendedBuildContainer">
             <Panel class="recommendedBuildLeftSide">
                 <Panel class="recommendedBuildRating">
-                    <Panel id="recommendedBuildUpVote" class="recommendedBuildVote up" onactivate="onSelectBuildVoteUp()" />
+                    <Panel id="recommendedBuildUpVote" class="recommendedBuildVote up" onactivate="onSelectBuildVote(1)" />
                     <Label id="buildRating" text="0" />
-                    <Panel id="recommendedBuildDownVote" class="recommendedBuildVote down" onactivate="onSelectBuildVoteDown()" />
+                    <Panel id="recommendedBuildDownVote" class="recommendedBuildVote down" onactivate="onSelectBuildVote(-1)" />
                 </Panel>
                 <Panel class="recommendedBuildActions">
                     <Panel id="recommendedBuildFavourite" onactivate="onClickFav()" />

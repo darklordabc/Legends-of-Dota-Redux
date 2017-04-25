@@ -75,16 +75,9 @@ function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, bu
     }
 
     //Votes
-    var currentScore = 0;
-    for (var k in build.votes) {
-        if (build.votes[k] != null) build.votes[k] ? currentScore++ : currentScore--;
-    }
-    $("#buildRating").text = currentScore;
-    if (build.votes[localSteamID] != null) {
-        var vote = build.votes[localSteamID]
-        $.GetContextPanel().SetHasClass("votedUp", vote == true)
-        $.GetContextPanel().SetHasClass("votedDown", vote == false)
-    }
+    $("#buildRating").text = build.votes;
+    $.GetContextPanel().SetHasClass("votedUp", build.votes_up.indexOf(localSteamID) !== -1)
+    $.GetContextPanel().SetHasClass("votedDown", build.votes_down.indexOf(localSteamID) !== -1)
 
     // Store the build data
     buildData = {
@@ -121,25 +114,19 @@ function removeBuild() {
     })
 }
 
-function onSelectBuildVoteUp() {
-    onSelectBuildVote($.GetContextPanel().BHasClass("votedUp") || $.GetContextPanel().BHasClass("votedDown") ? null : true)
-}
-
-function onSelectBuildVoteDown() {
-    onSelectBuildVote($.GetContextPanel().BHasClass("votedUp") || $.GetContextPanel().BHasClass("votedDown") ? null : false)
-}
-
 function onSelectBuildVote(vote) {
-    var score = Number($("#buildRating").text);
-    if (vote != null) {
-        vote ? score++ : score--
-    } else {
-        if ($.GetContextPanel().BHasClass("votedUp")) score--;
-        if ($.GetContextPanel().BHasClass("votedDown")) score++;
-    };
-    $("#buildRating").text = score;
-    $.GetContextPanel().SetHasClass("votedUp", vote == true)
-    $.GetContextPanel().SetHasClass("votedDown", vote == false)
+    var newVotes = Number($("#buildRating").text);
+    if ($.GetContextPanel().BHasClass("votedUp")) {
+        if (vote > 0) return; newVotes--; vote = 0;
+    } else if ($.GetContextPanel().BHasClass("votedDown")) {
+        if (vote < 0) return; newVotes++; vote = 0;
+    } else
+        newVotes += vote;
+    $.GetContextPanel().SetHasClass("votedUp", vote > 0)
+    $.GetContextPanel().SetHasClass("votedDown", vote < 0)
+    
+    $("#buildRating").text = newVotes;
+
     GameEvents.SendCustomGameEventToServer("stats_client_vote_skill_build", {
         id: $.GetContextPanel().buildID,
         vote: vote

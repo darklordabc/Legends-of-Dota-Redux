@@ -1,5 +1,4 @@
-var debug = false;
-var ServerAddress = (Game.IsInToolsMode() && debug ? "http://127.0.0.1:3333" : "https://lodr-ark120202.rhcloud.com") + "/lodServer/"
+var ServerAddress = (Game.IsInToolsMode() && false ? "http://127.0.0.1:3333" : "https://lodr-ark120202.rhcloud.com") + "/lodServer/"
 
 function GetDataFromServer(path, params, resolve, reject) {
 	var encodedParams = params == null ? "" : "?" + Object.keys(params).map(function(key) {
