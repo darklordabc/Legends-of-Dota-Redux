@@ -24,9 +24,9 @@ function CreateSkillBuild(title, description) {
 	})
 }
 
-function LoadBuilds(startFrom) {
+function LoadBuilds(skip) {
 	var req = {steamID: Game.GetLocalPlayerInfo().player_steamid};
-	if (startFrom) req.startFrom = startFrom;
+	if (skip) req.skip = skip;
 	GetDataFromServer("getSkillBuilds", req, function(builds) {
 		if (builds && builds.length > 0) {
 			for (var i = 0; i < builds.length; i++) {

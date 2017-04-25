@@ -2008,9 +2008,8 @@ function OnMainSelectionTabShown() {
 }
 
 function LoadMoreBuilds() {
-    var cont = $("#pickingPhaseRecommendedBuildContainer");
-    var last = cont.GetChild(cont.GetChildCount() - 1)
-    if (last) LoadBuilds(last.buildID);
+    var cc = $("#pickingPhaseRecommendedBuildContainer").GetChildCount();
+    if (cc > 0) LoadBuilds(cc - 1);
 }
 
 // Adds a build to the main selection tab
