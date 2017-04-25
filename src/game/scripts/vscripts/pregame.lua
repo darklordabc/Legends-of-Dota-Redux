@@ -1357,34 +1357,39 @@ end
 
 -- Spawns a given player
 function Pregame:spawnPlayer(playerID, callback)
-    if PlayerResource:GetConnectionState(playerID) >= 1 then
-        local player = PlayerResource:GetPlayer(playerID)
-        if player ~= nil then
-            local heroName = self.selectedHeroes[playerID] or self:getRandomHero()
-
-            PrecacheUnitByNameAsync(heroName, function()
+    Timers:CreateTimer(function (  )
+        if PlayerResource:GetConnectionState(playerID) >= 1 then
+            local player = PlayerResource:GetPlayer(playerID)
+            if player ~= nil then
+                local heroName = self.selectedHeroes[playerID] or self:getRandomHero()
                 local wisp = PlayerResource:GetSelectedHeroEntity(playerID)
-                wisp:SetRespawnsDisabled(true)
+                if wisp then
+                    PrecacheUnitByNameAsync(heroName, function()
+                        wisp:SetRespawnsDisabled(true)
 
-                local hero = PlayerResource:ReplaceHeroWith(playerID, heroName, 0, 0 )
-                self.spawnedHeroesFor[playerID] = true
+                        local hero = PlayerResource:ReplaceHeroWith(playerID, heroName, 0, 0 )
+                        self.spawnedHeroesFor[playerID] = true
 
-                self:fixSpawnedHero(hero)
+                        self:fixSpawnedHero(hero)
 
-                local build = self.selectedSkills[playerID]
+                        local build = self.selectedSkills[playerID]
 
-                if build then
-                    local status2,err2 = pcall(function()
-                        SkillManager:ApplyBuild(hero, build or {})
+                        if build then
+                            local status2,err2 = pcall(function()
+                                SkillManager:ApplyBuild(hero, build or {})
 
-                        buildBackups[playerID] = build
-                    end)
+                                buildBackups[playerID] = build
+                            end)
+                        end
+
+                        UTIL_Remove(wisp)
+                    end, playerID)
+                else
+                    return 0.1
                 end
-
-                UTIL_Remove(wisp)
-            end, playerID)
+            end
         end
-    end
+    end, 0.03, DoUniqueString("fixHero"))
 end
 
 function Pregame:actualSpawnPlayer(playerID, callback)
