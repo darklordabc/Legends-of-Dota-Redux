@@ -1203,7 +1203,7 @@ function Pregame:onThink()
         -- Spawn all humans
         Timers:CreateTimer(function()
             -- Spawn all players
-            this:spawnAllHeroes()
+            -- this:spawnAllHeroes()
         end, DoUniqueString('spawnbots'), 0.1)
 
         -- Move to ingame
@@ -1362,34 +1362,34 @@ function Pregame:spawnPlayer(playerID, callback)
             local player = PlayerResource:GetPlayer(playerID)
             if player ~= nil then
                 local heroName = self.selectedHeroes[playerID] or self:getRandomHero()
-                local wisp = PlayerResource:GetSelectedHeroEntity(playerID)
-                if wisp then
-                    PrecacheUnitByNameAsync(heroName, function()
-                        wisp:SetRespawnsDisabled(true)
+                PrecacheUnitByNameAsync(heroName, function()
+                    Timers:CreateTimer(function (  )
+                        local wisp = player:GetAssignedHero()
+                        if wisp then
+                            wisp:SetRespawnsDisabled(true)
 
-                        local hero = PlayerResource:ReplaceHeroWith(playerID, heroName, 0, 0 )
-                        self.spawnedHeroesFor[playerID] = true
+                            local hero = PlayerResource:ReplaceHeroWith(playerID, heroName, 0, 0 )
+                            self.spawnedHeroesFor[playerID] = true
 
-                        self:fixSpawnedHero(hero)
+                            self:fixSpawnedHero(hero)
 
-                        local build = self.selectedSkills[playerID]
+                            -- local build = self.selectedSkills[playerID]
 
-                        if build then
-                            local status2,err2 = pcall(function()
-                                SkillManager:ApplyBuild(hero, build or {})
+                            -- if build then
+                            --     local status2,err2 = pcall(function()
+                            --         SkillManager:ApplyBuild(hero, build or {})
 
-                                buildBackups[playerID] = build
-                            end)
-                        end
+                            --         buildBackups[playerID] = build
+                            --     end)
+                            -- end
 
-                        UTIL_Remove(wisp)
-                    end, playerID)
-                else
-                    return 0.1
-                end
+                            UTIL_Remove(wisp)     
+                        end                   
+                    end, DoUniqueString("fixHero"), 0.1)
+                end, playerID)
             end
         end
-    end, 0.03, DoUniqueString("fixHero"))
+    end, DoUniqueString("fixHero"), 0.03)
 end
 
 function Pregame:actualSpawnPlayer(playerID, callback)
@@ -7644,7 +7644,7 @@ local _instance = Pregame()
 ListenToGameEvent('game_rules_state_change', function(keys)
     local newState = GameRules:State_Get()
     if newState == DOTA_GAMERULES_STATE_PRE_GAME then
-        local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
+        -- local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
         
         -- Add talents
         -- Timers:CreateTimer(function()
@@ -7657,6 +7657,7 @@ ListenToGameEvent('game_rules_state_change', function(keys)
         --         end
         --     end
         -- end, DoUniqueString('addTalents'), 2.0)
+        _instance:spawnAllHeroes()
     elseif newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
         if IsDedicatedServer() then
             local mapName = OptionManager:GetOption('mapname')
