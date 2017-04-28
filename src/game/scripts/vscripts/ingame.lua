@@ -1347,7 +1347,6 @@ function Ingame:FilterModifyGold(filterTable)
     -- Grab useful information
     local playerID = filterTable.player_id_const
     local teamID = PlayerResource:GetTeam(playerID)
-    print(filterTable.reason_const)
     
     -- Grab the gold modifier
     local goldModifier = OptionManager:GetOption('goldModifier')
