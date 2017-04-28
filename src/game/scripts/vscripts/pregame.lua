@@ -1371,17 +1371,17 @@ function Pregame:spawnPlayer(playerID, callback)
                             local hero = PlayerResource:ReplaceHeroWith(playerID, heroName, 0, 0 )
                             self.spawnedHeroesFor[playerID] = true
 
+                            local build = self.selectedSkills[playerID]
+
+                            if build then
+                                local status2,err2 = pcall(function()
+                                    SkillManager:ApplyBuild(hero, build or {})
+
+                                    buildBackups[playerID] = build
+                                end)
+                            end
+
                             self:fixSpawnedHero(hero)
-
-                            -- local build = self.selectedSkills[playerID]
-
-                            -- if build then
-                            --     local status2,err2 = pcall(function()
-                            --         SkillManager:ApplyBuild(hero, build or {})
-
-                            --         buildBackups[playerID] = build
-                            --     end)
-                            -- end
 
                             UTIL_Remove(wisp)     
                         end                   
@@ -6873,7 +6873,7 @@ function Pregame:hookBotStuff()
         if PlayerResource:GetConnectionState(playerID) == 1 then
             Timers:CreateTimer(function ()
                 local hero = PlayerResource:GetSelectedHeroEntity(playerID)
-                if IsValidEntity(hero) then
+                if IsValidEntity(hero) and this.spawnedHeroesFor[playerID] then
                     local build = this.selectedSkills[playerID]
 
                     local heroName = hero:GetClassname()
@@ -7009,44 +7009,30 @@ function Pregame:fixSpawnedHero( spawnedUnit )
     end
 
     -- Fix meepo clones and illusions
-    if mainHero and mainHero ~= spawnedUnit and self.spawnedHeroesFor[playerID] then
-        -- Apply the build
-        local build = this.selectedSkills[playerID] or {}
-        SkillManager:ApplyBuild(spawnedUnit, build)
+    -- if mainHero and mainHero ~= spawnedUnit and self.spawnedHeroesFor[playerID] then
+    --     -- Apply the build
+    --     local build = this.selectedSkills[playerID] or {}
+    --     SkillManager:ApplyBuild(spawnedUnit, build)
 
-        -- Illusion and Tempest Double fixes
-        if not spawnedUnit:IsClone() then
-            Timers:CreateTimer(function()
-                if IsValidEntity(spawnedUnit) then
-                    for k,abilityName in pairs(build) do
-                        if notOnIllusions[abilityName] then
-                            local ab = spawnedUnit:FindAbilityByName(abilityName)
-                            if ab then
-                                ab:SetLevel(0)
-                                ab:RemoveSelf()
-                            end
-                        end
-                    end
+    --     -- Illusion and Tempest Double fixes
+    --     if not spawnedUnit:IsClone() then
+    --         Timers:CreateTimer(function()
+    --             if IsValidEntity(spawnedUnit) then
+    --                 for k,abilityName in pairs(build) do
+    --                     if notOnIllusions[abilityName] then
+    --                         local ab = spawnedUnit:FindAbilityByName(abilityName)
+    --                         if ab then
+    --                             ab:SetLevel(0)
+    --                             ab:RemoveSelf()
+    --                         end
+    --                     end
+    --                 end
 
 
-                end
-            end, DoUniqueString('fixBrokenSkills'), 0)
-        end
-
-        -- Set the correct level for each ability
-        --[[for k,v in pairs(build) do
-            local abMain = mainHero:FindAbilityByName(v)
-
-            if abMain then
-                local abAlt = spawnedUnit:FindAbilityByName(v)
-
-                if abAlt then
-                    -- Both heroes have both skills, set the level
-                    abAlt:SetLevel(abMain:GetLevel())
-                end
-            end
-        end]]
-    end
+    --             end
+    --         end, DoUniqueString('fixBrokenSkills'), 0)
+    --     end
+    -- end
 
     -- Add talents
     Timers:CreateTimer(function()
@@ -7644,19 +7630,6 @@ local _instance = Pregame()
 ListenToGameEvent('game_rules_state_change', function(keys)
     local newState = GameRules:State_Get()
     if newState == DOTA_GAMERULES_STATE_PRE_GAME then
-        -- local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
-        
-        -- Add talents
-        -- Timers:CreateTimer(function()
-        --     local maxPlayerID = 24
-        --     for playerID=0,maxPlayerID-1 do
-        --         local hero = PlayerResource:GetSelectedHeroEntity(playerID)
-
-        --         if hero ~= nil and IsValidEntity(hero) then
-        --             _instance:fixSpawnedHero( hero )
-        --         end
-        --     end
-        -- end, DoUniqueString('addTalents'), 2.0)
         _instance:spawnAllHeroes()
     elseif newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
         if IsDedicatedServer() then
