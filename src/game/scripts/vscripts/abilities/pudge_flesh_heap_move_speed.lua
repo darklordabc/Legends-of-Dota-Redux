@@ -150,7 +150,7 @@ function modifier_flesh_heap_move_speed:OnDeath(keys)
   local hVictim = keys.unit
 
 
-  if self:GetCaster():GetTeamNumber() ~= hVictim:GetTeamNumber() and self:GetCaster():GetTeamNumber() == hKiller:GetTeamNumber() then
+  if self:GetCaster():GetTeamNumber() ~= hVictim:GetTeamNumber() then
     self.fleshHeapRange = self:GetAbility():GetSpecialValueFor( "flesh_heap_range")
     local vToCaster = self:GetCaster():GetOrigin() - hVictim:GetOrigin()
     local flDistance = vToCaster:Length2D() - (self:GetCaster():GetCollisionPadding() + hVictim:GetCollisionPadding())
