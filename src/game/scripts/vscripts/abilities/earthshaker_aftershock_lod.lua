@@ -2,6 +2,7 @@ local toIgnore = util:getToggleIgnores()
 
 function TryAftershock(keys)
     local abName = keys.event_ability:GetAbilityName()
+    
     if toIgnore[abName] then return true end
 
     -- Calculate how much mana to restore
@@ -19,7 +20,12 @@ function TryAftershock(keys)
     if abLevel <= 0 then return end
 
     -- Start the cooldown
-    ability:StartCooldown(5)
+    Timers:CreateTimer(function()
+        local abCooldown = keys.event_ability:GetCooldownTimeRemaining()
+        if abCooldown < 5 then
+            ability:StartCooldown(5)
+        end                                    
+    end, DoUniqueString('cooldown'), 0.5)
 
     local abRange = ability:GetLevelSpecialValueFor('aftershock_range', abLevel - 1)
     local abDuration = ability:GetLevelSpecialValueFor('tooltip_duration', abLevel - 1)

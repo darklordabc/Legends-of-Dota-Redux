@@ -2460,7 +2460,7 @@
     }
     "earthshaker_aftershock"
     {
-        "ReduxFlags"                                                           "stun | wtfAutoBan | OPSkillsList"
+        "ReduxFlags"                                                           "stun | wtfAutoBan | SuperOP"
         "ReduxPerks"                                                           "earth"
         "ReduxCost"                                                            "120"
         "ReduxBans"                                                            "death_prophet_witchcraft | zuus_arc_lightning | storm_spirit_ball_lightning | storm_spirit_static_remnant | obsidian_destroyer_arcane_orb"

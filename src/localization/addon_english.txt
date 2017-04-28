@@ -2090,7 +2090,7 @@
     
     // Aftershock
     "DOTA_Tooltip_ability_earthshaker_aftershock_lod"                                   "Aftershock Redux"
-    "DOTA_Tooltip_ability_earthshaker_aftershock_lod_Description"                       "Causes the earth to shake underfoot, adding additional damage and stuns to nearby enemy units when Earthshaker casts his abilities. <font color='#70EA72'>Has a cooldown.</font>"
+    "DOTA_Tooltip_ability_earthshaker_aftershock_lod_Description"                       "Causes the earth to shake underfoot, adding additional damage and stuns to nearby enemy units when Earthshaker casts his abilities. <font color='#70EA72'>If the ability has less than 5 seconds cooldown, Aftershock will go on cooldown.</font>"
     "DOTA_Tooltip_ability_earthshaker_aftershock_lod_Lore"                              "The earth trembles beneath the mighty footsteps of Raigor."
     "DOTA_Tooltip_ability_earthshaker_aftershock_lod_Note0"                             "Using items does not trigger Aftershock."
     "DOTA_Tooltip_ability_earthshaker_aftershock_lod_aftershock_range"                  "RADIUS:"
