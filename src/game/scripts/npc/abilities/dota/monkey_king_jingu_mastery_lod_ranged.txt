@@ -82,6 +82,7 @@
                         "ScriptFile"                           "abilities/epic_boss_fight/monkey_king.lua"
                         "Function"                             "JinguHit"
                         "particle"                             "particles/units/heroes/hero_monkey_king/monkey_king_quad_tap_hit.vpcf"
+                        "attack_damage"                        "%attack_damage"
                     }
                 }
             }
