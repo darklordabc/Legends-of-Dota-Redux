@@ -259,7 +259,7 @@ function Ingame:OnPlayerPurchasedItem(keys)
         for i=0,11 do
             local item = hero:GetItemInSlot(i)
             if item ~= nil then
-                if item:GetName() == "item_invis_sword" or item:GetName() == "item_silver_edge" then
+                if item:GetName() == "item_shadow_amulet" or item:GetName() == "item_invis_sword" or item:GetName() == "item_silver_edge" then
                     hero:ModifyGold(item:GetCost(), false, 0)
                     hero:RemoveItem(item)
                     util:DisplayError(keys.PlayerID, "invisbilityItemsAreBanned")
