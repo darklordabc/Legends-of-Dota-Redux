@@ -5,6 +5,7 @@ function zhanhun( keys )
 	local ability = keys.event_ability
 	local abilityCooldown = ability:GetCooldown(ability:GetLevel())
 
+	if ability:GetName() == "item_shadow_amulet" then return nil end
 	--Does not proc for abilities with zero cooldown or very little cooldown
 	--if keys.ability:GetName() == "zhanhun" then
 	if abilityCooldown < 3 then return nil end
