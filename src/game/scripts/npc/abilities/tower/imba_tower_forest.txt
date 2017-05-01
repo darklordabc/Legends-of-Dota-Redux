@@ -18,7 +18,7 @@
 
 			"02" {
 				"var_type" "FIELD_INTEGER"
-				"tree_duration" "120"
+				"tree_duration" "60"
 			}
 		}
 
