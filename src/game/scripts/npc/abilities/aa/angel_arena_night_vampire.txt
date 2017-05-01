@@ -12,12 +12,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "bonus_day"                                            "5 8 10"
+                "bonus_day"                                            "1 2 3"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "bonus_night"                                          "10 20 30"
+                "bonus_night"                                          "3 6 9"
             }
             "03"
             {
