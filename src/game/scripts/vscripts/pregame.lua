@@ -7140,6 +7140,13 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                     spawnedUnit:SwapAbilities("life_stealer_feast_melee","life_stealer_feast_ranged",false,true)
                     spawnedUnit:RemoveAbility("life_stealer_feast_melee")
             end
+
+            if spawnedUnit:HasAbility("monkey_king_jingu_mastery_lod_melee") and spawnedUnit:IsRangedAttacker() then
+                    spawnedUnit:AddAbility("monkey_king_jingu_mastery_lod_ranged")
+                    spawnedUnit:SwapAbilities("monkey_king_jingu_mastery_lod_melee","monkey_king_jingu_mastery_lod_ranged",false,true)
+                    spawnedUnit:RemoveAbility("monkey_king_jingu_mastery_lod_melee")
+            end
+
             -- Change Overpower to Overpower ranged, for ranged heros
             if spawnedUnit:HasAbility("ursa_overpower_melee") and spawnedUnit:IsRangedAttacker() then
                     spawnedUnit:AddAbility("ursa_overpower_ranged")

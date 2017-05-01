@@ -118,6 +118,7 @@
                 }
             }
         }
+        "ReduxBans"                                                            "monkey_king_jingu_mastery_lod"
         "ReduxCost"                                                            "40"
     }
 }
