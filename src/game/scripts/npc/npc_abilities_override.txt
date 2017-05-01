@@ -2095,6 +2095,7 @@
         "ReduxFlags"                                                           "attack_modifier | OPSkillsList"
         "ReduxPerks"                                                           "attack_modifier"
         "ReduxCost"                                                            "80"
+        "ReduxBans"                                                            "ursa_fury_swipes_lod"
     }
     "meepo_geostrike"
     {
