@@ -1196,9 +1196,6 @@ function Pregame:onThink()
     if ourPhase == constants.PHASE_SPAWN_HEROES then
         -- Do things after a small delay
         local this = self
-        
-        -- Hook bot stuff
-        self:hookBotStuff()
 
         -- Spawn all humans
         Timers:CreateTimer(function()
@@ -1223,19 +1220,14 @@ function Pregame:onThink()
         -- Do things after a small delay
         local this = self
 
-        Timers:CreateTimer(function()
-            -- Fix builds
-            this:applyBuilds()
-
-            -- Move to ingame
-            this:setPhase(constants.PHASE_INGAME)
-
-            -- Start tutorial mode so we can show tips to players
-            Tutorial:StartTutorialMode()
-        end, DoUniqueString('preventcamping'), 1)
+        -- Move to ingame
+        this:setPhase(constants.PHASE_INGAME)
 
         -- Hook bot stuff
-        -- self:hookBotStuff()
+        self:hookBotStuff()
+
+        -- Bots
+        Tutorial:StartTutorialMode()
 
         -- Add extra towers
         Timers:CreateTimer(function()
@@ -1377,18 +1369,16 @@ function Pregame:actualSpawnPlayer(playerID, callback)
 
             function spawnTheHero()
                 local status2,err2 = pcall(function()
-                    local wisp = player:GetAssignedHero()
-                    wisp:SetRespawnsDisabled(true)
+                    if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil then
+                        UTIL_Remove(PlayerResource:GetSelectedHeroEntity(playerID))
+                    end
 
-                    print(heroName)
                     local hero = PlayerResource:ReplaceHeroWith(playerID,heroName,625 + OptionManager:GetOption('bonusGold'),0)
-                    print(hero:GetUnitName())
+
                     CustomGameEventManager:Send_ServerToPlayer(player,"lodCreatedHero",{})
 
-                    UTIL_Remove(wisp)
-
-                    -- CreateUnitByName(heroName,Vector(0,0,0),true,player,player,player:GetTeamNumber())
                     if hero ~= nil and IsValidEntity(hero) then
+                        build.hero = heroName
                         SkillManager:ApplyBuild(hero, build or {})
 
                         buildBackups[playerID] = build
@@ -1415,9 +1405,7 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                             end, DoUniqueString('primaryAttrFix'), 0.1)
                         end
 
-                        Timers:CreateTimer(function (  )
-                            self:fixSpawnedHero(hero)
-                        end, DoUniqueString("fixSpawnedHero"), 5.0)
+                        self:fixSpawnedHero(hero)
                     end
                 end)
 
@@ -1429,7 +1417,7 @@ function Pregame:actualSpawnPlayer(playerID, callback)
 
             self.currentlySpawning = false
 
-            -- PrecacheUnitByNameAsync(heroName, function()
+            PrecacheUnitByNameAsync(heroName, function()
                 this.cachedPlayerHeroes[playerID] = true
 
                 spawnTheHero()
@@ -1437,7 +1425,7 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                 if callback then
                     callback()
                 end
-            -- end, playerID)
+            end, playerID)
         else
             -- This player has not spawned!
             self.spawnedHeroesFor[playerID] = nil
@@ -6916,7 +6904,7 @@ function Pregame:hookBotStuff()
                         end 
                     end  
 
-                    self:levelUpAbilities(hero)
+                    -- self:levelUpAbilities(hero)
                 end
             end, DoUniqueString('levelUpTalents'), 2.0)
         end
@@ -6961,32 +6949,6 @@ function Pregame:fixSpawnedHero( spawnedUnit )
     if mainHero and mainHero:IsRealHero() then
         self:applyPrimaryAttribute(playerID, mainHero)
     end
-
-    -- Fix meepo clones and illusions
-    -- if mainHero and mainHero ~= spawnedUnit and self.spawnedHeroesFor[playerID] then
-    --     -- Apply the build
-    --     local build = this.selectedSkills[playerID] or {}
-    --     SkillManager:ApplyBuild(spawnedUnit, build)
-
-    --     -- Illusion and Tempest Double fixes
-    --     if not spawnedUnit:IsClone() then
-    --         Timers:CreateTimer(function()
-    --             if IsValidEntity(spawnedUnit) then
-    --                 for k,abilityName in pairs(build) do
-    --                     if notOnIllusions[abilityName] then
-    --                         local ab = spawnedUnit:FindAbilityByName(abilityName)
-    --                         if ab then
-    --                             ab:SetLevel(0)
-    --                             ab:RemoveSelf()
-    --                         end
-    --                     end
-    --                 end
-
-
-    --             end
-    --         end, DoUniqueString('fixBrokenSkills'), 0)
-    --     end
-    -- end
 
     -- Add talents
     Timers:CreateTimer(function()

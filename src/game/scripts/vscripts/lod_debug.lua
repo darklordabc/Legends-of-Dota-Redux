@@ -12,7 +12,7 @@ function Debug:init()
     -- copy self into global scope
     _G.Debug = self
 
-    -- Debug command for debugging, this command will only work for Ash47
+    -- Debug commands for debugging
     Convars:RegisterCommand('player_say', function(...)
         local arg = {...}
         table.remove(arg,1)
@@ -71,6 +71,18 @@ function Debug:init()
             end
         end
     end, 'destroy_all_trees', 0)
+
+    Convars:RegisterCommand('print_ability_points', function(c, team)
+        for _,v in pairs(Entities:FindAllByName("npc_dota_hero*")) do
+            if IsValidEntity(v) and v:IsNull() == false and v.GetPlayerOwnerID and not v:IsClone() and not v:HasModifier("modifier_arc_warden_tempest_double") then
+                print(v:GetTeamNumber(), tonumber(team), team)
+                if v:GetTeamNumber() == tonumber(team) then
+                    
+                    print(v:GetUnitName(), v:GetAbilityPoints())
+                end
+            end
+        end
+    end, 'kill_team', 0)
 
     Convars:RegisterCommand('kill_team', function(c, team)
         for _,v in pairs(Entities:FindAllByName("npc_dota_hero*")) do
