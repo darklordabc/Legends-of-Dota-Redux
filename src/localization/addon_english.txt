@@ -3742,7 +3742,7 @@
     "DOTA_Tooltip_ability_angel_arena_night_vampire_Description"    "Decreases base attack time and heals you for every kill. Heal amount depends on the max health of enemy and the time of day.(Day or Night)"
     "DOTA_Tooltip_ability_angel_arena_night_vampire_bonus_day"      "%DAY HEAL:"
     "DOTA_Tooltip_ability_angel_arena_night_vampire_bonus_night"    "%NIGHT HEAL:"
-    "DOTA_Tooltip_ability_angel_arena_night_vampire_base_attack_time"   "Base Attack Time:"
+    "DOTA_Tooltip_ability_angel_arena_night_vampire_base_attack_time"   "BASE ATTACK TIME:"
 
     "DOTA_Tooltip_ability_angel_arena_magic_fire"                   "Magic Fire"
     "DOTA_Tooltip_ability_angel_arena_magic_fire_Description"       "Magic fire burns the mana of the enemy unit, and deals damage equal to the amount of mana burned. Also deal damage if enemy unit have enough mana."
