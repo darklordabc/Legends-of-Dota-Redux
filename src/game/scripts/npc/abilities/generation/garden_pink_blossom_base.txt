@@ -36,6 +36,7 @@
         }
         "precache"
         {
+            "particle"                                                     "particles/cherub_pink_flower_heal_projectile.vpcf"
             "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_enchantress.vsndevts"
         }
         "OnSpellStart"
