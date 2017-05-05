@@ -61,7 +61,7 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "movespeed_bonus"       "1 2 2 3"
+                "movespeed_bonus"       "1 2 3 4"
             }
             "02"
             {
@@ -81,7 +81,7 @@
             "05"
             {
                 "var_type"          "FIELD_INTEGER"
-                "agility_bonus"         "15"
+                "agility_bonus"         "10"
             }
     
         }
