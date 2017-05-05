@@ -36,7 +36,7 @@
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "max"                                                  "20000"
+                "max"                                                  "1000"
             }
             "05"
             {
