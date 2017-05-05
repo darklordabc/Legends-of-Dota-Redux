@@ -75,6 +75,11 @@
                 "var_type"              "FIELD_INTEGER"
                 "slow_pct"              "-15 -20 -25 -30"
             }
+            "07"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "duration_2"              "6.5"
+            }
         }
 
         "OnSpellStart"
@@ -123,7 +128,7 @@
             }
             "modifier_shifting_sand_2"
             {
-                "duration"          "%duration + 0.5"
+                "Duration"          "%duration_2"
                 "ThinkInterval" "%eruption_duration"
                 "OnIntervalThink"
                 {
