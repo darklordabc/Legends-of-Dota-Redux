@@ -23,7 +23,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "factory_duration"                                     "60"
+                "factory_duration"                                     "45"
             }
             "02"
             {
