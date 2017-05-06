@@ -1,4 +1,4 @@
-LinkLuaModifier( "modifier_movespeed_cap", "abilities/modifiers/modifier_movespeed_cap.lua", LUA_MODIFIER_MOTION_NONE )
+--LinkLuaModifier( "modifier_movespeed_cap", "abilities/modifiers/modifier_movespeed_cap.lua", LUA_MODIFIER_MOTION_NONE )
 
 --[[
 	Author: SwordBacon
@@ -10,9 +10,9 @@ function CheckThirst(keys)
 	local ability = keys.ability
 
 	-- Removes the 522 move speed cap
-	if not caster:HasModifier("modifier_movespeed_cap") then
-		caster:AddNewModifier(caster, nil, "modifier_movespeed_cap", {})
-	end
+	--if not caster:HasModifier("modifier_movespeed_cap") then
+	--	caster:AddNewModifier(caster, nil, "modifier_movespeed_cap", {})
+	--end
 
 	local heroes = HeroList:GetAllHeroes()
 	local stacks = 0
