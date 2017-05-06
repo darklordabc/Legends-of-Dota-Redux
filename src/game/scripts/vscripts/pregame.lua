@@ -7017,64 +7017,77 @@ function Pregame:fixSpawnedHero( spawnedUnit )
     end
 
     -- Add talents
-    Timers:CreateTimer(function()
-        --print(self.perksDisabled)
-        if spawnedUnit:IsNull() then
-            return
-        end
-        
+    if IsValidEntity(spawnedUnit) and not spawnedUnit.hasTalent then
         local nameTest = spawnedUnit:GetName()
-        -- TODO: This is been temporarily disabled by the "and false" until we can fix up the ability index problem
-        if IsValidEntity(spawnedUnit) and not spawnedUnit.hasTalent then
-            for heroName,heroValues in pairs(allHeroes) do
-                if heroName == nameTest then
-                    if heroName == "npc_dota_hero_invoker"  then
-                        for i=17,24 do
-                            local abName = heroValues['Ability' .. i]
-                            spawnedUnit:AddAbility(abName)
-                        end
-                    elseif heroName == "npc_dota_hero_wisp" or heroName == "npc_dota_hero_rubick" then
-                         if string.find(spawnedUnit:GetAbilityByIndex(0):GetAbilityName(),"special_bonus") then
-                            print("0index talent")
-                            spawnedUnit.tempAbil = spawnedUnit:GetAbilityByIndex(0):GetAbilityName()
-                            spawnedUnit:RemoveAbility(spawnedUnit.tempAbil)
-                        end
-                        for i=11,18 do
-                            local abName = heroValues['Ability' .. i]
-                            local talent = spawnedUnit:AddAbility(abName)
-                        end
-                        if not spawnedUnit:HasAbility(spawnedUnit.tempAbil) then
-                            spawnedUnit:AddAbility(spawnedUnit.tempAbil)
-                        end
-                    else
-                        if string.find(spawnedUnit:GetAbilityByIndex(0):GetAbilityName(),"special_bonus") then
-                            print("0index talent")
-                            spawnedUnit.tempAbil = spawnedUnit:GetAbilityByIndex(0):GetAbilityName()
-                            spawnedUnit:RemoveAbility(spawnedUnit.tempAbil)
-                        end
-                        for i=10,17 do
-                            local abName = heroValues['Ability' .. i]
-                            local talent = spawnedUnit:AddAbility(abName)
-                        end
-                        if not spawnedUnit:HasAbility(spawnedUnit.tempAbil) then
-                            spawnedUnit:AddAbility(spawnedUnit.tempAbil)
-                        end
+        local heroValues = allHeroes[nameTest]
+        if heroValues then
+            local function GetRandomHero()
+                local keys = {}
+                for k in pairs(allHeroes) do
+                    table.insert(keys, k)
+                end
+                return allHeroes[keys[RandomInt(1, #keys)]]
+            end
+
+            local build = self.selectedSkills[playerID]
+            local function VerifyTalent(abName)
+                local requiredAbility = util:getAbilityKV(abName, "TalentRequiredAbility")
+                if not requiredAbility then
+                    return true
+                end
+                for _, v in ipairs(build) do
+                    if v == requiredAbility then
+                        return true
+                    end
+                end
+                return false
+            end
+
+
+            --Load talents from kv and calculate total count
+            local currentTalentCount = 0
+            for i = 1, 24 do
+                local abName = heroValues['Ability' .. i]
+                if abName and string.find(abName, "special_bonus") then
+                    if VerifyTalent(abName) then
+                        spawnedUnit:AddAbility(abName)
+                        currentTalentCount = currentTalentCount + 1
                     end
                 end
             end
-            spawnedUnit.hasTalent = true
-        end
 
-        --for i = 0, spawnedUnit:GetAbilityCount() do
-       --     if spawnedUnit:GetAbilityByIndex(i) then
-                --print("removed") 
-          --      local ability = spawnedUnit:GetAbilityByIndex(i)
-             --   if ability then
-                 --   print("Ability " .. i .. ": " .. ability:GetAbilityName() .. ", Level " .. ability:GetLevel())
-              --  end
-           -- end
-        --end
-    end, DoUniqueString('addTalents'), 1.5)
+            --If hero hasn't enought talents => random
+            while currentTalentCount < 8 do
+                --take random hero
+                local tempHT = GetRandomHero()
+                if type(tempHT) == "table" then
+                    local randomableTalents = {}
+                    for i = 1, 24 do
+                        local abName = tempHT['Ability' .. i]
+                        if abName and string.find(abName, "special_bonus") then
+                            if VerifyTalent(abName) then
+                                table.insert(randomableTalents, abName)
+                            end
+                        end
+                    end
+                    --take random talent
+                    if #randomableTalents > 0 then
+                        local abName = randomableTalents[RandomInt(1, #randomableTalents)]
+                        spawnedUnit:AddAbility(abName)
+                        currentTalentCount = currentTalentCount + 1
+                    end
+                end
+            end
+
+            --0 index talent, move it to end
+            local first_talent = spawnedUnit:GetAbilityByIndex(0):GetAbilityName()
+            if string.find(first_talent, "special_bonus") then
+                spawnedUnit:RemoveAbility(first_talent)
+                spawnedUnit:AddAbility(first_talent)
+            end
+        end
+        spawnedUnit.hasTalent = true
+    end
 
     -- Various fixes
     Timers:CreateTimer(function()

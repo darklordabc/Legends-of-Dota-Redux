@@ -3479,4 +3479,13 @@
     {
         "ReduxFlags"                                                           "OPSkillsList"
     }
+
+    "special_bonus_unique_undying"
+    {
+        "TalentRequiredAbility"                                                   "undying_tombstone"
+    }
+    "special_bonus_unique_undying_2"
+    {
+        "TalentRequiredAbility"                                                   "undying_decay"
+    }
 }
