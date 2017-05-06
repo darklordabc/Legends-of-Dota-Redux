@@ -53,7 +53,7 @@ function Commands:OnPlayerChat(keys)
                 GameRules:SendCustomMessage('Enough players voted to enable anti-rat protection. <font color=\'#70EA72\'>Tier 3 towers cannot be destroyed until all other towers are gone.</font>.',0,0)
             end)
         elseif OptionManager:GetOption('antiRat') == 1 then
-            util:DisplayError(0, "#antiRatAlreadyOn")
+            util:DisplayError(playerID, "#antiRatAlreadyOn")
         end
     elseif string.find(command, "-doublecreeps") or string.find(command, "-dc") then
        if not ingame.voteDoubleCreeps and OptionManager:GetOption('neutralMultiply') < 2 then
@@ -65,7 +65,7 @@ function Commands:OnPlayerChat(keys)
                 GameRules:SendCustomMessage('Enough players voted to enable double neutrals. <font color=\'#70EA72\'>Neutral creep camps are now doubled</font>.',0,0)
             end)
         elseif OptionManager:GetOption('neutralMultiply') > 1 then
-            util:DisplayError(0, "#multiplyAlreadyOn")
+            util:DisplayError(playerID, "#multiplyAlreadyOn")
         end
     elseif string.find(command, "-enablecheat") or string.find(command, "-ec") then
         if not ingame.voteEnabledCheatMode and not Convars:GetBool("sv_cheats") then
@@ -75,7 +75,7 @@ function Commands:OnPlayerChat(keys)
                 GameRules:SendCustomMessage('<font color=\'#70EA72\'>Everbody voted to enable cheat mode. Cheat mode enabled</font>.',0,0)
             end)
         elseif ingame.voteEnabledCheatMode or Convars:GetBool("sv_cheats") then
-            util:DisplayError(0, "#cheatModeAlreadyOn")
+            util:DisplayError(playerID, "#cheatModeAlreadyOn")
         end
     elseif string.find(command, "-enablekamikaze") or string.find(command, "-ek") then
         if not ingame.voteDisableAntiKamikaze then
@@ -85,7 +85,7 @@ function Commands:OnPlayerChat(keys)
                 GameRules:SendCustomMessage('Everbody voted to disable the anti-Kamikaze mechanic. <font color=\'#70EA72\'>No more peanlty for dying 3 times within 60 seconds</font>.',0,0)
             end)
         elseif ingame.voteDisableAntiKamikaze then
-            util:DisplayError(0, "#kamikazeAlreadyDeactivated")
+            util:DisplayError(playerID, "#kamikazeAlreadyDeactivated")
         end
     elseif string.find(command, "-enablebuilder") or string.find(command, "-eb") and OptionManager:GetOption('allowIngameHeroBuilder') == false then
         if not ingame.voteEnableBuilder and OptionManager:GetOption('allowIngameHeroBuilder') ~= true then
@@ -100,7 +100,7 @@ function Commands:OnPlayerChat(keys)
                 GameRules:SendCustomMessage('Everbody voted to enable the ingame hero builder. <font color=\'#70EA72\'>You can now change your hero build mid-game</font>.',0,0)
             end)
         elseif OptionManager:GetOption('allowIngameHeroBuilder') == true or ingame.voteEnableBuilder then
-            util:DisplayError(0, "#heroBuilderAlreadyOn")
+            util:DisplayError(playerID, "#heroBuilderAlreadyOn")
         end
     elseif string.find(command, "-enablerespawn") or string.find(command, "-er") then
         if not ingame.voteDisableRespawnLimit then
@@ -113,30 +113,35 @@ function Commands:OnPlayerChat(keys)
                 GameRules:SendCustomMessage('Everbody voted to disable the increasing-spawn-rate mechanic. <font color=\'#70EA72\'>Respawn rates no longer increase after 40 minutes</font>. Respawn rate is now '.. OptionManager:GetOption('respawnModifierPercentage') .. '%.',0,0)
             end)
         elseif ingame.voteDisableRespawnLimit then
-            util:DisplayError(0, "#respawnAlreadyDeactivated")
+            util:DisplayError(playerID, "#respawnAlreadyDeactivated")
         end
     elseif string.find(command, "-switchteam") then
         local team = PlayerResource:GetTeam(playerID)
         if (ingame.needsTeamBalance and ingame.takeFromTeam == team) or util:isSinglePlayerMode() or IsInToolsMode() then
             local requiredPercentage = 100
             -- If game is less than 20 minutes in, you only require 50% of the vote to switch teams
-            if GameRules:GetDOTATime(false,false) < 1200 then
+            if GameRules:GetDOTATime(false,false) == 0 then
+                util:DisplayError(playerID, "#cantSwitchYet")
+            else
+                if GameRules:GetDOTATime(false,false) < 1200 then
                 requiredPercentage = 50
+                end
+                util:CreateVoting("lodVotingSwitchTeam", playerID, 10, requiredPercentage, function()
+                    local oldTeam = PlayerResource:GetCustomTeamAssignment(playerID)
+                    local newTeam = otherTeam(oldTeam)
+                    local uMoney = PlayerResource:GetUnreliableGold(playerID)
+                    local rMoney = PlayerResource:GetReliableGold(playerID)
+
+                    GameRules:SetCustomGameTeamMaxPlayers(newTeam, GameRules:GetCustomGameTeamMaxPlayers(newTeam) + 1)
+
+                    ingame:balancePlayer(playerID, newTeam)
+                    PlayerResource:SetGold(playerID, uMoney, false)
+                    PlayerResource:SetGold(playerID, rMoney, true)
+
+                    GameRules:SetCustomGameTeamMaxPlayers(oldTeam, GameRules:GetCustomGameTeamMaxPlayers(oldTeam) - 1)
+                end)
             end
-            util:CreateVoting("lodVotingSwitchTeam", playerID, 10, requiredPercentage, function()
-                local oldTeam = PlayerResource:GetCustomTeamAssignment(playerID)
-                local newTeam = otherTeam(oldTeam)
-                local uMoney = PlayerResource:GetUnreliableGold(playerID)
-                local rMoney = PlayerResource:GetReliableGold(playerID)
-
-                GameRules:SetCustomGameTeamMaxPlayers(newTeam, GameRules:GetCustomGameTeamMaxPlayers(newTeam) + 1)
-
-                ingame:balancePlayer(playerID, newTeam)
-                PlayerResource:SetGold(playerID, uMoney, false)
-                PlayerResource:SetGold(playerID, rMoney, true)
-
-                GameRules:SetCustomGameTeamMaxPlayers(oldTeam, GameRules:GetCustomGameTeamMaxPlayers(oldTeam) - 1)
-            end)
+            
         else
             --Failed, error message
         end

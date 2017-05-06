@@ -542,6 +542,7 @@
     "votingPlayerBanned"                            "You can't initiate votings, because too much of your votings were rejected"
 
     "antiRatAlreadyOn"                              "Anti-Rat protection already on"
+    "cantSwitchYet"                                 "Can't switch until game started"
     "multiplyAlreadyOn"                             "Neutrals already multiplied"
     "cheatModeAlreadyOn"                            "Cheat mode already on"
     "kamikazeAlreadyDeactivated"                    "Kamikaze mechanic already deactivated"
