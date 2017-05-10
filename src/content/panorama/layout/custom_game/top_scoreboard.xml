@@ -45,7 +45,7 @@
 	<Panel class="base" hittest="false">
 		<Panel id="TimeOfDayBG"/>
 
-		<Panel id="TimeOfDay" onmouseover="$.GetContextPanel().AddClass('ShowTimeUntil')" onmouseout="$.GetContextPanel().RemoveClass('ShowTimeUntil')">
+		<Panel id="TimeOfDay" onmouseactivate="PrintTime()" onmouseover="$.GetContextPanel().AddClass('ShowTimeUntil')" onmouseout="$.GetContextPanel().RemoveClass('ShowTimeUntil')">
 			<Panel id="DayTime" class="TimeOfDayIcon DayIcon"/>
 			<Panel id="NightTime" class="TimeOfDayIcon NightIcon"/>
 			<DOTAHeroImage id="NightstalkerNight" class="TimeOfDayIcon" heroname="npc_dota_hero_night_stalker" heroimagestyle="icon"/>

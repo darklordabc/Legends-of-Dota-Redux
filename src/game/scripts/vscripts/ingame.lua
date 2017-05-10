@@ -123,6 +123,11 @@ function Ingame:init()
             PlayerResource:SetDisableHelpForPlayerID(args.PlayerID, player, tonumber(args.disabled) == 1)
         end
     end)
+
+    CustomGameEventManager:RegisterListener('lodPrintTime', function(eventSourceIndex, args)
+        local player = PlayerResource:GetPlayer(args.PlayerID)
+        Say(player, util:secondsToClock(GameRules:GetDOTATime(false, true)), true)
+    end)
 end   
 
 function Ingame:OnPlayerReconnect(keys)
