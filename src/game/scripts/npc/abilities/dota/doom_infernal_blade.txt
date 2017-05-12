@@ -112,6 +112,8 @@
 				"EffectName"		"particles/units/heroes/hero_doom_bringer/doom_infernal_blade_debuff.vpcf"
 				"EffectAttachType"	"follow_origin"
 				
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+				
 				"OnCreated"
 				{
 					"FireEffect"
