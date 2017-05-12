@@ -7,155 +7,157 @@
 // ----- FILE REQUIREMENTS -----
 // Script files:
 // scripts/vscripts/abilities/doom_infernal_blade.lua
-"doom_bringer_infernal_blade_datadriven"
-{
-	// General
-	//-------------------------------------------------------------------------------------------------------------
-	"BaseClass"				"ability_datadriven"
-	"AbilityTextureName" "doom_bringer_infernal_blade"
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
-	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-	"SpellDispellableType"			"SPELL_DISPELLABLE_YES"		
-
-	"AbilityCooldown"				"16 12 8 4"
-	"AbilityManaCost"				"40"
-	"AbilityCastRange"				"150"
-	"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
-
-	// Precache
-	//-------------------------------------------------------------------------------------------------------------
-	"precache"
+"DOTAAbilities" {
+	"doom_bringer_infernal_blade_datadriven"
 	{
-		"particle"		"particles/generic_gameplay/generic_stunned.vpcf"
-		"particle"		"particles/units/heroes/hero_doom_bringer/doom_infernal_blade.vpcf"
-		"particle"		"particles/units/heroes/hero_doom_bringer/doom_infernal_blade_debuff.vpcf"
-		"particle"		"particles/units/heroes/hero_doom_bringer/doom_infernal_blade_impact.vpcf"
-		"soundfile"		"soundevents/game_sounds_heroes/game_sounds_doombringer.vsndevts"
-	}
-	
-	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityTextureName" "doom_bringer_infernal_blade"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"		
 
-	// Special
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilitySpecial"
-	{
-		"01"
-		{
-			"var_type"			"FIELD_INTEGER"
-			"damage"			"25 30 35 40"		
-		}
-		"02"
-		{
-			"var_type"			"FIELD_FLOAT"
-			"health_damage_pct"			"1.25 2.5 3.75 5"		
-		}
-		"03"
-		{
-			"var_type"			"FIELD_FLOAT"
-			"burn_duration"			"4.0"		
-		}
-		"04"
-		{
-			"var_type"			"FIELD_FLOAT"
-			"stun_duration"		"0.4"			
-		}
-		"05"
-		{
-			"var_type"			"FIELD_FLOAT"
-			"burn_interval"			"1.0"		
-		}
-	}
-	
-	"Modifiers"
-	{		
-		"modifier_infernal_blade_datadriven"
-		{
-			"Passive"	"1"
-			"IsHidden"	"1"
+		"AbilityCooldown"				"16 12 8 4"
+		"AbilityManaCost"				"40"
+		"AbilityCastRange"				"150"
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
 
-			"Orb"
-			{
-				"Priority"	"DOTA_ORB_PRIORITY_ABILITY"
-				"CastAttack"	"1"
-			}
-
-			"OnOrbFire"
-			{
-				"RunScript"
-				{
-					"ScriptFile"	"heroes/hero_doom_bringer/infernal_blade.lua"
-					"Function"		"CheckCooldown"
-					"particle"		"particles/units/heroes/hero_doom_bringer/doom_infernal_blade.vpcf"
-					"sound"			"Hero_DoomBringer.InfernalBlade.PreAttack"
-				}
-			}
-
-			"OnOrbImpact"
-			{
-				"RunScript"
-				{
-					"ScriptFile"	"abilities/doom_infernal_blade.lua"
-					"Function"		"ApplyModifiers"
-				}
-			}
-		}
-	
-		"modifier_infernal_blade_damage"
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
 		{
-			"IsDebuff"	"1"
-			"Duration"	"%burn_duration"
+			"particle"		"particles/generic_gameplay/generic_stunned.vpcf"
+			"particle"		"particles/units/heroes/hero_doom_bringer/doom_infernal_blade.vpcf"
+			"particle"		"particles/units/heroes/hero_doom_bringer/doom_infernal_blade_debuff.vpcf"
+			"particle"		"particles/units/heroes/hero_doom_bringer/doom_infernal_blade_impact.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_doombringer.vsndevts"
+		}
 		
-			"EffectName"		"particles/units/heroes/hero_doom_bringer/doom_infernal_blade_debuff.vpcf"
-			"EffectAttachType"	"follow_origin"
+		
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage"			"25 30 35 40"		
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"health_damage_pct"			"1.25 2.5 3.75 5"		
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"burn_duration"			"4.0"		
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stun_duration"		"0.4"			
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"burn_interval"			"1.0"		
+			}
+		}
+		
+		"Modifiers"
+		{		
+			"modifier_infernal_blade_datadriven"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+
+				"Orb"
+				{
+					"Priority"	"DOTA_ORB_PRIORITY_ABILITY"
+					"CastAttack"	"1"
+				}
+
+				"OnOrbFire"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"heroes/hero_doom_bringer/infernal_blade.lua"
+						"Function"		"CheckCooldown"
+						"particle"		"particles/units/heroes/hero_doom_bringer/doom_infernal_blade.vpcf"
+						"sound"			"Hero_DoomBringer.InfernalBlade.PreAttack"
+					}
+				}
+
+				"OnOrbImpact"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/doom_infernal_blade.lua"
+						"Function"		"ApplyModifiers"
+					}
+				}
+			}
+		
+			"modifier_infernal_blade_damage"
+			{
+				"IsDebuff"	"1"
+				"Duration"	"%burn_duration"
 			
-			"OnCreated"
-			{
-				"FireEffect"
-				{
-					"EffectName"		"particles/units/heroes/hero_doom_bringer/doom_infernal_blade_impact.vpcf"
-					"EffectAttachType"	"follow_origin"
-					"Target"			"TARGET"
-				}
+				"EffectName"		"particles/units/heroes/hero_doom_bringer/doom_infernal_blade_debuff.vpcf"
+				"EffectAttachType"	"follow_origin"
 				
-				"FireSound"
+				"OnCreated"
 				{
-					"EffectName"	"Hero_DoomBringer.InfernalBlade.Target"
-					"Target"		"TARGET"
+					"FireEffect"
+					{
+						"EffectName"		"particles/units/heroes/hero_doom_bringer/doom_infernal_blade_impact.vpcf"
+						"EffectAttachType"	"follow_origin"
+						"Target"			"TARGET"
+					}
+					
+					"FireSound"
+					{
+						"EffectName"	"Hero_DoomBringer.InfernalBlade.Target"
+						"Target"		"TARGET"
+					}
+				}
+			
+				"ThinkInterval"	"%burn_interval"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"  "TARGET"
+						"Type"    "DAMAGE_TYPE_MAGICAL"
+						"Damage"  "%damage"
+					}
+					
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/doom_infernal_blade.lua"
+						"Function"		"DealDamage"
+					}
 				}
 			}
-		
-			"ThinkInterval"	"%burn_interval"
-			"OnIntervalThink"
+			
+			"modifier_infernal_blade_stun"
 			{
-				"Damage"
+				"IsHidden"	"1"
+				"Duration"	"%stun_duration"
+			
+				"EffectName"		"particles/generic_gameplay/generic_stunned.vpcf"
+				"EffectAttachType"	"follow_overhead"
+			
+				"States"
 				{
-					"Target"  "TARGET"
-					"Type"    "DAMAGE_TYPE_MAGICAL"
-					"Damage"  "%damage"
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
-				
-				"RunScript"
-				{
-					"ScriptFile"	"abilities/doom_infernal_blade.lua"
-					"Function"		"DealDamage"
-				}
-			}
-		}
-		
-		"modifier_infernal_blade_stun"
-		{
-			"IsHidden"	"1"
-			"Duration"	"%stun_duration"
-		
-			"EffectName"		"particles/generic_gameplay/generic_stunned.vpcf"
-			"EffectAttachType"	"follow_overhead"
-		
-			"States"
-			{
-				"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
 			}
 		}
 	}
