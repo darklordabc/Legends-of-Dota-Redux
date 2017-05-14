@@ -638,14 +638,18 @@
                             <Panel id="pickingPhaseContent">
                                 <Panel id="pickingPhaseTabsContent">
                                     <Panel id="pickingPhaseMainTabContent" class="pickingPhaseTabContent">
-                                        <Label class="buildCategoryLabel" text="txtRecommendedBuilds" />
+                                        <Panel id="buildSortingProperties">
+                                            <Label id="buildSortingPropertyVotes" class="buildSortingProperty selected" text="txtBuildsSortVotes" onactivate="SelectBuildSortingOrder('votes')" />
+                                            <Label id="buildSortingPropertyNewest" class="buildSortingProperty" text="txtBuildsSortNewest" onactivate="SelectBuildSortingOrder('newest')" />
+                                        </Panel>
                                         <Label id="buildLoadMoreBuilds" text="txtLoadMoreBuilds" onactivate="LoadMoreBuilds()" />
                                         <Panel id="buildLoadingIndicator">
                                             <Panel id="buildLoadingSpinner" class="Spinner" />
                                             <Label id="buildLoadingIndicatorText" text="#loadingBuilds" />
                                         </Panel>
-                                        <Panel class="recommendedBuildContainerScrollWrapper">
-                                            <Panel id="pickingPhaseRecommendedBuildContainer" />
+                                        <Panel class="recommendedBuildContainerScrollWrapper" id="recommendedBuildContainerScrollWrapper">
+                                            <Panel class="pickingPhaseRecommendedBuildContainer selected" id="pickingPhaseRecommendedBuildContainerVotes" />
+                                            <Panel class="pickingPhaseRecommendedBuildContainer" id="pickingPhaseRecommendedBuildContainerNewest" />
                                         </Panel>                                        
                                     </Panel>
 
