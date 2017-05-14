@@ -7046,35 +7046,38 @@ function Pregame:fixSpawnedHero( spawnedUnit )
 
             --Load talents from kv and calculate total count
             local currentTalentCount = 0
+            local requiredTalentsGroups = {}
             for i = 1, 24 do
                 local abName = heroValues['Ability' .. i]
                 if abName and string.find(abName, "special_bonus") then
                     if VerifyTalent(abName) then
                         spawnedUnit:AddAbility(abName)
                         currentTalentCount = currentTalentCount + 1
+                    else
+                        local talentGroup = math.ceil((currentTalentCount + #requiredTalentsGroups + 1) / 2)
+                        table.insert(requiredTalentsGroups, talentGroup)
                     end
                 end
             end
-
             --If hero hasn't enought talents => random
             while currentTalentCount < 8 do
                 --take random hero
                 local tempHT = GetRandomHero()
                 if type(tempHT) == "table" then
-                    local randomableTalents = {}
+                    local skippedTalentsCount = 0
                     for i = 1, 24 do
                         local abName = tempHT['Ability' .. i]
                         if abName and string.find(abName, "special_bonus") then
-                            if VerifyTalent(abName) then
-                                table.insert(randomableTalents, abName)
+                            local talentGroup = math.ceil((skippedTalentsCount + 1) / 2)
+                            if VerifyTalent(abName) and util:contains(requiredTalentsGroups, talentGroup) then
+                                util:removeByValue(requiredTalentsGroups, talentGroup)
+                                spawnedUnit:AddAbility(abName)
+                                currentTalentCount = currentTalentCount + 1
+                                break;
+                            else
+                                skippedTalentsCount = skippedTalentsCount + 1
                             end
                         end
-                    end
-                    --take random talent
-                    if #randomableTalents > 0 then
-                        local abName = randomableTalents[RandomInt(1, #randomableTalents)]
-                        spawnedUnit:AddAbility(abName)
-                        currentTalentCount = currentTalentCount + 1
                     end
                 end
             end
