@@ -59,7 +59,7 @@ function DevourCheck( keys )
 			caster:Interrupt()
 			-- Play Error Sound
 			EmitSoundOnClient("General.CastFail_InvalidTarget_Hero", player)
-			util:DisplayError(pID, "#UF_FAIL_ANCIENT")
+			util:DisplayError(pID, "#only_target_creeps")
 		end
 	end
 
@@ -68,7 +68,7 @@ function DevourCheck( keys )
 
 		-- Play Error Sound
 		EmitSoundOnClient("General.CastFail_InvalidTarget_Hero", player)
-		util:DisplayError(pID, "You can't eat with your mouth full")
+		util:DisplayError(pID, "#devour_denied")
 		--FireGameEvent('custom_error_show', {player_ID = pID, _error = "You can't eat with your mouth full"})
 	end
 end
