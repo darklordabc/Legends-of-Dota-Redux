@@ -9,6 +9,8 @@ function CheckCooldown(keys)
 	-- If orb is off cooldown, applies the particles and sound, and removes the necessary mana
 	if ability:IsCooldownReady() then
 		ability.off_cooldown = 1
+	end
+	if ability.off_cooldown == 1 then
 		caster:SetMana(caster:GetMana() - mana)
 		EmitSoundOn(keys.sound, caster)
 		local particle = ParticleManager:CreateParticle(keys.particle, PATTACH_ABSORIGIN_FOLLOW, caster) 
