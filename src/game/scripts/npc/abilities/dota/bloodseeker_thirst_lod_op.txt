@@ -1,0 +1,105 @@
+"DOTAAbilities"
+{
+    "bloodseeker_thirst_lod_op"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityTextureName"                                                   "bloodseeker_thirst"
+        "precache"
+        {
+            "particle"                                                     "particles/units/heroes/hero_bloodseeker/bloodseeker_vision.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "visibility_threshold_pct"                             "25"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "buff_threshold_pct"                                   "75"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_movement_speed"                                 "16 24 32 40"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_damage"                                         "16 24 32 40"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "bonus_movement_speed_per_stack"                       "0.32 0.48 0.64 0.8"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "bonus_damage_per_stack"                               "0.32 0.48 0.64 0.8"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "global_radius"                                        "100000"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_thirst_datadriven"
+            {
+                "IsHidden"                                             "1"
+                "Passive"                                              "1"
+                "ThinkInterval"                                        "0.5"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/bloodseeker_thirst.lua"
+                        "Function"                             "CheckThirst"
+                    }
+                }
+            }
+            "modifier_thirst_buff"
+            {
+                "IsHidden"                                             "1"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"     "%bonus_damage_per_stack"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%bonus_movement_speed_per_stack"
+                }
+            }
+            "modifier_thirst_visual"
+            {
+                "Passive"                                              "1"
+            }
+            "modifier_thirst_haste"
+            {
+                "IsHidden"                                             "1"
+                "EffectName"                                           "particles/units/heroes/hero_bloodseeker/bloodseeker_thirst_owner.vpcf"
+                "EffectAttachType"                                     "follow_origin"
+            }
+            "modifier_thirst_debuff_datadriven"
+            {
+                "IsDebuff"                                             "1"
+                "EffectName"                                           "particles/units/heroes/hero_bloodseeker/bloodseeker_vision.vpcf"
+                "EffectAttachType"                                     "follow_origin"
+                "States"
+                {
+                    "MODIFIER_STATE_INVISIBLE"                     "MODIFIER_STATE_VALUE_DISABLED"
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PROVIDES_FOW_POSITION"      "1"
+                }
+            }
+        }
+        "ReduxBans"                                                            "veera_plains_runner"
+        "ReduxCost"                                                            "50"
+        "ReduxFlags"                                                           "OPSkillsList | SuperOP"
+    }
+}
