@@ -2008,14 +2008,40 @@ function OnMainSelectionTabShown() {
 }
 
 function LoadMoreBuilds() {
-    var cc = $("#pickingPhaseRecommendedBuildContainer").GetChildCount();
-    if (cc > 0) LoadBuilds(cc - 1);
+    var cont = $pickingPhaseRecommendedBuildContainer();
+    var cc = cont[0].GetChildCount();
+    if (cc > 0) LoadBuilds(cont, cc - 1);
+}
+
+function $pickingPhaseRecommendedBuildContainer() {
+    var panel;
+    $.Each($('#recommendedBuildContainerScrollWrapper').Children(), function(_panel) {
+        if (_panel.BHasClass('selected')) {
+            panel = _panel;
+            return false;
+        }
+    });
+    return [panel, panel.id.replace('pickingPhaseRecommendedBuildContainer', '').toLowerCase()];
+}
+
+function SelectBuildSortingOrder(order) {
+    var uOrder = order.charAt(0).toUpperCase() + order.slice(1);
+    $.Each($('#buildSortingProperties').Children(), function(panel) {
+        panel.SetHasClass('selected', panel.id === 'buildSortingProperty' + uOrder);
+    });
+    $.Each($('#recommendedBuildContainerScrollWrapper').Children(), function(panel) {
+        var selected = panel.id === 'pickingPhaseRecommendedBuildContainer' + uOrder;
+        panel.SetHasClass('selected', selected);
+        if (selected && panel.GetChildCount() === 0) {
+            LoadBuilds();
+        }
+    });
 }
 
 // Adds a build to the main selection tab
 var recBuildCounter = 0;
-function addRecommendedBuild(build) {
-    var buildCon = $.CreatePanel('Panel', $("#pickingPhaseRecommendedBuildContainer"), 'recBuild_' + (++recBuildCounter));
+function addRecommendedBuild(rootPanel, build) {
+    var buildCon = $.CreatePanel('Panel', rootPanel, 'recBuild_' + (++recBuildCounter));
     buildCon.BLoadLayout('file://{resources}/layout/custom_game/game_setup/recommended_build.xml', false, false);
     buildCon.balanceMode = $.GetContextPanel().balanceMode;
     buildCon.setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, build, constantBalancePointsValue);
@@ -2025,7 +2051,7 @@ function addRecommendedBuild(build) {
 // Updates the filters applied to recommended builds
 function updateRecommendedBuildFilters() {
     // Loop over all recommended builds
-    $.Each($("#pickingPhaseRecommendedBuildContainer").Children(), function(con) {
+    $.Each($pickingPhaseRecommendedBuildContainer()[0].Children(), function(con) {
         con.updateFilters(getSkillFilterInfo, getHeroFilterInfo); 
     })
 }
@@ -4467,17 +4493,6 @@ function OnPhaseChanged(table_name, key, data) {
                 for(var playerID in activeReviewPanels) {
                     activeReviewPanels[playerID].OnReviewPhaseStart();
                 }
-
-                // Save build only on review phase
-                var con = $('#pickingPhaseRecommendedBuildContainer');
-                var favBuilds = [];
-                for (var i = 0; i < con.GetChildCount(); i++) {
-                    var child = con.GetChild(i);
-                    if (child.isFavorite)
-                        favBuilds.push(child.buildID);
-                }
-
-                SaveFavBuilds( favBuilds ); 
             }
 
             break;
@@ -5381,7 +5396,9 @@ function saveCurrentBuild() {
     });
 
     GameEvents.Subscribe('lodReloadBuilds', function() {
-        $("#pickingPhaseRecommendedBuildContainer").RemoveAndDeleteChildren();
+        $.Each($('#recommendedBuildContainerScrollWrapper').Children(), function(p) {
+            p.RemoveAndDeleteChildren();
+        })
         LoadBuilds();
     })
 	

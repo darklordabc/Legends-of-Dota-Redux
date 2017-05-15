@@ -908,7 +908,8 @@
     "showDisallowedSkills"                          "Show Disallowed Skills"
     "showOnlyHeroPerkRelativeSkills"                "Show Only Hero Perk Relative Skills"
 
-    "txtRecommendedBuilds"                          "All Builds:"
+    "txtBuildsSortVotes"                            "Most popular"
+    "txtBuildsSortNewest"                           "Newest"
     "txtLoadMoreBuilds"                             "Load More Builds"
 
     "lodBanningInstructions"                        "Drag abilities or heroes here to ban them."
