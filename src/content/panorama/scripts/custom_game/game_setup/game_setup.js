@@ -5475,12 +5475,12 @@ function saveCurrentBuild() {
 	    })
     }
 
-    // Workarounds
-    // var parent = $.GetContextPanel().GetParent();
-    // while(parent.id != "Hud")
-    //     parent = parent.GetParent();
+    var parent = $.GetContextPanel().GetParent();
+    while(parent.id != "Hud")
+        parent = parent.GetParent();
 
-    // parent.FindChildTraverse("PreGame").visible = false;
-    // parent.FindChildTraverse("PreGame").style.width = "0px;";
-    // parent.FindChildTraverse("PreGame").MapLoadingOutroFinished();
+    parent.FindChildTraverse("PreGame").FindChildTraverse("HeroGrid").visible = false;
+    parent.FindChildTraverse("PreGame").FindChildTraverse("HeroPickControls").visible = false;
+    parent.FindChildTraverse("PreGame").FindChildTraverse("EnterGameRepickButton").visible = false;
+    parent.FindChildTraverse("PreGame").FindChildTraverse("EnterGameReRandomButton").visible = false;
 })();
