@@ -1385,6 +1385,14 @@ function Pregame:actualSpawnPlayer(playerID, callback)
     -- Grab a reference to self
     local this = self
 
+    local continueSpawning = (function ()
+        -- Done spawning, start the next one
+        this.currentlySpawning = false
+
+        -- Continue actually spawning
+        this:actualSpawnPlayer()
+    end)
+
      -- Try to spawn this player using safe stuff
     local status, err = pcall(function()
         -- Grab a player to spawn
@@ -1409,13 +1417,9 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                     local hero = CreateHeroForPlayer(heroName, player)
 
                     UTIL_Remove(hero)
-
-                    -- Done spawning, start the next one
-                    this.currentlySpawning = false
-
-                    -- Continue actually spawning
-                    this:actualSpawnPlayer()
                 end)
+
+                continueSpawning()
 
                 -- Did the spawning of this hero fail?
                 if not status2 then
@@ -1437,6 +1441,8 @@ function Pregame:actualSpawnPlayer(playerID, callback)
         else
             -- This player has not spawned!
             self.spawnedHeroesFor[playerID] = nil
+
+            continueSpawning()
         end
     end)
 
