@@ -7496,7 +7496,7 @@ ListenToGameEvent('game_rules_state_change', function(keys)
     elseif newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
         if IsDedicatedServer() then
             local mapName = OptionManager:GetOption('mapname')
-            if mapName == 'standard' and not util:isCoop() then
+            if mapName == 'all_allowed' and not util:isCoop() then
                 SU:SendPlayerBuild( buildBackups )
             end
         end
