@@ -1712,13 +1712,25 @@
 
     // Thirst
     "DOTA_Tooltip_ability_bloodseeker_thirst_lod"                                       "Thirst"
-    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_Description"                           "Bloodseeker is invigorated by the wounds of his enemies, gaining bonus movement speed and attack damage whenever an enemy hero's health falls below 75%, with the bonuses increasing as their health falls further. If an enemy hero's health falls below 25%, he will also gain vision and True Sight of that hero. Bonuses stack per hero."
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_Description"                           "Bloodseeker is invigorated by the wounds of his enemies, gaining bonus movement speed and attack damage whenever an enemy hero's health falls below 75%, with the bonuses increasing as their health falls further. If an enemy hero's health falls below 25%, he will also gain vision and True Sight of that hero. Bonuses stack per hero. <font color='#70EA72'> Increases movement speed cap to 750.</font>"
     "DOTA_Tooltip_ability_bloodseeker_thirst_lod_Lore"                                  "Strygwyr becomes frenzied when blood is spilled."
     "DOTA_Tooltip_ability_bloodseeker_thirst_lod_Note0"                                 "Not triggered by Illusions."
     "DOTA_Tooltip_ability_bloodseeker_thirst_lod_buff_threshold_pct"                    "%THIRST HEALTH THRESHOLD:"
     "DOTA_Tooltip_ability_bloodseeker_thirst_lod_bonus_movement_speed"                  "%MAX THIRST MOVE SPEED::"
     "DOTA_Tooltip_ability_bloodseeker_thirst_lod_bonus_damage"                          "MAX THIRST DAMAGE:"
     "DOTA_Tooltip_ability_bloodseeker_thirst_lod_visibility_threshold_pct"              "%VISIBILITY HEALTH THRESHOLD:"
+
+    // Thirst OP
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_op"                                       "Thirst (Unlimited)"
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_op_Description"                           "Bloodseeker is invigorated by the wounds of his enemies, gaining bonus movement speed and attack damage whenever an enemy hero's health falls below 75%, with the bonuses increasing as their health falls further. If an enemy hero's health falls below 25%, he will also gain vision and True Sight of that hero. Bonuses stack per hero. <font color='#70EA72'> Increases movement speed cap to 5000.</font>"
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_op_Lore"                                  "Strygwyr becomes frenzied when blood is spilled."
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_op_Note0"                                 "Not triggered by Illusions."
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_op_buff_threshold_pct"                    "%THIRST HEALTH THRESHOLD:"
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_op_bonus_movement_speed"                  "%MAX THIRST MOVE SPEED::"
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_op_bonus_damage"                          "MAX THIRST DAMAGE:"
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_op_visibility_threshold_pct"              "%VISIBILITY HEALTH THRESHOLD:"
+
+
     "DOTA_Tooltip_modifier_thirst_visual"                                               "Thirst Speed"
     "DOTA_Tooltip_modifier_thirst_visual_Description"                                   "You sense an injured enemy. Movement speed increased by %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%"
     "DOTA_Tooltip_modifier_thirst_debuff_datadriven"                                    "Thirst"
@@ -10043,6 +10055,8 @@
     "DOTA_Tooltip_ability_zuus_arc_lightning_op_Lore"                                  "Arc Lightning is Zeus' favorite spell to use against puny mortals."
     "DOTA_Tooltip_ability_zuus_arc_lightning_op_jump_count"                            "JUMPS:"
     "DOTA_Tooltip_ability_zuus_arc_lightning_op_radius"                               "JUMP RANGE:"
+
+    "devour_denied"                                                                    "Cannot eat with your mouth full"
     
 
 }
