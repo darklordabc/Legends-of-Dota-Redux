@@ -5481,4 +5481,6 @@ function saveCurrentBuild() {
 
     parent.FindChildTraverse("PreGame").FindChildTraverse("HeroGrid").visible = false;
     parent.FindChildTraverse("PreGame").FindChildTraverse("HeroPickControls").visible = false;
+    parent.FindChildTraverse("PreGame").FindChildTraverse("EnterGameRepickButton").visible = false;
+    parent.FindChildTraverse("PreGame").FindChildTraverse("EnterGameReRandomButton").visible = false;
 })();
