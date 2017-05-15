@@ -3488,4 +3488,74 @@
     {
         "TalentRequiredAbility"                                                   "undying_decay"
     }
+    "special_bonus_unique_underlord"
+    {
+        "TalentRequiredAbility"                                                   "abyssal_underlord_pit_of_malice"
+    }
+    "special_bonus_unique_axe"
+    {
+        "TalentRequiredAbility"                                                   "axe_battle_hunger"
+    }
+    "special_bonus_unique_beastmaster"
+    {
+        "TalentRequiredAbility"                                                   "beastmaster_wild_axes"
+    }
+    "special_bonus_unique_brewmaster_2"
+    {
+        "TalentRequiredAbility"                                                   "brewmaster_thunder_clap"
+    }
+    "special_bonus_unique_brewmaster"
+    {
+        "TalentRequiredAbility"                                                   "brewmaster_primal_split"
+    }
+    "special_bonus_unique_bristleback"
+    {
+        "TalentRequiredAbility"                                                   "bristleback_viscous_nasal_goo"
+    }
+    "special_bonus_unique_bristleback_2"
+    {
+        "TalentRequiredAbility"                                                   "bristleback_quill_spray"
+    }
+    "special_bonus_unique_centaur_1"
+    {
+        "TalentRequiredAbility"                                                   "centaur_return"
+    }
+    "special_bonus_unique_centaur_2"
+    {
+        "TalentRequiredAbility"                                                   "centaur_hoof_stomp"
+    }
+    "special_bonus_unique_chaos_knight"
+    {
+        "TalentRequiredAbility"                                                   "chaos_knight_reality_rift"
+    }
+    "special_bonus_unique_dragon_knight"
+    {
+        "TalentRequiredAbility"                                                   "dragon_knight_dragon_blood"
+    }
+    "special_bonus_unique_earth_spirit"
+    {
+        "TalentRequiredAbility"                                                   "earth_spirit_rolling_boulder"
+    }
+    "special_bonus_unique_earthshaker_2"
+    {
+        "TalentRequiredAbility"                                                   "earthshaker_echo_slam"
+    }
+    "special_bonus_unique_earthshaker"
+    {
+        "TalentRequiredAbility"                                                   "earthshaker_enchant_totem"
+    }
+    "special_bonus_unique_elder_titan_2"
+    {
+        "TalentRequiredAbility"                                                   "elder_titan_echo_stomp"
+    }
+    "special_bonus_unique_elder_titan"
+    {
+        "TalentRequiredAbility"                                                   "elder_titan_ancestral_spirit"
+    }
+
+
+
+
+
+    
 }
