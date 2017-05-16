@@ -129,6 +129,7 @@
 #base "abilities\dota\monkey_king_jingu_mastery_lod.txt"
 #base "abilities\dota\monkey_king_jingu_mastery_lod_melee.txt"
 #base "abilities\dota\monkey_king_jingu_mastery_lod_ranged.txt"
+#base "abilities\dota\doom_infernal_blade.txt"
 #base "abilities\dota\earthshaker_aftershock_lod.txt"
 #base "abilities\dota\huskar_berserkers_blood_lod.txt"
 #base "abilities\dota\invoker_alacrity_lod.txt"
