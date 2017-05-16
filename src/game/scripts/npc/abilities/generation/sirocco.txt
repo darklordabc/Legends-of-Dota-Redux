@@ -227,6 +227,7 @@
 
         "AbilityCooldown"               "19.0 14.0 9.0 4.0"
         "AbilityProcsMagicStick"        "1"
+        "ReduxFlags"                                                           "invis"
 
         "precache"
         {

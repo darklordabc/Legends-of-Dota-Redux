@@ -1684,7 +1684,7 @@
     }
     "windrunner_windrun"
     {
-        "ReduxFlags"                                                           "mobility"
+        "ReduxFlags"                                                           "mobility | invis"
         "ReduxPerks"                                                           "mobility"
         "ReduxCost"                                                            "10"
     }
