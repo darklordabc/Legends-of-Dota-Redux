@@ -10051,6 +10051,9 @@
     "DOTA_Tooltip_ability_doom_bringer_infernal_blade_datadriven_health_damage_pct"  "%MAX HP AS DAMAGE:"
     "DOTA_Tooltip_ability_doom_bringer_infernal_blade_datadriven_burn_duration"    "BURN DURATION:"
     "DOTA_Tooltip_ability_doom_bringer_infernal_blade_datadriven_stun_duration"    "STUN DURATION:"
+
+    "DOTA_Tooltip_modifier_infernal_blade_damage"                "Infernal Blade Burn"
+    "DOTA_Tooltip_modifier_infernal_blade_damage_Description"    "Dealing damage per second"
     
 
 }
