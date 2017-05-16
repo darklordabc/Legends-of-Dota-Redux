@@ -15,8 +15,8 @@ function CheckCooldown(keys)
 			local particle = ParticleManager:CreateParticle(keys.particle, PATTACH_ABSORIGIN_FOLLOW, caster) 
 			ParticleManager:SetParticleControlEnt(particle, 1, caster, PATTACH_POINT_FOLLOW, "attach_origin", caster:GetAbsOrigin(), true)
 		end
-	end
 	ability.off_cooldown = 1
+	end
 end
 
 --[[Author: YOLOSPAGHETTI
