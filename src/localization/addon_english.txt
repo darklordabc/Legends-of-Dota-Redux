@@ -2167,7 +2167,7 @@
     "DOTA_Tooltip_ability_death_prophet_witchcraft_carrion_swarm_cooldown_adjust"   "COOLDOWN DECREASE:"
     //"DOTA_Tooltip_ability_death_prophet_witchcraft_carrion_swarm_mana_cost_adjust"    "MANA COST DECREASE:"
     //"DOTA_Tooltip_ability_death_prophet_witchcraft_exorcism_1_extra_spirits"      "ADDED EXORCISM SPIRITS:"
-    //"DOTA_Tooltip_ability_death_prophet_witchcraft_bonus_movement_speed"          "%MOVEMENT SPEED:"
+    "DOTA_Tooltip_ability_death_prophet_witchcraft_bonus_movement_speed"          "%BONUS MOVEMENT SPEED:"
 
     //flesh heap spells
     "DOTA_Tooltip_ability_pudge_flesh_heap_agility"         "Flesh Heap - Agility"
