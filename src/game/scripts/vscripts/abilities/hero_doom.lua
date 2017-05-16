@@ -17,6 +17,10 @@ function CreepGold ( keys )
 	local ability = keys.ability
 	local gold = ability:GetLevelSpecialValueFor("devour_gold", ability:GetLevel()) - 1
 
+	if caster:HasAbility("special_bonus_unique_doom_3") and caster:FindAbilityByName("special_bonus_unique_doom_3"):GetLevel() > 0 then
+		gold = gold + ability:GetSpecialValueFor("value")
+	end
+
 	if caster:IsAlive() then
 	    caster:ModifyGold(gold, false, 0)
 	    
@@ -49,6 +53,15 @@ function DevourCheck( keys )
 	local modifier = keys.modifier
 	local pID = caster:GetPlayerID()
 	local player = PlayerResource:GetPlayer( pID )
+
+	if not caster:HasAbility("special_bonus_unique_doom_2") or caster:FindAbilityByName("special_bonus_unique_doom_2"):GetLevel() == 0 then
+		if keys.target:IsAncient() then
+			caster:Interrupt()
+			-- Play Error Sound
+			EmitSoundOnClient("General.CastFail_InvalidTarget_Hero", player)
+			util:DisplayError(pID, "#only_target_creeps")
+		end
+	end
 
 	if caster:HasModifier(modifier) then
 		caster:Interrupt()

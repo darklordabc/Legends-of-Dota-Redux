@@ -10058,6 +10058,7 @@
     "DOTA_Tooltip_ability_zuus_arc_lightning_op_radius"                               "JUMP RANGE:"
 
     "devour_denied"                                                                    "Cannot eat with your mouth full"
+    "only_target_creeps"                            "Cannot consume Ancients"
     
 
 }
