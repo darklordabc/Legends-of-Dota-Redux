@@ -33,8 +33,7 @@
                 "duration"                                             "15"
             }
         }
-        "ReduxFlags"                                                           "support | dota_custom"
-        "ReduxBans"                                                            "keeper_of_the_light_chakra_magic"
+        "ReduxFlags"                                                           "support | dota_custom | cooldown"
         "ReduxPerks"                                                           "support"
     }
 }
