@@ -877,4 +877,122 @@
         }
     }
 
+    "item_redux_silver"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "item_datadriven"
+        "ID"                            "2301"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "Model"                         "models/props_gameplay/red_box.vmdl" 
+        "Effect"                        "particles/generic_gameplay/dropped_item.vpcf"
+        "AbilityTextureName"            "custom/redux_silver"
+        "FightRecapLevel"               "1"
+        
+        // Stats        
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "100"
+        "AbilityCastPoint"              "0.0"
+        "AbilityCooldown"               "24.0"
+        "AbilityManaCost"               "25"
+        
+        "AbilitySharedCooldown"         ""
+        "MaxUpgradeLevel"               "1"
+        "ItemBaseLevel"                 "1"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+        
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"            "2850"
+        "ItemShopTags"          "utility"
+        "ItemQuality"         "component"
+        "ItemPurchasable"               "0"
+
+        "precache"
+        {
+            "particle"  "particles/items3_fx/silver_edge_slow.vpcf"
+        }
+        
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_all_stats"       "15"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "break_duration"        "5"
+            }
+        }
+        
+        "OnSpellStart"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"    "modifier_redux_silver_break"
+                "Target"         "TARGET"
+                "Duration"        "%break_duration"
+            }
+            "FireSound"
+            {
+                "EffectName"    "DOTA_Item.SilverEdge.Target"
+                "Target"         "TARGET"
+            }
+        }
+        
+        "Modifiers"
+        {
+            "modifier_redux_silver_passive"
+            {
+                "Passive"           "1"
+                "IsHidden"          "1"
+                
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"        "%bonus_all_stats"
+                    "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"         "%bonus_all_stats"
+                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"       "%bonus_all_stats"
+                }
+            }
+            "modifier_redux_silver_break"
+            {
+                "Passive"           "0"
+                "IsPurgable"        "1"
+                "IsBuff"            "0"
+                "IsDebuff"            "1"
+                "IsStunDebuff"        "0"
+
+                "EffectName"        "particles/items3_fx/silver_edge_slow.vpcf"
+                "EffectAttachType"  "follow_origin"
+                
+                "States"
+                {
+                    "MODIFIER_STATE_PASSIVES_DISABLED"        "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+    }
+
+    "item_recipe_redux_silver"
+    {
+        "BaseClass"           "item_datadriven"
+        "ID"              "2302"
+        "Model" "models/props_gameplay/recipe.mdl"
+        "AbilityTextureName"      "item_recipe"
+
+        "ItemCost"            "700"
+        "ItemShopTags"          ""
+
+        "ItemRecipe"          "1"
+        "ItemResult"          "item_redux_silver"
+        "ItemRequirements"
+        {
+            "01"            "item_ultimate_orb;"
+        }
+    }
 }

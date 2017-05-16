@@ -1615,6 +1615,16 @@
     "DOTA_Tooltip_ability_item_sprint_phase_movement_speed"            "%BONUS MOVEMENT SPEED:"
     "DOTA_Tooltip_ability_item_sprint_phase_duration"                  "PHASE DURATION:"
 
+    "DOTA_Tooltip_modifier_redux_silver_break"  "Silver Break"
+    "DOTA_Tooltip_modifier_redux_silver_break_Description"  "Passives are disabled."
+
+    "DOTA_Tooltip_ability_item_redux_silver" "Silver"
+    "DOTA_Tooltip_ability_item_redux_silver_Description" "Active: Break - Shatters the resolve of targeted enemy hero, disabling their passives."
+    "DOTA_Tooltip_ability_item_redux_silver_bonus_all_stats"            "+$all"
+    "DOTA_Tooltip_ability_item_redux_silver_break_duration"                  "BREAK DURATION:"
+
+    "DOTA_Tooltip_ability_item_recipe_redux_silver" "Silver Recipe"
+
     // tiny
     "DOTA_Tooltip_ability_tiny_grow_lod"                                                "Grow"
     "DOTA_Tooltip_ability_tiny_grow_lod_Description"                                    "Tiny gains craggy mass that increases his power at the cost of his attack speed. Improves movement speed.\n\nUpgradable by Aghanim's Scepter."
