@@ -1,44 +1,26 @@
-var hud = $.GetContextPanel().GetParent();
-while(hud.id != "Hud")
-    hud = hud.GetParent();
+// Checks if we have a hero yet
+function checkForHero() {
+    var playerID = Players.GetLocalPlayer();
+    var myInfo = Game.GetPlayerInfo(playerID);
 
-var label = hud.FindChildTraverse("PausedLabel");
+    // Game is bugged, or something is wrong, get out of here!
+    if(myInfo == null) return;
 
-var queue = -1;
+    if(myInfo.player_selected_hero.length <= 0) {
+        // Request a hero
+        GameEvents.SendCustomGameEventToServer('lodSpawnHero', {});
 
-function rollBackChanges() {
-    hud.FindChildTraverse("lower_hud").visible = true;
-    hud.FindChildTraverse("topbar").visible = true;
-
-    label.text = $.Localize("DOTA_Hud_Paused");
-
-    // $.GetContextPanel().DeleteAsync(0.0);
+        // Try again after an entire second
+        $.Schedule(1, checkForHero);
+    }
 }
 
+//--------------------------------------------------------------------------------------------------
+// Entry point called when the team select panel is created
+//--------------------------------------------------------------------------------------------------
 (function() {
+    // Check if we have a hero yet
     if (!Players.IsSpectator(Players.GetLocalPlayer())) {
-        GameEvents.Subscribe("lodAttemptReconnect", function (args) {
-            GameEvents.SendCustomGameEventToServer('lodSpawnHero', {});
-        })
-        GameEvents.Subscribe("lodCreatedHero", function (args) {
-            queue = 0;
-
-            rollBackChanges();
-        })
-
-        hud.FindChildTraverse("lower_hud").visible = false;
-        hud.FindChildTraverse("topbar").visible = false;
-
-        GameEvents.Subscribe("lodSpawningQueue", function (args) {
-            queue = (Players.GetLocalPlayer() - args.queue);
-
-            if (queue < 0) {
-                label.text = $.Localize("DOTA_Hud_Paused");
-            } else if (queue == 0) {
-                label.text = "Spawning";
-            } else {
-                label.text = "Queued for spawn: " + queue;
-            }
-        });
+        checkForHero();
     }
 })();
