@@ -1320,6 +1320,8 @@ function Pregame:spawnAllHeroes()
         self:spawnPlayer(playerID)
     end
 
+    self:actualSpawnPlayer()
+
     -- self.spawnQueueID = -1
     -- self.spawnDelay = 2.5
 
@@ -1364,17 +1366,13 @@ end
 
 -- Spawns a given player
 function Pregame:spawnPlayer(playerID, callback)
-    if PlayerResource:GetConnectionState(playerID) >= 1 then
-        if self.spawnedHeroesFor[playerID] then return end
-        self.spawnedHeroesFor[playerID] = true
+    if self.spawnedHeroesFor[playerID] then return end
+    self.spawnedHeroesFor[playerID] = true
 
-        table.insert(self.spawnQueue, playerID)
-
-        self:actualSpawnPlayer()
-    end
+    table.insert(self.spawnQueue, playerID)
 end
 
-function Pregame:actualSpawnPlayer(playerID, callback)
+function Pregame:actualSpawnPlayer(forceID)
     -- Is there someone to spawn?
     if #self.spawnQueue <= 0 then return end
 
@@ -1396,11 +1394,11 @@ function Pregame:actualSpawnPlayer(playerID, callback)
      -- Try to spawn this player using safe stuff
     local status, err = pcall(function()
         -- Grab a player to spawn
-        local playerID = table.remove(this.spawnQueue, 1)
+        local playerID = forceID or table.remove(this.spawnQueue, 1)
 
         -- Don't allow a player to get two heroes
         if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil then
-            return
+            UTIL_Remove(PlayerResource:GetSelectedHeroEntity(playerID))
         end
 
         -- Grab their build
@@ -4364,10 +4362,7 @@ function Pregame:onPlayerAskForHero(eventSourceIndex, args)
     local playerID = args.PlayerID
     local player = PlayerResource:GetPlayer(playerID)
 
-    -- Has this player already asked for their hero?
-    if self.heroesSpawned then
-        self:spawnPlayer(playerID)
-    end
+    self:actualSpawnPlayer(playerID)
 end
 
 -- Player wants to select an entire build
