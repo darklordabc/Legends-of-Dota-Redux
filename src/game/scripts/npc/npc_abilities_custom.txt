@@ -659,6 +659,7 @@
 #base "abilities\lia\paladin_impregnability.txt"
 #base "abilities\lia\serpent_queen_ball_lightning.txt"
 #base "abilities\lia\serpent_queen_ball_lightning_op.txt"
+#base "abilities\megaults\mega_black_hole.txt"
 #base "abilities\neutrals\black_dragon_fireball_lod.txt"
 #base "abilities\neutrals\lone_druid_spirit_bear_return_lod.txt"
 #base "abilities\neutrals\necronomicon_archer_aoe_lod.txt"

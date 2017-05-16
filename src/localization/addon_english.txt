@@ -10058,6 +10058,16 @@
     "DOTA_Tooltip_ability_zuus_arc_lightning_op_radius"                               "JUMP RANGE:"
 
     "devour_denied"                                                                    "Cannot eat with your mouth full"
+
+
+    //========================================
+    // MEGA ULTIMATES
+    //========================================
+    "DOTA_Tooltip_ability_mega_black_hole"                         "MEGA Black Hole"
+    "DOTA_Tooltip_ability_mega_black_hole_Description"             "Summons an EXTREMELY large vortex that sucks in nearby enemy units. Enemies affected by Black Hole cannot move, attack, or cast spells. \n<font color='#70EA72'>Requires level 24 to skill.</font>"
+    "DOTA_Tooltip_ability_mega_black_hole_far_radius"              "EFFECT RADIUS:"
+    "DOTA_Tooltip_ability_mega_black_hole_duration"                "MAX CHANNEL TIME:"
+    "DOTA_Tooltip_ability_mega_black_hole_damage"                  "DAMAGE PER SECOND:"
     
 
 }
