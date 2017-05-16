@@ -4,6 +4,7 @@
 		"AbilityTextureName" "faceless_void_time_lock"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"ReduxFlags" "doNotRandom"
 
 		"AbilitySpecial" {
 			"01" {

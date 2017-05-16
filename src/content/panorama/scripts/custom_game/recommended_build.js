@@ -104,7 +104,13 @@ function setFavorite(flag) {
 }
 
 function onClickFav() {
-    setFavorite(!$.GetContextPanel().isFavorite);
+    var flag = !$.GetContextPanel().isFavorite;
+    setFavorite(flag);
+    
+    GameEvents.SendCustomGameEventToServer("stats_client_fav_skill_build", {
+        id: $.GetContextPanel().buildID,
+        fav: flag
+    })
 }
 
 function removeBuild() {

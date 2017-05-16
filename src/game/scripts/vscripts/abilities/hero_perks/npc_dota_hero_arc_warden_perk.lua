@@ -80,4 +80,8 @@ if modifier_npc_dota_hero_arc_warden_perk_downtime ~= "" then modifier_npc_dota_
 function modifier_npc_dota_hero_arc_warden_perk_downtime:GetTexture()
 	return "arc_warden_flux"
 end
+
+function modifier_npc_dota_hero_arc_warden_perk_downtime:RemoveOnDeath()
+	return false
+end
 --------------------------------------------------------------------------------------------------------

@@ -296,6 +296,18 @@ function util:GetActiveHumanPlayerCountForTeam(team)
     return number
 end
 
+function util:secondsToClock(seconds)
+  local seconds = math.abs(tonumber(seconds))
+
+  if seconds <= 0 then
+    return "00:00";
+  else
+    mins = string.format("%02.f", math.floor(seconds/60));
+    secs = string.format("%02.f", math.floor(seconds - mins *60));
+    return mins..":"..secs
+  end
+end
+
 -- Returns if a player is a time burger
 function util:isTimeBurgler(playerID)
     local allTimeBurglers = util.bannedKV.timeburglers

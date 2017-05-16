@@ -884,11 +884,15 @@ function Pregame:applyBuilds()
             local build = self.selectedSkills[playerID]
 
             if build then
-                local status2,err2 = pcall(function()
-                    SkillManager:ApplyBuild(hero, build or {})
+                Timers:CreateTimer(function ()
+                    local status2,err2 = pcall(function()
+                        SkillManager:ApplyBuild(hero, build or {})
 
-                    buildBackups[playerID] = build
-                end)
+                        buildBackups[playerID] = build
+
+                        self:fixSpawnedHero( hero )
+                    end)
+                end, DoUniqueString("applyBuildsLoop"), (playerID + 1) / 10)
             end
         end
     end
@@ -1381,14 +1385,13 @@ function Pregame:actualSpawnPlayer(playerID, callback)
     -- Grab a reference to self
     local this = self
 
-    -- Give a small delay, and then continue
-    Timers:CreateTimer(function()
+    local continueSpawning = (function ()
         -- Done spawning, start the next one
         this.currentlySpawning = false
 
         -- Continue actually spawning
         this:actualSpawnPlayer()
-    end, DoUniqueString('continueSpawning'), 0.1)
+    end)
 
      -- Try to spawn this player using safe stuff
     local status, err = pcall(function()
@@ -1411,39 +1414,12 @@ function Pregame:actualSpawnPlayer(playerID, callback)
             local spawnTheHero = function()
                 local status2,err2 = pcall(function()
                     -- Create the hero and validate it
-                    
                     local hero = CreateHeroForPlayer(heroName, player)
 
-                    --if not IsInToolsMode() and not GameRules:IsCheatMode() then
-                        UTIL_Remove(hero)
-                    --else
-                    --    hero:AddNoDraw()
-                    --    hero:AddNewModifier(hero,nil,"modifier_invulnerable",{})
-                    --    hero:SetAbsOrigin(Vector(-10000,-10000,-10000))
-                    --end
-
-                    --[[if hero ~= nil and IsValidEntity(hero) then
-                        SkillManager:ApplyBuild(hero, build or {})
-                        -- Do they have a custom attribute set?
-                        if self.selectedPlayerAttr[playerID] ~= nil then
-                            -- Set it
-                            local toSet = 0
-                            if self.selectedPlayerAttr[playerID] == 'str' then
-                                toSet = 0
-                            elseif self.selectedPlayerAttr[playerID] == 'agi' then
-                                toSet = 1
-                            elseif self.selectedPlayerAttr[playerID] == 'int' then
-                                toSet = 2
-                            end
-                            -- Set a timer to fix stuff up
-                            Timers:CreateTimer(function()
-                                if IsValidEntity(hero) then
-                                    hero:SetPrimaryAttribute(toSet)
-                                end
-                            end, DoUniqueString('primaryAttrFix'), 0.1)
-                        end
-                    end]]
+                    UTIL_Remove(hero)
                 end)
+
+                continueSpawning()
 
                 -- Did the spawning of this hero fail?
                 if not status2 then
@@ -1451,24 +1427,22 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                 end
             end
 
-            if this.cachedPlayerHeroes[playerID] then
-                -- Directly spawn the hero
-                spawnTheHero()
-            else
-                -- Attempt to precache their hero
-                -- PrecacheUnitByNameAsync(heroName, function()
-                    -- We have now cached this player's hero
+            -- Attempt to precache their hero
+            PrecacheUnitByNameAsync(heroName, function()
+                -- We have now cached this player's hero
+                Timers:CreateTimer(function (  )
                     this.cachedPlayerHeroes[playerID] = true
 
                     -- Spawn it
                     spawnTheHero()
-                -- end, playerID)
-                PrecacheUnitByNameAsync(heroName, function()
-                end, playerID)
-            end
+                end, DoUniqueString('delay'), 0.2)
+
+            end, playerID)
         else
             -- This player has not spawned!
             self.spawnedHeroesFor[playerID] = nil
+
+            continueSpawning()
         end
     end)
 
@@ -6976,46 +6950,6 @@ function Pregame:fixSpawnedHero( spawnedUnit )
         self:applyPrimaryAttribute(playerID, mainHero)
     end
 
-    -- Fix meepo clones and illusions
-    if mainHero and mainHero ~= spawnedUnit and self.spawnedHeroesFor[playerID] then
-        -- Apply the build
-        local build = this.selectedSkills[playerID] or {}
-        SkillManager:ApplyBuild(spawnedUnit, build)
-
-        -- Illusion and Tempest Double fixes
-        if not spawnedUnit:IsClone() then
-            Timers:CreateTimer(function()
-                if IsValidEntity(spawnedUnit) then
-                    for k,abilityName in pairs(build) do
-                        if notOnIllusions[abilityName] then
-                            local ab = spawnedUnit:FindAbilityByName(abilityName)
-                            if ab then
-                                ab:SetLevel(0)
-                                ab:RemoveSelf()
-                            end
-                        end
-                    end
-
-
-                end
-            end, DoUniqueString('fixBrokenSkills'), 0)
-        end
-
-        -- Set the correct level for each ability
-        --[[for k,v in pairs(build) do
-            local abMain = mainHero:FindAbilityByName(v)
-
-            if abMain then
-                local abAlt = spawnedUnit:FindAbilityByName(v)
-
-                if abAlt then
-                    -- Both heroes have both skills, set the level
-                    abAlt:SetLevel(abMain:GetLevel())
-                end
-            end
-        end]]
-    end
-
     -- Add talents
     Timers:CreateTimer(function()
         --print(self.perksDisabled)
@@ -7074,7 +7008,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
               --  end
            -- end
         --end
-    end, DoUniqueString('addTalents'), 1.5)
+    end, DoUniqueString('addTalents'), 0.25)
 
     -- Various fixes
     Timers:CreateTimer(function()
@@ -7172,29 +7106,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                 end
             end
         end
-    end, DoUniqueString('silencerFix'), 2)
-
---[[
-    Timers:CreateTimer(function()
-        if IsValidEntity(spawnedUnit) and not spawnedUnit.hasTalents then 
-            local abilities = spawnedUnit:GetAbilityCount() - 1
-            spawnedUnit.talents = {}
-
-            for i = 0, abilities do
-                if spawnedUnit:GetAbilityByIndex(i) then
-                    if string.find(spawnedUnit:GetAbilityByIndex(i):GetAbilityName(), "special_bonus") then
-                        --print("removed") 
-                        local talent = spawnedUnit:GetAbilityByIndex(i):GetAbilityName()
-                        spawnedUnit.talents[i] = talent
-                        print("Ability " .. i .. ": " .. talent)
-                        spawnedUnit:RemoveAbility(talent)
-                    end
-                end
-            end
-            spawnedUnit.hasTalents = true
-       end
-
-    end, DoUniqueString('fixHotKey'), 1)]]
+    end, DoUniqueString('silencerFix'), 0.5)
 
      -- Add hero perks
     Timers:CreateTimer(function()
@@ -7211,11 +7123,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
            spawnedUnit.hasPerk = true
            --print("Perk assigned")
         end
-    end, DoUniqueString('addPerk'), 1.0)
-
-    -- Don't touch this hero more than once :O
-    if self.handled[spawnedUnit] then return end
-    self.handled[spawnedUnit] = true
+    end, DoUniqueString('addPerk'), 0.75)
 
     -- Are they a bot?
     Timers:CreateTimer(function()
@@ -7235,34 +7143,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                 end
             end
         end
-    end, DoUniqueString('addBotAI'), 0.5)
-
-
-
-    --[[local ab1 = spawnedUnit:GetAbilityByIndex(1)
-    local ab2 = spawnedUnit:GetAbilityByIndex(2)
-    local ab3 = spawnedUnit:GetAbilityByIndex(3)
-
-    local ab1Name = ab1:GetAbilityName()
-    local ab2Name = ab2:GetAbilityName()
-    local ab3Name = ab3:GetAbilityName()
-
-    print('NEW')
-    print(ab1Name)
-    print(ab2Name)
-    print(ab3Name)]]
-
-    --spawnedUnit:RemoveAbility(ab1Name)
-    --spawnedUnit:RemoveAbility(ab2Name)
-    --spawnedUnit:RemoveAbility(ab3Name)
-
-    --[[spawnedUnit:AddAbility('pudge_meat_hook')
-    spawnedUnit:AddAbility('pudge_flesh_heap')
-    spawnedUnit:AddAbility('pudge_dismember')
-    spawnedUnit:AddAbility('pudge_rot')]]
-
-    -- Handle the free courier stuff
-    --handleFreeCourier(spawnedUnit)
+    end, DoUniqueString('addBotAI'), 1.0)
 
     -- Toolsmode developer stuff to help test
     if IsInToolsMode() then
@@ -7404,20 +7285,6 @@ function Pregame:fixSpawnedHero( spawnedUnit )
         end
     end
 
-    -- THIS does not seem necessary anymore, eventually remove this code.
-    --if util:isPlayerBot(playerID) then
-        --Timers:CreateTimer(function()
-            --if IsValidEntity(spawnedUnit) then
-                    --local item = spawnedUnit:AddItemByName('item_backPackBlocker')
-                    --spawnedUnit:SwapItems(0, 6)
-                    --local item2 = spawnedUnit:AddItemByName('item_backPackBlocker')
-                    --spawnedUnit:SwapItems(0, 7)
-                    --local item3 = spawnedUnit:AddItemByName('item_backPackBlocker')
-                    --spawnedUnit:SwapItems(0, 8)
-           -- end
-        --end, DoUniqueString('fillBotsBackPack'), 1)
-    --end
-
     Timers:CreateTimer(function()
         if IsValidEntity(spawnedUnit) then
             for _,modifier in pairs(spawnedUnit:FindAllModifiers()) do
@@ -7427,6 +7294,10 @@ function Pregame:fixSpawnedHero( spawnedUnit )
            end
         end
      end, DoUniqueString('removeTalentModifiers'), 2)
+
+    -- Don't touch this hero more than once :O
+    if self.handled[spawnedUnit] then return end
+    self.handled[spawnedUnit] = true
                 
     -- Only give bonuses once
     if not self.givenBonuses[playerID] then
@@ -7628,22 +7499,10 @@ ListenToGameEvent('game_rules_state_change', function(keys)
     local newState = GameRules:State_Get()
     if newState == DOTA_GAMERULES_STATE_PRE_GAME then
         local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
-        
-        -- Add talents
-        Timers:CreateTimer(function()
-            local maxPlayerID = 24
-            for playerID=0,maxPlayerID-1 do
-                local hero = PlayerResource:GetSelectedHeroEntity(playerID)
-
-                if hero ~= nil and IsValidEntity(hero) then
-                    _instance:fixSpawnedHero( hero )
-                end
-            end
-        end, DoUniqueString('addTalents'), 2.0)
     elseif newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
         if IsDedicatedServer() then
             local mapName = OptionManager:GetOption('mapname')
-            if mapName == 'standard' and not util:isCoop() then
+            if mapName == 'all_allowed' and not util:isCoop() then
                 SU:SendPlayerBuild( buildBackups )
             end
         end

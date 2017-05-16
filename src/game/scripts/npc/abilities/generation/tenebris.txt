@@ -424,6 +424,16 @@
                     {
                         "Mana"              "%AbilityManaCost"
                     }
+                    "ApplyModifier"
+                    {
+                        "ModifierName"      "tenebris_fade_strike_modifier_debuff"
+                        "Target"        "CASTER"
+                    }
+                    "FireSound"
+                    {
+                        "EffectName"        "Hero_Visage.SoulAssumption.Cast"
+                        "Target"        "CASTER"
+                    }
                 }
  
                 "OnOrbImpact"
@@ -446,11 +456,7 @@
                         "EffectAttachType"  "attach_hitloc"
                         "Target"        "TARGET"
                     }
-                    "FireSound"
-                    {
-                        "EffectName"        "Hero_Visage.SoulAssumption.Cast"
-                        "Target"        "CASTER"
-                    }
+                    
                     "FireSound"
                     {
                         "EffectName"        "Hero_Visage.SoulAssumption.Target"
@@ -462,11 +468,7 @@
                         "Function"      "FadeStrike_OnOrbImpact"
                         "damage"        "%attack_damage"
                     }
-                    "ApplyModifier"
-                    {
-                        "ModifierName"      "tenebris_fade_strike_modifier_debuff"
-                        "Target"        "CASTER"
-                    }
+                    
                 }
             }
             "tenebris_fade_strike_modifier_debuff"

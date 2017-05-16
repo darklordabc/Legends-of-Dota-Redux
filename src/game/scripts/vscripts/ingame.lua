@@ -123,6 +123,11 @@ function Ingame:init()
             PlayerResource:SetDisableHelpForPlayerID(args.PlayerID, player, tonumber(args.disabled) == 1)
         end
     end)
+
+    CustomGameEventManager:RegisterListener('lodPrintTime', function(eventSourceIndex, args)
+        local player = PlayerResource:GetPlayer(args.PlayerID)
+        Say(player, util:secondsToClock(GameRules:GetDOTATime(false, true)), true)
+    end)
 end   
 
 function Ingame:OnPlayerReconnect(keys)
@@ -1798,6 +1803,8 @@ function Ingame:FilterDamage( filterTable )
     local victim_index = filterTable["entindex_victim_const"]
     local attacker_index = filterTable["entindex_attacker_const"]
     local ability_index = filterTable["entindex_inflictor_const"]
+    local ability = nil
+
     if not victim_index or not attacker_index then
         return true
     end
@@ -1806,6 +1813,14 @@ function Ingame:FilterDamage( filterTable )
 
     local victim = EntIndexToHScript(victim_index)
     local attacker = EntIndexToHScript(attacker_index)
+
+    if ability_index then
+        ability = EntIndexToHScript( ability_index )
+        if ability:GetName() == "centaur_return"  and victim.IsBuilding and victim:IsBuilding() then
+            filterTable["damage"] = 0
+        end
+    end
+
     if victim:HasModifier("modifier_ancient_priestess_spirit_link") then 
         if victim.spiritLink_damage then 
             victim.spiritLink_damage = nil
