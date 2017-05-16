@@ -947,6 +947,7 @@
     "lod_cat_illusion"                              "Illusion"
     "lod_cat_dota_custom"                           "Dota Related Customs"
     "lod_cat_passive"                               "Passive"
+    "lod_cat_cooldown"                              "Cooldown Manipulation"
 
     // Categories
     "lodCategory_main"                              "Hero Abilities"

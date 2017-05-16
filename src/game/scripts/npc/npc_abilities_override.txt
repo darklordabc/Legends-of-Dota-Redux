@@ -1334,7 +1334,7 @@
     }
     "keeper_of_the_light_chakra_magic"
     {
-        "ReduxFlags"                                                           "support"
+        "ReduxFlags"                                                           "support | cooldown"
         "ReduxPerks"                                                           "support"
     }
     "lich_frost_armor"
@@ -2985,7 +2985,7 @@
         "ReduxPerks"                                                           "scientific | channeled"
         "ReduxCost"                                                            "400"
         "ReduxBans"                                                            "dazzle_shallow_grave | lich_absolute_zero | arc_warden_tempest_double | arc_warden_tempest_double_redux"
-        "ReduxFlags"                                                           "SuperOP"
+        "ReduxFlags"                                                           "SuperOP | cooldown"
     }
     "chen_penitence"
     {
