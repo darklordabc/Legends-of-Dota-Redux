@@ -187,11 +187,14 @@ var constantBalancePointsValue = GameUI.AbilityCosts.BALANCE_MODE_POINTS;
 var calculateFilters = function(){};
 var calculateHeroFilters = function(){};
 var calculateBuildsFilters = function(){
-    var con = $('#pickingPhaseRecommendedBuildContainer');
-    for (var i = 0; i < con.GetChildCount(); i++) {
-        var child = con.GetChild(i);
-        child.updateSearchFilter(searchText);
-    }    
+    var con = $('#recommendedBuildContainerScrollWrapper');
+    for (var ci = 0; ci < con.GetChildCount(); ci++) {
+        var conTab = con.GetChild(ci);
+        for (var i = 0; i < conTab.GetChildCount(); i++) {
+            var child = conTab.GetChild(i);
+            child.updateSearchFilter(searchText);
+        }
+    }
 };
 
 // Balance Mode

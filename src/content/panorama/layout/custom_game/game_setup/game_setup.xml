@@ -641,15 +641,17 @@
                                         <Panel id="buildSortingProperties">
                                             <Label id="buildSortingPropertyVotes" class="buildSortingProperty selected" text="txtBuildsSortVotes" onactivate="SelectBuildSortingOrder('votes')" />
                                             <Label id="buildSortingPropertyNewest" class="buildSortingProperty" text="txtBuildsSortNewest" onactivate="SelectBuildSortingOrder('newest')" />
+                                            <Label id="buildSortingPropertyFavorite" class="buildSortingProperty" text="txtBuildsSortFavorite" onactivate="SelectBuildSortingOrder('favorite')" />
                                         </Panel>
                                         <Label id="buildLoadMoreBuilds" text="txtLoadMoreBuilds" onactivate="LoadMoreBuilds()" />
                                         <Panel id="buildLoadingIndicator">
                                             <Panel id="buildLoadingSpinner" class="Spinner" />
                                             <Label id="buildLoadingIndicatorText" text="#loadingBuilds" />
                                         </Panel>
-                                        <Panel class="recommendedBuildContainerScrollWrapper" id="recommendedBuildContainerScrollWrapper">
+                                        <Panel id="recommendedBuildContainerScrollWrapper">
                                             <Panel class="pickingPhaseRecommendedBuildContainer selected" id="pickingPhaseRecommendedBuildContainerVotes" />
                                             <Panel class="pickingPhaseRecommendedBuildContainer" id="pickingPhaseRecommendedBuildContainerNewest" />
+                                            <Panel class="pickingPhaseRecommendedBuildContainer" id="pickingPhaseRecommendedBuildContainerFavorite" />
                                         </Panel>                                        
                                     </Panel>
 

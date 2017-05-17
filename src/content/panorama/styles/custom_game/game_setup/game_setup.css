@@ -2386,7 +2386,7 @@ Button:enabled:hover {
     color: blue;
 }
 
-.recommendedBuildContainerScrollWrapper{
+#recommendedBuildContainerScrollWrapper{
     width: 100%;
     height: 100%;
 
@@ -2412,6 +2412,10 @@ Button:enabled:hover {
 .AspectRatio4x3 .pickingPhaseRecommendedBuildContainer,
 .AspectRatio5x4 .pickingPhaseRecommendedBuildContainer {
     padding-left: 115px;
+}
+
+.AspectRatio16x10 .pickingPhaseRecommendedBuildContainer {
+    padding-left: 50px;
 }
 
 #buildLoadingIndicator {

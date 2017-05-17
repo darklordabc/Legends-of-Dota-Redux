@@ -1,4 +1,5 @@
-var ServerAddress = (Game.IsInToolsMode() && false ? 'http://127.0.0.1:3333' : 'https://lodr-ark120202.rhcloud.com') + '/lodServer/';
+var ServerAddress = 'https://lodr-ark120202.rhcloud.com/lodServer/';
+//ServerAddress = 'http://127.0.0.1:3333/lodServer/';
 
 function GetDataFromServer(path, params, resolve, reject) {
 	var encodedParams = params == null ? '' : '?' + Object.keys(params).map(function(key) {
@@ -25,7 +26,7 @@ function CreateSkillBuild(title, description) {
 }
 
 function LoadBuilds(cont, skip) {
-	cont = cont || $pickingPhaseRecommendedBuildContainer()
+	cont = cont || $pickingPhaseRecommendedBuildContainer();
 	var req = {steamID: Game.GetLocalPlayerInfo().player_steamid};
 	if (skip) req.skip = skip;
 	if (cont) req.sorting = cont[1];
