@@ -880,13 +880,13 @@ end
 function Pregame:applyBuilds()
     local maxPlayerID = 24
     for playerID=0,maxPlayerID-1 do
-        local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+        Timers:CreateTimer(function ()
+            local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 
-        if hero ~= nil and IsValidEntity(hero) then
-            local build = self.selectedSkills[playerID]
+            if hero ~= nil and IsValidEntity(hero) then
+                local build = self.selectedSkills[playerID]
 
-            if build then
-                Timers:CreateTimer(function ()
+                if build then
                     local status2,err2 = pcall(function()
                         SkillManager:ApplyBuild(hero, build or {})
 
@@ -894,9 +894,11 @@ function Pregame:applyBuilds()
 
                         self:fixSpawnedHero( hero )
                     end)
-                end, DoUniqueString("applyBuildsLoop"), (playerID + 1) / 10)
+                end
+            else
+                return 1.0
             end
-        end
+        end, DoUniqueString("applyBuildsLoop"), (playerID + 1) / 10)
     end
 end
 
@@ -6913,6 +6915,10 @@ function Pregame:fixSpawnedHero( spawnedUnit )
     self.givenCouriers = self.givenCouriers or {}
     local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
 
+    -- Don't touch this hero more than once :O
+    if self.handled[spawnedUnit] then return end
+    self.handled[spawnedUnit] = true
+
     -- Grab a reference to self
     local this = self
 
@@ -7290,10 +7296,6 @@ function Pregame:fixSpawnedHero( spawnedUnit )
            end
         end
      end, DoUniqueString('removeTalentModifiers'), 2)
-
-    -- Don't touch this hero more than once :O
-    if self.handled[spawnedUnit] then return end
-    self.handled[spawnedUnit] = true
                 
     -- Only give bonuses once
     if not self.givenBonuses[playerID] then
