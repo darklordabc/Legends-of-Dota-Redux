@@ -1631,10 +1631,10 @@
     "DOTA_Tooltip_modifier_redux_silver_break_Description"  "Passives are disabled."
 
     "DOTA_Tooltip_ability_item_redux_silver" "Silver"
-    "DOTA_Tooltip_ability_item_redux_silver_Description" "Active: Break - Shatters the resolve of targeted enemy hero, disabling their passives."
+    "DOTA_Tooltip_ability_item_redux_silver_Description" "Active: Break - Shatters the resolve of targeted enemy hero, disabling their passives and reducing their damage output."
     "DOTA_Tooltip_ability_item_redux_silver_bonus_all_stats"            "+$all"
     "DOTA_Tooltip_ability_item_redux_silver_break_duration"                  "BREAK DURATION:"
-    "DOTA_Tooltip_ability_item_redux_silver_damage_reduction"                  "%BREAK DAMAGE REDUCTION:"
+    "DOTA_Tooltip_ability_item_redux_silver_damage_reduction"                  "%DAMAGE REDUCTION:"
 
     "DOTA_Tooltip_ability_item_recipe_redux_silver" "Silver Recipe"
 
