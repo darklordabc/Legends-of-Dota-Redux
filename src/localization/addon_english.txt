@@ -1599,6 +1599,16 @@
     "credit_makemeleecreeps_lua"           "<font color=\'#7D7D7D\'>Imported from <font color=\'#803935\'>Definitely Not Dota</font></font>"
     "credit_makerangedcreeps_lua"           "<font color=\'#7D7D7D\'>Imported from <font color=\'#803935\'>Definitely Not Dota</font></font>"
     "credit_makecatapults_lua"           "<font color=\'#7D7D7D\'>Imported from <font color=\'#803935\'>Definitely Not Dota</font></font>"
+    "credit_mega_black_hole"           "<font color=\'#7D7D7D\'>Credits: SwordBacon | github.com/SwordBacon</font>"
+    "credit_armageddon"           "<font color=\'#7D7D7D\'>Credits: SwordBacon | github.com/SwordBacon</font>"
+    "credit_mega_chronosphere"           "<font color=\'#7D7D7D\'>Credits: SwordBacon | github.com/SwordBacon</font>"
+    "credit_mega_eclipse"           "<font color=\'#7D7D7D\'>Credits: SwordBacon | github.com/SwordBacon</font>"
+    "credit_floor_is_lava"           "<font color=\'#7D7D7D\'>Credits: SwordBacon | github.com/SwordBacon</font>"
+    "credit_mega_freezing_field"           "<font color=\'#7D7D7D\'>Credits: SwordBacon | github.com/SwordBacon</font>"
+    "credit_mega_suicide"           "<font color=\'#7D7D7D\'>Credits: SwordBacon | github.com/SwordBacon</font>"
+    "credit_mega_omni_slash"           "<font color=\'#7D7D7D\'>Credits: SwordBacon | github.com/SwordBacon</font>"
+    "credit_mega_call_down"           "<font color=\'#7D7D7D\'>Credits: SwordBacon | github.com/SwordBacon</font>"
+    "credit_mega_flare"           "<font color=\'#7D7D7D\'>Credits: SwordBacon | github.com/SwordBacon</font>"
 
     /////////////////
     // CUSTOM ABILITIES
