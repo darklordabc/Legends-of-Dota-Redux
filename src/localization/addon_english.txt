@@ -910,6 +910,7 @@
     "showOnlyHeroPerkRelativeSkills"                "Show Only Hero Perk Relative Skills"
 
     "txtBuildsSortVotes"                            "Most popular"
+    "txtBuildsSortFavorite"                         "Favourite"
     "txtBuildsSortNewest"                           "Newest"
     "txtLoadMoreBuilds"                             "Load More Builds"
 

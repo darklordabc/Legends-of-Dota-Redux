@@ -14,7 +14,7 @@
         "AbilityTextureName"                                                   "custom/hawkeye_ricochet"
         "AbilityCastRange"                                                     "650"
         "AbilityCastPoint"                                                     "0.15"
-        "AbilityCooldown"                                                      "14 12 10 8"
+        "AbilityCooldown"                                                      "16 14 12 10"
         "AbilityManaCost"                                                      "50"
         "AbilityModifierSupportValue"                                          "0.0"
         "AbilitySpecial"
