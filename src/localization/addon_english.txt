@@ -10127,6 +10127,7 @@
     "DOTA_Tooltip_ability_mega_omni_slash"                         "1000 Cuts"
     "DOTA_Tooltip_ability_mega_omni_slash_Description"             "Juggernaut leaps towards the target enemy unit with a damaging attack, and then attempts to slash nearby enemies 1000 times, dealing 100 damage per slash. Juggernaut is invulnerable for the duration. Upgradable by Aghanim's Scepter.\n<font color='#70EA72'>Requires level 24 to skill.</font>"
     "DOTA_Tooltip_ability_mega_omni_slash_omni_slash_jumps"         "SLASHES:"
+    "DOTA_Tooltip_ability_mega_omni_slash_omni_slash_radius"        "JUMP RADIUS:"
     "DOTA_Tooltip_ability_mega_omni_slash_omni_slash_cooldown_scepter"         "SCEPTER COOLDOWN:"
 
     "DOTA_Tooltip_ability_mega_flare"                         "MEGA Flare"
@@ -10149,7 +10150,7 @@
     "DOTA_Tooltip_ability_floor_is_lava_duration"                "DURATION:"
 
     "DOTA_Tooltip_ability_mega_freezing_field"                         "MEGA Freezing Field"
-    "DOTA_Tooltip_ability_mega_freezing_field_Description"             "CHANNELED - Surrounds Crystal Maiden with random icy explosions that slow enemies and deal massive damage. Lasts 10 seconds. Upgradable by Aghanim's Scepter. <font color='#70EA72'>Dramatically increased radius and reduced explosion interval.</font>\n<font color='#70EA72'>Requires level 24 to skill.</font>"
+    "DOTA_Tooltip_ability_mega_freezing_field_Description"             "CHANNELED - Surrounds Crystal Maiden with random icy explosions that slow enemies and deal massive damage. Lasts 10 seconds. Upgradable by Aghanim's Scepter. <font color='#70EA72'>Dramatically increased radius and 5x more explosions.</font>\n<font color='#70EA72'>Requires level 24 to skill.</font>"
     "DOTA_Tooltip_ability_mega_freezing_field_radius"                  "RADIUS:"
     "DOTA_Tooltip_ability_mega_freezing_field_explosion_radius"        "EXPLOSION RADIUS:"
     "DOTA_Tooltip_ability_mega_freezing_field_movespeed_slow"          "MOVEMENT SLOW:"
@@ -10166,7 +10167,7 @@
     "DOTA_Tooltip_ability_mega_call_down_radius"                  "RADIUS:"
 
     "DOTA_Tooltip_ability_mega_suicide"                         "KAMIKAZE!!!"
-    "DOTA_Tooltip_ability_mega_suicide_Description"             "Techies hurtle themselves into the enemy's midst, landing after a 3 second delay and completely annihilating everything within a short blast radius. This 100% kills Techies.\n<font color='#70EA72'>Requires level 24 to skill.</font>"
+    "DOTA_Tooltip_ability_mega_suicide_Description"             "Techies hurtle themselves into the enemy's midst, landing after a 3 second delay and completely annihilating everything within a short blast radius. This <i>should</i> 100% kills Techies.\n<font color='#70EA72'>Requires level 24 to skill.</font>"
     "DOTA_Tooltip_ability_mega_suicide_radius"                  "RADIUS:"
     "DOTA_Tooltip_ability_mega_suicide_damage"                  "DAMAGE:"
 
