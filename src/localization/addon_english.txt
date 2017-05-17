@@ -10085,8 +10085,8 @@
     "DOTA_Tooltip_ability_armageddon"                         "ARMAGEDDON"
     "DOTA_Tooltip_ability_armageddon_Description"             "Summons a barrage of Meteors to rain down across the entire map for a duration.\n<font color='#70EA72'>Requires level 24 to skill.</font>"
     "DOTA_Tooltip_ability_armageddon_Note0"                   "Meteors' values are derived from level 4 Meteor Strike."
-    "DOTA_Tooltip_ability_armageddon_meteors_tooltip"           "METEORS PER SECOND:"
-    "DOTA_Tooltip_ability_armageddon_duration"           "DURATION:"
+    "DOTA_Tooltip_ability_armageddon_meteors_per_second"        "METEORS PER SECOND:"
+    "DOTA_Tooltip_ability_armageddon_duration"                  "DURATION:"
 
     "DOTA_Tooltip_ability_mega_eclipse"                         "Orbital Ion Cannon"
     "DOTA_Tooltip_ability_mega_eclipse_Description"              "Showers random nearby enemies with strikes from Luna's current level of Lucent Beam. These beams do not stun their targets, and there is a maximum number of times that a single target can be struck. Also turns day into night for 10 seconds. Upgradable by Aghanim's Scepter. <font color='#70EA72'>Dramatically reduced interval between strikes, increased beam count and max beams per unit.</font>\n<font color='#70EA72'>Requires level 24 to skill.</font>"
