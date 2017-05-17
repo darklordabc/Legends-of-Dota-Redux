@@ -929,6 +929,11 @@
                 "var_type"              "FIELD_INTEGER"
                 "break_duration"        "5"
             }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "damage_reduction"      "25"
+            }
         }
         
         "OnSpellStart"
@@ -970,6 +975,11 @@
 
                 "EffectName"        "particles/items3_fx/silver_edge_slow.vpcf"
                 "EffectAttachType"  "follow_origin"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE" "%damage_reduction * -1"
+                }
                 
                 "States"
                 {
