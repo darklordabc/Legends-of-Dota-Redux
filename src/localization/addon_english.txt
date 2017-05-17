@@ -2510,6 +2510,8 @@
     "DOTA_Tooltip_ability_hawkeye_hit_n_run_description" "With a spring in his step, Hawkeye leaps out of harms way using the explosive soles on his boots.  Leaves behind an area of damaging and slowing shrapnel to deter his more eager foes.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
     "DOTA_Tooltip_ability_hawkeye_hit_n_run_Note0" "Does not interrupt channelled abilities."
     "DOTA_Tooltip_ability_hawkeye_hit_n_run_slow" "%SLOW:"
+    "DOTA_Tooltip_ability_hawkeye_hit_n_run_jump_distance" "JUMP DISTANCE:"
+    "DOTA_Tooltip_ability_hawkeye_hit_n_run_jump_distance" "SHRAPNEL RADIUS:"
     
     "DOTA_Tooltip_ability_hawkeye_double_tap" "Single Tap"
     "DOTA_Tooltip_ability_hawkeye_double_tap_description" "After 1 second of charging, Hawkeye fires a projectile that travels a great distance, dealing base damage and damage based on a multiplier of his attack damage while piercing through enemies.  The first Hero enemy hit that isn't killed is marked for his second, more potent shot, which deals Pure damage.  After the shot collides with its targets, Hawkeye has a few moments to take the second shot.\n\nUpgradable by Aghanim's Scepter.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
