@@ -895,7 +895,7 @@
         
         // Stats        
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCastRange"              "100"
+        "AbilityCastRange"              "500"
         "AbilityCastPoint"              "0.0"
         "AbilityCooldown"               "24.0"
         "AbilityManaCost"               "75"
