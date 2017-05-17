@@ -59,6 +59,7 @@
 			<Image src="file://{images}/custom_game/hints/hint_discord.png" />
 			<Image src="file://{images}/custom_game/hints/hint_bots_difficulty.png" />
 			<Image src="file://{images}/custom_game/hints/hint_duels.png" />
+			<Image src="file://{images}/custom_game/hints/hint_silver.png" />
 			<Image src="file://{images}/custom_game/hints/hint_shadow_shaman.png" />
 			<Image src="file://{images}/custom_game/hints/hint_doom.png" />
 			<Image src="file://{images}/custom_game/hints/hint_lich.png" />

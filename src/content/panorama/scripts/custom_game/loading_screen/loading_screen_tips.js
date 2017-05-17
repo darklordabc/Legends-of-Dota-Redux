@@ -118,6 +118,9 @@ var tipsGeneral = [{
     },{
         img: 'file://{images}/spellicons/courier_shield.png',
         txt: '#hintChatCheats'
+    },{
+        img: 'file://{images}/custom_game/hints/hint_silver.png',
+        txt: '#hintSilver'
     },
 ];
 

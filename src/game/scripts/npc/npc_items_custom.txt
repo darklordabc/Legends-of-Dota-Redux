@@ -890,6 +890,7 @@
         "Model"                         "models/props_gameplay/red_box.vmdl" 
         "Effect"                        "particles/generic_gameplay/dropped_item.vpcf"
         "AbilityTextureName"            "custom/redux_silver"
+        "ItemAliases"					"silver;invis;shadow blade"
         "FightRecapLevel"               "1"
         
         // Stats        
@@ -897,7 +898,7 @@
         "AbilityCastRange"              "100"
         "AbilityCastPoint"              "0.0"
         "AbilityCooldown"               "24.0"
-        "AbilityManaCost"               "25"
+        "AbilityManaCost"               "75"
         
         "AbilitySharedCooldown"         ""
         "MaxUpgradeLevel"               "1"
@@ -909,7 +910,7 @@
         "ItemCost"            "2850"
         "ItemShopTags"          "utility"
         "ItemQuality"         "component"
-        "ItemPurchasable"               "0"
+        "ItemPurchasable"               "1"
 
         "precache"
         {

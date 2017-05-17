@@ -771,6 +771,7 @@
     "hintGoldBorder"  "Ultimate Abilities have a gold border."
     "hintAntiKamikaze"  "Anti-Kamikaze mechanic: If you die more than 3 times within 60 seconds, you will be penalized with extra respawn time. This is to prevent players taking advantage of lowered respawn."
     "hintChatCheats"  "You can use cheats in any single player game (even without sv_cheats enabled) like: '-gold x' '-lvlup x' '-lvlmax' '-dagger' '-teleport' '-startgame' '-respawn' '-refresh' '-item x'"
+    "hintSilver"                         "Silver is new item that can break passives. It cost 2850 gold and is made from an Ultimate Orb and a Recipe"
 
     // Perk-related Hints
     "hintLina"                          "Lina's intelligence increases by 3 for each level put in Fire abilities"
