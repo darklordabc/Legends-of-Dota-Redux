@@ -6266,7 +6266,6 @@ function Pregame:preventCamping()
     if self.optionStore['lodOptionCrazyNoCamping'] == 1 then
         local toAdd = {
             ursa_fury_swipes = 4,
-            templar_assassin_psi_blades = 1,
             slark_essence_shift = 4
         }
 
