@@ -53,7 +53,7 @@
             "04"
             {
                 "var_type"              "FIELD_FLOAT"
-                "cooldown_scepter"      "60"
+                "cooldown_scepter"      "200"
             }
             "05"
             {

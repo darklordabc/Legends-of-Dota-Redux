@@ -24,6 +24,30 @@
             "particle"                                                     "particles/units/heroes/hero_invoker/invoker_chaos_meteor.vpcf"
         }
 
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "lines"                     "45"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "damage"                    "50"
+            }
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "cast_range"                "3600"                  
+            }
+            "04"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "duration"                "10"                  
+            }
+        }
+
         "OnSpellStart"
         {
             "RunScript"

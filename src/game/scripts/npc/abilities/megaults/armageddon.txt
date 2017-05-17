@@ -18,6 +18,19 @@
             "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
             "particle"                                                     "particles/units/heroes/hero_invoker/invoker_chaos_meteor.vpcf"
         }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "meteors_tooltip"                                      "20"
+            }
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "duration"                                             "10"
+            }
+        }
 
         "OnSpellStart"
         {

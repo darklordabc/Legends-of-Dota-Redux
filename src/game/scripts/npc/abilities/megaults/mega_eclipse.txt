@@ -4,7 +4,7 @@
         // General
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                    "luna_eclipse"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT_TARGET"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -19,7 +19,6 @@
 
         // Casting
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCastRange"              "2500"
         "AbilityCastPoint"              "0.6"
         "AbilityCastRange"              "0"
 
@@ -38,7 +37,7 @@
             "01"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "beams"                     "15"
+                "beams"                     "20"
             }
             "02"
             {
@@ -58,27 +57,27 @@
             "05"
             {
                 "var_type"                  "FIELD_FLOAT"
-                "duration_tooltip"          "1.5"
+                "duration_tooltip"          "2.0"
             }
             "06"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "radius"                    "675 675 675"
+                "radius"                    "800"
             }   
             "07"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "beams_scepter"             "25"
+                "beams_scepter"             "30"
             }
             "08"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "hit_count_scepter"         "25"
+                "hit_count_scepter"         "15"
             }
             "09"
             {
                 "var_type"                  "FIELD_FLOAT"
-                "duration_tooltip_scepter"  "1.25"
+                "duration_tooltip_scepter"  "1.5"
             }
             "10"
             {

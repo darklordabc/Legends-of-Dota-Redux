@@ -10082,6 +10082,70 @@
     "DOTA_Tooltip_ability_mega_black_hole_duration"                "MAX CHANNEL TIME:"
     "DOTA_Tooltip_ability_mega_black_hole_damage"                  "DAMAGE PER SECOND:"
 
+    "DOTA_Tooltip_ability_armageddon"                         "ARMAGEDDON"
+    "DOTA_Tooltip_ability_armageddon_Description"             "Summons a barrage of Meteors to rain down across the entire map for a duration.\n<font color='#70EA72'>Requires level 24 to skill.</font>"
+    "DOTA_Tooltip_ability_armageddon_Note0"                   "Meteors' values are derived from level 4 Meteor Strike."
+    "DOTA_Tooltip_ability_armageddon_meteors_tooltip"           "METEORS PER SECOND:"
+    "DOTA_Tooltip_ability_armageddon_duration"           "DURATION:"
+
+    "DOTA_Tooltip_ability_mega_eclipse"                         "Orbital Ion Cannon"
+    "DOTA_Tooltip_ability_mega_eclipse_Description"              "Showers random nearby enemies with strikes from Luna's current level of Lucent Beam. These beams do not stun their targets, and there is a maximum number of times that a single target can be struck. Also turns day into night for 10 seconds. Upgradable by Aghanim's Scepter. <font color='#70EA72'>Dramatically reduced interval between strikes, increased beam count and max beams per unit.</font>\n<font color='#70EA72'>Requires level 24 to skill.</font>"
+    "DOTA_Tooltip_ability_mega_eclipse_beams"               "BEAM COUNT:"
+    "DOTA_Tooltip_ability_mega_eclipse_hit_count"           "MAX BEAMS PER UNIT:"
+    "DOTA_Tooltip_ability_mega_eclipse_duration_tooltip"    "ECLIPSE DURATION:"
+    "DOTA_Tooltip_ability_mega_eclipse_radius"              "RADIUS:"
+    "DOTA_Tooltip_ability_mega_eclipse_beams_scepter"       "SCEPTER BEAM COUNT:"
+    "DOTA_Tooltip_ability_mega_eclipse_duration_tooltip_scepter"    "SCEPTER ECLIPSE DURATION:"
+    "DOTA_Tooltip_ability_mega_eclipse_cast_range_tooltip_scepter"  "SCEPTER CAST RANGE:"
+
+    "DOTA_Tooltip_ability_mega_omni_slash"                         "1000 Cuts"
+    "DOTA_Tooltip_ability_mega_omni_slash_Description"             "Juggernaut leaps towards the target enemy unit with a damaging attack, and then attempts to slash nearby enemies 1000 times, dealing 100 damage per slash. Juggernaut is invulnerable for the duration. Upgradable by Aghanim's Scepter.\n<font color='#70EA72'>Requires level 24 to skill.</font>"
+    "DOTA_Tooltip_ability_mega_omni_slash_omni_slash_jumps"         "SLASHES:"
+    "DOTA_Tooltip_ability_mega_omni_slash_omni_slash_cooldown_scepter"         "SCEPTER COOLDOWN:"
+
+    "DOTA_Tooltip_ability_mega_flare"                         "MEGA Flare"
+    "DOTA_Tooltip_ability_mega_flare_Description"             "Skywrath Mage uses his ultimate magical ability to conjure a precise and violent mystical field that lays waste to his adversaries. Deals massive damage distributed evenly among any Heroes in the area over 12 seconds. <font color='#70EA72'>Dramatically increased radius and duration.</font>\n<font color='#70EA72'>Requires level 24 to skill.</font>"
+    "DOTA_Tooltip_ability_mega_flare_radius"                  "RADIUS:"
+    "DOTA_Tooltip_ability_mega_flare_duration"                "DURATION:"
+    "DOTA_Tooltip_ability_mega_flare_damage"                  "DAMAGE:"
+
+    "DOTA_Tooltip_ability_mega_chronosphere"                       "MEGA Chronosphere"
+    "DOTA_Tooltip_ability_mega_chronosphere_Description"           "Creates a HUGE blister in spacetime, trapping all units caught in its sphere of influence and causes you to move very quickly inside it. Only Faceless Void and any units he controls are unaffected. Invisible units in the sphere will be revealed. Upgradable by Aghanim's Scepter.\n<font color='#70EA72'>Requires level 24 to skill.</font>"
+    "DOTA_Tooltip_ability_mega_chronosphere_radius"                "RADIUS:"
+    "DOTA_Tooltip_ability_mega_chronosphere_duration"              "DURATION:"
+    "DOTA_Tooltip_ability_mega_chronosphere_cooldown_scepter"      "SCEPTER COOLDOWN:"
+
+    "DOTA_Tooltip_ability_floor_is_lava"                         "MEGA Macropyre"
+    "DOTA_Tooltip_ability_floor_is_lava_Description"             "Jakiro exhales DOZENS of lines of lasting flames, each dealing damage per second to any enemy units caught in the fire. \n<font color='#70EA72'>Requires level 24 to skill.</font>"
+    "DOTA_Tooltip_ability_floor_is_lava_lines"                   "MACROPYRE LINES:"
+    "DOTA_Tooltip_ability_floor_is_lava_damage"                  "DAMAGE PER SECOND PER LINE:"
+    "DOTA_Tooltip_ability_floor_is_lava_cast_range"              "MACROPYRE TRAVEL DISTANCE:"
+    "DOTA_Tooltip_ability_floor_is_lava_duration"                "DURATION:"
+
+    "DOTA_Tooltip_ability_mega_freezing_field"                         "MEGA Freezing Field"
+    "DOTA_Tooltip_ability_mega_freezing_field_Description"             "CHANNELED - Surrounds Crystal Maiden with random icy explosions that slow enemies and deal massive damage. Lasts 10 seconds. Upgradable by Aghanim's Scepter. <font color='#70EA72'>Dramatically increased radius and reduced explosion interval.</font>\n<font color='#70EA72'>Requires level 24 to skill.</font>"
+    "DOTA_Tooltip_ability_mega_freezing_field_radius"                  "RADIUS:"
+    "DOTA_Tooltip_ability_mega_freezing_field_explosion_radius"        "EXPLOSION RADIUS:"
+    "DOTA_Tooltip_ability_mega_freezing_field_movespeed_slow"          "MOVEMENT SLOW:"
+    "DOTA_Tooltip_ability_mega_freezing_field_attack_slow"             "ATTACK SLOW:"
+    "DOTA_Tooltip_ability_mega_freezing_field_damage"                  "DAMAGE:"
+    "DOTA_Tooltip_ability_mega_freezing_field_duration"                "DURATION:"
+
+    "DOTA_Tooltip_ability_mega_call_down"                         "MEGA Calldown"
+    "DOTA_Tooltip_ability_mega_call_down_Description"             "Call down an aerial missile strike on enemy units in a target area. Two missiles arrive in succession, the first dealing major damage and minor slow for 2 seconds; the second dealing minor damage and major slow for 4 seconds. Upgradable by Aghanim's Scepter. <font color='#70EA72'>Dramatically increased radius and increased damage. Can be cast globally.</font>\n<font color='#70EA72'>Requires level 24 to skill.</font>"
+    "DOTA_Tooltip_ability_mega_call_down_damage_first"            "MISSILE ONE DAMAGE:"
+    "DOTA_Tooltip_ability_mega_call_down_damage_second"           "MISSILE TWO DAMAGE:"
+    "DOTA_Tooltip_ability_mega_call_down_slow_first"              "MISSILE ONE SLOW:"
+    "DOTA_Tooltip_ability_mega_call_down_slow_second"             "MISSILE TWO SLOW:"
+    "DOTA_Tooltip_ability_mega_call_down_radius"                  "RADIUS:"
+
+    "DOTA_Tooltip_ability_mega_suicide"                         "KAMIKAZE!!!"
+    "DOTA_Tooltip_ability_mega_suicide_Description"             "Techies hurtle themselves into the enemy's midst, landing after a 3 second delay and completely annihilating everything within a short blast radius. This 100% kills Techies.\n<font color='#70EA72'>Requires level 24 to skill.</font>"
+    "DOTA_Tooltip_ability_mega_suicide_radius"                  "RADIUS:"
+    "DOTA_Tooltip_ability_mega_suicide_damage"                  "DAMAGE:"
+
+    
+
     
 
 }

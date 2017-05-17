@@ -13,7 +13,7 @@
         "MaxLevel"                  "1"
         "RequiredLevel"             "24"
 
-        "HasScepterUpgrade"         "1"
+        "HasScepterUpgrade"         "0"
 
         // Casting
         //-------------------------------------------------------------------------------------------------------------
@@ -55,7 +55,7 @@
             "05"
             {
                 "var_type"              "FIELD_INTEGER"
-                "scepter_radius"        "1400"
+                "scepter_radius"        "700"
             }
         }
     }
