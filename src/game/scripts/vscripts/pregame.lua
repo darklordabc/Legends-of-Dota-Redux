@@ -7052,7 +7052,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                     heroData = allHeroes[heroName]
                 end
                 if not heroData then
-                    print("Error: hero with name " .. heroName .. " wasn't found.")
+                    print("Error: hero with name " .. heroName .. " wasn't found. That hero name should be replaced above.")
                     return 4
                 end
                 local skippedTalentsCount = 0
@@ -7093,7 +7093,6 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                         local talentGroup = GetTalentGroup(k)
                         if VerifyTalent(k) and util:contains(requiredTalentsGroups, talentGroup) then
                             util:removeByValue(requiredTalentsGroups, talentGroup)
-                            print('added ', k, ' from group #', talentGroup)
                             spawnedUnit:AddAbility(k)
                             currentTalentCount = currentTalentCount + 1
                             if currentTalentCount >= 8 then
@@ -7102,12 +7101,10 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                         end
                     end
                 end
-                print('next => currentTalentCount = ' .. currentTalentCount)
                 --If hero still hasn't 8 talents => take random talents
                 local function Iterate()
                     while currentTalentCount < 8 do
                         --take random hero
-                        print('Randomize Talent!')
                         local tempHT = GetRandomHero()
                         if type(tempHT) == "table" then
                             local skippedTalentsCount = 0
