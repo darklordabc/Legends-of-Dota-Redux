@@ -6942,6 +6942,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
     self.handled = self.handled or {}
     self.givenCouriers = self.givenCouriers or {}
     local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
+    local npc_abilities_override = LoadKeyValues('scripts/npc/npc_abilities_override.txt')
 
     -- Grab a reference to self
     local this = self
@@ -7043,6 +7044,29 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                 return false
             end
 
+            local function GetTalentGroup(targetTalent, heroData)
+                local heroName = targetTalent:gsub('special_bonus_unique', 'npc_dota_hero'):gsub('_%d', '')
+                if heroName == "npc_dota_hero_underlord" then heroName = "npc_dota_hero_abyssal_underlord" end
+                
+                if not heroData then
+                    heroData = allHeroes[heroName]
+                end
+                if not heroData then
+                    print("Error: hero with name " .. heroName .. " wasn't found.")
+                    return 4
+                end
+                local skippedTalentsCount = 0
+                for i = 1, 24 do
+                    local abName = heroData['Ability' .. i]
+                    if abName and string.find(abName, 'special_bonus') then
+                        if abName == targetTalent then
+                            return math.ceil((skippedTalentsCount + 1) / 2)
+                        else
+                            skippedTalentsCount = skippedTalentsCount + 1
+                        end
+                    end
+                end
+            end
 
             --Load talents from kv and calculate total count
             local currentTalentCount = 0
@@ -7060,26 +7084,51 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                 end
             end
             --If hero hasn't enought talents => random
-            while currentTalentCount < 8 do
-                --take random hero
-                local tempHT = GetRandomHero()
-                if type(tempHT) == "table" then
-                    local skippedTalentsCount = 0
-                    for i = 1, 24 do
-                        local abName = tempHT['Ability' .. i]
-                        if abName and string.find(abName, "special_bonus") then
-                            local talentGroup = math.ceil((skippedTalentsCount + 1) / 2)
-                            if VerifyTalent(abName) and util:contains(requiredTalentsGroups, talentGroup) then
-                                util:removeByValue(requiredTalentsGroups, talentGroup)
-                                spawnedUnit:AddAbility(abName)
-                                currentTalentCount = currentTalentCount + 1
-                                break;
-                            else
-                                skippedTalentsCount = skippedTalentsCount + 1
+            if currentTalentCount < 8 then
+                --First try to find talents that requires hero's abilities
+                for k, v in pairs(npc_abilities_override) do
+                    --Ability is talent
+                    if string.find(k, 'special_bonus_unique_') and v.TalentRequiredAbility then
+                        --If current build has required ability
+                        local talentGroup = GetTalentGroup(k)
+                        if VerifyTalent(k) and util:contains(requiredTalentsGroups, talentGroup) then
+                            util:removeByValue(requiredTalentsGroups, talentGroup)
+                            print('added ', k, ' from group #', talentGroup)
+                            spawnedUnit:AddAbility(k)
+                            currentTalentCount = currentTalentCount + 1
+                            if currentTalentCount >= 8 then
+                                break
                             end
                         end
                     end
                 end
+                print('next => currentTalentCount = ' .. currentTalentCount)
+                --If hero still hasn't 8 talents => take random talents
+                local function Iterate()
+                    while currentTalentCount < 8 do
+                        --take random hero
+                        print('Randomize Talent!')
+                        local tempHT = GetRandomHero()
+                        if type(tempHT) == "table" then
+                            local skippedTalentsCount = 0
+                            for i = 1, 24 do
+                                local abName = tempHT['Ability' .. i]
+                                if abName and string.find(abName, "special_bonus") then
+                                    local talentGroup = math.ceil((skippedTalentsCount + 1) / 2)
+                                    if VerifyTalent(abName) and util:contains(requiredTalentsGroups, talentGroup) then
+                                        util:removeByValue(requiredTalentsGroups, talentGroup)
+                                        spawnedUnit:AddAbility(abName)
+                                        currentTalentCount = currentTalentCount + 1
+                                        return
+                                    else
+                                        skippedTalentsCount = skippedTalentsCount + 1
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+                Iterate() --To break while loop within for loop
             end
 
             --0 index talent, move it to end
