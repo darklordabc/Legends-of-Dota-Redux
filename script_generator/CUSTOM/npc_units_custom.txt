@@ -9091,7 +9091,60 @@
 		//Inventory
 		"HasInventory"				"0"
 	}
+	"npc_armageddon"
+	{
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
+	
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"  "DOTA_UNIT_CAP_NO_ATTACK"
+		"Ability1"				"armageddon_chaos_meteor"
+		"StatusMana"			"1000"
+	
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"
+	
+		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+	
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"0"		// Range of vision during day light.
+		"VisionNighttimeRange"		"0"		// Range of vision at night time.
+		"WakesNeutrals"				"0"
 
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"500"		// Range of vision during day light.
+		"VisionNighttimeRange"		"500"		// Range of vision at night time.
+	}
+	"npc_lava"
+	{
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
+	
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"  "DOTA_UNIT_CAP_NO_ATTACK"
+		"Ability1"				"mega_macropyre"
+		"StatusMana"			"1000"
+	
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"
+	
+		"UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+	
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"0"		// Range of vision during day light.
+		"VisionNighttimeRange"		"0"		// Range of vision at night time.
+		"WakesNeutrals"				"0"
+
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"0"		// Range of vision during day light.
+		"VisionNighttimeRange"		"0"		// Range of vision at night time.
+	}
 
 
 	

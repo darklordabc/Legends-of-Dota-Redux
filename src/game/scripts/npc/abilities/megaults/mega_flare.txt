@@ -1,0 +1,62 @@
+"DOTAAbilities"{
+	"mega_flare"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                            "skywrath_mage_mystic_flare"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "FightRecapLevel"               "2"
+        "MaxLevel"                  "1"
+        "RequiredLevel"             "24"
+
+        "HasScepterUpgrade"         "0"
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "1500"
+        "AbilityCastPoint"              "0.1 0.1 0.1 0.1"
+        
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "20.0"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "1100"
+            
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "radius"                "700"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "duration"              "12"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "damage"                "9000"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "damage_interval"       "0.1"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "scepter_radius"        "700"
+            }
+        }
+    }
+}
