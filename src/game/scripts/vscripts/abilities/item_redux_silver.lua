@@ -36,7 +36,6 @@ function ApplyDamageReductionModifier( keys )
   local caster = keys.caster
   local ability = keys.ability
   local target = keys.target
-  print("asd")
   -- LinkLuaModifier( "modifier_redux_silver_break_damage_reduction", "abilities/item_redux_silver.lua" ,LUA_MODIFIER_MOTION_NONE )
   target:AddNewModifier(caster,ability,"modifier_redux_silver_break_damage_reduction",{duration = ability:GetSpecialValueFor("break_duration")})
 end
