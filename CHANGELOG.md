@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 7.7 - Development Version
 - Ball Lighting will no longer trigger essence aura
 - Symbiote now gives -6 armor and no longer gives bonus stats
+- Fixed Silencer getting int steal when he didnt pick it
 
 ## 7.6 - Steam Version
 - Added credits for most custom abiliites, made some icon changes. 
