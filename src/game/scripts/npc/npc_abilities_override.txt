@@ -2833,6 +2833,7 @@
     "leshrac_lightning_storm"
     {
         "ReduxPerks"                                                           "lightning"
+        "ReduxBans"                                                            "leshrac_pulse_nova"
     }
     "razor_plasma_field"
     {

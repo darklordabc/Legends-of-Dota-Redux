@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 - Ball Lighting will no longer trigger essence aura
 - Symbiote now gives -6 armor and no longer gives bonus stats
 - Fixed Silencer getting int steal when he didnt pick it
+- Made Lighting Storm and Pulse Nova a troll combo until we can find a better fix
 
 ## 7.6 - Steam Version
 - Added credits for most custom abiliites, made some icon changes. 
