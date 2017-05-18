@@ -1047,7 +1047,7 @@
 
     "option_vote_entry_info_OPAbilities"            "Enable the abilities regarded as too powerful for balanced games."
     "option_vote_entry_info_heroPerks"              "Enable unique perks innate to each Hero."
-    "option_vote_entry_info_banning"                "Players get 15 extra seconds to ban 2 abilities and 1 hero, each."
+    "option_vote_entry_info_banning"                "Players get 15 extra seconds to ban 3 abilities and 1 hero, each."
     "option_vote_entry_info_fastStart"              "Everyone starts at level 3 and receives 1000 bonus gold."
     "option_vote_entry_info_antirat"                "Tier 3 towers cannot be destroyed until all outer towers are gone."
     "option_vote_entry_info_noInvis"                "Bans invisibility abilities and items."
