@@ -8266,7 +8266,7 @@
         "DOTA_Tooltip_ability_spell_lab_symbiotic_Description" "You bind yourself to target allied hero. You may cast spells as normal but you share manapool. If host is out of mana your spells take spell cost from host's health. Health cost is either 20% of the host's max health or the cost of the spell, whichever is higher. If your symbiotic host dies, you die as well.\nWhen host takes damage ending symbiosis is put on 3s cooldown.\nHost hero is granted bonus to all stats and mana regen while reducing magic resistance and armor.\n\n Upgradeable by Aghanim's Scepter"
         "DOTA_Tooltip_ability_spell_lab_symbiotic_Note0"           "Temporarily breaks invisibility of host when you cast spell or attack. 3s/2.5s/2s"
         
-        "DOTA_Tooltip_ability_spell_lab_symbiotic_bonus" "BONUS STAT:"
+        //"DOTA_Tooltip_ability_spell_lab_symbiotic_bonus" "BONUS STAT:"
         "DOTA_Tooltip_ability_spell_lab_symbiotic_mana_regen" "%BONUS MANA REGEN"
         "DOTA_Tooltip_ability_spell_lab_symbiotic_magic_armor" "%MAGIC RESISTANCE REDUCTION:"
         "DOTA_Tooltip_ability_spell_lab_symbiotic_physical_armor" "ARMOR REDUCTION:"

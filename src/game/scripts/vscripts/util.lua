@@ -1008,6 +1008,7 @@ end
         winter_wyvern_arctic_burn = true,
         life_stealer_control = true,
         eat_tree_eldri = true,
+        storm_spirit_ball_lightning = true,
     }
 
     abilityKVs = LoadKeyValues('scripts/npc/npc_abilities.txt')
