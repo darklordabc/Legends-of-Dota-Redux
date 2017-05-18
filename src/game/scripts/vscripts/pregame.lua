@@ -123,13 +123,13 @@ function Pregame:init()
         banning = {
             onselected = function(self)
                 self:setOption('lodOptionBanning', 3, true)
-                self:setOption('lodOptionBanningMaxBans', 2, true)
-                self:setOption('lodOptionBanningMaxHeroBans', 1, true)
+                self:setOption('lodOptionBanningMaxBans', 3, true)
+                self:setOption('lodOptionBanningMaxHeroBan', 1, true)
             end,
             onunselected = function(self)
                 OptionManager:SetOption('banningTime', 25)
                 self:setOption('lodOptionBanning', 3, true)
-                self:setOption('lodOptionBanningMaxBans', 1, true)
+                self:setOption('lodOptionBanningMaxBans', 2, true)
                 self:setOption('lodOptionBanningMaxHeroBans', 1, true)
             end
         },

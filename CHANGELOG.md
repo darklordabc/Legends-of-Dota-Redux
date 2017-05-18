@@ -7,6 +7,9 @@ All notable changes to this project will be documented in this file.
 - Symbiote now gives -6 armor and no longer gives bonus stats
 - Fixed Silencer getting int steal when he didnt pick it
 - Made Lighting Storm and Pulse Nova a troll combo until we can find a better fix
+- Increased Mega Flare Cooldown
+- Increased default bans to 2 instead of 1
+*
 
 ## 7.6 - Steam Version
 - Added credits for most custom abiliites, made some icon changes. 
@@ -26,7 +29,6 @@ All notable changes to this project will be documented in this file.
 - Added Lich from Dusk, Hero, Erra, Potmely, Mifune, Vera etc
 - Added "Passive" category of abilities
 - Fixed missing rockets in cluster rockets
-
 
 ## 7.5 
 - Fast start vote option now only starts at level 3 instead of 6. In vote maps, players always have a chance to ban an ability.
