@@ -48,7 +48,7 @@
             "04"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "hp_cost"               "100"
+                "hp_cost"               "9999"
             } 
             "05"
             {
