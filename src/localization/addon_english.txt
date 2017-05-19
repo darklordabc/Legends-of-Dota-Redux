@@ -1410,7 +1410,7 @@
     "warning_doom_bringer_devour_lod" "<font color=\'#FF4949\'>Warning:</font> Will not give you neutral creep abilities of devoured creeps"
     "warning_illusionist_agility_paws" "<font color=\'#FF4949\'>Warning:</font> Bonus agility can only come from using <font color=\'#70EA72\'>Mastery of Deception</font> and/or <font color=\'#70EA72\'>Mastery of Illusions</font>.\n"
     "warning_bristleback_bristleback" "<font color=\'#FF4949\'>Warning:</font> Quill release will not do any damage unless you have at least 1 level in <font color=\'#70EA72\'>Quill Spray</font>.\n"
-    "warning_roshan_bash" "Roshan has a chance to stun on attack.\n"
+    "warning_roshan_bash" "Roshan has a chance to stun on attack. Can stun buildings.\n"
     "warning_roshan_spell_block" "<font color=\'#FF4949\'>Warning:</font> Also blocks friendly spells."
     //"warning_roshan_spell_block_lod" "<font color=\'#FF4949\'>Warning:</font> Also blocks friendly spells."
     //"warning_linkens_guard_lod" "<font color=\'#FF4949\'>Warning:</font> Also blocks friendly spells."
