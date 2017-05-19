@@ -10,6 +10,12 @@ All notable changes to this project will be documented in this file.
 - Increased Mega Flare Cooldown
 - Increased default bans to 2 instead of 1
 *
+- Saints Grace now has longer duration and radius and shorter cooldown
+- Dooming Roots has lower cooldown
+- Changed Shield of Revenge to Magicians Revenge
+- Lowered cooldown of absolute zero by 30 seconds, increased duration by 1 second
+- Increased Sieges Mode Range to 3000 at max level
+- Increased Cast range of lightning daggers by 100
 
 ## 7.6 - Steam Version
 - Added credits for most custom abiliites, made some icon changes. 
