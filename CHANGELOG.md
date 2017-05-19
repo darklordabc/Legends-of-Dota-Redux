@@ -19,6 +19,9 @@ All notable changes to this project will be documented in this file.
 - Sleep cloud: Enemies have to stay within it for 3 seconds instead of 4, to fall to sleep. Its duration is longer by 5 seconds. 
 - Voidal flare now refunds mana if its the killing blow. Reduced manacost to 100 mana
 - Increased radius on mortal coil
+- Experimenting with fast start only increasing gold amount. It now gives 3500 gold. 
+- Thrill of hunt not longer effects vision
+- Few tweaks to mega ultimates
 
 ## 7.6 - Steam Version
 - Added credits for most custom abiliites, made some icon changes. 
