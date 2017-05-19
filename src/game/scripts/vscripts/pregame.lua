@@ -1152,9 +1152,14 @@ function Pregame:onThink()
 
         -- Is it over?
         if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
-            -- Change to picking phase
-            self:setPhase(constants.PHASE_REVIEW)
-            self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime'))
+            if util:checkPickedHeroes( self.selectedSkills ) and not self.additionalPickTime then
+                -- Change to picking phase
+                self:setPhase(constants.PHASE_REVIEW)
+                self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime')) 
+            else
+                self.additionalPickTime = true
+                self:setEndOfPhase(Time() + 15.0) 
+            end
         end
 
         return 0.1

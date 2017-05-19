@@ -705,6 +705,16 @@ function util:isSinglePlayerMode()
     return true
 end
 
+function util:checkPickedHeroes( builds )
+    for k,v in pairs(builds) do
+        if not v.hero then
+            return false
+        end
+    end
+
+    return true
+end
+
 function util:isCoop()
     local RadiantHumanPlayers = self:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS)
     local DireHumanPlayers = self:GetActiveHumanPlayerCountForTeam(DOTA_TEAM_BADGUYS)

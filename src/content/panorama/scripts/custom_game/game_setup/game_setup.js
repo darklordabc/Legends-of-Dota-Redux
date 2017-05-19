@@ -4975,7 +4975,7 @@ function UpdateTimer() {
             // Set how long is left
             theTimerText = getFancyTime(timeLeft);
 
-            if(timeLeft <= 30 && !pickedAHero && currentPhase == PHASE_SELECTION && !restrictedToHeroSelection && !isAllRandomGamemode()) {
+            if(timeLeft <= 15 && !pickedAHero && currentPhase == PHASE_SELECTION && !restrictedToHeroSelection && !isAllRandomGamemode()) {
                 theTimerText += '\n' + $.Localize('lodPickAHero');
 
                 restrictToHeroSelection()
