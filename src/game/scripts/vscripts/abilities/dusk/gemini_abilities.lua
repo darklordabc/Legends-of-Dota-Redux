@@ -4,8 +4,16 @@ require('lib/timers')
 function gemini_voidal_flare_purge(event)
   local caster = event.caster
   local target = event.target
+  local returnMana = event.ability:GetLevelSpecialValueFor("mana_returned", (event.ability:GetLevel() - 1))
   
   target:Purge(true,true,false,true,false)
+  Timers:CreateTimer(0.2, function() 
+  	if target:GetHealth() == 0 then
+  		caster:SetMana(caster:GetMana() + returnMana)
+  		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, caster, returnMana, nil)
+  	end
+  	end)
+
 end
 
 function FastDummy(target, team, duration, vision)

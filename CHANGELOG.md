@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file.
 - Increased Sieges Mode Range to 3000 at max level
 - Increased Cast range of lightning daggers by 100
 - Sleep cloud: Enemies have to stay within it for 3 seconds instead of 4, to fall to sleep. Its duration is longer by 5 seconds. 
+- Voidal flare now refunds mana if its the killing blow. Reduced manacost to 100 mana
 
 ## 7.6 - Steam Version
 - Added credits for most custom abiliites, made some icon changes. 

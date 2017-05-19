@@ -7017,13 +7017,11 @@ function Pregame:fixSpawnedHero( spawnedUnit )
     Timers:CreateTimer(function()
 	    if IsValidEntity(spawnedUnit) then
 	    	-- Silencer Fix NEEDS TO BE RUN EVERY SPAWN (below), AND ON FIXEDHERO FUNCTION
-	            print("SILENCER FIX")
 	            if spawnedUnit:HasAbility('silencer_glaives_of_wisdom_steal') then
 	                if not spawnedUnit:HasModifier('modifier_silencer_int_steal') then
 	                    spawnedUnit:AddNewModifier(spawnedUnit, spawnedUnit:FindAbilityByName("silencer_glaives_of_wisdom_steal"), 'modifier_silencer_int_steal', {})
 	                end
 	            else
-	            	print("SILENCER FAILED")
 	                spawnedUnit:RemoveModifierByName('modifier_silencer_int_steal')
 	            end
 	        -- Stalker Innate Auto-Level
@@ -7406,13 +7404,11 @@ function Pregame:fixSpawningIssues()
         Timers:CreateTimer(function()
 	        if IsValidEntity(spawnedUnit) then
 	            -- Silencer Fix
-	            print("SILENCER FIX")
 	            if spawnedUnit:HasAbility('silencer_glaives_of_wisdom_steal') then
 	                if not spawnedUnit:HasModifier('modifier_silencer_int_steal') then
 	                    spawnedUnit:AddNewModifier(spawnedUnit, spawnedUnit:FindAbilityByName("silencer_glaives_of_wisdom_steal"), 'modifier_silencer_int_steal', {})
 	                end
 	            else
-	            	print("SILENCER FAILED")
 	                spawnedUnit:RemoveModifierByName('modifier_silencer_int_steal')
 	            end
 	        end

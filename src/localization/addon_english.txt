@@ -3933,11 +3933,12 @@
 
 
     "DOTA_Tooltip_ability_gemini_voidal_flare" "Voidal Flare"
-    "DOTA_Tooltip_ability_gemini_voidal_flare_description" "The Voidwalker fires a flare of dark energy at the target, annihilating any magical effects, damaging them, and stunning them for a short time.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
+    "DOTA_Tooltip_ability_gemini_voidal_flare_description" "The Voidwalker fires a flare of dark energy at the target, annihilating any magical effects, damaging them, and stunning them for a short time. If Voidal Flare is the killing blow, the owner will be refunded mana.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
     "DOTA_Tooltip_ability_gemini_voidal_flare_Note0" "This ability purges all buffs and debuffs from the target as a strong dispel spell."
     "DOTA_Tooltip_ability_gemini_voidal_flare_Note1" "Allies are not stunned or damaged by the bolt."
     "DOTA_Tooltip_ability_gemini_voidal_flare_magic_missile_stun" "STUN:"
     "DOTA_Tooltip_ability_gemini_voidal_flare_magic_missile_damage" "DAMAGE:"
+    "DOTA_Tooltip_ability_gemini_voidal_flare_mana_returned" "MANA REFUNDED"
             
     "DOTA_Tooltip_ability_gemini_abyssal_vortex" "Abyssal Vortex"
     "DOTA_Tooltip_ability_gemini_abyssal_vortex_description" "The Voidwalker unleashes his most powerful and dangerous spell, creating a gigantic vortex of whorling energy after a 1s delay.  The vortex drags in and damages all non-Magic Immune units regardless of whether they are friend or foe, with the amount dealt scaling as they get closer to the centre.\n\nUpgradable by Aghanim's Scepter.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
