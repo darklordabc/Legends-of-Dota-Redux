@@ -3769,9 +3769,11 @@
     "DOTA_Tooltip_ability_angel_arena_rifle_OP_rifle_bonus_movespeed"       "RIFLE MOVESPEED BONUS:"
     "DOTA_Tooltip_ability_angel_arena_rifle_OP_bonus_attack"                "RIFLE BONUS DAMAGE:"
 
-    "DOTA_Tooltip_ability_angel_arena_revenge"                      "Shield of Revenge"
-    "DOTA_Tooltip_ability_angel_arena_revenge_Description"          "Reduces and reflects a percentage of recieved damage."
-    "DOTA_Tooltip_ability_angel_arena_revenge_reduce_percent"       "%REDUCE:"
+    "DOTA_Tooltip_ability_angel_arena_revenge"                      "Magicians' Revenge"
+    "DOTA_Tooltip_ability_angel_arena_revenge_Description"          "Punishes each attack, damaging the attacker based on the amount of Intellect the Hero has. Also supplies bonus Intellect.p"
+    "DOTA_Tooltip_ability_angel_arena_revenge_bonus_int"       "BONUS INTELLECT:"
+    "DOTA_Tooltip_ability_angel_arena_revenge_reduce_percent"       "%INTELLECT AS DAMAGE:"
+    "DOTA_Tooltip_ability_angel_arena_revenge_Lore"  "Powerful mages can punish their enemies without even trying."
 
     "DOTA_Tooltip_ability_angel_arena_lightning"                    "Lightning Strike"
     "DOTA_Tooltip_ability_angel_arena_lightning_Description"        "A lighting strikes several enemies near each other."
@@ -9807,7 +9809,7 @@
     "DOTA_Tooltip_ability_erra_grave_guard_op_duration"                                  "DURATION:"
     "DOTA_Tooltip_ability_erra_grave_guard_op_hp_recovery"                               "HP RECOVERY:"
     "DOTA_Tooltip_ability_erra_grave_guard_op_mp_recovery"                               "MP RECOVERY:"
-    "DOTA_Tooltip_ability_erra_grave_guard_op_threshold"                                 "%HEALTH THRESHOLD
+    "DOTA_Tooltip_ability_erra_grave_guard_op_threshold"                                 "%HEALTH THRESHOLD"
 
     "DOTA_Tooltip_ability_erra_morbid_blade"                                          "Morbid Blade"
     "DOTA_Tooltip_ability_erra_morbid_blade_Description"                              "Summons forth the winds of the Black Tide to slice through all enemies caught in them. Deals Physical damage, but if any enemy is below a Health threshold, it deals Pure damage, and its cooldown is halved. A portion of the target's missing Health is granted as healing to Erra.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
@@ -9953,13 +9955,15 @@
     "DOTA_Tooltip_ability_lightning_spark_slow"                                       "%SLOW:"
 
     "DOTA_Tooltip_ability_lightning_lightning_dagger2"                                 "Lightning Daggers"
-    "DOTA_Tooltip_ability_lightning_lightning_dagger2_description"                     "Lightning throws a dagger at the target enemy, dealing a small amount of Magical damage.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
+    "DOTA_Tooltip_ability_lightning_lightning_dagger2_description"                     "Lightning throws a dagger at the target enemy, dealing a small amount of Magical damage and briefly slowing them.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
     "DOTA_Tooltip_ability_lightning_lightning_dagger2_Lore"                            "The Tijadi have unending prowess with their throwing daggers, able to strike with pinpoint accuracy at the most elusive of foes."
     "DOTA_Tooltip_ability_lightning_lightning_dagger2_Note0"                           "The initial slow is 100% and lasts for 0.75s."
     "DOTA_Tooltip_ability_lightning_lightning_dagger2_mark_slow"                       "%MARK SLOW:"
     "DOTA_Tooltip_ability_lightning_lightning_dagger2_mark_slow_duration"              "MARK SLOW DURATION:"
     "DOTA_Tooltip_ability_lightning_lightning_dagger2_mark_damage"                     "MARK DAMAGE:"
     "DOTA_Tooltip_ability_lightning_lightning_dagger2_mark_aoe"                           "MARK AOE:"
+    "DOTA_Tooltip_ability_lightning_lightning_dagger2_cast_range"       "CAST RANGE:"
+    
 
     "DOTA_Tooltip_ability_lightning_overload"                                         "Overload"
     "DOTA_Tooltip_ability_lightning_overload_description"                             "Slows and damages enemies in an area around Lightning.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"

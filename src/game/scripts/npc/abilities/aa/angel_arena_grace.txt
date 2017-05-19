@@ -12,7 +12,7 @@
         "MaxLevel"                                                             "3"
         "AbilityCastRange"                                                     "1000"
         "AbilityCastPoint"                                                     "0.2"
-        "AbilityCooldown"                                                      "40.0"
+        "AbilityCooldown"                                                      "60.0 50.0 40.0 30.0"
         "AbilityManaCost"                                                      "200 250 300"
         "AbilitySpecial"
         {
@@ -24,7 +24,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "300"
+                "radius"                                               "300 400 500"
             }
             "03"
             {
@@ -34,7 +34,7 @@
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "duration"                                             "4"
+                "duration"                                             "4 5 6"
             }
         }
         "precache"

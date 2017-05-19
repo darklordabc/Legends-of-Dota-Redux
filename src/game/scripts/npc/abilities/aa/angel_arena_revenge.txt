@@ -7,11 +7,16 @@
         "AbilityTextureName"                                                   "custom/angel_arena_revenge"
         "MaxLevel"                                                             "4"
         "AbilitySpecial"
-        {
+        {     
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "reduce_percent"                                       "8 10 15 16"
+                "bonus_int"                                       "5 10 15 20"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "reduce_percent"                                       "10 25 40 55"
             }
         }
         "Modifiers"
@@ -29,6 +34,11 @@
                         "Damage"                               "%attack_damage"
                         "Attacker"                             "ATTACKER"
                     }
+                }
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"      "%bonus_int"
                 }
             }
         }

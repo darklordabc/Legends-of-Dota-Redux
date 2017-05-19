@@ -341,7 +341,7 @@
             "08"
             {
                 "var_type"          "FIELD_INTEGER"
-                "attack_bonus_range"    "1000 1500 2000"
+                "attack_bonus_range"    "1000 2000 3000"
             }
             "09"
             {

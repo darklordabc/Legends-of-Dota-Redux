@@ -361,7 +361,7 @@
             // Casting
         //-------------------------------------------------------------------------------------------------------------
         "AbilityCastPoint"              "0.2 0.2 0.2 0.2"
-        "AbilityCastRange"              "875"
+        "AbilityCastRange"              "875 975 1075"
         "AbilityCooldown"               "1"
         
         // Cost
@@ -400,6 +400,11 @@
             {
                 "var_type"                              "FIELD_INTEGER"
                 "mark_aoe"                              "250"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "cast_range"                                           "875 975 1075"
             }
         }
         
@@ -567,7 +572,7 @@
             // Casting
         //-------------------------------------------------------------------------------------------------------------
         "AbilityCastPoint"              "0.1 0.1 0.1 0.1"
-        "AbilityCastRange"              "675"
+        "AbilityCastRange"              "675 775 875"
         "AbilityCooldown"               "2.5"
         
         // Cost
@@ -586,6 +591,11 @@
             {
                 "var_type"                              "FIELD_FLOAT"
                 "duration"                              "0.5"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "cast_range"                                           "675 775 875"
             }
         }
         
