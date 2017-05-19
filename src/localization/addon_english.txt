@@ -10164,7 +10164,7 @@
     "DOTA_Tooltip_ability_mega_freezing_field_duration"                "DURATION:"
 
     "DOTA_Tooltip_ability_mega_call_down"                         "MEGA Calldown"
-    "DOTA_Tooltip_ability_mega_call_down_Description"             "Call down an aerial missile strike on enemy units in a target area. Two missiles arrive in succession, the first dealing major damage and minor slow for 2 seconds; the second dealing minor damage and major slow for 4 seconds. Upgradable by Aghanim's Scepter. <font color='#70EA72'>Dramatically increased radius and increased damage. Can be cast globally.</font>\n<font color='#70EA72'>Requires level 24 to skill.</font>"
+    "DOTA_Tooltip_ability_mega_call_down_Description"             "Call down an aerial missile strike on enemy units in a target area. Two missiles arrive in succession, the first dealing major damage and minor slow for 2 seconds; the second dealing minor damage and major slow for 4 seconds. <font color='#70EA72'>Dramatically increased radius and increased damage. Can be cast globally.</font>\n<font color='#70EA72'>Requires level 24 to skill.</font>"
     "DOTA_Tooltip_ability_mega_call_down_damage_first"            "MISSILE ONE DAMAGE:"
     "DOTA_Tooltip_ability_mega_call_down_damage_second"           "MISSILE TWO DAMAGE:"
     "DOTA_Tooltip_ability_mega_call_down_slow_first"              "MISSILE ONE SLOW:"
