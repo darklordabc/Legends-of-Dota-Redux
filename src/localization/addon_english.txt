@@ -2558,7 +2558,7 @@
     // Cherub, the Dancing Flower
     //-------------------------------------------------------------------
     "DOTA_Tooltip_ability_cherub_sleep_cloud"                     "Sleep Cloud"
-    "DOTA_Tooltip_ability_cherub_sleep_cloud_Description"    "Cherub emits a cloud of soothing aromas which put enemies to sleep if they are within the cloud's radius for 4 seconds. Enemies will wake up when the cloud duration ends or when they take a certain amount of damage."
+    "DOTA_Tooltip_ability_cherub_sleep_cloud_Description"    "Cherub emits a cloud of soothing aromas which put enemies to sleep if they are within the cloud's radius for 3 seconds. Enemies will wake up when the cloud duration ends or when they take a certain amount of damage."
     "DOTA_Tooltip_ability_cherub_sleep_cloud_Radius"      "RADIUS:"
     "DOTA_Tooltip_ability_cherub_sleep_cloud_Sleep_timer"    "TIME TO SLEEP:"
     "DOTA_Tooltip_ability_cherub_sleep_cloud_Duration"      "DURATION:"
