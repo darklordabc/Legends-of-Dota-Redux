@@ -4368,6 +4368,11 @@ function restrictToHeroSelection() {
 
     $("#pickingPhaseMainTabRoot").enabled = false;
     $("#pickingPhaseSkillTabRoot").enabled = false;
+
+    buildingHelperHeroPreviewSkillsContainer.visible = false;
+
+    $('#lodStageName').SetHasClass('showLodWarningTimer', true);
+
     showBuilderTab('pickingPhaseHeroTab');
 }
 
