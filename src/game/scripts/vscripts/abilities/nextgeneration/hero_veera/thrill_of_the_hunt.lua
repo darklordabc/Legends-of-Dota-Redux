@@ -3,10 +3,10 @@ function ThrillInitialize( keys )
 	local ability = keys.ability
 	if not caster:IsIllusion() then
 		caster.caster_altitude = 0
-		camera_distance = 1200
+		-- camera_distance = 1200
 		view_distance = ability:GetLevelSpecialValueFor("bonus_camera_view", (ability:GetLevel() - 1))
 		bonus_vision = ability:GetLevelSpecialValueFor("bonus_vision", (ability:GetLevel() - 1))
-		GameRules:GetGameModeEntity():SetCameraDistanceOverride( camera_distance )
+		-- GameRules:GetGameModeEntity():SetCameraDistanceOverride( camera_distance )
 
 		
 		caster.caster_altitude = GetGroundHeight(caster:GetAbsOrigin(), caster)
@@ -62,14 +62,14 @@ function ThrillCastPointBonus( keys )
 
 	caster.stack_count = caster:GetModifierStackCount('modifier_movespeed_cap', passive)
 	caster.scepter_stack_count = caster.stack_count
-	print(caster.stack_count)
+	-- print(caster.stack_count)
 
 	EmitGlobalSound("Hero_Veera.Thrill.Drums")
 	if caster:HasScepter() and caster.stack_count == caster.scepter_stack_count then
 		caster.scepter_stack_count = caster.stack_count * 2
 		caster:SetModifierStackCount('modifier_movespeed_cap', passive, caster.scepter_stack_count)
 	end
-	print(caster.scepter_stack_count)
+	-- print(caster.scepter_stack_count)
 end
 
 function ThrillRemoveBonus( keys )
