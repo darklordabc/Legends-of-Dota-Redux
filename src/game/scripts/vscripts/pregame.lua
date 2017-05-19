@@ -1152,13 +1152,16 @@ function Pregame:onThink()
 
         -- Is it over?
         if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
-            if util:checkPickedHeroes( self.selectedSkills ) and not self.additionalPickTime then
+            local didNotSelectAHero = util:checkPickedHeroes( self.selectedHeroes )
+            if (not didNotSelectAHero and not self.additionalPickTime) or self.noHeroSelection then
                 -- Change to picking phase
                 self:setPhase(constants.PHASE_REVIEW)
                 self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime')) 
             else
                 self.additionalPickTime = true
                 self:setEndOfPhase(Time() + 15.0) 
+                CustomGameEventManager:Send_ServerToAllClients("lodRestrictToHeroSelection", {})
+                EmitAnnouncerSound("Redux.Overtime") 
             end
         end
 
@@ -1840,7 +1843,7 @@ function Pregame:finishOptionSelection()
         else
             -- Hero selection
             self:setPhase(constants.PHASE_SELECTION)
-            self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'), OptionManager:GetOption('pickingTime'))
+            self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'), nil)
         end
     end
 end
@@ -4291,6 +4294,12 @@ function Pregame:onPlayerSelectHero(eventSourceIndex, args)
         end
     end
 
+    if hero then
+        if not util:checkPickedHeroes( self.selectedHeroes ) then
+            self:setPhase(constants.PHASE_REVIEW)
+            self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime')) 
+        end
+    end
 end
 
 -- Attempts to set a player's attribute

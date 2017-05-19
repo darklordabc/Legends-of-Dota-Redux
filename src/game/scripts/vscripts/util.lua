@@ -706,13 +706,22 @@ function util:isSinglePlayerMode()
 end
 
 function util:checkPickedHeroes( builds )
-    for k,v in pairs(builds) do
-        if not v.hero then
-            return false
+    local players = {}
+
+    for i=0,23 do
+        local ply = PlayerResource:GetPlayer(i) 
+        if ply then
+            if not builds[i] then
+                table.insert(players, i)
+            end
         end
     end
 
-    return true
+    if #players == 0 then
+        return nil
+    else
+        return players
+    end
 end
 
 function util:isCoop()

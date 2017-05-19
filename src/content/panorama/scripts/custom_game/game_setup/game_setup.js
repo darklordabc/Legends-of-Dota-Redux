@@ -4978,9 +4978,9 @@ function UpdateTimer() {
             if(timeLeft <= 15 && !pickedAHero && currentPhase == PHASE_SELECTION && !restrictedToHeroSelection && !isAllRandomGamemode()) {
                 theTimerText += '\n' + $.Localize('lodPickAHero');
 
-                restrictToHeroSelection()
-            } else if (pickedAHero) {
-                undoRestriction();
+            //     restrictToHeroSelection()
+            // } else if (pickedAHero) {
+            //     undoRestriction();
             }
 
             var shouldShowTimer = false;
@@ -5327,6 +5327,10 @@ function saveCurrentBuild() {
 
     GameEvents.Subscribe("lodSinglePlayer", function () {
         $.GetContextPanel().isSinglePlayer = true;
+    })
+
+    GameEvents.Subscribe("lodRestrictToHeroSelection", function () {
+        restrictToHeroSelection();
     })
 
     // Automatically assign players to teams.
