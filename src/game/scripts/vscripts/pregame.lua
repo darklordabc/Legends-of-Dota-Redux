@@ -1153,7 +1153,7 @@ function Pregame:onThink()
         -- Is it over?
         if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
             local didNotSelectAHero = util:checkPickedHeroes( self.selectedHeroes )
-            if didNotSelectAHero == nil or self.noHeroSelection or self.additionalPickTime then
+            if didNotSelectAHero == nil or self.noHeroSelection or self.additionalPickTime or util:isSinglePlayerMode() then
                 -- Change to picking phase
                 self:setPhase(constants.PHASE_REVIEW)
                 self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime')) 
