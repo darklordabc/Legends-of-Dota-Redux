@@ -1856,7 +1856,8 @@ function Pregame:finishOptionSelection()
         else
             -- Hero selection
             self:setPhase(constants.PHASE_SELECTION)
-            self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'), nil)
+            -- Change the below line to "self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'), nil)" to disable unlimited time
+            self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'), OptionManager:GetOption('pickingTime'))
         end
     end
 end
