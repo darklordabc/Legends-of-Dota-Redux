@@ -705,6 +705,25 @@ function util:isSinglePlayerMode()
     return true
 end
 
+function util:checkPickedHeroes( builds )
+    local players = {}
+
+    for i=0,23 do
+        local ply = PlayerResource:GetPlayer(i) 
+        if ply then
+            if not builds[i] then
+                table.insert(players, i)
+            end
+        end
+    end
+
+    if #players == 0 then
+        return nil
+    else
+        return players
+    end
+end
+
 function util:isCoop()
     local RadiantHumanPlayers = self:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS)
     local DireHumanPlayers = self:GetActiveHumanPlayerCountForTeam(DOTA_TEAM_BADGUYS)

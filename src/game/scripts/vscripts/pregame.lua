@@ -1152,9 +1152,30 @@ function Pregame:onThink()
 
         -- Is it over?
         if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
-            -- Change to picking phase
-            self:setPhase(constants.PHASE_REVIEW)
-            self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime'))
+            local didNotSelectAHero = util:checkPickedHeroes( self.selectedHeroes )
+            if didNotSelectAHero == nil or self.noHeroSelection or self.additionalPickTime then
+                -- Change to picking phase
+                self:setPhase(constants.PHASE_REVIEW)
+                self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime')) 
+            else
+                self.additionalPickTime = true
+                self:setEndOfPhase(Time() + 15.0) 
+                CustomGameEventManager:Send_ServerToAllClients("lodRestrictToHeroSelection", {})
+                EmitAnnouncerSound("Redux.Overtime") 
+
+                Timers:CreateTimer(function (  )
+                    for playerID = 0,23 do
+                        local steamID = PlayerResource:GetSteamAccountID(playerID)
+                        if steamID ~= 0 then
+                            hero = self.selectedHeroes[playerID]
+                            if hero == nil then
+                                local sound = self:getRandomSound('game_6_sec_remaining')
+                                EmitAnnouncerSoundForPlayer(sound, playerID)
+                            end
+                        end
+                    end
+                end, DoUniqueString("chooseYourHeroAnnouncment"), 3.0)
+            end
         end
 
         return 0.1
@@ -1835,6 +1856,7 @@ function Pregame:finishOptionSelection()
         else
             -- Hero selection
             self:setPhase(constants.PHASE_SELECTION)
+            -- Change the below line to "self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'), nil)" to disable unlimited time
             self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'), OptionManager:GetOption('pickingTime'))
         end
     end
@@ -4286,6 +4308,12 @@ function Pregame:onPlayerSelectHero(eventSourceIndex, args)
         end
     end
 
+    if hero then
+        if not util:checkPickedHeroes( self.selectedHeroes ) then
+            self:setPhase(constants.PHASE_REVIEW)
+            self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime')) 
+        end
+    end
 end
 
 -- Attempts to set a player's attribute
@@ -5625,6 +5653,16 @@ function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
 
     -- Ensure we are in the picking phase
     if self:getPhase() ~= constants.PHASE_SELECTION and not self:canPlayerPickSkill() then
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedWrongPhaseSelection'
+        })
+        self:PlayAlert(playerID)
+
+        return
+    end
+
+    if self:getPhase() == constants.PHASE_SELECTION and self.additionalPickTime then
         network:sendNotification(player, {
             sort = 'lodDanger',
             text = 'lodFailedWrongPhaseSelection'

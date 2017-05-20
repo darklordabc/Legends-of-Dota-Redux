@@ -165,6 +165,9 @@ var currentAbilityBans = 0;
 // We have not picked a hero
 var pickedAHero = false;
 
+// Help new players to pick hero in time
+var restrictedToHeroSelection = false;
+
 // Waiting for preache
 var waitingForPrecache = true;
 
@@ -4352,6 +4355,34 @@ function isBoosterDraftGamemode() {
     return netTableValue == 6 || optionValueList['lodOptionCommonGamemode'] == 6;
 }
 
+function isAllRandomGamemode() {
+    if (!CustomNetTables.GetTableValue("options", "lodOptionCommonGamemode")) {
+        return false;
+    }
+    var netTableValue = CustomNetTables.GetTableValue("options", "lodOptionCommonGamemode").v;
+    return netTableValue == 4 || optionValueList['lodOptionCommonGamemode'] == 4;
+}
+
+function restrictToHeroSelection() {
+    restrictedToHeroSelection = true;
+
+    $("#pickingPhaseMainTabRoot").enabled = false;
+    $("#pickingPhaseSkillTabRoot").enabled = false;
+
+    $("#buildingHelperHeroPreviewSkillsContainer").visible = false;
+
+    $('#lodStageName').SetHasClass('showLodWarningTimer', true);
+
+    showBuilderTab('pickingPhaseHeroTab');
+}
+
+function undoRestriction() {
+    restrictedToHeroSelection = false;
+
+    $("#pickingPhaseMainTabRoot").enabled = true;
+    $("#pickingPhaseSkillTabRoot").enabled = true;
+}
+
 // A phase was changed
 var seenPopupMessages = {};
 var isTabSwitched = false;
@@ -4949,8 +4980,12 @@ function UpdateTimer() {
             // Set how long is left
             theTimerText = getFancyTime(timeLeft);
 
-            if(timeLeft <= 30 && !pickedAHero && currentPhase == PHASE_SELECTION) {
+            if(timeLeft <= 15 && !pickedAHero && currentPhase == PHASE_SELECTION && !restrictedToHeroSelection && !isAllRandomGamemode()) {
                 theTimerText += '\n' + $.Localize('lodPickAHero');
+
+            //     restrictToHeroSelection()
+            // } else if (pickedAHero) {
+            //     undoRestriction();
             }
 
             var shouldShowTimer = false;
@@ -5297,6 +5332,10 @@ function saveCurrentBuild() {
 
     GameEvents.Subscribe("lodSinglePlayer", function () {
         $.GetContextPanel().isSinglePlayer = true;
+    })
+
+    GameEvents.Subscribe("lodRestrictToHeroSelection", function () {
+        restrictToHeroSelection();
     })
 
     // Automatically assign players to teams.
