@@ -9,7 +9,6 @@ All notable changes to this project will be documented in this file.
 - Made Lighting Storm and Pulse Nova a troll combo until we can find a better fix
 - Increased Mega Flare Cooldown
 - Increased default bans to 2 instead of 1
-*
 - Saints Grace now has longer duration and radius and shorter cooldown
 - Dooming Roots has lower cooldown
 - Changed Shield of Revenge to Magicians Revenge
@@ -22,6 +21,9 @@ All notable changes to this project will be documented in this file.
 - Experimenting with fast start only increasing gold amount. It now gives 3500 gold. 
 - Thrill of hunt not longer effects vision
 - Few tweaks to mega ultimates
+*
+- Tweaks to Armgaeddon
+- Players now gain an additional 15 seconds to pick a hero if they havent picked one
 
 ## 7.6 - Steam Version
 - Added credits for most custom abiliites, made some icon changes. 
