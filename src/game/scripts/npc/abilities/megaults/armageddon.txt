@@ -9,7 +9,7 @@
         "AbilityTextureName"                                                   "invoker_chaos_meteor"
         "RequiredLevel"                                                        "24"
         "AbilityCastPoint"                                                     "0"
-        "AbilityCooldown"                                                      "300"
+        "AbilityCooldown"                                                      "150"
         "AbilityManaCost"                                                      "1000"
         "AbilityModifierSupportValue"                                          "0.0"
 
@@ -28,7 +28,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "duration"                                             "30"
+                "duration"                                             "10"
             }
         }
 
