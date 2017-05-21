@@ -34,6 +34,7 @@ All notable changes to this project will be documented in this file.
 - Fixed Assault Cuirass not giving debuff
 *
 - Improved evasion flesh heap
+- Removed Armageddon due to lag
 
 ## 7.6 - Steam Version
 - Added credits for most custom abiliites, made some icon changes. 
