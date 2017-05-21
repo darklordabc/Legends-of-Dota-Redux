@@ -16,7 +16,9 @@ LinkLuaModifier( "modifier_gottagoreallyfast_aura", "abilities/global_mutators/g
 LinkLuaModifier( "modifier_gottagoreallyfast_effect", "abilities/global_mutators/global_mutator.lua" ,LUA_MODIFIER_MOTION_NONE )
 -- Memes modifier
 LinkLuaModifier( "modifier_memes_redux", "abilities/global_mutators/memes_redux.lua" ,LUA_MODIFIER_MOTION_NONE )
-
+-- Battle thirst
+LinkLuaModifier( "modifier_battle_thirst", "abilities/global_mutators/battle_thirst.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_battle_thirst_effect", "abilities/global_mutators/battle_thirst.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------------------------------
 if global_mutator ~= "" then global_mutator = class({}) end
@@ -72,6 +74,10 @@ if IsServer() then
 		-- Memes Redux
 		if OptionManager:GetOption("memesRedux") == 1 then
 			local memer = CreateModifierThinker(self:GetParent(),self:GetAbility(),"modifier_memes_redux",{},Vector(0,0,0),20,false)
+		end
+		-- Battle Thirst
+		if OptionManager:GetOption("battleThirst") == 1 then
+			local battler = CreateModifierThinker(self:GetParent(),self:GetAbility(),"modifier_battle_thirst",{},Vector(0,0,0),20,false)
 		end
 	end
 end
