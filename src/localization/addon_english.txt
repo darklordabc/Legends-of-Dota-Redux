@@ -458,7 +458,7 @@
     "lodOptionBlackForest"                                  "Black Forest"
     "lodOptionDesBlackForest"                               "Enable Black Forest"
     "lodOptionAboutBlackForest"                             "At the start of the game a Forest is generated, planting many more trees on the map."
-    "lodMutatorBlackForest"                         "Black Forest"
+"lodMutatorBlackForest"                         "Black Forest"
 
     "lodOptionAntiRat"                                  "Anti-Rat"
     "lodOptionDesAntiRat"                               "Enable Anti-Rat Protection"
@@ -1625,7 +1625,7 @@
     "DOTA_Tooltip_modifier_item_ultimate_scepter_consumed_Description" "Permanently granted 'Ultimate Upgrade' benefit from Aghanim's Scepter. Certain ultimates and abilities will be upgraded."
 
     "DOTA_Tooltip_modifier_battle_thirst_effect"  "Battle Thirst"
-    "DOTA_Tooltip_modifier_battle_thirst_effect_Description"  ""
+    "DOTA_Tooltip_modifier_battle_thirst_effect_Description"  "You can be seen by the enemy. You gain bonus gold and experience for your bravery."
 
     // Slard Sprint Perk
     "DOTA_Tooltip_modifier_item_phase_boots_datadriven_active"  "Slardar Sprint Perk"
