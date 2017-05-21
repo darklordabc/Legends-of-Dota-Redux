@@ -42,8 +42,7 @@ end
 modifier_battle_thirst_effect = class({})
 ----------------------------------------------------------------------------------------------------------
 function modifier_battle_thirst_effect:IsHidden()
-	self.shouldBeVisible = self.shouldBeVisible or false
-	return self.shouldBeVisible == false
+	return self:GetStackCount() == 1
 end
 ----------------------------------------------------------------------------------------------------------
 function modifier_battle_thirst_effect:OnIntervalThink(keys)
@@ -56,21 +55,22 @@ function modifier_battle_thirst_effect:OnIntervalThink(keys)
 		if parentTeam == 3 then
 			enemyTeam = 2
 		end
-
-		for _,v in pairs(Entities:FindAllByName("npc_dota_hero*")) do
-			if IsValidEntity(v) and v:IsNull() == false and v.GetPlayerOwnerID and not v:IsClone() and not v:HasModifier("modifier_arc_warden_tempest_double") and v:IsRealHero() then
+		
+		for _,v in pairs(FindUnitsInRadius( parentTeam, parent:GetAbsOrigin(), nil, 2000.0, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE+DOTA_UNIT_TARGET_FLAG_INVULNERABLE+DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false )) do
+			if IsValidEntity(v) and v:IsNull() == false and v.GetPlayerOwnerID and not v:IsClone() and not v:HasModifier("modifier_arc_warden_tempest_double") then
 		        if v:GetTeamNumber() == tonumber(enemyTeam) then
-		        	if (parent:GetAbsOrigin() - v:GetAbsOrigin()):Length2D() <= 2000.0 and v:CanEntityBeSeenByMyTeam(v) then
+		        	if v:CanEntityBeSeenByMyTeam(parent) then
 		        		parent:AddExperience(8,0,false,false)
 		        		parent:ModifyGold(4,false,0)
-		        		self.shouldBeVisible = true
+
+		        		self:SetStackCount(0)
 		        		return 1.0
 		        	end
 		        end
 		    end
 		end
 
-		self.shouldBeVisible = false
+		self:SetStackCount(1)
 
 		return 1.0
 	end
@@ -87,5 +87,5 @@ function modifier_battle_thirst_effect:IsPurgable()
 end
 ----------------------------------------------------------------------------------------------------------
 function modifier_battle_thirst_effect:GetTexture()
-	return "custom/mutator_battlethirst"
+	return "custom_games_xp_coin"
 end
