@@ -27,6 +27,8 @@ All notable changes to this project will be documented in this file.
 - Removed Armgaeddon until lag issue can be fixed
 - Phase shift is now a single player ability as its mostly only used for troll combos
 - Default chat channel is now team chat, not all chat
+- Brewmasters Demolish now considered single player ability
+- Purposefully underpowered redux versions of abilities are now banned if OP abilities are enabled
 
 ## 7.6 - Steam Version
 - Added credits for most custom abiliites, made some icon changes. 

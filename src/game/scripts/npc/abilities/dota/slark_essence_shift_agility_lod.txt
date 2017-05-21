@@ -6,6 +6,7 @@
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_YES"
         "AbilityTextureName"                                                   "custom/slark_essence_shift_lod"
+        "ReduxFlags"                                                    "underpowered"
         "AbilitySpecial"
         {
             "01"

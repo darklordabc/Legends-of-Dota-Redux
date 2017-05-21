@@ -52,5 +52,6 @@
         }
         "ReduxPerks"                                                           "rage"
         "ReduxCost"                                                            "30"
+        "ReduxFlags"                                                    "underpowered"  
     }
 }

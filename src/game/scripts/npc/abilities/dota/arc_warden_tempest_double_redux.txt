@@ -18,6 +18,7 @@
             }
         }
         "ReduxPerks"                                                           "lightning"
+        "ReduxFlags"                                                    "underpowered"  
         "ReduxCost"                                                            "30"
         "ReduxBans"                                                            "tinker_rearm"
     }

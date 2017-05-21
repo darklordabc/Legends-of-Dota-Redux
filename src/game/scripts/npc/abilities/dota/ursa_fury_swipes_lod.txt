@@ -76,7 +76,7 @@
                 }
             }
         }
-        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "attack_modifier | underpowered"
         "ReduxPerks"                                                           "attack_modifier"
         "ReduxCost"                                                            "40"
     }
