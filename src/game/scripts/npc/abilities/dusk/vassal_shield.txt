@@ -43,7 +43,19 @@
         {
             "modifier_vassal_shield"
             {
-                "EffectName"                                           "particles/units/heroes/hero_summoner/vassal_shield.vpcf"
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "EffectName"        "particles/units/heroes/hero_summoner/vassal_shield.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"            "TARGET"
+                        // "ControlPointEntities"
+                        // {
+                        //     "TARGET"    "attach_fx"
+                        // }
+                    }
+                }
                 "Properties"
                 {
                     "MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE" "%damage_reduction"
