@@ -61,7 +61,6 @@ function modifier_battle_thirst_effect:OnIntervalThink(keys)
 			if IsValidEntity(v) and v:IsNull() == false and v.GetPlayerOwnerID and not v:IsClone() and not v:HasModifier("modifier_arc_warden_tempest_double") and v:IsRealHero() then
 		        if v:GetTeamNumber() == tonumber(enemyTeam) then
 		        	if (parent:GetAbsOrigin() - v:GetAbsOrigin()):Length2D() <= 2000.0 and v:CanEntityBeSeenByMyTeam(v) then
-		        		print(v:GetUnitName())
 		        		parent:AddExperience(8,0,false,false)
 		        		parent:ModifyGold(4,false,0)
 		        		self.shouldBeVisible = true
