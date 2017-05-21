@@ -652,6 +652,9 @@ function Pregame:loadDefaultSettings()
     self:setOption('lodOptionCreepPower', 0)
     self:setOption('lodOptionNeutralCreepPower', 0)
 
+    -- Do not give battle thirst
+    self:setOption('lodOptionBattleThirst', 0)
+
     -- Do not increase creep power
     self:setOption('lodOptionCreepPower', 0, true)
     self:setOption('lodOptionNeutralCreepPower', 0, true)
