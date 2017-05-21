@@ -1541,6 +1541,7 @@ function Pregame:networkHeroes()
         nohero = true,
         superop = true,
         donotrandom = true,
+        underpowered = true,
     }
     -- Prepare flags
     local flagsInverse = {}
@@ -2054,6 +2055,7 @@ function Pregame:loadTrollCombos()
     self.noHero = self.flags.nohero
     self.SuperOP = self.flags.superop
     self.doNotRandom = self.flags.donotrandom
+    self.underpowered = self.flags.underpowered
 
     -- All SUPER OP skills should be added to the OP ban list
     --for skillName,_ in pairs(self.lodBanList) do
@@ -3753,6 +3755,13 @@ function Pregame:processOptions()
             end
         else
             SpellFixes:SetOPMode(true)
+        end
+
+        -- Banning Underpowered versions of abilities
+        if not disableBanLists and this.optionStore['lodOptionAdvancedOPAbilities'] == 0 then
+            for abilityName,v in pairs(this.underpowered) do
+                this:banAbility(abilityName)
+            end
         end
 
         -- Banning invis skills

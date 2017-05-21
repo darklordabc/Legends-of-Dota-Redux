@@ -45,7 +45,7 @@
                 }
             }
         }
-        "ReduxFlags"                                                           "stun | doNotRandom"
+        "ReduxFlags"                                                           "stun | doNotRandom | underpowered"
         "ReduxPerks"                                                           "earth"
     }
 }

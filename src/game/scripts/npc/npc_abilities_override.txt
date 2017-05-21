@@ -218,7 +218,7 @@
     {
         "MaxLevel"                                                             "1"
         "ReduxPerks"                                                           "earth"
-        "ReduxFlags"                                                           "doNotRandom | OPSkillsList"
+        "ReduxFlags"                                                           "doNotRandom | SuperOP"
     }
     "brewmaster_storm_dispel_magic"
     {
