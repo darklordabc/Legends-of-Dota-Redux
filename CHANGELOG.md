@@ -29,6 +29,8 @@ All notable changes to this project will be documented in this file.
 - Default chat channel is now team chat, not all chat
 - Brewmasters Demolish now considered single player ability
 - Purposefully underpowered redux versions of abilities are now banned if OP abilities are enabled
+- Lessened the model growth on strong neutral creeps mutator
+- Returned vision change to thrill of the hunt
 
 ## 7.6 - Steam Version
 - Added credits for most custom abiliites, made some icon changes. 
