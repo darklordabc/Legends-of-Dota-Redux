@@ -87,7 +87,7 @@ function modifier_battle_thirst_effect:IsPurgable()
 end
 ----------------------------------------------------------------------------------------------------------
 function modifier_battle_thirst_effect:GetTexture()
-	return "custom_games_xp_coin"
+	return "custom/custom_games_xp_coin"
 end
 ----------------------------------------------------------------------------------------------------------
 function modifier_battle_thirst_effect:IsDebuff()
