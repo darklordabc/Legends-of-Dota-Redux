@@ -18,6 +18,7 @@ LinkLuaModifier( "modifier_gottagoreallyfast_effect", "abilities/global_mutators
 LinkLuaModifier( "modifier_memes_redux", "abilities/global_mutators/memes_redux.lua" ,LUA_MODIFIER_MOTION_NONE )
 -- Battle thirst
 LinkLuaModifier( "modifier_battle_thirst", "abilities/global_mutators/battle_thirst.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_battle_thirst_aura", "abilities/global_mutators/battle_thirst.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_battle_thirst_effect", "abilities/global_mutators/battle_thirst.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------------------------------
