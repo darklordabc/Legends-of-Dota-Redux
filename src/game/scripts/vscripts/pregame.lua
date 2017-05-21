@@ -4309,7 +4309,7 @@ function Pregame:onPlayerSelectHero(eventSourceIndex, args)
     end
 
     if hero then
-        if not util:checkPickedHeroes( self.selectedHeroes ) then
+        if not util:checkPickedHeroes( self.selectedHeroes ) and self.additionalPickTime then
             self:setPhase(constants.PHASE_REVIEW)
             self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime')) 
         end
