@@ -442,15 +442,15 @@
                 "IsHidden"  "1"
                 "IsBuff"    "1"
                 "AllowIllusionDuplicate"    "0"
-                // "ThinkInterval" "0.1"
-                // "OnIntervalThink"
-                // {
-                //     "RunScript"
-                //     {
-                //         "ScriptFile"    "abilities/nextgeneration/hero_veera/thrill_of_the_hunt.lua"
-                //         "Function"  "ThrillCameraCheck"
-                //     }
-                // }
+                "ThinkInterval" "0.1"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_veera/thrill_of_the_hunt.lua"
+                        "Function"  "ThrillCameraCheck"
+                    }
+                }
             }
             "modifier_thrill_active"
             {
@@ -464,15 +464,15 @@
                 "EffectName"        "particles/items_fx/courier_speed.vpcf"
                 "EffectAttachType"  "follow_origin"
     
-                // "ThinkInterval" "0.03"
-                // "OnIntervalThink"
-                // {
-                //     "RunScript"
-                //     {
-                //         "ScriptFile"    "abilities/nextgeneration/hero_veera/thrill_of_the_hunt.lua"
-                //         "Function"  "ThrillCameraCheck"
-                //     }
-                // }
+                "ThinkInterval" "0.03"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_veera/thrill_of_the_hunt.lua"
+                        "Function"  "ThrillCameraCheck"
+                    }
+                }
                 "OnCreated"
                 {
                     "RunScript"
