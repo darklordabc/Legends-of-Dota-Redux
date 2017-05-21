@@ -21,9 +21,11 @@ All notable changes to this project will be documented in this file.
 - Experimenting with fast start only increasing gold amount. It now gives 3500 gold. 
 - Thrill of hunt not longer effects vision
 - Few tweaks to mega ultimates
-*
 - Tweaks to Armgaeddon
 - Players now gain an additional 15 seconds to pick a hero if they havent picked one
+*
+- Removed Armgaeddon until lag issue can be fixed
+- Phase shift is now a single player ability as its mostly only used for troll combos
 
 ## 7.6 - Steam Version
 - Added credits for most custom abiliites, made some icon changes. 

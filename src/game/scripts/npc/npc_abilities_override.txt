@@ -1740,7 +1740,7 @@
     }
     "puck_phase_shift"
     {
-        "ReduxFlags"                                                           "mobility"
+        "ReduxFlags"                                                           "mobility | SuperOP"
         "ReduxPerks"                                                           "mobility | channeled"
         "ReduxBans"                                                            "death_prophet_witchcraft"
     }
