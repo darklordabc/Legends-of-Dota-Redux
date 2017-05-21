@@ -447,7 +447,7 @@
 
     "lodOptionBattleThirst"                                  "Battle Thirst"
     "lodOptionDesBattleThirst"                               "Enable Battle Thirst"
-    "lodOptionAboutBattleThirst"                             "Bonus gold and experience if enemy can see you"
+    "lodOptionAboutBattleThirst"                             "Bonus gold and experience if enemy has seen you recently"
     "lodMutatorBattleThirst"                                 "Battle Thirst"
 
     "lodOptionDarkMoon"                                  "Dark Moon Drops"
@@ -867,7 +867,7 @@
     "hintSpiritBreaker"                   "When Spirit Breaker bashes, he also applies Break."
     "hintSven"                         "At the start of the game, Sven gains a free level of Great Cleave, whether he has it or not."
     "hintTechies"                         "Traps and Explosives will have 50% of their mana refunded and cooldowns reduced by 50% when used by Techies."
-    "hintTA"                         "Templar Assassin turns invisible for 10 seconds after not moving for 5 seconds. Invisibility breaks upon moving or attacking."
+    "hintTA"                         "Templar Assassin turns invisible for 10 seconds after not moving for 2 seconds. Invisibility breaks upon moving or attacking."
     "hintTerrorblade"                         "Terrorblade Illusions deal 15% more damage, but also take 15% more damage. "
     "hintTinker"                         "When Tinker uses Scientific spells, there is a 7% chance for them to be instantly refreshed."
     "hintTiny"                         "Tiny does 10% increased damage to buildings."
@@ -1267,7 +1267,7 @@
     "unique_mechanic_storm_spirit"                 "At the start of the game, Storm Spirit gains a free level of <font color=\'#ffd966\'>Overload</font>, whether he has it or not."
     "unique_mechanic_sven"                        "At the start of the game, Sven gains a free level of <font color=\'#ffd966\'>Great Cleave</font>, whether he has it or not."
     "unique_mechanic_techies"                        "<font color=\'#ffd966\'>Traps</font> and <font color=\'#ffd966\'>Explosives</font> will have 50% of their mana refunded and cooldowns reduced by 50% when used by Techies."
-    "unique_mechanic_templar_assassin"          "Templar Assassin turns invisible for 10 seconds after not moving for 5 seconds. Invisibility breaks upon moving or attacking."
+    "unique_mechanic_templar_assassin"          "Templar Assassin turns invisible for 10 seconds after not moving for 2 seconds. Invisibility breaks upon moving or attacking."
     "unique_mechanic_terrorblade"                        "Terrorblade Illusions deal 15% more damage, but also take 15% more damage."
     "unique_mechanic_tidehunter"                    "When Tidehunter dies, <font color=\'#ffd966\'>Ravage</font>'s cooldown will be refreshed."
     "unique_mechanic_shredder"                      "Timbersaw gains 1% of his max health and mana whenever a nearby tree is cut down."
@@ -1431,6 +1431,7 @@
     "warning_keeper_of_the_light_innate_redux" "<font color=\'#FF4949\'>Warning:</font> This ability requires <font color=\'#70EA72\'>Aghanim's Scepter</font> to have any effect.\n"
     "warning_chen_holy_persuasion" "<font color=\'#FF4949\'>Warning:</font> Persuading Ancients requires levels in <font color=\'#70EA72\'>Hand of God</font> to have any effect.\n"
     "warning_centaur_return" "<font color=\'#FF4949\'>Warning:</font> Does not damage buildings.\n"
+    "warning_angel_arena_revenge" "<font color=\'#FF4949\'>Warning:</font> Does not work against Intelligence heros.\n"
 
 
     "credit_spell_lab_symbiotic"           "<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>"
@@ -1625,7 +1626,7 @@
     "DOTA_Tooltip_modifier_item_ultimate_scepter_consumed_Description" "Permanently granted 'Ultimate Upgrade' benefit from Aghanim's Scepter. Certain ultimates and abilities will be upgraded."
 
     "DOTA_Tooltip_modifier_battle_thirst_effect"  "Battle Thirst"
-    "DOTA_Tooltip_modifier_battle_thirst_effect_Description"  "You can be seen by the enemy. You gain bonus gold and experience for your bravery."
+    "DOTA_Tooltip_modifier_battle_thirst_effect_Description"  "Enemy has seen you recently. You gain bonus gold and experience for your bravery."
 
     // Slard Sprint Perk
     "DOTA_Tooltip_modifier_item_phase_boots_datadriven_active"  "Slardar Sprint Perk"
@@ -3538,7 +3539,7 @@
 
     /// TEMPLAR ASSASSIN​
     "DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_invis_break"         "Templar Assassin Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_invis_break_Description"         "Templar Assassin turns invisible for 10 seconds after not moving for 5 seconds. Invisibility breaks upon moving or attacking.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_invis_break_Description"         "Templar Assassin turns invisible for 10 seconds after not moving for 2 seconds. Invisibility breaks upon moving or attacking.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
     "DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_invis"         "Invisible"
     "DOTA_Tooltip_modifier_npc_dota_hero_templar_assassin_invis_Description"         "Remain invisible while standing in place. Breaks upon moving or attacking"
 
@@ -3778,10 +3779,10 @@
     "DOTA_Tooltip_ability_angel_arena_rifle_OP_bonus_attack"                "RIFLE BONUS DAMAGE:"
 
     "DOTA_Tooltip_ability_angel_arena_revenge"                      "Magicians' Revenge"
-    "DOTA_Tooltip_ability_angel_arena_revenge_Description"          "Punishes each attack, damaging the attacker based on the amount of Intellect the Hero has. Also supplies bonus Intellect.p"
+    "DOTA_Tooltip_ability_angel_arena_revenge_Description"          "Punishes each attack, damaging the attacker based on the amount of Intellect the Hero has. Will not work against Intelligence heros. Also supplies bonus Intellect."
     "DOTA_Tooltip_ability_angel_arena_revenge_bonus_int"       "BONUS INTELLECT:"
     "DOTA_Tooltip_ability_angel_arena_revenge_reduce_percent"       "%INTELLECT AS DAMAGE:"
-    "DOTA_Tooltip_ability_angel_arena_revenge_Lore"  "Powerful mages can punish their enemies without even trying."
+    "DOTA_Tooltip_ability_angel_arena_revenge_Lore"  "Powerful mages can punish their lesser enemies without even trying, however this trick does not against other magicians."
 
     "DOTA_Tooltip_ability_angel_arena_lightning"                    "Lightning Strike"
     "DOTA_Tooltip_ability_angel_arena_lightning_Description"        "A lighting strikes several enemies near each other."
@@ -4141,9 +4142,9 @@
     "DOTA_Tooltip_modifier_lol_decrepify_hero_Description" "This unit can't attack, but also can't be attacked. His magic resistance and movement speed are reduced."
 
     "DOTA_Tooltip_ability_kret_poisoning"   "Poisonous Scales"
-    "DOTA_Tooltip_ability_kret_poisoning_Description"   "If an enemy attacks Murloc, he has a chance to lose health and mana."
+    "DOTA_Tooltip_ability_kret_poisoning_Description"   "If an enemy attacks Murloc, he has a chance to lose mana."
     "DOTA_Tooltip_ability_kret_poisoning_chanceVal" "%CHANCE:"
-    "DOTA_Tooltip_ability_kret_poisoning_adsorbVal" "HEALTH AND MANA REDUCTION:"
+    "DOTA_Tooltip_ability_kret_poisoning_adsorbVal" "MANA REDUCTION:"
 
     "DOTA_Tooltip_ability_kret_lust_for_life"   "Thirst for Life"
     "DOTA_Tooltip_ability_kret_lust_for_life_Description"   "By sacrificing his intelligence, Murloc gets regeneration based on hit points missing."

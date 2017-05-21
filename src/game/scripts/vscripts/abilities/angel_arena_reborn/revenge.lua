@@ -14,6 +14,12 @@ function takedamage(params)
 	if attacker:IsInvulnerable() then return end
 
 	if attacker == hero then return end
+
+	if not attacker:IsHero() then return end
+
+	-- Does not work against intelligence heroes
+	local main_stat = attacker:GetPrimaryAttribute()
+	if main_stat == 2 then return end
 	
 	if hero:HasModifier("modifier_oracle_false_promise") then return end
 	if attacker:HasModifier("modifier_item_blade_mail_reflect") then return end
@@ -24,6 +30,8 @@ function takedamage(params)
 	if hero and hero.GetIntellect then
 		damage = hero:GetIntellect() * reduction_percentage
 	end
+
+	
 
 	--if hero then 
 	--	if hero:GetHealth() > damage - damage*reduction_percentage then
@@ -37,8 +45,6 @@ function takedamage(params)
 	--	damage_int_pct_add = hero:GetIntellect()
 	--	damage_int_pct_add = damage_int_pct_add / 16 / 100 + 1
 	--end 
-
-	print(damage)
 
 	ApplyDamage({ victim = attacker, attacker = hero, damage = damage, damage_type = DAMAGE_TYPE_PURE, abilityReturn = ability })
 

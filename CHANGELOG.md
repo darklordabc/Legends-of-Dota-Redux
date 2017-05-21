@@ -32,9 +32,15 @@ All notable changes to this project will be documented in this file.
 - Added Battle Thirst Mutator
 - Experimental: Battle Thirst is now on by default in all_allowed, lowered starting gold as conseqeunce
 - Fixed Assault Cuirass not giving debuff
-*
 - Improved evasion flesh heap
 - Removed Armageddon due to lag
+*
+- Roshan Spell Block now single player ability
+- Roshan Bash now has 4 levels
+- Posinsous scales now only reduces mana, not health. When passives broke it breaks accrodingly now. 
+- Templar Assasin now only has to stand still for 2 seconds instead of 5 to gain invisibility
+- Magicians Revenge no longer works against intelligence heros. Only Agility and Stregth heros will be damaged by it.
+- Battle Thirst now lingers for 20 seconds
 
 ## 7.6 - Steam Version
 - Added credits for most custom abiliites, made some icon changes. 

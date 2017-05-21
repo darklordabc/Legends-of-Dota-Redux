@@ -8,14 +8,16 @@ function SetAdsorbFromKret( keys )
 		return 
 	end
 
-	ApplyDamage(
-	{
-		victim = attacker_loc,
-		attacker = caster,
-		damage = adsorbVal,
-		damage_type = DAMAGE_TYPE_PHYSICAL,
-		ability = keys.ability
-	})
+	if caster:PassivesDisabled() then return end
+
+	--ApplyDamage(
+	--{
+	--	victim = attacker_loc,
+	--	attacker = caster,
+	--	damage = adsorbVal,
+	--	damage_type = DAMAGE_TYPE_PHYSICAL,
+	--	ability = keys.ability
+	--})
 	--
 	attacker_loc:ReduceMana(adsorbVal)
 end

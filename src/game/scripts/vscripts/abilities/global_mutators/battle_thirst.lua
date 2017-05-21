@@ -60,7 +60,7 @@ function modifier_battle_thirst_aura:OnIntervalThink(keys)
 			local check = (IsValidEntity(v) and v:IsNull() == false and v.GetPlayerOwnerID and not v:IsClone() and not v:HasModifier("modifier_arc_warden_tempest_double") and not string.match(v:GetUnitName(), "ward") and parent:CanEntityBeSeenByMyTeam(v) and v:GetTeamNumber() == tonumber(enemyTeam) and v:CanEntityBeSeenByMyTeam(parent))
 
 			if check then
-				parent:AddNewModifier(parent,nil,"modifier_battle_thirst_effect",{duration = 10.0})
+				parent:AddNewModifier(parent,nil,"modifier_battle_thirst_effect",{duration = 20.0})
         		return 1.0
 		    end
 		end
@@ -87,11 +87,17 @@ function modifier_battle_thirst_aura:IsDebuff()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------
 --    Modifier: modifier_battle_thirst_effect      
 --------------------------------------------------------------------------------------------------------
 modifier_battle_thirst_effect = class({})
 ----------------------------------------------------------------------------------------------------------
 function modifier_battle_thirst_effect:IsHidden()
+	return false
+end
+----------------------------------------------------------------------------------------------------------
+function modifier_battle_thirst_effect:RemoveOnDeath()
 	return false
 end
 ----------------------------------------------------------------------------------------------------------
