@@ -736,6 +736,9 @@ function Pregame:loadDefaultSettings()
     -- NO MEMES UncleNox
     self:setOption("lodOptionMemesRedux", 0)
 
+    -- No Blood Thirst
+    self:setOption("lodOptionBloodThirst", 0) 
+
     -- No Item Drops
     self:setOption("lodOptionDarkMoon", 0)
 
@@ -2804,7 +2807,10 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end, 
 
-        
+         -- Other - Battle Thirst
+        lodOptionBattleThirst = function(value)
+            return value == 0 or value == 1
+        end,
     }
 
     -- Callbacks
@@ -3682,6 +3688,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('refreshCooldownsOnDeath', this.optionStore['lodOptionRefreshCooldownsOnDeath'])
         OptionManager:SetOption('gottaGoFast', this.optionStore['lodOptionGottaGoFast'])
         OptionManager:SetOption('memesRedux', this.optionStore['lodOptionMemesRedux'])
+        OptionManager:SetOption('battleThirst', this.optionStore['lodOptionBattleThirst'])
         OptionManager:SetOption('darkMoon', this.optionStore['lodOptionDarkMoon'])
         OptionManager:SetOption('blackForest', this.optionStore['lodOptionBlackForest'])
         OptionManager:SetOption('banInvis', this.optionStore['lodOptionBanningBanInvis'])
@@ -3994,6 +4001,7 @@ function Pregame:processOptions()
                     ['Other: Refresh Cooldowns On Death'] = this.optionStore['lodOptionRefreshCooldownsOnDeath'],
                     ['Other: Gotta Go Fast!'] = this.optionStore['lodOptionGottaGoFast'],
                     ['Other: Memes Redux'] = this.optionStore['lodOptionMemesRedux'],
+                    ['Other: Battle Thirst'] = this.optionStore['lodOptionBattleThirst'],
                     ['Other: Item Drops'] = this.optionStore['lodOptionDarkMoon'],
                     ['Other: Black Forest'] = this.optionStore['lodOptionBlackForest'],
                     ['Towers: Anti-Rat'] = this.optionStore['lodOptionAntiRat'],

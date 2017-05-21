@@ -445,6 +445,11 @@
     "lodOptionAboutMemesRedux"                             "Adds all the dankest memes into your game, depending on what abilities you use."
     "lodMutatorMemesRedux"                                 "Memes Redux"
 
+    "lodOptionBattleThirst"                                  "Battle Thirst"
+    "lodOptionDesBattleThirst"                               "Enable Battle Thirst"
+    "lodOptionAboutBattleThirst"                             "Bonus gold and EXP if enemy is around"
+    "lodMutatorBattleThirst"                                 "Battle Thirst"
+
     "lodOptionDarkMoon"                                  "Dark Moon Drops"
     "lodOptionDesDarkMoon"                               "Enable Dark Moon Item Drops"
     "lodOptionAboutDarkMoon"                             "When a unit dies it has a chance to drop one of the items from the Dark Moon event."
@@ -1618,6 +1623,9 @@
     //Scepter Buff Modifer
     "DOTA_Tooltip_modifier_item_ultimate_scepter_consumed" "Free Aghanim's Scepter"
     "DOTA_Tooltip_modifier_item_ultimate_scepter_consumed_Description" "Permanently granted 'Ultimate Upgrade' benefit from Aghanim's Scepter. Certain ultimates and abilities will be upgraded."
+
+    "DOTA_Tooltip_modifier_battle_thirst_effect"  "Battle Thirst"
+    "DOTA_Tooltip_modifier_battle_thirst_effect_Description"  ""
 
     // Slard Sprint Perk
     "DOTA_Tooltip_modifier_item_phase_boots_datadriven_active"  "Slardar Sprint Perk"

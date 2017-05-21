@@ -274,6 +274,7 @@
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorSingleDraft.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMirrorDraft.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorAllRandom.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBattleThirst.png"></Image>
 
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorDuel.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsBuff1.png"></Image>
