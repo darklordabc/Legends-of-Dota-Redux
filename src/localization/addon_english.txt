@@ -9682,7 +9682,7 @@
     "DOTA_Tooltip_Ability_veera_thrill_of_the_hunt_Description"     "Veera engages in a hunting spree, causing her to receive a number of bonuses. While active, increases her vision, dramatically reduces her cooldowns and cast points, quadruples her turn rate, and removes the turning penalty from Plains Runner.\nUpgradable by Aghanim's Scepter.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
     "DOTA_Tooltip_Ability_veera_thrill_of_the_hunt_Lore"                "Nothing escapes the sights of the plains runner."
     "DOTA_Tooltip_Ability_veera_thrill_of_the_hunt_Bonus_Vision"        "BONUS VISION:"
-    "DOTA_Tooltip_Ability_veera_thrill_of_the_hunt_Bonus_camera_view"   "BONUS CAMERA DISTANCE:"
+    //"DOTA_Tooltip_Ability_veera_thrill_of_the_hunt_Bonus_camera_view"   "BONUS CAMERA DISTANCE:"
     "DOTA_Tooltip_Ability_veera_thrill_of_the_hunt_Cooldown_reduction"  "%COOLDOWN/CASTPOINT REDUCTION:"
     "DOTA_Tooltip_Ability_veera_thrill_of_the_hunt_Duration"            "DURATION:"
     "DOTA_Tooltip_Ability_veera_thrill_of_the_hunt_Aghanim_Description" "Doubles Veera's movespeed limit while Thrill of the Hunt is active."
@@ -9709,7 +9709,7 @@
 
 
     "DOTA_Tooltip_Modifier_thrill_active"           "Thrill of the Hunt"        
-    "DOTA_Tooltip_Modifier_thrill_active_Description"   "Veera has drastically reduced cooldowns and cast points, as well as increased vision, camera view, and turn rate."
+    "DOTA_Tooltip_Modifier_thrill_active_Description"   "Veera has drastically reduced cooldowns and cast points, as well as increased vision and turn rate."
 
     //--------------------
     //MIFUNE

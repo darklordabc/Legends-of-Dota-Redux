@@ -375,6 +375,7 @@
         "AbilityCooldown"           "140 110 80"
         "AbilityProcsMagicStick"        "1"
         "HasScepterUpgrade"             "1"
+        "ReduxFlags"    "cooldown"
     
         "AbilitySpecial"
         {
