@@ -57,16 +57,33 @@ function modifier_battle_thirst_effect:OnIntervalThink(keys)
 		end
 		
 		for _,v in pairs(FindUnitsInRadius( parentTeam, parent:GetAbsOrigin(), nil, 2000.0, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE+DOTA_UNIT_TARGET_FLAG_INVULNERABLE+DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false )) do
-			if IsValidEntity(v) and v:IsNull() == false and v.GetPlayerOwnerID and not v:IsClone() and not v:HasModifier("modifier_arc_warden_tempest_double") and not string.match(v:GetUnitName(), "ward") and parent:CanEntityBeSeenByMyTeam(v) then
-		        if v:GetTeamNumber() == tonumber(enemyTeam) then
-		        	if v:CanEntityBeSeenByMyTeam(parent) then
-		        		parent:AddExperience(8,1,false,false)
-		        		parent:ModifyGold(4,false,0)
+			local check = (IsValidEntity(v) and v:IsNull() == false and v.GetPlayerOwnerID and not v:IsClone() and not v:HasModifier("modifier_arc_warden_tempest_double") and not string.match(v:GetUnitName(), "ward") and parent:CanEntityBeSeenByMyTeam(v) and v:GetTeamNumber() == tonumber(enemyTeam) and v:CanEntityBeSeenByMyTeam(parent))
 
-		        		self:SetStackCount(0)
-		        		return 1.0
-		        	end
-		        end
+			if self.linger or check then
+				if OptionManager:GetOption('sharedXP') == 1 then
+	                for i=0,DOTA_MAX_TEAM do
+	                    local pID = PlayerResource:GetNthPlayerIDOnTeam(parentTeam,i)
+	                    if (PlayerResource:IsValidPlayerID(pID) or PlayerResource:GetConnectionState(pID) == 1) and PlayerResource:GetPlayer(pID) then
+	                        local otherHero = PlayerResource:GetPlayer(pID):GetAssignedHero()
+
+	                        otherHero:AddExperience(math.ceil(8 / util:GetActivePlayerCountForTeam(parentTeam)),0,false,false)
+	                    end
+	                end
+				else
+					parent:AddExperience(8,1,false,false)
+				end
+        		
+        		parent:ModifyGold(4,false,0)
+
+        		self:SetStackCount(0)
+
+			    if self.linger and not check then
+			    	self.linger = false
+			    end
+				if check then
+					self.linger = true
+				end
+        		return 1.0
 		    end
 		end
 
