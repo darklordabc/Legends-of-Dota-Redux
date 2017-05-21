@@ -32,6 +32,7 @@ All notable changes to this project will be documented in this file.
 - Returned vision change to thrill of the hunt
 - Added Battle Thirst Mutator
 - Experimental: Battle Thirst is now on by default in all_allowed, lowered starting gold as conseqeunce
+- Fixed Assault Cuirass not giving debuff
 
 ## 7.6 - Steam Version
 - Added credits for most custom abiliites, made some icon changes. 
