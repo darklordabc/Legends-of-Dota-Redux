@@ -2,7 +2,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 7.7 - Development Version
+## 7.7 
 - Ball Lighting will no longer trigger essence aura
 - Symbiote now gives -6 armor and no longer gives bonus stats
 - Fixed Silencer getting int steal when he didnt pick it
@@ -21,9 +21,12 @@ All notable changes to this project will be documented in this file.
 - Experimenting with fast start only increasing gold amount. It now gives 3500 gold. 
 - Thrill of hunt not longer effects vision
 - Few tweaks to mega ultimates
-*
 - Tweaks to Armgaeddon
 - Players now gain an additional 15 seconds to pick a hero if they havent picked one
+*
+- Removed Armgaeddon until lag issue can be fixed
+- Phase shift is now a single player ability as its mostly only used for troll combos
+- Default chat channel is now team chat, not all chat
 
 ## 7.6 - Steam Version
 - Added credits for most custom abiliites, made some icon changes. 

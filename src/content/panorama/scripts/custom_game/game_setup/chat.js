@@ -19,7 +19,7 @@ var channels = {
 };
 
 // Current channel params
-var currentChannel = 'all';
+var currentChannel = 'team';
 var color = 'white';
 
 function setChannelStyle( channel ){
