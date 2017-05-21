@@ -60,7 +60,7 @@ function modifier_battle_thirst_aura:OnIntervalThink(keys)
 			local check = (IsValidEntity(v) and v:IsNull() == false and v.GetPlayerOwnerID and not v:IsClone() and not v:HasModifier("modifier_arc_warden_tempest_double") and not string.match(v:GetUnitName(), "ward") and parent:CanEntityBeSeenByMyTeam(v) and v:GetTeamNumber() == tonumber(enemyTeam) and v:CanEntityBeSeenByMyTeam(parent))
 
 			if check then
-				parent:AddNewModifier(parent,nil,"modifier_battle_thirst_effect",{duration = 20.0})
+				parent:AddNewModifier(parent,nil,"modifier_battle_thirst_effect",{duration = 30.0})
         		return 1.0
 		    end
 		end
@@ -140,7 +140,7 @@ function modifier_battle_thirst_effect:OnIntervalThink(keys)
 			parent:AddExperience(8,1,false,false)
 		end
 		
-		parent:ModifyGold(4,false,0)
+		parent:ModifyGold(2,false,0)
 	end
 end
 ----------------------------------------------------------------------------------------------------------
