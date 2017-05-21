@@ -23,14 +23,18 @@ All notable changes to this project will be documented in this file.
 - Few tweaks to mega ultimates
 - Tweaks to Armgaeddon
 - Players now gain an additional 15 seconds to pick a hero if they havent picked one
-*
-- Removed Armgaeddon until lag issue can be fixed
 - Phase shift is now a single player ability as its mostly only used for troll combos
 - Default chat channel is now team chat, not all chat
 - Brewmasters Demolish now considered single player ability
 - Purposefully underpowered redux versions of abilities are now banned if OP abilities are enabled
 - Lessened the model growth on strong neutral creeps mutator
 - Returned vision change to thrill of the hunt
+- Added Battle Thirst Mutator
+- Experimental: Battle Thirst is now on by default in all_allowed, lowered starting gold as conseqeunce
+- Fixed Assault Cuirass not giving debuff
+*
+- Improved evasion flesh heap
+- Removed Armageddon due to lag
 
 ## 7.6 - Steam Version
 - Added credits for most custom abiliites, made some icon changes. 
