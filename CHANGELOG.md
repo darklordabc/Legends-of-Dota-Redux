@@ -43,6 +43,7 @@ All notable changes to this project will be documented in this file.
 *
 - Withcraft is now a single player ability, a redux version of it will come later.
 - Battle Thirst now lingers for 35 seconds, and only gives 1 extra gold per second, exp boost is the same
+- Disabled wind runners perk because its broken
 
 
 ## 7.6 - Steam Version
