@@ -3366,7 +3366,7 @@
     "death_prophet_witchcraft"
     {
         "ReduxCost"                                                            "120"
-        "ReduxFlags"                                                           "OPSkillsList | cooldown"
+        "ReduxFlags"                                                           "SuperOP | cooldown"
     }
     "sniper_take_aim"
     {
