@@ -584,7 +584,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "ID"                            "2114"                                                       
         "ItemCost"                      "5500"
-        "AbilityGoldCost"               "5500"
+        "AbilityGoldCost"               "5200"
         "ItemPurchasable"              "0"
         "AbilityCooldown"               "7.0"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
@@ -642,8 +642,8 @@
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
-        "ItemCost"                      "5520"
-        "AbilityGoldCost"               "5520"
+        "ItemCost"                      "5320"
+        "AbilityGoldCost"               "5320"
         "ItemPurchasable"              "0"
         
         // Special  
@@ -752,8 +752,8 @@
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
-        "ItemCost"                      "5400"
-        "AbilityGoldCost"               "5400"
+        "ItemCost"                      "5200"
+        "AbilityGoldCost"               "5200"
         "ItemPurchasable"              "0"
         "AbilitySpecial"
         {
