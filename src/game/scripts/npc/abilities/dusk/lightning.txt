@@ -356,7 +356,7 @@
         "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"
         "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
         "AbilityTextureName"            "custom/lightning_lightning_dagger"
-        "ReduxPerks"                                                           "lightning"
+        "ReduxPerks"                                                           "lightning | dagger"
         
             // Casting
         //-------------------------------------------------------------------------------------------------------------
@@ -567,7 +567,7 @@
         "AnimationPlaybackRate"         "2.5"
         "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
         "AbilityTextureName"            "custom/lightning_lightning_dagger"
-        "ReduxPerks"                                                           "lightning"
+        "ReduxPerks"                                                           "lightning | dagger"
         
             // Casting
         //-------------------------------------------------------------------------------------------------------------
