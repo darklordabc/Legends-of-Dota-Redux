@@ -43,11 +43,14 @@ All notable changes to this project will be documented in this file.
 - Withcraft is now a single player ability, a redux version of it will come later.
 - Battle Thirst now lingers for 35 seconds, and only gives 1 extra gold per second, exp boost is the same
 - Disabled wind runners perk because its broken
-*
 - Increased Pocket Factory Cooldown to 50 seconds
 - Magicians Revenge now deals damage based on the difference between attackers and owners intellect
 - Tempest double no longer triggers multicast
 - Flesh Heaps dont work Tempest doubles anymore
+- Added 4 Molten Lord abilities
+- Added notification to inform about battle thirst
+- Reverted to original Dota map for "dota" map
+*
 
 
 
