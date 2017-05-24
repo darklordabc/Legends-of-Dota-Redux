@@ -98,5 +98,6 @@
         }
         "ReduxCost"                                                            "70"
         "ReduxFlags"                                                           "SuperOP"
+        "ReduxPerks"    "aura"
     }
 }
