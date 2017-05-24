@@ -44,7 +44,9 @@ All notable changes to this project will be documented in this file.
 - Battle Thirst now lingers for 35 seconds, and only gives 1 extra gold per second, exp boost is the same
 - Disabled wind runners perk because its broken
 *
--Increased Pocket Factory Cooldown to 50 seconds
+- Increased Pocket Factory Cooldown to 50 seconds
+- Magicians Revenge now deals damage based on the difference between attackers and owners intellect
+
 
 
 ## 7.6 - Steam Version

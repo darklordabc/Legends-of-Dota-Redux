@@ -1431,8 +1431,6 @@
     "warning_keeper_of_the_light_innate_redux" "<font color=\'#FF4949\'>Warning:</font> This ability requires <font color=\'#70EA72\'>Aghanim's Scepter</font> to have any effect.\n"
     "warning_chen_holy_persuasion" "<font color=\'#FF4949\'>Warning:</font> Persuading Ancients requires levels in <font color=\'#70EA72\'>Hand of God</font> to have any effect.\n"
     "warning_centaur_return" "<font color=\'#FF4949\'>Warning:</font> Does not damage buildings.\n"
-    "warning_angel_arena_revenge" "<font color=\'#FF4949\'>Warning:</font> Does not work against Intelligence heros.\n"
-
 
     "credit_spell_lab_symbiotic"           "<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>"
     "credit_sight"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
@@ -3779,9 +3777,9 @@
     "DOTA_Tooltip_ability_angel_arena_rifle_OP_bonus_attack"                "RIFLE BONUS DAMAGE:"
 
     "DOTA_Tooltip_ability_angel_arena_revenge"                      "Magicians' Revenge"
-    "DOTA_Tooltip_ability_angel_arena_revenge_Description"          "Punishes each attack, damaging the attacker based on the amount of Intellect the Hero has. Will not work against Intelligence heros. Also supplies bonus Intellect."
+    "DOTA_Tooltip_ability_angel_arena_revenge_Description"          "Punishes each attack, damaging the attacker based on the difference of Intellect between the attacker and the Hero. Non-hero units will be dealt as percentage of Hero's intellect"
     "DOTA_Tooltip_ability_angel_arena_revenge_bonus_int"       "BONUS INTELLECT:"
-    "DOTA_Tooltip_ability_angel_arena_revenge_reduce_percent"       "%INTELLECT AS DAMAGE:"
+    "DOTA_Tooltip_ability_angel_arena_revenge_reduce_percent"       "%DIFFERENCE AS DAMAGE:"
     "DOTA_Tooltip_ability_angel_arena_revenge_Lore"  "Powerful mages can punish their lesser enemies without even trying, however this trick does not against other magicians."
 
     "DOTA_Tooltip_ability_angel_arena_lightning"                    "Lightning Strike"

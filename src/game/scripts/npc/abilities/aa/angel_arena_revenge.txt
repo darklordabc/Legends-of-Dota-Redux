@@ -16,7 +16,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "reduce_percent"                                       "10 25 40 55"
+                "reduce_percent"                                       "25 40 55 70"
             }
         }
         "Modifiers"

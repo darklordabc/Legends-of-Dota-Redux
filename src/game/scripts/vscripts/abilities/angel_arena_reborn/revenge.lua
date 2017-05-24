@@ -15,11 +15,21 @@ function takedamage(params)
 
 	if attacker == hero then return end
 
-	if not attacker:IsHero() then return end
+	if attacker:IsBuilding() then return end
+
+	damage = hero:GetIntellect()
 
 	-- Does not work against intelligence heroes
-	local main_stat = attacker:GetPrimaryAttribute()
-	if main_stat == 2 then return end
+	if attacker:IsHero() then
+		local attackersInt = attacker:GetIntellect()
+		local castersInt = hero:GetIntellect()
+		if attackersInt >= castersInt then
+			return
+		end
+		damage = castersInt - attackersInt
+	else
+		damage = hero:GetIntellect() * reduction_percentage
+	end
 	
 	if hero:HasModifier("modifier_oracle_false_promise") then return end
 	if attacker:HasModifier("modifier_item_blade_mail_reflect") then return end
@@ -27,9 +37,7 @@ function takedamage(params)
 
 	if hero:PassivesDisabled() then return end
 
-	if hero and hero.GetIntellect then
-		damage = hero:GetIntellect() * reduction_percentage
-	end
+	
 
 	
 
