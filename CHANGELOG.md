@@ -40,10 +40,11 @@ All notable changes to this project will be documented in this file.
 - Templar Assasin now only has to stand still for 2 seconds instead of 5 to gain invisibility
 - Magicians Revenge no longer works against intelligence heros. Only Agility and Stregth heros will be damaged by it.
 - Battle Thirst now lingers for 20 seconds
-*
 - Withcraft is now a single player ability, a redux version of it will come later.
 - Battle Thirst now lingers for 35 seconds, and only gives 1 extra gold per second, exp boost is the same
 - Disabled wind runners perk because its broken
+*
+-Increased Pocket Factory Cooldown to 50 seconds
 
 
 ## 7.6 - Steam Version
