@@ -47,6 +47,7 @@ All notable changes to this project will be documented in this file.
 - Increased Pocket Factory Cooldown to 50 seconds
 - Magicians Revenge now deals damage based on the difference between attackers and owners intellect
 - Tempest double no longer triggers multicast
+- Flesh Heaps dont work Tempest doubles anymore
 
 
 
