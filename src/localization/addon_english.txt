@@ -1619,6 +1619,7 @@
     "credit_mega_omni_slash"           "<font color=\'#7D7D7D\'>Credits: SwordBacon | github.com/SwordBacon</font>"
     "credit_mega_call_down"           "<font color=\'#7D7D7D\'>Credits: SwordBacon | github.com/SwordBacon</font>"
     "credit_mega_flare"           "<font color=\'#7D7D7D\'>Credits: SwordBacon | github.com/SwordBacon</font>"
+    "credit_aether_reality_shift"           "<font color=\'#7D7D7D\'>Credits: Imported from Dusk</font>"
 
     /////////////////
     // CUSTOM ABILITIES
@@ -10225,6 +10226,18 @@
     "DOTA_Tooltip_molten_charge_armor_drain_debuff_display_modifier"    "ARMOR LOST"
     "DOTA_Tooltip_molten_charge_root_modifier"                          "ROOTED"
     "DOTA_Tooltip_molten_charge_slow_modifier"                          "SLOWED"
+
+    "DOTA_Tooltip_ability_aether_reality_shift"                                       "Reality Shift"
+    "DOTA_Tooltip_ability_aether_reality_shift_Description"                           "Aether drags all nearby units from this plane to the next temporarily, returning after the duration ends and damaging and stunning enemy units within range that were not affected by the initial cast.  Units affected are out of game and invulnerable for the duration."
+    "DOTA_Tooltip_ability_aether_reality_shift_Note0"                                 "Does not affect buildings."
+    "DOTA_Tooltip_ability_aether_reality_shift_Note1"                                 "Has a delay time of 0.2s, but an instant cast time."
+    "DOTA_Tooltip_ability_aether_reality_shift_duration"                              "DURATION:"
+    "DOTA_Tooltip_ability_aether_reality_shift_radius"                                "RADIUS:"
+    "DOTA_Tooltip_ability_aether_reality_shift_stun"                                  "STUN:"
+    "DOTA_Tooltip_ability_aether_reality_shift_damage"                                "DAMAGE:"
+
+    "DOTA_Tooltip_modifier_reality_shift_unit"                                        "Reality Shift"
+    "DOTA_Tooltip_modifier_reality_shift_unit_description"                            ""
 
     
 

@@ -51,7 +51,8 @@ All notable changes to this project will be documented in this file.
 - Added notification to inform about battle thirst
 - Reverted to original Dota map for "dota" map
 *
-
+- Added Phase Shift from Dusk
+ 
 
 
 ## 7.6 - Steam Version

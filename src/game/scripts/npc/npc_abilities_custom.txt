@@ -200,6 +200,7 @@
 #base "abilities\dota\overpower_redux.txt"  
 #base "abilities\dota\coup_de_grace_redux.txt"
 #base "abilities\dusk\lightning.txt"
+#base "abilities\dusk\aether_reality_shift.txt"
 #base "abilities\dusk\alexander.txt"
 #base "abilities\dusk\gemini_abyssal_vortex.txt"
 #base "abilities\dusk\gemini_unstable_rift.txt"
