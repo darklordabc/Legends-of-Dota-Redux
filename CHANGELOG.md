@@ -52,6 +52,7 @@ All notable changes to this project will be documented in this file.
 - Reverted to original Dota map for "dota" map
 *
 - Added Phase Shift from Dusk
+- Added Extraplanar Pact from Dusk
  
 
 

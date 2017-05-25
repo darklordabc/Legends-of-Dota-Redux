@@ -1620,6 +1620,7 @@
     "credit_mega_call_down"           "<font color=\'#7D7D7D\'>Credits: SwordBacon | github.com/SwordBacon</font>"
     "credit_mega_flare"           "<font color=\'#7D7D7D\'>Credits: SwordBacon | github.com/SwordBacon</font>"
     "credit_aether_reality_shift"           "<font color=\'#7D7D7D\'>Credits: Imported from Dusk</font>"
+    "credit_gemini_extraplanar_pact"           "<font color=\'#7D7D7D\'>Credits: Imported from Dusk</font>"
 
     /////////////////
     // CUSTOM ABILITIES
@@ -10239,8 +10240,24 @@
     "DOTA_Tooltip_modifier_reality_shift_unit"                                        "Reality Shift"
     "DOTA_Tooltip_modifier_reality_shift_unit_description"                            ""
 
-    
+    "DOTA_Tooltip_ability_gemini_extraplanar_pact"                                    "Extraplanar Pact"
+    "DOTA_Tooltip_ability_gemini_extraplanar_pact_Description"                        "Drags the target ally into another plane to make a pact with an extraplanar being, causing them to become invulnerable for a short time. After, grants various powerful bonuses at the cost of a percentage of the target's current Health and Mana."
+    //"DOTA_Tooltip_ability_gemini_extraplanar_pact_bonus_dmg"                          "%BASE DAMAGE BONUS:"
+    "DOTA_Tooltip_ability_gemini_extraplanar_pact_bonus_main_stat"                    "BONUS PRIMARY STAT:"
+    "DOTA_Tooltip_ability_gemini_extraplanar_pact_bonus_secondary"                    "BONUS OTHER STATS:"
+    //"DOTA_Tooltip_ability_gemini_extraplanar_pact_bonus_spell_damage"                 "%BONUS SPELL DAMAGE:"
+    //"DOTA_Tooltip_ability_gemini_extraplanar_pact_bonus_armor"                        "BONUS ARMOR:"
+    //"DOTA_Tooltip_ability_gemini_extraplanar_pact_bonus_regen"                        "BONUS REGEN:"
+    //"DOTA_Tooltip_ability_gemini_extraplanar_pact_bonus_mres"                         "%BONUS MAGIC RESISTANCE:"
+    "DOTA_Tooltip_ability_gemini_extraplanar_pact_duration"                           "BUFF DURATION:"
+    "DOTA_Tooltip_ability_gemini_extraplanar_pact_out_of_game_duration"               "OUT OF GAME DURATION:"
+    //"DOTA_Tooltip_ability_gemini_extraplanar_pact_health_and_mana_loss"               "%HEALTH AND MANA LOSS:"
+    //"DOTA_Tooltip_ability_gemini_extraplanar_pact_bonus_pdmg"                         "BONUS DAMAGE:"
 
+    "DOTA_Tooltip_modifier_extraplanar_pact_oog"                              "Extraplanar Pact"
+    "DOTA_Tooltip_modifier_extraplanar_pact_oog_Description"                  "Currently out of game."
     
+    "DOTA_Tooltip_modifier_extraplanar_pact"                              "Extraplanar Pact"
+    "DOTA_Tooltip_modifier_extraplanar_pact_Description"                  "Being granted various extra bonuses."
 
 }
