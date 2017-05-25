@@ -53,6 +53,7 @@ All notable changes to this project will be documented in this file.
 *
 - Added Phase Shift from Dusk
 - Added Extraplanar Pact from Dusk
+- Added Lysander Abilities (4) from Dusk
  
 
 

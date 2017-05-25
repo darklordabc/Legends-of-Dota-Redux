@@ -10260,4 +10260,63 @@
     "DOTA_Tooltip_modifier_extraplanar_pact"                              "Extraplanar Pact"
     "DOTA_Tooltip_modifier_extraplanar_pact_Description"                  "Being granted various extra bonuses."
 
+    //--------------------
+    //LYSANDER
+    //--------------------
+    
+    "DOTA_Tooltip_ability_special_bonus_lysander_armor" "+4 Armor"
+    "DOTA_Tooltip_ability_special_bonus_lysander_mana" "+175 Mana"
+    "DOTA_Tooltip_ability_special_bonus_lysander_adventurous_gale" "Adventurous Gale Has 80 Magical DPS"
+    "DOTA_Tooltip_ability_special_bonus_lysander_damage" "+50 Damage"
+    "DOTA_Tooltip_ability_special_bonus_lysander_movespeed" "+45 Movespeed"
+    "DOTA_Tooltip_ability_special_bonus_lysander_cooldown" "15% Cooldown Reduction"
+    "DOTA_Tooltip_ability_special_bonus_lysander_health" "+575 Health"
+    "DOTA_Tooltip_ability_special_bonus_lysander_grapeshot" "+0.75s Grapeshot Stun Duration"
+    
+    "DOTA_Tooltip_ability_lysander_adventurous_gale"                                  "Adventurous Gale"
+    "DOTA_Tooltip_ability_lysander_adventurous_gale_description"                      "Lysander whips up a mystical wind that creates a wave, carrying him and enemy units caught in it forward a great distance. Leaves behind an area that slows enemies and speeds up allies."
+    "DOTA_Tooltip_ability_lysander_adventurous_gale_distance"                         "DISTANCE:"
+    "DOTA_Tooltip_ability_lysander_adventurous_gale_lingering_movespeed"                             "%LINGERING MOVESPEED SLOW/INCREASE:"
+
+    "DOTA_Tooltip_ability_lysander_captains_compass"                                  "Captains Compass"
+    "DOTA_Tooltip_ability_lysander_captains_compass_description"                      "Targets a unit with Lysander's Magical Compass, granting vision and truesight of them. Lysander gains bonus movespeed and attack speed based on how close he is to the unit."
+    "DOTA_Tooltip_ability_lysander_captains_compass_duration"                         "DURATION:"
+    "DOTA_Tooltip_ability_lysander_captains_compass_movespeed_caster"                 "%MAX MOVESPEED/ATTACK SPEED INCREASE:"
+
+    "DOTA_Tooltip_ability_lysander_grapeshot"                                         "Grapeshot"
+    "DOTA_Tooltip_ability_lysander_grapeshot_description"                             "Lysander fires his handgun at a target unit or building, dealing Physical damage based on his attack strength.  When shooting at short range, it ministuns the target.  Has a chance to crit, which halves the ability's cooldown, refunds the Mana cost, increases the damage, and ministuns regardless of how far away the target is.\n\nUpgradable by Aghanim's Scepter."
+    "DOTA_Tooltip_ability_lysander_grapeshot_aghanim_description"                     "Lysander has a chance to Grapeshot a nearby enemy when he attacks. These shots can Crit as normal, but never stun."
+    "DOTA_Tooltip_ability_lysander_grapeshot_multiplier"                              "MULTIPLIER:"
+    "DOTA_Tooltip_ability_lysander_grapeshot_range_ministun"                          "STUN RANGE:"
+    "DOTA_Tooltip_ability_lysander_grapeshot_stun"                                    "STUN DURATION:"
+    "DOTA_Tooltip_ability_lysander_grapeshot_crit"                                    "%CRITICAL CHANCE:"
+    "DOTA_Tooltip_ability_lysander_grapeshot_crit_multiplier"                         "CRITICAL MULTIPLIER:"
+    "DOTA_Tooltip_ability_lysander_grapeshot_scepter_chance"                         "%SCEPTER GRAPESHOT CHANCE:"
+    "DOTA_Tooltip_ability_lysander_grapeshot_scepter_radius"                         "SCEPTER GRAPESHOT RADIUS:"
+
+    "DOTA_Tooltip_ability_lysander_phantom_fleet"                                     "Phantom Dreadnaught"
+    "DOTA_Tooltip_ability_lysander_phantom_fleet_description"                         "Summons forth an ethereal ship that fires its chase cannons ahead, dealing damage to enemy units and buildings. Deals quarter damage to buildings."
+    "DOTA_Tooltip_ability_lysander_phantom_fleet_aghanim_description"                 "Gives Lysander a guaranteed Grapeshot crit every 14s, doubles the stun duration, and autocasts Grapeshot on targets affected by Captain's Compass, if they are in range, but removes the crit chance completely."
+    "DOTA_Tooltip_ability_lysander_phantom_fleet_damage"                              "DAMAGE:"
+    "DOTA_Tooltip_ability_lysander_phantom_fleet_ministun"                            "MINISTUN:"
+    "DOTA_Tooltip_ability_lysander_phantom_fleet_duration"                            "DURATION:"
+
+    "DOTA_Tooltip_modifier_lysander_adventurous_gale_slow"                            "Adventurous Gale Slow"
+    "DOTA_Tooltip_modifier_lysander_adventurous_gale_slow_description"                "Being slowed by %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%."
+
+    "DOTA_Tooltip_modifier_lysander_adventurous_gale_buff"                     "Adventurous Gale Lingering Buff"
+    "DOTA_Tooltip_modifier_lysander_adventurous_gale_buff_description"         "Gaining %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%% movement speed if an ally, or losing the same amount if an enemy."
+
+    "DOTA_Tooltip_modifier_lysander_captains_compass_buff_show"                                 "Captain's Compass"
+    "DOTA_Tooltip_modifier_lysander_captains_compass_buff_show_description"                     "Gaining movespeed and attackspeed as you near your target!"
+
+    "DOTA_Tooltip_modifier_lysander_captains_compass"                            "Captain's Compass"
+    "DOTA_Tooltip_modifier_lysander_captains_compass_description"                "Enemies can see where you are! Run!"
+
+    "DOTA_Tooltip_modifier_grapeshot_scepter"                                   "Grapeshot Aghanim's Scepter Upgrade"
+    "DOTA_Tooltip_modifier_grapeshot_scepter_description"                       "Owner has a chance to Grapeshot a nearby enemy when attacking."
+
+    "DOTA_Tooltip_modifier_lysander_phantom_fleet_slow"                               "Phantom Dreadknought Slow"
+    "DOTA_Tooltip_modifier_lysander_phantom_fleet_slow_description"                   "Being slowed by %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%."
+
 }
