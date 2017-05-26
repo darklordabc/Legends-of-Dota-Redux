@@ -1,5 +1,7 @@
 local Timers = require('easytimers')
 
+BATTLE_THIRST_TIME = 10.0
+
 --------------------------------------------------------------------------------------------------------
 --    Modifier: modifier_battle_thirst        
 --------------------------------------------------------------------------------------------------------
@@ -55,16 +57,41 @@ function modifier_battle_thirst_aura:OnIntervalThink(keys)
 		if parentTeam == 3 then
 			enemyTeam = 2
 		end
+
+		parent.counter = parent.counter or BATTLE_THIRST_TIME
+
+		if parent.counter < BATTLE_THIRST_TIME then
+			if OptionManager:GetOption('sharedXP') == 1 then
+	            for i=0,DOTA_MAX_TEAM do
+	                local pID = PlayerResource:GetNthPlayerIDOnTeam(parentTeam,i)
+	                if (PlayerResource:IsValidPlayerID(pID) or PlayerResource:GetConnectionState(pID) == 1) and PlayerResource:GetPlayer(pID) then
+	                    local otherHero = PlayerResource:GetPlayer(pID):GetAssignedHero()
+
+	                    otherHero:AddExperience(math.ceil(8 / util:GetActivePlayerCountForTeam(parentTeam)),0,false,false)
+	                end
+	            end
+			else
+				parent:AddExperience(8,1,false,false)
+			end
+			
+			parent:ModifyGold(1,false,0)
+		end
 		
 		for _,v in pairs(FindUnitsInRadius( parentTeam, parent:GetAbsOrigin(), nil, 2000.0, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE+DOTA_UNIT_TARGET_FLAG_INVULNERABLE+DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false )) do
 			local check = (IsValidEntity(v) and v:IsNull() == false and v.GetPlayerOwnerID and not v:IsClone() and not v:HasModifier("modifier_arc_warden_tempest_double") and not string.match(v:GetUnitName(), "ward") and parent:CanEntityBeSeenByMyTeam(v) and v:GetTeamNumber() == tonumber(enemyTeam) and v:CanEntityBeSeenByMyTeam(parent))
 
 			if check then
-				parent:AddNewModifier(parent,nil,"modifier_battle_thirst_effect",{duration = 35.0})
+				parent.counter = 0
+				parent:RemoveModifierByName("modifier_battle_thirst_effect")
         		return 1.0
 		    end
 		end
 
+		parent.counter = parent.counter + 1
+
+		if parent.counter == BATTLE_THIRST_TIME then
+			parent:AddNewModifier(parent,nil,"modifier_battle_thirst_effect",{})
+		end
 		return 1.0
 	end
 end
@@ -113,7 +140,7 @@ function modifier_battle_thirst_effect:IsPurgable()
 end
 ----------------------------------------------------------------------------------------------------------
 function modifier_battle_thirst_effect:IsDebuff()
-	return false
+	return true
 end
 ----------------------------------------------------------------------------------------------------------
 function modifier_battle_thirst_effect:OnIntervalThink(keys)
@@ -127,20 +154,7 @@ function modifier_battle_thirst_effect:OnIntervalThink(keys)
 			enemyTeam = 2
 		end
 
-		if OptionManager:GetOption('sharedXP') == 1 then
-            for i=0,DOTA_MAX_TEAM do
-                local pID = PlayerResource:GetNthPlayerIDOnTeam(parentTeam,i)
-                if (PlayerResource:IsValidPlayerID(pID) or PlayerResource:GetConnectionState(pID) == 1) and PlayerResource:GetPlayer(pID) then
-                    local otherHero = PlayerResource:GetPlayer(pID):GetAssignedHero()
 
-                    otherHero:AddExperience(math.ceil(8 / util:GetActivePlayerCountForTeam(parentTeam)),0,false,false)
-                end
-            end
-		else
-			parent:AddExperience(8,1,false,false)
-		end
-		
-		parent:ModifyGold(1,false,0)
 	end
 end
 ----------------------------------------------------------------------------------------------------------

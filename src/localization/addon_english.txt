@@ -1623,8 +1623,8 @@
     "DOTA_Tooltip_modifier_item_ultimate_scepter_consumed" "Free Aghanim's Scepter"
     "DOTA_Tooltip_modifier_item_ultimate_scepter_consumed_Description" "Permanently granted 'Ultimate Upgrade' benefit from Aghanim's Scepter. Certain ultimates and abilities will be upgraded."
 
-    "DOTA_Tooltip_modifier_battle_thirst_effect"  "Battle Thirst"
-    "DOTA_Tooltip_modifier_battle_thirst_effect_Description"  "Enemy has seen you recently. You gain bonus gold and experience for your bravery."
+    "DOTA_Tooltip_modifier_battle_thirst_effect"  "Out of Sight Penalty"
+    "DOTA_Tooltip_modifier_battle_thirst_effect_Description"  "You don't get EXP and gold bonus because enemy hasn't seen you for 10 seconds."
 
     // Slard Sprint Perk
     "DOTA_Tooltip_modifier_item_phase_boots_datadriven_active"  "Slardar Sprint Perk"
