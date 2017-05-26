@@ -1,0 +1,69 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_ConstantColor =
+	[
+		103,
+		0,
+		154,
+		255,
+	]
+	m_Operators =
+	[
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_FadeAndKill"
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_ColorFade =
+			[
+				0,
+				0,
+				0,
+				255,
+			]
+		},
+		{
+			_class = "C_OP_LerpScalar"
+			m_flOutput = 35.000000
+		},
+	]
+	m_Renderers =
+	[
+		{
+			_class = "C_OP_RenderSprites"
+		},
+	]
+	m_Initializers =
+	[
+		{
+			_class = "C_INIT_RingWave"
+			m_flInitialRadius = 50.000000
+			m_flPitch = 90.000000
+		},
+	]
+	m_Emitters =
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 198.500000
+		},
+	]
+	m_ForceGenerators =
+	[
+		{
+			_class = "C_OP_AttractToControlPoint"
+			m_vecComponentScale =
+			[
+				4.000000,
+				1.000000,
+				1.000000,
+			]
+			m_fForceAmount = 150.000000
+			m_fFalloffPower = 0.000000
+		},
+	]
+}

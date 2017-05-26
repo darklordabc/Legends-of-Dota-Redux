@@ -1,0 +1,138 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderTrails"
+			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
+			m_flStartFadeSize = 0.675
+			m_flEndFadeSize = 0.75
+			m_flMaxSize = 0.5
+			m_flAddSelfAmount = 1.0
+			m_bBlendFramesSeq0 = false
+			m_bSaturateColorPreAlphaBlend = false
+			m_hTexture = resource:"materials/models/heroes/morphling/watersprites/waveform_sprites2.vtex"
+			m_bIgnoreDT = true
+			m_flAnimationRate = 1.0
+			m_flRadiusScale = 0.5
+			m_flFinalTextureScaleV = -1.0
+			m_flFinalTextureOffsetV = 1.0
+			m_vEndTrailTintFactor = [ 1.0, 1.0, 1.0, 0.0 ]
+			m_flOverbrightFactor = 2.0
+			m_bParticleFeathering = true
+			m_flFeatheringMinDist = 2.0
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_PositionLock"
+			m_nControlPointNumber = 3
+			m_flStartTime_min = 0.0
+			m_flStartTime_max = 0.0
+			m_flEndTime_min = 0.5
+			m_flEndTime_max = 0.75
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flBias = 0.75
+			m_flEndScale = 3.0
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 1.0
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_nFieldOutput = 16
+			m_flFadeOutTime = 1.0
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_Rate = -0.1
+			m_nField = 10
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMax = 1.0
+			m_fLifetimeMin = 0.75
+		},
+		{
+			_class = "C_INIT_CreateWithinSphere"
+			m_nControlPointNumber = 3
+			m_LocalCoordinateSystemSpeedMax = [ 0.0, 0.0, 288.0 ]
+			m_LocalCoordinateSystemSpeedMin = [ 0.0, 0.0, 194.0 ]
+			m_fSpeedMax = 120.0
+			m_vecDistanceBias = [ 2.0, 1.0, 0.0 ]
+			m_bLocalCoords = true
+			m_fRadiusMin = 200.0
+			m_fRadiusMax = 200.0
+			m_vecDistanceBiasAbs = [ 1.0, 0.0, 0.0 ]
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ -50.0, 0.0, -20.0 ]
+			m_OffsetMax = [ -50.0, 0.0, -32.0 ]
+			m_nControlPointNumber = 3
+			m_bLocalCoords = true
+		},
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMax = 70.0
+			m_flRadiusMin = 80.0
+		},
+		{
+			_class = "C_INIT_OffsetVectorToVector"
+			m_vecOutputMax = [ 0.0, 0.0, 2000.0 ]
+			m_vecOutputMin = [ 0.0, 0.0, 1500.0 ]
+			m_nFieldOutput = 2
+		},
+		{
+			_class = "C_INIT_InitialVelocityNoise"
+			m_flNoiseScale = 3.0
+			m_flNoiseScaleLoc = 4.0
+			m_vecOutputMin = [ 134.0, -134.0, 34.0 ]
+			m_vecOutputMax = [ 204.0, 134.0, 164.0 ]
+			m_nControlPointNumber = 3
+			m_bLocalSpace = true
+		},
+		{
+			_class = "C_INIT_RandomAlpha"
+			m_nAlphaMax = 200
+			m_nAlphaMin = 150
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+			m_flDegreesMin = -16.0
+			m_flDegreesMax = 16.0
+		},
+		{
+			_class = "C_INIT_RandomSequence"
+			m_nSequenceMax = 7
+			m_bShuffle = true
+		},
+		{
+			_class = "C_INIT_RandomTrailLength"
+			m_flMinLength = 0.075
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 200.0
+		},
+	]
+	m_nMaxParticles = 180
+}

@@ -462,17 +462,30 @@ function Ingame:onStart()
         -- Notification to players that they can change builds ingame.
         Timers:CreateTimer(function()
                 GameRules:SendCustomMessage("#ingameBuilderNotification", 0, 0)
-                end, "builderReminder0", 10) -- 5 Mins
+        end, "builderReminder0", 10) 
         -- Reminders for the players.
         Timers:CreateTimer(function()
                 GameRules:SendCustomMessage("#ingameBuilderReminder", 0, 0)
-                end, "builderReminder1", 300) -- 5 Mins
+        end, "builderReminder1", 300) -- 5 Mins
         Timers:CreateTimer(function()
                 GameRules:SendCustomMessage("#ingameBuilderReminder", 0, 0)
-                end, "builderReminder2", 600) -- 10 Mins
+        end, "builderReminder2", 600) -- 10 Mins
         Timers:CreateTimer(function()
                 GameRules:SendCustomMessage("#ingameBuilderReminder", 0, 0)
-                end, "builderReminder3", 1200) -- 20 Mins
+        end, "builderReminder3", 1200) -- 20 Mins
+    end
+
+    if OptionManager:GetOption('battleThirst') then
+        -- Notification to players that they can change builds ingame.
+        Timers:CreateTimer(function()
+                GameRules:SendCustomMessage("#ingameBattleThirstNotification", 0, 0)
+        end, "battleThirstReminder0", 15) 
+        Timers:CreateTimer(function()
+                GameRules:SendCustomMessage("#ingameBattleThirstNotification", 0, 0)
+        end, "battleThirstReminder1", 300) -- 5 Mins
+        Timers:CreateTimer(function()
+                GameRules:SendCustomMessage("#ingameBattleThirstNotification", 0, 0)
+        end, "battleThirstReminder2", 600) -- 10 Mins
     end
 
     -- Start listening for players that are disconnecting

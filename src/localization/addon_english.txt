@@ -537,6 +537,7 @@
     "minimapMenuHeroBuilder"                        "Hero Builder"
     
     "ingameBuilderNotification"                     "<font color='#70EA72'>Ingame Build Switch is Enabled. Click on the change build icon in the bottom left corner to change your abilities/hero/primaray stat.</font>"
+    "ingameBattleThirstNotification"                     "<font color='#FF0000'>Battle Thirst Is enabled.</font> When you are seen by the enemy, you will gain bonus passive gold and experience, if you stay out of sight for 35 seconds, you will lose this bonus."
     "ingameBuilderReminder"                     "<font color='#70EA72'>Don't forget. Ingame Build Switch is Enabled. Click on the change build icon in the bottom left corner to change your abilities/hero/primaray stat.</font>"
     "tempDuelBlock"                     "<font color='#FF0000'>Duels are temporarily disabled due to a crash issue. They will be reenabled soon. Sorry about that.</font>"
     "respawnCheatNotification"  "You can use the chat command cheat '-respawn' to force your hero to respawn, this cheat is only available in single player mode or with cheats mode."
@@ -1432,6 +1433,10 @@
     "warning_chen_holy_persuasion" "<font color=\'#FF4949\'>Warning:</font> Persuading Ancients requires levels in <font color=\'#70EA72\'>Hand of God</font> to have any effect.\n"
     "warning_centaur_return" "<font color=\'#FF4949\'>Warning:</font> Does not damage buildings.\n"
 
+    "credit_bulwark_strike"           "<font color=\'#7D7D7D\'>Credits: Deathtal | github.com/Deathtal</font>"
+    "credit_skipping_flames"           "<font color=\'#7D7D7D\'>Credits: Deathtal | github.com/Deathtal</font>"
+    "credit_unwavering_stance"           "<font color=\'#7D7D7D\'>Credits: Deathtal | github.com/Deathtal</font>"
+    "credit_molten_charge"           "<font color=\'#7D7D7D\'>Credits: Deathtal | github.com/Deathtal</font>"
     "credit_spell_lab_symbiotic"           "<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>"
     "credit_sight"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
     "credit_zhanhun"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
@@ -1614,6 +1619,8 @@
     "credit_mega_omni_slash"           "<font color=\'#7D7D7D\'>Credits: SwordBacon | github.com/SwordBacon</font>"
     "credit_mega_call_down"           "<font color=\'#7D7D7D\'>Credits: SwordBacon | github.com/SwordBacon</font>"
     "credit_mega_flare"           "<font color=\'#7D7D7D\'>Credits: SwordBacon | github.com/SwordBacon</font>"
+    "credit_aether_reality_shift"           "<font color=\'#7D7D7D\'>Credits: Imported from Dusk</font>"
+    "credit_gemini_extraplanar_pact"           "<font color=\'#7D7D7D\'>Credits: Imported from Dusk</font>"
 
     /////////////////
     // CUSTOM ABILITIES
@@ -10183,8 +10190,133 @@
     "DOTA_Tooltip_ability_mega_suicide_radius"                  "RADIUS:"
     "DOTA_Tooltip_ability_mega_suicide_damage"                  "DAMAGE:"
 
-    
+    //Molten Lord
+    "DOTA_Tooltip_ablaze_modifier"                                      "<font color='#d30000'>ABLAZE</font>!"
+    "DOTA_Tooltip_ablaze_modifier_Description"                          "You are <font color='#d30000'>Ablaze</font>! Taking half of Molten Lord's amror every 0.5 seconds."
+    "DOTA_Tooltip_ability_bulwark_strike"                               "BULWARK STRIKE"
+    "DOTA_Tooltip_ability_bulwark_strike_Description"                   "Molten Lord strikes an enemy dealing extra magic damage to them based on his armor multiplied by a value. The hit sets the target <font color='#d30000'>Ablaze</font>. If the target is already <font color='#d30000'>Ablaze</font>, Bulwark Strike deals additional extra damage equal to 4 times Molten Lord's armor, additionally enemies in a radius around the target are also set <font color='#d30000'>Ablaze</font>.\n<font color='#d30000'>Ablaze</font> enemies take half of Molten Lord's armor as magic damage every 0.5 seconds."
+    "DOTA_Tooltip_ability_bulwark_strike_armor_multiplier"              "ARMOR MULTIPLIER:"
+    "DOTA_Tooltip_ability_bulwark_strike_radius"                        "RADIUS:"
+    "DOTA_Tooltip_ability_bulwark_strike_ablaze_duration"               "<font color='#d30000'>ABLAZE</font> DURATION:"
+    "DOTA_Tooltip_ability_skipping_flames"                              "SKIPPING FLAMES"
+    "DOTA_Tooltip_ability_skipping_flames_Description"                  "Molten Lord transfer <font color='#d30000'>Ablaze</font> from all enemies in a radius around an enemy. The target is mini-stunned and takes damage plus the remaining damage of <font color='#d30000'>Ablaze</font> that was on the enemies in range, this includes the <font color='#d30000'>Ablaze</font> on the target. The target is set <font color='#d30000'>Ablaze</font>.\n<font color='#d30000'>Ablaze</font> enemies take half of Molten Lord's armor as magic damage every 0.5 seconds."
+    "DOTA_Tooltip_ability_skipping_flames_radius"                       "RADIUS:"
+    "DOTA_Tooltip_ability_skipping_flames_base_damage"                  "BASE DAMAGE:"
+    "DOTA_Tooltip_ability_skipping_flames_mini_stun"                    "STUN DURATION:"
+    "DOTA_Tooltip_ability_skipping_flames_ablaze_duration"              "<font color='#d30000'>ABLAZE</font> DURATION:"
+    "DOTA_Tooltip_ability_unwavering_stance"                            "UNWAVERING STANCE"
+    "DOTA_Tooltip_ability_unwavering_stance_Description"                "Molten Lord stands unwavering. Upon getting stunned he will gain a buff that dispels all stuns aswell as negative status effects continuously over the duration. Enemies that damage Molten Lord buring the buff will be set <font color='#d30000'>Ablaze</font>.\n<font color='#d30000'>Ablaze</font> enemies take half of Molten Lord's armor as magic damage every 0.5 seconds."
+    "DOTA_Tooltip_ability_unwavering_stance_duration"                   "DURATION:"
+    "DOTA_Tooltip_ability_unwavering_stance_ablaze_duration"            "<font color='#d30000'>ABLAZE</font> DURATION:"
+    "DOTA_Tooltip_unwavering_stance_active_modifier"                    "UNWAVERING STANCE"
+    "DOTA_Tooltip_unwavering_stance_active_modifier_Description"        "Continuously dispel all stuns and negative status effects."
+    "DOTA_Tooltip_ability_molten_charge"                                "MOLTEN CHARGE"
+    "DOTA_Tooltip_ability_molten_charge_Description"                    "Molten Lord charges towards a point, engulfing himself in flames. Upon reaching the point Molten Lord explodes, damaging all enemies in the radius based on his armor multiplied by a value. The enemies are set <font color='#d30000'>Ablaze</font> and have their movement and attack speed slowed. If the enemy is already <font color='#d30000'>Ablaze</font> they will be rooted and then slowed. Molten Lord drains armor every second from the heroes hit. If the hero moves to far away from Molten Lord they will no longer have their armor drained.\n<font color='#d30000'>Ablaze</font> enemies take half of Molten Lord's armor as magic damage every 0.5 seconds."
+    "DOTA_Tooltip_ability_molten_charge_tooltip_radius"                 "RADIUS:"
+    "DOTA_Tooltip_ability_molten_charge_armor_multiplier"               "ARMOR MULTIPLIER:"
+    "DOTA_Tooltip_ability_molten_charge_slow_duration"                  "SLOW DURATION:"
+    "DOTA_Tooltip_ability_molten_charge_slow_movement_speed"            "%MOVERMENT SLOW:"
+    "DOTA_Tooltip_ability_molten_charge_slow_attack_speed"              "ATTACK SLOW:"
+    "DOTA_Tooltip_ability_molten_charge_root_duration"                  "ROOT DURATION:"
+    "DOTA_Tooltip_ability_molten_charge_duration"                       "ARMOR DRAIN DURATION:"
+    "DOTA_Tooltip_ability_molten_charge_armor_drain_bonus"              "ARMOR DRAINED:"
+    "DOTA_Tooltip_ability_molten_charge_stack_duration"                 "STACK DURATION:"
+    "DOTA_Tooltip_ability_molten_charge_break_distance"                 "BREAK DISTANCE:"
+    "DOTA_Tooltip_ability_molten_charge_ablaze_duration"                "<font color='#d30000'>ABLAZE</font> DURATION:"
+    "DOTA_Tooltip_molten_charge_armor_drain_buff_display_modifier"      "ARMOR GAINED"
+    "DOTA_Tooltip_molten_charge_armor_drain_debuff_display_modifier"    "ARMOR LOST"
+    "DOTA_Tooltip_molten_charge_root_modifier"                          "ROOTED"
+    "DOTA_Tooltip_molten_charge_slow_modifier"                          "SLOWED"
 
+    "DOTA_Tooltip_ability_aether_reality_shift"                                       "Reality Shift"
+    "DOTA_Tooltip_ability_aether_reality_shift_Description"                           "Aether drags all nearby units from this plane to the next temporarily, returning after the duration ends and damaging and stunning enemy units within range that were not affected by the initial cast.  Units affected are out of game and invulnerable for the duration."
+    "DOTA_Tooltip_ability_aether_reality_shift_Note0"                                 "Does not affect buildings."
+    "DOTA_Tooltip_ability_aether_reality_shift_Note1"                                 "Has a delay time of 0.2s, but an instant cast time."
+    "DOTA_Tooltip_ability_aether_reality_shift_duration"                              "DURATION:"
+    "DOTA_Tooltip_ability_aether_reality_shift_radius"                                "RADIUS:"
+    "DOTA_Tooltip_ability_aether_reality_shift_stun"                                  "STUN:"
+    "DOTA_Tooltip_ability_aether_reality_shift_damage"                                "DAMAGE:"
+
+    "DOTA_Tooltip_modifier_reality_shift_unit"                                        "Reality Shift"
+    "DOTA_Tooltip_modifier_reality_shift_unit_description"                            ""
+
+    "DOTA_Tooltip_ability_gemini_extraplanar_pact"                                    "Extraplanar Pact"
+    "DOTA_Tooltip_ability_gemini_extraplanar_pact_Description"                        "Drags the target ally into another plane to make a pact with an extraplanar being, causing them to become invulnerable for a short time. After, grants various powerful bonuses at the cost of a percentage of the target's current Health and Mana."
+    //"DOTA_Tooltip_ability_gemini_extraplanar_pact_bonus_dmg"                          "%BASE DAMAGE BONUS:"
+    "DOTA_Tooltip_ability_gemini_extraplanar_pact_bonus_main_stat"                    "BONUS PRIMARY STAT:"
+    "DOTA_Tooltip_ability_gemini_extraplanar_pact_bonus_secondary"                    "BONUS OTHER STATS:"
+    //"DOTA_Tooltip_ability_gemini_extraplanar_pact_bonus_spell_damage"                 "%BONUS SPELL DAMAGE:"
+    //"DOTA_Tooltip_ability_gemini_extraplanar_pact_bonus_armor"                        "BONUS ARMOR:"
+    //"DOTA_Tooltip_ability_gemini_extraplanar_pact_bonus_regen"                        "BONUS REGEN:"
+    //"DOTA_Tooltip_ability_gemini_extraplanar_pact_bonus_mres"                         "%BONUS MAGIC RESISTANCE:"
+    "DOTA_Tooltip_ability_gemini_extraplanar_pact_duration"                           "BUFF DURATION:"
+    "DOTA_Tooltip_ability_gemini_extraplanar_pact_out_of_game_duration"               "OUT OF GAME DURATION:"
+    //"DOTA_Tooltip_ability_gemini_extraplanar_pact_health_and_mana_loss"               "%HEALTH AND MANA LOSS:"
+    //"DOTA_Tooltip_ability_gemini_extraplanar_pact_bonus_pdmg"                         "BONUS DAMAGE:"
+
+    "DOTA_Tooltip_modifier_extraplanar_pact_oog"                              "Extraplanar Pact"
+    "DOTA_Tooltip_modifier_extraplanar_pact_oog_Description"                  "Currently out of game."
     
+    "DOTA_Tooltip_modifier_extraplanar_pact"                              "Extraplanar Pact"
+    "DOTA_Tooltip_modifier_extraplanar_pact_Description"                  "Being granted various extra bonuses."
+
+    //--------------------
+    //LYSANDER
+    //--------------------
+    
+    "DOTA_Tooltip_ability_special_bonus_lysander_armor" "+4 Armor"
+    "DOTA_Tooltip_ability_special_bonus_lysander_mana" "+175 Mana"
+    "DOTA_Tooltip_ability_special_bonus_lysander_adventurous_gale" "Adventurous Gale Has 80 Magical DPS"
+    "DOTA_Tooltip_ability_special_bonus_lysander_damage" "+50 Damage"
+    "DOTA_Tooltip_ability_special_bonus_lysander_movespeed" "+45 Movespeed"
+    "DOTA_Tooltip_ability_special_bonus_lysander_cooldown" "15% Cooldown Reduction"
+    "DOTA_Tooltip_ability_special_bonus_lysander_health" "+575 Health"
+    "DOTA_Tooltip_ability_special_bonus_lysander_grapeshot" "+0.75s Grapeshot Stun Duration"
+    
+    "DOTA_Tooltip_ability_lysander_adventurous_gale"                                  "Adventurous Gale"
+    "DOTA_Tooltip_ability_lysander_adventurous_gale_description"                      "Lysander whips up a mystical wind that creates a wave, carrying him and enemy units caught in it forward a great distance. Leaves behind an area that slows enemies and speeds up allies."
+    "DOTA_Tooltip_ability_lysander_adventurous_gale_distance"                         "DISTANCE:"
+    "DOTA_Tooltip_ability_lysander_adventurous_gale_lingering_movespeed"                             "%LINGERING MOVESPEED SLOW/INCREASE:"
+
+    "DOTA_Tooltip_ability_lysander_captains_compass"                                  "Captains Compass"
+    "DOTA_Tooltip_ability_lysander_captains_compass_description"                      "Targets a unit with Lysander's Magical Compass, granting vision and truesight of them. Lysander gains bonus movespeed and attack speed based on how close he is to the unit."
+    "DOTA_Tooltip_ability_lysander_captains_compass_duration"                         "DURATION:"
+    "DOTA_Tooltip_ability_lysander_captains_compass_movespeed_caster"                 "%MAX MOVESPEED/ATTACK SPEED INCREASE:"
+
+    "DOTA_Tooltip_ability_lysander_grapeshot"                                         "Grapeshot"
+    "DOTA_Tooltip_ability_lysander_grapeshot_description"                             "Lysander fires his handgun at a target unit or building, dealing Physical damage based on his attack strength.  When shooting at short range, it ministuns the target.  Has a chance to crit, which halves the ability's cooldown, refunds the Mana cost, increases the damage, and ministuns regardless of how far away the target is.\n\nUpgradable by Aghanim's Scepter."
+    "DOTA_Tooltip_ability_lysander_grapeshot_aghanim_description"                     "Lysander has a chance to Grapeshot a nearby enemy when he attacks. These shots can Crit as normal, but never stun."
+    "DOTA_Tooltip_ability_lysander_grapeshot_multiplier"                              "MULTIPLIER:"
+    "DOTA_Tooltip_ability_lysander_grapeshot_range_ministun"                          "STUN RANGE:"
+    "DOTA_Tooltip_ability_lysander_grapeshot_stun"                                    "STUN DURATION:"
+    "DOTA_Tooltip_ability_lysander_grapeshot_crit"                                    "%CRITICAL CHANCE:"
+    "DOTA_Tooltip_ability_lysander_grapeshot_crit_multiplier"                         "CRITICAL MULTIPLIER:"
+    "DOTA_Tooltip_ability_lysander_grapeshot_scepter_chance"                         "%SCEPTER GRAPESHOT CHANCE:"
+    "DOTA_Tooltip_ability_lysander_grapeshot_scepter_radius"                         "SCEPTER GRAPESHOT RADIUS:"
+
+    "DOTA_Tooltip_ability_lysander_phantom_fleet"                                     "Phantom Dreadnaught"
+    "DOTA_Tooltip_ability_lysander_phantom_fleet_description"                         "Summons forth an ethereal ship that fires its chase cannons ahead, dealing damage to enemy units and buildings. Deals quarter damage to buildings."
+    "DOTA_Tooltip_ability_lysander_phantom_fleet_aghanim_description"                 "Gives Lysander a guaranteed Grapeshot crit every 14s, doubles the stun duration, and autocasts Grapeshot on targets affected by Captain's Compass, if they are in range, but removes the crit chance completely."
+    "DOTA_Tooltip_ability_lysander_phantom_fleet_damage"                              "DAMAGE:"
+    "DOTA_Tooltip_ability_lysander_phantom_fleet_ministun"                            "MINISTUN:"
+    "DOTA_Tooltip_ability_lysander_phantom_fleet_duration"                            "DURATION:"
+
+    "DOTA_Tooltip_modifier_lysander_adventurous_gale_slow"                            "Adventurous Gale Slow"
+    "DOTA_Tooltip_modifier_lysander_adventurous_gale_slow_description"                "Being slowed by %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%."
+
+    "DOTA_Tooltip_modifier_lysander_adventurous_gale_buff"                     "Adventurous Gale Lingering Buff"
+    "DOTA_Tooltip_modifier_lysander_adventurous_gale_buff_description"         "Gaining %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%% movement speed if an ally, or losing the same amount if an enemy."
+
+    "DOTA_Tooltip_modifier_lysander_captains_compass_buff_show"                                 "Captain's Compass"
+    "DOTA_Tooltip_modifier_lysander_captains_compass_buff_show_description"                     "Gaining movespeed and attackspeed as you near your target!"
+
+    "DOTA_Tooltip_modifier_lysander_captains_compass"                            "Captain's Compass"
+    "DOTA_Tooltip_modifier_lysander_captains_compass_description"                "Enemies can see where you are! Run!"
+
+    "DOTA_Tooltip_modifier_grapeshot_scepter"                                   "Grapeshot Aghanim's Scepter Upgrade"
+    "DOTA_Tooltip_modifier_grapeshot_scepter_description"                       "Owner has a chance to Grapeshot a nearby enemy when attacking."
+
+    "DOTA_Tooltip_modifier_lysander_phantom_fleet_slow"                               "Phantom Dreadknought Slow"
+    "DOTA_Tooltip_modifier_lysander_phantom_fleet_slow_description"                   "Being slowed by %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%."
 
 }
