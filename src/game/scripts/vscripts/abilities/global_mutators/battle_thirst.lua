@@ -1,6 +1,6 @@
 local Timers = require('easytimers')
 
-BATTLE_THIRST_TIME = 10.0
+BATTLE_THIRST_TIME = 40.0
 
 --------------------------------------------------------------------------------------------------------
 --    Modifier: modifier_battle_thirst        
@@ -49,6 +49,11 @@ end
 ----------------------------------------------------------------------------------------------------------
 function modifier_battle_thirst_aura:OnIntervalThink(keys)
 	if IsServer() then
+		-- Dont count down until game has started
+		if GameRules:GetDOTATime(false,false) == 0 then 
+			return 
+		end
+
 		local parent = self:GetParent()
 
 		local parentTeam = parent:GetTeamNumber()
@@ -58,23 +63,35 @@ function modifier_battle_thirst_aura:OnIntervalThink(keys)
 			enemyTeam = 2
 		end
 
-		parent.counter = parent.counter or BATTLE_THIRST_TIME
+		parent.counter = parent.counter or 0
+		
 
-		if parent.counter < BATTLE_THIRST_TIME then
+		if parent.counter > BATTLE_THIRST_TIME then
 			if OptionManager:GetOption('sharedXP') == 1 then
 	            for i=0,DOTA_MAX_TEAM do
 	                local pID = PlayerResource:GetNthPlayerIDOnTeam(parentTeam,i)
 	                if (PlayerResource:IsValidPlayerID(pID) or PlayerResource:GetConnectionState(pID) == 1) and PlayerResource:GetPlayer(pID) then
 	                    local otherHero = PlayerResource:GetPlayer(pID):GetAssignedHero()
-
-	                    otherHero:AddExperience(math.ceil(8 / util:GetActivePlayerCountForTeam(parentTeam)),0,false,false)
+	                    -- Temporarily disabled the bonus exp
+	                    --otherHero:AddExperience(math.ceil(8 / util:GetActivePlayerCountForTeam(parentTeam)),0,false,false)
 	                end
 	            end
 			else
-				parent:AddExperience(8,1,false,false)
+				-- Temporarily disabled the bonus exp
+				--parent:AddExperience(8,1,false,false)
 			end
 			
-			parent:ModifyGold(1,false,0)
+			parent:ModifyGold(-2,false,0)
+
+			-- Little alert above players to indicate they are losing gold
+			parent.alertTicker = parent.alertTicker or 3
+			if parent.alertTicker == 3 then
+				SendOverheadEventMessage( parent, OVERHEAD_ALERT_DENY , parent, 1, nil )
+				parent.alertTicker = 0
+			else
+				parent.alertTicker = parent.alertTicker + 1
+			end
+
 		end
 		
 		for _,v in pairs(FindUnitsInRadius( parentTeam, parent:GetAbsOrigin(), nil, 2000.0, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE+DOTA_UNIT_TARGET_FLAG_INVULNERABLE+DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false )) do
@@ -89,7 +106,9 @@ function modifier_battle_thirst_aura:OnIntervalThink(keys)
 
 		parent.counter = parent.counter + 1
 
-		if parent.counter == BATTLE_THIRST_TIME then
+		print(parent.counter)
+
+		if parent.counter >= BATTLE_THIRST_TIME and not parent:FindModifierByName("modifier_battle_thirst_effect") then
 			parent:AddNewModifier(parent,nil,"modifier_battle_thirst_effect",{})
 		end
 		return 1.0
