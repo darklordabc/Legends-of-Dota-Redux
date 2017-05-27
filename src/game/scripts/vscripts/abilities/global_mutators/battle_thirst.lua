@@ -1,6 +1,6 @@
 local Timers = require('easytimers')
 
-BATTLE_THIRST_TIME = 40.0
+BATTLE_THIRST_TIME = 60.0
 
 --------------------------------------------------------------------------------------------------------
 --    Modifier: modifier_battle_thirst        
@@ -67,19 +67,20 @@ function modifier_battle_thirst_aura:OnIntervalThink(keys)
 		
 
 		if parent.counter > BATTLE_THIRST_TIME then
-			if OptionManager:GetOption('sharedXP') == 1 then
-	            for i=0,DOTA_MAX_TEAM do
-	                local pID = PlayerResource:GetNthPlayerIDOnTeam(parentTeam,i)
-	                if (PlayerResource:IsValidPlayerID(pID) or PlayerResource:GetConnectionState(pID) == 1) and PlayerResource:GetPlayer(pID) then
-	                    local otherHero = PlayerResource:GetPlayer(pID):GetAssignedHero()
-	                    -- Temporarily disabled the bonus exp
+			---- Temporarily disabled the bonus exp
+			--if OptionManager:GetOption('sharedXP') == 1 then
+	        --    for i=0,DOTA_MAX_TEAM do
+	        --        local pID = PlayerResource:GetNthPlayerIDOnTeam(parentTeam,i)
+	        --        if (PlayerResource:IsValidPlayerID(pID) or PlayerResource:GetConnectionState(pID) == 1) and PlayerResource:GetPlayer(pID) then
+	        --            local otherHero = PlayerResource:GetPlayer(pID):GetAssignedHero()
+	                    
 	                    --otherHero:AddExperience(math.ceil(8 / util:GetActivePlayerCountForTeam(parentTeam)),0,false,false)
-	                end
-	            end
-			else
+	        --        end
+	        --    end
+			--else
 				-- Temporarily disabled the bonus exp
 				--parent:AddExperience(8,1,false,false)
-			end
+			--end
 			
 			parent:ModifyGold(-2,false,0)
 

@@ -475,18 +475,19 @@ function Ingame:onStart()
         end, "builderReminder3", 1200) -- 20 Mins
     end
 
-    if OptionManager:GetOption('battleThirst') then
-        -- Notification to players that they can change builds ingame.
-        Timers:CreateTimer(function()
-                GameRules:SendCustomMessage("#ingameBattleThirstNotification", 0, 0)
-        end, "battleThirstReminder0", 15) 
-        Timers:CreateTimer(function()
-                GameRules:SendCustomMessage("#ingameBattleThirstNotification", 0, 0)
-        end, "battleThirstReminder1", 300) -- 5 Mins
-        Timers:CreateTimer(function()
-                GameRules:SendCustomMessage("#ingameBattleThirstNotification", 0, 0)
-        end, "battleThirstReminder2", 600) -- 10 Mins
-    end
+    -- Battle thirst has been reworked this notification is not up to date
+    --if OptionManager:GetOption('battleThirst') then
+    --    -- Notification to players that they can change builds ingame.
+    --    Timers:CreateTimer(function()
+    --            GameRules:SendCustomMessage("#ingameBattleThirstNotification", 0, 0)
+    --    end, "battleThirstReminder0", 15) 
+    --    Timers:CreateTimer(function()
+    --            GameRules:SendCustomMessage("#ingameBattleThirstNotification", 0, 0)
+    --    end, "battleThirstReminder1", 300) -- 5 Mins
+    --    Timers:CreateTimer(function()
+    --            GameRules:SendCustomMessage("#ingameBattleThirstNotification", 0, 0)
+    --    end, "battleThirstReminder2", 600) -- 10 Mins
+    --end
 
     -- Start listening for players that are disconnecting
     ListenToGameEvent('player_disconnect', function(keys)

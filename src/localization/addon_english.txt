@@ -445,10 +445,10 @@
     "lodOptionAboutMemesRedux"                             "Adds all the dankest memes into your game, depending on what abilities you use."
     "lodMutatorMemesRedux"                                 "Memes Redux"
 
-    "lodOptionBattleThirst"                                  "Battle Thirst"
-    "lodOptionDesBattleThirst"                               "Enable Battle Thirst"
-    "lodOptionAboutBattleThirst"                             "Bonus gold and experience if enemy has seen you recently"
-    "lodMutatorBattleThirst"                                 "Battle Thirst"
+    "lodOptionBattleThirst"                                  "Out-of-Sight Peanlty"
+    "lodOptionDesBattleThirst"                               "Enable Out-of-Sight Peanlty"
+    "lodOptionAboutBattleThirst"                             "Players lose 2 gold per second if they are out of enemies sights for too long."
+    "lodMutatorBattleThirst"                                 "Anti-Hiding"
 
     "lodOptionDarkMoon"                                  "Dark Moon Drops"
     "lodOptionDesDarkMoon"                               "Enable Dark Moon Item Drops"
@@ -537,7 +537,7 @@
     "minimapMenuHeroBuilder"                        "Hero Builder"
     
     "ingameBuilderNotification"                     "<font color='#70EA72'>Ingame Build Switch is Enabled. Click on the change build icon in the bottom left corner to change your abilities/hero/primaray stat.</font>"
-    "ingameBattleThirstNotification"                     "<font color='#FF0000'>Battle Thirst Is enabled.</font> When you are seen by the enemy, you will gain bonus passive gold and experience, if you stay out of sight for 35 seconds, you will lose this bonus."
+    //"ingameBattleThirstNotification"                     "<font color='#FF0000'>Battle Thirst Is enabled.</font> When you are seen by the enemy, you will gain bonus passive gold and experience, if you stay out of sight for 35 seconds, you will lose this bonus."
     "ingameBuilderReminder"                     "<font color='#70EA72'>Don't forget. Ingame Build Switch is Enabled. Click on the change build icon in the bottom left corner to change your abilities/hero/primaray stat.</font>"
     "tempDuelBlock"                     "<font color='#FF0000'>Duels are temporarily disabled due to a crash issue. They will be reenabled soon. Sorry about that.</font>"
     "respawnCheatNotification"  "You can use the chat command cheat '-respawn' to force your hero to respawn, this cheat is only available in single player mode or with cheats mode."
