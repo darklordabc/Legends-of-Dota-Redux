@@ -2321,6 +2321,13 @@ Button:enabled:hover {
     horizontal-align: center;
 }
 
+.quickHighlight {
+    animation-name: lodButtonHighlight;
+    animation-duration: 0.25s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 1;
+}
+
 .makeThePlayerNoticeThisButton {
     animation-name: lodButtonHighlight;
     animation-duration: 1.51s;

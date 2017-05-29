@@ -418,6 +418,36 @@ function Pregame:init()
         CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(args.PlayerID), "lodRequestAbilityPerkData", ability_perks)
     end)
 
+    CustomGameEventManager:RegisterListener('lodGameSetupPing', function(eventSourceIndex, args)
+        local player = PlayerResource:GetPlayer(args.PlayerID)
+        local content = args.content
+        local t = args.type
+
+        local ourPhase = self:getPhase()
+
+        local word = "banning"
+        if ourPhase == constants.PHASE_SELECTION then
+            if t == "hero" then
+                word = "picking"
+            else
+                word = "selecting"
+            end
+        elseif ourPhase ~= constants.PHASE_BANNING then
+            return
+        end
+
+        local finish = "!"
+        if t == "ability" then
+            finish = "ability"
+        end
+
+        local text = "Think of "..word.." <font color='#FFFFFF'>"..content.."</font> "..finish
+
+        Chat:Say({PlayerID = args.PlayerID, msg = text, channel = "team"})
+
+        CustomGameEventManager:Send_ServerToTeam(player:GetTeam(),"lodGameSetupPingEffect",args)
+    end)
+
     -- Init debug
     Debug:init()
     
