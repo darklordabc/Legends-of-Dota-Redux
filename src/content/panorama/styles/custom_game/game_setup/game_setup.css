@@ -2322,10 +2322,22 @@ Button:enabled:hover {
 }
 
 .quickHighlight {
-    animation-name: lodButtonHighlight;
+    animation-name: lodQuickHighlight;
     animation-duration: 0.25s;
     animation-timing-function: ease-in-out;
     animation-iteration-count: 1;
+}
+
+@keyframes 'lodQuickHighlight' {
+    0% {
+        box-shadow: #00bbFFFF 0px 0px 1px 0px;
+    }
+    50% {
+        box-shadow: #00bbFFFF 0px 0px 8px 0px;
+    }
+    100% {
+        box-shadow: #00bbFFFF 0px 0px 1px 0px;
+    }
 }
 
 .makeThePlayerNoticeThisButton {

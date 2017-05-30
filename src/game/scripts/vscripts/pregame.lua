@@ -432,7 +432,13 @@ function Pregame:init()
             else
                 word = "selecting"
             end
-        elseif ourPhase ~= constants.PHASE_BANNING then
+        elseif ourPhase == constants.PHASE_BANNING then
+            if t == "hero" and self.bannedHeroes[args.originalContent] then
+                return
+            elseif t == "ability" and self.bannedAbilities[args.originalContent] then
+                return
+            end
+        else
             return
         end
 

@@ -1732,6 +1732,13 @@ function toggleShowTier(tier) {
 
 // Makes the given hero container selectable
 function makeHeroSelectable(heroCon) {
+    heroCon.SetPanelEvent('oncontextmenu', function() {
+        var heroName = heroCon.GetAttributeString('heroName', '');
+        if(heroName == null || heroName.length <= 0) return;
+
+        GameEvents.SendCustomGameEventToServer("lodGameSetupPing", {"originalContent" : heroName, "content" : $.Localize(heroName), "type" : "hero"});
+    });
+
     heroCon.SetPanelEvent('onactivate', function() {
         var heroName = heroCon.GetAttributeString('heroName', '');
         if(heroName == null || heroName.length <= 0) return;
@@ -1822,6 +1829,13 @@ function hookHeroInfo(heroCon) {
 }
 
 function makeSkillSelectable(abcon) {
+    abcon.SetPanelEvent('oncontextmenu', function() {
+        var abName = abcon.GetAttributeString('abilityname', '');
+        if(abName == null || abName.length <= 0) return false;
+
+        GameEvents.SendCustomGameEventToServer("lodGameSetupPing", {"originalContent" : abName, "content" : $.Localize("DOTA_Tooltip_ability_"+abName), "type" : "ability"});
+    });
+
     abcon.SetPanelEvent('onactivate', function() {
         var abName = abcon.GetAttributeString('abilityname', '');
         if(abName == null || abName.length <= 0) return false;
