@@ -75,7 +75,7 @@
                 "Aura_ApplyToCaster"                                   "1"
             }
         }
-        "ReduxFlags"                                                           "tank | SuperOP"
+        "ReduxFlags"                                                           "tank"
         "ReduxCost"                                                            "90"
     }
 }

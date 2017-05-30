@@ -35,6 +35,6 @@
         }
         "ReduxCost"                                                            "90"
         "ReduxBans"                                                            "alchemist_goblins_greed"
-        "ReduxFlags"                                                           "SuperOP"
+        "ReduxFlags"                                                           ""
     }
 }

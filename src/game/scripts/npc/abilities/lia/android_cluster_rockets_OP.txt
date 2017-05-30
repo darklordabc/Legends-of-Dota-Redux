@@ -170,7 +170,7 @@
         }
         "ReduxPerks"                                                           "trap | explosive"
         "ReduxCost"                                                            "100"
-        "ReduxFlags"                                                           "SuperOP"
+        "ReduxFlags"                                                           ""
 
     }
 }

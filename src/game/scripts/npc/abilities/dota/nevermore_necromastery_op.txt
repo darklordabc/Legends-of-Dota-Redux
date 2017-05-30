@@ -38,6 +38,6 @@
         }
         "ReduxCost"                                                            "90"
         "ReduxBans"                                                            "nevermore_necromastery"
-        "ReduxFlags"                                                           "SuperOP"
+        "ReduxFlags"                                                           ""
     }
 }

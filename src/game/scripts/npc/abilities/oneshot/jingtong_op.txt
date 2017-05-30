@@ -15,6 +15,6 @@
             }
         }
         "ReduxCost"                                                            "100"
-        "ReduxFlags"                                                           "SuperOP | cooldown"
+        "ReduxFlags"                                                           "cooldown"
     }
 }

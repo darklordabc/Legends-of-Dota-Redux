@@ -52,7 +52,7 @@
                 }
             }
         }
-        "ReduxFlags"                                                           "tank | OPSkillsList | SuperOP"
+        "ReduxFlags"                                                           "tank | OPSkillsList"
         "ReduxCost"                                                            "100"
     }
 }

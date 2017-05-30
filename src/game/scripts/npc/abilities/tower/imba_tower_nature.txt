@@ -76,7 +76,7 @@
                 }
             }
         }
-        "ReduxFlags"                                                           "stun | SuperOP"
+        "ReduxFlags"                                                           "stun"
         "ReduxCost"                                                            "100"
     }
 }
