@@ -7110,12 +7110,18 @@ function Pregame:fixSpawnedHero( spawnedUnit )
 	            end, DoUniqueString('gyroFix'), 1)
 	        end
 	        
-	        -- Change sniper assassinate to our custom version to work with aghs
-	        if spawnedUnit:HasAbility("sniper_assassinate") and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("sniper_assassinate"):IsHidden() then
-	                spawnedUnit:AddAbility("sniper_assassinate_redux")
-	                spawnedUnit:SwapAbilities("sniper_assassinate","sniper_assassinate_redux",false,true)
-	                spawnedUnit:RemoveAbility("sniper_assassinate")
+	        -- Change CK phantasm to our custom version to work with aghs for illusions
+	        if spawnedUnit:HasAbility("chaos_knight_phantasm") and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("chaos_knight_phantasm"):IsHidden() then
+	                spawnedUnit:AddAbility("chaos_knight_phantasm_redux")
+	                spawnedUnit:SwapAbilities("chaos_knight_phantasm","chaos_knight_phantasm_redux",false,true)
+	                spawnedUnit:RemoveAbility("chaos_knight_phantasm")
 	        end
+            -- Change sniper assassinate to our custom version to work with aghs
+            if spawnedUnit:HasAbility("sniper_assassinate") and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("sniper_assassinate"):IsHidden() then
+                    spawnedUnit:AddAbility("sniper_assassinate_redux")
+                    spawnedUnit:SwapAbilities("sniper_assassinate","sniper_assassinate_redux",false,true)
+                    spawnedUnit:RemoveAbility("sniper_assassinate")
+            end
 	        -- Change juxtapose to juxtapose ranged, for ranged heros
 	        if spawnedUnit:HasAbility("phantom_lancer_juxtapose_melee") and spawnedUnit:IsRangedAttacker() then
 	                spawnedUnit:AddAbility("phantom_lancer_juxtapose_ranged")

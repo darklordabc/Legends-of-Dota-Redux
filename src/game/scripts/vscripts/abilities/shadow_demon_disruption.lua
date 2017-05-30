@@ -7,7 +7,7 @@ end
 
 modifier_shadow_demon_disruption_redux = class({})
 
-function modifier_shadow_demon_disruption_redux:OnDestroy()
+function modifier_shadow_demon_disruption_redux:OnRemoved()
   if IsServer() then
     local ability = self:GetAbility()
     local illusions = ability:CreateIllusions(self:GetParent(),ability:GetSpecialValueFor("illusion_count"),ability:GetSpecialValueFor("illusion_duration"),ability:GetSpecialValueFor("illusion_incoming_damage"),ability:GetSpecialValueFor("illusion_outgoing_damage"),50)

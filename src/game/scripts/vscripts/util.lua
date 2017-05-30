@@ -665,6 +665,25 @@ function CDOTABaseAbility:GetTrueCooldown()
   return cooldown
 end
 
+function CDOTA_BaseNPC:GetCooldownReduction()
+  local hero = self
+
+  if Convars:GetBool('dota_ability_debug') then
+    cooldown = 0
+  end
+  local octarineMult = 1
+
+  for k,v in pairs(hero:FindAllModifiers()) do
+    if v.GetModifierPercentageCooldown then
+        octarineMult = octarineMult - (v:GetModifierPercentageCooldown()/100)
+    end
+  end
+ 
+
+  return octarineMult
+end
+
+
 
 
 
