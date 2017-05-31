@@ -10319,8 +10319,8 @@
     "DOTA_Tooltip_modifier_lysander_captains_compass_buff_show"                                 "Captain's Compass"
     "DOTA_Tooltip_modifier_lysander_captains_compass_buff_show_description"                     "Gaining movespeed and attackspeed as you near your target!"
 
-    "DOTA_Tooltip_modifier_lysander_captains_compass"                            "Captain's Compass"
-    "DOTA_Tooltip_modifier_lysander_captains_compass_description"                "Enemies can see where you are! Run!"
+    "DOTA_Tooltip_modifier_captains_compass"                            "Captain's Compass"
+    "DOTA_Tooltip_modifier_captains_compass_description"                "Enemies can see where you are! Run!"
 
     "DOTA_Tooltip_modifier_grapeshot_scepter"                                   "Grapeshot Aghanim's Scepter Upgrade"
     "DOTA_Tooltip_modifier_grapeshot_scepter_description"                       "Owner has a chance to Grapeshot a nearby enemy when attacking."
