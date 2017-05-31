@@ -445,11 +445,11 @@ function Ingame:onStart()
     
         Timers:CreateTimer(function ()
                Convars:SetBool("dota_all_vision", true)
-            end, 'enable_all_vision_fix', 1)
+            end, 'enable_all_vision_fix', 5)
             
         Timers:CreateTimer(function ()
                Convars:SetBool("dota_all_vision", false)
-            end, 'disable_all_vision_fix', 1.2)
+            end, 'disable_all_vision_fix', 5.2)
             
     end
            
