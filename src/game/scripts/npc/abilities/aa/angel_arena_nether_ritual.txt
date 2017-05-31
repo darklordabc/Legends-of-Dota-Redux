@@ -52,7 +52,7 @@
                 }
             }
         }
-        "ReduxFlags"                                                           "tank | OPSkillsList"
+        "ReduxFlags"                                                           "tank"
         "ReduxCost"                                                            "100"
     }
 }

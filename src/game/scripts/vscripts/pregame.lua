@@ -1550,7 +1550,6 @@ function Pregame:networkHeroes()
 
     local internalFlags = {
         wtfautoban = true,
-        opskillslist = true,
         nohero = true,
         superop = true,
         donotrandom = true,

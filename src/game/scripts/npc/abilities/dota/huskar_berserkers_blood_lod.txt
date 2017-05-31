@@ -40,7 +40,7 @@
                 "Function"                                             "ApplyLuaModifier"
             }
         }
-        "ReduxFlags"                                                           "dota_custom | OPSkillsList"
+        "ReduxFlags"                                                           "dota_custom"
         "ReduxCost"                                                            "70"
     }
 }
