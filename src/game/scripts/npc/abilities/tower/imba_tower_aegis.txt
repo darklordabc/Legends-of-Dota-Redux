@@ -143,8 +143,8 @@
                 }
             }
         }
-        "ReduxFlags"                                                           "support | tank"
+        "ReduxFlags"                                                           "support | tank | SuperOP"
         "ReduxPerks"                                                           "support | aura"
-        "ReduxCost"                                                            "30"
+        "ReduxCost"                                                            "150"
     }
 }
