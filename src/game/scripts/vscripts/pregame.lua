@@ -1540,9 +1540,14 @@ function Pregame:networkHeroes()
                     flags["passive"] = flags["passive"] or {}
                     flags["passive"][k] = 1
                 end
-                if v["ReduxCost"] and tonumber(v["ReduxCost"]) >= 100 then
-                    flags["SuperOP"] = flags["SuperOP"] or {}
-                    flags["SuperOP"][k] = 1
+                if v["ReduxCost"] then
+                    if tonumber(v["ReduxCost"]) > 150 then
+                        flags["SuperOP"] = flags["SuperOP"] or {}
+                        flags["SuperOP"][k] = 1
+                    elseif tonumber(v["ReduxCost"]) >= 100 then
+                        flags["OPSkillsList"] = flags["OPSkillsList"] or {}
+                        flags["OPSkillsList"][k] = 1
+                    end
                 end
             end
         end
@@ -1552,6 +1557,7 @@ function Pregame:networkHeroes()
         wtfautoban = true,
         nohero = true,
         superop = true,
+        opskillslist = true,
         donotrandom = true,
         underpowered = true,
     }
