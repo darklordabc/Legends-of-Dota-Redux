@@ -3544,6 +3544,12 @@
     {
         "TalentRequiredAbility"                                                   "earthshaker_enchant_totem"
     }
+
+    "special_bonus_unique_earthshaker_3"
+    {
+        "TalentRequiredAbility"                                                   "earthshaker_fissure"
+    }
+    
     "special_bonus_unique_elder_titan_2"
     {
         "TalentRequiredAbility"                                                   "elder_titan_echo_stomp"
