@@ -1513,6 +1513,7 @@
     "credit_imba_dazzle_shallow_grave"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_tower_atrophy"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_tower_aegis"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+    "credit_imba_tower_aegis_op"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_tower_berserk"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_tower_chrono"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_tower_disease"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
@@ -3041,6 +3042,14 @@
     "DOTA_Tooltip_ability_imba_tower_aegis_bonus_health"                                "BONUS HEALTH:"
     "DOTA_Tooltip_ability_imba_tower_aegis_bonus_armor_aura"                            "AURA BONUS ARMOR:"
     "DOTA_Tooltip_ability_imba_tower_aegis_aura_radius"                                 "AREA OF EFFECT:"
+
+    "DOTA_Tooltip_ability_imba_tower_aegis_op"                                             "Aegis Tower OP"
+    "DOTA_Tooltip_ability_imba_tower_aegis_op_Description"                                 "This tower has increased armor and health, and increases the armor of all allies in range. <font color='#70EA72'>More Armor and Health.</font>"
+    "DOTA_Tooltip_ability_imba_tower_aegis_op_Lore"                                        "Made of an impregnable mithril-duranium-vibranium-adamantium-orichalcum-unobtainium alloy."
+    "DOTA_Tooltip_ability_imba_tower_aegis_op_bonus_armor"                                 "BONUS ARMOR:"
+    "DOTA_Tooltip_ability_imba_tower_aegis_op_bonus_health"                                "BONUS HEALTH:"
+    "DOTA_Tooltip_ability_imba_tower_aegis_op_bonus_armor_aura"                            "AURA BONUS ARMOR:"
+    "DOTA_Tooltip_ability_imba_tower_aegis_op_aura_radius"                                 "AREA OF EFFECT:"
 
     "DOTA_Tooltip_ability_imba_tower_self_repair"                                       "Regeneration Tower"
     "DOTA_Tooltip_ability_imba_tower_self_repair_Description"                           "This tower slowly repairs itself, and increases nearby allies' health regeneration."

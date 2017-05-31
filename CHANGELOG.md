@@ -50,10 +50,11 @@ All notable changes to this project will be documented in this file.
 - Added 4 Molten Lord abilities
 - Added notification to inform about battle thirst
 - Reverted to original Dota map for "dota" map
-*
 - Added Phase Shift from Dusk
 - Added Extraplanar Pact from Dusk
 - Added Lysander Abilities (4) from Dusk
+*
+- Added Aegis Tower OP (single player ability)
  
 
 
