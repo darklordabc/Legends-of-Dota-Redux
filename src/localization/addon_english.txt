@@ -4631,7 +4631,7 @@
     "DOTA_Tooltip_ability_sniper_assassinate_redux_scepter_crit_bonus" "SCEPTER CRIT:" 
 
     "DOTA_Tooltip_ability_necrolyte_sadist_lod"                                        "Sadist (pre 7.00)"
-    "DOTA_Tooltip_ability_necrolyte_sadist_lod_Description"                            "Necrolytephos gains health and mana regeneration every time he kills an unit. Hero kills grant 10 times the bonus."
+    "DOTA_Tooltip_ability_necrolyte_sadist_lod_Description"                            "Necrolytephos gains health and mana regeneration every time he kills a unit. Hero kills grant 10 times the bonus."
     "DOTA_Tooltip_ability_necrolyte_sadist_lod_Lore"                                   "Rotund'jere revels in death and decay, gaining renewed strength from it."
     "DOTA_Tooltip_ability_necrolyte_sadist_lod_health_regen"                           "HEALTH REGENERATION:"
     "DOTA_Tooltip_ability_necrolyte_sadist_lod_mana_regen"                             "MANA REGENERATION:"
@@ -5599,14 +5599,14 @@
         "DOTA_Tooltip_ability_imba_necrolyte_heartstopper_aura_aura_radius"                 "EFFECT RADIUS:"
 
         "DOTA_Tooltip_ability_imba_necrolyte_sadist"                                        "Sadist IMBA"
-        "DOTA_Tooltip_ability_imba_necrolyte_sadist_Description"                            "Necrolytephos gains health and mana regeneration every time he kills an unit. Hero kills grant 10 times the bonus.\n<font color='#FF7800'>Perversion:</font> Attacking enemy heroes grants a stack of Sadist."
+        "DOTA_Tooltip_ability_imba_necrolyte_sadist_Description"                            "Necrolytephos gains health and mana regeneration every time he kills a unit. Hero kills grant 10 times the bonus.\n<font color='#FF7800'>Perversion:</font> Attacking enemy heroes grants a stack of Sadist."
         "DOTA_Tooltip_ability_imba_necrolyte_sadist_Lore"                                   "Rotund'jere revels in death and decay, gaining renewed strength from it."
         "DOTA_Tooltip_ability_imba_necrolyte_sadist_health_regen"                           "HEALTH REGENERATION:"
         "DOTA_Tooltip_ability_imba_necrolyte_sadist_mana_regen"                             "MANA REGENERATION:"
         "DOTA_Tooltip_ability_imba_necrolyte_sadist_regen_duration"                         "STACK DURATION:"
 
         "DOTA_Tooltip_ability_necrolyte_sadist_lod"                                        "Sadist"
-        "DOTA_Tooltip_ability_necrolyte_sadist_lod_Description"                            "Necrolytephos gains health and mana regeneration every time he kills an unit. Hero kills grant 10 times the bonus."
+        "DOTA_Tooltip_ability_necrolyte_sadist_lod_Description"                            "Necrolytephos gains health and mana regeneration every time he kills a unit. Hero kills grant 10 times the bonus."
         "DOTA_Tooltip_ability_necrolyte_sadist_lod_Lore"                                   "Rotund'jere revels in death and decay, gaining renewed strength from it."
         "DOTA_Tooltip_ability_necrolyte_sadist_lod_health_regen"                           "HEALTH REGENERATION:"
         "DOTA_Tooltip_ability_necrolyte_sadist_lod_mana_regen"                             "MANA REGENERATION:"
