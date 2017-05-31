@@ -107,8 +107,6 @@ function modifier_battle_thirst_aura:OnIntervalThink(keys)
 
 		parent.counter = parent.counter + 1
 
-		print(parent.counter)
-
 		if parent.counter >= BATTLE_THIRST_TIME and not parent:FindModifierByName("modifier_battle_thirst_effect") then
 			parent:AddNewModifier(parent,nil,"modifier_battle_thirst_effect",{})
 		end
