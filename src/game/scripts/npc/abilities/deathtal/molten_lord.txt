@@ -7,7 +7,7 @@
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST| DOTA_ABILITY_BEHAVIOR_ATTACK"
     	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-  		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+  		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
   		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
   		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
   		"AbilityTextureName"			"custom/bulwark_strike"
@@ -30,7 +30,7 @@
 		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
 		"AbilityCastRange"				"200"
 		"AbilityCooldown"				"5.0 5.0 5.0 5.0"
-		"AbilityManaCost"				"50 55 60 65"
+		"AbilityManaCost"				"30 45 50 65"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
