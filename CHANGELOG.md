@@ -55,6 +55,7 @@ All notable changes to this project will be documented in this file.
 - Added Lysander Abilities (4) from Dusk
 *
 - Added Aegis Tower OP (single player ability)
+- Nerfed Molten Lord abilities
  
 
 
