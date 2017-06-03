@@ -2,6 +2,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 7.8
+- Added Aegis Tower OP (single player ability)
+- Nerfed Molten Lord abilities
+- Fixed where non-hero respawning units, like Bear, had crazy high gold bounties
+- Increased starting bonus gold to 2500 in all allowed because OOSP no longer gives bonus gold
+- Increased bonus gold to 200% in all_allowed form 150%
+- Battle thirst is no longer active by default in all_allowed
+- Doubled Duration of Tree Eater
+
 ## 7.7 
 - Ball Lighting will no longer trigger essence aura
 - Symbiote now gives -6 armor and no longer gives bonus stats
@@ -53,15 +62,6 @@ All notable changes to this project will be documented in this file.
 - Added Phase Shift from Dusk
 - Added Extraplanar Pact from Dusk
 - Added Lysander Abilities (4) from Dusk
-*
-- Added Aegis Tower OP (single player ability)
-- Nerfed Molten Lord abilities
-- Fixed where non-hero respawning units, like Bear, had crazy high gold bounties
-- Increased starting bonus gold to 2500 in all allowed because OOSP no longer gives bonus gold
-- Increased bonus gold to 200% in all_allowed form 150%
-- Battle thirst is no longer active by default in all_allowed
- 
-
 
 ## 7.6 - Steam Version
 - Added credits for most custom abiliites, made some icon changes. 
