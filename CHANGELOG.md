@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file.
 - Reduced manacost of blink support to 100 from 175
 - Talents that are for abilities you dont have now get replaced, preferably with talents for abilities you do have
 - Improved search function in builds tab
+- Storm Spirit can no longer have arcane orb and his perk active
 
 
 ## 7.7 

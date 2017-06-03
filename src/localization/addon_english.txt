@@ -10113,6 +10113,7 @@
     "DOTA_Tooltip_ability_zuus_arc_lightning_op_radius"                               "JUMP RANGE:"
 
     "devour_denied"                                                                    "Cannot eat with your mouth full"
+    "perk_denied"                                                                    "Overload and Arcane Orb is a troll combo, perk denied"
     
     "only_target_creeps"                            "Cannot consume Ancients"
 
