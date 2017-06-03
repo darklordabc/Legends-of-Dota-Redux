@@ -7420,7 +7420,39 @@ function Pregame:fixSpawningIssues()
                 SkillManager:ApplyBuild(spawnedUnit, build)
 
                 -- Illusion and Tempest Double fixes
+                
                 if not spawnedUnit:IsClone() then
+                    -- ILLUSION HAVING WRONG STATS FIX START --
+                    local realHero
+                    if spawnedUnit.IsIllusion and spawnedUnit:IsIllusion() and spawnedUnit:IsHero() then
+                      -- Search nearby radius to find the real hero
+                      local nearbyUnits = Entities:FindAllInSphere(spawnedUnit:GetAbsOrigin(), 2000)
+
+                      for _, unit in pairs(nearbyUnits) do
+                        -- We have found the real hero if: Hero is Real and Not Illusion and unit has same name as the spawned illusion
+                        if unit.IsRealHero and unit:IsRealHero() and not unit:IsIllusion() and unit:GetName() == spawnedUnit:GetName() and unit:GetLevel() == spawnedUnit:GetLevel() and unit:GetItemInSlot(2) == spawnedUnit:GetItemInSlot(2) and unit:GetItemInSlot(0) == spawnedUnit:GetItemInSlot(0) then
+                          realHero = unit
+                        end
+                      end
+
+                      -- If we found the real hero, make illusion have same stats as original
+                      if realHero then
+                        Timers:CreateTimer(function()
+                            -- Modify illusions stats so that they are the same as the owning hero
+                            spawnedUnit:FixIllusion(realHero)
+                            spawnedUnit:ModifyAgility((spawnedUnit:GetAgility() - realHero:GetAgility()) * -1)
+                            spawnedUnit:ModifyStrength((spawnedUnit:GetStrength() - realHero:GetStrength()) * -1)
+                            spawnedUnit:ModifyIntellect((spawnedUnit:GetIntellect() - realHero:GetIntellect()) * -1)
+                            spawnedUnit:SetHealth(realHero:GetHealth())
+                            spawnedUnit:SetMana(realHero:GetMana())
+                        end, DoUniqueString('fixBrokenSkills'), .1)
+                        else
+                      end
+
+                    end
+
+
+
                     Timers:CreateTimer(function()
                         if IsValidEntity(spawnedUnit) then
                             for k,abilityName in pairs(build) do
@@ -7435,7 +7467,7 @@ function Pregame:fixSpawningIssues()
 
 
                         end
-                    end, DoUniqueString('fixBrokenSkills'), 0)
+                    end, DoUniqueString('fixBrokenSkills'), .1)
                 end
             end
         end
@@ -7444,11 +7476,7 @@ function Pregame:fixSpawningIssues()
         if IsValidEntity(spawnedUnit) then
             -- Filter gold modifier here instead of in filtergold in ingame because this makes the popup correct
             local goldModifier = OptionManager:GetOption('goldModifier')
-            if goldModifier ~= 1 and not spawnedUnit.bountyAdjusted then
-                -- Non hero units that respawn should only be adjusted once, this are things like bears or familiars
-                if not spawnedUnit:IsHero() then
-                 spawnedUnit.bountyAdjusted = true
-                end
+            if goldModifier ~= 1 then
                 local newBounty = spawnedUnit:GetGoldBounty() * goldModifier / 100
                 spawnedUnit:SetMaximumGoldBounty(newBounty) 
                 spawnedUnit:SetMinimumGoldBounty(newBounty)
