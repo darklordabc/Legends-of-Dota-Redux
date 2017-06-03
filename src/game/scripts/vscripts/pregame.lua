@@ -741,7 +741,7 @@ function Pregame:loadDefaultSettings()
     self:setOption("lodOptionMemesRedux", 0)
 
     -- No Blood Thirst
-    self:setOption("lodOptionBloodThirst", 0) 
+    self:setOption("lodOptionBloodThirst", 0)
 
     -- No Item Drops
     self:setOption("lodOptionDarkMoon", 0)
@@ -1163,12 +1163,12 @@ function Pregame:onThink()
             if didNotSelectAHero == nil or self.noHeroSelection or self.additionalPickTime or util:isSinglePlayerMode() then
                 -- Change to picking phase
                 self:setPhase(constants.PHASE_REVIEW)
-                self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime')) 
+                self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime'))
             else
                 self.additionalPickTime = true
-                self:setEndOfPhase(Time() + 15.0) 
+                self:setEndOfPhase(Time() + 15.0)
                 CustomGameEventManager:Send_ServerToAllClients("lodRestrictToHeroSelection", {})
-                EmitAnnouncerSound("Redux.Overtime") 
+                EmitAnnouncerSound("Redux.Overtime")
 
                 Timers:CreateTimer(function (  )
                     for playerID = 0,23 do
@@ -4333,7 +4333,7 @@ function Pregame:onPlayerSelectHero(eventSourceIndex, args)
     if hero then
         if not util:checkPickedHeroes( self.selectedHeroes ) and self.additionalPickTime then
             self:setPhase(constants.PHASE_REVIEW)
-            self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime')) 
+            self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime'))
         end
     end
 end
@@ -7019,6 +7019,8 @@ function Pregame:fixSpawnedHero( spawnedUnit )
         local nameTest = spawnedUnit:GetName()
         local heroValues = allHeroes[nameTest]
         if heroValues then
+            local heroTalentList = {}
+
             local function GetRandomHero()
                 local keys = {}
                 for k in pairs(allHeroes) do
@@ -7029,7 +7031,9 @@ function Pregame:fixSpawnedHero( spawnedUnit )
 
             local build = self.selectedSkills[playerID]
             local function VerifyTalent(abName)
-                if spawnedUnit:HasAbility(abName) then return false end
+                for _,v in pairs(heroTalentList) do
+                    if v == abName then return false end
+                end
                 local requiredAbility = util:getAbilityKV(abName, "TalentRequiredAbility")
                 if not requiredAbility then
                     return true
@@ -7054,6 +7058,10 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                 npc_dota_hero_necrophos = "npc_dota_hero_necrolyte",
                 npc_dota_hero_skywrath = "npc_dota_hero_skywrath_mage",
                 npc_dota_hero_timbersaw = "npc_dota_hero_shredder",
+                npc_dota_hero_outworld_devourer = "npc_dota_hero_obsidian_destroyer",
+                npc_dota_hero_lifestelaer = "npc_dota_hero_life_stealer",
+                npc_dota_hero_queen_of_pain = "npc_dota_hero_queenofpain",
+                npc_dota_hero_vengeful_spirit = "npc_dota_hero_vengefulspirit",
             }
             local function GetTalentGroup(targetTalent, heroData)
                 local heroName = targetTalent:gsub('special_bonus_unique', 'npc_dota_hero'):gsub('_%d', '')
@@ -7071,52 +7079,62 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                     local abName = heroData['Ability' .. i]
                     if abName and string.find(abName, 'special_bonus') then
                         if abName == targetTalent then
-                            print("GetTalentGroup: ", abName, skippedTalentsCount + 1)
                             return math.ceil((skippedTalentsCount + 1) / 2)
                         else
                             skippedTalentsCount = skippedTalentsCount + 1
                         end
                     end
                 end
+
+                print("Error: hero " .. heroName .. " hasn't talent " .. targetTalent)
+                return 4
             end
 
             --Load talents from kv and calculate total count
             local currentTalentCount = 0
-            local requiredTalentsGroups = {}
-            local heroTalentList = {}
+            local skippedTalentCount = 0
             for i = 1, 24 do
                 local abName = heroValues['Ability' .. i]
                 if abName and string.find(abName, "special_bonus") then
-                    local talentIndex = currentTalentCount + #requiredTalentsGroups + 1
+                    local talentIndex = currentTalentCount + skippedTalentCount + 1
                     if VerifyTalent(abName) then
                         heroTalentList[talentIndex] = abName
                         currentTalentCount = currentTalentCount + 1
                     else
-                        local talentGroup = math.ceil(talentIndex / 2)
-                        table.insert(requiredTalentsGroups, talentGroup)
+                        skippedTalentCount = skippedTalentCount + 1
                     end
                 end
             end
+
             --If hero hasn't enought talents => random
             if currentTalentCount < 8 then
                 print("[Talents]: Hero has " .. 8-currentTalentCount .. " empty talent slots. These talents should be randomed")
                 --First try to find talents that requires hero's abilities
-                for k, v in pairs(npc_abilities_override) do
-                    --Ability is talent
-                    if string.find(k, 'special_bonus_unique_') and v.TalentRequiredAbility then
-                        --If current build has required ability
-                        local talentGroup = GetTalentGroup(k)
-                        if VerifyTalent(k) and util:contains(requiredTalentsGroups, talentGroup) then
-                            util:removeByValue(requiredTalentsGroups, talentGroup)
-                            local targetIndex = talentGroup * 2
+
+                -- try
+                local status, nextCall = xpcall(function()
+                    for k, v in pairs(npc_abilities_override) do
+                        --Ability is talent
+                        if string.find(k, 'special_bonus_unique_') and v.TalentRequiredAbility then
+                            --If current build has required ability
+                            local targetIndex = GetTalentGroup(k) * 2
                             if heroTalentList[targetIndex] then targetIndex = targetIndex - 1 end
-                            heroTalentList[targetIndex] = k
-                            currentTalentCount = currentTalentCount + 1
-                            if currentTalentCount >= 8 then
-                                break
+
+                            if VerifyTalent(k) and not heroTalentList[targetIndex] then
+                                heroTalentList[targetIndex] = k
+                                currentTalentCount = currentTalentCount + 1
+                                if currentTalentCount >= 8 then
+                                    break
+                                end
                             end
                         end
                     end
+                -- catch
+                end, function (msg)
+                    return msg..'\n'..debug.traceback()..'\n'
+                end)
+                if not status then
+                    print(nextCall)
                 end
                 print("[Talents]: After giving ability unique talens hero has " .. 8-currentTalentCount .. " empty talent slots")
                 --If hero still hasn't 8 talents => take random talents
@@ -7128,15 +7146,13 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                         for i = 1, 24 do
                             local abName = tempHT['Ability' .. i]
                             if abName and string.find(abName, "special_bonus") then
-                                local talentGroup = math.ceil((skippedTalentsCount + 1) / 2)
-                                if VerifyTalent(abName) and util:contains(requiredTalentsGroups, talentGroup) then
-                                    local targetIndex = talentGroup * 2
+                                local targetIndex = math.ceil((skippedTalentsCount + 1) / 2) * 2
+                                if VerifyTalent(abName) and not heroTalentList[targetIndex] or not heroTalentList[targetIndex - 1] then
                                     if heroTalentList[targetIndex] then targetIndex = targetIndex - 1 end
                                     heroTalentList[targetIndex] = abName
 
-                                    util:removeByValue(requiredTalentsGroups, talentGroup)
                                     currentTalentCount = currentTalentCount + 1
-                                    break -- ro increase randomness take a new hero after each added talent
+                                    break -- to increase randomness take a new hero after each added talent
                                 else
                                     skippedTalentsCount = skippedTalentsCount + 1
                                 end
@@ -7144,22 +7160,20 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                         end
                     end
                 end
-
-                for _,v in ipairs(heroTalentList) do
-                    spawnedUnit:AddAbility(v)
-                end
+            end
+            for _,v in pairs(heroTalentList) do
+                spawnedUnit:AddAbility(v)
             end
 
-        --for i = 0, spawnedUnit:GetAbilityCount() do
-       --     if spawnedUnit:GetAbilityByIndex(i) then
-                --print("removed") 
-          --      local ability = spawnedUnit:GetAbilityByIndex(i)
-             --   if ability then
-                 --   print("Ability " .. i .. ": " .. ability:GetAbilityName() .. ", Level " .. ability:GetLevel())
-              --  end
-           -- end
-        --end
-    end, DoUniqueString('addTalents'), 0.25)
+            --0 index talent, move it to end
+            local first_talent = spawnedUnit:GetAbilityByIndex(0):GetAbilityName()
+            if string.find(first_talent, "special_bonus") then
+                spawnedUnit:RemoveAbility(first_talent)
+                spawnedUnit:AddAbility(first_talent)
+            end
+        end
+        spawnedUnit.hasTalent = true
+    end
 
     -- Various Fixes
     Timers:CreateTimer(function()
@@ -7198,7 +7212,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
 	                spawnedUnit:RemoveModifierByName("modifier_gyrocopter_homing_missile_charge_counter")
 	            end, DoUniqueString('gyroFix'), 1)
 	        end
-	        
+
 	        -- Change sniper assassinate to our custom version to work with aghs
 	        if spawnedUnit:HasAbility("sniper_assassinate") and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("sniper_assassinate"):IsHidden() then
 	                spawnedUnit:AddAbility("sniper_assassinate_redux")
@@ -7240,12 +7254,12 @@ function Pregame:fixSpawnedHero( spawnedUnit )
 	        -- Custom Flesh Heap fixes
 	        for abilitySlot=0,6 do
 	            local abilityTemp = spawnedUnit:GetAbilityByIndex(abilitySlot)
-	            if abilityTemp then 
+	            if abilityTemp then
 	                if string.find(abilityTemp:GetAbilityName(),"flesh_heap_") then
 	                    local abilityName = abilityTemp:GetAbilityName()
 	                    local modifierName = "modifier"..string.sub(abilityName,6)
 	                    spawnedUnit:AddNewModifier(spawnedUnit,abilityTemp,modifierName,{})
-	                    
+
 	                end
 	            end
 	        end
