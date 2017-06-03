@@ -365,7 +365,7 @@
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
         "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
         "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-        "SpellImmunityType"     "SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellImmunityType"     "SPELL_IMMUNITY_ENEMIES_YES"
         "AbilityUnitDamageType"     "DAMAGE_TYPE_PHYSICAL"
         "ReduxFlags"                                                           "invis"
         
@@ -424,6 +424,16 @@
                     {
                         "Mana"              "%AbilityManaCost"
                     }
+                    "ApplyModifier"
+                    {
+                        "ModifierName"      "tenebris_fade_strike_modifier_debuff"
+                        "Target"        "CASTER"
+                    }
+                    "FireSound"
+                    {
+                        "EffectName"        "Hero_Visage.SoulAssumption.Cast"
+                        "Target"        "CASTER"
+                    }
                 }
  
                 "OnOrbImpact"
@@ -446,11 +456,7 @@
                         "EffectAttachType"  "attach_hitloc"
                         "Target"        "TARGET"
                     }
-                    "FireSound"
-                    {
-                        "EffectName"        "Hero_Visage.SoulAssumption.Cast"
-                        "Target"        "CASTER"
-                    }
+                    
                     "FireSound"
                     {
                         "EffectName"        "Hero_Visage.SoulAssumption.Target"
@@ -462,11 +468,7 @@
                         "Function"      "FadeStrike_OnOrbImpact"
                         "damage"        "%attack_damage"
                     }
-                    "ApplyModifier"
-                    {
-                        "ModifierName"      "tenebris_fade_strike_modifier_debuff"
-                        "Target"        "CASTER"
-                    }
+                    
                 }
             }
             "tenebris_fade_strike_modifier_debuff"
@@ -507,7 +509,7 @@
             "02"
             {
                 "var_type"      "FIELD_INTEGER"
-                "radius"        "250"
+                "radius"        "800"
             }
             "03"
             {

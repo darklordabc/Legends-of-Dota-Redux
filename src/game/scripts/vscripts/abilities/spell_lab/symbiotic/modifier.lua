@@ -121,24 +121,32 @@ function spell_lab_symbiotic_modifier:OnSpentMana (kv)
 			end
 		else
 	    local hParent = self:GetParent()
-			hParent:SetMana(hParent:GetMaxMana())
 			--DeepPrintTable(kv)
 			local mana = self.hHost:GetMana()
 			if self.hHost:GetMana() >= kv.cost then
 				self.hHost:SpendMana(kv.cost, kv.ability)
+				hParent:SetMana(hParent:GetMaxMana())
 			else
+				-- Using spells when the host has no mana burns the hosts health, either the cost of the spell or 20% of max health, whichever is higher
 				local hpcost = kv.cost - mana
-				local manacost = kv.cost - hpcost
+				if hpcost < self.hHost:GetMaxHealth() / 5 then
+					hpcost = self.hHost:GetMaxHealth() / 5
+				end
 
-				local damage = {
-					victim = self.hHost,
-					attacker = self:GetParent(),
-					damage = hpcost,
-					damage_type = DAMAGE_TYPE_PURE,
-					ability = kv.ability
-				}
-					self.hHost:SpendMana(manacost, kv.ability)
-					ApplyDamage(damage)
+				-- If hero is below 25% of health, you cannot use hosts health
+				if self.hHost:GetHealth() < self.hHost:GetMaxHealth() / 4 then 
+					hParent:SetMana(1)
+				else
+					hParent:SetMana(hParent:GetMaxMana())
+					local damage = {
+						victim = self.hHost,
+						attacker = self:GetParent(),
+						damage = hpcost,
+						damage_type = DAMAGE_TYPE_PURE,
+						ability = kv.ability
+					}
+						ApplyDamage(damage)
+				end
 
 			end
 	   -- local mana = (hParent:GetMana() / hParent:GetMaxMana()) * self.hHost:GetMaxMana()

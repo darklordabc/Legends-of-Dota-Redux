@@ -269,6 +269,8 @@
         "AbilityTextureName"            "custom/proteus_jet"
         "FightRecapLevel"               "1"
         "HasScepterUpgrade"             "1"
+        "ReduxPerks"                                                           "water | mobility"
+        "ReduxFlags"                                                           "upgradeable | mobility"
         
         // Casting
         //-------------------------------------------------------------------------------------------------------------
@@ -396,6 +398,7 @@
         "AbilityTextureName"            "custom/proteus_rarefaction"
         "FightRecapLevel"               "1"
         "AbilityProcsMagicStick"        "1"
+        "ReduxFlags"														    "cooldown"
         
         // Casting
         //-------------------------------------------------------------------------------------------------------------

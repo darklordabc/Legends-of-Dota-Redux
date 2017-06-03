@@ -41,6 +41,7 @@
 
 		{ "link": "../dota/game/scripts/custom_events.txt", "dir": "../src/game/scripts/custom_events.txt" },
 		{ "link": "../dota/game/scripts/stat_collection.kv", "dir": "../src/game/scripts/stat_collection.kv" },
+		{ "link": "../dota/game/scripts/shops.txt", "dir": "../src/game/scripts/shops.txt" },
 		{ "link": "../dota/game/scripts/custom_net_tables.txt", "dir": "../src/game/scripts/custom_net_tables.txt" },
 
 		{ "link": "../dota/content/panorama", "dir": "../src/content/panorama" },

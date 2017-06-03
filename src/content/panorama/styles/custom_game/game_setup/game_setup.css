@@ -2353,9 +2353,19 @@ Button:enabled:hover {
     //flow-children: down;
 }
 
-.buildCategoryLabel {
+#buildSortingProperties
+{
+    flow-children: right;
+}
+
+.buildSortingProperty {
     font-size: 24px;
     margin: 10px;
+    color: #d1d8e6;
+}
+.buildSortingProperty.selected {
+    text-decoration: underline;
+    color: #8accff;
 }
 
 #buildLoadMoreBuilds
@@ -2376,24 +2386,36 @@ Button:enabled:hover {
     color: blue;
 }
 
-.recommendedBuildContainerScrollWrapper{
+#recommendedBuildContainerScrollWrapper{
     width: 100%;
+    height: 100%;
 
     margin-top: 50px;
-
-    overflow: squish scroll;
     visibility: collapse;
 }
 
-#pickingPhaseRecommendedBuildContainer {
-    width: 1330px;
+.pickingPhaseRecommendedBuildContainer {
+    width: 100%;
+    padding-left: 140px;
+    height: 100%;
+
+    overflow: squish scroll;
+
     horizontal-align: center;
     flow-children: right-wrap;
+    opacity: 0;
+}
+.pickingPhaseRecommendedBuildContainer.selected {
+    opacity: 1;
 }
 
-.AspectRatio4x3 #pickingPhaseRecommendedBuildContainer,
-.AspectRatio5x4 #pickingPhaseRecommendedBuildContainer {
-    width: 900px;
+.AspectRatio4x3 .pickingPhaseRecommendedBuildContainer,
+.AspectRatio5x4 .pickingPhaseRecommendedBuildContainer {
+    padding-left: 115px;
+}
+
+.AspectRatio16x10 .pickingPhaseRecommendedBuildContainer {
+    padding-left: 50px;
 }
 
 #buildLoadingIndicator {

@@ -90,5 +90,6 @@
         }
         "ReduxCost"                                                            "40"
         "ReduxBans"                                                            "dazzle_shallow_grave"
+        "ReduxFlags"														    "cooldown"
     }
 }

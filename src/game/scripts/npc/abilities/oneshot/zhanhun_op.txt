@@ -34,6 +34,6 @@
         }
         "ReduxCost"                                                            "100"
         "ReduxBans"                                                            "zhanhun"
-        "ReduxFlags"                                                           "SuperOP"
+        "ReduxFlags"                                                           "SuperOP | cooldown"
     }
 }

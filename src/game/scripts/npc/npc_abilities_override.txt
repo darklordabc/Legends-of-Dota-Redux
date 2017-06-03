@@ -90,12 +90,12 @@
     {
         "MaxLevel"                                                             "4"
         "ReduxCost"                                                            "70"
-        "ReduxFlags"                                                           "OPSkillsList"
+        "ReduxFlags"                                                           "SuperOP"
         "AbilityCooldown"               "15.0 13.0 11.0 9.0"
     }
     "roshan_bash"
     {
-        "MaxLevel"                                                             "1"
+        "MaxLevel"                                                             "4"
         "ReduxFlags"                                                           "bash | attack_modifier | OPSkillsList"
         "ReduxPerks"                                                           "neutral | bash | attack_modifier"
         "ReduxCost"                                                            "50"
@@ -104,7 +104,7 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "bash_chance"       "15"
+                "bash_chance"       "10 13 14 15"
             }
             "02"
             {
@@ -114,7 +114,7 @@
             "03"
             {
                 "var_type"          "FIELD_FLOAT"
-                "stun_duration"     "1.65"
+                "stun_duration"     "1.0 1.2 1.4 1.65"
             }
         }
     }
@@ -218,7 +218,7 @@
     {
         "MaxLevel"                                                             "1"
         "ReduxPerks"                                                           "earth"
-        "ReduxFlags"                                                           "doNotRandom | OPSkillsList"
+        "ReduxFlags"                                                           "doNotRandom | SuperOP"
     }
     "brewmaster_storm_dispel_magic"
     {
@@ -1334,7 +1334,7 @@
     }
     "keeper_of_the_light_chakra_magic"
     {
-        "ReduxFlags"                                                           "support"
+        "ReduxFlags"                                                           "support | cooldown"
         "ReduxPerks"                                                           "support"
     }
     "lich_frost_armor"
@@ -1684,7 +1684,7 @@
     }
     "windrunner_windrun"
     {
-        "ReduxFlags"                                                           "mobility"
+        "ReduxFlags"                                                           "mobility | invis"
         "ReduxPerks"                                                           "mobility"
         "ReduxCost"                                                            "10"
     }
@@ -1740,7 +1740,7 @@
     }
     "puck_phase_shift"
     {
-        "ReduxFlags"                                                           "mobility"
+        "ReduxFlags"                                                           "mobility | SuperOP"
         "ReduxPerks"                                                           "mobility | channeled"
         "ReduxBans"                                                            "death_prophet_witchcraft"
     }
@@ -2833,6 +2833,7 @@
     "leshrac_lightning_storm"
     {
         "ReduxPerks"                                                           "lightning"
+        "ReduxBans"                                                            "leshrac_pulse_nova"
     }
     "razor_plasma_field"
     {
@@ -2985,7 +2986,7 @@
         "ReduxPerks"                                                           "scientific | channeled"
         "ReduxCost"                                                            "400"
         "ReduxBans"                                                            "dazzle_shallow_grave | lich_absolute_zero | arc_warden_tempest_double | arc_warden_tempest_double_redux"
-        "ReduxFlags"                                                           "SuperOP"
+        "ReduxFlags"                                                           "SuperOP | cooldown"
     }
     "chen_penitence"
     {
@@ -3365,7 +3366,7 @@
     "death_prophet_witchcraft"
     {
         "ReduxCost"                                                            "120"
-        "ReduxFlags"                                                           "OPSkillsList"
+        "ReduxFlags"                                                           "SuperOP | cooldown"
     }
     "sniper_take_aim"
     {

@@ -8,6 +8,7 @@ function StatsClient:SubscribeToClientEvents()
 	CustomGameEventManager:RegisterListener("stats_client_create_skill_build", Dynamic_Wrap(StatsClient, "CreateSkillBuild"))
 	CustomGameEventManager:RegisterListener("stats_client_remove_skill_build", Dynamic_Wrap(StatsClient, "RemoveSkillBuild"))
 	CustomGameEventManager:RegisterListener("stats_client_vote_skill_build", Dynamic_Wrap(StatsClient, "VoteSkillBuild"))
+	CustomGameEventManager:RegisterListener("stats_client_fav_skill_build", Dynamic_Wrap(StatsClient, "SetFavoriteSkillBuild"))
 	CustomGameEventManager:RegisterListener("stats_client_save_fav_builds", Dynamic_Wrap(StatsClient, "SaveFavoriteBuilds"))
 end
 
@@ -101,14 +102,22 @@ function StatsClient:VoteSkillBuild(args)
 	})
 end
 
-function StatsClient:SaveFavoriteBuilds(args)
+function StatsClient:SetFavoriteSkillBuild(args)
+	StatsClient:Send("setFavoriteSkillBuild", {
+		steamID = tostring(PlayerResource:GetSteamID(args.PlayerID)),
+		id = args.id or "",
+		fav = type(args.fav) == "number" and args.fav or 0
+	})
+end
+
+--[[function StatsClient:SaveFavoriteBuilds(args)
 	local playerID = args.PlayerID
 	local steamID = tostring(PlayerResource:GetSteamID(playerID))
 	StatsClient:Send("updatePlayerData", {
 		steamID = steamID,
 		favoriteBuilds = type(args.builds) == "table" and args.builds or {}
 	})
-end
+end]]
 
 function StatsClient:Send(path, data, callback, retryCount, protocol, _currentRetry)
 	local request = CreateHTTPRequestScriptVM(protocol or "POST", self.ServerAddress .. path)

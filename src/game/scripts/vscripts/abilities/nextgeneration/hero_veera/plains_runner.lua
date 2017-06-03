@@ -120,20 +120,20 @@ LinkLuaModifier("modifier_movespeed_cap", "heroes/hero_veera/plains_runner", LUA
 
 function modifier_movespeed_cap:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_MOVESPEED_MAX,
-        MODIFIER_PROPERTY_MOVESPEED_LIMIT,
+       --MODIFIER_PROPERTY_MOVESPEED_MAX,
+       --MODIFIER_PROPERTY_MOVESPEED_LIMIT,
     }
 
     return funcs
 end
 
-function modifier_movespeed_cap:GetModifierMoveSpeed_Max( params )
-    return self:GetStackCount()
-end
+--function modifier_movespeed_cap:GetModifierMoveSpeed_Max( params )
+--    return self:GetStackCount()
+--end
 
-function modifier_movespeed_cap:GetModifierMoveSpeed_Limit( params )
-    return self:GetStackCount()
-end
+--function modifier_movespeed_cap:GetModifierMoveSpeed_Limit( params )
+--    return self:GetStackCount()
+--end
 
 function modifier_movespeed_cap:IsHidden()
     return true

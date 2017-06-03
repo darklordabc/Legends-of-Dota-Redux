@@ -1,0 +1,73 @@
+"DOTAAbilities" {
+	"mega_omni_slash"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                    "juggernaut_omni_slash"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"  
+        "FightRecapLevel"               "2"
+        "MaxLevel"                      "1"
+        "RequiredLevel"                 "24"
+
+        "HasScepterUpgrade"         "1"
+        
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "500"
+        "AbilityCastPoint"              "0.3 0.3 0.3"
+        
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "300"
+    
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "600"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityModifierSupportValue"   "0.0"   // damage only
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "omni_slash_damage"         "100"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "omni_slash_jumps"          "1000"
+            }
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "omni_slash_radius"         "1000"
+            }
+            "04"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "omni_slash_bounce_tick"    "0.1"
+            }
+            "05"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "omni_slash_jumps_scepter"      "1000"
+            }
+            "06"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "omni_slash_cooldown_scepter"   "210"
+            }
+        }
+    }
+}

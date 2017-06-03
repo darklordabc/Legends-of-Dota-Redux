@@ -8,7 +8,7 @@
         "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "AbilityTextureName"                                                   "custom/cherub_sleep_cloud"
         "AbilityCastPoint"                                                     "0.3"
-        "AbilityCooldown"                                                      "40"
+        "AbilityCooldown"                                                      "45"
         "AbilityManaCost"                                                      "160"
         "AbilityProcsMagicStick"                                               "1"
         "AbilitySpecial"
@@ -21,12 +21,12 @@
             "02"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "sleep_timer"                                          "4.0"
+                "sleep_timer"                                          "3.0"
             }
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "duration"                                             "11 12 13 14"
+                "duration"                                             "11 16 21 26"
             }
             "04"
             {

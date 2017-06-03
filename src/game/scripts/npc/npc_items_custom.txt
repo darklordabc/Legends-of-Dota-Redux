@@ -443,35 +443,30 @@
         "AbilitySpecial"
         {
             "01"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "assault_bonus_attack_speed"    "30"
-            }
-            "02"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "assault_bonus_armor"           "10"
-            }
-            "03"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "assault_aura_radius"           "900"
-            }
-            "04"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "assault_aura_attack_speed"     "25"
-            }
-            "05"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "assault_aura_positive_armor"   "5"
-            }
-            "06"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "assault_aura_negative_armor"   "-5"
-            }           
+          {
+            "var_type"              "FIELD_INTEGER"
+            "assault_bonus_attack_speed"    "30"
+          }
+          "02"
+          {
+            "var_type"              "FIELD_INTEGER"
+            "assault_bonus_armor"           "10"
+          }
+          "03"
+          {
+            "var_type"              "FIELD_INTEGER"
+            "assault_aura_radius"           "900"
+          }
+          "04"
+          {
+            "var_type"              "FIELD_INTEGER"
+            "assault_aura_attack_speed"     "25"
+          }
+          "05"
+          {
+            "var_type"              "FIELD_INTEGER"
+            "assault_aura_armor"   "5"
+          }
         }
     }
 
@@ -589,7 +584,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "ID"                            "2114"                                                       
         "ItemCost"                      "5500"
-        "AbilityGoldCost"               "5500"
+        "AbilityGoldCost"               "5200"
         "ItemPurchasable"              "0"
         "AbilityCooldown"               "7.0"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
@@ -647,8 +642,8 @@
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
-        "ItemCost"                      "5520"
-        "AbilityGoldCost"               "5520"
+        "ItemCost"                      "5320"
+        "AbilityGoldCost"               "5320"
         "ItemPurchasable"              "0"
         
         // Special  
@@ -757,8 +752,8 @@
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
-        "ItemCost"                      "5400"
-        "AbilityGoldCost"               "5400"
+        "ItemCost"                      "5200"
+        "AbilityGoldCost"               "5200"
         "ItemPurchasable"              "0"
         "AbilitySpecial"
         {
@@ -877,4 +872,135 @@
         }
     }
 
+    "item_redux_silver"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "item_datadriven"
+        "ID"                            "2301"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "Model"                         "models/props_gameplay/red_box.vmdl" 
+        "Effect"                        "particles/generic_gameplay/dropped_item.vpcf"
+        "AbilityTextureName"            "custom/redux_silver"
+        "ItemAliases"					"silver;invis;shadow blade"
+        "FightRecapLevel"               "1"
+        
+        // Stats        
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "600"
+        "AbilityCastPoint"              "0.0"
+        "AbilityCooldown"               "24.0"
+        "AbilityManaCost"               "75"
+        
+        "AbilitySharedCooldown"         ""
+        "MaxUpgradeLevel"               "1"
+        "ItemBaseLevel"                 "1"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+        
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"            "2850"
+        "ItemShopTags"          "utility"
+        "ItemQuality"         "component"
+        "ItemPurchasable"               "1"
+
+        "precache"
+        {
+            "particle"  "particles/items3_fx/silver_edge_slow.vpcf"
+        }
+        
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_all_stats"       "15"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "break_duration"        "5"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "damage_reduction"      "25"
+            }
+        }
+        
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/item_redux_silver.lua"
+                "Function"        "ApplyDamageReductionModifier"
+                "Target"    "TARGET"
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"    "modifier_redux_silver_break"
+                "Target"         "TARGET"
+                "Duration"        "%break_duration"
+            }
+            "FireSound"
+            {
+                "EffectName"    "DOTA_Item.SilverEdge.Target"
+                "Target"         "TARGET"
+            }
+        }
+        
+        "Modifiers"
+        {
+            "modifier_redux_silver_passive"
+            {
+                "Passive"           "1"
+                "IsHidden"          "1"
+                
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"        "%bonus_all_stats"
+                    "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"         "%bonus_all_stats"
+                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"       "%bonus_all_stats"
+                }
+            }
+            "modifier_redux_silver_break"
+            {
+                "Passive"           "0"
+                "IsPurgable"        "1"
+                "IsBuff"            "0"
+                "IsDebuff"            "1"
+                "IsStunDebuff"        "0"
+                "TextureName" "custom/redux_silver"
+
+                "EffectName"        "particles/items3_fx/silver_edge_slow.vpcf"
+                "EffectAttachType"  "follow_origin"
+                
+                "States"
+                {
+                    "MODIFIER_STATE_PASSIVES_DISABLED"        "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+    }
+
+    "item_recipe_redux_silver"
+    {
+        "BaseClass"           "item_datadriven"
+        "ID"              "2302"
+        "Model" "models/props_gameplay/recipe.mdl"
+        "AbilityTextureName"      "item_recipe"
+
+        "ItemCost"            "700"
+        "ItemShopTags"          ""
+
+        "ItemRecipe"          "1"
+        "ItemResult"          "item_redux_silver"
+        "ItemRequirements"
+        {
+            "01"            "item_ultimate_orb;"
+        }
+    }
 }

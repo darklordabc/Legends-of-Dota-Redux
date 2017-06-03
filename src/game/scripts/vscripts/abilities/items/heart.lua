@@ -138,7 +138,7 @@ function modifier_item_heart_consumable:DestroyOnExpire()
 end
 
 function modifier_item_heart_consumable:OnTakeDamage(keys)
-  if keys.unit == self:GetCaster() and (keys.attacker:IsHero() or keys.attacker:GetUnitName() == "npc_dota_roshan" )and self:GetCaster():IsRealHero() then
+  if keys.attacker and keys.unit == self:GetCaster() and (keys.attacker:IsHero() or keys.attacker:GetUnitName() == "npc_dota_roshan" )and self:GetCaster():IsRealHero() then
     if not self:GetAbility() then
       self:Destroy()
       return

@@ -229,6 +229,7 @@
         "AbilityTextureName"            "custom/achlys_nights_embrace"
         "AbilityProcsMagicStick"        "1"
         "HasScepterUpgrade"             "1"
+        "ReduxFlags"                                                           "invis"
 
         // Precache
         //-------------------------------------------------------------------------------------------------------------

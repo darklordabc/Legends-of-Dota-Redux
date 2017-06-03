@@ -291,6 +291,8 @@ function Spark(keys)
 	Retrieve an ability by name from the unit.
 	]]
 
+	if not spark then return end
+
 	if caster:PassivesDisabled() then return end
 
 	if spark:GetLevel() <= 0 then return end

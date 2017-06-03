@@ -424,6 +424,11 @@ var basicOptions = {
                         about: 'lodMutatorMemesRedux'
                     },
                     {
+                         name: 'lodOptionBattleThirst',
+                         extraInfo: 'lodOptionAboutBattleThirst',
+                        about: 'lodMutatorBattleThirst'
+                    },
+                    {
                          name: 'lodOptionDarkMoon',
                          extraInfo: 'lodOptionAboutDarkMoon',
                         about: 'lodMutatorDarkMoon'
@@ -1605,6 +1610,22 @@ var advancedOptions = {
                 name: 'lodOptionMemesRedux',
                 des: 'lodOptionDesMemesRedux',
                 about: 'lodOptionAboutMemesRedux',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionBattleThirst',
+                des: 'lodOptionDesBattleThirst',
+                about: 'lodOptionAboutBattleThirst',
                 sort: 'toggle',
                 values: [
                     {

@@ -172,9 +172,10 @@ function ShootDart( keys )
 	caster:SetModifierStackCount( modifierName, caster, next_charge )
 	caster.toxic_dart_charges = next_charge
 		
-	-- Check if stack is 0, display ability cooldown
-	if caster.toxic_dart_charges == 0 then
-		-- Start Cooldown from caster.shrapnel_cooldown
+	-- Check if stack is less than 1, display ability cooldown
+	if caster.toxic_dart_charges < 1 then
+		-- Start Cooldown from caster.toxic_dart_cooldown
+		caster.toxic_dart_charges = 0
 		ability:StartCooldown( caster.toxic_dart_cooldown )
 	else
 		ability:EndCooldown()

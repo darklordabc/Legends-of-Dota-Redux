@@ -7,6 +7,7 @@
 		"AbilityCooldown" "60.0"
 		"AbilityDuration" "25.0"
 		"AbilityManaCost" "125"
+		"ReduxFlags"                                                           "cooldown"
 
 		"AbilitySpecial" {
 			"01" {

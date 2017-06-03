@@ -175,8 +175,8 @@ function SpellEcho(keys)
 								--print("target")
 							elseif echo:GetCursorPosition() then
 								local position = keys.target_points[1] + Vector(math.random(150), math.random(150), 0)
-								if (position - caster:GetAbsOrigin()):Length2D() > echo:GetCastRange() then
-									position = caster:GetAbsOrigin() + Vector(math.random(echo:GetCastRange()/2), math.random(echo:GetCastRange()/2), 0)
+								if (position - caster:GetAbsOrigin()):Length2D() > echo:GetCastRange(caster:GetAbsOrigin(), caster) then
+									position = caster:GetAbsOrigin() + Vector(math.random(echo:GetCastRange(caster:GetAbsOrigin(), caster)/2), math.random(echo:GetCastRange(caster:GetAbsOrigin(), caster)/2), 0)
 								end
 								--print(position, caster:GetAbsOrigin())
 								caster:SetCursorPosition(position)

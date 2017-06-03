@@ -123,6 +123,11 @@ function Ingame:init()
             PlayerResource:SetDisableHelpForPlayerID(args.PlayerID, player, tonumber(args.disabled) == 1)
         end
     end)
+
+    CustomGameEventManager:RegisterListener('lodPrintTime', function(eventSourceIndex, args)
+        local player = PlayerResource:GetPlayer(args.PlayerID)
+        Say(player, util:secondsToClock(GameRules:GetDOTATime(false, true)), true)
+    end)
 end   
 
 function Ingame:OnPlayerReconnect(keys)
@@ -259,7 +264,7 @@ function Ingame:OnPlayerPurchasedItem(keys)
         for i=0,11 do
             local item = hero:GetItemInSlot(i)
             if item ~= nil then
-                if item:GetName() == "item_shadow_amulet" or item:GetName() == "item_invis_sword" or item:GetName() == "item_silver_edge" then
+                if item:GetName() == "item_shadow_amulet" or item:GetName() == "item_invis_sword" or item:GetName() == "item_silver_edge" or item:GetName() == "item_glimmer_cape" then
                     hero:ModifyGold(item:GetCost(), false, 0)
                     hero:RemoveItem(item)
                     util:DisplayError(keys.PlayerID, "invisbilityItemsAreBanned")
@@ -440,11 +445,11 @@ function Ingame:onStart()
     
         Timers:CreateTimer(function ()
                Convars:SetBool("dota_all_vision", true)
-            end, 'enable_all_vision_fix', 1)
+            end, 'enable_all_vision_fix', 5)
             
         Timers:CreateTimer(function ()
                Convars:SetBool("dota_all_vision", false)
-            end, 'disable_all_vision_fix', 1.2)
+            end, 'disable_all_vision_fix', 5.2)
             
     end
            
@@ -457,18 +462,32 @@ function Ingame:onStart()
         -- Notification to players that they can change builds ingame.
         Timers:CreateTimer(function()
                 GameRules:SendCustomMessage("#ingameBuilderNotification", 0, 0)
-                end, "builderReminder0", 10) -- 5 Mins
+        end, "builderReminder0", 10) 
         -- Reminders for the players.
         Timers:CreateTimer(function()
                 GameRules:SendCustomMessage("#ingameBuilderReminder", 0, 0)
-                end, "builderReminder1", 300) -- 5 Mins
+        end, "builderReminder1", 300) -- 5 Mins
         Timers:CreateTimer(function()
                 GameRules:SendCustomMessage("#ingameBuilderReminder", 0, 0)
-                end, "builderReminder2", 600) -- 10 Mins
+        end, "builderReminder2", 600) -- 10 Mins
         Timers:CreateTimer(function()
                 GameRules:SendCustomMessage("#ingameBuilderReminder", 0, 0)
-                end, "builderReminder3", 1200) -- 20 Mins
+        end, "builderReminder3", 1200) -- 20 Mins
     end
+
+    -- Battle thirst has been reworked this notification is not up to date
+    --if OptionManager:GetOption('battleThirst') then
+    --    -- Notification to players that they can change builds ingame.
+    --    Timers:CreateTimer(function()
+    --            GameRules:SendCustomMessage("#ingameBattleThirstNotification", 0, 0)
+    --    end, "battleThirstReminder0", 15) 
+    --    Timers:CreateTimer(function()
+    --            GameRules:SendCustomMessage("#ingameBattleThirstNotification", 0, 0)
+    --    end, "battleThirstReminder1", 300) -- 5 Mins
+    --    Timers:CreateTimer(function()
+    --            GameRules:SendCustomMessage("#ingameBattleThirstNotification", 0, 0)
+    --    end, "battleThirstReminder2", 600) -- 10 Mins
+    --end
 
     -- Start listening for players that are disconnecting
     ListenToGameEvent('player_disconnect', function(keys)
@@ -1798,6 +1817,8 @@ function Ingame:FilterDamage( filterTable )
     local victim_index = filterTable["entindex_victim_const"]
     local attacker_index = filterTable["entindex_attacker_const"]
     local ability_index = filterTable["entindex_inflictor_const"]
+    local ability = nil
+
     if not victim_index or not attacker_index then
         return true
     end
@@ -1806,6 +1827,14 @@ function Ingame:FilterDamage( filterTable )
 
     local victim = EntIndexToHScript(victim_index)
     local attacker = EntIndexToHScript(attacker_index)
+
+    if ability_index then
+        ability = EntIndexToHScript( ability_index )
+        if ability:GetName() == "centaur_return"  and victim.IsBuilding and victim:IsBuilding() then
+            filterTable["damage"] = 0
+        end
+    end
+
     if victim:HasModifier("modifier_ancient_priestess_spirit_link") then 
         if victim.spiritLink_damage then 
             victim.spiritLink_damage = nil

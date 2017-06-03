@@ -165,6 +165,9 @@ var currentAbilityBans = 0;
 // We have not picked a hero
 var pickedAHero = false;
 
+// Help new players to pick hero in time
+var restrictedToHeroSelection = false;
+
 // Waiting for preache
 var waitingForPrecache = true;
 
@@ -187,11 +190,14 @@ var constantBalancePointsValue = GameUI.AbilityCosts.BALANCE_MODE_POINTS;
 var calculateFilters = function(){};
 var calculateHeroFilters = function(){};
 var calculateBuildsFilters = function(){
-    var con = $('#pickingPhaseRecommendedBuildContainer');
-    for (var i = 0; i < con.GetChildCount(); i++) {
-        var child = con.GetChild(i);
-        child.updateSearchFilter(searchText);
-    }    
+    var con = $('#recommendedBuildContainerScrollWrapper');
+    for (var ci = 0; ci < con.GetChildCount(); ci++) {
+        var conTab = con.GetChild(ci);
+        for (var i = 0; i < conTab.GetChildCount(); i++) {
+            var child = conTab.GetChild(i);
+            child.updateSearchFilter(searchText);
+        }
+    }
 };
 
 // Balance Mode
@@ -2008,14 +2014,40 @@ function OnMainSelectionTabShown() {
 }
 
 function LoadMoreBuilds() {
-    var cc = $("#pickingPhaseRecommendedBuildContainer").GetChildCount();
-    if (cc > 0) LoadBuilds(cc - 1);
+    var cont = $pickingPhaseRecommendedBuildContainer();
+    var cc = cont[0].GetChildCount();
+    if (cc > 0) LoadBuilds(cont, cc - 1);
+}
+
+function $pickingPhaseRecommendedBuildContainer() {
+    var panel;
+    $.Each($('#recommendedBuildContainerScrollWrapper').Children(), function(_panel) {
+        if (_panel.BHasClass('selected')) {
+            panel = _panel;
+            return false;
+        }
+    });
+    return [panel, panel.id.replace('pickingPhaseRecommendedBuildContainer', '').toLowerCase()];
+}
+
+function SelectBuildSortingOrder(order) {
+    var uOrder = order.charAt(0).toUpperCase() + order.slice(1);
+    $.Each($('#buildSortingProperties').Children(), function(panel) {
+        panel.SetHasClass('selected', panel.id === 'buildSortingProperty' + uOrder);
+    });
+    $.Each($('#recommendedBuildContainerScrollWrapper').Children(), function(panel) {
+        var selected = panel.id === 'pickingPhaseRecommendedBuildContainer' + uOrder;
+        panel.SetHasClass('selected', selected);
+        if (selected && panel.GetChildCount() === 0) {
+            LoadBuilds();
+        }
+    });
 }
 
 // Adds a build to the main selection tab
 var recBuildCounter = 0;
-function addRecommendedBuild(build) {
-    var buildCon = $.CreatePanel('Panel', $("#pickingPhaseRecommendedBuildContainer"), 'recBuild_' + (++recBuildCounter));
+function addRecommendedBuild(rootPanel, build) {
+    var buildCon = $.CreatePanel('Panel', rootPanel, 'recBuild_' + (++recBuildCounter));
     buildCon.BLoadLayout('file://{resources}/layout/custom_game/game_setup/recommended_build.xml', false, false);
     buildCon.balanceMode = $.GetContextPanel().balanceMode;
     buildCon.setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, build, constantBalancePointsValue);
@@ -2025,7 +2057,7 @@ function addRecommendedBuild(build) {
 // Updates the filters applied to recommended builds
 function updateRecommendedBuildFilters() {
     // Loop over all recommended builds
-    $.Each($("#pickingPhaseRecommendedBuildContainer").Children(), function(con) {
+    $.Each($pickingPhaseRecommendedBuildContainer()[0].Children(), function(con) {
         con.updateFilters(getSkillFilterInfo, getHeroFilterInfo); 
     })
 }
@@ -4323,6 +4355,34 @@ function isBoosterDraftGamemode() {
     return netTableValue == 6 || optionValueList['lodOptionCommonGamemode'] == 6;
 }
 
+function isAllRandomGamemode() {
+    if (!CustomNetTables.GetTableValue("options", "lodOptionCommonGamemode")) {
+        return false;
+    }
+    var netTableValue = CustomNetTables.GetTableValue("options", "lodOptionCommonGamemode").v;
+    return netTableValue == 4 || optionValueList['lodOptionCommonGamemode'] == 4;
+}
+
+function restrictToHeroSelection() {
+    restrictedToHeroSelection = true;
+
+    $("#pickingPhaseMainTabRoot").enabled = false;
+    $("#pickingPhaseSkillTabRoot").enabled = false;
+
+    $("#buildingHelperHeroPreviewSkillsContainer").visible = false;
+
+    $('#lodStageName').SetHasClass('showLodWarningTimer', true);
+
+    showBuilderTab('pickingPhaseHeroTab');
+}
+
+function undoRestriction() {
+    restrictedToHeroSelection = false;
+
+    $("#pickingPhaseMainTabRoot").enabled = true;
+    $("#pickingPhaseSkillTabRoot").enabled = true;
+}
+
 // A phase was changed
 var seenPopupMessages = {};
 var isTabSwitched = false;
@@ -4467,17 +4527,6 @@ function OnPhaseChanged(table_name, key, data) {
                 for(var playerID in activeReviewPanels) {
                     activeReviewPanels[playerID].OnReviewPhaseStart();
                 }
-
-                // Save build only on review phase
-                var con = $('#pickingPhaseRecommendedBuildContainer');
-                var favBuilds = [];
-                for (var i = 0; i < con.GetChildCount(); i++) {
-                    var child = con.GetChild(i);
-                    if (child.isFavorite)
-                        favBuilds.push(child.buildID);
-                }
-
-                SaveFavBuilds( favBuilds ); 
             }
 
             break;
@@ -4931,8 +4980,12 @@ function UpdateTimer() {
             // Set how long is left
             theTimerText = getFancyTime(timeLeft);
 
-            if(timeLeft <= 30 && !pickedAHero && currentPhase == PHASE_SELECTION) {
+            if(timeLeft <= 15 && !pickedAHero && currentPhase == PHASE_SELECTION && !restrictedToHeroSelection && !isAllRandomGamemode()) {
                 theTimerText += '\n' + $.Localize('lodPickAHero');
+
+            //     restrictToHeroSelection()
+            // } else if (pickedAHero) {
+            //     undoRestriction();
             }
 
             var shouldShowTimer = false;
@@ -5281,6 +5334,10 @@ function saveCurrentBuild() {
         $.GetContextPanel().isSinglePlayer = true;
     })
 
+    GameEvents.Subscribe("lodRestrictToHeroSelection", function () {
+        restrictToHeroSelection();
+    })
+
     // Automatically assign players to teams.
     Game.AutoAssignPlayersToTeams();
 
@@ -5381,7 +5438,9 @@ function saveCurrentBuild() {
     });
 
     GameEvents.Subscribe('lodReloadBuilds', function() {
-        $("#pickingPhaseRecommendedBuildContainer").RemoveAndDeleteChildren();
+        $.Each($('#recommendedBuildContainerScrollWrapper').Children(), function(p) {
+            p.RemoveAndDeleteChildren();
+        })
         LoadBuilds();
     })
 	
@@ -5458,12 +5517,12 @@ function saveCurrentBuild() {
 	    })
     }
 
-    // Workarounds
-    // var parent = $.GetContextPanel().GetParent();
-    // while(parent.id != "Hud")
-    //     parent = parent.GetParent();
+    var parent = $.GetContextPanel().GetParent();
+    while(parent.id != "Hud")
+        parent = parent.GetParent();
 
-    // parent.FindChildTraverse("PreGame").visible = false;
-    // parent.FindChildTraverse("PreGame").style.width = "0px;";
-    // parent.FindChildTraverse("PreGame").MapLoadingOutroFinished();
+    parent.FindChildTraverse("PreGame").FindChildTraverse("HeroGrid").visible = false;
+    parent.FindChildTraverse("PreGame").FindChildTraverse("HeroPickControls").visible = false;
+    parent.FindChildTraverse("PreGame").FindChildTraverse("EnterGameRepickButton").visible = false;
+    // parent.FindChildTraverse("PreGame").FindChildTraverse("EnterGameReRandomButton").visible = false;
 })();

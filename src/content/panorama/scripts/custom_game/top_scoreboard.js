@@ -126,6 +126,12 @@ function Update() {
 	context.SetHasClass("AltPressed", GameUI.IsAltDown())
 }
 
+function PrintTime() {
+	if (GameUI.IsAltDown()) {
+		GameEvents.SendCustomGameEventToServer("lodPrintTime", {});
+	}
+}
+
 function dynamicSort(property) {
 	var sortOrder = 1;
 	if (property[0] === "-") {

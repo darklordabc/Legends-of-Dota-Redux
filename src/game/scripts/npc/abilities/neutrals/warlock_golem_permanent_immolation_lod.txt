@@ -21,7 +21,7 @@
                 "radius"                                               "300 300 300 300"
             }
         }
-        "ReduxFlags"                                                           "aoe_attack"
+        "ReduxFlags"                                                           "aoe_attack | underpowered"
         "ReduxPerks"                                                           "neutral | fire | aura"
     }
 }

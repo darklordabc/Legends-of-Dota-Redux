@@ -11,6 +11,7 @@
         "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "AbilityTextureName"            "custom/lightning_blinding_speed"
+        "ReduxPerks"                                                           "lightning"
     
         // Casting
         //-------------------------------------------------------------------------------------------------------------
@@ -239,6 +240,7 @@
         "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
         "AbilityTextureName"            "custom/lightning_blinding_speed"
+        "ReduxPerks"                                                           "lightning"
     
         // Casting
         //-------------------------------------------------------------------------------------------------------------
@@ -354,11 +356,12 @@
         "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"
         "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
         "AbilityTextureName"            "custom/lightning_lightning_dagger"
+        "ReduxPerks"                                                           "lightning | dagger"
         
             // Casting
         //-------------------------------------------------------------------------------------------------------------
         "AbilityCastPoint"              "0.2 0.2 0.2 0.2"
-        "AbilityCastRange"              "875"
+        "AbilityCastRange"              "875 975 1075"
         "AbilityCooldown"               "1"
         
         // Cost
@@ -397,6 +400,11 @@
             {
                 "var_type"                              "FIELD_INTEGER"
                 "mark_aoe"                              "250"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "cast_range"                                           "875 975 1075"
             }
         }
         
@@ -559,11 +567,12 @@
         "AnimationPlaybackRate"         "2.5"
         "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
         "AbilityTextureName"            "custom/lightning_lightning_dagger"
+        "ReduxPerks"                                                           "lightning | dagger"
         
             // Casting
         //-------------------------------------------------------------------------------------------------------------
         "AbilityCastPoint"              "0.1 0.1 0.1 0.1"
-        "AbilityCastRange"              "675"
+        "AbilityCastRange"              "675 775 875"
         "AbilityCooldown"               "2.5"
         
         // Cost
@@ -582,6 +591,11 @@
             {
                 "var_type"                              "FIELD_FLOAT"
                 "duration"                              "0.5"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "cast_range"                                           "675 775 875"
             }
         }
         
@@ -720,6 +734,7 @@
         "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
         "AbilityTextureName"            "custom/lightning_overload"
+        "ReduxPerks"                                                           "lightning"
     
         // Casting
         //-------------------------------------------------------------------------------------------------------------
@@ -844,6 +859,7 @@
         "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
         "AbilityTextureName"            "custom/lightning_blinding_speed"
+        "ReduxPerks"                                                           "lightning"
     
         // Casting
         //-------------------------------------------------------------------------------------------------------------
@@ -919,6 +935,7 @@
         "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
         "AbilityTextureName"            "custom/lightning_thunder_wave"
+        "ReduxPerks"                                                           "lightning"
     
         // Casting
         //-------------------------------------------------------------------------------------------------------------

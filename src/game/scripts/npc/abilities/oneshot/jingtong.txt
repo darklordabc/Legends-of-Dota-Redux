@@ -13,6 +13,6 @@
             }
         }
         "ReduxCost"                                                            "20"
-        "ReduxBans"                                                            "jingtong_op"
+        "ReduxFlags"														    "cooldown"
 	}
 }

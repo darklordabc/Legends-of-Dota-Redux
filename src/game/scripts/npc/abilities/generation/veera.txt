@@ -375,6 +375,7 @@
         "AbilityCooldown"           "140 110 80"
         "AbilityProcsMagicStick"        "1"
         "HasScepterUpgrade"             "1"
+        "ReduxFlags"    "cooldown"
     
         "AbilitySpecial"
         {
@@ -528,7 +529,7 @@
         "AbilityTextureName"            "custom/veera_toxic_darts"
         "AbilityProcsMagicStick"        "1"
     
-        "AbilityCooldown"       "0.0"
+        "AbilityCooldown"       "7.0 6.0 5.0 4.0"
         "AbilityManaCost"       "20"
     
         "AbilityCastPoint"              "0.15"

@@ -124,8 +124,8 @@ end
 function modifier_flesh_heap_move_speed:DeclareFunctions()
   local funcs = {
     MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
-    MODIFIER_PROPERTY_MOVESPEED_MAX,
-    MODIFIER_PROPERTY_MOVESPEED_LIMIT,
+   -- MODIFIER_PROPERTY_MOVESPEED_MAX,
+    --MODIFIER_PROPERTY_MOVESPEED_LIMIT,
     MODIFIER_EVENT_ON_DEATH,
   }
   return funcs
@@ -140,6 +140,10 @@ function modifier_flesh_heap_move_speed:OnDeath(keys)
 
   if not keys.unit:IsRealHero() then
     return 
+  end
+
+  if keys.unit:IsTempestDouble() then
+    return
   end
 
   if not IsServer() then 
@@ -177,13 +181,13 @@ function modifier_flesh_heap_move_speed:OnDeath(keys)
 end
 
 
-function modifier_flesh_heap_move_speed:GetModifierMoveSpeed_Max( params )
-    return 5000
-end
+--function modifier_flesh_heap_move_speed:GetModifierMoveSpeed_Max( params )
+--    return 5000
+--end
 
-function modifier_flesh_heap_move_speed:GetModifierMoveSpeed_Limit( params )
-    return 5000
-end
+--function modifier_flesh_heap_move_speed:GetModifierMoveSpeed_Limit( params )
+--    return 5000
+--end
 
 
 function modifier_flesh_heap_move_speed:GetModifierMoveSpeedBonus_Constant()

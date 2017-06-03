@@ -2,7 +2,66 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## 7.7 - Development Version
+## 7.7 
+- Ball Lighting will no longer trigger essence aura
+- Symbiote now gives -6 armor and no longer gives bonus stats
+- Fixed Silencer getting int steal when he didnt pick it
+- Made Lighting Storm and Pulse Nova a troll combo until we can find a better fix
+- Increased Mega Flare Cooldown
+- Increased default bans to 2 instead of 1
+- Saints Grace now has longer duration and radius and shorter cooldown
+- Dooming Roots has lower cooldown
+- Changed Shield of Revenge to Magicians Revenge
+- Lowered cooldown of absolute zero by 30 seconds, increased duration by 1 second
+- Increased Sieges Mode Range to 3000 at max level
+- Increased Cast range of lightning daggers by 100
+- Sleep cloud: Enemies have to stay within it for 3 seconds instead of 4, to fall to sleep. Its duration is longer by 5 seconds. 
+- Voidal flare now refunds mana if its the killing blow. Reduced manacost to 100 mana
+- Increased radius on mortal coil
+- Experimenting with fast start only increasing gold amount. It now gives 3500 gold. 
+- Thrill of hunt not longer effects vision
+- Few tweaks to mega ultimates
+- Tweaks to Armgaeddon
+- Players now gain an additional 15 seconds to pick a hero if they havent picked one
+- Phase shift is now a single player ability as its mostly only used for troll combos
+- Default chat channel is now team chat, not all chat
+- Brewmasters Demolish now considered single player ability
+- Purposefully underpowered redux versions of abilities are now banned if OP abilities are enabled
+- Lessened the model growth on strong neutral creeps mutator
+- Returned vision change to thrill of the hunt
+- Added Battle Thirst Mutator
+- Experimental: Battle Thirst is now on by default in all_allowed, lowered starting gold as conseqeunce
+- Fixed Assault Cuirass not giving debuff
+- Improved evasion flesh heap
+- Removed Armageddon due to lag
+- Roshan Spell Block now single player ability
+- Roshan Bash now has 4 levels
+- Posinsous scales now only reduces mana, not health. When passives broke it breaks accrodingly now. 
+- Templar Assasin now only has to stand still for 2 seconds instead of 5 to gain invisibility
+- Magicians Revenge no longer works against intelligence heros. Only Agility and Stregth heros will be damaged by it.
+- Battle Thirst now lingers for 20 seconds
+- Withcraft is now a single player ability, a redux version of it will come later.
+- Battle Thirst now lingers for 35 seconds, and only gives 1 extra gold per second, exp boost is the same
+- Disabled wind runners perk because its broken
+- Increased Pocket Factory Cooldown to 50 seconds
+- Magicians Revenge now deals damage based on the difference between attackers and owners intellect
+- Tempest double no longer triggers multicast
+- Flesh Heaps dont work Tempest doubles anymore
+- Added 4 Molten Lord abilities
+- Added notification to inform about battle thirst
+- Reverted to original Dota map for "dota" map
+- Added Phase Shift from Dusk
+- Added Extraplanar Pact from Dusk
+- Added Lysander Abilities (4) from Dusk
+*
+- Added Aegis Tower OP (single player ability)
+- Nerfed Molten Lord abilities
+- Fixed where non-hero respawning units, like Bear, had crazy high gold bounties
+- Increased starting bonus gold to 2500 in all allowed because OOSP no longer gives bonus gold
+- Increased bonus gold to 200% in all_allowed form 150%
+- Battle thirst is no longer active by default in all_allowed
+ 
+
 
 ## 7.6 - Steam Version
 - Added credits for most custom abiliites, made some icon changes. 
@@ -22,7 +81,6 @@ All notable changes to this project will be documented in this file.
 - Added Lich from Dusk, Hero, Erra, Potmely, Mifune, Vera etc
 - Added "Passive" category of abilities
 - Fixed missing rockets in cluster rockets
-
 
 ## 7.5 
 - Fast start vote option now only starts at level 3 instead of 6. In vote maps, players always have a chance to ban an ability.

@@ -296,6 +296,18 @@ function util:GetActiveHumanPlayerCountForTeam(team)
     return number
 end
 
+function util:secondsToClock(seconds)
+  local seconds = math.abs(tonumber(seconds))
+
+  if seconds <= 0 then
+    return "00:00";
+  else
+    mins = string.format("%02.f", math.floor(seconds/60));
+    secs = string.format("%02.f", math.floor(seconds - mins *60));
+    return mins..":"..secs
+  end
+end
+
 -- Returns if a player is a time burger
 function util:isTimeBurgler(playerID)
     local allTimeBurglers = util.bannedKV.timeburglers
@@ -544,38 +556,38 @@ function CDOTABaseAbility:GetAbilityLifeTime(buffer)
                     elseif string.match(o, "delay") then -- look for a delay for spells without duration but do have a delay
                         checkDelay = self:GetLevelSpecialValueFor(o, -1)
                         if checkDelay > duration then delay = checkDelay end
-					end
+          end
                 end
             end
         end
     end
-	------------------------------ SPECIAL CASES -----------------------------
-	if self:GetName() == "juggernaut_omni_slash" then
-		local bounces = self:GetLevelSpecialValueFor("omni_slash_jumps", -1)
-		delay = self:GetLevelSpecialValueFor("omni_slash_bounce_tick", -1) * bounces
-	elseif self:GetName() == "medusa_mystic_snake" then
-		local bounces = self:GetLevelSpecialValueFor("snake_jumps", -1)
-		delay = self:GetLevelSpecialValueFor("jump_delay", -1) * bounces
-	elseif self:GetName() == "witch_doctor_paralyzing_cask" then
-		local bounces = self:GetLevelSpecialValueFor("bounces", -1)
-		delay = self:GetLevelSpecialValueFor("bounce_delay", -1) * bounces
-	elseif self:GetName() == "zuus_arc_lightning" or self:GetName() == "leshrac_lightning_storm" then
-		local bounces = self:GetLevelSpecialValueFor("jump_count", -1)
-		delay = self:GetLevelSpecialValueFor("jump_delay", -1) * bounces
-	elseif self:GetName() == "furion_wrath_of_nature" then
-		local bounces = self:GetLevelSpecialValueFor("max_targets_scepter", -1)
-		delay = self:GetLevelSpecialValueFor("jump_delay", -1) * bounces
-	elseif self:GetName() == "death_prophet_exorcism" then
-		local distance = self:GetLevelSpecialValueFor("max_distance", -1) + 2000 -- add spirit break distance to be sure
-		delay = distance / self:GetLevelSpecialValueFor("spirit_speed", -1)
-	elseif self:GetName() == "necrolyse_death_pulse" then
-		local distance = self:GetLevelSpecialValueFor("area_of_effect", -1) + 2000 -- add blink range + buffer zone to be safe
-		delay = distance / self:GetLevelSpecialValueFor("projectile_speed", -1)
-	elseif self:GetName() == "spirit_breaker_charge_of_darkness" then
-		local distance = math.sqrt(15000*15000*2) -- size diagonal of a 15000x15000 square
-		delay = distance / self:GetLevelSpecialValueFor("movement_speed", -1)
-	end
-	--------------------------------------------------------------------------
+  ------------------------------ SPECIAL CASES -----------------------------
+  if self:GetName() == "juggernaut_omni_slash" then
+    local bounces = self:GetLevelSpecialValueFor("omni_slash_jumps", -1)
+    delay = self:GetLevelSpecialValueFor("omni_slash_bounce_tick", -1) * bounces
+  elseif self:GetName() == "medusa_mystic_snake" then
+    local bounces = self:GetLevelSpecialValueFor("snake_jumps", -1)
+    delay = self:GetLevelSpecialValueFor("jump_delay", -1) * bounces
+  elseif self:GetName() == "witch_doctor_paralyzing_cask" then
+    local bounces = self:GetLevelSpecialValueFor("bounces", -1)
+    delay = self:GetLevelSpecialValueFor("bounce_delay", -1) * bounces
+  elseif self:GetName() == "zuus_arc_lightning" or self:GetName() == "leshrac_lightning_storm" then
+    local bounces = self:GetLevelSpecialValueFor("jump_count", -1)
+    delay = self:GetLevelSpecialValueFor("jump_delay", -1) * bounces
+  elseif self:GetName() == "furion_wrath_of_nature" then
+    local bounces = self:GetLevelSpecialValueFor("max_targets_scepter", -1)
+    delay = self:GetLevelSpecialValueFor("jump_delay", -1) * bounces
+  elseif self:GetName() == "death_prophet_exorcism" then
+    local distance = self:GetLevelSpecialValueFor("max_distance", -1) + 2000 -- add spirit break distance to be sure
+    delay = distance / self:GetLevelSpecialValueFor("spirit_speed", -1)
+  elseif self:GetName() == "necrolyse_death_pulse" then
+    local distance = self:GetLevelSpecialValueFor("area_of_effect", -1) + 2000 -- add blink range + buffer zone to be safe
+    delay = distance / self:GetLevelSpecialValueFor("projectile_speed", -1)
+  elseif self:GetName() == "spirit_breaker_charge_of_darkness" then
+    local distance = math.sqrt(15000*15000*2) -- size diagonal of a 15000x15000 square
+    delay = distance / self:GetLevelSpecialValueFor("movement_speed", -1)
+  end
+  --------------------------------------------------------------------------
     duration = duration + delay
     if buffer then duration = duration + buffer end
     return duration
@@ -630,21 +642,34 @@ end
 
 
 function CDOTABaseAbility:GetTrueCooldown()
-	local cooldown = self:GetCooldown(-1)
-	local hero = self:GetCaster()
-	local mabWitch = hero:FindAbilityByName('death_prophet_witchcraft')
-	if mabWitch then cooldown = cooldown - mabWitch:GetLevel() end
-	if Convars:GetBool('dota_ability_debug') then
-		cooldown = 0
-	end
-	local octarineMult = 1
-	if hero:HasModifier("modifier_item_octarine_core") or hero:HasModifier("modifier_item_octarine_core_consumable") then octarineMult = 0.75 end
-	cooldown = cooldown * octarineMult
-	return cooldown
+  local cooldown = self:GetCooldown(-1)
+  local hero = self:GetCaster()
+  local mabWitch = hero:FindAbilityByName('death_prophet_witchcraft')
+  if mabWitch then cooldown = cooldown - mabWitch:GetLevel() end
+  if Convars:GetBool('dota_ability_debug') then
+    cooldown = 0
+  end
+  local octarineMult = 1
+
+  for k,v in pairs(hero:FindAllModifiers()) do
+    if v.GetModifierPercentageCooldown then
+        octarineMult = octarineMult - (v:GetModifierPercentageCooldown()/100)
+    end
+  end
+ 
+
+
+
+  --if hero:HasModifier("modifier_item_octarine_core") or hero:HasModifier("modifier_item_octarine_core_consumable") then octarineMult = 0.75 end
+  cooldown = cooldown * octarineMult
+  return cooldown
 end
 
+
+
+
 function ShuffleArray(input)
-	local rand = math.random 
+  local rand = math.random 
     local iterations = #input
     local j
     
@@ -693,6 +718,25 @@ function util:isSinglePlayerMode()
     return true
 end
 
+function util:checkPickedHeroes( builds )
+    local players = {}
+
+    for i=0,23 do
+        local ply = PlayerResource:GetPlayer(i) 
+        if ply then
+            if not builds[i] then
+                table.insert(players, i)
+            end
+        end
+    end
+
+    if #players == 0 then
+        return nil
+    else
+        return players
+    end
+end
+
 function util:isCoop()
     local RadiantHumanPlayers = self:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS)
     local DireHumanPlayers = self:GetActiveHumanPlayerCountForTeam(DOTA_TEAM_BADGUYS)
@@ -705,12 +749,12 @@ end
 
 function CDOTA_BaseNPC:HasAbilityWithFlag(flag)
     for i = 0, 23 do
-		local ability = self:GetAbilityByIndex(i)
-		if ability and not ability:IsHidden() and ability:HasAbilityFlag(flag) then
-			return true
-		end
-	end
-	return false
+    local ability = self:GetAbilityByIndex(i)
+    if ability and not ability:IsHidden() and ability:HasAbilityFlag(flag) then
+      return true
+    end
+  end
+  return false
 end
 
 function CDOTABaseAbility:IsCustomAbility()
@@ -922,29 +966,29 @@ function CDOTA_BaseNPC:PopupNumbers(target, pfx, color, lifetime, number, presym
     number = number * (1 + (.08 * lens_count) + (self:GetIntellect()/1600))
 
     number = math.floor(number)
-    local pfxPath = string.format("particles/msg_fx/msg_%s.vpcf", pfx)		
-    local pidx		
-    if pfx == "gold" or pfx == "lumber" then		
-        pidx = ParticleManager:CreateParticleForTeam(pfxPath, PATTACH_CUSTOMORIGIN, target, target:GetTeamNumber())		
-    else		
-        pidx = ParticleManager:CreateParticle(pfxPath, PATTACH_CUSTOMORIGIN, target)		
-    end		
- 		
-    local digits = 0		
-    if number ~= nil then		
-        digits = #tostring(number)		
-    end		
-    if presymbol ~= nil then		
-        digits = digits + 1		
-    end		
-    if postsymbol ~= nil then		
-        digits = digits + 1		
-    end		
- 		
-    ParticleManager:SetParticleControl(pidx, 0, target:GetAbsOrigin())		
-    ParticleManager:SetParticleControl(pidx, 1, Vector(tonumber(presymbol), tonumber(number), tonumber(postsymbol)))		
-    ParticleManager:SetParticleControl(pidx, 2, Vector(lifetime, digits, 0))		
-    ParticleManager:SetParticleControl(pidx, 3, color)		
+    local pfxPath = string.format("particles/msg_fx/msg_%s.vpcf", pfx)    
+    local pidx    
+    if pfx == "gold" or pfx == "lumber" then    
+        pidx = ParticleManager:CreateParticleForTeam(pfxPath, PATTACH_CUSTOMORIGIN, target, target:GetTeamNumber())   
+    else    
+        pidx = ParticleManager:CreateParticle(pfxPath, PATTACH_CUSTOMORIGIN, target)    
+    end   
+    
+    local digits = 0    
+    if number ~= nil then   
+        digits = #tostring(number)    
+    end   
+    if presymbol ~= nil then    
+        digits = digits + 1   
+    end   
+    if postsymbol ~= nil then   
+        digits = digits + 1   
+    end   
+    
+    ParticleManager:SetParticleControl(pidx, 0, target:GetAbsOrigin())    
+    ParticleManager:SetParticleControl(pidx, 1, Vector(tonumber(presymbol), tonumber(number), tonumber(postsymbol)))    
+    ParticleManager:SetParticleControl(pidx, 2, Vector(lifetime, digits, 0))    
+    ParticleManager:SetParticleControl(pidx, 3, color)    
 end
 
 DisableHelpStates = DisableHelpStates or {}
@@ -1016,6 +1060,7 @@ end
         winter_wyvern_arctic_burn = true,
         life_stealer_control = true,
         eat_tree_eldri = true,
+        storm_spirit_ball_lightning = true,
     }
 
     abilityKVs = LoadKeyValues('scripts/npc/npc_abilities.txt')

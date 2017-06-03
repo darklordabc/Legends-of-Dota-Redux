@@ -123,20 +123,20 @@ function Pregame:init()
         banning = {
             onselected = function(self)
                 self:setOption('lodOptionBanning', 3, true)
-                self:setOption('lodOptionBanningMaxBans', 2, true)
-                self:setOption('lodOptionBanningMaxHeroBans', 1, true)
+                self:setOption('lodOptionBanningMaxBans', 3, true)
+                self:setOption('lodOptionBanningMaxHeroBans', 2, true)
             end,
             onunselected = function(self)
                 OptionManager:SetOption('banningTime', 25)
                 self:setOption('lodOptionBanning', 3, true)
-                self:setOption('lodOptionBanningMaxBans', 1, true)
+                self:setOption('lodOptionBanningMaxBans', 2, true)
                 self:setOption('lodOptionBanningMaxHeroBans', 1, true)
             end
         },
         fastStart = {
             onselected = function(self)
-                self:setOption('lodOptionGameSpeedStartingLevel', 6, true)
-                self:setOption('lodOptionGameSpeedStartingGold', 2000, true)
+                self:setOption('lodOptionGameSpeedStartingLevel', 1, true)
+                self:setOption('lodOptionGameSpeedStartingGold', 3500, true)
             end,
             onunselected = function(self)
                 self:setOption('lodOptionGameSpeedStartingLevel', 1, true)
@@ -461,7 +461,7 @@ function Pregame:init()
     if mapName == 'standard' then
         self:setOption('lodOptionGamemode', 1)
         self:setOption('lodOptionBalanceMode', 1, true)
-        OptionManager:SetOption('banningTime', 45)
+        OptionManager:SetOption('banningTime', 50)
         --self:setOption('lodOptionBanningBalanceMode', 1, true)
         --self:setOption('lodOptionGameSpeedRespawnTimePercentage', 70, true)
         --self:setOption('lodOptionBuybackCooldownTimeConstant', 210, true)
@@ -469,24 +469,27 @@ function Pregame:init()
         self:setOption('lodOptionGameSpeedEXPModifier', 225, true)
         self:setOption('lodOptionGameSpeedMaxLevel', 100, true)
         self:setOption('lodOptionGameSpeedRespawnTimePercentage', 35, true)
+        self:setOption('lodOptionCrazyUniversalShop', 0, true)
         self.useOptionVoting = true
     end
 
     if mapName == 'all_allowed' then
+    	self:setOption('lodOptionCrazyUniversalShop', 0, true)
         self:setOption('lodOptionGameSpeedSharedEXP', 1, true)
         self:setOption('lodOptionBanningUseBanList', 1, true)
         self:setOption('lodOptionAdvancedOPAbilities', 1, true)
         self:setOption('lodOptionGameSpeedMaxLevel', 100, true)
         self:setOption('lodOptionGamemode', 1)
-        self:setOption('lodOptionGameSpeedStartingLevel', 6, true)
-        self:setOption('lodOptionGameSpeedStartingGold', 2000, true)
+       -- self:setOption('lodOptionBattleThirst', 1)
+        self:setOption('lodOptionGameSpeedStartingLevel', 1, true)
+        self:setOption('lodOptionGameSpeedStartingGold', 2500, true)
         self:setOption('lodOptionGameSpeedStrongTowers', 1, true)
         self:setOption('lodOptionCreepPower', 120, true)
         self:setOption('lodOptionGameSpeedTowersPerLane', 3, true)
-        OptionManager:SetOption('banningTime', 45)
+        OptionManager:SetOption('banningTime', 50)
         self:setOption('lodOptionBalanceMode', 0, true)
-        self:setOption('lodOptionGameSpeedGoldModifier', 150, true)
-        self:setOption('lodOptionGameSpeedEXPModifier', 200, true)
+        self:setOption('lodOptionGameSpeedGoldModifier', 200, true)
+        self:setOption('lodOptionGameSpeedEXPModifier', 150, true)
         self:setOption('lodOptionAdvancedHidePicks', 0, true)
         self:setOption('lodOptionCommonMaxUlts', 2, true)
         self:setOption('lodOptionGameSpeedRespawnTimePercentage', 35, true)
@@ -650,6 +653,9 @@ function Pregame:loadDefaultSettings()
     self:setOption('lodOptionCreepPower', 0)
     self:setOption('lodOptionNeutralCreepPower', 0)
 
+    -- Do not give battle thirst
+    self:setOption('lodOptionBattleThirst', 0)
+
     -- Do not increase creep power
     self:setOption('lodOptionCreepPower', 0, true)
     self:setOption('lodOptionNeutralCreepPower', 0, true)
@@ -733,6 +739,9 @@ function Pregame:loadDefaultSettings()
 
     -- NO MEMES UncleNox
     self:setOption("lodOptionMemesRedux", 0)
+
+    -- No Blood Thirst
+    self:setOption("lodOptionBloodThirst", 0) 
 
     -- No Item Drops
     self:setOption("lodOptionDarkMoon", 0)
@@ -878,19 +887,25 @@ end
 function Pregame:applyBuilds()
     local maxPlayerID = 24
     for playerID=0,maxPlayerID-1 do
-        local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+        Timers:CreateTimer(function ()
+            local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 
-        if hero ~= nil and IsValidEntity(hero) then
-            local build = self.selectedSkills[playerID]
+            if hero ~= nil and IsValidEntity(hero) then
+                local build = self.selectedSkills[playerID]
 
-            if build then
-                local status2,err2 = pcall(function()
-                    SkillManager:ApplyBuild(hero, build or {})
+                if build then
+                    local status2,err2 = pcall(function()
+                        SkillManager:ApplyBuild(hero, build or {})
 
-                    buildBackups[playerID] = build
-                end)
+                        buildBackups[playerID] = build
+
+                        self:fixSpawnedHero( hero )
+                    end)
+                end
+            else
+                return 1.0
             end
-        end
+        end, DoUniqueString("applyBuildsLoop"), (playerID + 1) / 10)
     end
 end
 
@@ -1144,9 +1159,30 @@ function Pregame:onThink()
 
         -- Is it over?
         if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
-            -- Change to picking phase
-            self:setPhase(constants.PHASE_REVIEW)
-            self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime'))
+            local didNotSelectAHero = util:checkPickedHeroes( self.selectedHeroes )
+            if didNotSelectAHero == nil or self.noHeroSelection or self.additionalPickTime or util:isSinglePlayerMode() then
+                -- Change to picking phase
+                self:setPhase(constants.PHASE_REVIEW)
+                self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime')) 
+            else
+                self.additionalPickTime = true
+                self:setEndOfPhase(Time() + 15.0) 
+                CustomGameEventManager:Send_ServerToAllClients("lodRestrictToHeroSelection", {})
+                EmitAnnouncerSound("Redux.Overtime") 
+
+                Timers:CreateTimer(function (  )
+                    for playerID = 0,23 do
+                        local steamID = PlayerResource:GetSteamAccountID(playerID)
+                        if steamID ~= 0 then
+                            hero = self.selectedHeroes[playerID]
+                            if hero == nil then
+                                local sound = self:getRandomSound('game_6_sec_remaining')
+                                EmitAnnouncerSoundForPlayer(sound, playerID)
+                            end
+                        end
+                    end
+                end, DoUniqueString("chooseYourHeroAnnouncment"), 3.0)
+            end
         end
 
         return 0.1
@@ -1316,6 +1352,8 @@ function Pregame:spawnAllHeroes()
         self:spawnPlayer(playerID)
     end
 
+    self:actualSpawnPlayer()
+
     -- self.spawnQueueID = -1
     -- self.spawnDelay = 2.5
 
@@ -1360,17 +1398,13 @@ end
 
 -- Spawns a given player
 function Pregame:spawnPlayer(playerID, callback)
-    if PlayerResource:GetConnectionState(playerID) >= 1 then
-        if self.spawnedHeroesFor[playerID] then return end
-        self.spawnedHeroesFor[playerID] = true
+    if self.spawnedHeroesFor[playerID] then return end
+    self.spawnedHeroesFor[playerID] = true
 
-        table.insert(self.spawnQueue, playerID)
-
-        self:actualSpawnPlayer()
-    end
+    table.insert(self.spawnQueue, playerID)
 end
 
-function Pregame:actualSpawnPlayer(playerID, callback)
+function Pregame:actualSpawnPlayer(forceID)
     -- Is there someone to spawn?
     if #self.spawnQueue <= 0 then return end
 
@@ -1381,23 +1415,22 @@ function Pregame:actualSpawnPlayer(playerID, callback)
     -- Grab a reference to self
     local this = self
 
-    -- Give a small delay, and then continue
-    Timers:CreateTimer(function()
+    local continueSpawning = (function ()
         -- Done spawning, start the next one
         this.currentlySpawning = false
 
         -- Continue actually spawning
         this:actualSpawnPlayer()
-    end, DoUniqueString('continueSpawning'), 0.1)
+    end)
 
      -- Try to spawn this player using safe stuff
     local status, err = pcall(function()
         -- Grab a player to spawn
-        local playerID = table.remove(this.spawnQueue, 1)
+        local playerID = forceID or table.remove(this.spawnQueue, 1)
 
         -- Don't allow a player to get two heroes
         if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil then
-            return
+            UTIL_Remove(PlayerResource:GetSelectedHeroEntity(playerID))
         end
 
         -- Grab their build
@@ -1411,39 +1444,12 @@ function Pregame:actualSpawnPlayer(playerID, callback)
             local spawnTheHero = function()
                 local status2,err2 = pcall(function()
                     -- Create the hero and validate it
-
                     local hero = CreateHeroForPlayer(heroName, player)
 
-                    --if not IsInToolsMode() and not GameRules:IsCheatMode() then
-                        UTIL_Remove(hero)
-                    --else
-                    --    hero:AddNoDraw()
-                    --    hero:AddNewModifier(hero,nil,"modifier_invulnerable",{})
-                    --    hero:SetAbsOrigin(Vector(-10000,-10000,-10000))
-                    --end
-
-                    --[[if hero ~= nil and IsValidEntity(hero) then
-                        SkillManager:ApplyBuild(hero, build or {})
-                        -- Do they have a custom attribute set?
-                        if self.selectedPlayerAttr[playerID] ~= nil then
-                            -- Set it
-                            local toSet = 0
-                            if self.selectedPlayerAttr[playerID] == 'str' then
-                                toSet = 0
-                            elseif self.selectedPlayerAttr[playerID] == 'agi' then
-                                toSet = 1
-                            elseif self.selectedPlayerAttr[playerID] == 'int' then
-                                toSet = 2
-                            end
-                            -- Set a timer to fix stuff up
-                            Timers:CreateTimer(function()
-                                if IsValidEntity(hero) then
-                                    hero:SetPrimaryAttribute(toSet)
-                                end
-                            end, DoUniqueString('primaryAttrFix'), 0.1)
-                        end
-                    end]]
+                    UTIL_Remove(hero)
                 end)
+
+                continueSpawning()
 
                 -- Did the spawning of this hero fail?
                 if not status2 then
@@ -1451,24 +1457,22 @@ function Pregame:actualSpawnPlayer(playerID, callback)
                 end
             end
 
-            if this.cachedPlayerHeroes[playerID] then
-                -- Directly spawn the hero
-                spawnTheHero()
-            else
-                -- Attempt to precache their hero
-                -- PrecacheUnitByNameAsync(heroName, function()
-                    -- We have now cached this player's hero
+            -- Attempt to precache their hero
+            PrecacheUnitByNameAsync(heroName, function()
+                -- We have now cached this player's hero
+                Timers:CreateTimer(function (  )
                     this.cachedPlayerHeroes[playerID] = true
 
                     -- Spawn it
                     spawnTheHero()
-                -- end, playerID)
-                PrecacheUnitByNameAsync(heroName, function()
-                end, playerID)
-            end
+                end, DoUniqueString('delay'), 0.2)
+
+            end, playerID)
         else
             -- This player has not spawned!
             self.spawnedHeroesFor[playerID] = nil
+
+            continueSpawning()
         end
     end)
 
@@ -1544,6 +1548,7 @@ function Pregame:networkHeroes()
         nohero = true,
         superop = true,
         donotrandom = true,
+        underpowered = true,
     }
     -- Prepare flags
     local flagsInverse = {}
@@ -1859,6 +1864,7 @@ function Pregame:finishOptionSelection()
         else
             -- Hero selection
             self:setPhase(constants.PHASE_SELECTION)
+            -- Change the below line to "self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'), nil)" to disable unlimited time
             self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'), OptionManager:GetOption('pickingTime'))
         end
     end
@@ -2056,6 +2062,7 @@ function Pregame:loadTrollCombos()
     self.noHero = self.flags.nohero
     self.SuperOP = self.flags.superop
     self.doNotRandom = self.flags.donotrandom
+    self.underpowered = self.flags.underpowered
 
     -- All SUPER OP skills should be added to the OP ban list
     --for skillName,_ in pairs(self.lodBanList) do
@@ -2805,6 +2812,10 @@ function Pregame:initOptionSelector()
         end,
 
 
+         -- Other - Battle Thirst
+        lodOptionBattleThirst = function(value)
+            return value == 0 or value == 1
+        end,
     }
 
     -- Callbacks
@@ -3682,6 +3693,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('refreshCooldownsOnDeath', this.optionStore['lodOptionRefreshCooldownsOnDeath'])
         OptionManager:SetOption('gottaGoFast', this.optionStore['lodOptionGottaGoFast'])
         OptionManager:SetOption('memesRedux', this.optionStore['lodOptionMemesRedux'])
+        OptionManager:SetOption('battleThirst', this.optionStore['lodOptionBattleThirst'])
         OptionManager:SetOption('darkMoon', this.optionStore['lodOptionDarkMoon'])
         OptionManager:SetOption('blackForest', this.optionStore['lodOptionBlackForest'])
         OptionManager:SetOption('banInvis', this.optionStore['lodOptionBanningBanInvis'])
@@ -3755,6 +3767,13 @@ function Pregame:processOptions()
             end
         else
             SpellFixes:SetOPMode(true)
+        end
+
+        -- Banning Underpowered versions of abilities
+        if not disableBanLists and this.optionStore['lodOptionAdvancedOPAbilities'] == 0 then
+            for abilityName,v in pairs(this.underpowered) do
+                this:banAbility(abilityName)
+            end
         end
 
         -- Banning invis skills
@@ -3987,6 +4006,7 @@ function Pregame:processOptions()
                     ['Other: Refresh Cooldowns On Death'] = this.optionStore['lodOptionRefreshCooldownsOnDeath'],
                     ['Other: Gotta Go Fast!'] = this.optionStore['lodOptionGottaGoFast'],
                     ['Other: Memes Redux'] = this.optionStore['lodOptionMemesRedux'],
+                    ['Other: Battle Thirst'] = this.optionStore['lodOptionBattleThirst'],
                     ['Other: Item Drops'] = this.optionStore['lodOptionDarkMoon'],
                     ['Other: Black Forest'] = this.optionStore['lodOptionBlackForest'],
                     ['Towers: Anti-Rat'] = this.optionStore['lodOptionAntiRat'],
@@ -4310,6 +4330,12 @@ function Pregame:onPlayerSelectHero(eventSourceIndex, args)
         end
     end
 
+    if hero then
+        if not util:checkPickedHeroes( self.selectedHeroes ) and self.additionalPickTime then
+            self:setPhase(constants.PHASE_REVIEW)
+            self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime')) 
+        end
+    end
 end
 
 -- Attempts to set a player's attribute
@@ -4390,10 +4416,7 @@ function Pregame:onPlayerAskForHero(eventSourceIndex, args)
     local playerID = args.PlayerID
     local player = PlayerResource:GetPlayer(playerID)
 
-    -- Has this player already asked for their hero?
-    if self.heroesSpawned then
-        self:spawnPlayer(playerID)
-    end
+    self:actualSpawnPlayer(playerID)
 end
 
 -- Player wants to select an entire build
@@ -5661,6 +5684,16 @@ function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
         return
     end
 
+    if self:getPhase() == constants.PHASE_SELECTION and self.additionalPickTime then
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedWrongPhaseSelection'
+        })
+        self:PlayAlert(playerID)
+
+        return
+    end
+
     -- Have they locked their skills?
     if self.isReady[playerID] == 1 and self:getPhase() ~= constants.PHASE_INGAME then
         network:sendNotification(player, {
@@ -6295,7 +6328,6 @@ function Pregame:preventCamping()
     if self.optionStore['lodOptionCrazyNoCamping'] == 1 then
         local toAdd = {
             ursa_fury_swipes = 4,
-            templar_assassin_psi_blades = 1,
             slark_essence_shift = 4
         }
 
@@ -6937,12 +6969,17 @@ function Pregame:hookBotStuff()
     end, nil)
 end
 
+-- This function gets runned when heros are recreated with there proper abilities, below is a function that runs at every npc spawn
 function Pregame:fixSpawnedHero( spawnedUnit )
     self.givenBonuses = self.givenBonuses or {}
     self.handled = self.handled or {}
     self.givenCouriers = self.givenCouriers or {}
     local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
     local npc_abilities_override = LoadKeyValues('scripts/npc/npc_abilities_override.txt')
+
+    -- Don't touch this hero more than once :O
+    if self.handled[spawnedUnit] then return end
+    self.handled[spawnedUnit] = true
 
     -- Grab a reference to self
     local this = self
@@ -6960,7 +6997,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
     }
 
     local disabledPerks = {
-        --npc_dota_hero_disruptor = true,
+        npc_dota_hero_windrunner = false,
         npc_dota_hero_shadow_demon = true,
         -- npc_dota_hero_spirit_breaker = true,
         --npc_dota_hero_spirit_slardar = true,
@@ -6975,46 +7012,6 @@ function Pregame:fixSpawnedHero( spawnedUnit )
 
     if mainHero and mainHero:IsRealHero() then
         self:applyPrimaryAttribute(playerID, mainHero)
-    end
-
-    -- Fix meepo clones and illusions
-    if mainHero and mainHero ~= spawnedUnit and self.spawnedHeroesFor[playerID] then
-        -- Apply the build
-        local build = this.selectedSkills[playerID] or {}
-        SkillManager:ApplyBuild(spawnedUnit, build)
-
-        -- Illusion and Tempest Double fixes
-        if not spawnedUnit:IsClone() then
-            Timers:CreateTimer(function()
-                if IsValidEntity(spawnedUnit) then
-                    for k,abilityName in pairs(build) do
-                        if notOnIllusions[abilityName] then
-                            local ab = spawnedUnit:FindAbilityByName(abilityName)
-                            if ab then
-                                ab:SetLevel(0)
-                                ab:RemoveSelf()
-                            end
-                        end
-                    end
-
-
-                end
-            end, DoUniqueString('fixBrokenSkills'), 0)
-        end
-
-        -- Set the correct level for each ability
-        --[[for k,v in pairs(build) do
-            local abMain = mainHero:FindAbilityByName(v)
-
-            if abMain then
-                local abAlt = spawnedUnit:FindAbilityByName(v)
-
-                if abAlt then
-                    -- Both heroes have both skills, set the level
-                    abAlt:SetLevel(abMain:GetLevel())
-                end
-            end
-        end]]
     end
 
     -- Add talents
@@ -7153,135 +7150,107 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                 end
             end
 
-            --0 index talent, move it to end
-            local first_talent = spawnedUnit:GetAbilityByIndex(0):GetAbilityName()
-            if string.find(first_talent, "special_bonus") then
-                spawnedUnit:RemoveAbility(first_talent)
-                spawnedUnit:AddAbility(first_talent)
-            end
-        end
-        spawnedUnit.hasTalent = true
-    end
+        --for i = 0, spawnedUnit:GetAbilityCount() do
+       --     if spawnedUnit:GetAbilityByIndex(i) then
+                --print("removed") 
+          --      local ability = spawnedUnit:GetAbilityByIndex(i)
+             --   if ability then
+                 --   print("Ability " .. i .. ": " .. ability:GetAbilityName() .. ", Level " .. ability:GetLevel())
+              --  end
+           -- end
+        --end
+    end, DoUniqueString('addTalents'), 0.25)
 
-    -- Various fixes
+    -- Various Fixes
     Timers:CreateTimer(function()
-        if IsValidEntity(spawnedUnit) then
-            -- Silencer Fix
-            if spawnedUnit:HasAbility('silencer_glaives_of_wisdom_steal') then
-                if not spawnedUnit:HasModifier('modifier_silencer_int_steal') then
-                    spawnedUnit:AddNewModifier(spawnedUnit, spawnedUnit:FindAbilityByName("silencer_glaives_of_wisdom_steal"), 'modifier_silencer_int_steal', {})
-                end
-            else
-                spawnedUnit:RemoveModifierByName('modifier_silencer_int_steal')
-            end
+	    if IsValidEntity(spawnedUnit) then
+	    	-- Silencer Fix NEEDS TO BE RUN EVERY SPAWN (below), AND ON FIXEDHERO FUNCTION
+	            if spawnedUnit:HasAbility('silencer_glaives_of_wisdom_steal') then
+	                if not spawnedUnit:HasModifier('modifier_silencer_int_steal') then
+	                    spawnedUnit:AddNewModifier(spawnedUnit, spawnedUnit:FindAbilityByName("silencer_glaives_of_wisdom_steal"), 'modifier_silencer_int_steal', {})
+	                end
+	            else
+	                spawnedUnit:RemoveModifierByName('modifier_silencer_int_steal')
+	            end
+	        -- Stalker Innate Auto-Level
+	        if spawnedUnit:HasAbility('night_stalker_innate_redux') then
+	            local stalkerInnate = spawnedUnit:FindAbilityByName('night_stalker_innate_redux')
+	            if stalkerInnate then
+	                if stalkerInnate:GetLevel() ~= 1 then
+	                    stalkerInnate:UpgradeAbility(false)
+	                end
+	            end
+	        end
 
-            -- Stalker Innate Auto-Level
-            if spawnedUnit:HasAbility('night_stalker_innate_redux') then
-                local stalkerInnate = spawnedUnit:FindAbilityByName('night_stalker_innate_redux')
-                if stalkerInnate then
-                    if stalkerInnate:GetLevel() ~= 1 then
-                        stalkerInnate:UpgradeAbility(false)
-                    end
-                end
-            end
+	        -- KOTL Innate Auto-Level
+	        if spawnedUnit:HasAbility('keeper_of_the_light_innate_redux') then
+	            local kotlInnate = spawnedUnit:FindAbilityByName('keeper_of_the_light_innate_redux')
+	            if kotlInnate then
+	                if kotlInnate:GetLevel() ~= 1 then
+	                    kotlInnate:UpgradeAbility(false)
+	                end
+	            end
+	        end
 
-            -- KOTL Innate Auto-Level
-            if spawnedUnit:HasAbility('keeper_of_the_light_innate_redux') then
-                local kotlInnate = spawnedUnit:FindAbilityByName('keeper_of_the_light_innate_redux')
-                if kotlInnate then
-                    if kotlInnate:GetLevel() ~= 1 then
-                        kotlInnate:UpgradeAbility(false)
-                    end
-                end
-            end
+	        -- 'No Charges' fix for Gyro Homing Missle
+	        if spawnedUnit:HasAbility('gyrocopter_homing_missile') and spawnedUnit:GetUnitName() ~= "npc_dota_hero_gyrocopter" then
+	            Timers:CreateTimer(function()
+	                spawnedUnit:RemoveModifierByName("modifier_gyrocopter_homing_missile_charge_counter")
+	            end, DoUniqueString('gyroFix'), 1)
+	        end
+	        
+	        -- Change sniper assassinate to our custom version to work with aghs
+	        if spawnedUnit:HasAbility("sniper_assassinate") and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("sniper_assassinate"):IsHidden() then
+	                spawnedUnit:AddAbility("sniper_assassinate_redux")
+	                spawnedUnit:SwapAbilities("sniper_assassinate","sniper_assassinate_redux",false,true)
+	                spawnedUnit:RemoveAbility("sniper_assassinate")
+	        end
+	        -- Change juxtapose to juxtapose ranged, for ranged heros
+	        if spawnedUnit:HasAbility("phantom_lancer_juxtapose_melee") and spawnedUnit:IsRangedAttacker() then
+	                spawnedUnit:AddAbility("phantom_lancer_juxtapose_ranged")
+	                spawnedUnit:SwapAbilities("phantom_lancer_juxtapose_melee","phantom_lancer_juxtapose_ranged",false,true)
+	                spawnedUnit:RemoveAbility("phantom_lancer_juxtapose_melee")
+	        end
+	        -- Change Feast to Feast ranged, for ranged heros
+	        if spawnedUnit:HasAbility("life_stealer_feast_melee") and spawnedUnit:IsRangedAttacker() then
+	                spawnedUnit:AddAbility("life_stealer_feast_ranged")
+	                spawnedUnit:SwapAbilities("life_stealer_feast_melee","life_stealer_feast_ranged",false,true)
+	                spawnedUnit:RemoveAbility("life_stealer_feast_melee")
+	        end
 
-            -- 'No Charges' fix for Gyro Homing Missle
-            if spawnedUnit:HasAbility('gyrocopter_homing_missile') and spawnedUnit:GetUnitName() ~= "npc_dota_hero_gyrocopter" then
-                Timers:CreateTimer(function()
-                    spawnedUnit:RemoveModifierByName("modifier_gyrocopter_homing_missile_charge_counter")
-                end, DoUniqueString('gyroFix'), 1)
-            end
+	        if spawnedUnit:HasAbility("monkey_king_jingu_mastery_lod_melee") and spawnedUnit:IsRangedAttacker() then
+	                spawnedUnit:AddAbility("monkey_king_jingu_mastery_lod_ranged")
+	                spawnedUnit:SwapAbilities("monkey_king_jingu_mastery_lod_melee","monkey_king_jingu_mastery_lod_ranged",false,true)
+	                spawnedUnit:RemoveAbility("monkey_king_jingu_mastery_lod_melee")
+	        end
 
-            -- Change sniper assassinate to our custom version to work with aghs
-            if spawnedUnit:HasAbility("sniper_assassinate") and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("sniper_assassinate"):IsHidden() then
-                    spawnedUnit:AddAbility("sniper_assassinate_redux")
-                    spawnedUnit:SwapAbilities("sniper_assassinate","sniper_assassinate_redux",false,true)
-                    spawnedUnit:RemoveAbility("sniper_assassinate")
-            end
-            -- Change juxtapose to juxtapose ranged, for ranged heros
-            if spawnedUnit:HasAbility("phantom_lancer_juxtapose_melee") and spawnedUnit:IsRangedAttacker() then
-                    spawnedUnit:AddAbility("phantom_lancer_juxtapose_ranged")
-                    spawnedUnit:SwapAbilities("phantom_lancer_juxtapose_melee","phantom_lancer_juxtapose_ranged",false,true)
-                    spawnedUnit:RemoveAbility("phantom_lancer_juxtapose_melee")
-            end
-            -- Change Feast to Feast ranged, for ranged heros
-            if spawnedUnit:HasAbility("life_stealer_feast_melee") and spawnedUnit:IsRangedAttacker() then
-                    spawnedUnit:AddAbility("life_stealer_feast_ranged")
-                    spawnedUnit:SwapAbilities("life_stealer_feast_melee","life_stealer_feast_ranged",false,true)
-                    spawnedUnit:RemoveAbility("life_stealer_feast_melee")
-            end
+	        -- Change Overpower to Overpower ranged, for ranged heros
+	        if spawnedUnit:HasAbility("ursa_overpower_melee") and spawnedUnit:IsRangedAttacker() then
+	                spawnedUnit:AddAbility("ursa_overpower_ranged")
+	                spawnedUnit:SwapAbilities("ursa_overpower_melee","ursa_overpower_ranged",false,true)
+	                spawnedUnit:RemoveAbility("ursa_overpower_melee")
+	        end
 
-            if spawnedUnit:HasAbility("monkey_king_jingu_mastery_lod_melee") and spawnedUnit:IsRangedAttacker() then
-                    spawnedUnit:AddAbility("monkey_king_jingu_mastery_lod_ranged")
-                    spawnedUnit:SwapAbilities("monkey_king_jingu_mastery_lod_melee","monkey_king_jingu_mastery_lod_ranged",false,true)
-                    spawnedUnit:RemoveAbility("monkey_king_jingu_mastery_lod_melee")
-            end
+	        if spawnedUnit:HasAbility("phantom_assassin_coup_de_grace_melee") and spawnedUnit:IsRangedAttacker() then
+	                spawnedUnit:AddAbility("phantom_assassin_coup_de_grace_ranged")
+	                spawnedUnit:SwapAbilities("phantom_assassin_coup_de_grace_melee","phantom_assassin_coup_de_grace_ranged",false,true)
+	                spawnedUnit:RemoveAbility("phantom_assassin_coup_de_grace_melee")
+	        end
 
-            -- Change Overpower to Overpower ranged, for ranged heros
-            if spawnedUnit:HasAbility("ursa_overpower_melee") and spawnedUnit:IsRangedAttacker() then
-                    spawnedUnit:AddAbility("ursa_overpower_ranged")
-                    spawnedUnit:SwapAbilities("ursa_overpower_melee","ursa_overpower_ranged",false,true)
-                    spawnedUnit:RemoveAbility("ursa_overpower_melee")
-            end
-
-            if spawnedUnit:HasAbility("phantom_assassin_coup_de_grace_melee") and spawnedUnit:IsRangedAttacker() then
-                    spawnedUnit:AddAbility("phantom_assassin_coup_de_grace_ranged")
-                    spawnedUnit:SwapAbilities("phantom_assassin_coup_de_grace_melee","phantom_assassin_coup_de_grace_ranged",false,true)
-                    spawnedUnit:RemoveAbility("phantom_assassin_coup_de_grace_melee")
-            end
-
-            -- Change infernal blade on gyro to critical strike
-            --if this.optionStore['lodOptionBanningUseBanList'] == 1 and spawnedUnit:HasAbility("doom_bringer_infernal_blade") and spawnedUnit:GetUnitName() == "npc_dota_hero_gyrocopter" and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("doom_bringer_infernal_blade"):IsHidden() then
-           --         spawnedUnit:AddAbility("chaos_knight_chaos_strike_gyro")
-           --         spawnedUnit:SwapAbilities("doom_bringer_infernal_blade","chaos_knight_chaos_strike_gyro",false,true)
-            --        spawnedUnit:RemoveAbility("doom_bringer_infernal_blade")
-            --end
-            -- Custom Flesh Heap fixes
-            for abilitySlot=0,6 do
-                local abilityTemp = spawnedUnit:GetAbilityByIndex(abilitySlot)
-                if abilityTemp then
-                    if string.find(abilityTemp:GetAbilityName(),"flesh_heap_") then
-                        local abilityName = abilityTemp:GetAbilityName()
-                        local modifierName = "modifier"..string.sub(abilityName,6)
-                        spawnedUnit:AddNewModifier(spawnedUnit,abilityTemp,modifierName,{})
-
-                    end
-                end
-            end
-        end
-    end, DoUniqueString('silencerFix'), 2)
-
---[[
-    Timers:CreateTimer(function()
-        if IsValidEntity(spawnedUnit) and not spawnedUnit.hasTalents then
-            local abilities = spawnedUnit:GetAbilityCount() - 1
-            spawnedUnit.talents = {}
-
-            for i = 0, abilities do
-                if spawnedUnit:GetAbilityByIndex(i) then
-                    if string.find(spawnedUnit:GetAbilityByIndex(i):GetAbilityName(), "special_bonus") then
-                        --print("removed")
-                        local talent = spawnedUnit:GetAbilityByIndex(i):GetAbilityName()
-                        spawnedUnit.talents[i] = talent
-                        print("Ability " .. i .. ": " .. talent)
-                        spawnedUnit:RemoveAbility(talent)
-                    end
-                end
-            end
-            spawnedUnit.hasTalents = true
-       end
-
-    end, DoUniqueString('fixHotKey'), 1)]]
+	        -- Custom Flesh Heap fixes
+	        for abilitySlot=0,6 do
+	            local abilityTemp = spawnedUnit:GetAbilityByIndex(abilitySlot)
+	            if abilityTemp then 
+	                if string.find(abilityTemp:GetAbilityName(),"flesh_heap_") then
+	                    local abilityName = abilityTemp:GetAbilityName()
+	                    local modifierName = "modifier"..string.sub(abilityName,6)
+	                    spawnedUnit:AddNewModifier(spawnedUnit,abilityTemp,modifierName,{})
+	                    
+	                end
+	            end
+	        end
+	    end
+	end, DoUniqueString('variousFixes'), 0.5)
 
      -- Add hero perks
     Timers:CreateTimer(function()
@@ -7298,11 +7267,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
            spawnedUnit.hasPerk = true
            --print("Perk assigned")
         end
-    end, DoUniqueString('addPerk'), 1.0)
-
-    -- Don't touch this hero more than once :O
-    if self.handled[spawnedUnit] then return end
-    self.handled[spawnedUnit] = true
+    end, DoUniqueString('addPerk'), 0.75)
 
     -- Are they a bot?
     Timers:CreateTimer(function()
@@ -7322,34 +7287,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                 end
             end
         end
-    end, DoUniqueString('addBotAI'), 0.5)
-
-
-
-    --[[local ab1 = spawnedUnit:GetAbilityByIndex(1)
-    local ab2 = spawnedUnit:GetAbilityByIndex(2)
-    local ab3 = spawnedUnit:GetAbilityByIndex(3)
-
-    local ab1Name = ab1:GetAbilityName()
-    local ab2Name = ab2:GetAbilityName()
-    local ab3Name = ab3:GetAbilityName()
-
-    print('NEW')
-    print(ab1Name)
-    print(ab2Name)
-    print(ab3Name)]]
-
-    --spawnedUnit:RemoveAbility(ab1Name)
-    --spawnedUnit:RemoveAbility(ab2Name)
-    --spawnedUnit:RemoveAbility(ab3Name)
-
-    --[[spawnedUnit:AddAbility('pudge_meat_hook')
-    spawnedUnit:AddAbility('pudge_flesh_heap')
-    spawnedUnit:AddAbility('pudge_dismember')
-    spawnedUnit:AddAbility('pudge_rot')]]
-
-    -- Handle the free courier stuff
-    --handleFreeCourier(spawnedUnit)
+    end, DoUniqueString('addBotAI'), 1.0)
 
     -- Toolsmode developer stuff to help test
     if IsInToolsMode() then
@@ -7491,20 +7429,6 @@ function Pregame:fixSpawnedHero( spawnedUnit )
         end
     end
 
-    -- THIS does not seem necessary anymore, eventually remove this code.
-    --if util:isPlayerBot(playerID) then
-        --Timers:CreateTimer(function()
-            --if IsValidEntity(spawnedUnit) then
-                    --local item = spawnedUnit:AddItemByName('item_backPackBlocker')
-                    --spawnedUnit:SwapItems(0, 6)
-                    --local item2 = spawnedUnit:AddItemByName('item_backPackBlocker')
-                    --spawnedUnit:SwapItems(0, 7)
-                    --local item3 = spawnedUnit:AddItemByName('item_backPackBlocker')
-                    --spawnedUnit:SwapItems(0, 8)
-           -- end
-        --end, DoUniqueString('fillBotsBackPack'), 1)
-    --end
-
     Timers:CreateTimer(function()
         if IsValidEntity(spawnedUnit) then
             for _,modifier in pairs(spawnedUnit:FindAllModifiers()) do
@@ -7609,7 +7533,11 @@ function Pregame:fixSpawningIssues()
         if IsValidEntity(spawnedUnit) then
             -- Filter gold modifier here instead of in filtergold in ingame because this makes the popup correct
             local goldModifier = OptionManager:GetOption('goldModifier')
-            if goldModifier ~= 1 then
+            if goldModifier ~= 1 and not spawnedUnit.bountyAdjusted then
+                -- Non hero units that respawn should only be adjusted once, this are things like bears or familiars
+                if not spawnedUnit:IsHero() then
+                 spawnedUnit.bountyAdjusted = true
+                end
                 local newBounty = spawnedUnit:GetGoldBounty() * goldModifier / 100
                 spawnedUnit:SetMaximumGoldBounty(newBounty)
                 spawnedUnit:SetMinimumGoldBounty(newBounty)
@@ -7622,7 +7550,21 @@ function Pregame:fixSpawningIssues()
                     local noticeAura = spawnedUnit:FindAbilityByName("treant_eyes_in_the_forest_notification")
                     noticeAura:SetLevel(1)
                 end, DoUniqueString('eyesFix'), 0.5)
-            end
+        end
+
+        -- Silencer Fix NEEDS TO BE RUN EVERY SPAWN, AND ON FIXEDHERO FUNCTION
+        Timers:CreateTimer(function()
+	        if IsValidEntity(spawnedUnit) then
+	            -- Silencer Fix
+	            if spawnedUnit:HasAbility('silencer_glaives_of_wisdom_steal') then
+	                if not spawnedUnit:HasModifier('modifier_silencer_int_steal') then
+	                    spawnedUnit:AddNewModifier(spawnedUnit, spawnedUnit:FindAbilityByName("silencer_glaives_of_wisdom_steal"), 'modifier_silencer_int_steal', {})
+	                end
+	            else
+	                spawnedUnit:RemoveModifierByName('modifier_silencer_int_steal')
+	            end
+	        end
+    	end, DoUniqueString('silencerFix'), 2)
 
             if Wearables:HasDefaultWearables( spawnedUnit:GetUnitName() ) then
                 Wearables:AttachWearableList( spawnedUnit, Wearables:GetDefaultWearablesList( spawnedUnit:GetUnitName() ) )
@@ -7730,7 +7672,7 @@ ListenToGameEvent('game_rules_state_change', function(keys)
     elseif newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
         if IsDedicatedServer() then
             local mapName = OptionManager:GetOption('mapname')
-            if mapName == 'standard' and not util:isCoop() then
+            if mapName == 'all_allowed' and not util:isCoop() then
                 SU:SendPlayerBuild( buildBackups )
             end
         end

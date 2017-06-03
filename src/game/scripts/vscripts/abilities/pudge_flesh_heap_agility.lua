@@ -135,6 +135,10 @@ function modifier_flesh_heap_agi:OnDeath(keys)
     return 
   end
 
+  if keys.unit:IsTempestDouble() then
+    return
+  end
+
   if not IsServer() then 
     return 
   end
