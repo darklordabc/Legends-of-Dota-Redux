@@ -1030,6 +1030,26 @@ function util:getAbilityKV(ability, key)
     end
 end
 
+function util:contains(table, element)
+    if table then
+        for _, value in pairs(table) do
+            if value == element then
+                return true
+            end
+        end
+    end
+    return false
+end
+
+function util:removeByValue(t, value)
+    for i,v in pairs(t) do
+        if v == value then
+            table.remove(t, i)
+            break
+        end
+    end
+end
+
 (function()
     toIgnore = {
         nyx_assassin_burrow = true,
