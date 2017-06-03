@@ -15,6 +15,9 @@ All notable changes to this project will be documented in this file.
 - Thirst for life no longer has intellect peanlty
 - Renamed Nature's Spy to Sight and made it an ultimate
 - Reduced manacost of blink support to 100 from 175
+- Talents that are for abilities you dont have now get replaced, preferably with talents for abilities you do have
+
+
 ## 7.7 
 - Ball Lighting will no longer trigger essence aura
 - Symbiote now gives -6 armor and no longer gives bonus stats
