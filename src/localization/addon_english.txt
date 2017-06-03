@@ -746,7 +746,7 @@
     "hintEmpoweringHaste"                           "Empowering Haste and Thirst make for a lethal combination!"
     "hintInfestHacks"                               "Pudge's Rot and Witch Doctor's Voodoo Restoration won't damage you or cost mana when you infest another hero."
     "hintSuggestBuild"                              "Do you know a good build? Submit it and it may be added to the recommended builds sections."
-    "hintBreakPassives"                             "Silver Edge, Doom and Demonic Purge are the only ways to disable enemy passives - which can be very useful against passive-heavy heroes, such as Tanks."
+    "hintBreakPassives"                             "Silver Edge, Silver, Doom and Demonic Purge are useful ways to disable enemy passives - breaking passives can be the only counter to passive heavy builds like tanks."
     "hintInnateAbilities"                           "Night Stalker, Keeper of the Light will benefit from Aghanim's Scepter Upgrade, irrespective of their chosen abilities."
     "hintReport"                                    "Found a bug? Report it. Most bugs are only fixed after a player has reported them. Use the Steam Workshop page or use the in-game comment form."
     "hintWarnings"                                  "Many Abilities will have red warnings at the bottom of their descriptions. It is important to read these as they explain bugs, hero requirements or other abilities that are needed."

@@ -57,6 +57,9 @@ All notable changes to this project will be documented in this file.
 - Added Aegis Tower OP (single player ability)
 - Nerfed Molten Lord abilities
 - Fixed where non-hero respawning units, like Bear, had crazy high gold bounties
+- Increased starting bonus gold to 2500 in all allowed because OOSP no longer gives bonus gold
+- Increased bonus gold to 200% in all_allowed form 150%
+- Battle thirst is no longer active by default in all_allowed
  
 
 
