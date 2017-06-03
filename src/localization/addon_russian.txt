@@ -41,7 +41,7 @@
     // Teams
     "theRadiant"                                    "Силы Света"
     "theDire"                                       "Силы Тьмы"
-    "theUnassigned"                                 "Оставшиеся"
+    "theUnassigned"                                 "Не определившиеся"
 
     // The team locking buttons
     "autoAssignTeams"                               "Автобаланс оставшихся"
@@ -339,20 +339,30 @@
     "lodOptionNormal"                               "Обычная - каждые 2 минуты"
     "lodOptionHigh"                                 "Высокая - каждую минуту"
     "lodOptionExtreme"                              "Экстремальная - каждые 30 секунд"
+    
+    "lodOptionNoNeutralMultiply"                    "1x (Стандарт)"
+    "lodOptionDouble"                               "2x"
+    "lodOptionTriple"                               "3x"
+    "lodOptionQuadruple"                            "4x"
 
     "lodOptionDuels"                                "Дуэли"
     "lodOptionDesDuels"                             "Дуэли"
     "lodOptionAboutDuels"                           "Система дуэлей из кастомки Angel Arena Reborn"
 
-    "lodOptionRefreshCooldownsOnDeath"              "Сбрасывать кулдауны после смерти"
-    "lodOptionDesRefreshCooldownsOnDeath"           "Сбрасывать кулдауны после смерти"
-    "lodOptionAboutRefreshCooldownsOnDeath"         "Сбрасывать кулдауны после смерти, кроме суицида течиса"
-    "lodMutatorRefreshCooldownsOnDeath"             "Сбрасывать кулдауны после смерти"
+    "lodOptionRefreshCooldownsOnDeath"              "Сбрасывание кулдаунов после смерти"
+    "lodOptionDesRefreshCooldownsOnDeath"           "Сбрасывание кулдаунов после смерти"
+    "lodOptionAboutRefreshCooldownsOnDeath"         "Сбрасывание кулдаунов после смерти. Не сбрасывает суицид течиса"
+    "lodMutatorRefreshCooldownsOnDeath"             "Сбрасывание кулдаунов после смерти"
 
     "lodOption322"                                  "322"
     "lodOptionDes322"                               "включить 322"
     "lodOptionAbout322"                             "После смерти герой получает 322 золота, вместо того, чтобы потерять его."
     "lodMutator322"                                 "322"
+
+    "lodOptionBotsStupid"                                  "Глупые боты"
+    "lodOptionDesBotsStupid"                               "Сделать ботов глупее"
+    "lodOptionAboutBotsStupid"                             "У ботов снижается скорость реакции и частота использования скилов."
+    "lodMutatorBotsStupid"                                 "Глупые боты"
 
     "lodOptionDesGottaGoFast"                               "Огромная скорость передвижения"
     "lodOptionGottaGoFastOff"                               "Нормальная скорость передвижения"
@@ -373,7 +383,7 @@
 
     "lodOptionDesAdvancedHeroAbilities"             "Разрешить способности героев"
     "lodOptionDesAdvancedNeutralAbilities"          "Разрешить способности нейтралов"
-    "lodOptionDesAdvancedCustomSkills"              "Разрешить новые способности"
+    "lodOptionDesAdvancedCustomSkills"              "Разрешить нестандартные способности"
     "lodOptionDesAdvancedOPAbilities"               "Запретить сверхсильные способности"
     "lodOptionDesCrazyWTF"                          "Включить WTF мод"
     "lodOptionDesIngameBuilder"                     "Включить внутриигровое изменение героя"
