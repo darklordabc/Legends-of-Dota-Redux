@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 - Battle thirst is no longer active by default in all_allowed
 - Doubled Duration of Tree Eater
 - Some Russian translations improvements by Exchy
+- Eldritch Pull cast range increases with level, and so does damage
 
 ## 7.7 
 - Ball Lighting will no longer trigger essence aura
