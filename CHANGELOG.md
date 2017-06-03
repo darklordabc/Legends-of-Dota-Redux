@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 - Increased bonus gold to 200% in all_allowed form 150%
 - Battle thirst is no longer active by default in all_allowed
 - Doubled Duration of Tree Eater
+- Some Russian translations improvements by Exchy
 
 ## 7.7 
 - Ball Lighting will no longer trigger essence aura
