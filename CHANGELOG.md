@@ -12,6 +12,8 @@ All notable changes to this project will be documented in this file.
 - Doubled Duration of Tree Eater
 - Some Russian translations improvements by Exchy
 - Eldritch Pull cast range increases with level, and so does damage
+- Thirst for life no longer has intellect peanlty
+- Renamed Nature's Spy to Sight and made it an ultimate
 
 ## 7.7 
 - Ball Lighting will no longer trigger essence aura

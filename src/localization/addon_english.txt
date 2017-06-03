@@ -4161,8 +4161,8 @@
     "DOTA_Tooltip_ability_kret_poisoning_adsorbVal" "MANA REDUCTION:"
 
     "DOTA_Tooltip_ability_kret_lust_for_life"   "Thirst for Life"
-    "DOTA_Tooltip_ability_kret_lust_for_life_Description"   "By sacrificing his intelligence, Murloc gets regeneration based on hit points missing."
-    "DOTA_Tooltip_ability_kret_lust_for_life_intellect_sacrifice"   "INTELLECT PENALTY:"
+    "DOTA_Tooltip_ability_kret_lust_for_life_Description"   "Murloc gets regeneration based on hit points missing."
+    //"DOTA_Tooltip_ability_kret_lust_for_life_intellect_sacrifice"   "INTELLECT PENALTY:"
     "DOTA_Tooltip_ability_kret_lust_for_life_tolltip"   "%MISSING HEALTH FOR ONE BONUS:"
     "DOTA_Tooltip_ability_kret_lust_for_life_health_regen_percent"  "%REGENERATION PER BONUS:"
 
@@ -8309,13 +8309,14 @@
         "DOTA_Tooltip_Ability_item_health_potion"                           "Health Potion"
         "DOTA_Tooltip_Ability_item_mana_potion"                             "Mana Potion"   
 
-        "DOTA_Tooltip_ability_sight"    "Nature's Spy"
-        "DOTA_Tooltip_ability_sight_Description"    "Give a friendly unit flying vision and true sight."
+        "DOTA_Tooltip_ability_sight"    "Sight"
+        "DOTA_Tooltip_ability_sight_Description"    "Grant yourself or a friendly unit superior sight, giving truesight and unobstructed vision."
         "DOTA_Tooltip_ability_sight_duration"   "DURATION:"
         "DOTA_Tooltip_ability_sight_radius_d"   "DAYTIME VISION:"
         "DOTA_Tooltip_ability_sight_radius_n"   "NIGHTTIME VISION:"
+        "DOTA_Tooltip_ability_sight_Lore"           "Where there is no vision the people perish."
         "DOTA_Tooltip_modifier_sight"   "Nature's Spy"
-        "DOTA_Tooltip_modifier_sight_Description"   "flying vision and true sight"
+        "DOTA_Tooltip_modifier_sight_Description"   "Unobstructed vision and true sight"
 
         "npc_dota_creature_big_bear"        "Daddy Bear"
         "npc_bot_spirit_sven"        "Sven Bot Helper"
