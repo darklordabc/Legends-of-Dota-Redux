@@ -56,6 +56,7 @@ All notable changes to this project will be documented in this file.
 *
 - Added Aegis Tower OP (single player ability)
 - Nerfed Molten Lord abilities
+- Fixed where non-hero respawning units, like Bear, had crazy high gold bounties
  
 
 

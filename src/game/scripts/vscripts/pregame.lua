@@ -7444,7 +7444,11 @@ function Pregame:fixSpawningIssues()
         if IsValidEntity(spawnedUnit) then
             -- Filter gold modifier here instead of in filtergold in ingame because this makes the popup correct
             local goldModifier = OptionManager:GetOption('goldModifier')
-            if goldModifier ~= 1 then
+            if goldModifier ~= 1 and not spawnedUnit.bountyAdjusted then
+                -- Non hero units that respawn should only be adjusted once, this are things like bears or familiars
+                if not spawnedUnit:IsHero() then
+                 spawnedUnit.bountyAdjusted = true
+                end
                 local newBounty = spawnedUnit:GetGoldBounty() * goldModifier / 100
                 spawnedUnit:SetMaximumGoldBounty(newBounty) 
                 spawnedUnit:SetMinimumGoldBounty(newBounty)
