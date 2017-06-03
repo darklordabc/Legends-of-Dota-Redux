@@ -7045,9 +7045,22 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                 return false
             end
 
+            local replacedHeroNames = {
+                npc_dota_hero_underlord = "npc_dota_hero_abyssal_underlord",
+                npc_dota_hero_zeus = "npc_dota_hero_zuus",
+                npc_dota_hero_nyx = "npc_dota_hero_nyx_assassin",
+                npc_dota_hero_wraith_king = "npc_dota_hero_skeleton_king",
+                npc_dota_hero_magnus = "npc_dota_hero_magnataur",
+                npc_dota_hero_clockwerk = "npc_dota_hero_rattletrap",
+                npc_dota_hero_doom = "npc_dota_hero_doom_bringer",
+                npc_dota_hero_windranger = "npc_dota_hero_windrunner",
+                npc_dota_hero_necrophos = "npc_dota_hero_necrolyte",
+                npc_dota_hero_skywrath = "npc_dota_hero_skywrath_mage",
+                npc_dota_hero_timbersaw = "npc_dota_hero_shredder",
+            }
             local function GetTalentGroup(targetTalent, heroData)
                 local heroName = targetTalent:gsub('special_bonus_unique', 'npc_dota_hero'):gsub('_%d', '')
-                if heroName == "npc_dota_hero_underlord" then heroName = "npc_dota_hero_abyssal_underlord" end
+                if replacedHeroNames[heroName] then heroName = replacedHeroNames[heroName] end
 
                 if not heroData then
                     heroData = allHeroes[heroName]
@@ -7061,6 +7074,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                     local abName = heroData['Ability' .. i]
                     if abName and string.find(abName, 'special_bonus') then
                         if abName == targetTalent then
+                            print("GetTalentGroup: ", abName, skippedTalentsCount + 1)
                             return math.ceil((skippedTalentsCount + 1) / 2)
                         else
                             skippedTalentsCount = skippedTalentsCount + 1
@@ -7072,14 +7086,16 @@ function Pregame:fixSpawnedHero( spawnedUnit )
             --Load talents from kv and calculate total count
             local currentTalentCount = 0
             local requiredTalentsGroups = {}
+            local heroTalentList = {}
             for i = 1, 24 do
                 local abName = heroValues['Ability' .. i]
                 if abName and string.find(abName, "special_bonus") then
+                    local talentIndex = currentTalentCount + #requiredTalentsGroups + 1
                     if VerifyTalent(abName) then
-                        spawnedUnit:AddAbility(abName)
+                        heroTalentList[talentIndex] = abName
                         currentTalentCount = currentTalentCount + 1
                     else
-                        local talentGroup = math.ceil((currentTalentCount + #requiredTalentsGroups + 1) / 2)
+                        local talentGroup = math.ceil(talentIndex / 2)
                         table.insert(requiredTalentsGroups, talentGroup)
                     end
                 end
@@ -7095,7 +7111,9 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                         local talentGroup = GetTalentGroup(k)
                         if VerifyTalent(k) and util:contains(requiredTalentsGroups, talentGroup) then
                             util:removeByValue(requiredTalentsGroups, talentGroup)
-                            spawnedUnit:AddAbility(k)
+                            local targetIndex = talentGroup * 2
+                            if heroTalentList[targetIndex] then targetIndex = targetIndex - 1 end
+                            heroTalentList[targetIndex] = k
                             currentTalentCount = currentTalentCount + 1
                             if currentTalentCount >= 8 then
                                 break
@@ -7115,8 +7133,11 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                             if abName and string.find(abName, "special_bonus") then
                                 local talentGroup = math.ceil((skippedTalentsCount + 1) / 2)
                                 if VerifyTalent(abName) and util:contains(requiredTalentsGroups, talentGroup) then
+                                    local targetIndex = talentGroup * 2
+                                    if heroTalentList[targetIndex] then targetIndex = targetIndex - 1 end
+                                    heroTalentList[targetIndex] = abName
+
                                     util:removeByValue(requiredTalentsGroups, talentGroup)
-                                    spawnedUnit:AddAbility(abName)
                                     currentTalentCount = currentTalentCount + 1
                                     break -- ro increase randomness take a new hero after each added talent
                                 else
@@ -7125,6 +7146,10 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                             end
                         end
                     end
+                end
+
+                for _,v in ipairs(heroTalentList) do
+                    spawnedUnit:AddAbility(v)
                 end
             end
 
