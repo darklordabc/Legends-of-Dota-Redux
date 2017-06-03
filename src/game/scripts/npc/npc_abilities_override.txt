@@ -4371,6 +4371,11 @@
         "TalentRequiredAbility"                                                   "warlock_rain_of_chaos"
     }
 
+    "special_bonus_unique_warlock_4"
+    {
+        "TalentRequiredAbility"                                                   "warlock_rain_of_chaos"
+    }
+
     "special_bonus_unique_warlock_3"
     {
         "TalentRequiredAbility"                                                   "warlock_shadow_word"
