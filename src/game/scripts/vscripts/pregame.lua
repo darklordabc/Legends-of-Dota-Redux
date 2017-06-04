@@ -313,6 +313,11 @@ function Pregame:init()
         this:onPlayerSelectAbility(eventSourceIndex, args)
     end)
 
+    -- Player wants a random hero
+    CustomGameEventManager:RegisterListener('lodChooseRandomHero', function(eventSourceIndex, args)
+        this:onPlayerSelectRandomHero(eventSourceIndex, args)
+    end)
+
     -- Player wants a random ability for a slot
     CustomGameEventManager:RegisterListener('lodChooseRandomAbility', function(eventSourceIndex, args)
         this:onPlayerSelectRandomAbility(eventSourceIndex, args)
@@ -5108,6 +5113,39 @@ function Pregame:PlayAlert(playerID)
     else
         EmitAnnouncerSoundForPlayer(sound, playerID)
     end
+end
+
+-- Player wants to select a random hero
+function Pregame:onPlayerSelectRandomHero(eventSourceIndex, args)
+    -- Grab data
+    local playerID = args.PlayerID
+    local player = PlayerResource:GetPlayer(playerID)
+
+    -- Ensure we are in the picking phase
+    if self:getPhase() ~= constants.PHASE_SELECTION then
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedWrongPhaseAllRandom'
+        })
+        self:PlayAlert(playerID)
+
+        return
+    end
+
+    -- Have they locked their skills?
+    if self.isReady[playerID] == 1 then
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedPlayerIsReady'
+        })
+        self:PlayAlert(playerID)
+
+        return
+    end
+
+    args.heroName = self:getRandomHero()
+
+    self:onPlayerSelectHero(eventSourceIndex, args)
 end
 
 -- Player wants to select a random ability
