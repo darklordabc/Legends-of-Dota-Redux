@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file.
 - You can now right click an ability slot to random an ability
 - Added two new hints for above two functions
 - Winter Wyverns Perk now only requires health and mana to be at 75% before she starts flying
-- Removed exploit that allowed glimmer cape and shadow amulet to be used when invis items are banned
+- Fixed exploit that allowed glimmer cape and shadow amulet to be used when invis items are banned
 
 ## 7.8
 - Added Aegis Tower OP (single player ability)
