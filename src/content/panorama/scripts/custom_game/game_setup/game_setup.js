@@ -1193,6 +1193,10 @@ function setupBuilderTabs() {
     $.RegisterEventHandler('DragEnter', heroDropConBlank, heroDragEnter);
     $.RegisterEventHandler('DragLeave', heroDropConBlank, heroDragLeave);
 
+    $('#pickingPhaseSelectedHeroImageCon').SetPanelEvent("oncontextmenu", function () {
+        onYourHeroRandomed()
+    })
+
     $('#pickingPhaseSelectedHeroText').hittest = false;
 
     // Hook banning
@@ -1578,6 +1582,13 @@ function onBanButtonPressed() {
         // Done
         return;
     }
+}
+
+function onYourHeroRandomed() {
+    // Focus nothing
+    focusNothing();
+
+    GameEvents.SendCustomGameEventToServer("lodChooseRandomHero", {})  
 }
 
 function onYourAbilityIconRandomed(slot) {
