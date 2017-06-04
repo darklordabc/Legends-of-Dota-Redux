@@ -799,7 +799,7 @@
     "hintShadowfiend"                         "At the start of the game, Shadow Fiend gains a free level of Necromastery, whether he has it or not."
     "hintPuck"                         "Puck has a 50% chance to reflect disjointed spells."
     "hintAbaddon"                         "For Abaddon, Mist Coil self-heals instead of damages and Aphotic Shield receives 2 charges."
-    "hintWinterWyvern"                         "When Winter Wyvern's health and mana are above 90% she gains flying status after a 5 second delay."
+    "hintWinterWyvern"                         "When Winter Wyvern's health and mana are above 75% she gains flying status after a 5 second delay."
     "hintDragonKnight"                         "While Dragon Knight is in Elder Dragon Form, all of Dragon Knight's abilities apply Dragon Form debuffs. This includes towers."
     "hintCentaur"                         "Centaur Warrunner takes 75% damage from Self-Damaging spells."
     "hintPhoenix"                         "Phoenix passively triggers Supernova when taking lethal damage. Requires level 6 or higher."
@@ -1287,7 +1287,7 @@
     "unique_mechanic_warlock"                        "Warlock starts the game with 2 free <font color=\'#ffd966\'>Observer Wards</font>."
     "unique_mechanic_weaver"                        "Weaver will automatically cast <font color='#ffd966'>Time Lapse</font> upon taking fatal damage."
     //"unique_mechanic_windrunner"                        "If Windranger has no passives, all her active spells will refund 20% mana and have 20% reduced cooldowns."
-    "unique_mechanic_winter_wyvern"         "When Winter Wyvern's health and mana are above 90% she gains flying status after a 5 second delay."
+    "unique_mechanic_winter_wyvern"         "When Winter Wyvern's health and mana are above 75% she gains flying status after a 5 second delay."
     "unique_mechanic_witch_doctor"           "<font color=\'#ffd966\'>Healing</font> abilities have 25% extra effectiveness when used by Witch Doctor."
     "unique_mechanic_skeleton_king"                        "Wraith King can buyback with a 50% reduced cooldown, refunding 50% of the buyback cost and removing the gold penalty."
     "unique_mechanic_zuus"                        "Zeus refunds 20% of the manacost of any <font color='#ffd966'>Lightning</font> spells he casts."
@@ -3639,7 +3639,7 @@
     "DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flight_delay"    "Flight Delay"
     "DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flight_delay_Description"    "Preparing to fly over 5 seconds."
     "DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flying"  "Flying"
-    "DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flying_Description"    "When Winter Wyvern's health and mana are above 90%d% she gains flying status after 5 seconds.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flying_Description"    "When Winter Wyvern's health and mana are above 75%d% she gains flying status after 5 seconds.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
     /// WITCH DOCTOR​
     "DOTA_Tooltip_modifier_npc_dota_hero_witch_doctor_perk" "Witch Doctor Perk"
