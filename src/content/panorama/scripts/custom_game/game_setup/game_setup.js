@@ -1193,8 +1193,12 @@ function setupBuilderTabs() {
     $.RegisterEventHandler('DragEnter', heroDropConBlank, heroDragEnter);
     $.RegisterEventHandler('DragLeave', heroDropConBlank, heroDragLeave);
 
+    $('#pickingPhaseSelectedHeroImageCon').SetPanelEvent("onactivate", function () {
+        onYourHeroRandomed();
+    })
+
     $('#pickingPhaseSelectedHeroImageCon').SetPanelEvent("oncontextmenu", function () {
-        onYourHeroRandomed()
+        onYourHeroRandomed();
     })
 
     $('#pickingPhaseSelectedHeroText').hittest = false;

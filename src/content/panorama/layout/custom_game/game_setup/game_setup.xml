@@ -77,7 +77,7 @@
                 </Panel>
             </Panel>
 
-            <Panel id="mainSelectionRoot">
+            <Panel id="mainSelectionRoot" hittest="false">
                 <Panel id="unassignedTeamContainer" onactivate="onJoinUnassignedPressed()">
                     <Label id="unassignedTeamLabel" text="theUnassigned" />
                     <Panel id="unassignedPlayersContainer" class="theTeamContainer" />                
