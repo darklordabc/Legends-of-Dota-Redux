@@ -769,6 +769,8 @@
     "hintCtrl"  "Hold Down Ctrl + Click the ability categories to show more than 1 category at a time. The game starts with more than 1 category selected already."
     "hintSinglePlayer"  "'Single Player abilities' are designed for solo play against bots, these are extremely powerful and are not designed with balance in mind. Enabling them in multiplayer is NOT recommended, unless the other players agree." 
     "hintCustomAbility"  "Redux features many new and interesting custom abilities. Some imported from other Dota 2 mods, some by individual developers and some specifically created for Redux. Be careful when enabling these, as they can be overwhelming for new players."
+    "hintAlt"  "Alt-Click or Right Click an ability to high-light it for your teammates."
+    "hintRandom"  "Right click an ability slot to random an ability."
     "hintBooster"  "Booster Draft is gamemode based on the popular draft method from MAGIC: THE GATHERING Card Game. Like Single Draft, It is for advanced players who want a fairer game."
     "hintPerks"  "Every Hero in Redux has a special perk that is a unique advantage for that hero. These perks are designed to encourage players to use different heroes and not just pick the few heroes with the best stats. They can be disabled."  
     "hintRespawnTimes"  "Respawn rates will increase after 40 minutes and will increase by 10% every 10 minutes, up to 50% respawn rate. This is to prevent games lasting too long and being unendable."

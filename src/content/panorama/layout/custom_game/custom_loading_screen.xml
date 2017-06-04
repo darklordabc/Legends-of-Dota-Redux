@@ -103,6 +103,8 @@
 			<Image src="file://{images}/custom_game/hints/hint_singleplayer.png" />
 			<Image src="file://{images}/custom_game/hints/hint_GoldBorder.png" />
 			<Image src="file://{images}/custom_game/hints/hint_CustomAbility.png" />
+			<Image src="file://{images}/custom_game/hints/hint_alt.png" />
+			<Image src="file://{images}/custom_game/hints/hint_random.png" />
 			<Image src="file://{images}/custom_game/hints/hint_perks.png" />
 			<Image src="file://{images}/custom_game/hints/hint_Booster.png" />
 			<Image src="file://{images}/custom_game/hints/hint_RespawnTimes.png" />
