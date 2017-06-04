@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 7.9
 - Improved styles of builds page
 - You can not alt or right click abilities/heroes to recommend them to be selected or banned
+- Winter Wyverns Perk now only requires health and mana to be at 75% before she starts flying
 
 ## 7.8
 - Added Aegis Tower OP (single player ability)

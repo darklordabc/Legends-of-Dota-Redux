@@ -2325,7 +2325,7 @@ Button:enabled:hover {
     animation-name: lodQuickHighlight;
     animation-duration: 0.25s;
     animation-timing-function: ease-in-out;
-    animation-iteration-count: 1;
+    animation-iteration-count: 4;
 }
 
 @keyframes 'lodQuickHighlight' {
