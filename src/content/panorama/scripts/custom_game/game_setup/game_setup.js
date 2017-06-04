@@ -1580,6 +1580,13 @@ function onBanButtonPressed() {
     }
 }
 
+function onYourAbilityIconRandomed(slot) {
+    // Focus nothing
+    focusNothing();
+
+    GameEvents.SendCustomGameEventToServer("lodChooseRandomAbility", {"slot" : slot})  
+}
+
 // They clicked on one of their ability icons
 function onYourAbilityIconPressed(slot) {
     // Focus nothing
@@ -1732,9 +1739,21 @@ function toggleShowTier(tier) {
 
 // Makes the given hero container selectable
 function makeHeroSelectable(heroCon) {
+    heroCon.SetPanelEvent('oncontextmenu', function() {
+        var heroName = heroCon.GetAttributeString('heroName', '');
+        if(heroName == null || heroName.length <= 0) return;
+
+        GameEvents.SendCustomGameEventToServer("lodGameSetupPing", {"originalContent" : heroName, "content" : $.Localize(heroName), "type" : "hero"});
+    });
+
     heroCon.SetPanelEvent('onactivate', function() {
         var heroName = heroCon.GetAttributeString('heroName', '');
         if(heroName == null || heroName.length <= 0) return;
+
+        if (GameUI.IsAltDown()) {
+            GameEvents.SendCustomGameEventToServer("lodGameSetupPing", {"originalContent" : heroName, "content" : $.Localize(heroName), "type" : "hero"});
+            return false;
+        }
 
         setSelectedHelperHero(heroName);
     });
@@ -1817,9 +1836,21 @@ function hookHeroInfo(heroCon) {
 }
 
 function makeSkillSelectable(abcon) {
+    abcon.SetPanelEvent('oncontextmenu', function() {
+        var abName = abcon.GetAttributeString('abilityname', '');
+        if(abName == null || abName.length <= 0) return false;
+
+        GameEvents.SendCustomGameEventToServer("lodGameSetupPing", {"originalContent" : abName, "content" : $.Localize("DOTA_Tooltip_ability_"+abName), "type" : "ability"});
+    });
+
     abcon.SetPanelEvent('onactivate', function() {
         var abName = abcon.GetAttributeString('abilityname', '');
         if(abName == null || abName.length <= 0) return false;
+
+        if (GameUI.IsAltDown()) {
+            GameEvents.SendCustomGameEventToServer("lodGameSetupPing", {"originalContent" : abName, "content" : $.Localize("DOTA_Tooltip_ability_"+abName), "type" : "ability"});
+            return false;
+        }
 
         // Mark it as dropable
         setSelectedDropAbility(abName, abcon);
@@ -5397,6 +5428,17 @@ function saveCurrentBuild() {
     GameEvents.Subscribe('lodCustomTimer', function (data) {
         endOfTimer = data.endTime;
         freezeTimer = data.freezeTimer ? data.freezeTimer : -1;
+    })
+
+    GameEvents.Subscribe('lodGameSetupPingEffect', function (data) {
+        if (data.type == "hero") {
+            heroPanelMap[data.originalContent].RemoveClass("quickHighlight")
+            heroPanelMap[data.originalContent].AddClass("quickHighlight");
+        } else if (data.type == "ability") {
+            abilityStore[data.originalContent].RemoveClass("quickHighlight");
+            abilityStore[data.originalContent].AddClass("quickHighlight");
+        }
+        Game.EmitSound("Redux.Ping")
     })
     
     // Search handler

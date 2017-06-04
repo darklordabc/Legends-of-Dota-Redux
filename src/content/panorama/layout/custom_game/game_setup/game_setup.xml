@@ -640,11 +640,15 @@
                                 <Panel id="pickingPhaseTabsContent">
                                     <Panel id="pickingPhaseMainTabContent" class="pickingPhaseTabContent">
                                         <Panel id="buildSortingProperties">
-                                            <Label id="buildSortingPropertyVotes" class="buildSortingProperty selected" text="txtBuildsSortVotes" onactivate="SelectBuildSortingOrder('votes')" />
-                                            <Label id="buildSortingPropertyNewest" class="buildSortingProperty" text="txtBuildsSortNewest" onactivate="SelectBuildSortingOrder('newest')" />
-                                            <Label id="buildSortingPropertyFavorite" class="buildSortingProperty" text="txtBuildsSortFavorite" onactivate="SelectBuildSortingOrder('favorite')" />
+                                            <Label id="buildSortingPropertyVotes" class="buildSortingProperty SettingsNavBarButton selected" text="txtBuildsSortVotes" onactivate="SelectBuildSortingOrder('votes')" />
+                                            <Label class="SettingsTabSeparator" text="/" />
+                                            <Label id="buildSortingPropertyNewest" class="buildSortingProperty SettingsNavBarButton" text="txtBuildsSortNewest" onactivate="SelectBuildSortingOrder('newest')" />
+                                            <Label class="SettingsTabSeparator" text="/" />
+                                            <Label id="buildSortingPropertyFavorite" class="buildSortingProperty SettingsNavBarButton" text="txtBuildsSortFavorite" onactivate="SelectBuildSortingOrder('favorite')" />
                                         </Panel>
-                                        <Label id="buildLoadMoreBuilds" text="txtLoadMoreBuilds" onactivate="LoadMoreBuilds()" />
+                                        <Button id="buildLoadMoreBuilds" class="" onactivate="LoadMoreBuilds()">
+                                            <Label text="txtLoadMoreBuilds" />
+                                        </Button>
                                         <Panel id="buildLoadingIndicator">
                                             <Panel id="buildLoadingSpinner" class="Spinner" />
                                             <Label id="buildLoadingIndicatorText" text="#loadingBuilds" />
@@ -716,22 +720,22 @@
                                     </Panel>
 
                                     <Panel id="pickingPhaseBuildSkills">
-                                        <DOTAAbilityImage id="lodYourAbility1" abilityname="life_stealer_empty_1" onactivate="onYourAbilityIconPressed(1)">
+                                        <DOTAAbilityImage id="lodYourAbility1" abilityname="life_stealer_empty_1" onactivate="onYourAbilityIconPressed(1)" oncontextmenu="onYourAbilityIconRandomed(1)">
                                             <Label id="lodYourAbilityCost1" class="skillCostLarge" text="" />
                                         </DOTAAbilityImage>
-                                        <DOTAAbilityImage id="lodYourAbility2" abilityname="life_stealer_empty_1" onactivate="onYourAbilityIconPressed(2)">
+                                        <DOTAAbilityImage id="lodYourAbility2" abilityname="life_stealer_empty_1" onactivate="onYourAbilityIconPressed(2)" oncontextmenu="onYourAbilityIconRandomed(2)">
                                             <Label id="lodYourAbilityCost2" class="skillCostLarge" text="" />
                                         </DOTAAbilityImage>
-                                        <DOTAAbilityImage id="lodYourAbility3" abilityname="life_stealer_empty_1" onactivate="onYourAbilityIconPressed(3)">
+                                        <DOTAAbilityImage id="lodYourAbility3" abilityname="life_stealer_empty_1" onactivate="onYourAbilityIconPressed(3)" oncontextmenu="onYourAbilityIconRandomed(3)">
                                             <Label id="lodYourAbilityCost3" class="skillCostLarge" text="" />
                                         </DOTAAbilityImage>
-                                        <DOTAAbilityImage id="lodYourAbility4" abilityname="life_stealer_empty_1" onactivate="onYourAbilityIconPressed(4)">
+                                        <DOTAAbilityImage id="lodYourAbility4" abilityname="life_stealer_empty_1" onactivate="onYourAbilityIconPressed(4)" oncontextmenu="onYourAbilityIconRandomed(4)">
                                             <Label id="lodYourAbilityCost4" class="skillCostLarge" text="" />
                                         </DOTAAbilityImage>
-                                        <DOTAAbilityImage id="lodYourAbility5" abilityname="life_stealer_empty_1" onactivate="onYourAbilityIconPressed(5)">
+                                        <DOTAAbilityImage id="lodYourAbility5" abilityname="life_stealer_empty_1" onactivate="onYourAbilityIconPressed(5)" oncontextmenu="onYourAbilityIconRandomed(5)">
                                             <Label id="lodYourAbilityCost5" class="skillCostLarge" text="" />
                                         </DOTAAbilityImage>
-                                        <DOTAAbilityImage id="lodYourAbility6" abilityname="life_stealer_empty_1" onactivate="onYourAbilityIconPressed(6)">
+                                        <DOTAAbilityImage id="lodYourAbility6" abilityname="life_stealer_empty_1" onactivate="onYourAbilityIconPressed(6)" oncontextmenu="onYourAbilityIconRandomed(6)">
                                             <Label id="lodYourAbilityCost6" class="skillCostLarge" text="" />
                                         </DOTAAbilityImage>
                                     </Panel>

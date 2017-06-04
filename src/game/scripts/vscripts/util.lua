@@ -1050,6 +1050,21 @@ function util:removeByValue(t, value)
     end
 end
 
+function GenerateTalentAbilityList()
+		local tab = LoadKeyValues("scripts/npc/npc_abilities.txt")
+		for k,v in pairs(tab) do
+			if type(v) ~= "number" then
+				if v.AbilitySpecial then
+					for K,V in pairs(v.AbilitySpecial) do
+						if V.LinkedSpecialBonus then
+							print("'"..V.LinkedSpecialBonus.."'","'"..k.."'")
+						end
+					end
+				end
+			end
+		end
+	end
+
 (function()
     toIgnore = {
         nyx_assassin_burrow = true,
