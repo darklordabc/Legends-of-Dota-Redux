@@ -2390,20 +2390,29 @@ Button:enabled:hover {
 
 #buildLoadMoreBuilds
 {
-    font-size: 24px;
-    margin: 10px;
+/*    width: 50px;
+    height: 25px;*/
+/*    font-size: 24px;*/
+    
     horizontal-align: right;
-    color: lightblue;
+    vertical-align: top;
+/*    color: lightblue;*/
+}
+
+#buildLoadMoreBuilds Label
+{
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 #buildLoadMoreBuilds:hover
 {
-    text-decoration: underline;
+    /*text-decoration: underline;*/
 }
 
 #buildLoadMoreBuilds:active
 {
-    color: blue;
+    /*color: blue;*/
 }
 
 #recommendedBuildContainerScrollWrapper{

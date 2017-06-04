@@ -646,7 +646,9 @@
                                             <Label class="SettingsTabSeparator" text="/" />
                                             <Label id="buildSortingPropertyFavorite" class="buildSortingProperty SettingsNavBarButton" text="txtBuildsSortFavorite" onactivate="SelectBuildSortingOrder('favorite')" />
                                         </Panel>
-                                        <Label id="buildLoadMoreBuilds" text="txtLoadMoreBuilds" onactivate="LoadMoreBuilds()" />
+                                        <Button id="buildLoadMoreBuilds" class="" onactivate="LoadMoreBuilds()">
+                                            <Label text="txtLoadMoreBuilds" />
+                                        </Button>
                                         <Panel id="buildLoadingIndicator">
                                             <Panel id="buildLoadingSpinner" class="Spinner" />
                                             <Label id="buildLoadingIndicatorText" text="#loadingBuilds" />
