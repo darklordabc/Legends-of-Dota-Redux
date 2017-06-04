@@ -96,11 +96,12 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
             end
 
             -- Check if they tried to illegally use shadow items, if they did, punish them by not refunding the full price
-            if OptionManager:GetOption('banInvis') == 2 and (keys.abilityname == "item_invis_sword" or keys.abilityname == "item_silver_edge") then
+            if OptionManager:GetOption('banInvis') == 2 and (keys.abilityname == "item_invis_sword" or keys.abilityname == "item_silver_edge" or keys.abilityname == "item_shadow_amulet" or keys.abilityname == "item_glimmer_cape") then
                 for i=0,11 do
                     local item = hero:GetItemInSlot(i)
                     if item ~= nil then
-                        if item:GetName() == "item_invis_sword" or item:GetName() == "item_silver_edge" then
+                        if item:GetName() == "item_invis_sword" or item:GetName() == "item_silver_edge" or item:GetName() == "item_shadow_amulet" or item:GetName() == "item_glimmer_cape" then
+                            -- Punish gold is gold that they dont get refunded
                             local punishAmount = 500
                             hero:ModifyGold(item:GetCost() - punishAmount , false, 0)
                             hero:RemoveItem(item)
