@@ -1580,6 +1580,13 @@ function onBanButtonPressed() {
     }
 }
 
+function onYourAbilityIconRandomed(slot) {
+    // Focus nothing
+    focusNothing();
+
+    GameEvents.SendCustomGameEventToServer("lodChooseRandomAbility", {"slot" : slot})  
+}
+
 // They clicked on one of their ability icons
 function onYourAbilityIconPressed(slot) {
     // Focus nothing
