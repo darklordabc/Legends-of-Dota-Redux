@@ -40,6 +40,7 @@ require('lib/wearables')
 
 require('chat')
 require('dedicated')
+require('util')
 
 -- Custom AI script modifiers
 LinkLuaModifier( "modifier_slark_shadow_dance_ai", "abilities/botAI/modifier_slark_shadow_dance_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -474,7 +475,7 @@ function Pregame:init()
     end
 
     if mapName == 'all_allowed' then   
-    	self:setOption('lodOptionCrazyUniversalShop', 0, true)
+        self:setOption('lodOptionCrazyUniversalShop', 0, true)
         self:setOption('lodOptionGameSpeedSharedEXP', 1, true)
         self:setOption('lodOptionBanningUseBanList', 1, true)
         self:setOption('lodOptionAdvancedOPAbilities', 1, true)
@@ -7074,94 +7075,94 @@ function Pregame:fixSpawnedHero( spawnedUnit )
 
     -- Various Fixes
     Timers:CreateTimer(function()
-	    if IsValidEntity(spawnedUnit) then
-	    	-- Silencer Fix NEEDS TO BE RUN EVERY SPAWN (below), AND ON FIXEDHERO FUNCTION
-	            if spawnedUnit:HasAbility('silencer_glaives_of_wisdom_steal') then
-	                if not spawnedUnit:HasModifier('modifier_silencer_int_steal') then
-	                    spawnedUnit:AddNewModifier(spawnedUnit, spawnedUnit:FindAbilityByName("silencer_glaives_of_wisdom_steal"), 'modifier_silencer_int_steal', {})
-	                end
-	            else
-	                spawnedUnit:RemoveModifierByName('modifier_silencer_int_steal')
-	            end
-	        -- Stalker Innate Auto-Level
-	        if spawnedUnit:HasAbility('night_stalker_innate_redux') then
-	            local stalkerInnate = spawnedUnit:FindAbilityByName('night_stalker_innate_redux')
-	            if stalkerInnate then
-	                if stalkerInnate:GetLevel() ~= 1 then
-	                    stalkerInnate:UpgradeAbility(false)
-	                end
-	            end
-	        end
+        if IsValidEntity(spawnedUnit) then
+            -- Silencer Fix NEEDS TO BE RUN EVERY SPAWN (below), AND ON FIXEDHERO FUNCTION
+                if spawnedUnit:HasAbility('silencer_glaives_of_wisdom_steal') then
+                    if not spawnedUnit:HasModifier('modifier_silencer_int_steal') then
+                        spawnedUnit:AddNewModifier(spawnedUnit, spawnedUnit:FindAbilityByName("silencer_glaives_of_wisdom_steal"), 'modifier_silencer_int_steal', {})
+                    end
+                else
+                    spawnedUnit:RemoveModifierByName('modifier_silencer_int_steal')
+                end
+            -- Stalker Innate Auto-Level
+            if spawnedUnit:HasAbility('night_stalker_innate_redux') then
+                local stalkerInnate = spawnedUnit:FindAbilityByName('night_stalker_innate_redux')
+                if stalkerInnate then
+                    if stalkerInnate:GetLevel() ~= 1 then
+                        stalkerInnate:UpgradeAbility(false)
+                    end
+                end
+            end
 
-	        -- KOTL Innate Auto-Level
-	        if spawnedUnit:HasAbility('keeper_of_the_light_innate_redux') then
-	            local kotlInnate = spawnedUnit:FindAbilityByName('keeper_of_the_light_innate_redux')
-	            if kotlInnate then
-	                if kotlInnate:GetLevel() ~= 1 then
-	                    kotlInnate:UpgradeAbility(false)
-	                end
-	            end
-	        end
+            -- KOTL Innate Auto-Level
+            if spawnedUnit:HasAbility('keeper_of_the_light_innate_redux') then
+                local kotlInnate = spawnedUnit:FindAbilityByName('keeper_of_the_light_innate_redux')
+                if kotlInnate then
+                    if kotlInnate:GetLevel() ~= 1 then
+                        kotlInnate:UpgradeAbility(false)
+                    end
+                end
+            end
 
-	        -- 'No Charges' fix for Gyro Homing Missle
-	        if spawnedUnit:HasAbility('gyrocopter_homing_missile') and spawnedUnit:GetUnitName() ~= "npc_dota_hero_gyrocopter" then
-	            Timers:CreateTimer(function()
-	                spawnedUnit:RemoveModifierByName("modifier_gyrocopter_homing_missile_charge_counter")
-	            end, DoUniqueString('gyroFix'), 1)
-	        end
-	        
-	        -- Change sniper assassinate to our custom version to work with aghs
-	        if spawnedUnit:HasAbility("sniper_assassinate") and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("sniper_assassinate"):IsHidden() then
-	                spawnedUnit:AddAbility("sniper_assassinate_redux")
-	                spawnedUnit:SwapAbilities("sniper_assassinate","sniper_assassinate_redux",false,true)
-	                spawnedUnit:RemoveAbility("sniper_assassinate")
-	        end
-	        -- Change juxtapose to juxtapose ranged, for ranged heros
-	        if spawnedUnit:HasAbility("phantom_lancer_juxtapose_melee") and spawnedUnit:IsRangedAttacker() then
-	                spawnedUnit:AddAbility("phantom_lancer_juxtapose_ranged")
-	                spawnedUnit:SwapAbilities("phantom_lancer_juxtapose_melee","phantom_lancer_juxtapose_ranged",false,true)
-	                spawnedUnit:RemoveAbility("phantom_lancer_juxtapose_melee")
-	        end
-	        -- Change Feast to Feast ranged, for ranged heros
-	        if spawnedUnit:HasAbility("life_stealer_feast_melee") and spawnedUnit:IsRangedAttacker() then
-	                spawnedUnit:AddAbility("life_stealer_feast_ranged")
-	                spawnedUnit:SwapAbilities("life_stealer_feast_melee","life_stealer_feast_ranged",false,true)
-	                spawnedUnit:RemoveAbility("life_stealer_feast_melee")
-	        end
+            -- 'No Charges' fix for Gyro Homing Missle
+            if spawnedUnit:HasAbility('gyrocopter_homing_missile') and spawnedUnit:GetUnitName() ~= "npc_dota_hero_gyrocopter" then
+                Timers:CreateTimer(function()
+                    spawnedUnit:RemoveModifierByName("modifier_gyrocopter_homing_missile_charge_counter")
+                end, DoUniqueString('gyroFix'), 1)
+            end
+            
+            -- Change sniper assassinate to our custom version to work with aghs
+            if spawnedUnit:HasAbility("sniper_assassinate") and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("sniper_assassinate"):IsHidden() then
+                    spawnedUnit:AddAbility("sniper_assassinate_redux")
+                    spawnedUnit:SwapAbilities("sniper_assassinate","sniper_assassinate_redux",false,true)
+                    spawnedUnit:RemoveAbility("sniper_assassinate")
+            end
+            -- Change juxtapose to juxtapose ranged, for ranged heros
+            if spawnedUnit:HasAbility("phantom_lancer_juxtapose_melee") and spawnedUnit:IsRangedAttacker() then
+                    spawnedUnit:AddAbility("phantom_lancer_juxtapose_ranged")
+                    spawnedUnit:SwapAbilities("phantom_lancer_juxtapose_melee","phantom_lancer_juxtapose_ranged",false,true)
+                    spawnedUnit:RemoveAbility("phantom_lancer_juxtapose_melee")
+            end
+            -- Change Feast to Feast ranged, for ranged heros
+            if spawnedUnit:HasAbility("life_stealer_feast_melee") and spawnedUnit:IsRangedAttacker() then
+                    spawnedUnit:AddAbility("life_stealer_feast_ranged")
+                    spawnedUnit:SwapAbilities("life_stealer_feast_melee","life_stealer_feast_ranged",false,true)
+                    spawnedUnit:RemoveAbility("life_stealer_feast_melee")
+            end
 
-	        if spawnedUnit:HasAbility("monkey_king_jingu_mastery_lod_melee") and spawnedUnit:IsRangedAttacker() then
-	                spawnedUnit:AddAbility("monkey_king_jingu_mastery_lod_ranged")
-	                spawnedUnit:SwapAbilities("monkey_king_jingu_mastery_lod_melee","monkey_king_jingu_mastery_lod_ranged",false,true)
-	                spawnedUnit:RemoveAbility("monkey_king_jingu_mastery_lod_melee")
-	        end
+            if spawnedUnit:HasAbility("monkey_king_jingu_mastery_lod_melee") and spawnedUnit:IsRangedAttacker() then
+                    spawnedUnit:AddAbility("monkey_king_jingu_mastery_lod_ranged")
+                    spawnedUnit:SwapAbilities("monkey_king_jingu_mastery_lod_melee","monkey_king_jingu_mastery_lod_ranged",false,true)
+                    spawnedUnit:RemoveAbility("monkey_king_jingu_mastery_lod_melee")
+            end
 
-	        -- Change Overpower to Overpower ranged, for ranged heros
-	        if spawnedUnit:HasAbility("ursa_overpower_melee") and spawnedUnit:IsRangedAttacker() then
-	                spawnedUnit:AddAbility("ursa_overpower_ranged")
-	                spawnedUnit:SwapAbilities("ursa_overpower_melee","ursa_overpower_ranged",false,true)
-	                spawnedUnit:RemoveAbility("ursa_overpower_melee")
-	        end
+            -- Change Overpower to Overpower ranged, for ranged heros
+            if spawnedUnit:HasAbility("ursa_overpower_melee") and spawnedUnit:IsRangedAttacker() then
+                    spawnedUnit:AddAbility("ursa_overpower_ranged")
+                    spawnedUnit:SwapAbilities("ursa_overpower_melee","ursa_overpower_ranged",false,true)
+                    spawnedUnit:RemoveAbility("ursa_overpower_melee")
+            end
 
-	        if spawnedUnit:HasAbility("phantom_assassin_coup_de_grace_melee") and spawnedUnit:IsRangedAttacker() then
-	                spawnedUnit:AddAbility("phantom_assassin_coup_de_grace_ranged")
-	                spawnedUnit:SwapAbilities("phantom_assassin_coup_de_grace_melee","phantom_assassin_coup_de_grace_ranged",false,true)
-	                spawnedUnit:RemoveAbility("phantom_assassin_coup_de_grace_melee")
-	        end
+            if spawnedUnit:HasAbility("phantom_assassin_coup_de_grace_melee") and spawnedUnit:IsRangedAttacker() then
+                    spawnedUnit:AddAbility("phantom_assassin_coup_de_grace_ranged")
+                    spawnedUnit:SwapAbilities("phantom_assassin_coup_de_grace_melee","phantom_assassin_coup_de_grace_ranged",false,true)
+                    spawnedUnit:RemoveAbility("phantom_assassin_coup_de_grace_melee")
+            end
 
-	        -- Custom Flesh Heap fixes
-	        for abilitySlot=0,6 do
-	            local abilityTemp = spawnedUnit:GetAbilityByIndex(abilitySlot)
-	            if abilityTemp then 
-	                if string.find(abilityTemp:GetAbilityName(),"flesh_heap_") then
-	                    local abilityName = abilityTemp:GetAbilityName()
-	                    local modifierName = "modifier"..string.sub(abilityName,6)
-	                    spawnedUnit:AddNewModifier(spawnedUnit,abilityTemp,modifierName,{})
-	                    
-	                end
-	            end
-	        end
-	    end
-	end, DoUniqueString('variousFixes'), 0.5)
+            -- Custom Flesh Heap fixes
+            for abilitySlot=0,6 do
+                local abilityTemp = spawnedUnit:GetAbilityByIndex(abilitySlot)
+                if abilityTemp then 
+                    if string.find(abilityTemp:GetAbilityName(),"flesh_heap_") then
+                        local abilityName = abilityTemp:GetAbilityName()
+                        local modifierName = "modifier"..string.sub(abilityName,6)
+                        spawnedUnit:AddNewModifier(spawnedUnit,abilityTemp,modifierName,{})
+                        
+                    end
+                end
+            end
+        end
+    end, DoUniqueString('variousFixes'), 0.5)
 
      -- Add hero perks
     Timers:CreateTimer(function()
@@ -7426,29 +7427,47 @@ function Pregame:fixSpawningIssues()
                     local realHero
                     if spawnedUnit.IsIllusion and spawnedUnit:IsIllusion() and spawnedUnit:IsHero() then
                       -- Search nearby radius to find the real hero
-                      local nearbyUnits = Entities:FindAllInSphere(spawnedUnit:GetAbsOrigin(), 2000)
-
-                      for _, unit in pairs(nearbyUnits) do
-                        -- We have found the real hero if: Hero is Real and Not Illusion and unit has same name as the spawned illusion
-                        if unit.IsRealHero and unit:IsRealHero() and not unit:IsIllusion() and unit:GetName() == spawnedUnit:GetName() and unit:GetLevel() == spawnedUnit:GetLevel() and unit:GetItemInSlot(2) == spawnedUnit:GetItemInSlot(2) and unit:GetItemInSlot(0) == spawnedUnit:GetItemInSlot(0) then
-                          realHero = unit
+                        local nearbyUnits = Entities:FindAllInSphere(spawnedUnit:GetAbsOrigin(), 2000)
+                        local filteredNearbyUnits = {}
+                        for i, unit in pairs(nearbyUnits) do
+                            if not unit.IsRealHero or not unit:IsRealHero()  then
+                                --nearbyUnits[i] = nil
+                            else
+                                -- We have found the real hero if: Hero is Real and Not Illusion and unit has same name as the spawned illusion
+                                if unit and unit:GetName() == spawnedUnit:GetName() and unit:GetLevel() == spawnedUnit:GetLevel()  then
+                                    table.insert(filteredNearbyUnits, unit)
+                                end 
+                            end
                         end
-                      end
+                        if #filteredNearbyUnits > 1 then
+                            for _, unit in pairs(filteredNearbyUnits) do
+                                if unit and unit.GetItemInSlot and unit:GetName() ~= "" then
+                                    for j=0,8 do
+                                        if unit:GetItemInSlot(j) and spawnedUnit:GetItemInSlot(j) and unit:GetItemInSlot(j):GetAbilityName() == spawnedUnit:GetItemInSlot(j):GetAbilityName() then
+                                            realHero = unit
+                                            break
+                                        end
+                                    end
+                                end
+                            end
+                        else
+                            realHero = filteredNearbyUnits[1]
+                        end
 
                       -- If we found the real hero, make illusion have same stats as original
-                      if realHero then
-                        Timers:CreateTimer(function()
-                            -- Modify illusions stats so that they are the same as the owning hero
-                            spawnedUnit:FixIllusion(realHero)
-                            spawnedUnit:ModifyAgility((spawnedUnit:GetAgility() - realHero:GetAgility()) * -1)
-                            spawnedUnit:ModifyStrength((spawnedUnit:GetStrength() - realHero:GetStrength()) * -1)
-                            spawnedUnit:ModifyIntellect((spawnedUnit:GetIntellect() - realHero:GetIntellect()) * -1)
-                            spawnedUnit:SetHealth(realHero:GetHealth())
-                            spawnedUnit:SetMana(realHero:GetMana())
-                        end, DoUniqueString('fixBrokenSkills'), .1)
+                        if realHero then
+                            Timers:CreateTimer(function()
+                                -- Modify illusions stats so that they are the same as the owning hero
+                                spawnedUnit:FixIllusion(realHero)
+                                spawnedUnit:ModifyAgility((spawnedUnit:GetAgility() - realHero:GetAgility()) * -1)
+                                spawnedUnit:ModifyStrength((spawnedUnit:GetStrength() - realHero:GetStrength()) * -1)
+                                spawnedUnit:ModifyIntellect((spawnedUnit:GetIntellect() - realHero:GetIntellect()) * -1)
+                                spawnedUnit:SetHealth(realHero:GetHealth())
+                                spawnedUnit:SetMana(realHero:GetMana())
+                            end, DoUniqueString('fixBrokenSkills'), .1)
                         else
-                      end
-
+                            print("Cant find real hero, not changing a thing")
+                        end
                     end
 
 
@@ -7493,17 +7512,17 @@ function Pregame:fixSpawningIssues()
 
         -- Silencer Fix NEEDS TO BE RUN EVERY SPAWN, AND ON FIXEDHERO FUNCTION
         Timers:CreateTimer(function()
-	        if IsValidEntity(spawnedUnit) then
-	            -- Silencer Fix
-	            if spawnedUnit:HasAbility('silencer_glaives_of_wisdom_steal') then
-	                if not spawnedUnit:HasModifier('modifier_silencer_int_steal') then
-	                    spawnedUnit:AddNewModifier(spawnedUnit, spawnedUnit:FindAbilityByName("silencer_glaives_of_wisdom_steal"), 'modifier_silencer_int_steal', {})
-	                end
-	            else
-	                spawnedUnit:RemoveModifierByName('modifier_silencer_int_steal')
-	            end
-	        end
-    	end, DoUniqueString('silencerFix'), 2)
+            if IsValidEntity(spawnedUnit) then
+                -- Silencer Fix
+                if spawnedUnit:HasAbility('silencer_glaives_of_wisdom_steal') then
+                    if not spawnedUnit:HasModifier('modifier_silencer_int_steal') then
+                        spawnedUnit:AddNewModifier(spawnedUnit, spawnedUnit:FindAbilityByName("silencer_glaives_of_wisdom_steal"), 'modifier_silencer_int_steal', {})
+                    end
+                else
+                    spawnedUnit:RemoveModifierByName('modifier_silencer_int_steal')
+                end
+            end
+        end, DoUniqueString('silencerFix'), 2)
 
             if Wearables:HasDefaultWearables( spawnedUnit:GetUnitName() ) then
                 Wearables:AttachWearableList( spawnedUnit, Wearables:GetDefaultWearablesList( spawnedUnit:GetUnitName() ) )
