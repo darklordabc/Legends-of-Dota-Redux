@@ -7434,14 +7434,14 @@ function Pregame:fixSpawningIssues()
                                 --nearbyUnits[i] = nil
                             else
                                 -- We have found the real hero if: Hero is Real and Not Illusion and unit has same name as the spawned illusion
-                                if unit and unit:GetName() == spawnedUnit:GetName() and unit:GetLevel() == spawnedUnit:GetLevel()  then
+                                if unit and unit:GetName() == spawnedUnit:GetName() then
                                     table.insert(filteredNearbyUnits, unit)
                                 end 
                             end
                         end
                         if #filteredNearbyUnits > 1 then
                             for _, unit in pairs(filteredNearbyUnits) do
-                                if unit and unit.GetItemInSlot and unit:GetName() ~= "" then
+                                if unit and unit.GetItemInSlot and unit:GetName() ~= "" and unit:GetLevel() == spawnedUnit:GetLevel() then
                                     for j=0,8 do
                                         if unit:GetItemInSlot(j) and spawnedUnit:GetItemInSlot(j) and unit:GetItemInSlot(j):GetAbilityName() == spawnedUnit:GetItemInSlot(j):GetAbilityName() then
                                             realHero = unit
@@ -7464,7 +7464,7 @@ function Pregame:fixSpawningIssues()
                                 spawnedUnit:ModifyIntellect((spawnedUnit:GetIntellect() - realHero:GetIntellect()) * -1)
                                 spawnedUnit:SetHealth(realHero:GetHealth())
                                 spawnedUnit:SetMana(realHero:GetMana())
-                            end, DoUniqueString('fixBrokenSkills'), .1)
+                            end, DoUniqueString('FixIllusionSkills'), .1)
                         else
                             print("Cant find real hero, not changing a thing")
                         end
@@ -7483,8 +7483,6 @@ function Pregame:fixSpawningIssues()
                                     end
                                 end
                             end
-
-
                         end
                     end, DoUniqueString('fixBrokenSkills'), .1)
                 end
