@@ -23,7 +23,6 @@ function Commands:OnPlayerChat(keys)
         if string.match(v, "-") then
             command = v
         elseif string.match(v, "#") then
-            print(string.sub(v, 2))
             playerID = tonumber(string.sub(v, 2)) 
         else
             table.insert(arguments, v)

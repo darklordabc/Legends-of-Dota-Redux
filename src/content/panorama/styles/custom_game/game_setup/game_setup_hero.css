@@ -83,7 +83,10 @@
 }
 
 #heroName {
+/*    clip: rect(0%, 100%, 120%, 0%);*/
     width: 100%;
+
+    /*line-height: 10px;*/
 
     vertical-align: bottom;
     text-align: center;
