@@ -2,6 +2,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 7.9
+- Improved styles of builds page
+- You can not alt or right click abilities/heroes to recommend them to be selected or banned
+
 ## 7.8
 - Added Aegis Tower OP (single player ability)
 - Nerfed Molten Lord abilities
