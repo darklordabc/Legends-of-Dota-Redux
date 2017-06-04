@@ -640,9 +640,11 @@
                                 <Panel id="pickingPhaseTabsContent">
                                     <Panel id="pickingPhaseMainTabContent" class="pickingPhaseTabContent">
                                         <Panel id="buildSortingProperties">
-                                            <Label id="buildSortingPropertyVotes" class="buildSortingProperty selected" text="txtBuildsSortVotes" onactivate="SelectBuildSortingOrder('votes')" />
-                                            <Label id="buildSortingPropertyNewest" class="buildSortingProperty" text="txtBuildsSortNewest" onactivate="SelectBuildSortingOrder('newest')" />
-                                            <Label id="buildSortingPropertyFavorite" class="buildSortingProperty" text="txtBuildsSortFavorite" onactivate="SelectBuildSortingOrder('favorite')" />
+                                            <Label id="buildSortingPropertyVotes" class="buildSortingProperty SettingsNavBarButton selected" text="txtBuildsSortVotes" onactivate="SelectBuildSortingOrder('votes')" />
+                                            <Label class="SettingsTabSeparator" text="/" />
+                                            <Label id="buildSortingPropertyNewest" class="buildSortingProperty SettingsNavBarButton" text="txtBuildsSortNewest" onactivate="SelectBuildSortingOrder('newest')" />
+                                            <Label class="SettingsTabSeparator" text="/" />
+                                            <Label id="buildSortingPropertyFavorite" class="buildSortingProperty SettingsNavBarButton" text="txtBuildsSortFavorite" onactivate="SelectBuildSortingOrder('favorite')" />
                                         </Panel>
                                         <Label id="buildLoadMoreBuilds" text="txtLoadMoreBuilds" onactivate="LoadMoreBuilds()" />
                                         <Panel id="buildLoadingIndicator">

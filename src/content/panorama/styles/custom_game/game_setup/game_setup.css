@@ -2378,13 +2378,14 @@ Button:enabled:hover {
 }
 
 .buildSortingProperty {
-    font-size: 24px;
+    font-size: 20px;
     margin: 10px;
-    color: #d1d8e6;
+    color: #939da044;
+    text-transform: uppercase;
 }
 .buildSortingProperty.selected {
-    text-decoration: underline;
-    color: #8accff;
+    /*text-decoration: underline;*/
+    color: #ffffff;
 }
 
 #buildLoadMoreBuilds
