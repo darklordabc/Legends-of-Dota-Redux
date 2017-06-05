@@ -1784,7 +1784,7 @@
     {
         "ReduxFlags"                                                           "tank"
         "ReduxPerks"                                                           "scientific | rage"
-        "ReduxCost"                                                            "200"
+        "ReduxCost"                                                            "80"
         "ReduxBans"                                                            "meepo_divided_we_stand"
     }
     "centaur_return"
