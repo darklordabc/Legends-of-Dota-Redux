@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 - Fixed exploit that allowed glimmer cape and shadow amulet to be used when invis items are banned
 - Added Refresh Cooldowns on Death vote 
 - Added Fat-O-Meter vote (WIP)
+- Added Healing Tower Aura ability from Imba
 
 ## 7.8
 - Added Aegis Tower OP (single player ability)
