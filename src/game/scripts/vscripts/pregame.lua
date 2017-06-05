@@ -2069,9 +2069,9 @@ function Pregame:loadTrollCombos()
     -- Create the stores
     self.banList = {}
     self.wtfAutoBan = self.flags.wtfautoban
-    self.OPSkillsList = self.flags.opskillslist
+    self.OPSkillsList = self.flags.OPSkillsList
     self.noHero = self.flags.nohero
-    self.SuperOP = self.flags.superop
+    self.SuperOP = self.flags.SuperOP
     self.doNotRandom = self.flags.donotrandom
     self.underpowered = self.flags.underpowered
 
@@ -3772,7 +3772,7 @@ function Pregame:processOptions()
 
         -- Banning of OP Skills
         if not disableBanLists and this.optionStore['lodOptionAdvancedOPAbilities'] == 1 then
-            for abilityName,v in pairs(this.OPSkillsList) do
+            for abilityName,v in pairs(self.OPSkillsList) do
                 this:banAbility(abilityName)
             end
         else
@@ -3818,14 +3818,12 @@ function Pregame:processOptions()
             this.perksDisabled = true
         end
 
-
         -- LoD ban list
         if not disableBanLists and this.optionStore['lodOptionBanningUseBanList'] == 1 then
-            for abilityName,v in pairs(this.SuperOP) do
+            for abilityName,v in pairs(self.SuperOP) do
                 this:banAbility(abilityName)
             end
         end
-
         
         -- All extra ability mutator stuff
         if this.optionStore['lodOptionExtraAbility'] == 1 then

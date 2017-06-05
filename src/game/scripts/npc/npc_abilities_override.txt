@@ -90,7 +90,7 @@
     {
         "MaxLevel"                                                             "4"
         "ReduxCost"                                                            "70"
-        "ReduxFlags"                                                           "SuperOP"
+        "ReduxFlags"                                                           ""
         "AbilityCooldown"               "15.0 13.0 11.0 9.0"
     }
     "roshan_bash"
@@ -218,7 +218,7 @@
     {
         "MaxLevel"                                                             "1"
         "ReduxPerks"                                                           "earth"
-        "ReduxFlags"                                                           "doNotRandom | SuperOP"
+        "ReduxFlags"                                                           "doNotRandom"
     }
     "brewmaster_storm_dispel_magic"
     {
@@ -945,7 +945,7 @@
     }
     "meepo_divided_we_stand"
     {
-        "ReduxFlags"                                                           "upgradeable | doNotRandom | SuperOP"
+        "ReduxFlags"                                                           "upgradeable | doNotRandom"
         "ReduxCost"                                                            "400"
         "ReduxBans"                                                            "arc_warden_tempest_double | arc_warden_tempest_double_redux | meepo_divided_we_stand | spell_lab_symbiotic"
     }
@@ -1740,7 +1740,7 @@
     }
     "puck_phase_shift"
     {
-        "ReduxFlags"                                                           "mobility | SuperOP"
+        "ReduxFlags"                                                           "mobility"
         "ReduxPerks"                                                           "mobility | channeled"
         "ReduxBans"                                                            "death_prophet_witchcraft"
     }
@@ -1784,7 +1784,7 @@
     {
         "ReduxFlags"                                                           "tank"
         "ReduxPerks"                                                           "scientific | rage"
-        "ReduxCost"                                                            "70"
+        "ReduxCost"                                                            "200"
         "ReduxBans"                                                            "meepo_divided_we_stand"
     }
     "centaur_return"
@@ -2461,7 +2461,7 @@
     }
     "earthshaker_aftershock"
     {
-        "ReduxFlags"                                                           "stun | wtfAutoBan | SuperOP"
+        "ReduxFlags"                                                           "stun | wtfAutoBan"
         "ReduxPerks"                                                           "earth"
         "ReduxCost"                                                            "120"
         "ReduxBans"                                                            "death_prophet_witchcraft | zuus_arc_lightning | storm_spirit_ball_lightning | storm_spirit_static_remnant | obsidian_destroyer_arcane_orb"
@@ -2935,7 +2935,7 @@
     "alchemist_goblins_greed"
     {
         "ReduxPerks"                                                           "scientific"
-        "ReduxCost"                                                            "30"
+        "ReduxCost"                                                            "110"
     }
     "gyrocopter_call_down"
     {
@@ -2986,7 +2986,7 @@
         "ReduxPerks"                                                           "scientific | channeled"
         "ReduxCost"                                                            "400"
         "ReduxBans"                                                            "dazzle_shallow_grave | lich_absolute_zero | arc_warden_tempest_double | arc_warden_tempest_double_redux"
-        "ReduxFlags"                                                           "SuperOP | cooldown"
+        "ReduxFlags"                                                           "cooldown"
     }
     "chen_penitence"
     {
@@ -3366,7 +3366,7 @@
     "death_prophet_witchcraft"
     {
         "ReduxCost"                                                            "120"
-        "ReduxFlags"                                                           "SuperOP | cooldown"
+        "ReduxFlags"                                                           " cooldown"
     }
     "sniper_take_aim"
     {
