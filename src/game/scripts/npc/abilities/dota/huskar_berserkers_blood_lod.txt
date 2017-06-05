@@ -41,6 +41,6 @@
             }
         }
         "ReduxFlags"                                                           "dota_custom"
-        "ReduxCost"                                                            "70"
+        "ReduxCost"                                                            "80"
     }
 }
