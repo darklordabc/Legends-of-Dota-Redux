@@ -13,6 +13,7 @@
         "AbilityTextureName"                                                   "custom/zuus_arc_lightning_op"
         "ReduxFlags"                                                           ""
         "ReduxPerks"                                                           "lightning"
+        "ReduxCost"                                                            "120"
         
         // Casting
         //-------------------------------------------------------------------------------------------------------------
@@ -70,6 +71,7 @@
         "AbilityTextureName"                                                   "custom/lich_chain_frost_op"
         "ReduxFlags"                                                           "upgradeable"
         "ReduxPerks"                                                           "ice"
+        "ReduxCost"                                                            "120"
         "HasScepterUpgrade"         "1"
 
         "precache"

@@ -49,7 +49,7 @@
                 }
             }
         }
-        "ReduxCost"                                                            "90"
+        "ReduxCost"                                                            "120"
         "ReduxFlags"                                                           ""
     }
 }

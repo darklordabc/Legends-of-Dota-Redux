@@ -50,7 +50,7 @@
             }
         }
         "ReduxPerks"                                                           "aura"
-        "ReduxCost"                                                            "70"
+        "ReduxCost"                                                            "120"
         "ReduxFlags"                                                           ""
     }
 }

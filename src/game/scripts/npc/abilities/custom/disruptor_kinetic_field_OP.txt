@@ -29,7 +29,7 @@
                 "duration"                                             "5.0 6.0 7.0 8.0"
             }
         }
-        "ReduxCost"                                                            "100"
+        "ReduxCost"                                                            "120"
         "ReduxFlags"                                                           ""
     }
 }

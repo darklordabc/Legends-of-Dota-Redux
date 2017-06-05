@@ -29,6 +29,6 @@
         }
         "ReduxFlags"                                                           "mobility"
         "ReduxPerks"                                                           "mobility | enemyMoving"
-        "ReduxCost"                                                            "80"
+        "ReduxCost"                                                            "120"
     }
 }

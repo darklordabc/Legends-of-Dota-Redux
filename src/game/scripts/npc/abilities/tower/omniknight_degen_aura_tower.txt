@@ -96,7 +96,7 @@
                 }
             }
         }
-        "ReduxCost"                                                            "70"
+        "ReduxCost"                                                            "120"
         "ReduxFlags"                                                           ""
         "ReduxPerks"    "aura"
     }

@@ -35,7 +35,7 @@
                 "Function"                                             "tome_levelup"
             }
         }
-        "ReduxCost"                                                            "100"
+        "ReduxCost"                                                            "120"
         "ReduxFlags"                                                           ""
     }
 }

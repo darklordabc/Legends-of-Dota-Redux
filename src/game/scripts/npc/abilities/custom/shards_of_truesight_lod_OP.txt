@@ -85,6 +85,6 @@
         }
         "ReduxFlags"                                                           "support"
         "ReduxPerks"                                                           "support"
-        "ReduxCost"                                                            "90"
+        "ReduxCost"                                                            "120"
     }
 }

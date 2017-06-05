@@ -69,7 +69,7 @@
             }
         }
         "ReduxFlags"                                                           "tank"
-        "ReduxCost"                                                            "100"
+        "ReduxCost"                                                            "120"
         "ReduxBans"                                                            "lord_of_lightning_holy_wrath"
     }
 }
