@@ -511,22 +511,34 @@
     "lodMutatorIngameBuilder4"                      "Build Switcher Free"
 
     "lodVotingTitle"                                "Option Voting"
+    
     "lodVotingEnableCheatModeLine"                  "wants to enable <font color='#FF4949'>cheat mode</font>"
     "lodVotingEnableCheatModeLineDescr"             "This will allow players to use powerful and game-breaking cheat commands. <br><font color='#FF4949'>It its not recommended</font>."
+    
     "lodVotingEnableKamikazeLine"                   "wants to disable <font color='#FF4949'>Anti-Kamikaze</font> mechanic"
     "lodVotingEnableKamikazeLineDescr"              "This allows players to quickly respawn and die without punishment.<br><font color='#FF4949'>It its not recommended</font>."
+    
     "lodVotingEnableHeroBuilderLine"                "wants to enable <font color='#70EA72'>Ingame hero builder</font>"
     "lodVotingEnableHeroBuilderLineDescr"           "This allows players to change their ability builds mid-game."
+    
     "lodVotingEnableRespawnLine"                    "wants to disable <font color='#FF4949'>Increasing-spawn-rate</font> mechanic"
     "lodVotingEnableRespawnLineDescr"               "This prevents respawn times slowly increasing after 40 minutes.<br><font color='#FF4949'>It its not recommended</font>."
+    
     "lodVotingSwitchTeamLine"                       "wants to <font color='#70EA72'>Switch Teams</font>"
     "lodVotingSwitchTeamLineDescr"                  "This player has volunteered to switch teams to make the game more balanced.<br><font color='#70EA72'>It is recommended</font>."
+    
     "lodVotingAntiratLine"                          "wants to enable <font color='#70EA72'>Anti-Rat tower protection</font>"
     "lodVotingAntiratLineDescr"                     "This requires all outer towers be destroyed before you can attack tier 3 towers.<br><font color='#70EA72'>It is recommended</font>."
+    
     "lodVotingDoubleCreepsLine"                     "wants to enable <font color='#70EA72'>Double Neutral Creeps</font>"
     "lodVotingDoubleCreepsLineDescr"                "This will double the amount of neutral creeps.<br><font color='#70EA72'>It is recommended</font>."
+
+    "lodVotingFatOMeterLine"                     "wants to enable <font color='#70EA72'>Fat-O-Meter</font>"
+    "lodVotingFatOMeterLineDescr"                "This will increase hero's size by their KDA ratio.<br><font color='#70EA72'>It is recommended</font>."
+    
     "lodVotingBanningBlockTrollCombosLine"          "wants to enable <font color='#FF4949'>Troll Combos</font>"
     "lodVotingBanningBlockTrollCombosLineDescr"     "This will unblock certain combinations of skills that are traditionally used to troll people and make a game aweful to play.<br><font color='#FF4949'>It its not recommended</font>."
+    
     "lodVotingAdvancedOPAbilitiesLine"              "wants to enable <font color='#FF4949'>Single Player Abilities</font>"
     "lodVotingAdvancedOPAbilitiesLineDescr"         "This will allow SUPER OP abilities that are not balanced and are way too strong.<br><font color='#FF4949'>It its not recommended</font>."
 
@@ -554,6 +566,7 @@
     "kamikazeAlreadyDeactivated"                    "Kamikaze mechanic already deactivated"
     "heroBuilderAlreadyOn"                          "Hero builder already on"
     "respawnAlreadyDeactivated"                     "Respawn increasing already deactivated"
+    "fatOmeterAlreadyOn"                            "Fat-O-Meter is already on"
     "invisbilityItemsAreBanned"                     "Invisibility items are banned"
 
     "lodUniqueSkillsOff"                            "Disabled"
@@ -1305,14 +1318,17 @@
     "command_menu_command_voteEnableCheat"              "Enable Cheat Mode"
     "command_menu_command_descr_voteEnableCheat"        "Starts a vote to enable cheats mode, requires unanimous agreement among players. Shortcuts: -enablecheats, -ec"
 
-    "command_menu_command_voteEnableAntiRat"              "Enable Anti-Rat Protection"
-    "command_menu_command_descr_voteEnableAntiRat"        "When Anti-Rat is enabled, Tier3 towers cannot be destroyed unless all the outer towers are dead. Shortcuts: -antirat, -ar"
+    "command_menu_command_voteFatOMeter"              "Enable Fat-O-Meter"
+    "command_menu_command_descr_voteFatOMeter"        "Starts are vote to enable Fat-O-Meter mutator requires majority agreement among players. Shortcuts: -enablefat, -ef"
 
     "command_menu_command_voteEnableKamikaze"           "Disable Anti-Kamikaze"
     "command_menu_command_descr_voteEnableKamikaze"        "Anti-Kamikaze is a game mechanic which punishes players that die more than 3 times within 60 seconds. This usually happens when games have instant respawn and players are using a strat where they Kamikaze themselves agaisnt towers and buildings. Shortcuts: -enablekamikaze -ek"
 
     "command_menu_command_voteDoubleCreeps"           "Enable Double Neutrals"
     "command_menu_command_descr_voteDoubleCreeps"        "Voting for this makes neutral creeps clone themselves when you kill them, resulting in doubled neutral creeps. Shortcuts: -doublecreep -dc"
+
+    "command_menu_command_voteEnableAntiRat"              "Enable Anti-Rat Protection"
+    "command_menu_command_descr_voteEnableAntiRat"        "When Anti-Rat is enabled, Tier3 towers cannot be destroyed unless all the outer towers are dead. Shortcuts: -antirat, -ar"
 
     "command_menu_command_voteEnableRespawn"            "Disable Late-Game Respawn Rate Increase" 
     "command_menu_command_descr_voteEnableRespawn"        "To prevent games with low respawn times lasting for too long or being never-ending, the game will increase respawn rates at the 40 minute mark by 10%, and by another 10% after 10 minutes, continually, until respawn rates are at minimum 50%. This option disables that safeguard. Shortcuts: -enablerespawn -er"  

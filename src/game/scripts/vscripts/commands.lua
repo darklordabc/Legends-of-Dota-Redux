@@ -114,6 +114,17 @@ function Commands:OnPlayerChat(keys)
         elseif ingame.voteDisableRespawnLimit then
             util:DisplayError(playerID, "#respawnAlreadyDeactivated")
         end
+    elseif string.find(command, "-enablefat") or string.find(command, "-ef") then
+        if not ingame.voteEnableFatOMeter then
+            util:CreateVoting("lodVotingFatOMeter", playerID, 10, 50, function()
+                ingame.voteEnableFatOMeter = true
+                OptionManager:SetOption('lodOptionCrazyFatOMeter', 2)
+                ingame:StartFatOMeter()
+                EmitGlobalSound("Event.CheatEnabled")
+            end)
+        elseif ingame.voteEnableFatOMeter then
+            util:DisplayError(playerID, "#fatOmeterAlreadyOn")
+        end
     elseif string.find(command, "-switchteam") then
         local team = PlayerResource:GetTeam(playerID)
         if (ingame.needsTeamBalance and ingame.takeFromTeam == team) or util:isSinglePlayerMode() or IsInToolsMode() then

@@ -70,6 +70,7 @@ function Ingame:init()
     self.voteDoubleCreeps = false
     self.voteDisableAntiKamikaze = false
     self.voteDisableRespawnLimit = false
+    self.voteEnableFatOMeter = false
     self.voteEnableBuilder = false
     self.voteAntiRat = false
     self.origianlRespawnRate = nil
@@ -519,56 +520,9 @@ function Ingame:onStart()
     
     -- If Fat-O-Meter is enabled correctly, take note of players' heroes and record necessary information.
     if OptionManager:GetOption('useFatOMeter') > 0 and OptionManager:GetOption('useFatOMeter') <= 2 then
-        print("Starting Fat-O-Meter.")
-        local maxPlayers = 24
-        fatData = {}
-
-        for playerID = 0, (maxPlayers-1) do
-            local hero = PlayerResource:GetSelectedHeroEntity(playerID) 
-            if hero and IsValidEntity(hero) then
-                fatData[playerID] = {
-                    defaultModelScale = hero:GetModelScale(), --this is NOT 1 for most heroes, although some are very close
-                    prevScaleDifference = 0.0, --stored as difference so we can undo/change the effects without breaking other size-related code
-                    modelScaleDifference = 0.0, --stored as difference so we can undo/change the effects without breaking other size-related code
-                    targetScaleDifference = 0.0,
-                    interpScaleDifference = 0, --interpolates between previous and target scale diff
-                    maxScalePercent = constants.FAT_SCALING[PlayerResource:GetSelectedHeroName(playerID)] or 3.3,
-                    lastNetWorth = 0, --stores net worth for gold mode, kill value calculation in kill mode, and level-1 in level mode
-                    netWorthChange = 0, --stored for faster calculations on gold and levels
-                    fatness = 0.0, -- 0-100, with 100 being maxScalePercent times default and 0 being default.
-                }
-            end
-        end
-        
-        ListenToGameEvent('game_rules_state_change', function(keys)
-
-            if OptionManager:GetOption('useFatOMeter') == 0 then return end
-
-            local newState = GameRules:State_Get()
-            
-            if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-                print("Starting Fat Timers.")
-                Timers:CreateTimer(function()
-                    if lastFatThink == nil then
-                        lastFatThink = -60
-                    end
-                    if lastFatAnimate == nil then
-                        lastFatAnimate = -3.0
-                    end
-                    local dotaTime = GameRules:GetDOTATime(false, false)
-                    
-                    while (dotaTime - lastFatThink) > 60 do
-                        Ingame:FatOMeterThinker(60)
-                        lastFatThink = lastFatThink + 60
-                    end
-                    while (dotaTime - lastFatAnimate) > 3.0 do
-                        Ingame:FatOMeterAnimate(3.0)
-                        lastFatAnimate = lastFatAnimate + 3.0
-                    end
-                    return 3.0
-                end, "fatThink", 0.5)
-            end
-        end, nil)
+        this:StartFatOMeter()
+        --print("fat o meter")
+        --print(OptionManager:GetOption('useFatOMeter'))
     end
 
     GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(Ingame, 'FilterExecuteOrder'), self)
@@ -590,6 +544,61 @@ function Ingame:onStart()
     
     -- Set it to no team balance
     self:setNoTeamBalanceNeeded()
+end
+
+function Ingame:StartFatOMeter()
+    -- If Fat-O-Meter is enabled correctly, take note of players' heroes and record necessary information.
+    print("Starting Fat-O-Meter.")
+    ingame.voteEnableFatOMeter = true
+    local maxPlayers = 24
+    fatData = {}
+
+    for playerID = 0, (maxPlayers-1) do
+        local hero = PlayerResource:GetSelectedHeroEntity(playerID) 
+        if hero and IsValidEntity(hero) then
+            fatData[playerID] = {
+                defaultModelScale = hero:GetModelScale(), --this is NOT 1 for most heroes, although some are very close
+                prevScaleDifference = 0.0, --stored as difference so we can undo/change the effects without breaking other size-related code
+                modelScaleDifference = 0.0, --stored as difference so we can undo/change the effects without breaking other size-related code
+                targetScaleDifference = 0.0,
+                interpScaleDifference = 0, --interpolates between previous and target scale diff
+                maxScalePercent = constants.FAT_SCALING[PlayerResource:GetSelectedHeroName(playerID)] or 3.3,
+                lastNetWorth = 0, --stores net worth for gold mode, kill value calculation in kill mode, and level-1 in level mode
+                netWorthChange = 0, --stored for faster calculations on gold and levels
+                fatness = 0.0, -- 0-100, with 100 being maxScalePercent times default and 0 being default.
+            }
+        end
+    end
+    
+    ListenToGameEvent('game_rules_state_change', function(keys)
+
+        if OptionManager:GetOption('useFatOMeter') == 0 then return end
+
+        local newState = GameRules:State_Get()
+        
+        if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+            print("Starting Fat Timers.")
+            Timers:CreateTimer(function()
+                if lastFatThink == nil then
+                    lastFatThink = -60
+                end
+                if lastFatAnimate == nil then
+                    lastFatAnimate = -3.0
+                end
+                local dotaTime = GameRules:GetDOTATime(false, false)
+                
+                while (dotaTime - lastFatThink) > 60 do
+                    Ingame:FatOMeterThinker(60)
+                    lastFatThink = lastFatThink + 60
+                end
+                while (dotaTime - lastFatAnimate) > 3.0 do
+                    Ingame:FatOMeterAnimate(3.0)
+                    lastFatAnimate = lastFatAnimate + 3.0
+                end
+                return 3.0
+            end, "fatThink", 0.5)
+        end
+    end, nil)
 end
 
 function Ingame:CommandNotification(command, message, cooldown)
