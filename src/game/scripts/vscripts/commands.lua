@@ -125,6 +125,15 @@ function Commands:OnPlayerChat(keys)
         elseif ingame.voteEnableFatOMeter then
             util:DisplayError(playerID, "#fatOmeterAlreadyOn")
         end
+    elseif string.find(command, "-enablerefresh") then
+        if OptionManager:GetOption('refreshCooldownsOnDeath') ~= 1 and not ingame.voteEnableRefresh then
+            util:CreateVoting("lodVotingRefresh", playerID, 10, 50, function()
+                ingame.voteEnableRefresh = true
+                EmitGlobalSound("Event.CheatEnabled")
+            end)
+        else
+            util:DisplayError(playerID, "#refresherAlreadyOn")
+        end
     elseif string.find(command, "-switchteam") then
         local team = PlayerResource:GetTeam(playerID)
         if (ingame.needsTeamBalance and ingame.takeFromTeam == team) or util:isSinglePlayerMode() or IsInToolsMode() then

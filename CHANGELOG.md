@@ -9,6 +9,8 @@ All notable changes to this project will be documented in this file.
 - Added two new hints for above two functions
 - Winter Wyverns Perk now only requires health and mana to be at 75% before she starts flying
 - Fixed exploit that allowed glimmer cape and shadow amulet to be used when invis items are banned
+- Added Refresh Cooldowns on Death vote 
+- Added Fat-O-Meter vote (WIP)
 
 ## 7.8
 - Added Aegis Tower OP (single player ability)

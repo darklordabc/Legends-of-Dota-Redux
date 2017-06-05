@@ -29,6 +29,9 @@ var commandList = [{
 		title: "voteFatOMeter",
 		chatCommand: "enablefat",
 	},{
+		title: "voteRefresh",
+		chatCommand: "enableRefresh",
+	},{
 		title: "voteSwitchTeam",
 		chatCommand: "switchteam",
 	},]

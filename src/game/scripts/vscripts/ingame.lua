@@ -71,6 +71,7 @@ function Ingame:init()
     self.voteDisableAntiKamikaze = false
     self.voteDisableRespawnLimit = false
     self.voteEnableFatOMeter = false
+    self.voteEnableRefresh = false
     self.voteEnableBuilder = false
     self.voteAntiRat = false
     self.origianlRespawnRate = nil
@@ -1257,7 +1258,7 @@ function Ingame:handleRespawnModifier()
                                 SendOverheadEventMessage(hero:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, hero, 322, nil)
                             end
                             -- Refresh cooldowns if enabled
-                            if OptionManager:GetOption('refreshCooldownsOnDeath') == 1 then
+                            if OptionManager:GetOption('refreshCooldownsOnDeath') == 1 or ingame.voteEnableRefresh == true then
                                 for i = 0, 15 do
                                     local ability = hero:GetAbilityByIndex(i)
                                     if ability then

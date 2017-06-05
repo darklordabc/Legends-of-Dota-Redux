@@ -535,6 +535,9 @@
 
     "lodVotingFatOMeterLine"                     "wants to enable <font color='#70EA72'>Fat-O-Meter</font>"
     "lodVotingFatOMeterLineDescr"                "This will increase hero's size by their KDA ratio.<br><font color='#70EA72'>It is recommended</font>."
+
+    "lodVotingRefreshLine"                     "wants to enable <font color='#70EA72'>Refresh Cooldowns on Death</font>"
+    "lodVotingRefreshLineDescr"                "This will refresh abilities when heroes die.<br><font color='#70EA72'>It is recommended</font>."
     
     "lodVotingBanningBlockTrollCombosLine"          "wants to enable <font color='#FF4949'>Troll Combos</font>"
     "lodVotingBanningBlockTrollCombosLineDescr"     "This will unblock certain combinations of skills that are traditionally used to troll people and make a game aweful to play.<br><font color='#FF4949'>It its not recommended</font>."
@@ -567,6 +570,7 @@
     "heroBuilderAlreadyOn"                          "Hero builder already on"
     "respawnAlreadyDeactivated"                     "Respawn increasing already deactivated"
     "fatOmeterAlreadyOn"                            "Fat-O-Meter is already on"
+    "refresherAlreadyOn"                            "Refresh Cooldowns on Death already on"
     "invisbilityItemsAreBanned"                     "Invisibility items are banned"
 
     "lodUniqueSkillsOff"                            "Disabled"
@@ -1326,6 +1330,9 @@
 
     "command_menu_command_voteDoubleCreeps"           "Enable Double Neutrals"
     "command_menu_command_descr_voteDoubleCreeps"        "Voting for this makes neutral creeps clone themselves when you kill them, resulting in doubled neutral creeps. Shortcuts: -doublecreep -dc"
+
+    "command_menu_command_voteRefresh"           "Enable Refresh Cooldowns on Death"
+    "command_menu_command_descr_voteRefresh"        "Voting for this makes abilities go of cooldown on when you die, requires majority vote. Shortcuts: -enablerefresh"
 
     "command_menu_command_voteEnableAntiRat"              "Enable Anti-Rat Protection"
     "command_menu_command_descr_voteEnableAntiRat"        "When Anti-Rat is enabled, Tier3 towers cannot be destroyed unless all the outer towers are dead. Shortcuts: -antirat, -ar"
