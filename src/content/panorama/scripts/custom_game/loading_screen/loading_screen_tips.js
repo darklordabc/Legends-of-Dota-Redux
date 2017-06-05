@@ -97,6 +97,12 @@ var tipsGeneral = [{
         img: 'file://{images}/custom_game/hints/hint_CustomAbility.png',
         txt: '#hintCustomAbility'
     },{
+        img: 'file://{images}/custom_game/hints/hint_alt.png',
+        txt: '#hintAlt'
+    },{
+        img: 'file://{images}/custom_game/hints/hint_random.png',
+        txt: '#hintRandom'
+    },{
         img: 'file://{images}/custom_game/hints/hint_singleplayer.png',
         txt: '#hintSinglePlayer'
     },{

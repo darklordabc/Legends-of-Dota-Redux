@@ -99,7 +99,7 @@
             }
         }
         "ReduxBans"                                                            "veera_plains_runner"
-        "ReduxCost"                                                            "50"
-        "ReduxFlags"                                                           "OPSkillsList | SuperOP"
+        "ReduxCost"                                                            "120"
+        "ReduxFlags"                                                           ""
     }
 }

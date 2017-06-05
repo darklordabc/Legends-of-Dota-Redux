@@ -3,13 +3,13 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"custom/sight"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"HotKeyOverride"	"F"
 		"AbilityCastPoint"	"0"
-		"AbilityCooldown"	"22 20 18 16"
-		"AbilityManaCost"	"0"
+		"AbilityCooldown"	"60"
+		"AbilityManaCost"	"200"
 		"AbilityCastRange"	"1200"
 		"ReduxPerks"                                                           "nature"
 		"OnSpellStart"
@@ -75,7 +75,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"duration"	"4 5 6 7"
+				"duration"	"15 25 40"
 			}
 		}
 	}

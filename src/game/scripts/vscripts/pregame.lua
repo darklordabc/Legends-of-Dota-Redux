@@ -481,15 +481,15 @@ function Pregame:init()
         self:setOption('lodOptionAdvancedOPAbilities', 1, true)
         self:setOption('lodOptionGameSpeedMaxLevel', 100, true)
         self:setOption('lodOptionGamemode', 1)
-       -- self:setOption('lodOptionBattleThirst', 1)
+        self:setOption('lodOptionBattleThirst', 1)
         self:setOption('lodOptionGameSpeedStartingLevel', 1, true)
-        self:setOption('lodOptionGameSpeedStartingGold', 2500, true)
+        self:setOption('lodOptionGameSpeedStartingGold', 1000, true)
         self:setOption('lodOptionGameSpeedStrongTowers', 1, true)
         self:setOption('lodOptionCreepPower', 120, true)
         self:setOption('lodOptionGameSpeedTowersPerLane', 3, true)
         OptionManager:SetOption('banningTime', 50)
         self:setOption('lodOptionBalanceMode', 0, true)
-        self:setOption('lodOptionGameSpeedGoldModifier', 200, true)
+        self:setOption('lodOptionGameSpeedGoldModifier', 150, true)
         self:setOption('lodOptionGameSpeedEXPModifier', 150, true)
         self:setOption('lodOptionAdvancedHidePicks', 0, true)
         self:setOption('lodOptionCommonMaxUlts', 2, true)
@@ -1536,18 +1536,27 @@ function Pregame:networkHeroes()
                     flags[flag][k] = 1
                 end  
             end
-            if v["AbilityBehavior"] and string.match(v["AbilityBehavior"], "DOTA_ABILITY_BEHAVIOR_PASSIVE") and not string.match(k, "special_bonus_") and not string.match(k, "perk") then
-                flags["passive"] = flags["passive"] or {}
-                flags["passive"][k] = 1
+            if not string.match(k, "special_bonus_") and not string.match(k, "perk") then
+                if v["AbilityBehavior"] and string.match(v["AbilityBehavior"], "DOTA_ABILITY_BEHAVIOR_PASSIVE") then
+                    flags["passive"] = flags["passive"] or {}
+                    flags["passive"][k] = 1
+                end
+                if v["ReduxCost"] then
+                    if tonumber(v["ReduxCost"]) >= 120 then
+                        flags["SuperOP"] = flags["SuperOP"] or {}
+                        flags["SuperOP"][k] = 1
+                    elseif tonumber(v["ReduxCost"]) >= 80 then
+                        flags["OPSkillsList"] = flags["OPSkillsList"] or {}
+                        flags["OPSkillsList"][k] = 1
+                    end
+                end
             end
         end
     end
 
     local internalFlags = {
         wtfautoban = true,
-        opskillslist = true,
         nohero = true,
-        superop = true,
         donotrandom = true,
         underpowered = true,
     }
@@ -2059,9 +2068,9 @@ function Pregame:loadTrollCombos()
     -- Create the stores
     self.banList = {}
     self.wtfAutoBan = self.flags.wtfautoban
-    self.OPSkillsList = self.flags.opskillslist
+    self.OPSkillsList = self.flags.OPSkillsList
     self.noHero = self.flags.nohero
-    self.SuperOP = self.flags.superop
+    self.SuperOP = self.flags.SuperOP
     self.doNotRandom = self.flags.donotrandom
     self.underpowered = self.flags.underpowered
 
@@ -3762,7 +3771,7 @@ function Pregame:processOptions()
 
         -- Banning of OP Skills
         if not disableBanLists and this.optionStore['lodOptionAdvancedOPAbilities'] == 1 then
-            for abilityName,v in pairs(this.OPSkillsList) do
+            for abilityName,v in pairs(self.OPSkillsList) do
                 this:banAbility(abilityName)
             end
         else
@@ -3808,14 +3817,12 @@ function Pregame:processOptions()
             this.perksDisabled = true
         end
 
-
         -- LoD ban list
         if not disableBanLists and this.optionStore['lodOptionBanningUseBanList'] == 1 then
-            for abilityName,v in pairs(this.SuperOP) do
+            for abilityName,v in pairs(self.SuperOP) do
                 this:banAbility(abilityName)
             end
         end
-
         
         -- All extra ability mutator stuff
         if this.optionStore['lodOptionExtraAbility'] == 1 then
