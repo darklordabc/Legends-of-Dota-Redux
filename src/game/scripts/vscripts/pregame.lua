@@ -7466,11 +7466,6 @@ function Pregame:fixSpawningIssues()
                             Timers:CreateTimer(function()
                                 -- Modify illusions stats so that they are the same as the owning hero
                                 spawnedUnit:FixIllusion(realHero)
-                                spawnedUnit:ModifyAgility((spawnedUnit:GetAgility() - realHero:GetAgility()) * -1)
-                                spawnedUnit:ModifyStrength((spawnedUnit:GetStrength() - realHero:GetStrength()) * -1)
-                                spawnedUnit:ModifyIntellect((spawnedUnit:GetIntellect() - realHero:GetIntellect()) * -1)
-                                spawnedUnit:SetHealth(realHero:GetHealth())
-                                spawnedUnit:SetMana(realHero:GetMana())
                             end, DoUniqueString('FixIllusionSkills'), .1)
                         else
                             print("Cant find real hero, not changing a thing")
