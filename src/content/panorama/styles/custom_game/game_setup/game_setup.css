@@ -1915,7 +1915,7 @@ Button:enabled:hover {
 .pickingHeroList {
     padding-left: 16px;
     width: 100%;
-    height: 170px;
+    /*height: fit-children;*/
     /*background-color: #111111;*/
 	padding-top: 5px;
     margin: 10px 0 10px 0;
@@ -1926,8 +1926,9 @@ Button:enabled:hover {
     margin-left: 30px;
     margin-right: 10px;
 
-    flow-children: right-wrap;
-    vertical-align: middle;
+    padding-bottom: 20px;
+
+    flow-children: right-wrap;  
 }
 
 .pickingHeroListHeroes DOTAHeroImage {
@@ -2321,6 +2322,25 @@ Button:enabled:hover {
     horizontal-align: center;
 }
 
+.quickHighlight {
+    animation-name: lodQuickHighlight;
+    animation-duration: 0.25s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 4;
+}
+
+@keyframes 'lodQuickHighlight' {
+    0% {
+        box-shadow: #00bbFFFF 0px 0px 1px 0px;
+    }
+    50% {
+        box-shadow: #00bbFFFF 0px 0px 8px 0px;
+    }
+    100% {
+        box-shadow: #00bbFFFF 0px 0px 1px 0px;
+    }
+}
+
 .makeThePlayerNoticeThisButton {
     animation-name: lodButtonHighlight;
     animation-duration: 1.51s;
@@ -2359,31 +2379,41 @@ Button:enabled:hover {
 }
 
 .buildSortingProperty {
-    font-size: 24px;
+    font-size: 20px;
     margin: 10px;
-    color: #d1d8e6;
+    color: #939da044;
+    text-transform: uppercase;
 }
 .buildSortingProperty.selected {
-    text-decoration: underline;
-    color: #8accff;
+    /*text-decoration: underline;*/
+    color: #ffffff;
 }
 
 #buildLoadMoreBuilds
 {
-    font-size: 24px;
-    margin: 10px;
+/*    width: 50px;
+    height: 25px;*/
+/*    font-size: 24px;*/
+    
     horizontal-align: right;
-    color: lightblue;
+    vertical-align: top;
+/*    color: lightblue;*/
+}
+
+#buildLoadMoreBuilds Label
+{
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 #buildLoadMoreBuilds:hover
 {
-    text-decoration: underline;
+    /*text-decoration: underline;*/
 }
 
 #buildLoadMoreBuilds:active
 {
-    color: blue;
+    /*color: blue;*/
 }
 
 #recommendedBuildContainerScrollWrapper{

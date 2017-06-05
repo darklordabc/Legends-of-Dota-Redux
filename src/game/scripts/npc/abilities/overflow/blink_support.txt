@@ -9,8 +9,9 @@
 		"AbilityCastRange"				"0"
 		"AbilityCastPoint"				"0.3"
 		"AbilityCooldown"				"10.0"
-		"AbilityManaCost"				"175"
+		"AbilityManaCost"				"100"
 		"HasScepterUpgrade" "1"
+		"ReduxPerks"                                                           "mobility | blink"
         //
 		"precache"
 		{

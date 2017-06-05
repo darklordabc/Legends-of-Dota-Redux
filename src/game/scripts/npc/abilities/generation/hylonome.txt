@@ -51,7 +51,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "cast_range"            "600"
+                "cast_range"            "600 700 800 900"
             }
             "02"
             {
@@ -71,7 +71,7 @@
             "05"
             {
                 "var_type"              "FIELD_INTEGER"
-                "damage"                "85"
+                "damage"                "85 95 115 125"
             }
         }
         "precache"

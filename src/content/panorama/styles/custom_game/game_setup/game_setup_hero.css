@@ -1,3 +1,15 @@
+@keyframes 'lodQuickHighlight' {
+    0% {
+        box-shadow: #00bbFFFF 0px 0px 1px 0px;
+    }
+    50% {
+        box-shadow: #00bbFFFF 0px 0px 8px 0px;
+    }
+    100% {
+        box-shadow: #00bbFFFF 0px 0px 1px 0px;
+    }
+}
+
 .heroRoot {
     width: 90px;
     height: width-percentage(125%);
@@ -71,7 +83,10 @@
 }
 
 #heroName {
+/*    clip: rect(0%, 100%, 120%, 0%);*/
     width: 100%;
+
+    /*line-height: 10px;*/
 
     vertical-align: bottom;
     text-align: center;

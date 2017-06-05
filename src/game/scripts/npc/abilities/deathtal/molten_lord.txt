@@ -7,7 +7,7 @@
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST| DOTA_ABILITY_BEHAVIOR_ATTACK"
     	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-  		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_ALL"
+  		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
   		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
   		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
   		"AbilityTextureName"			"custom/bulwark_strike"
@@ -30,7 +30,7 @@
 		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
 		"AbilityCastRange"				"200"
 		"AbilityCooldown"				"5.0 5.0 5.0 5.0"
-		"AbilityManaCost"				"20 25 30 35"
+		"AbilityManaCost"				"30 45 50 65"
 		
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -39,7 +39,7 @@
 			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"armor_multiplier"				"6 8 10 12"
+				"armor_multiplier"				"3 4 5 6"
 			}
 			"02"
 			{
@@ -49,7 +49,7 @@
 			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"ablaze_multiplier"				"4"
+				"ablaze_multiplier"				"2"
 			}
 			"04"
 			{
@@ -179,6 +179,11 @@
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
+				"ablaze_multiplier"				"0.5"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
 				"ablaze_duration"			"6"
 			}
 		}
@@ -282,7 +287,7 @@
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
-		"AbilityCooldown"				"20.0 18.0 16.0 14.0"
+		"AbilityCooldown"				"30.0 28.0 26.0 24.0"
 		"AbilityManaCost"				"0.0"
 
 		// Special
@@ -454,7 +459,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"armor_multiplier"		"16 20 24"
+				"armor_multiplier"		"8 12 16"
 			}
 			"04"
 			{
@@ -504,12 +509,12 @@
 			"13"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"6 8 10"
+				"duration"				"6"
 			}
 			"14"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"stack_duration"		"20 25 30"
+				"stack_duration"		"20"
 			}
 			"15"
 			{

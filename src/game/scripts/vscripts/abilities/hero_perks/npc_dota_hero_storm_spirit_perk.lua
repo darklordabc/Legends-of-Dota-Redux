@@ -37,13 +37,22 @@ function modifier_npc_dota_hero_storm_spirit_perk:OnCreated(keys)
     if IsServer() then
         local caster = self:GetCaster()
         local overload = caster:FindAbilityByName("storm_spirit_overload")
+        local arcaneOrb = caster:FindAbilityByName("obsidian_destroyer_arcane_orb")
 
-        if overload then
-            overload:UpgradeAbility(false)
-        else 
-            overload = caster:AddAbility("storm_spirit_overload")
-            overload:SetHidden(true)
-            overload:SetLevel(1)
+        if arcaneOrb then
+          if self:GetCaster().GetPlayerID then
+            util:DisplayError(self:GetCaster():GetPlayerID(), "#perk_denied")
+            self:Destroy()
+          end
+        end
+        if not arcaneOrb then
+          if overload then
+              overload:UpgradeAbility(false)
+          else 
+              overload = caster:AddAbility("storm_spirit_overload")
+              overload:SetHidden(true)
+              overload:SetLevel(1)
+          end
         end
     end
 end

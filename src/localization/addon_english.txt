@@ -47,6 +47,10 @@
     "76561198078268404" "TheRisen41"
     "76561198078268404_Description" "Spells Contributor"
 
+    // Chat announcemnts
+    "announcement"  "Announcement"
+    "chatChannelsAnnouncement" "Type /all to chat to all players, /team to chat to teammates only"
+
     // Teams
     "theRadiant"                                    "The Radiant"
     "theDire"                                       "The Dire"
@@ -511,22 +515,37 @@
     "lodMutatorIngameBuilder4"                      "Build Switcher Free"
 
     "lodVotingTitle"                                "Option Voting"
+    
     "lodVotingEnableCheatModeLine"                  "wants to enable <font color='#FF4949'>cheat mode</font>"
     "lodVotingEnableCheatModeLineDescr"             "This will allow players to use powerful and game-breaking cheat commands. <br><font color='#FF4949'>It its not recommended</font>."
+    
     "lodVotingEnableKamikazeLine"                   "wants to disable <font color='#FF4949'>Anti-Kamikaze</font> mechanic"
     "lodVotingEnableKamikazeLineDescr"              "This allows players to quickly respawn and die without punishment.<br><font color='#FF4949'>It its not recommended</font>."
+    
     "lodVotingEnableHeroBuilderLine"                "wants to enable <font color='#70EA72'>Ingame hero builder</font>"
     "lodVotingEnableHeroBuilderLineDescr"           "This allows players to change their ability builds mid-game."
+    
     "lodVotingEnableRespawnLine"                    "wants to disable <font color='#FF4949'>Increasing-spawn-rate</font> mechanic"
     "lodVotingEnableRespawnLineDescr"               "This prevents respawn times slowly increasing after 40 minutes.<br><font color='#FF4949'>It its not recommended</font>."
+    
     "lodVotingSwitchTeamLine"                       "wants to <font color='#70EA72'>Switch Teams</font>"
     "lodVotingSwitchTeamLineDescr"                  "This player has volunteered to switch teams to make the game more balanced.<br><font color='#70EA72'>It is recommended</font>."
+    
     "lodVotingAntiratLine"                          "wants to enable <font color='#70EA72'>Anti-Rat tower protection</font>"
     "lodVotingAntiratLineDescr"                     "This requires all outer towers be destroyed before you can attack tier 3 towers.<br><font color='#70EA72'>It is recommended</font>."
+    
     "lodVotingDoubleCreepsLine"                     "wants to enable <font color='#70EA72'>Double Neutral Creeps</font>"
     "lodVotingDoubleCreepsLineDescr"                "This will double the amount of neutral creeps.<br><font color='#70EA72'>It is recommended</font>."
+
+    "lodVotingFatOMeterLine"                     "wants to enable <font color='#70EA72'>Fat-O-Meter</font>"
+    "lodVotingFatOMeterLineDescr"                "This will increase hero's size by their KDA ratio.<br><font color='#70EA72'>It is recommended</font>."
+
+    "lodVotingRefreshLine"                     "wants to enable <font color='#70EA72'>Refresh Cooldowns on Death</font>"
+    "lodVotingRefreshLineDescr"                "This will refresh abilities when heroes die.<br><font color='#70EA72'>It is recommended</font>."
+    
     "lodVotingBanningBlockTrollCombosLine"          "wants to enable <font color='#FF4949'>Troll Combos</font>"
     "lodVotingBanningBlockTrollCombosLineDescr"     "This will unblock certain combinations of skills that are traditionally used to troll people and make a game aweful to play.<br><font color='#FF4949'>It its not recommended</font>."
+    
     "lodVotingAdvancedOPAbilitiesLine"              "wants to enable <font color='#FF4949'>Single Player Abilities</font>"
     "lodVotingAdvancedOPAbilitiesLineDescr"         "This will allow SUPER OP abilities that are not balanced and are way too strong.<br><font color='#FF4949'>It its not recommended</font>."
 
@@ -554,6 +573,8 @@
     "kamikazeAlreadyDeactivated"                    "Kamikaze mechanic already deactivated"
     "heroBuilderAlreadyOn"                          "Hero builder already on"
     "respawnAlreadyDeactivated"                     "Respawn increasing already deactivated"
+    "fatOmeterAlreadyOn"                            "Fat-O-Meter is already on"
+    "refresherAlreadyOn"                            "Refresh Cooldowns on Death already on"
     "invisbilityItemsAreBanned"                     "Invisibility items are banned"
 
     "lodUniqueSkillsOff"                            "Disabled"
@@ -746,7 +767,7 @@
     "hintEmpoweringHaste"                           "Empowering Haste and Thirst make for a lethal combination!"
     "hintInfestHacks"                               "Pudge's Rot and Witch Doctor's Voodoo Restoration won't damage you or cost mana when you infest another hero."
     "hintSuggestBuild"                              "Do you know a good build? Submit it and it may be added to the recommended builds sections."
-    "hintBreakPassives"                             "Silver Edge, Doom and Demonic Purge are the only ways to disable enemy passives - which can be very useful against passive-heavy heroes, such as Tanks."
+    "hintBreakPassives"                             "Silver Edge, Silver, Doom and Demonic Purge are useful ways to disable enemy passives - breaking passives can be the only counter to passive heavy builds like tanks."
     "hintInnateAbilities"                           "Night Stalker, Keeper of the Light will benefit from Aghanim's Scepter Upgrade, irrespective of their chosen abilities."
     "hintReport"                                    "Found a bug? Report it. Most bugs are only fixed after a player has reported them. Use the Steam Workshop page or use the in-game comment form."
     "hintWarnings"                                  "Many Abilities will have red warnings at the bottom of their descriptions. It is important to read these as they explain bugs, hero requirements or other abilities that are needed."
@@ -764,11 +785,13 @@
     "hintUniversalShop"                         "By Default, 'Universal Shops' are enabled. This means you can buy any item from any shop and you can also pick up items from your stash from any shop."
     "hintDiscord"                         "Join the conversation! Come to the Discord chat-room to discuss with developers anything relating to Redux. The link to the chat-room is on the Steam page."
     "hintBotsDifficulty"                         "Bots too hard? Sick of them using OP abilities? Check out the bots menu in custom settings and remove their buffs, force them to use unique skills or make them use only their default 4 skills or use the stupefy option."
-    "hintDuels"                         "Try playing with Duels! This is a game mechanic that has been borrowed from Angel Arena Reborn and ensures frequent hero fights."
+    //"hintDuels"                         "Try playing with Duels! This is a game mechanic that has been borrowed from Angel Arena Reborn and ensures frequent hero fights."
     "hintBotTalents"                         "Bots receive 2 extra abilities, they will always choose the best available ability for their hero based on a predefined list. Bots will also level randomly selected talents, however, their talent picks are not shown in their talent trees. "
     "hintCtrl"  "Hold Down Ctrl + Click the ability categories to show more than 1 category at a time. The game starts with more than 1 category selected already."
     "hintSinglePlayer"  "'Single Player abilities' are designed for solo play against bots, these are extremely powerful and are not designed with balance in mind. Enabling them in multiplayer is NOT recommended, unless the other players agree." 
     "hintCustomAbility"  "Redux features many new and interesting custom abilities. Some imported from other Dota 2 mods, some by individual developers and some specifically created for Redux. Be careful when enabling these, as they can be overwhelming for new players."
+    "hintAlt"  "Alt-Click or Right Click an ability to high-light it for your teammates."
+    "hintRandom"  "Right click an ability slot to random an ability. You can also click your hero slot to get a random hero."
     "hintBooster"  "Booster Draft is gamemode based on the popular draft method from MAGIC: THE GATHERING Card Game. Like Single Draft, It is for advanced players who want a fairer game."
     "hintPerks"  "Every Hero in Redux has a special perk that is a unique advantage for that hero. These perks are designed to encourage players to use different heroes and not just pick the few heroes with the best stats. They can be disabled."  
     "hintRespawnTimes"  "Respawn rates will increase after 40 minutes and will increase by 10% every 10 minutes, up to 50% respawn rate. This is to prevent games lasting too long and being unendable."
@@ -799,7 +822,7 @@
     "hintShadowfiend"                         "At the start of the game, Shadow Fiend gains a free level of Necromastery, whether he has it or not."
     "hintPuck"                         "Puck has a 50% chance to reflect disjointed spells."
     "hintAbaddon"                         "For Abaddon, Mist Coil self-heals instead of damages and Aphotic Shield receives 2 charges."
-    "hintWinterWyvern"                         "When Winter Wyvern's health and mana are above 90% she gains flying status after a 5 second delay."
+    "hintWinterWyvern"                         "When Winter Wyvern's health and mana are above 75% she gains flying status after a 5 second delay."
     "hintDragonKnight"                         "While Dragon Knight is in Elder Dragon Form, all of Dragon Knight's abilities apply Dragon Form debuffs. This includes towers."
     "hintCentaur"                         "Centaur Warrunner takes 75% damage from Self-Damaging spells."
     "hintPhoenix"                         "Phoenix passively triggers Supernova when taking lethal damage. Requires level 6 or higher."
@@ -1289,7 +1312,7 @@
     "unique_mechanic_warlock"                        "Warlock starts the game with 2 free <font color=\'#ffd966\'>Observer Wards</font>."
     "unique_mechanic_weaver"                        "Weaver will automatically cast <font color='#ffd966'>Time Lapse</font> upon taking fatal damage."
     //"unique_mechanic_windrunner"                        "If Windranger has no passives, all her active spells will refund 20% mana and have 20% reduced cooldowns."
-    "unique_mechanic_winter_wyvern"         "When Winter Wyvern's health and mana are above 90% she gains flying status after a 5 second delay."
+    "unique_mechanic_winter_wyvern"         "When Winter Wyvern's health and mana are above 75% she gains flying status after a 5 second delay."
     "unique_mechanic_witch_doctor"           "<font color=\'#ffd966\'>Healing</font> abilities have 25% extra effectiveness when used by Witch Doctor."
     "unique_mechanic_skeleton_king"                        "Wraith King can buyback with a 50% reduced cooldown, refunding 50% of the buyback cost and removing the gold penalty."
     "unique_mechanic_zuus"                        "Zeus refunds 20% of the manacost of any <font color='#ffd966'>Lightning</font> spells he casts."
@@ -1305,14 +1328,20 @@
     "command_menu_command_voteEnableCheat"              "Enable Cheat Mode"
     "command_menu_command_descr_voteEnableCheat"        "Starts a vote to enable cheats mode, requires unanimous agreement among players. Shortcuts: -enablecheats, -ec"
 
-    "command_menu_command_voteEnableAntiRat"              "Enable Anti-Rat Protection"
-    "command_menu_command_descr_voteEnableAntiRat"        "When Anti-Rat is enabled, Tier3 towers cannot be destroyed unless all the outer towers are dead. Shortcuts: -antirat, -ar"
+    "command_menu_command_voteFatOMeter"              "Enable Fat-O-Meter"
+    "command_menu_command_descr_voteFatOMeter"        "Starts are vote to enable Fat-O-Meter mutator requires majority agreement among players. Shortcuts: -enablefat, -ef"
 
     "command_menu_command_voteEnableKamikaze"           "Disable Anti-Kamikaze"
     "command_menu_command_descr_voteEnableKamikaze"        "Anti-Kamikaze is a game mechanic which punishes players that die more than 3 times within 60 seconds. This usually happens when games have instant respawn and players are using a strat where they Kamikaze themselves agaisnt towers and buildings. Shortcuts: -enablekamikaze -ek"
 
     "command_menu_command_voteDoubleCreeps"           "Enable Double Neutrals"
     "command_menu_command_descr_voteDoubleCreeps"        "Voting for this makes neutral creeps clone themselves when you kill them, resulting in doubled neutral creeps. Shortcuts: -doublecreep -dc"
+
+    "command_menu_command_voteRefresh"           "Enable Refresh Cooldowns on Death"
+    "command_menu_command_descr_voteRefresh"        "Voting for this makes abilities go of cooldown on when you die, requires majority vote. Shortcuts: -enablerefresh"
+
+    "command_menu_command_voteEnableAntiRat"              "Enable Anti-Rat Protection"
+    "command_menu_command_descr_voteEnableAntiRat"        "When Anti-Rat is enabled, Tier3 towers cannot be destroyed unless all the outer towers are dead. Shortcuts: -antirat, -ar"
 
     "command_menu_command_voteEnableRespawn"            "Disable Late-Game Respawn Rate Increase" 
     "command_menu_command_descr_voteEnableRespawn"        "To prevent games with low respawn times lasting for too long or being never-ending, the game will increase respawn rates at the 40 minute mark by 10%, and by another 10% after 10 minutes, continually, until respawn rates are at minimum 50%. This option disables that safeguard. Shortcuts: -enablerespawn -er"  
@@ -1515,6 +1544,7 @@
     "credit_imba_dazzle_shallow_grave"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_tower_atrophy"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_tower_aegis"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+    "credit_imba_tower_aegis_op"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_tower_berserk"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_tower_chrono"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_tower_disease"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
@@ -1541,6 +1571,8 @@
     "credit_imba_tower_split"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_tower_thorns"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_tower_vicious"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+    "credit_imba_tower_healing_tower"         "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+    "credit_imba_tower_healing_hero"         "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_juggernaut_healing_ward_mana"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 and SwordBacon</font>"
     "credit_angel_arena_lightning"           "<font color=\'#7D7D7D\'>Imported from <font color='#f26868'>Angel Arena Reborn.</font>"
     "credit_angel_arena_magic_fire"          "<font color=\'#7D7D7D\'>Imported from <font color='#f26868'>Angel Arena Reborn.</font></font>"
@@ -3044,6 +3076,14 @@
     "DOTA_Tooltip_ability_imba_tower_aegis_bonus_armor_aura"                            "AURA BONUS ARMOR:"
     "DOTA_Tooltip_ability_imba_tower_aegis_aura_radius"                                 "AREA OF EFFECT:"
 
+    "DOTA_Tooltip_ability_imba_tower_aegis_op"                                             "Aegis Tower OP"
+    "DOTA_Tooltip_ability_imba_tower_aegis_op_Description"                                 "This tower has increased armor and health, and increases the armor of all allies in range. <font color='#70EA72'>More Armor and Health.</font>"
+    "DOTA_Tooltip_ability_imba_tower_aegis_op_Lore"                                        "Made of an impregnable mithril-duranium-vibranium-adamantium-orichalcum-unobtainium alloy."
+    "DOTA_Tooltip_ability_imba_tower_aegis_op_bonus_armor"                                 "BONUS ARMOR:"
+    "DOTA_Tooltip_ability_imba_tower_aegis_op_bonus_health"                                "BONUS HEALTH:"
+    "DOTA_Tooltip_ability_imba_tower_aegis_op_bonus_armor_aura"                            "AURA BONUS ARMOR:"
+    "DOTA_Tooltip_ability_imba_tower_aegis_op_aura_radius"                                 "AREA OF EFFECT:"
+
     "DOTA_Tooltip_ability_imba_tower_self_repair"                                       "Regeneration Tower"
     "DOTA_Tooltip_ability_imba_tower_self_repair_Description"                           "This tower slowly repairs itself, and increases nearby allies' health regeneration."
     "DOTA_Tooltip_ability_imba_tower_self_repair_Lore"                                  "Blessed by Verodicia, protected by a certain clan of Treants."
@@ -3632,7 +3672,7 @@
     "DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flight_delay"    "Flight Delay"
     "DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flight_delay_Description"    "Preparing to fly over 5 seconds."
     "DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flying"  "Flying"
-    "DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flying_Description"    "When Winter Wyvern's health and mana are above 90%d% she gains flying status after 5 seconds.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_winter_wyvern_flying_Description"    "When Winter Wyvern's health and mana are above 75%d% she gains flying status after 5 seconds.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
     /// WITCH DOCTOR​
     "DOTA_Tooltip_modifier_npc_dota_hero_witch_doctor_perk" "Witch Doctor Perk"
@@ -4154,8 +4194,8 @@
     "DOTA_Tooltip_ability_kret_poisoning_adsorbVal" "MANA REDUCTION:"
 
     "DOTA_Tooltip_ability_kret_lust_for_life"   "Thirst for Life"
-    "DOTA_Tooltip_ability_kret_lust_for_life_Description"   "By sacrificing his intelligence, Murloc gets regeneration based on hit points missing."
-    "DOTA_Tooltip_ability_kret_lust_for_life_intellect_sacrifice"   "INTELLECT PENALTY:"
+    "DOTA_Tooltip_ability_kret_lust_for_life_Description"   "Murloc gets regeneration based on hit points missing."
+    //"DOTA_Tooltip_ability_kret_lust_for_life_intellect_sacrifice"   "INTELLECT PENALTY:"
     "DOTA_Tooltip_ability_kret_lust_for_life_tolltip"   "%MISSING HEALTH FOR ONE BONUS:"
     "DOTA_Tooltip_ability_kret_lust_for_life_health_regen_percent"  "%REGENERATION PER BONUS:"
 
@@ -4624,7 +4664,7 @@
     "DOTA_Tooltip_ability_sniper_assassinate_redux_scepter_crit_bonus" "SCEPTER CRIT:" 
 
     "DOTA_Tooltip_ability_necrolyte_sadist_lod"                                        "Sadist (pre 7.00)"
-    "DOTA_Tooltip_ability_necrolyte_sadist_lod_Description"                            "Necrolytephos gains health and mana regeneration every time he kills an unit. Hero kills grant 10 times the bonus."
+    "DOTA_Tooltip_ability_necrolyte_sadist_lod_Description"                            "Necrolytephos gains health and mana regeneration every time he kills a unit. Hero kills grant 10 times the bonus."
     "DOTA_Tooltip_ability_necrolyte_sadist_lod_Lore"                                   "Rotund'jere revels in death and decay, gaining renewed strength from it."
     "DOTA_Tooltip_ability_necrolyte_sadist_lod_health_regen"                           "HEALTH REGENERATION:"
     "DOTA_Tooltip_ability_necrolyte_sadist_lod_mana_regen"                             "MANA REGENERATION:"
@@ -5592,14 +5632,14 @@
         "DOTA_Tooltip_ability_imba_necrolyte_heartstopper_aura_aura_radius"                 "EFFECT RADIUS:"
 
         "DOTA_Tooltip_ability_imba_necrolyte_sadist"                                        "Sadist IMBA"
-        "DOTA_Tooltip_ability_imba_necrolyte_sadist_Description"                            "Necrolytephos gains health and mana regeneration every time he kills an unit. Hero kills grant 10 times the bonus.\n<font color='#FF7800'>Perversion:</font> Attacking enemy heroes grants a stack of Sadist."
+        "DOTA_Tooltip_ability_imba_necrolyte_sadist_Description"                            "Necrolytephos gains health and mana regeneration every time he kills a unit. Hero kills grant 10 times the bonus.\n<font color='#FF7800'>Perversion:</font> Attacking enemy heroes grants a stack of Sadist."
         "DOTA_Tooltip_ability_imba_necrolyte_sadist_Lore"                                   "Rotund'jere revels in death and decay, gaining renewed strength from it."
         "DOTA_Tooltip_ability_imba_necrolyte_sadist_health_regen"                           "HEALTH REGENERATION:"
         "DOTA_Tooltip_ability_imba_necrolyte_sadist_mana_regen"                             "MANA REGENERATION:"
         "DOTA_Tooltip_ability_imba_necrolyte_sadist_regen_duration"                         "STACK DURATION:"
 
         "DOTA_Tooltip_ability_necrolyte_sadist_lod"                                        "Sadist"
-        "DOTA_Tooltip_ability_necrolyte_sadist_lod_Description"                            "Necrolytephos gains health and mana regeneration every time he kills an unit. Hero kills grant 10 times the bonus."
+        "DOTA_Tooltip_ability_necrolyte_sadist_lod_Description"                            "Necrolytephos gains health and mana regeneration every time he kills a unit. Hero kills grant 10 times the bonus."
         "DOTA_Tooltip_ability_necrolyte_sadist_lod_Lore"                                   "Rotund'jere revels in death and decay, gaining renewed strength from it."
         "DOTA_Tooltip_ability_necrolyte_sadist_lod_health_regen"                           "HEALTH REGENERATION:"
         "DOTA_Tooltip_ability_necrolyte_sadist_lod_mana_regen"                             "MANA REGENERATION:"
@@ -8302,13 +8342,14 @@
         "DOTA_Tooltip_Ability_item_health_potion"                           "Health Potion"
         "DOTA_Tooltip_Ability_item_mana_potion"                             "Mana Potion"   
 
-        "DOTA_Tooltip_ability_sight"    "Nature's Spy"
-        "DOTA_Tooltip_ability_sight_Description"    "Give a friendly unit flying vision and true sight."
+        "DOTA_Tooltip_ability_sight"    "Sight"
+        "DOTA_Tooltip_ability_sight_Description"    "Grant yourself or a friendly unit superior sight, giving truesight and unobstructed vision."
         "DOTA_Tooltip_ability_sight_duration"   "DURATION:"
         "DOTA_Tooltip_ability_sight_radius_d"   "DAYTIME VISION:"
         "DOTA_Tooltip_ability_sight_radius_n"   "NIGHTTIME VISION:"
+        "DOTA_Tooltip_ability_sight_Lore"           "Where there is no vision the people perish."
         "DOTA_Tooltip_modifier_sight"   "Nature's Spy"
-        "DOTA_Tooltip_modifier_sight_Description"   "flying vision and true sight"
+        "DOTA_Tooltip_modifier_sight_Description"   "Unobstructed vision and true sight"
 
         "npc_dota_creature_big_bear"        "Daddy Bear"
         "npc_bot_spirit_sven"        "Sven Bot Helper"
@@ -10105,6 +10146,7 @@
     "DOTA_Tooltip_ability_zuus_arc_lightning_op_radius"                               "JUMP RANGE:"
 
     "devour_denied"                                                                    "Cannot eat with your mouth full"
+    "perk_denied"                                                                    "Overload and Arcane Orb is a troll combo, perk denied"
     
     "only_target_creeps"                            "Cannot consume Ancients"
 
@@ -10196,14 +10238,15 @@
     "DOTA_Tooltip_ablaze_modifier"                                      "<font color='#d30000'>ABLAZE</font>!"
     "DOTA_Tooltip_ablaze_modifier_Description"                          "You are <font color='#d30000'>Ablaze</font>! Taking half of Molten Lord's amror every 0.5 seconds."
     "DOTA_Tooltip_ability_bulwark_strike"                               "BULWARK STRIKE"
-    "DOTA_Tooltip_ability_bulwark_strike_Description"                   "Molten Lord strikes an enemy dealing extra magic damage to them based on his armor multiplied by a value. The hit sets the target <font color='#d30000'>Ablaze</font>. If the target is already <font color='#d30000'>Ablaze</font>, Bulwark Strike deals additional extra damage equal to 4 times Molten Lord's armor, additionally enemies in a radius around the target are also set <font color='#d30000'>Ablaze</font>.\n<font color='#d30000'>Ablaze</font> enemies take half of Molten Lord's armor as magic damage every 0.5 seconds."
+    "DOTA_Tooltip_ability_bulwark_strike_Description"                   "Molten Lord strikes an enemy dealing extra magic damage to them based on his armor multiplied by a value. The hit sets the target <font color='#d30000'>Ablaze</font>. If the target is already <font color='#d30000'>Ablaze</font>, Bulwark Strike deals additional extra damage equal to 2 times Molten Lord's armor, additionally enemies in a radius around the target are also set <font color='#d30000'>Ablaze</font>.\n<font color='#d30000'>Ablaze</font> enemies take half of Molten Lord's armor as magic damage every 0.5 seconds."
     "DOTA_Tooltip_ability_bulwark_strike_armor_multiplier"              "ARMOR MULTIPLIER:"
     "DOTA_Tooltip_ability_bulwark_strike_radius"                        "RADIUS:"
     "DOTA_Tooltip_ability_bulwark_strike_ablaze_duration"               "<font color='#d30000'>ABLAZE</font> DURATION:"
     "DOTA_Tooltip_ability_skipping_flames"                              "SKIPPING FLAMES"
-    "DOTA_Tooltip_ability_skipping_flames_Description"                  "Molten Lord transfer <font color='#d30000'>Ablaze</font> from all enemies in a radius around an enemy. The target is mini-stunned and takes damage plus the remaining damage of <font color='#d30000'>Ablaze</font> that was on the enemies in range, this includes the <font color='#d30000'>Ablaze</font> on the target. The target is set <font color='#d30000'>Ablaze</font>.\n<font color='#d30000'>Ablaze</font> enemies take half of Molten Lord's armor as magic damage every 0.5 seconds."
+    "DOTA_Tooltip_ability_skipping_flames_Description"                  "Molten Lord transfer <font color='#d30000'>Ablaze</font> from all enemies in a radius around an enemy. The target is mini-stunned and takes damage plus half of the remaining damage of <font color='#d30000'>Ablaze</font> that was on the enemies in range, this includes the <font color='#d30000'>Ablaze</font> on the target. The target is set <font color='#d30000'>Ablaze</font>.\n<font color='#d30000'>Ablaze</font> enemies take half of Molten Lord's armor as magic damage every 0.5 seconds."
     "DOTA_Tooltip_ability_skipping_flames_radius"                       "RADIUS:"
     "DOTA_Tooltip_ability_skipping_flames_base_damage"                  "BASE DAMAGE:"
+    "DOTA_Tooltip_ability_skipping_flames_ablaze_multiplier"            "ABLAZE REMAINING DAMAGE MULTIPLIER:"
     "DOTA_Tooltip_ability_skipping_flames_mini_stun"                    "STUN DURATION:"
     "DOTA_Tooltip_ability_skipping_flames_ablaze_duration"              "<font color='#d30000'>ABLAZE</font> DURATION:"
     "DOTA_Tooltip_ability_unwavering_stance"                            "UNWAVERING STANCE"
@@ -10217,7 +10260,7 @@
     "DOTA_Tooltip_ability_molten_charge_tooltip_radius"                 "RADIUS:"
     "DOTA_Tooltip_ability_molten_charge_armor_multiplier"               "ARMOR MULTIPLIER:"
     "DOTA_Tooltip_ability_molten_charge_slow_duration"                  "SLOW DURATION:"
-    "DOTA_Tooltip_ability_molten_charge_slow_movement_speed"            "%MOVERMENT SLOW:"
+    "DOTA_Tooltip_ability_molten_charge_slow_movement_speed"            "%MOVEMENT SLOW:"
     "DOTA_Tooltip_ability_molten_charge_slow_attack_speed"              "ATTACK SLOW:"
     "DOTA_Tooltip_ability_molten_charge_root_duration"                  "ROOT DURATION:"
     "DOTA_Tooltip_ability_molten_charge_duration"                       "ARMOR DRAIN DURATION:"
@@ -10312,13 +10355,33 @@
     "DOTA_Tooltip_modifier_lysander_captains_compass_buff_show"                                 "Captain's Compass"
     "DOTA_Tooltip_modifier_lysander_captains_compass_buff_show_description"                     "Gaining movespeed and attackspeed as you near your target!"
 
-    "DOTA_Tooltip_modifier_lysander_captains_compass"                            "Captain's Compass"
-    "DOTA_Tooltip_modifier_lysander_captains_compass_description"                "Enemies can see where you are! Run!"
+    "DOTA_Tooltip_modifier_captains_compass"                            "Captain's Compass"
+    "DOTA_Tooltip_modifier_captains_compass_description"                "Enemies can see where you are! Run!"
 
     "DOTA_Tooltip_modifier_grapeshot_scepter"                                   "Grapeshot Aghanim's Scepter Upgrade"
     "DOTA_Tooltip_modifier_grapeshot_scepter_description"                       "Owner has a chance to Grapeshot a nearby enemy when attacking."
 
     "DOTA_Tooltip_modifier_lysander_phantom_fleet_slow"                               "Phantom Dreadknought Slow"
     "DOTA_Tooltip_modifier_lysander_phantom_fleet_slow_description"                   "Being slowed by %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%."
+
+    "DOTA_Tooltip_ability_imba_tower_healing_tower"                                     "Healing Tower"     
+    "DOTA_Tooltip_ability_imba_tower_healing_tower_Description"                         "Periodically checks heroes that have their health percentage lower than a certain threshold. Triggers a healing effect that bounces between heroes. Bounces have a small delay between each one. <font color='#70EA72'>Much shorter cooldown</font>."      
+    "DOTA_Tooltip_ability_imba_tower_healing_tower_Note0"                               "Search radius for the first trigger is higher than the bounce radius."
+    "DOTA_Tooltip_ability_imba_tower_healing_tower_Lore"                                "Dazzle's evil twin have take ahold in his tower, supporting the heroes from the top room in the tower."
+    "DOTA_Tooltip_ability_imba_tower_healing_tower_heal_amount"                         "HEAL PER BOUNCE:"
+    "DOTA_Tooltip_ability_imba_tower_healing_tower_hp_threshold"                        "%TRIGGER HEALTH THRESHOLD:"
+    "DOTA_Tooltip_ability_imba_tower_healing_tower_search_radius"                       "SEARCH RADIUS:"
+    "DOTA_Tooltip_ability_imba_tower_healing_tower_bounce_delay"                        "BOUNCE DELAY:"
+    "DOTA_Tooltip_ability_imba_tower_healing_tower_bounce_radius"                       "BOUNCE RANGE:" 
+
+    "DOTA_Tooltip_ability_imba_tower_healing_hero"                                     "Healing Aura"     
+    "DOTA_Tooltip_ability_imba_tower_healing_hero_Description"                         "Periodically checks heroes that have their health percentage lower than a certain threshold. Triggers a healing effect that bounces between heroes. Bounces have a small delay between each one."      
+    "DOTA_Tooltip_ability_imba_tower_healing_hero_Note0"                               "Search radius for the first trigger is higher than the bounce radius."
+    "DOTA_Tooltip_ability_imba_tower_healing_hero_Lore"                                "Dazzle's evil twin have take ahold in his tower, supporting the heroes from the top room in the tower."
+    "DOTA_Tooltip_ability_imba_tower_healing_hero_heal_amount"                         "HEAL PER BOUNCE:"
+    "DOTA_Tooltip_ability_imba_tower_healing_hero_hp_threshold"                        "%TRIGGER HEALTH THRESHOLD:"
+    "DOTA_Tooltip_ability_imba_tower_healing_hero_search_radius"                       "SEARCH RADIUS:"
+    "DOTA_Tooltip_ability_imba_tower_healing_hero_bounce_delay"                        "BOUNCE DELAY:"
+    "DOTA_Tooltip_ability_imba_tower_healing_hero_bounce_radius"                       "BOUNCE RANGE:" 
 
 }

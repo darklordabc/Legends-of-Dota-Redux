@@ -40,7 +40,7 @@ function BulwarkStrikeDamage( keys )
 	local particle2	= keys.particle2
 	local sound = keys.sound
 	local radius = ability:GetLevelSpecialValueFor("radius", ability:GetLevel() - 1)
-	local cooldown = ability:GetCooldown(ability:GetLevel() - 1)
+	local cooldown = ability:GetTrueCooldown()
 	local armor = caster:GetPhysicalArmorValue()
 	local armor_multiplier = ability:GetLevelSpecialValueFor("armor_multiplier", ability:GetLevel() - 1)
 	local ablaze_multiplier = ability:GetLevelSpecialValueFor("ablaze_multiplier", ability:GetLevel() - 1)
@@ -84,8 +84,9 @@ function SkippingFlames( keys )
 	local target = keys.target
 	local radius = ability:GetLevelSpecialValueFor("radius", ability:GetLevel() - 1)
 	local delay = ability:GetLevelSpecialValueFor("delay", ability:GetLevel() - 1)
+	local ablaze_multiplier = ability:GetLevelSpecialValueFor("ablaze_multiplier", ability:GetLevel() - 1)
 	local armor = caster:GetPhysicalArmorValue()
-	local armor_damage = armor * 0.5
+	local armor_damage = armor * 0.5 * ablaze_multiplier
 	local sound = keys.sound
 	local caster_location = caster:GetAbsOrigin()
 	local target_location = target:GetAbsOrigin()
@@ -134,7 +135,7 @@ end
 function CheckStun( keys )
 	local caster = keys.caster
 	local ability = keys.ability
-	local cooldown = ability:GetCooldown(ability:GetLevel() - 1)
+	local cooldown = ability:GetTrueCooldown()
 	local sound = keys.sound
 	local particle = keys.particle
 
