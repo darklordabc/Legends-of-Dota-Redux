@@ -1034,7 +1034,7 @@ function Pregame:onThink()
                 CustomGameEventManager:Send_ServerToAllClients("lodSinglePlayer",{})
             end
 
-            Chat:Say( {channel = "all", msg = "Type /all to chat to all players, /team to chat to teammates only", PlayerID = -1})
+            Chat:Say( {channel = "all", msg = "chatChannelsAnnouncement", PlayerID = -1, localize = true})
         end
         -- Is it over?
         if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
