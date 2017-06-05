@@ -570,36 +570,31 @@ function Ingame:StartFatOMeter()
             }
         end
     end
-    
-    ListenToGameEvent('game_rules_state_change', function(keys)
 
-        if OptionManager:GetOption('useFatOMeter') == 0 then return end
-
-        local newState = GameRules:State_Get()
-        
-        if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-            print("Starting Fat Timers.")
-            Timers:CreateTimer(function()
-                if lastFatThink == nil then
-                    lastFatThink = -60
-                end
-                if lastFatAnimate == nil then
-                    lastFatAnimate = -3.0
-                end
-                local dotaTime = GameRules:GetDOTATime(false, false)
-                
-                while (dotaTime - lastFatThink) > 60 do
-                    Ingame:FatOMeterThinker(60)
-                    lastFatThink = lastFatThink + 60
-                end
-                while (dotaTime - lastFatAnimate) > 3.0 do
-                    Ingame:FatOMeterAnimate(3.0)
-                    lastFatAnimate = lastFatAnimate + 3.0
-                end
-                return 3.0
-            end, "fatThink", 0.5)
+    Timers:CreateTimer(function()
+        if GameRules:State_Get() < DOTA_GAMERULES_STATE_GAME_IN_PROGRESS or OptionManager:GetOption('useFatOMeter') == 0 then
+            return 0.1
         end
-    end, nil)
+
+        if lastFatThink == nil then
+            print("Starting Fat Timers.")
+            lastFatThink = -60
+        end
+        if lastFatAnimate == nil then
+            lastFatAnimate = -3.0
+        end
+        local dotaTime = GameRules:GetDOTATime(false, false)
+        
+        while (dotaTime - lastFatThink) > 60 do
+            Ingame:FatOMeterThinker(60)
+            lastFatThink = lastFatThink + 60
+        end
+        while (dotaTime - lastFatAnimate) > 3.0 do
+            Ingame:FatOMeterAnimate(3.0)
+            lastFatAnimate = lastFatAnimate + 3.0
+        end
+        return 3.0
+    end, "fatThink", 0.5)
 end
 
 function Ingame:CommandNotification(command, message, cooldown)

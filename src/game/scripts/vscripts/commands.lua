@@ -118,7 +118,7 @@ function Commands:OnPlayerChat(keys)
         if not ingame.voteEnableFatOMeter then
             util:CreateVoting("lodVotingFatOMeter", playerID, 10, 50, function()
                 ingame.voteEnableFatOMeter = true
-                OptionManager:SetOption('lodOptionCrazyFatOMeter', 2)
+                OptionManager:SetOption('useFatOMeter', 2)
                 ingame:StartFatOMeter()
                 EmitGlobalSound("Event.CheatEnabled")
             end)
