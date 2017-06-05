@@ -308,8 +308,10 @@ function say() {
 // Show received message
 function showChatMessage( args ) {
 	// Don't show muted players
-	if (Game.IsPlayerMuted(args.player))
+	if (Game.IsPlayerMuted(args.player) && args.player != -1) {
+		$.Msg("Asd");
 		return;
+	}
 
 	var time = Game.Time();
 	if (time > lastMessageTime + 60 || lastMessageTime == 0) {
@@ -338,7 +340,11 @@ function showChatMessage( args ) {
 		});
 	}
 
-	label.text = '(' + $.Localize(channels[args.channel].name) + ') ' + ' ' + Game.GetPlayerInfo(args.player).player_name + ': ' + msg;
+	if (args.player == -1) {
+		label.text = '(Announcement) : ' +msg;
+	} else {
+		label.text = '(' + $.Localize(channels[args.channel].name) + ') ' + ' ' + Game.GetPlayerInfo(args.player).player_name + ': ' + msg;
+	}
 	label.style.color = channels[args.channel].color;
 
 	if (matches)
