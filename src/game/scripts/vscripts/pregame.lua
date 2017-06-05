@@ -1059,6 +1059,8 @@ function Pregame:onThink()
             if util:isSinglePlayerMode() or IsInToolsMode() then
                 CustomGameEventManager:Send_ServerToAllClients("lodSinglePlayer",{})
             end
+
+            Chat:Say( {channel = "all", msg = "Type /all to chat to all players, /team to chat to teammates only", PlayerID = -1})
         end
         -- Is it over?
         if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
