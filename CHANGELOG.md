@@ -16,6 +16,7 @@ All notable changes to this project will be documented in this file.
 - Fix for some illusion abiliites not creating illusions with the right abilities
 - Adjuted the prices of many OP and Single player abilities to accomodate a refactoring of the behind the scenes infrastructure
 - Added chat announcment about how to change chat channels during pick stage
+- Added popup in chat bar so players can initiate votes durin the pick phase
 
 ## 7.8
 - Added Aegis Tower OP (single player ability)
