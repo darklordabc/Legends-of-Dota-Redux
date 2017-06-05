@@ -496,20 +496,6 @@ function Ingame:onStart()
         this:checkBalanceTeamsNextTick()
     end, nil)
 
-    CustomGameEventManager:RegisterListener('lodOnCheats', function(eventSourceIndex, args)
-        if args.command then
-            Commands:OnPlayerChat({
-                teamonly = true,
-                playerid = args.PlayerID,
-                text = "-" .. args.command
-            })
-        end
-
-        if args.consoleCommand and (util:isSinglePlayerMode() or Convars:GetBool("sv_cheats") or self.voteEnabledCheatMode) then
-            SendToServerConsole(args.consoleCommand)
-        end
-    end)
-
     -- Listen for players connecting
     ListenToGameEvent('player_connect', function(keys)
         this:checkBalanceTeamsNextTick()

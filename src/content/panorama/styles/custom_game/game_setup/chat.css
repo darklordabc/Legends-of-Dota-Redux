@@ -145,10 +145,12 @@
     padding: 2px;
 }
 
+#votingsButton,
 #emoticonPickerButton {
     wash-color: #737f83;
 }
 
+#votingsButton:hover,
 #emoticonPickerButton:hover {
     wash-color: #cccccc;
 }
@@ -163,6 +165,7 @@
     margin-bottom: 32px;
 }
 
+#votingsPicker,
 #emoticonPicker {
     width: 250px;
     height: 250px;
@@ -186,12 +189,14 @@
     transition-duration: 0.3s;    
 }
 
+#votingsPicker.visible,
 #emoticonPicker.visible
 {
     opacity: 1.0;
     transform: translateY( 0px );
 }
 
+#votingsContainer,
 #emoticonContainer {
     width: 100%;
     height: fill-parent-flow(1);
@@ -199,6 +204,10 @@
     overflow: squish scroll;
 
     flow-children: right-wrap;
+}
+
+#votingsContainer {
+    overflow: squish squish;
 }
 
 .emot {
@@ -224,4 +233,13 @@
     border-radius: 8px;
 
     background-color: black;
+}
+
+#cheatsDisplay {
+    margin: 0px;
+    background-color: #00000000;
+}
+
+#commandIcon {
+    visibility: collapse;
 }
