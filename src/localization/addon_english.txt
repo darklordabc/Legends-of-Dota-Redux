@@ -1569,6 +1569,8 @@
     "credit_imba_tower_split"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_tower_thorns"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_tower_vicious"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+    "credit_imba_tower_healing_tower"         "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+    "credit_imba_tower_healing_hero"         "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_juggernaut_healing_ward_mana"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 and SwordBacon</font>"
     "credit_angel_arena_lightning"           "<font color=\'#7D7D7D\'>Imported from <font color='#f26868'>Angel Arena Reborn.</font>"
     "credit_angel_arena_magic_fire"          "<font color=\'#7D7D7D\'>Imported from <font color='#f26868'>Angel Arena Reborn.</font></font>"
@@ -10359,5 +10361,25 @@
 
     "DOTA_Tooltip_modifier_lysander_phantom_fleet_slow"                               "Phantom Dreadknought Slow"
     "DOTA_Tooltip_modifier_lysander_phantom_fleet_slow_description"                   "Being slowed by %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%."
+
+    "DOTA_Tooltip_ability_imba_tower_healing_tower"                                     "Healing Tower"     
+    "DOTA_Tooltip_ability_imba_tower_healing_tower_Description"                         "Periodically checks heroes that have their health percentage lower than a certain threshold. Triggers a healing effect that bounces between heroes. Bounces have a small delay between each one. <font color='#70EA72'>Much shorter cooldown</font>."      
+    "DOTA_Tooltip_ability_imba_tower_healing_tower_Note0"                               "Search radius for the first trigger is higher than the bounce radius."
+    "DOTA_Tooltip_ability_imba_tower_healing_tower_Lore"                                "Dazzle's evil twin have take ahold in his tower, supporting the heroes from the top room in the tower."
+    "DOTA_Tooltip_ability_imba_tower_healing_tower_heal_amount"                         "HEAL PER BOUNCE:"
+    "DOTA_Tooltip_ability_imba_tower_healing_tower_hp_threshold"                        "%TRIGGER HEALTH THRESHOLD:"
+    "DOTA_Tooltip_ability_imba_tower_healing_tower_search_radius"                       "SEARCH RADIUS:"
+    "DOTA_Tooltip_ability_imba_tower_healing_tower_bounce_delay"                        "BOUNCE DELAY:"
+    "DOTA_Tooltip_ability_imba_tower_healing_tower_bounce_radius"                       "BOUNCE RANGE:" 
+
+    "DOTA_Tooltip_ability_imba_tower_healing_hero"                                     "Healing Aura"     
+    "DOTA_Tooltip_ability_imba_tower_healing_hero_Description"                         "Periodically checks heroes that have their health percentage lower than a certain threshold. Triggers a healing effect that bounces between heroes. Bounces have a small delay between each one."      
+    "DOTA_Tooltip_ability_imba_tower_healing_hero_Note0"                               "Search radius for the first trigger is higher than the bounce radius."
+    "DOTA_Tooltip_ability_imba_tower_healing_hero_Lore"                                "Dazzle's evil twin have take ahold in his tower, supporting the heroes from the top room in the tower."
+    "DOTA_Tooltip_ability_imba_tower_healing_hero_heal_amount"                         "HEAL PER BOUNCE:"
+    "DOTA_Tooltip_ability_imba_tower_healing_hero_hp_threshold"                        "%TRIGGER HEALTH THRESHOLD:"
+    "DOTA_Tooltip_ability_imba_tower_healing_hero_search_radius"                       "SEARCH RADIUS:"
+    "DOTA_Tooltip_ability_imba_tower_healing_hero_bounce_delay"                        "BOUNCE DELAY:"
+    "DOTA_Tooltip_ability_imba_tower_healing_hero_bounce_radius"                       "BOUNCE RANGE:" 
 
 }
