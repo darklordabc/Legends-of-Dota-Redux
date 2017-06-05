@@ -49,7 +49,7 @@
 
     // Chat announcemnts
     "announcement"  "Announcement"
-    "chatChannelsAnnouncement" "Type /all to chat to all players, /team to chat to teammates only"
+    "chatChannelsAnnouncement" "Type '/all' to chat to all players, '/team' to chat to teammates only. Click the vote icon on the right to initiate votes."
 
     // Teams
     "theRadiant"                                    "The Radiant"

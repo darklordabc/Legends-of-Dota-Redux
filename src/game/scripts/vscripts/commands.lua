@@ -116,7 +116,7 @@ function Commands:OnPlayerChat(keys)
         end
     elseif string.find(command, "-enablefat") or string.find(command, "-ef") then
         if not ingame.voteEnableFatOMeter then
-            util:CreateVoting("lodVotingFatOMeter", playerID, 10, 50, function()
+            util:CreateVoting("lodVotingFatOMeter", playerID, 10, OptionManager:GetOption('mapname') == 'all_allowed' and 50 or 100, function()
                 ingame.voteEnableFatOMeter = true
                 OptionManager:SetOption('useFatOMeter', 2)
                 ingame:StartFatOMeter()
@@ -127,7 +127,7 @@ function Commands:OnPlayerChat(keys)
         end
     elseif string.find(command, "-enablerefresh") then
         if OptionManager:GetOption('refreshCooldownsOnDeath') ~= 1 and not ingame.voteEnableRefresh then
-            util:CreateVoting("lodVotingRefresh", playerID, 10, 50, function()
+            util:CreateVoting("lodVotingRefresh", playerID, 10, OptionManager:GetOption('mapname') == 'all_allowed' and 50 or 100, function()
                 ingame.voteEnableRefresh = true
                 EmitGlobalSound("Event.CheatEnabled")
             end)
