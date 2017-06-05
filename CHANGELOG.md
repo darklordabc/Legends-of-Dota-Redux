@@ -12,6 +12,10 @@ All notable changes to this project will be documented in this file.
 - Added Refresh Cooldowns on Death vote 
 - Added Fat-O-Meter vote
 - Added Healing Tower Aura ability from Imba
+- More Russian translation by Exchy
+- Fix for some illusion abiliites not creating illusions with the right abilities
+- Adjuted the prices of many OP and Single player abilities to accomodate a refactoring of the behind the scenes infrastructure
+- Added chat announcment about how to change chat channels during pick stage
 
 ## 7.8
 - Added Aegis Tower OP (single player ability)
