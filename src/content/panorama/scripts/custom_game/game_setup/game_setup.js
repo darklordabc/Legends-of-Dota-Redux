@@ -5578,6 +5578,9 @@ function saveCurrentBuild() {
     while(parent.id != "Hud")
         parent = parent.GetParent();
 
+    var votings = $.CreatePanel('Panel', $.GetContextPanel(), '');
+    votings.BLoadLayout('file://{resources}/layout/custom_game/ingame_votings.xml', false, false);
+
     parent.FindChildTraverse("PreGame").FindChildTraverse("HeroGrid").visible = false;
     parent.FindChildTraverse("PreGame").FindChildTraverse("HeroPickControls").visible = false;
     parent.FindChildTraverse("PreGame").FindChildTraverse("EnterGameRepickButton").visible = false;

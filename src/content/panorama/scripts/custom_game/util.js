@@ -1,5 +1,187 @@
 var Util = {};
 
+Util.commandList = [{
+    title: "votes",
+    commands: [{
+        title: "voteEnableCheat",
+        chatCommand: "enablecheat",
+    }, {
+        title: "voteEnableBuilder",
+        chatCommand: "enablebuilder",
+    },{
+        title: "voteEnableAntiRat",
+        chatCommand: "antirat",
+    },{
+        title: "voteEnableRespawn",
+        chatCommand: "enablerespawn",
+    },{
+        title: "voteEnableKamikaze",
+        chatCommand: "enablekamikaze",
+    },{
+        title: "voteDoubleCreeps",
+        chatCommand: "doublecreeps",
+    },{
+        title: "voteFatOMeter",
+        chatCommand: "enablefat",
+    },{
+        title: "voteRefresh",
+        chatCommand: "enableRefresh",
+    },{
+        title: "voteSwitchTeam",
+        chatCommand: "switchteam",
+    },]
+}, {
+    title: "game",
+    isCheat: true,
+    commands: [{
+        title: "toggleWtf",
+        chatCommand: "wtfmenu",
+        isCheat: true,
+    },{
+        title: "nofog",
+        chatCommand: "nofog",
+        isCheat: true,
+    },{
+        title: "fog",
+        chatCommand: "fog",
+        isCheat: true,
+    }, {
+        title: "toggleAllVision",
+        consoleCommand: "dota_all_vision",
+        "getArgs": function() {
+            CommandProperties.toggleAllVision = !(CommandProperties.toggleAllVision || false);
+            return CommandProperties.toggleAllVision ? 1 : 0;
+        },
+        isCheat: true,
+    }, {
+        title: "startGame",
+        consoleCommand: "dota_start_game",
+        isCheat: true,
+    }, {
+        title: "spawnNeutrals",
+        consoleCommand: "dota_spawn_neutrals",
+        isCheat: true,
+    }, {
+        title: "spawnGolem",
+        chatCommand: "spawn golem",
+    }, {
+        title: "spawnUnit",
+        consoleCommand: "dota_create_unit",
+        "getArgs": function(settings) {
+            return settings.GetChild(0).GetSelected().id + (settings.GetChild(1).checked ? " enemy" : " friendly");
+        },
+        customXmlPanel: "<root><Panel><DropDown>\
+                <Label text='Axe' id='axe'/>\
+                <Label text='Roshan' id='npc_dota_roshan'/>\
+            </DropDown><ToggleButton text='Enemy' /></Panel></root>",
+        isCheat: true,
+    }, {
+        title: "setTimescale",
+        consoleCommand: "host_timescale",
+        "getArgs": function(settings) {
+            return settings.GetChild(0).value
+        },
+        customXmlPanel: "<root><Panel><NumberEntry value='1' min='1' max='10'/></Panel></root>",
+        isCheat: true,
+    },] 
+}, {
+    title: "bots",
+    commands: [{
+        title: "botsShowMode",
+        chatCommand: "bot mode",
+    },{
+        title: "botsSwitchMode",
+        chatCommand: "bot switch",
+        isCheat: true,
+    },{
+        title: "botsLevelUp",
+        consoleCommand: "dota_bot_give_level",
+        "getArgs": function(settings) {
+            return settings.GetChild(0).value
+        },
+        customXmlPanel: "<root><Panel><NumberEntry value='1' min='1' max='100'/></Panel></root>",
+        isCheat: true,
+    }, {
+        title: "botsGiveGold",
+        consoleCommand: "dota_bot_give_gold",
+        "getArgs": function(settings) {
+            return settings.GetChild(0).value
+        },
+        customXmlPanel: "<root><Panel><NumberEntry value='999999' min='1' max='999999'/></Panel></root>",
+        isCheat: true,
+    }]
+}, {
+    title: "player",
+    isCheat: true,
+    commands: [{
+        title: "refresh",
+        consoleCommand: "dota_hero_refresh",
+        isCheat: true,
+    }, {
+        title: "respawn",
+        chatCommand: "respawn",
+        isCheat: true,
+    }, {
+        title: "godMode",
+        chatCommand: "god",
+        isCheat: true,
+    }, {
+        title: "regen",
+        chatCommand: "regen",
+        isCheat: true,
+    },{
+        title: "scepter",
+        chatCommand: "scepter",
+        isCheat: true,
+    },{
+        title: "dagger",
+        chatCommand: "dagger",
+        isCheat: true,
+    },{
+        title: "dagon",
+        chatCommand: "dagon",
+        isCheat: true,
+    }, {
+        title: "selfFreePoints",
+        chatCommand: "points",
+        "getArgs": function(settings) {
+            return settings.GetChild(0).value
+        },
+        customXmlPanel: "<root><Panel><NumberEntry value='1' min='1' max='100'/></Panel></root>",
+        isCheat: true,
+    }, {
+        title: "selfLevelUp",
+        chatCommand: "lvlup",
+        "getArgs": function(settings) {
+            return settings.GetChild(0).value
+        },
+        customXmlPanel: "<root><Panel><NumberEntry value='1' min='1' max='100'/></Panel></root>",
+        isCheat: true,
+    }, {
+        title: "selfGiveGold",
+        chatCommand: "gold",
+        "getArgs": function(settings) {
+            return settings.GetChild(0).value;
+        },
+        customXmlPanel: "<root><Panel><NumberEntry value='999999' min='1' max='999999'/></Panel></root>",
+        isCheat: true,
+    }, {
+        title: "selfGetItem",
+        consoleCommand: "dota_create_item",
+        "getArgs": function(settings) {
+            return settings.GetChild(0).GetSelected().id;
+        },
+        customXmlPanel: "<root><Panel><DropDown>\
+                <Label text='Boots of Travel' id='item_travel_boots'/>\
+                <Label text='Heart of Tarrasque' id='item_heart'/>\
+                <Label text='Radiance' id='item_radiance'/>\
+                <Label text='Blink Dagger' id='item_blink'/>\
+                <Label text='Bloodstone' id='item_bloodstone'/>\
+            </DropDown></Panel></root>",
+        isCheat: true,
+    }, ]
+}];
+
 Util.mouseWheelBlockingPanels = [];
 
 Util.secondsToHHMMSS = (function (d) {
