@@ -10,6 +10,7 @@
         "AbilityCastRange"                                                     "800 1000 1200"
         "AbilityCooldown"                                                      "6"
         "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "ReduxCost"                                                            "120"
         "precache"
         {
             "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts"
@@ -50,6 +51,6 @@
                 }
             }
         }
-        "ReduxFlags"                                                           "SuperOP"
+        "ReduxFlags"                                                           ""
     }
 }

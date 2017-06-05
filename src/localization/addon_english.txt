@@ -979,6 +979,8 @@
     "lod_cat_dota_custom"                           "Dota Related Customs"
     "lod_cat_passive"                               "Passive"
     "lod_cat_cooldown"                              "Cooldown Manipulation"
+    "lod_cat_OPSkillsList"                          "OP Abilities"
+    "lod_cat_SuperOP"                               "SuperOP Abilities"
 
     // Categories
     "lodCategory_main"                              "Hero Abilities"

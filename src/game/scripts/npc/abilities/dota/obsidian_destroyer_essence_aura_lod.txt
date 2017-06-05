@@ -71,7 +71,7 @@
                 }
             }
         }
-        "ReduxFlags"                                                           "support | OPSkillsList"
+        "ReduxFlags"                                                           "support"
         "ReduxPerks"                                                           "support | aura"
         "ReduxCost"                                                            "80"
     }
