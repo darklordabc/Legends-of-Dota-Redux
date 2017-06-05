@@ -341,7 +341,10 @@ function showChatMessage( args ) {
 	}
 
 	if (args.player == -1) {
-		label.text = '(Announcement) : ' +msg;
+		if (args.localize) {
+			msg = $.Localize(msg);
+		}
+		label.text = '(' + $.Localize("announcement") + ') : ' + msg;
 	} else {
 		label.text = '(' + $.Localize(channels[args.channel].name) + ') ' + ' ' + Game.GetPlayerInfo(args.player).player_name + ': ' + msg;
 	}

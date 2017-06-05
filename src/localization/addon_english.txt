@@ -47,6 +47,10 @@
     "76561198078268404" "TheRisen41"
     "76561198078268404_Description" "Spells Contributor"
 
+    // Chat announcemnts
+    "announcement"  "Announcement"
+    "chatChannelsAnnouncement" "Type /all to chat to all players, /team to chat to teammates only"
+
     // Teams
     "theRadiant"                                    "The Radiant"
     "theDire"                                       "The Dire"
