@@ -36,7 +36,7 @@
                 "necromastery_max_souls_scepter"                       "66 90 114 138"
             }
         }
-        "ReduxCost"                                                            "90"
+        "ReduxCost"                                                            "120"
         "ReduxBans"                                                            "nevermore_necromastery"
         "ReduxFlags"                                                           ""
     }

@@ -29,7 +29,7 @@
                 "Function"                                             "SetCastRange"
             }
         }
-        "ReduxCost"                                                            "100"
+        "ReduxCost"                                                            "120"
         "ReduxBans"                                                            "aether_range_lod"
         "ReduxFlags"                                                           ""
     }

@@ -27,7 +27,7 @@
         }
         "ReduxFlags"                                                           "support | tank"
         "ReduxPerks"                                                           "support | aura"
-        "ReduxCost"                                                            "100"
+        "ReduxCost"                                                            "120"
         "ReduxBans"                                                            "octarine_vampirism_lod"
     }
 }

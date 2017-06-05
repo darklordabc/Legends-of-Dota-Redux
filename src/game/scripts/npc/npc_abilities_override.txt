@@ -89,7 +89,7 @@
     "roshan_spell_block"
     {
         "MaxLevel"                                                             "4"
-        "ReduxCost"                                                            "70"
+        "ReduxCost"                                                            "120"
         "ReduxFlags"                                                           ""
         "AbilityCooldown"               "15.0 13.0 11.0 9.0"
     }
@@ -739,7 +739,7 @@
     "abaddon_borrowed_time"
     {
         "ReduxFlags"                                                           "upgradeable | wtfAutoBan"
-        "ReduxCost"                                                            "70"
+        "ReduxCost"                                                            "80"
         "ReduxBans"                                                            "furion_teleportation | tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux | meepo_divided_we_stand | phoenix_supernova"
     }
     "ancient_apparition_ice_blast"
@@ -833,7 +833,7 @@
     {
         "ReduxFlags"                                                           "upgradeable | aoe_attack | attack_modifier"
         "ReduxPerks"                                                           "attack_modifier"
-        "ReduxCost"                                                            "70"
+        "ReduxCost"                                                            "80"
     }
     "earth_spirit_geomagnetic_grip"
     {
@@ -901,7 +901,7 @@
     {
         "ReduxFlags"                                                           "upgradeable | silence"
         "ReduxPerks"                                                           "silence"
-        "ReduxCost"                                                            "70"
+        "ReduxCost"                                                            "80"
         "ReduxBans"                                                            "spell_lab_symbiotic"
     }
     "leshrac_pulse_nova"
@@ -1784,7 +1784,7 @@
     {
         "ReduxFlags"                                                           "tank"
         "ReduxPerks"                                                           "scientific | rage"
-        "ReduxCost"                                                            "200"
+        "ReduxCost"                                                            "80"
         "ReduxBans"                                                            "meepo_divided_we_stand"
     }
     "centaur_return"
@@ -2087,7 +2087,7 @@
     {
         "ReduxFlags"                                                           "attack_modifier"
         "ReduxPerks"                                                           "attack_modifier"
-        "ReduxCost"                                                            "70"
+        "ReduxCost"                                                            "80"
         "ReduxBans"                                                            "holdout_multishot | life_stealer_feast_melee"
     }
     "ursa_fury_swipes"
@@ -2141,7 +2141,7 @@
     {
         "ReduxFlags"                                                           "attack_modifier"
         "ReduxPerks"                                                           "attack_modifier"
-        "ReduxCost"                                                            "40"
+        "ReduxCost"                                                            "80"
     }
     "sandking_caustic_finale"
     {
@@ -2199,7 +2199,7 @@
     {
         "ReduxFlags"                                                           "attack_modifier"
         "ReduxPerks"                                                           "attack_modifier"
-        "ReduxCost"                                                            "50"
+        "ReduxCost"                                                            "80"
     }
     "sniper_headshot"
     {
@@ -3327,7 +3327,7 @@
     {
         "ReduxFlags"                                                           ""
         "ReduxPerks"                                                           "rage"
-        "ReduxCost"                                                            "70"
+        "ReduxCost"                                                            "80"
         "ReduxBans"                                                            "ursa_overpower_melee | tusk_walrus_punch | earthshaker_enchant_totem"
     }
     "lycan_howl"
@@ -3366,7 +3366,7 @@
     "death_prophet_witchcraft"
     {
         "ReduxCost"                                                            "120"
-        "ReduxFlags"                                                           " cooldown"
+        "ReduxFlags"                                                           "cooldown"
     }
     "sniper_take_aim"
     {

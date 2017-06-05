@@ -11,6 +11,6 @@
         "AbilityManaCost"                                                      "100 150 200"
         "ReduxFlags"                                                           "mobility"
         "ReduxPerks"                                                           "mobility | teleport"
-        "ReduxCost"                                                            "100"
+        "ReduxCost"                                                            "120"
     }
 }

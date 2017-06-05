@@ -53,6 +53,6 @@
             }
         }
         "ReduxFlags"                                                           "tank"
-        "ReduxCost"                                                            "100"
+        "ReduxCost"                                                            "120"
     }
 }

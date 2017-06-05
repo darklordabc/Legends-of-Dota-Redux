@@ -76,6 +76,6 @@
             }
         }
         "ReduxFlags"                                                           "tank"
-        "ReduxCost"                                                            "90"
+        "ReduxCost"                                                            "120"
     }
 }

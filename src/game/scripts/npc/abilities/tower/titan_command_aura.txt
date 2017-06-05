@@ -72,6 +72,6 @@
         }
         "ReduxFlags"                                                           "support"
         "ReduxPerks"                                                           "support | aura"
-        "ReduxCost"                                                            "80"
+        "ReduxCost"                                                            "120"
     }
 }

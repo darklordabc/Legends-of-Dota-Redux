@@ -23,7 +23,7 @@
                 "LinkedSpecialBonusOperation"                          "SPECIAL_BONUS_MULTIPLY"
             }
         }
-        "ReduxCost"                                                            "90"
+        "ReduxCost"                                                            "120"
         "ReduxBans"                                                            "dragon_knight_dragon_blood"
         "ReduxFlags"                                                           ""
     }
