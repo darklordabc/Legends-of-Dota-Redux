@@ -565,6 +565,7 @@
     "votingCooldown"                                "Voting is on cooldown for you"
     "voteCooldown"                                  "This vote is on cooldown"
     "votingPlayerBanned"                            "You can't initiate votings, because too much of your votings were rejected"
+    "votingsDisabled"                               "Player votings are disabled during option selection phase"
 
     "antiRatAlreadyOn"                              "Anti-Rat protection already on"
     "cantSwitchYet"                                 "Can't switch until game started"

@@ -275,16 +275,18 @@ function Pregame:init()
     ]]
 
     CustomGameEventManager:RegisterListener('lodOnCheats', function(eventSourceIndex, args)
-        if args.command then
-            Commands:OnPlayerChat({
-                teamonly = true,
-                playerid = args.PlayerID,
-                text = "-" .. args.command
-            })
-        end
+        if self:getPhase() > constants.PHASE_OPTION_SELECTION then
+            if args.command then
+                Commands:OnPlayerChat({
+                    teamonly = true,
+                    playerid = args.PlayerID,
+                    text = "-" .. args.command
+                })
+            end
 
-        if args.consoleCommand and (util:isSinglePlayerMode() or Convars:GetBool("sv_cheats") or self.voteEnabledCheatMode) then
-            SendToServerConsole(args.consoleCommand)
+            if args.consoleCommand and (util:isSinglePlayerMode() or Convars:GetBool("sv_cheats") or self.voteEnabledCheatMode) then
+                SendToServerConsole(args.consoleCommand)
+            end
         end
     end)
 
@@ -1034,7 +1036,7 @@ function Pregame:onThink()
                 CustomGameEventManager:Send_ServerToAllClients("lodSinglePlayer",{})
             end
 
-            Chat:Say( {channel = "all", msg = "Type /all to chat to all players, /team to chat to teammates only", PlayerID = -1})
+            Chat:Say( {channel = "all", msg = "chatChannelsAnnouncement", PlayerID = -1, localize = true})
         end
         -- Is it over?
         if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
