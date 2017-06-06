@@ -4588,7 +4588,7 @@ function OnPhaseChanged(table_name, key, data) {
                 $.Schedule(1.0, function () {
                     loading.FindChildTraverse("LoDLoadingTip").visible = true;  
                 })
-                
+                loading.FindChildTraverse("vignette").visible = false;
             }
 
             break;
