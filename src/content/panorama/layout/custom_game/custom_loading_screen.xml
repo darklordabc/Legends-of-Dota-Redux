@@ -1,5 +1,9 @@
 <root>
 	<styles>
+        <include src="s2r://panorama/styles/dotastyles.vcss_c" />
+        <include src="s2r://panorama/styles/popups/popup_settings.vcss_c" />
+        <include src="s2r://panorama/styles/play.vcss_c" />
+        <include src="file://{resources}/styles/custom_game/game_setup/game_setup.css" />
         <include src="file://{resources}/styles/custom_game/loading_screen.css" />
     </styles>
     <scripts>
@@ -20,6 +24,11 @@
 				    <Label hittest="false" class="creditText" id="BackgroundCredit"/>
                 </Panel>
 			</Panel>
+
+            <Panel id="buildLoadingIndicator">
+                <Panel id="buildLoadingSpinner" class="Spinner" />
+                <Label id="buildLoadingIndicatorText" text="#loading" />
+            </Panel>
 		</Panel>
 
         <Panel class="LoDDeps">

@@ -148,3 +148,9 @@
     width: 400px;
     height:100px;
 }
+
+#buildLoadingIndicator {
+    margin: 50px;
+    align: right bottom;
+    visibility: collapse;
+}

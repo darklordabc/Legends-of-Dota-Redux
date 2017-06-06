@@ -4567,12 +4567,24 @@ function OnPhaseChanged(table_name, key, data) {
             }
 
             // Message for players selecting skills
-            if(currentPhase == PHASE_REVIEW) {
-				$("#tipPanel").AddClass('hidden');
-                // Load all hero images
-                for(var playerID in activeReviewPanels) {
-                    activeReviewPanels[playerID].OnReviewPhaseStart();
+            if(currentPhase == PHASE_SPAWN_HEROES) {
+				// $("#tipPanel").AddClass('hidden');
+    //             // Load all hero images
+    //             for(var playerID in activeReviewPanels) {
+    //                 activeReviewPanels[playerID].OnReviewPhaseStart();
+    //             }
+                var parent = $.GetContextPanel().GetParent();
+                while(parent.id != "Hud")
+                    parent = parent.GetParent();
+                
+                var panel = parent.FindChildTraverse("PreGame");
+                for (var child in panel.Children()) {
+                    panel.Children()[child].visible = false;
                 }
+                
+                var loading = $.CreatePanel('Panel', panel, '');
+                loading.BLoadLayout('file://{resources}/layout/custom_game/custom_loading_screen.xml', false, false);
+                loading.FindChildTraverse("buildLoadingIndicator").visible = true;
             }
 
             break;
