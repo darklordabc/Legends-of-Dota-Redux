@@ -1181,8 +1181,12 @@ function Pregame:onThink()
             local didNotSelectAHero = util:checkPickedHeroes( self.selectedHeroes )
             if didNotSelectAHero == nil or self.noHeroSelection or self.additionalPickTime or util:isSinglePlayerMode() then
                 -- Change to picking phase
-                self:setPhase(constants.PHASE_REVIEW)
-                self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime')) 
+                self:setPhase(constants.PHASE_SPAWN_HEROES)
+
+                -- Kill the selection screen
+                self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime'))
+
+                GameRules:FinishCustomGameSetup()
             else
                 self.additionalPickTime = true
                 self:setEndOfPhase(Time() + 15.0) 
@@ -1222,8 +1226,12 @@ function Pregame:onThink()
         -- Is it over?
         if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
             -- Change to picking phase
-            self:setPhase(constants.PHASE_REVIEW)
+            self:setPhase(constants.PHASE_SPAWN_HEROES)
+
+            -- Kill the selection screen
             self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime'))
+
+            GameRules:FinishCustomGameSetup()
         end
 
         return 0.1
@@ -1236,20 +1244,20 @@ function Pregame:onThink()
     end
 
     -- Review
-    if ourPhase == constants.PHASE_REVIEW then
-        -- Is it over?
+    -- if ourPhase == constants.PHASE_REVIEW then
+    --     -- Is it over?
         
-        --QUICKER DEBUGGING CHANGE (the ToolsMode check) - Skips review phase
-        if Time() >= self:getEndOfPhase() and self.freezeTimer == nil or IsInToolsMode() then
-            -- Change to picking phase
-            self:setPhase(constants.PHASE_SPAWN_HEROES)
+    --     --QUICKER DEBUGGING CHANGE (the ToolsMode check) - Skips review phase
+    --     if Time() >= self:getEndOfPhase() and self.freezeTimer == nil or IsInToolsMode() then
+    --         -- Change to picking phase
+    --         self:setPhase(constants.PHASE_SPAWN_HEROES)
 
-            -- Kill the selection screen
-            GameRules:FinishCustomGameSetup()
-        end
+    --         -- Kill the selection screen
+    --         GameRules:FinishCustomGameSetup()
+    --     end
 
-        return 0.1
-    end
+    --     return 0.1
+    -- end
 
     if ourPhase == constants.PHASE_SPAWN_HEROES then
         -- Do things after a small delay

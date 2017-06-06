@@ -2,6 +2,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 8.0
+- Fixed Sight being 4 levels
+
 ## 7.9
 - Improved styles of builds page
 - You can not alt or right click abilities/heroes to recommend them to be selected or banned
@@ -17,6 +20,9 @@ All notable changes to this project will be documented in this file.
 - Adjuted the prices of many OP and Single player abilities to accomodate a refactoring of the behind the scenes infrastructure
 - Added chat announcment about how to change chat channels during pick stage
 - Added popup in chat bar so players can initiate votes durin the pick phase
+- Removed IMBA abilities to prepare fo adding the new ones
+- Adjusted how elemental mystery works so it works better with other cooldown reduction sources
+- Increased Aether Ranges spell cast range boost and also made it compatible with other sources of spell range boosting
 
 ## 7.8
 - Added Aegis Tower OP (single player ability)
