@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ## 8.0
 - Fixed Sight being 4 levels
+- Removed Review phase and added second load screen to replace strategy time screen
 
 ## 7.9
 - Improved styles of builds page
