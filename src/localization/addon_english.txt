@@ -1436,8 +1436,6 @@
     "warning_ogre_magi_multicast" "<font color=\'#FF4949\'>Warning:</font> Only works with <font color=\'#70EA72\'>Fireblast, Ignire, Bloodlust</font> and <font color=\'#70EA72\'>Unrefined Fireblast</font>. Aghanim's Scepter will not give <font color=\'#70EA72\'>Unrefined Fireblast</font> as an extra ability."
     "warning_ogre_magi_multicast_lod" "<font color=\'#FF4949\'>Warning:</font> This ability will not have a cooldown if OP abilities are enabled. Aghanim's Scepter will not give <font color=\'#70EA72\'>Unrefined Fireblast</font> as an extra ability."
     "warning_meepo_poof" "<font color=\'#FF4949\'>Warning:</font> Can teleport to any ally who has the same hero as you."
-    "warning_aether_range_lod"    "<font color=\'#FF4949\'>Warning:</font> Does not stack with Aether Lens."
-    "warning_aether_range_lod_OP"    "<font color=\'#FF4949\'>Warning:</font> Does not stack with Aether Lens."
     //"warning_life_stealer_control"                 "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Infest.</font>"
     "warning_true_random_lod_1"                 "<font color=\'#FF4949\'>Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
     "warning_true_random_lod_2"                 "<font color=\'#FF4949\'>Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
