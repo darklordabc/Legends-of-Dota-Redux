@@ -72,12 +72,6 @@
 
     width: 640px;
     height: 140px;
-
-    background-color: #222222;
-
-    border:1px solid #000000;
-    box-shadow: 0px 0px 2px #FFFFFF;
-    border-radius: 5px;
 }
 
 .moveHintTheHint #LoDLoadingTip {

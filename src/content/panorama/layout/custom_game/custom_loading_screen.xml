@@ -172,7 +172,7 @@
 			<Image src="file://{images}/custom_game/hints/hint_gyro.png" />
         </Panel>
         
-        <Panel id="LoDLoadingTip">
+        <Panel id="LoDLoadingTip" class="workingPanel">
             <Image id="LoDLoadingTipImage" />
             <Label id="LoDLoadingTipText" />
         </Panel>

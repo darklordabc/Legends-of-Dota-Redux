@@ -4585,6 +4585,10 @@ function OnPhaseChanged(table_name, key, data) {
                 var loading = $.CreatePanel('Panel', panel, '');
                 loading.BLoadLayout('file://{resources}/layout/custom_game/custom_loading_screen.xml', false, false);
                 loading.FindChildTraverse("buildLoadingIndicator").visible = true;
+                $.Schedule(1.0, function () {
+                    loading.FindChildTraverse("LoDLoadingTip").visible = true;  
+                })
+                
             }
 
             break;
