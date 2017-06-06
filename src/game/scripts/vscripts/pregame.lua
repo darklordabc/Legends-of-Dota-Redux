@@ -275,16 +275,18 @@ function Pregame:init()
     ]]
 
     CustomGameEventManager:RegisterListener('lodOnCheats', function(eventSourceIndex, args)
-        if args.command then
-            Commands:OnPlayerChat({
-                teamonly = true,
-                playerid = args.PlayerID,
-                text = "-" .. args.command
-            })
-        end
+        if self:getPhase() > constants.PHASE_OPTION_SELECTION then
+            if args.command then
+                Commands:OnPlayerChat({
+                    teamonly = true,
+                    playerid = args.PlayerID,
+                    text = "-" .. args.command
+                })
+            end
 
-        if args.consoleCommand and (util:isSinglePlayerMode() or Convars:GetBool("sv_cheats") or self.voteEnabledCheatMode) then
-            SendToServerConsole(args.consoleCommand)
+            if args.consoleCommand and (util:isSinglePlayerMode() or Convars:GetBool("sv_cheats") or self.voteEnabledCheatMode) then
+                SendToServerConsole(args.consoleCommand)
+            end
         end
     end)
 

@@ -4927,6 +4927,7 @@ function SetSelectedPhase(newPhase, noSound) {
 
     // Set the phase
     selectedPhase = newPhase;
+    GameUI.CustomUIConfig().selectedPhase = newPhase;;
 
     if (phases[selectedPhase] != undefined)
         $('#lodStageName').text = $.Localize(phases[selectedPhase].name);
