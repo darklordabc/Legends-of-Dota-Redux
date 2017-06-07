@@ -5,6 +5,8 @@ function takedamage(params)
 	local ability = params.ability
 	local reduction_percentage = ability:GetLevelSpecialValueFor("reduce_percent", ability:GetLevel() - 1) / 100
 
+	if not ability:IsCooldownReady() then return end
+
 	if not hero then return end
 	if not attacker then return end
 
@@ -19,7 +21,7 @@ function takedamage(params)
 
 	damage = hero:GetIntellect()
 
-	-- Does not work against intelligence heroes
+	-- Deals damage based on how much more int this hero has
 	if attacker:IsHero() then
 		local attackersInt = attacker:GetIntellect()
 		local castersInt = hero:GetIntellect()
@@ -56,6 +58,7 @@ function takedamage(params)
 
 	ApplyDamage({ victim = attacker, attacker = hero, damage = damage, damage_type = DAMAGE_TYPE_PURE, abilityReturn = ability })
 
+
 	--if damage > 2 then
 	--	if attacker:GetHealth() < damage + 1 then
 	--		attacker:Kill(ability, hero)
@@ -70,5 +73,8 @@ function takedamage(params)
 	if attacker:GetHealth() < 0 then
 		attacker:Kill(ability, hero)
 	end
+	
+	local cooldown = ability:GetCooldown( ability:GetLevel() )
+	ability:StartCooldown( cooldown )
 
 end
