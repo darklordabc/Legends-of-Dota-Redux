@@ -1,0 +1,8 @@
+desert_quintet
+{
+	material materials/overviews/overthrow.vmat
+	pos_x -4996
+	pos_y 5843
+	scale 9.857
+}
+

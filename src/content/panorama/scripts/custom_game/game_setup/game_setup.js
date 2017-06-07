@@ -5365,6 +5365,10 @@ function saveCurrentBuild() {
     // Grab the map's name
     var mapName = Game.GetMapInfo().map_display_name; 
 
+    if (mapName == "overthrow") {
+
+    }
+
     // Should we use option voting?
     var useOptionVoting = false;
 
