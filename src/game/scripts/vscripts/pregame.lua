@@ -1092,9 +1092,13 @@ function Pregame:onThink()
                     self:setPhase(constants.PHASE_RANDOM_SELECTION)
                     self:setEndOfPhase(Time() + OptionManager:GetOption('randomSelectionTime'), OptionManager:GetOption('randomSelectionTime'))
                 else
-                    -- Nope, change to review
-                    self:setPhase(constants.PHASE_REVIEW)
+                    -- Change to picking phase
+                    self:setPhase(constants.PHASE_SPAWN_HEROES)
+
+                    -- Kill the selection screen
                     self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime'))
+
+                    GameRules:FinishCustomGameSetup()
                 end
             else
                 -- Change to picking phase
