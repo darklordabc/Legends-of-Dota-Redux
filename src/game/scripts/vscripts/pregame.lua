@@ -1006,6 +1006,8 @@ function Pregame:onThink()
     if not self.checkedPremiumPlayers then
         self.checkedPremiumPlayers = true
         self:checkForPremiumPlayers()
+
+        Chat:Say( {channel = "all", msg = "chatChannelsAnnouncement", PlayerID = -1, localize = true})
     end
 
     --[[
@@ -1035,8 +1037,6 @@ function Pregame:onThink()
             if util:isSinglePlayerMode() or IsInToolsMode() then
                 CustomGameEventManager:Send_ServerToAllClients("lodSinglePlayer",{})
             end
-
-            Chat:Say( {channel = "all", msg = "chatChannelsAnnouncement", PlayerID = -1, localize = true})
         end
         -- Is it over?
         if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
