@@ -5365,6 +5365,10 @@ function saveCurrentBuild() {
     // Grab the map's name
     var mapName = Game.GetMapInfo().map_display_name; 
 
+    if (mapName == "overthrow") {
+
+    }
+
     // Should we use option voting?
     var useOptionVoting = false;
 
@@ -5585,7 +5589,7 @@ function saveCurrentBuild() {
 	    })
     }
 
-    if (mapName == "all_allowed"){
+    if (mapName == "all_allowed" || mapName == "overthrow"){
 	    $.Each(["noInvis", "banning", "antirat", "OPAbilities", "customAbilities"], function(name) {
 	        addVotingOption(name);
 	    })

@@ -201,7 +201,7 @@ function Pregame:init()
                 if not util:isCoop() then
                     self:setOption('lodOptionBanningUseBanList', 1, true)
                 end   
-                if mapName == 'all_allowed' then
+                if mapName == 'all_allowed' or mapName == 'overthrow' then
                     self:setOption('lodOptionBanningUseBanList', 0, true)
                 end
 
@@ -496,6 +496,12 @@ function Pregame:init()
     -- Map enforcements
     local mapName = OptionManager:GetOption('mapname')
 
+    -- Init overthrow code
+    if mapName == 'overthrow' then
+        require( "overthrow/overthrow" )
+        COverthrowGameMode:Activate()
+    end
+
     -- All Pick Only
     if mapName == 'all_pick' then
         self:setOption('lodOptionGamemode', 1)
@@ -524,7 +530,7 @@ function Pregame:init()
         self.useOptionVoting = true
     end
 
-    if mapName == 'all_allowed' then   
+    if mapName == 'all_allowed' or mapName == 'overthrow' then   
         self:setOption('lodOptionCrazyUniversalShop', 0, true)
         self:setOption('lodOptionGameSpeedSharedEXP', 1, true)
         self:setOption('lodOptionBanningUseBanList', 1, true)
@@ -7831,7 +7837,7 @@ ListenToGameEvent('game_rules_state_change', function(keys)
     elseif newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
         if IsDedicatedServer() then
             local mapName = OptionManager:GetOption('mapname')
-            if mapName == 'all_allowed' and not util:isCoop() then
+            if (mapName == 'all_allowed' or mapName == 'overthrow') and not util:isCoop() then
                 SU:SendPlayerBuild( buildBackups )
             end
         end
