@@ -38,12 +38,12 @@
             "01"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "beams"                     "20"
+                "beams"                     "50"
             }
             "02"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "hit_count"                 "10"
+                "hit_count"                 "11"
             }
             "03"
             {
@@ -58,7 +58,7 @@
             "05"
             {
                 "var_type"                  "FIELD_FLOAT"
-                "duration_tooltip"          "2.0"
+                "duration_tooltip"          "5.0"
             }
             "06"
             {
@@ -68,17 +68,17 @@
             "07"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "beams_scepter"             "30"
+                "beams_scepter"             "80"
             }
             "08"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "hit_count_scepter"         "15"
+                "hit_count_scepter"         "18"
             }
             "09"
             {
                 "var_type"                  "FIELD_FLOAT"
-                "duration_tooltip_scepter"  "1.5"
+                "duration_tooltip_scepter"  "4.0"
             }
             "10"
             {
