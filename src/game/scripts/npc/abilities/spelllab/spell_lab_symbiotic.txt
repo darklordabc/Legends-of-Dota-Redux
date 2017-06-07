@@ -47,6 +47,16 @@
                 "var_type"                                             "FIELD_FLOAT"
                 "update_rate"                                          "0.03"
             }
+            "07"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "range_scepter"                                          "900"
+            }
+            "08"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "stat_scepter"                                          "1"
+            }
         }
         "precache"
         {
