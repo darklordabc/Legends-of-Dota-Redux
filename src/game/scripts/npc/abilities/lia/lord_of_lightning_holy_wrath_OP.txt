@@ -68,8 +68,8 @@
                 }
             }
         }
-        "ReduxFlags"                                                           "tank"
-        "ReduxCost"                                                            "120"
+        "ReduxFlags"                                                           "tank | SuperOP"
+        "ReduxCost"                                                            "100"
         "ReduxBans"                                                            "lord_of_lightning_holy_wrath"
     }
 }

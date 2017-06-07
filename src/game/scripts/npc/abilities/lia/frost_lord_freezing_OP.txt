@@ -73,7 +73,7 @@
                 }
             }
         }
-        "ReduxFlags"                                                           "tank"
+        "ReduxFlags"                                                           "tank | SuperOP"
         "ReduxPerks"                                                           "ice"
         "ReduxCost"                                                            "120"
         "ReduxBans"                                                            "frost_lord_freezing"

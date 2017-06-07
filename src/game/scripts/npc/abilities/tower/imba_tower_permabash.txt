@@ -54,7 +54,7 @@
                 }
             }
         }
-        "ReduxFlags"                                                           "bash | attack_modifier | stun"
+        "ReduxFlags"                                                           "bash | attack_modifier | stun | SuperOP"
         "ReduxPerks"                                                           "bash"
         "ReduxCost"                                                            "120"
     }

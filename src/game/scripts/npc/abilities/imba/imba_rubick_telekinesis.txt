@@ -1,0 +1,135 @@
+"DOTAAbilities"
+{
+    "imba_rubick_telekinesis"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "FightRecapLevel"                                                      "1"
+        "AbilityTextureName"                                                   "rubick_telekinesis"
+        "AbilityCastRange"                                                     "800"
+        "AbilityCastPoint"                                                     "0.1"
+        "AbilityCooldown"                                                      "20 18 16 14"
+        "AbilityManaCost"                                                      "110"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_rubick.vsndevts"
+            "particle"                                                     "particles/hero/rubick/rubick_telekinesis.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "enemy_lift_time"                                      "1.5 1.75 2.0 2.25"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "ally_lift_time"                                       "1.25"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "landing_knockup_duration"                             "0.4"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "landing_stun_radius"                                  "425"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "landing_stun_duration"                                "1.0 1.25 1.5 1.75"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "enemy_land_distance"                                  "800"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "ally_land_distance"                                   "1200"
+            }
+            "08"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "landing_damage"                                       "50 100 150 200"
+            }
+            "09"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "ally_cooldown"                                        "9 8 7 6"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_rubick.lua"
+                "Function"                                             "Telekinesis"
+                "modifier_ally"                                        "modifier_imba_telekinesis_ally_lift"
+                "modifier_enemy"                                       "modifier_imba_telekinesis_enemy_lift"
+                "sound_cast"                                           "Hero_Rubick.Telekinesis.Cast"
+                "sound_target"                                         "Hero_Rubick.Telekinesis.Target"
+                "particle_lift"                                        "particles/units/heroes/hero_rubick/rubick_telekinesis.vpcf"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_telekinesis_ally_lift"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "1"
+                "Duration"                                             "%ally_lift_time"
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_rubick.lua"
+                        "Function"                             "TelekinesisLand"
+                        "sound_land"                           "Hero_Rubick.Telekinesis.Stun"
+                        "particle_land"                        "particles/units/heroes/hero_rubick/rubick_telekinesis_land.vpcf"
+                        "particle_blink"                       "particles/hero/rubick/rubick_telekinesis.vpcf"
+                    }
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_ROOTED"                        "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NO_UNIT_COLLISION"             "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+            "modifier_imba_telekinesis_enemy_lift"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "1"
+                "Duration"                                             "%enemy_lift_time"
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_rubick.lua"
+                        "Function"                             "TelekinesisLand"
+                        "sound_land"                           "Hero_Rubick.Telekinesis.Stun"
+                        "particle_land"                        "particles/units/heroes/hero_rubick/rubick_telekinesis_land.vpcf"
+                        "particle_blink"                       "particles/hero/rubick/rubick_telekinesis.vpcf"
+                    }
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_NO_UNIT_COLLISION"             "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

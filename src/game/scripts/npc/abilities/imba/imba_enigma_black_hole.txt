@@ -1,0 +1,196 @@
+"DOTAAbilities"
+{
+    "imba_enigma_black_hole"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_PURE"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_YES"
+        "FightRecapLevel"                                                      "2"
+        "AbilityTextureName"                                                   "enigma_black_hole"
+        "AOERadius"                                                            "%radius"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts"
+            "particle"                                                     "particles/hero/enigma/screen_blackhole_indicator.vpcf"
+        }
+        "AbilityCastRange"                                                     "300"
+        "AbilityCastPoint"                                                     "0.3"
+        "AbilityChannelTime"                                                   "4.0"
+        "AbilityCastAnimation"                                                 "ACT_DOTA_CAST_ABILITY_4"
+        "AbilityCooldown"                                                      "200 180 160"
+        "AbilityManaCost"                                                      "275 325 375"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "425 450 475"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "base_pull_distance"                                   "1000"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "stack_pull_distance"                                  "30"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "base_pull_speed"                                      "100 140 180"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "stack_pull_speed"                                     "8"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "inner_pull_speed"                                     "50"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage"                                               "50 100 150"
+            }
+            "08"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "pull_speed_scepter"                                   "100"
+            }
+            "09"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "damage_scepter"                                       "5.25"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_enigma.lua"
+                "Function"                                             "BlackHole"
+                "Target"                                               "POINT"
+                "sound_cast"                                           "Hero_Enigma.Black_Hole"
+                "sound_ti5"                                            "Imba.EnigmaBlackHoleTi5"
+                "particle_hole_ti5"                                    "particles/econ/items/enigma/enigma_world_chasm/enigma_blackhole_ti5.vpcf"
+                "particle_hole"                                        "particles/units/heroes/hero_enigma/enigma_blackhole.vpcf"
+                "modifier_debuff"                                      "imba_enigma_black_hole"
+                "modifier_debuff_ti5"                                  "imba_enigma_black_hole_ti5"
+                "modifier_singularity"                                 "modifier_imba_enigma_black_hole_singularity"
+            }
+        }
+        "OnChannelFinish"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_enigma.lua"
+                "Function"                                             "BlackHoleEnd"
+                "sound_stop"                                           "Hero_Enigma.Black_Hole.Stop"
+            }
+        }
+        "Modifiers"
+        {
+            "imba_enigma_black_hole"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "0"
+                "Duration"                                             "0.05"
+                "StatusEffectName"                                     "particles/status_fx/status_effect_enigma_blackhole_tgt.vpcf"
+                "StatusEffectPriority"                                 "11"
+                "ThinkInterval"                                        "1.0"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_enigma.lua"
+                        "Function"                             "BlackHoleDebuffTick"
+                    }
+                }
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_enigma.lua"
+                        "Function"                             "BlackHoleDebuffStart"
+                        "particle_target"                      "particles/econ/items/enigma/enigma_world_chasm/enigma_blackhole_target_ti5.vpcf"
+                        "particle_screen"                      "particles/hero/enigma/screen_blackhole_indicator.vpcf"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_enigma.lua"
+                        "Function"                             "BlackHoleDebuffEnd"
+                    }
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_STUNNED"                       "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_SILENCED"                      "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+            "imba_enigma_black_hole_ti5"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "0"
+                "Duration"                                             "0.05"
+                "StatusEffectName"                                     "particles/econ/items/enigma/enigma_world_chasm/status_effect_enigma_blackhole_tgt_ti5.vpcf"
+                "StatusEffectPriority"                                 "11"
+                "ThinkInterval"                                        "1.0"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_enigma.lua"
+                        "Function"                             "BlackHoleDebuffTick"
+                    }
+                }
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_enigma.lua"
+                        "Function"                             "BlackHoleDebuffStart"
+                        "particle_target"                      "particles/econ/items/enigma/enigma_world_chasm/enigma_blackhole_target_ti5.vpcf"
+                        "particle_screen"                      "particles/hero/enigma/screen_blackhole_indicator.vpcf"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_enigma.lua"
+                        "Function"                             "BlackHoleDebuffEnd"
+                    }
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_STUNNED"                       "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_SILENCED"                      "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+            "modifier_imba_enigma_black_hole_singularity"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "0"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "Attributes"                                           "MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

@@ -54,16 +54,12 @@ if IsServer() then
       talent = 25
     end
 
-    local final = (100 - core) * (100 - self:GetAbility():GetSpecialValueFor("reduce"))
-
-    self:SetStackCount(final)
-
-    return 100 - (final / 100)
+    return self:GetAbility():GetSpecialValueFor("reduce") + core + talent
   end
 else
   function modifier_jingtong:GetModifierPercentageCooldown()
     local caster = self:GetParent()
 
-    return 100 - (self:GetStackCount() / 100)
+    return self:GetAbility():GetSpecialValueFor("reduce")
   end
 end

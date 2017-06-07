@@ -1,0 +1,93 @@
+"DOTAAbilities"
+{
+    "imba_omniknight_guardian_angel"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ALLIES_YES"
+        "FightRecapLevel"                                                      "2"
+        "AbilityTextureName"                                                   "omniknight_guardian_angel"
+        "AbilityCooldown"                                                      "150.0"
+        "AbilityCastPoint"                                                     "0.4"
+        "AbilityManaCost"                                                      "125 175 225"
+        "AbilityCastRange"                                                     "1000"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
+            "particle"                                                     "particles/status_fx/status_effect_guardian_angel.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "duration"                                             "6 7 8"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "duration_scepter"                                     "8 9 10"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "repel_duration"                                       "3"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "1000"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_omniknight.lua"
+                "Function"                                             "GuardianAngel"
+                "sound_cast"                                           "Hero_Omniknight.GuardianAngel.Cast"
+                "modifier_buff"                                        "modifier_imba_guardian_angel"
+                "modifier_repel"                                       "modifier_omniknight_repel"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_guardian_angel"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "1"
+                "StatusEffectName"                                     "particles/status_fx/status_effect_guardian_angel.vpcf"
+                "StatusEffectPriority"                                 "10"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_omniknight.lua"
+                        "Function"                             "GuardianAngelParticle"
+                        "particle_wings"                       "particles/units/heroes/hero_omniknight/omniknight_guardian_angel_omni.vpcf"
+                        "particle_halo"                        "particles/units/heroes/hero_omniknight/omniknight_guardian_angel_halo_buff.vpcf"
+                        "particle_ally"                        "particles/units/heroes/hero_omniknight/omniknight_guardian_angel_ally.vpcf"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_omniknight.lua"
+                        "Function"                             "GuardianAngelParticleDestroy"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL""1"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

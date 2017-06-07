@@ -1,0 +1,58 @@
+"DOTAAbilities" {
+	"death_prophet_spirit_siphon_imba" {
+		"BaseClass" "death_prophet_spirit_siphon"
+		"ID" "5685"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType" "SPELL_DISPELLABLE_NO"
+		"FightRecapLevel" "1"
+		"AbilityCastRange" "600"
+		"AbilityCastPoint" "0.1"
+		"AbilityCooldown" "0"
+		"AbilityManaCost" "50"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"damage" "30"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"damage_pct" "1.0 3.0 5.0 7.0"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"haunt_duration" "7"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"movement_slow" "12 16 20 24"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"siphon_buffer" "300"
+			}
+
+			"06" {
+				"var_type" "FIELD_INTEGER"
+				"max_charges" "4"
+			}
+
+			"07" {
+				"var_type" "FIELD_INTEGER"
+				"charge_restore_time" "18"
+			}
+		}
+	}
+}

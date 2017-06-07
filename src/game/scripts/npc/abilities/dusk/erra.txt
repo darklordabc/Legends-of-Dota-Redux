@@ -254,8 +254,7 @@
         "AnimationPlaybackRate"         "1"
         "FightRecapLevel"               "1"
         "AbilityTextureName"            "custom/erra_grave_guard_op"
-        "ReduxFlags"                                                           ""
-        "ReduxCost"                                                            "120"
+        "ReduxFlags"                                                           "SuperOP"
         
         // Casting
         //-------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,28 @@
+"DOTAAbilities" {
+	"luna_lunar_blessing_imba" {
+		"BaseClass" "luna_lunar_blessing"
+		"ID" "5224"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_luna.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "25000"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"bonus_damage" "20 30 40 50"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"bonus_night_vision" "1000"
+			}
+		}
+	}
+}

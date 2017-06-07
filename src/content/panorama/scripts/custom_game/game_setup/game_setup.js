@@ -4567,28 +4567,12 @@ function OnPhaseChanged(table_name, key, data) {
             }
 
             // Message for players selecting skills
-            if(currentPhase == PHASE_SPAWN_HEROES) {
-				// $("#tipPanel").AddClass('hidden');
-    //             // Load all hero images
-    //             for(var playerID in activeReviewPanels) {
-    //                 activeReviewPanels[playerID].OnReviewPhaseStart();
-    //             }
-                var parent = $.GetContextPanel().GetParent();
-                while(parent.id != "Hud")
-                    parent = parent.GetParent();
-                
-                var panel = parent.FindChildTraverse("PreGame");
-                for (var child in panel.Children()) {
-                    panel.Children()[child].visible = false;
+            if(currentPhase == PHASE_REVIEW) {
+				$("#tipPanel").AddClass('hidden');
+                // Load all hero images
+                for(var playerID in activeReviewPanels) {
+                    activeReviewPanels[playerID].OnReviewPhaseStart();
                 }
-                
-                var loading = $.CreatePanel('Panel', panel, '');
-                loading.BLoadLayout('file://{resources}/layout/custom_game/custom_loading_screen.xml', false, false);
-                loading.FindChildTraverse("buildLoadingIndicator").visible = true;
-                $.Schedule(1.0, function () {
-                    loading.FindChildTraverse("LoDLoadingTip").visible = true;  
-                })
-                loading.FindChildTraverse("vignette").visible = false;
             }
 
             break;
@@ -4943,7 +4927,6 @@ function SetSelectedPhase(newPhase, noSound) {
 
     // Set the phase
     selectedPhase = newPhase;
-    GameUI.CustomUIConfig().selectedPhase = newPhase;;
 
     if (phases[selectedPhase] != undefined)
         $('#lodStageName').text = $.Localize(phases[selectedPhase].name);

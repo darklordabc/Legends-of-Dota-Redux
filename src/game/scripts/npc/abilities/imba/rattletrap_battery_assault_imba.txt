@@ -1,0 +1,39 @@
+"DOTAAbilities" {
+	"rattletrap_battery_assault_imba" {
+		"BaseClass" "rattletrap_battery_assault"
+		"ID" "5237"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType" "SPELL_DISPELLABLE_NO"
+		"FightRecapLevel" "1"
+		"AbilityCastPoint" "0.0"
+		"AbilityCooldown" "26.0 24.0 22.0 20.0"
+		"AbilityManaCost" "50"
+		"AbilityDamage" "20 40 60 80"
+		"AbilityModifierSupportValue" "0.2"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_rattletrap.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "300"
+				"LinkedSpecialBonus" "special_bonus_unique_clockwerk"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "10.5"
+				"LinkedSpecialBonus" "special_bonus_unique_clockwerk"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"interval" "0.5 0.45 0.4 0.35"
+			}
+		}
+	}
+}

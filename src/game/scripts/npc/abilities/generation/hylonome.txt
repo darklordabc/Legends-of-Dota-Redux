@@ -202,8 +202,7 @@
         "AbilityProcsMagicStick"        "1"
 
         "AbilityDamage"             "180 400 550 700"
-        "ReduxFlags"                                                           ""
-        "ReduxCost"                                                            "120"
+        "ReduxFlags"                                                           "SuperOP"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------

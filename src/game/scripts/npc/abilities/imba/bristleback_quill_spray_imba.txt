@@ -1,0 +1,52 @@
+"DOTAAbilities" {
+	"bristleback_quill_spray_imba" {
+		"BaseClass" "bristleback_quill_spray"
+		"ID" "5549"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType" "SPELL_DISPELLABLE_NO"
+		"FightRecapLevel" "1"
+		"AbilityCastRange" "650"
+		"AbilityCastPoint" "0.0 0.0 0.0 0.0"
+		"AbilityCooldown" "2.75 2.5 2.25 2.0"
+		"AbilityManaCost" "30"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_bristleback.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "650"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"quill_base_damage" "55 70 85 100"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"quill_stack_damage" "30 35 40 45"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"quill_stack_duration" "16.0"
+				"LinkedSpecialBonus" "special_bonus_unique_bristleback"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"max_damage" "1200"
+			}
+
+			"06" {
+				"var_type" "FIELD_INTEGER"
+				"projectile_speed" "2400"
+			}
+		}
+	}
+}

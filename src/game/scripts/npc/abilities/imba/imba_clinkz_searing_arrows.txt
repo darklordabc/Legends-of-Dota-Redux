@@ -1,0 +1,113 @@
+"DOTAAbilities"
+{
+    "imba_clinkz_searing_arrows"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+        "AbilityUnitTargetFlags"                                               "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_PHYSICAL"
+        "AbilityTextureName"                                                   "clinkz_searing_arrows"
+        "AbilityCastRange"                                                     "640"
+        "AbilityCastPoint"                                                     "0.0"
+        "AbilityCooldown"                                                      "0.0"
+        "AbilityManaCost"                                                      "0"
+        "precache"
+        {
+            "particle"                                                     "particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf"
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_damage"                                         "30 40 50 60"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "armor_reduction"                                      "-1.0"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "duration"                                             "5"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "max_stacks"                                           "3 5 7 9"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_searing_arrows_caster"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "OnAttackStart"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"                           "Hero_Clinkz.SearingArrows"
+                        "Target"                               "CASTER"
+                    }
+                }
+                "OnAttackLanded"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_clinkz.lua"
+                        "Function"                             "SearingArrowsHit"
+                        "sound_impact"                         "Hero_Clinkz.SearingArrows.Impact"
+                        "modifier_debuff"                      "modifier_imba_searing_arrows_debuff"
+                    }
+                }
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_clinkz.lua"
+                        "Function"                             "SearingArrowsProjectile"
+                        "particle_arrow"                       "particles/units/heroes/hero_clinkz/clinkz_searing_arrow.vpcf"
+                    }
+                }
+            }
+            "modifier_imba_searing_arrows_debuff"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "1"
+                "Duration"                                             "%duration"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_clinkz.lua"
+                        "Function"                             "SearingArrowsParticle"
+                        "particle_debuff"                      "particles/units/heroes/hero_clinkz/clinkz_searing_arrow_trail_ember.vpcf"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_clinkz.lua"
+                        "Function"                             "SearingArrowsParticleEnd"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"       "%armor_reduction"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

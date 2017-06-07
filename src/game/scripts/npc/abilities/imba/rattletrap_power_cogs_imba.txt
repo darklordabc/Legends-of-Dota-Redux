@@ -1,0 +1,58 @@
+"DOTAAbilities" {
+	"rattletrap_power_cogs_imba" {
+		"BaseClass" "rattletrap_power_cogs"
+		"ID" "5238"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastPoint" "0.3"
+		"AbilityCooldown" "14"
+		"AbilityManaCost" "50"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_rattletrap.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "8.0"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"drain_amount" "100 150 200 250"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"attacks_to_destroy" "3"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"push_length" "250"
+			}
+
+			"05" {
+				"var_type" "FIELD_FLOAT"
+				"push_duration" "1.0"
+			}
+
+			"06" {
+				"var_type" "FIELD_INTEGER"
+				"cogs_radius" "225"
+			}
+
+			"07" {
+				"var_type" "FIELD_INTEGER"
+				"trigger_distance" "170"
+			}
+
+			"08" {
+				"var_type" "FIELD_INTEGER"
+				"extra_pull_buffer" "-10"
+			}
+		}
+	}
+}

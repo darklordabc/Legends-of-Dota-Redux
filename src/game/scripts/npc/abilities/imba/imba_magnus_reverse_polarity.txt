@@ -1,0 +1,94 @@
+"DOTAAbilities"
+{
+    "imba_magnus_reverse_polarity"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_YES"
+        "FightRecapLevel"                                                      "2"
+        "AbilityTextureName"                                                   "magnataur_reverse_polarity"
+        "AbilityCastPoint"                                                     "0.3"
+        "AbilityCooldown"                                                      "120 110 100"
+        "AbilityManaCost"                                                      "200 250 300"
+        "AbilityCastRange"                                                     "500 550 600"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_magnataur/magnataur_reverse_polarity_pull.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "normal_pull"                                          "500 550 600"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "magnetize_pull"                                       "1200 1600 2000"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage"                                               "50 125 200"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "tree_radius"                                          "125"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "stun_duration"                                        "2.25 3.0 3.75"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "global_slow"                                          "-40"
+            }
+        }
+        "OnAbilityPhaseStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_magnus.lua"
+                "Function"                                             "ReversePolarityAnim"
+                "sound_anim"                                           "Hero_Magnataur.ReversePolarity.Anim"
+                "particle_anim"                                        "particles/units/heroes/hero_magnataur/magnataur_reverse_polarity.vpcf"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_magnus.lua"
+                "Function"                                             "ReversePolarity"
+                "sound_cast"                                           "Hero_Magnataur.ReversePolarity.Cast"
+                "sound_stun"                                           "Hero_Magnataur.ReversePolarity.Stun"
+                "particle_pull"                                        "particles/units/heroes/hero_magnataur/magnataur_reverse_polarity_pull.vpcf"
+                "modifier_slow"                                        "modifier_imba_reverse_polarity_slow"
+                "modifier_magnet"                                      "modifier_imba_magnetize_debuff"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_reverse_polarity_slow"
+            {
+                "Passive"                                              "0"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "1"
+                "IsHidden"                                             "0"
+                "Duration"                                             "%slow_duration"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%global_slow"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

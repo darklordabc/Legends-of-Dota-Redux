@@ -33,8 +33,8 @@
                 "bounty_multiplier_tooltip"                            "2"
             }
         }
-        "ReduxCost"                                                            "120"
+        "ReduxCost"                                                            "90"
         "ReduxBans"                                                            "alchemist_goblins_greed"
-        "ReduxFlags"                                                           ""
+        "ReduxFlags"                                                           "SuperOP"
     }
 }

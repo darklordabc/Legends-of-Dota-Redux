@@ -1,0 +1,128 @@
+"DOTAAbilities"
+{
+    "imba_jakiro_liquid_fire"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+        "AbilityUnitTargetFlags"                                               "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityTextureName"                                                   "jakiro_liquid_fire"
+        "AOERadius"                                                            "%radius"
+        "AbilityCooldown"                                                      "16 12 8 4"
+        "AbilityCastRange"                                                     "750"
+        "AbilityCastPoint"                                                     "0.25"
+        "AbilityCastAnimation"                                                 "ACT_DOTA_ATTACK2"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_jakiro/jakiro_liquid_fire_debuff.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "attack_slow"                                          " -30 -40 -50 -60"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "360"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage"                                               "16 24 32 40"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                             "5.0"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "damage_interval"                                      "0.5"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "speed"                                                "1100"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "cast_range_tooltip"                                   "750"
+            }
+        }
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "EffectName"                                           "Hero_Jakiro.Attack"
+                "Target"                                               "CASTER"
+            }
+            "TrackingProjectile"
+            {
+                "Target"
+                {
+                    "Center"                                       "TARGET"
+                    "Teams"                                        "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                    "Types"                                        "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+                    "Flags"                                        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+                }
+                "EffectName"                                           "particles/units/heroes/hero_jakiro/jakiro_base_attack_fire.vpcf"
+                "Dodgeable"                                            "1"
+                "ProvidesVision"                                       "0"
+                "VisionRadius"                                         "0"
+                "MoveSpeed"                                            "%speed"
+                "SourceAttachment"                                     "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+            }
+        }
+        "OnProjectileHitUnit"
+        {
+            "DeleteOnHit"                                                  "1"
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_jakiro.lua"
+                "Function"                                             "LiquidFire"
+                "sound_liquid_fire"                                    "Hero_Jakiro.LiquidFire"
+                "particle_liquid_fire"                                 "particles/units/heroes/hero_jakiro/jakiro_liquid_fire_explosion.vpcf"
+                "modifier_liquid_fire"                                 "modifier_imba_liquid_fire"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_liquid_fire"
+            {
+                "Passive"                                              "0"
+                "IsDebuff"                                             "1"
+                "IsHidden"                                             "0"
+                "IsPurgable"                                           "1"
+                "Duration"                                             "%duration"
+                "EffectName"                                           "particles/units/heroes/hero_jakiro/jakiro_liquid_fire_debuff.vpcf"
+                "EffectAttachType"                                     "follow_origin"
+                "ThinkInterval"                                        "%damage_interval"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_jakiro.lua"
+                        "Function"                             "LiquidFireDamage"
+                        "modifier_liquid_fire"                 "modifier_imba_liquid_fire"
+                        "modifier_macropyre"                   "modifier_imba_macropyre"
+                        "modifier_macropyre_2"                 "modifier_imba_macropyre_scepter"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%attack_slow"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

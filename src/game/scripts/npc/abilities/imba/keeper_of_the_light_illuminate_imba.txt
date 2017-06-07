@@ -1,0 +1,76 @@
+"DOTAAbilities" {
+	"keeper_of_the_light_illuminate_imba" {
+		"BaseClass" "keeper_of_the_light_illuminate"
+		"ID" "5471"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel" "1"
+		"AbilityCastRange" "2400"
+		"AbilityCastPoint" "0.3 0.3 0.3 0.3"
+		"AbilityCooldown" "10.0 10.0 10.0 10.0"
+		"AbilityChannelTime" "5.0"
+		"AbilityManaCost" "150"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_keeper_of_the_light.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_FLOAT"
+				"damage_per_second" "100.0 125.0 150.0 175.0"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"max_channel_time" "5.0"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "425"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"range" "2000"
+			}
+
+			"05" {
+				"var_type" "FIELD_FLOAT"
+				"speed" "1050.0"
+			}
+
+			"06" {
+				"var_type" "FIELD_INTEGER"
+				"vision_radius" "1200"
+			}
+
+			"07" {
+				"var_type" "FIELD_FLOAT"
+				"vision_duration" "3.34"
+			}
+
+			"08" {
+				"var_type" "FIELD_INTEGER"
+				"channel_vision_radius" "600"
+			}
+
+			"09" {
+				"var_type" "FIELD_FLOAT"
+				"channel_vision_interval" "0.5"
+			}
+
+			"10" {
+				"var_type" "FIELD_FLOAT"
+				"channel_vision_duration" "10.34"
+			}
+
+			"11" {
+				"var_type" "FIELD_INTEGER"
+				"channel_vision_step" "150"
+			}
+		}
+	}
+}

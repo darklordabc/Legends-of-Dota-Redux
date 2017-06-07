@@ -1,0 +1,139 @@
+"DOTAAbilities"
+{
+    "imba_bane_enfeeble"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitTargetFlags"                                               "DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS | DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityTextureName"                                                   "bane_enfeeble"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
+        }
+        "AbilityCastRange"                                                     "1000"
+        "AbilityCastPoint"                                                     "0.3"
+        "AbilityCooldown"                                                      "8.0"
+        "AbilityManaCost"                                                      "95"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "attack_reduction"                                     "-80 -120 -160 -200"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "stat_reduction"                                       "20 30 40 50"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                             "20.0"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "think_interval"                                       "0.5"
+            }
+        }
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "EffectName"                                           "Hero_Bane.Enfeeble"
+                "Target"
+                {
+                    "Center"                                       "TARGET"
+                    "Teams"                                        "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                    "Types"                                        "DOTA_UNIT_TARGET_HERO"
+                    "Flags"                                        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+                }
+            }
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_bane.lua"
+                "Function"                                             "CastEnfeeble"
+                "Target"                                               "TARGET"
+                "modifier_debuff"                                      "modifier_imba_bane_enfeeble"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_bane_enfeeble"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "0"
+                "Duration"                                             "%duration"
+                "EffectName"                                           "particles/units/heroes/hero_bane/bane_enfeeble.vpcf"
+                "EffectAttachType"                                     "follow_overhead"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_bane.lua"
+                        "Function"                             "Enfeeble"
+                        "modifier_str"                         "modifier_imba_bane_enfeeble_str_stacks"
+                        "modifier_agi"                         "modifier_imba_bane_enfeeble_agi_stacks"
+                        "modifier_int"                         "modifier_imba_bane_enfeeble_int_stacks"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_bane.lua"
+                        "Function"                             "EnfeebleEnd"
+                        "modifier_str"                         "modifier_imba_bane_enfeeble_str_stacks"
+                        "modifier_agi"                         "modifier_imba_bane_enfeeble_agi_stacks"
+                        "modifier_int"                         "modifier_imba_bane_enfeeble_int_stacks"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"     "%attack_reduction"
+                }
+            }
+            "modifier_imba_bane_enfeeble_str_stacks"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "0"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"       "-1"
+                }
+            }
+            "modifier_imba_bane_enfeeble_agi_stacks"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "0"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"        "-1"
+                }
+            }
+            "modifier_imba_bane_enfeeble_int_stacks"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "0"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"      "-1"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

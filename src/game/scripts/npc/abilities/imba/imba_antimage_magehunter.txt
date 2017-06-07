@@ -1,0 +1,108 @@
+"DOTAAbilities"
+{
+    "imba_antimage_magehunter"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "MaxLevel"                                                             "1"
+        "AbilityTextureName"                                                   "custom/imba_antimage_magehunter"
+        "AbilityCastRange"                                                     "1200"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "aura_radius"                                          "1200"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "stack_duration"                                       "10"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "mana_per_stack"                                       "5"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "scale_up"                                             "0.002"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_antimage_magehunter_aura"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "Aura"                                                 "modifier_imba_antimage_magehunter_detector"
+                "Aura_Radius"                                          "%aura_radius"
+                "Aura_Teams"                                           "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                "Aura_Types"                                           "DOTA_UNIT_TARGET_HERO"
+                "Aura_Flags"                                           "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE | DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD"
+                "Aura_ApplyToCaster"                                   "0"
+            }
+            "modifier_imba_antimage_magehunter_detector"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "0"
+                "OnSpentMana"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_antimage.lua"
+                        "Function"                             "Magehunter"
+                        "modifier_stacks"                      "modifier_imba_antimage_magehunter_stacks"
+                    }
+                }
+            }
+            "modifier_imba_antimage_magehunter_stack_counter"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "Duration"                                             "%stack_duration"
+            }
+            "modifier_imba_antimage_magehunter_stacks"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "Attributes"                                           "MODIFIER_ATTRIBUTE_MULTIPLE"
+                "Duration"                                             "%stack_duration"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_antimage.lua"
+                        "Function"                             "MagehunterCreate"
+                        "modifier_counter"                     "modifier_imba_antimage_magehunter_stack_counter"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_antimage.lua"
+                        "Function"                             "MagehunterDestroy"
+                        "modifier_counter"                     "modifier_imba_antimage_magehunter_stack_counter"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"     "1"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

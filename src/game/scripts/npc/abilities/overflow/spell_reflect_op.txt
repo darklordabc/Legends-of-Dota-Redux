@@ -7,8 +7,8 @@
         "ScriptFile"                                                           "abilities/overflow/spell_reflect/passive_op.lua"
         "AbilityTextureName"                                                   "custom/spell_reflect_op"
         "AbilityCooldown"                                                      "20.0 15.0 10.0 5.0"
-        "ReduxCost"                                                            "120"
+        "ReduxCost"                                                            "100"
         "ReduxBans"                                                            "spell_reflect"
-        "ReduxFlags"                                                           ""
+        "ReduxFlags"                                                           "SuperOP"
     }
 }

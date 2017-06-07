@@ -1,12 +1,12 @@
 LinkLuaModifier( "modifier_jingtong", "abilities/jingtong.lua" ,LUA_MODIFIER_MOTION_NONE )
 
-jingtong = class({})
+if jingtong ~= "" then jingtong = class({}) end
 
 function jingtong:GetIntrinsicModifierName()
   return "modifier_jingtong"
 end
 
-modifier_jingtong = class({})
+if modifier_jingtong ~= "" then modifier_jingtong = class({}) end
 
 function modifier_jingtong:IsPassive()
   return true
@@ -54,16 +54,12 @@ if IsServer() then
       talent = 25
     end
 
-    local final = (100 - core) * (100 - self:GetAbility():GetSpecialValueFor("reduce"))
-
-    self:SetStackCount(final)
-
-    return 100 - (final / 100)
+    return self:GetAbility():GetSpecialValueFor("reduce") + core + talent
   end
 else
   function modifier_jingtong:GetModifierPercentageCooldown()
     local caster = self:GetParent()
 
-    return 100 - (self:GetStackCount() / 100)
+    return self:GetAbility():GetSpecialValueFor("reduce")
   end
 end

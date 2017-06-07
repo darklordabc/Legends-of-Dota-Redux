@@ -665,25 +665,6 @@ function CDOTABaseAbility:GetTrueCooldown()
   return cooldown
 end
 
-function CDOTA_BaseNPC:GetCooldownReduction()
-  local hero = self
-
-  if Convars:GetBool('dota_ability_debug') then
-    cooldown = 0
-  end
-  local octarineMult = 1
-
-  for k,v in pairs(hero:FindAllModifiers()) do
-    if v.GetModifierPercentageCooldown then
-        octarineMult = octarineMult - (v:GetModifierPercentageCooldown()/100)
-    end
-  end
- 
-
-  return octarineMult
-end
-
-
 
 
 
@@ -765,109 +746,6 @@ function util:isCoop()
         return false
     end
 end
-
-function CDOTABaseAbility:CreateIllusions(hTarget,nIllusions,flDuration,flIncomingDamage,flOutgoingDamage,flRadius)
-    local caster = self:GetCaster()
-    local ability = self
-    local player = caster:GetPlayerOwnerID()
-    if not flRadius then flRadius = 50 end
-    local illusions = {}
-    local vRandomSpawnPos = {
-        Vector( flRadius, 0, 0 ),  
-        Vector( 0, flRadius, 0 ),  
-        Vector( -flRadius, 0, 0 ), 
-        Vector( 0, -flRadius, 0 ), 
-    }
-    
-    for i=#vRandomSpawnPos, 2, -1 do
-      local j = RandomInt( 1, i )
-      vRandomSpawnPos[i], vRandomSpawnPos[j] = vRandomSpawnPos[j], vRandomSpawnPos[i]
-    end
-    for i =1, nIllusions do
-        if not vRandomSpawnPos or #vRandomSpawnPos == 0 then
-            vRandomSpawnPos[1] = RandomVector(flRadius)
-        end
-        local illusion = CreateUnitByName(hTarget:GetUnitName(),hTarget:GetAbsOrigin() +vRandomSpawnPos[1],true,caster,caster:GetOwner(),caster:GetTeamNumber())
-        table.remove(vRandomSpawnPos, 1)
-        illusion:MakeIllusion()
-        illusion:SetControllableByPlayer(player,true) 
-        illusion:SetPlayerID(player)
-        illusion:SetHealth(hTarget:GetHealth())
-        illusion:SetMana(hTarget:GetMana())
-        illusion:AddNewModifier(caster, ability, "modifier_illusion", {duration = flDuration, outgoing_damage=flOutgoingDamage, incoming_damage = flIncomingDamage})
-        
-        local level = hTarget:GetLevel()
-        for i=1,level-1 do
-            illusion:HeroLevelUp(false)
-        end
-        
-        for abilitySlot=0,23 do
-            local abilityTemp = caster:GetAbilityByIndex(abilitySlot)
-          
-            if abilityTemp then 
-                illusion:RemoveAbility(abilityTemp:GetAbilityName())
-            end
-        end
-
-        illusion:SetAbilityPoints(0)
-        for abilitySlot=0,23 do
-            local abilityTemp = hTarget:GetAbilityByIndex(abilitySlot)
-          
-            if abilityTemp then
-                illusion:AddAbility(abilityTemp:GetAbilityName()) 
-                local abilityLevel = abilityTemp:GetLevel()
-                if abilityLevel > 0 then
-                    local abilityName = abilityTemp:GetAbilityName()
-                    local illusionAbility = illusion:FindAbilityByName(abilityName)
-                    if illusionAbility then
-                        illusionAbility:SetLevel(abilityLevel)
-                    end
-                end
-            end
-        end
-
-        for itemSlot=0,8 do
-            local item = hTarget:GetItemInSlot(itemSlot)
-            if item then
-                local itemName = item:GetName()
-                local newItem = CreateItem(itemName, illusion,illusion)
-                illusion:AddItem(newItem)
-            end
-        end
-        table.insert(illusions,illusion)
-    end
-    ResolveNPCPositions(hTarget:GetAbsOrigin(),flRadius*1.05)
-    return illusions
-end
-
-function CDOTA_BaseNPC:FixIllusion(source)
-
-    for abilitySlot=0,23 do
-        local abilityTemp = self:GetAbilityByIndex(abilitySlot)
-      
-        if abilityTemp then 
-            self:RemoveAbility(abilityTemp:GetAbilityName())
-        end
-    end
-    self:SetAbilityPoints(0)
-    for abilitySlot=0,23 do
-        local abilityTemp = source:GetAbilityByIndex(abilitySlot)
-      
-        if abilityTemp then
-
-            self:AddAbility(abilityTemp:GetAbilityName()) 
-            local abilityLevel = abilityTemp:GetLevel()
-            if abilityLevel > 0 then
-                local abilityName = abilityTemp:GetAbilityName()
-                local illusionAbility = self:FindAbilityByName(abilityName)
-                if illusionAbility then
-                    illusionAbility:SetLevel(abilityLevel)
-                end
-            end
-        end
-    end
-end
-
 
 function CDOTA_BaseNPC:HasAbilityWithFlag(flag)
     for i = 0, 23 do

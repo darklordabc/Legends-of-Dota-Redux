@@ -1,0 +1,106 @@
+"DOTAAbilities"
+{
+    "imba_venomancer_plague_ward"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_PHYSICAL"
+        "AbilityTextureName"                                                   "venomancer_plague_ward"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_venomancer.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_venomancer/venomancer_plague_ward_projectile.vpcf"
+            "model"                                                        "models/items/venomancer/deathbringer_ward/deathbringer_ward.vmdl"
+        }
+        "AbilityCastRange"                                                     "1000"
+        "AbilityCastPoint"                                                     "0.0"
+        "AbilityCooldown"                                                      "6.0"
+        "AbilityManaCost"                                                      "20"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "duration"                                             "40"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "scourge_hero_health"                                  "2"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "scourge_creep_health"                                 "4"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "scourge_damage"                                       "30"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "plague_hero_health"                                   "1"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "plague_creep_health"                                  "2"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "plague_damage"                                        "18"
+            }
+            "08"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "plague_amount"                                        "0 1 2 3"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_venomancer.lua"
+                "Function"                                             "WardCast"
+                "Target"                                               "POINT"
+                "ability_caster_sting"                                 "imba_venomancer_poison_sting"
+                "ability_sting"                                        "imba_venomancer_poison_sting_ward"
+                "ability_scourge"                                      "imba_venomancer_scourge_ward_multiattack"
+                "sound_cast"                                           "Hero_Venomancer.Plague_Ward"
+                "modifier_ward"                                        "modifier_imba_plague_ward"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_plague_ward"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "OnAttacked"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_venomancer.lua"
+                        "Function"                             "WardDamage"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL""1"
+                    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL" "1"
+                    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE"    "1"
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_MAGIC_IMMUNE"                  "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

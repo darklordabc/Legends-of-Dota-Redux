@@ -1,0 +1,238 @@
+"DOTAAbilities"
+{
+    "imba_bane_fiends_grip"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetFlags"                                               "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "FightRecapLevel"                                                      "2"
+        "AbilityTextureName"                                                   "bane_fiends_grip"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_bane/bane_fiends_grip.vpcf"
+        }
+        "AbilityCastRange"                                                     "625"
+        "AbilityCastPoint"                                                     "0.4"
+        "AbilityChannelTime"                                                   "4.0"
+        "AbilityCooldown"                                                      "100 85 70"
+        "AbilityManaCost"                                                      "200 300 400"
+        "AbilitySpecial"
+        {
+            "10"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "fiends_grip_damage_tooltip"                           "100 160 220"
+            }
+            "11"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "fiends_grip_damage_tooltip_scepter"                   "160 220 280"
+            }
+            "12"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "fiends_grip_scepter_radius"                           "900"
+            }
+            "13"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "fiends_grip_scepter_vision_cone"                      "45"
+            }
+            "14"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "fiends_grip_extra_duration_scepter"                   "3.0 3.5 4.0"
+            }
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "fiends_grip_tick_interval"                            "0.1"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "fiends_grip_mana_drain"                               "0.8"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "fiends_grip_duration"                                 "4"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "fiends_grip_damage"                                   "10 16 22"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "fiends_grip_mana_drain_scepter"                       "1.0"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "fiends_grip_extra_duration"                           "1.0 1.5 2.0"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "fiends_grip_damage_scepter"                           "16 22 28"
+            }
+            "08"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "fiends_grip_mana_drain_tooltip"                       "8"
+            }
+            "09"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "fiends_grip_mana_drain_tooltip_scepter"               "12"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_bane.lua"
+                "Function"                                             "CastFiendsGrip"
+                "Target"                                               "TARGET"
+                "damage"                                               "%fiends_grip_damage"
+                "modifier_debuff"                                      "modifier_imba_bane_fiends_grip"
+                "modifier_caster"                                      "modifier_imba_bane_fiends_grip_caster"
+                "cast_sound"                                           "Hero_Bane.FiendsGrip.Cast"
+            }
+        }
+        "OnChannelInterrupted"
+        {
+            "RemoveModifier"
+            {
+                "ModifierName"                                         "modifier_imba_bane_fiends_grip_caster"
+                "Target"
+                {
+                    "Center"                                       "CASTER"
+                    "Teams"                                        "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+                    "Types"                                        "DOTA_UNIT_TARGET_HERO"
+                    "Flags"                                        "DOTA_UNIT_TARGET_FLAG_INVULNERABLE | DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD"
+                }
+            }
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_bane.lua"
+                "Function"                                             "FiendsGripStopChannel"
+                "Target"                                               "TARGET"
+                "modifier"                                             "modifier_imba_bane_fiends_grip"
+                "sound1"                                               "Hero_Bane.FiendsGrip"
+                "sound2"                                               "Hero_Bane.FiendsGrip.Cast"
+            }
+        }
+        "OnChannelFinish"
+        {
+            "RemoveModifier"
+            {
+                "ModifierName"                                         "modifier_imba_bane_fiends_grip_caster"
+                "Target"
+                {
+                    "Center"                                       "CASTER"
+                    "Teams"                                        "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+                    "Types"                                        "DOTA_UNIT_TARGET_HERO"
+                    "Flags"                                        "DOTA_UNIT_TARGET_FLAG_INVULNERABLE | DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD"
+                }
+            }
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_bane.lua"
+                "Function"                                             "FiendsGripStopChannel"
+                "Target"                                               "TARGET"
+                "modifier"                                             "modifier_imba_bane_fiends_grip"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_bane_fiends_grip"
+            {
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "0"
+                "EffectName"                                           "particles/units/heroes/hero_bane/bane_fiends_grip.vpcf"
+                "EffectAttachType"                                     "attach_origin"
+                "OverrideAnimation"                                    "ACT_DOTA_FLAIL"
+                "ThinkInterval"                                        "%fiends_grip_tick_interval"
+                "Attributes"                                           "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+                "OnIntervalThink"
+                {
+                    "Damage"
+                    {
+                        "Target"                               "TARGET"
+                        "Type"                                 "DAMAGE_TYPE_MAGICAL"
+                        "Damage"                               "%fiends_grip_damage"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_bane.lua"
+                        "Function"                             "FiendsGripManaDrain"
+                        "Target"                               "TARGET"
+                    }
+                }
+                "OnCreated"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"                           "Hero_Bane.FiendsGrip"
+                        "Target"
+                        {
+                            "Center"                       "TARGET"
+                            "Flags"                        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+                        }
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_bane.lua"
+                        "Function"                             "FiendsGripTruesight"
+                        "Target"                               "TARGET"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_bane.lua"
+                        "Function"                             "FiendsGripEndSound"
+                        "Target"                               "TARGET"
+                        "sound_1"                              "Hero_Bane.FiendsGrip"
+                        "sound_2"                              "Hero_Bane.FiendsGrip.Cast"
+                    }
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_STUNNED"                       "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_INVISIBLE"                     "MODIFIER_STATE_VALUE_DISABLED"
+                }
+            }
+            "modifier_imba_bane_fiends_grip_caster"
+            {
+                "IsHidden"                                             "1"
+                "IsPurgable"                                           "0"
+                "ThinkInterval"                                        "0.03"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_bane.lua"
+                        "Function"                             "FiendsGripScepter"
+                        "modifier_fiends_grip"                 "modifier_imba_bane_fiends_grip"
+                    }
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_LOW_ATTACK_PRIORITY"           "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

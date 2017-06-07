@@ -1,0 +1,151 @@
+"DOTAAbilities"
+{
+    "imba_nyx_assassin_impale"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "FightRecapLevel"                                                      "1"
+        "AbilityTextureName"                                                   "nyx_assassin_impale"
+        "AbilityCastRange"                                                     "700"
+        "AbilityCastPoint"                                                     "0.3"
+        "AbilityCooldown"                                                      "13.0 11.0 9.0 7.0"
+        "AbilityManaCost"                                                      "95 115 135 155"
+        "AbilityDamage"                                                        "80 140 200 260"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_nyx_assassin.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_nyx_assassin/nyx_assassin_impale_hit.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "width"                                                "180"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                             "1.6 2.0 2.4 2.8"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "length"                                               "700"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "speed"                                                "2000"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "air_time"                                             "0.57"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage_repeat"                                        "20 30 40 50"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "damage_duration"                                      "3.0"
+            }
+            "08"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage"                                               "80 140 200 260"
+            }
+            "09"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "global_radius"                                        "25000"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_nyx_assassin.lua"
+                "Function"                                             "Impale"
+                "Target"                                               "POINT"
+                "sound_cast"                                           "Hero_NyxAssassin.Impale"
+                "particle_projectile"                                  "particles/units/heroes/hero_nyx_assassin/nyx_assassin_impale.vpcf"
+            }
+        }
+        "OnProjectileHitUnit"
+        {
+            "DeleteOnHit"                                                  "0"
+            "FireSound"
+            {
+                "Target"                                               "TARGET"
+                "EffectName"                                           "Hero_NyxAssassin.Impale.Target"
+            }
+            "RemoveModifier"
+            {
+                "Target"                                               "TARGET"
+                "ModifierName"                                         "modifier_knockback"
+            }
+            "Knockback"
+            {
+                "Target"                                               "TARGET"
+                "Center"                                               "CASTER"
+                "Distance"                                             "0"
+                "Duration"                                             "%air_time"
+                "Height"                                               "200"
+                "IsFixedDistance"                                      "1"
+            }
+            "Stun"
+            {
+                "Target"                                               "TARGET"
+                "Duration"                                             "%duration"
+            }
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_nyx_assassin.lua"
+                "Function"                                             "ImpaleDamage"
+                "land_sound"                                           "Hero_NyxAssassin.Impale.TargetLand"
+                "particle_hit"                                         "particles/units/heroes/hero_nyx_assassin/nyx_assassin_impale_hit.vpcf"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_impale_aura"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "Aura"                                                 "modifier_imba_impale_damage_counter"
+                "Aura_Radius"                                          "%global_radius"
+                "Aura_Teams"                                           "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                "Aura_Types"                                           "DOTA_UNIT_TARGET_HERO"
+                "Aura_Flags"                                           "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+                "Aura_ApplyToCaster"                                   "0"
+            }
+            "modifier_imba_impale_damage_counter"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "0"
+                "OnTakeDamage"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_nyx_assassin.lua"
+                        "Function"                             "ImpaleDamageCounter"
+                        "damage"                               "%attack_damage"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

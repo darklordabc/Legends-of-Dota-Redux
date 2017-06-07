@@ -16,7 +16,7 @@
             }
         }
         "ReduxCost"                                                            "400"
-        "ReduxFlags"                                                           ""
+        "ReduxFlags"                                                           "SuperOP"
         "ReduxBans"                                                            "lone_druid_spirit_bear_demolish"
     }
 }

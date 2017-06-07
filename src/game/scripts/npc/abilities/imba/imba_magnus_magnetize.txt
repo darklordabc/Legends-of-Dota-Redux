@@ -1,0 +1,91 @@
+"DOTAAbilities"
+{
+    "imba_magnus_magnetize"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO"
+        "MaxLevel"                                                             "1"
+        "AbilityTextureName"                                                   "custom/magnus_magnetize"
+        "precache"
+        {
+            "particle"                                                     "particles/units/heroes/hero_magnataur/magnataur_skewer_debuff.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "duration"                                             "6"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "600"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "ms_slow"                                              "-10"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "think_interval"                                       "0.2"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_magnetize"
+            {
+                "Passive"                                              "1"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "IsHidden"                                             "1"
+                "OnDealDamage"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_magnus.lua"
+                        "Function"                             "Magnetize"
+                        "modifier_debuff"                      "modifier_imba_magnetize_debuff"
+                    }
+                }
+            }
+            "modifier_imba_magnetize_debuff"
+            {
+                "Passive"                                              "0"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "1"
+                "IsHidden"                                             "0"
+                "Duration"                                             "%duration"
+                "EffectName"                                           "particles/units/heroes/hero_magnataur/magnataur_skewer_debuff.vpcf"
+                "EffectAttachType"                                     "follow_origin"
+                "ThinkInterval"                                        "%think_interval"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_magnus.lua"
+                        "Function"                             "MagnetizeThink"
+                        "modifier_magnetize"                   "modifier_imba_magnetize_debuff"
+                        "modifier_slow"                        "modifier_imba_magnetize_slow"
+                    }
+                }
+            }
+            "modifier_imba_magnetize_slow"
+            {
+                "Passive"                                              "0"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "1"
+                "IsHidden"                                             "1"
+                "Duration"                                             "%think_interval"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%ms_slow"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

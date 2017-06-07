@@ -1,0 +1,75 @@
+"DOTAAbilities"
+{
+    "imba_techies_minefield_sign"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityTextureName"                                                   "techies_minefield_sign"
+        "AOERadius"                                                            "%radius"
+        "MaxLevel"                                                             "1"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
+            "model"                                                        "models/heroes/techies/techies_sign.vmdl"
+        }
+        "AbilityCastRange"                                                     "300"
+        "AbilityCastPoint"                                                     "0.0"
+        "AbilityCooldown"                                                      "60.0"
+        "AbilityManaCost"                                                      "0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "200"
+            }
+        }
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "EffectName"                                           "Hero_Techies.Sign"
+                "Target"                                               "CASTER"
+            }
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_techies.lua"
+                "Function"                                             "MinefieldSign"
+                "Target"                                               "POINT"
+                "modifier_passive"                                     "modifier_imba_minefield_sign_passive"
+                "modifier_scepter"                                     "modifier_imba_minefield_sign_scepter"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_minefield_sign_passive"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "States"
+                {
+                    "MODIFIER_STATE_INVULNERABLE"                  "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_UNSELECTABLE"                  "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NOT_ON_MINIMAP_FOR_ENEMIES"    "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NO_HEALTH_BAR"                 "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NO_UNIT_COLLISION"             "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+            "modifier_imba_minefield_sign_scepter"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "Duration"                                             "1.0"
+                "States"
+                {
+                    "MODIFIER_STATE_TRUESIGHT_IMMUNE"              "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

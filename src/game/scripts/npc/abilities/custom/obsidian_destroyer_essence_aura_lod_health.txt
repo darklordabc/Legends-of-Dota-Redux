@@ -71,7 +71,7 @@
                 }
             }
         }
-        "ReduxFlags"                                                           "support | tank"
+        "ReduxFlags"                                                           "support | tank | SuperOP"
         "ReduxPerks"                                                           "support"
         "ReduxCost"                                                            "120"
     }

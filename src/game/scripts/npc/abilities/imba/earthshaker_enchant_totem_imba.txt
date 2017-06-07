@@ -1,0 +1,49 @@
+"DOTAAbilities" {
+	"earthshaker_enchant_totem_imba" {
+		"BaseClass" "earthshaker_enchant_totem"
+		"ID" "5024"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellDispellableType" "SPELL_DISPELLABLE_YES"
+		"HasScepterUpgrade" "1"
+		"AbilityCastRange" "0"
+		"AbilityCastPoint" "0.5"
+		"FightRecapLevel" "1"
+		"AbilityCooldown" "4.5"
+		"AbilityDuration" "14.0 14.0 14.0 14.0"
+		"AbilityDamage" "0 0 0 0"
+		"AbilityManaCost" "0"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"totem_damage_percentage" "300 375 450 525"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"tooltip_duration" "14.0"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"distance_scepter" "1200"
+			}
+
+			"04" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "0.5"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"aftershock_range" "350"
+			}
+		}
+	}
+}

@@ -1,0 +1,71 @@
+"DOTAAbilities"
+{
+    "imba_silencer_glaives_of_wisdom"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_PURE"
+        "AbilityTextureName"                                                   "silencer_glaives_of_wisdom"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityCastPoint"                                                     "0.0"
+        "AbilityCastRange"                                                     "600"
+        "AbilityCooldown"                                                      "0.0"
+        "AbilityManaCost"                                                      "15"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_silencer.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_silencer/silencer_glaives_of_wisdom.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "intellect_damage_pct"                                 "45.0 70.0 95.0 120.0"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_glaives_of_wisdom"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "Orb"
+                {
+                    "Priority"                                     "DOTA_ORB_PRIORITY_ABILITY"
+                    "ProjectileName"                               "particles/units/heroes/hero_silencer/silencer_glaives_of_wisdom.vpcf"
+                    "CastAttack"                                   "1"
+                }
+                "OnOrbFire"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"                           "Hero_Silencer.GlaivesOfWisdom"
+                        "Target"                               "CASTER"
+                    }
+                    "SpendMana"
+                    {
+                        "Mana"                                 "%AbilityManaCost"
+                    }
+                }
+                "OnOrbImpact"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"                           "Hero_Silencer.GlaivesOfWisdom.Damage"
+                        "Target"                               "TARGET"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_silencer.lua"
+                        "Function"                             "IntToDamage"
+                        "Target"                               "TARGET"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

@@ -1,0 +1,52 @@
+"DOTAAbilities"
+{
+    "imba_techies_minefield_teleport"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityTextureName"                                                   "techies_minefield_sign"
+        "MaxLevel"                                                             "1"
+        "AbilityCastRange"                                                     "200"
+        "AbilityCastPoint"                                                     "0.0"
+        "AbilityCooldown"                                                      "45"
+        "AbilityManaCost"                                                      "0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "teleport_radius"                                      "200"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "teleport_cooldown"                                    "45"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_techies.lua"
+                "Function"                                             "MinefieldTeleport"
+                "modifier_unselect"                                    "modifier_imba_techies_minefield_teleport_unselect"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_techies_minefield_teleport_unselect"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "0"
+                "Duration"                                             "0.1"
+                "States"
+                {
+                    "MODIFIER_STATE_UNSELECTABLE"                  "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}
