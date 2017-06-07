@@ -5589,7 +5589,7 @@ function saveCurrentBuild() {
 	    })
     }
 
-    if (mapName == "all_allowed"){
+    if (mapName == "all_allowed" || mapName == "overthrow"){
 	    $.Each(["noInvis", "banning", "antirat", "OPAbilities", "customAbilities"], function(name) {
 	        addVotingOption(name);
 	    })
