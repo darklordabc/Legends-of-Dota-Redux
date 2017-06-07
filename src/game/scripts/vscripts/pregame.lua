@@ -3152,141 +3152,141 @@ function Pregame:MultiplyNeutralUnit( unit, killer, mult, lastHits )
 
         -- SPECIAL BONUSES IF PLAYERS LAST HIT TOO MUCH
         -- Double Damage Bonus
-        if RollPercentage(5) then
-            clone:AddNewModifier(clone, nil, "modifier_rune_doubledamage", {duration = duration})
-        end
+        --if RollPercentage(5) then
+        --    clone:AddNewModifier(clone, nil, "modifier_rune_doubledamage", {duration = duration})
+        --end
 
         -- Healing Aura Bonus 
-        if lastHits > 25 and RollPercentage(15) then 
-            level = math.min(10, (math.floor(lastHits / 25)) )
-            
-            clone:AddAbility("neutral_regen_aura")
-            local healingWard = clone:FindAbilityByName("neutral_regen_aura")
-            healingWard:SetLevel(level) 
-        end
+        --if lastHits > 25 and RollPercentage(15) then 
+        --    level = math.min(10, (math.floor(lastHits / 25)) )
+        --    
+        --    clone:AddAbility("neutral_regen_aura")
+        --    local healingWard = clone:FindAbilityByName("neutral_regen_aura")
+        --    healingWard:SetLevel(level) 
+        --end
 
         -- Extra Health Bonus
-        if lastHits > 25 and RollPercentage(15) then 
-            level = math.min(10, (math.floor(lastHits / 25)) )
-            modelSize = level/14 + 1
-            clone:SetModelScale(modelSize) 
+        --if lastHits > 25 and RollPercentage(15) then 
+        --    level = math.min(10, (math.floor(lastHits / 25)) )
+        --   modelSize = level/14 + 1
+         --   clone:SetModelScale(modelSize) 
 
-            clone:AddAbility("neutral_extra_health")
-            local extraHealth = clone:FindAbilityByName("neutral_extra_health")
-            extraHealth:SetLevel(level)     
-        end
+         --   clone:AddAbility("neutral_extra_health")
+        --    local extraHealth = clone:FindAbilityByName("neutral_extra_health")
+        --    extraHealth:SetLevel(level)     
+        --end
 
         -- Lucifier Attack
-        if not alreadySpawned and lastHits >= 100 then
-            if killer.hadLucifier ~= true or RollPercentage(5) then
-                killer.hadLucifier = true
+        --if not alreadySpawned and lastHits >= 100 then
+        --    if killer.hadLucifier ~= true or RollPercentage(5) then
+        --        killer.hadLucifier = true
 
-                alreadySpawned = true
-                local lucifier = CreateUnitByName( "npc_dota_lucifers_claw_doomling", loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
+        --        alreadySpawned = true
+        --        local lucifier = CreateUnitByName( "npc_dota_lucifers_claw_doomling", loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
                 
-                lucifier:AddAbility("spawnlord_master_freeze_creep")
-                local bash = lucifier:FindAbilityByName("spawnlord_master_freeze_creep")
-                local bashlevel = math.min(4, (math.floor((lastHits-100) / 20)) )
-                bash:SetLevel(bashlevel)
+        --        lucifier:AddAbility("spawnlord_master_freeze_creep")
+        --        local bash = lucifier:FindAbilityByName("spawnlord_master_freeze_creep")
+        --        local bashlevel = math.min(4, (math.floor((lastHits-100) / 20)) )
+        --        bash:SetLevel(bashlevel)
 
-                lucifier:AddNewModifier(lucifier, nil, "modifier_phased", {Duration = 2})
-                lucifier:AddNewModifier(lucifier, nil, "modifier_kill", {duration = 45})
+        --        lucifier:AddNewModifier(lucifier, nil, "modifier_phased", {Duration = 2})
+        --        lucifier:AddNewModifier(lucifier, nil, "modifier_kill", {duration = 45})
 
-                Timers:CreateTimer(function()
-                    lucifier:MoveToTargetToAttack(killer)
-                end, DoUniqueString('attackPlayer'), 0.5)
-            end
-        end
+        --        Timers:CreateTimer(function()
+        --            lucifier:MoveToTargetToAttack(killer)
+         --       end, DoUniqueString('attackPlayer'), 0.5)
+        --    end
+        --end
 
         -- Araknarok Tank
-        if not alreadySpawned and lastHits >= 200 then
-            if killer.hadAraknarok ~= true or RollPercentage(5) then
-                killer.hadAraknarok = true
+        --if not alreadySpawned and lastHits >= 200 then
+        --    if killer.hadAraknarok ~= true or RollPercentage(5) then
+        --        killer.hadAraknarok = true
 
-                alreadySpawned = true
-                local araknarok = CreateUnitByName( "npc_dota_araknarok_spiderling", loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
+        --        alreadySpawned = true
+        --        local araknarok = CreateUnitByName( "npc_dota_araknarok_spiderling", loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
                 
-                araknarok:AddAbility("broodmother_incapacitating_bite")
-                local poison = araknarok:FindAbilityByName("broodmother_incapacitating_bite")
-                local poisonlevel = math.min(4, (math.floor((lastHits-200) / 20)) )
-                poison:SetLevel(poisonlevel)
+        --        araknarok:AddAbility("broodmother_incapacitating_bite")
+        --        local poison = araknarok:FindAbilityByName("broodmother_incapacitating_bite")
+        --        local poisonlevel = math.min(4, (math.floor((lastHits-200) / 20)) )
+        --        poison:SetLevel(poisonlevel)
 
-                araknarok:AddAbility("imba_tower_essence_drain")
-                local lifedrain = araknarok:FindAbilityByName("imba_tower_essence_drain")
-                local drainlevel = math.min(3, (math.floor((lastHits-200) / 26)) )
-                lifedrain:SetLevel(drainlevel)
+        --        araknarok:AddAbility("imba_tower_essence_drain")
+        --        local lifedrain = araknarok:FindAbilityByName("imba_tower_essence_drain")
+        --        local drainlevel = math.min(3, (math.floor((lastHits-200) / 26)) )
+        --        lifedrain:SetLevel(drainlevel)
 
-                araknarok:SetHullRadius(55)
+        --        araknarok:SetHullRadius(55)
                 
-                araknarok:AddNewModifier(araknarok, nil, "modifier_phased", {Duration = 2})
-                araknarok:AddNewModifier(araknarok, nil, "modifier_kill", {duration = 45})
+         --       araknarok:AddNewModifier(araknarok, nil, "modifier_phased", {Duration = 2})
+         --       araknarok:AddNewModifier(araknarok, nil, "modifier_kill", {duration = 45})
                 
-                Timers:CreateTimer(function()
-                    araknarok:MoveToTargetToAttack(killer)
-                end, DoUniqueString('attackPlayer'), 0.5)
-            end
-        end
+        --        Timers:CreateTimer(function()
+        --            araknarok:MoveToTargetToAttack(killer)
+        --        end, DoUniqueString('attackPlayer'), 0.5)
+        --    end
+        --end
 
         -- Small Bear Boss
-        if not alreadySpawned and lastHits >= 50 then
-            if killer.hadSmallBear ~= true or RollPercentage(1) then
-                killer.hadSmallBear = true
+        --if not alreadySpawned and lastHits >= 50 then
+        --    if killer.hadSmallBear ~= true or RollPercentage(1) then
+        --        killer.hadSmallBear = true
 
-                alreadySpawned = true
+        --        alreadySpawned = true
 
-                local smallBear = CreateUnitByName( "npc_dota_creature_small_spirit_bear", loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
+         --       local smallBear = CreateUnitByName( "npc_dota_creature_small_spirit_bear", loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
                            
-                smallBear:AddNewModifier(araknarok, nil, "modifier_phased", {Duration = 2})
-                smallBear:AddNewModifier(araknarok, nil, "modifier_kill", {duration = 200})
+        --        smallBear:AddNewModifier(araknarok, nil, "modifier_phased", {Duration = 2})
+        --        smallBear:AddNewModifier(araknarok, nil, "modifier_kill", {duration = 200})
                 
-                Timers:CreateTimer(function()
-                    smallBear:MoveToTargetToAttack(killer)
-                end, DoUniqueString('attackPlayer'), 0.5)
-            end
-        end
+        --        Timers:CreateTimer(function()
+        --            smallBear:MoveToTargetToAttack(killer)
+        --        end, DoUniqueString('attackPlayer'), 0.5)
+        --    end
+        --end
 
         -- Large Bear Boss
-        if not alreadySpawned and lastHits > 150 then
-            if killer.hadLargeBear ~= true then
-                killer.hadLargeBear = true
+        --if not alreadySpawned and lastHits > 150 then
+        --    if killer.hadLargeBear ~= true then
+        --        killer.hadLargeBear = true
 
-                alreadySpawned = true
+        --        alreadySpawned = true
 
-                local largeBear = CreateUnitByName( "npc_dota_creature_large_spirit_bear", loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
+        --        local largeBear = CreateUnitByName( "npc_dota_creature_large_spirit_bear", loc, true, nil, nil, DOTA_TEAM_NEUTRALS )
                            
-                largeBear:AddNewModifier(araknarok, nil, "modifier_phased", {Duration = 2})
-                largeBear:AddNewModifier(araknarok, nil, "modifier_kill", {duration = 200})
+        --        largeBear:AddNewModifier(araknarok, nil, "modifier_phased", {Duration = 2})
+        --        largeBear:AddNewModifier(araknarok, nil, "modifier_kill", {duration = 200})
                 
-                Timers:CreateTimer(function()
-                    largeBear:MoveToTargetToAttack(killer)
-                end, DoUniqueString('attackPlayer'), 0.5)
-            end
-        end
+        --        Timers:CreateTimer(function()
+        --            largeBear:MoveToTargetToAttack(killer)
+        --        end, DoUniqueString('attackPlayer'), 0.5)
+        --    end
+        --end
 
         -- Daddy Bear Boss
-        if not alreadySpawned and lastHits >= 300 then
-            if killer.hadDaddyBear ~= true then
-                killer.hadDaddyBear = true
+        --if not alreadySpawned and lastHits >= 300 then
+        --    if killer.hadDaddyBear ~= true then
+        --        killer.hadDaddyBear = true
 
-                alreadySpawned = true
+        --        alreadySpawned = true
 
-                team = DOTA_TEAM_NEUTRALS
-                if killer:GetTeam() == DOTA_TEAM_BADGUYS then
-                    team = DOTA_TEAM_GOODGUYS
-                elseif killer:GetTeam() == DOTA_TEAM_GOODGUYS then
-                    team = DOTA_TEAM_BADGUYS
-                end
+        --        team = DOTA_TEAM_NEUTRALS
+        --        if killer:GetTeam() == DOTA_TEAM_BADGUYS then
+        --           team = DOTA_TEAM_GOODGUYS
+        --       elseif killer:GetTeam() == DOTA_TEAM_GOODGUYS then
+        --            team = DOTA_TEAM_BADGUYS
+        --        end
 
-                local daddyBear = CreateUnitByName( "npc_dota_creature_big_bear", loc, true, nil, nil, team )
+        --        local daddyBear = CreateUnitByName( "npc_dota_creature_big_bear", loc, true, nil, nil, team )
                            
-                daddyBear:AddNewModifier(araknarok, nil, "modifier_phased", {Duration = 2})
-                daddyBear:AddNewModifier(araknarok, nil, "modifier_kill", {duration = 200})
+        --        daddyBear:AddNewModifier(araknarok, nil, "modifier_phased", {Duration = 2})
+        --        daddyBear:AddNewModifier(araknarok, nil, "modifier_kill", {duration = 200})
                 
-                Timers:CreateTimer(function()
-                    daddyBear:MoveToTargetToAttack(killer)
-                end, DoUniqueString('attackPlayer'), 0.5)
-            end
-        end
+        --        Timers:CreateTimer(function()
+        --            daddyBear:MoveToTargetToAttack(killer)
+        --        end, DoUniqueString('attackPlayer'), 0.5)
+         --   end
+        --end
       
     end      
 end
@@ -7741,33 +7741,32 @@ function Pregame:fixSpawningIssues()
             if Wearables:HasDefaultWearables( spawnedUnit:GetUnitName() ) then
                 Wearables:AttachWearableList( spawnedUnit, Wearables:GetDefaultWearablesList( spawnedUnit:GetUnitName() ) )
             end
+            -- hotfix experiment: If you kill a bot ten times, they respawn with help
             -- Detect spawn dummy
-            if spawnedUnit:IsRealHero() then
-
-                -- hotfix experiment: If you kill a bot ten times, they respawn with help
-                if util:isPlayerBot(spawnedUnit:GetPlayerID()) and util:GetActiveHumanPlayerCountForTeam(spawnedUnit:GetTeam()) == 0 then
-                    if spawnedUnit:GetDeaths() > 10 and RollPercentage(10) then
-                        Timers:CreateTimer(function()
-                            local botHelper = CreateUnitByName("npc_dota_creature_small_spirit_bear", spawnedUnit:GetAbsOrigin(), true, nil, nil, spawnedUnit:GetTeamNumber())
-                        end, DoUniqueString('makeMonster1'), 1)    
-                    end
-                    if spawnedUnit:GetDeaths() > 20 and RollPercentage(10) then
-                        Timers:CreateTimer(function()
-                            local botHelper = CreateUnitByName("npc_bot_spirit_sven", spawnedUnit:GetAbsOrigin(), true, nil, nil, spawnedUnit:GetTeamNumber())
-                        end, DoUniqueString('makeMonster2'), 1)    
-                    end    
-                    if spawnedUnit:GetDeaths() > 15 and RollPercentage(10) then
-                        Timers:CreateTimer(function()
-                            local botHelper = CreateUnitByName("npc_dota_creature_large_spirit_bear", spawnedUnit:GetAbsOrigin(), true, nil, nil, spawnedUnit:GetTeamNumber())
-                        end, DoUniqueString('makeMonster3'), 1)    
-                    end  
-                    if spawnedUnit:GetDeaths() > 25 and RollPercentage(10) then
-                        Timers:CreateTimer(function()
-                            local botHelper = CreateUnitByName("npc_dota_creature_big_bear", spawnedUnit:GetAbsOrigin(), true, nil, nil, spawnedUnit:GetTeamNumber())
-                        end, DoUniqueString('makeMonster4'), 1)    
-                    end 
-                end
-            end
+            --if spawnedUnit:IsRealHero() then
+                --if util:isPlayerBot(spawnedUnit:GetPlayerID()) and util:GetActiveHumanPlayerCountForTeam(spawnedUnit:GetTeam()) == 0 then
+                --    if spawnedUnit:GetDeaths() > 10 and RollPercentage(10) then
+                --        Timers:CreateTimer(function()
+                --            local botHelper = CreateUnitByName("npc_dota_creature_small_spirit_bear", spawnedUnit:GetAbsOrigin(), true, nil, nil, spawnedUnit:GetTeamNumber())
+                --        end, DoUniqueString('makeMonster1'), 1)    
+                --    end
+                --    if spawnedUnit:GetDeaths() > 20 and RollPercentage(10) then
+                --        Timers:CreateTimer(function()
+                --            local botHelper = CreateUnitByName("npc_bot_spirit_sven", spawnedUnit:GetAbsOrigin(), true, nil, nil, spawnedUnit:GetTeamNumber())
+                --        end, DoUniqueString('makeMonster2'), 1)    
+                --    end    
+                --    if spawnedUnit:GetDeaths() > 15 and RollPercentage(10) then
+                --        Timers:CreateTimer(function()
+                --            local botHelper = CreateUnitByName("npc_dota_creature_large_spirit_bear", spawnedUnit:GetAbsOrigin(), true, nil, nil, spawnedUnit:GetTeamNumber())
+                --        end, DoUniqueString('makeMonster3'), 1)    
+                --    end  
+                --    if spawnedUnit:GetDeaths() > 25 and RollPercentage(10) then
+                --        Timers:CreateTimer(function()
+                --            local botHelper = CreateUnitByName("npc_dota_creature_big_bear", spawnedUnit:GetAbsOrigin(), true, nil, nil, spawnedUnit:GetTeamNumber())
+                --        end, DoUniqueString('makeMonster4'), 1)    
+                --    end 
+                --end
+            --end
             -- Make sure it is a hero
             if spawnedUnit:IsHero() then
 
