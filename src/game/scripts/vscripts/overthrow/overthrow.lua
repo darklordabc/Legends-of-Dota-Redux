@@ -84,10 +84,10 @@ function COverthrowGameMode:InitGameMode()
 		self.m_GoldRadiusMax = 1400
 		self.m_GoldDropPercent = 8
 	elseif GetMapName() == "temple_quartet" then
-		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 4 )
-		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 4 )
-		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_CUSTOM_1, 4 )
-		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_CUSTOM_2, 4 )
+		--GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 4 )
+		--GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 4 )
+		--GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_CUSTOM_1, 4 )
+		--GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_CUSTOM_2, 4 )
 		self.m_GoldRadiusMin = 300
 		self.m_GoldRadiusMax = 1400
 		self.m_GoldDropPercent = 10
@@ -361,7 +361,7 @@ function COverthrowGameMode:GatherAndRegisterValidTeams()
 			maxPlayers = maxPlayersPerValidTeam
 		end
 		print( " - " .. team .. " ( " .. GetTeamName( team ) .. " ) -> max players = " .. tostring(maxPlayers) )
-		GameRules:SetCustomGameTeamMaxPlayers( team, maxPlayers )
+		--GameRules:SetCustomGameTeamMaxPlayers( team, 5 )
 	end
 end
 

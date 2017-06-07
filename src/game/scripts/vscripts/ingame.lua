@@ -1235,8 +1235,20 @@ function Ingame:handleRespawnModifier()
 
                             -- Give 322 gold if enabled
                             if OptionManager:GetOption('322') == 1 then
-                                hero:ModifyGold(322,false,0)
-                                SendOverheadEventMessage(hero:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, hero, 322, nil)
+                                if OptionManager:GetOption('mapname') == "overthrow" then
+                                    myTeamKills = GetTeamHeroKills(hero:GetTeamNumber())
+                                    opponentTeamKills = GetTeamHeroKills(otherTeam(hero:GetTeamNumber()))
+                                    
+                                    if myTeamKills < opponentTeamKills then
+                                        hero:ModifyGold(322,false,0)
+                                        SendOverheadEventMessage(hero:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, hero, 322, nil)
+                                    end
+
+                                else
+                                    hero:ModifyGold(322,false,0)
+                                    SendOverheadEventMessage(hero:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, hero, 322, nil)
+                                end
+                                
                             end
                             -- Refresh cooldowns if enabled
                             if OptionManager:GetOption('refreshCooldownsOnDeath') == 1 or ingame.voteEnableRefresh == true then

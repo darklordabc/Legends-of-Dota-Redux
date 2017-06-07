@@ -530,7 +530,7 @@ function Pregame:init()
         self.useOptionVoting = true
     end
 
-    if mapName == 'all_allowed' or mapName == 'overthrow' then   
+    if mapName == 'all_allowed' then   
         self:setOption('lodOptionCrazyUniversalShop', 0, true)
         self:setOption('lodOptionGameSpeedSharedEXP', 1, true)
         self:setOption('lodOptionBanningUseBanList', 1, true)
@@ -542,6 +542,7 @@ function Pregame:init()
         self:setOption('lodOptionGameSpeedStartingGold', 2500, true)
         self:setOption('lodOptionGameSpeedStrongTowers', 1, true)
         self:setOption('lodOptionCreepPower', 120, true)
+
         self:setOption('lodOptionGameSpeedTowersPerLane', 3, true)
         OptionManager:SetOption('banningTime', 50)
         self:setOption('lodOptionBalanceMode', 0, true)
@@ -550,6 +551,34 @@ function Pregame:init()
         self:setOption('lodOptionGameSpeedEXPModifier', 200, true)
         self:setOption('lodOptionAdvancedHidePicks', 0, true)
         self:setOption('lodOptionCommonMaxUlts', 2, true)
+        self:setOption("lodOptionCrazyFatOMeter", 2)
+        self:setOption('lodOptionGameSpeedRespawnTimePercentage', 35, true)
+        self.useOptionVoting = true
+        self.optionVoteSettings.doubledAbilityPoints = nil
+    end
+
+    if mapName == 'overthrow' then   
+        self:setOption('lodOptionCrazyUniversalShop', 0, true)
+        self:setOption('lodOptionGameSpeedSharedEXP', 1, true)
+        self:setOption('lodOptionBanningUseBanList', 1, true)
+        self:setOption('lodOptionAdvancedOPAbilities', 1, true)
+        self:setOption('lodOptionGameSpeedMaxLevel', 100, true)
+        self:setOption('lodOptionGamemode', 1)
+        self:setOption('lodOptionBattleThirst', 0)
+        self:setOption('lodOptionGameSpeedStartingLevel', 1, true)
+        self:setOption('lodOptionGameSpeedStartingGold', 2500, true)
+        self:setOption('lodOptionGameSpeedStrongTowers', 1, true)
+        self:setOption('lodOptionCreepPower', 120, true)
+        self:setOption('lodOption322', 1, true)
+        self:setOption('lodOptionGameSpeedTowersPerLane', 3, true)
+        OptionManager:SetOption('banningTime', 50)
+        self:setOption('lodOptionBalanceMode', 0, true)
+        self:setOption('lodOptionGameSpeedGoldModifier', 100, true)
+        self:setOption('lodOptionGameSpeedGoldTickRate', 1, true)
+        self:setOption('lodOptionGameSpeedEXPModifier', 100, true)
+        self:setOption('lodOptionAdvancedHidePicks', 0, true)
+        self:setOption('lodOptionCommonMaxUlts', 2, true)
+        self:setOption("lodOptionCrazyFatOMeter", 2)
         self:setOption('lodOptionGameSpeedRespawnTimePercentage', 35, true)
         self.useOptionVoting = true
         self.optionVoteSettings.doubledAbilityPoints = nil
