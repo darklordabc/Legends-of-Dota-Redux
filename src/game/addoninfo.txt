@@ -1,6 +1,6 @@
 "AddonInfo"
 {
-	maps			"all_allowed standard overthrow"
+	maps			"all_allowed standard dota overthrow"
 
 	"IsPlayable"	"1"
     "version"       "3.1.2"
