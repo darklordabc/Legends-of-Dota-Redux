@@ -776,7 +776,7 @@
     "hintBlink"                                     "Its always a good idea to have an escape plan."
     "hintBalanceMode"                              "In Points Mode abilities cost points to pick. Price varies by power, the most powerful cost the most, and the weakest abilities are free. You have 120 points to spend. This mode offers a more balanced match."
     "hintScoreboard"                              "You can see the abilities/talents of allies and enemies in the scoreboard."
-    "hintComment"                              "You can leave feedback that goes straight to the developers by using the gear icon at the top of the screen. From here you can also see the changelog and credits."
+    "hintComment"                              "You can leave feedback that goes straight to the developers by using the gear icon at the top of the minimap. From here you can also see the changelog and credits."
     "hintRemoveAbility"                         "Use drag-and-drop to remove abilities from an ability slot. Alternatively, simply drag a new ability onto an ability you want to replace."
     "hintSaveLoad"                         "As a host in Custom Games you can save your current configuration to the online cloud. Press load to retrieve these settings in future games. However, you can only have one configuration saved at any time."
     "hintJungle"                         "To be an effective Jungler you need to be able to kill creeps quickly, not only tank their hits."
