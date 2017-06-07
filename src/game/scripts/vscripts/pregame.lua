@@ -964,6 +964,8 @@ function Pregame:onThink()
                 return 0.1
             end
 
+            Chat:Say( {channel = "all", msg = "chatChannelsAnnouncement", PlayerID = -1, localize = true})
+
             -- Are we using option selection, or option voting?
             if self.useOptionVoting then
                 -- Option voting
@@ -1006,8 +1008,6 @@ function Pregame:onThink()
     if not self.checkedPremiumPlayers then
         self.checkedPremiumPlayers = true
         self:checkForPremiumPlayers()
-
-        Chat:Say( {channel = "all", msg = "chatChannelsAnnouncement", PlayerID = -1, localize = true})
     end
 
     --[[
