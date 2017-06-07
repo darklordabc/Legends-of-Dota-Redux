@@ -29,8 +29,8 @@
                 "duration"                                             "4 5 6"
             }
         }
-        "ReduxCost"                                                            "120"
+        "ReduxCost"                                                            "90"
         "ReduxBans"                                                            "tinker_rearm"
-        "ReduxFlags"                                                           ""
+        "ReduxFlags"                                                           "SuperOP"
     }
 }

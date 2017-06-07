@@ -1,0 +1,126 @@
+"DOTAAbilities"
+{
+    "imba_lina_fiery_soul"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityTextureName"                                                   "lina_fiery_soul"
+        "AbilityCooldown"                                                      "0.0"
+        "AbilityCastPoint"                                                     "0.0"
+        "AbilityManaCost"                                                      "0"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_as"                                             "45 60 75 90"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_ms"                                             "5 6 7 8"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "active_stacks"                                        "3"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "duration"                                             "10"
+            }
+        }
+        "OnUpgrade"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_lina.lua"
+                "Function"                                             "BlazingAbilityLevel"
+                "ability_fiery"                                        "imba_lina_blazing_soul"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_lina.lua"
+                "Function"                                             "FierySoulActivate"
+                "sound_cast"                                           "Hero_Clinkz.Strafe"
+                "modifier_stacks"                                      "modifier_imba_fiery_soul_stacks"
+                "modifier_active"                                      "modifier_imba_fiery_soul_active"
+                "ability_q"                                            "imba_lina_dragon_slave"
+                "ability_q_fiery"                                      "imba_lina_dragon_slave_fiery"
+                "ability_w"                                            "imba_lina_light_strike_array"
+                "ability_w_fiery"                                      "imba_lina_light_strike_array_fiery"
+                "ability_e"                                            "imba_lina_fiery_soul"
+                "ability_e_fiery"                                      "imba_lina_blazing_soul"
+                "ability_r"                                            "imba_lina_laguna_blade"
+                "ability_r_fiery"                                      "imba_lina_laguna_blade_fiery"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_fiery_soul"
+            {
+                "Passive"                                              "1"
+                "IsBuff"                                               "1"
+                "IsHidden"                                             "1"
+                "IsPurgable"                                           "0"
+                "OnSpentMana"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_lina.lua"
+                        "Function"                             "FierySoul"
+                        "modifier_stacks"                      "modifier_imba_fiery_soul_stacks"
+                        "modifier_active"                      "modifier_imba_fiery_soul_active"
+                    }
+                }
+            }
+            "modifier_imba_fiery_soul_stacks"
+            {
+                "Passive"                                              "0"
+                "IsBuff"                                               "1"
+                "IsHidden"                                             "0"
+                "IsPurgable"                                           "0"
+                "Duration"                                             "%duration"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_as"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%bonus_ms"
+                }
+            }
+            "modifier_imba_fiery_soul_active"
+            {
+                "Passive"                                              "0"
+                "IsBuff"                                               "1"
+                "IsHidden"                                             "0"
+                "IsPurgable"                                           "0"
+                "Duration"                                             "%duration"
+                "TextureName"                                          "lina_fiery_soul_fiery"
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_lina.lua"
+                        "Function"                             "FierySoulEnd"
+                        "ability_q"                            "imba_lina_dragon_slave"
+                        "ability_q_fiery"                      "imba_lina_dragon_slave_fiery"
+                        "ability_w"                            "imba_lina_light_strike_array"
+                        "ability_w_fiery"                      "imba_lina_light_strike_array_fiery"
+                        "ability_e"                            "imba_lina_fiery_soul"
+                        "ability_e_fiery"                      "imba_lina_blazing_soul"
+                        "ability_r"                            "imba_lina_laguna_blade"
+                        "ability_r_fiery"                      "imba_lina_laguna_blade_fiery"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

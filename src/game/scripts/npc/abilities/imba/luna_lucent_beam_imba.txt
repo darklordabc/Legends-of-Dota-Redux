@@ -1,0 +1,35 @@
+"DOTAAbilities" {
+	"luna_lucent_beam_imba" {
+		"BaseClass" "luna_lucent_beam"
+		"ID" "5222"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType" "SPELL_DISPELLABLE_YES_STRONG"
+		"FightRecapLevel" "1"
+		"AbilityCastRange" "900"
+		"AbilityCastPoint" "0.4"
+		"AbilityCooldown" "5.0"
+		"AbilityManaCost" "90 100 110 120"
+		"AbilityModifierSupportValue" "0.5"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_luna.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_FLOAT"
+				"stun_duration" "0.8"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"beam_damage" "100 175 250 325"
+				"LinkedSpecialBonus" "special_bonus_unique_luna_1"
+			}
+		}
+	}
+}

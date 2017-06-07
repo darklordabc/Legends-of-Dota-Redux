@@ -89,14 +89,14 @@
     "roshan_spell_block"
     {
         "MaxLevel"                                                             "4"
-        "ReduxCost"                                                            "120"
-        "ReduxFlags"                                                           ""
+        "ReduxCost"                                                            "70"
+        "ReduxFlags"                                                           "SuperOP"
         "AbilityCooldown"               "15.0 13.0 11.0 9.0"
     }
     "roshan_bash"
     {
         "MaxLevel"                                                             "4"
-        "ReduxFlags"                                                           "bash | attack_modifier"
+        "ReduxFlags"                                                           "bash | attack_modifier | OPSkillsList"
         "ReduxPerks"                                                           "neutral | bash | attack_modifier"
         "ReduxCost"                                                            "50"
         "AbilitySpecial"
@@ -200,12 +200,12 @@
     "lone_druid_spirit_bear_return"
     {
         "MaxLevel"                                                             "1"
-        "ReduxFlags"                                                           "noHero"
+        "ReduxFlags"                                                           "noHero | OPSkillsList"
     }
     "brewmaster_earth_hurl_boulder"
     {
         "MaxLevel"                                                             "1"
-        "ReduxFlags"                                                           "stun"
+        "ReduxFlags"                                                           "stun | OPSkillsList"
         "ReduxPerks"                                                           "earth"
         "ReduxCost"                                                            "80"
         "ReduxBans"                                                            "death_prophet_witchcraft"
@@ -218,24 +218,24 @@
     {
         "MaxLevel"                                                             "1"
         "ReduxPerks"                                                           "earth"
-        "ReduxFlags"                                                           "doNotRandom"
+        "ReduxFlags"                                                           "doNotRandom | SuperOP"
     }
     "brewmaster_storm_dispel_magic"
     {
         "MaxLevel"                                                             "1"
         "ReduxCost"                                                            "80"
-        "ReduxFlags"                                                           ""
+        "ReduxFlags"                                                           "OPSkillsList"
     }
     "brewmaster_storm_cyclone"
     {
         "MaxLevel"                                                             "1"
         "ReduxCost"                                                            "80"
-        "ReduxFlags"                                                           ""
+        "ReduxFlags"                                                           "OPSkillsList"
     }
     "brewmaster_storm_wind_walk"
     {
         "MaxLevel"                                                             "3"
-        "ReduxFlags"                                                           "mobility | invis | doNotRandom"
+        "ReduxFlags"                                                           "mobility | invis | doNotRandom | OPSkillsList"
         "ReduxPerks"                                                           "mobility"
     }
     "mudgolem_cloak_aura"
@@ -273,7 +273,7 @@
         "ReduxPerks"                                                           "fire"
         "ReduxCost"                                                            "80"
         "ReduxBans"                                                            "batrider_sticky_napalm"
-        "ReduxFlags"                                                           ""
+        "ReduxFlags"                                                           "OPSkillsList"
     }
     "broodmother_poison_sting"
     {
@@ -738,8 +738,8 @@
     }
     "abaddon_borrowed_time"
     {
-        "ReduxFlags"                                                           "upgradeable | wtfAutoBan"
-        "ReduxCost"                                                            "80"
+        "ReduxFlags"                                                           "upgradeable | wtfAutoBan | OPSkillsList"
+        "ReduxCost"                                                            "70"
         "ReduxBans"                                                            "furion_teleportation | tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux | meepo_divided_we_stand | phoenix_supernova"
     }
     "ancient_apparition_ice_blast"
@@ -833,7 +833,7 @@
     {
         "ReduxFlags"                                                           "upgradeable | aoe_attack | attack_modifier"
         "ReduxPerks"                                                           "attack_modifier"
-        "ReduxCost"                                                            "80"
+        "ReduxCost"                                                            "70"
     }
     "earth_spirit_geomagnetic_grip"
     {
@@ -901,7 +901,7 @@
     {
         "ReduxFlags"                                                           "upgradeable | silence"
         "ReduxPerks"                                                           "silence"
-        "ReduxCost"                                                            "80"
+        "ReduxCost"                                                            "70"
         "ReduxBans"                                                            "spell_lab_symbiotic"
     }
     "leshrac_pulse_nova"
@@ -945,7 +945,7 @@
     }
     "meepo_divided_we_stand"
     {
-        "ReduxFlags"                                                           "upgradeable | doNotRandom"
+        "ReduxFlags"                                                           "upgradeable | doNotRandom | SuperOP"
         "ReduxCost"                                                            "400"
         "ReduxBans"                                                            "arc_warden_tempest_double | arc_warden_tempest_double_redux | meepo_divided_we_stand | spell_lab_symbiotic"
     }
@@ -1152,7 +1152,7 @@
     }
     "skeleton_king_reincarnation"
     {
-        "ReduxFlags"                                                           "upgradeable | wtfAutoBan"
+        "ReduxFlags"                                                           "upgradeable | wtfAutoBan | OPSkillsList"
         "ReduxCost"                                                            "10"
         "ReduxBans"                                                            "tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux"
     }
@@ -1583,7 +1583,7 @@
     }
     "riki_permanent_invisibility"
     {
-        "ReduxFlags"                                                           "mobility | invis"
+        "ReduxFlags"                                                           "mobility | invis | OPSkillsList"
         "ReduxPerks"                                                           "mobility"
         "ReduxCost"                                                            "120"
     }
@@ -1619,7 +1619,7 @@
     }
     "nyx_assassin_burrow"
     {
-        "ReduxFlags"                                                           "mobility | invis"
+        "ReduxFlags"                                                           "mobility | invis | OPSkillsList"
         "ReduxPerks"                                                           "mobility | earth"
         "ReduxCost"                                                            "20"
     }
@@ -1638,7 +1638,7 @@
     }
     "weaver_shukuchi"
     {
-        "ReduxFlags"                                                           "mobility | invis"
+        "ReduxFlags"                                                           "mobility | invis | OPSkillsList"
         "ReduxPerks"                                                           "mobility"
         "ReduxCost"                                                            "80"
     }
@@ -1740,7 +1740,7 @@
     }
     "puck_phase_shift"
     {
-        "ReduxFlags"                                                           "mobility"
+        "ReduxFlags"                                                           "mobility | SuperOP"
         "ReduxPerks"                                                           "mobility | channeled"
         "ReduxBans"                                                            "death_prophet_witchcraft"
     }
@@ -1782,9 +1782,9 @@
     }
     "alchemist_chemical_rage"
     {
-        "ReduxFlags"                                                           "tank"
+        "ReduxFlags"                                                           "tank | OPSkillsList"
         "ReduxPerks"                                                           "scientific | rage"
-        "ReduxCost"                                                            "80"
+        "ReduxCost"                                                            "70"
         "ReduxBans"                                                            "meepo_divided_we_stand"
     }
     "centaur_return"
@@ -1915,7 +1915,7 @@
     }
     "phantom_assassin_coup_de_grace"
     {
-        "ReduxFlags"                                                           "crit | attack_modifier"
+        "ReduxFlags"                                                           "crit | attack_modifier | OPSkillsList"
         "ReduxPerks"                                                           "attack_modifier"
         "ReduxCost"                                                            "80"
         "ReduxBans"                                                            "phantom_assassin_coup_de_grace_melee"
@@ -1961,7 +1961,7 @@
     }
     "warlock_golem_flaming_fists"
     {
-        "ReduxFlags"                                                           "aoe_attack | attack_modifier"
+        "ReduxFlags"                                                           "aoe_attack | attack_modifier | OPSkillsList"
         "ReduxPerks"                                                           "neutral | attack_modifier | fire"
         "ReduxCost"                                                            "120"
     }
@@ -2085,14 +2085,14 @@
     }
     "life_stealer_feast"
     {
-        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "attack_modifier | OPSkillsList"
         "ReduxPerks"                                                           "attack_modifier"
-        "ReduxCost"                                                            "80"
+        "ReduxCost"                                                            "70"
         "ReduxBans"                                                            "holdout_multishot | life_stealer_feast_melee"
     }
     "ursa_fury_swipes"
     {
-        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "attack_modifier | OPSkillsList"
         "ReduxPerks"                                                           "attack_modifier"
         "ReduxCost"                                                            "80"
         "ReduxBans"                                                            "ursa_fury_swipes_lod"
@@ -2139,9 +2139,9 @@
     }
     "slark_essence_shift"
     {
-        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "attack_modifier | OPSkillsList"
         "ReduxPerks"                                                           "attack_modifier"
-        "ReduxCost"                                                            "80"
+        "ReduxCost"                                                            "40"
     }
     "sandking_caustic_finale"
     {
@@ -2197,9 +2197,9 @@
     }
     "phantom_lancer_juxtapose"
     {
-        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "attack_modifier | OPSkillsList"
         "ReduxPerks"                                                           "attack_modifier"
-        "ReduxCost"                                                            "80"
+        "ReduxCost"                                                            "50"
     }
     "sniper_headshot"
     {
@@ -2461,7 +2461,7 @@
     }
     "earthshaker_aftershock"
     {
-        "ReduxFlags"                                                           "stun | wtfAutoBan"
+        "ReduxFlags"                                                           "stun | wtfAutoBan | SuperOP"
         "ReduxPerks"                                                           "earth"
         "ReduxCost"                                                            "120"
         "ReduxBans"                                                            "death_prophet_witchcraft | zuus_arc_lightning | storm_spirit_ball_lightning | storm_spirit_static_remnant | obsidian_destroyer_arcane_orb"
@@ -2694,13 +2694,13 @@
         "ReduxPerks"                                                           "neutral | fire | aura"
         "ReduxCost"                                                            "120"
         "ReduxBans"                                                            "batrider_sticky_napalm"
-        "ReduxFlags"                                                           ""
+        "ReduxFlags"                                                           "OPSkillsList"
     }
     "batrider_sticky_napalm"
     {
         "ReduxPerks"                                                           "fire"
         "ReduxCost"                                                            "80"
-        "ReduxFlags"                                                           ""
+        "ReduxFlags"                                                           "OPSkillsList"
     }
     "lina_dragon_slave"
     {
@@ -2712,7 +2712,7 @@
         "ReduxCost"                                                            "80"
         "ReduxBans"                                                            "death_prophet_witchcraft | storm_spirit_ball_lightning | obsidian_destroyer_arcane_orb"
         "ReduxBanCategory"                                                     "ToggleSpells"
-        "ReduxFlags"                                                           ""
+        "ReduxFlags"                                                           "OPSkillsList"
     }
     "dragon_knight_breathe_fire"
     {
@@ -2812,7 +2812,7 @@
         "ReduxPerks"                                                           "lightning"
         "ReduxCost"                                                            "60"
         "ReduxBans"                                                            "tinker_rearm | arc_warden_tempest_double_redux"
-        "ReduxFlags"                                                           ""
+        "ReduxFlags"                                                           "OPSkillsList"
     }
     "disruptor_glimpse_op"
     {
@@ -2873,7 +2873,7 @@
         "ReduxCost"                                                            "40"
         "ReduxBans"                                                            "obsidian_destroyer_arcane_orb | death_prophet_witchcraft | storm_spirit_ball_lightning | storm_spirit_static_remnant | earthshaker_enchant_totem"
         "ReduxBanCategory"                                                     "SpammableSpells"
-        "ReduxFlags"                                                           "wtfAutoBan"
+        "ReduxFlags"                                                           "wtfAutoBan | OPSkillsList"
     }
     "morphling_morph_agi"
     {
@@ -2935,7 +2935,7 @@
     "alchemist_goblins_greed"
     {
         "ReduxPerks"                                                           "scientific"
-        "ReduxCost"                                                            "110"
+        "ReduxCost"                                                            "30"
     }
     "gyrocopter_call_down"
     {
@@ -2986,7 +2986,7 @@
         "ReduxPerks"                                                           "scientific | channeled"
         "ReduxCost"                                                            "400"
         "ReduxBans"                                                            "dazzle_shallow_grave | lich_absolute_zero | arc_warden_tempest_double | arc_warden_tempest_double_redux"
-        "ReduxFlags"                                                           "cooldown"
+        "ReduxFlags"                                                           "SuperOP | cooldown"
     }
     "chen_penitence"
     {
@@ -3325,9 +3325,9 @@
     }
     "ursa_overpower"
     {
-        "ReduxFlags"                                                           ""
+        "ReduxFlags"                                                           "OPSkillsList"
         "ReduxPerks"                                                           "rage"
-        "ReduxCost"                                                            "80"
+        "ReduxCost"                                                            "70"
         "ReduxBans"                                                            "ursa_overpower_melee | tusk_walrus_punch | earthshaker_enchant_totem"
     }
     "lycan_howl"
@@ -3344,7 +3344,7 @@
         "ReduxCost"                                                            "80"
         "ReduxBans"                                                            "death_prophet_witchcraft | storm_spirit_ball_lightning | obsidian_destroyer_arcane_orb"
         "ReduxBanCategory"                                                     "ToggleSpells"
-        "ReduxFlags"                                                           ""
+        "ReduxFlags"                                                           "OPSkillsList"
     }
     "item_mask_of_madness"
     {
@@ -3366,7 +3366,7 @@
     "death_prophet_witchcraft"
     {
         "ReduxCost"                                                            "120"
-        "ReduxFlags"                                                           "cooldown"
+        "ReduxFlags"                                                           "SuperOP | cooldown"
     }
     "sniper_take_aim"
     {
@@ -3474,11 +3474,11 @@
     }
     "neutral_spell_immunity"
     {
-        "ReduxFlags"                                                           ""
+        "ReduxFlags"                                                           "OPSkillsList"
     }
     "backdoor_protection"
     {
-        "ReduxFlags"                                                           ""
+        "ReduxFlags"                                                           "OPSkillsList"
     }
 
     "special_bonus_unique_undying"

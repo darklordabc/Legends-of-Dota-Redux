@@ -1,0 +1,36 @@
+"DOTAAbilities"
+{
+    "imba_pugna_life_drain_end"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ALLIES_YES"
+        "AbilityTextureName"                                                   "custom/pugna_life_drain_end"
+        "MaxLevel"                                                             "1"
+        "AbilityCastRange"                                                     "0"
+        "AbilityCastPoint"                                                     "0.0"
+        "AbilityCooldown"                                                      "0.5"
+        "AbilityManaCost"                                                      "0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "search_range"                                         "1600"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_pugna.lua"
+                "Function"                                             "LifeDrainCancel"
+                "modifier_ally"                                        "modifier_imba_life_drain_ally"
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

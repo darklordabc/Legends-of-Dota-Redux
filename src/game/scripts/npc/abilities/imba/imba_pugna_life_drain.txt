@@ -1,0 +1,155 @@
+"DOTAAbilities"
+{
+    "imba_pugna_life_drain"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetFlags"                                               "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE | DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "FightRecapLevel"                                                      "1"
+        "AbilityTextureName"                                                   "pugna_life_drain"
+        "AbilityCastRange"                                                     "900"
+        "AbilityCastPoint"                                                     "0.2"
+        "CastFilterRejectCaster"                                               "1"
+        "AbilityCooldown"                                                      "22.0"
+        "AbilityManaCost"                                                      "125 175 225"
+        "precache"
+        {
+            "particle"                                                     "particles/units/heroes/hero_pugna/pugna_life_give.vpcf"
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_pugna.vsndevts"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "health_drain"                                         "150 200 250"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "health_drain_scepter"                                 "6"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "break_range"                                          "1000 1100 1200"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "duration"                                             "10"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "tick_rate"                                            "0.25"
+            }
+        }
+        "OnUpgrade"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_pugna.lua"
+                "Function"                                             "LifeDrainCancelUpgrade"
+                "ability_cancel"                                       "imba_pugna_life_drain_end"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_pugna.lua"
+                "Function"                                             "LifeDrain"
+                "sound_cast"                                           "Hero_Pugna.LifeDrain.Cast"
+                "sound_target"                                         "Imba.PugnaLifeDrainTarget"
+                "modifier_enemy"                                       "modifier_imba_life_drain_enemy"
+                "modifier_ally"                                        "modifier_imba_life_drain_ally"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_life_drain_enemy"
+            {
+                "Passive"                                              "0"
+                "IsDebuff"                                             "1"
+                "IsHidden"                                             "1"
+                "IsPurgable"                                           "0"
+                "Duration"                                             "%duration"
+                "ThinkInterval"                                        "%tick_rate"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_pugna.lua"
+                        "Function"                             "LifeDrainTickEnemy"
+                        "modifier_enemy"                       "modifier_imba_life_drain_enemy"
+                    }
+                }
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_pugna.lua"
+                        "Function"                             "LifeDrainEnemyStart"
+                        "particle_drain"                       "particles/units/heroes/hero_pugna/pugna_life_drain.vpcf"
+                        "sound_loop"                           "Imba.PugnaLifeDrainLoop"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_pugna.lua"
+                        "Function"                             "LifeDrainEnemyEnd"
+                        "sound_loop"                           "Imba.PugnaLifeDrainLoop"
+                        "sound_target"                         "Hero_Pugna.LifeDrain.Target"
+                    }
+                }
+            }
+            "modifier_imba_life_drain_ally"
+            {
+                "Passive"                                              "0"
+                "IsBuff"                                               "1"
+                "IsHidden"                                             "1"
+                "IsPurgable"                                           "0"
+                "Duration"                                             "%duration"
+                "ThinkInterval"                                        "%tick_rate"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_pugna.lua"
+                        "Function"                             "LifeDrainTickAlly"
+                        "modifier_ally"                        "modifier_imba_life_drain_ally"
+                    }
+                }
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_pugna.lua"
+                        "Function"                             "LifeDrainAllyStart"
+                        "particle_drain"                       "particles/units/heroes/hero_pugna/pugna_life_give.vpcf"
+                        "sound_loop"                           "Imba.PugnaLifeDrainLoop"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_pugna.lua"
+                        "Function"                             "LifeDrainAllyEnd"
+                        "sound_loop"                           "Imba.PugnaLifeDrainLoop"
+                        "sound_target"                         "Hero_Pugna.LifeDrain.Target"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

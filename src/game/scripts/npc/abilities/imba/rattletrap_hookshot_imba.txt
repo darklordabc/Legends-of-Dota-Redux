@@ -1,0 +1,58 @@
+"DOTAAbilities" {
+	"rattletrap_hookshot_imba" {
+		"BaseClass" "rattletrap_hookshot"
+		"ID" "5240"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType" "SPELL_DISPELLABLE_YES_STRONG"
+		"FightRecapLevel" "2"
+		"HasScepterUpgrade" "1"
+		"AbilityCastPoint" "0.2"
+		"AbilityCastRange" "3000 5000 7000"
+		"AbilityCooldown" "60 45 30"
+		"AbilityManaCost" "100"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_rattletrap.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"latch_radius" "125"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"stun_radius" "250"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "1.0 1.5 2.0"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"speed" "12000"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"tooltip_range" "3000 5000 7000"
+			}
+
+			"06" {
+				"var_type" "FIELD_INTEGER"
+				"damage" "150 225 300"
+			}
+
+			"07" {
+				"var_type" "FIELD_INTEGER"
+				"cooldown_scepter" "9"
+			}
+		}
+	}
+}

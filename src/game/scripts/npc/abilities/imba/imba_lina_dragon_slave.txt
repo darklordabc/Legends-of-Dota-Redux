@@ -1,0 +1,100 @@
+"DOTAAbilities"
+{
+    "imba_lina_dragon_slave"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "FightRecapLevel"                                                      "1"
+        "AbilityTextureName"                                                   "lina_dragon_slave"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf"
+        }
+        "AbilityCastRange"                                                     "1100"
+        "AbilityCastPoint"                                                     "0.35"
+        "AbilityCooldown"                                                      "7"
+        "AbilityManaCost"                                                      "100 115 130 145"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "primary_speed"                                        "1200"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "primary_start_width"                                  "250"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "primary_end_width"                                    "300"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "primary_distance"                                     "1100"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "primary_damage"                                       "110 180 250 320"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "secondary_damage"                                     "60 90 120 150"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "secondary_amount"                                     "2"
+            }
+            "08"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "secondary_delay"                                      "0.25"
+            }
+        }
+        "OnUpgrade"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_lina.lua"
+                "Function"                                             "DragonSlaveLevel"
+                "ability_aux"                                          "imba_lina_dragon_slave_aux"
+                "ability_fiery"                                        "imba_lina_dragon_slave_fiery"
+                "ability_fiery_aux"                                    "imba_lina_dragon_slave_aux_fiery"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_lina.lua"
+                "Function"                                             "DragonSlave"
+                "Target"                                               "POINT"
+                "ability_aux"                                          "imba_lina_dragon_slave_aux"
+                "particle_projectile"                                  "particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf"
+                "sound_cast"                                           "Hero_Lina.DragonSlave"
+            }
+        }
+        "OnProjectileHitUnit"
+        {
+            "DeleteOnHit"                                                  "0"
+            "Damage"
+            {
+                "Target"                                               "TARGET"
+                "Type"                                                 "DAMAGE_TYPE_MAGICAL"
+                "Damage"                                               "%primary_damage"
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

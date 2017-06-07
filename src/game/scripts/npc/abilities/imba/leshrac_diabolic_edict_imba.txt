@@ -1,0 +1,45 @@
+"DOTAAbilities" {
+	"leshrac_diabolic_edict_imba" {
+		"BaseClass" "leshrac_diabolic_edict"
+		"ID" "5242"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType" "SPELL_DISPELLABLE_NO"
+		"FightRecapLevel" "1"
+		"AbilityCastPoint" "0.0"
+		"AbilityCooldown" "12"
+		"AbilityManaCost" "95 115 135 155"
+		"AbilityDamage" "10 20 30 40"
+		"AbilityDuration" "10"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"num_explosions" "50 60 70 80"
+				"LinkedSpecialBonus" "special_bonus_unique_leshrac_1"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "550 600 650 700"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"tower_bonus" "40"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"duration_tooltip" "10"
+			}
+		}
+	}
+}

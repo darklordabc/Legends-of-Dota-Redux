@@ -1,0 +1,40 @@
+"DOTAAbilities" {
+	"disruptor_thunder_strike_imba" {
+		"BaseClass" "disruptor_thunder_strike"
+		"ID" "5458"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType" "SPELL_DISPELLABLE_YES"
+		"FightRecapLevel" "1"
+		"AbilityCastPoint" "0.05 0.05 0.05 0.05"
+		"AbilityCooldown" "12 11 10 9"
+		"AbilityManaCost" "130 130 130 130"
+		"AbilityCastRange" "1100"
+		"AbilityDamage" "18 27 36 45"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_disruptor.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"radius" "325"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"strikes" "10"
+				"LinkedSpecialBonus" "special_bonus_unique_disruptor"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"strike_interval" "1.0"
+			}
+		}
+	}
+}

@@ -1,0 +1,40 @@
+"DOTAAbilities" {
+	"dragon_knight_dragon_tail_imba" {
+		"BaseClass" "dragon_knight_dragon_tail"
+		"ID" "5227"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType" "SPELL_DISPELLABLE_YES_STRONG"
+		"FightRecapLevel" "1"
+		"AbilityCastRange" "175"
+		"AbilityCastPoint" "0.0 0.0 0.0 0.0"
+		"AbilityCooldown" "12 11 10 9"
+		"AbilityDamage" "50 100 150 200"
+		"AbilityManaCost" "90 60 30 0"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
+			"particle" "particles/units/heroes/hero_dragon_knight/dragon_knight_breathe_fire.vpcf"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_FLOAT"
+				"stun_duration" "3.5"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"dragon_cast_range" "500"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"projectile_speed" "2000"
+			}
+		}
+	}
+}

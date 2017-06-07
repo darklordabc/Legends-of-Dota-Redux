@@ -1,0 +1,44 @@
+"DOTAAbilities"
+{
+    "imba_rubick_telekinesis_land"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AOERadius"                                                            "%landing_stun_radius"
+        "MaxLevel"                                                             "1"
+        "AbilityTextureName"                                                   "rubick_telekinesis_land"
+        "AbilityCastRange"                                                     "0"
+        "AbilityCastPoint"                                                     "0.0"
+        "AbilityCooldown"                                                      "0"
+        "AbilityManaCost"                                                      "0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "landing_stun_radius"                                  "425"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "enemy_land_distance"                                  "800"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "ally_land_distance"                                   "1200"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_rubick.lua"
+                "Function"                                             "TelekinesisMark"
+                "Target"                                               "POINT"
+                "particle_marker"                                      "particles/units/heroes/hero_rubick/rubick_telekinesis_marker.vpcf"
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

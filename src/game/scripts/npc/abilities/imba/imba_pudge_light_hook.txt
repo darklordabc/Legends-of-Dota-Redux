@@ -1,0 +1,83 @@
+"DOTAAbilities"
+{
+    "imba_pudge_light_hook"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+        "AbilityTextureName"                                                   "custom/pudge_light_hook"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "think_interval"                                       "0.25 0.17 0.12 0.1"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "tooltip_stacks_per_second"                            "4 6 8 10"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "stack_speed"                                          "15"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "stack_range"                                          "40"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage_scepter"                                       "10"
+            }
+        }
+        "OnToggleOn"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_pudge.lua"
+                "Function"                                             "LightHookToggle"
+                "ability_sharp"                                        "imba_pudge_sharp_hook"
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"                                         "modifier_imba_light_hook"
+                "Target"                                               "CASTER"
+            }
+        }
+        "OnToggleOff"
+        {
+            "RemoveModifier"
+            {
+                "ModifierName"                                         "modifier_imba_light_hook"
+                "Target"                                               "CASTER"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_light_hook"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "Attributes"                                           "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+                "ThinkInterval"                                        "%think_interval"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_pudge.lua"
+                        "Function"                             "LightHook"
+                        "ability_hook"                         "imba_pudge_meat_hook"
+                        "modifier_sharp"                       "modifier_imba_hook_sharp_stack"
+                        "modifier_light"                       "modifier_imba_hook_light_stack"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

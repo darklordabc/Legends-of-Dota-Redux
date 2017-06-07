@@ -1,0 +1,106 @@
+"DOTAAbilities"
+{
+    "imba_nyx_assassin_spiked_carapace"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_PURE"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "FightRecapLevel"                                                      "1"
+        "AbilityTextureName"                                                   "nyx_assassin_spiked_carapace"
+        "AbilityCooldown"                                                      "21 18 15 12"
+        "AbilityCastPoint"                                                     "0.01"
+        "AbilityManaCost"                                                      "0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "reflect_duration"                                     "2.25"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "stun_duration"                                        "0.6 1.2 1.8 2.4"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "burrow_stun_range"                                    "400"
+            }
+        }
+        "precache"
+        {
+            "particle"                                                     "particles/units/heroes/hero_nyx_assassin/nyx_assassin_spiked_carapace_hit.vpcf"
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_nyx_assassin.vsndevts"
+        }
+        "OnSpellStart"
+        {
+            "ApplyModifier"
+            {
+                "Target"                                               "CASTER"
+                "ModifierName"                                         "modifier_imba_spiked_carapace"
+            }
+            "FireSound"
+            {
+                "EffectName"                                           "Hero_NyxAssassin.SpikedCarapace"
+                "Target"                                               "CASTER"
+            }
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_nyx_assassin.lua"
+                "Function"                                             "SpikedCarapace"
+                "modifier_stun"                                        "modifier_imba_spiked_carapaced_stun"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_spiked_carapace"
+            {
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "IsHidden"                                             "1"
+                "Duration"                                             "%reflect_duration"
+                "EffectName"                                           "particles/units/heroes/hero_nyx_assassin/nyx_assassin_spiked_carapace.vpcf"
+                "OnTakeDamage"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_nyx_assassin.lua"
+                        "Function"                             "SpikedCarapaceReflect"
+                        "damage_taken"                         "%attack_damage"
+                        "stun_modifier"                        "modifier_imba_spiked_carapaced_stun"
+                    }
+                }
+            }
+            "modifier_imba_spiked_carapaced_stun"
+            {
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "0"
+                "Duration"                                             "%stun_duration"
+                "OverrideAnimation"                                    "ACT_DOTA_DISABLED"
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "Target"                               "TARGET"
+                        "EffectName"                           "particles/generic_gameplay/generic_stunned.vpcf"
+                        "EffectAttachType"                     "follow_overhead"
+                    }
+                    "FireSound"
+                    {
+                        "EffectName"                           "Hero_NyxAssassin.SpikedCarapace.Stun"
+                        "Target"                               "TARGET"
+                    }
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_STUNNED"                       "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

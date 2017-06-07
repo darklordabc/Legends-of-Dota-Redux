@@ -11,9 +11,8 @@
         "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
         "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
         "AbilityTextureName"                                                   "custom/zuus_arc_lightning_op"
-        "ReduxFlags"                                                           ""
+        "ReduxFlags"                                                           "SuperOP"
         "ReduxPerks"                                                           "lightning"
-        "ReduxCost"                                                            "120"
         
         // Casting
         //-------------------------------------------------------------------------------------------------------------
@@ -69,9 +68,8 @@
         "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
         "FightRecapLevel"               "2"
         "AbilityTextureName"                                                   "custom/lich_chain_frost_op"
-        "ReduxFlags"                                                           "upgradeable"
+        "ReduxFlags"                                                           "SuperOP | upgradeable"
         "ReduxPerks"                                                           "ice"
-        "ReduxCost"                                                            "120"
         "HasScepterUpgrade"         "1"
 
         "precache"

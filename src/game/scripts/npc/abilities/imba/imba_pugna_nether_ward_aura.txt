@@ -1,0 +1,120 @@
+"DOTAAbilities"
+{
+    "imba_pugna_nether_ward_aura"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_YES"
+        "FightRecapLevel"                                                      "1"
+        "AbilityTextureName"                                                   "pugna_nether_ward"
+        "AbilityCastRange"                                                     "0"
+        "AbilityCastPoint"                                                     "0.0"
+        "AbilityCooldown"                                                      "0.0"
+        "AbilityManaCost"                                                      "0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "1600"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "mana_multiplier"                                      "1.25 1.5 1.75 2.0"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "mana_regen"                                           "-1.0"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "ward_health"                                          "20 24 28 32"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "hero_damage"                                          "4"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "spell_damage"                                         "4"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "duration"                                             "30"
+            }
+            "08"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "mana_regen_tooltip"                                   "1"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_nether_ward"
+            {
+                "Passive"                                              "1"
+                "IsBuff"                                               "1"
+                "IsHidden"                                             "0"
+                "IsPurgable"                                           "0"
+                "Aura"                                                 "modifier_imba_nether_ward_debuff"
+                "Aura_Radius"                                          "%radius"
+                "Aura_Teams"                                           "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                "Aura_Types"                                           "DOTA_UNIT_TARGET_HERO"
+                "Aura_Flags"                                           "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+                "Aura_ApplyToCaster"                                   "0"
+                "OnAttacked"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_pugna.lua"
+                        "Function"                             "NetherWardDamage"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL""1"
+                    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL" "1"
+                    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE"    "1"
+                    "MODIFIER_PROPERTY_DISABLE_HEALING"            "1"
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_MAGIC_IMMUNE"                  "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+            "modifier_imba_nether_ward_debuff"
+            {
+                "Passive"                                              "0"
+                "IsDebuff"                                             "1"
+                "IsHidden"                                             "0"
+                "IsPurgable"                                           "0"
+                "Attributes"                                           "MODIFIER_ATTRIBUTE_MULTIPLE"
+                "OnSpentMana"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_pugna.lua"
+                        "Function"                             "NetherWardZap"
+                        "sound_zap"                            "Hero_Pugna.NetherWard.Attack"
+                        "sound_target"                         "Hero_Pugna.NetherWard.Target"
+                        "particle_heavy"                       "particles/econ/items/pugna/pugna_ward_ti5/pugna_ward_attack_heavy_ti_5.vpcf"
+                        "particle_medium"                      "particles/econ/items/pugna/pugna_ward_ti5/pugna_ward_attack_medium_ti_5.vpcf"
+                        "particle_light"                       "particles/econ/items/pugna/pugna_ward_ti5/pugna_ward_attack_light_ti_5.vpcf"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE""%mana_regen"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

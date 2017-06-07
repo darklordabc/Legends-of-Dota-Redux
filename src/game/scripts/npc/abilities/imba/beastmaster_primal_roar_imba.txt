@@ -1,0 +1,82 @@
+"DOTAAbilities" {
+	"beastmaster_primal_roar_imba" {
+		"BaseClass" "beastmaster_primal_roar"
+		"ID" "5177"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType" "SPELL_DISPELLABLE_YES_STRONG"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel" "2"
+		"HasScepterUpgrade" "1"
+		"AbilityCastPoint" "0.35"
+		"AbilityCooldown" "60 45 30"
+		"AbilityManaCost" "125"
+		"AbilityCastRange" "900"
+		"AbilityModifierSupportValue" "0.6"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_beastmaster.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "3.0 3.5 4.0"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"damage" "225 375 525"
+			}
+
+			"03" {
+				"var_type" "FIELD_INTEGER"
+				"side_damage" "225 325 425"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"damage_radius" "375"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"slow_movement_speed_pct" "-60"
+			}
+
+			"06" {
+				"var_type" "FIELD_INTEGER"
+				"slow_attack_speed_pct" "-60"
+			}
+
+			"07" {
+				"var_type" "FIELD_INTEGER"
+				"push_distance" "300"
+			}
+
+			"08" {
+				"var_type" "FIELD_FLOAT"
+				"push_duration" "0.6"
+			}
+
+			"09" {
+				"var_type" "FIELD_FLOAT"
+				"slow_duration" "4.0"
+			}
+
+			"10" {
+				"var_type" "FIELD_INTEGER"
+				"cast_range_scepter" "1400"
+			}
+
+			"11" {
+				"var_type" "FIELD_FLOAT"
+				"cooldown_scepter" "20"
+			}
+		}
+	}
+}

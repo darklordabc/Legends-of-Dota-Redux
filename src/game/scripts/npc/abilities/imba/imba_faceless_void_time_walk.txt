@@ -1,0 +1,165 @@
+"DOTAAbilities"
+{
+    "imba_faceless_void_time_walk"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityTextureName"                                                   "faceless_void_time_walk"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_faceless_void.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_faceless_void/faceless_void_chronosphere.vpcf"
+        }
+        "AbilityCastRange"                                                     "0"
+        "AbilityCastPoint"                                                     "0.2"
+        "AbilityCooldown"                                                      "18 14 10 6"
+        "AbilityManaCost"                                                      "0"
+        "AbilitySpecial"
+        {
+            "10"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage_time"                                          "2"
+            }
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "speed"                                                "3000"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "slow_radius"                                          "325"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "chrono_radius"                                        "250"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                             "3.0"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "range"                                                "675 750 825 900"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "slow"                                                 "-20 -30 -40 -50"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "move_bonus"                                           "10"
+            }
+            "08"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "attack_speed_bonus"                                   "10 15 20 25"
+            }
+            "09"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "chrono_linger"                                        "0.3"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_faceless_void.lua"
+                "Function"                                             "TimeWalk"
+                "Target"                                               "POINT"
+                "sound_cast"                                           "Hero_FacelessVoid.TimeWalk"
+                "particle_cast"                                        "particles/units/heroes/hero_faceless_void/faceless_void_time_walk_preimage.vpcf"
+                "particle_chrono"                                      "particles/units/heroes/hero_faceless_void/faceless_void_chronosphere.vpcf"
+                "modifier_caster"                                      "modifier_imba_time_walk_caster"
+                "modifier_slow"                                        "modifier_imba_time_walk_slow"
+                "modifier_buff"                                        "modifier_imba_time_walk_buff"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_time_walk_damage_counter"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "OnTakeDamage"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_faceless_void.lua"
+                        "Function"                             "TimeWalkDamage"
+                        "damage_taken"                         "%attack_damage"
+                    }
+                }
+            }
+            "modifier_imba_time_walk_caster"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "EffectName"                                           "particles/units/heroes/hero_faceless_void/faceless_void_chrono_speed.vpcf"
+                "EffectAttachType"                                     "follow_origin"
+                "States"
+                {
+                    "MODIFIER_STATE_INVULNERABLE"                  "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+            "modifier_imba_time_walk_slow"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "1"
+                "Duration"                                             "%duration"
+                "EffectName"                                           "particles/units/heroes/hero_faceless_void/faceless_void_time_walk_debuff.vpcf"
+                "EffectAttachType"                                     "follow_origin"
+                "OnCreated"
+                {
+                    "FireEffect"
+                    {
+                        "EffectName"                           "particles/units/heroes/hero_faceless_void/faceless_void_time_walk_slow.vpcf"
+                        "EffectAttachType"                     "attach_origin"
+                        "Target"                               "TARGET"
+                        "ControlPoints"
+                        {
+                            "01"                           "%radius 0 0"
+                        }
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow"
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%slow"
+                }
+            }
+            "modifier_imba_time_walk_buff"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "1"
+                "Duration"                                             "%duration"
+                "EffectName"                                           "particles/units/heroes/hero_faceless_void/faceless_void_time_walk.vpcf"
+                "EffectAttachType"                                     "follow_origin"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%move_bonus"
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%attack_speed_bonus"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

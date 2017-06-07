@@ -462,12 +462,8 @@ function showEmoticonPicker() {
 }
 
 function showVotings() {
-	if (GameUI.CustomUIConfig().selectedPhase > 3) {
-		$('#votingsPicker').SetHasClass('visible', !$('#votingsPicker').BHasClass('visible'));
-		$.GetContextPanel().SetFocus();
-	} else {
-		addNotification({"text" : 'votingsDisabled'});
-	}
+	$('#votingsPicker').SetHasClass('visible', !$('#votingsPicker').BHasClass('visible'));
+	$.GetContextPanel().SetFocus();
 }
 
 function createCommandPanel(data, root) {

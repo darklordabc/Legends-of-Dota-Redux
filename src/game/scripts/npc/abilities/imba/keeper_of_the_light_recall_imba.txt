@@ -1,0 +1,28 @@
+"DOTAAbilities" {
+	"keeper_of_the_light_recall_imba" {
+		"BaseClass" "keeper_of_the_light_recall"
+		"ID" "5475"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK "
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_CUSTOM"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+		"SpellImmunityType" "SPELL_IMMUNITY_ALLIES_YES"
+		"SpellDispellableType" "SPELL_DISPELLABLE_YES"
+		"MaxLevel" "3"
+		"AbilityCastPoint" "0.2"
+		"AbilityCastRange" "0"
+		"AbilityCooldown" "12.0"
+		"AbilityManaCost" "50"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_keeper_of_the_light.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_FLOAT"
+				"teleport_delay" "5.0 3.0 1.0"
+			}
+		}
+	}
+}

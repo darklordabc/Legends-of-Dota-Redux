@@ -34,7 +34,7 @@
                 }
             }
         }
-        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "attack_modifier | SuperOP"
         "ReduxCost"                                                            "120"
     }
 }

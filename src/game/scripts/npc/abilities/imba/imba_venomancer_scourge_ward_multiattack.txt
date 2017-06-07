@@ -1,0 +1,80 @@
+"DOTAAbilities"
+{
+    "imba_venomancer_scourge_ward_multiattack"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+        "AbilityTextureName"                                                   "venomancer_plague_ward"
+        "MaxLevel"                                                             "1"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "attack_rate"                                          "1.5"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "attack_delay"                                         "0.65"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "attack_range"                                         "725"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "projectile_speed"                                     "1900"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "attack_damage"                                        "30"
+            }
+        }
+        "OnProjectileHitUnit"
+        {
+            "DeleteOnHit"                                                  "1"
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_venomancer.lua"
+                "Function"                                             "ScourgeWardHit"
+                "sound_hit"                                            "Hero_VenomancerWard.ProjectileImpact"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_scourge_ward_multiattack"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "ThinkInterval"                                        "%attack_rate"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_venomancer.lua"
+                        "Function"                             "ScourgeWardAttack"
+                        "ability_sting"                        "imba_venomancer_poison_sting_ward"
+                        "sound_attack"                         "Hero_VenomancerWard.Attack"
+                        "projectile_attack"                    "particles/units/heroes/hero_venomancer/venomancer_plague_ward_projectile.vpcf"
+                    }
+                }
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_venomancer.lua"
+                        "Function"                             "ScourgeWardAttack"
+                        "ability_sting"                        "imba_venomancer_poison_sting_ward"
+                        "sound_attack"                         "Hero_VenomancerWard.Attack"
+                        "projectile_attack"                    "particles/units/heroes/hero_venomancer/venomancer_plague_ward_projectile.vpcf"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

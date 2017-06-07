@@ -1,0 +1,46 @@
+"DOTAAbilities"
+{
+    "legion_commander_duel_imba"
+    {
+        "BaseClass"                                                            "legion_commander_duel"
+        "ID"                                                                   "5598"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityUnitTargetFlags"                                               "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_YES"
+        "SpellDispellableType"                                                 "SPELL_DISPELLABLE_NO"
+        "FightRecapLevel"                                                      "2"
+        "HasScepterUpgrade"                                                    "1"
+        "AbilityCastRange"                                                     "400"
+        "AbilityCastPoint"                                                     "0.2"
+        "AbilityCooldown"                                                      "12.0"
+        "AbilityManaCost"                                                      "25"
+        "AbilityModifierSupportValue"                                          "3.0"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                             "4.0 5.0 6.0"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration_scepter"                                     "6.0 7.0 8.0"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "reward_damage"                                        "10 16 24"
+                "LinkedSpecialBonus"                                   "special_bonus_unique_legion_commander"
+            }
+        }
+        "ReduxBans"                                                            "spell_lab_symbiotic"
+    }
+}

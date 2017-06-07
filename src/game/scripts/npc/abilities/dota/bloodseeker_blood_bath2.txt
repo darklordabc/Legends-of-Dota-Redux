@@ -28,7 +28,7 @@
                 "non_hero_max_hp_heal"                                 "10 15 20 25"
             }
         }
-        "ReduxFlags"                                                           "dota_custom"
+        "ReduxFlags"                                                           "dota_custom | OPSkillsList"
         "ReduxCost"                                                            "80"
     }
 }

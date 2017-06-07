@@ -72,7 +72,7 @@
             }
         }
         "ReduxPerks"                                                           "lightning"
-        "ReduxCost"                                                            "120"
-        "ReduxFlags"                                                           ""
+        "ReduxCost"                                                            "100"
+        "ReduxFlags"                                                           "SuperOP"
     }
 }

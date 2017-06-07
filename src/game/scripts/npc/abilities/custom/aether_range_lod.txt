@@ -7,7 +7,7 @@
 		"AbilitySpecial" {
 			"01" {
 				"var_type" "FIELD_INTEGER"
-				"cast_range_bonus" "150 250 350 500"
+				"cast_range_bonus" "150 200 250 300"
 			}
 
 			"02" {

@@ -70,7 +70,7 @@
                 }
             }
         }
-        "ReduxFlags"                                                           "aoe_attack"
+        "ReduxFlags"                                                           "aoe_attack | SuperOP"
         "ReduxCost"                                                            "120"
     }
 }

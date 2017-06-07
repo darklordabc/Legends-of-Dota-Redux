@@ -32,8 +32,8 @@
                 "reduce_per"                                           "1 2 3 4"
             }
         }
-        "ReduxCost"                                                            "120"
+        "ReduxCost"                                                            "100"
         "ReduxBans"                                                            "zhanhun"
-        "ReduxFlags"                                                           "cooldown"
+        "ReduxFlags"                                                           "SuperOP | cooldown"
     }
 }

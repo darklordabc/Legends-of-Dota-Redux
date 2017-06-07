@@ -27,8 +27,8 @@
                 "cast_range"                                           "1200 2000 2800 3600"
             }
         }
-        "ReduxFlags"                                                           "mobility"
+        "ReduxFlags"                                                           "mobility | SuperOP"
         "ReduxPerks"                                                           "mobility | enemyMoving"
-        "ReduxCost"                                                            "120"
+        "ReduxCost"                                                            "80"
     }
 }

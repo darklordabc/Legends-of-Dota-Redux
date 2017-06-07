@@ -1,0 +1,136 @@
+"DOTAAbilities"
+{
+    "imba_obsidian_destroyer_essence_aura"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO"
+        "AbilityTextureName"                                                   "obsidian_destroyer_essence_aura"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_obsidian_destroyer.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_essence_effect.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "1200"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_mana"                                           "1 2 3 4"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "restore_amount"                                       "6 8 10 12"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "mana_absorb"                                          "3"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "int_duration"                                         "12.0"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "max_int_pct"                                          "50"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_essence_aura"
+            {
+                "Passive"                                              "1"
+                "IsPurgable"                                           "0"
+                "IsHidden"                                             "1"
+                "Aura"                                                 "modifier_imba_essence_aura_buff"
+                "Aura_Radius"                                          "%radius"
+                "Aura_Teams"                                           "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+                "Aura_Types"                                           "DOTA_UNIT_TARGET_HERO"
+                "Aura_ApplyToCaster"                                   "1"
+                "ThinkInterval"                                        "0.1"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_outhouse_decorator"
+                        "Function"                             "EssenceAuraUpdate"
+                        "modifier_mana"                        "modifier_imba_essence_aura_mana"
+                        "modifier_dummy"                       "modifier_imba_essence_aura_mana_dummy"
+                        "modifier_stacks"                      "modifier_imba_essence_aura_int_gain_stacks"
+                    }
+                }
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "lib/util_imba.lua"
+                        "Function"                             "IllusionPassiveRemover"
+                        "modifier"                             "modifier_imba_essence_aura"
+                    }
+                }
+            }
+            "modifier_imba_essence_aura_buff"
+            {
+                "IsHidden"                                             "0"
+                "OnSpentMana"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_outhouse_decorator.lua"
+                        "Function"                             "RestoreMana"
+                        "Target"                               "UNIT"
+                        "essence_particle"                     "particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_essence_effect.vpcf"
+                        "essence_sound"                        "Hero_ObsidianDestroyer.EssenceAura"
+                        "modifier_int"                         "modifier_imba_essence_aura_int_gain"
+                    }
+                }
+            }
+            "modifier_imba_essence_aura_int_gain"
+            {
+                "Duration"                                             "%int_duration"
+                "IsPurgable"                                           "0"
+                "IsHidden"                                             "1"
+                "Attributes"                                           "MODIFIER_ATTRIBUTE_MULTIPLE | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_outhouse_decorator.lua"
+                        "Function"                             "EssenceAuraEnd"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"      "1"
+                }
+            }
+            "modifier_imba_essence_aura_int_gain_stacks"
+            {
+                "Duration"                                             "%int_duration"
+                "IsPurgable"                                           "0"
+                "IsHidden"                                             "0"
+                "Attributes"                                           "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+            }
+            "modifier_imba_essence_aura_mana"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MANA_BONUS"                 "%bonus_mana"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

@@ -1,0 +1,125 @@
+"DOTAAbilities"
+{
+    "imba_lich_frost_armor"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ALLIES_YES"
+        "AbilityTextureName"                                                   "lich_frost_armor"
+        "AbilityCastRange"                                                     "1200"
+        "AbilityCastPoint"                                                     "0.3"
+        "AbilityCooldown"                                                      "3.0"
+        "AbilityDuration"                                                      "60.0"
+        "AbilityManaCost"                                                      "25"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "armor_bonus"                                          "4 6 8 10"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "slow_duration"                                        "2.0"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "slow_movement_speed"                                  "-30"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "slow_attack_speed"                                    "-30 -40 -50 -60"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "tooltip_duration"                                     "60"
+            }
+        }
+        "precache"
+        {
+            "particle"                                                     "particles/status_fx/status_effect_frost.vpcf"
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_lich.vsndevts"
+        }
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "EffectName"                                           "Hero_Lich.FrostArmor"
+                "Target"                                               "TARGET"
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"                                         "modifier_imba_frost_armor"
+                "Target"                                               "TARGET"
+                "Duration"                                             "%AbilityDuration"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_frost_armor"
+            {
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"       "%armor_bonus"
+                }
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_lich.lua"
+                        "Function"                             "FrostArmorParticle"
+                        "particle"                             "particles/units/heroes/hero_lich/lich_frost_armor.vpcf"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_lich.lua"
+                        "Function"                             "EndFrostArmorParticle"
+                    }
+                }
+                "StatusEffectName"                                     "particles/status_fx/status_effect_frost_armor.vpcf"
+                "StatusEffectPriority"                                 "10"
+                "OnTakeDamage"
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"                         "modifier_imba_frost_armor_slow"
+                        "Target"
+                        {
+                            "Center"                       "ATTACKER"
+                            "Teams"                        "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                            "Types"                        "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                        }
+                        "Duration"                             "%slow_duration"
+                    }
+                    "FireSound"
+                    {
+                        "EffectName"                           "Hero_Lich.FrostArmorDamage"
+                        "Target"                               "ATTACKER"
+                    }
+                }
+            }
+            "modifier_imba_frost_armor_slow"
+            {
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "1"
+                "StatusEffectName"                                     "particles/status_fx/status_effect_frost.vpcf"
+                "StatusEffectPriority"                                 "10"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%slow_attack_speed"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow_movement_speed"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

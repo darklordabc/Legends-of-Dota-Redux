@@ -30,7 +30,7 @@
                 "hero_stun_duration"                                   "2.0"
             }
         }
-        "ReduxFlags"                                                           "stun"
+        "ReduxFlags"                                                           "stun | SuperOP"
         "ReduxPerks"                                                           "earth"
         "ReduxCost"                                                            "120"
         "ReduxBans"                                                            "tinker_rearm"

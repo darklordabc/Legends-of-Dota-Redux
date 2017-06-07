@@ -28,7 +28,7 @@
             }
         }
         "ReduxPerks"                                                           "teleport"
-        "ReduxCost"                                                            "120"
-        "ReduxFlags"                                                           ""
+        "ReduxCost"                                                            "80"
+        "ReduxFlags"                                                           "SuperOP"
     }
 }

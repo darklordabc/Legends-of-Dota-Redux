@@ -1,0 +1,150 @@
+"DOTAAbilities"
+{
+    "imba_nevermore_dark_lord"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityTextureName"                                                   "nevermore_dark_lord"
+        "AbilityCastRange"                                                     "1200"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "armor_reduction"                                      "-3 -4 -5 -6"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "vision_reduction"                                     "-200"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "1200"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "raze_armor_reduction"                                 "-1.5 -2 -2.5 -3"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "raze_vision_reduction"                                "-100"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "raze_debuff_duration"                                 "5"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "raze_debuff_max_stacks"                               "3"
+            }
+            "08"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "soul_tick_time"                                       "1.0"
+            }
+            "09"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "souls_per_tick"                                       "1"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_dark_lord"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "IsPurgable"                                           "0"
+                "IsBuff"                                               "1"
+                "Aura"                                                 "modifier_imba_dark_lord_aura"
+                "Aura_Radius"                                          "%radius"
+                "Aura_Teams"                                           "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                "Aura_Types"                                           "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                "Aura_Flags"                                           "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "lib/util_imba.lua"
+                        "Function"                             "IllusionPassiveRemover"
+                        "modifier"                             "modifier_imba_dark_lord"
+                    }
+                }
+            }
+            "modifier_imba_dark_lord_aura"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsPurgable"                                           "0"
+                "IsDebuff"                                             "1"
+                "ThinkInterval"                                        "%soul_tick_time"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_nevermore.lua"
+                        "Function"                             "DarkLordPresence"
+                        "modifier_aura_dummy"                  "modifier_imba_dark_lord_aura_dummy"
+                        "modifier_souls_temp"                  "modifier_imba_necromastery_souls_temp"
+                        "particle_projectile"                  "particles/hero/nevermore/nevermore_soul_projectile.vpcf"
+                        "ability_necromastery"                 "imba_nevermore_necromastery"
+                    }
+                }
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_nevermore.lua"
+                        "Function"                             "DarkLordDummyStart"
+                        "modifier_aura_dummy"                  "modifier_imba_dark_lord_aura_dummy"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_nevermore.lua"
+                        "Function"                             "DarkLordDummyEnd"
+                        "modifier_aura_dummy"                  "modifier_imba_dark_lord_aura_dummy"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"       "%armor_reduction"
+                    "MODIFIER_PROPERTY_BONUS_DAY_VISION"           "%vision_reduction"
+                    "MODIFIER_PROPERTY_BONUS_NIGHT_VISION"         "%vision_reduction"
+                }
+            }
+            "modifier_imba_dark_lord_aura_dummy"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsPurgable"                                           "0"
+                "IsDebuff"                                             "1"
+            }
+            "modifier_imba_dark_lord_raze"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsPurgable"                                           "1"
+                "IsDebuff"                                             "1"
+                "Duration"                                             "%raze_debuff_duration"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"       "%raze_armor_reduction"
+                    "MODIFIER_PROPERTY_BONUS_DAY_VISION"           "%raze_vision_reduction"
+                    "MODIFIER_PROPERTY_BONUS_NIGHT_VISION"         "%raze_vision_reduction"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

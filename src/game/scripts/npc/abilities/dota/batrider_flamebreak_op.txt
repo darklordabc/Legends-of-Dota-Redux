@@ -70,7 +70,7 @@
                 "knockback_height"                                     "300 300 300 300"
             }
         }
-        "ReduxCost"                                                            "120"
-        "ReduxFlags"                                                           ""
+        "ReduxCost"                                                            "90"
+        "ReduxFlags"                                                           "SuperOP"
     }
 }

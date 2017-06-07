@@ -1,0 +1,188 @@
+"DOTAAbilities"
+{
+    "imba_necrolyte_heartstopper_aura"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_HP_REMOVAL"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityTextureName"                                                   "necrolyte_heartstopper_aura"
+        "AbilityCastRange"                                                     "900"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "aura_radius"                                          "900"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "aura_damage"                                          "0.6 1.0 1.4 1.8"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "heal_bonus_per_stack"                                 "4"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage_amp_per_stack"                                 "-4"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "max_stacks"                                           "10"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "stacks_tooltip"                                       "4"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "max_stacks_tooltip"                                   "40"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_heartstopper_aura_emitter_enemy"
+            {
+                "Passive"                                              "1"
+                "IsBuff"                                               "1"
+                "IsHidden"                                             "1"
+                "IsPurgable"                                           "0"
+                "Aura"                                                 "modifier_imba_heartstopper_aura_enemy"
+                "Aura_Radius"                                          "%aura_radius"
+                "Aura_Teams"                                           "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                "Aura_Types"                                           "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                "Aura_Flags"                                           "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "lib/util_imba.lua"
+                        "Function"                             "IllusionPassiveRemover"
+                        "modifier"                             "modifier_imba_heartstopper_aura_emitter_enemy"
+                    }
+                }
+            }
+            "modifier_imba_heartstopper_aura_emitter_ally"
+            {
+                "Passive"                                              "1"
+                "IsBuff"                                               "1"
+                "IsHidden"                                             "1"
+                "IsPurgable"                                           "0"
+                "Aura"                                                 "modifier_imba_heartstopper_aura_ally"
+                "Aura_Radius"                                          "%aura_radius"
+                "Aura_Teams"                                           "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+                "Aura_Types"                                           "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                "Aura_Flags"                                           "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+                "Aura_ApplyToCaster"                                   "1"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "lib/util_imba.lua"
+                        "Function"                             "IllusionPassiveRemover"
+                        "modifier"                             "modifier_imba_heartstopper_aura_emitter_ally"
+                    }
+                }
+            }
+            "modifier_imba_heartstopper_aura_enemy"
+            {
+                "Passive"                                              "0"
+                "IsDebuff"                                             "1"
+                "IsHidden"                                             "1"
+                "IsPurgable"                                           "1"
+                "ThinkInterval"                                        "1.0"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_necrolyte.lua"
+                        "Function"                             "HeartstopperEnemy"
+                        "modifier_debuff"                      "modifier_imba_heartstopper_debuff"
+                    }
+                }
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_necrolyte.lua"
+                        "Function"                             "HeartstopperEnemy"
+                        "modifier_debuff"                      "modifier_imba_heartstopper_debuff"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_necrolyte.lua"
+                        "Function"                             "HeartstopperEnd"
+                        "modifier_stacks"                      "modifier_imba_heartstopper_debuff"
+                    }
+                }
+            }
+            "modifier_imba_heartstopper_aura_ally"
+            {
+                "Passive"                                              "0"
+                "IsBuff"                                               "1"
+                "IsHidden"                                             "1"
+                "IsPurgable"                                           "1"
+                "ThinkInterval"                                        "1.0"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_necrolyte.lua"
+                        "Function"                             "HeartstopperAlly"
+                        "modifier_buff"                        "modifier_imba_heartstopper_heal_bonus"
+                    }
+                }
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_necrolyte.lua"
+                        "Function"                             "HeartstopperAlly"
+                        "modifier_buff"                        "modifier_imba_heartstopper_heal_bonus"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_necrolyte.lua"
+                        "Function"                             "HeartstopperEnd"
+                        "modifier_stacks"                      "modifier_imba_heartstopper_heal_bonus"
+                    }
+                }
+            }
+            "modifier_imba_heartstopper_debuff"
+            {
+                "Passive"                                              "0"
+                "IsDebuff"                                             "1"
+                "IsHidden"                                             "0"
+                "IsPurgable"                                           "1"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"   "%damage_amp_per_stack"
+                }
+            }
+            "modifier_imba_heartstopper_heal_bonus"
+            {
+                "Passive"                                              "0"
+                "IsBuff"                                               "1"
+                "IsHidden"                                             "0"
+                "IsPurgable"                                           "1"
+            }
+        }
+        "ReduxPerks"                                                           "aura"
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

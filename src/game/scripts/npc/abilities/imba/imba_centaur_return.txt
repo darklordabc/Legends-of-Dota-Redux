@@ -1,0 +1,60 @@
+"DOTAAbilities"
+{
+    "imba_centaur_return"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_PHYSICAL"
+        "AbilityTextureName"                                                   "centaur_return"
+        "precache"
+        {
+            "particle"                                                     "particles/units/heroes/hero_centaur/centaur_return.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "strength_pct"                                         "100"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "cooldown"                                             "1.5 1.2 0.9 0.6"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "dmg_ignore"                                           "6 9 12 15"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_centaur_return"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "OnTakeDamage"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_centaur.lua"
+                        "Function"                             "Return"
+                        "modifier_prevent"                     "modifier_imba_centaur_prevent_return"
+                        "particle_return"                      "particles/units/heroes/hero_centaur/centaur_return.vpcf"
+                    }
+                }
+            }
+            "modifier_imba_centaur_prevent_return"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "IsPurgable"                                           "0"
+                "IsDebuff"                                             "1"
+                "Attributes"                                           "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

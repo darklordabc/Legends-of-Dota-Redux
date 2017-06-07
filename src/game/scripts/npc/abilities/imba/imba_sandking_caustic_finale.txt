@@ -1,0 +1,119 @@
+"DOTAAbilities"
+{
+    "imba_sandking_caustic_finale"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityTextureName"                                                   "sandking_caustic_finale"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_sandking.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_sandking/sandking_caustic_finale_debuff.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "400"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage"                                               "80 110 140 170"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "debuff_duration"                                      "6"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "ms_slow"                                              "-30"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "slow_duration"                                        "3"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_caustic_finale_caster"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "OnDealDamage"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_sandking.lua"
+                        "Function"                             "CausticFinale"
+                        "modifier_debuff"                      "modifier_imba_caustic_finale"
+                        "modifier_prevent"                     "modifier_imba_caustic_finale_prevent"
+                    }
+                }
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "lib/util_imba.lua"
+                        "Function"                             "IllusionPassiveRemover"
+                        "modifier"                             "modifier_imba_caustic_finale_caster"
+                    }
+                }
+            }
+            "modifier_imba_caustic_finale"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "1"
+                "Duration"                                             "%debuff_duration"
+                "EffectName"                                           "particles/units/heroes/hero_sandking/sandking_caustic_finale_debuff.vpcf"
+                "EffectAttachType"                                     "follow_origin"
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dota imba/hero_sandking.lua"
+                        "Function"                             "CausticFinaleEnd"
+                        "modifier_debuff"                      "modifier_imba_caustic_finale"
+                        "modifier_prevent"                     "modifier_imba_caustic_finale_prevent"
+                        "modifier_slow"                        "modifier_imba_caustic_finale_slow"
+                        "particle_explode"                     "particles/units/heroes/hero_sandking/sandking_caustic_finale_explode.vpcf"
+                        "sound_explode"                        "Ability.SandKing_CausticFinale"
+                    }
+                }
+            }
+            "modifier_imba_caustic_finale_prevent"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "0"
+                "Duration"                                             "%debuff_duration"
+            }
+            "modifier_imba_caustic_finale_slow"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "1"
+                "Duration"                                             "%slow_duration"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%ms_slow"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}
