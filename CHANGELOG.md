@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 *
 - Witchcraft, Borrowed Time, and Multicast can now be disabled by passive breaking. Borrowed time can still be activated manually.
 - Added 0.5s codown to Magicians Revenge
+- Halved Healing Aura's Cooldown
 
 ## 7.9
 - Improved styles of builds page
