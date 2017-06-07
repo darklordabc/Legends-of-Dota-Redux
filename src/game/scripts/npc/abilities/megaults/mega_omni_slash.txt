@@ -14,6 +14,7 @@
         "FightRecapLevel"               "2"
         "MaxLevel"                      "1"
         "RequiredLevel"                 "24"
+        "ReduxCost"                                                            "120"
 
         "HasScepterUpgrade"         "1"
         

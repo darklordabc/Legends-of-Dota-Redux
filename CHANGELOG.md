@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 - Sunder and Arcane Symbiote are now troll combo, in line with its other bans from health sacrificing abilities
 *
 - Increased gold tick rate to 2 in all_allowed
+- Reactivated Armageddon, but it, and all other mega ultimates are now considered single player abilities
 
 ## 7.9
 - Improved styles of builds page

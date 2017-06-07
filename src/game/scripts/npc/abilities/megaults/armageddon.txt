@@ -12,6 +12,7 @@
         "AbilityCooldown"                                                      "150"
         "AbilityManaCost"                                                      "1000"
         "AbilityModifierSupportValue"                                          "0.0"
+        "ReduxCost"                                                            "120"
 
         "precache"
         {
