@@ -964,6 +964,8 @@ function Pregame:onThink()
                 return 0.1
             end
 
+            Chat:Say( {channel = "all", msg = "chatChannelsAnnouncement", PlayerID = -1, localize = true})
+
             -- Are we using option selection, or option voting?
             if self.useOptionVoting then
                 -- Option voting
@@ -1035,8 +1037,6 @@ function Pregame:onThink()
             if util:isSinglePlayerMode() or IsInToolsMode() then
                 CustomGameEventManager:Send_ServerToAllClients("lodSinglePlayer",{})
             end
-
-            Chat:Say( {channel = "all", msg = "chatChannelsAnnouncement", PlayerID = -1, localize = true})
         end
         -- Is it over?
         if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
@@ -1092,9 +1092,13 @@ function Pregame:onThink()
                     self:setPhase(constants.PHASE_RANDOM_SELECTION)
                     self:setEndOfPhase(Time() + OptionManager:GetOption('randomSelectionTime'), OptionManager:GetOption('randomSelectionTime'))
                 else
-                    -- Nope, change to review
-                    self:setPhase(constants.PHASE_REVIEW)
+                    -- Change to picking phase
+                    self:setPhase(constants.PHASE_SPAWN_HEROES)
+
+                    -- Kill the selection screen
                     self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime'))
+
+                    GameRules:FinishCustomGameSetup()
                 end
             else
                 -- Change to picking phase
@@ -1893,9 +1897,13 @@ function Pregame:finishOptionSelection()
                 self:setPhase(constants.PHASE_RANDOM_SELECTION)
                 self:setEndOfPhase(Time() + OptionManager:GetOption('randomSelectionTime'), OptionManager:GetOption('randomSelectionTime'))
             else
-                -- Goto review
-                self:setPhase(constants.PHASE_REVIEW)
+                -- Change to picking phase
+                self:setPhase(constants.PHASE_SPAWN_HEROES)
+
+                -- Kill the selection screen
                 self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime'))
+
+                GameRules:FinishCustomGameSetup()
             end
         else
             -- Hero selection
@@ -4365,8 +4373,13 @@ function Pregame:onPlayerSelectHero(eventSourceIndex, args)
 
     if hero then
         if not util:checkPickedHeroes( self.selectedHeroes ) and self.additionalPickTime then
-            self:setPhase(constants.PHASE_REVIEW)
-            self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime')) 
+            -- Change to picking phase
+            self:setPhase(constants.PHASE_SPAWN_HEROES)
+
+            -- Kill the selection screen
+            self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime'))
+
+            GameRules:FinishCustomGameSetup()
         end
     end
 end
