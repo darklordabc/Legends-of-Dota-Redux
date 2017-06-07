@@ -388,6 +388,10 @@ function Pregame:init()
         this:onGameChangeLock(eventSourceIndex, args)
     end)
 
+    CustomGameEventManager:RegisterListener('lodChooseRandomHero', function(eventSourceIndex, args)
+        this:onPlayerSelectRandomHero(eventSourceIndex, args)
+    end)
+
     --List of keys in perks.kv, that aren't perks
     local NotPerks = {
         chen_creep_abilities = true,
@@ -433,6 +437,36 @@ function Pregame:init()
     end
     CustomGameEventManager:RegisterListener('lodRequestAbilityPerkData', function(eventSourceIndex, args)
         CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(args.PlayerID), "lodRequestAbilityPerkData", ability_perks)
+    end)
+
+    CustomGameEventManager:RegisterListener('lodGameSetupPing', function(eventSourceIndex, args)
+        local player = PlayerResource:GetPlayer(args.PlayerID)
+        local content = args.content
+        local t = args.type
+
+        local ourPhase = self:getPhase()
+
+        local word = "banning"
+        if ourPhase == constants.PHASE_SELECTION then
+            if t == "hero" then
+                word = "picking"
+            else
+                word = "selecting"
+            end
+        elseif ourPhase ~= constants.PHASE_BANNING then
+            return
+        end
+
+        local finish = "!"
+        if t == "ability" then
+            finish = "ability"
+        end
+
+        local text = "Think of "..word.." <font color='#FFFFFF'>"..content.."</font> "..finish
+
+        Chat:Say({PlayerID = args.PlayerID, msg = text, channel = "team"})
+
+        CustomGameEventManager:Send_ServerToTeam(player:GetTeam(),"lodGameSetupPingEffect",args)
     end)
 
     -- Init debug
@@ -1548,6 +1582,7 @@ function Pregame:networkHeroes()
     local heroList = LoadKeyValues('scripts/npc/herolist.txt')
     local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
     local allHeroesCustom = LoadKeyValues('scripts/npc/npc_heroes_custom.txt')
+    local npc_abilities_override = LoadKeyValues('scripts/npc/npc_abilities_override.txt')
 
     local oldAbList = LoadKeyValues('scripts/kv/abilities.kv')
     local hashCollisions = LoadKeyValues('scripts/kv/hashes.kv')
@@ -5156,6 +5191,39 @@ function Pregame:PlayAlert(playerID)
     end
 end
 
+-- Player wants to select a random hero
+function Pregame:onPlayerSelectRandomHero(eventSourceIndex, args)
+    -- Grab data
+    local playerID = args.PlayerID
+    local player = PlayerResource:GetPlayer(playerID)
+
+    -- Ensure we are in the picking phase
+    if self:getPhase() ~= constants.PHASE_SELECTION then
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedWrongPhaseAllRandom'
+        })
+        self:PlayAlert(playerID)
+
+        return
+    end
+
+    -- Have they locked their skills?
+    if self.isReady[playerID] == 1 then
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodFailedPlayerIsReady'
+        })
+        self:PlayAlert(playerID)
+
+        return
+    end
+
+    args.heroName = self:getRandomHero()
+
+    self:onPlayerSelectHero(eventSourceIndex, args)
+end
+
 -- Player wants to select a random ability
 function Pregame:onPlayerSelectRandomAbility(eventSourceIndex, args)
     -- Grab data
@@ -7021,6 +7089,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
     self.handled = self.handled or {}
     self.givenCouriers = self.givenCouriers or {}
     local allHeroes = LoadKeyValues('scripts/npc/npc_heroes.txt')
+    local npc_abilities_override = LoadKeyValues('scripts/npc/npc_abilities_override.txt')
 
     -- Don't touch this hero more than once :O
     if self.handled[spawnedUnit] then return end
@@ -7060,64 +7129,165 @@ function Pregame:fixSpawnedHero( spawnedUnit )
     end
 
     -- Add talents
-    Timers:CreateTimer(function()
-        --print(self.perksDisabled)
-        if spawnedUnit:IsNull() then
-            return
-        end
-        
+    if IsValidEntity(spawnedUnit) and not spawnedUnit.hasTalent then
         local nameTest = spawnedUnit:GetName()
-        -- TODO: This is been temporarily disabled by the "and false" until we can fix up the ability index problem
-        if IsValidEntity(spawnedUnit) and not spawnedUnit.hasTalent then
-            for heroName,heroValues in pairs(allHeroes) do
-                if heroName == nameTest then
-                    if heroName == "npc_dota_hero_invoker"  then
-                        for i=17,24 do
-                            local abName = heroValues['Ability' .. i]
-                            spawnedUnit:AddAbility(abName)
+        local heroValues = allHeroes[nameTest]
+        if heroValues then
+            local heroTalentList = {}
+
+            local function GetRandomHero()
+                local keys = {}
+                for k in pairs(allHeroes) do
+                    table.insert(keys, k)
+                end
+                return allHeroes[keys[RandomInt(1, #keys)]]
+            end
+
+            local build = self.selectedSkills[playerID]
+            local function VerifyTalent(abName)
+                for _,v in pairs(heroTalentList) do
+                    if v == abName then return false end
+                end
+                local requiredAbility = util:getAbilityKV(abName, "TalentRequiredAbility")
+                if not requiredAbility then
+                    return true
+                end
+                for _, v in ipairs(build) do
+                    if v == requiredAbility then
+                        return true
+                    end
+                end
+                return false
+            end
+
+            local replacedHeroNames = {
+                npc_dota_hero_underlord = "npc_dota_hero_abyssal_underlord",
+                npc_dota_hero_zeus = "npc_dota_hero_zuus",
+                npc_dota_hero_nyx = "npc_dota_hero_nyx_assassin",
+                npc_dota_hero_wraith_king = "npc_dota_hero_skeleton_king",
+                npc_dota_hero_magnus = "npc_dota_hero_magnataur",
+                npc_dota_hero_clockwerk = "npc_dota_hero_rattletrap",
+                npc_dota_hero_doom = "npc_dota_hero_doom_bringer",
+                npc_dota_hero_windranger = "npc_dota_hero_windrunner",
+                npc_dota_hero_necrophos = "npc_dota_hero_necrolyte",
+                npc_dota_hero_skywrath = "npc_dota_hero_skywrath_mage",
+                npc_dota_hero_timbersaw = "npc_dota_hero_shredder",
+                npc_dota_hero_outworld_devourer = "npc_dota_hero_obsidian_destroyer",
+                npc_dota_hero_lifestelaer = "npc_dota_hero_life_stealer",
+                npc_dota_hero_queen_of_pain = "npc_dota_hero_queenofpain",
+                npc_dota_hero_vengeful_spirit = "npc_dota_hero_vengefulspirit",
+            }
+            local function GetTalentGroup(targetTalent, heroData)
+                local heroName = targetTalent:gsub('special_bonus_unique', 'npc_dota_hero'):gsub('_%d', '')
+                if replacedHeroNames[heroName] then heroName = replacedHeroNames[heroName] end
+
+                if not heroData then
+                    heroData = allHeroes[heroName]
+                end
+                if not heroData then
+                    print("Error: hero with name " .. heroName .. " wasn't found. That hero name should be replaced above.")
+                    return 4
+                end
+                local skippedTalentsCount = 0
+                for i = 1, 24 do
+                    local abName = heroData['Ability' .. i]
+                    if abName and string.find(abName, 'special_bonus') then
+                        if abName == targetTalent then
+                            return math.ceil((skippedTalentsCount + 1) / 2)
+                        else
+                            skippedTalentsCount = skippedTalentsCount + 1
                         end
-                    elseif heroName == "npc_dota_hero_wisp" or heroName == "npc_dota_hero_rubick" then
-                         if string.find(spawnedUnit:GetAbilityByIndex(0):GetAbilityName(),"special_bonus") then
-                            print("0index talent")
-                            spawnedUnit.tempAbil = spawnedUnit:GetAbilityByIndex(0):GetAbilityName()
-                            spawnedUnit:RemoveAbility(spawnedUnit.tempAbil)
-                        end
-                        for i=11,18 do
-                            local abName = heroValues['Ability' .. i]
-                            local talent = spawnedUnit:AddAbility(abName)
-                        end
-                        if not spawnedUnit:HasAbility(spawnedUnit.tempAbil) then
-                            spawnedUnit:AddAbility(spawnedUnit.tempAbil)
-                        end
+                    end
+                end
+
+                print("Error: hero " .. heroName .. " hasn't talent " .. targetTalent)
+                return 4
+            end
+
+            --Load talents from kv and calculate total count
+            local currentTalentCount = 0
+            local skippedTalentCount = 0
+            for i = 1, 24 do
+                local abName = heroValues['Ability' .. i]
+                if abName and string.find(abName, "special_bonus") then
+                    local talentIndex = currentTalentCount + skippedTalentCount + 1
+                    if VerifyTalent(abName) then
+                        heroTalentList[talentIndex] = abName
+                        currentTalentCount = currentTalentCount + 1
                     else
-                        if string.find(spawnedUnit:GetAbilityByIndex(0):GetAbilityName(),"special_bonus") then
-                            print("0index talent")
-                            spawnedUnit.tempAbil = spawnedUnit:GetAbilityByIndex(0):GetAbilityName()
-                            spawnedUnit:RemoveAbility(spawnedUnit.tempAbil)
+                        skippedTalentCount = skippedTalentCount + 1
+                    end
+                end
+            end
+
+            --If hero hasn't enought talents => random
+            if currentTalentCount < 8 then
+                print("[Talents]: Hero has " .. 8-currentTalentCount .. " empty talent slots. These talents should be randomed")
+                --First try to find talents that requires hero's abilities
+
+                -- try
+                local status, nextCall = xpcall(function()
+                    for k, v in pairs(npc_abilities_override) do
+                        --Ability is talent
+                        if string.find(k, 'special_bonus_unique_') and v.TalentRequiredAbility then
+                            --If current build has required ability
+                            local targetIndex = GetTalentGroup(k) * 2
+                            if heroTalentList[targetIndex] then targetIndex = targetIndex - 1 end
+
+                            if VerifyTalent(k) and not heroTalentList[targetIndex] then
+                                heroTalentList[targetIndex] = k
+                                currentTalentCount = currentTalentCount + 1
+                                if currentTalentCount >= 8 then
+                                    break
+                                end
+                            end
                         end
-                        for i=10,17 do
-                            local abName = heroValues['Ability' .. i]
-                            local talent = spawnedUnit:AddAbility(abName)
-                        end
-                        if not spawnedUnit:HasAbility(spawnedUnit.tempAbil) then
-                            spawnedUnit:AddAbility(spawnedUnit.tempAbil)
+                    end
+                -- catch
+                end, function (msg)
+                    return msg..'\n'..debug.traceback()..'\n'
+                end)
+                if not status then
+                    print(nextCall)
+                end
+                print("[Talents]: After giving ability unique talens hero has " .. 8-currentTalentCount .. " empty talent slots")
+                --If hero still hasn't 8 talents => take random talents
+                while currentTalentCount < 8 do
+                    --take random hero
+                    local tempHT = GetRandomHero()
+                    if type(tempHT) == "table" then
+                        local skippedTalentsCount = 0
+                        for i = 1, 24 do
+                            local abName = tempHT['Ability' .. i]
+                            if abName and string.find(abName, "special_bonus") then
+                                local targetIndex = math.ceil((skippedTalentsCount + 1) / 2) * 2
+                                if VerifyTalent(abName) and not heroTalentList[targetIndex] or not heroTalentList[targetIndex - 1] then
+                                    if heroTalentList[targetIndex] then targetIndex = targetIndex - 1 end
+                                    heroTalentList[targetIndex] = abName
+
+                                    currentTalentCount = currentTalentCount + 1
+                                    break -- to increase randomness take a new hero after each added talent
+                                else
+                                    skippedTalentsCount = skippedTalentsCount + 1
+                                end
+                            end
                         end
                     end
                 end
             end
-            spawnedUnit.hasTalent = true
-        end
+            for _,v in pairs(heroTalentList) do
+                spawnedUnit:AddAbility(v)
+            end
 
-        --for i = 0, spawnedUnit:GetAbilityCount() do
-       --     if spawnedUnit:GetAbilityByIndex(i) then
-                --print("removed") 
-          --      local ability = spawnedUnit:GetAbilityByIndex(i)
-             --   if ability then
-                 --   print("Ability " .. i .. ": " .. ability:GetAbilityName() .. ", Level " .. ability:GetLevel())
-              --  end
-           -- end
-        --end
-    end, DoUniqueString('addTalents'), 0.25)
+            --0 index talent, move it to end
+            local first_talent = spawnedUnit:GetAbilityByIndex(0):GetAbilityName()
+            if string.find(first_talent, "special_bonus") then
+                spawnedUnit:RemoveAbility(first_talent)
+                spawnedUnit:AddAbility(first_talent)
+            end
+        end
+        spawnedUnit.hasTalent = true
+    end
 
     -- Various Fixes
     Timers:CreateTimer(function()
@@ -7156,7 +7326,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                     spawnedUnit:RemoveModifierByName("modifier_gyrocopter_homing_missile_charge_counter")
                 end, DoUniqueString('gyroFix'), 1)
             end
-            
+
             -- Change sniper assassinate to our custom version to work with aghs
             if spawnedUnit:HasAbility("sniper_assassinate") and not util:isPlayerBot(playerID) and not spawnedUnit:FindAbilityByName("sniper_assassinate"):IsHidden() then
                     spawnedUnit:AddAbility("sniper_assassinate_redux")
@@ -7198,12 +7368,12 @@ function Pregame:fixSpawnedHero( spawnedUnit )
             -- Custom Flesh Heap fixes
             for abilitySlot=0,6 do
                 local abilityTemp = spawnedUnit:GetAbilityByIndex(abilitySlot)
-                if abilityTemp then 
+                if abilityTemp then
                     if string.find(abilityTemp:GetAbilityName(),"flesh_heap_") then
                         local abilityName = abilityTemp:GetAbilityName()
                         local modifierName = "modifier"..string.sub(abilityName,6)
                         spawnedUnit:AddNewModifier(spawnedUnit,abilityTemp,modifierName,{})
-                        
+
                     end
                 end
             end
@@ -7265,10 +7435,10 @@ function Pregame:fixSpawnedHero( spawnedUnit )
 
                     end
                 end
-        end, DoUniqueString('giveDagger'), 1)            
+        end, DoUniqueString('giveDagger'), 1)
     end
 
-    -- Handle free scepter stuff 
+    -- Handle free scepter stuff
     if OptionManager:GetOption('freeScepter') ~= 0 then
         -- If setting is 1, everyone gets free scepter modifier, if its 2, only human players get the upgrade
         if OptionManager:GetOption('freeScepter') == 1 or (OptionManager:GetOption('freeScepter') == 2 and not util:isPlayerBot(playerID))  then
@@ -7299,13 +7469,13 @@ function Pregame:fixSpawnedHero( spawnedUnit )
     -- Give out the free extra abilities
     if OptionManager:GetOption('extraAbility') > 0 then
         Timers:CreateTimer(function()
-            local fleshHeapToGive = nil 
-            local essenceshiftToGive = nil    
-            local rangedTrickshot = nil 
+            local fleshHeapToGive = nil
+            local essenceshiftToGive = nil
+            local rangedTrickshot = nil
 
-            if OptionManager:GetOption('extraAbility') == 5 then 
+            if OptionManager:GetOption('extraAbility') == 5 then
 
-                local random = RandomInt(1,10)  
+                local random = RandomInt(1,10)
                 local givenAbility = false
                 -- Randomly choose which flesh heap to give them
                 if random == 1 and not spawnedUnit:HasAbility('pudge_flesh_heap') then fleshHeapToGive = "pudge_flesh_heap" ; givenAbility = true
@@ -7324,21 +7494,21 @@ function Pregame:fixSpawnedHero( spawnedUnit )
 
                 -- If they randomly picked a flesh heap they already had, go through this list and try to give them one until they get one
                 if not givenAbility then
-                    if not spawnedUnit:HasAbility('pudge_flesh_heap') then fleshHeapToGive = "pudge_flesh_heap" 
-                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_int') then fleshHeapToGive = "pudge_flesh_heap_int" 
-                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_agility') then fleshHeapToGive = "pudge_flesh_heap_agility" 
-                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_move_speed') then fleshHeapToGive = "pudge_flesh_heap_move_speed" 
-                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_spell_amp') then fleshHeapToGive = "pudge_flesh_heap_spell_amp" 
-                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_attack_range') then fleshHeapToGive = "pudge_flesh_heap_attack_range" 
-                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_bonus_vision') then fleshHeapToGive = "pudge_flesh_heap_bonus_vision" 
-                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_cooldown_reduction') then fleshHeapToGive = "pudge_flesh_heap_cooldown_reduction" 
-                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_magic_resistance') then fleshHeapToGive = "pudge_flesh_heap_magic_resistance" 
-                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_evasion') then fleshHeapToGive = "pudge_flesh_heap_evasion" 
+                    if not spawnedUnit:HasAbility('pudge_flesh_heap') then fleshHeapToGive = "pudge_flesh_heap"
+                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_int') then fleshHeapToGive = "pudge_flesh_heap_int"
+                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_agility') then fleshHeapToGive = "pudge_flesh_heap_agility"
+                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_move_speed') then fleshHeapToGive = "pudge_flesh_heap_move_speed"
+                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_spell_amp') then fleshHeapToGive = "pudge_flesh_heap_spell_amp"
+                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_attack_range') then fleshHeapToGive = "pudge_flesh_heap_attack_range"
+                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_bonus_vision') then fleshHeapToGive = "pudge_flesh_heap_bonus_vision"
+                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_cooldown_reduction') then fleshHeapToGive = "pudge_flesh_heap_cooldown_reduction"
+                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_magic_resistance') then fleshHeapToGive = "pudge_flesh_heap_magic_resistance"
+                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_evasion') then fleshHeapToGive = "pudge_flesh_heap_evasion"
                     end
                 end
             end
 
-            if OptionManager:GetOption('extraAbility') == 13 then 
+            if OptionManager:GetOption('extraAbility') == 13 then
                 -- Give an essence shift based on heros primary attribute
                 if spawnedUnit:GetPrimaryAttribute() == 0 then essenceshiftToGive = "slark_essence_shift_strength_lod"
                 elseif spawnedUnit:GetPrimaryAttribute() == 1 then essenceshiftToGive = "slark_essence_shift_agility_lod"
@@ -7346,7 +7516,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                 end
             end
 
-             if OptionManager:GetOption('extraAbility') == 19 then 
+             if OptionManager:GetOption('extraAbility') == 19 then
                 -- Give an essence shift based on heros primary attribute
                 if spawnedUnit:IsRangedAttacker() then rangedTrickshot = "ebf_clinkz_trickshot_passive_ranged"
                 end
@@ -7354,9 +7524,9 @@ function Pregame:fixSpawnedHero( spawnedUnit )
 
             local abilityToGive = self.freeAbility
 
-            if fleshHeapToGive then abilityToGive = fleshHeapToGive 
-            elseif essenceshiftToGive then abilityToGive = essenceshiftToGive 
-            elseif rangedTrickshot then abilityToGive = rangedTrickshot 
+            if fleshHeapToGive then abilityToGive = fleshHeapToGive
+            elseif essenceshiftToGive then abilityToGive = essenceshiftToGive
+            elseif rangedTrickshot then abilityToGive = rangedTrickshot
             end
 
             spawnedUnit:AddAbility(abilityToGive)
@@ -7396,7 +7566,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
            end
         end
      end, DoUniqueString('removeTalentModifiers'), 2)
-                
+
     -- Only give bonuses once
     if not self.givenBonuses[playerID] then
         -- We have given bonuses
