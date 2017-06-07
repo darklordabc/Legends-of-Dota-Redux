@@ -11,6 +11,7 @@
   		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
   		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
   		"AbilityTextureName"			"custom/bulwark_strike"
+  		"ReduxPerks"                    "attack_modifier | fire | autocast_basic"
 
   		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -132,6 +133,7 @@
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName"			"custom/skipping_flames"
+		"ReduxPerks"                    "fire"
 
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -271,6 +273,7 @@
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"custom/unwavering_stance"
+		"ReduxPerks"                    "fire"
 
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -416,6 +419,7 @@
 		"MaxLevel"						"3"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"custom/molten_charge"
+		"ReduxPerks"                    "fire"
 
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------

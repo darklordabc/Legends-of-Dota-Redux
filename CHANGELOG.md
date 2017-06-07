@@ -9,6 +9,8 @@ All notable changes to this project will be documented in this file.
 - Witchcraft, Borrowed Time, and Multicast can now be disabled by passive breaking. Borrowed time can still be activated manually.
 - Added 0.5s codown to Magicians Revenge
 - Halved Healing Aura's Cooldown
+- Increased Eldritch Pull by 100 pull distance
+- Added Autocast tag to Bulwark Strike, meaning Clinkz will now autolevel it with his perk
 
 ## 7.9
 - Improved styles of builds page
