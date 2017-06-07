@@ -1897,9 +1897,13 @@ function Pregame:finishOptionSelection()
                 self:setPhase(constants.PHASE_RANDOM_SELECTION)
                 self:setEndOfPhase(Time() + OptionManager:GetOption('randomSelectionTime'), OptionManager:GetOption('randomSelectionTime'))
             else
-                -- Goto review
-                self:setPhase(constants.PHASE_REVIEW)
+                -- Change to picking phase
+                self:setPhase(constants.PHASE_SPAWN_HEROES)
+
+                -- Kill the selection screen
                 self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime'))
+
+                GameRules:FinishCustomGameSetup()
             end
         else
             -- Hero selection
@@ -4369,8 +4373,13 @@ function Pregame:onPlayerSelectHero(eventSourceIndex, args)
 
     if hero then
         if not util:checkPickedHeroes( self.selectedHeroes ) and self.additionalPickTime then
-            self:setPhase(constants.PHASE_REVIEW)
-            self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime')) 
+            -- Change to picking phase
+            self:setPhase(constants.PHASE_SPAWN_HEROES)
+
+            -- Kill the selection screen
+            self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime'))
+
+            GameRules:FinishCustomGameSetup()
         end
     end
 end
