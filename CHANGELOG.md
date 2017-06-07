@@ -5,13 +5,14 @@ All notable changes to this project will be documented in this file.
 ## 8.0
 - Fixed Sight being 4 levels
 - Removed Review phase and added second load screen to replace strategy time screen
-*
 - Witchcraft, Borrowed Time, and Multicast can now be disabled by passive breaking. Borrowed time can still be activated manually.
 - Added 0.5s codown to Magicians Revenge
 - Halved Healing Aura's Cooldown
 - Increased Eldritch Pull by 100 pull distance
 - Added Autocast tag to Bulwark Strike, meaning Clinkz will now autolevel it with his perk
 - Sunder and Arcane Symbiote are now troll combo, in line with its other bans from health sacrificing abilities
+*
+- Increased gold tick rate to 2 in all_allowed
 
 ## 7.9
 - Improved styles of builds page
