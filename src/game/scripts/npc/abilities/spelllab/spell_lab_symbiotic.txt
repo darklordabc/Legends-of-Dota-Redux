@@ -54,7 +54,7 @@
             "particle"                                                     "particles/spell_lab/symbiotic_overhead.vpcf"
         }
         "ReduxFlags"                                                           "upgradeable | support | mobility | doNotRandom"
-        "ReduxBans"                                                            "life_stealer_assimilate"
+        "ReduxBans"                                                            "life_stealer_assimilate | terrorblade_sunder"
         "ReduxPerks"                                                           "support | mobility"
         "ReduxCost"                                                            "40"
     }
