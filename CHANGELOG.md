@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file.
 - Reactivated Armageddon, but it, and all other mega ultimates are now considered single player abilities
 *
 - Added Thunder Musket ability from Angel Arena Black Star
+- Added Survival of the Fittest from DotA Resurgence
 
 ## 7.9
 - Improved styles of builds page

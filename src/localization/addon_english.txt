@@ -1464,6 +1464,7 @@
     "warning_centaur_return" "<font color=\'#FF4949\'>Warning:</font> Does not damage buildings.\n"
 
     "credit_bulwark_strike"           "<font color=\'#7D7D7D\'>Credits: Deathtal | github.com/Deathtal</font>"
+    "credit_genos_survival_of_the_fittest"           "<font color=\'#7D7D7D\'>Imported from DotA Resurgence</font>"
     "credit_skipping_flames"           "<font color=\'#7D7D7D\'>Credits: Deathtal | github.com/Deathtal</font>"
     "credit_unwavering_stance"           "<font color=\'#7D7D7D\'>Credits: Deathtal | github.com/Deathtal</font>"
     "credit_molten_charge"           "<font color=\'#7D7D7D\'>Credits: Deathtal | github.com/Deathtal</font>"
@@ -6947,5 +6948,14 @@
     "DOTA_Tooltip_ability_aabs_thunder_musket_Description" "Every %thunderstruck_cooldown% seconds, your next attack has an additional range and deals bonus magic damage.\n\n<font color=\'#7D7D7D\'>Imported from Angel Arena BlackStar</font>\n" 
     "DOTA_Tooltip_ability_aabs_thunder_musket_thunderstruck_bonus_attack_range" "BONUS ATTACK RANGE:" 
     "DOTA_Tooltip_ability_aabs_thunder_musket_thunderstruck_magical_damage" "BONUS MAGIC DAMAGE:"
+
+    "DOTA_Tooltip_ability_genos_survival_of_the_fittest"  "Survival of the Fittest"  
+    "DOTA_Tooltip_ability_genos_survival_of_the_fittest_Description"  "Increases the health regeneration, and mana regeneration of Genos. Both bonuses begin at nothing and increase in magnitude over time with no upper limit. However, they are reset if Genos dies. Mana regeneration is half of what health regeneration is."
+    "DOTA_Tooltip_ability_genos_survival_of_the_fittest_Note0" "Allows Genos to exceed the movement speed cap."
+    "DOTA_Tooltip_ability_genos_survival_of_the_fittest_Lore" "The most powerful bloodlines persist through the eons."
+    "DOTA_Tooltip_ability_genos_survival_of_the_fittest_regen"      "BONUS REGENERATION PER MINUTE ALIVE:"
+
+    "DOTA_Tooltip_MODIFIER_darwin_buff"         "Survival of the Fittest"
+    "DOTA_Tooltip_MODIFIER_darwin_buff_Description"     "Increasing health and mana regeneration based on how long Genos has survived."
 
 }

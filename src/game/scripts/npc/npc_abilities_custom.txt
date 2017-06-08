@@ -341,6 +341,7 @@
 #base "abilities\megaults\mega_omni_slash.txt"
 #base "abilities\megaults\mega_call_down.txt"
 #base "abilities\megaults\mega_flare.txt"
+#base "abilities\resurgence\genos_survival_of_the_fittest.txt"
 #base "abilities\neutrals\black_dragon_fireball_lod.txt"
 #base "abilities\neutrals\lone_druid_spirit_bear_return_lod.txt"
 #base "abilities\neutrals\necronomicon_archer_aoe_lod.txt"
