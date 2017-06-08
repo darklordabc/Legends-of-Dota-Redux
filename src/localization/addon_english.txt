@@ -1393,8 +1393,9 @@
     "DOTA_Scoreboard_Header_Abilities"                  "ABILITIES"
 
     /////////////////
-    // Skill Warnings
+    // Skill Warnings 
     ////////////////
+    "warning_mercy_angelic_descent"   "<font color=\'#FF4949\'>Warning:</font> Removes the ability to physically attack.\n"
     "warning_imba_tower_plasma_field"   "<font color=\'#FF4949\'>Warning:</font> Requies an extra ability slot. If you have many side abilities (including hidden abilities), this ability will not work."
     "warning_keeper_of_the_light_spirit_form"   "<font color=\'#FF4949\'>Warning:</font> Will not give additional abilities.<br><font color=\'#FF4949\'>Hero Requirement:</font> You have to play as <font color=\'#70EA72\'>Elazor</font> to get Aghanim's Scepter bonuses."
     "warning_undying_tombstone_zombie_deathstrike"   "<font color=\'#FF4949\'>Warning:</font> This ability is half broken, you will not gain bonus movementspeed nor bonus attack speed. Its recommended you don't pick it."
@@ -1463,6 +1464,13 @@
     "warning_chen_holy_persuasion" "<font color=\'#FF4949\'>Warning:</font> Persuading Ancients requires levels in <font color=\'#70EA72\'>Hand of God</font> to have any effect.\n"
     "warning_centaur_return" "<font color=\'#FF4949\'>Warning:</font> Does not damage buildings.\n"
 
+    "credit_mercy_caduceus_healing" "<font color=\'#7D7D7D\'>Credits: Firetoad | github.com/fcalife</font>"
+    "credit_mercy_caduceus_power" "<font color=\'#7D7D7D\'>Credits: Firetoad | github.com/fcalife</font>"
+    "credit_mercy_guardian_angel" "<font color=\'#7D7D7D\'>Credits: Firetoad | github.com/fcalife</font>"
+    "credit_mercy_angelic_descent" "<font color=\'#7D7D7D\'>Credits: Firetoad | github.com/fcalife</font>"
+    "credit_mercy_heroes_never_die" "<font color=\'#7D7D7D\'>Credits: Firetoad | github.com/fcalife</font>"
+
+    "credit_bulwark_strike"           "<font color=\'#7D7D7D\'>Credits: Deathtal | github.com/Deathtal</font>"
     "credit_bulwark_strike"           "<font color=\'#7D7D7D\'>Credits: Deathtal | github.com/Deathtal</font>"
     "credit_genos_survival_of_the_fittest"           "<font color=\'#7D7D7D\'>Imported from DotA Resurgence</font>"
     "credit_skipping_flames"           "<font color=\'#7D7D7D\'>Credits: Deathtal | github.com/Deathtal</font>"
@@ -7005,4 +7013,50 @@
     "DOTA_Tooltip_ability_spawn_ancient_camp_op_camps_spawned"                  "CAMPS SPAWNED:"
     "DOTA_Tooltip_ability_spawn_ancient_camp_op_spawn_radius"                   "RADIUS:"
     "DOTA_Tooltip_ability_spawn_ancient_camp_op_channel_time"                    "CHANNEL TIME:"
+
+    //------------------------------------------------------------------------------------------------------------------------------
+    // Mercy main, BTW
+    //------------------------------------------------------------------------------------------------------------------------------
+
+    "DOTA_Tooltip_ability_mercy_caduceus_healing"                           "Caduceus Staff: Healing"
+    "DOTA_Tooltip_ability_mercy_caduceus_healing_Description"               "Shoots a healing beam that heals the first ally it hits, then grants it max health-based regeneration for %heal_duration% seconds. Stacks with itself."
+    "DOTA_Tooltip_ability_mercy_caduceus_healing_Lore"                      "Stop fucking getting killed u fucks fucking noob team SMH."
+    "DOTA_Tooltip_ability_mercy_caduceus_healing_instant_heal"              "HEAL:"
+    "DOTA_Tooltip_ability_mercy_caduceus_healing_projectile_range"              "RANGE:"
+    "DOTA_Tooltip_ability_mercy_caduceus_healing_heal_per_sec"              "%HEALTH REGENERATION:"
+
+    "DOTA_Tooltip_modifier_mercy_caduceus_healing_regen"                    "Caduceus Healing"
+    "DOTA_Tooltip_modifier_mercy_caduceus_healing_regen_Description"        "Regenerating health over time."
+
+    "DOTA_Tooltip_ability_mercy_caduceus_power"                             "Caduceus Staff: Power"
+    "DOTA_Tooltip_ability_mercy_caduceus_power_Description"                 "Shoots a beam that empowers the first ally it hits, granting them bonus damage and spell damage amplification for %power_duration% seconds. Stacks with itself."
+    "DOTA_Tooltip_ability_mercy_caduceus_power_Lore"                        "Jesus fucking christ on a fucking stick you fucking retards couldn't fucking shoot your way out of a fucking wet paperbag, fuck."
+    "DOTA_Tooltip_ability_mercy_caduceus_power_bonus_damage"                "%BONUS DAMAGE:"
+    "DOTA_Tooltip_ability_mercy_caduceus_power_bonus_spell_damage"          "%BONUS SPELL AMPLIFY:"
+
+    "DOTA_Tooltip_modifier_mercy_caduceus_power"                            "Caduceus Power"
+    "DOTA_Tooltip_modifier_mercy_caduceus_power_Description"                "Attack and spell damage increased."
+
+    "DOTA_Tooltip_ability_mercy_guardian_angel"                             "Guardian Angel"
+    "DOTA_Tooltip_ability_mercy_guardian_angel_Description"                 "Swoops to an ally's position in order to provide them with support."
+    "DOTA_Tooltip_ability_mercy_guardian_angel_cast_range"                  "RANGE:"
+    "DOTA_Tooltip_ability_mercy_guardian_angel_Lore"                        "CAN YOU FUCKS GET AWAY FROM THE FUCKING PAYLOAD AND START PROTECTING ME JESUS FUCK WHAT A TEAM OF BADS."
+
+    "DOTA_Tooltip_ability_mercy_angelic_descent"                            "Angelic Descent"
+    "DOTA_Tooltip_ability_mercy_angelic_descent_Description"                "Grants high passive health regeneration but removes the ability to attack."
+    "DOTA_Tooltip_ability_mercy_angelic_descent_Lore"                       "Mercy's body is frail, and her health, lacking, but she can recover from any injury surprisingly fast."
+    "DOTA_Tooltip_ability_mercy_angelic_descent_base_regen"                 "BASE REGEN:"
+    "DOTA_Tooltip_ability_mercy_angelic_descent_regen_per_level"            "REGEN PER LEVEL:"
+
+    "DOTA_Tooltip_ability_mercy_heroes_never_die"                           "Heroes Never Die"
+    "DOTA_Tooltip_ability_mercy_heroes_never_die_Description"               "Fully heals all nearby allies, then grants them health regeneration per second and incoming damage reduction. Using this ability causes you to be disabled and invulnerable for its duration."
+    "DOTA_Tooltip_ability_mercy_heroes_never_die_Lore"                      "Except you fucks. You die all the fucking time, you fucking fucktard hero wannabes! Come here and fucking protect me, or I'll never heal you sorry little asses again! Fucking shit team."
+    "DOTA_Tooltip_ability_mercy_heroes_never_die_effect_radius"             "EFFECT RADIUS:"
+    "DOTA_Tooltip_ability_mercy_heroes_never_die_heal_over_time"             "%HEAL OVER TIME:"
+    "DOTA_Tooltip_ability_mercy_heroes_never_die_damage_reduction_tooltip"             "%DAMAGE REDUCTION:"
+    "DOTA_Tooltip_ability_mercy_heroes_never_die_duration"             "DURATION:"
+
+    "DOTA_Tooltip_modifier_mercy_heroes_never_die_allies"                   "Heroes Never Die"
+    "DOTA_Tooltip_modifier_mercy_heroes_never_die_allies_Description"       "Regenerating health and ignoring part of incoming damage."
+
 }

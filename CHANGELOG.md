@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file.
 - Added Thunder Musket ability from Angel Arena Black Star
 - Added Survival of the Fittest from DotA Resurgence
 - Added 4 Radiant Jungle abilities from Overmeme (also 4 OP single player versions)
+- Added 4 Mercy Main BTW abiltieis from Overmeme
 
 ## 7.9
 - Improved styles of builds page
