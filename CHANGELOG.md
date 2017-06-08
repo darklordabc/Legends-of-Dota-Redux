@@ -11,9 +11,10 @@ All notable changes to this project will be documented in this file.
 - Increased Eldritch Pull by 100 pull distance
 - Added Autocast tag to Bulwark Strike, meaning Clinkz will now autolevel it with his perk
 - Sunder and Arcane Symbiote are now troll combo, in line with its other bans from health sacrificing abilities
-*
 - Increased gold tick rate to 2 in all_allowed
 - Reactivated Armageddon, but it, and all other mega ultimates are now considered single player abilities
+*
+- Added Thunder Musket ability from Angel Arena Black Star
 
 ## 7.9
 - Improved styles of builds page

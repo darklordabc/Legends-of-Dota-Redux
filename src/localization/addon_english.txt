@@ -6942,4 +6942,10 @@
     "npc_dota_hero_bounty_hunter_notification"      "Bounty Hunter"
     "npc_dota_hero_broodmother_notification"        "Broodmother"
     "npc_dota_hero_pudge_notification"              "Pudge"
+
+    "DOTA_Tooltip_ability_aabs_thunder_musket" "Thunder Musket" 
+    "DOTA_Tooltip_ability_aabs_thunder_musket_Description" "Every %thunderstruck_cooldown% seconds, your next attack has an additional range and deals bonus magic damage.\n\n<font color=\'#7D7D7D\'>Imported from Angel Arena BlackStar</font>\n" 
+    "DOTA_Tooltip_ability_aabs_thunder_musket_thunderstruck_bonus_attack_range" "BONUS ATTACK RANGE:" 
+    "DOTA_Tooltip_ability_aabs_thunder_musket_thunderstruck_magical_damage" "BONUS MAGIC DAMAGE:"
+
 }
