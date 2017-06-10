@@ -1562,6 +1562,8 @@
     "credit_imba_tower_grievous_wounds"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_tower_hex_aura"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_tower_laser"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+    "credit_imba_ancient_stalwart_defense"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+    "credit_imba_ancient_stalwart_defense_op"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_tower_machinegun"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_tower_mana_burn"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_tower_mana_flare"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
@@ -7079,4 +7081,23 @@
     "DOTA_Tooltip_ability_imba_roshan_fury_op_debuff_duration"                             "STUN DURATION:"
     "DOTA_Tooltip_ability_imba_roshan_fury_op_length"                                      "KNOCKBACK RANGE:"
     "DOTA_Tooltip_ability_imba_roshan_fury_op_width"                                       "EFFECT WIDTH:"
+
+    "DOTA_Tooltip_ability_imba_ancient_stalwart_defense"                                "Fanaticism"
+    "DOTA_Tooltip_ability_imba_ancient_stalwart_defense_Description"                    "Whenever a nearby allied hero dies, all other nearby heroes will be purged, and receive a short-duration buff which regenerates health and reduces incoming damage."
+    "DOTA_Tooltip_ability_imba_ancient_stalwart_defense_Lore"                           "Under its very shadow, the Ancient's influence is maddeningly strong, turning even the most stoic hero into a fanatic defender."
+    "DOTA_Tooltip_ability_imba_ancient_stalwart_defense_radius"                         "RANGE:"
+    "DOTA_Tooltip_ability_imba_ancient_stalwart_defense_duration"                       "DURATION:"
+    "DOTA_Tooltip_ability_imba_ancient_stalwart_defense_hp_regen"                       "%HEALTH REGEN:"
+    "DOTA_Tooltip_ability_imba_ancient_stalwart_defense_damage_reduction"               "%DAMAGE REDUCTION:"
+
+    "DOTA_Tooltip_ability_imba_ancient_stalwart_defense_op"                                "Fanaticism Global"
+    "DOTA_Tooltip_ability_imba_ancient_stalwart_defense_op_Description"                    "Whenever a nearby allied hero dies, all other nearby heroes will be purged, and receive a short-duration buff which regenerates health and reduces incoming damage. <font color='#70EA72'>Global effet</font>"
+    "DOTA_Tooltip_ability_imba_ancient_stalwart_defense_op_Lore"                           "Under its very shadow, the Ancient's influence is maddeningly strong, turning even the most stoic hero into a fanatic defender."
+    //"DOTA_Tooltip_ability_imba_ancient_stalwart_defense_op_radius"                         "RANGE:"
+    "DOTA_Tooltip_ability_imba_ancient_stalwart_defense_op_duration"                       "DURATION:"
+    "DOTA_Tooltip_ability_imba_ancient_stalwart_defense_op_hp_regen"                       "%HEALTH REGEN:"
+    "DOTA_Tooltip_ability_imba_ancient_stalwart_defense_op_damage_reduction"               "%DAMAGE REDUCTION:"
+
+    "DOTA_Tooltip_modifier_imba_stalwart_defense_buff"                                  "Fanaticism"
+    "DOTA_Tooltip_modifier_imba_stalwart_defense_buff_Description"                      "Regenerating health and taking reduced damage"
 }

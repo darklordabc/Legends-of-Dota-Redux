@@ -202,4 +202,225 @@
             }
         }
     }
+
+    "imba_ancient_stalwart_defense"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                             "ability_datadriven"
+        "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                    "custom/imba_ancient_stalwart_defense"
+        "MaxLevel"                              "4"
+        "AbilityCastRange"                      "1500"
+        "ReduxFlags"                                                           "support"
+        "ReduxPerks"                                                           "support | aura"
+
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_legion_commander/legion_commander_press.vpcf"
+            "particle"                                                     "particles/units/heroes/hero_legion_commander/legion_commander_press_buff.vpcf"
+        }
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "duration"                      "3.5"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "hp_regen"                      "6 7 8 9"
+            }
+            "03"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "damage_reduction"              "-25 -30 -35 -40"
+            }
+            "04"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "radius"                        "1500"
+            }
+        }
+
+        "Modifiers"
+        {
+            "modifier_imba_stalwart_defense"
+            {
+                "Passive"                       "1"
+                "IsHidden"                      "1"
+                "IsBuff"                        "1"
+                "IsPurgable"                    "0"
+
+                "Aura"                          "modifier_imba_stalwart_defense_aura"
+                "Aura_Radius"                   "%radius"
+                "Aura_Teams"                    "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+                "Aura_Types"                    "DOTA_UNIT_TARGET_HERO"
+                "Aura_Flags"                    "DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS"
+            }
+
+            "modifier_imba_stalwart_defense_aura"
+            {
+                "Passive"                       "0"
+                "IsHidden"                      "1"
+                "IsBuff"                        "1"
+                "IsPurgable"                    "0"
+
+                "OnDeath"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "abilities/dota imba/ancient_abilities.lua"
+                        "Function"              "StalwartDefense"
+
+                        "modifier_buff"         "modifier_imba_stalwart_defense_buff"
+                        "sound_cast"            "Hero_LegionCommander.PressTheAttack"
+                        "particle_hit"          "particles/units/heroes/hero_legion_commander/legion_commander_press.vpcf"
+                        "particle_buff"         "particles/units/heroes/hero_legion_commander/legion_commander_press_buff.vpcf"
+                    }
+                }
+            }
+
+            "modifier_imba_stalwart_defense_buff"
+            {
+                "Passive"                       "0"
+                "IsHidden"                      "0"
+                "IsBuff"                        "1"
+                "IsPurgable"                    "0"
+
+                "Duration"                      "%duration"
+
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "abilities/dota imba/ancient_abilities.lua"
+                        "Function"              "StalwartDefenseParticleEnd"
+                    }
+                }
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"  "%damage_reduction"
+                    "MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"     "%hp_regen"
+                }
+            }
+        }
+    }
+
+    "imba_ancient_stalwart_defense_op"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                             "ability_datadriven"
+        "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                    "custom/imba_ancient_stalwart_defense_op"
+        "MaxLevel"                              "4"
+        "AbilityCastRange"                      "1500"
+        "ReduxFlags"                                                           "support"
+        "ReduxPerks"                                                           "support | aura"
+        "ReduxCost"                                     "120"
+
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_legion_commander/legion_commander_press.vpcf"
+            "particle"                                                     "particles/units/heroes/hero_legion_commander/legion_commander_press_buff.vpcf"
+        }
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "duration"                      "3.5"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "hp_regen"                      "6 7 8 9"
+            }
+            "03"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "damage_reduction"              "-25 -30 -35 -40"
+            }
+            "04"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "radius"                        "25000"
+            }
+        }
+
+        "Modifiers"
+        {
+            "modifier_imba_stalwart_defense"
+            {
+                "Passive"                       "1"
+                "IsHidden"                      "1"
+                "IsBuff"                        "1"
+                "IsPurgable"                    "0"
+
+                "Aura"                          "modifier_imba_stalwart_defense_aura"
+                "Aura_Radius"                   "%radius"
+                "Aura_Teams"                    "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+                "Aura_Types"                    "DOTA_UNIT_TARGET_HERO"
+                "Aura_Flags"                    "DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS"
+            }
+
+            "modifier_imba_stalwart_defense_aura"
+            {
+                "Passive"                       "0"
+                "IsHidden"                      "1"
+                "IsBuff"                        "1"
+                "IsPurgable"                    "0"
+
+                "OnDeath"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "abilities/dota imba/ancient_abilities.lua"
+                        "Function"              "StalwartDefense"
+
+                        "modifier_buff"         "modifier_imba_stalwart_defense_buff"
+                        "sound_cast"            "Hero_LegionCommander.PressTheAttack"
+                        "particle_hit"          "particles/units/heroes/hero_legion_commander/legion_commander_press.vpcf"
+                        "particle_buff"         "particles/units/heroes/hero_legion_commander/legion_commander_press_buff.vpcf"
+                    }
+                }
+            }
+
+            "modifier_imba_stalwart_defense_buff"
+            {
+                "Passive"                       "0"
+                "IsHidden"                      "0"
+                "IsBuff"                        "1"
+                "IsPurgable"                    "0"
+
+                "Duration"                      "%duration"
+
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "abilities/dota imba/ancient_abilities.lua"
+                        "Function"              "StalwartDefenseParticleEnd"
+                    }
+                }
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"  "%damage_reduction"
+                    "MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"     "%hp_regen"
+                }
+            }
+        }
+    }
 }
