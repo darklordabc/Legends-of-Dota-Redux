@@ -13,7 +13,6 @@ All notable changes to this project will be documented in this file.
 - Sunder and Arcane Symbiote are now troll combo, in line with its other bans from health sacrificing abilities
 - Increased gold tick rate to 2 in all_allowed
 - Reactivated Armageddon, but it, and all other mega ultimates are now considered single player abilities
-*
 - Added Thunder Musket ability from Angel Arena Black Star
 - Added Survival of the Fittest from DotA Resurgence
 - Added 4 Radiant Jungle abilities from Overmeme (also 4 OP single player versions)
@@ -22,6 +21,7 @@ All notable changes to this project will be documented in this file.
 - Arcane Symbiote now has a different aghs effect, no longer enables right click attack
 - Added Fury of the Immoral from dota IMBA (Also an OP single player version)
 - Added Fantacism from dota IMBA (Also an OP single player version)
+*
 
 ## 7.9
 - Improved styles of builds page
