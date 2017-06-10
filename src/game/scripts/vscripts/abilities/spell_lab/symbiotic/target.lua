@@ -19,6 +19,7 @@ end
 function spell_lab_symbiotic_target:InitSymbiot (hModifier)
 	if IsServer() then
 		self.symbiot = hModifier
+		self.maxdistance = hModifier:GetAbility():GetSpecialValueFor("range_scepter")
 	end
 end
 
@@ -44,12 +45,36 @@ end
 
 function spell_lab_symbiotic_target:OnDeath (kv)
 	if IsServer() then
-  if kv.unit ~= self:GetParent() then return end
-  if self.symbiot ~= nil then
-    self.symbiot:Terminate(kv.attacker)
-  end
+	  if kv.unit == self:GetParent() then
+		  if self.symbiot ~= nil then
+		    self.symbiot:Terminate(kv.attacker)
+		  end
+		return end
+		if not self:GetParent():IsRealHero() then
+			return end
+		--local stat = kv.unit:GetPrimaryAttribute()
+		if not self:GetCaster():HasScepter() then
+			 return end
+		if kv.unit:IsRealHero() and kv.unit:GetTeam() ~= self:GetParent():GetTeam() then
+			local dist = CalcDistanceBetweenEntityOBB(kv.unit, self:GetParent())
+			if dist > self.maxdistance then return end
+			local amount = self.symbiot:GetAbility():GetSpecialValueFor("stat_scepter")
+				--TODO: Make over head alerts right... they might be float values so these commented functions won't work.
+			--if stat == 0 then
+			self:GetParent():ModifyStrength(amount)
+			SendOverheadEventMessage(nil, OVERHEAD_ALERT_CRITICAL, self:GetParent(), amount, nil)
+		--	elseif stat == 1 then
+			self:GetParent():ModifyAgility(amount)
+		--	SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, self:GetParent(), amount, nil)
+		--	elseif stat == 2 then
+			self:GetParent():ModifyIntellect(amount)
+			self:GetParent():AddNewModifier(self:GetCaster(),self:GetAbility(),"spell_lab_symbiotic_bonus",{stacks=amount})
+		--	SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, self:GetParent(), amount, nil)
+			--end
+		end
+	end
 end
-end
+
 function spell_lab_symbiotic_target:GetAttributes()
 	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_MULTIPLE + MODIFIER_ATTRIBUTE_PERMANENT
 end

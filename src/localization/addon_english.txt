@@ -1471,7 +1471,6 @@
     "credit_mercy_heroes_never_die" "<font color=\'#7D7D7D\'>Credits: Firetoad | github.com/fcalife</font>"
 
     "credit_bulwark_strike"           "<font color=\'#7D7D7D\'>Credits: Deathtal | github.com/Deathtal</font>"
-    "credit_bulwark_strike"           "<font color=\'#7D7D7D\'>Credits: Deathtal | github.com/Deathtal</font>"
     "credit_genos_survival_of_the_fittest"           "<font color=\'#7D7D7D\'>Imported from DotA Resurgence</font>"
     "credit_skipping_flames"           "<font color=\'#7D7D7D\'>Credits: Deathtal | github.com/Deathtal</font>"
     "credit_unwavering_stance"           "<font color=\'#7D7D7D\'>Credits: Deathtal | github.com/Deathtal</font>"
@@ -4813,11 +4812,13 @@
         "DOTA_Tooltip_ability_spell_lab_symbiotic_magic_armor" "%MAGIC RESISTANCE REDUCTION:"
         "DOTA_Tooltip_ability_spell_lab_symbiotic_physical_armor" "ARMOR REDUCTION:"
         
-        "DOTA_Tooltip_ability_spell_lab_symbiotic_Aghanim_Description"  "Allows you to attack while in symbiosis."
+        "DOTA_Tooltip_ability_spell_lab_symbiotic_Aghanim_Description"  "ARCANE FEAST: Your host gets +1 to all attributes if enemy hero dies within 900 radius."
         "DOTA_Tooltip_spell_lab_symbiotic_modifier" "Arcance Symbiosis"
         "DOTA_Tooltip_spell_lab_symbiotic_modifier_Description" "You share mana pool with a host hero."
         "DOTA_Tooltip_spell_lab_symbiotic_target"   "Arcance Symbiosis: Host"
-        "DOTA_Tooltip_spell_lab_symbiotic_target_Description" "You share mana pool with a symbiot hero.\nIf you don't have mana symbiot's spells take their mana cost from your health.\nGrants bonus stats and mana regen.\nReduces armor and magic resistance.\n\n<br><br>You may disable help from your symbiot to forcefully end the symbiosis when possible."
+        "DOTA_Tooltip_spell_lab_symbiotic_target_Description" "You share mana pool with a symbiot hero.\nIf you don't have mana symbiot's spells take their mana cost from your health.\nGrants bonus mana regen.\nReduces armor and magic resistance.\n\n<br><br>You may disable help from your symbiot to forcefully end the symbiosis when possible."
+        "DOTA_Tooltip_spell_lab_symbiotic_bonus" "Arcane Feast"
+        "DOTA_Tooltip_spell_lab_symbiotic_bonus_Description" "Granted +1 to all attributes per stack."
         "DOTA_Error_spell_lab_symbiotic_no_self_target" "No self cast."
         "DOTA_Error_spell_lab_symbiotic_no_inception" "Can't cast while being host."
 
@@ -5004,7 +5005,7 @@
         "DOTA_Tooltip_Ability_metamorphosis_stun_chance"                                  "%BASH CHANCE:"
         "DOTA_Tooltip_Ability_metamorphosis_stun_duration"                                "BASH DURATION:"
         "DOTA_Tooltip_Ability_metamorphosis_attack_range"                                 "ATTACK RANGE:"
-        "DOTA_Tooltip_Ability_metamorphosis_move_speed"                                   "MAX MOVE SPEED:"
+        "DOTA_Tooltip_Ability_metamorphosis_move_speed"                                   "MOVE SPEED PENALTY:"
         "DOTA_Tooltip_Ability_metamorphosis_tool_tip_duration"                            "DURATION:"
         "DOTA_Tooltip_Ability_metamorphosis_base_damage_scepter"                        "SCEPTER DAMAGE:"
         "DOTA_Tooltip_Ability_metamorphosis_Note0"                      "Having Aegis of Immortal makes this ability passive."
