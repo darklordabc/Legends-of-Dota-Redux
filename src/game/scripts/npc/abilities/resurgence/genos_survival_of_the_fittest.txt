@@ -1,0 +1,76 @@
+"DOTAAbilities" {
+	"genos_survival_of_the_fittest"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		// "AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_NONE"
+		"AbilityTextureName"			"custom\genos_survival_of_the_fittest"
+		"AbilityType"                    	"DOTA_ABILITY_TYPE_BASIC"
+
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"regen"						"0.5 1.0 1.5 2.0"
+			}
+			
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"speed"						"0"
+			}
+
+		}
+
+		  "precache" 
+		   {
+			  "particle"    "particles/units/heroes/hero_abaddon/abaddon_frost_slow.vpcf"
+			  "particle"    "particles/blood_impact/blood_advisor_pierce_spray_c.vpcf"
+			  "particle"    "particles/econ/items/legion/legion_fallen/legion_fallen_ambient.vpcf"
+			  "particle"	"particles/econ/items/legion/legion_fallen/legion_fallen_press_owner_r2_c.vpcf"
+			  "particle"	"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_wings_buff.vpcf"
+			  "soundfile"   "soundevents/soundevents_conquest.vsndevts"
+		   }
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+
+		"OnOwnerSpawned"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/resurgence/hero_genos/darwin.lua"
+				"Function"	"Extinction"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_darwin"
+			{
+
+				"Passive"	"1"
+				"IsHidden"	"1"
+
+				"ThinkInterval"	"1"
+				"OnIntervalThink"
+				{
+
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/resurgence/hero_genos/darwin.lua"
+						"Function"	"UpdateDarwin"
+					}
+
+				}
+					
+			}
+		}
+	}
+}

@@ -14,6 +14,7 @@
         "FightRecapLevel"               "2"
         "MaxLevel"                      "1"
         "RequiredLevel"                 "24"
+        "ReduxCost"                                                            "120"
 
         "HasScepterUpgrade"         "1"
 
@@ -37,27 +38,27 @@
             "01"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "beams"                     "20"
+                "beams"                     "50"
             }
             "02"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "hit_count"                 "10"
+                "hit_count"                 "11"
             }
             "03"
             {
                 "var_type"                  "FIELD_FLOAT"
-                "beam_interval"             "0.1"
+                "beam_interval"             "0.15"
             }
             "04"
             {
                 "var_type"                  "FIELD_FLOAT"
-                "beam_interval_scepter"     "0.05"
+                "beam_interval_scepter"     "0.075"
             }
             "05"
             {
                 "var_type"                  "FIELD_FLOAT"
-                "duration_tooltip"          "2.0"
+                "duration_tooltip"          "7.5"
             }
             "06"
             {
@@ -67,17 +68,17 @@
             "07"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "beams_scepter"             "30"
+                "beams_scepter"             "80"
             }
             "08"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "hit_count_scepter"         "15"
+                "hit_count_scepter"         "18"
             }
             "09"
             {
                 "var_type"                  "FIELD_FLOAT"
-                "duration_tooltip_scepter"  "1.5"
+                "duration_tooltip_scepter"  "6.0"
             }
             "10"
             {

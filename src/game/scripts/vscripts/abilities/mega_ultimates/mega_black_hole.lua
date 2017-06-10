@@ -48,6 +48,7 @@ function ChannelEnd(keys)
 	if not ability.point_entity:IsNull() then
 		ability.point_entity:RemoveModifierByName("modifier_black_hole_datadriven")
 	end
+
 	StopSoundOn("Hero_Enigma.BlackHole.Cast.Chasm", caster)
 	caster:SetModelScale(1.0)
 	GameRules:GetGameModeEntity():SetCameraDistanceOverride( 1200 )
@@ -62,7 +63,7 @@ function GiveVision(keys)
 	ability = keys.ability
 	local vision_radius = ability:GetLevelSpecialValueFor( "vision_radius", ability:GetLevel() - 1 )
 	local duration = ability:GetLevelSpecialValueFor( "duration", ability:GetLevel() - 1 )
-	
+
 	AddFOWViewer(caster:GetTeam(), ability:GetCursorPosition(), vision_radius, duration, false)
 	caster:SetModelScale(5.0)
 	GameRules:GetGameModeEntity():SetCameraDistanceOverride( 2400 )

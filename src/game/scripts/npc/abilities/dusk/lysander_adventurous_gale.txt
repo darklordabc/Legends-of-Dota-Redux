@@ -17,6 +17,9 @@
 		"AnimationPlaybackRate"			"0.6"
 		"AbilityTextureName"			"custom/lysander_adventurous_gale"
 
+		"ReduxFlags"                                                           "mobility"
+        "ReduxPerks"                                                           "mobility | water"
+
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"1200"

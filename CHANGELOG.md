@@ -2,6 +2,62 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 8.0
+- Fixed Sight being 4 levels
+- Removed Review phase and added second load screen to replace strategy time screen
+- Witchcraft, Borrowed Time, and Multicast can now be disabled by passive breaking. Borrowed time can still be activated manually.
+- Added 0.5s codown to Magicians Revenge
+- Halved Healing Aura's Cooldown
+- Increased Eldritch Pull by 100 pull distance
+- Added Autocast tag to Bulwark Strike, meaning Clinkz will now autolevel it with his perk
+- Sunder and Arcane Symbiote are now troll combo, in line with its other bans from health sacrificing abilities
+- Increased gold tick rate to 2 in all_allowed
+- Reactivated Armageddon, but it, and all other mega ultimates are now considered single player abilities
+*
+- Added Thunder Musket ability from Angel Arena Black Star
+- Added Survival of the Fittest from DotA Resurgence
+- Added 4 Radiant Jungle abilities from Overmeme (also 4 OP single player versions)
+- Added 4 Mercy Main BTW abiltieis from Overmeme
+- Roshanify now gives -75 movement speed instead of move speed limit
+- Arcane Symbiote now has a different aghs effect, no longer enables right click attack
+
+## 7.9
+- Improved styles of builds page
+- You can not alt or right click abilities/heroes to recommend them to be selected or banned
+- You can now right click an ability slot to random an ability
+- Added two new hints for above two functions
+- Winter Wyverns Perk now only requires health and mana to be at 75% before she starts flying
+- Fixed exploit that allowed glimmer cape and shadow amulet to be used when invis items are banned
+- Added Refresh Cooldowns on Death vote 
+- Added Fat-O-Meter vote
+- Added Healing Tower Aura ability from Imba
+- More Russian translation by Exchy
+- Fix for some illusion abiliites not creating illusions with the right abilities
+- Adjuted the prices of many OP and Single player abilities to accomodate a refactoring of the behind the scenes infrastructure
+- Added chat announcment about how to change chat channels during pick stage
+- Added popup in chat bar so players can initiate votes durin the pick phase
+- Removed IMBA abilities to prepare fo adding the new ones
+- Adjusted how elemental mystery works so it works better with other cooldown reduction sources
+- Increased Aether Ranges spell cast range boost and also made it compatible with other sources of spell range boosting
+
+## 7.8
+- Added Aegis Tower OP (single player ability)
+- Nerfed Molten Lord abilities
+- Fixed where non-hero respawning units, like Bear, had crazy high gold bounties
+- Increased starting bonus gold to 2500 in all allowed because OOSP no longer gives bonus gold
+- Increased bonus gold to 200% in all_allowed form 150%
+- Battle thirst is no longer active by default in all_allowed
+- Doubled Duration of Tree Eater
+- Some Russian translations improvements by Exchy
+- Eldritch Pull cast range increases with level, and so does damage
+- Thirst for life no longer has intellect peanlty
+- Renamed Nature's Spy to Sight and made it an ultimate
+- Reduced manacost of blink support to 100 from 175
+- Talents that are for abilities you dont have now get replaced, preferably with talents for abilities you do have
+- Improved search function in builds tab
+- Storm Spirit can no longer have arcane orb and his perk active
+
+
 ## 7.7 
 - Ball Lighting will no longer trigger essence aura
 - Symbiote now gives -6 armor and no longer gives bonus stats
@@ -50,12 +106,9 @@ All notable changes to this project will be documented in this file.
 - Added 4 Molten Lord abilities
 - Added notification to inform about battle thirst
 - Reverted to original Dota map for "dota" map
-*
 - Added Phase Shift from Dusk
 - Added Extraplanar Pact from Dusk
 - Added Lysander Abilities (4) from Dusk
- 
-
 
 ## 7.6 - Steam Version
 - Added credits for most custom abiliites, made some icon changes. 

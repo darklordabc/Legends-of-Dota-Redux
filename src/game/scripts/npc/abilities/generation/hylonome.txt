@@ -51,12 +51,12 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "cast_range"            "600"
+                "cast_range"            "600 700 800 900"
             }
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "distance"              "-150 -200 -250 -300"
+                "distance"              "-250 -300 -350 -400"
             }
             "04"
             {
@@ -71,7 +71,7 @@
             "05"
             {
                 "var_type"              "FIELD_INTEGER"
-                "damage"                "85"
+                "damage"                "85 95 115 125"
             }
         }
         "precache"
@@ -202,7 +202,8 @@
         "AbilityProcsMagicStick"        "1"
 
         "AbilityDamage"             "180 400 550 700"
-        "ReduxFlags"                                                           "SuperOP"
+        "ReduxFlags"                                                           ""
+        "ReduxCost"                                                            "120"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------

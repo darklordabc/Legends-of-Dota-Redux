@@ -17,6 +17,7 @@
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"custom/lysander_grapeshot"
+		"ReduxFlags"                                                           "crit"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

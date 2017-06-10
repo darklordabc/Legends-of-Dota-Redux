@@ -1,3 +1,4 @@
+require('lib/physics')
 lysander_phantom_fleet = class({})
 
 LinkLuaModifier("modifier_phantom_fleet_slow","abilities/dusk/lysander_phantom_fleet",LUA_MODIFIER_MOTION_NONE)

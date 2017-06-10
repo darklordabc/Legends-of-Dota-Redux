@@ -70,6 +70,8 @@ function Ingame:init()
     self.voteDoubleCreeps = false
     self.voteDisableAntiKamikaze = false
     self.voteDisableRespawnLimit = false
+    self.voteEnableFatOMeter = false
+    self.voteEnableRefresh = false
     self.voteEnableBuilder = false
     self.voteAntiRat = false
     self.origianlRespawnRate = nil
@@ -264,7 +266,7 @@ function Ingame:OnPlayerPurchasedItem(keys)
         for i=0,11 do
             local item = hero:GetItemInSlot(i)
             if item ~= nil then
-                if item:GetName() == "item_shadow_amulet" or item:GetName() == "item_invis_sword" or item:GetName() == "item_silver_edge" then
+                if item:GetName() == "item_shadow_amulet" or item:GetName() == "item_invis_sword" or item:GetName() == "item_silver_edge" or item:GetName() == "item_glimmer_cape" then
                     hero:ModifyGold(item:GetCost(), false, 0)
                     hero:RemoveItem(item)
                     util:DisplayError(keys.PlayerID, "invisbilityItemsAreBanned")
@@ -445,11 +447,11 @@ function Ingame:onStart()
     
         Timers:CreateTimer(function ()
                Convars:SetBool("dota_all_vision", true)
-            end, 'enable_all_vision_fix', 1)
+            end, 'enable_all_vision_fix', 5)
             
         Timers:CreateTimer(function ()
                Convars:SetBool("dota_all_vision", false)
-            end, 'disable_all_vision_fix', 1.2)
+            end, 'disable_all_vision_fix', 5.2)
             
     end
            
@@ -494,20 +496,6 @@ function Ingame:onStart()
         this:checkBalanceTeamsNextTick()
     end, nil)
 
-    CustomGameEventManager:RegisterListener('lodOnCheats', function(eventSourceIndex, args)
-        if args.command then
-            Commands:OnPlayerChat({
-                teamonly = true,
-                playerid = args.PlayerID,
-                text = "-" .. args.command
-            })
-        end
-
-        if args.consoleCommand and (util:isSinglePlayerMode() or Convars:GetBool("sv_cheats") or self.voteEnabledCheatMode) then
-            SendToServerConsole(args.consoleCommand)
-        end
-    end)
-
     -- Listen for players connecting
     ListenToGameEvent('player_connect', function(keys)
         this:checkBalanceTeamsNextTick()
@@ -519,56 +507,9 @@ function Ingame:onStart()
     
     -- If Fat-O-Meter is enabled correctly, take note of players' heroes and record necessary information.
     if OptionManager:GetOption('useFatOMeter') > 0 and OptionManager:GetOption('useFatOMeter') <= 2 then
-        print("Starting Fat-O-Meter.")
-        local maxPlayers = 24
-        fatData = {}
-
-        for playerID = 0, (maxPlayers-1) do
-            local hero = PlayerResource:GetSelectedHeroEntity(playerID) 
-            if hero and IsValidEntity(hero) then
-                fatData[playerID] = {
-                    defaultModelScale = hero:GetModelScale(), --this is NOT 1 for most heroes, although some are very close
-                    prevScaleDifference = 0.0, --stored as difference so we can undo/change the effects without breaking other size-related code
-                    modelScaleDifference = 0.0, --stored as difference so we can undo/change the effects without breaking other size-related code
-                    targetScaleDifference = 0.0,
-                    interpScaleDifference = 0, --interpolates between previous and target scale diff
-                    maxScalePercent = constants.FAT_SCALING[PlayerResource:GetSelectedHeroName(playerID)] or 3.3,
-                    lastNetWorth = 0, --stores net worth for gold mode, kill value calculation in kill mode, and level-1 in level mode
-                    netWorthChange = 0, --stored for faster calculations on gold and levels
-                    fatness = 0.0, -- 0-100, with 100 being maxScalePercent times default and 0 being default.
-                }
-            end
-        end
-        
-        ListenToGameEvent('game_rules_state_change', function(keys)
-
-            if OptionManager:GetOption('useFatOMeter') == 0 then return end
-
-            local newState = GameRules:State_Get()
-            
-            if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-                print("Starting Fat Timers.")
-                Timers:CreateTimer(function()
-                    if lastFatThink == nil then
-                        lastFatThink = -60
-                    end
-                    if lastFatAnimate == nil then
-                        lastFatAnimate = -3.0
-                    end
-                    local dotaTime = GameRules:GetDOTATime(false, false)
-                    
-                    while (dotaTime - lastFatThink) > 60 do
-                        Ingame:FatOMeterThinker(60)
-                        lastFatThink = lastFatThink + 60
-                    end
-                    while (dotaTime - lastFatAnimate) > 3.0 do
-                        Ingame:FatOMeterAnimate(3.0)
-                        lastFatAnimate = lastFatAnimate + 3.0
-                    end
-                    return 3.0
-                end, "fatThink", 0.5)
-            end
-        end, nil)
+        this:StartFatOMeter()
+        --print("fat o meter")
+        --print(OptionManager:GetOption('useFatOMeter'))
     end
 
     GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(Ingame, 'FilterExecuteOrder'), self)
@@ -590,6 +531,56 @@ function Ingame:onStart()
     
     -- Set it to no team balance
     self:setNoTeamBalanceNeeded()
+end
+
+function Ingame:StartFatOMeter()
+    -- If Fat-O-Meter is enabled correctly, take note of players' heroes and record necessary information.
+    print("Starting Fat-O-Meter.")
+    ingame.voteEnableFatOMeter = true
+    local maxPlayers = 24
+    fatData = {}
+
+    for playerID = 0, (maxPlayers-1) do
+        local hero = PlayerResource:GetSelectedHeroEntity(playerID) 
+        if hero and IsValidEntity(hero) then
+            fatData[playerID] = {
+                defaultModelScale = hero:GetModelScale(), --this is NOT 1 for most heroes, although some are very close
+                prevScaleDifference = 0.0, --stored as difference so we can undo/change the effects without breaking other size-related code
+                modelScaleDifference = 0.0, --stored as difference so we can undo/change the effects without breaking other size-related code
+                targetScaleDifference = 0.0,
+                interpScaleDifference = 0, --interpolates between previous and target scale diff
+                maxScalePercent = constants.FAT_SCALING[PlayerResource:GetSelectedHeroName(playerID)] or 3.3,
+                lastNetWorth = 0, --stores net worth for gold mode, kill value calculation in kill mode, and level-1 in level mode
+                netWorthChange = 0, --stored for faster calculations on gold and levels
+                fatness = 0.0, -- 0-100, with 100 being maxScalePercent times default and 0 being default.
+            }
+        end
+    end
+
+    Timers:CreateTimer(function()
+        if GameRules:State_Get() < DOTA_GAMERULES_STATE_GAME_IN_PROGRESS or OptionManager:GetOption('useFatOMeter') == 0 then
+            return 0.1
+        end
+
+        if lastFatThink == nil then
+            print("Starting Fat Timers.")
+            lastFatThink = -60
+        end
+        if lastFatAnimate == nil then
+            lastFatAnimate = -3.0
+        end
+        local dotaTime = GameRules:GetDOTATime(false, false)
+        
+        while (dotaTime - lastFatThink) > 60 do
+            Ingame:FatOMeterThinker(60)
+            lastFatThink = lastFatThink + 60
+        end
+        while (dotaTime - lastFatAnimate) > 3.0 do
+            Ingame:FatOMeterAnimate(3.0)
+            lastFatAnimate = lastFatAnimate + 3.0
+        end
+        return 3.0
+    end, "fatThink", 0.5)
 end
 
 function Ingame:CommandNotification(command, message, cooldown)
@@ -1244,11 +1235,23 @@ function Ingame:handleRespawnModifier()
 
                             -- Give 322 gold if enabled
                             if OptionManager:GetOption('322') == 1 then
-                                hero:ModifyGold(322,false,0)
-                                SendOverheadEventMessage(hero:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, hero, 322, nil)
+                                if OptionManager:GetOption('mapname') == "overthrow" then
+                                    myTeamKills = GetTeamHeroKills(hero:GetTeamNumber())
+                                    opponentTeamKills = GetTeamHeroKills(otherTeam(hero:GetTeamNumber()))
+                                    
+                                    if myTeamKills < opponentTeamKills then
+                                        hero:ModifyGold(322,false,0)
+                                        SendOverheadEventMessage(hero:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, hero, 322, nil)
+                                    end
+
+                                else
+                                    hero:ModifyGold(322,false,0)
+                                    SendOverheadEventMessage(hero:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, hero, 322, nil)
+                                end
+                                
                             end
                             -- Refresh cooldowns if enabled
-                            if OptionManager:GetOption('refreshCooldownsOnDeath') == 1 then
+                            if OptionManager:GetOption('refreshCooldownsOnDeath') == 1 or ingame.voteEnableRefresh == true then
                                 for i = 0, 15 do
                                     local ability = hero:GetAbilityByIndex(i)
                                     if ability then

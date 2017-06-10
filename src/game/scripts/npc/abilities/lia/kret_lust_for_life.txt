@@ -12,7 +12,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "intellect_sacrifice"                                  "-5 -10 -15 -25"
+                "intellect_sacrifice"                                  "0"
             }
             "02"
             {
@@ -22,7 +22,7 @@
             "03"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "health_regen_percent"                                 "0.10 0.15 0.20 .25"
+                "health_regen_percent"                                 "0.5 0.10 0.15 0.20"
             }
         }
         "ReduxFlags"                                                           "tank"

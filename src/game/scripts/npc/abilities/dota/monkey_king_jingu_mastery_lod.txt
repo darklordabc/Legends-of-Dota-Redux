@@ -108,8 +108,8 @@
                 }
             }
         }
-        "ReduxFlags"                                                           "attack_modifier | OPSkillsList"
+        "ReduxFlags"                                                           "attack_modifier"
         "ReduxPerks"                                                           "attack_modifier"
-        "ReduxCost"                                                            "70"
+        "ReduxCost"                                                            "80"
     }
 }

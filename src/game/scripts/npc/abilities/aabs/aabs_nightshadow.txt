@@ -60,4 +60,270 @@
 			}
 		}
 	}
+
+	"aabs_thunder_musket"
+	{
+		"BaseClass"						"ability_datadriven"
+		"ID"							"10235"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"custom/thunder_musket"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"MaxLevel"						"4"
+		"AbilityCooldown"				"6 5 4 3"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_strength"		"0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_agility"			"0"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"0"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_attack_range"	"0"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"crit_chance"			"0"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"crit_multiplier"		"0"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"thunderstruck_cooldown"		"6 5 4 3"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"thunderstruck_bonus_attack_range"		"120 220 320 420"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"thunderstruck_magical_damage"		"50 75 100 125"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_item_thunder_musket"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%bonus_strength"
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%bonus_agility"
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
+				}
+			}
+			"modifier_item_thunder_musket_unique"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+
+				"OnAttackStart"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName" 	"modifier_item_thunder_musket_crit"
+						"Target" 		"CASTER"
+					}
+
+					"Random"
+					{
+						"Chance" "%crit_chance"
+						"OnSuccess"
+						{
+							"ApplyModifier"
+							{
+								"ModifierName" 	"modifier_item_thunder_musket_crit"
+								"Target"    	"CASTER"
+							}
+						}
+					}
+				}
+
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/angel_arena_blackstar/item_thunder_musket.lua"
+						"Function"		"ThunderstruckProc"
+					}
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%thunderstruck_magical_damage"
+					}
+				}
+
+				"ThinkInterval"  "0.1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/angel_arena_blackstar/item_thunder_musket.lua"
+						"Function"		"UpdateRangedBonus"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_item_thunder_musket_ranged"
+						"Target" 		"CASTER"
+					}
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_item_thunder_musket_ranged_thunderstruck"
+						"Target" 		"CASTER"
+					}
+				}
+			}
+
+			"modifier_item_thunder_musket_crit"
+			{
+				"IsHidden"			"1"
+				"IsPurgable"		"0"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" "%crit_multiplier"
+				}
+
+				"OnAttackLanded"
+				{
+					"FireSound"
+					{
+						"EffectName"	"DOTA_Item.Daedelus.Crit"
+						"Target"		"CASTER"
+					}
+
+					"RemoveModifier"
+					{
+						"ModifierName"  "modifier_item_thunder_musket_crit"
+						"Target"   		"CASTER"
+					}
+				}
+			}
+
+			"modifier_item_thunder_musket_ranged"
+			{
+				"IsHidden"			"1"
+				"IsPurgable"		"0"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"		"%bonus_attack_range"
+				}
+			}
+
+			"modifier_item_thunder_musket_ranged_thunderstruck"
+			{
+				"IsHidden"			"1"
+				"IsPurgable"		"0"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"		"%thunderstruck_bonus_attack_range"
+				}
+			}
+		}
+	}
+
+	"genos_survival_of_the_fittest"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		// "AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_NONE"
+		"AbilityTextureName"			"custom\genos_survival_of_the_fittest"
+		"AbilityType"                    	"DOTA_ABILITY_TYPE_BASIC"
+
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"regen"						"0.5 1.0 1.5 2.0"
+			}
+			
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"speed"						"0"
+			}
+
+		}
+
+		  "precache" 
+		   {
+			  "particle"    "particles/units/heroes/hero_abaddon/abaddon_frost_slow.vpcf"
+			  "particle"    "particles/blood_impact/blood_advisor_pierce_spray_c.vpcf"
+			  "particle"    "particles/econ/items/legion/legion_fallen/legion_fallen_ambient.vpcf"
+			  "particle"	"particles/econ/items/legion/legion_fallen/legion_fallen_press_owner_r2_c.vpcf"
+			  "particle"	"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_wings_buff.vpcf"
+			  "soundfile"   "soundevents/soundevents_conquest.vsndevts"
+		   }
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+
+		"OnOwnerSpawned"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/resurgence/hero_genos/darwin.lua"
+				"Function"	"Extinction"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_darwin"
+			{
+
+				"Passive"	"1"
+				"IsHidden"	"1"
+
+				"ThinkInterval"	"1"
+				"OnIntervalThink"
+				{
+
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/resurgence/hero_genos/darwin.lua"
+						"Function"	"UpdateDarwin"
+					}
+
+				}
+					
+			}
+		}
+	}
 }

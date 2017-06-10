@@ -15,16 +15,17 @@
         "AbilityTextureName"            "enigma_black_hole"
         "MaxLevel"                      "1"
         "RequiredLevel"                 "24"
+        "ReduxCost"                                                            "120"
         
         // Precache
         //-------------------------------------------------------------------------------------------------------------
         "precache"
         {
             "particle"      "particles/other/mega_black_hole.vpcf"
+            "soundfile"     "soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts"            
             "soundfile"     "sounds/weapons/hero/enigma/black_hole_loop.vsnd"
             "soundfile"     "sounds/weapons/hero/enigma/black_hole_stop.vsnd"
         }
-        
         // Casting
         //-------------------------------------------------------------------------------------------------------------
         "AbilityCastRange"              "800"
@@ -63,7 +64,7 @@
             "04"
             {
                 "var_type"              "FIELD_INTEGER"
-                "damage"                "500"
+                "damage"                "400"
             }
             "05"
             {
@@ -170,6 +171,11 @@
                     {
                         "EffectName"    "Hero_Enigma.Black_Hole.Stop"
                         "Target"        "TARGET"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/mega_ultimates/mega_black_hole.lua"
+                        "Function"      "ChannelEnd"
                     }
                 }
                 

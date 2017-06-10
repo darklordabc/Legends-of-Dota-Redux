@@ -1193,6 +1193,14 @@ function setupBuilderTabs() {
     $.RegisterEventHandler('DragEnter', heroDropConBlank, heroDragEnter);
     $.RegisterEventHandler('DragLeave', heroDropConBlank, heroDragLeave);
 
+    $('#pickingPhaseSelectedHeroImageCon').SetPanelEvent("onactivate", function () {
+        onYourHeroRandomed();
+    })
+
+    $('#pickingPhaseSelectedHeroImageCon').SetPanelEvent("oncontextmenu", function () {
+        onYourHeroRandomed();
+    })
+
     $('#pickingPhaseSelectedHeroText').hittest = false;
 
     // Hook banning
@@ -1580,6 +1588,20 @@ function onBanButtonPressed() {
     }
 }
 
+function onYourHeroRandomed() {
+    // Focus nothing
+    focusNothing();
+
+    GameEvents.SendCustomGameEventToServer("lodChooseRandomHero", {})  
+}
+
+function onYourAbilityIconRandomed(slot) {
+    // Focus nothing
+    focusNothing();
+
+    GameEvents.SendCustomGameEventToServer("lodChooseRandomAbility", {"slot" : slot})  
+}
+
 // They clicked on one of their ability icons
 function onYourAbilityIconPressed(slot) {
     // Focus nothing
@@ -1732,9 +1754,21 @@ function toggleShowTier(tier) {
 
 // Makes the given hero container selectable
 function makeHeroSelectable(heroCon) {
+    heroCon.SetPanelEvent('oncontextmenu', function() {
+        var heroName = heroCon.GetAttributeString('heroName', '');
+        if(heroName == null || heroName.length <= 0) return;
+
+        GameEvents.SendCustomGameEventToServer("lodGameSetupPing", {"originalContent" : heroName, "content" : $.Localize(heroName), "type" : "hero"});
+    });
+
     heroCon.SetPanelEvent('onactivate', function() {
         var heroName = heroCon.GetAttributeString('heroName', '');
         if(heroName == null || heroName.length <= 0) return;
+
+        if (GameUI.IsAltDown()) {
+            GameEvents.SendCustomGameEventToServer("lodGameSetupPing", {"originalContent" : heroName, "content" : $.Localize(heroName), "type" : "hero"});
+            return false;
+        }
 
         setSelectedHelperHero(heroName);
     });
@@ -1817,9 +1851,21 @@ function hookHeroInfo(heroCon) {
 }
 
 function makeSkillSelectable(abcon) {
+    abcon.SetPanelEvent('oncontextmenu', function() {
+        var abName = abcon.GetAttributeString('abilityname', '');
+        if(abName == null || abName.length <= 0) return false;
+
+        GameEvents.SendCustomGameEventToServer("lodGameSetupPing", {"originalContent" : abName, "content" : $.Localize("DOTA_Tooltip_ability_"+abName), "type" : "ability"});
+    });
+
     abcon.SetPanelEvent('onactivate', function() {
         var abName = abcon.GetAttributeString('abilityname', '');
         if(abName == null || abName.length <= 0) return false;
+
+        if (GameUI.IsAltDown()) {
+            GameEvents.SendCustomGameEventToServer("lodGameSetupPing", {"originalContent" : abName, "content" : $.Localize("DOTA_Tooltip_ability_"+abName), "type" : "ability"});
+            return false;
+        }
 
         // Mark it as dropable
         setSelectedDropAbility(abName, abcon);
@@ -4521,12 +4567,28 @@ function OnPhaseChanged(table_name, key, data) {
             }
 
             // Message for players selecting skills
-            if(currentPhase == PHASE_REVIEW) {
-				$("#tipPanel").AddClass('hidden');
-                // Load all hero images
-                for(var playerID in activeReviewPanels) {
-                    activeReviewPanels[playerID].OnReviewPhaseStart();
+            if(currentPhase == PHASE_SPAWN_HEROES) {
+				// $("#tipPanel").AddClass('hidden');
+    //             // Load all hero images
+    //             for(var playerID in activeReviewPanels) {
+    //                 activeReviewPanels[playerID].OnReviewPhaseStart();
+    //             }
+                var parent = $.GetContextPanel().GetParent();
+                while(parent.id != "Hud")
+                    parent = parent.GetParent();
+                
+                var panel = parent.FindChildTraverse("PreGame");
+                for (var child in panel.Children()) {
+                    panel.Children()[child].visible = false;
                 }
+                
+                var loading = $.CreatePanel('Panel', panel, '');
+                loading.BLoadLayout('file://{resources}/layout/custom_game/custom_loading_screen.xml', false, false);
+                loading.FindChildTraverse("buildLoadingIndicator").visible = true;
+                $.Schedule(1.0, function () {
+                    loading.FindChildTraverse("LoDLoadingTip").visible = true;  
+                })
+                loading.FindChildTraverse("vignette").visible = false;
             }
 
             break;
@@ -4881,6 +4943,7 @@ function SetSelectedPhase(newPhase, noSound) {
 
     // Set the phase
     selectedPhase = newPhase;
+    GameUI.CustomUIConfig().selectedPhase = newPhase;;
 
     if (phases[selectedPhase] != undefined)
         $('#lodStageName').text = $.Localize(phases[selectedPhase].name);
@@ -5302,6 +5365,10 @@ function saveCurrentBuild() {
     // Grab the map's name
     var mapName = Game.GetMapInfo().map_display_name; 
 
+    if (mapName == "overthrow") {
+
+    }
+
     // Should we use option voting?
     var useOptionVoting = false;
 
@@ -5397,6 +5464,17 @@ function saveCurrentBuild() {
     GameEvents.Subscribe('lodCustomTimer', function (data) {
         endOfTimer = data.endTime;
         freezeTimer = data.freezeTimer ? data.freezeTimer : -1;
+    })
+
+    GameEvents.Subscribe('lodGameSetupPingEffect', function (data) {
+        if (data.type == "hero") {
+            heroPanelMap[data.originalContent].RemoveClass("quickHighlight")
+            heroPanelMap[data.originalContent].AddClass("quickHighlight");
+        } else if (data.type == "ability") {
+            abilityStore[data.originalContent].RemoveClass("quickHighlight");
+            abilityStore[data.originalContent].AddClass("quickHighlight");
+        }
+        Game.EmitSound("Redux.Ping")
     })
     
     // Search handler
@@ -5511,7 +5589,7 @@ function saveCurrentBuild() {
 	    })
     }
 
-    if (mapName == "all_allowed"){
+    if (mapName == "all_allowed" || mapName == "overthrow"){
 	    $.Each(["noInvis", "banning", "antirat", "OPAbilities", "customAbilities"], function(name) {
 	        addVotingOption(name);
 	    })
@@ -5520,6 +5598,9 @@ function saveCurrentBuild() {
     var parent = $.GetContextPanel().GetParent();
     while(parent.id != "Hud")
         parent = parent.GetParent();
+
+    var votings = $.CreatePanel('Panel', $.GetContextPanel(), '');
+    votings.BLoadLayout('file://{resources}/layout/custom_game/ingame_votings.xml', false, false);
 
     parent.FindChildTraverse("PreGame").FindChildTraverse("HeroGrid").visible = false;
     parent.FindChildTraverse("PreGame").FindChildTraverse("HeroPickControls").visible = false;

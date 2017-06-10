@@ -10,7 +10,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "cast_range_bonus"                                     "300 500 700 900"
+                "cast_range_bonus"                                     "400 600 800 1000"
             }
         }
         "OnOwnerSpawned"
@@ -29,8 +29,8 @@
                 "Function"                                             "SetCastRange"
             }
         }
-        "ReduxCost"                                                            "100"
+        "ReduxCost"                                                            "120"
         "ReduxBans"                                                            "aether_range_lod"
-        "ReduxFlags"                                                           "SuperOP"
+        "ReduxFlags"                                                           ""
     }
 }

@@ -23,7 +23,6 @@ function Commands:OnPlayerChat(keys)
         if string.match(v, "-") then
             command = v
         elseif string.match(v, "#") then
-            print(string.sub(v, 2))
             playerID = tonumber(string.sub(v, 2)) 
         else
             table.insert(arguments, v)
@@ -114,6 +113,26 @@ function Commands:OnPlayerChat(keys)
             end)
         elseif ingame.voteDisableRespawnLimit then
             util:DisplayError(playerID, "#respawnAlreadyDeactivated")
+        end
+    elseif string.find(command, "-enablefat") or string.find(command, "-ef") then
+        if not ingame.voteEnableFatOMeter then
+            util:CreateVoting("lodVotingFatOMeter", playerID, 10, OptionManager:GetOption('mapname') == 'all_allowed' and 50 or 100, function()
+                ingame.voteEnableFatOMeter = true
+                OptionManager:SetOption('useFatOMeter', 2)
+                ingame:StartFatOMeter()
+                EmitGlobalSound("Event.CheatEnabled")
+            end)
+        elseif ingame.voteEnableFatOMeter then
+            util:DisplayError(playerID, "#fatOmeterAlreadyOn")
+        end
+    elseif string.find(command, "-enablerefresh") then
+        if OptionManager:GetOption('refreshCooldownsOnDeath') ~= 1 and not ingame.voteEnableRefresh then
+            util:CreateVoting("lodVotingRefresh", playerID, 10, OptionManager:GetOption('mapname') == 'all_allowed' and 50 or 100, function()
+                ingame.voteEnableRefresh = true
+                EmitGlobalSound("Event.CheatEnabled")
+            end)
+        else
+            util:DisplayError(playerID, "#refresherAlreadyOn")
         end
     elseif string.find(command, "-switchteam") then
         local team = PlayerResource:GetTeam(playerID)

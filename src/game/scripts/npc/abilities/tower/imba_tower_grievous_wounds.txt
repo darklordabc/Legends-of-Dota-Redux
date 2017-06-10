@@ -49,7 +49,7 @@
                 "EffectAttachType"                                     "follow_overhead"
             }
         }
-        "ReduxFlags"                                                           "attack_modifier | SuperOP"
+        "ReduxFlags"                                                           "attack_modifier"
         "ReduxCost"                                                            "120"
     }
 }
