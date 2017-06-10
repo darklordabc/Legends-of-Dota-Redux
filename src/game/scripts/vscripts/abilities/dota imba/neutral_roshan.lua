@@ -86,9 +86,6 @@ function RoshanSlam( keys )
 		ability:EndCooldown()
 		ability:StartCooldown(math.max(ability:GetCooldown(1) - #slam_targets, 1))
 	end)
-
-	-- Flag spell as having finished cast (for the AI controller)
-	caster.ai_is_casting = nil
 end
 
 function RoshanSummon( keys )
@@ -197,8 +194,13 @@ function RoshanFury( keys )
 	-- Projectile geometry
 	local caster_pos = caster:GetAbsOrigin()
 	local target_pos = target:GetAbsOrigin()
-	local projectile_direction = (target_pos - caster_pos):Normalized()
-
+	
+	local projectile_direction
+	if caster_pos == target_pos then
+		projectile_direction = caster:GetForwardVector()
+	else
+		projectile_direction = (target_pos - caster_pos):Normalized()
+	end
 	-- Play sound
 	caster:EmitSound(sound_cast)
 
@@ -225,9 +227,6 @@ function RoshanFury( keys )
 	}
 
 	ProjectileManager:CreateLinearProjectile(projectile_fury)
-
-	-- Flag spell as having finished cast (for the AI controller)
-	caster.ai_is_casting = nil
 end
 
 function RoshanFuryHit( keys )
@@ -242,8 +241,8 @@ function RoshanFuryHit( keys )
 	local debuff_duration = ability:GetSpecialValueFor("debuff_duration")
 
 	-- Calculate total damage
-	local total_damage = base_damage + stacking_damage * GAME_ROSHAN_KILLS
-
+	local total_damage = base_damage + stacking_damage * caster:GetDeaths()
+	print(total_damage)
 	-- Deal damage
 	ApplyDamage({attacker = caster, victim = target, ability = ability, damage = total_damage, damage_type = DAMAGE_TYPE_MAGICAL})
 
@@ -333,18 +332,6 @@ end
 
 function RoshanAIstart( keys )
 	local caster = keys.caster
-	local attacker = keys.attacker
-	local damage_taken = keys.damage_taken
-	
-	-- If the damage source's height is different from Roshan's (cliff attacks), prevent damage and do nothing
-	if (attacker:GetAbsOrigin().z - caster:GetAbsOrigin().z) > 25 then
-		caster:Heal(damage_taken, caster)
-		return nil
-	end
-
-	-- Update last damage time
-	caster.last_damage_time = GameRules:GetDOTATime(false, false)
-	caster.last_attacker = attacker
 
 	-- If the AI is not active, kickstart it
 	if not caster.ai_is_active then
@@ -358,10 +345,10 @@ function RoshanAIthink( keys )
 
 	-- Search for enemies in the attack search radius
 	local attack_search_range_enemies = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, 250, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD, FIND_CLOSEST, false)
-	if #attack_search_range_enemies > 0 and not caster.ai_is_active then
+	if #attack_search_range_enemies > 0 then
 		caster.ai_is_active = true
 		caster.closest_attack_target = attack_search_range_enemies[1]
-	elseif #attack_search_range_enemies <= 0 then
+	else
 		caster.closest_attack_target = nil
 	end
 
@@ -373,11 +360,6 @@ function RoshanAIthink( keys )
 			local courier_loc = potential_courier:GetAbsOrigin()
 			FindClearSpaceForUnit(potential_courier, courier_loc + (courier_loc - roshan_loc):Normalized() * 300, true)
 		end
-	end
-
-	-- If the AI is not active, do nothing
-	if not caster.ai_is_active then
-		return nil
 	end
 
 	-- Parameters
@@ -427,7 +409,7 @@ function RoshanAIthink( keys )
 	end
 
 	-- Check if an ability cast is underway
-	if caster.ai_is_casting then
+	if ability_slam:IsInAbilityPhase() or ability_roshling:IsInAbilityPhase() or ability_fury:IsInAbilityPhase() then
 		return nil
 	end
 		
@@ -453,34 +435,16 @@ function RoshanAIthink( keys )
 		caster.ai_leashing_delay = nil
 	end
 
-	-- Check if the last attacker target is still valid
-	local current_time = GameRules:GetDOTATime(false, false)
-	if caster.last_damage_time and (current_time - caster.last_damage_time) > super_leash_time then
-		caster.last_attacker = nil
-	end
-
-	-- Use the nearest enemy as target if possible
-	local current_target
-	if caster.closest_attack_target then
-		current_target = caster.closest_attack_target
-
-	-- Else, use the last attacker as target if possible
-	elseif caster.last_attacker then
-		current_target = caster.last_attacker
-
-	-- Else, there is no one nearby and no one attacked in the last [leash_time] seconds; go idle.
-	else
-		caster:MoveToPosition(spawn_loc)
-		caster.ai_is_active = nil
+	-- If the AI is not active, do not launch skills (use basic AI functionality)
+	if not caster.ai_is_active then
 		return nil
 	end
 
 	-- Check for Fury of the Immortal cast conditions
-	if roshan_hp <= fury_pct and ability_fury and ability_fury:IsCooldownReady() then
+	if roshan_hp <= fury_pct and ability_fury and ability_fury:IsCooldownReady() and caster.closest_attack_target then
 		
 		-- Cast Fury of the Immortal on the current target
-		caster:CastAbilityOnTarget(current_target, ability_fury, 0)
-		caster.ai_is_casting = true
+		caster:CastAbilityOnTarget(caster.closest_attack_target, ability_fury, 0)
 		return nil
 
 	-- Check for Summon Roshlings cast conditions
@@ -495,17 +459,6 @@ function RoshanAIthink( keys )
 		
 		-- Perform Slam
 		caster:CastAbilityNoTarget(ability_slam, 0)
-		caster.ai_is_casting = true
 		return nil
-	end
-
-	-- If there is a target, attack it
-	if current_target and current_target:IsAlive() then
-		return nil
-
-	-- Else, return to the initial position and idle
-	else
-		caster:MoveToPosition(spawn_loc)
-		caster.ai_is_active = nil
 	end
 end

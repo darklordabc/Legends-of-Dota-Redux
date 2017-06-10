@@ -1,0 +1,205 @@
+"DOTAAbilities"
+{
+    "imba_roshan_fury"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                                     "ability_datadriven"
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"                         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetFlags"                        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+        "AbilityUnitDamageType"                         "DAMAGE_TYPE_MAGICAL"
+        "AbilityTextureName"                            "custom/imba_roshan_fury"
+        "MaxLevel"                                      "4"
+        "ReduxFlags"                                                           "stun"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"                               "50 100 150 200"
+
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_roshan_halloween.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_invoker/invoker_deafening_blast.vpcf"
+        }
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"                              "600"
+        "AbilityCastRangeBuffer"                        "3000"
+        "AbilityCooldown"                               "30.0"
+        "AbilityCastPoint"                              "1.5"
+        "AbilityCastAnimation"                          "ACT_DOTA_CAST_ABILITY_1"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "width"                                 "375"
+            }
+            "02"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "length"                                "600 800 1200 1600"
+            }
+            "03"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "speed"                                 "2000"
+            }
+            "04"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "base_damage"                           "80 160 200 260"
+            }
+            "05"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "stacking_damage"                       "0 50 100 150"
+            }
+            "06"
+            {
+                "var_type"                              "FIELD_FLOAT"
+                "debuff_duration"                       "0.5 1.0 2.0 2.5"
+            }
+        }
+
+        "OnAbilityPhaseStart"
+        {
+            "FireSound"
+            {
+                "EffectName"                            "RoshanDT.Scream"
+                "Target"                                "CASTER"
+            }
+        }
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                            "abilities/dota imba/neutral_roshan.lua"
+                "Function"                              "RoshanFury"
+
+                "sound_cast"                            "Hero_Invoker.DeafeningBlast"
+                "particle_fury"                         "particles/units/heroes/hero_invoker/invoker_deafening_blast.vpcf"
+            }
+        }
+
+        "OnProjectileHitUnit"
+        {
+            "DeleteOnHit"                               "0"
+
+            "RunScript"
+            {
+                "ScriptFile"                            "abilities/dota imba/neutral_roshan.lua"
+                "Function"                              "RoshanFuryHit"
+            }
+        }
+    }
+
+    "imba_roshan_fury_op"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                                     "ability_datadriven"
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"                         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetFlags"                        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+        "AbilityUnitDamageType"                         "DAMAGE_TYPE_MAGICAL"
+        "AbilityTextureName"                            "custom/imba_roshan_fury_op"
+        "MaxLevel"                                      "1"
+        "ReduxCost"                                     "120"
+        "ReduxFlags"                                                           "stun"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"                               "0"
+
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_roshan_halloween.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_invoker/invoker_deafening_blast.vpcf"
+        }
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"                              "600"
+        "AbilityCastRangeBuffer"                        "3000"
+        "AbilityCooldown"                               "30.0"
+        "AbilityCastPoint"                              "1.2"
+        "AbilityCastAnimation"                          "ACT_DOTA_CAST_ABILITY_1"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "width"                                 "375"
+            }
+            "02"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "length"                                "1600"
+            }
+            "03"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "speed"                                 "2000"
+            }
+            "04"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "base_damage"                           "500"
+            }
+            "05"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "stacking_damage"                       "250"
+            }
+            "06"
+            {
+                "var_type"                              "FIELD_FLOAT"
+                "debuff_duration"                       "2.5"
+            }
+        }
+
+        "OnAbilityPhaseStart"
+        {
+            "FireSound"
+            {
+                "EffectName"                            "RoshanDT.Scream"
+                "Target"                                "CASTER"
+            }
+        }
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                            "abilities/dota imba/neutral_roshan.lua"
+                "Function"                              "RoshanFury"
+
+                "sound_cast"                            "Hero_Invoker.DeafeningBlast"
+                "particle_fury"                         "particles/units/heroes/hero_invoker/invoker_deafening_blast.vpcf"
+            }
+        }
+
+        "OnProjectileHitUnit"
+        {
+            "DeleteOnHit"                               "0"
+
+            "RunScript"
+            {
+                "ScriptFile"                            "abilities/dota imba/neutral_roshan.lua"
+                "Function"                              "RoshanFuryHit"
+            }
+        }
+    }
+}
