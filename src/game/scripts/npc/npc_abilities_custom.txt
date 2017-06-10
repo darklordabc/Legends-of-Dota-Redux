@@ -275,6 +275,7 @@
 #base "abilities\generation\zulf_typhoon.txt"
 #base "abilities\generation\zulf_typhoon_OP.txt"
 #base "abilities\spelllab\spell_lab_symbiotic.txt"
+#base "abilities\imba\700.txt"
 #base "abilities\imba\imba_dazzle_shallow_grave_passive.txt"
 #base "abilities\imba\imba_dazzle_shallow_grave_passive_one.txt"
 #base "abilities\imba\imba_juggernaut_healing_ward.txt"

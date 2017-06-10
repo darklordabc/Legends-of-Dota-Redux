@@ -20,6 +20,7 @@ All notable changes to this project will be documented in this file.
 - Added 4 Mercy Main BTW abiltieis from Overmeme
 - Roshanify now gives -75 movement speed instead of move speed limit
 - Arcane Symbiote now has a different aghs effect, no longer enables right click attack
+- Added Fury of the Immoral from dota IMBA (Also an OP single player version)
 
 ## 7.9
 - Improved styles of builds page
