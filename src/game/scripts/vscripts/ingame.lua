@@ -811,6 +811,17 @@ function Ingame:balancePlayer(playerID, newTeam)
                 hero:SetTimeUntilRespawn(1)
 
                 -- Check if we have any meepo clones
+                if hero:HasAbility('arc_warden_tempest_double') or hero:HasAbility('arc_warden_tempest_double_redux') then
+                    local clones = Entities:FindAllByName(hero:GetClassname())
+
+                    for k,tempestDouble in pairs(clones) do
+                        if tempestDouble:IsTempestDouble() and playerID == tempestDouble:GetPlayerID() then
+                            tempestDouble:Kill(nil, nil)
+                        end
+                    end
+                end
+
+                -- Check if we have any meepo clones
                 if hero:HasAbility('meepo_divided_we_stand') then
                     local clones = Entities:FindAllByName(hero:GetClassname())
 
