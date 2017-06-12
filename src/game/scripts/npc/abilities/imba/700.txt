@@ -546,7 +546,7 @@
         // General
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "ability_lua"
-        "ScriptFile"                    "abilities/dota imba/hero_crystal_maiden"
+        "ScriptFile"                    "abilities/dota imba/arcane_dynamo"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "AbilityTextureName"            "custom/crystal_maiden_arcane_dynamo"
         "MaxLevel"                      "4"
@@ -578,7 +578,7 @@
         // General
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "ability_lua"
-        "ScriptFile"                    "abilities/dota imba/hero_crystal_maiden"
+        "ScriptFile"                    "abilities/dota imba/arcane_dynamo"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "AbilityTextureName"            "custom/crystal_maiden_arcane_dynamo_op"
         "MaxLevel"                      "4"
@@ -603,6 +603,34 @@
             {
                 "var_type"                  "FIELD_INTEGER"
                 "max_stacks"                "40 60 80 100"
+            }
+        }
+    }
+
+    "imba_drow_ranger_deadeye"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                             "ability_lua"
+        "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                    "custom/drow_deadeye"
+        "MaxLevel"                              "4"
+        "ScriptFile"                            "abilities/dota imba/deadeye"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "day_vision"                    "200 500 800 1100"
+            }
+
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "night_vision"                  "500 800 1100 1400"
             }
         }
     }

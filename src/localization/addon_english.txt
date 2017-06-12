@@ -1468,8 +1468,8 @@
     "credit_mercy_caduceus_power" "<font color=\'#7D7D7D\'>Credits: Firetoad | github.com/fcalife</font>"
     "credit_mercy_guardian_angel" "<font color=\'#7D7D7D\'>Credits: Firetoad | github.com/fcalife</font>"
     "credit_mercy_angelic_descent" "<font color=\'#7D7D7D\'>Credits: Firetoad | github.com/fcalife</font>"
-    "credit_mercy_heroes_never_die" "<font color=\'#7D7D7D\'>Credits: Firetoad | github.com/fcalife</font>"
-
+    "credit_mercy_heroes_never_die" "<font color=\'#7D7D7D\'>Credits: Firetoad | github.com/fcalife</font>" 
+    
     "credit_bulwark_strike"           "<font color=\'#7D7D7D\'>Credits: Deathtal | github.com/Deathtal</font>"
     "credit_genos_survival_of_the_fittest"           "<font color=\'#7D7D7D\'>Imported from DotA Resurgence</font>"
     "credit_skipping_flames"           "<font color=\'#7D7D7D\'>Credits: Deathtal | github.com/Deathtal</font>"
@@ -1558,6 +1558,7 @@
     "credit_imba_tower_essence_drain"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_tower_fervor"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_tower_force"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+    "credit_imba_drow_ranger_deadeye"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_tower_forest"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_tower_grievous_wounds"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_tower_hex_aura"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
@@ -7141,5 +7142,14 @@
 
     "DOTA_Tooltip_modifier_imba_arcane_dynamo"                                          "Arcane Dynamo"
     "DOTA_Tooltip_modifier_imba_arcane_dynamo_Description"                              "Increases move speed and spell power for each stack of Arcane Dynamo."
+
+    "DOTA_Tooltip_ability_imba_drow_ranger_deadeye"                                     "Deadeye"
+    "DOTA_Tooltip_ability_imba_drow_ranger_deadeye_Description"                         "Passively increases Drow's vision range. The bonus is larger during the night."
+    "DOTA_Tooltip_ability_imba_drow_ranger_deadeye_Lore"                                "Drow's extensive archery practice trained her sight far beyond her race's limits."
+    "DOTA_Tooltip_ability_imba_drow_ranger_deadeye_day_vision"                          "DAY VISION BONUS:"
+    "DOTA_Tooltip_ability_imba_drow_ranger_deadeye_night_vision"                        "NIGHT VISION BONUS:"
+
+    "DOTA_Tooltip_modifier_imba_deadeye_vision"                                         "Deadeye"
+    "DOTA_Tooltip_modifier_imba_deadeye_vision_Description"                             "Increased vision range."
 
 }

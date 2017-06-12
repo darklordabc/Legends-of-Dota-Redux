@@ -24,6 +24,8 @@ All notable changes to this project will be documented in this file.
 *
 - Added Mount from dota IMBA (Also OP version)
 - Added Arcane Dynamo from dota IMBA (Also OP version)
+- Fixed Tempest Double not swapping when you switch teams
+- Added Deadeye from dota IMBA
 
 
 ## 7.9
