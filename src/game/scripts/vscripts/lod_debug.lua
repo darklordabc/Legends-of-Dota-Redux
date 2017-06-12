@@ -35,6 +35,17 @@ function Debug:init()
         end
     end, 'player say', 0)
 
+
+    Convars:RegisterCommand('debug_switch_team', function(c, team)
+        local cmdPlayer = Convars:GetCommandClient()
+        if cmdPlayer then
+            local playerID = cmdPlayer:GetPlayerID()
+            if playerID ~= nil and playerID ~= -1 then
+                GameRules.ingame:balancePlayer(playerID, tonumber(team))
+            end
+        end
+    end, 'debug_switch_team', 0)
+
     Convars:RegisterCommand('level_exp_table', function(c, team)
         local cmdPlayer = Convars:GetCommandClient()
         if cmdPlayer then

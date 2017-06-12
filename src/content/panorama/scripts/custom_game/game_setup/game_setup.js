@@ -201,7 +201,7 @@ var calculateBuildsFilters = function(){
 };
 
 // Balance Mode
-var balanceMode = optionValueList['lodOptionBalanceMode'] || false;
+var balanceMode = CustomNetTables.GetTableValue("options", "lodOptionBalanceMode") || false;
 
 var currentBalance = 0;
 var showTier = {};
