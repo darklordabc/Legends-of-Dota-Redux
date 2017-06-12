@@ -23,6 +23,8 @@ All notable changes to this project will be documented in this file.
 - Added Fantacism from dota IMBA (Also an OP single player version)
 *
 - Added Mount from dota IMBA (Also OP version)
+- Added Arcane Dynamo from dota IMBA (Also OP version)
+
 
 ## 7.9
 - Improved styles of builds page

@@ -540,4 +540,70 @@
             }
         }
     }
+
+    "imba_crystal_maiden_arcane_dynamo"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/dota imba/hero_crystal_maiden"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"            "custom/crystal_maiden_arcane_dynamo"
+        "MaxLevel"                      "4"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "bonus_movespeed_percent"   "5 10 15 20"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "bonus_spellpower_percent"  "5 10 15 20"
+            }
+
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "max_stacks"                "5 10 15 20"
+            }
+        }
+    }
+    "imba_crystal_maiden_arcane_dynamo_op"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/dota imba/hero_crystal_maiden"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"            "custom/crystal_maiden_arcane_dynamo_op"
+        "MaxLevel"                      "4"
+        "ReduxCost"                                     "120"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "bonus_movespeed_percent"   "40 60 80 100"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "bonus_spellpower_percent"  "40 60 80 100"
+            }
+
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "max_stacks"                "40 60 80 100"
+            }
+        }
+    }
 }

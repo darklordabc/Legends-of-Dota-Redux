@@ -1589,7 +1589,7 @@
     "credit_juggernaut_healing_ward_mana"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 and SwordBacon</font>"
     "credit_angel_arena_lightning"           "<font color=\'#7D7D7D\'>Imported from <font color='#f26868'>Angel Arena Reborn.</font>"
     "credit_angel_arena_magic_fire"          "<font color=\'#7D7D7D\'>Imported from <font color='#f26868'>Angel Arena Reborn.</font></font>"
-    "credit_angel_arena_night_vampire"           "<font color=\'#7D7D7D\'>Imported from <font color='#f26868'>Angel Arena Reborn.</font></font>"
+    "credit_angel_arena_night_vampire"           "<font color=\'#7D7D7D\'>Imported from <font color='#f26868'>Angel Arena Reborn.</font></font>"4
     "credit_angel_arena_revenge"          "<font color=\'#7D7D7D\'>Imported from <font color='#f26868'>Angel Arena Reborn.</font></font>"
     "credit_angel_arena_rifle_OP"           "<font color=\'#7D7D7D\'>Imported from <font color='#f26868'>Angel Arena Reborn.</font></font>"
     "credit_angel_arena_roots"           "<font color=\'#7D7D7D\'>Imported from <font color='#f26868'>Angel Arena Reborn.</font></font>"
@@ -7124,5 +7124,22 @@
 
     "DOTA_Tooltip_modifier_imba_strafe_mount"                                           "Strafe Mount"
     "DOTA_Tooltip_modifier_imba_strafe_mount_Description"                               "Mounted on an ally! Attack range increased."
+
+    "DOTA_Tooltip_ability_imba_crystal_maiden_arcane_dynamo"                            "Arcane Dynamo"
+    "DOTA_Tooltip_ability_imba_crystal_maiden_arcane_dynamo_Description"                "Crystal Maiden harnesses the flow of mana around her, increasing her control. Increases Crystal Maiden's movespeed and spell power based on her remaining mana pool. The bonuses scale linearly with the percentage of her max mana pool."
+    "DOTA_Tooltip_ability_imba_crystal_maiden_arcane_dynamo_Lore"                       "The immense control that Crystal Maiden has over mana is something most sorcerers can only wish to achieve."
+    "DOTA_Tooltip_ability_imba_crystal_maiden_arcane_dynamo_Note0"                      "This means that when Crystal Maiden has full mana, she gains the max bonuses from Arcane Dynamo." 
+    "DOTA_Tooltip_ability_imba_crystal_maiden_arcane_dynamo_bonus_movespeed_percent"    "%MAX MOVE SPEED BONUS:"
+    "DOTA_Tooltip_ability_imba_crystal_maiden_arcane_dynamo_bonus_spellpower_percent"   "%MAX SPELL AMP BONUS:"
+
+    "DOTA_Tooltip_ability_imba_crystal_maiden_arcane_dynamo_op"                            "Arcane Dynamo OP"
+    "DOTA_Tooltip_ability_imba_crystal_maiden_arcane_dynamo_op_Description"                "Crystal Maiden harnesses the flow of mana around her, increasing her control. Increases Crystal Maiden's movespeed and spell power based on her remaining mana pool. The bonuses scale linearly with the percentage of her max mana pool. <font color='#70EA72'>Grants much more move speed and spell amp</font>."
+    "DOTA_Tooltip_ability_imba_crystal_maiden_arcane_dynamo_op_Lore"                       "The immense control that Crystal Maiden has over mana is something most sorcerers can only wish to achieve."
+    "DOTA_Tooltip_ability_imba_crystal_maiden_arcane_dynamo_op_Note0"                      "This means that when Crystal Maiden has full mana, she gains the max bonuses from Arcane Dynamo." 
+    "DOTA_Tooltip_ability_imba_crystal_maiden_arcane_dynamo_op_bonus_movespeed_percent"    "%MAX MOVE SPEED BONUS:"
+    "DOTA_Tooltip_ability_imba_crystal_maiden_arcane_dynamo_op_bonus_spellpower_percent"   "%MAX SPELL AMP BONUS:"
+
+    "DOTA_Tooltip_modifier_imba_arcane_dynamo"                                          "Arcane Dynamo"
+    "DOTA_Tooltip_modifier_imba_arcane_dynamo_Description"                              "Increases move speed and spell power for each stack of Arcane Dynamo."
 
 }
