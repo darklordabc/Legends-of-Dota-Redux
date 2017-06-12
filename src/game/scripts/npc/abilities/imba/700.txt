@@ -423,4 +423,121 @@
             }
         }
     }
+
+    "imba_clinkz_strafe"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityTextureName"            "custom/imba_clinkz_strafe"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "ScriptFile"                    "abilities/dota imba/hero_clinkz.lua"
+        "MaxLevel"                      "4"
+
+        // Time
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "30"
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "300"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "90"
+
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "particle"                  "particles/units/heroes/hero_clinkz/clinkz_strafe_fire.vpcf"
+            "soundfile"                 "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
+        }
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "as_bonus"                  "20 40 60 80"
+                "LinkedSpecialBonus"        "special_bonus_imba_clinkz_5"
+            }
+
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "duration"                  "10 20 30 40"
+            }
+
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "bonus_attack_range"        "100 150 200 250"
+                "LinkedSpecialBonus"        "special_bonus_imba_clinkz_1"
+            }
+        }
+    }
+
+    "imba_clinkz_strafe_op"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityTextureName"            "custom/imba_clinkz_strafe"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "ScriptFile"                    "abilities/dota imba/hero_clinkz.lua"
+        "MaxLevel"                      "4"
+        "ReduxCost"                                     "120"
+
+        // Time
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "20"
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "300"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "90"
+
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "particle"                  "particles/units/heroes/hero_clinkz/clinkz_strafe_fire.vpcf"
+            "soundfile"                 "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
+        }
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "as_bonus"                  "20 40 60 80"
+                "LinkedSpecialBonus"        "special_bonus_imba_clinkz_5"
+            }
+
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "duration"                  "120"
+            }
+
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "bonus_attack_range"        "100 200 300 400"
+                "LinkedSpecialBonus"        "special_bonus_imba_clinkz_1"
+            }
+        }
+    }
 }

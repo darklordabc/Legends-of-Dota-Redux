@@ -1584,6 +1584,8 @@
     "credit_imba_tower_vicious"           "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_tower_healing_tower"         "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_imba_tower_healing_hero"         "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+    "credit_imba_clinkz_strafe"         "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
+    "credit_imba_clinkz_strafe_op"         "<font color=\'#7D7D7D\'>Imported from <font color='#FF7800'>Dota IMBA.</font></font>"
     "credit_juggernaut_healing_ward_mana"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 and SwordBacon</font>"
     "credit_angel_arena_lightning"           "<font color=\'#7D7D7D\'>Imported from <font color='#f26868'>Angel Arena Reborn.</font>"
     "credit_angel_arena_magic_fire"          "<font color=\'#7D7D7D\'>Imported from <font color='#f26868'>Angel Arena Reborn.</font></font>"
@@ -7100,4 +7102,27 @@
 
     "DOTA_Tooltip_modifier_imba_stalwart_defense_buff"                                  "Fanaticism"
     "DOTA_Tooltip_modifier_imba_stalwart_defense_buff_Description"                      "Regenerating health and taking reduced damage"
+
+    "DOTA_Tooltip_ability_imba_clinkz_strafe"                                           "Mount"
+    "DOTA_Tooltip_ability_imba_clinkz_strafe_Description"                               "Targeting an ally allows you to Mount it. While mounted, Clinkz automatically follows the target and cannot move, but gains bonus attack range and attack speed, and can still attack or cast spells normally. Automatically unmounts when the duration is up, activate the spell again to do so early. You can self-cast to gain just the attack speed bonus."
+    "DOTA_Tooltip_ability_imba_clinkz_strafe_Note0"                                     "While mounted, Clinkz is rooted and phased, but is not invulnerable and can still be attacked normally."
+    "DOTA_Tooltip_ability_imba_clinkz_strafe_Lore"                                      "It's hard to say whether the blur around the Bone Fletcher is from his flaming heart or his speed with the quiver."
+    "DOTA_Tooltip_ability_imba_clinkz_strafe_duration"                                  "MOUNT DURATION:"
+    "DOTA_Tooltip_ability_imba_clinkz_strafe_bonus_attack_range"                        "BONUS ATTACK RANGE:" 
+    "DOTA_Tooltip_ability_imba_clinkz_strafe_as_bonus"                        "BONUS ATTACK SPEED:" 
+
+    "DOTA_Tooltip_ability_imba_clinkz_strafe_op"                                           "Mount OP"
+    "DOTA_Tooltip_ability_imba_clinkz_strafe_op_Description"                               "Targeting an ally allows you to Mount it. While mounted, Clinkz automatically follows the target and cannot move, but gains bonus attack range and attack speed, and can still attack or cast spells normally. Automatically unmounts when the duration is up, activate the spell again to do so early. You can self-cast to gain just the attack speed bonus. <font color='#70EA72'>Shorter cooldown, longer duration and more bonus range</font>."
+    "DOTA_Tooltip_ability_imba_clinkz_strafe_op_Note0"                                     "While mounted, Clinkz is rooted and phased, but is not invulnerable and can still be attacked normally."
+    "DOTA_Tooltip_ability_imba_clinkz_strafe_op_Lore"                                      "It's hard to say whether the blur around the Bone Fletcher is from his flaming heart or his speed with the quiver."
+    "DOTA_Tooltip_ability_imba_clinkz_strafe_op_duration"                                  "MOUNT DURATION:"
+    "DOTA_Tooltip_ability_imba_clinkz_strafe_op_bonus_attack_range"                        "BONUS ATTACK RANGE:" 
+    "DOTA_Tooltip_ability_imba_clinkz_strafe_op_as_bonus"                        "BONUS ATTACK SPEED:" 
+
+    "DOTA_Tooltip_modifier_imba_strafe_aspd"                                            "Strafe"
+    "DOTA_Tooltip_modifier_imba_strafe_aspd_Description"                                "Attack speed increased by %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT%."
+
+    "DOTA_Tooltip_modifier_imba_strafe_mount"                                           "Strafe Mount"
+    "DOTA_Tooltip_modifier_imba_strafe_mount_Description"                               "Mounted on an ally! Attack range increased."
+
 }

@@ -22,6 +22,7 @@ All notable changes to this project will be documented in this file.
 - Added Fury of the Immoral from dota IMBA (Also an OP single player version)
 - Added Fantacism from dota IMBA (Also an OP single player version)
 *
+- Added Mount from dota IMBA (Also OP version)
 
 ## 7.9
 - Improved styles of builds page
