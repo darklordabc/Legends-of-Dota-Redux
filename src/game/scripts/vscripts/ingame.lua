@@ -531,7 +531,6 @@ function Ingame:onStart()
 
     for playerID, usageData in pairs(StatsClient.AbilityData) do
         local currentBuild = GameRules.pregame.selectedSkills[playerID] or {}
-        local bonusGold = GameRules.pregame.optionStore["lodOptionNewAbilitiesBonusGold"]
 
         local threshold = GameRules.pregame.optionStore["lodOptionNewAbilitiesThreshold"]
         local entries = StatsClient.SortedAbilityDataEntries
@@ -552,8 +551,10 @@ function Ingame:onStart()
                 newAbilities = newAbilities + 1
             end
         end
-        --print(playerID, newAbilities, bonusGold * newAbilities, ' TOTAL')
-        PlayerResource:ModifyGold(playerID, bonusGold * newAbilities, true, DOTA_ModifyGold_Unspecified)
+        local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+        if hero then
+            hero:AddItemByName('item_new_ability_bonus'):SetCurrentCharges(newAbilities)
+        end
     end
 
     -- Set it to no team balance
