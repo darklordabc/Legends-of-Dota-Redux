@@ -35,6 +35,16 @@ function Debug:init()
         end
     end, 'player say', 0)
 
+    Convars:RegisterCommand('debug_send_abilities', function(c, team)
+        local cmdPlayer = Convars:GetCommandClient()
+        if cmdPlayer then
+            local playerID = cmdPlayer:GetPlayerID()
+            if playerID ~= nil and playerID ~= -1 then
+                -- CreateHTTPRequestScriptVM("GET", "http://127.0.0.1:3333/health"):Send(function(response) PrintTable(response) end)
+                StatsClient:SendAbilityUsageData()
+            end
+        end
+    end, 'debug_send_abilities', 0)
 
     Convars:RegisterCommand('debug_switch_team', function(c, team)
         local cmdPlayer = Convars:GetCommandClient()

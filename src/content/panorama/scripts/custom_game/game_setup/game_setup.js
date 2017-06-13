@@ -1022,13 +1022,13 @@ function onLockBuildButtonPressed() {
 }
 
 function onBacktrackButton() {
-	util.reviewOptions = !util.reviewOptions;
-	
-	fixBacktrackUI();
+    util.reviewOptions = !util.reviewOptions;
+    
+    fixBacktrackUI();
 }
 
 function fixBacktrackUI() {
-	var masterRoot = $.GetContextPanel();
+    var masterRoot = $.GetContextPanel();
     if (masterRoot != null) {
         masterRoot.SetHasClass('phase_option_selection_selected', selectedPhase == PHASE_OPTION_SELECTION || util.reviewOptions);
         masterRoot.SetHasClass('review_selection', util.reviewOptions);
@@ -1240,7 +1240,7 @@ function setupBuilderTabs() {
 
 // Builds the hero list
 function buildHeroList() {
-	Game.SetTeamSelectionLocked(false);
+    Game.SetTeamSelectionLocked(false);
     var strHeroes = [];
     var agiHeroes = [];
     var intHeroes = [];
@@ -2052,7 +2052,7 @@ function onHeroFilterPressed(filterName) {
 var firstBuildTabCall = true;
 function OnMainSelectionTabShown() {
     if(firstBuildTabCall) {
-    	LoadBuilds();
+        LoadBuilds();
 
         // Only do this once
         firstBuildTabCall = false; 
@@ -2302,7 +2302,15 @@ function getSkillFilterInfo(abilityName) {
         }
     }
 
+    if (CustomNetTables.GetTableValue("phase_pregame", "fetchedAbilityData" + Players.GetLocalPlayer())) {
+        var mostUsed = CustomNetTables.GetTableValue("phase_pregame", "fetchedAbilityData" + Players.GetLocalPlayer())[abilityName]
+        if (activeTabs["mostused"]) {
+            shouldShow = !!mostUsed;
+        }
+    }
+
     return {
+        mostUsed: mostUsed,
         shouldShow: shouldShow,
         disallowed: disallowed,
         banned: banned,
@@ -2352,7 +2360,8 @@ function OnSkillTabShown(tabName) {
             main: true,
             neutral: isDraftGamemode(),
             custom: true,
-            dotaimba: true
+            // dotaimba: true,
+            mostused: false
         };
 
         calculateFilters = function() {
@@ -2396,7 +2405,7 @@ function OnSkillTabShown(tabName) {
                     }
 
                     if(filterInfo.shouldShow) {
-                        if(useSmartGrouping) {
+                        if(useSmartGrouping && !activeTabs["mostused"]) {
                             var theOwner = abilityHeroOwner[abilityName];
                             var neutralGroup = flagDataInverse[abilityName].group;
 
@@ -2452,6 +2461,20 @@ function OnSkillTabShown(tabName) {
                             }
 
                         } else {
+                            var groupKey = CustomNetTables.GetTableValue("phase_pregame", "fetchedAbilityData" + Players.GetLocalPlayer())[abilityName];
+                            $.Msg(groupKey, " ",abilityName);
+                            abilityStore[abilityName].uses = groupKey;
+                            if (activeTabs["mostused"] && groupKey) {
+                                if(subSorting[groupKey] == null) {
+                                    subSorting[groupKey] = [];
+                                }
+
+                                subSorting[groupKey].push({
+                                    txt: abilityName,
+                                    con: ab
+                                });
+                            }
+
                             toSort.push({
                                 txt: abilityName,
                                 con: ab
@@ -2468,76 +2491,92 @@ function OnSkillTabShown(tabName) {
             categorySorting["main"] = 1;
             categorySorting["neutral"] = 2;
             categorySorting["custom"] = 3;
-            categorySorting["dotaimba"] = 4;
-            
-            // Do the main sort
-            toSort.sort(function(a, b) {
-                var txtA = a.txt;
-                var txtB = b.txt;
+            // categorySorting["dotaimba"] = 4;
 
-                var catA = categorySorting[a.category];
-                var catB = categorySorting[b.category];
+            if (activeTabs["mostused"]) {
+                for (var uses in subSorting)
+                {
+                    $.Msg(uses);
+                    var sortGroup = subSorting[uses];
 
-                if(a.grouped != b.grouped) {
-                    if(a.grouped) return -1;
-                    return 1;
-                }
-                
-                // Check if ability is custom and is attached to some hero 
-                if ((a.category == "custom" && a.hasOwner) || (b.category == "custom" && b.hasOwner)) {
-                    return helperSort(txtA,txtB)
-                } else {
-                    if(catA < catB) {
-                        return -1;
-                    } else if(catA > catB) {
-                        return 1;
-                    } else {
-                        return helperSort(txtA,txtB)
+                    var subCon = con;
+                    for(var i=1; i < sortGroup.length; ++i) {
+                        var left = sortGroup[i-1];
+                        var right = sortGroup[i];
+
+                        subCon.MoveChildAfter(right.con, left.con);
                     }
                 }
-            });
-
-            for(var i=1; i<toSort.length; ++i) {
-                var left = toSort[i-1];
-                var right = toSort[i];
-
-                con.MoveChildAfter(right.con, left.con);
-            }
-
-            // Do sub sorts
-            for(var heroName in subSorting) {
-                var sortGroup = subSorting[heroName];
-
-                sortGroup.sort(function(a, b) {
+            } else {
+                // Do the main sort
+                toSort.sort(function(a, b) {
                     var txtA = a.txt;
                     var txtB = b.txt;
 
-                    var isUltA = isUltimateAbility(txtA);
-                    var isUltB = isUltimateAbility(txtB);
+                    var catA = categorySorting[a.category];
+                    var catB = categorySorting[b.category];
 
-                    if(isUltA & !isUltB) {
+                    if(a.grouped != b.grouped) {
+                        if(a.grouped) return -1;
                         return 1;
                     }
-
-                    if(!isUltA & isUltB) {
-                        return -1;
-                    }
-
-                    if(txtA < txtB) {
-                        return -1;
-                    } else if(txtA > txtB) {
-                        return 1;
+                    
+                    // Check if ability is custom and is attached to some hero 
+                    if ((a.category == "custom" && a.hasOwner) || (b.category == "custom" && b.hasOwner)) {
+                        return helperSort(txtA,txtB)
                     } else {
-                        return 0;
+                        if(catA < catB) {
+                            return -1;
+                        } else if(catA > catB) {
+                            return 1;
+                        } else {
+                            return helperSort(txtA,txtB)
+                        }
                     }
                 });
 
-                var subCon = groupBlocks[heroName];
-                for(var i=1; i<sortGroup.length; ++i) {
-                    var left = sortGroup[i-1];
-                    var right = sortGroup[i];
+                for(var i=1; i<toSort.length; ++i) {
+                    var left = toSort[i-1];
+                    var right = toSort[i];
 
-                    subCon.MoveChildAfter(right.con, left.con);
+                    con.MoveChildAfter(right.con, left.con);
+                }
+
+                // Do sub sorts
+                for(var heroName in subSorting) {
+                    var sortGroup = subSorting[heroName];
+
+                    sortGroup.sort(function(a, b) {
+                        var txtA = a.txt;
+                        var txtB = b.txt;
+
+                        var isUltA = isUltimateAbility(txtA);
+                        var isUltB = isUltimateAbility(txtB);
+
+                        if(isUltA & !isUltB) {
+                            return 1;
+                        }
+
+                        if(!isUltA & isUltB) {
+                            return -1;
+                        }
+
+                        if(txtA < txtB) {
+                            return -1;
+                        } else if(txtA > txtB) {
+                            return 1;
+                        } else {
+                            return 0;
+                        }
+                    });
+
+                    var subCon = groupBlocks[heroName];
+                    for(var i=1; i<sortGroup.length; ++i) {
+                        var left = sortGroup[i-1];
+                        var right = sortGroup[i];
+
+                        subCon.MoveChildAfter(right.con, left.con);
+                    }
                 }
             }
         }
@@ -2619,7 +2658,8 @@ function OnSkillTabShown(tabName) {
             'main',
             'neutral',
             'custom',
-            'dotaimba',
+            // 'dotaimba',
+            'mostused'
         ];
 
         // Used to store tabs to highlight them correctly
@@ -2652,7 +2692,7 @@ function OnSkillTabShown(tabName) {
                 tabButton.SetPanelEvent('onactivate', function() {
                     // When it is activated!
 
-                    if(GameUI.IsControlDown()) {
+                    if(GameUI.IsControlDown() && tabName != "mostused" && !activeTabs["mostused"]) {
                         if(activeTabs[tabName]) {
                             delete activeTabs[tabName];
                         } else {
@@ -2662,6 +2702,10 @@ function OnSkillTabShown(tabName) {
                         // Reset active tabs
                         activeTabs = {};
                         activeTabs[tabName] = true;
+
+                        for (var g in abilityStore) {
+                            abilityStore[g].SetHasClass("lodDraftAbility", tabName == "mostused");
+                        }
                     }
 
                     // Fix highlights
@@ -2688,7 +2732,7 @@ function OnSkillTabShown(tabName) {
 }
 
 function helperSort(a,b){
-	if(a < b) {
+    if(a < b) {
         return -1;
     } else if(a > b) {
         return 1;
@@ -4025,7 +4069,7 @@ function buildAdvancedOptionsCategories( mutatorList ) {
 
             // The function to run when it is activated
             function whenActivated() {
-				$.GetContextPanel().AddClass('ignore_custom_message');
+                $.GetContextPanel().AddClass('ignore_custom_message');
                 // Disactivate all other ones
                 for(var key in allOptionLinks) {
                     var data = allOptionLinks[key];
@@ -4300,9 +4344,9 @@ function generateFormattedHeroStatsString(heroName, info) {
 
         // Essentials
         heroStats += seperator;
-    	heroStats += heroStatsLine('heroStats_movementSpeed', info.MovementSpeed);
-    	heroStats += heroStatsLine('heroStats_attackRange', info.AttackRange);
-    	heroStats += heroStatsLine('heroStats_armor', info.ArmorPhysical);
+        heroStats += heroStatsLine('heroStats_movementSpeed', info.MovementSpeed);
+        heroStats += heroStatsLine('heroStats_attackRange', info.AttackRange);
+        heroStats += heroStatsLine('heroStats_armor', info.ArmorPhysical);
         heroStats += heroStatsLine('heroStats_damage', info.AttackDamageMin + '-' + info.AttackDamageMax);
 
         // Attribute Stats
@@ -4317,11 +4361,11 @@ function generateFormattedHeroStatsString(heroName, info) {
 
         // Advanced
         heroStats += seperator;
-    	heroStats += heroStatsLine('heroStats_attackRate', stringToDecimalPlaces(info.AttackRate));
-    	heroStats += heroStatsLine('heroStats_attackAnimationPoint', stringToDecimalPlaces(info.AttackAnimationPoint));
-    	heroStats += heroStatsLine('heroStats_turnrate', stringToDecimalPlaces(info.MovementTurnRate));
+        heroStats += heroStatsLine('heroStats_attackRate', stringToDecimalPlaces(info.AttackRate));
+        heroStats += heroStatsLine('heroStats_attackAnimationPoint', stringToDecimalPlaces(info.AttackAnimationPoint));
+        heroStats += heroStatsLine('heroStats_turnrate', stringToDecimalPlaces(info.MovementTurnRate));
 
-    	if(stringToDecimalPlaces(info.StatusHealthRegen) != 0.25) {
+        if(stringToDecimalPlaces(info.StatusHealthRegen) != 0.25) {
             heroStats += heroStatsLine('heroStats_baseHealthRegen', stringToDecimalPlaces(info.StatusHealthRegen));
         }
 
@@ -4329,15 +4373,15 @@ function generateFormattedHeroStatsString(heroName, info) {
             heroStats += heroStatsLine('heroStats_magicalResistance', info.MagicalResistance);
         }
 
-    	if(stringToDecimalPlaces(info.StatusManaRegen) != 0.01) {
+        if(stringToDecimalPlaces(info.StatusManaRegen) != 0.01) {
             heroStats += heroStatsLine('heroStats_baseManaRegen', stringToDecimalPlaces(info.StatusManaRegen));
         }
 
-    	if(info.ProjectileSpeed != 900 && info.ProjectileSpeed != 0) {
+        if(info.ProjectileSpeed != 900 && info.ProjectileSpeed != 0) {
             heroStats += heroStatsLine('heroStats_projectileSpeed', info.ProjectileSpeed);
         }
 
-    	if(info.VisionDaytimeRange != 1800) {
+        if(info.VisionDaytimeRange != 1800) {
             heroStats += heroStatsLine('heroStats_visionDay', info.VisionDaytimeRange);
         }
 
@@ -4345,7 +4389,7 @@ function generateFormattedHeroStatsString(heroName, info) {
             heroStats += heroStatsLine('heroStats_visionNight', info.VisionNighttimeRange);
         }
 
-    	if(info.RingRadius != 70) {
+        if(info.RingRadius != 70) {
             heroStats += heroStatsLine('heroStats_ringRadius', info.RingRadius);
         }
     }
@@ -4452,7 +4496,7 @@ function OnPhaseChanged(table_name, key, data) {
             {
                 var mapName = Game.GetMapInfo().map_display_name;                 
                 if (mapName.match("standard"))
-					$('#middleButtons').visible = false;
+                    $('#middleButtons').visible = false;
             }
 
             // Message for hosters
@@ -4568,7 +4612,7 @@ function OnPhaseChanged(table_name, key, data) {
 
             // Message for players selecting skills
             if(currentPhase == PHASE_SPAWN_HEROES) {
-				// $("#tipPanel").AddClass('hidden');
+                // $("#tipPanel").AddClass('hidden');
     //             // Load all hero images
     //             for(var playerID in activeReviewPanels) {
     //                 activeReviewPanels[playerID].OnReviewPhaseStart();
@@ -4672,7 +4716,7 @@ function OnOptionChanged(table_name, key, data) {
         case 'lodOptionGamemode':
             // Check if we are allowing custom settings
             allowCustomSettings = data.v == -1;
-			$.GetContextPanel().RemoveClass('ignore_custom_message');
+            $.GetContextPanel().RemoveClass('ignore_custom_message');
             $.GetContextPanel().SetHasClass('allow_custom_settings', allowCustomSettings || util.reviewOptions);
             $.GetContextPanel().SetHasClass('disallow_custom_settings', !allowCustomSettings && !util.reviewOptions);        
             break;
@@ -4949,9 +4993,9 @@ function SetSelectedPhase(newPhase, noSound) {
         $('#lodStageName').text = $.Localize(phases[selectedPhase].name);
 
     // Update CSS
-	if (selectedPhase != PHASE_SELECTION) {
-		util.reviewOptions = false;
-	}
+    if (selectedPhase != PHASE_SELECTION) {
+        util.reviewOptions = false;
+    }
     var masterRoot = $.GetContextPanel();
     masterRoot.SetHasClass('phase_option_selection_selected', selectedPhase == PHASE_OPTION_SELECTION || util.reviewOptions);
     masterRoot.SetHasClass('review_selection', util.reviewOptions);
@@ -4961,8 +5005,8 @@ function SetSelectedPhase(newPhase, noSound) {
     masterRoot.SetHasClass('phase_all_random_selected', selectedPhase == PHASE_RANDOM_SELECTION);
     masterRoot.SetHasClass('phase_drafting_selected', selectedPhase == PHASE_DRAFTING);
     masterRoot.SetHasClass('phase_review_selected', selectedPhase == PHASE_REVIEW);
-	$('#backtrackBtn').SetHasClass('hidden', selectedPhase != PHASE_SELECTION);
-	$('#backtrackBtnTxt').text = $.Localize('reviewOptions');
+    $('#backtrackBtn').SetHasClass('hidden', selectedPhase != PHASE_SELECTION);
+    $('#backtrackBtnTxt').text = $.Localize('reviewOptions');
 }
 
 // Return X:XX time (M:SS)
@@ -5504,9 +5548,9 @@ function saveCurrentBuild() {
     GameEvents.Subscribe('addTrollCombo', function(data) {
        var ab1 = data.ab1;
        var ab2 = data.ab2;
-	   
-	   // Break if it's the same
-	   if (ab1 == ab2) return;
+       
+       // Break if it's the same
+       if (ab1 == ab2) return;
        
        trollCombos[ab1] = trollCombos[ab1] || {};
        trollCombos[ab2] = trollCombos[ab2] || {};
@@ -5521,8 +5565,8 @@ function saveCurrentBuild() {
         })
         LoadBuilds();
     })
-	
-	// Backtrack Review Option Button
+    
+    // Backtrack Review Option Button
     util.reviewOptionsChange = function(review) {
         fixBacktrackUI();
     };
@@ -5584,15 +5628,15 @@ function saveCurrentBuild() {
     $('#chat').BLoadLayout('file://{resources}/layout/custom_game/game_setup/chat.xml', false, false);
 
     if (mapName == "standard"){
-	    $.Each(["doubledAbilityPoints", "fastStart", "banning", "strongTowers", "customAbilities"], function(name) {
-	        addVotingOption(name);
-	    })
+        $.Each(["doubledAbilityPoints", "fastStart", "banning", "strongTowers", "customAbilities"], function(name) {
+            addVotingOption(name);
+        })
     }
 
     if (mapName == "all_allowed" || mapName == "overthrow"){
-	    $.Each(["noInvis", "banning", "antirat", "OPAbilities", "customAbilities"], function(name) {
-	        addVotingOption(name);
-	    })
+        $.Each(["noInvis", "banning", "antirat", "OPAbilities", "customAbilities"], function(name) {
+            addVotingOption(name);
+        })
     }
 
     var parent = $.GetContextPanel().GetParent();
