@@ -148,7 +148,7 @@
     "lodMutatorMaxUlts2"                            "3 Ультимейта"
     "lodMutatorMaxUlts3"                            "4 Ультимейта"
     "lodMutatorMaxUlts4"                            "6 Ультимейта"
-
+    
     "lodMutatorUniqueSkillsOff"                     "Без Уникальных Навыков"
     "lodMutatorUniqueSkillsTeam"                    "Уникальные Навыки в Команде"
     "lodMutatorUniqueSkillsGlobal"                  "Глобальные Уникальные Навыки"
@@ -177,6 +177,11 @@
     "lodMutatorCreepPowerNormal"                    "Крепкие крипы"
     "lodMutatorCreepPowerHigh"                      "Сильные крипы"
     "lodMutatorCreepPowerExtreme"                   "Экстремальные Крипы"
+    
+    "lodMutatorNeutralCreepNoPower"                        "Обычные нейтралы"
+    "lodMutatorNeutralCreepPowerNormal"                    "Сильные нейтралы"
+    "lodMutatorNeutralCreepPowerHigh"                      "Сложные нейтралы"
+    "lodMutatorNeutralCreepPowerExtreme"                   "Экстремальные нейтралы"
 
     "lodMutatorAllPick"                             "All Pick"
     "lodMutatorAllPickFast"                         "All Pick Быстрый"
@@ -188,9 +193,9 @@
     "lodMutatorMaxLevel2"                           "Максимальный уровень 50"
     "lodMutatorMaxLevel3"                           "Максимальный уровень 100"
 
-    "lodMutatorNoFatOMeter"                         "Fat-O-Meter"
-    "lodMutatorFarmFatOMeter"                       "Fat-O-Meter По общей ценности"
-    "lodMutatorKDAFatOMeter"                        "Fat-O-Meter KDA"
+    "lodMutatorNoFatOMeter"                         "ЖИР-O-Метр"
+    "lodMutatorFarmFatOMeter"                       "ЖИР-O-Метр по общей ценности"
+    "lodMutatorKDAFatOMeter"                        "ЖИР-О-Метр по KDA"
 
     "lodOptionAboutBalancedAllPick"                 "За выбор способностей отнимаются очки."
     "lodOptionAboutTraditionalAllPick"              "Выбирайте из всех доступных способностей."
@@ -388,7 +393,7 @@
     "lodOptionMemesRedux"                                  "Мемасы"
     "lodOptionDesMemesRedux"                               "Включить мемасы"
     "lodOptionAboutMemesRedux"                             "Добавляет мемасики в игру в зависимости от взятых скилов."
-    "lodMutatorMemesRedux"                                 "Memes Redux"
+    "lodMutatorMemesRedux"                                 "Мемасы"
 
     "lodOptionBattleThirst"                                  "Штраф за скрытность"
     "lodOptionDesBattleThirst"                               "Включить штрафы за скрытность"
@@ -770,7 +775,7 @@
     "hintRazor"                         "Манакост и кулдаун всех способностей снижается на 25%, когда Razor использует Static Linked на врага."
     "hintRubick"                         "Rubick получает 1 уровень способности Null Field."
     "hintSandKing"                         "Sand King возвращает 30% маны, потраченной на каст прерываемого заклинания."
-    "hintShadowDemon"                         "Когда Shadow Demon Покупает любой предмет, имеющий ограничение покупки, он получает перманентнр +1 ко всем атрибутам. "
+    //"hintShadowDemon"                         "Когда Shadow Demon Покупает любой предмет, имеющий ограничение покупки, он получает перманентнр +1 ко всем атрибутам. "
     "hintSilencer"                         "Эффеткы безмолвия длятся на 25% дольше."
     "hintSkywrath"                         "Skywrath Mage возвращает 15% потраченной маны на скил с кулдауном 7 сек или меньше."
     "hintSlardar"                         "Slardar получает Sprint на старте игры в виде предмета инвентаря."
@@ -855,15 +860,21 @@
     "lod_cat_stun"                                  "Станы, связки и корни"
     "lod_cat_isUlt"                                 "Ульты"
     "lod_cat_summon"                                "Саммоны"
-    "lod_cat_silence"                  "Сайленс"
-    "lod_cat_disarm_break"                  "Обезоруживание and стан"
-    "lod_cat_illusion"                      "Иллюзия"
+    "lod_cat_silence"                  		    "Сайленс"
+    "lod_cat_disarm_break"                          "Обезоруживание and стан"
+    "lod_cat_illusion"                              "Иллюзия"
+    "lod_cat_dota_custom"                           "Dota Related Customs"
+    "lod_cat_passive"                               "Пассивка"
+    "lod_cat_cooldown"                              "Влияющие на перезарядку"
+    "lod_cat_OPSkillsList"                          "Сверхсильые"
+    "lod_cat_SuperOP"                               "Over 9000"
 
     // Categories
     "lodCategory_main"                              "Способности героев"
     "lodCategory_neutral"                           "Способности нейтралов"
     "lodCategory_OP"                                "Сверхсильные способности"
     "lodCategory_custom"                            "Пользовательские способности"
+    "lodCategory_dotaimba"                          "Dota IMBA способности"
 
     // Error messages
     "lodFailedToFindHero"                           "Пожалуйста, выберите допустимого героя."
@@ -1048,17 +1059,17 @@
     // UNIQUE HERO MECHANICS
     ////////////////
 
-   "unique_mechanic_abaddon"           "<font color=\'#ffd966\'>Mist Coil</font> лечит Абаддона вместо урона и получает 2 заряда <font color=\'#ffd966\'>Aphotic Shield</font>."
+   "unique_mechanic_abaddon"           "<font color=\'#ffd966\'>Mist Coil</font> лечит Абаддона вместо урона и получает 2 заряда на свой <font color=\'#ffd966\'>Щит</font>."
     "unique_mechanic_alchemist"                     "Алхимик получает 3 золота каждые 10 секунд."
     "unique_mechanic_ancient_apparition"            "Аппарат отключает регенерацию хп врага при использовании <font color=\'#ffd966\'>Морозных</font> способностей."
     "unique_mechanic_antimage"           "После использования Анти-магом <font color=\'#ffd966\'>Блинка</font>, он обезмолвит врагов на 2 секунд в радиусе 200."
     "unique_mechanic_arc_warden"                        "Арк Варден может использовать одноразовые предметы раз в 90 секунд без потери прдемтеа. 180 секунд если использован Tome of Knowledge."
-    "unique_mechanic_axe"                        "Убийства через <font color=\'#ffd966\'>Culling Blade</font> уменьшают текущие перезарядки Акса в 2 раза или на 30 секунд if the remaining cooldown exceeds 1 minute."
+    "unique_mechanic_axe"                        "Убийства через <font color=\'#ffd966\'>Culling Blade</font> уменьшают текущие перезарядки Акса в 2 раза или на 30 секунд если перезарядка скила выше минуты."
     "unique_mechanic_bane"                        "Бейн восстанавливает здоровье равное урону способности нанесенному по спящим врагам."
     "unique_mechanic_batrider"              "Батрайдер получает +20% к скорости бега находясь в полете."
     "unique_mechanic_beastmaster"                        "Бистмастер получает 3 силы за каждый уровень прокачки способностей <font color=\'#ffd966\'>Нейтралов</font>."
     "unique_mechanic_bloodseeker"                   "<font color=\'#ffd966\'>Rupture</font>, использованная Бладсикером возвращает всю ману потраченное на ее использование и снижает свою перезарядку на 20%."
-    "unique_mechanic_bounty_hunter"                        "Бх наносит +10% урона по врагам под <font color=\'#ffd966\'>Track</font> enemies. "
+    "unique_mechanic_bounty_hunter"                        "Бх наносит +10% урона по врагам под <font color=\'#ffd966\'>Треком</font>. "
     "unique_mechanic_brewmaster"                "Брюмастер восстанавливает в 2 раза больше с <font color=\'#ffd966\'>Salve</font>, <font color=\'#ffd966\'>Bottle</font> и <font color=\'#ffd966\'>Clarity</font>."
     "unique_mechanic_bristleback"                        "Бристл снижает перезарядку способностей стоящих меньше 50 маны на 15%."
     "unique_mechanic_broodmother"                        "Не ультовые способности <font color=\'#ffd966\'>Саммоны</font> имеют сниженный на 20% манакост и перезарядку для Бруды. "
@@ -1066,19 +1077,19 @@
     "unique_mechanic_chaos_knight"                        "Хаос получает по 200 золота за каждую способность взятую наугад. "
     "unique_mechanic_chen"                   "Когда Чен отправляет крипа на базу через <font color=\'#ffd966\'>Test of Faith</font>, то они получат рандомную способность(максимум 5, повторная отправка - улучшение скилов)."
     "unique_mechanic_clinkz"                        "Клинкз бесплатно вкачивает 1 уровень одной <font color=\'#ffd966\'>Автоматической</font> способности (как его стрелы) в начале игры."
-    "unique_mechanic_rattletrap"                        "Клокверк запускает наугад ракету каждые 15 секунд. Урон увеличивается с <font color=\'#ffd966\'>Rocket Flare</font>."
+    "unique_mechanic_rattletrap"                        "Клокверк запускает наугад ракету каждые 15 секунд. Урон увеличивается с прокачкой <font color=\'#ffd966\'>Ракеты</font>."
     "unique_mechanic_crystal_maiden"    "Цмка получает +2 скорости бега за каждое улучшение <font color=\'#ffd966\'>Саппорт</font> способности."
     "unique_mechanic_dark_seer"             "Дарк сир кастует на себя <font color=\'#ffd966\'>Surge</font> или <font color=\'#ffd966\'>Ion Shell</font> когда кастует их на союзника."
-    "unique_mechanic_dazzle"                        "<font color=\'#ffd966\'>Shallow Grave</font> имеет глобальную дальность на Дазле."
+    "unique_mechanic_dazzle"                        "<font color=\'#ffd966\'>Грейв</font> имеет глобальную дальность на Дазле."
     "unique_mechanic_death_prophet"                        "Любое <font color=\'#ffd966\'>Безмолвие</font> использованное Профеткой так же блокирует инвентарь."
     "unique_mechanic_disruptor"                        "Дисраптор регенирирует .5 маны/с за каждые 10% отсутствующей маны."
-    "unique_mechanic_doom_bringer"          "<font color=\'#ffd966\'>Demonic</font> spells cast by Doom will have cooldowns reduced by 25%."
-    "unique_mechanic_dragon_knight"             "Когда ДК еаходится в <font color=\'#ffd966\'>Elder Dragon Form</font>, все его способности накладывают на врага эффекты с драконьей атаки(включая вышки)."
-    "unique_mechanic_drow_ranger"                        "<font color=\'#ffd966\'>Gust</font> так же обезоруживает врага на Drow ranger."
+    "unique_mechanic_doom_bringer"          "<font color=\'#ffd966\'>Демонические</font> используемые Думом - перезаряжаются на 25% быстрее."
+    "unique_mechanic_dragon_knight"             "Когда ДК находится в <font color=\'#ffd966\'>Форме дракона	</font>, все его способности накладывают на врага эффекты с драконьей атаки(включая вышки)."
+    "unique_mechanic_drow_ranger"                        "<font color=\'#ffd966\'>Gust</font> еще и обезоруживает врага на Дровке."
     "unique_mechanic_earth_spirit"                        "Earth Spirit получает +3 урона за каждую <font color=\'#ffd966\'>Земляную</font> способность."
     "unique_mechanic_earthshaker"                        "<font color=\'#ffd966\'>Земляные</font> способности лечят Шейкера на 2% от максимального здоровья при использовании."
     "unique_mechanic_elder_titan"           "Титан получает +3% к скорости бега за каждую ауру в его скилах."
-    "unique_mechanic_ember_spirit"                        "Если Эмбер спирит имеет <font color=\'#ffd966\'>Fire Remnant</font>, он получит 1 уровень в начале игры. К тому же Fire Remnant возвращает 50% своего манакоста."
+    "unique_mechanic_ember_spirit"                        "Если Эмбер имеет <font color=\'#ffd966\'>Fire Remnant</font>, он получит 1 уровень в начале игры. К тому же Fire Remnant возвращает 50% своего манакоста."
     "unique_mechanic_enchantress"           "Энча может сажать растения без потери здоровья."
     "unique_mechanic_enigma"                        "При смерти Энигмы, перезарядка <font color=\'#ffd966\'>Black Hole</font> исчезает."
     "unique_mechanic_faceless_void"                 "Войд может свободно двигаться в любой(даже вражеской) Хроносфере."
@@ -1090,7 +1101,7 @@
     "unique_mechanic_juggernaut"                        "<font color=\'#ffd966\'>Healing/Mana ward</font> возвращает 100% от манакоста."
     "unique_mechanic_keeper_of_the_light"           "<font color=\'#ffd966\'>Аганим</font> дает Котлу неограниченную видимость."
     "unique_mechanic_kunkka"                        "Когда Кункка использует <font color=\'#ffd966\'>Водяную</font> способность, с вероятностью 50% он пополнит свой Bottle."
-    "unique_mechanic_legion_commander"              "Когда Легионка использует <font color=\'#ffd966\'>Duel</font>, она получает иммунитет к заклинаниям."
+    "unique_mechanic_legion_commander"              "Когда Легионка использует <font color=\'#ffd966\'>Дуэль</font>, она получает иммунитет к заклинаниям."
     "unique_mechanic_leshrac"                        "На старте игры, Лешрак получает 1 уровень <font color=\'#ffd966\'>Octarine Vampirism</font>, внезависмиости от ее наличия."
     "unique_mechanic_lich"          "Лич восстанавливает здоровье равное мане полученной с <font color=\'#ffd966\'>Sacrifice</font>."
     "unique_mechanic_life_stealer"                  "Когда Лайфстилер использует <font color=\'#ffd966\'>Infest</font>, его перезарядка снижается до 30 секунд."
@@ -1107,21 +1118,21 @@
     "unique_mechanic_monkey_king"                              "Манки кинг получает <font color=\'#ffd966\'>Mischief</font>."
     "unique_mechanic_naga_siren"                        "<font color=\'#ffd966\'>Иллюзии</font> создающие способности вернут 50% манакоста и перезаряюжаются на 20% быстрее."
     "unique_mechanic_furion"                        "Перезарядка <font color=\'#ffd966\'>Телепортов</font> снижена на 50% для Фуры."
-    "unique_mechanic_necrolyte"                        "На старте игры Некрофос получает 1 уровень <font color=\'#ffd966\'>Heartstopper Aura</font>, внезависмиости от ее наличия."
+    "unique_mechanic_necrolyte"                        "На старте игры Некр получает 1 уровень <font color=\'#ffd966\'>Heartstopper Aura</font>, внезависмиости от ее наличия."
     "unique_mechanic_night_stalker"                 "<font color=\'#ffd966\'>Аганим</font> дает Сталкеру неограниченную видимость ночью."
     "unique_mechanic_nyx_assassin"                        "Никс двигается быстрее на 10% во время невидимости."
-    "unique_mechanic_ogre_magi"                        "Когда Огр использует способность, с шаносом в 2% мана и перезарядка не используются."
+    "unique_mechanic_ogre_magi"                        "Когда Огр использует способность, с шансом в 2% мана и перезарядка не используются."
     "unique_mechanic_omniknight"                        "Способности <font color=\'#ffd966\'>Света</font> вернут 40% манакоста Омнику."
     "unique_mechanic_oracle"                        "Саппорт предметы на Оракле имеют на 20% меньше перезарядку."
     "unique_mechanic_obsidian_destroyer"                        "<font color=\'#ffd966\'>Astral Imprisonment</font> ворует 7 интеллекта на 60 сек для ОД."
     "unique_mechanic_phantom_assassin"               "Когда фантомка использует <font color=\'#ffd966\'>Даггерские</font> способности - они вернут 50% манакоста и снизят свою перезарядку на 2 секунды."
     "unique_mechanic_phantom_lancer"            "На старте игры, Фантом лансер получает 1 уровень <font color=\'#ffd966\'>Phantom Rush</font>, внезависмиости от ее наличия."
     "unique_mechanic_phoenix"           "Феникс автоматически использует <font color=\'#ffd966\'>Supernova</font> при получении фатального урона."
-    "unique_mechanic_puck"          "Пак имеет 50% шанс отразить уклоненное заклинание."
-    "unique_mechanic_pudge"                        "Пудж получает 2 заряда на <font color=\'#ffd966\'>Meat Hook</font>. Когда хук наносит урон, пудж получает дебафф не позволяющий следующему хуку нанести урон по той же цели."
+    "unique_mechanic_puck"          "С шансом в 50% Пак отправит обратно уклоненное заклинание."
+    "unique_mechanic_pudge"                        "Пудж получает 2 заряда на <font color=\'#ffd966\'>Хук</font>. Когда хук наносит урон, пудж получает дебафф не позволяющий следующему хуку нанести урон по той же цели."
     "unique_mechanic_pugna"                        "<font color=\'#ffd966\'>Высасывающие</font> способности на Пугне возвращают 50% манакоста и перезаряжаются на 25% быстрее."
     "unique_mechanic_queenofpain"           "Квопа наносит на 10% больше урона по героям <font color=\'#ffd966\'>Мужского пола</font>, но при этом получает на 10% больше от героев <font color=\'#ffd966\'>Женского пола</font>."
-    "unique_mechanic_razor"                        "Уменьшает манакост и перезарядку на 25% для Разора когда он высывает урон через <font color=\'#ffd966\'>Static Linked</font>."
+    "unique_mechanic_razor"                        "Уменьшает манакост и перезарядку на 25% для Разора когда он высывает урон через <font color=\'#ffd966\'>Static Link</font>."
     "unique_mechanic_riki"                  "Рики получает +4 хп/с пока невидим."
     "unique_mechanic_rubick"                        "Рубик получает 1 уровень своей пассивки <font color=\'#ffd966\'>Null Field</font>, внезависимости от ее наличия. "
     "unique_mechanic_sand_king"                        "Ск возвращает 30% маны, потраченной на каст <font color=\'#ffd966\'>Прерываемой</font> способности. "
@@ -1132,14 +1143,14 @@
     "unique_mechanic_skywrath_mage"                        "Способности с перезрядкой 7 секунд и менее возвращяют 15% манакоста Скаю."
     "unique_mechanic_slardar"                       "<font color=\'#ffd966\'>Skull Basher</font> и <font color=\'#ffd966\'>Abyssal Blade</font> не будут работать на этом герое. Слардар получает встроенный <font color=\'#ffd966\'>Sprint</font> в инвентар."
     "unique_mechanic_slark"                        "Сларк получет +3 ловкости за каждое улучшение  <font color=\'#ffd966\'>Побега</font>/<font color=\'#ffd966\'>Мобильных</font> способностей."
-    "unique_mechanic_sniper"                        "<font color=\'#ffd966\'>Shrapnel</font> на Снайпере имеет глобальную дальность."
+    "unique_mechanic_sniper"                        "<font color=\'#ffd966\'>Шрапнель</font> на Снайпере имеет глобальную дальность."
     "unique_mechanic_spectre"           "Спектра получает безпрепятственный бег после использования способностей."
     "unique_mechanic_spirit_breaker"                "<font color=\'#ffd966\'>Skull Basher</font> и <font color=\'#ffd966\'>Abyssal Blade</font> не будут работать на этом герое.Когда Бара башит, он так же накладывает <font color=\'#ffd966\'>Истощение(Break)</font>."
     "unique_mechanic_storm_spirit"                 "На старте игры, Шторм получет 1 уровень своей пассивки <font color=\'#ffd966\'>Overload</font>, внезависимости от ее наличия."
     "unique_mechanic_sven"                        "На старте игры, Свен получает 1 уровень своей пассивки <font color=\'#ffd966\'>Great Cleave</font>, внезависимости от ее наличия."
     "unique_mechanic_techies"                        "<font color=\'#ffd966\'>Ловушки</font> и <font color=\'#ffd966\'>Подрывы</font> возвращают 50% манакоста и перезаряжаются на 50%."
-    "unique_mechanic_templar_assassin"          "Темпларка уходит в невидимость на 10 секунд после 2 секунд бездействия. Движение/атака прерывают эффект."
-    "unique_mechanic_terrorblade"                        "Иллиюзии Террорблейда получают/наносят на 15% больше урона."
+    "unique_mechanic_templar_assassin"          "Темпларка уходит в невидимость на 10 секунд после 2 секунд бездействия. Движение или атака прерывают эффект."
+    "unique_mechanic_terrorblade"                        "Иллюзии Террорблейда получают/наносят на 15% больше урона."
     "unique_mechanic_tidehunter"                    "Когда Тайд умирает, перезарядка <font color=\'#ffd966\'>Ravage</font> исчезает."
     "unique_mechanic_shredder"                      "Тимбер восстанавливает 1% от максимального хп/маны за каждое срубленное дерево."
     "unique_mechanic_tinker"                        "Когда Тинкер использует <font color=\'#ffd966\'>Технические</font> способности, с шансом в 7% они мгновенно перезарядятся."
@@ -1149,14 +1160,14 @@
     "unique_mechanic_tusk"           "<font color=\'#ffd966\'>Walrus Kick</font> и <font color=\'#ffd966\'>Walrus Punch</font> вернут свой манакост."
     "unique_mechanic_abyssal_underlord"                        "Андерлорд получает +1 ко всем аттрибутам за каждое улучшение <font color=\'#ffd966\'>Нестадартных</font> способностей(все что не из обычной доты)."
     "unique_mechanic_undying"                        "Андаинг получает +1 к силе за крипа или +4 за героя убитового в радиусе 900 на 30 секунд."
-    "unique_mechanic_ursa"                   "Урса наносит нейтралам и Рошан на 15% больше урона."
-    "unique_mechanic_vengefulspirit"                        "При смерти Венги, убийца теряет навсегда 1 от всех аттрибутов."
+    "unique_mechanic_ursa"                   "Урса наносит нейтралам и Рошану на 15% больше урона."
+    "unique_mechanic_vengefulspirit"                        "При смерти Венги, убийца навсегда теряет 1 от всех аттрибутов."
     "unique_mechanic_venomancer"                        "Увеличивает длительность всех <font color=\'#ffd966\'>Ядов</font> на 25%."
     "unique_mechanic_viper"                        "<font color=\'#ffd966\'>Яды</font> наложенные Вайпером снижают броню врага на 2(не стакается :с )."
     "unique_mechanic_visage"                        "<font color=\'#ffd966\'>Summon Familiars</font> вернут весь манакост и снизят свою перезарядку на 50%."
     "unique_mechanic_warlock"                        "Варлок получает в начале игры 2 <font color=\'#ffd966\'>Observer Wards</font>."
     "unique_mechanic_weaver"                        "При получении фатального урона, Вивер использует <font color='#ffd966'>Time Lapse</font>."
-    //"unique_mechanic_windrunner"                        "If Windranger has no passives, all her active spells will refund 20% mana and have 20% reduced cooldowns."
+    "unique_mechanic_windrunner"                        "Если у Врки нет пассивок, то все активки возвратят 20% маны и на 20% быстрее перезарядятся."
     "unique_mechanic_winter_wyvern"         "Когда здоровье и мана Виверны выше 75%, с задержкой в 5 секунд, она получает Полет."
     "unique_mechanic_witch_doctor"           "<font color=\'#ffd966\'>Лечение</font> на 25% сильнее на Виче."
     "unique_mechanic_skeleton_king"                        "Перезарядка выкупа на Врейзе 50% меньше, а также возвращает 50% потраченной на него золота и не имеет штрафа в золоте."
@@ -1195,61 +1206,74 @@
     // Skill Warnings
     ////////////////
 
-    "warning_keeper_of_the_light_spirit_form"   "<font color=\'#FF4949\'>Warning:</font> Will not give additional abilities.<br><font color=\'#FF4949\'>Hero Requirement:</font> You have to play as <font color=\'#70EA72\'>Elazor</font> to get Aghanim's Scepter bonuses."
-    "warning_life_stealer_infest"               "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Consume</font>, if you want to uninfest."
-    "warning_zuus_cloud"               "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Lighting Bolt</font>, for Nimbus to strike enemies."
-    "warning_night_stalker_darkness"                "<font color=\'#FF4949\'>Hero Requirement:</font> You have to play as <font color=\'#70EA72\'>Night Stalker</font> to get the unobstructed vision bonus from Aghanim's Scepter."
-    "warning_lone_druid_true_form"              "<font color=\'#FF4949\'>Hero Requirement:</font> Requires picking a hero with more than 400 range or else you will be unable to attack."
-    "troll_warlord_berserkers_rage"              "<font color=\'#FF4949\'>Hero Requirement:</font> Requires picking a hero with more than 350 range or else you will be unable to attack."
-    "warning_puck_illusory_orb"                 "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Ethereal Jaunt</font>, if you want to teleport to your orb."
-    "warning_luna_eclipse"                      "<font color=\'#FF4949\'>Warning:</font> This spell does no damage without <font color=\'#70EA72\'>Lucent Beam.</font>"
-    "warning_lone_druid_spirit_bear"            "<font color=\'#FF4949\'>Hero Requirement:</font> Bear Icon will not appear on the left side of the screen unless you play as <font color=\'#70EA72\'>Lone Druid.</font>"
-    "warning_lone_druid_true_form_battle_cry"   "<font color=\'#FF4949\'>Warning:</font> Disabled, unless you have at least one point in <font color=\'#70EA72\'>True Form.</font></font>"
-    "warning_phoenix_supernova"                 "<font color=\'#FF4949\'>Warning:</font> Will only refresh non-ultimate abilities."
-    "warning_techies_remote_mines"              "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Focused Detonate</font>. Alternatively, mines can be activated manually, individually or by selecting them as a group."
-    "warning_alchemist_chemical_rage"           "<font color=\'#FF4949\'>Warning:</font> Ability to give Aghanim's Scepters to allies is inbuilt to the <font color=\'#70EA72\'>Alchemist</font> hero and not Chemical Rage."
-    "warning_ember_spirit_activate_fire_remnant" "<font color=\'#FF4949\'>Warning:</font> Useless without <font color=\'#70EA72\'>Fire Remnant.</font>"
-    "warning_ember_spirit_fire_remnant"         "<font color=\'#FF4949\'>Warning:</font> Useless without <font color=\'#70EA72\'>Activate Fire Remnant.</font>"
-    "warning_faceless_void_chronosphere"        "<font color=\'#FF4949\'>Warning:</font> Any other player that plays as the <font color=\'#70EA72\'>Faceless Void</font>, will be able to move within Chronosphere, including enemies. If you cast it, you can move through it as any hero."
-    "warning_furion_wrath_of_nature"            "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter upgrade will not spawn Treants/ Greater Treants, unless you also have <font color=\'#70EA72\'>Nature's Call.</font>"
-    "warning_gyrocopter_call_down"          "<font color=\'#FF4949\'>Hero Requirement:</font> Aghanim's Scepter Side Side Gunner Bonus will only work if you play as <font color=\'#70EA72\'>Gyrocopter.</font>  Side Gunner will apply even without having Call Down ability.</font>"
-    "warning_tusk_walrus_punch"         "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will not give <font color=\'#70EA72\'>Walrus Kick.</font>"
-    "warning_meepo_divided_we_stand"            "<font color=\'#FF4949\'>Warning:</font> If a clone is killed, death timer percentage reductions will not apply."
-    "warning_invoker_alacrity_lod" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
-    "warning_invoker_chaos_meteor_lod" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
-    "warning_invoker_cold_snap_lod" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
-    "warning_invoker_emp_lod" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
-    "warning_invoker_forge_spirit_lod" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
-    "warning_invoker_ghost_walk_lod" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
-    "warning_invoker_ice_wall_lod" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
-    "warning_invoker_sun_strike_lod" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
-    "warning_invoker_tornado_lod" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will lock this ability to its level 1 version."
-    "warning_silencer_glaives_of_wisdom" "<font color=\'#FF4949\'>Warning:</font> Silencer's Intelligence Steal Ability is part of this ability."
-    "warning_elder_titan_ancestral_spirit" "<font color=\'#FF4949\'>Warning:</font> The astral spirit wont have <font color=\'#70EA72\'>Natural Order</font> or <font color=\'#70EA72\'>Echo Stomp</font>, unless you also have it."
-    "warning_shredder_chakram" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will not give <font color=\'#70EA72\'>Second Chakram</font> as an extra ability.</font>"
-    "warning_shredder_chakram_2" "<font color=\'#FF4949\'>Warning:</font> Requires original <font color=\'#70EA72\'>Chakram.</font>"
-    "warning_shadow_demon_shadow_poison_release" "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Shadow Poison.</font>"
-    "warning_nevermore_requiem" "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Necromastery</font> and stored souls to do damage."
-    "warning_templar_assassin_trap" "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Psionic Trap.</font>"
-    "warning_templar_assassin_psionic_trap" "<font color=\'#FF4949\'>Warning:</font> If you don't have <font color=\'#70EA72\'>Trap</font>, you will have to manually activate traps."
-    "warning_tiny_grow_lod" "<font color=\'#FF4949\'>Warning:</font> You might need to buy an item, level up this skill, or respawn for the scepter upgrade to work.\nBuying an item and selling it will work.\nCheck the modifier to verify you have the upgrade."
-    "warning_ogre_magi_multicast" "<font color=\'#FF4949\'>Warning:</font> Only works with <font color=\'#70EA72\'>Fireblast, Ignire, Bloodlust</font> and <font color=\'#70EA72\'>Unrefined Fireblast</font>. Aghanim's Scepter will not give <font color=\'#70EA72\'>Unrefined Fireblast</font> as an extra ability."
-    "warning_ogre_magi_multicast_lod" "<font color=\'#FF4949\'>Warning:</font> This ability will not have a cooldown if OP abilities are enabled. Aghanim's Scepter will not give <font color=\'#70EA72\'>Unrefined Fireblast</font> as an extra ability."
+     "warning_mercy_angelic_descent"   "<font color=\'#FF4949\'>Warning:</font> Убирает возможность физической атаки.\n"
+    "warning_imba_tower_plasma_field"   "<font color=\'#FF4949\'>Warning:</font> Требует доп. слот для скила. Если у вас много левых способностей (включая спрятанные), эта способность работать не будет."
+    "warning_keeper_of_the_light_spirit_form"   "<font color=\'#FF4949\'>Warning:</font> Не дает доп. способностей.<br><font color=\'#FF4949\'>Hero Requirement:</font> Вы должны играть <font color=\'#70EA72\'>Котлом</font> для получения бонусов с Аганима."
+    "warning_undying_tombstone_zombie_deathstrike"   "<font color=\'#FF4949\'>Warning:</font> Этот скил полу-сломан, вы не получите ни скорости бега ни скорости атаки. Лучше не брать."
+    "warning_life_stealer_infest"               "<font color=\'#FF4949\'>Warning:</font> Дает <font color=\'#70EA72\'>Consume</font> и <font color=\'#70EA72\'>Control</font>."
+    "warning_zuus_cloud"               "<font color=\'#FF4949\'>Warning:</font> Требует наличия <font color=\'#70EA72\'>Lighting Bolt</font>, чтобы Нимбус бил врагов."
+    "warning_night_stalker_darkness"                "<font color=\'#FF4949\'>Hero Requirement:</font> Вы должны играть <font color=\'#70EA72\'>Сталкером</font> чтобы получить ночную видимость с Аганима."
+    "warning_lone_druid_true_form"              "<font color=\'#FF4949\'>Hero Requirement:</font> Требуется брать героя с дальностью атаки 400+ иначе бить не сможете."
+    "troll_warlord_berserkers_rage"              "<font color=\'#FF4949\'>Hero Requirement:</font> Требуется брать героя с дальностью атаки 350+ иначе бить не сможете."
+    "warning_puck_illusory_orb"                 "<font color=\'#FF4949\'>Warning:</font> Дает <font color=\'#70EA72\'>Ethereal Jaunt</font>."
+    "warning_luna_eclipse"                      "<font color=\'#FF4949\'>Warning:</font> Не наносит урон без <font color=\'#70EA72\'>Lucent Beam.</font>"
+    "warning_lone_druid_spirit_bear"            "<font color=\'#FF4949\'>Hero Requirement:</font> Иконка Михалыча не появится сбоку если вы играете не на <font color=\'#70EA72\'>Друиде.</font>"
+    //"warning_lone_druid_true_form_battle_cry"   "<font color=\'#FF4949\'>Warning:</font> Disabled, unless you have at least one point in <font color=\'#70EA72\'>True Form.</font></font>"
+    "warning_phoenix_supernova"                 "<font color=\'#FF4949\'>Warning:</font> Не перезаряжает ульты."
+    "warning_techies_remote_mines"              "<font color=\'#FF4949\'>Warning:</font> Дает <font color=\'#70EA72\'>Focused Detonate</font>."
+    "warning_ember_spirit_fire_remnant"         "<font color=\'#FF4949\'>Warning:</font> Дает <font color=\'#70EA72\'>Activate Fire Remnant.</font>"
+    "warning_faceless_void_chronosphere"        "<font color=\'#FF4949\'>Warning:</font> Любой другой кто играет <font color=\'#70EA72\'>Войдом</font>, сможет двигаться в Куполе, включая вражеского. Если вы его создали, то сможете двигаться любым героем."
+    "warning_furion_wrath_of_nature"            "<font color=\'#FF4949\'>Warning:</font> Аганим не будет спавнить пеньков, если вы не взяли <font color=\'#70EA72\'>Nature's Call.</font>"
+    //"warning_gyrocopter_call_down"          "<font color=\'#FF4949\'>Hero Requirement:</font> Aghanim's Scepter Side Side Gunner Bonus will only work if you play as <font color=\'#70EA72\'>Gyrocopter.</font>  Side Gunner will apply even without having Call Down ability.</font>"
+    "warning_tusk_walrus_punch"         "<font color=\'#FF4949\'>Warning:</font> Аганим не даст <font color=\'#70EA72\'>Walrus Kick.</font>"
+    "warning_meepo_divided_we_stand"            "<font color=\'#FF4949\'>Warning:</font> При убийстве одного из клонов, модификаторы времени возрождения не учитываются."
+    "warning_invoker_alacrity_lod" "<font color=\'#FF4949\'>Warning:</font> Наличие аганима заблокирует способность на первом уровне."
+    "warning_invoker_chaos_meteor_lod" "<font color=\'#FF4949\'>Warning:</font> Наличие аганима заблокирует способность на первом уровне."
+    "warning_invoker_chaos_meteor_op" "<font color=\'#FF4949\'>Warning:</font> Наличие аганима заблокирует способность на первом уровне."
+    "warning_invoker_cold_snap_lod" "<font color=\'#FF4949\'>Warning:</font> Наличие аганима заблокирует способность на первом уровне."
+    "warning_invoker_emp_lod" "<font color=\'#FF4949\'>Warning:</font> Наличие аганима заблокирует способность на первом уровне."
+    "warning_invoker_forge_spirit_lod" "<font color=\'#FF4949\'>Warning:</font> Наличие аганима заблокирует способность на первом уровне."
+    "warning_invoker_ghost_walk_lod" "<font color=\'#FF4949\'>Warning:</font> Наличие аганима заблокирует способность на первом уровне."
+    "warning_invoker_ice_wall_lod" "<font color=\'#FF4949\'>Warning:</font> Наличие аганима заблокирует способность на первом уровнеn."
+    "warning_invoker_sun_strike_lod" "<font color=\'#FF4949\'>Warning:</font> Наличие аганима заблокирует способность на первом уровне."
+    "warning_invoker_tornado_lod" "<font color=\'#FF4949\'>Warning:</font> Наличие аганима заблокирует способность на первом уровне."
+    "warning_elder_titan_ancestral_spirit" "<font color=\'#FF4949\'>Warning:</font> Астральный дух не будет иметь <font color=\'#70EA72\'>Natural Order</font> или <font color=\'#70EA72\'>Echo Stomp</font>, если ."
+    "warning_shredder_chakram" "<font color=\'#FF4949\'>Warning:</font> Аганим не даст <font color=\'#70EA72\'>Второй чакрам</font>."
+    "warning_shredder_chakram_2" "<font color=\'#FF4949\'>Warning:</font> Требует наличия оригинального <font color=\'#70EA72\'>Чакрама.</font>"
+    "warning_spectre_haunt" "<font color=\'#FF4949\'>Warning:</font> Дает <font color=\'#70EA72\'>Reality.</font>"
+    "warning_shadow_demon_shadow_poison" "<font color=\'#FF4949\'>Warning:</font> Дает <font color=\'#70EA72\'>Shadow Poison Release.</font>"
+    "warning_nevermore_requiem" "<font color=\'#FF4949\'>Warning:</font> Требует <font color=\'#70EA72\'>Necromastery</font> и наличие душ для урона."
+    "warning_templar_assassin_psionic_trap" "<font color=\'#FF4949\'>Warning:</font> Дает <font color=\'#70EA72\'>Trap ( ° ʖ °).</font>"
+    "warning_tiny_grow_lod" "<font color=\'#FF4949\'>Warning:</font> Возможно придется купить предмет, апнуть скил, или возродиться чтобы оно работало.\nBuying an item and selling it will work.\n."
+    "warning_ogre_magi_multicast" "<font color=\'#FF4949\'>Warning:</font> Работает только с <font color=\'#70EA72\'>Fireblast, Ignire, Bloodlust</font> и <font color=\'#70EA72\'>Unrefined Fireblast</font>. Аганим не даст <font color=\'#70EA72\'>Unrefined Fireblast</font> как экстра способность."
+    "warning_ogre_magi_multicast_lod" "<font color=\'#FF4949\'>Warning:</font> Способность не будет иметь перезарядки если разрешены Сверхсильные способности. Аганим не даст <font color=\'#70EA72\'>Unrefined Fireblast</font> как экстра абилку."
     "warning_meepo_poof" "<font color=\'#FF4949\'>Warning:</font> Can teleport to any ally who has the same hero as you."
-    "warning_aether_range_lod"    "<font color=\'#FF4949\'>Warning:</font> Does not stack with Aether Lens."
-    "warning_aether_range_lod_OP"    "<font color=\'#FF4949\'>Warning:</font> Does not stack with Aether Lens."
-//    "warning_life_stealer_control"                 "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Infest.</font>"
-    "warning_true_random_lod_1"                 "<font color=\'#FF4949\'>Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
-    "warning_true_random_lod_2"                 "<font color=\'#FF4949\'>Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
-    "warning_true_random_lod_3"                 "<font color=\'#FF4949\'>Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
-    "warning_true_random_lod_4"                 "<font color=\'#FF4949\'>Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
-    "warning_true_random_lod_5"                 "<font color=\'#FF4949\'>Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
-    "warning_true_random_lod_6"                 "<font color=\'#FF4949\'>Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
-    "warning_doom_bringer_devour_lod" "<font color=\'#FF4949\'>Warning:</font> Will not give you neutral creep abilities of devoured creeps"
-    "warning_illusionist_agility_paws" "<font color=\'#FF4949\'>Warning:</font> Bonus agility can only come from using <font color=\'#70EA72\'>Mastery of Deception</font> and/or <font color=\'#70EA72\'>Mastery of Illusions</font>.\n"
-    "warning_bristleback_bristleback" "<font color=\'#FF4949\'>Warning:</font> Quill release will not do any damage unless you have at least 1 level in <font color=\'#70EA72\'>Quill Spray</font>.\n"
-    "warning_ebf_rubick_arcane_echo" "<font color=\'#FF4949\'>Warning:</font> This ability is still in the process of being balanced. Post balance suggestions on Steam page or by in-game comment system.\n"
-    "warning_roshan_bash" "Roshan has a chance to stun on attack.\n\n<font color=\'#FF4949\'>Warning:</font> This ability works on illusions. Hence, it is a troll combo with any non-ultimate self-illusion creating ability.\n"
+    //"warning_life_stealer_control"                 "<font color=\'#FF4949\'>Warning:</font> Требует <font color=\'#70EA72\'>Infest.</font>"
+    "warning_true_random_lod_1"                 "<font color=\'#FF4949\'>Warning:</font> НЕСТАБИЛЬНО, может крашить. Для использования, включите Сверхсильные способности, но на свой риск."
+    "warning_true_random_lod_2"                 "<font color=\'#FF4949\'>Warning:</font>НЕСТАБИЛЬНО, может крашить. Для использования, включите Сверхсильные способности, но на свой рис."
+    "warning_true_random_lod_3"                 "<font color=\'#FF4949\'>Warning:</font> НЕСТАБИЛЬНО, может крашить. Для использования, включите Сверхсильные способности, но на свой рисk."
+    "warning_true_random_lod_4"                 "<font color=\'#FF4949\'>Warning:</font> НЕСТАБИЛЬНО, может крашить. Для использования, включите Сверхсильные способности, но на свой рис."
+    "warning_true_random_lod_5"                 "<font color=\'#FF4949\'>Warning:</font> НЕСТАБИЛЬНО, может крашить. Для использования, включите Сверхсильные способности, но на свой рис."
+    "warning_true_random_lod_6"                 "<font color=\'#FF4949\'>Warning:</font> НЕСТАБИЛЬНО, может крашить. Для использования, включите Сверхсильные способности, но на свой рис."
+    "warning_doom_bringer_devour_lod" "<font color=\'#FF4949\'>Warning:</font> Не дает способностей сожранных нейтралов"
+    "warning_illusionist_agility_paws" "<font color=\'#FF4949\'>Warning:</font> Бонусная ловкость может прийти только с <font color=\'#70EA72\'>Mastery of Deception</font> и/or <font color=\'#70EA72\'>Mastery of Illusions</font>.\n"
+    "warning_bristleback_bristleback" "<font color=\'#FF4949\'>Warning:</font> Шипы не нанесут урона если у вас нет хотя бы 1 уровня самого <font color=\'#70EA72\'>Quill Spray</font>.\n"
+    "warning_roshan_bash" "У Рошана есть баш. Может башить здания(рили).\n"
+    "warning_roshan_spell_block" "<font color=\'#FF4949\'>Warning:</font> Блочит и скилы от союзника(кек)."
+    //"warning_roshan_spell_block_lod" "<font color=\'#FF4949\'>Warning:</font> Also blocks friendly spells."
+    //"warning_linkens_guard_lod" "<font color=\'#FF4949\'>Warning:</font> Also blocks friendly spells."
+    "warning_earth_spirit_boulder_smash" "<font color=\'#FF4949\'>Warning:</font> Дает <font color=\'#70EA72\'>Stone Remnant.</font>"
+    "warning_earth_spirit_geomagnetic_grip" "<font color=\'#FF4949\'>Warning:</font> Дает <font color=\'#70EA72\'>Stone Remnant.</font>"
+    "warning_earth_spirit_magnetize" "<font color=\'#FF4949\'>Warning:</font> Дает <font color=\'#70EA72\'>Stone Remnant.</font>"
+    "warning_earth_spirit_rolling_boulder" "<font color=\'#FF4949\'>Warning:</font> Дает <font color=\'#70EA72\'>Stone Remnant.</font>"
+    "warning_monkey_king_mischief" "<font color=\'#FF4949\'>Hero Requirement:</font> Вы должны играть <font color=\'#70EA72\'>Monkey King</font> чтобы работала маскировка под дерево."
+    "warning_pudge_flesh_heap_spell_amp" "<font color=\'#FF4949\'>Warning:</font> Не покажет эффекта в характеристиках героя, но урон скилов всеравно увеличен. Фиолетовый текст покажется над героем при большом уроне.\n"
+    "warning_treant_eyes_in_the_forest" "<font color=\'#FF4949\'>Warning:</font> Враги увидят дебафф у себя когда в 1000 радусе от зачарованного дерева."
+    "warning_angel_arena_transmute" "<font color=\'#FF4949\'>Warning:</font> На способность не влияют модификаторы перезарядки (октарин).\n"
+    "warning_night_stalker_innate_redux" "<font color=\'#FF4949\'>Warning:</font> Требует <font color=\'#70EA72\'>Аганим</font> для работы.\n"
+    "warning_keeper_of_the_light_innate_redux" "<font color=\'#FF4949\'>Warning:</font> Требует <font color=\'#70EA72\'>Аганим</font> для работы.\n"
+    "warning_chen_holy_persuasion" "<font color=\'#FF4949\'>Warning:</font> Подчинение древних требует уровней в <font color=\'#70EA72\'>Hand of God</font> для работы.\n"
+    "warning_centaur_return" "<font color=\'#FF4949\'>Warning:</font> Не дамажит строения.\n"
 
 
     "credit_aether_range_lod"           "<font color=\'#7D7D7D\'>Credits: Yahnich | github.com/Yahnich</font>"
@@ -1384,109 +1408,195 @@
     // CUSTOM ABILITIES
     ////////////////
 
-    //Scepter Buff Modifer
+      //Scepter Buff Modifer
+
     "DOTA_Tooltip_modifier_item_ultimate_scepter_consumed" "Free Aghanim's Scepter"
+
     "DOTA_Tooltip_modifier_item_ultimate_scepter_consumed_Description" "Permanently granted 'Ultimate Upgrade' benefit from Aghanim's Scepter. Certain ultimates and abilities will be upgraded."
 
+
+
+    "DOTA_Tooltip_modifier_battle_thirst_effect"  "Out-of-Sight Penalty"
+
+    "DOTA_Tooltip_modifier_battle_thirst_effect_Description"  "Losing 2 gold per second. You have been unseen by the enemy for too long, reveal yourself to remove this peanlty."
+
+
+    // Slard Sprint Perk
+    "DOTA_Tooltip_modifier_item_phase_boots_datadriven_active"  "Slardar Sprint Perk"
+    "DOTA_Tooltip_modifier_item_phase_boots_datadriven_active_Description"  "Gaining extra movement speed."
+    "DOTA_Tooltip_ability_item_sprint" "Sprint"
+    "DOTA_Tooltip_ability_item_sprint_Description" "Slardar's perk gives the active ability to sprint for a short time."
+    "DOTA_Tooltip_ability_item_sprint_phase_movement_speed"            "%BONUS MOVEMENT SPEED:"
+    "DOTA_Tooltip_ability_item_sprint_phase_duration"                  "PHASE DURATION:"
+
+
+
+    "DOTA_Tooltip_modifier_redux_silver_break"  "Серебряный раскол"
+    "DOTA_Tooltip_modifier_redux_silver_break_Description"  "Пассивки выключены."
+    "DOTA_Tooltip_ability_item_redux_silver" "Серебро"
+    "DOTA_Tooltip_ability_item_redux_silver_Description" "Активная способность: Раскол - Раскалывает сущность вражеского героя, отключая их пассивки и снижая исходящий урон."
+    "DOTA_Tooltip_ability_item_redux_silver_bonus_all_stats"            "+$all"
+    "DOTA_Tooltip_ability_item_redux_silver_break_duration"                  "Длительность раскола:"
+    "DOTA_Tooltip_ability_item_redux_silver_damage_reduction"                  "%DAMAGE REDUCTION:"
+    "DOTA_Tooltip_ability_item_recipe_redux_silver" "Рецепт раскола"
+
+
+
     // tiny
+
     "DOTA_Tooltip_ability_tiny_grow_lod"                                                "Grow"
-    "DOTA_Tooltip_ability_tiny_grow_lod_Description"                                    "Tiny gains craggy mass that increases his power at the cost of his attack speed. Improves movement speed.\n\nUpgradable by Aghanim's Scepter."
-    "DOTA_Tooltip_ability_tiny_grow_lod_Lore"                                           "Watching a hill become a mountain is awe-inspiring - especially if the mountain begins laying waste to adversaries."
-    "DOTA_Tooltip_ability_tiny_grow_lod_Note0"                                          "Cleave damage is reduced by armor type but not by armor value."
-    "DOTA_Tooltip_ability_tiny_grow_lod_Note1"                                          "Cleave damage goes through spell immunity."
-    "DOTA_Tooltip_ability_tiny_grow_lod_bonus_damage"                                   "BONUS DAMAGE:"
-    "DOTA_Tooltip_ability_tiny_grow_lod_bonus_attack_speed"                             "ATTACK SPEED LOSS:"
-    "DOTA_Tooltip_ability_tiny_grow_lod_bonus_movement_speed"                           "ADDED MOVE SPEED:"
-    "DOTA_Tooltip_ability_tiny_grow_lod_bonus_range_scepter"                            "SCEPTER BONUS RANGE:"
+    "DOTA_Tooltip_ability_tiny_grow_lod_Description"                                    "Tiny прибавляет в весе, увеличивая урон ценой скорости атаки. Увеличивает скорость передвижения и урон брошенным способностью Toss врагам.\n\nУлучшается Aghanim's Scepter."
+    "DOTA_Tooltip_ability_tiny_grow_lod_Lore"                                           "Наблюдать превращение холма в гору становится вдвойне интереснее, когда эта гора в одиночку начинает сокрушать армии противников."
+    "DOTA_Tooltip_ability_tiny_grow_lod_Note0"                                          "Урон соседним юнитам снижается в зависимости от типа брони, а не его количества."
+    "DOTA_Tooltip_ability_tiny_grow_lod_Note1"                                          "Урон соседним целям проходит сквозь иммунитет к магии."
+    "DOTA_Tooltip_ability_tiny_grow_lod_bonus_damage"                                   "Доп. урон:"
+    "DOTA_Tooltip_ability_tiny_grow_lod_bonus_attack_speed"                             "Снижение скорости атаки:"
+    "DOTA_Tooltip_ability_tiny_grow_lod_bonus_movement_speed"                           "Доп. Скорость:"
+    "DOTA_Tooltip_ability_tiny_grow_lod_bonus_range_scepter"                            "Доп. радиус атаки:"
     "DOTA_Tooltip_ability_tiny_grow_lod_bonus_cleave_damage_scepter"                    "%SCEPTER CLEAVE DAMAGE:"
     //"DOTA_Tooltip_ability_tiny_grow_lod_bonus_building_damage_scepter"                "%SCEPTER BONUS BUILDING DAMAGE:"
     //"DOTA_Tooltip_ability_tiny_grow_lod_grow_bonus_damage_pct_scepter"                "%SCEPTER TOSS BONUS:"
-    "DOTA_Tooltip_ability_tiny_grow_lod_aghanim_description"                            "Allows Tiny to equip a tree, increasing his attack range and granting a cleave attack."
+    "DOTA_Tooltip_ability_tiny_grow_lod_aghanim_description"                            "Tiny носит с собой дерево, увеличивающее радиус его атаки и урон постройкам, а также позволяющее прорубать ряды врагов каждой атакой."
+
+
 
     "DOTA_Tooltip_tiny_grow_lod"                    "Tiny Grow"
-    "DOTA_Tooltip_tiny_grow_lod_Description"        "Granting %dMODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE% bonus damage, %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT% attack speed loss and %dMODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT% bonus movespeed."
+    "DOTA_Tooltip_tiny_grow_lod_Description"        "Дает %dMODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE% доп. урона, %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT% потеря скорости атаки и %dMODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT% доп. скорости."
+
+
 
     "DOTA_Tooltip_tiny_grow_lod_scepter"                    "Tiny Grow Scepter"
-    "DOTA_Tooltip_tiny_grow_lod_scepter_Description"        "Granting %dMODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE% bonus damage, %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT% attack speed loss, %dMODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT% bonus movespeed %dMODIFIER_PROPERTY_ATTACK_RANGE_BONUS% bonus range and cleave damage."
+    "DOTA_Tooltip_tiny_grow_lod_scepter_Description"        "Дает %dMODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE% доп. урона, %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT% потеря скорости атаки и %dMODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT% доп. скорости %dMODIFIER_PROPERTY_ATTACK_RANGE_BONUS% доп. радиус атаки и сплеша."
+
+
+
+    "DOTA_Tooltip_ability_tiny_grow_lod_redux"                                                "Grow Redux"
+    "DOTA_Tooltip_ability_tiny_grow_lod_redux_Description"                                    "Tiny прибавляет в весе, увеличивая урон ценой скорости атаки. Увеличивает скорость передвижения и урон брошенным способностью Toss врагам.\n\nУлучшается Aghanim's Scepter."
+    "DOTA_Tooltip_ability_tiny_grow_lod_redux_Lore"                                           "Наблюдать превращение холма в гору становится вдвойне интереснее, когда эта гора в одиночку начинает сокрушать армии противников."
+    "DOTA_Tooltip_ability_tiny_grow_lod_redux_Note0"                                          "Урон соседним юнитам снижается в зависимости от типа брони, а не его количества."
+    "DOTA_Tooltip_ability_tiny_grow_lod_redux_Note1"                                          "Урон соседним целям проходит сквозь иммунитет к магии."
+    "DOTA_Tooltip_ability_tiny_grow_lod_redux_bonus_damage"                                   "Доп. урон:"
+    "DOTA_Tooltip_ability_tiny_grow_lod_redux_bonus_attack_speed"                             "Снижение скорости атаки:"
+    "DOTA_Tooltip_ability_tiny_grow_lod_redux_bonus_movement_speed"                           ""Доп. Скорость:"
+    "DOTA_Tooltip_ability_tiny_grow_lod_redux_bonus_range_scepter"                            "SCEPTER BONUS RANGE:"
+    "DOTA_Tooltip_ability_tiny_grow_lod_redux_bonus_cleave_damage_scepter"                    "%SCEPTER CLEAVE DAMAGE:"
+    "DOTA_Tooltip_ability_tiny_grow_lod_redux_aghanim_description"                            "Tiny носит с собой дерево, увеличивающее радиус его атаки и урон постройкам, а также позволяющее прорубать ряды врагов каждой атакой."
+
+
 
     //SNIPER
-    "DOTA_Tooltip_ability_sniper_shrapnel_perk"                                          "Shrapnel"
-    "DOTA_Tooltip_ability_sniper_shrapnel_perk_Description"                              "Consumes a charge to launch a ball of shrapnel that showers the target area in explosive pellets. Enemies are subject to damage and slowed movement. Reveals the targeted area. Shrapnel charges restore every %charge_restore_time% seconds."
-    "DOTA_Tooltip_ability_sniper_shrapnel_perk_Lore"                                     "Kardel's modular rifle also fires incendiary rounds, useful for assaulting entrenched locations."
-    "DOTA_Tooltip_ability_sniper_shrapnel_perk_Note0"                                    "Damage is dealt 11 times, immediately at spell effect then every second."
-    "DOTA_Tooltip_ability_sniper_shrapnel_perk_Note1"                                    "Does not damage buildings."
-    "DOTA_Tooltip_ability_sniper_shrapnel_perk_Note2"                                    "Provides vision in the targeted area."
+
+    "DOTA_Tooltip_ability_sniper_shrapnel_perk"                                          "Глобальная шрапнель"
+    "DOTA_Tooltip_ability_sniper_shrapnel_perk_Description"                              "Использует заряд шрапнели, покрывая указанную область дождем из разрывной дроби. Противники под ним замедляются и получают урон. Раскрывает туман войны в области действия. Заряды способности восстанавливаются каждые  %charge_restore_time% секунд. <font color='#70EA72'>Имеет глобальную дальность применения.</font>"
+    "DOTA_Tooltip_ability_sniper_shrapnel_perk_Lore"                                     "Универсальная винтовка Кардела способна стрелять взрывными патронами, особенно эффективными в условиях позиционной войны."
+    "DOTA_Tooltip_ability_sniper_shrapnel_perk_Note0"                                    "Урон наносится 11 раз — в начале действия заклинания и каждую последующую секунду."
+    "DOTA_Tooltip_ability_sniper_shrapnel_perk_Note1"                                    "Не наносит урон по строениям."
+    "DOTA_Tooltip_ability_sniper_shrapnel_perk_Note2"                                    "Раскрывает туман войны в области действия."
     "DOTA_Tooltip_ability_sniper_shrapnel_perk_slow_movement_speed"                      "%MOVEMENT SLOW:"
     "DOTA_Tooltip_ability_sniper_shrapnel_perk_radius"                                   "RADIUS:"
     "DOTA_Tooltip_ability_sniper_shrapnel_perk_duration"                                 "DURATION:"
 
+
+
     // Dazzle
+
     "DOTA_Tooltip_ability_dazzle_shallow_grave_perk"                                     "Shallow Grave"
-    "DOTA_Tooltip_ability_dazzle_shallow_grave_perk_Description"                         "An ally blessed with Shallow Grave, no matter how close to death, cannot die while under its protection."
-    "DOTA_Tooltip_ability_dazzle_shallow_grave_perk_Lore"                                "Only a seasoned acolyte of the Shadow can properly perform the rite of preventing death."
-    "DOTA_Tooltip_ability_dazzle_shallow_grave_perk_Note0"                               "HP cannot go below 1 while under the effects of Shallow Grave, but Axe's Culling Blade will still kill the hero."
-    "DOTA_Tooltip_ability_dazzle_shallow_grave_perk_duration_tooltip"                    "DURATION:"
-    "DOTA_Tooltip_ability_dazzle_shallow_grave_perk_range_tooltip"                       "RANGE:"
+    "DOTA_Tooltip_ability_dazzle_shallow_grave_perk_Description"                         "Союзник, находящийся под защитой Shallow Grave, не может умереть независимо от того, как он близок к смерти."
+    "DOTA_Tooltip_ability_dazzle_shallow_grave_perk_Lore"                                "Только могущественный послушник культа Теней способен обмануть саму смерть."
+    "DOTA_Tooltip_ability_dazzle_shallow_grave_perk_Note0"                               "Уровень здоровья юнита под действием этой способности не может опуститься ниже единицы, но Axe может убить его заклинанием Culling Blade."
+    "DOTA_Tooltip_ability_dazzle_shallow_grave_perk_duration_tooltip"                    "Длительность:"
+    "DOTA_Tooltip_ability_dazzle_shallow_grave_perk_range_tooltip"                       "Дальность:"
+
+
 
     // Crystal Maiden
+
     "DOTA_Tooltip_ability_holdout_arcane_aura"                          "Arcane Aura"
-    "DOTA_Tooltip_ability_holdout_arcane_aura_Description"              "<font color='#70EA72'>Grants the target unit bonus mana regen.</font>  Passively gives additional mana regeneration to all friendly units on the map. This bonus is doubled on Crystal Maiden."
-    "DOTA_Tooltip_ability_holdout_arcane_aura_Lore"                     "Cold temperatures promote the essence of magic, causing Rylai's presence to allow spell usage in abundance."
-    "DOTA_Tooltip_ability_holdout_arcane_aura_Note0"                        "Stacks with other flat mana regeneration bonuses."
-    "DOTA_Tooltip_ability_holdout_arcane_aura_Note1"                        "The flat mana regeneration bonus is not considered for percentage mana regeneration increases."
-    "DOTA_Tooltip_ability_holdout_arcane_aura_mana_regen"               "MANA REGEN BONUS:"
-    "DOTA_Tooltip_ability_holdout_arcane_aura_mana_regen_pct"           "%<font color='#70EA72'>MANA REGEN PERCENT:</font>"
-    "DOTA_Tooltip_ability_holdout_arcane_aura_buff_duration"            "<font color='#70EA72'>BUFF DURATION:</font>"
-    "DOTA_Tooltip_modifier_holdout_arcane_aura_buff"                    "Arcane Aura Bonus Regen"
-    "DOTA_Tooltip_modifier_holdout_arcane_aura_buff_Description"        "Granting %dMODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE%%% bonus mana regen."
+    "DOTA_Tooltip_ability_holdout_arcane_aura_Description"              "<font color='#70EA72'>Дает повышенный реген маны выбранному юниту.</font> Увеличивает скорость восстановления маны всех союзников на карте. Crystal Maiden получает двойной бонус."
+    "DOTA_Tooltip_ability_holdout_arcane_aura_Lore"                     "Холод — сущность магии, поэтому присутствие ледяной волшебницы Рилай позволяет союзникам использовать магию в избытке."
+    "DOTA_Tooltip_ability_holdout_arcane_aura_Note0"                        "Складывается с другими численными бонусами к регенерации маны."
+    "DOTA_Tooltip_ability_holdout_arcane_aura_Note1"                        "Численный бонус к регенерации маны не будет учитываться при подсчете процентного."
+    "DOTA_Tooltip_ability_holdout_arcane_aura_mana_regen"               "Бонус регена маны:"
+    "DOTA_Tooltip_ability_holdout_arcane_aura_mana_regen_pct"           "%<font color='#70EA72'>Процент регена маны:</font>"
+    "DOTA_Tooltip_ability_holdout_arcane_aura_buff_duration"            "<font color='#70EA72'>Длительность эффекта:</font>"
+    "DOTA_Tooltip_modifier_holdout_arcane_aura_buff"                    "Arcane Aura доп. реген"
+    "DOTA_Tooltip_modifier_holdout_arcane_aura_buff_Description"        "Добавляет %dMODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE%%% бонусной регенерации маны."
     "DOTA_Tooltip_modifier_holdout_arcane_aura_self_aura_effect"                "Arcane Aura"
-    "DOTA_Tooltip_modifier_holdout_arcane_aura_self_aura_effect_Description"    "Adds %fMODIFIER_PROPERTY_MANA_REGEN_CONSTANT% mana regeneration"
+    "DOTA_Tooltip_modifier_holdout_arcane_aura_self_aura_effect_Description"    "Добавляет %fMODIFIER_PROPERTY_MANA_REGEN_CONSTANT% регенерации маны"
     "DOTA_Tooltip_modifier_holdout_arcane_aura_aura_effect"             "Arcane Aura"
-    "DOTA_Tooltip_modifier_holdout_arcane_aura_aura_effect_Description" "Adds %fMODIFIER_PROPERTY_MANA_REGEN_CONSTANT% mana regeneration"
+    "DOTA_Tooltip_modifier_holdout_arcane_aura_aura_effect_Description" "Добавляет %fMODIFIER_PROPERTY_MANA_REGEN_CONSTANT% регенерации маны"
+
+
 
     // Venomancer
+
     "DOTA_Tooltip_ability_holdout_scourge_venomous_gale"                                    "Scourge Gale"
-    "DOTA_Tooltip_ability_holdout_scourge_venomous_gale_Description"                        "Launches a ball of venom in a line, poisoning enemy units so that they take both initial damage and damage over time, as well as suffering slowed movement.  Venomous Gale deals damage every 3 seconds over its duration."
-    "DOTA_Tooltip_ability_holdout_scourge_venomous_gale_Lore"                           "A concoction of various stings, poisons, and toxins gathered from the jungles of Jidi Isle, victims surviving it are rare."
-    "DOTA_Tooltip_ability_holdout_scourge_venomous_gale_gale_Note0"                         "Units afflicted by Venomous Gale can be denied when their HP drops below 25%."
-    "DOTA_Tooltip_ability_holdout_scourge_venomous_gale_Note1"                          "Duration damage is dealt every 3 seconds."
-    "DOTA_Tooltip_ability_holdout_scourge_venomous_gale_Note2"                          "Slow starts at 50%, and decreases as time passes."
-    "DOTA_Tooltip_ability_holdout_scourge_venomous_gale_duration"                       "DURATION:"
-    "DOTA_Tooltip_ability_holdout_scourge_venomous_gale_strike_damage"                  "STRIKE DAMAGE:"
-    "DOTA_Tooltip_ability_holdout_scourge_venomous_gale_tick_damage"                        "DAMAGE OVER TIME:"
+    "DOTA_Tooltip_ability_holdout_scourge_venomous_gale_Description"                        "Выплевывает ядовитый шар, который отравляет врагов, находящихся по прямой, в результате чего они получают как мгновенный, так и периодический урон, а их скорость передвижения и атаки снижается. Периодический урон наносится каждые 3 секунды с начала действия заклинания."
+    "DOTA_Tooltip_ability_holdout_scourge_venomous_gale_Lore"                           "Смесь различных жал, ядов и токсинов, найденных в лесах острова Джиди, не позволяет выжить никому."
+    "DOTA_Tooltip_ability_holdout_scourge_venomous_gale_gale_Note0"                         "Враг под воздействием этой способности может быть добит союзниками, если уровень его здоровья опустится ниже 25%."
+    "DOTA_Tooltip_ability_holdout_scourge_venomous_gale_Note1"                          "Периодический урон наносится каждые 3 секунды."
+    "DOTA_Tooltip_ability_holdout_scourge_venomous_gale_Note2"                          "Замедление начинается с 50% и постепенно уменьшается."
+    "DOTA_Tooltip_ability_holdout_scourge_venomous_gale_duration"                       "Длительность:"
+    "DOTA_Tooltip_ability_holdout_scourge_venomous_gale_strike_damage"                  "Урон от попадания:"
+    "DOTA_Tooltip_ability_holdout_scourge_venomous_gale_tick_damage"                        "Периодический урон:"
     "DOTA_Tooltip_ability_holdout_scourge_venomous_gale_movement_slow"                  "%SLOW:"
     "DOTA_Tooltip_modifier_holdout_scourge_gale"                                "Scourge Gale"
-    "DOTA_Tooltip_modifier_holdout_scourge_gale_Description"                    "Slowed and taking damage over time."
+    "DOTA_Tooltip_modifier_holdout_scourge_gale_Description"                    "Замедлен и получает урон со временем."
     "DOTA_Tooltip_ability_holdout_scourge_ward"                                 "Scourge Ward"
-    "DOTA_Tooltip_ability_holdout_scourge_ward_Description"                     "<font color='#70EA72'>Summons a scourge ward to attack enemy units and structures. The ward is immune to magic. Scourge Wards can use a less powerful version of Venomous Gale, and the level is equivalent to the level of Venomancer's Venomous Gale.</font>"
-    "DOTA_Tooltip_ability_holdout_scourge_ward_Lore"                                "A mixture of his old herbalist talents and newfound toxic mastery creates a living embodiment of plague."
-    "DOTA_Tooltip_ability_holdout_scourge_ward_duration"                            "DURATION:"
-    "DOTA_Tooltip_ability_holdout_scourge_ward_ward_hp_tooltip"                 "WARD HP:"
-    "DOTA_Tooltip_ability_holdout_scourge_ward_ward_damage_tooltip"             "WARD DAMAGE:"
+    "DOTA_Tooltip_ability_holdout_scourge_ward_Description"                     "<font color='#70EA72'>Призывает Scourge Ward, атакующий вражеских юнитов и сооружения. Вард невосприимчив к магии. Scourge Wards могут использовать ослабленную версию Venomous Gale, уровень который равен имеющемуся скилу у Venomancer'а.</font>"
+    "DOTA_Tooltip_ability_holdout_scourge_ward_Lore"                                "Смесь давних талантов травника и новообретенных умений в создании ядов создает живое воплощение чумыe."
+    "DOTA_Tooltip_ability_holdout_scourge_ward_duration"                            "Длительность:"
+    "DOTA_Tooltip_ability_holdout_scourge_ward_ward_hp_tooltip"                 "Здоровье:"
+    "DOTA_Tooltip_ability_holdout_scourge_ward_ward_damage_tooltip"             "Урон:"
+
+
 
     // Riki
+
     "DOTA_Tooltip_ability_riki_permanent_invisibility_lod"                              "Permanent Invisibility"
-    "DOTA_Tooltip_ability_riki_permanent_invisibility_lod_Description"                  "Riki fades into the shadows, staying permanently invisible except while attacking or casting spells.  While silenced, Riki will be visible."
-    "DOTA_Tooltip_ability_riki_permanent_invisibility_lod_Lore"                         "Riki comes for you."
-    "DOTA_Tooltip_ability_riki_permanent_invisibility_lod_Note0"                        "Riki won't auto attack enemies while invisible."
-    "DOTA_Tooltip_ability_riki_permanent_invisibility_lod_Note1"                        "Silence disables this ability."
-    "DOTA_Tooltip_ability_riki_permanent_invisibility_lod_fade_delay"                   "FADE DELAY:"
+    "DOTA_Tooltip_ability_riki_permanent_invisibility_lod_Description"                  "Riki скрывается в тени, становясь невидимым. Если Riki атакует со спины, то он наносит дополнительный урон, зависящий от его текущей ловкости. Невидимость сбрасывается, если Riki ударит врага."
+    "DOTA_Tooltip_ability_riki_permanent_invisibility_lod_Lore"                         "Рикимару идет за тобой."
+    "DOTA_Tooltip_ability_riki_permanent_invisibility_lod_Note0"                        "Пока герой невидим, он не будет атаковать автоматически."
+    "DOTA_Tooltip_ability_riki_permanent_invisibility_lod_Note1"                        "Если герой обезмолвлен, то он все равно сможет уйти в невидимость."
+    "DOTA_Tooltip_ability_riki_permanent_invisibility_lod_fade_delay"                   "Задержка невидимости:"
+
+
 
     // Thirst
+
     "DOTA_Tooltip_ability_bloodseeker_thirst_lod"                                       "Thirst"
-    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_Description"                           "Bloodseeker is invigorated by the wounds of his enemies, gaining bonus movement speed and attack damage whenever an enemy hero's health falls below 75%, with the bonuses increasing as their health falls further. If an enemy hero's health falls below 25%, he will also gain vision and True Sight of that hero. Bonuses stack per hero."
-    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_Lore"                                  "Strygwyr becomes frenzied when blood is spilled."
-    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_Note0"                                 "Not triggered by Illusions."
+
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_Description"                           "Позволяет Bloodseeker чувствовать вражеских героев, здоровье которых меньше 75%, также увеличивая его скорость и повышая урон в зависимости от потерянного вражескими героями здоровьяr. Если здоровье врага падает меньше 25%, то сикеру дается ему способность видеть их, где бы они ни находились, раскрывая их невидимость. Бонусы от разных противников складываются. <font color='#70EA72'> Увеличена максимальная скорость передвижения до 750.</font>"
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_Lore"                                  "Стригвир приходит в ярость при виде крови."
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_Note0"                                 "Не реагирует на иллюзии."
     "DOTA_Tooltip_ability_bloodseeker_thirst_lod_buff_threshold_pct"                    "%THIRST HEALTH THRESHOLD:"
     "DOTA_Tooltip_ability_bloodseeker_thirst_lod_bonus_movement_speed"                  "%MAX THIRST MOVE SPEED::"
-    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_bonus_damage"                          "MAX THIRST DAMAGE:"
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_bonus_damage"                          "Максимальный доп. урон:"
     "DOTA_Tooltip_ability_bloodseeker_thirst_lod_visibility_threshold_pct"              "%VISIBILITY HEALTH THRESHOLD:"
+
+
+
+    // Thirst OP
+
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_op"                                       "Thirst (Unlimited)"
+
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_op_Description"                           "Позволяет Bloodseeker чувствовать вражеских героев, здоровье которых меньше 75%, также увеличивая его скорость и повышая урон в зависимости от потерянного вражескими героями здоровьяr. Если здоровье врага падает меньше 25%, то сикеру дается ему способность видеть их, где бы они ни находились, раскрывая их невидимость. Бонусы от разных противников складываются. <font color='#70EA72'> Увеличена максимальная скорость передвижения до 5000.</font>"
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_op_Lore"                                  "Стригвир приходит в ярость при виде крови."
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_op_Note0"                                 "Не реагирует на иллюзии."
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_op_buff_threshold_pct"                    "%THIRST HEALTH THRESHOLD:"
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_op_bonus_movement_speed"                  "%MAX THIRST MOVE SPEED::"
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_op_bonus_damage"                          "Максимальный доп. урон:"
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_op_visibility_threshold_pct"              "%VISIBILITY HEALTH THRESHOLD:"
+
     "DOTA_Tooltip_modifier_thirst_visual"                                               "Thirst Speed"
-    "DOTA_Tooltip_modifier_thirst_visual_Description"                                   "You sense an injured enemy. Movement speed increased by %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%"
+    "DOTA_Tooltip_modifier_thirst_visual_Description"                                   "Вы ощущаете раненного врага. Скорость увеличена на %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%"
     "DOTA_Tooltip_modifier_thirst_debuff_datadriven"                                    "Thirst"
-    "DOTA_Tooltip_modifier_thirst_debuff_datadriven_Description"                        "You are visible to the enemy! Gain health to remove debuff"
+    "DOTA_Tooltip_modifier_thirst_debuff_datadriven_Description"                        "Вас видят враги! Поднимите здоровье для снятия эффекта"
+
+
 
     // Alchemist
+
     "DOTA_Tooltip_ability_alchemist_chemical_rage_lod"                              "Chemical Rage"
     "DOTA_Tooltip_ability_alchemist_chemical_rage_lod_Description"                  "Alchemist causes his Ogre to enter a chemically induced rage, reducing base attack cooldown and increasing movement speed and regeneration."
     "DOTA_Tooltip_ability_alchemist_chemical_rage_lod_Lore"                         "The brew Razzil gave to the Ogre during their prison bust has become a useful potion in the midst of combat."
@@ -1496,9 +1606,22 @@
     "DOTA_Tooltip_ability_alchemist_chemical_rage_lod_bonus_health_regen"           "BONUS HEALTH REGEN:"
     "DOTA_Tooltip_ability_alchemist_chemical_rage_lod_bonus_mana_regen"             "BONUS MANA REGEN:"
     "DOTA_Tooltip_ability_alchemist_chemical_rage_lod_bonus_movespeed"              "BONUS MOVE SPEED:"
-    "DOTA_Tooltip_ability_alchemist_chemical_rage_lod_notes"                        "Notes:\n\nHas a 0.35 seconds transformation time."
+    "DOTA_Tooltip_ability_alchemist_chemical_rage_lod_notes"                        "Notes:\n\nHas a 0.35 seconds transformation    time."
+
+
+
+    "DOTA_Tooltip_ability_alchemist_aghnaim_magic_redux"                            "Aghanim Magic"
+    "DOTA_Tooltip_ability_alchemist_aghnaim_magic_redux_Description"                "Alchemist can transmute the magical energies of himself or his allies, causing them to get Aghanim's Scepter's benefit for a duration."
+    "DOTA_Tooltip_ability_alchemist_aghnaim_magic_redux_Lore"                       "Gold is not the only thing a true Alchemist can transmute."
+    "DOTA_Tooltip_ability_alchemist_aghnaim_magic_redux_Note0"                      "Aghanim Magic is useable on the caster as well as allied heroes."
+    "DOTA_Tooltip_ability_alchemist_aghnaim_magic_redux_duration"                   "DURATION:"
+    "Dota_Tooltip_modifier_alchemist_aghnaim_magic_redux"                           "Temporary Scepter"
+    "Dota_Tooltip_modifier_alchemist_aghnaim_magic_redux_Description"               "Temporarily gaining Aghanim's Scepter's upgrades."
+
+
 
     // Ogre Magi
+
     "DOTA_Tooltip_ability_ogre_magi_multicast_lod"                                  "Multicast Redux"
     "DOTA_Tooltip_ability_ogre_magi_multicast_lod_Description"                      "Gives a chance to cast a spell multiple times in one cast.\n\nUpgradable by Aghanim's Scepter."
     "DOTA_Tooltip_ability_ogre_magi_multicast_lod_Lore"                             "Despite being largely incapacitated by his IQ, the Ogre Magi's success in battle is attributed to pure skill."
@@ -1507,7 +1630,10 @@
     "DOTA_Tooltip_ability_ogre_magi_multicast_lod_multicast_4_times"                "%4X CHANCE:"
     "DOTA_Tooltip_ability_ogre_magi_multicast_lod_aghanim_description"  "Allows items to be multicast."
 
+
+
     // TROLL WARLORD
+
     "DOTA_Tooltip_ability_troll_warlord_berserkers_rage_melee"                  "Berserker's Rage"
     "DOTA_Tooltip_ability_troll_warlord_berserkers_rage_melee_Description"      "Allows the Warlord to use his throwing axes as melee weapons, gaining bonus damage, attack speed, movement speed, hitpoints, armor, and a chance to bash targets on attack.  Berserker's Rage also changes the functionality of Whirling Axes."
     "DOTA_Tooltip_ability_troll_warlord_berserkers_rage_melee_Lore"             ""
@@ -1522,7 +1648,10 @@
     "DOTA_Tooltip_ability_troll_warlord_berserkers_rage_melee_bash_duration"        "BASH DURATION:"
     "DOTA_Tooltip_ability_troll_warlord_berserkers_rage_melee_bash_damage"      "BASH DAMAGE:"
 
+
+
     // Keeper of the Light
+
     "DOTA_Tooltip_ability_keeper_of_the_light_recall_lod"                       "Recall"
     "DOTA_Tooltip_ability_keeper_of_the_light_recall_lod_Description"           "After a short delay, teleports the targeted friendly hero to your location.  If the targeted friendly hero takes player based damage during this time, the ability is interrupted."
     "DOTA_Tooltip_ability_keeper_of_the_light_recall_lod_Lore"                  "Walk towards the light."
@@ -1541,7 +1670,10 @@
     "DOTA_Tooltip_ability_keeper_of_the_light_blinding_light_lod_miss_duration"         "DURATION:"
     "DOTA_Tooltip_ability_keeper_of_the_light_blinding_light_lod_miss_rate"         "%MISS CHANCE:"
 
+
+
     // Zeus
+
     "DOTA_Tooltip_ability_zuus_thundergods_vengeance"                                   "Thundergod's Vengeance"
     "DOTA_Tooltip_ability_zuus_thundergods_vengeance_Description"                       "<font color='#70EA72'>Strikes %num_targets% enemy units with a bolt of lightning, within a large range around Zeus, prioritized based upon current health.  Thundergod's Vengeance also provides True Sight around each unit struck.  If an enemy unit is invisible, it takes no damage, but the True Sight is still created at that unit's location.</font>\n\nUpgradable by Aghanim's Scepter."
     "DOTA_Tooltip_ability_zuus_thundergods_vengeance_Lore"                              "The Lord of Heaven smites all who oppose him, near or far."
@@ -1551,7 +1683,10 @@
     "DOTA_Tooltip_ability_zuus_thundergods_vengeance_sight_duration"                    "DURATION:"
     "DOTA_Tooltip_ability_zuus_thundergods_vengeance_aghanim_description"               "Increases damage."
 
+
+
     // Necronomicon stuff
+
     "DOTA_Tooltip_ability_necronomicon_warrior_last_will_lod"                           "Last Will"
     "DOTA_Tooltip_ability_necronomicon_warrior_last_will_lod_Description"               "Damage dealt to unit that kills Necronomicon Warrior."
     "DOTA_Tooltip_ability_necronomicon_warrior_last_will_lod_explosion"                 "DAMAGE:"
@@ -1568,538 +1703,1399 @@
     "DOTA_Tooltip_ability_necronomicon_archer_aoe_lod"                                  "Attack Speed and Movement Aura"
     "DOTA_Tooltip_ability_necronomicon_archer_aoe_lod_lod_Description"                  "Increases movement and attack speed of nearby units."
     "DOTA_Tooltip_ability_necronomicon_archer_aoe_lod_radius"                           "RADIUS:"
-    "DOTA_Tooltip_ability_necronomicon_archer_aoe_lod_speed_bonus"                      "%SPEED BONUS:"
+    "DOTA_Tooltip_ability_necronomicon_archer_aoe_lod_ms_bonus"                      "%MOVE SPEED BONUS:"
+    "DOTA_Tooltip_ability_necronomicon_archer_aoe_lod_as_bonus"                      "ATTACK SPEED BONUS:"
+
+
 
     // Omni Knight
+
     "DOTA_Tooltip_ability_holdout_guardian_angel"                               "Wings of Omniscience"
+
     "DOTA_Tooltip_ability_holdout_guardian_angel_Description"                   "<font color='#70EA72'>Omniknight summons Guardian Angels that grants immunity from physical damage and greatly increases hit point regeneration of nearby allies.  The Guardian Angels will fight enemy units nearby, but cannot be controlled by any player.</font>"
+
     "DOTA_Tooltip_ability_holdout_guardian_angel_Lore"                          "The All Seeing One casts down his protection over those that Purist calls friend."
+
     "DOTA_Tooltip_ability_holdout_guardian_angel_Note0"                         "Affects allies with magic immunity."
+
     "DOTA_Tooltip_ability_holdout_guardian_angel_Note1"                         "Can be purged."
+
     "DOTA_Tooltip_ability_holdout_guardian_angel_duration"                      "DURATION:"
+
     "DOTA_Tooltip_ability_holdout_guardian_angel_health_regen"                  "HEALTH REGEN:"
+
     "DOTA_Tooltip_ability_holdout_guardian_angel_radius"                        "RADIUS:"
+
     "DOTA_Tooltip_ability_holdout_guardian_angel_angel_damage"                  "<font color='#70EA72'>ANGEL DAMAGE:</font>"
+
     "DOTA_Tooltip_ability_holdout_guardian_angel_notes"                         "Notes:\n\nAffects allies with Magic Immunity."
+
     "DOTA_Tooltip_modifier_holdout_guardian_angel_buff"                         "Wings of Omniscience"
+
     "DOTA_Tooltip_modifier_holdout_guardian_angel_buff_Description"             "Immune to physical damage and protected by Guardian Angel."
 
+
+
     // Legion Commander
+
     "DOTA_Tooltip_ability_holdout_gladiators_unite"                         "Gladiators, Unite!"
+
     "DOTA_Tooltip_ability_holdout_gladiators_unite_Description"             "<font color='#70EA72'>Legion Commander calls her allied heroes together to fight in an arena.  Each additional friendly hero that joins the fight in the arena grants additional bonus damage, armor, and lifesteal to each arena combatant.</font>"
+
     "DOTA_Tooltip_ability_holdout_gladiators_unite_bonus_armor_per_hero"    "BONUS ARMOR PER HERO:"
+
     "DOTA_Tooltip_ability_holdout_gladiators_unite_bonus_damage_per_hero"   "BONUS DAMAGE PER HERO:"
+
     "DOTA_Tooltip_ability_holdout_gladiators_unite_lifesteal_per_hero"      "%LIFESTEAL PER HERO:"
+
     "DOTA_Tooltip_ability_holdout_gladiators_unite_duration"                "DURATION:"
+
     "DOTA_Tooltip_ability_holdout_gladiators_unite_radius"                  "RADIUS:"
+
     "DOTA_Tooltip_modifier_holdout_gladiators_unite"                        "Gladiators, Unite!"
+
     "DOTA_Tooltip_modifier_holdout_gladiators_unite_Description"            "Gaining %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS% bonus armor, %dMODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE% bonus damage, and %dMODIFIER_PROPERTY_TOOLTIP%%% lifesteal on physical attacks."
 
+
+
     // Jugernaut
+
     "DOTA_Tooltip_ability_holdout_omnislash"                                    "Secret Blade"
+
     "DOTA_Tooltip_ability_holdout_omnislash_Description"                        "<font color='#70EA72'>Juggernaut sends forth an image of himself, collecting targets it impacts with.  Upon reaching its destination, Juggernaut dashes forward to the image, attacking all units the image connected with with bonus damage.</font>"
+
     "DOTA_Tooltip_ability_holdout_omnislash_image_radius"                       "RADIUS:"
+
     "DOTA_Tooltip_ability_holdout_omnislash_range"                              "RANGE:"
+
     "DOTA_Tooltip_ability_holdout_omnislash_bonus_damage"                       "BONUS DAMAGE:"
+
+
+
 
 
     "npc_dota_healing_ward"                                                           "Mana Ward"
 
+
+
     "DOTA_Tooltip_ability_juggernaut_healing_ward_mana"                               "Mana  Ward"
+
     "DOTA_Tooltip_ability_juggernaut_healing_ward_mana_Description"                   "Summons a <font color='#70EA72'>Mana Ward which restores mana of all nearby allied units, based on their max mana. The Mana Ward</font> moves at 420 movement speed after being summoned. Lasts 25 seconds."
+
     "DOTA_Tooltip_ability_juggernaut_healing_ward_mana_Lore"                   "For the more flexible practitioners of voodoo magic, a second ritual is known, one that allows quicker-than-natural regeneration of magic."
+
     "DOTA_Tooltip_ability_juggernaut_healing_ward_mana_healing_ward_mana_restore_pct" "%MAX MANA PER SECOND:"
 
 
+
+
+
     "DOTA_Tooltip_modifier_healing_ward_mana_aura"                                    "Mana Restoring Ward Aura"
+
     "DOTA_Tooltip_modifier_healing_ward_mana_aura_Description"                        ""
 
+
+
     "DOTA_Tooltip_modifier_healing_ward_mana_aura_effect"                             "Mana Restoring Ward"
+
     "DOTA_Tooltip_modifier_healing_ward_mana_aura_effect_Description"                 "Restores mana"
 
 
+
+
+
     // Sven
+
     "DOTA_Tooltip_ability_holdout_gods_strength"                                "God's Strength"
+
     "DOTA_Tooltip_ability_holdout_gods_strength_Description"                    "<font color='#70EA72'>Sven gains bonus strength and damage.  Upon killing an enemy unit while under the effects of God's Strength, all of Sven's ability cooldowns are reduced.  This effect can occur an unlimited amount of times.</font>"
+
     "DOTA_Tooltip_ability_holdout_gods_strength_Lore"                           "With the strength that shattered the Sacred Helm, the Rogue Knight stands unopposed in melee combat."
+
     "DOTA_Tooltip_ability_holdout_gods_strength_bonus_strength"                 "BONUS STRENGTH:"
+
     "DOTA_Tooltip_ability_holdout_gods_strength_cooldown_reduction_per_kill"    "COOLDOWN REDUCTION PER KILL:"
+
     "DOTA_Tooltip_ability_holdout_gods_strength_gods_strength_damage"           "%BONUS DAMAGE:"
 
+
+
     // Drow
+
     "DOTA_Tooltip_ability_holdout_multishot"                                        "Quelling Shot"
+
     "DOTA_Tooltip_ability_holdout_multishot_Description"                            "<font color='#70EA72'>Drow's arrow splits in front of her in a cone shape, dealing less damage but cleaving multiple targets.  Each arrow can only hit a target once.  If Frost Arrows is activated, Quelling Shot's arrows will be converted to Frost Arrows, increasing the mana cost per arrow.</font>\n\nQuelling Shot is a Unique Attack Modifier, and does not stack with other Unique Attack Modifiers."
+
     "DOTA_Tooltip_ability_holdout_multishot_arrow_range"                            "RANGE:"
+
     "DOTA_Tooltip_ability_holdout_multishot_arrow_count"                            "ARROW COUNT:"
+
     "DOTA_Tooltip_ability_holdout_multishot_damage_reduction_pct"                   "%DAMAGE REDUCTION:"
 
+
+
     // Axe
+
     "DOTA_Tooltip_ability_holdout_culling_blade"                                        "A Cut Above"
+
     "DOTA_Tooltip_ability_holdout_culling_blade_Description"                            "<font color='#70EA72'>Axe leaps forward into combat. Upon landing, Axe delivers a strike to all enemies in a small area around his position.</font>  If an enemy is below the kill threshold, the enemy dies and Axe grants himself and nearby allies a temporary speed bonus."
+
     "DOTA_Tooltip_ability_holdout_culling_blade_Lore"                                   "Mogul Khan is the embodiment of battle and fury, launching into a gruesome fatality against those who dare engage the Axe in combat."
+
     "DOTA_Tooltip_ability_holdout_culling_blade_Note0"                                  "The killing blow goes through magic immunity."
+
     "DOTA_Tooltip_ability_holdout_culling_blade_leap_distance"                          "<font color='#70EA72'>LEAP DISTANCE:</font>"
+
     "DOTA_Tooltip_ability_holdout_culling_blade_radius"                                 "<font color='#70EA72'>RADIUS:</font>"
+
     "DOTA_Tooltip_ability_holdout_culling_blade_kill_threshold"                         "KILL THRESHOLD:"
+
     "DOTA_Tooltip_ability_holdout_culling_blade_kill_threshold_scepter"                 "SCEPTER KILL THRESHOLD:"
+
     "DOTA_Tooltip_ability_holdout_culling_blade_damage"                                 "DAMAGE:"
+
     "DOTA_Tooltip_ability_holdout_culling_blade_speed_bonus"                            "%SPEED BONUS:"
+
     "DOTA_Tooltip_ability_holdout_culling_blade_speed_aoe"                              "SPEED RADIUS:"
+
     "DOTA_Tooltip_ability_holdout_culling_blade_speed_duration"                         "SPEED DURATION:"
+
     "DOTA_Tooltip_ability_holdout_culling_blade_speed_duration_scepter"                 "SCEPTER SPEED DURATION:"
+
     "DOTA_Tooltip_ability_holdout_culling_blade_aghanim_description"                    "Increases kill threshold and speed duration."
 
+
+
     // Invoker
+
     "DOTA_Tooltip_ability_invoker_quas_lod"                                         "Quas"
+
     "DOTA_Tooltip_ability_invoker_quas_lod_Description"                             "Allows manipulation of ice elements and grants a permanent strength bonus. Each <font color='#7998b5'>Quas</font> instance provides increased health regeneration.\n"
+
     "DOTA_Tooltip_ability_invoker_quas_lod_Lore"                                    ""
+
     "DOTA_Tooltip_ability_invoker_quas_lod_Note0"                                   "Invoker can only have 3 of any instance."
+
     "DOTA_Tooltip_ability_invoker_quas_lod_health_regen_per_instance"               "HP REGEN PER INSTANCE:"
+
     "DOTA_Tooltip_ability_invoker_quas_lod_bonus_strength"                          "BONUS STRENGTH:"
+
     "DOTA_Tooltip_ability_invoker_wex_lod"                                          "Wex"
+
     "DOTA_Tooltip_ability_invoker_wex_lod_Description"                              "Allows manipulation of storm elements and grants a permanent agility bonus. Each <font color='#d671a9'>Wex</font> instance provides increased attack speed and movement speed."
+
     "DOTA_Tooltip_ability_invoker_wex_lod_Lore"                                     ""
+
     "DOTA_Tooltip_ability_invoker_wex_lod_Note0"                                    "Invoker can only have 3 of any instance."
+
     "DOTA_Tooltip_ability_invoker_wex_lod_attack_speed_per_instance"                "ATTACK SPEED PER INSTANCE:"
+
     "DOTA_Tooltip_ability_invoker_wex_lod_move_speed_per_instance"                  "%MOVE SPEED PER INSTANCE:"
+
     "DOTA_Tooltip_ability_invoker_wex_lod_bonus_agility"                            "BONUS AGILITY:"
+
     "DOTA_Tooltip_ability_invoker_exort_lod"                                        "Exort"
+
     "DOTA_Tooltip_ability_invoker_exort_lod_Description"                            "Allows manipulation of fire elements and grants a permanent intelligence bonus. Each <font color='#cabe68'>Exort</font> instance provides increased attack damage."
+
     "DOTA_Tooltip_ability_invoker_exort_lod_Lore"                                   ""
+
     "DOTA_Tooltip_ability_invoker_exort_lod_Note0"                                  "Invoker can only have 3 of any instance."
+
     "DOTA_Tooltip_ability_invoker_exort_lod_bonus_damage_per_instance"              "DAMAGE PER INSTANCE:"
+
     "DOTA_Tooltip_ability_invoker_exort_lod_bonus_intelligence"                     "BONUS INTELLIGENCE:"
+
     "DOTA_Tooltip_ability_invoker_cold_snap_lod"                                    "Cold Snap"
+
     "DOTA_Tooltip_ability_invoker_cold_snap_lod_Description"                        "Invoker draws the heat from an enemy, chilling them to their very core for a duration. The enemy will take damage and be briefly frozen. Further damage taken in this state will freeze the enemy again, dealing bonus damage. The enemy can only be frozen so often, but the freeze cooldown decreases."
+
     "DOTA_Tooltip_ability_invoker_cold_snap_lod_Lore"                               "Sadron's Protracted Frisson."
+
     "DOTA_Tooltip_ability_invoker_cold_snap_lod_Note0"                              "The freeze stun only triggers on damage greater than 10 after reductions."
+
     "DOTA_Tooltip_ability_invoker_cold_snap_lod_duration"                           "COLD SNAP DURATION:\n"
+
     "DOTA_Tooltip_ability_invoker_cold_snap_lod_freeze_duration"                    "FREEZE DURATION:"
+
     "DOTA_Tooltip_ability_invoker_cold_snap_lod_freeze_damage"              "FREEZE DAMAGE:"
+
     "DOTA_Tooltip_ability_invoker_cold_snap_lod_freeze_cooldown"                    "FREEZE COOLDOWN:"
+
     "DOTA_Tooltip_ability_invoker_ghost_walk_lod"                                   "Ghost Walk"
+
     "DOTA_Tooltip_ability_invoker_ghost_walk_lod_Description"                       "Invoker manipulates the ice and electrical energies around him, rendering his body invisible. The elemental imbalance created as a consequence slows nearby enemies, and slows Invoker as well."
+
     "DOTA_Tooltip_ability_invoker_ghost_walk_lod_Lore"                              "Myrault's Hinder-Gast."
+
     "DOTA_Tooltip_ability_invoker_ghost_walk_lod_Note0"                             "The slow effect does not work on magic immune enemies."
+
     "DOTA_Tooltip_ability_invoker_ghost_walk_lod_self_slow"                         "%SELF SPEED:\n"
+
     "DOTA_Tooltip_ability_invoker_ghost_walk_lod_duration"                          "DURATION:"
+
     "DOTA_Tooltip_ability_invoker_ghost_walk_lod_area_of_effect"                    "RADIUS:"
+
     "DOTA_Tooltip_ability_invoker_ghost_walk_lod_enemy_slow"                        "%ENEMY SLOW:\n"
+
     "DOTA_Tooltip_ability_invoker_tornado_lod"                                      "Tornado"
+
     "DOTA_Tooltip_ability_invoker_tornado_lod_Description"                          "Unleashes a fast moving tornado that picks up enemy units in its path, suspending them helplessly in the air shortly before allowing them to plummet to their doom. Travels further. Holds enemies in the air for a duration. Deals damage."
+
     "DOTA_Tooltip_ability_invoker_tornado_lod_Lore"                                 "Claws of Tornarus."
+
     "DOTA_Tooltip_ability_invoker_tornado_lod_Note0"                                "Units are invulnerable while affected by Tornado, and the damage is dealt when landing."
+
     "DOTA_Tooltip_ability_invoker_tornado_lod_travel_distance"                      "TRAVEL DISTANCE:\n"
+
     "DOTA_Tooltip_ability_invoker_tornado_lod_area_of_effect"                       "RADIUS:"
+
     "DOTA_Tooltip_ability_invoker_tornado_lod_lift_duration"                        "LIFT TIME:\n"
+
     "DOTA_Tooltip_ability_invoker_tornado_lod_base_damage"                          "BASE DAMAGE:"
+
     "DOTA_Tooltip_ability_invoker_tornado_lod_quas_damage"                          "ADDED DAMAGE:"
+
     "DOTA_Tooltip_ability_invoker_tornado_lod_wex_damage"                           "ADDED DAMAGE:"
+
     "DOTA_Tooltip_ability_invoker_emp_lod"                                          "EMP"
+
     "DOTA_Tooltip_ability_invoker_emp_lod_Description"                              "Invoker builds up a charge of electromagnetic energy at a targeted location which automatically detonates after %delay% seconds. The detonation covers an area, draining mana. Deals damage for each point of mana drained.  If EMP drains mana from an enemy hero, Invoker gains 50%% of the mana drained."
+
     "DOTA_Tooltip_ability_invoker_emp_lod_Lore"                                     "Endoleon's Malevolent Perturbation."
+
     "DOTA_Tooltip_ability_invoker_emp_lod_Note0"                                    "Will not affect cycloned units (Tornado or Eul's Scepter of Divinity)."
+
     "DOTA_Tooltip_ability_invoker_emp_lod_delay"                                    "CHARGE TIME:"
+
     "DOTA_Tooltip_ability_invoker_emp_lod_area_of_effect"                           "RADIUS:"
+
     "DOTA_Tooltip_ability_invoker_emp_lod_lod_lod_mana_burned"                              "MAX MANA BURNED:\n"
+
     "DOTA_Tooltip_ability_invoker_emp_lod_damage_per_mana_pct"                      "%BURN DAMAGE:"
+
     "DOTA_Tooltip_ability_invoker_alacrity_lod"                                     "Alacrity"
+
     "DOTA_Tooltip_ability_invoker_alacrity_lod_Description"                         "Invoker infuses an ally with an immense surge of energy, increasing their attack speed and their damage."
+
     "DOTA_Tooltip_ability_invoker_alacrity_lod_Lore"                                "Gaster's Mandate of Impetuous Strife."
+
     "DOTA_Tooltip_ability_invoker_alacrity_lod_bonus_attack_speed"                  "BONUS ATTACK SPEED:\n"
+
     "DOTA_Tooltip_ability_invoker_alacrity_lod_bonus_damage"                        "BONUS DAMAGE:\n"
+
     "DOTA_Tooltip_ability_invoker_alacrity_lod_duration"                            "DURATION:"
+
     "DOTA_Tooltip_ability_invoker_chaos_meteor_lod"                                 "Chaos Meteor"
+
     "DOTA_Tooltip_ability_invoker_chaos_meteor_lod_Description"                     "Invoker pulls a flaming meteor from space onto the targeted location. Upon landing, the meteor rolls forward, constantly dealing damage, and rolling further. Units hit by the meteor will also be set on fire for a short time, receiving additional damage."
+
     "DOTA_Tooltip_ability_invoker_chaos_meteor_lod_Lore"                            "Tarak's Descent of Fire."
+
     "DOTA_Tooltip_ability_invoker_chaos_meteor_lod_Note0"                           "Deals main damage to enemy units under meteor every 0.5 seconds and burns enemies for smaller damage over 3 seconds."
+
     "DOTA_Tooltip_ability_invoker_chaos_meteor_lod_Note1"                           "The meteor moves at a speed of 300."
+
     "DOTA_Tooltip_ability_invoker_chaos_meteor_lod_land_time"                       "IMPACT DELAY:"
+
     "DOTA_Tooltip_ability_invoker_chaos_meteor_lod_area_of_effect"                  "RADIUS:"
+
     "DOTA_Tooltip_ability_invoker_chaos_meteor_lod_travel_distance"                 "TRAVEL DISTANCE:\n"
+
     "DOTA_Tooltip_ability_invoker_chaos_meteor_lod_main_damage"                     "CONTACT DAMAGE:\n"
+
     "DOTA_Tooltip_ability_invoker_chaos_meteor_lod_damage_interval"                 "CONTACT DAMAGE TICK:"
+
     "DOTA_Tooltip_ability_invoker_chaos_meteor_lod_burn_duration"                   "BURN DURATION:"
+
     "DOTA_Tooltip_ability_invoker_chaos_meteor_lod_burn_dps"                        "BURN DAMAGE PER SECOND:\n"
+
     "DOTA_Tooltip_ability_invoker_sun_strike_lod"                                   "Sun Strike"
+
     "DOTA_Tooltip_ability_invoker_sun_strike_lod_Description"                       "Sends a catastrophic ray of fierce energy from the sun at any targeted location, incinerating all enemies standing beneath it once it reaches the earth. Deals damage, however this damage is spread evenly over all enemies hit."
+
     "DOTA_Tooltip_ability_invoker_sun_strike_lod_lod_Lore"                              "Harlek's Incantation of Incineration."
+
     "DOTA_Tooltip_ability_invoker_sun_strike_lod_Note0"                             "Gives vision of the target area before the strike."
+
     "DOTA_Tooltip_ability_invoker_sun_strike_lod_Note1"                             "Invoker gains experience with kills made from Sun Strike, even if made from outside of experience range."
+
     "DOTA_Tooltip_ability_invoker_sun_strike_lod_area_of_effect"                    "RADIUS:"
+
     "DOTA_Tooltip_ability_invoker_sun_strike_lod_lod_delay"                             "DELAY:"
+
     "DOTA_Tooltip_ability_invoker_sun_strike_lod_damage"                            "DAMAGE:\n"
+
     "DOTA_Tooltip_ability_invoker_forge_spirit_lod"                                 "Forge Spirit"
+
     "DOTA_Tooltip_ability_invoker_forge_spirit_lod_Description"                     "Invoker forges a spirit embodying the strength of fire and fortitude of ice. Damage, health, and armor are while attack range, mana, and duration are. The elemental's scorching attack is capable of melting the armor of enemy heroes."
+
     "DOTA_Tooltip_ability_invoker_forge_spirit_lod_lod_Lore"                            "Culween's Most Cunning Fabrications."
+
     "DOTA_Tooltip_ability_invoker_forge_spirit_lod_Note0"                           "Casting this abiliy will replace currently summoned Forged Spirits."
+
     "DOTA_Tooltip_ability_invoker_forge_spirit_lod_spirit_damage"                   "DAMAGE:\n"
+
     "DOTA_Tooltip_ability_invoker_forge_spirit_lod_lod_spirit_hp"                       "HEALTH:\n"
+
     "DOTA_Tooltip_ability_invoker_forge_spirit_lod_spirit_armor"                    "ARMOR:\n"
+
     "DOTA_Tooltip_ability_invoker_forge_spirit_lod_spirit_attack_range"             "ATTACK RANGE:\n"
+
     "DOTA_Tooltip_ability_invoker_forge_spirit_lod_spirit_mana"                     "MANA:\n"
+
     "DOTA_Tooltip_ability_invoker_forge_spirit_lod_spirit_duration"                 "DURATION:\n"
+
     "DOTA_Tooltip_ability_invoker_ice_wall_lod"                                     "Ice Wall"
+
     "DOTA_Tooltip_ability_invoker_ice_wall_lod_Description"                         "Generates a wall of solid ice directly in front of Invoker for a duration. The bitter cold emanating from it greatly slows nearby enemies and deals damage each second."
+
     "DOTA_Tooltip_ability_invoker_ice_wall_lod_Lore"                                "Killing Wall of Koryx."
+
     "DOTA_Tooltip_ability_invoker_ice_wall_lod_lod_lod_Note0"                               "The slow will still affect magic immune enemies if their magic immunity was created after being affected by Ice Wall."
+
     "DOTA_Tooltip_ability_invoker_ice_wall_lod_lod_duration"                            "WALL DURATION:\n"
+
     "DOTA_Tooltip_ability_invoker_ice_wall_lod_slow"                                "%MOVEMENT SLOW:\n"
+
     "DOTA_Tooltip_ability_invoker_ice_wall_lod_slow_duration"                               "SLOW DURATION:"
+
     "DOTA_Tooltip_ability_invoker_ice_wall_lod_damage_per_second"                   "DAMAGE PER SECOND:\n"
+
     "DOTA_Tooltip_ability_invoker_deafening_blast_lod"                              "Deafening Blast"
+
     "DOTA_Tooltip_ability_invoker_deafening_blast_lod_Description"                  "Invoker unleashes a mighty sonic wave in front of him, dealing damage to any enemy unit it collides with. The sheer impact from the blast is enough to knock those enemy units back for a duration, then disarm their attacks for a duration."
+
     "DOTA_Tooltip_ability_invoker_deafening_blast_lod_Lore"                         "Buluphont's Aureal Incapacitator."
+
     "DOTA_Tooltip_ability_invoker_deafening_blast_lod_Note0"                        "This skill interrupts channeling abilities."
+
     "DOTA_Tooltip_ability_invoker_deafening_blast_lod_travel_distance"                      "TRAVEL DISTANCE:"
+
     "DOTA_Tooltip_ability_invoker_deafening_blast_lod_damage"                       "DAMAGE:\n"
+
     "DOTA_Tooltip_ability_invoker_deafening_blast_lod_knockback_duration"           "KNOCKBACK DURATION:\n"
+
     "DOTA_Tooltip_ability_invoker_deafening_blast_lod_disarm_duration"              "DISARM DURATION:\n"
 
+
+
+    "DOTA_Tooltip_ability_lod_neutral_power"                        "Neutral Power"
+
+    "DOTA_Tooltip_ability_lod_neutral_power_Description"            "Increases neutral creep's damage, health and exp/gold bounty per level."
+
+    "DOTA_Tooltip_ability_lod_neutral_power_health_per_level"     "EXTRA HP PER LEVEL:"
+
+    "DOTA_Tooltip_ability_lod_neutral_power_damage_per_level" "EXTRA DAMAGE PER LEVEL:"
+
+    "DOTA_Tooltip_ability_lod_neutral_power_gold_per_level" "EXTRA BOUNTY PER LEVEL:"
+
+    "DOTA_Tooltip_ability_lod_neutral_power_exp_per_level" "EXTRA EXP PER LEVEL:"
+
+
+
     // Treant
+
     "DOTA_Tooltip_ability_treant_eyes_in_the_forest_lod"                        "Eyes In The Forest"
+
     "DOTA_Tooltip_ability_treant_eyes_in_the_forest_lod_Description"            "Treant Protector enchants a tree, which grants him unobstructed vision in that location. If Overgrowth is cast, units within a %overgrowth_aoe% radius of a summoned tree will be entangled and damaged."
+
     "DOTA_Tooltip_ability_treant_eyes_in_the_forest_lod_vision_aoe"     "TREE VISION RADIUS:"
+
     "DOTA_Tooltip_ability_treant_eyes_in_the_forest_lod_overgrowth_aoe" "OVERGROWTH RADIUS:"
+
     "DOTA_Tooltip_ability_treant_eyes_in_the_forest_lod_damage" "OVERGROWTH DAMAGE PER SEC:"
+
     "DOTA_Tooltip_ability_treant_eyes_in_the_forest_lod_Note0"                  "Being entangled by Overgrowth through enchanted trees from Eyes of the Forest does damage. Being entangled by Overgrowth directly from Treant Protector does not."
+
     "DOTA_Tooltip_ability_treant_eyes_in_the_forest_lod_Note1"                  "If the enemy has True Sight, they will be able to see which trees are enchanted."
+
     "DOTA_Tooltip_ability_treant_eyes_in_the_forest_lod_Lore"                       "One can never be too certain who, or what, might need protecting."
 
+
+
+    // Silencer Glaives of Wisdom Steal
+
+    "DOTA_Tooltip_ability_silencer_glaives_of_wisdom_steal"                        "Intelligence Steal"
+
+    "DOTA_Tooltip_ability_silencer_glaives_of_wisdom_steal_Description"            "Silencer will permanently steal 2 intelligence from any enemy hero that dies within 925 range or is killed by the Silencer."
+
+    "DOTA_Tooltip_ability_silencer_glaives_of_wisdom_steal_int_steal"     "STOLEN INTELLIGENCE:"
+
+    "DOTA_Tooltip_ability_silencer_glaives_of_wisdom_steal_steal_range" "STEAL RADIUS:"
+
+
+
+    // Night Stalker unobstructed vision
+
+    "DOTA_Tooltip_ability_night_stalker_innate_redux"                        "Unobstructed Night Vision"
+
+    "DOTA_Tooltip_ability_night_stalker_innate_redux_Description"            "Will grant unobstructed vision at night time if you have Aghanim's Scepter upgrade."
+
+    "DOTA_Tooltip_ability_night_stalker_innate_redux_vision_radius"     "VISION RADIUS:"
+
+
+
+    "DOTA_Tooltip_modifier_night_stalker_innate_redux"                      "Night Vision"
+
+    "DOTA_Tooltip_modifier_night_stalker_innate_redux_Description"          "This Hero has unobstructed vision at day time."
+
+
+
+
+
+    // KOTL unobstructed vision
+
+    "DOTA_Tooltip_ability_keeper_of_the_light_innate_redux"                        "Unobstructed Day Vision"
+
+    "DOTA_Tooltip_ability_keeper_of_the_light_innate_redux_Description"            "Will grant unobstructed vision at day time if you have Aghanim's Scepter upgrade."
+
+    "DOTA_Tooltip_ability_keeper_of_the_light_innate_redux_vision_radius"     "VISION RADIUS:"
+
+
+
+    "DOTA_Tooltip_modifier_keeper_of_the_light_innate_redux"                      "Day Vision"
+
+    "DOTA_Tooltip_modifier_keeper_of_the_light_innate_redux_Description"          "This Hero has unobstructed vision at night time."
+
+
+
     // Starfall
+
     "DOTA_Tooltip_ability_mirana_starfall_lod"                                          "Starstorm"
+
     "DOTA_Tooltip_ability_mirana_starfall_lod_Description"                              "Calls down a wave of meteors to damage nearby enemy units. The closest enemy unit to Mirana in a %starfall_secondary_radius% radius will be struck a second time for 75%% of the damage.\n\nUpgradable by Aghanim's Scepter."
+
     "DOTA_Tooltip_ability_mirana_starfall_lod_Lore"                                     "The Goddess breaks the strata to empower her Princess in the time of need."
+
     "DOTA_Tooltip_ability_mirana_starfall_lod_Note0"                                    "Starstorm is not blocked by Linken's Sphere."
+
     "DOTA_Tooltip_ability_mirana_starfall_lod_Note1"                                    "Starstorm cannot hit invisible units."
+
     "DOTA_Tooltip_ability_mirana_starfall_lod_Note2"                                    "Starstorm will choose a new target for the second star if the first died before impact."
+
     "DOTA_Tooltip_ability_mirana_starfall_lod_starfall_radius"                          "RADIUS:"
+
     "DOTA_Tooltip_ability_mirana_starfall_lod_scepter_interval"                         "SCEPTER INTERVAL:"
+
     "DOTA_Tooltip_ability_mirana_starfall_lod_aghanim_description"                      "Passively triggers Starstorm every 8 seconds. Does not trigger if the enemy doesn't see Mirana."
 
+
+
     // Essence Aura
+
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod"                      "Essence Aura"
+
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_Description"          "Whenever nearby allied Heroes or Outworld Devourer itself casts a spell, it gains a chance to restore a percentage of its mana pool.  Outworld Devourer also passively gains a bonus to its base mana pool.  Several skills with no cooldown and toggled spells cannot trigger Essence Aura."
+
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_Lore"                 "The crystals of the Outworld produce arcane power, and the Harbinger channels it into the world of mortals."
+
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_Note0"                "Other than Arcane Orb, most skills without cooldowns cannot trigger Essence Aura."
+
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_radius"               "RADIUS:"
+
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_bonus_mana"           "BASE MANA:"
+
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_restore_amount"           "%RESTORED MANA:"
+
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_restore_chance"       "%RESTORE CHANCE:"
 
+
+
     "DOTA_Tooltip_modifier_essence_aura_effect_lod"                      "Essence Aura"
+
     "DOTA_Tooltip_modifier_essence_aura_effect_lod_Description"          "After casting a spell, you have a chance to restore a percentage of your mana pool."
 
-    // Essence Aura
+
+
+    // Essence Aura Redux
+
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_redux"                      "Essence Aura Redux"
+
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_redux_Description"          "Whenever nearby allied Heroes or Outworld Devourer itself casts a spell, it gains a chance to restore a percentage of its mana pool.  Outworld Devourer also passively gains a bonus to its base mana pool.  Several skills with no cooldown and toggled spells cannot trigger Essence Aura. <font color='#70EA72'>Less chance to trigger</font>."
+
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_redux_Lore"                 "The crystals of the Outworld produce arcane power, and the Harbinger channels it into the world of mortals."
+
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_redux_Note0"                "Other than Arcane Orb, most skills without cooldowns cannot trigger Essence Aura."
+
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_redux_radius"               "RADIUS:"
+
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_redux_bonus_mana"           "BASE MANA:"
+
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_redux_restore_amount"           "%RESTORED MANA:"
+
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_redux_restore_chance"       "%RESTORE CHANCE:"
+
+
+
+    "DOTA_Tooltip_modifier_essence_aura_effect_lod"                      "Essence Aura"
+
+    "DOTA_Tooltip_modifier_essence_aura_effect_lod_Description"          "After casting a spell, you have a chance to restore a percentage of your mana pool."
+
+
+
+    // Essence Aura Health
+
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health"                      "Essence Aura Health"
+
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health_Description"          "Whenever nearby allied Heroes or Outworld Devourer itself casts a spell, it gains a chance to restore a percentage of its <font color='#70EA72'>health</font> pool.  Outworld Devourer also passively gains a bonus to its base <font color='#70EA72'>health</font> pool.  Several skills with no cooldown and toggled spells cannot trigger Essence Aura."
+
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health_Lore"                 "The crystals of the Outworld produce arcane power, and the Harbinger channels it into the world of mortals."
+
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health_Note0"                "Other than Arcane Orb, most skills without cooldowns cannot trigger Essence Aura."
+
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health_radius"               "RADIUS:"
+
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health_bonus_mana"           "BASE HEALTH:"
+
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health_restore_amount"           "%RESTORED HEALTH:"
+
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health_restore_chance"       "%RESTORE CHANCE:"
-    
+
+
+
     // Aftershock
+
     "DOTA_Tooltip_ability_earthshaker_aftershock_lod"                                   "Aftershock Redux"
-    "DOTA_Tooltip_ability_earthshaker_aftershock_lod_Description"                       "Causes the earth to shake underfoot, adding additional damage and stuns to nearby enemy units when Earthshaker casts his abilities. <font color='#70EA72'>Has a cooldown.</font>"
+
+    "DOTA_Tooltip_ability_earthshaker_aftershock_lod_Description"                       "Causes the earth to shake underfoot, adding additional damage and stuns to nearby enemy units when Earthshaker casts his abilities. <font color='#70EA72'>If the ability has less than 5 seconds cooldown, Aftershock will go on cooldown.</font>"
+
     "DOTA_Tooltip_ability_earthshaker_aftershock_lod_Lore"                              "The earth trembles beneath the mighty footsteps of Raigor."
+
     "DOTA_Tooltip_ability_earthshaker_aftershock_lod_Note0"                             "Using items does not trigger Aftershock."
+
     "DOTA_Tooltip_ability_earthshaker_aftershock_lod_aftershock_range"                  "RADIUS:"
+
     "DOTA_Tooltip_ability_earthshaker_aftershock_lod_tooltip_duration"                  "DURATION:"
 
+
+
     // Rearm
+
     "DOTA_Tooltip_ability_tinker_rearm_lod"                                   "Rearm Redux"
+
     "DOTA_Tooltip_ability_tinker_rearm_lod_Description"                       "CHANNELED - <font color='#70EA72'>Removes 20 seconds from the cooldown on most of Tinker's items and abilities.</font>"
+
     "DOTA_Tooltip_ability_tinker_rearm_lod_Lore"                              "A new battery here, another set of rockets there, Boush continually improves on existing technology."
+
     "DOTA_Tooltip_ability_tinker_rearm_lod_Note0"                     "Rearm works on all items except Black King Bar, Arcane Boots, Helm of the Dominator, Hand of Midas, Refresher Orb, Linken's Sphere, and Necronomicon."
+
     "DOTA_Tooltip_ability_tinker_rearm_lod_channel_tooltip"               "TIME TO REARM:"
 
+
+
     // Essence Shift
+
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod"                                             "Essence Shift - Strength"
+
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_Description"                 "Slark steals the life essence of enemy heroes with his attacks, draining each of their attributes and converting them to bonus <font color='#70EA72'>Strength. Ranged heroes have a chance to steal stats, while melee heroes are guaranteed to steal stats.</font>"
+
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_Lore"                        "With each strike at his adversaries, Slark's knowledge of their weaknesses improves."
+
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_Note0"                       "Attributes cannot be dropped below 1."
+
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_Note1"                       "Essence Shifted stats are returned to normal on death. The stat return for Slark and for the affected hero are separate."
+
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_ranged_chance"       "%<font color='#70EA72'>RANGED CHANCE:</font>"
+
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_str_gain"                        "STRENGTH GAINED:"
+
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_stat_loss"                   "ALL ATTRIBUTE LOSS:"
+
     "DOTA_Tooltip_ability_slark_essence_shift_strength_lod_duration"                        "DURATION:"
+
     "DOTA_Tooltip_modifier_slark_essence_shift_strength_datadriven_buff_counter"                            "Essence Shift (STR)"
+
     "DOTA_Tooltip_modifier_slark_essence_shift_strength_datadriven_buff_counter_Description"                "Stealing %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS% strength."
+
     "DOTA_Tooltip_modifier_slark_essence_shift_strength_datadriven_debuff_counter"          "Essence Shift (STR)"
+
     "DOTA_Tooltip_modifier_slark_essence_shift_strength_datadriven_debuff_counter_Description"  "Losing %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS% of each attribute."
 
+
+
     "DOTA_Tooltip_ability_slark_essence_shift_agility_lod"                                             "Essence Shift Redux"
+
     "DOTA_Tooltip_ability_slark_essence_shift_agility_lod_Description"                  "Slark steals the life essence of enemy heroes with his attacks, draining each of their attributes and converting them to bonus Agility. <font color='#70EA72'>Ranged heroes have a chance to steal stats, while melee heroes are guaranteed to steal stats.</font>"
+
     "DOTA_Tooltip_ability_slark_essence_shift_agility_lod_Lore"                     "With each strike at his adversaries, Slark's knowledge of their weaknesses improves."
+
     "DOTA_Tooltip_ability_slark_essence_shift_agility_lod_Note0"                        "Attributes cannot be dropped below 1."
+
     "DOTA_Tooltip_ability_slark_essence_shift_agility_lod_Note1"                        "Essence Shifted stats are returned to normal on death. The stat return for Slark and for the affected hero are separate."
+
     "DOTA_Tooltip_ability_slark_essence_shift_agility_lod_ranged_chance"       "%<font color='#70EA72'>RANGED CHANCE:</font>"
+
     "DOTA_Tooltip_ability_slark_essence_shift_agility_lod_agi_gain"                     "AGILITY GAINED:"
+
     "DOTA_Tooltip_ability_slark_essence_shift_agility_lod_stat_loss"                    "ALL ATTRIBUTE LOSS:"
+
     "DOTA_Tooltip_ability_slark_essence_shift_agility_lod_duration"                     "DURATION:"
+
     "DOTA_Tooltip_modifier_slark_essence_shift_agility_datadriven_buff_counter"                         "Essence Shift (AGI)"
+
     "DOTA_Tooltip_modifier_slark_essence_shift_agility_datadriven_buff_counter_Description"             "Stealing %dMODIFIER_PROPERTY_STATS_AGILITY_BONUS% intelligence."
+
     "DOTA_Tooltip_modifier_slark_essence_shift_agility_datadriven_debuff_counter"           "Essence Shift (AGI)"
+
     "DOTA_Tooltip_modifier_slark_essence_shift_agility_datadriven_debuff_counter_Description"   "Losing %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS% of each attribute."
 
+
+
     "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod"                                             "Essence Shift - Intelligence"
+
     "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_Description"                    "Slark steals the life essence of enemy heroes with his attacks, draining each of their attributes and converting them to bonus <font color='#70EA72'>Intelligence. Ranged heroes have a chance to steal stats, while melee heroes are guaranteed to steal stats.</font>"
+
     "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_Lore"                       "With each strike at his adversaries, Slark's knowledge of their weaknesses improves."
+
     "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_Note0"                      "Attributes cannot be dropped below 1."
+
     "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_Note1"                      "Essence Shifted stats are returned to normal on death. The stat return for Slark and for the affected hero are separate."
+
     "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_ranged_chance"       "%<font color='#70EA72'>RANGED CHANCE:</font>"
+
     "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_int_gain"                       "INTELLIGENCE GAINED:"
+
     "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_stat_loss"                  "ALL ATTRIBUTE LOSS:"
+
     "DOTA_Tooltip_ability_slark_essence_shift_intellect_lod_duration"                       "DURATION:"
+
     "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_buff_counter"                           "Essence Shift (INT)"
+
     "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_buff_counter_Description"               "Stealing %dMODIFIER_PROPERTY_STATS_INTELLECT_BONUS% intelligence."
+
     "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_debuff_counter"         "Essence Shift (INT)"
+
     "DOTA_Tooltip_modifier_slark_essence_shift_intellect_datadriven_debuff_counter_Description" "Losing %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS% of each attribute."
 
+
+
     "DOTA_Tooltip_ability_death_prophet_witchcraft"                                 "Witchcraft"
+
     "DOTA_Tooltip_ability_death_prophet_witchcraft_Description"                     "Decreases the cooldowns of abilities by up to 4 seconds, a cooldown can not be lowered below 1 second. The Witchcraft cooldown reduction is applied before octarine core reduction. Will refund 10 mana per level of Witchcraft"
+
     "DOTA_Tooltip_ability_death_prophet_witchcraft_Lore"                            "With each death, Krobelus adds necromantic power to her repertoire."
+
     "DOTA_Tooltip_ability_death_prophet_witchcraft_carrion_swarm_cooldown_adjust"   "COOLDOWN DECREASE:"
+
     //"DOTA_Tooltip_ability_death_prophet_witchcraft_carrion_swarm_mana_cost_adjust"    "MANA COST DECREASE:"
+
     //"DOTA_Tooltip_ability_death_prophet_witchcraft_exorcism_1_extra_spirits"      "ADDED EXORCISM SPIRITS:"
-    //"DOTA_Tooltip_ability_death_prophet_witchcraft_bonus_movement_speed"          "%MOVEMENT SPEED:"
+
+    "DOTA_Tooltip_ability_death_prophet_witchcraft_bonus_movement_speed"          "%BONUS MOVEMENT SPEED:"
+
+
 
     //flesh heap spells
-    "DOTA_Tooltip_ability_pudge_flesh_heap_agi"         "Flesh Heap - Agility"
-    "DOTA_Tooltip_ability_pudge_flesh_heap_agi_Description" "<font color='#70EA72'>Gives bonus agility that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Agility is retroactive, meaning it can gain charges before it is skilled, which then become active."
-    "DOTA_Tooltip_ability_pudge_flesh_heap_agi_flesh_heap_agility_buff_amount"  "AGILITY PER STACK:"
-    "DOTA_Tooltip_ability_pudge_flesh_heap_agi_flesh_heap_range"            "RANGE:"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_agility"         "Flesh Heap - Agility"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_agility_Description" "<font color='#70EA72'>Gives bonus agility that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Agility is retroactive, meaning it can gain charges before it is skilled, which then become active."
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_agility_flesh_heap_agility_buff_amount"  "AGILITY PER STACK:"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_agility_flesh_heap_range"            "RANGE:"
+
     "DOTA_Tooltip_modifier_flesh_heap_agi"                  "Flesh Heap - Agility"
+
     "DOTA_Tooltip_modifier_flesh_heap_agi_Description"              "Gaining bonus agility"
-    
-    "DOTA_Tooltip_ability_pudge_flesh_heap_str"         "Flesh Heap"
-    "DOTA_Tooltip_ability_pudge_flesh_heap_str_Description" "<font color='#70EA72'>Gives bonus magic resistance and bonus strength that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap is retroactive, meaning it can gain charges before it is skilled, which then become active."
-    "DOTA_Tooltip_ability_pudge_flesh_heap_str_flesh_heap_strength_buff_amount"  "STRENGTH PER STACK:"
-    "DOTA_Tooltip_ability_pudge_flesh_heap_str_flesh_heap_magic_resist"  "MAGIC RESISTANCE:"
-    "DOTA_Tooltip_ability_pudge_flesh_heap_str_flesh_heap_range"            "RANGE:"
-    "DOTA_Tooltip_modifier_flesh_heap_str"                  "Flesh Heap"
-    "DOTA_Tooltip_modifier_flesh_heap_str_Description"              "Gaining bonus strength"
+
+
 
     "DOTA_Tooltip_ability_pudge_flesh_heap_str"         "Flesh Heap"
+
     "DOTA_Tooltip_ability_pudge_flesh_heap_str_Description" "<font color='#70EA72'>Gives bonus magic resistance and bonus strength that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap is retroactive, meaning it can gain charges before it is skilled, which then become active."
+
     "DOTA_Tooltip_ability_pudge_flesh_heap_str_flesh_heap_strength_buff_amount"  "STRENGTH PER STACK:"
+
     "DOTA_Tooltip_ability_pudge_flesh_heap_str_flesh_heap_magic_resist"  "MAGIC RESISTANCE:"
+
     "DOTA_Tooltip_ability_pudge_flesh_heap_str_flesh_heap_range"            "RANGE:"
+
     "DOTA_Tooltip_modifier_flesh_heap_str"                  "Flesh Heap"
+
     "DOTA_Tooltip_modifier_flesh_heap_str_Description"              "Gaining bonus strength"
+
+
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_str"         "Flesh Heap"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_str_Description" "<font color='#70EA72'>Gives bonus magic resistance and bonus strength that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap is retroactive, meaning it can gain charges before it is skilled, which then become active."
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_str_flesh_heap_strength_buff_amount"  "STRENGTH PER STACK:"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_str_flesh_heap_magic_resist"  "MAGIC RESISTANCE:"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_str_flesh_heap_range"            "RANGE:"
+
+    "DOTA_Tooltip_modifier_flesh_heap_str"                  "Flesh Heap"
+
+    "DOTA_Tooltip_modifier_flesh_heap_str_Description"              "Gaining bonus strength"
+
+
 
     "DOTA_Tooltip_ability_pudge_flesh_heap_int"                 "Flesh Heap - Intelligence"
+
     "DOTA_Tooltip_ability_pudge_flesh_heap_int_Description"             "<font color='#70EA72'>Gives bonus intelligence that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Intelligence is retroactive, meaning it can gain charges before it is skilled, which then become active."
+
     "DOTA_Tooltip_ability_pudge_flesh_heap_int_flesh_heap_intelligence_buff_amount"     "INTELLIGENCE PER STACK:"
+
     "DOTA_Tooltip_ability_pudge_flesh_heap_int_flesh_heap_range"                "RANGE:"
+
     "DOTA_Tooltip_modifier_flesh_heap_int"                      "Flesh Heap - Intelligence"
+
     "DOTA_Tooltip_modifier_flesh_heap_int_Description"                  "Gaining bonus intelligence"
-    
+
+
+
     "DOTA_Tooltip_ability_pudge_flesh_heap_attack_range"         "Flesh Heap - Attack Range"
+
     "DOTA_Tooltip_ability_pudge_flesh_heap_attack_range_Description" "<font color='#70EA72'>Gives bonus attack range that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Attack Range is retroactive, meaning it can gain charges before it is skilled, which then become active."
+
     "DOTA_Tooltip_ability_pudge_flesh_heap_attack_range_flesh_heap_attack_range_buff_amount"  "BONUS RANGE PER STACK:"
+
     "DOTA_Tooltip_ability_pudge_flesh_heap_attack_range_flesh_heap_range"            "RANGE:"
+
     "DOTA_Tooltip_modifier_flesh_heap_attack_range"                  "Flesh Heap ATK Range"
+
     "DOTA_Tooltip_modifier_flesh_heap_attack_range_Description"       "Gaining bonus attack range"
 
+
+
     "DOTA_Tooltip_ability_pudge_flesh_heap_move_speed"         "Flesh Heap - Move Speed"
+
     "DOTA_Tooltip_ability_pudge_flesh_heap_move_speed_Description" "<font color='#70EA72'>Gives bonus move speed that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Move Speed is retroactive, meaning it can gain charges before it is skilled, which then become active."
+
     "DOTA_Tooltip_ability_pudge_flesh_heap_move_speed_flesh_heap_move_speed_buff_amount"  "BONUS MOVE SPEED PER STACK:"
+
     "DOTA_Tooltip_ability_pudge_flesh_heap_move_speed_flesh_heap_range"            "RANGE:"
+
     "DOTA_Tooltip_modifier_flesh_heap_move_speed"                  "Flesh Heap Move Speed"
+
     "DOTA_Tooltip_modifier_flesh_heap_move_speed_Description"       "Gaining bonus move speed"
 
+
+
     "DOTA_Tooltip_ability_pudge_flesh_heap_spell_amp"         "Flesh Heap - Spell Amp"
+
     "DOTA_Tooltip_ability_pudge_flesh_heap_spell_amp_Description" "<font color='#70EA72'>Gives bonus spell ampliciation that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Spell Amp is retroactive, meaning it can gain charges before it is skilled, which then become active."
+
     "DOTA_Tooltip_ability_pudge_flesh_heap_spell_amp_flesh_heap_spell_amp_buff_amount"  "BONUS SPELL AMP PER STACK:"
+
     "DOTA_Tooltip_ability_pudge_flesh_heap_spell_amp_flesh_heap_range"            "RANGE:"
+
     "DOTA_Tooltip_modifier_flesh_heap_spell_amp"                  "Flesh Heap Spell Amp"
+
     "DOTA_Tooltip_modifier_flesh_heap_spell_amp_Description"       "Gaining bonus spell amplification"
-    
+
+
+
     "DOTA_Tooltip_ability_pudge_flesh_heap_bonus_vision"         "Flesh Heap - Bonus Vision"
+
     "DOTA_Tooltip_ability_pudge_flesh_heap_bonus_vision_Description" "<font color='#70EA72'>Gives bonus vision that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Bonus Vision is retroactive, meaning it can gain charges before it is skilled, which then become active."
+
     "DOTA_Tooltip_ability_pudge_flesh_heap_bonus_vision_flesh_heap_bonus_vision_buff_amount"  "BONUS VISION PER STACK:"
+
     "DOTA_Tooltip_ability_pudge_flesh_heap_bonus_vision_flesh_heap_range"            "RANGE:"
-    "DOTA_Tooltip_modifier_flesh_heap_bonus_vision"                  "Flesh Heap Bonus Vision"
-    "DOTA_Tooltip_modifier_flesh_heap_bonus_vision_Description"       "Gaining bonus vision"
+
+
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_cooldown_reduction"         "Flesh Heap - Cooldown Reduction"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_cooldown_reduction_Description" "<font color='#70EA72'>Gives cooldown reduction that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Cooldown Reduction is retroactive, meaning it can gain charges before it is skilled, which then become active."
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_cooldown_reduction_flesh_heap_value_buff_amount"  "%CD REDUCTION PER STACK:"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_cooldown_reduction_flesh_heap_range"            "RANGE:"
+
+
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_evasion"         "Flesh Heap - Evasion"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_evasion_Description" "<font color='#70EA72'>Gives a chance to evade physical attacks (evasion) that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Evasion is retroactive, meaning it can gain charges before it is skilled, which then become active."
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_evasion_flesh_heap_value_buff_amount"  "EVASION PER STACK:"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_evasion_flesh_heap_range"            "RANGE:"
+
+
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_magic_resistance"         "Flesh Heap - Magic Resistance"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_magic_resistance_Description" "<font color='#70EA72'>Gives bonus magic resistance that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Magic Resistance is retroactive, meaning it can gain charges before it is skilled, which then become active."
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_magic_resistance_flesh_heap_value_buff_amount"  "RESISTANCE PER STACK:"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_magic_resistance_flesh_heap_range"            "RANGE:"
+
+
+
+
+
+
+
+
+
+
+
+
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_cast_range"         "Flesh Heap - Cast Range"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_cast_range_Description" "<font color='#70EA72'>Gives bonus cast range that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Magic Resistance is retroactive, meaning it can gain charges before it is skilled, which then become active."
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_cast_range_flesh_heap_value_buff_amount"  "CAST RANGE PER STACK:"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_cast_range_flesh_heap_range"            "RANGE:"
+
+
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_spell_lifesteal"         "Flesh Heap - Spell Life Steal"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_spell_lifesteal_Description" "<font color='#70EA72'>Gives bonus magic life steal that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Magic Resistance is retroactive, meaning it can gain charges before it is skilled, which then become active."
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_spell_lifesteal_flesh_heap_value_buff_amount"  "SPELL LIFE STEAL PER STACK:"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_spell_lifesteal_flesh_heap_range"            "RANGE:"
+
+
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_lifesteal"         "Flesh Heap - Life Steal"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_lifesteal_Description" "<font color='#70EA72'>Gives bonus life steal that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Magic Resistance is retroactive, meaning it can gain charges before it is skilled, which then become active."
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_lifesteal_flesh_heap_value_buff_amount"  "LIFE STEAL PER STACK:"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_lifesteal_flesh_heap_range"            "RANGE:"
+
+
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_armor"         "Flesh Heap - Armor"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_armor_Description" "<font color='#70EA72'>Gives bonus armor that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Magic Resistance is retroactive, meaning it can gain charges before it is skilled, which then become active."
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_armor_flesh_heap_value_buff_amount"  "ARMOR PER STACK:"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_armor_flesh_heap_range"            "RANGE:"
+
+
+
+    "DOTA_Tooltip_modifier_flesh_heap_cast_range"                                              "Cast Range"
+
+    "DOTA_Tooltip_modifier_flesh_heap_cast_range_Description"                                  "Gaining extra cast range per stack"
+
+
+
+    "DOTA_Tooltip_modifier_flesh_heap_spell_lifesteal"                                              "Spell Life Steal"
+
+    "DOTA_Tooltip_modifier_flesh_heap_spell_lifesteal_Description"                                  "Gaining extra spell life steal per stack"
+
+
+
+    "DOTA_Tooltip_modifier_flesh_heap_lifesteal"                                              "Life Steal"
+
+    "DOTA_Tooltip_modifier_flesh_heap_lifesteal_Description"                                  "Gaining life steal per stack"
+
+
+
+    "DOTA_Tooltip_modifier_flesh_heap_armor"                                              "Armor"
+
+    "DOTA_Tooltip_modifier_flesh_heap_armor_Description"                                  "Gaining extra armor per stack"
+
+
+
+    "DOTA_Tooltip_modifier_flesh_heap_magic_resistance"                                              "Magic Resistance"
+
+    "DOTA_Tooltip_modifier_flesh_heap_magic_resistance_Description"                                  "Gaining extra magic resitance per stack"
+
+
+
+    "DOTA_Tooltip_modifier_flesh_heap_cooldown_reduction"                                              "Cooldown Reduction"
+
+    "DOTA_Tooltip_modifier_flesh_heap_cooldown_reduction_Description"                                  "Gaining extra cooldown reduction per stack"
+
+
+
+    "DOTA_Tooltip_modifier_flesh_heap_evasion"                                              "Evasion"
+
+    "DOTA_Tooltip_modifier_flesh_heap_evasion_Description"                                  "Gaining extra evasion per stack"
+
+
 
     // global break
+
     "DOTA_Tooltip_modifier_silencer_global_break"                                              "Global Break"
+
     "DOTA_Tooltip_modifier_silencer_global_break_Description"                                  "Disables abilities"
+
     "DOTA_Tooltip_ability_silencer_global_break"                                               "Global Break"
+
     "DOTA_Tooltip_ability_silencer_global_break_Description"                                   "Silencer stops all sound, <font color='#70EA72'>preventing enemy heroes from using most of their passives.</font>"
+
     "DOTA_Tooltip_ability_silencer_global_break_duration"                                      "DURATION:"
 
+
+
+    // global disarm
+
+    "DOTA_Tooltip_modifier_silencer_global_disarm"                                              "Global Disarm"
+
+    "DOTA_Tooltip_modifier_silencer_global_disarm_Description"                                  "Disarmed by Global Disarm"
+
+    "DOTA_Tooltip_ability_silencer_global_disarm"                                               "Global Disarm"
+
+    "DOTA_Tooltip_ability_silencer_global_disarm_Description"                                   "Silencer disarms all enemy heros, <font color='#70EA72'>preventing enemy heroes from attacking.</font>"
+
+    "DOTA_Tooltip_ability_silencer_global_disarm_duration"                                      "DURATION:"
+
+
+
     "DOTA_Tooltip_ability_global_stun"                                      "Global Stomp"
+
     "DOTA_Tooltip_ability_global_stun_Description"                          "The Centaur Conqueror's powerful hooves stomp the earth, stunning and damaging all living enemies. Heroes recover more quickly."
+
     //"DOTA_Tooltip_ability_global_stun_radius"                             "RADIUS:"
+
     "DOTA_Tooltip_ability_global_stun_non_hero_stun_duration"               "STUN DURATION:"
+
     "DOTA_Tooltip_ability_global_stun_hero_stun_duration"                   "HERO STUN:"
-    
+
+
+
     "DOTA_Tooltip_ability_aether_range_lod" "Aether Range"
+
     "DOTA_Tooltip_ability_aether_range_lod_Description" "Increases spell cast range."
+
     "DOTA_Tooltip_ability_aether_range_lod_Lore"        "Great magicians can cast spells from miles away."
+
     "DOTA_Tooltip_ability_aether_range_lod_cast_range_bonus"        "BONUS CAST RANGE:"
-    
+
+
+
     "DOTA_Tooltip_ability_aether_range_lod_OP" "Aether Range OP"
+
     "DOTA_Tooltip_ability_aether_range_lod_OP_Description" "<font color='#70EA72'>Greatly</font> increases spell cast range."
+
     "DOTA_Tooltip_ability_aether_range_lod_OP_Lore"        "Great magicians can cast spells from miles away."
+
     "DOTA_Tooltip_ability_aether_range_lod_OP_cast_range_bonus"        "BONUS CAST RANGE:"
 
+
+
     "DOTA_Tooltip_ability_octarine_vampirism_lod" "Octarine Vampirism"
+
     "DOTA_Tooltip_ability_octarine_vampirism_lod_Description" "Grants aura for allied Heros that restores health for a percentage of any damage dealt from spells. Lifesteals less from damage dealt to creeps."
+
     "DOTA_Tooltip_ability_octarine_vampirism_lod_Lore"        "The art of thieving life through arcane means is a lost one."
+
     "DOTA_Tooltip_ability_octarine_vampirism_lod_hero_lifesteal"        "%HERO LIFESTEAL:"
+
     "DOTA_Tooltip_ability_octarine_vampirism_lod_creep_lifesteal"        "%CREEP LIFESTEAL:"
-    
+
+
+
     "DOTA_Tooltip_ability_octarine_vampirism_lod_OP" "Octarine Vampirism OP"
+
     "DOTA_Tooltip_ability_octarine_vampirism_lod_OP_Description" "Grants aura for allied Heros that restores health for a <font color='#70EA72'>large</font> percentage of any damage dealt from spells. Lifesteals less from damage dealt to creeps."
+
     "DOTA_Tooltip_ability_octarine_vampirism_lod_OP_Lore"        "The art of thieving life through arcane means is a lost one."
+
     "DOTA_Tooltip_ability_octarine_vampirism_lod_OP_hero_lifesteal"        "%HERO LIFESTEAL:"
+
     "DOTA_Tooltip_ability_octarine_vampirism_lod_OP_creep_lifesteal"        "%CREEP LIFESTEAL:"
-    
+
+
+
     "DOTA_Tooltip_modifier_octarine_vampirism_lod_buff"                "Octarine Vampirism"
+
     "DOTA_Tooltip_modifier_octarine_vampirism_lod_buff_Description"    "Gaining lifesteal on spell damage."
 
+
+
     "DOTA_Tooltip_ability_force_dash_lod" "Force Dash"
+
     "DOTA_Tooltip_ability_force_dash_lod_Description" "Pushes any target unit in the direction it is facing. Double click to instantly cast Force Dash on yourself."
+
     "DOTA_Tooltip_ability_force_dash_lod_Note0" "The push lasts 0.4s."
+
     "DOTA_Tooltip_ability_force_dash_lod_Lore"        "Ejecting magic from one's body works very similar to a rocket."
+
     "DOTA_Tooltip_ability_force_dash_lod_distance"        "PUSH DISTANCE:"
-    
+
+
+
     "DOTA_Tooltip_ability_force_dash_lod_OP" "Force Dash OP"
+
     "DOTA_Tooltip_ability_force_dash_lod_OP_Description" "Pushes any target unit in the direction it is facing. Double click to instantly cast Force Dash on yourself. <font color='#70EA72'>Pushes much further</font>."
+
     "DOTA_Tooltip_ability_force_dash_lod_OP_Note0" "The push lasts 0.4s."
+
     "DOTA_Tooltip_ability_force_dash_lod_OP_Lore"        "Ejecting magic from one's body works very similar to a rocket."
+
     "DOTA_Tooltip_ability_force_dash_lod_OP_distance"        "PUSH DISTANCE:"
 
+
+
     "DOTA_Tooltip_ability_shards_of_truesight_lod" "Shards of True Sight"
+
     "DOTA_Tooltip_ability_shards_of_truesight_lod_Description" "Throws gem dust into the air, temporarily granting True Sight and increasing base movement speed."
+
     "DOTA_Tooltip_ability_shards_of_truesight_lod_Lore"        "Why pay for the whole Gem when the scraps can be just as useful."
+
     "DOTA_Tooltip_ability_shards_of_truesight_lod_ms_boost"        "BONUS MOVESPEED:"
+
     "DOTA_Tooltip_ability_shards_of_truesight_lod_duration"        "DURATION:"
+
     "DOTA_Tooltip_ability_shards_of_truesight_lod_radius"        "TRUE SIGHT RADIUS:"
-    
+
+
+
     "DOTA_Tooltip_ability_shards_of_truesight_lod_OP" "Shards of True Sight OP"
+
     "DOTA_Tooltip_ability_shards_of_truesight_lod_OP_Description" "Throws gem dust into the air, temporarily granting True Sight and increasing base movement speed. <font color='#70EA72'>Lower cooldown, mana cost and a larger true-sight radius</font>."
+
     "DOTA_Tooltip_ability_shards_of_truesight_lod_OP_Lore"        "Why pay for the whole Gem when the scraps can be just as useful."
+
     "DOTA_Tooltip_ability_shards_of_truesight_lod_OP_ms_boost"        "BONUS MOVESPEED:"
+
     "DOTA_Tooltip_ability_shards_of_truesight_lod_OP_duration"        "DURATION:"
+
     "DOTA_Tooltip_ability_shards_of_truesight_lod_OP_radius"        "TRUE SIGHT RADIUS:"
 
+
+
     "DOTA_Tooltip_truesight_aura"    "True Sight Buff"
+
     "DOTA_Tooltip_truesight_aura_Description"    "Revealing enemies in a radius and gaining movement speed."
 
+
+
     // Increasing Creep Power
+
     "DOTA_Tooltip_ability_lod_creep_power" "Creep Power"
+
     "DOTA_Tooltip_ability_lod_creep_power_Description" "Increases creep's damage, armour and magic resistance every specified time interval."
+
     "DOTA_Tooltip_ability_lod_creep_power_coef" "%BOUNTY INCREASE:"
+
     "DOTA_Tooltip_ability_lod_creep_power_damage_per_level" "DAMAGE INCREASE:"
+
     "DOTA_Tooltip_ability_lod_creep_power_resist_per_level" "%MAGICAL RESIST INCREASE:"
 
+
+
     "DOTA_Tooltip_ability_lod_creep_power_hp" "Granite Creep"
+
     "DOTA_Tooltip_ability_lod_creep_power_hp_Description" "Increases creep's health every specified time interval."
+
     "DOTA_Tooltip_ability_lod_creep_power_hp_bonus_hp" "HEALTH INCREASE:"
 
+
+
     // Spirt Bear Return
+
     "DOTA_Tooltip_ability_lone_druid_spirit_bear_return_lod"                                  "Return"
+
     "DOTA_Tooltip_ability_lone_druid_spirit_bear_return_lod_Description"                      "Immediately teleports to the bottom part of your current view. "
-    
+
+
+
     // Spirt Bear Return
+
     "DOTA_Tooltip_ability_lone_druid_spirit_bear_return_lod_OP"                                  "Return OP"
+
     "DOTA_Tooltip_ability_lone_druid_spirit_bear_return_lod_OP_Description"                      "Immediately teleports to the bottom part of your current view. <font color='#70EA72'>Shorter cooldown and lower mana cost</font>."
 
+
+
     // Roshan spell block
-    "DOTA_Tooltip_ability_roshan_spell_block_lod"                               "Spell Block Redux"
-    "DOTA_Tooltip_ability_roshan_spell_block_lod_Description"                   "Roshan will block one targeted spell every few seconds."
-    "DOTA_Tooltip_modifier_roshan_spell_block_Description"                      "Will block one targeted spell every few seconds."
-    
+
+    //"DOTA_Tooltip_ability_roshan_spell_block_lod"                               "Spell Block Redux"
+
+    //"DOTA_Tooltip_ability_roshan_spell_block_lod_Description"                   "Roshan will block one targeted spell every few seconds."
+
+    //"DOTA_Tooltip_modifier_roshan_spell_block_Description"                      "Will block one targeted spell every few seconds."
+
+
+
     // Linken's Guard
-    "DOTA_Tooltip_ability_linkens_guard_lod"                               "Linken's Guard"
-    "DOTA_Tooltip_ability_linkens_guard_lod_Description"                   "Blocks most targeted spells once every few seconds."
-    "DOTA_Tooltip_modifier_linkens_guard_lod_Description"                      "Will block one targeted spell every few seconds."
+
+    //"DOTA_Tooltip_ability_linkens_guard_lod"                               "Linken's Guard"
+
+    //"DOTA_Tooltip_ability_linkens_guard_lod_Description"                   "Blocks most targeted spells once every few seconds."
+
+    //"DOTA_Tooltip_modifier_linkens_guard_lod_Description"                      "Will block one targeted spell every few seconds."
+
+
 
     // Warlock Permanent Immolation
+
     "DOTA_Tooltip_ability_warlock_golem_permanent_immolation_lod"                               "Permanent Immolation Redux"
-    "DOTA_Tooltip_ability_warlock_golem_permanent_immolation_lod_Description"                   "Burns the Golem's nearby enemy units, with damage per second."
+
+    "DOTA_Tooltip_ability_warlock_golem_permanent_immolation_lod_Description"                   "Burns the Golem's nearby enemy units, with damage per second.<font color='#70EA72'> Deals less damage on earlier levels</font>."
+
     "DOTA_Tooltip_ability_warlock_golem_permanent_immolation_lod_damage"        "DAMAGE PER SECOND:"
+
     "DOTA_Tooltip_ability_warlock_golem_permanent_immolation_lod_radius"        "RADIUS:"
 
+
+
     // Back door protection
+
     "DOTA_Tooltip_ability_backdoor_protection_radius"                      "RADIUS:"
+
     "DOTA_Tooltip_ability_backdoor_protection_activation_time"             "ACTIVATION TIME:"
+
     "DOTA_Tooltip_ability_backdoor_protection_regen_rate"                  "REGENERATION RATE:"
 
+
+
    // Back door (in base) protection
+
     "DOTA_Tooltip_ability_backdoor_protection_in_base_activation_time"             "ACTIVATION TIME:"
+
     "DOTA_Tooltip_ability_backdoor_protection_in_base_regen_rate"                  "REGENERATION RATE:"
 
+
+
    //Backstab
+
     "DOTA_Tooltip_ability_riki_backstab_lod" "Backstab"
+
     "DOTA_Tooltip_ability_riki_backstab_lod_Description" "If Riki attacks from behind, bonus damage is applied based on his current agility."
+
     "Dota_Tooltip_riki_backstab_lod_Lore" "The Stealth Assassin is not afraid to fight dirty, and specializes in attacking his opponents from behind"
+
     "DOTA_Tooltip_ability_riki_backstab_lod_Note0" "Illusions of Riki will play Backstab animations, but not deal any bonus damage"
+
     "DOTA_Tooltip_ability_riki_backstab_lod_Note1" "Bonus damage from Backstab cannot be evaded"
+
     "DOTA_Tooltip_ability_riki_backstab_lod_agility_damage" "%AGI DAMAGE MULT:"
+
     "DOTA_Tooltip_ability_riki_backstab_lod_backstab_angle" "BACKSTAB ANGLE:"
 
+
+
     // Wildkin Tornado
+
     "DOTA_Tooltip_ability_enraged_wildkin_tornado_cast_range"       "CAST RANGE:"
 
+
+
     // Taskmaster Speed Aura
+
     "DOTA_Tooltip_modifier_kobold_taskmaster_speed_aura_bonus_Description"              "Movement speed increased by a percentage."
 
+
+
     //Stone Form
+
     "DOTA_Tooltip_ability_visage_summon_familiars_stone_form_Description"       "After a short delay, the Familiar turns into stone and smashes into the ground, stunning and damaging all targets in the area.  The Familiar becomes invulnerable, and will regain its damage charges and health very rapidly.  After 5 seconds, the Familiar will automatically leave Stone Form."
 
+
+
     // Granite Aura
+
     "DOTA_Tooltip_modifier_granite_golem_hp_aura_bonus_Description"                      "Health increased by a percentage."
 
+    "DOTA_Tooltip_ability_granite_golem_hp_aura_bonus_hp"                   "%BONUS HP PERCENTAGE:"
+
+
+
     //Fury Swipes
+
     "DOTA_Tooltip_ability_ursa_fury_swipes_lod" "Fury Swipes Redux"
+
     "DOTA_Tooltip_ability_ursa_fury_swipes_lod_Description" "Ursa's claws dig deeper wounds in the enemy, causing consecutive attacks to the same enemy to deal more damage. If the same target is not attacked after 20 seconds, the bonus damage is lost. <font color='#70EA72'>Half as effective on ranged heroes.</font>"
+
     "DOTA_Tooltip_ability_ursa_fury_swipes_lod_Lore" "In nature, the wounded rarely survive the attacks of hungry predators."
+
     "DOTA_Tooltip_ability_ursa_fury_swipes_lod_Bonus_reset_time" "RESET TIME:"
+
     "DOTA_Tooltip_ability_ursa_fury_swipes_lod_Bonus_reset_time_roshan" "RESET TIME (ROSHAN):"
+
     "DOTA_Tooltip_ability_ursa_fury_swipes_lod_Damage_per_stack" "DAMAGE PER ATTACK:"
+
     "DOTA_Tooltip_ability_ursa_fury_swipes_lod_Damage_per_stack_ranged" "<font color='#70EA72'>DAMAGE PER ATTACK (RANGED):</font>"
 
+
+
     "DOTA_Tooltip_modifier_fury_swipes_target_lod"  "Fury Swipes"
+
     "DOTA_Tooltip_modifier_fury_swipes_target_lod_Description"  "Taking extra damage per stack."
 
+
+
     //Huskar
+
     "DOTA_Tooltip_Ability_huskar_berserkers_blood_lod"                                  "Berserker's Blood (pre 6.78)"
+
     "DOTA_Tooltip_Ability_huskar_berserkers_blood_lod_Description"                      "Huskar's injuries feed his power, giving increased attack speed and damage for each 7% of missing health.\n\n<font color=\'#7D7D7D\'>Credits: jhqz103 | github.com/jhqz103</font>\n"
+
     "DOTA_Tooltip_Ability_huskar_berserkers_blood_lod_attack_speed_bonus_per_stack"       "ATTACK SPEED BONUS PER STACK:"
+
     "DOTA_Tooltip_Ability_huskar_berserkers_blood_lod_damage_per_stack"       "ATTACK DAMAGE BONUS PER STACK:"
+
     "DOTA_Tooltip_Ability_huskar_berserkers_blood_lod_Lore"                             "After losing his birthright, Huskar gained a lethality in physical combat that is only heightened as his own blood is spilled."
 
+
+
     "DOTA_Tooltip_modifier_huskar_berserkers_blood_lod"                                 "Berserker's Blood"
+
     "DOTA_Tooltip_modifier_huskar_berserkers_blood_lod_Description"                     "Increase damage and attack speed."
 
+
+
     //Drow - Marksmanship INT
+
     "DOTA_Tooltip_ability_marksmanship_int"                                 "Marksmanship INT"
+
     "DOTA_Tooltip_ability_marksmanship_int_Description"                     "Drow's experiences in battle improve her accuracy and effectiveness in combat, providing a passive bonus to <font color='#70EA72'>Intelligence</font>. Grants no bonus if there are enemy heroes within a 375 AoE."
+
     "DOTA_Tooltip_ability_marksmanship_int_Lore"                                "The Drow Ranger is the epitome of archery prowess."
+
     "DOTA_Tooltip_ability_marksmanship_int_marksmanship_intellect_bonus"        "BONUS INTELLECT:"
 
+
+
     "DOTA_Tooltip_modifier_marksmanship_int_effect_datadriven"                          "Marksmanship INT"
+
     "DOTA_Tooltip_modifier_marksmanship_int_effect_datadriven_Description"              "Bonus Intellect. Deactivated by nearby enemy heroes."
 
+
+
     //Drow - Marksmanship STR
+
     "DOTA_Tooltip_ability_marksmanship_str"                                 "Marksmanship STR"
+
     "DOTA_Tooltip_ability_marksmanship_str_Description"                     "Drow's experiences in battle improve her accuracy and effectiveness in combat, providing a passive bonus to <font color='#70EA72'>Strength</font>. Grants no bonus if there are enemy heroes within a 375 AoE."
+
     "DOTA_Tooltip_ability_marksmanship_str_Lore"                                "The Drow Ranger is the epitome of archery prowess."
+
     "DOTA_Tooltip_ability_marksmanship_str_marksmanship_strength_bonus"     "BONUS STRENGTH:"
 
+
+
     "DOTA_Tooltip_modifier_marksmanship_str_effect_datadriven"                          "Marksmanship STR"
+
     "DOTA_Tooltip_modifier_marksmanship_str_effect_datadriven_Description"              "Bonus Strength. Deactivated by nearby enemy heroes."
 
+
+
+    //--------------------
+
+    //HAWKEYE
+
+    //--------------------
+
+    "DOTA_Tooltip_ability_hawkeye_ricochet" "Rapidfire"
+
+    "DOTA_Tooltip_ability_hawkeye_ricochet_description" "Fires multiple shots in succession at the target unit.  This ability preserves UAMs, attack effects, procs, and crits. Reduces the damage by a percentage.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
+
+    "DOTA_Tooltip_ability_hawkeye_ricochet_Note0" "Issues an attack order on the targeted unit."
+
+    "DOTA_Tooltip_ability_hawkeye_ricochet_hits" "SHOTS:"
+
+    "DOTA_Tooltip_ability_hawkeye_ricochet_damage_reduction" "%DAMAGE REDUCTION:"
+
+
+
+    "DOTA_Tooltip_ability_hawkeye_detonator_dart" "Detonator Dart"
+
+    "DOTA_Tooltip_ability_hawkeye_detonator_dart_description" "Hawkeye pins an enemy with one of his powerful explosive devices.  After a short delay, the unit explodes, dealing large damage in a significant area.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
+
+    "DOTA_Tooltip_ability_hawkeye_detonator_dart_Note0" "If the unit dies, the explosion occurs regardless of the countdown."
+
+    "DOTA_Tooltip_ability_hawkeye_detonator_dart_damage" "EXPLOSION DAMAGE:"
+
+    "DOTA_Tooltip_ability_hawkeye_detonator_dart_initial_damage" "INITIAL DAMAGE:"
+
+    "DOTA_Tooltip_ability_hawkeye_detonator_dart_duration" "DELAY:"
+
+
+
+    "DOTA_Tooltip_ability_hawkeye_hit_n_run" "Hit 'n' Run"
+
+    "DOTA_Tooltip_ability_hawkeye_hit_n_run_description" "With a spring in his step, Hawkeye leaps out of harms way using the explosive soles on his boots.  Leaves behind an area of damaging and slowing shrapnel to deter his more eager foes.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
+
+    "DOTA_Tooltip_ability_hawkeye_hit_n_run_Note0" "Does not interrupt channelled abilities."
+
+    "DOTA_Tooltip_ability_hawkeye_hit_n_run_slow" "%SLOW:"
+
+    "DOTA_Tooltip_ability_hawkeye_hit_n_run_jump_distance" "JUMP DISTANCE:"
+
+    "DOTA_Tooltip_ability_hawkeye_hit_n_run_jump_distance" "SHRAPNEL RADIUS:"
+
+
+
+    "DOTA_Tooltip_ability_hawkeye_double_tap" "Single Tap"
+
+    "DOTA_Tooltip_ability_hawkeye_double_tap_description" "After 1 second of charging, Hawkeye fires a projectile that travels a great distance, dealing base damage and damage based on a multiplier of his attack damage while piercing through enemies.  The first Hero enemy hit that isn't killed is marked for his second, more potent shot, which deals Pure damage.  After the shot collides with its targets, Hawkeye has a few moments to take the second shot.\n\nUpgradable by Aghanim's Scepter.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
+
+    "DOTA_Tooltip_ability_hawkeye_double_tap_aghanim_description" "Increases range, shot speed, reduces Single Tap damage, but increases the damage of Double Tap."
+
+    "DOTA_Tooltip_ability_hawkeye_double_tap_mult" "MULTIPLIER:"
+
+    "DOTA_Tooltip_ability_hawkeye_double_tap_range" "RANGE:"
+
+    "DOTA_Tooltip_ability_hawkeye_double_tap_base_damage" "BASE DAMAGE:"
+
+    "DOTA_Tooltip_ability_hawkeye_double_tap_range_scepter" "SCEPTER RANGE:"
+
+    "DOTA_Tooltip_ability_hawkeye_double_tap_shot_speed_scepter" "SHOT SPEED:"
+
+
+
+    "DOTA_Tooltip_ability_hawkeye_double_tap_second_shot" "Double Tap"
+
+    "DOTA_Tooltip_ability_hawkeye_double_tap_second_shot_description" "Hawkeye fires a second shot, this time at the first enemy unfortunate enough to be hit by the initial shot.  Deals base damage plus bonus damage based on a multiplier of his attack damage, but hits a single target instead.\n\nUpgradable by Aghanim's Scepter.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
+
+    "DOTA_Tooltip_ability_hawkeye_double_tap_second_shot_mult" "MULTIPLIER:"
+
+    "DOTA_Tooltip_ability_hawkeye_double_tap_second_shot_base_damage" "BASE DAMAGE:"
+
+    "DOTA_Tooltip_ability_hawkeye_double_tap_second_shot_mult_scepter" "SCEPTER MULTIPLIER:"
+
+
+
+    "DOTA_Tooltip_hawkeye_ricochet_mod"                                               "Hawkeye Ricochet Mod"
+
+    "DOTA_Tooltip_hawkeye_ricochet_mod_description"                                   ""
+
+
+
+    "DOTA_Tooltip_modifier_detonator_dart"      "Detonator Dart"
+
+
+
+    "DOTA_Tooltip_hawkeye_detonator_dart_mod"                                         "Detonator Dart"
+
+
+
+    "DOTA_Tooltip_hawkeye_shrapnel_effects_mod"                                       "None"
+
+    "DOTA_Tooltip_hawkeye_shrapnel_effects_mod_description"                           ""
+
+
+
+    "DOTA_Tooltip_hawkeye_shrapnel_damage_slow_mod"                                   "Hit 'n' Run Shrapnel"
+
+    "DOTA_Tooltip_hawkeye_shrapnel_damage_slow_mod_description"                       "Taking damage and being slowed."
+
+
+
+    "DOTA_Tooltip_hawkeye_double_tap_second_shot_effect_mod"                          "Double Tap"
+
+    "DOTA_Tooltip_hawkeye_double_tap_second_shot_effect_mod_description"              "Take your best shot."
+
+
+
     //Bot Controller
-    "DOTA_Tooltip_ability_imba_tower_ai_controller"                                 "Bot Controller"
-    "DOTA_Tooltip_ability_imba_tower_ai_controller_Description"                     "Will Force Bots to attack towers if there is no nearby allied heros. Will force bots to retreat from towers with invulnerability, this is to prevent diving. Will also decripfy, stun and then teleport bots back to their base if they reach below a certain HP threshold, this is to prevent them dying due to recklessness. Bot Controller is only enabled when there is more than the default number of towers."
+
+    "DOTA_Tooltip_ability_imba_tower_ai_controller"                                 "Bot AI Helper"
+
+    "DOTA_Tooltip_ability_imba_tower_ai_controller_Description"                     "<font color='#70EA72'>This ability is designed to help bots deal with multiple towers. The logic is roughly as follows:</font>\n1. If an enemy bot is nearby AND tower is not invunerable AND there is no nearby allies = <font color='#70EA72'>Force enemy bot to attack tower</font>\n2. If an enemy bot is nearby AND enemy bot health is below 300 AND there is no nearby allies = <font color='#70EA72'>Teleport bot back to their base </font>\n3. If an enemy bot is nearby AND tower is invunerable = <font color='#70EA72'>Scare enemy bot away</font>\n\nEnemy bots that are teleported back to their base, receive the following compenstation for being displaced from battle: <font color='#70EA72'>100 gold and experience, full HP and MP on return and maximum movespeed for a period of time. </font>"
+
     "DOTA_Tooltip_ability_imba_tower_ai_controller_Lore"                                "ASSUMING DIRECT CONTROL"
 
 

@@ -7,7 +7,7 @@
 ---------------------------------
 
 imba_crystal_maiden_arcane_dynamo = class({})
-LinkLuaModifier("modifier_imba_arcane_dynamo", "abilities/dota imba/hero_crystal_maiden.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_imba_arcane_dynamo", "abilities/dota imba/arcane_dynamo.lua", LUA_MODIFIER_MOTION_NONE)
 
 function imba_crystal_maiden_arcane_dynamo:GetIntrinsicModifierName() return "modifier_imba_arcane_dynamo" end
 function imba_crystal_maiden_arcane_dynamo:IsInnateAbility() return true end

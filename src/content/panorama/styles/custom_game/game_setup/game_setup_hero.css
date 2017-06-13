@@ -36,7 +36,7 @@
 }
 
 .AspectRatio5x4 .heroRoot Label {
-   font-size: 15px; 
+   font-size: 15px;
 }
 
 .AspectRatio16x10 .heroRoot {
@@ -52,7 +52,7 @@
     align: center center;
 
     transition-property: opacity, width, height;
-    transition-duration: 0.25s;    
+    transition-duration: 0.25s;
 }
 
 .unique_heroes_mode .heroRoot.takenHero DOTAHeroImage,

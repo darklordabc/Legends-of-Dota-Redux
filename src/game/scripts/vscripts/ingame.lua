@@ -556,7 +556,6 @@ function Ingame:onStart()
             hero:AddItemByName('item_new_ability_bonus'):SetCurrentCharges(newAbilities)
         end
     end
-
     -- Set it to no team balance
     self:setNoTeamBalanceNeeded()
 end
