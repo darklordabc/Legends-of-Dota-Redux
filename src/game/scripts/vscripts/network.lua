@@ -102,6 +102,30 @@ function network:setSelectedAbilities(playerID, skills)
     })
 end
 
+function network:sendNewAbilities(playerID, skills)
+    local usageData = StatsClient:GetAbilityUsageData(playerID)
+    if usageData then
+        local threshold = GameRules.pregame.optionStore["lodOptionNewAbilitiesThreshold"]
+        local entries = StatsClient.SortedAbilityDataEntries
+        function isBelowThreshold(ability)
+            if not usageData[ability] then return true end
+            for i,v in ipairs(entries) do
+                if v[2] == ability then
+                    --print(ability, i, i / #entries > threshold * 0.01)
+                    return i / #entries > threshold * 0.01
+                end
+            end
+            return true
+        end
+
+        local ticks = {}
+        for i, ability in pairs(skills) do
+            ticks[i] = isBelowThreshold(ability)
+        end
+        CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(playerID), 'updateLocalNewAbilitiesBonuses', ticks)
+    end
+end
+
 -- Sends a player's potential builds
 function network:setAllRandomBuild(playerID, builds)
     -- Push to everyone
