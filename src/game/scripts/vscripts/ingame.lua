@@ -529,17 +529,31 @@ function Ingame:onStart()
 
     ListenToGameEvent("player_chat", Dynamic_Wrap(Commands, 'OnPlayerChat'), self)
 
-    for playerID, abilityUsage in pairs(StatsClient.AbilityData) do
-        local currentBuild = GameRules.pregame.selectedSkills[playerID]
+    for playerID, usageData in pairs(StatsClient.AbilityData) do
+        local currentBuild = GameRules.pregame.selectedSkills[playerID] or {}
+        local bonusGold = GameRules.pregame.optionStore["lodOptionNewAbilitiesBonusGold"]
+
+        local threshold = GameRules.pregame.optionStore["lodOptionNewAbilitiesThreshold"]
+        local entries = StatsClient.SortedAbilityDataEntries
+        function isBelowThreshold(ability)
+            if not usageData[ability] then return true end
+            for i,v in ipairs(entries) do
+                if v[2] == ability then
+                    --print(ability, i, i / #entries > threshold * 0.01)
+                    return i / #entries > threshold * 0.01
+                end
+            end
+            return true
+        end
+
         local newAbilities = 0
         for _,v in ipairs(currentBuild) do
-            if not abilityUsage[v] then
+            if isBelowThreshold(v) then
                 newAbilities = newAbilities + 1
             end
         end
-        if newAbilities > 0 then
-            print('Player ' .. playerID .. ' has ' .. newAbilities .. ' new abilities')
-        end
+        --print(playerID, newAbilities, bonusGold * newAbilities, ' TOTAL')
+        PlayerResource:ModifyGold(playerID, bonusGold * newAbilities, true, DOTA_ModifyGold_Unspecified)
     end
 
     -- Set it to no team balance

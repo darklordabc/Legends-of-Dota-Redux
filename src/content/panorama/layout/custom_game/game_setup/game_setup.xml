@@ -28,7 +28,7 @@
             <Panel class="optionVotePhase">
                 <Panel class="optionVoteInfoHeader">
                     <Label class="optionVoteHeader" text="{s:title}" />
-                    <Panel class="VotingOptionInfo" id="VotingOptionInfo" onmouseout="UIHideCustomLayoutTooltip( voteOptionInfoTooltip )">  
+                    <Panel class="VotingOptionInfo" id="VotingOptionInfo" onmouseout="UIHideCustomLayoutTooltip( voteOptionInfoTooltip )">
                         <Image hittest="false" id="infoImage" src="file://{images}/custom_game/infoTooltip.png" />
                     </Panel>
                 </Panel>
@@ -80,7 +80,7 @@
             <Panel id="mainSelectionRoot" hittest="false">
                 <Panel id="unassignedTeamContainer" onactivate="onJoinUnassignedPressed()">
                     <Label id="unassignedTeamLabel" text="theUnassigned" />
-                    <Panel id="unassignedPlayersContainer" class="theTeamContainer" />                
+                    <Panel id="unassignedPlayersContainer" class="theTeamContainer" />
                 </Panel>
 
                 <Panel id="mainContainer">
@@ -117,7 +117,7 @@
                                 <Image scaling="stretch-to-fit-preserve-aspect" src="s2r://panorama/images/control_icons/clock_psd.vtex" />
                                 <Label text="0:00" id="lodTimeRemaining" />
                                 <Label text="Stage name" id="lodStageName" />
-							
+
 								<Button id="backtrackBtn" class="hidden" onactivate="onBacktrackButton()">
 									<Label id="backtrackBtnTxt" text="#reviewOptions" />
 								</Button>
@@ -131,19 +131,19 @@
 
                         <Panel id="optionSelection" class="workingPanel">
                             <Panel id="optionsPanel">
-                                <Panel id="optionBasic">         
+                                <Panel id="optionBasic">
                                     <!--
 									<Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingAntirat.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingBanningBlockTrollCombos.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingAdvancedOPAbilities.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingDoubleCreeps.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableCheatMode.png"></Image>
-									<Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableHeroBuilder.png"></Image> 
-									<Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableKamikaze.png"></Image> 
+									<Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableHeroBuilder.png"></Image>
+									<Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableKamikaze.png"></Image>
 									<Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableRespawn.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingFatOMeter.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingRefresh.png"></Image>
-                                    <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingSwitchTeam.png"></Image>  
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingSwitchTeam.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/options/option0.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/options/option1.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/options/option2.png"></Image>
@@ -221,7 +221,7 @@
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMonkeyBusiness.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorFreeAbility.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorFleashHeaps.png"></Image>
-                                    
+
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMulticast.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorTesla.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorTrickshot.png"></Image>
@@ -262,16 +262,16 @@
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorDoubleCreeps.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorDisablePerks.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsStupid.png"></Image>
-                                    
+
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorNoFatOMeter.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorFarmFatOMeter.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorKDAFatOMeter.png"></Image>
-                                    
+
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorIngameBuilder1.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorIngameBuilder2.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorIngameBuilder3.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorIngameBuilder4.png"></Image>
-                                    
+
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorAllPick.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorSingleDraft.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMirrorDraft.png"></Image>
@@ -292,15 +292,15 @@
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorGottaGoREALLYFast.png"></Image>
                                     -->
 
-                                     
-                                    <Panel id="gamemodesPanel"> 
-                                        <Panel class="gamemodesScrollLeft" onactivate="gamemodesScroll('left')"> 
+
+                                    <Panel id="gamemodesPanel">
+                                        <Panel class="gamemodesScrollLeft" onactivate="gamemodesScroll('left')">
                                             <Image src="s2r://panorama/images/control_icons/arrow_dropdown_png.vtex" />
                                         </Panel>
                                         <Panel id="gamemodesContainer">
                                             <Panel id="scroller"/>
-                                         </Panel> 
-                                        <Panel class="gamemodesScrollRight" onactivate="gamemodesScroll('right')"> 
+                                         </Panel>
+                                        <Panel class="gamemodesScrollRight" onactivate="gamemodesScroll('right')">
                                             <Image src="s2r://panorama/images/control_icons/arrow_dropdown_png.vtex" />
                                         </Panel>
                                     </Panel>
@@ -321,7 +321,7 @@
                                 <Panel id="importAndExportRoot" onmouseout="UIHideCustomLayoutTooltip( ImportAndExportTooltip )">
                                     <Panel id="importAndExportCaption">
                                         <Label text="#importAndExport_code"/>
-                                        <Panel class="VotingOptionInfo" id="BalanceModeInfo" onmouseover="UIShowCustomLayoutParametersTooltip( ImportAndExportTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=importAndExport_tooltip )" onmouseout="UIHideCustomLayoutTooltip( ImportAndExportTooltip )">  
+                                        <Panel class="VotingOptionInfo" id="BalanceModeInfo" onmouseover="UIShowCustomLayoutParametersTooltip( ImportAndExportTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=importAndExport_tooltip )" onmouseout="UIHideCustomLayoutTooltip( ImportAndExportTooltip )">
                                             <Image hittest="false" id="infoImage" src="file://{images}/custom_game/infoTooltip.png" />
                                         </Panel>
                                     </Panel>
@@ -345,8 +345,8 @@
                                     <Panel class="ExpandDownArrow" />
                                     <Label text="#to_basic_options" />
                                     <Panel class="ExpandDownArrow" />
-                                </Panel>               
-								
+                                </Panel>
+
                                 <Panel id="lockOptionPanel">
                                     <Label id="lockTeamsFirst" text="lockTeamsFirst" />
                                     <Button id="lockOptionsButton" class="PlayButton" onactivate="onLockOptionsPressed()">
@@ -356,7 +356,7 @@
                             </Panel>
 
                             <!-- Uncomment the text below to recompile the load screen images. If you add more load screens, add them to the list below. -->
-                            <!--<Panel id="loadscreen"> 
+                            <!--<Panel id="loadscreen">
                                 <Image src="file://{images}/custom_game/loading_screens/bristle.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/wind1-min.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/vs2-min.jpg" />
@@ -386,7 +386,7 @@
                                 <Image src="file://{images}/custom_game/loading_screens/sniper1-min.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/techiesvsjakiro-min.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/doom.jpg" />
-                                <Image src="file://{images}/custom_game/loading_screens/venomancer.jpg" /> 
+                                <Image src="file://{images}/custom_game/loading_screens/venomancer.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/ck.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/clink.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/clockwerk.jpg" />
@@ -405,7 +405,7 @@
                                 <Image src="file://{images}/custom_game/loading_screens/od.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/pl.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/puck.jpg" />
-                                <Image src="file://{images}/custom_game/loading_screens/razor.jpg" />       
+                                <Image src="file://{images}/custom_game/loading_screens/razor.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/sd.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/sf.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/silencer.jpg" />
@@ -415,7 +415,7 @@
                                 <Image src="file://{images}/custom_game/loading_screens/venomancer.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/venomancer2.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/vs.jpg" />
-                                <Image src="file://{images}/custom_game/loading_screens/warlock.jpg" /> 
+                                <Image src="file://{images}/custom_game/loading_screens/warlock.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/bladeandbow.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/direancient.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/io.jpg" />
@@ -424,7 +424,7 @@
                                 <Image src="file://{images}/custom_game/loading_screens/pureskill.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/radiantancient.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/roshan.jpg" />
-                                <Image src="file://{images}/custom_game/loading_screens/rubick.jpg" /> 
+                                <Image src="file://{images}/custom_game/loading_screens/rubick.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/tidehunter.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/calmbeforehorn.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/huskarfire.jpg" />
@@ -592,7 +592,7 @@
                                 <Image src="file://{images}/custom_game/loading_screens/dota_2___tusk_by_d_k0d3-d5uy12f.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/medusa_by_d_k0d3-d5r1r0v.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/dota-2-screenshot-32.jpg" />
-                                <Image src="file://{images}/custom_game/loading_screens/dota-2-screenshot-29.jpg" /> 
+                                <Image src="file://{images}/custom_game/loading_screens/dota-2-screenshot-29.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/the_radiant_by_sandara-d7q5jzw.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/the_dire_by_sandara-d7rq3hf.jpg" />
                                 <Image src="file://{images}/custom_game/loading_screens/dota2hq.eu-enigma-3d-art-1920x1080.jpg" />
@@ -659,7 +659,7 @@
                                             <Panel class="pickingPhaseRecommendedBuildContainer selected" id="pickingPhaseRecommendedBuildContainerVotes" />
                                             <Panel class="pickingPhaseRecommendedBuildContainer" id="pickingPhaseRecommendedBuildContainerNewest" />
                                             <Panel class="pickingPhaseRecommendedBuildContainer" id="pickingPhaseRecommendedBuildContainerFavorite" />
-                                        </Panel>                                        
+                                        </Panel>
                                     </Panel>
 
                                     <Panel id="pickingPhaseHeroTabContent" class="pickingPhaseTabContent">
@@ -717,8 +717,8 @@
                                         <Button id="pickingPhaseSaveSelectedBuild" onactivate="saveCurrentBuildToggleWindow()" />
                                         <Button id="heroBuilderLockButton" class="makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
                                             <Image src="s2r://panorama/images/control_icons/lock_medium_png.vtex" />
-                                        </Button>  
-                                        <Panel id="cooldownOverlay" hittest="false"/>                                  
+                                        </Button>
+                                        <Panel id="cooldownOverlay" hittest="false"/>
                                     </Panel>
 
                                     <Panel id="pickingPhaseBuildSkills">
@@ -760,14 +760,14 @@
                                             <Button id="lodBanSkillButton" onactivate="onHeroBanButtonPressed()">
                                                 <Label text="banHero" />
                                             </Button>
-                                        </Panel>                                    
+                                        </Panel>
                                     </Panel>
 
                                     <Panel id="bansImportAndExportEntryRoot">
                                         <Button id="heroBuilderLockButtonBans" class="lockBuildButton makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
                                             <Label text="finishBanning" />
                                         </Button>
-                                        
+
                                         <Button id="bansImportAndExportSaveButton" class="importAndExportButton" onactivate="recordPlayerBans()" onmouseover="UIShowCustomLayoutParametersTooltip( BansImportAndExportTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=bansImportAndExport_tooltip )" onmouseout="UIHideCustomLayoutTooltip( BansImportAndExportTooltip )">
                                             <Label text="#importAndExport_save" />
                                         </Button>
@@ -785,7 +785,7 @@
                                     </Panel>
 
                                     <Panel id="pickingPhaseHeroTab" class="pickingPhaseTab">
-                                        <Label id="balanceModePointsHeroes" text="#balance_mode_points" />                                      
+                                        <Label id="balanceModePointsHeroes" text="#balance_mode_points" />
                                         <Panel id="pickingPhaseHeroTabHeroPreview" class="buildingHelperHeroPreviewContainer">
                                             <Panel id="buildingHelperHeroPreview">
                                                 <Panel id="buildingHelperHeroPreviewHeroContainer">
@@ -817,7 +817,7 @@
                                                 </Panel>
                                             </Panel>
                                         </Panel>
-                                    
+
                                         <Panel id="heroTypeFilter" class="filtersGroup">
                                             <Panel class="filtersRow">
                                                 <Label id="heroPickingFiltersMelee" class="filtersButton" text="melee" onactivate="onHeroFilterPressed('melee')" />
@@ -826,7 +826,7 @@
                                             </Panel>
                                         </Panel>
                                     </Panel>
-                                    
+
                                     <Panel id="pickingPhaseSkillTab" class="pickingPhaseTab">
                                         <Panel class="filtersGroup">
                                             <Label text="#filter_by_category" class="buildingHelperInfoText" />
@@ -838,11 +838,11 @@
                                             <ToggleButton text="showOnlyHeroPerkRelativeSkills" onactivate="toggleShowPerkRelative()" />
 
                                             <ToggleButton id="toggleShowDraftAblilities" text="Show Non Draft Skills" onactivate="toggleShowDraftSkills()" />
-                                            <ToggleButton id="lodToggleButton" text="Show Taken Skills" onactivate="toggleShowTaken()" />                                        
+                                            <ToggleButton id="lodToggleButton" text="Show Taken Skills" onactivate="toggleShowTaken()" />
                                         </Panel>
 
                                         <Panel class="filtersGroup">
-                                            <Label id="balanceModeFilter" text="#filter_by_value" class="buildingHelperInfoText" /> 
+                                            <Label id="balanceModeFilter" text="#filter_by_value" class="buildingHelperInfoText" />
                                             <Label id="balanceModePointsSkills" text="#balance_mode_points" />
 
                                             <ToggleButton id="buttonShowTier1" text="#balance_mode_tier_1" onactivate="toggleShowTier('1')" />
@@ -862,7 +862,7 @@
                                         <Panel id="boosterDraftBoosters" onmouseover="UIShowCustomLayoutParametersTooltip( BoosterDraftTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=boosterDraftTip1 )" onmouseout="UIHideCustomLayoutTooltip( BoosterDraftTooltip )">
                                         </Panel>
                                     </Panel>
-                                    
+
                                     <Panel id="pickingPhaseSaveCurrentBuild" class="pickingPhaseTab">
                                         <!-- lodSearchText -->
                                         <TextEntry id="pickingPhaseSaveCurrentBuildTitle" multiline="false" maxchars="64" placeholder="#lodPickingPhaseSaveCurrentBuildTitle" />
@@ -870,7 +870,7 @@
                                         <TextButton id="pickingPhaseSaveCurrentBuildSubmit" text="#lodPickingPhaseSaveCurrentBuildSubmit" onactivate="saveCurrentBuild()" class="ButtonBevel" />
                                     </Panel>
                                 </Panel>
-                            </Panel>                        
+                            </Panel>
                         </Panel>
 
                         <Panel id="allRandomPhase" class="workingPanel">
@@ -886,12 +886,12 @@
                                 <Panel id="reviewPhaseVS" hittest="false" hittestchildren="false">
                                     <Image src="file://{images}/custom_game/vs.png" />
                                     <DOTAScenePanel map="ui/explosion_ui"/>
-                                </Panel>                    
+                                </Panel>
                                 <Panel id="reviewTeams">
                                     <Panel id="reviewRadiantTeam" class="reviewPhaseTeam">
                                         <Panel class="filler" />
                                         <Panel id="reviewPhaseRadiantTeamTop" class="subReviewContainer" />
-                                        <Panel id="reviewPhaseRadiantTeamBot" class="subReviewContainer"> 
+                                        <Panel id="reviewPhaseRadiantTeamBot" class="subReviewContainer">
                                             <Panel class="filler" />
                                         </Panel>
                                     </Panel>
@@ -906,6 +906,18 @@
                                 <Button id="reviewReadyButton" class="lockBuildButton makeThePlayerNoticeThisButton" onactivate="onLockBuildButtonPressed()">
                                     <Label text="#loading" />
                                 </Button>
+                            </Panel>
+                        </Panel>
+
+                        <Panel id="newAbilitiesPanel" onactivate="ToggleStyle('Pinned')">
+                            <Label text="#newAbilitiesTitle" />
+                            <Panel id="newAbilitiesTicks">
+                                <Panel id="newAbilitiesTick1"><Panel /></Panel>
+                                <Panel id="newAbilitiesTick2"><Panel /></Panel>
+                                <Panel id="newAbilitiesTick3"><Panel /></Panel>
+                                <Panel id="newAbilitiesTick4"><Panel /></Panel>
+                                <Panel id="newAbilitiesTick5"><Panel /></Panel>
+                                <Panel id="newAbilitiesTick6"><Panel /></Panel>
                             </Panel>
                         </Panel>
 
