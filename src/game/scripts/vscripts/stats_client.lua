@@ -136,6 +136,8 @@ function StatsClient:FetchAbilityUsageData()
 
     StatsClient:Send("fetchAbilityUsageData", required, function(response)
         for playerID, value in pairs(response) do
+            CustomNetTables:SetTableValue("phase_pregame","fetchedAbilityData"..tostring(playerID), value)
+
             playerID = tonumber(playerID)
             StatsClient.AbilityData[playerID] = value
 

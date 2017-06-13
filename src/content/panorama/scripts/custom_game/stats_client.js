@@ -1,5 +1,8 @@
 var ServerAddress = 'https://lodr-ark120202.rhcloud.com/lodServer/';
-//ServerAddress = 'http://127.0.0.1:3333/lodServer/';
+if (Game.IsInToolsMode()) {
+	ServerAddress = 'http://127.0.0.1:3333/lodServer/';
+}
+ServerAddress = 'http://127.0.0.1:3333/lodServer/';
 
 function GetDataFromServer(path, params, resolve, reject) {
 	var encodedParams = params == null ? '' : '?' + Object.keys(params).map(function(key) {

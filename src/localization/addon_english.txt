@@ -994,6 +994,7 @@
     "lodCategory_OP"                                "Over Powered Abilities"
     "lodCategory_custom"                            "Custom Abilities"
     "lodCategory_dotaimba"                          "Dota IMBA Abilities"
+    "lodCategory_mostused"                          "Most Used Abilities"
 
     // Error messages
     "lodFailedToFindHero"                           "Please select a valid hero."
