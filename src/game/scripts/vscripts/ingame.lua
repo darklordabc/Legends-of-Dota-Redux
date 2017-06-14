@@ -529,31 +529,33 @@ function Ingame:onStart()
 
     ListenToGameEvent("player_chat", Dynamic_Wrap(Commands, 'OnPlayerChat'), self)
 
-    for playerID, usageData in pairs(StatsClient.AbilityData) do
-        local currentBuild = GameRules.pregame.selectedSkills[playerID] or {}
+    if GameRules.pregame.optionStore["lodOptionNewAbilitiesBonusGold"] > 0 then
+        for playerID, usageData in pairs(StatsClient.AbilityData) do
+            local currentBuild = GameRules.pregame.selectedSkills[playerID] or {}
 
-        local threshold = GameRules.pregame.optionStore["lodOptionNewAbilitiesThreshold"]
-        local entries = StatsClient.SortedAbilityDataEntries
-        function isBelowThreshold(ability)
-            if not usageData[ability] then return true end
-            for i,v in ipairs(entries) do
-                if v[2] == ability then
-                    --print(ability, i, i / #entries > threshold * 0.01)
-                    return i / #entries > threshold * 0.01
+            local threshold = GameRules.pregame.optionStore["lodOptionNewAbilitiesThreshold"]
+            local entries = StatsClient.SortedAbilityDataEntries
+            function isBelowThreshold(ability)
+                if not usageData[ability] then return true end
+                for i,v in ipairs(entries) do
+                    if v[2] == ability then
+                        --print(ability, i, i / #entries > threshold * 0.01)
+                        return i / #entries > threshold * 0.01
+                    end
+                end
+                return true
+            end
+
+            local newAbilities = 0
+            for _,v in ipairs(currentBuild) do
+                if isBelowThreshold(v) then
+                    newAbilities = newAbilities + 1
                 end
             end
-            return true
-        end
-
-        local newAbilities = 0
-        for _,v in ipairs(currentBuild) do
-            if isBelowThreshold(v) then
-                newAbilities = newAbilities + 1
+            local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+            if hero then
+                hero:AddItemByName('item_new_ability_bonus'):SetCurrentCharges(newAbilities)
             end
-        end
-        local hero = PlayerResource:GetSelectedHeroEntity(playerID)
-        if hero then
-            hero:AddItemByName('item_new_ability_bonus'):SetCurrentCharges(newAbilities)
         end
     end
     -- Set it to no team balance
