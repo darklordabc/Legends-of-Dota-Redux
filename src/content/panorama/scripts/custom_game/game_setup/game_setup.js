@@ -570,6 +570,7 @@ function OnSelectedSkillsChanged(table_name, key, data) {
         }
         var balance = constantBalancePointsValue;
         var newAbilities = 0;
+        var fetchedAbilityData = CustomNetTables.GetTableValue("phase_pregame", "fetchedAbilityData" + Players.GetLocalPlayer());
         for(var key in selectedSkills[playerID]) {
             var ab = $('#lodYourAbility' + key);
             var abName = selectedSkills[playerID][key];
@@ -581,7 +582,7 @@ function OnSelectedSkillsChanged(table_name, key, data) {
 
                 var abCost = ab.GetChild(0);
 
-                if (!CustomNetTables.GetTableValue("phase_pregame", "fetchedAbilityData" + Players.GetLocalPlayer())[abName]){
+                if (fetchedAbilityData && !fetchedAbilityData[abName]){
                     newAbilities++;
                 }
 
@@ -606,9 +607,11 @@ function OnSelectedSkillsChanged(table_name, key, data) {
             }
         }
 
-        for (var i = 6; i >= 1; i--) {
-            var v = $("#newAbilitiesTick"+i)
-            v.SetHasClass("Enabled", i <= newAbilities);
+        if (fetchedAbilityData) {
+            for (var i = 6; i >= 1; i--) {
+                var v = $("#newAbilitiesTick"+i)
+                v.SetHasClass("Enabled", i <= newAbilities);
+            }
         }
 
         // Update current price
