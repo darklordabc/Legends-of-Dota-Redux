@@ -572,24 +572,30 @@ function OnSelectedSkillsChanged(table_name, key, data) {
         var newAbilities = 0;
 
         var fetchedAbilityData = CustomNetTables.GetTableValue("phase_pregame", "fetchedAbilityData" + Players.GetLocalPlayer());
-        var threshold = CustomNetTables.GetTableValue("options", "lodOptionNewAbilitiesThreshold").v;
-
+        var sortedAbilityData = CustomNetTables.GetTableValue("phase_pregame", "sortedAbilityData" + Players.GetLocalPlayer());
+        var entriesCount = Object.keys(sortedAbilityData).length;
+        var threshold = optionValueList['lodOptionNewAbilitiesThreshold'] || 20;
         var isBelowThreshold = (function (ability) {
             if (!fetchedAbilityData[ability]) {
                 return true;
             }
-            for (var abName in fetchedAbilityData) {
-                var uses = fetchedAbilityData[abName] - 1;
-                if (abName == ability) {
-                    return uses / Object.keys(fetchedAbilityData).length <= threshold * 0.01
+            for (var i in sortedAbilityData) {
+                var v = sortedAbilityData[i];
+                if (v[2] === ability) {
+                    return (+i + 1) / entriesCount > 1 - threshold * 0.01;
                 }
             }
-            return true
+            return true;
         });
+
+        for (var i = 1; i <= 6; i++) {
+            $('#newAbilitiesTick' + i).RemoveClass('Enabled');
+        }
 
         for(var key in selectedSkills[playerID]) {
             var ab = $('#lodYourAbility' + key);
             var abName = selectedSkills[playerID][key];
+            var isNewAbility = false;
 
             if(ab != null) {
                 ab.abilityname = abName;
@@ -600,6 +606,7 @@ function OnSelectedSkillsChanged(table_name, key, data) {
 
                 if (fetchedAbilityData && isBelowThreshold(abName)){
                     newAbilities++;
+                    isNewAbility = true;
                 }
 
                 if (balanceMode) {
@@ -621,14 +628,12 @@ function OnSelectedSkillsChanged(table_name, key, data) {
                     }
                 }
             }
-        }
 
-        if (fetchedAbilityData) {
-            for (var i = 6; i >= 1; i--) {
-                var v = $("#newAbilitiesTick"+i)
-                v.SetHasClass("Enabled", i <= newAbilities);
-            }
+            $('#newAbilitiesTick' + key).SetHasClass('Enabled', isNewAbility);
         }
+        $('#newAbilitiesPanel').SetHasClass('OneOrMore', newAbilities > 0);
+        $('#newAbilitiesPanel').SetHasClass('All', newAbilities === 6);
+
 
         // Update current price
         currentBalance = balance;

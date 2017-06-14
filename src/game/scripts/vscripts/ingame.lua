@@ -539,8 +539,8 @@ function Ingame:onStart()
                 if not usageData[ability] then return true end
                 for i,v in ipairs(entries) do
                     if v[2] == ability then
-                        --print(ability, i, i / #entries > threshold * 0.01)
-                        return i / #entries > threshold * 0.01
+                        --print(ability, i, i / #entries >= 1 - threshold * 0.01)
+                        return i / #entries > 1 - threshold * 0.01
                     end
                 end
                 return true
