@@ -595,6 +595,26 @@ var advancedOptions = {
                 step: 1,
                 default: 0,
             },
+            {
+                name: 'lodOptionNewAbilitiesBonusGold',
+                des: 'lodOptionDesNewAbilitiesBonusGold',
+                about: 'lodOptionAboutNewAbilitiesBonusGold',
+                sort: 'range',
+                min: 0,
+                max: 2500,
+                step: 50,
+                default: 500
+            },
+            {
+                name: 'lodOptionNewAbilitiesThreshold',
+                des: 'lodOptionDesNewAbilitiesThreshold',
+                about: 'lodOptionAboutNewAbilitiesThreshold',
+                sort: 'range',
+                min: 0,
+                max: 100,
+                step: 1,
+                default: 20
+            },
         ]
     },
 

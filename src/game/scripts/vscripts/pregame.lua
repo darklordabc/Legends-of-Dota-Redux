@@ -836,6 +836,9 @@ function Pregame:loadDefaultSettings()
     -- No Dark Forest
     self:setOption('lodOptionBlackForest', 0, true)
 
+    -- Selecting 6 new abilities grants 500 gold
+    self:setOption("lodOptionNewAbilitiesThreshold", 20, true)
+    self:setOption("lodOptionNewAbilitiesBonusGold", 500, true)
 end
 
 -- Gets stats for the given player
@@ -1035,6 +1038,8 @@ function Pregame:onThink()
             end
 
             Chat:Say( {channel = "all", msg = "chatChannelsAnnouncement", PlayerID = -1, localize = true})
+
+            StatsClient:FetchAbilityUsageData()
 
             -- Are we using option selection, or option voting?
             if self.useOptionVoting then
@@ -2509,6 +2514,27 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
+        -- Common -- New abilities bonus
+        lodOptionNewAbilitiesThreshold = function(value)
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 0 or value > 100 then return false end
+
+            -- Valid
+            return true
+        end,
+
+        lodOptionNewAbilitiesBonusGold = function(value)
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 0 or value > 2500 then return false end
+
+            -- Valid
+            return true
+        end,
+
         -- Gamemode - Duel
         lodOptionDuels = function(value)
             return value == 0 or value == 1
@@ -3116,6 +3142,7 @@ function Pregame:generateAllRandomBuilds()
         -- Assign the skills
         self.selectedSkills[playerID] = theBuilds[0].build
         network:setSelectedAbilities(playerID, self.selectedSkills[playerID])
+        network:sendNewAbilities(playerID, self.selectedSkills[playerID])
 
         -- Must be valid, select it
         local heroName = theBuilds[0].heroName
@@ -3739,6 +3766,7 @@ function Pregame:validateBuilds()
 
         -- Network it
         network:setSelectedAbilities(playerID, build)
+        network:sendNewAbilities(playerID, build)
     end
 end
 
@@ -4601,6 +4629,7 @@ function Pregame:onPlayerSelectBuild(eventSourceIndex, args)
 
     -- Perform the networking
     network:setSelectedAbilities(playerID, self.selectedSkills[playerID])
+    network:sendNewAbilities(playerID, self.selectedSkills[playerID])
 end
 
 
@@ -4657,6 +4686,7 @@ function Pregame:onPlayerSelectAllRandomBuild(eventSourceIndex, args)
         -- Push the build
         self.selectedSkills[playerID] = build.build
         network:setSelectedAbilities(playerID, build.build)
+        network:sendNewAbilities(playerID, build.build)
 
         -- Change which build has been selected
         self.selectedRandomBuilds[playerID].build = buildID
@@ -4737,6 +4767,7 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
             local player = PlayerResource:GetPlayer(playerID)
             network:hideHeroBuilder(player)
             network:setSelectedAbilities(playerID, self.selectedSkills[playerID])
+            network:sendNewAbilities(playerID, self.selectedSkills[playerID])
             network:setSelectedHero(playerID, newBuild.hero)
             network:setSelectedAttr(playerID, newBuild.setAttr)
             hero = PlayerResource:GetSelectedHeroEntity(playerID)
@@ -5329,6 +5360,7 @@ function Pregame:onPlayerSelectRandomAbility(eventSourceIndex, args)
 
         -- Network it
         network:setSelectedAbilities(playerID, build)
+        network:sendNewAbilities(playerID, build)
     end
 end
 
@@ -5352,6 +5384,7 @@ function Pregame:removeSelectedAbility(playerID, slot, dontNetwork)
     if not dontNetwork then
         -- Network it
         network:setSelectedAbilities(playerID, build)
+        network:sendNewAbilities(playerID, build)
     end
 end
 
@@ -5731,6 +5764,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
             if not dontNetwork then
                 -- Network it
                 network:setSelectedAbilities(playerID, build)
+                network:sendNewAbilities(playerID, build)
                 if OptionManager:GetOption("memesRedux") == 1 then
                     if abilityName == "juggernaut_blade_dance" or abilityName == "juggernaut_blade_fury" or abilityName == "juggernaut_omni_slash"  then
                         EmitGlobalSound("Memes.Swords")
@@ -5940,6 +5974,7 @@ function Pregame:onPlayerSwapSlot(eventSourceIndex, args)
 
     -- Network it
     network:setSelectedAbilities(playerID, build)
+    network:sendNewAbilities(playerID, build)
 end
 
 -- Returns a random skill for a player, given a build and the slot the skill would be for
@@ -6843,6 +6878,7 @@ function Pregame:getSkillforBot( botInfo, botSkills )
         self:setSelectedHero(playerID, heroName, true)
         self.selectedSkills[playerID] = build
         network:setSelectedAbilities(playerID, build)
+        network:sendNewAbilities(playerID, build)
         return true
     end
 end

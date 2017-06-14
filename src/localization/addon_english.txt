@@ -509,6 +509,11 @@
     "lodOptionIngameOn"                             "Ability Switching, No Penalty"
     "lodOptionAboutCrazyFatOMeter"                  "This option will make players grow in size as they become more powerful.\nNetworth: Players grow in size as they get richer.\nKDA: Players grow in size as they kill enemy heros and improve their kills/death/assist ratio.\n\n Created by Cool Robbit."
 
+    "lodOptionDesNewAbilitiesThreshold"             "New Ability Threshold"
+    "lodOptionAboutNewAbilitiesThreshold"           "This determines what counts as a 'new ability'. By default the bottom 20% of a player's least used abiliites count as new."
+    "lodOptionDesNewAbilitiesBonusGold"             "Gold Bonus for New Abilities"
+    "lodOptionAboutNewAbilitiesBonusGold"           "Determines how much bonus gold per new ability the player gets."
+
     "lodMutatorIngameBuilder1"                      "Build Switcher"
     "lodMutatorIngameBuilder2"                      "Build Switcher 60s penalty"
     "lodMutatorIngameBuilder3"                      "Build Switcher 30s penalty"
@@ -989,6 +994,7 @@
     "lodCategory_OP"                                "Over Powered Abilities"
     "lodCategory_custom"                            "Custom Abilities"
     "lodCategory_dotaimba"                          "Dota IMBA Abilities"
+    "lodCategory_mostused"                          "Most Used Abilities"
 
     // Error messages
     "lodFailedToFindHero"                           "Please select a valid hero."
@@ -1198,6 +1204,9 @@
     "duel_start"                                    "Duel has been started"
     "duel_end"                                      "Duel has been ended"
     "duel_draw"                                     "Duel has been ended"
+
+    // New Abilities Bonus
+    "newAbilitiesTitle"                             "Originality Bonus"
 
     /////////////////
     // UNIQUE HERO MECHANICS
@@ -5388,6 +5397,9 @@
     "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_monkey_king_bar_bash_chance"                 "%MINI-BASH CHANCE:"
     "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_monkey_king_bar_bash_damage"                 "MINI-BASH DAMAGE:"
 
+    "DOTA_Tooltip_ability_item_new_ability_bonus"                                               "Originality Bonus"
+    "DOTA_Tooltip_ability_item_new_ability_bonus_Description"                                   "Gives you some gold. You can recieve this item for each choosen ability, that you have chosen least often (by default in 20%% of all ever chosen abilities) or haven't chosen at all."
+
     "DOTA_Tooltip_modifier_item_monkey_king_bar_consumable"                            "Consumed MKB"
     "DOTA_Tooltip_modifier_item_monkey_king_bar_consumable_Description" "Permanently gained benefits of Monkey King Bar"
 
@@ -7151,5 +7163,4 @@
 
     "DOTA_Tooltip_modifier_imba_deadeye_vision"                                         "Deadeye"
     "DOTA_Tooltip_modifier_imba_deadeye_vision_Description"                             "Increased vision range."
-
 }
