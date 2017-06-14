@@ -909,7 +909,7 @@
                             </Panel>
                         </Panel>
 
-                        <Panel id="newAbilitiesPanel" onactivate="ToggleStyle('Pinned')">
+                        <Panel id="newAbilitiesPanel">
                             <Label text="#newAbilitiesTitle" />
                             <Panel id="newAbilitiesTicks">
                                 <Panel id="newAbilitiesTick1"><Panel /></Panel>

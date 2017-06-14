@@ -3680,7 +3680,7 @@ Button:enabled:hover {
 
 #newAbilitiesPanel.OneOrMore
 {
-    transform: translateY(-35px);
+    transform: translateY(3px);
 }
 
 #newAbilitiesPanel.All
@@ -3691,12 +3691,6 @@ Button:enabled:hover {
 .phase_selection_selected:not(.ingame_menu) #newAbilitiesPanel
 {
     visibility: visible;
-}
-
-#newAbilitiesPanel:hover,
-#newAbilitiesPanel.Pinned
-{
-    transform: translateY(3px);
 }
 
 #newAbilitiesPanel > Label
