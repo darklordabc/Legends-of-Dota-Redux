@@ -570,7 +570,23 @@ function OnSelectedSkillsChanged(table_name, key, data) {
         }
         var balance = constantBalancePointsValue;
         var newAbilities = 0;
+
         var fetchedAbilityData = CustomNetTables.GetTableValue("phase_pregame", "fetchedAbilityData" + Players.GetLocalPlayer());
+        var threshold = CustomNetTables.GetTableValue("options", "lodOptionNewAbilitiesThreshold").v;
+
+        var isBelowThreshold = (function (ability) {
+            if (!fetchedAbilityData[ability]) {
+                return true;
+            }
+            for (var abName in fetchedAbilityData) {
+                var uses = fetchedAbilityData[abName] - 1;
+                if (abName == ability) {
+                    return uses / Object.keys(fetchedAbilityData).length <= threshold * 0.01
+                }
+            }
+            return true
+        });
+
         for(var key in selectedSkills[playerID]) {
             var ab = $('#lodYourAbility' + key);
             var abName = selectedSkills[playerID][key];
@@ -582,7 +598,7 @@ function OnSelectedSkillsChanged(table_name, key, data) {
 
                 var abCost = ab.GetChild(0);
 
-                if (fetchedAbilityData && !fetchedAbilityData[abName]){
+                if (fetchedAbilityData && isBelowThreshold(abName)){
                     newAbilities++;
                 }
 
