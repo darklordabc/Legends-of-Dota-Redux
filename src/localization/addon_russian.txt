@@ -178,10 +178,15 @@
     "lodMutatorCreepPowerHigh"                      "Сильные крипы"
     "lodMutatorCreepPowerExtreme"                   "Экстремальные Крипы"
     
-    "lodMutatorNeutralCreepNoPower"                        "Обычные нейтралы"
-    "lodMutatorNeutralCreepPowerNormal"                    "Сильные нейтралы"
-    "lodMutatorNeutralCreepPowerHigh"                      "Сложные нейтралы"
-    "lodMutatorNeutralCreepPowerExtreme"                   "Экстремальные нейтралы"
+    "lodMutatorNeutralCreepNoPower"                 "Обычные нейтралы"
+    "lodMutatorNeutralCreepPowerNormal"             "Сильные нейтралы"
+    "lodMutatorNeutralCreepPowerHigh"               "Сложные нейтралы"
+    "lodMutatorNeutralCreepPowerExtreme"            "Экстремальные нейтралы"
+    
+    "lodMutatorCreepNoMultiply"                     "Кол-во нейтралов(как големы)"
+    "lodMutatorCreepDouble"                         "2x"
+    "lodMutatorCreepTriple"                         "3x"
+    "lodMutatorCreepQuadruple"                      "4x"
 
     "lodMutatorAllPick"                             "All Pick"
     "lodMutatorAllPickFast"                         "All Pick Быстрый"
@@ -227,11 +232,11 @@
 
     "lodOptionsPresetDraftAbilities"                "Число способностей в режимах Single Draft и Mirror Draft"
     "lodOptionsCommonDraftAbilities"                "Число способностей в режимах Single Draft и Mirror Draft"
-    "lodOptionDraftAbilities40"                       "40 способностей"
-    "lodOptionDraftAbilities50"                       "50 способностей"
-    "lodOptionDraftAbilities60"                       "60 способностей"
-    "lodOptionDraftAbilities70"                       "70 способностей"
-    "lodOptionDraftAbilities80"                       "80 способностей"
+    "lodOptionDraftAbilities40"                     "40 способностей"
+    "lodOptionDraftAbilities50"                     "50 способностей"
+    "lodOptionDraftAbilities60"                     "60 способностей"
+    "lodOptionDraftAbilities70"                     "70 способностей"
+    "lodOptionDraftAbilities80"                     "80 способностей"
 
     "lodOptionDesCommonGamemode"                    "Мод игры"
     "lodOptionAllPick"                              "All Pick"
@@ -1724,7 +1729,7 @@
     "npc_dota_healing_ward"                                                           "Mana Ward"
 
     "DOTA_Tooltip_ability_juggernaut_healing_ward_mana"                               "Mana  Ward"
-    "DOTA_Tooltip_ability_juggernaut_healing_ward_mana_Description"                   "Summons a <font color='#70EA72'>Mana Ward which restores mana of all nearby allied units, based on their max mana. The Mana Ward</font> moves at 420 movement speed after being summoned. Lasts 25 seconds."
+    "DOTA_Tooltip_ability_juggernaut_healing_ward_mana_Description"                   "Призывает <font color='#70EA72'>Mana Ward который восстанавливает ману вместо хп, в процентах от макс. маны. Mana Ward</font> двигается под 420. Живет 25 секунд."
     "DOTA_Tooltip_ability_juggernaut_healing_ward_mana_Lore"                   "For the more flexible practitioners of voodoo magic, a second ritual is known, one that allows quicker-than-natural regeneration of magic."
     "DOTA_Tooltip_ability_juggernaut_healing_ward_mana_healing_ward_mana_restore_pct" "%MAX MANA PER SECOND:"
 
@@ -1733,7 +1738,7 @@
     "DOTA_Tooltip_modifier_healing_ward_mana_aura_Description"                        ""
 
     "DOTA_Tooltip_modifier_healing_ward_mana_aura_effect"                             "Mana Restoring Ward"
-    "DOTA_Tooltip_modifier_healing_ward_mana_aura_effect_Description"                 "Restores mana"
+    "DOTA_Tooltip_modifier_healing_ward_mana_aura_effect_Description"                 "Восстанавление маны"
 
 
     // Sven
@@ -1893,26 +1898,26 @@
 
     // Silencer Glaives of Wisdom Steal
     "DOTA_Tooltip_ability_silencer_glaives_of_wisdom_steal"                        "Intelligence Steal"
-    "DOTA_Tooltip_ability_silencer_glaives_of_wisdom_steal_Description"            "Silencer will permanently steal 2 intelligence from any enemy hero that dies within 925 range or is killed by the Silencer."
-    "DOTA_Tooltip_ability_silencer_glaives_of_wisdom_steal_int_steal"     "STOLEN INTELLIGENCE:"
-    "DOTA_Tooltip_ability_silencer_glaives_of_wisdom_steal_steal_range" "STEAL RADIUS:"
+    "DOTA_Tooltip_ability_silencer_glaives_of_wisdom_steal_Description"            "Silencer навсегда крадет 2 единицы интеллекта у любого вражеского героя, который умирает в радиусе 925."
+    "DOTA_Tooltip_ability_silencer_glaives_of_wisdom_steal_int_steal"     "Украденный инт:"
+    "DOTA_Tooltip_ability_silencer_glaives_of_wisdom_steal_steal_range" "Радиус:"
 
     // Night Stalker unobstructed vision
     "DOTA_Tooltip_ability_night_stalker_innate_redux"                        "Unobstructed Night Vision"
-    "DOTA_Tooltip_ability_night_stalker_innate_redux_Description"            "Will grant unobstructed vision at night time if you have Aghanim's Scepter upgrade."
+    "DOTA_Tooltip_ability_night_stalker_innate_redux_Description"            "При наличии аганима, дает неограниченный обзор ночью."
     "DOTA_Tooltip_ability_night_stalker_innate_redux_vision_radius"     "VISION RADIUS:"
 
     "DOTA_Tooltip_modifier_night_stalker_innate_redux"                      "Night Vision"
-    "DOTA_Tooltip_modifier_night_stalker_innate_redux_Description"          "This Hero has unobstructed vision at day time."
+    "DOTA_Tooltip_modifier_night_stalker_innate_redux_Description"          "Герой обладает неограниченным ночным обзором."
 
 
     // KOTL unobstructed vision
     "DOTA_Tooltip_ability_keeper_of_the_light_innate_redux"                        "Unobstructed Day Vision"
-    "DOTA_Tooltip_ability_keeper_of_the_light_innate_redux_Description"            "Will grant unobstructed vision at day time if you have Aghanim's Scepter upgrade."
-    "DOTA_Tooltip_ability_keeper_of_the_light_innate_redux_vision_radius"     "VISION RADIUS:"
+    "DOTA_Tooltip_ability_keeper_of_the_light_innate_redux_Description"            "При наличии аганима, дает неограниченный обзор днем."
+    "DOTA_Tooltip_ability_keeper_of_the_light_innate_redux_vision_radius"     "Радиус обзора:"
 
     "DOTA_Tooltip_modifier_keeper_of_the_light_innate_redux"                      "Day Vision"
-    "DOTA_Tooltip_modifier_keeper_of_the_light_innate_redux_Description"          "This Hero has unobstructed vision at night time."
+    "DOTA_Tooltip_modifier_keeper_of_the_light_innate_redux_Description"          "Герой обладает неограниченным дневным обзором."
 
     // Starfall
     "DOTA_Tooltip_ability_mirana_starfall_lod"                                          "Starstorm"
@@ -1927,37 +1932,37 @@
 
     // Essence Aura
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod"                      "Essence Aura"
-    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_Description"          "Whenever nearby allied Heroes or Outworld Devourer itself casts a spell, it gains a chance to restore a percentage of its mana pool.  Outworld Devourer also passively gains a bonus to its base mana pool.  Several skills with no cooldown and toggled spells cannot trigger Essence Aura."
-    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_Lore"                 "The crystals of the Outworld produce arcane power, and the Harbinger channels it into the world of mortals."
-    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_Note0"                "Other than Arcane Orb, most skills without cooldowns cannot trigger Essence Aura."
-    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_radius"               "RADIUS:"
-    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_bonus_mana"           "BASE MANA:"
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_Description"          "Когда находящиеся неподалеку союзники или сам Outworld Devourer используют заклинания, у них есть шанс восстановить часть своей маны. Также Outworld Devourer пассивно получает бонус к базовому запасу маны. Некоторые способности с нулевым кулдауном и переключаемые способности не вызывают срабатывание аурыa."
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_Lore"                 "Кристаллы Внешнего мира генерируют темную энергию, которую Предвестник направляет в мир смертных."
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_Note0"                "Кроме Arcane Orb, большинство способностей без времени перезарядки эффект от этой способности не сработает."
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_radius"               "Радиус:"
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_bonus_mana"           "Базовая мана:"
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_restore_amount"           "%RESTORED MANA:"
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_restore_chance"       "%RESTORE CHANCE:"
 
     "DOTA_Tooltip_modifier_essence_aura_effect_lod"                      "Essence Aura"
-    "DOTA_Tooltip_modifier_essence_aura_effect_lod_Description"          "After casting a spell, you have a chance to restore a percentage of your mana pool."
+    "DOTA_Tooltip_modifier_essence_aura_effect_lod_Description"          "После использования способности, есть шанс восстановить ману в процентах от ее макс. запаса."
 
     // Essence Aura Redux
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_redux"                      "Essence Aura Redux"
-    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_redux_Description"          "Whenever nearby allied Heroes or Outworld Devourer itself casts a spell, it gains a chance to restore a percentage of its mana pool.  Outworld Devourer also passively gains a bonus to its base mana pool.  Several skills with no cooldown and toggled spells cannot trigger Essence Aura. <font color='#70EA72'>Less chance to trigger</font>."
-    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_redux_Lore"                 "The crystals of the Outworld produce arcane power, and the Harbinger channels it into the world of mortals."
-    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_redux_Note0"                "Other than Arcane Orb, most skills without cooldowns cannot trigger Essence Aura."
-    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_redux_radius"               "RADIUS:"
-    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_redux_bonus_mana"           "BASE MANA:"
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_redux_Description"          "Когда находящиеся неподалеку союзники или сам Outworld Devourer используют заклинания, у них есть шанс восстановить часть своей маны. Также Outworld Devourer пассивно получает бонус к базовому запасу маны. Некоторые способности с нулевым кулдауном и переключаемые способности не вызывают срабатывание ауры. <font color='#70EA72'>Уменьшенный шанс срабатывания</font>."
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_redux_Lore"                 "Кристаллы Внешнего мира генерируют темную энергию, которую Предвестник направляет в мир смертных."
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_redux_Note0"                "Кроме Arcane Orb, большинство способностей без времени перезарядки эффект от этой способности не сработает."
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_redux_radius"               "Радиус:"
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_redux_bonus_mana"           "Базовая мана:"
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_redux_restore_amount"           "%RESTORED MANA:"
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_redux_restore_chance"       "%RESTORE CHANCE:"
 
     "DOTA_Tooltip_modifier_essence_aura_effect_lod"                      "Essence Aura"
-    "DOTA_Tooltip_modifier_essence_aura_effect_lod_Description"          "After casting a spell, you have a chance to restore a percentage of your mana pool."
+    "DOTA_Tooltip_modifier_essence_aura_effect_lod_Description"          "осле использования способности, есть шанс восстановить ману в процентах от ее макс. запаса."
 
     // Essence Aura Health
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health"                      "Essence Aura Health"
-    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health_Description"          "Whenever nearby allied Heroes or Outworld Devourer itself casts a spell, it gains a chance to restore a percentage of its <font color='#70EA72'>health</font> pool.  Outworld Devourer also passively gains a bonus to its base <font color='#70EA72'>health</font> pool.  Several skills with no cooldown and toggled spells cannot trigger Essence Aura."
-    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health_Lore"                 "The crystals of the Outworld produce arcane power, and the Harbinger channels it into the world of mortals."
-    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health_Note0"                "Other than Arcane Orb, most skills without cooldowns cannot trigger Essence Aura."
-    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health_radius"               "RADIUS:"
-    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health_bonus_mana"           "BASE HEALTH:"
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health_Description"          "Когда находящиеся неподалеку союзники или сам Outworld Devourer используют заклинания, у них есть шанс восстановить часть своего <font color='#70EA72'>здоровья</font>.  Также Outworld Devourer пассивно получает бонус к базовому запасу <font color='#70EA72'>здоровья</font>.  Некоторые способности с нулевым кулдауном и переключаемые способности не вызывают срабатывание ауры."
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health_Lore"                 "Кристаллы Внешнего мира генерируют темную энергию, которую Предвестник направляет в мир смертных."
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health_Note0"                "Кроме Arcane Orb, большинство способностей без времени перезарядки эффект от этой способности не сработает."
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health_radius"               "Радиус:"
+    "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health_bonus_mana"           "Базовое здоровье:"
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health_restore_amount"           "%RESTORED HEALTH:"
     "DOTA_Tooltip_ability_obsidian_destroyer_essence_aura_lod_health_restore_chance"       "%RESTORE CHANCE:"
 
