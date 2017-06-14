@@ -509,10 +509,10 @@
     "lodOptionIngameOn"                             "Ability Switching, No Penalty"
     "lodOptionAboutCrazyFatOMeter"                  "This option will make players grow in size as they become more powerful.\nNetworth: Players grow in size as they get richer.\nKDA: Players grow in size as they kill enemy heros and improve their kills/death/assist ratio.\n\n Created by Cool Robbit."
 
-    "lodOptionDesNewAbilitiesThreshold"             "Gold Bonus for New Abilities"
-    "lodOptionAboutNewAbilitiesThreshold"           ""
-    "lodOptionDesNewAbilitiesBonusGold"             "New Ability Threshold"
-    "lodOptionAboutNewAbilitiesBonusGold"           ""
+    "lodOptionDesNewAbilitiesThreshold"             "New Ability Threshold"
+    "lodOptionAboutNewAbilitiesThreshold"           "This determines what counts as a 'new ability'. By default the bottom 20% of a player's least used abiliites count as new."
+    "lodOptionDesNewAbilitiesBonusGold"             "Gold Bonus for New Abilities"
+    "lodOptionAboutNewAbilitiesBonusGold"           "Determines how much bonus gold per new ability the player gets."
 
     "lodMutatorIngameBuilder1"                      "Build Switcher"
     "lodMutatorIngameBuilder2"                      "Build Switcher 60s penalty"
