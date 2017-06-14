@@ -549,7 +549,7 @@ function OnSelectedSkillsChanged(table_name, key, data) {
                 ab.SetAttributeString('abilityname', defaultSkill);
                 hookSkillInfo(ab);
 
-                var abCost = ab.GetChild(0);
+                var abCost = ab.GetChild(0); 
 
                 if (balanceMode) {
                     // Clear the labels
@@ -569,6 +569,7 @@ function OnSelectedSkillsChanged(table_name, key, data) {
             }
         }
         var balance = constantBalancePointsValue;
+        var newAbilities = 0;
         for(var key in selectedSkills[playerID]) {
             var ab = $('#lodYourAbility' + key);
             var abName = selectedSkills[playerID][key];
@@ -579,6 +580,10 @@ function OnSelectedSkillsChanged(table_name, key, data) {
                 hookSkillInfo(ab);
 
                 var abCost = ab.GetChild(0);
+
+                if (!CustomNetTables.GetTableValue("phase_pregame", "fetchedAbilityData" + Players.GetLocalPlayer())[abName]){
+                    newAbilities++;
+                }
 
                 if (balanceMode) {
                     // Set the label to the cost of the ability
@@ -600,6 +605,12 @@ function OnSelectedSkillsChanged(table_name, key, data) {
                 }
             }
         }
+
+        for (var i = 6; i >= 1; i--) {
+            var v = $("#newAbilitiesTick"+i)
+            v.SetHasClass("Enabled", i <= newAbilities);
+        }
+
         // Update current price
         currentBalance = balance;
         if (balanceMode) {
