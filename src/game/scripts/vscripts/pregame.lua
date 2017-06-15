@@ -7327,10 +7327,10 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                             local abName = tempHT['Ability' .. i]
                             if abName and string.find(abName, "special_bonus") then
                                 local targetIndex = math.ceil((skippedTalentsCount + 1) / 2) * 2
-                                if VerifyTalent(abName) and not heroTalentList[targetIndex] or not heroTalentList[targetIndex - 1] then
-                                    if heroTalentList[targetIndex] then targetIndex = targetIndex - 1 end
-                                    heroTalentList[targetIndex] = abName
+                                if heroTalentList[targetIndex] then targetIndex = targetIndex - 1 end
 
+                                if VerifyTalent(abName) and not heroTalentList[targetIndex] then
+                                    heroTalentList[targetIndex] = abName
                                     currentTalentCount = currentTalentCount + 1
                                     break -- to increase randomness take a new hero after each added talent
                                 else

@@ -166,6 +166,27 @@ function Debug:init()
             end
         end
     end, 'test', 0)
+
+    Convars:RegisterCommand('debug_talent_test', function()
+        local player = Convars:GetCommandClient()
+        if not player then return end
+        local hero = PlayerResource:GetSelectedHeroEntity(player:GetPlayerID())
+        local count = 0
+        for i = 0, hero:GetAbilityCount() - 1 do
+            local ability = hero:GetAbilityByIndex(i)
+            if ability then
+                if ability:GetAbilityName():find('special_bonus_') then
+                    UTIL_Remove(ability)
+                    count = count + 1
+                end
+            end
+        end
+        print('Removed ' .. count .. ' talents')
+        hero.hasTalent = nil
+        local pregame = require('pregame')
+        pregame.handled = nil
+        pregame:fixSpawnedHero( hero )
+    end, '', 0)
 end
 
 -- Makes the server say stuff
