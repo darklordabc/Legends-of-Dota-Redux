@@ -7208,7 +7208,11 @@ function Pregame:fixSpawnedHero( spawnedUnit )
             local build = self.selectedSkills[playerID]
             local function VerifyTalent(abName)
                 for _,v in pairs(heroTalentList) do
-                    if v == abName then return false end
+                    if string.find(abName, "special_bonus_unique_") and string.find(v, "special_bonus_unique_") then
+                        if v == abName then return false end
+                    elseif v:gsub('special_bonus_', ''):gsub('_%d+', '') == abName:gsub('special_bonus_', ''):gsub('_%d+', '') then
+                        return false
+                    end
                 end
                 local requiredAbility = util:getAbilityKV(abName, "TalentRequiredAbility")
                 if not requiredAbility then
