@@ -186,6 +186,8 @@ var AbilityPerks = {};
 var VotingOptionPanels = {};
 var constantBalancePointsValue = GameUI.AbilityCosts.BALANCE_MODE_POINTS;
 
+var AbilityUsageData = {data: {}, entries: {}};
+
 // Used to calculate filters (stub function)
 var calculateFilters = function(){};
 var calculateHeroFilters = function(){};
@@ -571,8 +573,8 @@ function OnSelectedSkillsChanged(table_name, key, data) {
         var balance = constantBalancePointsValue;
         var newAbilities = 0;
 
-        var fetchedAbilityData = CustomNetTables.GetTableValue("phase_pregame", "fetchedAbilityData" + Players.GetLocalPlayer());
-        var sortedAbilityData = CustomNetTables.GetTableValue("phase_pregame", "sortedAbilityData" + Players.GetLocalPlayer());
+        var fetchedAbilityData = AbilityUsageData.data;
+        var sortedAbilityData = AbilityUsageData.entries;
         var entriesCount = Object.keys(sortedAbilityData).length;
         var threshold = optionValueList['lodOptionNewAbilitiesThreshold'] || 20;
         var isBelowThreshold = (function (ability) {
@@ -604,7 +606,7 @@ function OnSelectedSkillsChanged(table_name, key, data) {
 
                 var abCost = ab.GetChild(0);
 
-                if (fetchedAbilityData && isBelowThreshold(abName)){
+                if (isBelowThreshold(abName)){
                     newAbilities++;
                     isNewAbility = true;
                 }
@@ -2337,11 +2339,9 @@ function getSkillFilterInfo(abilityName) {
         }
     }
 
-    if (CustomNetTables.GetTableValue("phase_pregame", "fetchedAbilityData" + Players.GetLocalPlayer())) {
-        var mostUsed = CustomNetTables.GetTableValue("phase_pregame", "fetchedAbilityData" + Players.GetLocalPlayer())[abilityName]
-        if (activeTabs["mostused"]) {
-            shouldShow = !!mostUsed;
-        }
+    var mostUsed = AbilityUsageData.data[abilityName];
+    if (activeTabs["mostused"]) {
+        shouldShow = !!mostUsed;
     }
 
     return {
@@ -2496,7 +2496,7 @@ function OnSkillTabShown(tabName) {
                             }
 
                         } else {
-                            var groupKey = CustomNetTables.GetTableValue("phase_pregame", "fetchedAbilityData" + Players.GetLocalPlayer())[abilityName];
+                            var groupKey = AbilityUsageData.data[abilityName];
                             $.Msg(groupKey, " ",abilityName);
                             abilityStore[abilityName].uses = groupKey;
                             if (activeTabs["mostused"] && groupKey) {
@@ -5599,10 +5599,15 @@ function saveCurrentBuild() {
     GameEvents.Subscribe('lodReloadBuilds', function() {
         $.Each($('#recommendedBuildContainerScrollWrapper').Children(), function(p) {
             p.RemoveAndDeleteChildren();
-        })
+        });
         LoadBuilds();
-    })
-    
+    });
+
+    GameEvents.Subscribe('lodConnectAbilityUsageData', function(data) {
+        AbilityUsageData = data;
+    });
+    GameEvents.SendCustomGameEventToServer('lodConnectAbilityUsageData', {});
+
     // Backtrack Review Option Button
     util.reviewOptionsChange = function(review) {
         fixBacktrackUI();

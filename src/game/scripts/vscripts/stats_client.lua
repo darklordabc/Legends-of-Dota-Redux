@@ -12,6 +12,19 @@ function StatsClient:SubscribeToClientEvents()
     CustomGameEventManager:RegisterListener("stats_client_fav_skill_build", Dynamic_Wrap(StatsClient, "SetFavoriteSkillBuild"))
     CustomGameEventManager:RegisterListener("stats_client_save_fav_builds", Dynamic_Wrap(StatsClient, "SaveFavoriteBuilds"))
 
+    CustomGameEventManager:RegisterListener("lodConnectAbilityUsageData", function(_, args)
+        Timers:CreateTimer(function()
+            local playerID = args.PlayerID
+            if not StatsClient.AbilityData or not StatsClient.SortedAbilityDataEntries then
+                return 0.1
+            end
+            CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(playerID), "lodConnectAbilityUsageData", {
+                data = StatsClient.AbilityData[playerID] or {},
+                entries = StatsClient.SortedAbilityDataEntries[playerID] or {}
+            })
+        end)
+    end)
+
     ListenToGameEvent('dota_match_done', Dynamic_Wrap(StatsClient, "SendAbilityUsageData"), self)
 end
 
@@ -136,8 +149,6 @@ function StatsClient:FetchAbilityUsageData()
 
     StatsClient:Send("fetchAbilityUsageData", required, function(response)
         for playerID, value in pairs(response) do
-            CustomNetTables:SetTableValue("phase_pregame","fetchedAbilityData"..tostring(playerID), value)
-
             playerID = tonumber(playerID)
             StatsClient.AbilityData[playerID] = value
 
@@ -147,11 +158,6 @@ function StatsClient:FetchAbilityUsageData()
             end
             table.sort(entries, function(a, b) return a[1] > b[1] end)
             StatsClient.SortedAbilityDataEntries = entries
-            CustomNetTables:SetTableValue("phase_pregame", "sortedAbilityData" .. playerID, entries)
-
-            if GameRules.pregame.selectedSkills[playerID] then
-                network:setSelectedAbilities(playerID, GameRules.pregame.selectedSkills[playerID])
-            end
         end
     end, math.huge)
 end

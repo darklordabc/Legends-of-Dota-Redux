@@ -529,7 +529,7 @@ function Ingame:onStart()
 
     ListenToGameEvent("player_chat", Dynamic_Wrap(Commands, 'OnPlayerChat'), self)
 
-    if GameRules.pregame.optionStore["lodOptionNewAbilitiesBonusGold"] > 0 then
+    if GameRules.pregame.optionStore["lodOptionNewAbilitiesBonusGold"] > 0 and StatsClient.AbilityData then
         for playerID, usageData in pairs(StatsClient.AbilityData) do
             local currentBuild = GameRules.pregame.selectedSkills[playerID] or {}
 
