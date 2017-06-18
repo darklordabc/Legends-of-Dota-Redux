@@ -553,7 +553,7 @@ function Ingame:onStart()
                 end
             end
             local hero = PlayerResource:GetSelectedHeroEntity(playerID)
-            if hero then
+            if newAbilities > 0 and hero then
                 hero:AddItemByName('item_new_ability_bonus'):SetCurrentCharges(newAbilities)
             end
         end
