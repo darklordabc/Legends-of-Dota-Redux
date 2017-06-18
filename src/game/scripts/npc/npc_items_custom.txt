@@ -1076,7 +1076,7 @@
         // General
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "item_lua"
-        "AbilityTextureName"            "item_health_potion"
+        "AbilityTextureName"            "custom/item_new_ability_bonus"
         "ScriptFile"                    "abilities/items/new_ability_bonus"
         
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
