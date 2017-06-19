@@ -535,15 +535,23 @@ function Ingame:onStart()
 
             local threshold = GameRules.pregame.optionStore["lodOptionNewAbilitiesThreshold"]
             local entries = StatsClient.SortedAbilityDataEntries
-            function isBelowThreshold(ability)
-                if not usageData[ability] then return true end
-                for i,v in ipairs(entries) do
-                    if v[2] == ability then
-                        --print(ability, i, i / #entries >= 1 - threshold * 0.01)
-                        return i / #entries > 1 - threshold * 0.01
+            local realAbilitiesThreshold = math.ceil(StatsClient.totalGameAbilitiesCount * (1 - threshold * 0.01))
+            local enableAlternativeThreshold = #entries >= realAbilitiesThreshold
+
+            if enableAlternativeThreshold then
+                function isBelowThreshold(ability)
+                    if not usageData[ability] then return true end
+                    for i,v in ipairs(entries) do
+                        if v == ability then
+                            return i / #entries > 1 - threshold * 0.01
+                        end
                     end
+                    return true
                 end
-                return true
+            else
+                function isBelowThreshold(ability)
+                    return not usageData[ability]
+                end
             end
 
             local newAbilities = 0

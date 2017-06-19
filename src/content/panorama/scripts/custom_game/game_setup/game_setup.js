@@ -573,21 +573,25 @@ function OnSelectedSkillsChanged(table_name, key, data) {
         var balance = constantBalancePointsValue;
         var newAbilities = 0;
 
+        var threshold = optionValueList.lodOptionNewAbilitiesThreshold || 20;
         var fetchedAbilityData = AbilityUsageData.data;
         var sortedAbilityData = AbilityUsageData.entries;
         var entriesCount = Object.keys(sortedAbilityData).length;
-        var threshold = optionValueList['lodOptionNewAbilitiesThreshold'] || 20;
-        var isBelowThreshold = (function (ability) {
+        var realAbilitiesThreshold = Math.ceil(AbilityUsageData.totalGameAbilitiesCount * (1 - threshold * 0.01));
+        var enableAlternativeThreshold = entriesCount >= realAbilitiesThreshold;
+
+        var isBelowThreshold = enableAlternativeThreshold ? (function(ability) {
             if (!fetchedAbilityData[ability]) {
                 return true;
             }
             for (var i in sortedAbilityData) {
-                var v = sortedAbilityData[i];
-                if (v[2] === ability) {
+                if (sortedAbilityData[i] === ability) {
                     return (+i + 1) / entriesCount > 1 - threshold * 0.01;
                 }
             }
             return true;
+        }) : (function(ability) {
+            return !fetchedAbilityData[ability];
         });
 
         for (var i = 1; i <= 6; i++) {
