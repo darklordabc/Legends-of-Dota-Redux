@@ -448,6 +448,27 @@ var basicOptions = {
                         extraInfo: 'lodOptionAboutConsumeItems',
                         about: 'lodMutatorConsumeItems'
                     },
+                    {
+                        about: 'lodMutatorOGBonus',
+                        default: {
+                            'lodOptionNewAbilitiesBonusGold': 0,
+                            'lodOptionNewAbilitiesThreshold': 0
+                        },
+                        states: {
+                            'lodMutatorOGBonus1': {
+                                'lodOptionNewAbilitiesBonusGold': 100,
+                                'lodOptionNewAbilitiesThreshold': 20
+                            },
+                            'lodMutatorOGBonus2': {
+                                'lodOptionNewAbilitiesBonusGold': 500,
+                                'lodOptionNewAbilitiesThreshold': 20
+                            },
+                            'lodMutatorOGBonus3': {
+                                'lodOptionNewAbilitiesBonusGold': 1000,
+                                'lodOptionNewAbilitiesThreshold': 20
+                            }
+                        }
+                    },
                 ]
             }
         ]

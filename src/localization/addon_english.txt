@@ -196,6 +196,11 @@
     "lodMutatorUniqueSkillsTeam"                    "Team Skills"
     "lodMutatorUniqueSkillsGlobal"                  "Global Skills"
 
+    "lodMutatorOGBonus"                             "Originality Bonus"
+    "lodMutatorOGBonus1"                            "100 Gold Per New Ability"
+    "lodMutatorOGBonus2"                            "500 Gold Per New Ability"
+    "lodMutatorOGBonus3"                            "1000 Gold Per New Ability"
+
     "lodMutatorUniqueBotSkillsOff"                     "Bot Unique Skills"
     "lodMutatorUniqueBotSkillsTeam"                    "Bot Team Skills"
     "lodMutatorUniqueBotSkillsGlobal"                  "Bot Global Skills"

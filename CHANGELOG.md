@@ -21,11 +21,13 @@ All notable changes to this project will be documented in this file.
 - Arcane Symbiote now has a different aghs effect, no longer enables right click attack
 - Added Fury of the Immoral from dota IMBA (Also an OP single player version)
 - Added Fantacism from dota IMBA (Also an OP single player version)
-*
 - Added Mount from dota IMBA (Also OP version)
 - Added Arcane Dynamo from dota IMBA (Also OP version)
 - Fixed Tempest Double not swapping when you switch teams
 - Added Deadeye from dota IMBA
+- Testing new function about mechanic to encourage users to use new abilities
+*
+- Added Mutator for the Orginal Abilities mutator
 
 
 ## 7.9
