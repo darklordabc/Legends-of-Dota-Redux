@@ -129,7 +129,7 @@ function perkOD(filterTable)
 	local ability = EntIndexToHScript( ability_index )
 	if ability then
 		if caster:HasModifier("modifier_npc_dota_hero_obsidian_destroyer_perk") then
-			if ability:GetName() == "obsidian_destroyer_astral_imprisonment" and parent:IsHero() and parent:GetTeam() ~= caster:GetTeam() and parent:HasModifier("modifier_obsidian_destroyer_astral_imprisonment_prison") then
+			if ability:GetName() == "obsidian_destroyer_astral_imprisonment_redux" and parent:IsHero() and parent:GetTeam() ~= caster:GetTeam() and parent:HasModifier("modifier_astral_imprisonment_redux") then
 				caster:AddNewModifier(caster, nil, "modifier_npc_dota_hero_obsidian_destroyer_perk_buff", {Duration = caster.duration})
 				-- Debuff cannot be applied while target is invulnerable, so this must be done. 
 				Timers:CreateTimer(function() 

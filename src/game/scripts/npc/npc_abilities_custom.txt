@@ -155,6 +155,7 @@
 #base "abilities\dota\necrolyte_sadist_lod.txt"
 #base "abilities\dota\obsidian_destroyer_essence_aura_lod.txt"
 #base "abilities\dota\obsidian_destroyer_essence_aura_redux.txt"
+#base "abilities\dota\obsidian_destroyer_astral_imprisonment_redux.txt"
 #base "abilities\dota\ogre_magi_multicast_lod.txt"
 #base "abilities\dota\pudge_flesh_heap_agility.txt"
 #base "abilities\dota\pudge_flesh_heap_attack_range.txt"
