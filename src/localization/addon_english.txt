@@ -2152,7 +2152,7 @@
     "DOTA_Tooltip_modifier_keeper_of_the_light_innate_redux_Description"          "This Hero has unobstructed vision at night time."
 
     // astral_imprisonment redux
-    "DOTA_Tooltip_ability_obsidian_destroyer_astral_imprisonment_redux"               "Astral Imprisonment Redux"
+    "DOTA_Tooltip_ability_obsidian_destroyer_astral_imprisonment_redux"               "Astral Imprisonment"
     "DOTA_Tooltip_ability_obsidian_destroyer_astral_imprisonment_redux_Description"   "Places a target unit into an astral prison. The hidden unit is invulnerable and disabled. When the astral prison implodes, it deals %damage% damage to enemies in a %radius% radius around the target.\n\nUpgradable by Aghanim's Scepter."
     "DOTA_Tooltip_ability_obsidian_destroyer_astral_imprisonment_redux_Lore"          "Locked away in the pocket between this world and the Outworld, victims realize their infantile knowledge and mortality."
     "DOTA_Tooltip_ability_obsidian_destroyer_astral_imprisonment_redux_Note0"         "Imprisoned units are hidden and invulnerable."
@@ -2169,7 +2169,7 @@
     "DOTA_Tooltip_modifier_astral_imprisonment_redux_Description"   "Locked away in an Astral Prison, cannot act or be acted upon."
     
     "DOTA_Tooltip_modifier_astral_imprisonment_redux_stacks_counter"   "Astral Imprisonment Charges"
-    "DOTA_Tooltip_modifier_astral_imprisonment_redux_stacks_counter"   "You may cast Astral Imprisonment whenever there is a charge available."
+    "DOTA_Tooltip_modifier_astral_imprisonment_redux_stacks_counter"   "You may cast Astral Imprisonment whenever there is a charge."
 
     // Starfall
     "DOTA_Tooltip_ability_mirana_starfall_lod"                                          "Starstorm"
