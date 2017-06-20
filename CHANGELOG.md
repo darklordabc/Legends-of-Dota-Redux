@@ -28,6 +28,7 @@ All notable changes to this project will be documented in this file.
 - Testing new function about mechanic to encourage users to use new abilities
 *
 - Added Mutator for the Orginal Abilities mutator
+- Fixed Astral Imprisonment not working
 
 
 ## 7.9
