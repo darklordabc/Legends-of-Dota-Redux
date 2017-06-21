@@ -4486,7 +4486,7 @@
     "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_delay"                                 "ECHO DELAY:"
 
     "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_OP"                                     "Arcane Echo OP"
-    "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_OP_Description"                         "Rubick, being the grandest magus there is, casts the last ability he used a second time. Echoed spells still require mana. Certain spells will not echo for balance reasons. <font color='#70EA72'>Shorter cooldown.</font>"
+    "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_OP_Description"                         "Rubick, being the grandest magus there is, casts the last ability he used a second time. Echoed spells still require mana. Certain spells will not echo for balance reasons. <font color='#70EA72'>Shorter cooldown, not an ultimate.</font>"
     "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_OP_Lore"                                 "A jester at heart, Rubick enjoys confusing his enemies."
     "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_OP_delay"                                 "ECHO DELAY:"
 
