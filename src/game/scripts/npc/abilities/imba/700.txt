@@ -59,7 +59,7 @@
             "05"
             {
                 "var_type"                              "FIELD_INTEGER"
-                "stacking_damage"                       "0 50 100 150"
+                "stacking_damage"                       "50"
             }
             "06"
             {
