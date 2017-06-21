@@ -81,7 +81,7 @@ end
 
 function modifier_flesh_heap_mana_regeneration:DeclareFunctions()
   local funcs = {
-    MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE
+    MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE,
     MODIFIER_EVENT_ON_DEATH,
   }
   return funcs
