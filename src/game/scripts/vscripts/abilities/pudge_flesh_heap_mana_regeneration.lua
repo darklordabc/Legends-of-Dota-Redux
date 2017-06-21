@@ -36,8 +36,8 @@ function modifier_flesh_heap_mana_regeneration:IsPassive()
     return true
 end
 
-function modifier_flesh_heap_mana_regeneration:IsPurgable()
-    return true
+function modifier_flesh_heap_mana_regeneration::IsPurgable()
+    return false
 end
 
 function modifier_flesh_heap_mana_regeneration:GetFleshHeapKills()
