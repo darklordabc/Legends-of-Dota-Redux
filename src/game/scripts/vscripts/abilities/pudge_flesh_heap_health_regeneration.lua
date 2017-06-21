@@ -37,7 +37,7 @@ function modifier_flesh_heap_health_regeneration:IsPassive()
 end
 
 function modifier_flesh_heap_health_regeneration:IsPurgable()
-    return true
+    return false
 end
 
 function modifier_flesh_heap_health_regeneration:GetFleshHeapKills()
