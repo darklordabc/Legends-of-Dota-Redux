@@ -20,7 +20,9 @@ function nextGenOrderFilter(filterTable)
   if CancelOtherAlliedAttacks(unit,target,order_type) == false then
     --return false -- I think this can be skipped
   end
-  StopAllowingAlliedAttacks(unit,target,order_type)
+  
+  -- Tried this as fix for the ranged heroes
+  --StopAllowingAlliedAttacks(unit,target,order_type)
   
   -- Proteus order filters
   jetOrder(filterTable)
