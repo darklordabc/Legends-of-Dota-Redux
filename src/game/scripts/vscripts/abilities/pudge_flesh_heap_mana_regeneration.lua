@@ -136,7 +136,7 @@ function modifier_flesh_heap_mana_regeneration:OnDeath(keys)
   end
 end
 
-function modifier_flesh_heap_mana_regeneration:GetModifierConstantManaRegen()
+function modifier_flesh_heap_mana_regeneration:GetModifierPercentageManaRegen()
   return self.flesh_heap_value_buff_amount * self:GetStackCount()
 end
 
