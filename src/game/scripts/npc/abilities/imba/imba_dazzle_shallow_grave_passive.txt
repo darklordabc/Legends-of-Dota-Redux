@@ -143,5 +143,6 @@
             }
         }
         "ReduxCost"                                                            "30"
+        "ReduxBans"                                                            "oracle_false_promise" // Buggy interaction
     }
 }
