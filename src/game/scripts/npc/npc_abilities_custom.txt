@@ -42,6 +42,7 @@
 #base "abilities\oneshot\sight.txt"
 #base "abilities\oneshot\zhanhun.txt"
 #base "abilities\oneshot\zhanhun_op.txt" 
+#base "abilities\overflow\chi_strike.txt"
 #base "abilities\overflow\eat_tree_eldri.txt"
 #base "abilities\overflow\blink_support.txt"
 #base "abilities\overflow\dark_blade.txt"

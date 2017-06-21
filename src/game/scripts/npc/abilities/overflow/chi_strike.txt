@@ -1,0 +1,37 @@
+"DOTAAbilities" {
+	"chi_strike"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_lua"
+		"ScriptFile"					"abilities/overflow/chi_strike/ability.lua"
+		"AbilityTextureName"				"custom/chi_strike"
+		"AbilityCooldown"               "5.0 4.0 3.0 2.0"
+		//"MaxLevel"	"7"
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"	"particles/chi_strike_wave.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"range"			"700 800 900 1000"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"speed"			"1500"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"mana_burn"			"5 15 25 35 45 55 65"
+			}
+		}
+	}
+}

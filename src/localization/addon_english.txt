@@ -5159,6 +5159,11 @@
         "DOTA_Tooltip_Ability_night_wolf_attack_speed"                                    "ATTACK SPEED BONUS:"
         "DOTA_Tooltip_Ability_night_wolf_bonus_vision_scepter"                                    "SCEPTER VISION BONUS:"
         "DOTA_Tooltip_Ability_night_wolf_aghanim_description"                               "Better sight at night."
+		
+		"DOTA_Tooltip_Ability_chi_strike"                                                  "Chi Strike"
+		"DOTA_Tooltip_Ability_chi_strike_Description"                                      "Your basic attack grants shockwave of effect in front of you for a single strike. Procs a melee attack against all targets hit.\n\n<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>\n"
+		"DOTA_Tooltip_Ability_chi_strike_Note0"                                                  "Does not work against buildings.\nAs ranged hero your primary target only procs as ranged attack."
+		"DOTA_Tooltip_Ability_chi_strike_range"											"Range:"
 
         "DOTA_Tooltip_night_wolf_mod"                                             "Werewolf"
         "DOTA_Tooltip_night_wolf_mod_Description"                                 "Night is yours."
