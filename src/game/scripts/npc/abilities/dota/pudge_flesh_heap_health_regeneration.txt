@@ -4,7 +4,7 @@
     {
         "BaseClass"                                                            "ability_lua"
         "AbilityTextureName"                                                   "custom/flesh_heap_health_regeneration"
-        "ScriptFile"                                                           "abilities/pudge_flesh_heap_mana_regeneration.lua"
+        "ScriptFile"                                                           "abilities/pudge_flesh_heap_health_regeneration.lua"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "AbilityCastRange"                                                     "450"
         "precache"
