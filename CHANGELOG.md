@@ -34,7 +34,8 @@ All notable changes to this project will be documented in this file.
 - Arcane Echo is now an ultimate, its delay does not get reduced per level now, only cooldown
 *
 - Disabled Pudge bot as hes expected to be causing crashes
-
+- Fixed CDR talent not working on some abilities
+- Fixed Argent Smite not working on ranged heros
 
 
 ## 7.9
