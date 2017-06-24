@@ -6668,6 +6668,7 @@ function Pregame:generateBotBuilds()
         brokenBots = {
             npc_dota_hero_tidehunter = true,
             npc_dota_hero_razor = true,
+            npc_dota_hero_pudge = true,
 
             -- Stoped working around Feburary, 24, 2017
             --[[npc_dota_hero_sven = true,
