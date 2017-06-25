@@ -5167,7 +5167,7 @@
 		
 		
 		"DOTA_Tooltip_Ability_chi_strike_sp"                                                  "Chi Strike OP"
-		"DOTA_Tooltip_Ability_chi_strike_sp_Description"                                      "Your basic attack grants shockwave of effect <font color='#70EA72'>around target</font> for a single strike. Procs a melee attack against all targets hit. <font color='#70EA72'>Has shorter cooldown.</font>.\n\n<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>\n"
+		"DOTA_Tooltip_Ability_chi_strike_sp_Description"                                      "Your basic attack grants shockwave of effect <font color='#70EA72'>around target</font> for a single strike. Procs a melee attack against all targets hit. <font color='#70EA72'>Has shorter cooldown and longer range.</font>.\n\n<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>\n"
 		"DOTA_Tooltip_Ability_chi_strike_sp_Note0"                                                  "Does not work against buildings.\nAs ranged hero your primary target only procs as ranged attack."
 		"DOTA_Tooltip_Ability_chi_strike_sp_range"											"Range:"
 
