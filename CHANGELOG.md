@@ -33,6 +33,7 @@ All notable changes to this project will be documented in this file.
 - Morph, Int to Str, and Int to Agi are now single player abilities
 - Fury of the Immortal now only increases by a fixed 50 per death
 - Arcane Echo is now an ultimate, its delay does not get reduced per level now, only cooldown
+- Added Chi Strike (And Chi Strike OP for single player)
 
 
 ## 7.9
