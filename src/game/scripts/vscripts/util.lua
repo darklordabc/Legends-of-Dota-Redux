@@ -724,6 +724,19 @@ function util:split(s, delimiter)
     return result;
 end
 
+function util:anyBots()
+    local maxPlayerID = 24
+    local count = 0
+    for playerID=0,(maxPlayerID-1) do
+        -- print(playerID, self:isPlayerBot(playerID), PlayerResource:IsFakeClient(playerID))
+        if PlayerResource:IsFakeClient(playerID) then
+            return true
+        end
+    end
+
+    return false
+end
+
 function util:isSinglePlayerMode()
     local maxPlayerID = 24
     local count = 0

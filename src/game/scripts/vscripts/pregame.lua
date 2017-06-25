@@ -980,6 +980,11 @@ function Pregame:applyBuilds()
         Timers:CreateTimer(function ()
             local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 
+            if self.wispSpawning and hero and hero:GetUnitName() ~= self.selectedHeroes[playerID] then
+                print("wrong hero...")
+                return 0.03
+            end
+
             if hero ~= nil and IsValidEntity(hero) then
                 local build = self.selectedSkills[playerID]
 
@@ -1187,7 +1192,12 @@ function Pregame:onThink()
 
     -- Selection phase
     if ourPhase == constants.PHASE_SELECTION then
-        GameRules:GetGameModeEntity():SetCustomGameForceHero("")
+        if util:anyBots() then
+            print("disabling wisp", self.desiredRadiant)
+            GameRules:GetGameModeEntity():SetCustomGameForceHero("")
+        else
+            self.wispSpawning = true
+        end
 
         if self.useDraftArrays and not self.draftArrays then
             self:buildDraftArrays()
@@ -1550,9 +1560,12 @@ function Pregame:actualSpawnPlayer(forceID)
             local spawnTheHero = function()
                 local status2,err2 = pcall(function()
                     -- Create the hero and validate it
-                    local hero = CreateHeroForPlayer(heroName, player)
-
-                    UTIL_Remove(hero)
+                    if self.wispSpawning then
+                        local hero = PlayerResource:ReplaceHeroWith(playerID,heroName,0,0)
+                    else
+                        local hero = CreateHeroForPlayer(heroName, player)
+                        UTIL_Remove(hero)
+                    end
                 end)
 
                 continueSpawning()
@@ -6550,6 +6563,7 @@ end
 
 -- Adds bot players to the game
 function Pregame:addBotPlayers()
+    self.enabledBots = false
     -- Ensure bots should actually be added
     if self.addedBotPlayers then return end
     self.addedBotPlayers = true
