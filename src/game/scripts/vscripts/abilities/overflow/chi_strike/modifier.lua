@@ -4,9 +4,9 @@ end
 
 function chi_strike_mod:DeclareFunctions()
 	local funcs = {
-		MODIFIER_EVENT_ON_ATTACK,
-		MODIFIER_EVENT_ON_ATTACK_START,
-		MODIFIER_EVENT_ON_ATTACK_LANDED
+		--MODIFIER_EVENT_ON_ATTACK_START,
+		--MODIFIER_EVENT_ON_ATTACK_LANDED,
+		MODIFIER_EVENT_ON_ATTACK
 	}
 
 	return funcs
@@ -18,6 +18,7 @@ end
 
 function chi_strike_mod:OnAttackStart( keys )
 	if IsServer() then
+		if self:GetParent():PassivesDisabled() then return end
 		local hAbility = self:GetAbility()
 		if hAbility:GetLevel() < 1 then return end
 	if keys.attacker == self:GetParent() and not self:GetParent():IsIllusion() then
@@ -35,6 +36,7 @@ end
 function chi_strike_mod:OnAttack (keys)
 	if IsServer() then
 	local hAbility = self:GetAbility()
+		if self:GetParent():PassivesDisabled() then return end
 
 		if hAbility:GetLevel() < 1 then return end
 	if keys.attacker == self:GetParent() and not self:GetParent():IsIllusion() and hAbility:IsCooldownReady() then
@@ -47,6 +49,7 @@ end
 
 function chi_strike_mod:OnAttackLanded(keys)
 	if IsServer() then
+		if self:GetParent():PassivesDisabled() then return end
 	local hAbility = self:GetAbility()
 		if hAbility:GetLevel() < 1 then return end
 	if keys.attacker == self:GetParent() and not self:GetParent():IsIllusion() and hAbility:IsCooldownReady() then
