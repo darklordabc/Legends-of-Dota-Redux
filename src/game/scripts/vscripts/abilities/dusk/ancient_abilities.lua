@@ -59,7 +59,7 @@ function d_waves(keys)
 	end
 
 	if caster:GetHealthPercent() < healthThreshold then
-			ability:StartCooldown(ability:GetCooldown(ability:GetLevel()))
+			ability:StartCooldown(ability:GetTrueCooldown())
 			local enemy_found = FindUnitsInRadius( caster:GetTeamNumber(),
 	                              caster:GetCenter(),
 	                              nil,
@@ -206,7 +206,7 @@ function last_resort(keys)
 			teamname = "Dire"
 		end
 		GameRules:SendCustomMessage("The "..teamname.."'s Ancient has just used its <font color='#dd3f4e'>Last Resort</font>!", caster:GetTeam(), 0)
-		ab:StartCooldown(keys.ability:GetCooldown(keys.ability:GetLevel()))
+		ab:StartCooldown(keys.ability:GetTrueCooldown())
 		local heroes = HeroList:GetAllHeroes()
 
 		for k,v in pairs(heroes) do
@@ -257,7 +257,7 @@ function frenzy(keys)
 			keys.ability:ApplyDataDrivenModifier(caster, caster, "modifier_frenzy_bonus_effects", {}) --[[Returns:void
 			No Description Set
 			]]
-			keys.ability:StartCooldown(keys.ability:GetCooldown(keys.ability:GetLevel()))
+			keys.ability:StartCooldown(keys.ability:GetTrueCooldown())
 		end
 	end
 

@@ -26,14 +26,18 @@ All notable changes to this project will be documented in this file.
 - Fixed Tempest Double not swapping when you switch teams
 - Added Deadeye from dota IMBA
 - Testing new function about mechanic to encourage users to use new abilities
-*
 - Added Mutator for the Orginal Abilities mutator
 - Fixed Astral Imprisonment not working
 - Nothl Protection and False Promise is now troll combo because buggy interaction
 - Morph, Int to Str, and Int to Agi are now single player abilities
 - Fury of the Immortal now only increases by a fixed 50 per death
 - Arcane Echo is now an ultimate, its delay does not get reduced per level now, only cooldown
+- Disabled Pudge bot as hes expected to be causing crashes
+- Fixed CDR talent not working on some abilities
+- Fixed Argent Smite not working on ranged heros
+*
 - Added Chi Strike (And Chi Strike OP for single player)
+
 
 
 ## 7.9

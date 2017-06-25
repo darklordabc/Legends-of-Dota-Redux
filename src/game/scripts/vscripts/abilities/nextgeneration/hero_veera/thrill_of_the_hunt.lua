@@ -60,15 +60,15 @@ function ThrillCastPointBonus( keys )
 
 	ability:ApplyDataDrivenModifier(caster, caster, "modifier_thrill_bonus_vision", {})
 
-	caster.stack_count = caster:GetModifierStackCount('modifier_movespeed_cap', passive)
-	caster.scepter_stack_count = caster.stack_count
+	--caster.stack_count = caster:GetModifierStackCount('modifier_movespeed_cap', passive)
+	--caster.scepter_stack_count = caster.stack_count
 	-- print(caster.stack_count)
 
 	EmitGlobalSound("Hero_Veera.Thrill.Drums")
-	if caster:HasScepter() and caster.stack_count == caster.scepter_stack_count then
-		caster.scepter_stack_count = caster.stack_count * 2
-		caster:SetModifierStackCount('modifier_movespeed_cap', passive, caster.scepter_stack_count)
-	end
+	--if caster:HasScepter() and caster.stack_count == caster.scepter_stack_count then
+	--	caster.scepter_stack_count = caster.stack_count * 2
+	--	caster:SetModifierStackCount('modifier_movespeed_cap', passive, caster.scepter_stack_count)
+	--end
 	-- print(caster.scepter_stack_count)
 end
 
@@ -82,10 +82,10 @@ function ThrillRemoveBonus( keys )
 	ability1:SetOverrideCastPoint(ability1.castpoint)
 	ability2:SetOverrideCastPoint(ability2.castpoint)
 
-	if caster.scepter_stack_count > caster.stack_count then
-		caster.scepter_stack_count = caster.stack_count / 2
-		caster:SetModifierStackCount('modifier_movespeed_cap', passive, caster.stack_count)
-	end
+	--if caster.scepter_stack_count > caster.stack_count then
+	--	caster.scepter_stack_count = caster.stack_count / 2
+	--	caster:SetModifierStackCount('modifier_movespeed_cap', passive, caster.stack_count)
+	--end
 	
 	CustomGameEventManager:Send_ServerToPlayer(player, "camera_zoom", {distance = 1134} )
 end
