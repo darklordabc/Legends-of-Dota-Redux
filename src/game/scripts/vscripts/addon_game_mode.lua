@@ -32,6 +32,12 @@ require('commands')
 --Interaction with server (https://github.com/darklordabc/Legends-of-Dota-Server)
 require('stats_client')
 
+-- Custom Shop
+require('lib/playertables')
+require('lib/notifications')
+require('lib/keyvalues')
+require('panorama_shop')
+
 -- Precaching
 function Precache(context)
     local soundList = LoadKeyValues('scripts/kv/sounds.kv')

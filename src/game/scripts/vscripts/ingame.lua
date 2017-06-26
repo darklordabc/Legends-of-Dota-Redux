@@ -130,6 +130,8 @@ function Ingame:init()
         local player = PlayerResource:GetPlayer(args.PlayerID)
         Say(player, util:secondsToClock(GameRules:GetDOTATime(false, true)), true)
     end)
+
+    PanoramaShop:InitializeItemTable()
 end
 
 function Ingame:OnPlayerReconnect(keys)
@@ -305,6 +307,15 @@ function Ingame:FilterExecuteOrder(filterTable)
     local unit = EntIndexToHScript(units["0"])
     local ability = EntIndexToHScript(filterTable.entindex_ability)
     local target = EntIndexToHScript(filterTable.entindex_target)
+
+    if order_type == DOTA_UNIT_ORDER_PURCHASE_ITEM then
+        return false
+    end
+
+    if units[1] and order_type == DOTA_UNIT_ORDER_SELL_ITEM and ability and not units[1]:IsIllusion() and not units[1]:IsTempestDouble() then
+        PanoramaShop:SellItem(units[1], ability)
+        return false
+    end
 
     -- Block Alchemists Innate, heroes should not have innate abilities
     if ability and target then

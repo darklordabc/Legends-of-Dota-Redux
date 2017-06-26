@@ -14,4 +14,26 @@
     {
         "MaxPlayers"                    "20"
     }
+
+    "Default_Keys"
+    {
+        "01"
+        {
+            "Key" "F4"
+            "Command" "+F4Pressed"
+            "Name" "Toggle Shop"
+        }
+        "02"
+        {
+            "Key" "F5"
+            "Command" "+F5Pressed"
+            "Name" "Quickbuy"
+        }
+        "03"
+        {
+            "Key" "F8"
+            "Command" "+F8Pressed"
+            "Name" "Buy sticky item"
+        }
+    }
 }

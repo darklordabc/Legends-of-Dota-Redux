@@ -1,5 +1,7 @@
 <root>
     <scripts>
+        <include src="file://{resources}/scripts/custom_game/playertables_base.js" />
+        <include src="file://{resources}/scripts/custom_game/keybinds.js" />
         <include src="file://{resources}/scripts/custom_game/util.js" />
         <include src="file://{resources}/scripts/custom_game/stat_uploader.js" />
         <include src="file://{resources}/scripts/custom_game/ability_costs.js" />
@@ -20,13 +22,19 @@
 
         GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_ENDGAME, false);
 
-        GameEvents.Subscribe("lodCreateIngameErrorMessage", function(data) {
-            GameEvents.SendEventClientSide("dota_hud_error_message", {
-                "splitscreenplayer": 0,
-                "reason": data.reason || 80,
-                "message": data.message
+        GameEvents.Subscribe('lodCreateIngameErrorMessage', function(data) {
+            GameEvents.SendEventClientSide('dota_hud_error_message', {
+                splitscreenplayer: 0,
+                reason: data.reason || 80,
+                message: data.message
             })
-        })
+        });
+
+        GameEvents.Subscribe('lodEmitClientSound', function(data) {
+            if (data.sound) {
+                Game.EmitSound(data.sound);
+            }
+        });
 
         var mapName = Game.GetMapInfo().map_display_name;
 
@@ -85,6 +93,7 @@
         <CustomUIElement type="GameSetup" layoutfile="file://{resources}/layout/custom_game/game_setup/game_setup.xml" />
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/hero_selection.xml" />
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/statcollection.xml" />
+        <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/panorama_shop.xml" />
 
         <CustomUIElement type="EndScreen" layoutfile="file://{resources}/layout/custom_game/multiteam_end_screen.xml" />
 
@@ -103,6 +112,8 @@
         <CustomUIElement type="FlyoutScoreboard" layoutfile="file://{resources}/layout/custom_game/scoreboard_flyout.xml" />
 
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/ingame_votings.xml" />
+
+        <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/barebones_notifications.xml" />
         <!-- Textures compiling stuff
             <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/dummy.xml" />
             -->

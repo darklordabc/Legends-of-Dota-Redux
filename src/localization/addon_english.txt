@@ -1406,6 +1406,13 @@
     //Scoreboard
     "DOTA_Scoreboard_Header_Abilities"                  "ABILITIES"
 
+    // Panorama Shop
+    "panorama_shop_shop_tab_1"                          "BASICS"
+    "panorama_shop_shop_tab_2"                          "UPGRADES"
+    "panorama_shop_search_placeholder"                  "Search..."
+    "panorama_shop_stackable_purchase"                  "Purchased item was dropped on the base, because your hero has same stackable item in inventory"
+    "dota_hud_error_panorama_shop_dropped_items_limit"  "Dropped items limit was reached"
+
     /////////////////
     // Skill Warnings
     ////////////////

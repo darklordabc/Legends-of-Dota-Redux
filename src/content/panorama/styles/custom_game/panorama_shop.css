@@ -1,0 +1,498 @@
+/* processed panorama_shop.sass */
+
+/* $mainPanelWidth + $guidesPanelWidth */
+.base {
+align: right center;
+width: 100%;
+height: 100%; }
+
+#ShopBase {
+align: right bottom;
+transition-duration: 0.01s;
+transition-timing-function: ease-in;
+transition-property: transform, opacity;
+margin-bottom: 196px;
+margin-right: 0;
+flow-children: right;
+transform: translateX(518px);
+opacity: 0; }
+#ShopBase.ShopBaseOpen {
+transform: translateX(0);
+opacity: 1; }
+#ShopBase:not(.ShopBaseOpen) #ItembuildsPanel {
+width: 0;
+opacity: 0; }
+
+#ShopItemBasePanel {
+width: 310px;
+height: 840px; }
+
+#ItembuildsPanel {
+width: 208px;
+height: 840px;
+background-image: url("s2r://panorama/images/hud/reborn/bg_shop_guide_psd.vtex");
+background-position: bottom;
+background-size: cover;
+flow-children: down;
+transition-property: opacity, width;
+transition-duration: 0.2s;
+transition-timing-function: ease-in-out; }
+
+.ItembuildsHidden #ItembuildsPanel {
+width: 0;
+opacity: 0; }
+
+.ItembuildsHidden #ShowHideItemguidesButton {
+background-image: url("s2r://panorama/images/hud/reborn/bg_item_build_psd.vtex");
+opacity: 0.8; }
+.ItembuildsHidden #ShowHideItemguidesButton:hover {
+opacity: 1; }
+
+.ItembuildsHidden #ShowHideItemguidesIcon {
+transform: rotateZ(180deg); }
+
+#ItembuildHeader {
+width: 100%;
+background-color: rgba(0, 0, 0, 0.93333);
+padding: 12px;
+height: 58px;
+font-size: 13px;
+color: #616f7b;
+font-weight: bold;
+text-transform: uppercase;
+padding-top: 20px;
+transition-property: color, text-decoration;
+transition-duration: 0.15s; }
+#ItembuildHeader:hover {
+color: #8da1b1;
+text-decoration: underline; }
+
+#ItembuildTitleContainer {
+width: 100%;
+padding: 12px;
+flow-children: down; }
+
+#ItembuildTitleTitleRow {
+width: 100%;
+flow-children: right; }
+
+#Itembuild_title {
+font-size: 14px;
+color: #616f7b;
+font-weight: semi-bold;
+vertical-align: center;
+width: 88%;
+height: 20px;
+text-overflow: shrink; }
+
+#EditButton {
+width: 22px;
+height: 22px;
+horizontal-align: right;
+vertical-align: center;
+background-image: url("s2r://panorama/images/control_icons/edit_pencil_psd.vtex");
+background-size: 72%;
+background-position: 50% 50%;
+background-repeat: no-repeat;
+wash-color: #798b99;
+tooltip-position: top;
+margin-right: -4px; }
+#EditButton:hover {
+brightness: 2.0; }
+#EditButton:active {
+wash-color: #798b99; }
+
+.EditMode #EditButton {
+background-color: rgba(87, 100, 109, 0.46667);
+border-radius: 3px;
+wash-color: white; }
+
+.EditMode #ItembuildPanelsContainer {
+box-shadow: inset rgba(11, 147, 190, 0.2) 6px 6px 12px 12px; }
+
+.EditMode #ItembuildAddGroupButton {
+visibility: visible; }
+
+.EditMode #ItembuildItemGroupItemRoot {
+min-height: 37px; }
+
+#ItembuildTitleSubitleRow {
+width: 100%;
+flow-children: right;
+margin-top: -2px;
+height: 20px; }
+
+#Itembuild_author_player {
+width: 80%; }
+#Itembuild_author_player > Label {
+text-overflow: shrink;
+font-size: 14px;
+font-weight: semi-bold; }
+
+#Itembuild_version {
+width: 20%;
+text-align: right;
+horizontal-align: right;
+text-overflow: shrink;
+font-size: 14px;
+color: #8b9eb0;
+font-weight: semi-bold; }
+
+#ItembuildPanelsContainer {
+width: 100%;
+flow-children: down;
+min-height: 100%;
+overflow: squish scroll; }
+
+#ItembuildAddGroupButton {
+width: 100%;
+padding-left: 24px;
+color: white;
+font-weight: bold;
+text-transform: uppercase;
+opacity: 0.6;
+transition-property: opacity;
+transition-duration: 0.2s;
+visibility: collapse; }
+#ItembuildAddGroupButton:hover {
+opacity: 0.8; }
+#ItembuildAddGroupButton:active {
+transition-duration: 0.1s;
+opacity: 1;
+margin-top: 1px; }
+
+#ItembuildPanelsRoot {
+width: 100%;
+flow-children: down; }
+
+.ItembuildItemGroup {
+width: 100%;
+flow-children: down;
+transition-property: position;
+transition-duration: 0.1s; }
+
+#ItembuildItemGroupTitle {
+margin-left: 4px;
+width: 100%;
+text-overflow: shrink;
+text-transform: uppercase;
+color: white;
+letter-spacing: 2px;
+font-size: 14px;
+height: 26px; }
+#ItembuildItemGroupTitle:disabled {
+background-color: transparent;
+border-color: transparent;
+color: white; }
+
+#ItembuildItemGroupItemRoot {
+padding-top: 6px;
+padding-left: 5px;
+width: 100%;
+flow-children: right-wrap; }
+
+#ShopItemList {
+width: 100%;
+horizontal-align: right;
+height: 86%;
+flow-children: down;
+background-image: url("s2r://panorama/images/hud/reborn/bg_mainshop_psd.vtex");
+background-size: 100% 100%;
+background-repeat: no-repeat; }
+
+#ItemRecipeBox {
+width: 100%;
+align: right bottom;
+height: 14%;
+background-image: url("s2r://panorama/images/hud/reborn/bg_item_breakdown_recessed_psd.vtex");
+background-size: cover; }
+
+#ItemRecipeBoxRows {
+width: 100%;
+flow-children: down;
+vertical-align: center; }
+
+.ItemRecipeBoxRow {
+height: 36.715px;
+horizontal-align: center;
+flow-children: right; }
+.ItemRecipeBoxRow.ItemRecipeBoxRowLength7 .SmallItemPanel {
+margin: -1px; }
+.ItemRecipeBoxRow.ItemRecipeBoxRowLength8 .SmallItemPanel {
+width: 40px;
+margin-left: -4px; }
+.ItemRecipeBoxRow.ItemRecipeBoxRowLength9 .SmallItemPanel {
+width: 39px;
+margin-left: -3px;
+margin-right: -3px; }
+
+#ShopTabs {
+align: center top;
+height: 28px;
+horizontal-align: center;
+flow-children: right;
+width: 100%;
+margin-left: 6px;
+margin-right: 6px;
+background-size: cover;
+border-radius: 3px;
+border: 1px solid rgba(91, 104, 114, 0.46667); }
+
+.ShopTabButton {
+height: 100%;
+padding-left: 1px;
+padding-right: 1px;
+padding-top: 2px;
+padding-bottom: 2px;
+background-color: black; }
+.ShopTabButton .RadioBox {
+visibility: collapse; }
+.ShopTabButton Label {
+margin: 4px;
+align: center center;
+font-size: 14px;
+color: #5b6872;
+font-weight: bold; }
+.ShopTabButton:selected {
+background-color: rgba(87, 100, 109, 0.46667); }
+.ShopTabButton:selected Label {
+color: white; }
+
+#ShopSearch {
+align: center top;
+height: 49px;
+width: 100%;
+flow-children: right; }
+
+#ShopSearchEntry {
+height: 100%;
+width: 100%;
+margin: 10px;
+margin-bottom: 6px;
+margin-left: 4px;
+font-family: 'Radiance', 'FZLanTingHei-R-GBK', 'TH Sarabun New', 'YDYGO 540', 'Gulim', 'MingLiU';
+background-color: black;
+padding: 5px 7px 3px;
+color: white;
+font-size: 20px;
+text-overflow: clip;
+white-space: nowrap;
+border-radius: 3px;
+border: 1px solid #3d464c; }
+#ShopSearchEntry #PlaceholderText {
+opacity: 1;
+transition-property: opacity;
+transition-duration: 0.2s;
+margin-top: -2px;
+color: #57646d;
+font-size: 18px; }
+#ShopSearchEntry:focus #PlaceholderText {
+opacity: 0.0; }
+#ShopSearchEntry.HasInput #PlaceholderText {
+opacity: 0.0; }
+
+#ShowHideItemguidesButton {
+width: 34px;
+height: 34px;
+margin-top: 10px;
+margin-bottom: 6px;
+margin-left: 4px;
+transition-property: brightness, opacity;
+transition-duration: 0.24s;
+background-image: url("s2r://panorama/images/hud/reborn/bg_item_build_psd.vtex");
+opacity: 0.8; }
+#ShowHideItemguidesButton:hover {
+brightness: 2.0; }
+#ShowHideItemguidesButton:active {
+wash-color: #999999; }
+
+#ShowHideItemguidesIcon {
+width: 100%;
+height: 100%;
+background-image: url("s2r://panorama/images/hud/reborn/close_guide_btn_psd.vtex");
+background-repeat: no-repeat;
+background-position: center;
+background-size: 80%;
+transition-property: transform;
+transition-duration: 0.24s; }
+
+#ShopItems {
+height: 100%;
+width: 100%; }
+
+#ShopItemsBase {
+margin-top: 9px;
+height: 100%;
+width: 100%;
+visibility: visible; }
+
+#ShopSearchOverlay {
+margin-top: 1px;
+margin-left: 2px;
+height: 100%;
+width: 100%;
+visibility: collapse;
+flow-children: right-wrap;
+overflow: squish scroll; }
+
+.InSearchMode #ShopItemsBase {
+visibility: collapse; }
+
+.InSearchMode #ShopSearchOverlay {
+visibility: visible; }
+
+.ShopItemGroup {
+height: 100%;
+flow-children: down; }
+
+.CanBuy {
+border: 1px solid #cd9607; }
+
+.NotPurchasableItem {
+border: 1px solid red; }
+
+.SmallItemPanel {
+width: 45px;
+height: width-percentage(72.7%);
+margin: 2px;
+border-radius: 3px;
+transition-property: position;
+transition-duration: 0.1s; }
+.SmallItemPanel.CanBuy:hover #SmallItemImage {
+brightness: 1.6; }
+.SmallItemPanel.CanBuy:active #SmallItemImage {
+brightness: 0.8;
+width: 1000px; }
+
+#SmallItemButton {
+align: center center;
+width: 100%;
+height: 100%; }
+
+#SmallItemImage {
+align: center center;
+width: 100%;
+height: 100%;
+transition-property: brightness;
+transition-duration: 0.2s; }
+
+#SmallItemStock {
+color: white;
+font-size: 15px;
+font-weight: bold;
+text-shadow: 0 0 6px 3 #400040;
+margin-right: 0.5px;
+margin-bottom: -3px;
+align: right bottom; }
+
+#QuickBuyClearButtonPanel {
+background-image: url("file://{images}/control_icons/x_close.png");
+background-size: cover;
+background-position: 50% 50%;
+align: right bottom;
+height: 20px;
+width: 16px;
+margin: 2px;
+brightness: 0.4;
+transition-property: brightness;
+transition-duration: 0.15s; }
+#QuickBuyClearButtonPanel:hover {
+brightness: 1.0; }
+#QuickBuyClearButtonPanel:active {
+brightness: 0.6; }
+
+#QuickBuyPanelItems {
+align: left center;
+height: 100%;
+width: 232px;
+margin-left: 2px;
+margin-top: 2px;
+flow-children: right-wrap; }
+
+.DropDownValidTarget {
+width: 100%;
+height: 100%; }
+
+#QuickBuyPanel {
+background-image: url("s2r://panorama/images/hud/reborn/quickbuy_bg_psd.vtex");
+align: right bottom;
+margin-bottom: 60px;
+margin-right: 0;
+height: 65px;
+width: 262px;
+transition-property: transform;
+transition-duration: 0s;
+transition-delay: 0s;
+transition-timing-function: ease-in-out; }
+
+#QuickBuyStickyButtonPanel {
+align: right top;
+margin: 2px;
+margin-top: 4px; }
+
+.QuickBuyStickyItem {
+align: center center;
+margin: 0;
+width: 47px;
+border-width: 2px; }
+
+.QuickbuyItemPanel {
+width: 40px;
+margin: 1px;
+border-radius: 1px; }
+
+#StockOverlay {
+height: 100%;
+background-color: rgba(0, 0, 0, 0.86667); }
+
+#StockTimer {
+color: white;
+font-size: 20px;
+text-shadow: 0 0 6px 6 black;
+horizontal-align: center;
+vertical-align: center; }
+
+.UnitItemlikeRecipePanel {
+height: width-percentage(60.8%);
+width: 57.6px;
+flow-children: down;
+border-radius: 2px; }
+.UnitItemlikeRecipePanel:disabled {
+saturation: 0;
+wash-color: #d9faf9;
+blur: gaussian(1.1); }
+
+.UnitItemlikeRecipePanelChance {
+horizontal-align: right;
+margin-bottom: -7px;
+color: white;
+margin-top: -2px;
+font-size: 16px;
+font-weight: bold;
+text-shadow: 0 0 6px 6 black; }
+
+#ItemRecipeBoxDrops {
+width: 100%;
+height: 100%;
+visibility: collapse; }
+
+.ItemsPageInnerContainer {
+height: 100%;
+horizontal-align: center;
+flow-children: right-wrap;
+opacity: 0;
+transition-property: opacity;
+transition-duration: 0.15s; }
+.ItemsPageInnerContainer.SelectedPage {
+opacity: 1; }
+
+.DropDownMode .DropDownValidTarget {
+box-shadow: inset rgba(11, 147, 190, 0.74902) 20px 20px 40px 40px; }
+
+DOTAHud.IsBeforeGameplay #QuickBuyPanel {
+transform: translateY(230px);
+transition-duration: 1s;
+transition-delay: 2s; }
+
+.HUDFlipped #QuickBuyPanel {
+horizontal-align: left; }

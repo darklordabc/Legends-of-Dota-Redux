@@ -1,5 +1,3 @@
-require('lib/keyvalues')
-
 function UpdateRangedBonus(keys)
 	local caster = keys.caster
 	local ability = keys.ability
