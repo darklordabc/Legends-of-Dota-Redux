@@ -264,7 +264,6 @@ function PanoramaShop:StackStockableCooldown(team, item, time)
 end
 
 function PanoramaShop:InitializeItemTable()
-	print('Init')
 	local RecipesToCheck = {}
 	-- loading all items and splitting them by item/recipe
 	for name, kv in pairs(KeyValues.ItemKV) do
