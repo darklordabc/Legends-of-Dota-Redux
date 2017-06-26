@@ -81,7 +81,7 @@ end
 
 function modifier_flesh_heap_health_regeneration:DeclareFunctions()
   local funcs = {
-    MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
+    MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
     MODIFIER_EVENT_ON_DEATH,
   }
   return funcs
