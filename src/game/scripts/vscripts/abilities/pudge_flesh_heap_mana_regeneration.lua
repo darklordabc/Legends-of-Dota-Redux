@@ -81,7 +81,7 @@ end
 
 function modifier_flesh_heap_mana_regeneration:DeclareFunctions()
   local funcs = {
-    MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE,
+    MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
     MODIFIER_EVENT_ON_DEATH,
   }
   return funcs
@@ -136,7 +136,7 @@ function modifier_flesh_heap_mana_regeneration:OnDeath(keys)
   end
 end
 
-function modifier_flesh_heap_mana_regeneration:GetModifierPercentageManaRegen()
+function modifier_flesh_heap_mana_regeneration:GetModifierConstantManaRegen()
   return self.flesh_heap_value_buff_amount * self:GetStackCount()
 end
 
