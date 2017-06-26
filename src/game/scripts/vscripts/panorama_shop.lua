@@ -201,6 +201,8 @@ if PanoramaShop == nil then
 	LANG_ENGLISH = {}
 	util:MergeTables(LANG_ENGLISH, LoadKeyValues("resource/addon_english.txt")["Tokens"])
 	util:MergeTables(LANG_ENGLISH, LoadKeyValues("scripts/kv/dota_items_english.txt")["Tokens"])
+
+	PlayerTables:CreateTable("panorama_shop_data", {}, {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23})
 end
 
 function PanoramaShop:PushStockInfoToAllClients()
@@ -381,7 +383,7 @@ function PanoramaShop:InitializeItemTable()
 	end
 	PanoramaShop._ItemData = Items
 	CustomGameEventManager:RegisterListener("panorama_shop_item_buy", Dynamic_Wrap(PanoramaShop, "OnItemBuy"))
-	PlayerTables:CreateTable("panorama_shop_data", {ItemData = PanoramaShop.FormattedData, ShopList = Items}, {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23})
+	PlayerTables:SetTableValues("panorama_shop_data", {ItemData = PanoramaShop.FormattedData, ShopList = Items})
 	PanoramaShop:PushStockInfoToAllClients()
 end
 

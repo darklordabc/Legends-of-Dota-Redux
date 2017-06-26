@@ -130,8 +130,6 @@ function Ingame:init()
         local player = PlayerResource:GetPlayer(args.PlayerID)
         Say(player, util:secondsToClock(GameRules:GetDOTATime(false, true)), true)
     end)
-
-    PanoramaShop:InitializeItemTable()
 end
 
 function Ingame:OnPlayerReconnect(keys)

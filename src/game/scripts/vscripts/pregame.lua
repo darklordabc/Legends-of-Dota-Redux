@@ -4201,6 +4201,8 @@ function Pregame:processOptions()
         end
     end)
 
+    PanoramaShop:InitializeItemTable()
+
     -- Did it fail?
     if not status then
         SendToServerConsole('say "Post this to the LoD comments section: '..err:gsub('"',"''")..'"')
