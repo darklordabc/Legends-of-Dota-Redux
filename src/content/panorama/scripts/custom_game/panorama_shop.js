@@ -75,35 +75,62 @@ function SearchItems() {
 }
 
 function PushItemsToList() {
-	var isTabSelected = false;
+	var isShopPageSelected = false;
 	$.Each(ItemList, function(shopContent, shopName) {
-		shopName = String(shopName);
-		var TabButton = $.CreatePanel('RadioButton', $('#ShopTabs'), 'shop_tab_' + shopName);
-		TabButton.AddClass('ShopTabButton');
-		TabButton.style.width = (100 / Object.keys(ItemList).length) + '%';
+		shopName = shopName + '';
+		var TabButton = $.CreatePanel('RadioButton', $('#ShopPagesList'), '');
+		TabButton.BLoadLayoutSnippet('ShopPageButton');
+		TabButton.FindChildTraverse('ButtonImage').SetImage('file://{images}/custom_game/shop/page_' + shopName + '.png');
+		TabButton.SetPanelEvent('onactivate', function() {
+			SelectShopPage(shopName);
+		});
+		var TabShopItemlistPanel = $.CreatePanel('Panel', $('#ShopPagesHost'), shopName);
+		TabShopItemlistPanel.BLoadLayoutSnippet('ShopPage');
+		FillShopPage(TabShopItemlistPanel, shopName, shopContent);
+
+		if (!isShopPageSelected) {
+			SelectShopPage(shopName);
+			TabButton.checked = true;
+			isShopPageSelected = true;
+		}
+	});
+}
+
+function SelectShopPage(shopName) {
+	$.Each($('#ShopPagesHost').Children(), function(child) {
+		child.SetHasClass('SelectedPage', child.id === shopName);
+	});
+}
+
+function FillShopPage(panel, shopName, shopContent) {
+	var isTabSelected = false;
+	$.Each(shopContent, function(tabContent, tabName) {
+		tabName = tabName + '';
+		var id = 'shop_' + shopName + '_tab_' + tabName;
+		panel.FindChildTraverse('ShopTabs').BCreateChildren('<RadioButton class="ShopTabButton" id="' + id + '" group="shop_' + shopName + '"/>');
+		var TabButton = panel.FindChildTraverse(id);
+		TabButton.style.width = (100 / Object.keys(shopContent).length) + '%';
 		var TabButtonLabel = $.CreatePanel('Label', TabButton, '');
-		TabButtonLabel.text = $.Localize('panorama_shop_shop_tab_' + shopName);
+		TabButtonLabel.text = $.Localize('panorama_shop_' + id);
 		TabButtonLabel.hittest = false;
-		TabButton.SetPanelEvent('onactivate', (function(_shopName) {
-			return function() {
-				SelectShopTab(_shopName);
-			};
-		})(shopName));
-		var TabShopItemlistPanel = $.CreatePanel('Panel', $('#ShopItemsBase'), 'shop_panels_tab_' + shopName);
+		var TabShopItemlistPanel = $.CreatePanel('Panel', panel.FindChildTraverse('ShopItems'), 'shop_panels_tab_' + tabName);
 		TabShopItemlistPanel.AddClass('ItemsPageInnerContainer');
-		FillShopTable(TabShopItemlistPanel, shopContent);
+		FillShopTable(TabShopItemlistPanel, tabContent);
+		TabButton.SetPanelEvent('onactivate', function() {
+			SelectShopTab(panel, tabName);
+		});
 
 		if (!isTabSelected) {
-			SelectShopTab(shopName);
+			SelectShopTab(panel, tabName);
 			TabButton.checked = true;
 			isTabSelected = true;
 		}
 	});
 }
 
-function SelectShopTab(tabTitle) {
-	$.Each($('#ShopItemsBase').Children(), function(child) {
-		child.SetHasClass('SelectedPage', child.id.replace('shop_panels_tab_', '') === tabTitle);
+function SelectShopTab(panel, tabName) {
+	$.Each(panel.FindChildTraverse('ShopItems').Children(), function(child) {
+		child.SetHasClass('SelectedPage', child.id.replace('shop_panels_tab_', '') === tabName);
 	});
 }
 
@@ -240,7 +267,6 @@ function ShowItemRecipe(itemName) {
 	SnippetCreate_SmallItem(itemPanel, itemName);
 	itemPanel.style.align = 'center center';
 	var len = 0;
-	$('#ItemRecipeBoxDrops').visible = false;
 	if (RecipeData != null && RecipeData.items != null) {
 		$.Each(RecipeData.items[1], function(childName) {
 			var itemPanel = $.CreatePanel('Panel', $('#ItemRecipeBoxRow3'), 'ItemRecipeBoxRow3_item_' + childName);
@@ -254,19 +280,6 @@ function ShowItemRecipe(itemName) {
 			SnippetCreate_SmallItem(itemPanel, RecipeData.recipeItemName);
 			itemPanel.style.align = 'center center';
 		}
-	} else if (DropListData != null) {
-		$('#ItemRecipeBoxDrops').visible = true;
-		$.Each($('#ItemRecipeBoxDrops').Children(), function(pan) {
-			var unit = pan.id.replace('ItemRecipeBoxDrops_', '');
-			pan.enabled = DropListData[unit] != null;
-			pan.RemoveAndDeleteChildren();
-			if (DropListData[unit] != null)
-				$.Each(DropListData[unit], function(chance) {
-					var chancePanel = $.CreatePanel('Label', pan, '');
-					chancePanel.AddClass('UnitItemlikeRecipePanelChance');
-					chancePanel.text = chance + '%';
-				});
-		});
 	}
 	$('#ItemRecipeBoxRow3').SetHasClass('ItemRecipeBoxRowLength7', len >= 7);
 	$('#ItemRecipeBoxRow3').SetHasClass('ItemRecipeBoxRowLength8', len >= 8);
@@ -547,6 +560,8 @@ function DynamicSubscribePTListener(table, callback, OnConnectedCallback) {
 }
 
 (function() {
+	$('#ShopPagesHost').RemoveAndDeleteChildren();
+	$('#ShopPagesList').RemoveAndDeleteChildren();
 	var hud = $.GetContextPanel().GetParent();
 	while(hud.id !== 'Hud') {
 		hud = hud.GetParent();

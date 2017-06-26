@@ -17,9 +17,21 @@
 				</Button>
 			</Panel>
 		</snippet>
+		<snippet name="ShopPage">
+			<Panel class="ShopPageElement">
+				<Panel id="ShopTabs" />
+				<Panel id="ShopItems" />
+			</Panel>
+		</snippet>
+		<snippet name="ShopPageButton">
+			<RadioButton group="shop" class="ShopPageButton">
+				<Image id="ButtonImage"/>
+			</RadioButton>
+		</snippet>
 	</snippets>
 	<Panel hittest="false" class="base">
 		<Panel hittest="true" onmouseactivate="" acceptfocus="true" onfocus="DropInputFocus()" oncancel="OpenCloseShop(false)" id="ShopBase">
+			<Panel id="ShopPagesList" />
 			<Panel id="ShopItemBasePanel">
 				<Panel id="ShopItemList">
 					<Panel id="ShopSearch">
@@ -28,26 +40,14 @@
 						</Button> -->
 						<TextEntry id="ShopSearchEntry" oncancel="ClearSearch()" oninputsubmit="DropInputFocus()" placeholder="#panorama_shop_search_placeholder"/>
 					</Panel>
-					<Panel id="ShopTabs" />
-					<Panel id="ShopItems">
-						<Panel id="ShopItemsBase" />
-						<Panel id="ShopSearchOverlay" />
-					</Panel>
+					<Panel id="ShopPagesHost" />
+					<Panel id="ShopSearchOverlay" />
 				</Panel>
 				<Panel id="ItemRecipeBox">
 					<Panel id="ItemRecipeBoxRows">
 						<Panel class="ItemRecipeBoxRow" id="ItemRecipeBoxRow1" />
 						<Panel class="ItemRecipeBoxRow" id="ItemRecipeBoxRow2" />
 						<Panel class="ItemRecipeBoxRow" id="ItemRecipeBoxRow3" />
-					</Panel>
-					<Panel hittest="false" id="ItemRecipeBoxDrops">
-						<Image class="UnitItemlikeRecipePanel" id="ItemRecipeBoxDrops_npc_arena_boss_freya" src="file://{images}/heroes/npc_arena_hero_freya.png" style="position: 59px 40px 0;"/>
-						<Image class="UnitItemlikeRecipePanel" id="ItemRecipeBoxDrops_npc_arena_boss_zaken" src="file://{images}/heroes/npc_arena_hero_zaken.png" style="position: 194px 40px 0;"/>
-						<Image class="UnitItemlikeRecipePanel" id="ItemRecipeBoxDrops_npc_arena_boss_l1_v1" src="file://{images}/custom_game/units/npc_arena_boss_l1_v1.png" style="position: 1px 80px 0;"/>
-						<Image class="UnitItemlikeRecipePanel" id="ItemRecipeBoxDrops_npc_arena_boss_l1_v2" src="file://{images}/custom_game/units/npc_arena_boss_l1_v2.png" style="position: 64px 80px 0;"/>
-						<Image class="UnitItemlikeRecipePanel" id="ItemRecipeBoxDrops_npc_arena_boss_central" src="file://{images}/custom_game/units/npc_arena_boss_central.png" style="position: 128px 80px 0;"/>
-						<Image class="UnitItemlikeRecipePanel" id="ItemRecipeBoxDrops_npc_arena_boss_l2_v1" src="file://{images}/custom_game/units/npc_arena_boss_l2_v1.png" style="position: 190px 80px 0;"/>
-						<Image class="UnitItemlikeRecipePanel" id="ItemRecipeBoxDrops_npc_arena_boss_l2_v2" src="file://{images}/custom_game/units/npc_arena_boss_l2_v2.png" style="position: 251px 80px 0;"/>
 					</Panel>
 				</Panel>
 			</Panel>
@@ -57,6 +57,10 @@
 			<Panel id="QuickBuyPanelItems" />
 			<Image id="QuickBuyClearButtonPanel" onactivate="ClearQuickbuyItems()"/>
 			<Panel id="QuickBuyStickyButtonPanel" />
+		</Panel>
+		<Panel style="visibility: collapse;">
+			<Image src="file://{images}/custom_game/shop/page_1.png"/>
+			<Image src="file://{images}/custom_game/shop/page_2.png"/>
 		</Panel>
 	</Panel>
 </root>
