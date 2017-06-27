@@ -192,7 +192,21 @@ PANORAMA_SHOP_ITEMS = {
 				"item_rapier",
 			}
 		}
+	},
+	-- 3 - ...
+	{
+		{
+			{
+				"item_imba_white_queen_cape",
+				"item_rapier",
+				"item_rapier",
+				"item_rapier",
+				"item_rapier",
+				"item_rapier",
+			}
+		}
 	}
+
 }
 
 SHOP_LIST_STATUS_IN_INVENTORY = 0
@@ -283,6 +297,7 @@ function PanoramaShop:InitializeItemTable()
 	local enabledShops = {
 		[1] = true,
 		[2] = true,
+		[3] = true,
 	}
 	local RecipesToCheck = {}
 	-- loading all items and splitting them by item/recipe

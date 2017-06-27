@@ -1093,4 +1093,91 @@
         "ItemInitialCharges"            "1"
         "ItemSellable"                  "0"
     }
+
+    //=================================================================================================================
+    // Recipe: White Queen's Cape
+    //=================================================================================================================
+    "item_recipe_imba_white_queen_cape"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2109"
+        "BaseClass"                     "item_datadriven"
+        "AbilityTextureName"            "custom/imba_recipe"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "505"
+        "ItemShopTags"                  ""
+
+        // Recipe
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_imba_white_queen_cape"
+        "ItemRequirements"
+        {
+            "01"                        "item_belt_of_strength;item_blades_of_attack"
+        }
+    }
+
+    //=================================================================================================================
+    // White Queen Cape
+    //=================================================================================================================
+    "item_imba_white_queen_cape"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "1243"
+        "BaseClass"                     "item_black_king_bar"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityTextureName"            "custom/imba_white_queen_cape"
+        "FightRecapLevel"               "1"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "30"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "1375"
+        "ItemShopTags"                  "str;damage;hard_to_tag"
+        "ItemQuality"                   "epic"
+        "ItemAliases"                   "wqc;white queen cape"
+        "ItemSellable"                  "1"
+        "AbilitySharedCooldown"         "bkb"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_strength"        "6"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_damage"          "9"
+                "CalculateSpellDamageTooltip"   "0"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "duration"              "2.5"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "max_level"             "1"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "model_scale"           "25"
+            }
+        }
+    }
 }

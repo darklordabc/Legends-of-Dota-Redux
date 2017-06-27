@@ -61,6 +61,7 @@
 		<Panel style="visibility: collapse;">
 			<Image src="file://{images}/custom_game/shop/page_1.png"/>
 			<Image src="file://{images}/custom_game/shop/page_2.png"/>
+			<Image src="file://{images}/custom_game/shop/page_3.png"/>
 		</Panel>
 	</Panel>
 </root>
