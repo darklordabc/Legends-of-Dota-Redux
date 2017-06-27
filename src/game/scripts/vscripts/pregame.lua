@@ -981,8 +981,13 @@ function Pregame:applyBuilds()
             local hero = PlayerResource:GetSelectedHeroEntity(playerID)
 
             if self.wispSpawning and hero and hero:GetUnitName() ~= self.selectedHeroes[playerID] then
-                print("wrong hero...")
-                return 0.03
+                local minPlayerID = 0
+                local maxPlayerID = 24
+
+                for playerID = minPlayerID,maxPlayerID-1 do
+                    self:onIngameBuilder(nil, { playerID = playerID })
+                end
+                return
             end
 
             if hero ~= nil and IsValidEntity(hero) then
@@ -1182,7 +1187,13 @@ function Pregame:onThink()
                 end
             else
                 -- Change to picking phase
-                self:setPhase(constants.PHASE_SELECTION)
+                if util:anyBots() then
+                    GameRules:GetGameModeEntity():SetCustomGameForceHero("")
+                    self:setPhase(constants.PHASE_SELECTION)
+                else
+                    self.wispSpawning = true
+                    self:setPhase(constants.PHASE_SPAWN_HEROES)
+                end
                 self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'), OptionManager:GetOption('pickingTime'))
             end
         end
@@ -1192,13 +1203,6 @@ function Pregame:onThink()
 
     -- Selection phase
     if ourPhase == constants.PHASE_SELECTION then
-        if util:anyBots() then
-            print("disabling wisp", self.desiredRadiant)
-            GameRules:GetGameModeEntity():SetCustomGameForceHero("")
-        else
-            self.wispSpawning = true
-        end
-
         if self.useDraftArrays and not self.draftArrays then
             self:buildDraftArrays()
 
@@ -1274,8 +1278,6 @@ function Pregame:onThink()
 
                 -- Kill the selection screen
                 self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime'))
-
-                GameRules:FinishCustomGameSetup()
             else
                 self.additionalPickTime = true
                 self:setEndOfPhase(Time() + 15.0)
@@ -1319,8 +1321,6 @@ function Pregame:onThink()
 
             -- Kill the selection screen
             self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime'))
-
-            GameRules:FinishCustomGameSetup()
         end
 
         return 0.1
@@ -1354,6 +1354,8 @@ function Pregame:onThink()
 
         -- Hook bot stuff
         self:hookBotStuff()
+
+        GameRules:FinishCustomGameSetup()
 
         -- Spawn all humans
         Timers:CreateTimer(function()
@@ -1463,6 +1465,10 @@ end
 function Pregame:spawnAllHeroes()
     local minPlayerID = 0
     local maxPlayerID = 24
+
+    if self.wispSpawning then
+        return
+    end
 
     for playerID = minPlayerID,maxPlayerID-1 do
         self:spawnPlayer(playerID)
@@ -1996,7 +2002,13 @@ function Pregame:finishOptionSelection()
             end
         else
             -- Hero selection
-            self:setPhase(constants.PHASE_SELECTION)
+            if util:anyBots() then
+                GameRules:GetGameModeEntity():SetCustomGameForceHero("")
+                self:setPhase(constants.PHASE_SELECTION)
+            else
+                self.wispSpawning = true
+                self:setPhase(constants.PHASE_SPAWN_HEROES)
+            end
             -- Change the below line to "self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'), nil)" to disable unlimited time
             self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'), OptionManager:GetOption('pickingTime'))
         end
@@ -2086,6 +2098,9 @@ end
 function Pregame:onIngameBuilder(eventSourceIndex, args)
     local playerID = args.playerID
     local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+    if not hero then
+        return
+    end
     if duel_active or hero:HasModifier("modifier_tribune") then
         customAttension("#duel_cant_swap", 5)
         return
@@ -3704,14 +3719,23 @@ end]]
 
 
 -- Validates builds
-function Pregame:validateBuilds()
-    -- Only process this once
-    if self.validatedBuilds then return end
-    self.validatedBuilds = true
+function Pregame:validateBuilds(specificID)
+    if self.wispSpawning then
+        if not specificID then return end
+    else
+        -- Only process this once
+        if self.validatedBuilds then return end
+        self.validatedBuilds = true 
+    end
 
     -- Generate 10 builds
     local minPlayerID = 0
     local maxPlayerID = 24
+
+    if self.wispSpawning then
+        minPlayerID = specificID
+        maxPlayerID = specificID+1
+    end
 
     -- Validate it
     local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
@@ -4732,6 +4756,9 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
         local playerID = args.PlayerID
         local hero = PlayerResource:GetSelectedHeroEntity(playerID)
         if IsValidEntity(hero) then
+            if self.wispSpawning then
+                self:validateBuilds(playerID)
+            end
             local newBuild = util:DeepCopy(self.selectedSkills[playerID])
             local count = 0
             for key,_ in pairs(newBuild) do
@@ -7201,6 +7228,9 @@ function Pregame:fixSpawnedHero( spawnedUnit )
 
     local mainHero = PlayerResource:GetSelectedHeroEntity(playerID)
 
+    mainHero:RemoveNoDraw()
+    mainHero:RemoveModifierByName("modifier_tribune")
+
     if mainHero and mainHero:IsRealHero() then
         self:applyPrimaryAttribute(playerID, mainHero)
     end
@@ -7698,6 +7728,13 @@ function Pregame:fixSpawningIssues()
     ListenToGameEvent('npc_spawned', function(keys)
         -- Grab the unit that spawned
         local spawnedUnit = EntIndexToHScript(keys.entindex)
+
+        if self.wispSpawning then
+            if not self.selectedHeroes[spawnedUnit:GetPlayerOwnerID()] and spawnedUnit:IsRealHero() then
+                spawnedUnit:AddNoDraw()
+                spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_tribune",{})
+            end
+        end
 
         -- Grab their playerID
         if spawnedUnit.GetPlayerID then
