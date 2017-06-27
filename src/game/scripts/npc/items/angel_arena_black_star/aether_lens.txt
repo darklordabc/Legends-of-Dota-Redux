@@ -1,0 +1,272 @@
+""
+{
+	"item_recipe_aether_lens_arena"
+	{
+		"BaseClass"						"item_datadriven"
+		"ID"							"-1"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		"ItemCost"						"500"
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_aether_lens_arena"
+		"ItemRequirements"
+		{
+			"01"						"item_energy_booster;item_ring_of_health;item_angel_arena_black_star_core"
+		}
+	}
+
+	"item_recipe_aether_lens_2"
+	{
+		"BaseClass"						"item_datadriven"
+		"ID"							"-1"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		"ItemCost"						"1000"
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_aether_lens_2"
+		"ItemRequirements"
+		{
+			"01"						"item_aether_lens_arena"
+		}
+	}
+
+	"item_recipe_aether_lens_3"
+	{
+		"BaseClass"						"item_datadriven"
+		"ID"							"-1"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		"ItemCost"						"1500"
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_aether_lens_3"
+		"ItemRequirements"
+		{
+			"01"						"item_aether_lens_2"
+		}
+	}
+
+	"item_recipe_aether_lens_4"
+	{
+		"BaseClass"						"item_datadriven"
+		"ID"							"-1"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		"ItemCost"						"2000"
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_aether_lens_4"
+		"ItemRequirements"
+		{
+			"01"						"item_aether_lens_3"
+		}
+	}
+
+	"item_recipe_aether_lens_5"
+	{
+		"BaseClass"						"item_datadriven"
+		"ID"							"-1"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		"ItemCost"						"2500"
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_aether_lens_5"
+		"ItemRequirements"
+		{
+			"01"						"item_aether_lens_4"
+		}
+	}
+
+	"item_aether_lens_arena"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/angel_arena_black_star/item_aether_lens"
+		"AbilityTextureName"			"item_aether_lens"
+		"ID"							"-1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemAliases"					"aether lens"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"1"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana"			"250 500 750 1000 1250"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health_regen"	"8 12 16 20 24"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range_bonus"		"175 200 215 230 245"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spell_amp_pct"			"6 8 10 11 12"
+			}
+		}
+	}
+
+	"item_aether_lens_2"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/angel_arena_black_star/item_aether_lens"
+		"AbilityTextureName"			"arena/aether_lens_2"
+		"ID"							"-1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemAliases"					"aether lens 2"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"2"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana"			"250 500 750 1000 1250"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health_regen"	"8 12 16 20 24"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range_bonus"		"175 200 215 230 245"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spell_amp_pct"			"6 8 10 11 12"
+			}
+		}
+	}
+
+	"item_aether_lens_3"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/angel_arena_black_star/item_aether_lens"
+		"AbilityTextureName"			"arena/aether_lens_3"
+		"ID"							"-1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemAliases"					"aether lens 3"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"3"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana"			"250 500 750 1000 1250"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health_regen"	"8 12 16 20 24"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range_bonus"		"175 200 215 230 245"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spell_amp_pct"			"6 8 10 11 12"
+			}
+		}
+	}
+
+	"item_aether_lens_4"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/angel_arena_black_star/item_aether_lens"
+		"AbilityTextureName"			"arena/aether_lens_4"
+		"ID"							"-1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemAliases"					"aether lens 4"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"4"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana"			"250 500 750 1000 1250"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health_regen"	"8 12 16 20 24"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range_bonus"		"175 200 215 230 245"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spell_amp_pct"			"6 8 10 11 12"
+			}
+		}
+	}
+
+	"item_aether_lens_5"
+	{
+		"BaseClass"						"item_lua"
+		"ScriptFile"					"items/angel_arena_black_star/item_aether_lens"
+		"AbilityTextureName"			"arena/aether_lens_5"
+		"ID"							"-1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemAliases"					"aether lens 5"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		"MaxUpgradeLevel"				"5"
+		"ItemBaseLevel"					"5"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana"			"250 500 750 1000 1250"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health_regen"	"8 12 16 20 24"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range_bonus"		"175 200 215 230 245"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spell_amp_pct"			"6 8 10 11 12"
+			}
+		}
+	}
+}

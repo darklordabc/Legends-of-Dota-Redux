@@ -218,6 +218,14 @@ function GetAbilitySpecial(name, key, level)
 	else return t end
 end
 
+function string.split(inputstr, sep)
+	local t = {}
+	for str in string.gmatch(inputstr, "([^" .. (sep or "%s") .. "]+)") do
+		table.insert(t, str)
+	end
+	return t
+end
+
 function GetItemNameById(itemid)
 	for name,kv in pairs(KeyValues.ItemKV) do
 		if kv and type(kv) == "table" and kv.ID and kv.ID == itemid then

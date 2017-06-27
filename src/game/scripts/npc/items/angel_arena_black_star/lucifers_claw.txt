@@ -1,0 +1,166 @@
+""
+{
+	"item_recipe_lucifers_claw"
+	{
+		"BaseClass"						"item_datadriven"
+		"ID"							"-1"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		"ItemCost"						"500"
+		"ItemShopTags"					""
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_lucifers_claw"
+		"ItemRequirements"
+		{
+			"01"						"item_wraith_band;item_iron_talon;item_helm_of_the_dominator;item_angel_arena_black_star_core"
+		}
+	}
+
+	"item_lucifers_claw"
+	{
+		"BaseClass"						"item_datadriven"
+		"ID"							"-1"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+		"AbilityTextureName"			"item_arena/lucifers_claw"
+
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.0"
+		"AbilityCooldown"				"60.0"
+		"AbilityManaCost"				"50"
+		"ItemShopTags"					"damage"
+		"ItemQuality"					"common"
+		"ItemAliases"					"quelling blade"
+		"AbilitySharedCooldown"			"item_quelling_blade;item_iron_talon"
+
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health_regen"	"3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_armor"			"10"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_all_stats"		"12"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"20"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"lifesteal_percent"		"15"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_bonus"			"180"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_bonus_ranged"	"140"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"quelling_range_tooltip" "600"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"alternative_cooldown"	"4"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"doomling_health"		"1500"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"doomling_health_regen"	"15.0"
+			}
+			"12"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"doomling_mana"			"350"
+			}
+			"13"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"doomling_mana_regen"	"7.0"
+			}
+			"14"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"doomling_damage_min"	"57"
+			}
+			"15"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"doomling_damage_max"	"63"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"items/angel_arena_black_star/item_lucifers_claw.lua"
+				"Function"		"OnSpellStart"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_item_lucifers_claw"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"		"%bonus_health_regen"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%bonus_armor"
+					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%bonus_all_stats"
+					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%bonus_all_stats"
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"		"%bonus_all_stats"
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+				}
+			}
+
+			"modifier_item_lucifers_claw_unique"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"items/angel_arena_black_star/kv.lua"
+						"Function"		"ModifyCreepDamage"
+						"damage"		"%attack_damage"
+						"damage_bonus"	"%damage_bonus"
+						"damage_bonus_ranged"	"%damage_bonus_ranged"
+					}
+				}
+			}
+		}
+	}
+}

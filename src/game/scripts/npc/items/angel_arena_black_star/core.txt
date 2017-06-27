@@ -1,0 +1,11 @@
+""
+{
+    "item_angel_arena_black_star_core"
+    {
+        "BaseClass"                      "item_datadriven"
+        "AbilityBehavior"                "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"             "item_custom/angel_arena_black_star_core"
+        "ID"                             "-1"
+        "ItemCost"                       "10"
+    }
+}

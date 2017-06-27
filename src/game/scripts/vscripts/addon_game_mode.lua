@@ -38,6 +38,9 @@ require('lib/notifications')
 require('lib/keyvalues')
 require('panorama_shop')
 
+-- Misc functions for Angel Arena Black Star abilities/items
+require('lib/util_aabs')
+
 -- Precaching
 function Precache(context)
     local soundList = LoadKeyValues('scripts/kv/sounds.kv')

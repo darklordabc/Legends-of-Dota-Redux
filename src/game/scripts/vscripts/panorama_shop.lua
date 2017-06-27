@@ -180,20 +180,29 @@ PANORAMA_SHOP_ITEMS = {
 			}
 		}
 	},
-	-- 2 - ...
+	-- 2 - Angel Arena Black Star
 	{
 		{
 			{
-				"item_rapier",
-				"item_rapier",
-				"item_rapier",
-				"item_rapier",
-				"item_rapier",
-				"item_rapier",
+				"item_angel_arena_black_star_core",
+			},
+			{
+				"item_aether_lens_arena",
+				"item_aether_lens_2",
+				"item_aether_lens_3",
+				"item_aether_lens_4",
+				"item_aether_lens_5",
+			},
+			{
+				"item_steam_footgear",
+				"item_lucifers_claw",
+				"item_book_of_the_keeper",
+				"item_book_of_the_guardian",
+				"item_lotus_sphere",
 			}
 		}
 	},
-	-- 3 - ...
+	-- 3 - Dota IMBA
 	{
 		{
 			{
@@ -217,7 +226,7 @@ SHOP_LIST_STATUS_IN_INVENTORY = 0
 SHOP_LIST_STATUS_IN_STASH = 1
 SHOP_LIST_STATUS_TO_BUY = 2
 SHOP_LIST_STATUS_NO_STOCK = 3
---SHOP_LIST_STATUS_NO_BOSS = 4
+SHOP_LIST_STATUS_ITEM_DISABLED = 4
 
 if PanoramaShop == nil then
 	_G.PanoramaShop = class({})
@@ -298,10 +307,9 @@ function PanoramaShop:StackStockableCooldown(team, item, time)
 end
 
 function PanoramaShop:InitializeItemTable()
-	local enabledShops = {
-		[1] = true,
-		[2] = true,
-		[3] = true,
+	-- TODO: Control this with options
+	local disabledShops = {
+		
 	}
 	local RecipesToCheck = {}
 	-- loading all items and splitting them by item/recipe
@@ -407,7 +415,7 @@ function PanoramaShop:InitializeItemTable()
 	-- checking all items in shop list
 	local Items = {}
 	for shopName, shopData in pairs(PANORAMA_SHOP_ITEMS) do
-		if enabledShops[shopName] then
+		if not disabledShops[shopName] then
 			Items[shopName] = {}
 			for tabName, tabData in pairs(shopData) do
 				Items[shopName][tabName] = {}
@@ -597,7 +605,7 @@ function PanoramaShop:HasAnyOfItemChildren(unit, team, childItemName, baseItemNa
 	util:removeByValue(primary_items, childItemName)
 	for _,v in ipairs(primary_items) do
 		local stocks = PanoramaShop:GetItemStockCount(team, v)
-		if FindItemInInventoryByName(unit, v, true) or GetKeyValue(v, "ItemPurchasableFilter") == 0 or GetKeyValue(v, "ItemPurchasable") == 0 or stocks then
+		if FindItemInInventoryByName(unit, v, true) or not PanoramaShop.FormattedData[v].purchasable or stocks then
 			return true
 		end
 	end
@@ -639,8 +647,8 @@ function PanoramaShop:BuyItem(playerID, unit, itemName)
 				ProbablyPurchasable[name .. "_index_" .. itemCounter[name]] = SHOP_LIST_STATUS_IN_STASH
 			elseif name ~= itemName and itemcount_inv >= itemCounter[name] then
 				ProbablyPurchasable[name .. "_index_" .. itemCounter[name]] = SHOP_LIST_STATUS_IN_INVENTORY
-			-- elseif GetKeyValue(name, "ItemPurchasableFilter") == 0 or GetKeyValue(name, "ItemPurchasable") == 0 then
-			-- 	ProbablyPurchasable[name .. "_index_" .. itemCounter[name]] = SHOP_LIST_STATUS_NO_BOSS
+			elseif not PanoramaShop.FormattedData[name].purchasable then
+			 	ProbablyPurchasable[name .. "_index_" .. itemCounter[name]] = SHOP_LIST_STATUS_ITEM_DISABLED
 			elseif stocks and stocks < 1 then
 				ProbablyPurchasable[name .. "_index_" .. itemCounter[name]] = SHOP_LIST_STATUS_NO_STOCK
 			else
@@ -669,11 +677,10 @@ function PanoramaShop:BuyItem(playerID, unit, itemName)
 	local wastedGold = 0
 	for name,status in pairs(ProbablyPurchasable) do
 		name = string.gsub(name, "_index_%d+", "")
-		--[[ if status == SHOP_LIST_STATUS_NO_BOSS then
-			util:DisplayError(playerID, "dota_hud_error_item_from_bosses")
+		if status == SHOP_LIST_STATUS_ITEM_DISABLED then
+			util:DisplayError(playerID, "dota_hud_error_panorama_shop_item_disabled")
 			return
-		else ]]
-		if status == SHOP_LIST_STATUS_NO_STOCK then
+		elseif status == SHOP_LIST_STATUS_NO_STOCK then
 			util:DisplayError(playerID, "dota_hud_error_item_out_of_stock")
 			return
 		elseif status == SHOP_LIST_STATUS_TO_BUY then
