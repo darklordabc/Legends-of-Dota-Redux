@@ -3,11 +3,10 @@ LinkLuaModifier("modifier_item_lotus_sphere", "items/angel_arena_black_star/item
 item_lotus_sphere = class({
 	GetIntrinsicModifierName = function() return "modifier_item_lotus_sphere" end,
 })
-print('LOTUS INIT')
 
 modifier_item_lotus_sphere = class({
 	IsPurgable  = function() return false end,
-	IsHidden    = function() return false end,
+	IsHidden    = function() return true end,
 	GetAttacker = function() return MODIFIER_ATTRIBUTE_MULTIPLE end,
 })
 
