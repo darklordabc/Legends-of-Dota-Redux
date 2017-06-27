@@ -199,7 +199,7 @@ PANORAMA_SHOP_ITEMS = {
 			{
 				"item_imba_white_queen_cape",
 				"item_imba_soul_of_truth",
-				"item_rapier",
+				"item_imba_power_treads_2",
 				"item_rapier",
 				"item_rapier",
 				"item_rapier",
