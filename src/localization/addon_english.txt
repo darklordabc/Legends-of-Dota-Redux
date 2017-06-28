@@ -2369,11 +2369,6 @@
     "DOTA_Tooltip_ability_pudge_flesh_heap_magic_resistance_flesh_heap_value_buff_amount"  "RESISTANCE PER STACK:"
     "DOTA_Tooltip_ability_pudge_flesh_heap_magic_resistance_flesh_heap_range"            "RANGE:"
 
-
-
-
-
-
     "DOTA_Tooltip_ability_pudge_flesh_heap_cast_range"         "Flesh Heap - Cast Range"
     "DOTA_Tooltip_ability_pudge_flesh_heap_cast_range_Description" "<font color='#70EA72'>Gives bonus cast range that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Magic Resistance is retroactive, meaning it can gain charges before it is skilled, which then become active."
     "DOTA_Tooltip_ability_pudge_flesh_heap_cast_range_flesh_heap_value_buff_amount"  "CAST RANGE PER STACK:"
@@ -2393,6 +2388,23 @@
     "DOTA_Tooltip_ability_pudge_flesh_heap_armor_Description" "<font color='#70EA72'>Gives bonus armor that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Magic Resistance is retroactive, meaning it can gain charges before it is skilled, which then become active."
     "DOTA_Tooltip_ability_pudge_flesh_heap_armor_flesh_heap_value_buff_amount"  "ARMOR PER STACK:"
     "DOTA_Tooltip_ability_pudge_flesh_heap_armor_flesh_heap_range"            "RANGE:"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_health_regeneration"         "Flesh Heap - Health Regeneration"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_health_regeneration_Description" "<font color='#70EA72'>Gives health regeneration that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Health Regeneration is retroactive, meaning it can gain charges before it is skilled, which then become active."
+    "DOTA_Tooltip_ability_pudge_flesh_heap_health_regeneration_flesh_heap_value_buff_amount"  "HEALTH REGEN PER STACK:"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_health_regeneration_flesh_heap_range"            "RANGE:"
+
+    "DOTA_Tooltip_modifier_flesh_heap_health_regeneration"                  "Flesh Heap - Health Regeneration"
+    "DOTA_Tooltip_modifier_flesh_heap_health_regeneration_Description"              "Gaining bonus Health Regeneration"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_mana_regeneration"         "Flesh Heap - Mana Regeneration"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_mana_regeneration_Description" "<font color='#70EA72'>Gives Mana regeneration that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Mana Regeneration is retroactive, meaning it can gain charges before it is skilled, which then become active."
+    "DOTA_Tooltip_ability_pudge_flesh_heap_mana_regeneration_flesh_heap_value_buff_amount"  "MANA REGEN PER STACK:"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_mana_regeneration_flesh_heap_range"            "RANGE:"
+
+    "DOTA_Tooltip_modifier_flesh_heap_mana_regeneration"                  "Flesh Heap - Mana Regeneration"
+    "DOTA_Tooltip_modifier_flesh_heap_mana_regeneration_Description"              "Gaining bonus Mana Regeneration"
+
 
     "DOTA_Tooltip_modifier_flesh_heap_cast_range"                                              "Cast Range"
     "DOTA_Tooltip_modifier_flesh_heap_cast_range_Description"                                  "Gaining extra cast range per stack"
@@ -7032,25 +7044,25 @@
 
     "DOTA_Tooltip_ability_spawn_small_camp"                             "Spawn Small Camp"
     "DOTA_Tooltip_ability_spawn_small_camp_Description"                 "Spawns a group of units, a small camp of creeps."
-    "DOTA_Tooltip_ability_spawn_small_camp_camps_spawned"                   "CAMPS SPAWNED:"
+    //"DOTA_Tooltip_ability_spawn_small_camp_camps_spawned"                   "CAMPS SPAWNED:"
     "DOTA_Tooltip_ability_spawn_small_camp_spawn_radius"                    "RADIUS:"
     "DOTA_Tooltip_ability_spawn_small_camp_channel_time"                    "CHANNEL TIME:"
 
     "DOTA_Tooltip_ability_spawn_medium_camp"                                "Spawn Medium Camp"
     "DOTA_Tooltip_ability_spawn_medium_camp_Description"                    "Spawns a group of units, a medium camp of creeps."
-    "DOTA_Tooltip_ability_spawn_medium_camp_camps_spawned"                  "CAMPS SPAWNED:"
+    //"DOTA_Tooltip_ability_spawn_medium_camp_camps_spawned"                  "CAMPS SPAWNED:"
     "DOTA_Tooltip_ability_spawn_medium_camp_spawn_radius"                   "RADIUS:"
     "DOTA_Tooltip_ability_spawn_medium_camp_channel_time"                    "CHANNEL TIME:"
 
     "DOTA_Tooltip_ability_spawn_large_camp"                             "Spawn large Camp"
     "DOTA_Tooltip_ability_spawn_large_camp_Description"                 "Spawns a group of units, a large camp of creeps."
-    "DOTA_Tooltip_ability_spawn_large_camp_camps_spawned"                   "CAMPS SPAWNED:"
+    //"DOTA_Tooltip_ability_spawn_large_camp_camps_spawned"                   "CAMPS SPAWNED:"
     "DOTA_Tooltip_ability_spawn_large_camp_spawn_radius"                    "RADIUS:"
     "DOTA_Tooltip_ability_spawn_large_camp_channel_time"                    "CHANNEL TIME:"
 
     "DOTA_Tooltip_ability_spawn_ancient_camp"                               "Spawn Ancient Camp"
     "DOTA_Tooltip_ability_spawn_ancient_camp_Description"                   "Spawns a group of units, a Ancient camp of creeps."
-    "DOTA_Tooltip_ability_spawn_ancient_camp_camps_spawned"                 "CAMPS SPAWNED:"
+    //"DOTA_Tooltip_ability_spawn_ancient_camp_camps_spawned"                 "CAMPS SPAWNED:"
     "DOTA_Tooltip_ability_spawn_ancient_camp_spawn_radius"                  "RADIUS:"
     "DOTA_Tooltip_ability_spawn_ancient_camp_channel_time"                    "CHANNEL TIME:"
 

@@ -35,8 +35,12 @@ All notable changes to this project will be documented in this file.
 - Disabled Pudge bot as hes expected to be causing crashes
 - Fixed CDR talent not working on some abilities
 - Fixed Argent Smite not working on ranged heros
-*
 - Added Chi Strike (And Chi Strike OP for single player)
+- Fixed Tempest Double exploit with bonus originality gold 
+- Added Health and Mana Regen flesh heaps
+*
+- Fixed the Spawn Camps OP versions, reduced manacost of 100 for all of them.
+- Maybe fixed gyro missle 'no charges' bug, may require respawning to fix
 
 
 

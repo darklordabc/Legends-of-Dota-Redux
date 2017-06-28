@@ -8,7 +8,7 @@
         "ScriptFile"                    "abilities/overmeme/radiant_jungle/spawn_small_camp"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "FightRecapLevel"               "2"
-        "AbilityTextureName" "forest_troll_high_priest_heal"
+        "AbilityTextureName" "custom/spawn_small_camp"
         "ReduxFlags"                                                           "summon"
         "ReduxPerks"                                                           "neutral | summon_non_ult"
         
@@ -22,7 +22,7 @@
         "AbilityChannelTime"            "20 15 10 5"
         "AbilityCooldown"               "100 80 60 40"
         
-        "AbilityManaCost"               "200 170 140 100"
+        "AbilityManaCost"               "100 70 40 0"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -54,7 +54,7 @@
         "ScriptFile"                    "abilities/overmeme/radiant_jungle/spawn_medium_camp"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "FightRecapLevel"               "2"
-        "AbilityTextureName" "mud_golem_hurl_boulder"
+        "AbilityTextureName" "custom/spawn_medium_camp"
         "ReduxFlags"                                                           "summon"
         "ReduxPerks"                                                           "neutral | summon_non_ult"
         
@@ -67,7 +67,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "AbilityChannelTime"            "25 20 15 10"
         "AbilityCooldown"               "120 100 80 60"
-        "AbilityManaCost"               "300 270 240 200"
+        "AbilityManaCost"               "200 170 140 100"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -99,7 +99,7 @@
         "ScriptFile"                    "abilities/overmeme/radiant_jungle/spawn_large_camp"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "FightRecapLevel"               "2"
-        "AbilityTextureName" "satyr_hellcaller_unholy_aura"
+        "AbilityTextureName" "custom/spawn_large_camp"
         "ReduxFlags"                                                           "summon"
         "ReduxPerks"                                                           "neutral | summon_non_ult"
         
@@ -112,7 +112,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "AbilityChannelTime"            "30 25 20 15"
         "AbilityCooldown"               "140 120 100 80"
-        "AbilityManaCost"               "400 370 340 300"
+        "AbilityManaCost"               "300 270 240 200"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -145,7 +145,7 @@
         "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "FightRecapLevel"               "2"
-        "AbilityTextureName" "spawnlord_master_freeze"
+        "AbilityTextureName" "custom/spawn_ancient_camp"
         "ReduxFlags"                                                           "summon"
         "ReduxPerks"                                                           "neutral | summon_non_ult"
         
@@ -158,7 +158,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "AbilityChannelTime"            "30 15 5"
         "AbilityCooldown"               "140 100 80"
-        "AbilityManaCost"               "500 400 300"
+        "AbilityManaCost"               "400 300 200"
 
         // Special
         //-------------------------------------------------------------------------------------------------------------
@@ -190,7 +190,7 @@
         "ScriptFile"                    "abilities/overmeme/radiant_jungle/spawn_small_camp"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "FightRecapLevel"               "2"
-        "AbilityTextureName" "forest_troll_high_priest_heal"
+        "AbilityTextureName" "custom/spawn_small_camp_op"
         "ReduxFlags"                                                           "summon"
         "ReduxPerks"                                                           "neutral | summon_non_ult"
         "ReduxCost"                                                            "120"
@@ -238,7 +238,7 @@
         "ScriptFile"                    "abilities/overmeme/radiant_jungle/spawn_medium_camp"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "FightRecapLevel"               "2"
-        "AbilityTextureName" "mud_golem_hurl_boulder"
+        "AbilityTextureName" "custom/spawn_medium_camp_op"
         "ReduxFlags"                                                           "summon"
         "ReduxPerks"                                                           "neutral | summon_non_ult"
         "ReduxCost"                                                            "120"
@@ -285,7 +285,7 @@
         "ScriptFile"                    "abilities/overmeme/radiant_jungle/spawn_large_camp"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "FightRecapLevel"               "2"
-        "AbilityTextureName" "satyr_hellcaller_unholy_aura"
+        "AbilityTextureName" "custom/spawn_large_camp_op"
         "ReduxFlags"                                                           "summon"
         "ReduxPerks"                                                           "neutral | summon_non_ult"
         "ReduxCost"                                                            "120"
@@ -333,7 +333,7 @@
         "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "FightRecapLevel"               "2"
-        "AbilityTextureName" "spawnlord_master_freeze"
+        "AbilityTextureName" "custom/spawn_ancient_camp_op"
         "ReduxFlags"                                                           "summon"
         "ReduxPerks"                                                           "neutral | summon_non_ult"
         "ReduxCost"                                                            "120"
