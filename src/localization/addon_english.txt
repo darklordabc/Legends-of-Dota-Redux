@@ -1046,7 +1046,7 @@
     "lodBoosterDraftEnd"                            "Booster Draft: Building Phase"
     "lodBoosterDraftWait"                           "Booster Draft: Waiting for Next Set"
 
-    "lodFailedDisableItem"                          "{abilityName} is derived from other items, it can't be directly disabled, disable required items instead"
+    "lodFailedDisableItem"                          "{abilityName} is derived from other items, it can't be directly disabled, disable the required item(s): {%list%}"
     "lodInfoAlsoDisabled"                           "Deriative items have been disabled: {%list%}"
     "lodInfoAlsoEnabled"                            "Required items have been activated: {%list%}"
 
