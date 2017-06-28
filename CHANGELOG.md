@@ -38,6 +38,7 @@ All notable changes to this project will be documented in this file.
 *
 - Added Chi Strike (And Chi Strike OP for single player)
 - Fixed Tempest Double exploit with bonus originality gold 
+- Added Health and Mana Regen flesh heaps
 
 
 
