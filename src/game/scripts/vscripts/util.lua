@@ -725,16 +725,17 @@ function util:split(s, delimiter)
 end
 
 function util:anyBots()
+    if GameRules.pregame.enabledBots == true then return true end
     local maxPlayerID = 24
     local count = 0
+    local toggle = false
     for playerID=0,(maxPlayerID-1) do
-        -- print(playerID, self:isPlayerBot(playerID), PlayerResource:IsFakeClient(playerID))
-        if PlayerResource:IsFakeClient(playerID) then
-            return true
+        print(playerID, self:isPlayerBot(playerID), PlayerResource:IsFakeClient(playerID), PlayerResource:GetPlayer(playerID))
+        if PlayerResource:GetPlayer(playerID) and (PlayerResource:IsFakeClient(playerID) or PlayerResource:GetSteamAccountID(playerID) == 0) then
+            toggle = true
         end
     end
-
-    return false
+    return toggle
 end
 
 function util:isSinglePlayerMode()

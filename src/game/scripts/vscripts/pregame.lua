@@ -6590,7 +6590,8 @@ end
 
 -- Adds bot players to the game
 function Pregame:addBotPlayers()
-    self.enabledBots = false
+    -- print("Asdasdas")
+    -- self.enabledBots = false
     -- Ensure bots should actually be added
     if self.addedBotPlayers then return end
     self.addedBotPlayers = true
