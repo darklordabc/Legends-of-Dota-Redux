@@ -432,24 +432,44 @@ end
 function PanoramaShop:SetItemsPurchasable(items, purchasable)
 	local needsUpdate = false
 	for _, item in pairs(items) do
-		if PanoramaShop.FormattedData[item] then
-			local recipeName = item:gsub("item_", "item_recipe_")
-			if PanoramaShop.FormattedData[recipeName] then
-				-- 0 cost recipe means that item can be built just from it's components, so shop can't disable it
-				if PanoramaShop.FormattedData[recipeName].cost ~= 0 then
-					PanoramaShop.FormattedData[recipeName].purchasable = purchasable
-					PanoramaShop.FormattedData[item].purchasable = purchasable
-					needsUpdate = true
-				end
-			else
-				PanoramaShop.FormattedData[item].purchasable = purchasable
-				needsUpdate = true
-			end
+		if PanoramaShop:RecursiveSetItemPurchasable(item, purchasable) then
+			needsUpdate = true
 		end
 	end
 	if needsUpdate then
 		PlayerTables:SetTableValue("panorama_shop_data", "ItemData", util:DeepCopy(PanoramaShop.FormattedData))
 	end
+end
+
+function PanoramaShop:RecursiveSetItemPurchasable(item, purchasable)
+	if not PanoramaShop.FormattedData[item] then return end
+	local recipeName = item:gsub("item_", "item_recipe_")
+	if PanoramaShop.FormattedData[recipeName] then
+		-- 0 cost recipe means that item can be built just from it's components, so shop can't disable it
+		if PanoramaShop.FormattedData[recipeName].cost == 0 then
+			return
+		end
+		PanoramaShop.FormattedData[recipeName].purchasable = purchasable
+		PanoramaShop.FormattedData[item].purchasable = purchasable
+	end
+	PanoramaShop.FormattedData[item].purchasable = purchasable
+
+	if purchasable then
+		-- Enabling an item should also enable all it's required items
+		if PanoramaShop.FormattedData[item].Recipe then
+			for _, itemComponents in ipairs(PanoramaShop.FormattedData[item].Recipe.items) do
+				for _,v in ipairs(itemComponents) do
+					self:RecursiveSetItemPurchasable(v, true)
+				end
+			end
+		end
+	else
+		-- Disabling an item should also disable all items it builds to
+		for _,v in ipairs(PanoramaShop.FormattedData[item].BuildsInto or {}) do
+			self:RecursiveSetItemPurchasable(v, false)
+		end
+	end
+	return true
 end
 
 function PanoramaShop:StartItemStocks()
