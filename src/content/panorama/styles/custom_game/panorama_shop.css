@@ -229,9 +229,8 @@ transition-property: position;
 transition-duration: 0.1s; }
 .SmallItemPanel.CanBuy:hover #SmallItemImage {
 brightness: 1.6; }
-.SmallItemPanel.CanBuy:active #SmallItemImage {
-brightness: 0.8;
-width: 1000px; }
+.SmallItemPanel.CanBuy #SmallItemButton:active #SmallItemImage {
+brightness: 0.8; }
 
 #SmallItemButton {
 align: center center;

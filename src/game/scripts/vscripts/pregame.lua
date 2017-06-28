@@ -392,6 +392,13 @@ function Pregame:init()
         this:onPlayerSelectRandomHero(eventSourceIndex, args)
     end)
 
+    CustomGameEventManager:RegisterListener('lodSetShopItemsPurchasable', function(eventSourceIndex, args)
+        if GameRules:State_Get() == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP and
+           GameRules:PlayerHasCustomGameHostPrivileges(PlayerResource:GetPlayer(args.PlayerID)) then
+            PanoramaShop:SetItemsPurchasable(args.items, args.purchasable == 1)
+        end
+    end)
+
     --List of keys in perks.kv, that aren't perks
     local NotPerks = {
         chen_creep_abilities = true,
@@ -653,6 +660,8 @@ function Pregame:init()
     self.spawnQueue = {}
     self.currentlySpawning = false
     self.cachedPlayerHeroes = {}
+
+    PanoramaShop:InitializeItemTable()
 end
 
 -- Load Default Values
@@ -4200,8 +4209,6 @@ function Pregame:processOptions()
             })
         end
     end)
-
-    PanoramaShop:InitializeItemTable()
 
     -- Did it fail?
     if not status then

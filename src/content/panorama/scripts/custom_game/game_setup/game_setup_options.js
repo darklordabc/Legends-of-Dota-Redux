@@ -1728,5 +1728,9 @@ var advancedOptions = {
             //    ]
             //},
         ]
+    },
+
+    items: {
+        custom: true
     }
 }

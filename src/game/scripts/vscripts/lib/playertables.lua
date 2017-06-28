@@ -392,13 +392,12 @@ function PlayerTables:SetTableValue(tableName, key, value)
 
 	local table = self.tables[tableName]
 	local pids = self.subscriptions[tableName]
-
 	if not self:equals(table[key], value) then
 		table[key] = value
 		for pid,v in pairs(pids) do
 			if PlayerResource then -- After Activate called
 				local player = PlayerResource:GetPlayer(pid)
-				if player then  
+				if player then
 					CustomGameEventManager:Send_ServerToPlayer(player, "pt_uk", {name=tableName, changes={[key]=value}} )
 				end
 			end
