@@ -284,6 +284,7 @@
 #base "abilities\imba\imba_dazzle_shallow_grave_passive.txt"
 #base "abilities\imba\imba_dazzle_shallow_grave_passive_one.txt"
 #base "abilities\imba\imba_juggernaut_healing_ward.txt"
+#base "abilities\imba\juggernaut_healing_ward_mana.txt"
 #base "abilities\imba\imba_juggernaut_healing_ward_passive.txt"
 #base "abilities\imba\imba_juggernaut_healing_ward_passive_redux.txt"
 #base "abilities\imba\imba_juggernaut_healing_ward_upgrade.txt"
