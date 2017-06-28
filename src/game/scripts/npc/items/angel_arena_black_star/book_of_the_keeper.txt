@@ -11,7 +11,7 @@
 		"ItemResult"					"item_book_of_the_keeper"
 		"ItemRequirements"
 		{
-			"01"						"item_mystic_staff;item_pers;item_angel_arena_black_star_core"
+			"01"						"item_mystic_staff;item_pers"
 		}
 	}
 

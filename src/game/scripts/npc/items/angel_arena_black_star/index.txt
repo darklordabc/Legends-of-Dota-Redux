@@ -1,4 +1,3 @@
-#base "core.txt"
 #base "steam_footgear.txt"
 #base "book_of_the_keeper.txt"
 #base "book_of_the_guardian.txt"

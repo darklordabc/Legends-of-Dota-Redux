@@ -184,9 +184,6 @@ PANORAMA_SHOP_ITEMS = {
 	{
 		{
 			{
-				"item_angel_arena_black_star_core",
-			},
-			{
 				"item_aether_lens_arena",
 				"item_aether_lens_2",
 				"item_aether_lens_3",
@@ -307,10 +304,6 @@ function PanoramaShop:StackStockableCooldown(team, item, time)
 end
 
 function PanoramaShop:InitializeItemTable()
-	-- TODO: Control this with options
-	local disabledShops = {
-		
-	}
 	local RecipesToCheck = {}
 	-- loading all items and splitting them by item/recipe
 	for name, kv in pairs(KeyValues.ItemKV) do
@@ -326,7 +319,7 @@ function PanoramaShop:InitializeItemTable()
 	for name, kv in pairs(PanoramaShop._RawItemData) do
 		local itemdata = {
 			id = kv.ID or -1,
-			purchasable = (kv.ItemPurchasable or 1) == 1 and (kv.ItemPurchasableFilter or 1) == 1,
+			purchasable = true,
 			cost = GetTrueItemCost(name),
 			names = {name:lower()},
 		}
@@ -415,29 +408,16 @@ function PanoramaShop:InitializeItemTable()
 	-- checking all items in shop list
 	local Items = {}
 	for shopName, shopData in pairs(PANORAMA_SHOP_ITEMS) do
-		if not disabledShops[shopName] then
-			Items[shopName] = {}
-			for tabName, tabData in pairs(shopData) do
-				Items[shopName][tabName] = {}
-				for groupName, groupData in pairs(tabData) do
-					Items[shopName][tabName][groupName] = {}
-					for _, itemName in ipairs(groupData) do
-						if not PanoramaShop.FormattedData[itemName] and itemName ~= "__indent__" then
-							print("[PanoramaShop] Item defined in shop list is not defined in any of item KV files", itemName)
-						else
-							table.insert(Items[shopName][tabName][groupName], itemName)
-						end
-					end
-				end
-			end
-		else
-			-- Disable all items from disabled shop
-			for _, tabData in pairs(shopData) do
-				for _, groupData in pairs(tabData) do
-					for _, itemName in ipairs(groupData) do
-						if PanoramaShop.FormattedData[itemName] then
-							PanoramaShop.FormattedData[itemName].purchasable = false
-						end
+		Items[shopName] = {}
+		for tabName, tabData in pairs(shopData) do
+			Items[shopName][tabName] = {}
+			for groupName, groupData in pairs(tabData) do
+				Items[shopName][tabName][groupName] = {}
+				for _, itemName in ipairs(groupData) do
+					if not PanoramaShop.FormattedData[itemName] and itemName ~= "__indent__" then
+						print("[PanoramaShop] Item defined in shop list is not defined in any of item KV files", itemName)
+					else
+						table.insert(Items[shopName][tabName][groupName], itemName)
 					end
 				end
 			end
@@ -445,8 +425,31 @@ function PanoramaShop:InitializeItemTable()
 	end
 	PanoramaShop._ItemData = Items
 	CustomGameEventManager:RegisterListener("panorama_shop_item_buy", Dynamic_Wrap(PanoramaShop, "OnItemBuy"))
-	PlayerTables:SetTableValues("panorama_shop_data", {ItemData = PanoramaShop.FormattedData, ShopList = Items})
+	PlayerTables:SetTableValues("panorama_shop_data", {ItemData = util:DeepCopy(PanoramaShop.FormattedData), ShopList = Items})
 	PanoramaShop:PushStockInfoToAllClients()
+end
+
+function PanoramaShop:SetItemsPurchasable(items, purchasable)
+	local needsUpdate = false
+	for _, item in pairs(items) do
+		if PanoramaShop.FormattedData[item] then
+			local recipeName = item:gsub("item_", "item_recipe_")
+			if PanoramaShop.FormattedData[recipeName] then
+				-- 0 cost recipe means that item can be built just from it's components, so shop can't disable it
+				if PanoramaShop.FormattedData[recipeName].cost ~= 0 then
+					PanoramaShop.FormattedData[recipeName].purchasable = purchasable
+					PanoramaShop.FormattedData[item].purchasable = purchasable
+					needsUpdate = true
+				end
+			else
+				PanoramaShop.FormattedData[item].purchasable = purchasable
+				needsUpdate = true
+			end
+		end
+	end
+	if needsUpdate then
+		PlayerTables:SetTableValue("panorama_shop_data", "ItemData", util:DeepCopy(PanoramaShop.FormattedData))
+	end
 end
 
 function PanoramaShop:StartItemStocks()

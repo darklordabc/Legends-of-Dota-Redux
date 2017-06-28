@@ -11,7 +11,7 @@
 		"ItemResult"					"item_lotus_sphere"
 		"ItemRequirements"
 		{
-			"01"						"item_sphere;item_lotus_orb;item_angel_arena_black_star_core"
+			"01"						"item_sphere;item_lotus_orb"
 		}
 	}
 
