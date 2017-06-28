@@ -2386,10 +2386,17 @@
     "DOTA_Tooltip_ability_pudge_flesh_heap_health_regeneration_flesh_heap_value_buff_amount"  "HEALTH REGEN PER STACK:"
     "DOTA_Tooltip_ability_pudge_flesh_heap_health_regeneration_flesh_heap_range"            "RANGE:"
 
+    "DOTA_Tooltip_modifier_flesh_heap_health_regeneration"                  "Flesh Heap - Health Regeneration"
+    "DOTA_Tooltip_modifier_flesh_heap_health_regeneration_Description"              "Gaining bonus Health Regeneration"
+
     "DOTA_Tooltip_ability_pudge_flesh_heap_mana_regeneration"         "Flesh Heap - Mana Regeneration"
     "DOTA_Tooltip_ability_pudge_flesh_heap_mana_regeneration_Description" "<font color='#70EA72'>Gives Mana regeneration that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Mana Regeneration is retroactive, meaning it can gain charges before it is skilled, which then become active."
     "DOTA_Tooltip_ability_pudge_flesh_heap_mana_regeneration_flesh_heap_value_buff_amount"  "MANA REGEN PER STACK:"
     "DOTA_Tooltip_ability_pudge_flesh_heap_mana_regeneration_flesh_heap_range"            "RANGE:"
+
+    "DOTA_Tooltip_modifier_flesh_heap_mana_regeneration"                  "Flesh Heap - Mana Regeneration"
+    "DOTA_Tooltip_modifier_flesh_heap_mana_regeneration_Description"              "Gaining bonus Mana Regeneration"
+
 
     "DOTA_Tooltip_modifier_flesh_heap_cast_range"                                              "Cast Range"
     "DOTA_Tooltip_modifier_flesh_heap_cast_range_Description"                                  "Gaining extra cast range per stack"
