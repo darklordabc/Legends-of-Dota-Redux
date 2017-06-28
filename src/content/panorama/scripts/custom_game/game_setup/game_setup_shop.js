@@ -172,3 +172,23 @@ function SetItemsPurchasableFromPanel(panel, purchasable) {
         purchasable: purchasable
     });
 }
+
+function SaveDisabledItems() {
+    var itemNames = [];
+    $('#option_panel_items_shop').FindChildrenWithClassTraverse('SmallItemPanel').forEach(function(panel) {
+        if (!panel.BHasClass('purchasable')) {
+            itemNames.push(panel.itemName);
+        }
+    });
+    optionValueList.lodDisabledItems = itemNames;
+    $('#importAndExportEntry').text = JSON.stringify(optionValueList).replace(/,/g, ',\n');
+    return itemNames;
+}
+
+function LoadDisabledItems(data) {
+    GameEvents.SendCustomGameEventToServer('lodSetShopItemsPurchasable', {
+        items: data,
+        purchasable: false,
+        silent: true
+    });
+}
