@@ -1086,6 +1086,7 @@
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
         "ItemPurchasable"               "0"
+        "IsTempestDoubleClonable"       "0"
         "ItemShopTags"                  "consumable"
         "ItemQuality"                   "consumable"
         "ItemStackable"                 "0"

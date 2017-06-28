@@ -37,6 +37,7 @@ All notable changes to this project will be documented in this file.
 - Fixed Argent Smite not working on ranged heros
 *
 - Added Chi Strike (And Chi Strike OP for single player)
+- Fixed Tempest Double exploit with bonus originality gold 
 
 
 
