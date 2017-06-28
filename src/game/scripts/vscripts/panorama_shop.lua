@@ -351,7 +351,11 @@ function PanoramaShop:InitializeItemTable()
 			end
 			for key, ItemRequirements in pairsByKeys(recipeKv.ItemRequirements) do
 				local itemParts = util:split(string.gsub(ItemRequirements, " ", ""), ";")
-				table.insert(recipedata.items, itemParts)
+				if not util:contains(itemParts, name) then
+					table.insert(recipedata.items, itemParts)
+				else
+					print(name .. " has a recipe with itself, ignoring")
+				end
 				for _,v in ipairs(itemParts) do
 					if not itemsBuldsInto[v] then itemsBuldsInto[v] = {} end
 					if not util:contains(itemsBuldsInto[v], name) then
@@ -429,11 +433,26 @@ function PanoramaShop:InitializeItemTable()
 	PanoramaShop:PushStockInfoToAllClients()
 end
 
-function PanoramaShop:SetItemsPurchasable(items, purchasable)
+function PanoramaShop:SetItemsPurchasable(items, purchasable, playerID)
 	local needsUpdate = false
 	for _, item in pairs(items) do
-		if PanoramaShop:RecursiveSetItemPurchasable(item, purchasable) then
+		local result = PanoramaShop:RecursiveSetItemPurchasable(item, purchasable, playerID)	
+		if result then
 			needsUpdate = true
+			if #result > 1 then
+				table.remove(result, 1)
+				for k,v in pairs(result) do
+					result[k] = "DOTA_Tooltip_ability_" .. v
+				end
+				network:sendNotification(PlayerResource:GetPlayer(playerID), {
+					sort = "lodInfo",
+					text = purchasable and "lodInfoAlsoEnabled" or "lodInfoAlsoDisabled",
+					list = {
+						separator = ", ",
+						elements = result
+					}
+				})
+			end
 		end
 	end
 	if needsUpdate then
@@ -441,13 +460,39 @@ function PanoramaShop:SetItemsPurchasable(items, purchasable)
 	end
 end
 
-function PanoramaShop:RecursiveSetItemPurchasable(item, purchasable)
+function PanoramaShop:RecursiveSetItemPurchasable(item, purchasable, playerID)
 	if not PanoramaShop.FormattedData[item] then return end
+	if PanoramaShop.FormattedData[item].purchasable == purchasable then return end
+	local disabledList = {item}
 	local recipeName = item:gsub("item_", "item_recipe_")
 	if PanoramaShop.FormattedData[recipeName] then
 		-- 0 cost recipe means that item can be built just from it's components, so shop can't disable it
-		if PanoramaShop.FormattedData[recipeName].cost == 0 then
-			return
+		if not purchasable and PanoramaShop.FormattedData[recipeName].cost == 0 then
+			-- Recursive disabled items shouldn't do notifications
+			if playerID then
+				network:sendNotification(PlayerResource:GetPlayer(playerID), {
+					sort = "lodDanger",
+					text = "lodFailedDisableItem",
+					params = {
+						["abilityName"] = "DOTA_Tooltip_ability_" .. item
+					}
+				})
+				GameRules.pregame:PlayAlert(playerID)
+				return
+			else
+				local canDisable = false
+				for _, itemComponents in ipairs(PanoramaShop.FormattedData[item].Recipe.items) do
+					canDisable = false
+					for _,v in ipairs(itemComponents) do
+						if not PanoramaShop.FormattedData[v].purchasable then
+							canDisable = true
+						end
+					end
+				end
+				if not canDisable then
+					return
+				end
+			end
 		end
 		PanoramaShop.FormattedData[recipeName].purchasable = purchasable
 		PanoramaShop.FormattedData[item].purchasable = purchasable
@@ -459,17 +504,21 @@ function PanoramaShop:RecursiveSetItemPurchasable(item, purchasable)
 		if PanoramaShop.FormattedData[item].Recipe then
 			for _, itemComponents in ipairs(PanoramaShop.FormattedData[item].Recipe.items) do
 				for _,v in ipairs(itemComponents) do
-					self:RecursiveSetItemPurchasable(v, true)
+					for _,v in ipairs(self:RecursiveSetItemPurchasable(v, true) or {}) do
+						table.insert(disabledList, v)
+					end
 				end
 			end
 		end
 	else
 		-- Disabling an item should also disable all items it builds to
 		for _,v in ipairs(PanoramaShop.FormattedData[item].BuildsInto or {}) do
-			self:RecursiveSetItemPurchasable(v, false)
+			for _,v in ipairs(self:RecursiveSetItemPurchasable(v, false) or {}) do
+				table.insert(disabledList, v)
+			end
 		end
 	end
-	return true
+	return disabledList
 end
 
 function PanoramaShop:StartItemStocks()
@@ -671,7 +720,7 @@ function PanoramaShop:BuyItem(playerID, unit, itemName)
 			elseif name ~= itemName and itemcount_inv >= itemCounter[name] then
 				ProbablyPurchasable[name .. "_index_" .. itemCounter[name]] = SHOP_LIST_STATUS_IN_INVENTORY
 			elseif not PanoramaShop.FormattedData[name].purchasable then
-			 	ProbablyPurchasable[name .. "_index_" .. itemCounter[name]] = SHOP_LIST_STATUS_ITEM_DISABLED
+				ProbablyPurchasable[name .. "_index_" .. itemCounter[name]] = SHOP_LIST_STATUS_ITEM_DISABLED
 			elseif stocks and stocks < 1 then
 				ProbablyPurchasable[name .. "_index_" .. itemCounter[name]] = SHOP_LIST_STATUS_NO_STOCK
 			else

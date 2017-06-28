@@ -1046,6 +1046,10 @@
     "lodBoosterDraftEnd"                            "Booster Draft: Building Phase"
     "lodBoosterDraftWait"                           "Booster Draft: Waiting for Next Set"
 
+    "lodFailedDisableItem"                          "{abilityName} is derived from other items, it can't be directly disabled, disable required items instead"
+    "lodInfoAlsoDisabled"                           "Deriative items have been disabled: {%list%}"
+    "lodInfoAlsoEnabled"                            "Required items have been activated: {%list%}"
+
     "consumable_items_only_self"    "Only you can consume your items."
     "consumable_items_no_available_slot"    "There is no free ability slot to consume items."
     "consumable_items_already_consumed"     "You have already consumed this item."

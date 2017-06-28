@@ -258,6 +258,7 @@ function addNotification(options) {
     var text = options.text || '';
     var params = options.params || [];
     var sort = options.sort || 'lodInfo';
+    var list = options.list;
     var duration = options.duration || 5;
 
     var realText = $.Localize(text);
@@ -265,6 +266,13 @@ function addNotification(options) {
         var toAdd = $.Localize(params[key]);
 
         realText = realText.replace(new RegExp('\\{' + key + '\\}', 'g'), toAdd);
+    }
+    if (list) {
+        var elements = [];
+        for (var k in list.elements) {
+            elements.push($.Localize(list.elements[k]));
+        }
+        realText = realText.replace(/{%list%}/g, elements.join(list.separator));
     }
 
 
