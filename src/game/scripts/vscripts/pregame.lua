@@ -7388,9 +7388,20 @@ function Pregame:fixSpawnedHero( spawnedUnit )
             end
 
             -- 'No Charges' fix for Gyro Homing Missle
-            if spawnedUnit:HasAbility('gyrocopter_homing_missile') and spawnedUnit:GetUnitName() ~= "npc_dota_hero_gyrocopter" then
+            if spawnedUnit:HasAbility('gyrocopter_homing_missile') then
                 Timers:CreateTimer(function()
-                    spawnedUnit:RemoveModifierByName("modifier_gyrocopter_homing_missile_charge_counter")
+                    -- If the hero has the charges perk, and they have a level in it, check if they have modifier, if not, add it
+                    local chargesModifier = spawnedUnit:FindAbilityByName("special_bonus_unique_gyrocopter_1")
+                    if chargesModifier and chargesModifier:GetLevel() > 0 then
+                        if not spawnedUnit:FindModifierByName("modifier_gyrocopter_homing_missile_charge_counter") then
+                            spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_gyrocopter_homing_missile_charge_counter",{duration = duration})
+                        end
+                    else
+                        -- If Hero has homing missle ability, it doesnt have the talent or doesnt have a level in it, and it has the modifier, remove modifier
+                        if spawnedUnit:FindModifierByName("modifier_gyrocopter_homing_missile_charge_counter") then
+                            spawnedUnit:RemoveModifierByName("modifier_gyrocopter_homing_missile_charge_counter")
+                        end
+                    end
                 end, DoUniqueString('gyroFix'), 1)
             end
 
