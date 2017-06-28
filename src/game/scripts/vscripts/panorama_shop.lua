@@ -470,11 +470,24 @@ function PanoramaShop:RecursiveSetItemPurchasable(item, purchasable, playerID)
 		if not purchasable and PanoramaShop.FormattedData[recipeName].cost == 0 then
 			-- Recursive disabled items shouldn't do notifications
 			if playerID then
+				local requiredItems = {}
+				for _, itemComponents in ipairs(PanoramaShop.FormattedData[item].Recipe.items) do
+					for _,v in ipairs(itemComponents) do
+						local str = "DOTA_Tooltip_ability_" .. v
+						if not util:contains(requiredItems, str) then
+							table.insert(requiredItems, str)
+						end
+					end
+				end
 				network:sendNotification(PlayerResource:GetPlayer(playerID), {
 					sort = "lodDanger",
 					text = "lodFailedDisableItem",
 					params = {
 						["abilityName"] = "DOTA_Tooltip_ability_" .. item
+					},
+					list = {
+						separator = ", ",
+						elements = requiredItems
 					}
 				})
 				GameRules.pregame:PlayAlert(playerID)
