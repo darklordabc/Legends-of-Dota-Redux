@@ -7036,25 +7036,25 @@
 
     "DOTA_Tooltip_ability_spawn_small_camp"                             "Spawn Small Camp"
     "DOTA_Tooltip_ability_spawn_small_camp_Description"                 "Spawns a group of units, a small camp of creeps."
-    "DOTA_Tooltip_ability_spawn_small_camp_camps_spawned"                   "CAMPS SPAWNED:"
+    //"DOTA_Tooltip_ability_spawn_small_camp_camps_spawned"                   "CAMPS SPAWNED:"
     "DOTA_Tooltip_ability_spawn_small_camp_spawn_radius"                    "RADIUS:"
     "DOTA_Tooltip_ability_spawn_small_camp_channel_time"                    "CHANNEL TIME:"
 
     "DOTA_Tooltip_ability_spawn_medium_camp"                                "Spawn Medium Camp"
     "DOTA_Tooltip_ability_spawn_medium_camp_Description"                    "Spawns a group of units, a medium camp of creeps."
-    "DOTA_Tooltip_ability_spawn_medium_camp_camps_spawned"                  "CAMPS SPAWNED:"
+    //"DOTA_Tooltip_ability_spawn_medium_camp_camps_spawned"                  "CAMPS SPAWNED:"
     "DOTA_Tooltip_ability_spawn_medium_camp_spawn_radius"                   "RADIUS:"
     "DOTA_Tooltip_ability_spawn_medium_camp_channel_time"                    "CHANNEL TIME:"
 
     "DOTA_Tooltip_ability_spawn_large_camp"                             "Spawn large Camp"
     "DOTA_Tooltip_ability_spawn_large_camp_Description"                 "Spawns a group of units, a large camp of creeps."
-    "DOTA_Tooltip_ability_spawn_large_camp_camps_spawned"                   "CAMPS SPAWNED:"
+    //"DOTA_Tooltip_ability_spawn_large_camp_camps_spawned"                   "CAMPS SPAWNED:"
     "DOTA_Tooltip_ability_spawn_large_camp_spawn_radius"                    "RADIUS:"
     "DOTA_Tooltip_ability_spawn_large_camp_channel_time"                    "CHANNEL TIME:"
 
     "DOTA_Tooltip_ability_spawn_ancient_camp"                               "Spawn Ancient Camp"
     "DOTA_Tooltip_ability_spawn_ancient_camp_Description"                   "Spawns a group of units, a Ancient camp of creeps."
-    "DOTA_Tooltip_ability_spawn_ancient_camp_camps_spawned"                 "CAMPS SPAWNED:"
+    //"DOTA_Tooltip_ability_spawn_ancient_camp_camps_spawned"                 "CAMPS SPAWNED:"
     "DOTA_Tooltip_ability_spawn_ancient_camp_spawn_radius"                  "RADIUS:"
     "DOTA_Tooltip_ability_spawn_ancient_camp_channel_time"                    "CHANNEL TIME:"
 
