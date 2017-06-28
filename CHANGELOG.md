@@ -41,6 +41,7 @@ All notable changes to this project will be documented in this file.
 *
 - Fixed the Spawn Camps OP versions, reduced manacost of 100 for all of them.
 - Maybe fixed gyro missle 'no charges' bug, may require respawning to fix
+- Originality Bonus now has a cooldown so players dont get all the gold at start
 
 
 
