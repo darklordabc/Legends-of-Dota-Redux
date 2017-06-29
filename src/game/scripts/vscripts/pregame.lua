@@ -979,14 +979,8 @@ function Pregame:applyBuilds()
     for playerID=0,maxPlayerID-1 do
         Timers:CreateTimer(function ()
             local hero = PlayerResource:GetSelectedHeroEntity(playerID)
-
             if self.wispSpawning and hero and hero:GetUnitName() ~= self.selectedHeroes[playerID] then
-                local minPlayerID = 0
-                local maxPlayerID = 24
-
-                for playerID = minPlayerID,maxPlayerID-1 do
-                    self:onIngameBuilder(nil, { playerID = playerID })
-                end
+                self:onIngameBuilder(nil, { playerID = playerID })
                 return
             end
 
@@ -1140,13 +1134,13 @@ function Pregame:onThink()
         -- Is it over?
         if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
             -- Finish the option selection
-            self:finishOptionSelection()
             if util:isCoop() then
                 print("vote ended")
                 self.enabledBots = true
                 self.desiredRadiant = self.desiredRadiant or 5
                 self.desiredDire = self.desiredDire or 5
             end
+            self:finishOptionSelection()
         end
 
         return 0.1
@@ -1187,7 +1181,7 @@ function Pregame:onThink()
                 end
             else
                 -- Change to picking phase
-                if util:anyBots() then
+                if util:anyBots() or self.enabledBots then
                     GameRules:GetGameModeEntity():SetCustomGameForceHero("")
                     self:setPhase(constants.PHASE_SELECTION)
                 else
@@ -2002,7 +1996,8 @@ function Pregame:finishOptionSelection()
             end
         else
             -- Hero selection
-            if util:anyBots() then
+            print(self.enabledBots)
+            if util:anyBots() or self.enabledBots then
                 GameRules:GetGameModeEntity():SetCustomGameForceHero("")
                 self:setPhase(constants.PHASE_SELECTION)
             else
