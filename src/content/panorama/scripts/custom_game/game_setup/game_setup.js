@@ -2834,10 +2834,14 @@ function onImportAndExportPressed() {
         setOption('lodOptionGamemode', decodeData.lodOptionGamemode);
     }
 
+    if(decodeData.lodDisabledItems) {
+        LoadDisabledItems(decodeData.lodDisabledItems);
+    }
+
     var changed = false;
 
     for(var key in decodeData) {
-        if(key == 'lodOptionGamemode') continue;
+        if(key === 'lodOptionGamemode' || key === 'lodDisabledItems') continue;
         setOption(key, decodeData[key]);
 
         if (optionValueList[key] != decodeData[key]) {
