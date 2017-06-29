@@ -5820,6 +5820,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
 end
 
 function Pregame:canPlayerPickSkill(playerID)
+    local hero = PlayerResource:GetSelectedHeroEntity(playerID)
     if (self.wispSpawning and hero and hero:GetUnitName() ~= self.selectedHeroes[playerID]) then return true end
     if (self:getPhase() == constants.PHASE_INGAME or self:getPhase() == constants.PHASE_REVIEW) and (OptionManager:GetOption('allowIngameHeroBuilder')) then
         return true
@@ -5884,7 +5885,7 @@ function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
     -- Grab data
     local playerID = args.PlayerID
     local player = PlayerResource:GetPlayer(playerID)
-
+    print(self:getPhase() ~= constants.PHASE_SELECTION, not self:canPlayerPickSkill(playerID), self.additionalPickTime)
     -- Ensure we are in the picking phase
     if self:getPhase() ~= constants.PHASE_SELECTION and not self:canPlayerPickSkill(playerID) then
         network:sendNotification(player, {
