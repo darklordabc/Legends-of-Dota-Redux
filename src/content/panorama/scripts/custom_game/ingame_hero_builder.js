@@ -7,7 +7,7 @@ var spawnedHeroBuilder = false;
 
 var heroBuilderPanel = null;
 
-function showIngameBuilder() {
+function showIngameBuilder(args) {
     if(!spawnedHeroBuilder) {
         spawnedHeroBuilder = true;
 
@@ -51,6 +51,8 @@ function showIngameBuilder() {
         heroBuilderPanel.FindChildTraverse("chat").visible = false;
 
         heroBuilderPanel.showBuilderTab('pickingPhaseMainTab');
+        
+        heroBuilderPanel.FindChildTraverse("newAbilitiesPanel").visible = args.ingamePicking;
 
         // Hide the hero selection when spawn hero is pressed
         GameEvents.Subscribe('lodNewHeroBuild', function() {
@@ -70,7 +72,7 @@ function showIngameBuilder() {
 }
 
 (function() {
-    GameEvents.Subscribe('lodShowIngameBuilder', function() {
-        showIngameBuilder();
+    GameEvents.Subscribe('lodShowIngameBuilder', function(args) {
+        showIngameBuilder(args);
     })
 })();
