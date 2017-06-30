@@ -7701,39 +7701,41 @@ function Pregame:fixSpawnedHero( spawnedUnit )
         end
 
         if self.optionStore["lodOptionNewAbilitiesBonusGold"] > 0 and StatsClient.AbilityData then
-            for playerID, usageData in pairs(StatsClient.AbilityData) do
-                local currentBuild = self.selectedSkills[playerID] or {}
+            for _playerID, usageData in pairs(StatsClient.AbilityData) do
+                if _playerID == playerID then
+                    local currentBuild = self.selectedSkills[playerID] or {}
 
-                local threshold = self.optionStore["lodOptionNewAbilitiesThreshold"]
-                local entries = StatsClient.SortedAbilityDataEntries
-                local realAbilitiesThreshold = math.ceil(StatsClient.totalGameAbilitiesCount * (1 - threshold * 0.01))
-                local enableAlternativeThreshold = #entries >= realAbilitiesThreshold
+                    local threshold = self.optionStore["lodOptionNewAbilitiesThreshold"]
+                    local entries = StatsClient.SortedAbilityDataEntries
+                    local realAbilitiesThreshold = math.ceil(StatsClient.totalGameAbilitiesCount * (1 - threshold * 0.01))
+                    local enableAlternativeThreshold = #entries >= realAbilitiesThreshold
 
-                if enableAlternativeThreshold then
-                    function isBelowThreshold(ability)
-                        if not usageData[ability] then return true end
-                        for i,v in ipairs(entries) do
-                            if v == ability then
-                                return i / #entries > 1 - threshold * 0.01
+                    if enableAlternativeThreshold then
+                        function isBelowThreshold(ability)
+                            if not usageData[ability] then return true end
+                            for i,v in ipairs(entries) do
+                                if v == ability then
+                                    return i / #entries > 1 - threshold * 0.01
+                                end
                             end
+                            return true
                         end
-                        return true
+                    else
+                        function isBelowThreshold(ability)
+                            return not usageData[ability]
+                        end
                     end
-                else
-                    function isBelowThreshold(ability)
-                        return not usageData[ability]
-                    end
-                end
 
-                local newAbilities = 0
-                for _,v in ipairs(currentBuild) do
-                    if isBelowThreshold(v) then
-                        newAbilities = newAbilities + 1
+                    local newAbilities = 0
+                    for _,v in ipairs(currentBuild) do
+                        if isBelowThreshold(v) then
+                            newAbilities = newAbilities + 1
+                        end
                     end
-                end
-                local hero = PlayerResource:GetSelectedHeroEntity(playerID)
-                if newAbilities > 0 and hero then
-                    hero:AddItemByName('item_new_ability_bonus'):SetCurrentCharges(newAbilities)
+                    local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+                    if newAbilities > 0 and hero then
+                        hero:AddItemByName('item_new_ability_bonus'):SetCurrentCharges(newAbilities)
+                    end
                 end
             end
         end
