@@ -36,6 +36,7 @@ All notable changes to this project will be documented in this file.
 - Disabled Pudge bot as hes expected to be causing crashes
 - Fixed CDR talent not working on some abilities
 - Fixed Argent Smite not working on ranged heros
+- Fixed thunder musket working on illusions
 
 
 ## 7.9
