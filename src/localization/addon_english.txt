@@ -7366,6 +7366,72 @@
     "DOTA_Tooltip_modifier_item_imba_tranquil_boots_2_stacks"                           "Tranquility"
     "DOTA_Tooltip_modifier_item_imba_tranquil_boots_2_stacks_Description"               "Increased health regen and armor"
 
+    "DOTA_Tooltip_Ability_item_imba_hand_of_midas"              "Hand of Midas"
+    "DOTA_Tooltip_ability_item_imba_hand_of_midas_Description"                  "<font color='#FF7800'>Transmute (active):</font> Kills a non-hero target, granting you %bonus_gold% gold and %xp_multiplier%x the normal experience. Cannot be used on Ancient Creeps.\n<font color='#FF7800'>Midas' touch (passive):</font> Increases the gold you gain from any source by %passive_gold_bonus%%%."
+    "DOTA_Tooltip_ability_item_imba_hand_of_midas_Lore"                         "Preserved through unknown magical means, the Hand of Midas is a weapon of greed, sacrificing animals to line the owner's pockets."
+    "DOTA_Tooltip_ability_item_imba_hand_of_midas_Note0"                        "Midas' touch does not stack with itself."
+    "DOTA_Tooltip_ability_item_imba_hand_of_midas_bonus_attack_speed"           "+$attack"
+
+    "DOTA_Tooltip_Ability_item_imba_moon_shard"                 "Moon Shard"
+    "DOTA_Tooltip_ability_item_imba_moon_shard_Description"                     "Grants attack speed and bonus night vision range.\n<font color='#FF7800'>Full moon (active):</font> Consume the Moon Shard to grant some attack speed and bonus night vision to an allied hero. Stacks diminishingly.\n\n<font color='#00FF40'>1st shard: +%consume_as_1% AS, +%consume_vision_1% vision\n2nd shard: +%consume_as_2% AS, +%consume_vision_2% vision\n3rd shard and beyond: +%consume_as_3% AS</font>"
+    "DOTA_Tooltip_ability_item_imba_moon_shard_Lore"                            "Said to be a tear from the lunar goddess Selemene."
+    "DOTA_Tooltip_ability_item_imba_moon_shard_bonus_attack_speed"              "+$attack"
+    "DOTA_Tooltip_ability_item_imba_moon_shard_bonus_night_vision"              "BONUS NIGHT VISION:"
+
+    "DOTA_Tooltip_modifier_imba_moon_shard_stacks_dummy"                                "Moon Shard"
+    "DOTA_Tooltip_modifier_imba_moon_shard_stacks_dummy_Description"                    "Increased attack speed and night vision"
+
+    "DOTA_Tooltip_Ability_item_imba_blink_boots"                "Blink Boots"
+    "DOTA_Tooltip_ability_item_imba_blink_boots_Description"                    "Grants the wearer unbelievable mobility.\n<font color='#FF7800'>Blink (active):</font> Instantly teleport to a target point up to %max_blink_range% units away. If hero-based damage is taken, Blink Boots cannot be used for %blink_damage_cooldown% seconds.\n<font color='#FF7800'>Space suppression (active):</font> can blink up to %max_extra_tooltip% units above the normal maximum range, but doing so will incur an increased cooldown."
+    "DOTA_Tooltip_ability_item_imba_blink_boots_Lore"                           "Blink, and you'll miss it."
+    "DOTA_Tooltip_ability_item_imba_blink_boots_Note0"                          "You can modify the color of your blink with <font color='#FF4A4A'>-blink XXX YYY ZZZ</font> in RGB-Code."
+    "DOTA_Tooltip_ability_item_imba_blink_boots_max_blink_range"                "RANGE:"
+    "DOTA_Tooltip_ability_item_imba_blink_boots_bonus_movement_speed"           "+$move_speed"
+
+    "DOTA_Tooltip_Ability_item_imba_urn_of_shadows"             "Urn of Shadows"
+    "DOTA_Tooltip_ability_item_imba_urn_of_shadows_Description"                 "<font color='#FF7800'>Soul Release (Active):</font> Heals health over time to friendly units, but deals pure damage over time to enemy units. The healing effect is lost if the affected ally takes damage from an enemy hero. \nGains charges every time an enemy hero dies within 1400 units. Only the closest Urn to the dying hero will gain a charge. Black Queen Cape will attempt to gain the charges first, even if it's farther from the target."
+    "DOTA_Tooltip_ability_item_imba_urn_of_shadows_Lore"                        "Contains the ashes of powerful demons."
+    "DOTA_Tooltip_ability_item_imba_urn_of_shadows_Note0"                       "If there are no charges, gains 2 charges, instead of 1."
+    "DOTA_Tooltip_ability_item_imba_urn_of_shadows_bonus_strength"              "+$all"
+    "DOTA_Tooltip_ability_item_imba_urn_of_shadows_bonus_armor"                 "+$armor"
+    "DOTA_Tooltip_ability_item_imba_urn_of_shadows_bonus_mana_regen"            "+$mana_regen"
+    "DOTA_Tooltip_ability_item_imba_urn_of_shadows_damage"                      "ENEMY TOTAL DAMAGE:"
+    "DOTA_Tooltip_ability_item_imba_urn_of_shadows_heal"                        "ALLY TOTAL HEAL:"
+    "DOTA_Tooltip_ability_item_imba_urn_of_shadows_duration"                    "DURATION:"
+
+    "DOTA_Tooltip_modifier_imba_urn_of_shadows_active_ally"                             "Soul Release"
+    "DOTA_Tooltip_modifier_imba_urn_of_shadows_active_ally_Description"                 "Healing over time."
+
+    "DOTA_Tooltip_modifier_imba_urn_of_shadows_active_enemy"                            "Soul Release"
+    "DOTA_Tooltip_modifier_imba_urn_of_shadows_active_enemy_Description"                "Taking damage over time."
+
+    "DOTA_Tooltip_Ability_item_imba_ancient_janggo"             "Drum of Endurance"
+    "DOTA_Tooltip_ability_item_imba_ancient_janggo_Description"                 "<font color='#FF7800'>Strength in Numbers (Active):</font> Grants every ally in range bonus attack and movement speed, based on the amount of nearby allies. Heroes grant stronger bonuses.\n<font color='#FF7800'>Swiftness Aura (Passive):</font> Grants bonus attack and movement speed to nearby allies."
+    "DOTA_Tooltip_ability_item_imba_ancient_janggo_Lore"                        "A relic that enchants the bodies of those around it for swifter movement in times of crisis."
+    "DOTA_Tooltip_ability_item_imba_ancient_janggo_Note0"                       "Swiftness Aura does not stack with itself, and is overridden by Siege Aura."
+    "DOTA_Tooltip_ability_item_imba_ancient_janggo_Note1"                       "Strength in Numbers does not stack with itself - using it while it's still active will result either in extending the current bonus, or overwriting it with a stronger one."
+    "DOTA_Tooltip_ability_item_imba_ancient_janggo_Note2"                       "Drum of Endurance's Strength in Numbers and Siege Cuirass's Hellish Siege can both extend the duration or overwrite each other's effects with a stronger one, but never stack."
+    "DOTA_Tooltip_ability_item_imba_ancient_janggo_aura_as"                     "AURA ATTACK SPEED:"
+    "DOTA_Tooltip_ability_item_imba_ancient_janggo_aura_ms"                     "AURA MOVE SPEED:"
+    "DOTA_Tooltip_ability_item_imba_ancient_janggo_active_as_per_hero"          "MOVE/ATTACK SPEED PER HERO:"
+    "DOTA_Tooltip_ability_item_imba_ancient_janggo_active_as_per_creep"         "MOVE/ATTACK SPEED PER CREEP:"
+    "DOTA_Tooltip_ability_item_imba_ancient_janggo_bonus_int"                   "+$all"
+    "DOTA_Tooltip_ability_item_imba_ancient_janggo_bonus_damage"                "+$damage"
+    "DOTA_Tooltip_ability_item_imba_ancient_janggo_bonus_bonus_mana_regen"      "%+$mana_regen"
+
+    "DOTA_Tooltip_modifier_imba_drums_aura_effect"                                      "Endurance Aura"
+    "DOTA_Tooltip_modifier_imba_drums_aura_effect_Description"                          "Increased move and attack speed."
+
+    "DOTA_Tooltip_modifier_imba_drums_active"                                           "Strength in Numbers"
+    "DOTA_Tooltip_modifier_imba_drums_active_Description"                               "Gaining bonus move and attack speed."
+
+    "DOTA_Tooltip_Ability_item_imba_arcane_boots"               "Arcane Boots"
+    "DOTA_Tooltip_ability_item_imba_arcane_boots_Description"                   "<font color='#FF7800'>Replenish (active):</font> Replenishes the mana of allies in %replenish_radius% radius by %base_replenish_mana% + %replenish_mana_pct%%% of your own maximum mana."
+    "DOTA_Tooltip_ability_item_imba_arcane_boots_Lore"                          "Magi equipped with these boots are valued in battle."
+    "DOTA_Tooltip_ability_item_imba_arcane_boots_Note0"                         "Does not work on Meepo clones."
+    "DOTA_Tooltip_ability_item_imba_arcane_boots_bonus_ms"                      "+$move_speed"
+    "DOTA_Tooltip_ability_item_imba_arcane_boots_bonus_mana"                    "+$mana"
+
 
     // Angel Arena Black Star items
 
@@ -7466,4 +7532,6 @@
     "DOTA_Tooltip_ability_item_aether_lens_5_bonus_health_regen" "+$hp_regen"
     "DOTA_Tooltip_ability_item_aether_lens_5_cast_range_bonus" "+$cast_range"
     "DOTA_Tooltip_ability_item_aether_lens_5_spell_amp_pct" "%SPELL DAMAGE AMP:"
+
+
 }
