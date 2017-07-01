@@ -27,7 +27,7 @@ function CDOTABaseAbility:GetTalentSpecialValueFor(value)
             end
         end
     end
-    if talentName then 
+    if talentName then
         local talent = self:GetCaster():FindAbilityByName(talentName)
         if talent and talent:GetLevel() > 0 then base = base + talent:GetSpecialValueFor("value") end
     end
@@ -52,7 +52,7 @@ end
 
 -- Round number
 function util:round(num, idp)
-    if num >= 0 then return math.floor(num+.5) 
+    if num >= 0 then return math.floor(num+.5)
     else return math.ceil(num-.5) end
 end
 
@@ -180,7 +180,7 @@ end
 
 function util:sortTable(input)
     local array = {}
-    for heroName in pairs(input) do 
+    for heroName in pairs(input) do
         array[heroName] = {}
         while #array[heroName] ~= self:getTableLength(input[heroName]) do
             for abilityName, position in pairs(input[heroName]) do
@@ -529,7 +529,7 @@ function util:parseTime(timeString)
     }
 end
 
-function util:getTableLength(t) 
+function util:getTableLength(t)
   if not t then return nil end
   local length = 0
 
@@ -614,7 +614,7 @@ function DebugCalls()
 end
 
 
-function CDOTA_BaseNPC:GetAbilityCount() 
+function CDOTA_BaseNPC:GetAbilityCount()
     local count = 0
     for i=0,23 do
         if self:GetAbilityByIndex(i) then
@@ -641,46 +641,63 @@ function CDOTA_BaseNPC:GetUnsafeAbilitiesCount()
 end
 
 
+function CDOTA_BaseNPC:GetCastRangeIncrease()
+ local range = 0
+ local stack_range = 0
+ for _, parent_modifier in pairs(self:FindAllModifiers()) do
+   if parent_modifier.GetModifierCastRangeBonus then
+     range = math.max(range,parent_modifier:GetModifierCastRangeBonus())
+   end
+   if parent_modifier.GetModifierCastRangeBonusStacking then
+     stack_range = stack_range + parent_modifier:GetModifierCastRangeBonusStacking()
+   end
+ end
+ local hTalent = nil
+ for talent_name,talent_range_bonus in pairs(CAST_RANGE_TALENTS) do
+   hTalent = self:FindAbilityByName(talent_name)
+   if hTalent ~= nil and hTalent:GetLevel() > 0 then
+     stack_range = stack_range + talent_range_bonus
+   end
+   hTalent = nil
+ end
+ return range + stack_range
+end
+
 function CDOTABaseAbility:GetTrueCooldown()
+  if Convars:GetBool('dota_ability_debug') then return 0 end
   local cooldown = self:GetCooldown(-1)
   local hero = self:GetCaster()
   local mabWitch = hero:FindAbilityByName('death_prophet_witchcraft')
   if mabWitch then cooldown = cooldown - mabWitch:GetLevel() end
-  if Convars:GetBool('dota_ability_debug') then
-    cooldown = 0
-  end
-  local octarineMult = 1
-
+  local cooldown_reduct = 0
+  local cooldown_reduct_stack = 0
   for k,v in pairs(hero:FindAllModifiers()) do
-    if v.GetModifierPercentageCooldown then
-        octarineMult = octarineMult - (v:GetModifierPercentageCooldown()/100)
-    end
+      if v.GetModifierPercentageCooldown then
+        cooldown_reduct = math.max(cooldown_reduct,v:GetModifierPercentageCooldown())
+      end
+      if v.GetModifierPercentageCooldownStacking then
+        cooldown_reduct_stack = cooldown_reduct_stack + v:GetModifierPercentageCooldownStacking()
+      end
   end
- 
-
-
-
-  --if hero:HasModifier("modifier_item_octarine_core") or hero:HasModifier("modifier_item_octarine_core_consumable") then octarineMult = 0.75 end
-  cooldown = cooldown * octarineMult
+  cooldown = cooldown * math.max(0.01,(1 - (cooldown_reduct + cooldown_reduct_stack)*0.01))
   return cooldown
 end
 
 function CDOTA_BaseNPC:GetCooldownReduction()
+  if Convars:GetBool('dota_ability_debug') then return 0 end
   local hero = self
 
-  if Convars:GetBool('dota_ability_debug') then
-    cooldown = 0
-  end
-  local octarineMult = 1
-
+  local cooldown_reduct = 0
+  local cooldown_reduct_stack = 0
   for k,v in pairs(hero:FindAllModifiers()) do
-    if v.GetModifierPercentageCooldown then
-        octarineMult = octarineMult - (v:GetModifierPercentageCooldown()/100)
-    end
+      if v.GetModifierPercentageCooldown then
+        cooldown_reduct = math.max(cooldown_reduct,v:GetModifierPercentageCooldown())
+      end
+      if v.GetModifierPercentageCooldownStacking then
+        cooldown_reduct_stack = cooldown_reduct_stack + v:GetModifierPercentageCooldownStacking()
+      end
   end
- 
-
-  return octarineMult
+  return math.max(0.01,(1 - (cooldown_reduct + cooldown_reduct_stack)*0.01))
 end
 
 
@@ -688,10 +705,10 @@ end
 
 
 function ShuffleArray(input)
-  local rand = math.random 
+  local rand = math.random
     local iterations = #input
     local j
-    
+
     for i = iterations, 2, -1 do
         j = rand(i)
         input[i], input[j] = input[j], input[i]
@@ -741,7 +758,7 @@ function util:checkPickedHeroes( builds )
     local players = {}
 
     for i=0,23 do
-        local ply = PlayerResource:GetPlayer(i) 
+        local ply = PlayerResource:GetPlayer(i)
         if ply then
             if not builds[i] then
                 table.insert(players, i)
@@ -773,12 +790,12 @@ function CDOTABaseAbility:CreateIllusions(hTarget,nIllusions,flDuration,flIncomi
     if not flRadius then flRadius = 50 end
     local illusions = {}
     local vRandomSpawnPos = {
-        Vector( flRadius, 0, 0 ),  
-        Vector( 0, flRadius, 0 ),  
-        Vector( -flRadius, 0, 0 ), 
-        Vector( 0, -flRadius, 0 ), 
+        Vector( flRadius, 0, 0 ),
+        Vector( 0, flRadius, 0 ),
+        Vector( -flRadius, 0, 0 ),
+        Vector( 0, -flRadius, 0 ),
     }
-    
+
     for i=#vRandomSpawnPos, 2, -1 do
       local j = RandomInt( 1, i )
       vRandomSpawnPos[i], vRandomSpawnPos[j] = vRandomSpawnPos[j], vRandomSpawnPos[i]
@@ -790,21 +807,21 @@ function CDOTABaseAbility:CreateIllusions(hTarget,nIllusions,flDuration,flIncomi
         local illusion = CreateUnitByName(hTarget:GetUnitName(),hTarget:GetAbsOrigin() +vRandomSpawnPos[1],true,caster,caster:GetOwner(),caster:GetTeamNumber())
         table.remove(vRandomSpawnPos, 1)
         illusion:MakeIllusion()
-        illusion:SetControllableByPlayer(player,true) 
+        illusion:SetControllableByPlayer(player,true)
         illusion:SetPlayerID(player)
         illusion:SetHealth(hTarget:GetHealth())
         illusion:SetMana(hTarget:GetMana())
         illusion:AddNewModifier(caster, ability, "modifier_illusion", {duration = flDuration, outgoing_damage=flOutgoingDamage, incoming_damage = flIncomingDamage})
-        
+
         local level = hTarget:GetLevel()
         for i=1,level-1 do
             illusion:HeroLevelUp(false)
         end
-        
+
         for abilitySlot=0,23 do
             local abilityTemp = caster:GetAbilityByIndex(abilitySlot)
-          
-            if abilityTemp then 
+
+            if abilityTemp then
                 illusion:RemoveAbility(abilityTemp:GetAbilityName())
             end
         end
@@ -812,9 +829,9 @@ function CDOTABaseAbility:CreateIllusions(hTarget,nIllusions,flDuration,flIncomi
         illusion:SetAbilityPoints(0)
         for abilitySlot=0,23 do
             local abilityTemp = hTarget:GetAbilityByIndex(abilitySlot)
-          
+
             if abilityTemp then
-                illusion:AddAbility(abilityTemp:GetAbilityName()) 
+                illusion:AddAbility(abilityTemp:GetAbilityName())
                 local abilityLevel = abilityTemp:GetLevel()
                 if abilityLevel > 0 then
                     local abilityName = abilityTemp:GetAbilityName()
@@ -844,18 +861,18 @@ function CDOTA_BaseNPC:FixIllusion(source)
 
     for abilitySlot=0,23 do
         local abilityTemp = self:GetAbilityByIndex(abilitySlot)
-      
-        if abilityTemp then 
+
+        if abilityTemp then
             self:RemoveAbility(abilityTemp:GetAbilityName())
         end
     end
     self:SetAbilityPoints(0)
     for abilitySlot=0,23 do
         local abilityTemp = source:GetAbilityByIndex(abilitySlot)
-      
+
         if abilityTemp then
 
-            self:AddAbility(abilityTemp:GetAbilityName()) 
+            self:AddAbility(abilityTemp:GetAbilityName())
             local abilityLevel = abilityTemp:GetLevel()
             if abilityLevel > 0 then
                 local abilityName = abilityTemp:GetAbilityName()
@@ -905,7 +922,7 @@ function GetRandomAbilityFromListForPerk(flag)
             localTable[numberOfValues] = v
         end
     end
-    
+
     local random = RandomInt(1,numberOfValues)
     return localTable[random]
 end
@@ -946,12 +963,12 @@ function util:CreateVoting(votingName, initiator, duration, percent, onaccept, o
     end
 
     -- If a vote fails, players cannot call another vote for 5 minutes, to prevent abuse.
-    if util.votesBlocked[initiator] then 
+    if util.votesBlocked[initiator] then
         util:DisplayError(initiator, "#votingCooldown")
         return
     end
 
-    -- If a vote has been called of this type recently, block 
+    -- If a vote has been called of this type recently, block
     if util.votesBlocked[votingName] then
         util:DisplayError(initiator, "#voteCooldown")
         return
@@ -975,7 +992,7 @@ function util:CreateVoting(votingName, initiator, duration, percent, onaccept, o
         local totalPlayers = 0
         local votesDeclined = 0
         for PlayerID = 0, 23 do
-            if PlayerResource:IsValidPlayerID(PlayerID) and not util:isPlayerBot(PlayerID) then                            
+            if PlayerResource:IsValidPlayerID(PlayerID) and not util:isPlayerBot(PlayerID) then
                 local state = PlayerResource:GetConnectionState(PlayerID)
                 if state == 1 or state == 2 then
                     if util.activeVoting.votes[PlayerID] ~= nil then
@@ -1088,29 +1105,29 @@ function CDOTA_BaseNPC:PopupNumbers(target, pfx, color, lifetime, number, presym
     number = number * (1 + (.08 * lens_count) + (self:GetIntellect()/1600))
 
     number = math.floor(number)
-    local pfxPath = string.format("particles/msg_fx/msg_%s.vpcf", pfx)    
-    local pidx    
-    if pfx == "gold" or pfx == "lumber" then    
-        pidx = ParticleManager:CreateParticleForTeam(pfxPath, PATTACH_CUSTOMORIGIN, target, target:GetTeamNumber())   
-    else    
-        pidx = ParticleManager:CreateParticle(pfxPath, PATTACH_CUSTOMORIGIN, target)    
-    end   
-    
-    local digits = 0    
-    if number ~= nil then   
-        digits = #tostring(number)    
-    end   
-    if presymbol ~= nil then    
-        digits = digits + 1   
-    end   
-    if postsymbol ~= nil then   
-        digits = digits + 1   
-    end   
-    
-    ParticleManager:SetParticleControl(pidx, 0, target:GetAbsOrigin())    
-    ParticleManager:SetParticleControl(pidx, 1, Vector(tonumber(presymbol), tonumber(number), tonumber(postsymbol)))    
-    ParticleManager:SetParticleControl(pidx, 2, Vector(lifetime, digits, 0))    
-    ParticleManager:SetParticleControl(pidx, 3, color)    
+    local pfxPath = string.format("particles/msg_fx/msg_%s.vpcf", pfx)
+    local pidx
+    if pfx == "gold" or pfx == "lumber" then
+        pidx = ParticleManager:CreateParticleForTeam(pfxPath, PATTACH_CUSTOMORIGIN, target, target:GetTeamNumber())
+    else
+        pidx = ParticleManager:CreateParticle(pfxPath, PATTACH_CUSTOMORIGIN, target)
+    end
+
+    local digits = 0
+    if number ~= nil then
+        digits = #tostring(number)
+    end
+    if presymbol ~= nil then
+        digits = digits + 1
+    end
+    if postsymbol ~= nil then
+        digits = digits + 1
+    end
+
+    ParticleManager:SetParticleControl(pidx, 0, target:GetAbsOrigin())
+    ParticleManager:SetParticleControl(pidx, 1, Vector(tonumber(presymbol), tonumber(number), tonumber(postsymbol)))
+    ParticleManager:SetParticleControl(pidx, 2, Vector(lifetime, digits, 0))
+    ParticleManager:SetParticleControl(pidx, 3, color)
 end
 
 DisableHelpStates = DisableHelpStates or {}

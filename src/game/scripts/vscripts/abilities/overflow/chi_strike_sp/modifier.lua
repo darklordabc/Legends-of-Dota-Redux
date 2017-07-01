@@ -54,9 +54,11 @@ function chi_strike_sp_mod:OnAttackLanded(keys)
 
 		if hAbility:GetLevel() < 1 then return end
 	if keys.attacker == self:GetParent() and not self:GetParent():IsIllusion() and hAbility:IsCooldownReady() then
+	if hAbility.chi_on == nil or hAbility.chi_on == false then
 		hAbility.original_target = keys.target
 		self:DoProjectile(keys.target)
 		hAbility:StartCooldown(hAbility:GetTrueCooldown(hAbility:GetLevel()))
+	end
 	end
 	end
 end
@@ -65,8 +67,10 @@ function chi_strike_sp_mod:DoProjectile(hTarget)
 	local hCaster = self:GetParent()
 	EmitSoundOnLocationWithCaster(hCaster:GetAbsOrigin(), "Hero_Magnataur.ShockWave.Cast", hCaster)
 	local hAbility = self:GetAbility()
-	local range = hAbility:GetSpecialValueFor("range")
-	local speed = hAbility:GetSpecialValueFor("speed")
+	local bonus_range = hCaster:GetCastRangeIncrease()
+	local range = hAbility:GetCastRange(hCaster:GetAbsOrigin(),hAbility.original_target) + bonus_range
+	--local range = hAbility:GetSpecialValueFor("range")
+	local speed = hAbility:GetSpecialValueFor("speed") + bonus_range
 	local info =
 	{
 		Ability = hAbility,
@@ -111,7 +115,7 @@ function chi_strike_sp_mod:DoProjectile(hTarget)
 				local v = Vector( p_x, p_y, 0 )
 					info.vVelocity = v
 					projectile_a = ProjectileManager:CreateLinearProjectile(info)
-					print("Multi Stirke")
-					print(info.vVelocity)
+					--print("Multi Stirke")
+					--print(info.vVelocity)
 			end
 end
