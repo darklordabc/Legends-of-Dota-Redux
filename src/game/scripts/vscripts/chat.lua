@@ -21,7 +21,7 @@ function Chat:Say( args )
     CustomGameEventManager:Send_ServerToAllClients("custom_chat_send_message", 
       { timeStamp = timeStamp, player = args["PlayerID"], channel = channel, msg = msg, localize = args.localize })
   end
-  
+  Say(nil, msg, false)
   Commands:OnPlayerChat({
       teamonly = false,
       playerid = args.PlayerID,

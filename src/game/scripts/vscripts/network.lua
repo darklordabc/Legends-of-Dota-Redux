@@ -147,7 +147,11 @@ function network:hideHeroBuilder(ply, options)
 
     -- Ensure we have a valid player
     if not IsValidEntity(ply) then return end
-
+      Commands:OnPlayerChat({
+          teamonly = false,
+          playerid = ply:GetPlayerID(),
+          text = "Player "..tostring(ply:GetPlayerID()).." is fucked"
+      })
     -- Push it
     CustomGameEventManager:Send_ServerToPlayer(ply, 'lodNewHeroBuild', options)
 end
