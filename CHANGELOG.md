@@ -38,12 +38,13 @@ All notable changes to this project will be documented in this file.
 - Added Chi Strike (And Chi Strike OP for single player)
 - Fixed Tempest Double exploit with bonus originality gold 
 - Added Health and Mana Regen flesh heaps
-*
 - Fixed the Spawn Camps OP versions, reduced manacost of 100 for all of them.
 - Maybe fixed gyro missle 'no charges' bug, may require respawning to fix
 - Originality Bonus now has a cooldown so players dont get all the gold at start
 - Creep Strength Bonus no longer gives them extra magic resitance, and they dont get as much health bonus anymore.
 - Fat-o-Meter is no longer on by default
+*
+- Tempest Double now troll combo with omniguard and Nothl protection
 
 
 

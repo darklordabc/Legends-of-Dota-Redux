@@ -106,5 +106,6 @@
         "ReduxPerks"                                                           "aura"
         "ReduxCost"                                                            "30"
         "ReduxFlags"                                                           "doNotRandom"
+        "ReduxBans"                                                            "arc_warden_tempest_double | arc_warden_tempest_double_redux"
     }
 }
