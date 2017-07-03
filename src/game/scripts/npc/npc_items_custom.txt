@@ -3085,4 +3085,1357 @@
             }
         }
     }
+
+    //=================================================================================================================
+    // Recipe: Mekansm
+    //=================================================================================================================
+    "item_recipe_imba_mekansm"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2013"
+        "BaseClass"                     "item_datadriven"
+        "AbilityTextureName"            "custom/imba_recipe"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "900"
+        "ItemShopTags"                  ""
+
+        // Recipe
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_imba_mekansm"
+        "ItemRequirements"
+        {
+            "01"                        "item_headdress;item_buckler"
+        }
+    }
+
+    //=================================================================================================================
+    // Mekansm
+    //=================================================================================================================
+    "item_imba_mekansm"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2015"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "items/item_mekansm.lua"
+        "AbilityTextureName"            "custom/imba_mekansm"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "FightRecapLevel"               "2"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "900"
+        "AbilityCooldown"               "65"
+        "AbilityManaCost"               "225"
+        "AbilitySharedCooldown"         "mekansm"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "2275"
+        "ItemShopTags"                  "agi;int;str;armor;boost_health"
+        "ItemQuality"                   "rare"
+        "ItemAliases"                   "mechanism;mekansm"
+        "ItemAlertable"                 "1"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_all_stats"       "5"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_armor"           "5"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "aura_radius"           "900"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "aura_health_regen"     "4"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "heal_amount"           "250"
+            }
+            "06"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "heal_radius"           "900"
+            }
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "heal_bonus_armor"      "2"
+            }
+            "08"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "heal_percentage"       "0.5"
+            }
+            "09"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "heal_duration"         "20"
+            }
+        }
+    }
+
+    //=================================================================================================================
+    // Vladmir's Blood
+    //=================================================================================================================
+    "item_recipe_imba_vladmir_2"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2018"
+        "BaseClass"                     "item_datadriven"
+        "AbilityTextureName"            "custom/imba_recipe"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "600"
+        "ItemShopTags"                  ""
+
+        // Recipe
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_imba_vladmir_2"
+        "ItemRequirements"
+        {
+            "01"                        "item_imba_vladmir;item_pers"
+        }
+    }
+    
+    "item_imba_vladmir_2"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2020"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "items/item_vladmir.lua"
+        "AbilityTextureName"            "custom/imba_vladmir_2"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "4625"
+        "ItemShopTags"                  "lifesteal;damage;armor;regen_mana;damage;crit"
+        "ItemQuality"                   "rare"
+        "ItemAliases"                   "vladmir's blood;vlads"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+
+        "MaxUpgradeLevel"               "2"
+        "ItemBaseLevel"                 "2"
+
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "particle"                      "particles/item/lifesteal_mask/lifesteal_particle.vpcf"
+            "particle"                      "particles/item/vladmir/vladmir_blood_lifesteal.vpcf"
+        }
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "aura_radius"           "900"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "vampiric_aura"         "20"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "damage_aura"           "25"
+                "CalculateSpellDamageTooltip"   "0"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "armor_aura"            "5"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "mana_regen_aura"       "1.75"
+            }
+            "06"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "hp_regen_aura"         "9"
+            }
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "stat_bonus"            "3"
+            }
+        }
+    }
+
+    //=================================================================================================================
+    // Recipe : Pipe of Insight
+    //=================================================================================================================
+    "item_recipe_imba_pipe"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2245"
+        "BaseClass"                     "item_datadriven"
+        "AbilityTextureName"            "custom/imba_recipe"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "800"
+        "ItemShopTags"                  ""
+
+        // Recipe
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_imba_pipe"
+        "ItemRequirements"
+        {
+            "01"                        "item_imba_hood_of_defiance;item_headdress"
+        }
+    }
+
+    //=================================================================================================================
+    // Pipe of Insight
+    //=================================================================================================================
+    "item_imba_pipe"
+    {
+        "ID"                            "2246"
+        "BaseClass"                     "item_lua"
+        "AbilityTextureName"            "item_pipe"
+        "ScriptFile"                    "items/item_pipe.lua"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "3150"
+        "ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "ItemShopTags"                  "health_regen;support;magic_resist"
+        "ItemQuality"                   "artifact"
+        "ItemAliases"                   "pipe"
+        "SideShop"                      "0"
+        "SecretShop"                    "0"
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+        "AbilityCooldown"               "60"
+        "AbilityManaCost"               "100"
+
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "particle"                      "particles/items2_fx/pipe_of_insight.vpcf"
+        }
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "bonus_health_regen"            "8"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "bonus_magic_resist"            "30"
+            }
+            "03"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "aura_bonus_health_regen"       "4"
+            }
+            "04"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "aura_bonus_magic_resist"       "10"
+            }
+            "05"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "aura_tenacity_pct"             "10"
+            }
+            "06"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "active_tenacity_pct"           "35"
+            }
+            "07"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "aura_radius"                   "900"
+            }
+            "08"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "shield_health"                 "400"
+            }
+            "09"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "unreducable_magic_resist"      "40"
+            }
+            "10"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "duration"                      "12"
+            }
+        }
+    }   
+
+    //=================================================================================================================
+    // Recipe: Initiate's Robe
+    //=================================================================================================================
+    "item_recipe_imba_initiate_robe"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2158"
+        "BaseClass"                     "item_datadriven"
+        "AbilityTextureName"            "custom/imba_recipe"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "325"
+        "ItemShopTags"                  ""
+
+        // Recipe
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_imba_initiate_robe"
+        "ItemRequirements"
+        {
+            "01"                        "item_cloak;item_infused_raindrop"
+        }
+    }
+
+    //=================================================================================================================
+    // Initiate's Robe
+    //=================================================================================================================
+    "item_imba_initiate_robe"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2159"
+        "BaseClass"                     "item_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"            "custom/imba_initiate_robe"
+        "FightRecapLevel"               "1"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "0"
+        "AbilityCastPoint"              "0.0"
+        "AbilityCooldown"               "0.0"
+        "AbilityManaCost"               "0"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "1100"
+        "ItemShopTags"                  "magic_resist;regen_mana"
+        "ItemQuality"                   "common"
+        "ItemAliases"                   "initiate robe;robe"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "mana_regen"            "1.0"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "magic_resist"          "20"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "mana_conversion_rate"  "100"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "max_stacks"            "250"
+            }
+        }
+
+        "Modifiers"
+        {
+            "modifier_item_imba_initiate_robe"
+            {
+                "Passive"               "1"
+                "IsHidden"              "1"
+                "IsPurgable"            "0"
+                "IsBuff"                "1"
+
+                "Attributes"            "MODIFIER_ATTRIBUTE_MULTIPLE | MODIFIER_ATTRIBUTE_PERMANENT"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"        "%magic_resist"
+                    "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"             "1.0"       // this is hardcoded due to an obscure engine bug
+                }
+            }
+
+            "modifier_item_imba_initiate_robe_unique"
+            {
+                "Passive"               "1"
+                "IsHidden"              "1"
+                "IsPurgable"            "0"
+                "IsBuff"                "1"
+
+                "ThinkInterval"         "0.03"
+
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"        "items/item_initiate_robe.lua"
+                        "Function"          "InitiateRobeThink"
+
+                        "modifier_stacks"   "modifier_item_imba_initiate_robe_stacks"
+                        "particle_shield"   "particles/item/initiate_robe/initiate_robe_shield.vpcf"
+                    }
+                }
+
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"        "internal/util.lua"
+                        "Function"          "IllusionPassiveRemover"
+
+                        "modifier"          "modifier_item_imba_initiate_robe_unique"
+                    }
+                }
+
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"        "items/item_initiate_robe.lua"
+                        "Function"          "InitiateRobeEnd"
+
+                        "modifier_stacks"   "modifier_item_imba_initiate_robe_stacks"
+                    }
+                }
+            }
+
+            "modifier_item_imba_initiate_robe_stacks"
+            {
+                "Passive"               "0"
+                "IsHidden"              "0"
+                "IsPurgable"            "0"
+                "IsBuff"                "1"
+
+                "TextureName"           "custom/imba_initiate_robe"
+            }
+        }
+    }
+
+    //=================================================================================================================
+    // Recipe: Necronomicon
+    //=================================================================================================================
+    "item_recipe_imba_necronomicon_4"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2192"
+        "BaseClass"                     "item_datadriven"
+        "AbilityTextureName"            "custom/imba_recipe"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "0"
+        "ItemShopTags"                  ""
+        "ItemBaseLevel"                 "4"
+
+        // Recipe
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_imba_necronomicon_4"
+        "ItemRequirements"
+        {
+            "01"                        "item_imba_necronomicon_3;item_recipe_imba_necronomicon"
+        }
+    }
+
+    "item_recipe_imba_necronomicon_5"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2193"
+        "BaseClass"                     "item_datadriven"
+        "AbilityTextureName"            "custom/imba_recipe"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "0"
+        "ItemShopTags"                  ""
+        "ItemBaseLevel"                 "5"
+
+        // Recipe
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_imba_necronomicon_5"
+        "ItemRequirements"
+        {
+            "01"                        "item_imba_necronomicon_4;item_recipe_imba_necronomicon"
+        }
+    }
+
+    "item_imba_necronomicon_4"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2194"
+        "BaseClass"                     "item_datadriven"
+        "AbilityTextureName"            "custom/imba_necronomicon_4"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastPoint"              "0.0"
+        "AbilityCooldown"               "90"
+        "AbilitySharedCooldown"         "necrobook"
+        "FightRecapLevel"               "1"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "50"
+        "ItemCost"                      "6250"
+        "ItemShopTags"                  "int;str;hard_to_tag;see_invis"
+        "ItemQuality"                   "rare"
+        "ItemAliases"                   "necronomicon 4; draconomicon"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+        "MaxUpgradeLevel"               "5"
+        "ItemBaseLevel"                 "4"
+
+        "UpgradesItems"                 "item_imba_necronomicon_4"
+        "UpgradeRecipe"                 "item_recipe_imba_necronomicon"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_intellect"       "27"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_strength"        "18"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "summon_duration"       "40"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "warrior_health"        "1350"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "archer_health"         "1050"
+            }
+        }
+
+        // Datadriven
+        //-------------------------------------------------------------------------------------------------------------
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"            "items/item_necronomicon.lua"
+                "Function"              "Necronomicon"
+
+                "sound_cast"            "DOTA_Item.Necronomicon.Activate"
+                "necro_level"           "4"
+            }
+        }
+
+        "Modifiers"
+        {
+            "modifier_item_imba_necronomicon"
+            {
+                "Passive"               "1"
+                "IsHidden"              "1"
+                "IsDebuff"              "0"
+
+                "Attributes"            "MODIFIER_ATTRIBUTE_MULTIPLE | MODIFIER_ATTRIBUTE_PERMANENT"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"       "%bonus_intellect"
+                    "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"        "%bonus_strength"
+                }
+            }
+
+            "modifier_item_imba_necronomicon_summon"
+            {
+                "Passive"               "0"
+                "IsHidden"              "1"
+                "IsBuff"                "1"
+                "IsPurgable"            "0"
+
+                "States"
+                {
+                    "MODIFIER_STATE_NO_UNIT_COLLISION"      "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+    }
+
+    "item_imba_necronomicon_5"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2195"
+        "BaseClass"                     "item_datadriven"
+        "AbilityTextureName"            "custom/imba_necronomicon_5"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastPoint"              "0.0"
+        "AbilityCooldown"               "90"
+        "AbilitySharedCooldown"         "necrobook"
+        "FightRecapLevel"               "1"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "50"
+        "ItemCost"                      "7450"
+        "ItemShopTags"                  "int;str;hard_to_tag;see_invis"
+        "ItemQuality"                   "rare"
+        "ItemAliases"                   "necronomicon 5; demonomicon"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+        "MaxUpgradeLevel"               "5"
+        "ItemBaseLevel"                 "5"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_intellect"       "30"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_strength"        "20"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "summon_duration"       "40"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "warrior_health"        "1600"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "archer_health"         "1200"
+            }
+        }
+
+        // Datadriven
+        //-------------------------------------------------------------------------------------------------------------
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"            "items/item_necronomicon.lua"
+                "Function"              "Necronomicon"
+
+                "sound_cast"            "DOTA_Item.Necronomicon.Activate"
+                "necro_level"           "5"
+            }
+        }
+
+        "Modifiers"
+        {
+            "modifier_item_imba_necronomicon"
+            {
+                "Passive"               "1"
+                "IsHidden"              "1"
+                "IsDebuff"              "0"
+
+                "Attributes"            "MODIFIER_ATTRIBUTE_MULTIPLE | MODIFIER_ATTRIBUTE_PERMANENT"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"       "%bonus_intellect"
+                    "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"        "%bonus_strength"
+                }
+            }
+
+            "modifier_item_imba_necronomicon_summon"
+            {
+                "Passive"               "0"
+                "IsHidden"              "1"
+                "IsBuff"                "1"
+                "IsPurgable"            "0"
+
+                "States"
+                {
+                    "MODIFIER_STATE_NO_UNIT_COLLISION"      "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+    }
+
+    //=================================================================================================================
+    // Recipe: Orchid
+    //=================================================================================================================
+    "item_recipe_imba_orchid"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2029"
+        "BaseClass"                     "item_datadriven"
+        "AbilityTextureName"            "custom/imba_recipe"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "775"
+        "ItemShopTags"                  ""
+
+        // Recipe
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_imba_orchid"
+        "ItemRequirements"
+        {
+            "01"                        "item_oblivion_staff;item_oblivion_staff"
+        }
+    }
+
+    //=================================================================================================================
+    // Orchid
+    //=================================================================================================================
+    "item_imba_orchid"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2030"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "items/item_orchid.lua"
+        "AbilityTextureName"            "custom/imba_orchid"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "FightRecapLevel"               "1"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "900"
+        "AbilityCastPoint"              "0.0"
+        "AbilityCooldown"               "18"
+        "AbilityManaCost"               "100"
+        "AbilitySharedCooldown"         "orchid"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "4075"
+        "ItemShopTags"                  "int;attack_speed;damage;regen_mana;damage;hard_to_tag"
+        "ItemQuality"                   "rare"
+        "ItemAliases"                   "orchid malevolence"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "bonus_intellect"           "25"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "bonus_attack_speed"        "30"
+            }
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "bonus_damage"              "30"
+                "CalculateSpellDamageTooltip"   "0"
+            }
+            "04"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "bonus_mana_regen"          "150"
+            }
+            "05"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "silence_duration"          "5"
+            }
+            "06"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "silence_damage_percent"    "30"
+                "CalculateSpellDamageTooltip"   "0"
+            }
+            "07"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "spell_power"               "7"
+            }
+        }
+    }
+
+    //=================================================================================================================
+    // Recipe: Sheepstick
+    //=================================================================================================================
+    "item_recipe_imba_sheepstick"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2027"
+        "BaseClass"                     "item_datadriven"
+        "AbilityTextureName"            "custom/imba_recipe"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "0"
+        "ItemShopTags"                  ""
+
+        // Recipe
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_imba_sheepstick"
+        "ItemRequirements"
+        {
+            "01"                        "item_mystic_staff;item_ultimate_orb;item_void_stone"
+        }
+    }
+
+    //=================================================================================================================
+    // Sheepstick
+    //=================================================================================================================
+    "item_imba_sheepstick"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2028"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "items/item_sheepstick.lua"
+        "AbilityTextureName"            "custom/imba_sheepstick"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "FightRecapLevel"               "2"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "800"
+        "AbilityCastPoint"              "0.0"
+        "AbilityCooldown"               "25"
+        "AbilityManaCost"               "100"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "5700"
+        "ItemShopTags"                  "int;regen_mana;agi;hard_to_tag"
+        "ItemQuality"                   "rare"
+        "ItemAliases"                   "hex;sheepstick;scythe of vyse"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "model"                     "models/items/courier/mighty_chicken/mighty_chicken_flying.vmdl"
+        }
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_strength"        "10"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_agility"         "10"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_intellect"       "35"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_mana_regen"      "150"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "hex_duration"          "3.5"
+            }
+            "06"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "enemy_move_speed"      "140"
+            }
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "self_move_speed"       "550"
+            }
+            "08"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "tree_radius"           "175"
+            }
+            "09"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "stacking_penalty"      "0.5"
+            }
+            "10"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "stacking_penalty_dur"  "10"
+            }
+            "11"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "stacking_penalty_max"  "10"
+            }
+        }
+    }
+
+    //=================================================================================================================
+    // Recipe: Octarine Core
+    //=================================================================================================================
+    "item_recipe_imba_octarine_core"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2120"
+        "BaseClass"                     "item_datadriven"
+        "AbilityTextureName"            "custom/imba_recipe"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "0"
+        "ItemShopTags"                  ""
+
+        // Recipe
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_imba_octarine_core"
+        "ItemRequirements"
+        {
+            "01"                        "item_mystic_staff;item_soul_booster"
+        }
+    }
+
+    //=================================================================================================================
+    // Octarine Core
+    //=================================================================================================================
+    "item_imba_octarine_core"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2121"
+        "BaseClass"                     "item_lua"
+        "AbilityTextureName"            "custom/imba_octarine_core"
+        "Effect"                        "particles/generic_gameplay/dropped_item.vpcf"
+        "ScriptFile"                    "items/item_octarine_core.lua"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySharedCooldown"         "octarine"
+
+        "ItemCost"                      "5900"
+        "ItemShopTags"                  "boost_mana;mana_pool"
+        "ItemQuality"                   "rare"
+        "ItemAliases"                   "mana;mb;octarine core"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+        "ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "10"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_intelligence"    "40"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_health"          "525"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_mana"            "525"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_cooldown"        "25"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "spell_lifesteal"       "30"
+            }
+            "06"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "blast_radius"          "900"
+            }
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "blast_damage"          "50"
+                "CalculateSpellDamageTooltip"   "1"
+            }
+        }
+    }
+
+    //=================================================================================================================
+    // Recipe : Hood of Defiance
+    //=================================================================================================================
+    "item_recipe_imba_hood_of_defiance"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2243"
+        "BaseClass"                     "item_datadriven"
+        "AbilityTextureName"            "custom/imba_recipe"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "0"
+        "ItemShopTags"                  ""
+
+        // Recipe
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_imba_hood_of_defiance"
+        "ItemRequirements"
+        {
+            "01"                        "item_ring_of_health;item_cloak;item_ring_of_regen"
+        }
+    }
+
+    //=================================================================================================================
+    // Hood of Defiance
+    //=================================================================================================================
+    "item_imba_hood_of_defiance"
+    {
+        "ID"                            "2244"
+        "BaseClass"                     "item_lua"
+        "AbilityTextureName"            "item_hood_of_defiance"
+        "ScriptFile"                    "items/item_hood_of_defiance.lua"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "1725"
+        "ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_NEVER"
+        "ItemShopTags"                  "health_regen;defense;magic_resist"
+        "ItemQuality"                   "artifact"
+        "ItemAliases"                   "hood;defiance"
+        "SideShop"                      "0"
+        "SecretShop"                    "0"
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+        "AbilityCooldown"               "60"
+        "AbilityManaCost"               "75"
+
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "particle"                      "particles/items2_fx/pipe_of_insight.vpcf"
+        }
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "bonus_health_regen"            "8"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "bonus_magic_resist"            "25"
+            }
+            "03"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "passive_tenacity_pct"          "10"
+            }
+            "04"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "shield_health"                 "325"
+            }
+            "05"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "active_tenacity_pct"           "35"
+            }
+            "06"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "unreducable_magic_resist"      "25"
+            }
+            "07"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "duration"                      "12"
+            }
+        }
+    }
+
+    //=================================================================================================================
+    // Recipe: Veil of Discord
+    //=================================================================================================================
+    "item_recipe_imba_veil_of_discord"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2100"
+        "BaseClass"                     "item_datadriven"
+        "AbilityTextureName"            "custom/imba_recipe"
+        "Model"                         "models/props_gameplay/recipe.mdl"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "0"
+        "ItemShopTags"                  ""
+
+        // Recipe
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemRecipe"                    "1"
+        "ItemResult"                    "item_imba_veil_of_discord"
+        "ItemRequirements"
+        {
+            "01"                        "item_helm_of_iron_will;item_imba_azura"
+        }
+    }
+
+    //=================================================================================================================
+    // Veil of discord
+    //=================================================================================================================
+    "item_imba_veil_of_discord"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2101"
+        "BaseClass"                     "item_datadriven"
+        "AbilityTextureName"            "custom/imba_veil_of_discord"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "20"
+        "AbilityCastRange"              "1000"
+        "AbilityCastPoint"              "0.0"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "75"
+        "ItemCost"                      "2950"
+        "ItemShopTags"                  "int;armor;regen_health;hard_to_tag"
+        "ItemQuality"                   "rare"
+        "ItemAliases"                   "vod;veil of discord"
+        "ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_ALWAYS"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "aura_radius"           "1200"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "aura_resist"           "-30"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_health_regen"    "5"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_armor"           "7"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_int"             "25"
+            }
+            "06"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "debuff_duration"       "8"
+            }
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "target_damage"         "100"
+                "CalculateSpellDamageTooltip"   "1"
+            }
+        }
+
+        "OnSpellStart"
+        {
+            "FireEffect"
+            {
+                "EffectName"            "particles/generic_gameplay/generic_manaburn.vpcf"
+                "EffectAttachType"      "follow_origin"
+                "Target"                "TARGET"
+            }
+
+            "FireSound"
+            {
+                "EffectName"            "DOTA_Item.VeilofDiscord.Activate"
+                "Target"                "TARGET"
+            }
+
+            "ApplyModifier"
+            {
+                "ModifierName"          "modifier_item_imba_veil_of_discord_target_debuff"
+                "Target"                "TARGET"
+            }
+
+            "Damage"
+            {
+                "Target"                "TARGET"
+                "Type"                  "DAMAGE_TYPE_MAGICAL"
+                "Damage"                "%target_damage"
+            }
+        }
+
+        "Modifiers"
+        {
+            "modifier_item_imba_veil_of_discord"
+            {
+                "Passive"               "1"
+                "IsHidden"              "1"
+
+                "Attributes"            "MODIFIER_ATTRIBUTE_MULTIPLE | MODIFIER_ATTRIBUTE_PERMANENT"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"               "%bonus_health_regen"
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"                "%bonus_armor"
+                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"               "%bonus_int"
+                }
+            }
+
+            "modifier_item_imba_veil_of_discord_aura"
+            {
+                "Passive"               "1"
+                "IsHidden"              "1"
+
+                "Aura"                  "modifier_item_imba_veil_of_discord_aura_debuff"
+                "Aura_Radius"           "%aura_radius"
+                "Aura_Teams"            "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                "Aura_Types"            "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                "Aura_ApplyToCaster"    "0"
+            }
+
+            "modifier_item_imba_veil_of_discord_aura_debuff"
+            {
+                "IsDebuff"              "1"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"            "%aura_resist"
+                }
+            }
+
+            "modifier_item_imba_veil_of_discord_target_debuff"
+            {
+                "IsDebuff"              "1"
+                "IsPurgable"            "1"
+
+                "EffectName"            "particles/items2_fx/veil_of_discord_debuff.vpcf"
+                "EffectAttachType"      "follow_origin"
+
+                "Duration"              "%debuff_duration"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"            "%aura_resist"
+                }
+            }
+        }
+    }
 }

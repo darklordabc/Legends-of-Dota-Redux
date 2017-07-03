@@ -212,14 +212,32 @@ PANORAMA_SHOP_ITEMS = {
 				"item_imba_reverb_rapier",
 				"item_imba_power_treads_2",
 				"item_imba_elder_staff",
-				"item_imba_greatwyrm_plate",
-				"item_imba_starfury",
 				"item_imba_hand_of_midas",
 				"item_imba_moon_shard",
 				"item_imba_blink_boots",
+			},
+			{					
 				"item_imba_urn_of_shadows",
 				"item_imba_ancient_janggo",
 				"item_imba_arcane_boots",
+				"item_imba_mekansm",
+				"item_imba_vladmir_2",					
+			},
+			{
+				"item_imba_initiate_robe",
+				"item_imba_veil_of_discord",
+				"item_imba_necronomicon_4",
+				"item_imba_necronomicon_5",
+				"item_imba_orchid",
+				"item_imba_sheepstick",
+				"item_imba_octarine_core",
+			},
+			{
+				"item_imba_hood_of_defiance",
+				"item_imba_greatwyrm_plate",
+			},
+			{
+				"item_imba_starfury",
 			}
 		}
 	}
