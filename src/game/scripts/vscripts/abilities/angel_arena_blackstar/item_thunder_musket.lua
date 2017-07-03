@@ -23,7 +23,10 @@ function ThunderstruckProc(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	if not ability:IsCooldownReady() then return end
+
+	-- If there isn't a valid target, do nothing
+	if not (ability:IsCooldownReady() and caster:IsRealHero())then
+		return end
 
 	--if PreformAbilityPrecastActions(caster, ability) then
 		ApplyDamage({

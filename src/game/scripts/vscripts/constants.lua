@@ -240,16 +240,16 @@ Constants.FAT_SCALING = {
 
 -- Imba Stuff
 CAST_RANGE_TALENTS = {}														-- Cast range talent values
-CAST_RANGE_TALENTS["special_bonus_cast_range_50"] = 100
-CAST_RANGE_TALENTS["special_bonus_cast_range_60"] = 125
-CAST_RANGE_TALENTS["special_bonus_cast_range_75"] = 150
-CAST_RANGE_TALENTS["special_bonus_cast_range_100"] = 200
-CAST_RANGE_TALENTS["special_bonus_cast_range_125"] = 250
-CAST_RANGE_TALENTS["special_bonus_cast_range_150"] = 300
-CAST_RANGE_TALENTS["special_bonus_cast_range_175"] = 350
-CAST_RANGE_TALENTS["special_bonus_cast_range_200"] = 400
-CAST_RANGE_TALENTS["special_bonus_cast_range_250"] = 450
-CAST_RANGE_TALENTS["special_bonus_cast_range_300"] = 500
+CAST_RANGE_TALENTS["special_bonus_cast_range_50"] = 50
+CAST_RANGE_TALENTS["special_bonus_cast_range_60"] = 60
+CAST_RANGE_TALENTS["special_bonus_cast_range_75"] = 75
+CAST_RANGE_TALENTS["special_bonus_cast_range_100"] = 100
+CAST_RANGE_TALENTS["special_bonus_cast_range_125"] = 125
+CAST_RANGE_TALENTS["special_bonus_cast_range_150"] = 150
+CAST_RANGE_TALENTS["special_bonus_cast_range_175"] = 175
+CAST_RANGE_TALENTS["special_bonus_cast_range_200"] = 200
+CAST_RANGE_TALENTS["special_bonus_cast_range_250"] = 250
+CAST_RANGE_TALENTS["special_bonus_cast_range_300"] = 300
 
 MAXIMUM_ATTACK_SPEED = 600					-- What should we use for the maximum attack speed?
 

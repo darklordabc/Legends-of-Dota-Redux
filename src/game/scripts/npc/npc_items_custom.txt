@@ -1082,10 +1082,11 @@
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "Model"                         "models/props_gameplay/treasure_chest001.vmdl"
         "ItemKillable"                  "0"
-
+        "AbilityCooldown"               "60"
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
         "ItemPurchasable"               "0"
+        "IsTempestDoubleClonable"       "0"
         "ItemShopTags"                  "consumable"
         "ItemQuality"                   "consumable"
         "ItemStackable"                 "0"

@@ -665,7 +665,7 @@
     "lodOptionAboutGameSpeedUpgradedUlts"           "Every player will start with scepter upgraded ultimate abilities. Gyrocopter, Keeper of the Light and Night Stalker will not benefit from this."
     "lodOptionAboutGameSpeedFreeCourier"            "Each team will get a free courier."
     "lodOptionAboutGameSpeedStrongTowers"           "Towers will have powerful abilities that upgrade each time a tower on their side dies. After 3 upgrades, a tower will receive a new ability. Ticking this automatically sets Lane Creep Power to 'Normal'"
-    "lodOptionAboutCreepPower"                      "Increases lane creep's damage, health points, magic resistance and bounty every selected time interval. 'Normal' is recommended if you enable Stronger Towers."
+    "lodOptionAboutCreepPower"                      "Increases lane creep's damage, health points and bounty every selected time interval. 'Normal' is recommended if you enable Stronger Towers."
     "lodOptionAboutNeutralCreepPower"                      "Increases neutral creep's damage, health, exp and gold bounty every selected time interval."
     "lodOptionAboutNeutralMultiply"                 "Doubles, Triples or Quadruples the amount of neutral creeps that spawn. Does not increase the SPEED of spawning, only the AMOUNT that spawn. Will not multiply Roshan."
     "lodOptionAboutCrazyEasymode"                   "Players will gain gold and experience much faster."
@@ -2361,11 +2361,6 @@
     "DOTA_Tooltip_ability_pudge_flesh_heap_magic_resistance_flesh_heap_value_buff_amount"  "RESISTANCE PER STACK:"
     "DOTA_Tooltip_ability_pudge_flesh_heap_magic_resistance_flesh_heap_range"            "RANGE:"
 
-
-
-
-
-
     "DOTA_Tooltip_ability_pudge_flesh_heap_cast_range"         "Flesh Heap - Cast Range"
     "DOTA_Tooltip_ability_pudge_flesh_heap_cast_range_Description" "<font color='#70EA72'>Gives bonus cast range that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Magic Resistance is retroactive, meaning it can gain charges before it is skilled, which then become active."
     "DOTA_Tooltip_ability_pudge_flesh_heap_cast_range_flesh_heap_value_buff_amount"  "CAST RANGE PER STACK:"
@@ -2385,6 +2380,23 @@
     "DOTA_Tooltip_ability_pudge_flesh_heap_armor_Description" "<font color='#70EA72'>Gives bonus armor that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Magic Resistance is retroactive, meaning it can gain charges before it is skilled, which then become active."
     "DOTA_Tooltip_ability_pudge_flesh_heap_armor_flesh_heap_value_buff_amount"  "ARMOR PER STACK:"
     "DOTA_Tooltip_ability_pudge_flesh_heap_armor_flesh_heap_range"            "RANGE:"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_health_regeneration"         "Flesh Heap - Health Regeneration"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_health_regeneration_Description" "<font color='#70EA72'>Gives health regeneration that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Health Regeneration is retroactive, meaning it can gain charges before it is skilled, which then become active."
+    "DOTA_Tooltip_ability_pudge_flesh_heap_health_regeneration_flesh_heap_value_buff_amount"  "HEALTH REGEN PER STACK:"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_health_regeneration_flesh_heap_range"            "RANGE:"
+
+    "DOTA_Tooltip_modifier_flesh_heap_health_regeneration"                  "Flesh Heap - Health Regeneration"
+    "DOTA_Tooltip_modifier_flesh_heap_health_regeneration_Description"              "Gaining bonus Health Regeneration"
+
+    "DOTA_Tooltip_ability_pudge_flesh_heap_mana_regeneration"         "Flesh Heap - Mana Regeneration"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_mana_regeneration_Description" "<font color='#70EA72'>Gives Mana regeneration that increases each time this hero kills an enemy Hero or it dies in his vicinity.</font> Flesh Heap Mana Regeneration is retroactive, meaning it can gain charges before it is skilled, which then become active."
+    "DOTA_Tooltip_ability_pudge_flesh_heap_mana_regeneration_flesh_heap_value_buff_amount"  "MANA REGEN PER STACK:"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_mana_regeneration_flesh_heap_range"            "RANGE:"
+
+    "DOTA_Tooltip_modifier_flesh_heap_mana_regeneration"                  "Flesh Heap - Mana Regeneration"
+    "DOTA_Tooltip_modifier_flesh_heap_mana_regeneration_Description"              "Gaining bonus Mana Regeneration"
+
 
     "DOTA_Tooltip_modifier_flesh_heap_cast_range"                                              "Cast Range"
     "DOTA_Tooltip_modifier_flesh_heap_cast_range_Description"                                  "Gaining extra cast range per stack"
@@ -2483,14 +2495,14 @@
 
     // Increasing Creep Power
     "DOTA_Tooltip_ability_lod_creep_power" "Creep Power"
-    "DOTA_Tooltip_ability_lod_creep_power_Description" "Increases creep's damage, armour and magic resistance every specified time interval."
+    "DOTA_Tooltip_ability_lod_creep_power_Description" "Increases creep's damage and max health every specified time interval."
     "DOTA_Tooltip_ability_lod_creep_power_coef" "%BOUNTY INCREASE:"
     "DOTA_Tooltip_ability_lod_creep_power_damage_per_level" "DAMAGE INCREASE:"
-    "DOTA_Tooltip_ability_lod_creep_power_resist_per_level" "%MAGICAL RESIST INCREASE:"
+    //"DOTA_Tooltip_ability_lod_creep_power_resist_per_level" "%MAGICAL RESIST INCREASE:"
 
     "DOTA_Tooltip_ability_lod_creep_power_hp" "Granite Creep"
     "DOTA_Tooltip_ability_lod_creep_power_hp_Description" "Increases creep's health every specified time interval."
-    "DOTA_Tooltip_ability_lod_creep_power_hp_bonus_hp" "HEALTH INCREASE:"
+    "DOTA_Tooltip_ability_lod_creep_power_hp_bonus_hp" "%HEALTH INCREASE:"
 
     // Spirt Bear Return
     "DOTA_Tooltip_ability_lone_druid_spirit_bear_return_lod"                                  "Return"
@@ -2784,7 +2796,7 @@
 
     // Modifiers
     "DOTA_Tooltip_modifier_creep_power"      "Creep Power"
-    "DOTA_Tooltip_modifier_creep_power_Description"      "Damage, armor and magic resistance increased."
+    "DOTA_Tooltip_modifier_creep_power_Description"      "Damage, bounty and health increased."
 
     "DOTA_Tooltip_modifier_neutral_power"      "Neutral Power"
     "DOTA_Tooltip_modifier_neutral_power_Description"      "Health, damage and exp/gold bounty increased."
@@ -5159,6 +5171,17 @@
         "DOTA_Tooltip_Ability_night_wolf_attack_speed"                                    "ATTACK SPEED BONUS:"
         "DOTA_Tooltip_Ability_night_wolf_bonus_vision_scepter"                                    "SCEPTER VISION BONUS:"
         "DOTA_Tooltip_Ability_night_wolf_aghanim_description"                               "Better sight at night."
+		
+		"DOTA_Tooltip_Ability_chi_strike"                                                  "Chi Strike"
+		"DOTA_Tooltip_Ability_chi_strike_Description"                                      "Your basic attack grants shockwave of effect in front of you for a single strike. Procs a melee attack against all targets hit.\n\n<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>\n"
+		"DOTA_Tooltip_Ability_chi_strike_Note0"                                                  "Does not work against buildings.\nAs ranged hero your primary target only procs as ranged attack."
+		"DOTA_Tooltip_Ability_chi_strike_range"											"Range:"
+		
+		
+		"DOTA_Tooltip_Ability_chi_strike_sp"                                                  "Chi Strike OP"
+		"DOTA_Tooltip_Ability_chi_strike_sp_Description"                                      "Your basic attack grants shockwave of effect <font color='#70EA72'>around target</font> for a single strike. Procs a melee attack against all targets hit. <font color='#70EA72'>Has shorter cooldown and longer range.</font>.\n\n<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>\n"
+		"DOTA_Tooltip_Ability_chi_strike_sp_Note0"                                                  "Does not work against buildings.\nAs ranged hero your primary target only procs as ranged attack."
+		"DOTA_Tooltip_Ability_chi_strike_sp_range"											"Range:"
 
         "DOTA_Tooltip_night_wolf_mod"                                             "Werewolf"
         "DOTA_Tooltip_night_wolf_mod_Description"                                 "Night is yours."
@@ -6264,13 +6287,13 @@
     "DOTA_Tooltip_Ability_veera_plains_runner_Agility_bonus"    "%AGILITY PER EXTRA MOVESPEED:"
 
     "DOTA_Tooltip_Ability_veera_thrill_of_the_hunt"             "Thrill of the Hunt"
-    "DOTA_Tooltip_Ability_veera_thrill_of_the_hunt_Description"     "Veera engages in a hunting spree, causing her to receive a number of bonuses. While active, increases the player's camera viewing distance based on her current elevation, increases her vision, dramatically reduces her cooldowns and cast points, quadruples her turn rate, and removes the turning penalty from Plains Runner.\nUpgradable by Aghanim's Scepter.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
+    "DOTA_Tooltip_Ability_veera_thrill_of_the_hunt_Description"     "Veera engages in a hunting spree, causing her to receive a number of bonuses. While active, increases the player's camera viewing distance based on her current elevation, increases her vision, dramatically reduces her cooldowns and cast points, quadruples her turn rate, and removes the turning penalty from Plains Runner.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
     "DOTA_Tooltip_Ability_veera_thrill_of_the_hunt_Lore"                "Nothing escapes the sights of the plains runner."
     "DOTA_Tooltip_Ability_veera_thrill_of_the_hunt_Bonus_Vision"        "BONUS VISION:"
     //"DOTA_Tooltip_Ability_veera_thrill_of_the_hunt_Bonus_camera_view"   "BONUS CAMERA DISTANCE:"
     "DOTA_Tooltip_Ability_veera_thrill_of_the_hunt_Cooldown_reduction"  "%COOLDOWN/CASTPOINT REDUCTION:"
     "DOTA_Tooltip_Ability_veera_thrill_of_the_hunt_Duration"            "DURATION:"
-    "DOTA_Tooltip_Ability_veera_thrill_of_the_hunt_Aghanim_Description" "Doubles Veera's movespeed limit while Thrill of the Hunt is active."
+    //"DOTA_Tooltip_Ability_veera_thrill_of_the_hunt_Aghanim_Description" "Doubles Veera's movespeed limit while Thrill of the Hunt is active."
 
 
 
@@ -7013,25 +7036,25 @@
 
     "DOTA_Tooltip_ability_spawn_small_camp"                             "Spawn Small Camp"
     "DOTA_Tooltip_ability_spawn_small_camp_Description"                 "Spawns a group of units, a small camp of creeps."
-    "DOTA_Tooltip_ability_spawn_small_camp_camps_spawned"                   "CAMPS SPAWNED:"
+    //"DOTA_Tooltip_ability_spawn_small_camp_camps_spawned"                   "CAMPS SPAWNED:"
     "DOTA_Tooltip_ability_spawn_small_camp_spawn_radius"                    "RADIUS:"
     "DOTA_Tooltip_ability_spawn_small_camp_channel_time"                    "CHANNEL TIME:"
 
     "DOTA_Tooltip_ability_spawn_medium_camp"                                "Spawn Medium Camp"
     "DOTA_Tooltip_ability_spawn_medium_camp_Description"                    "Spawns a group of units, a medium camp of creeps."
-    "DOTA_Tooltip_ability_spawn_medium_camp_camps_spawned"                  "CAMPS SPAWNED:"
+    //"DOTA_Tooltip_ability_spawn_medium_camp_camps_spawned"                  "CAMPS SPAWNED:"
     "DOTA_Tooltip_ability_spawn_medium_camp_spawn_radius"                   "RADIUS:"
     "DOTA_Tooltip_ability_spawn_medium_camp_channel_time"                    "CHANNEL TIME:"
 
     "DOTA_Tooltip_ability_spawn_large_camp"                             "Spawn large Camp"
     "DOTA_Tooltip_ability_spawn_large_camp_Description"                 "Spawns a group of units, a large camp of creeps."
-    "DOTA_Tooltip_ability_spawn_large_camp_camps_spawned"                   "CAMPS SPAWNED:"
+    //"DOTA_Tooltip_ability_spawn_large_camp_camps_spawned"                   "CAMPS SPAWNED:"
     "DOTA_Tooltip_ability_spawn_large_camp_spawn_radius"                    "RADIUS:"
     "DOTA_Tooltip_ability_spawn_large_camp_channel_time"                    "CHANNEL TIME:"
 
     "DOTA_Tooltip_ability_spawn_ancient_camp"                               "Spawn Ancient Camp"
     "DOTA_Tooltip_ability_spawn_ancient_camp_Description"                   "Spawns a group of units, a Ancient camp of creeps."
-    "DOTA_Tooltip_ability_spawn_ancient_camp_camps_spawned"                 "CAMPS SPAWNED:"
+    //"DOTA_Tooltip_ability_spawn_ancient_camp_camps_spawned"                 "CAMPS SPAWNED:"
     "DOTA_Tooltip_ability_spawn_ancient_camp_spawn_radius"                  "RADIUS:"
     "DOTA_Tooltip_ability_spawn_ancient_camp_channel_time"                    "CHANNEL TIME:"
 

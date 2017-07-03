@@ -374,7 +374,7 @@
         "AbilityCastPoint"          "0.0"
         "AbilityCooldown"           "140 110 80"
         "AbilityProcsMagicStick"        "1"
-        "HasScepterUpgrade"             "1"
+        //"HasScepterUpgrade"             "1"
         "ReduxFlags"    "cooldown"
     
         "AbilitySpecial"
