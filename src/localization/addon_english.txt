@@ -7247,4 +7247,14 @@
     "DOTA_Tooltip_ability_ability_mjolnir_op_chain_damage"                       "CHAIN DAMAGE:"
     "DOTA_Tooltip_ability_ability_mjolnir_op_chain_strikes"                      "CHAIN TARGETS:"
     "DOTA_Tooltip_ability_ability_mjolnir_op_chain_radius"                       "CHAIN LEAP RADIUS:"
+
+    "DOTA_Tooltip_Ability_basic_gpm_bonus"            "Crown of Hubris"
+    "DOTA_Tooltip_Ability_basic_gpm_bonus_Description"        "Passively grants gold income to the Hero."
+    "DOTA_Tooltip_Ability_basic_gpm_bonus_Lore"           "A inconspicuous Crown of wealth that is best kept out of sight."
+    "DOTA_Tooltip_ability_basic_gpm_bonus_gold_bonus"                       "GOLD PER MINUTE:"
+
+    "DOTA_Tooltip_Ability_basic_gpm_bonus_op"            "Crown of Victory"
+    "DOTA_Tooltip_Ability_basic_gpm_bonus_op_Description"        "Passively grants <font color='#70EA72'>massive amounts</font> of gold income to the Hero."
+    "DOTA_Tooltip_Ability_basic_gpm_bonus_op_Lore"           "A glorious Crown of wealth that is best kept in the limelight."
+    "DOTA_Tooltip_ability_basic_gpm_bonus_op_gold_bonus"                       "GOLD PER MINUTE:"
 }
