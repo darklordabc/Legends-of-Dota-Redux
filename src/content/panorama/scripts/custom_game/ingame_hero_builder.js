@@ -83,4 +83,5 @@ function showIngameBuilder(args) {
     GameEvents.Subscribe('lodShowIngameBuilder', function(args) {
         showIngameBuilder(args);
     })
+    GameEvents.SendCustomGameEventToServer("lodCheckIngameBuilder", {})
 })();

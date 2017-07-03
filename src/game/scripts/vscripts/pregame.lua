@@ -310,6 +310,11 @@ function Pregame:init()
         this:onIngameBuilder(eventSourceIndex, args)
     end)
 
+    -- Player wants to check ingame builder
+    CustomGameEventManager:RegisterListener('lodCheckIngameBuilder', function(eventSourceIndex, args)
+        this:onCheckIngameBuilder(eventSourceIndex, args)
+    end)
+
     -- Player wants to set their hero
     CustomGameEventManager:RegisterListener('lodChooseHero', function(eventSourceIndex, args)
         this:onPlayerSelectHero(eventSourceIndex, args)
@@ -1185,6 +1190,7 @@ function Pregame:onThink()
                     GameRules:GetGameModeEntity():SetCustomGameForceHero("")
                     self:setPhase(constants.PHASE_SELECTION)
                 else
+                    GameRules:SetPreGameTime(150.0)
                     self.wispSpawning = true
                     self:setPhase(constants.PHASE_SPAWN_HEROES)
                 end
@@ -2001,6 +2007,7 @@ function Pregame:finishOptionSelection()
                 GameRules:GetGameModeEntity():SetCustomGameForceHero("")
                 self:setPhase(constants.PHASE_SELECTION)
             else
+                GameRules:SetPreGameTime(150.0)
                 self.wispSpawning = true
                 self:setPhase(constants.PHASE_SPAWN_HEROES)
             end
@@ -2086,6 +2093,19 @@ function Pregame:onOptionChanged(eventSourceIndex, args)
             -- Option values and names are validated at a later stage
             self:setOption(optionName, optionValue)
         end
+    end
+end
+
+-- Player wants to check ingame builder
+function Pregame:onCheckIngameBuilder(eventSourceIndex, args)
+    local playerID = args.playerID
+    local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+    if not hero then
+        return
+    end
+    if self.wispSpawning and hero and hero:GetUnitName() ~= self.selectedHeroes[playerID] then
+        self:onIngameBuilder(eventSourceIndex, { playerID = playerID, ingamePicking = true })
+        return
     end
 end
 
