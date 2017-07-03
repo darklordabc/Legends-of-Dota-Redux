@@ -17,10 +17,10 @@ function modifier_creep_power:OnIntervalThink()
 		self.hp_scaling = self.level * ability:GetSpecialValueFor("health_per_level")
 		self.damage_scaling = self.level * ability:GetSpecialValueFor("damage_per_level")
 		self.bounty_scaling = self.level * (ability:GetSpecialValueFor("coef") / 100)
-		self.resist_scaling = self.level * ability:GetSpecialValueFor("resist_per_level")
+		--self.resist_scaling = self.level * ability:GetSpecialValueFor("resist_per_level")
 
 		if IsServer() then
-			parent:SetBaseMagicalResistanceValue(math.ceil(parent:GetBaseMagicalResistanceValue() + self.resist_scaling))
+			--parent:SetBaseMagicalResistanceValue(math.ceil(parent:GetBaseMagicalResistanceValue() + self.resist_scaling))
 
 			parent:SetMinimumGoldBounty(parent:GetMinimumGoldBounty() + (parent:GetMinimumGoldBounty() * self.bounty_scaling))
 			parent:SetMaximumGoldBounty(parent:GetMaximumGoldBounty() + (parent:GetMaximumGoldBounty() * self.bounty_scaling))

@@ -665,7 +665,7 @@
     "lodOptionAboutGameSpeedUpgradedUlts"           "Every player will start with scepter upgraded ultimate abilities. Gyrocopter, Keeper of the Light and Night Stalker will not benefit from this."
     "lodOptionAboutGameSpeedFreeCourier"            "Each team will get a free courier."
     "lodOptionAboutGameSpeedStrongTowers"           "Towers will have powerful abilities that upgrade each time a tower on their side dies. After 3 upgrades, a tower will receive a new ability. Ticking this automatically sets Lane Creep Power to 'Normal'"
-    "lodOptionAboutCreepPower"                      "Increases lane creep's damage, health points, magic resistance and bounty every selected time interval. 'Normal' is recommended if you enable Stronger Towers."
+    "lodOptionAboutCreepPower"                      "Increases lane creep's damage, health points and bounty every selected time interval. 'Normal' is recommended if you enable Stronger Towers."
     "lodOptionAboutNeutralCreepPower"                      "Increases neutral creep's damage, health, exp and gold bounty every selected time interval."
     "lodOptionAboutNeutralMultiply"                 "Doubles, Triples or Quadruples the amount of neutral creeps that spawn. Does not increase the SPEED of spawning, only the AMOUNT that spawn. Will not multiply Roshan."
     "lodOptionAboutCrazyEasymode"                   "Players will gain gold and experience much faster."
@@ -2495,14 +2495,14 @@
 
     // Increasing Creep Power
     "DOTA_Tooltip_ability_lod_creep_power" "Creep Power"
-    "DOTA_Tooltip_ability_lod_creep_power_Description" "Increases creep's damage, armour and magic resistance every specified time interval."
+    "DOTA_Tooltip_ability_lod_creep_power_Description" "Increases creep's damage and max health every specified time interval."
     "DOTA_Tooltip_ability_lod_creep_power_coef" "%BOUNTY INCREASE:"
     "DOTA_Tooltip_ability_lod_creep_power_damage_per_level" "DAMAGE INCREASE:"
-    "DOTA_Tooltip_ability_lod_creep_power_resist_per_level" "%MAGICAL RESIST INCREASE:"
+    //"DOTA_Tooltip_ability_lod_creep_power_resist_per_level" "%MAGICAL RESIST INCREASE:"
 
     "DOTA_Tooltip_ability_lod_creep_power_hp" "Granite Creep"
     "DOTA_Tooltip_ability_lod_creep_power_hp_Description" "Increases creep's health every specified time interval."
-    "DOTA_Tooltip_ability_lod_creep_power_hp_bonus_hp" "HEALTH INCREASE:"
+    "DOTA_Tooltip_ability_lod_creep_power_hp_bonus_hp" "%HEALTH INCREASE:"
 
     // Spirt Bear Return
     "DOTA_Tooltip_ability_lone_druid_spirit_bear_return_lod"                                  "Return"
@@ -2796,7 +2796,7 @@
 
     // Modifiers
     "DOTA_Tooltip_modifier_creep_power"      "Creep Power"
-    "DOTA_Tooltip_modifier_creep_power_Description"      "Damage, armor and magic resistance increased."
+    "DOTA_Tooltip_modifier_creep_power_Description"      "Damage, bounty and health increased."
 
     "DOTA_Tooltip_modifier_neutral_power"      "Neutral Power"
     "DOTA_Tooltip_modifier_neutral_power_Description"      "Health, damage and exp/gold bounty increased."
