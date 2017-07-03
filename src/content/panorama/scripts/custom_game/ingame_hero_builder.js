@@ -15,9 +15,10 @@ function showIngameBuilder(args) {
 
         // Spawn the hero builder
         if (args.ingamePicking == true) {
-            GameEvents.SendCustomGameEventToServer( 'custom_chat_say', { channel: "all", msg: "totally new panel for player " + Players.GetLocalPlayer() });
-            heroBuilderPanel = $.CreatePanel('Panel', $('#heroBuilderDisplay'), '');
-            heroBuilderPanel.BLoadLayout('file://{resources}/layout/custom_game/game_setup/game_setup.xml', false, false);
+            if (!heroBuilderPanel) {
+                heroBuilderPanel = $.CreatePanel('Panel', $('#heroBuilderDisplay'), '');
+                heroBuilderPanel.BLoadLayout('file://{resources}/layout/custom_game/game_setup/game_setup.xml', false, false);
+            }
         } else {
             try {
                 heroBuilderPanel = $.GetContextPanel().GetParent().GetParent().GetParent().FindChildTraverse("CustomUIContainer_GameSetup").GetChild(0).GetChild(0);
@@ -64,19 +65,15 @@ function showIngameBuilder(args) {
         // Hide the hero selection when spawn hero is pressed
         GameEvents.Subscribe('lodNewHeroBuild', function() {
             $('#heroBuilderDisplay').visible = false;
-            GameEvents.SendCustomGameEventToServer( 'custom_chat_say', { channel: "all", msg: "closed builder for player METHOD1 " + Players.GetLocalPlayer() });
         });
 
         // Make it visible
         $('#heroBuilderDisplay').visible = true;      
 		
 		util.reviewOptionsChange();
-
-        GameEvents.SendCustomGameEventToServer( 'custom_chat_say', { channel: "all", msg: "opened builder for player " + Players.GetLocalPlayer() });
     } else {
         heroBuilderPanel.visible = true;
         $('#heroBuilderDisplay').visible = !$('#heroBuilderDisplay').visible;
-        GameEvents.SendCustomGameEventToServer( 'custom_chat_say', { channel: "all", msg: "closed builder for player METHOD2 " + Players.GetLocalPlayer() });
     }
 
     //heroBuilderPanel.doActualTeamUpdate();
