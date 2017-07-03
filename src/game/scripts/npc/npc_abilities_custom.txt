@@ -105,6 +105,7 @@
 #base "abilities\dnd\makerangedcreeps_lua.txt"
 #base "abilities\dota\side_gunner_redux.txt"
 #base "abilities\dota\superOPdefaults.txt"
+#base "abilities\dota\leshrac_pulse_nova.txt"
 #base "abilities\dota\morphling_morph_agi_int_redux.txt"
 #base "abilities\dota\morphling_morph_int_agi_redux.txt"
 #base "abilities\dota\morphling_morph_int_str_redux.txt"
