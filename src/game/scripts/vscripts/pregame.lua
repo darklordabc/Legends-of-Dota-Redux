@@ -1190,7 +1190,7 @@ function Pregame:onThink()
                     GameRules:GetGameModeEntity():SetCustomGameForceHero("")
                     self:setPhase(constants.PHASE_SELECTION)
                 else
-                    GameRules:SetPreGameTime(150.0)
+                    GameRules:SetPreGameTime(180.0)
                     self.wispSpawning = true
                     self:setPhase(constants.PHASE_SPAWN_HEROES)
                 end
@@ -2007,7 +2007,7 @@ function Pregame:finishOptionSelection()
                 GameRules:GetGameModeEntity():SetCustomGameForceHero("")
                 self:setPhase(constants.PHASE_SELECTION)
             else
-                GameRules:SetPreGameTime(150.0)
+                GameRules:SetPreGameTime(180.0)
                 self.wispSpawning = true
                 self:setPhase(constants.PHASE_SPAWN_HEROES)
             end
@@ -2103,7 +2103,7 @@ function Pregame:onCheckIngameBuilder(eventSourceIndex, args)
     if not hero then
         return
     end
-    
+
     if self.wispSpawning and hero and hero:GetUnitName() ~= self.selectedHeroes[playerID] then
         self:onIngameBuilder(eventSourceIndex, { playerID = playerID, ingamePicking = true })
         return
@@ -4815,39 +4815,41 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
                 network:hideHeroBuilder(player)
                 return
             end
-            SkillManager:ApplyBuild(hero, newBuild)
-            local player = PlayerResource:GetPlayer(playerID)
-            network:hideHeroBuilder(player)
-            network:setSelectedAbilities(playerID, self.selectedSkills[playerID])
-            network:setSelectedHero(playerID, newBuild.hero)
-            network:setSelectedAttr(playerID, newBuild.setAttr)
-            hero = PlayerResource:GetSelectedHeroEntity(playerID)
-            --if OptionManager:GetOption('ingameBuilderPenalty') > 0 then
-            --TODO: If long enough, players die to respawn
-            self:fixSpawnedHero(hero)
-            if not util:isSinglePlayerMode() and OptionManager:GetOption('ingameBuilderPenalty') > 0 then
-                Timers:CreateTimer(function()
-                    local penalty = OptionManager:GetOption('ingameBuilderPenalty')
-
-                    hero:Kill(nil, nil)
-
+            PrecacheUnitByNameAsync(newBuild.hero,function (  )
+                SkillManager:ApplyBuild(hero, newBuild)
+                local player = PlayerResource:GetPlayer(playerID)
+                network:hideHeroBuilder(player)
+                network:setSelectedAbilities(playerID, self.selectedSkills[playerID])
+                network:setSelectedHero(playerID, newBuild.hero)
+                network:setSelectedAttr(playerID, newBuild.setAttr)
+                hero = PlayerResource:GetSelectedHeroEntity(playerID)
+                --if OptionManager:GetOption('ingameBuilderPenalty') > 0 then
+                --TODO: If long enough, players die to respawn
+                self:fixSpawnedHero(hero)
+                if not util:isSinglePlayerMode() and OptionManager:GetOption('ingameBuilderPenalty') > 0 then
                     Timers:CreateTimer(function()
-                        hero:SetTimeUntilRespawn(penalty)
-                    end, DoUniqueString('respawnFix'), 1)
+                        local penalty = OptionManager:GetOption('ingameBuilderPenalty')
 
-                end, DoUniqueString('penalty'), 1)
-            else
-                if hero:GetTeam() == DOTA_TEAM_BADGUYS then
-                    local ent = Entities:FindByClassname(nil, "info_player_start_badguys")
-                    hero:SetAbsOrigin(ent:GetAbsOrigin())
-                    hero:AddNewModifier(hero, nil, "modifier_phased", {Duration = 2})
-                elseif hero:GetTeam() == DOTA_TEAM_GOODGUYS then
-                    local ent = Entities:FindByClassname(nil, "info_player_start_goodguys")
-                    hero:SetAbsOrigin(ent:GetAbsOrigin())
-                    hero:AddNewModifier(hero, nil, "modifier_phased", {Duration = 2})
+                        hero:Kill(nil, nil)
+
+                        Timers:CreateTimer(function()
+                            hero:SetTimeUntilRespawn(penalty)
+                        end, DoUniqueString('respawnFix'), 1)
+
+                    end, DoUniqueString('penalty'), 1)
+                else
+                    if hero:GetTeam() == DOTA_TEAM_BADGUYS then
+                        local ent = Entities:FindByClassname(nil, "info_player_start_badguys")
+                        hero:SetAbsOrigin(ent:GetAbsOrigin())
+                        hero:AddNewModifier(hero, nil, "modifier_phased", {Duration = 2})
+                    elseif hero:GetTeam() == DOTA_TEAM_GOODGUYS then
+                        local ent = Entities:FindByClassname(nil, "info_player_start_goodguys")
+                        hero:SetAbsOrigin(ent:GetAbsOrigin())
+                        hero:AddNewModifier(hero, nil, "modifier_phased", {Duration = 2})
+                    end
                 end
-            end
-            GameRules:SendCustomMessage('Player '..PlayerResource:GetPlayerName(playerID)..' just changed build.', 0, 0)
+                GameRules:SendCustomMessage('Player '..PlayerResource:GetPlayerName(playerID)..' just changed build.', 0, 0)
+            end,playerID)
         end
     else
         local playerID = args.PlayerID
@@ -6608,7 +6610,7 @@ end
 
 -- Adds bot players to the game
 function Pregame:addBotPlayers()
-    -- self.enabledBots = false
+    self.enabledBots = false
     -- Ensure bots should actually be added
     if self.addedBotPlayers then return end
     self.addedBotPlayers = true

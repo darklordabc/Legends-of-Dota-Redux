@@ -863,13 +863,7 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
         end
     end
 
-    if build.hero then
-        PrecacheUnitByNameAsync(build.hero,function (  )
-            routine()
-        end,hero:GetPlayerID())
-    else
-        routine()
-    end
+    routine()
 end
 
 --function skillManager:overrideHooks()
