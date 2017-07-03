@@ -1,0 +1,37 @@
+"DOTAAbilities"
+{
+    "ability_mjolnir"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/ability_mjolnir.lua"
+        "AbilityTextureName"                                                   "zuus_arc_lightning"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "ItemSellable"                  "0"
+        
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "chain_chance"          "25"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "chain_damage"          "120"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "chain_strikes"         "4"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "chain_radius"          "900"
+            }
+        }
+        "ReduxFlags"                                                           "dota_custom"
+        "ReduxCost"                                                            "0"
+    }
+}
