@@ -7218,7 +7218,33 @@
     "DOTA_Tooltip_Ability_basic_mana_bonus_mana_bonus"     "EXTRA MAX MANA:"
 
     "DOTA_Tooltip_Ability_basic_mana_bonus_op"            "Goblet of Mana OP"
-    "DOTA_Tooltip_Ability_basic_mana_bonus_op_Description"        "Increases the Max Mana of the Hero. <font color='#70EA72'>Gives much more mana</font>"
+    "DOTA_Tooltip_Ability_basic_mana_bonus_op_Description"        "Increases the Max Mana of the Hero. <font color='#70EA72'>Gives much more mana</font>."
     "DOTA_Tooltip_Ability_basic_mana_bonus_op_Lore"           "Simple yet very refreshing."
     "DOTA_Tooltip_Ability_basic_mana_bonus_op_mana_bonus"     "EXTRA MAX MANA:"
+
+    "DOTA_Tooltip_Ability_basic_health_bonus"            "Plate of Health"
+    "DOTA_Tooltip_Ability_basic_health_bonus_Description"        "Increases the Max Health of the Hero."
+    "DOTA_Tooltip_Ability_basic_health_bonus_Lore"           "A trustworthy albeit boring plate of armor."
+    "DOTA_Tooltip_Ability_basic_health_bonus_health_bonus"     "EXTRA MAX HEALTH:"
+
+    "DOTA_Tooltip_Ability_basic_health_bonus_op"            "Plate of Health OP"
+    "DOTA_Tooltip_Ability_basic_health_bonus_op_Description"        "Increases the Max Health of the Hero. <font color='#70EA72'>Gives much more Health</font>."
+    "DOTA_Tooltip_Ability_basic_health_bonus_op_Lore"           "A trustworthy, duitful yet boring plate of armor."
+    "DOTA_Tooltip_Ability_basic_health_bonus_op_health_bonus"     "EXTRA MAX HEALTH:"
+
+    "DOTA_Tooltip_Ability_ability_mjolnir"            "Hammer of Sparks"
+    "DOTA_Tooltip_Ability_ability_mjolnir_Description"        "Charges the Hero, giving a chance on attack to release a bolt of electricity that leaps between targets, dealing magical damage to each."
+    "DOTA_Tooltip_Ability_ability_mjolnir_Lore"           "A Hammer not to be confused with its more famous contemporary."
+    "DOTA_Tooltip_ability_ability_mjolnir_chain_chance"                       "%CHAIN CHANCE:"
+    "DOTA_Tooltip_ability_ability_mjolnir_chain_damage"                       "CHAIN DAMAGE:"
+    "DOTA_Tooltip_ability_ability_mjolnir_chain_strikes"                      "CHAIN TARGETS:"
+    "DOTA_Tooltip_ability_ability_mjolnir_chain_radius"                       "CHAIN LEAP RADIUS:"
+
+    "DOTA_Tooltip_Ability_ability_mjolnir_op"            "Hammer of Thunder"
+    "DOTA_Tooltip_Ability_ability_mjolnir_op_Description"        "Charges the Hero, giving a chance on attack to release a bolt of electricity that leaps between targets, dealing magical damage to each. <font color='#70EA72'>Deals more damage, jumps more, higher chance to proc and larger jump radius</font>."
+    "DOTA_Tooltip_Ability_ability_mjolnir_op_Lore"           "A Hammer not to be confused with its more famous contemporary."
+    "DOTA_Tooltip_ability_ability_mjolnir_op_chain_chance"                       "%CHAIN CHANCE:"
+    "DOTA_Tooltip_ability_ability_mjolnir_op_chain_damage"                       "CHAIN DAMAGE:"
+    "DOTA_Tooltip_ability_ability_mjolnir_op_chain_strikes"                      "CHAIN TARGETS:"
+    "DOTA_Tooltip_ability_ability_mjolnir_op_chain_radius"                       "CHAIN LEAP RADIUS:"
 }
