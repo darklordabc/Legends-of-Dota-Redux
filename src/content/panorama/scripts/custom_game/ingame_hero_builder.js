@@ -14,17 +14,24 @@ function showIngameBuilder(args) {
         var balanceMode = GameUI.AbilityCosts.balanceModeEnabled == 1 ? true : false;
 
         // Spawn the hero builder
-        try {
-            heroBuilderPanel = $.GetContextPanel().GetParent().GetParent().GetParent().FindChildTraverse("CustomUIContainer_GameSetup").GetChild(0).GetChild(0);
-            if (heroBuilderPanel != null) {
-                heroBuilderPanel.SetParent($('#heroBuilderDisplay'))
-            } else {
-                throw true;
-            }
-        } catch (err) {
+        if (args.ingamePicking == true) {
+            GameEvents.SendCustomGameEventToServer( 'custom_chat_say', { channel: "all", msg: "totally new panel for player " + Players.GetLocalPlayer() });
             heroBuilderPanel = $.CreatePanel('Panel', $('#heroBuilderDisplay'), '');
             heroBuilderPanel.BLoadLayout('file://{resources}/layout/custom_game/game_setup/game_setup.xml', false, false);
+        } else {
+            try {
+                heroBuilderPanel = $.GetContextPanel().GetParent().GetParent().GetParent().FindChildTraverse("CustomUIContainer_GameSetup").GetChild(0).GetChild(0);
+                if (heroBuilderPanel != null) {
+                    heroBuilderPanel.SetParent($('#heroBuilderDisplay'))
+                } else {
+                    throw true;
+                }
+            } catch (err) {
+                heroBuilderPanel = $.CreatePanel('Panel', $('#heroBuilderDisplay'), '');
+                heroBuilderPanel.BLoadLayout('file://{resources}/layout/custom_game/game_setup/game_setup.xml', false, false);
+            }  
         }
+
         heroBuilderPanel.visible = true;
         heroBuilderPanel.isIngameBuilder = true;
         util.blockMouseWheel(heroBuilderPanel);
