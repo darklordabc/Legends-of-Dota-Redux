@@ -43,6 +43,7 @@ All notable changes to this project will be documented in this file.
 - Maybe fixed gyro missle 'no charges' bug, may require respawning to fix
 - Originality Bonus now has a cooldown so players dont get all the gold at start
 - Creep Strength Bonus no longer gives them extra magic resitance, and they dont get as much health bonus anymore.
+- Fat-o-Meter is no longer on by default
 
 
 
