@@ -69,6 +69,11 @@ var phases = {
     }
 };
 
+var parent = $.GetContextPanel().GetParent();
+while(parent.id != "Hud")
+    parent = parent.GetParent();
+
+
 // Hero data
 var heroData = {};
 var abilityHeroOwner = {};
@@ -5217,6 +5222,10 @@ function UpdateTimer() {
         placeInto.text = "∞";
     }
 
+    if ($.GetContextPanel().isInitialIngameBuilder) {
+        placeInto.text = parent.FindChildTraverse("GameTime").text;
+    }
+
     $.Schedule(0.1, UpdateTimer);
 }
 
@@ -5684,10 +5693,6 @@ function saveCurrentBuild() {
             addVotingOption(name);
         })
     }
-
-    var parent = $.GetContextPanel().GetParent();
-    while(parent.id != "Hud")
-        parent = parent.GetParent();
 
     var votings = $.CreatePanel('Panel', $.GetContextPanel(), '');
     votings.BLoadLayout('file://{resources}/layout/custom_game/ingame_votings.xml', false, false);

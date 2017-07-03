@@ -35,6 +35,8 @@ function showIngameBuilder(args) {
 
         heroBuilderPanel.visible = true;
         heroBuilderPanel.isIngameBuilder = true;
+        heroBuilderPanel.isInitialIngameBuilder = args.ingamePicking == true;
+
         util.blockMouseWheel(heroBuilderPanel);
 
         // Boot it into selection mode

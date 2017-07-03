@@ -2098,11 +2098,12 @@ end
 
 -- Player wants to check ingame builder
 function Pregame:onCheckIngameBuilder(eventSourceIndex, args)
-    local playerID = args.playerID
+    local playerID = args.PlayerID
     local hero = PlayerResource:GetSelectedHeroEntity(playerID)
     if not hero then
         return
     end
+    
     if self.wispSpawning and hero and hero:GetUnitName() ~= self.selectedHeroes[playerID] then
         self:onIngameBuilder(eventSourceIndex, { playerID = playerID, ingamePicking = true })
         return
