@@ -7211,4 +7211,14 @@
 
     "DOTA_Tooltip_modifier_imba_deadeye_vision"                                         "Deadeye"
     "DOTA_Tooltip_modifier_imba_deadeye_vision_Description"                             "Increased vision range."
+
+    "DOTA_Tooltip_Ability_basic_mana_bonus"            "Goblet of Mana"
+    "DOTA_Tooltip_Ability_basic_mana_bonus_Description"        "Increases the Max Mana of the Hero."
+    "DOTA_Tooltip_Ability_basic_mana_bonus_Lore"           "Simple yet refreshing."
+    "DOTA_Tooltip_Ability_basic_mana_bonus_mana_bonus"     "EXTRA MAX MANA:"
+
+    "DOTA_Tooltip_Ability_basic_mana_bonus_op"            "Goblet of Mana OP"
+    "DOTA_Tooltip_Ability_basic_mana_bonus_op_Description"        "Increases the Max Mana of the Hero. <font color='#70EA72'>Gives much more mana</font>"
+    "DOTA_Tooltip_Ability_basic_mana_bonus_op_Lore"           "Simple yet very refreshing."
+    "DOTA_Tooltip_Ability_basic_mana_bonus_op_mana_bonus"     "EXTRA MAX MANA:"
 }
