@@ -993,14 +993,14 @@
         "Model" "models/props_gameplay/recipe.mdl"
         "AbilityTextureName"      "item_recipe"
 
-        "ItemCost"            "500"
+        "ItemCost"            "0"
         "ItemShopTags"          ""
 
         "ItemRecipe"          "1"
         "ItemResult"          "item_redux_silver"
         "ItemRequirements"
         {
-            "01"            "item_ultimate_orb;"
+            "01"            "item_ultimate_orb;item_redux_silver_consume"
         }
     }
 
@@ -1034,7 +1034,7 @@
         
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
-        "ItemCost"            "500"
+        "ItemCost"            "450"
         "ItemShopTags"                  "consumable"
         "ItemQuality"                   "consumable"
         "ItemStackable"                 "0"
