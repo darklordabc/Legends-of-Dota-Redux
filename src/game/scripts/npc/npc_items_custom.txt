@@ -1196,7 +1196,8 @@
         "BaseClass"                     "item_lua"
         "AbilityTextureName"            "custom/item_new_ability_bonus"
         "ScriptFile"                    "abilities/items/gold_bonus"
-        
+        "AbilityCooldown"               "60"
+        "AbilitySharedCooldown"         "bonus"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "Model"                         "models/props_gameplay/treasure_chest001.vmdl"
         "ItemKillable"                  "0"
@@ -1219,10 +1220,11 @@
         "BaseClass"                     "item_lua"
         "AbilityTextureName"            "custom/item_new_global_ability_bonus"
         "ScriptFile"                    "abilities/items/gold_bonus"
-        
+        "AbilityCooldown"               "60"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "Model"                         "models/props_gameplay/treasure_chest001.vmdl"
         "ItemKillable"                  "0"
+        "AbilitySharedCooldown"         "bonus"
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
@@ -1242,7 +1244,8 @@
         "BaseClass"                     "item_lua"
         "AbilityTextureName"            "custom/item_balanced_build_bonus"
         "ScriptFile"                    "abilities/items/gold_bonus"
-        
+        "AbilityCooldown"               "60"
+        "AbilitySharedCooldown"         "bonus"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "Model"                         "models/props_gameplay/treasure_chest001.vmdl"
         "ItemKillable"                  "0"
