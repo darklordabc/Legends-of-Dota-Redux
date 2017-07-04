@@ -131,11 +131,14 @@ end
 function StatsClient:SendAbilityUsageData()
     local data = {}
     for playerID, build in pairs(GameRules.pregame.selectedSkills) do
-        local abilities = {}
-        for i,v in ipairs(build) do
-            abilities[i] = v
+        local steamID = PlayerResource:GetRealSteamID(playerID)
+        if steamID ~= "0" then
+            local abilities = {}
+            for i,v in ipairs(build) do
+                abilities[i] = v
+            end
+            data[steamID] = abilities
         end
-        data[PlayerResource:GetRealSteamID(playerID)] = abilities
     end
     StatsClient:Send("saveAbilityUsageData", data, nil, math.huge)
 end
@@ -200,6 +203,5 @@ function StatsClient:Send(path, data, callback, retryCount, protocol, _currentRe
 end
 
 function CDOTA_PlayerResource:GetRealSteamID(PlayerID)
-    local id = tostring(PlayerResource:GetSteamID(PlayerID))
-    return id == "0" and tostring(PlayerID) or id
+    return tostring(PlayerResource:GetSteamID(PlayerID))
 end
