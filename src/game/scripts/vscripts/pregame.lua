@@ -4825,6 +4825,7 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
                 hero = PlayerResource:GetSelectedHeroEntity(playerID)
                 --if OptionManager:GetOption('ingameBuilderPenalty') > 0 then
                 --TODO: If long enough, players die to respawn
+                self.spawnedHeroesFor[playerID] = true
                 self:fixSpawnedHero(hero)
                 if not util:isSinglePlayerMode() and OptionManager:GetOption('ingameBuilderPenalty') > 0 then
                     Timers:CreateTimer(function()
