@@ -7290,4 +7290,15 @@
     "DOTA_Tooltip_ability_basic_gpm_bonus_op_Description"        "Passively grants <font color='#70EA72'>massive amounts</font> of gold income to the Hero."
     "DOTA_Tooltip_ability_basic_gpm_bonus_op_Lore"           "A glorious Crown of wealth that is best kept in the limelight."
     "DOTA_Tooltip_ability_basic_gpm_bonus_op_gold_bonus"                       "GOLD PER MINUTE:"
+
+    "DOTA_Tooltip_ability_basic_movespeed_bonus"            "Fabric of Movement"
+    "DOTA_Tooltip_ability_basic_movespeed_bonus_Description"        "Grants extra movement speed."
+    "DOTA_Tooltip_ability_basic_movespeed_bonus_Lore"           "Silky smooth materials makes running long distances a breeze."
+    "DOTA_Tooltip_ability_basic_movespeed_bonus_speed_bonus"                       "BONUS MOVE SPEED:"
+
+    "DOTA_Tooltip_ability_basic_movespeed_bonus_op"            "Fabric of Movement OP"
+    "DOTA_Tooltip_ability_basic_movespeed_bonus_op_Description"        "Grants extra movement speed. <font color='#70EA72'>Gives more movement speed</font>."
+    "DOTA_Tooltip_ability_basic_movespeed_bonus_op_Lore"           "Silky smooth materials makes running long distances a breeze."
+    "DOTA_Tooltip_ability_basic_movespeed_bonus_op_speed_bonus"                       "BONUS MOVE SPEED:"
+
 }
