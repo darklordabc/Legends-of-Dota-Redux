@@ -1728,6 +1728,15 @@
 
     "DOTA_Tooltip_ability_item_recipe_redux_silver" "Silver Recipe"
 
+    "DOTA_Tooltip_ability_item_redux_silver_consume" "Silver Consumable"
+    "DOTA_Tooltip_ability_item_redux_silver_consume_Description" "Use: Consume the Silver to temporarily Break the passives of target enemy hero and reduce their damage output."
+    //"DOTA_Tooltip_ability_item_redux_silver_consume_bonus_all_stats"            "+$all"
+    "DOTA_Tooltip_ability_item_redux_silver_consume_break_duration"                  "BREAK DURATION:"
+    "DOTA_Tooltip_ability_item_redux_silver_consume_damage_reduction"                  "%DAMAGE REDUCTION:"
+
+    "DOTA_Tooltip_ability_item_recipe_redux_silver_consume" "Silver Consumable Recipe"
+    
+
     // tiny
     "DOTA_Tooltip_ability_tiny_grow_lod"                                                "Grow"
     "DOTA_Tooltip_ability_tiny_grow_lod_Description"                                    "Tiny gains craggy mass that increases his power at the cost of his attack speed. Improves movement speed.\n\nUpgradable by Aghanim's Scepter."
