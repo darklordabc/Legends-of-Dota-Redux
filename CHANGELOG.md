@@ -49,6 +49,8 @@ All notable changes to this project will be documented in this file.
 - Added 6 simple abilities (and 6 OP variants of them)
 - Reduced Silvers cost by 250 gold and changed its recipes
 - Added Consumeable version of Silver
+- Starting Gold Reduced to 600, starting level now 4
+
 
 
 

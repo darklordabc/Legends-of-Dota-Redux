@@ -5468,11 +5468,11 @@
     "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_monkey_king_bar_bash_chance"                 "%MINI-BASH CHANCE:"
     "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_monkey_king_bar_bash_damage"                 "MINI-BASH DAMAGE:"
 
-    "DOTA_Tooltip_ability_item_new_ability_bonus"                                               "Originality Bonus"
-    "DOTA_Tooltip_ability_item_new_ability_bonus_Description"                                   "Gives you some gold. You can recieve this item for each choosen ability, that you have chosen least often (by default in 20%% of all ever chosen abilities) or haven't chosen at all."
+    "DOTA_Tooltip_ability_item_new_ability_bonus"                                               "New Ability Bonus"
+    "DOTA_Tooltip_ability_item_new_ability_bonus_Description"                                   "Use: Gives you some gold. You can recieve this item for each choosen ability, that you have chosen least often (by default in 20%% of all ever chosen abilities) or haven't chosen at all."
 
-    "DOTA_Tooltip_ability_item_new_global_ability_bonus"                                        "Global Originality Bonus"
-    "DOTA_Tooltip_ability_item_new_global_ability_bonus_Description"                            "Gives you some gold. You can recieve this item for each choosen ability, that is rarely chosen by all other players."
+    "DOTA_Tooltip_ability_item_new_global_ability_bonus"                                        "Rare Abiliy Bonus"
+    "DOTA_Tooltip_ability_item_new_global_ability_bonus_Description"                            "Use: Gives you some gold. You can recieve this item for each choosen ability, that is rarely chosen by all other players."
 
     "DOTA_Tooltip_ability_item_balanced_build_bonus"                                            "Balanced Build"
     "DOTA_Tooltip_ability_item_balanced_build_bonus_Description"                                "Gives you some gold. You can recieve this item if your build contains three or less passive abilities."

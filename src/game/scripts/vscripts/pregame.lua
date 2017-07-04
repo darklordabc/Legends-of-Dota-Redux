@@ -538,8 +538,8 @@ function Pregame:init()
         self:setOption('lodOptionGameSpeedMaxLevel', 100, true)
         self:setOption('lodOptionGamemode', 1)
         self:setOption('lodOptionBattleThirst', 0)
-        self:setOption('lodOptionGameSpeedStartingLevel', 1, true)
-        self:setOption('lodOptionGameSpeedStartingGold', 2500, true)
+        self:setOption('lodOptionGameSpeedStartingLevel', 4, true)
+        --self:setOption('lodOptionGameSpeedStartingGold', 600, true)
         self:setOption('lodOptionGameSpeedStrongTowers', 1, true)
         self:setOption('lodOptionCreepPower', 120, true)
 
@@ -838,7 +838,7 @@ function Pregame:loadDefaultSettings()
 
     -- Selecting 6 new abilities grants 500 gold
     self:setOption("lodOptionNewAbilitiesThreshold", 20, true)
-    self:setOption("lodOptionNewAbilitiesBonusGold", 500, true)
+    self:setOption("lodOptionNewAbilitiesBonusGold", 250, true)
 end
 
 -- Gets stats for the given player
