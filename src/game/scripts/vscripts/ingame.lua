@@ -529,13 +529,33 @@ function Ingame:onStart()
 
     ListenToGameEvent("player_chat", Dynamic_Wrap(Commands, 'OnPlayerChat'), self)
 
-    if GameRules.pregame.optionStore["lodOptionNewAbilitiesBonusGold"] > 0 and StatsClient.AbilityData then
-        for playerID, usageData in pairs(StatsClient.AbilityData) do
-            local currentBuild = GameRules.pregame.selectedSkills[playerID] or {}
+    self:GiveAbilityUsageBonuses()
+    
+    -- Set it to no team balance
+    self:setNoTeamBalanceNeeded()
+end
 
-            local threshold = GameRules.pregame.optionStore["lodOptionNewAbilitiesThreshold"]
-            local entries = StatsClient.SortedAbilityDataEntries
-            local realAbilitiesThreshold = math.ceil(StatsClient.totalGameAbilitiesCount * (1 - threshold * 0.01))
+function Ingame:GiveAbilityUsageBonuses()
+    local pregame = GameRules.pregame
+    local threshold = pregame.optionStore["lodOptionNewAbilitiesThreshold"]
+    local entries = StatsClient.SortedAbilityDataEntries
+    local global = StatsClient.GlobalAbilityUsageData
+
+    local globalThreshold = 50
+    function isGlobalBelowThreshold(ability)
+        for i,v in ipairs(global) do
+            if v._id == ability then
+                return i / #global > 1 - globalThreshold * 0.01
+            end
+        end
+        return true
+    end
+
+    for playerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
+        if PlayerResource:IsValidPlayerID(playerID) then
+            local currentBuild = pregame.selectedSkills[playerID] or {}
+            local usageData = StatsClient:GetAbilityUsageData(playerID)
+            local realAbilitiesThreshold = math.ceil(#StatsClient.GlobalAbilityUsageData * (1 - threshold * 0.01))
             local enableAlternativeThreshold = #entries >= realAbilitiesThreshold
 
             if enableAlternativeThreshold then
@@ -555,19 +575,32 @@ function Ingame:onStart()
             end
 
             local newAbilities = 0
+            local newGlobalAbilities = 0
+            local passiveAbilities = 0
             for _,v in ipairs(currentBuild) do
-                if isBelowThreshold(v) then
+                if usageData and pregame.optionStore["lodOptionNewAbilitiesBonusGold"] > 0 and isBelowThreshold(v) then
                     newAbilities = newAbilities + 1
+                elseif isGlobalBelowThreshold(v) then
+                    newGlobalAbilities = newGlobalAbilities + 1
+                end
+                if pregame.flagsInverse[v] and pregame.flagsInverse[v].passive then
+                    passiveAbilities = passiveAbilities + 1
                 end
             end
             local hero = PlayerResource:GetSelectedHeroEntity(playerID)
-            if newAbilities > 0 and hero then
-                hero:AddItemByName('item_new_ability_bonus'):SetCurrentCharges(newAbilities)
+            if hero then
+                if newAbilities > 0 then
+                    hero:AddItemByName('item_new_ability_bonus'):SetCurrentCharges(newAbilities)
+                end
+                if newGlobalAbilities > 0 then
+                    hero:AddItemByName('item_new_global_ability_bonus'):SetCurrentCharges(newGlobalAbilities)
+                end
+                if passiveAbilities <= 3 then
+                    hero:AddItemByName('item_balanced_build_bonus')
+                end
             end
         end
     end
-    -- Set it to no team balance
-    self:setNoTeamBalanceNeeded()
 end
 
 function Ingame:StartFatOMeter()

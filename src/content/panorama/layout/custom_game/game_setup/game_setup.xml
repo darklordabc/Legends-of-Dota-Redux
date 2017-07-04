@@ -914,15 +914,22 @@
                             </Panel>
                         </Panel>
 
-                        <Panel id="newAbilitiesPanel">
-                            <Label text="#newAbilitiesTitle" />
-                            <Panel id="newAbilitiesTicks">
-                                <Panel id="newAbilitiesTick1"><Panel /></Panel>
-                                <Panel id="newAbilitiesTick2"><Panel /></Panel>
-                                <Panel id="newAbilitiesTick3"><Panel /></Panel>
-                                <Panel id="newAbilitiesTick4"><Panel /></Panel>
-                                <Panel id="newAbilitiesTick5"><Panel /></Panel>
-                                <Panel id="newAbilitiesTick6"><Panel /></Panel>
+                        <Panel id="abilityBonusesPanel">
+                            <Panel id="newAbilitiesPanel">
+                                <Label text="#newAbilitiesTitle" />
+                                <Panel id="newAbilitiesTicks">
+                                    <Panel id="newAbilitiesTick1"><Panel /></Panel>
+                                    <Panel id="newAbilitiesTick2"><Panel /></Panel>
+                                    <Panel id="newAbilitiesTick3"><Panel /></Panel>
+                                    <Panel id="newAbilitiesTick4"><Panel /></Panel>
+                                    <Panel id="newAbilitiesTick5"><Panel /></Panel>
+                                    <Panel id="newAbilitiesTick6"><Panel /></Panel>
+                                </Panel>
+                            </Panel>
+
+                            <Panel id="balancedBuildPanel">
+                                <Label text="#balancedBuildTitle" />
+                                <Panel id="balancedBuildTick" />
                             </Panel>
                         </Panel>
 

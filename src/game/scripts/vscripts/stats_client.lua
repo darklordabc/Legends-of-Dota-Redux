@@ -4,7 +4,6 @@ StatsClient.AbilityData = StatsClient.AbilityData or {}
 StatsClient.Debug = IsInToolsMode() and false -- Change to true if you have local server running, so contributors without local server can see some things
 StatsClient.ServerAddress = (StatsClient.Debug and "http://127.0.0.1:3333" or "https://lodr-ark120202.rhcloud.com") .. "/lodServer/"
 StatsClient.GameVersion = LoadKeyValues('addoninfo.txt').version
-StatsClient.totalGameAbilitiesCount = 400 -- Constanted now -- util:tableCount(util:getAbilityKV())
 
 function StatsClient:SubscribeToClientEvents()
     CustomGameEventManager:RegisterListener("stats_client_create_skill_build", Dynamic_Wrap(StatsClient, "CreateSkillBuild"))
@@ -16,13 +15,14 @@ function StatsClient:SubscribeToClientEvents()
     CustomGameEventManager:RegisterListener("lodConnectAbilityUsageData", function(_, args)
         Timers:CreateTimer(function()
             local playerID = args.PlayerID
-            if not StatsClient.AbilityData or not StatsClient.SortedAbilityDataEntries then
+            if not StatsClient.AbilityData or not StatsClient.SortedAbilityDataEntries or not StatsClient.GlobalAbilityUsageData then
                 return 0.1
             end
             CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(playerID), "lodConnectAbilityUsageData", {
                 data = StatsClient.AbilityData[playerID] or {},
                 entries = StatsClient.SortedAbilityDataEntries[playerID] or {},
-                totalGameAbilitiesCount = StatsClient.totalGameAbilitiesCount
+                global = StatsClient.GlobalAbilityUsageData,
+                totalGameAbilitiesCount = #StatsClient.GlobalAbilityUsageData
             })
         end)
     end)
@@ -163,6 +163,15 @@ function StatsClient:FetchAbilityUsageData()
             StatsClient.SortedAbilityDataEntries = entries
         end
     end, math.huge)
+
+    StatsClient:Send("fetchGlobalAbilityUsageData", nil, function(response)
+        if (response.error) then
+            StatsClient.GlobalAbilityUsageData = {}
+            return
+        end
+        -- Values should be sorted already
+        StatsClient.GlobalAbilityUsageData = response
+    end, math.huge, "GET")
 end
 
 function StatsClient:GetAbilityUsageData(playerID)

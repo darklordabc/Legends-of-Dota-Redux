@@ -186,7 +186,7 @@ var AbilityPerks = {};
 var VotingOptionPanels = {};
 var constantBalancePointsValue = GameUI.AbilityCosts.BALANCE_MODE_POINTS;
 
-var AbilityUsageData = {data: {}, entries: {}};
+var AbilityUsageData = {data: {}, entries: {}, global: {}, totalGameAbilitiesCount: 1};
 
 // Used to calculate filters (stub function)
 var calculateFilters = function(){};
@@ -571,11 +571,13 @@ function OnSelectedSkillsChanged(table_name, key, data) {
             }
         }
         var balance = constantBalancePointsValue;
-        var newAbilities = 0;
+        var tickedAbilitiesCount = 0;
+        var activeAbilities = 0;
 
         var threshold = optionValueList.lodOptionNewAbilitiesThreshold || 20;
         var fetchedAbilityData = AbilityUsageData.data;
         var sortedAbilityData = AbilityUsageData.entries;
+        var globalAbilityData = AbilityUsageData.global;
         var entriesCount = Object.keys(sortedAbilityData).length;
         var realAbilitiesThreshold = Math.ceil(AbilityUsageData.totalGameAbilitiesCount * (1 - threshold * 0.01));
         var enableAlternativeThreshold = entriesCount >= realAbilitiesThreshold;
@@ -594,14 +596,26 @@ function OnSelectedSkillsChanged(table_name, key, data) {
             return !fetchedAbilityData[ability];
         });
 
+        var globalThreshold = 50;
+        var isGlobalBelowThreshold = (function(ability) {
+            for (var i in globalAbilityData) {
+                if (globalAbilityData[i]._id === ability) {
+                    return (+i + 1) / entriesCount > 1 - globalThreshold * 0.01;
+                }
+            }
+            return true;
+        });
+
         for (var i = 1; i <= 6; i++) {
-            $('#newAbilitiesTick' + i).RemoveClass('Enabled');
+            $('#newAbilitiesTick' + i).RemoveClass('OwnBonus');
+            $('#newAbilitiesTick' + i).RemoveClass('GlobalBonus');
         }
 
         for(var key in selectedSkills[playerID]) {
             var ab = $('#lodYourAbility' + key);
             var abName = selectedSkills[playerID][key];
             var isNewAbility = false;
+            var isGlobalNewAbility = false;
 
             if(ab != null) {
                 ab.abilityname = abName;
@@ -610,9 +624,12 @@ function OnSelectedSkillsChanged(table_name, key, data) {
 
                 var abCost = ab.GetChild(0);
 
-                if (isBelowThreshold(abName)){
-                    newAbilities++;
+                if (isBelowThreshold(abName)) {
                     isNewAbility = true;
+                    tickedAbilitiesCount++;
+                } else if (isGlobalBelowThreshold(abName)) {
+                    isGlobalNewAbility = true;
+                    tickedAbilitiesCount++;
                 }
 
                 if (balanceMode) {
@@ -633,12 +650,18 @@ function OnSelectedSkillsChanged(table_name, key, data) {
                         abCost.visible = $.GetContextPanel().balanceMode;
                     }
                 }
+                if (!flagDataInverse[abName] || !flagDataInverse[abName].passive) {
+                    activeAbilities++;
+                }
             }
 
-            $('#newAbilitiesTick' + key).SetHasClass('Enabled', isNewAbility);
+            $('#newAbilitiesTick' + key).SetHasClass('OwnBonus', isNewAbility);
+            if (!isNewAbility && isGlobalNewAbility) {
+                $('#newAbilitiesTick' + key).AddClass('GlobalBonus');
+            }
         }
-        $('#newAbilitiesPanel').SetHasClass('OneOrMore', newAbilities > 0);
-        $('#newAbilitiesPanel').SetHasClass('All', newAbilities === 6);
+        $('#newAbilitiesPanel').SetHasClass('OneOrMore', tickedAbilitiesCount > 0);
+        $('#balancedBuildTick').SetHasClass('Enabled', activeAbilities >= 3);
 
 
         // Update current price
