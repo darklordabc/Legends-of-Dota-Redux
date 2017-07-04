@@ -5723,6 +5723,9 @@ function getAbilityGlobalPickPopularity(ability) {
     parent.FindChildTraverse("PreGame").FindChildTraverse("EnterGameRepickButton").visible = false;
     // parent.FindChildTraverse("PreGame").FindChildTraverse("EnterGameReRandomButton").visible = false;
 
+    var calculateFiltersDebounced = util.debounce(function() {
+        calculateFilters();
+    }, 0.3);
     var popularityFilterValue = $('#popularityFilterValue');
     var popularityFilterSlider = $('#popularityFilterSlider');
     popularityFilterSlider.min = 1;
@@ -5731,7 +5734,7 @@ function getAbilityGlobalPickPopularity(ability) {
 
     var updateSliderFromNumberEntry = (function() {
         popularityFilterSlider.value = popularityFilterValue.value;
-        calculateFilters();
+        calculateFiltersDebounced();
     });
     addInputChangedEvent(popularityFilterValue.FindChildTraverse('TextEntry'), updateSliderFromNumberEntry);
     popularityFilterValue.FindChildTraverse('IncrementButton').SetPanelEvent('onactivate', function() {
@@ -5745,6 +5748,8 @@ function getAbilityGlobalPickPopularity(ability) {
 
     hookSliderChange(popularityFilterSlider, function(panel, newValue) {
         popularityFilterValue.value = newValue;
+        calculateFiltersDebounced();
+    }, function() {
         calculateFilters();
-    }, function() {});
+    });
 })();
