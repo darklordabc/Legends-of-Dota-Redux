@@ -7248,6 +7248,16 @@
     "DOTA_Tooltip_ability_ability_mjolnir_op_chain_strikes"                      "CHAIN TARGETS:"
     "DOTA_Tooltip_ability_ability_mjolnir_op_chain_radius"                       "CHAIN LEAP RADIUS:"
 
+    "DOTA_Tooltip_Ability_ability_blademail"            "Blade Mail"
+    "DOTA_Tooltip_Ability_ability_blademail_Description"        "Reflects any damage taken back to the unit that dealt the damage. "
+    "DOTA_Tooltip_Ability_ability_blademail_Lore"           "A razor-sharp coat of mail, it is the choice of selfless martyrs in combat."
+    "DOTA_Tooltip_ability_ability_blademail_duration"                       "DURATION:"
+
+    "DOTA_Tooltip_Ability_ability_blademail_op"            "Blade Mail OP"
+    "DOTA_Tooltip_Ability_ability_blademail_op_Description"        "Reflects any damage taken back to the unit that dealt the damage. <font color='#70EA72'>Double duration</font>."
+    "DOTA_Tooltip_Ability_ability_blademail_op_Lore"           "A razor-sharp coat of mail, it is the choice of selfless martyrs in combat."
+    "DOTA_Tooltip_ability_ability_blademail_op_duration"                       "DURATION:"
+
     "DOTA_Tooltip_Ability_basic_gpm_bonus"            "Crown of Hubris"
     "DOTA_Tooltip_Ability_basic_gpm_bonus_Description"        "Passively grants gold income to the Hero."
     "DOTA_Tooltip_Ability_basic_gpm_bonus_Lore"           "A inconspicuous Crown of wealth that is best kept out of sight."
