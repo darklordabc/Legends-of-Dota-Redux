@@ -4,6 +4,7 @@ StatsClient.AbilityData = StatsClient.AbilityData or {}
 StatsClient.Debug = IsInToolsMode() and false -- Change to true if you have local server running, so contributors without local server can see some things
 StatsClient.ServerAddress = (StatsClient.Debug and "http://127.0.0.1:3333" or "https://lodr-ark120202.rhcloud.com") .. "/lodServer/"
 StatsClient.GameVersion = LoadKeyValues('addoninfo.txt').version
+StatsClient.SortedAbilityDataEntries = StatsClient.SortedAbilityDataEntries or {}
 
 function StatsClient:SubscribeToClientEvents()
     CustomGameEventManager:RegisterListener("stats_client_create_skill_build", Dynamic_Wrap(StatsClient, "CreateSkillBuild"))
@@ -163,7 +164,12 @@ function StatsClient:FetchAbilityUsageData()
             end
             table.sort(entries, function(a, b) return value[a] > value[b] end)
 
-            StatsClient.SortedAbilityDataEntries = entries
+            local values = {}
+            for i, ability in ipairs(entries) do
+                values[ability] = i / #entries
+            end
+
+            StatsClient.SortedAbilityDataEntries[playerID] = values
         end
     end, math.huge)
 

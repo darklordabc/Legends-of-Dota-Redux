@@ -581,23 +581,14 @@ function OnSelectedSkillsChanged(table_name, key, data) {
 
         var threshold = optionValueList.lodOptionNewAbilitiesThreshold || 20;
         var fetchedAbilityData = AbilityUsageData.data;
-        var sortedAbilityData = AbilityUsageData.entries;
-        var entriesCount = Object.keys(sortedAbilityData).length;
         var realAbilitiesThreshold = Math.ceil(AbilityUsageData.totalGameAbilitiesCount * (1 - threshold * 0.01));
-        var enableAlternativeThreshold = entriesCount >= realAbilitiesThreshold;
+        var enableAlternativeThreshold = Object.keys(AbilityUsageData.entries).length >= realAbilitiesThreshold;
 
         var isBelowThreshold = enableAlternativeThreshold ? (function(ability) {
-            if (!fetchedAbilityData[ability]) {
-                return true;
-            }
-            for (var i in sortedAbilityData) {
-                if (sortedAbilityData[i] === ability) {
-                    return (+i + 1) / entriesCount > 1 - threshold * 0.01;
-                }
-            }
-            return true;
+            var rarity = AbilityUsageData.entries[ability] == null ? 1 : AbilityUsageData.entries[ability];
+            return rarity > 1 - threshold * 0.01;
         }) : (function(ability) {
-            return !fetchedAbilityData[ability];
+            return AbilityUsageData.entries[ability] == null;
         });
 
         var globalThreshold = 75;
@@ -5459,7 +5450,7 @@ function saveCurrentBuild() {
 }
 
 function getAbilityGlobalPickPopularity(ability) {
-    return (AbilityUsageData.global[ability] == null ? 1 : AbilityUsageData.global[ability]);
+    return AbilityUsageData.global[ability] == null ? 1 : AbilityUsageData.global[ability];
 }
 
 //--------------------------------------------------------------------------------------------------

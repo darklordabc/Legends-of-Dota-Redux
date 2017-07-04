@@ -1202,6 +1202,15 @@ function util:removeByValue(t, value)
         end
     end
 end
+
+function util:tableCount(t)
+    local counter = 0
+    for _ in pairs(t) do
+        counter = counter + 1
+    end
+    return counter
+end
+
 -- Function to get the original ability values to be used
 function StoreSpecialKeyValues(object,ability,abilityName)
   if not ABILITIES_TXT then

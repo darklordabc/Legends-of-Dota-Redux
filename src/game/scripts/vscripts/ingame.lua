@@ -538,7 +538,6 @@ end
 function Ingame:GiveAbilityUsageBonuses()
     local pregame = GameRules.pregame
     local threshold = pregame.optionStore["lodOptionNewAbilitiesThreshold"]
-    local entries = StatsClient.SortedAbilityDataEntries
     local global = StatsClient.GlobalAbilityUsageData
 
     local globalThreshold = 75
@@ -550,22 +549,17 @@ function Ingame:GiveAbilityUsageBonuses()
         if PlayerResource:IsValidPlayerID(playerID) then
             local currentBuild = pregame.selectedSkills[playerID] or {}
             local usageData = StatsClient:GetAbilityUsageData(playerID)
+            local entries = StatsClient.SortedAbilityDataEntries[playerID]
             local realAbilitiesThreshold = math.ceil(StatsClient.totalGameAbilitiesCount * (1 - threshold * 0.01))
-            local enableAlternativeThreshold = #entries >= realAbilitiesThreshold
+            local enableAlternativeThreshold = util:tableCount(entries) >= realAbilitiesThreshold
 
             if enableAlternativeThreshold then
                 function isBelowThreshold(ability)
-                    if not usageData[ability] then return true end
-                    for i,v in ipairs(entries) do
-                        if v == ability then
-                            return i / #entries > 1 - threshold * 0.01
-                        end
-                    end
-                    return true
+                    return (entries[ability] or 1) > 1 - threshold * 0.01
                 end
             else
                 function isBelowThreshold(ability)
-                    return not usageData[ability]
+                    return not entries[ability]
                 end
             end
 
