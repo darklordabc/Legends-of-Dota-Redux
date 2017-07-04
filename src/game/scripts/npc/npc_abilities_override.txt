@@ -1743,6 +1743,7 @@
         "ReduxFlags"                                                           "mobility"
         "ReduxPerks"                                                           "mobility | channeled"
         "ReduxBans"                                                            "death_prophet_witchcraft"
+        "ReduxCost"                                                            "120"
     }
     "slardar_sprint"
     {

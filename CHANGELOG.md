@@ -50,7 +50,7 @@ All notable changes to this project will be documented in this file.
 - Reduced Silvers cost by 250 gold and changed its recipes
 - Added Consumeable version of Silver
 - Starting Gold Reduced to 600, starting level now 4
-
+- Made Phase Shift a single player ability again
 
 
 
