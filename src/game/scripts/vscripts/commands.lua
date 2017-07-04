@@ -442,9 +442,10 @@ function Commands:OnPlayerChat(keys)
             if splitedcommand[1] and tonumber(splitedcommand[1]) then
                 levels = tonumber(splitedcommand[1])
             end
-            Timers:CreateTimer(function()  
-                for i=0,levels-1 do
-                    hero:HeroLevelUp(true)
+            Timers:CreateTimer(function()
+                local level = hero:GetLevel() + levels
+                while hero:GetLevel() < level and hero:GetLevel() ~= OptionManager:GetOption('maxHeroLevel')do
+                    hero:AddExperience(1,DOTA_ModifyXP_Unspecified,false,false)              
                 end
                 ingame:CommandNotification("-lvlup", 'Cheat Used (-lvlup): Given ' .. levels .. ' level(s) to '.. PlayerResource:GetPlayerName(playerID)) 
             end, DoUniqueString('cheat'), .1)
