@@ -546,10 +546,10 @@ function Ingame:GiveAbilityUsageBonuses()
     end
 
     for playerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
-        if PlayerResource:IsValidPlayerID(playerID) then
+        if PlayerResource:IsValidPlayerID(playerID) and not util:isPlayerBot(playerID) then
             local currentBuild = pregame.selectedSkills[playerID] or {}
-            local usageData = StatsClient:GetAbilityUsageData(playerID)
-            local entries = StatsClient.SortedAbilityDataEntries[playerID]
+            local usageData = StatsClient:GetAbilityUsageData(playerID) or {}
+            local entries = StatsClient.SortedAbilityDataEntries[playerID] or {}
             local realAbilitiesThreshold = math.ceil(StatsClient.totalGameAbilitiesCount * (1 - threshold * 0.01))
             local enableAlternativeThreshold = util:tableCount(entries) >= realAbilitiesThreshold
 
