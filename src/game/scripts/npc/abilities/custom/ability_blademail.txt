@@ -4,17 +4,37 @@
     {
         "BaseClass"                                                            "ability_lua"
         "ScriptFile"                                                           "abilities/ability_blademail.lua"
-        "AbilityTextureName"                                                   "nyx_assassin_spiked_carapace"
+        "AbilityTextureName"                                                   "custom/ability_blademail"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "AbilityCooldown"                "20"
-        "AbilityManaCost"                "100"
+        "AbilityManaCost"                "25"
         
         "AbilitySpecial"
         {
             "01"
             {
                 "var_type"              "FIELD_FLOAT"
-                "duration"          "1 2 3 4"
+                "duration"          "3 4.5 6 7.5"
+            }
+        }
+        "ReduxFlags"                                                           "dota_custom"
+        "ReduxCost"                                                            "0"
+    }
+    "ability_blademail_op"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/ability_blademail.lua"
+        "AbilityTextureName"                                                   "custom/ability_blademail_op"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"                "20"
+        "AbilityManaCost"                "25"
+        
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "duration"          "6 9 12 15"
             }
         }
         "ReduxFlags"                                                           "dota_custom"
