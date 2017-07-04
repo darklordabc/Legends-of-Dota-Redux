@@ -2340,7 +2340,7 @@ function getSkillFilterInfo(abilityName) {
     var isInverseFilter = $('#popularityFilterDropDown').GetSelected().id === 'popularityFilterMode2';
     if (shouldShow && popularityFilterValue !== (isInverseFilter ? 0 : 100)) {
         shouldShow = isInverseFilter ?
-            getAbilityGlobalPickPopularity(abilityName) >= popularityFilterValue * 0.01 :
+            getAbilityGlobalPickPopularity(abilityName) >= 1 - popularityFilterValue * 0.01 :
             getAbilityGlobalPickPopularity(abilityName) <= popularityFilterValue * 0.01;
     }
 
@@ -5750,8 +5750,6 @@ function getAbilityGlobalPickPopularity(ability) {
         updateSliderFromNumberEntry();
     });
     popularityFilterDropDown.SetPanelEvent('oninputsubmit', function() {
-        popularityFilterValue.value = 100 - popularityFilterValue.value;
-        popularityFilterSlider.value = popularityFilterValue.value;
         calculateFilters();
     });
 
