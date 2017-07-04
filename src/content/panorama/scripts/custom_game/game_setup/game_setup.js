@@ -4611,7 +4611,7 @@ function OnPhaseChanged(table_name, key, data) {
 
             // Message for players selecting skills
             if(currentPhase == PHASE_SELECTION) {
-                $("#newAbilitiesPanel").visible = CustomNetTables.GetTableValue("options", "lodOptionNewAbilitiesBonusGold").v > 0;
+                $("#newAbilitiesPanel").SetHasClass('GoldBonusEnabled', CustomNetTables.GetTableValue("options", "lodOptionNewAbilitiesBonusGold").v > 0);
 
                 // Enable tabs
                 $("#tabsSelector").visible = true;
