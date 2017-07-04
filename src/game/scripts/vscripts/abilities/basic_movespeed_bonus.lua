@@ -8,11 +8,11 @@ LinkLuaModifier("modifier_basic_movespeed_bonus","abilities/basic_movespeed_bonu
 LinkLuaModifier("modifier_basic_movespeed_bonus_op","abilities/basic_movespeed_bonus.lua",LUA_MODIFIER_MOTION_NONE)
 
 function basic_movespeed_bonus:GetIntrinsicModifierName()
- return "modifier_basic_health_bonus"
+ return "modifier_basic_movespeed_bonus"
 end
 
 function basic_movespeed_bonus_op:GetIntrinsicModifierName()
- return "modifier_basic_health_bonus_op"
+ return "modifier_basic_movespeed_bonus_op"
 end
 
 function modifier_basic_movespeed_bonus:IsPermanent() return true end
