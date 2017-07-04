@@ -45,6 +45,8 @@ All notable changes to this project will be documented in this file.
 - Fat-o-Meter is no longer on by default
 *
 - Tempest Double now troll combo with omniguard and Nothl protection
+- Thrill of the hunt is now troll combo with other cooldown reduction abilities
+- Added 6 simple abilities (and 6 OP variants of them)
 
 
 
