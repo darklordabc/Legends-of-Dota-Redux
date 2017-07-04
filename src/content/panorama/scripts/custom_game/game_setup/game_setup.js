@@ -577,7 +577,6 @@ function OnSelectedSkillsChanged(table_name, key, data) {
         var threshold = optionValueList.lodOptionNewAbilitiesThreshold || 20;
         var fetchedAbilityData = AbilityUsageData.data;
         var sortedAbilityData = AbilityUsageData.entries;
-        var globalAbilityData = AbilityUsageData.global;
         var entriesCount = Object.keys(sortedAbilityData).length;
         var realAbilitiesThreshold = Math.ceil(AbilityUsageData.totalGameAbilitiesCount * (1 - threshold * 0.01));
         var enableAlternativeThreshold = entriesCount >= realAbilitiesThreshold;
@@ -598,12 +597,7 @@ function OnSelectedSkillsChanged(table_name, key, data) {
 
         var globalThreshold = 50;
         var isGlobalBelowThreshold = (function(ability) {
-            for (var i in globalAbilityData) {
-                if (globalAbilityData[i]._id === ability) {
-                    return (+i + 1) / entriesCount > 1 - globalThreshold * 0.01;
-                }
-            }
-            return true;
+            return getAbilityGlobalPickPopularity(ability) > 1 - globalThreshold * 0.01;
         });
 
         for (var i = 1; i <= 6; i++) {
@@ -2340,6 +2334,11 @@ function getSkillFilterInfo(abilityName) {
                 break;
             }
         }
+    }
+
+    var popularityFilterValue = $('#popularityFilterSlider').value;
+    if (shouldShow && popularityFilterValue !== 100) {
+        shouldShow = getAbilityGlobalPickPopularity(abilityName) <= popularityFilterValue * 0.01;
     }
 
     // Check draft array
@@ -5447,6 +5446,10 @@ function saveCurrentBuild() {
     saveCurrentBuildToggleWindow(false)
 }
 
+function getAbilityGlobalPickPopularity(ability) {
+    return (AbilityUsageData.global[ability] == null ? 1 : AbilityUsageData.global[ability]);
+}
+
 //--------------------------------------------------------------------------------------------------
 // Entry point called when the team select panel is created
 //--------------------------------------------------------------------------------------------------
@@ -5719,4 +5722,29 @@ function saveCurrentBuild() {
     parent.FindChildTraverse("PreGame").FindChildTraverse("HeroPickControls").visible = false;
     parent.FindChildTraverse("PreGame").FindChildTraverse("EnterGameRepickButton").visible = false;
     // parent.FindChildTraverse("PreGame").FindChildTraverse("EnterGameReRandomButton").visible = false;
+
+    var popularityFilterValue = $('#popularityFilterValue');
+    var popularityFilterSlider = $('#popularityFilterSlider');
+    popularityFilterSlider.min = 1;
+    popularityFilterSlider.max = 100;
+    popularityFilterSlider.value = 100;
+
+    var updateSliderFromNumberEntry = (function() {
+        popularityFilterSlider.value = popularityFilterValue.value;
+        calculateFilters();
+    });
+    addInputChangedEvent(popularityFilterValue.FindChildTraverse('TextEntry'), updateSliderFromNumberEntry);
+    popularityFilterValue.FindChildTraverse('IncrementButton').SetPanelEvent('onactivate', function() {
+        popularityFilterValue.value++;
+        updateSliderFromNumberEntry();
+    });
+    popularityFilterValue.FindChildTraverse('DecrementButton').SetPanelEvent('onactivate', function() {
+        popularityFilterValue.value--;
+        updateSliderFromNumberEntry();
+    });
+
+    hookSliderChange(popularityFilterSlider, function(panel, newValue) {
+        popularityFilterValue.value = newValue;
+        calculateFilters();
+    }, function() {});
 })();

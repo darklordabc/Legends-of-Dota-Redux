@@ -864,6 +864,12 @@
                                             <ToggleButton id="buttonShowTier12" text="#balance_mode_tier_12" onactivate="toggleShowTier('12')" />
                                         </Panel>
 
+                                        <Panel class="filtersGroup" id="popularityFilterGroup">
+                                            <Label id="popularityFilterLabel" text="#filter_by_popularity" class="buildingHelperInfoText" />
+                                            <Slider id="popularityFilterSlider" class="HorizontalSlider" direction="horizontal" />
+                                            <NumberEntry id="popularityFilterValue" min="1" max="100" value="100" />
+                                        </Panel>
+
                                         <Panel id="boosterDraftBoosters" onmouseover="UIShowCustomLayoutParametersTooltip( BoosterDraftTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=boosterDraftTip1 )" onmouseout="UIHideCustomLayoutTooltip( BoosterDraftTooltip )">
                                         </Panel>
                                     </Panel>

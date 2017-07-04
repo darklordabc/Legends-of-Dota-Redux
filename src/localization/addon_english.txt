@@ -106,6 +106,7 @@
     "filter_by_category"                            "Filter by category:"
     "filter_by_name"                                "Filter by name:"
     "filter_by_value"                               "Filter by price:"
+    "filter_by_popularity"                          "Filter by popularity:"
     "presets_lod"                                   "Presets"
     "builds_lod"                                    "Builds"
     "heroes_lod"                                    "Heroes"

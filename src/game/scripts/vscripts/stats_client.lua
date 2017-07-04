@@ -15,14 +15,14 @@ function StatsClient:SubscribeToClientEvents()
     CustomGameEventManager:RegisterListener("lodConnectAbilityUsageData", function(_, args)
         Timers:CreateTimer(function()
             local playerID = args.PlayerID
-            if not StatsClient.AbilityData or not StatsClient.SortedAbilityDataEntries or not StatsClient.GlobalAbilityUsageData then
+            if not StatsClient.AbilityData or not StatsClient.SortedAbilityDataEntries or not StatsClient.GlobalAbilityUsageData or not StatsClient.totalGameAbilitiesCount then
                 return 0.1
             end
             CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(playerID), "lodConnectAbilityUsageData", {
                 data = StatsClient.AbilityData[playerID] or {},
                 entries = StatsClient.SortedAbilityDataEntries[playerID] or {},
                 global = StatsClient.GlobalAbilityUsageData,
-                totalGameAbilitiesCount = #StatsClient.GlobalAbilityUsageData
+                totalGameAbilitiesCount = StatsClient.totalGameAbilitiesCount
             })
         end)
     end)
@@ -165,12 +165,11 @@ function StatsClient:FetchAbilityUsageData()
     end, math.huge)
 
     StatsClient:Send("fetchGlobalAbilityUsageData", nil, function(response)
-        if (response.error) then
-            StatsClient.GlobalAbilityUsageData = {}
-            return
+        StatsClient.totalGameAbilitiesCount = #response
+        StatsClient.GlobalAbilityUsageData = {}
+        for i,v in ipairs(response) do
+            StatsClient.GlobalAbilityUsageData[v._id] = i / #response
         end
-        -- Values should be sorted already
-        StatsClient.GlobalAbilityUsageData = response
     end, math.huge, "GET")
 end
 

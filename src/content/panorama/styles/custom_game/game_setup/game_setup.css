@@ -3794,3 +3794,22 @@ Button:enabled:hover {
     brightness: 1;
     wash-color: lime;
 }
+
+#popularityFilterGroup
+{
+    width: 100%;
+    vertical-align: bottom;
+    margin-left: 4px;
+}
+
+#popularityFilterSlider
+{
+    width: 100%;
+}
+
+#popularityFilterValue
+{
+    margin-top: -20px;
+    width: 100px;
+    horizontal-align: right;
+}

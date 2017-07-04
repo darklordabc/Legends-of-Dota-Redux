@@ -543,19 +543,14 @@ function Ingame:GiveAbilityUsageBonuses()
 
     local globalThreshold = 50
     function isGlobalBelowThreshold(ability)
-        for i,v in ipairs(global) do
-            if v._id == ability then
-                return i / #global > 1 - globalThreshold * 0.01
-            end
-        end
-        return true
+        return (StatsClient.GlobalAbilityUsageData[ability] or 1) > 1 - globalThreshold * 0.01
     end
 
     for playerID = 0, DOTA_MAX_TEAM_PLAYERS-1 do
         if PlayerResource:IsValidPlayerID(playerID) then
             local currentBuild = pregame.selectedSkills[playerID] or {}
             local usageData = StatsClient:GetAbilityUsageData(playerID)
-            local realAbilitiesThreshold = math.ceil(#StatsClient.GlobalAbilityUsageData * (1 - threshold * 0.01))
+            local realAbilitiesThreshold = math.ceil(StatsClient.totalGameAbilitiesCount * (1 - threshold * 0.01))
             local enableAlternativeThreshold = #entries >= realAbilitiesThreshold
 
             if enableAlternativeThreshold then
