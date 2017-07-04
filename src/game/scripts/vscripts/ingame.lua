@@ -541,7 +541,7 @@ function Ingame:GiveAbilityUsageBonuses()
     local entries = StatsClient.SortedAbilityDataEntries
     local global = StatsClient.GlobalAbilityUsageData
 
-    local globalThreshold = 50
+    local globalThreshold = 75
     function isGlobalBelowThreshold(ability)
         return (StatsClient.GlobalAbilityUsageData[ability] or 1) > 1 - globalThreshold * 0.01
     end
