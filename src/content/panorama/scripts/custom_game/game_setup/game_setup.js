@@ -2337,8 +2337,11 @@ function getSkillFilterInfo(abilityName) {
     }
 
     var popularityFilterValue = $('#popularityFilterSlider').value;
-    if (shouldShow && popularityFilterValue !== 100) {
-        shouldShow = getAbilityGlobalPickPopularity(abilityName) <= popularityFilterValue * 0.01;
+    var isInverseFilter = $('#popularityFilterDropDown').GetSelected().id === 'popularityFilterMode2';
+    if (shouldShow && popularityFilterValue !== (isInverseFilter ? 0 : 100)) {
+        shouldShow = isInverseFilter ?
+            getAbilityGlobalPickPopularity(abilityName) >= popularityFilterValue * 0.01 :
+            getAbilityGlobalPickPopularity(abilityName) <= popularityFilterValue * 0.01;
     }
 
     // Check draft array
@@ -5728,6 +5731,7 @@ function getAbilityGlobalPickPopularity(ability) {
     }, 0.3);
     var popularityFilterValue = $('#popularityFilterValue');
     var popularityFilterSlider = $('#popularityFilterSlider');
+    var popularityFilterDropDown = $('#popularityFilterDropDown');
     popularityFilterSlider.min = 1;
     popularityFilterSlider.max = 100;
     popularityFilterSlider.value = 100;
@@ -5744,6 +5748,11 @@ function getAbilityGlobalPickPopularity(ability) {
     popularityFilterValue.FindChildTraverse('DecrementButton').SetPanelEvent('onactivate', function() {
         popularityFilterValue.value--;
         updateSliderFromNumberEntry();
+    });
+    popularityFilterDropDown.SetPanelEvent('oninputsubmit', function() {
+        popularityFilterValue.value = 100 - popularityFilterValue.value;
+        popularityFilterSlider.value = popularityFilterValue.value;
+        calculateFilters();
     });
 
     hookSliderChange(popularityFilterSlider, function(panel, newValue) {

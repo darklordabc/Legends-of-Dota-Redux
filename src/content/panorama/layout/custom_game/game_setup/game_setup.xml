@@ -865,7 +865,10 @@
                                         </Panel>
 
                                         <Panel class="filtersGroup" id="popularityFilterGroup">
-                                            <Label id="popularityFilterLabel" text="#filter_by_popularity" class="buildingHelperInfoText" />
+                                            <DropDown id="popularityFilterDropDown" class="buildingHelperInfoText">
+                                                <Label id="popularityFilterMode1" text="#filter_by_popularity" />
+                                                <Label id="popularityFilterMode2" text="#filter_by_unpopularity" />
+                                            </DropDown>
                                             <Slider id="popularityFilterSlider" class="HorizontalSlider" direction="horizontal" />
                                             <NumberEntry id="popularityFilterValue" min="1" max="100" value="100" />
                                         </Panel>

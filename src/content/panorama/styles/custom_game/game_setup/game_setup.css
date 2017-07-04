@@ -3797,9 +3797,17 @@ Button:enabled:hover {
 
 #popularityFilterGroup
 {
-    width: 100%;
+    width: 30%;
+    min-width: 400px;
     vertical-align: bottom;
+    horizontal-align: right;
     margin-left: 4px;
+}
+
+
+#popularityFilterDropDown
+{
+    width: 100%;
 }
 
 #popularityFilterSlider
