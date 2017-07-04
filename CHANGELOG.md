@@ -54,6 +54,8 @@ All notable changes to this project will be documented in this file.
 - Added Consumeable version of Silver
 - Starting Gold Reduced to 600, starting level now 4
 - Made Phase Shift a single player ability again
+- Drastically reworked ability bonuses
+- Added filter to sort abilities by popularity
 
 
 ## 7.9
