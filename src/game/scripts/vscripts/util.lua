@@ -1202,7 +1202,38 @@ function util:removeByValue(t, value)
         end
     end
 end
+-- Function to get the original ability values to be used
+function StoreSpecialKeyValues(object,ability,abilityName)
+  if not ABILITIES_TXT then
+    ABILITIES_TXT = LoadKeyValues("scripts/npc/npc_abilities.txt")
+    ITEMS_TXT = LoadKeyValues("scripts/npc/items.txt")
+    --for k,v in pairs(LoadKeyValues("scripts/npc/npc_abilities_override.txt")) do ABILITIES_TXT[k] = v end
+    --for k,v in pairs(LoadKeyValues("scripts/npc/npc_abilities_custom.txt")) do ABILITIES_TXT[k] = v end
+  end
 
+  if not ability then ability = object end
+
+  for k,v in pairs(ABILITIES_TXT[abilityName]["AbilitySpecial"]) do
+    for K,V in pairs(v) do
+      if K ~= "var_type" and K ~= "LinkedSpecialBonus" then
+        local array = StringToArray(V)
+        object[tostring(K)] = tonumber(array[ability:GetLevel()]) or tonumber(array[#array])
+      end
+    end
+  end
+end
+
+function StringToArray(inputString, seperator)
+  if not seperator then seperator = " " end
+  local array={}
+  local i=1
+
+  for str in string.gmatch(inputString, "([^"..seperator.."]+)") do
+    array[i] = str
+    i = i + 1
+  end
+  return array
+end
 function GenerateTalentAbilityList()
 		local tab = LoadKeyValues("scripts/npc/npc_abilities.txt")
 		for k,v in pairs(tab) do

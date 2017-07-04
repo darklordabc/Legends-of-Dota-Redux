@@ -4,7 +4,6 @@ StatsClient.AbilityData = StatsClient.AbilityData or {}
 StatsClient.Debug = IsInToolsMode() and false -- Change to true if you have local server running, so contributors without local server can see some things
 StatsClient.ServerAddress = (StatsClient.Debug and "http://127.0.0.1:3333" or "https://lodr-ark120202.rhcloud.com") .. "/lodServer/"
 StatsClient.GameVersion = LoadKeyValues('addoninfo.txt').version
-StatsClient.totalGameAbilitiesCount = 400 -- Constanted now -- util:tableCount(util:getAbilityKV())
 
 function StatsClient:SubscribeToClientEvents()
     CustomGameEventManager:RegisterListener("stats_client_create_skill_build", Dynamic_Wrap(StatsClient, "CreateSkillBuild"))
@@ -16,12 +15,13 @@ function StatsClient:SubscribeToClientEvents()
     CustomGameEventManager:RegisterListener("lodConnectAbilityUsageData", function(_, args)
         Timers:CreateTimer(function()
             local playerID = args.PlayerID
-            if not StatsClient.AbilityData or not StatsClient.SortedAbilityDataEntries then
+            if not StatsClient.AbilityData or not StatsClient.SortedAbilityDataEntries or not StatsClient.GlobalAbilityUsageData or not StatsClient.totalGameAbilitiesCount then
                 return 0.1
             end
             CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(playerID), "lodConnectAbilityUsageData", {
                 data = StatsClient.AbilityData[playerID] or {},
                 entries = StatsClient.SortedAbilityDataEntries[playerID] or {},
+                global = StatsClient.GlobalAbilityUsageData,
                 totalGameAbilitiesCount = StatsClient.totalGameAbilitiesCount
             })
         end)
@@ -131,11 +131,14 @@ end
 function StatsClient:SendAbilityUsageData()
     local data = {}
     for playerID, build in pairs(GameRules.pregame.selectedSkills) do
-        local abilities = {}
-        for i,v in ipairs(build) do
-            abilities[i] = v
+        local steamID = PlayerResource:GetRealSteamID(playerID)
+        if steamID ~= "0" then
+            local abilities = {}
+            for i,v in ipairs(build) do
+                abilities[i] = v
+            end
+            data[steamID] = abilities
         end
-        data[PlayerResource:GetRealSteamID(playerID)] = abilities
     end
     StatsClient:Send("saveAbilityUsageData", data, nil, math.huge)
 end
@@ -163,6 +166,14 @@ function StatsClient:FetchAbilityUsageData()
             StatsClient.SortedAbilityDataEntries = entries
         end
     end, math.huge)
+
+    StatsClient:Send("fetchGlobalAbilityUsageData", nil, function(response)
+        StatsClient.totalGameAbilitiesCount = #response
+        StatsClient.GlobalAbilityUsageData = {}
+        for i,v in ipairs(response) do
+            StatsClient.GlobalAbilityUsageData[v._id] = i / #response
+        end
+    end, math.huge, "GET")
 end
 
 function StatsClient:GetAbilityUsageData(playerID)
@@ -192,6 +203,5 @@ function StatsClient:Send(path, data, callback, retryCount, protocol, _currentRe
 end
 
 function CDOTA_PlayerResource:GetRealSteamID(PlayerID)
-    local id = tostring(PlayerResource:GetSteamID(PlayerID))
-    return id == "0" and tostring(PlayerID) or id
+    return tostring(PlayerResource:GetSteamID(PlayerID))
 end

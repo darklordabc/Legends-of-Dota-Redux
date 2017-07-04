@@ -106,6 +106,8 @@
     "filter_by_category"                            "Filter by category:"
     "filter_by_name"                                "Filter by name:"
     "filter_by_value"                               "Filter by price:"
+    "filter_by_popularity"                          "Filter by popularity"
+    "filter_by_unpopularity"                        "Filter by unpopularity"
     "presets_lod"                                   "Presets"
     "builds_lod"                                    "Builds"
     "heroes_lod"                                    "Heroes"
@@ -1211,7 +1213,8 @@
     "duel_draw"                                     "Duel has been ended"
 
     // New Abilities Bonus
-    "newAbilitiesTitle"                             "Originality Bonus"
+    "newAbilitiesTitle"                             "Ability Bonus"
+    "balancedBuildTitle"                            "Balanced Build"
 
     /////////////////
     // UNIQUE HERO MECHANICS
@@ -1484,6 +1487,21 @@
     "credit_mercy_angelic_descent" "<font color=\'#7D7D7D\'>Credits: Firetoad | github.com/fcalife</font>"
     "credit_mercy_heroes_never_die" "<font color=\'#7D7D7D\'>Credits: Firetoad | github.com/fcalife</font>"
 
+    "credit_basic_mana_bonus" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_basic_mana_bonus_op" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_basic_health_bonus" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_basic_health_bonus_op" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_basic_gpm_bonus" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_basic_gpm_bonus_op" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_basic_xpm_bonus" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_basic_xpm_bonus_op" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_ability_mjolnir" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_ability_mjolnir_op" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_ability_blademail" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_ability_blademail_op" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_basic_movespeed_bonus" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_basic_movespeed_bonus_op" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+
     "credit_bulwark_strike"           "<font color=\'#7D7D7D\'>Credits: Deathtal | github.com/Deathtal</font>"
     "credit_genos_survival_of_the_fittest"           "<font color=\'#7D7D7D\'>Imported from DotA Resurgence</font>"
     "credit_skipping_flames"           "<font color=\'#7D7D7D\'>Credits: Deathtal | github.com/Deathtal</font>"
@@ -1714,6 +1732,15 @@
     "DOTA_Tooltip_ability_item_redux_silver_damage_reduction"                  "%DAMAGE REDUCTION:"
 
     "DOTA_Tooltip_ability_item_recipe_redux_silver" "Silver Recipe"
+
+    "DOTA_Tooltip_ability_item_redux_silver_consume" "Silver Consumable"
+    "DOTA_Tooltip_ability_item_redux_silver_consume_Description" "Use: Consume the Silver to temporarily Break the passives of target enemy hero and reduce their damage output."
+    //"DOTA_Tooltip_ability_item_redux_silver_consume_bonus_all_stats"            "+$all"
+    "DOTA_Tooltip_ability_item_redux_silver_consume_break_duration"                  "BREAK DURATION:"
+    "DOTA_Tooltip_ability_item_redux_silver_consume_damage_reduction"                  "%DAMAGE REDUCTION:"
+
+    "DOTA_Tooltip_ability_item_recipe_redux_silver_consume" "Silver Consumable Recipe"
+    
 
     // tiny
     "DOTA_Tooltip_ability_tiny_grow_lod"                                                "Grow"
@@ -5445,8 +5472,14 @@
     "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_monkey_king_bar_bash_chance"                 "%MINI-BASH CHANCE:"
     "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_monkey_king_bar_bash_damage"                 "MINI-BASH DAMAGE:"
 
-    "DOTA_Tooltip_ability_item_new_ability_bonus"                                               "Originality Bonus"
-    "DOTA_Tooltip_ability_item_new_ability_bonus_Description"                                   "Gives you some gold. You can recieve this item for each choosen ability, that you have chosen least often (by default in 20%% of all ever chosen abilities) or haven't chosen at all."
+    "DOTA_Tooltip_ability_item_new_ability_bonus"                                               "New Ability Bonus"
+    "DOTA_Tooltip_ability_item_new_ability_bonus_Description"                                   "Use: Gives you some gold. You can recieve this item for each choosen ability, that you have chosen least often (by default in 20%% of all ever chosen abilities) or haven't chosen at all."
+
+    "DOTA_Tooltip_ability_item_new_global_ability_bonus"                                        "Rare Abiliy Bonus"
+    "DOTA_Tooltip_ability_item_new_global_ability_bonus_Description"                            "Use: Gives you some gold. You can recieve this item for each choosen ability, that is rarely chosen by all other players."
+
+    "DOTA_Tooltip_ability_item_balanced_build_bonus"                                            "Balanced Build"
+    "DOTA_Tooltip_ability_item_balanced_build_bonus_Description"                                "Gives you some gold. You can recieve this item if your build contains three or less passive abilities."
 
     "DOTA_Tooltip_modifier_item_monkey_king_bar_consumable"                            "Consumed MKB"
     "DOTA_Tooltip_modifier_item_monkey_king_bar_consumable_Description" "Permanently gained benefits of Monkey King Bar"
@@ -7211,4 +7244,93 @@
 
     "DOTA_Tooltip_modifier_imba_deadeye_vision"                                         "Deadeye"
     "DOTA_Tooltip_modifier_imba_deadeye_vision_Description"                             "Increased vision range."
+
+    "DOTA_Tooltip_ability_basic_mana_bonus"            "Goblet of Mana"
+    "DOTA_Tooltip_ability_basic_mana_bonus_Description"        "Increases the Max Mana of the Hero."
+    "DOTA_Tooltip_ability_basic_mana_bonus_Lore"           "Simple yet refreshing."
+    "DOTA_Tooltip_ability_basic_mana_bonus_mana_bonus"     "EXTRA MAX MANA:"
+
+    "DOTA_Tooltip_ability_basic_mana_bonus_op"            "Goblet of Mana OP"
+    "DOTA_Tooltip_ability_basic_mana_bonus_op_Description"        "Increases the Max Mana of the Hero. <font color='#70EA72'>Gives much more mana</font>."
+    "DOTA_Tooltip_ability_basic_mana_bonus_op_Lore"           "Simple yet very refreshing."
+    "DOTA_Tooltip_ability_basic_mana_bonus_op_mana_bonus"     "EXTRA MAX MANA:"
+
+    "DOTA_Tooltip_ability_basic_health_bonus"            "Plate of Health"
+    "DOTA_Tooltip_ability_basic_health_bonus_Description"        "Increases the Max Health of the Hero."
+    "DOTA_Tooltip_ability_basic_health_bonus_Lore"           "A trustworthy albeit boring plate of armor."
+    "DOTA_Tooltip_ability_basic_health_bonus_health_bonus"     "EXTRA MAX HEALTH:"
+
+    "DOTA_Tooltip_ability_basic_health_bonus_op"            "Plate of Health OP"
+    "DOTA_Tooltip_ability_basic_health_bonus_op_Description"        "Increases the Max Health of the Hero. <font color='#70EA72'>Gives much more Health</font>."
+    "DOTA_Tooltip_ability_basic_health_bonus_op_Lore"           "A trustworthy, duitful yet boring plate of armor."
+    "DOTA_Tooltip_ability_basic_health_bonus_op_health_bonus"     "EXTRA MAX HEALTH:"
+
+    "DOTA_Tooltip_ability_ability_mjolnir"            "Hammer of Sparks"
+    "DOTA_Tooltip_ability_ability_mjolnir_Description"        "Charges the Hero, giving a chance on attack to release a bolt of electricity that leaps between targets, dealing magical damage to each."
+    "DOTA_Tooltip_ability_ability_mjolnir_Lore"           "A Hammer not to be confused with its more famous contemporary."
+    "DOTA_Tooltip_ability_ability_mjolnir_chain_chance"                       "%CHAIN CHANCE:"
+    "DOTA_Tooltip_ability_ability_mjolnir_chain_damage"                       "CHAIN DAMAGE:"
+    "DOTA_Tooltip_ability_ability_mjolnir_chain_strikes"                      "CHAIN TARGETS:"
+    "DOTA_Tooltip_ability_ability_mjolnir_chain_radius"                       "CHAIN LEAP RADIUS:"
+
+    "DOTA_Tooltip_ability_ability_mjolnir_op"            "Hammer of Thunder"
+    "DOTA_Tooltip_ability_ability_mjolnir_op_Description"        "Charges the Hero, giving a chance on attack to release a bolt of electricity that leaps between targets, dealing magical damage to each. <font color='#70EA72'>Deals more damage, jumps more, higher chance to proc and larger jump radius</font>."
+    "DOTA_Tooltip_ability_ability_mjolnir_op_Lore"           "A Hammer not to be confused with its more famous contemporary."
+    "DOTA_Tooltip_ability_ability_mjolnir_op_chain_chance"                       "%CHAIN CHANCE:"
+    "DOTA_Tooltip_ability_ability_mjolnir_op_chain_damage"                       "CHAIN DAMAGE:"
+    "DOTA_Tooltip_ability_ability_mjolnir_op_chain_strikes"                      "CHAIN TARGETS:"
+    "DOTA_Tooltip_ability_ability_mjolnir_op_chain_radius"                       "CHAIN LEAP RADIUS:"
+
+    "DOTA_Tooltip_ability_ability_blademail"            "Blade Mail"
+    "DOTA_Tooltip_ability_ability_blademail_Description"        "Reflects any damage taken back to the unit that dealt the damage. "
+    "DOTA_Tooltip_ability_ability_blademail_Lore"           "A razor-sharp coat of mail, it is the choice of selfless martyrs in combat."
+    "DOTA_Tooltip_ability_ability_blademail_duration"                       "DURATION:"
+
+    "DOTA_Tooltip_ability_ability_blademail_op"            "Blade Mail OP"
+    "DOTA_Tooltip_ability_ability_blademail_op_Description"        "Reflects any damage taken back to the unit that dealt the damage. <font color='#70EA72'>Double duration</font>."
+    "DOTA_Tooltip_ability_ability_blademail_op_Lore"           "A razor-sharp coat of mail, it is the choice of selfless martyrs in combat."
+    "DOTA_Tooltip_ability_ability_blademail_op_duration"                       "DURATION:"
+
+    "DOTA_Tooltip_ability_basic_xpm_bonus"            "Quick Learner"
+    "DOTA_Tooltip_ability_basic_xpm_bonus_Description"        "This hero learns quickly resulting in passive experience gain."
+    "DOTA_Tooltip_ability_basic_xpm_bonus_Lore"           "A sharp mind helps one avoid learning the hard way, picking up lessons by observing its surroundings."
+    "DOTA_Tooltip_ability_basic_xpm_bonus_experience_bonus"                       "EXP PER MIN:"
+
+    "DOTA_Tooltip_ability_basic_xpm_bonus_op"            "Super Quick Learner"
+    "DOTA_Tooltip_ability_basic_xpm_bonus_op_Description"        "This hero learns really quickly resulting in passive experience gain. <font color='#70EA72'>Much more experience</font>."
+    "DOTA_Tooltip_ability_basic_xpm_bonus_op_Lore"           "A sharp mind helps one avoid learning the hard way, picking up lessons by observing its surroundings."
+    "DOTA_Tooltip_ability_basic_xpm_bonus_op_experience_bonus"                       "EXP PER MIN:"
+
+    "DOTA_Tooltip_ability_basic_gpm_bonus"            "Crown of Hubris"
+    "DOTA_Tooltip_ability_basic_gpm_bonus_Description"        "Passively grants gold income to the Hero."
+    "DOTA_Tooltip_ability_basic_gpm_bonus_Lore"           "A inconspicuous Crown of wealth that is best kept out of sight."
+    "DOTA_Tooltip_ability_basic_gpm_bonus_gold_bonus"                       "GOLD PER MINUTE:"
+
+    "DOTA_Tooltip_ability_basic_gpm_bonus_op"            "Crown of Victory"
+    "DOTA_Tooltip_ability_basic_gpm_bonus_op_Description"        "Passively grants <font color='#70EA72'>massive amounts</font> of gold income to the Hero."
+    "DOTA_Tooltip_ability_basic_gpm_bonus_op_Lore"           "A glorious Crown of wealth that is best kept in the limelight."
+    "DOTA_Tooltip_ability_basic_gpm_bonus_op_gold_bonus"                       "GOLD PER MINUTE:"
+
+    "DOTA_Tooltip_ability_basic_movespeed_bonus"            "Fabric of Movement"
+    "DOTA_Tooltip_ability_basic_movespeed_bonus_Description"        "Grants extra movement speed."
+    "DOTA_Tooltip_ability_basic_movespeed_bonus_Lore"           "Silky smooth materials makes running long distances a breeze."
+    "DOTA_Tooltip_ability_basic_movespeed_bonus_speed_bonus"                       "BONUS MOVE SPEED:"
+
+    "DOTA_Tooltip_ability_basic_movespeed_bonus_op"            "Fabric of Movement OP"
+    "DOTA_Tooltip_ability_basic_movespeed_bonus_op_Description"        "Grants extra movement speed. <font color='#70EA72'>Gives more movement speed</font>."
+    "DOTA_Tooltip_ability_basic_movespeed_bonus_op_Lore"           "Silky smooth materials makes running long distances a breeze."
+    "DOTA_Tooltip_ability_basic_movespeed_bonus_op_speed_bonus"                       "BONUS MOVE SPEED:"
+
+    "DOTA_Tooltip_ability_basic_movespeed_bonus_op"            "Fabric of Movement OP"
+    "DOTA_Tooltip_ability_basic_movespeed_bonus_op_Description"        "Grants extra movement speed. <font color='#70EA72'>Gives more movement speed</font>."
+    "DOTA_Tooltip_ability_basic_movespeed_bonus_op_Lore"           "Silky smooth materials makes running long distances a breeze."
+    "DOTA_Tooltip_ability_basic_movespeed_bonus_op_speed_bonus"                       "BONUS MOVE SPEED:"
+
+    "DOTA_Tooltip_ability_leshrac_pulse_nova_redux"                                       "Pulse Nova"
+    "DOTA_Tooltip_ability_leshrac_pulse_nova_redux_Description"                           "Creates waves of damaging energy around Leshrac, one per second, to damage nearby enemy units."
+    "DOTA_Tooltip_ability_leshrac_pulse_nova_redux_Lore"                                  "If necessary, the Tormented Soul can manipulate space time itself, ravaging lesser beings."
+    "DOTA_Tooltip_ability_leshrac_pulse_nova_redux_radius"                                "RADIUS:"
+    "DOTA_Tooltip_ability_leshrac_pulse_nova_redux_mana_cost_per_second"                  "MANA/SEC:"
+    "DOTA_Tooltip_ability_leshrac_pulse_nova_redux_damage"                                "DAMAGE:"
+
 }

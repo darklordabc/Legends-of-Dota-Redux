@@ -78,7 +78,7 @@ function modifier_flesh_heap_evasion:IsPassive()
     return true
 end
 
-function modifier_flesh_heap_evasion::IsPurgable()
+function modifier_flesh_heap_evasion:IsPurgable()
     return false
 end
 

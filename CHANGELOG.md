@@ -45,6 +45,15 @@ All notable changes to this project will be documented in this file.
 - Creep Strength Bonus no longer gives them extra magic resitance, and they dont get as much health bonus anymore.
 - Fat-o-Meter is no longer on by default
 - Using different spawn method
+*
+- Tempest Double now troll combo with omniguard and Nothl protection
+- Thrill of the hunt is now troll combo with other cooldown reduction abilities
+- Added 7 simple abilities (and 7 OP variants of them)
+- Reduced Silvers cost by 250 gold and changed its recipes
+- Fixed Pulse Nova and Lighting Storm bug, they are no longer troll combos
+- Added Consumeable version of Silver
+- Starting Gold Reduced to 600, starting level now 4
+- Made Phase Shift a single player ability again
 
 
 ## 7.9

@@ -143,6 +143,6 @@
             }
         }
         "ReduxCost"                                                            "30"
-        "ReduxBans"                                                            "oracle_false_promise" // Buggy interaction
+        "ReduxBans"                                                            "arc_warden_tempest_double | arc_warden_tempest_double_redux | oracle_false_promise" // Buggy interaction
     }
 }

@@ -191,7 +191,7 @@ var AbilityPerks = {};
 var VotingOptionPanels = {};
 var constantBalancePointsValue = GameUI.AbilityCosts.BALANCE_MODE_POINTS;
 
-var AbilityUsageData = {data: {}, entries: {}};
+var AbilityUsageData = {data: {}, entries: {}, global: {}, totalGameAbilitiesCount: 1};
 
 // Used to calculate filters (stub function)
 var calculateFilters = function(){};
@@ -576,7 +576,8 @@ function OnSelectedSkillsChanged(table_name, key, data) {
             }
         }
         var balance = constantBalancePointsValue;
-        var newAbilities = 0;
+        var tickedAbilitiesCount = 0;
+        var activeAbilities = 0;
 
         var threshold = optionValueList.lodOptionNewAbilitiesThreshold || 20;
         var fetchedAbilityData = AbilityUsageData.data;
@@ -599,14 +600,21 @@ function OnSelectedSkillsChanged(table_name, key, data) {
             return !fetchedAbilityData[ability];
         });
 
+        var globalThreshold = 75;
+        var isGlobalBelowThreshold = (function(ability) {
+            return getAbilityGlobalPickPopularity(ability) > 1 - globalThreshold * 0.01;
+        });
+
         for (var i = 1; i <= 6; i++) {
-            $('#newAbilitiesTick' + i).RemoveClass('Enabled');
+            $('#newAbilitiesTick' + i).RemoveClass('OwnBonus');
+            $('#newAbilitiesTick' + i).RemoveClass('GlobalBonus');
         }
 
         for(var key in selectedSkills[playerID]) {
             var ab = $('#lodYourAbility' + key);
             var abName = selectedSkills[playerID][key];
             var isNewAbility = false;
+            var isGlobalNewAbility = false;
 
             if(ab != null) {
                 ab.abilityname = abName;
@@ -615,9 +623,12 @@ function OnSelectedSkillsChanged(table_name, key, data) {
 
                 var abCost = ab.GetChild(0);
 
-                if (isBelowThreshold(abName)){
-                    newAbilities++;
+                if (isBelowThreshold(abName)) {
                     isNewAbility = true;
+                    tickedAbilitiesCount++;
+                } else if (isGlobalBelowThreshold(abName)) {
+                    isGlobalNewAbility = true;
+                    tickedAbilitiesCount++;
                 }
 
                 if (balanceMode) {
@@ -638,12 +649,18 @@ function OnSelectedSkillsChanged(table_name, key, data) {
                         abCost.visible = $.GetContextPanel().balanceMode;
                     }
                 }
+                if (!flagDataInverse[abName] || !flagDataInverse[abName].passive) {
+                    activeAbilities++;
+                }
             }
 
-            $('#newAbilitiesTick' + key).SetHasClass('Enabled', isNewAbility);
+            $('#newAbilitiesTick' + key).SetHasClass('OwnBonus', isNewAbility);
+            if (!isNewAbility && isGlobalNewAbility) {
+                $('#newAbilitiesTick' + key).AddClass('GlobalBonus');
+            }
         }
-        $('#newAbilitiesPanel').SetHasClass('OneOrMore', newAbilities > 0);
-        $('#newAbilitiesPanel').SetHasClass('All', newAbilities === 6);
+        $('#newAbilitiesPanel').SetHasClass('OneOrMore', tickedAbilitiesCount > 0);
+        $('#balancedBuildTick').SetHasClass('Enabled', activeAbilities >= 3);
 
 
         // Update current price
@@ -2322,6 +2339,14 @@ function getSkillFilterInfo(abilityName) {
                 break;
             }
         }
+    }
+
+    var popularityFilterValue = $('#popularityFilterSlider').value;
+    var isInverseFilter = $('#popularityFilterDropDown').GetSelected().id === 'popularityFilterMode2';
+    if (shouldShow && popularityFilterValue !== (isInverseFilter ? 0 : 100)) {
+        shouldShow = isInverseFilter ?
+            getAbilityGlobalPickPopularity(abilityName) >= 1 - popularityFilterValue * 0.01 :
+            getAbilityGlobalPickPopularity(abilityName) <= popularityFilterValue * 0.01;
     }
 
     // Check draft array
@@ -4593,7 +4618,7 @@ function OnPhaseChanged(table_name, key, data) {
 
             // Message for players selecting skills
             if(currentPhase == PHASE_SELECTION) {
-                $("#newAbilitiesPanel").visible = CustomNetTables.GetTableValue("options", "lodOptionNewAbilitiesBonusGold").v > 0;
+                $("#newAbilitiesPanel").SetHasClass('GoldBonusEnabled', CustomNetTables.GetTableValue("options", "lodOptionNewAbilitiesBonusGold").v > 0);
 
                 // Enable tabs
                 $("#tabsSelector").visible = true;
@@ -5433,6 +5458,10 @@ function saveCurrentBuild() {
     saveCurrentBuildToggleWindow(false)
 }
 
+function getAbilityGlobalPickPopularity(ability) {
+    return (AbilityUsageData.global[ability] == null ? 1 : AbilityUsageData.global[ability]);
+}
+
 //--------------------------------------------------------------------------------------------------
 // Entry point called when the team select panel is created
 //--------------------------------------------------------------------------------------------------
@@ -5701,4 +5730,38 @@ function saveCurrentBuild() {
     parent.FindChildTraverse("PreGame").FindChildTraverse("HeroPickControls").visible = false;
     parent.FindChildTraverse("PreGame").FindChildTraverse("EnterGameRepickButton").visible = false;
     // parent.FindChildTraverse("PreGame").FindChildTraverse("EnterGameReRandomButton").visible = false;
+
+    var calculateFiltersDebounced = util.debounce(function() {
+        calculateFilters();
+    }, 0.3);
+    var popularityFilterValue = $('#popularityFilterValue');
+    var popularityFilterSlider = $('#popularityFilterSlider');
+    var popularityFilterDropDown = $('#popularityFilterDropDown');
+    popularityFilterSlider.min = 1;
+    popularityFilterSlider.max = 100;
+    popularityFilterSlider.value = 100;
+
+    var updateSliderFromNumberEntry = (function() {
+        popularityFilterSlider.value = popularityFilterValue.value;
+        calculateFiltersDebounced();
+    });
+    addInputChangedEvent(popularityFilterValue.FindChildTraverse('TextEntry'), updateSliderFromNumberEntry);
+    popularityFilterValue.FindChildTraverse('IncrementButton').SetPanelEvent('onactivate', function() {
+        popularityFilterValue.value++;
+        updateSliderFromNumberEntry();
+    });
+    popularityFilterValue.FindChildTraverse('DecrementButton').SetPanelEvent('onactivate', function() {
+        popularityFilterValue.value--;
+        updateSliderFromNumberEntry();
+    });
+    popularityFilterDropDown.SetPanelEvent('oninputsubmit', function() {
+        calculateFilters();
+    });
+
+    hookSliderChange(popularityFilterSlider, function(panel, newValue) {
+        popularityFilterValue.value = newValue;
+        calculateFiltersDebounced();
+    }, function() {
+        calculateFilters();
+    });
 })();
