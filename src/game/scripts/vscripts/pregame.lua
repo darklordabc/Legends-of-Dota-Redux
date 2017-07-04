@@ -310,6 +310,11 @@ function Pregame:init()
         this:onIngameBuilder(eventSourceIndex, args)
     end)
 
+    -- Player wants to check ingame builder
+    CustomGameEventManager:RegisterListener('lodCheckIngameBuilder', function(eventSourceIndex, args)
+        this:onCheckIngameBuilder(eventSourceIndex, args)
+    end)
+
     -- Player wants to set their hero
     CustomGameEventManager:RegisterListener('lodChooseHero', function(eventSourceIndex, args)
         this:onPlayerSelectHero(eventSourceIndex, args)
@@ -979,6 +984,10 @@ function Pregame:applyBuilds()
     for playerID=0,maxPlayerID-1 do
         Timers:CreateTimer(function ()
             local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+            if self.wispSpawning and hero and hero:GetUnitName() ~= self.selectedHeroes[playerID] then
+                self:onIngameBuilder(nil, { playerID = playerID, ingamePicking = true })
+                return
+            end
 
             if hero ~= nil and IsValidEntity(hero) then
                 local build = self.selectedSkills[playerID]
@@ -1130,13 +1139,13 @@ function Pregame:onThink()
         -- Is it over?
         if Time() >= self:getEndOfPhase() and self.freezeTimer == nil then
             -- Finish the option selection
-            self:finishOptionSelection()
             if util:isCoop() then
                 print("vote ended")
                 self.enabledBots = true
                 self.desiredRadiant = self.desiredRadiant or 5
                 self.desiredDire = self.desiredDire or 5
             end
+            self:finishOptionSelection()
         end
 
         return 0.1
@@ -1177,7 +1186,14 @@ function Pregame:onThink()
                 end
             else
                 -- Change to picking phase
-                self:setPhase(constants.PHASE_SELECTION)
+                if util:anyBots() or self.enabledBots then
+                    GameRules:GetGameModeEntity():SetCustomGameForceHero("")
+                    self:setPhase(constants.PHASE_SELECTION)
+                else
+                    GameRules:SetPreGameTime(180.0)
+                    self.wispSpawning = true
+                    self:setPhase(constants.PHASE_SPAWN_HEROES)
+                end
                 self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'), OptionManager:GetOption('pickingTime'))
             end
         end
@@ -1187,8 +1203,6 @@ function Pregame:onThink()
 
     -- Selection phase
     if ourPhase == constants.PHASE_SELECTION then
-        GameRules:GetGameModeEntity():SetCustomGameForceHero("")
-
         if self.useDraftArrays and not self.draftArrays then
             self:buildDraftArrays()
 
@@ -1264,8 +1278,6 @@ function Pregame:onThink()
 
                 -- Kill the selection screen
                 self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime'))
-
-                GameRules:FinishCustomGameSetup()
             else
                 self.additionalPickTime = true
                 self:setEndOfPhase(Time() + 15.0)
@@ -1309,8 +1321,6 @@ function Pregame:onThink()
 
             -- Kill the selection screen
             self:setEndOfPhase(Time() + OptionManager:GetOption('reviewTime'), OptionManager:GetOption('reviewTime'))
-
-            GameRules:FinishCustomGameSetup()
         end
 
         return 0.1
@@ -1344,6 +1354,8 @@ function Pregame:onThink()
 
         -- Hook bot stuff
         self:hookBotStuff()
+
+        GameRules:FinishCustomGameSetup()
 
         -- Spawn all humans
         Timers:CreateTimer(function()
@@ -1454,6 +1466,10 @@ function Pregame:spawnAllHeroes()
     local minPlayerID = 0
     local maxPlayerID = 24
 
+    if self.wispSpawning then
+        return
+    end
+
     for playerID = minPlayerID,maxPlayerID-1 do
         self:spawnPlayer(playerID)
     end
@@ -1550,9 +1566,12 @@ function Pregame:actualSpawnPlayer(forceID)
             local spawnTheHero = function()
                 local status2,err2 = pcall(function()
                     -- Create the hero and validate it
-                    local hero = CreateHeroForPlayer(heroName, player)
-
-                    UTIL_Remove(hero)
+                    if self.wispSpawning then
+                        local hero = PlayerResource:ReplaceHeroWith(playerID,heroName,0,0)
+                    else
+                        local hero = CreateHeroForPlayer(heroName, player)
+                        UTIL_Remove(hero)
+                    end
                 end)
 
                 continueSpawning()
@@ -1983,7 +2002,15 @@ function Pregame:finishOptionSelection()
             end
         else
             -- Hero selection
-            self:setPhase(constants.PHASE_SELECTION)
+            print(self.enabledBots)
+            if util:anyBots() or self.enabledBots then
+                GameRules:GetGameModeEntity():SetCustomGameForceHero("")
+                self:setPhase(constants.PHASE_SELECTION)
+            else
+                GameRules:SetPreGameTime(180.0)
+                self.wispSpawning = true
+                self:setPhase(constants.PHASE_SPAWN_HEROES)
+            end
             -- Change the below line to "self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'), nil)" to disable unlimited time
             self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'), OptionManager:GetOption('pickingTime'))
         end
@@ -2069,17 +2096,34 @@ function Pregame:onOptionChanged(eventSourceIndex, args)
     end
 end
 
+-- Player wants to check ingame builder
+function Pregame:onCheckIngameBuilder(eventSourceIndex, args)
+    local playerID = args.PlayerID
+    local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+    if not hero then
+        return
+    end
+
+    if self.wispSpawning and hero and hero:GetUnitName() ~= self.selectedHeroes[playerID] then
+        self:onIngameBuilder(eventSourceIndex, { playerID = playerID, ingamePicking = true })
+        return
+    end
+end
+
 -- Player wants to open ingame builder
 function Pregame:onIngameBuilder(eventSourceIndex, args)
     local playerID = args.playerID
     local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+    if not hero then
+        return
+    end
     if duel_active or hero:HasModifier("modifier_tribune") then
         customAttension("#duel_cant_swap", 5)
         return
     end
     if IsValidEntity(hero) and hero:IsAlive() then
         local player = PlayerResource:GetPlayer(playerID)
-        network:showHeroBuilder(player)
+        network:showHeroBuilder(player, { ingamePicking = args.ingamePicking })
         Timers:CreateTimer(function()
             network:setOption('lodOptionBalanceMode', true)
         end, "changeBalanceMode", 0.5)
@@ -3691,14 +3735,23 @@ end]]
 
 
 -- Validates builds
-function Pregame:validateBuilds()
-    -- Only process this once
-    if self.validatedBuilds then return end
-    self.validatedBuilds = true
+function Pregame:validateBuilds(specificID)
+    if self.wispSpawning then
+        if not specificID then return end
+    else
+        -- Only process this once
+        if self.validatedBuilds then return end
+        self.validatedBuilds = true 
+    end
 
     -- Generate 10 builds
     local minPlayerID = 0
     local maxPlayerID = 24
+
+    if self.wispSpawning then
+        minPlayerID = specificID
+        maxPlayerID = specificID+1
+    end
 
     -- Validate it
     local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
@@ -4407,9 +4460,9 @@ function Pregame:onPlayerSelectHero(eventSourceIndex, args)
     local player = PlayerResource:GetPlayer(playerID)
 
     -- Ensure we are in the picking phase
-    if self:getPhase() ~= constants.PHASE_SELECTION and not self:canPlayerPickSkill() then
+    if self:getPhase() ~= constants.PHASE_SELECTION and not self:canPlayerPickSkill(playerID) then
         -- Ensure we are in the picking phase
-        if self:getPhase() ~= constants.PHASE_SELECTION and not self:canPlayerPickSkill() then
+        if self:getPhase() ~= constants.PHASE_SELECTION and not self:canPlayerPickSkill(playerID) then
             network:sendNotification(player, {
                 sort = 'lodDanger',
                 text = 'lodFailedWrongPhaseSelection'
@@ -4536,7 +4589,7 @@ function Pregame:onPlayerSelectAttr(eventSourceIndex, args)
     end
 
     -- Ensure we are in the picking phase
-    if self:getPhase() ~= constants.PHASE_SELECTION and not self:canPlayerPickSkill() then
+    if self:getPhase() ~= constants.PHASE_SELECTION and not self:canPlayerPickSkill(playerID) then
         network:sendNotification(player, {
             sort = 'lodDanger',
             text = 'lodFailedWrongPhaseSelection'
@@ -4569,7 +4622,7 @@ function Pregame:onPlayerSelectBuild(eventSourceIndex, args)
     local player = PlayerResource:GetPlayer(playerID)
 
     -- Ensure we are in the picking phase
-    if self:getPhase() ~= constants.PHASE_SELECTION and not self:canPlayerPickSkill() then
+    if self:getPhase() ~= constants.PHASE_SELECTION and not self:canPlayerPickSkill(playerID) then
         network:sendNotification(player, {
             sort = 'lodDanger',
             text = 'lodFailedWrongPhaseSelection'
@@ -4641,7 +4694,7 @@ function Pregame:onPlayerSelectAllRandomBuild(eventSourceIndex, args)
     local player = PlayerResource:GetPlayer(playerID)
 
     -- Player shouldn't be able to do this unless it is the all random phase
-    if self:getPhase() ~= constants.PHASE_RANDOM_SELECTION and not self:canPlayerPickSkill() then
+    if self:getPhase() ~= constants.PHASE_RANDOM_SELECTION and not self:canPlayerPickSkill(playerID) then
         network:sendNotification(player, {
             sort = 'lodDanger',
             text = 'lodFailedNotAllRandomPhase'
@@ -4714,11 +4767,14 @@ end
 
 -- Player wants to ready up
 function Pregame:onPlayerReady(eventSourceIndex, args)
-    if self:getPhase() ~= constants.PHASE_BANNING and self:getPhase() ~= constants.PHASE_SELECTION and self:getPhase() ~= constants.PHASE_RANDOM_SELECTION and self:getPhase() ~= constants.PHASE_REVIEW and not self:canPlayerPickSkill() then return end
-    if self:canPlayerPickSkill() and IsValidEntity(PlayerResource:GetSelectedHeroEntity(args.PlayerID)) then
-        local playerID = args.PlayerID
+    local playerID = args.PlayerID
+    if self:getPhase() ~= constants.PHASE_BANNING and self:getPhase() ~= constants.PHASE_SELECTION and self:getPhase() ~= constants.PHASE_RANDOM_SELECTION and self:getPhase() ~= constants.PHASE_REVIEW and not self:canPlayerPickSkill(playerID) then return end
+    if self:canPlayerPickSkill(playerID) and IsValidEntity(PlayerResource:GetSelectedHeroEntity(args.PlayerID)) then
         local hero = PlayerResource:GetSelectedHeroEntity(playerID)
         if IsValidEntity(hero) then
+            if self.wispSpawning then
+                self:validateBuilds(playerID)
+            end
             local newBuild = util:DeepCopy(self.selectedSkills[playerID])
             local count = 0
             for key,_ in pairs(newBuild) do
@@ -4759,39 +4815,42 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
                 network:hideHeroBuilder(player)
                 return
             end
-            SkillManager:ApplyBuild(hero, newBuild)
-            local player = PlayerResource:GetPlayer(playerID)
-            network:hideHeroBuilder(player)
-            network:setSelectedAbilities(playerID, self.selectedSkills[playerID])
-            network:setSelectedHero(playerID, newBuild.hero)
-            network:setSelectedAttr(playerID, newBuild.setAttr)
-            hero = PlayerResource:GetSelectedHeroEntity(playerID)
-            --if OptionManager:GetOption('ingameBuilderPenalty') > 0 then
-            --TODO: If long enough, players die to respawn
-            self:fixSpawnedHero(hero)
-            if not util:isSinglePlayerMode() and OptionManager:GetOption('ingameBuilderPenalty') > 0 then
-                Timers:CreateTimer(function()
-                    local penalty = OptionManager:GetOption('ingameBuilderPenalty')
-
-                    hero:Kill(nil, nil)
-
+            PrecacheUnitByNameAsync(newBuild.hero,function (  )
+                SkillManager:ApplyBuild(hero, newBuild)
+                local player = PlayerResource:GetPlayer(playerID)
+                network:hideHeroBuilder(player)
+                network:setSelectedAbilities(playerID, self.selectedSkills[playerID])
+                network:setSelectedHero(playerID, newBuild.hero)
+                network:setSelectedAttr(playerID, newBuild.setAttr)
+                hero = PlayerResource:GetSelectedHeroEntity(playerID)
+                --if OptionManager:GetOption('ingameBuilderPenalty') > 0 then
+                --TODO: If long enough, players die to respawn
+                self.spawnedHeroesFor[playerID] = true
+                self:fixSpawnedHero(hero)
+                if not util:isSinglePlayerMode() and OptionManager:GetOption('ingameBuilderPenalty') > 0 then
                     Timers:CreateTimer(function()
-                        hero:SetTimeUntilRespawn(penalty)
-                    end, DoUniqueString('respawnFix'), 1)
+                        local penalty = OptionManager:GetOption('ingameBuilderPenalty')
 
-                end, DoUniqueString('penalty'), 1)
-            else
-                if hero:GetTeam() == DOTA_TEAM_BADGUYS then
-                    local ent = Entities:FindByClassname(nil, "info_player_start_badguys")
-                    hero:SetAbsOrigin(ent:GetAbsOrigin())
-                    hero:AddNewModifier(hero, nil, "modifier_phased", {Duration = 2})
-                elseif hero:GetTeam() == DOTA_TEAM_GOODGUYS then
-                    local ent = Entities:FindByClassname(nil, "info_player_start_goodguys")
-                    hero:SetAbsOrigin(ent:GetAbsOrigin())
-                    hero:AddNewModifier(hero, nil, "modifier_phased", {Duration = 2})
+                        hero:Kill(nil, nil)
+
+                        Timers:CreateTimer(function()
+                            hero:SetTimeUntilRespawn(penalty)
+                        end, DoUniqueString('respawnFix'), 1)
+
+                    end, DoUniqueString('penalty'), 1)
+                else
+                    if hero:GetTeam() == DOTA_TEAM_BADGUYS then
+                        local ent = Entities:FindByClassname(nil, "info_player_start_badguys")
+                        hero:SetAbsOrigin(ent:GetAbsOrigin())
+                        hero:AddNewModifier(hero, nil, "modifier_phased", {Duration = 2})
+                    elseif hero:GetTeam() == DOTA_TEAM_GOODGUYS then
+                        local ent = Entities:FindByClassname(nil, "info_player_start_goodguys")
+                        hero:SetAbsOrigin(ent:GetAbsOrigin())
+                        hero:AddNewModifier(hero, nil, "modifier_phased", {Duration = 2})
+                    end
                 end
-            end
-            GameRules:SendCustomMessage('Player '..PlayerResource:GetPlayerName(playerID)..' just changed build.', 0, 0)
+                GameRules:SendCustomMessage('Player '..PlayerResource:GetPlayerName(playerID)..' just changed build.', 0, 0)
+            end,playerID)
         end
     else
         local playerID = args.PlayerID
@@ -5784,7 +5843,9 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
     end
 end
 
-function Pregame:canPlayerPickSkill()
+function Pregame:canPlayerPickSkill(playerID)
+    local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+    if (self.wispSpawning and hero and hero:GetUnitName() ~= self.selectedHeroes[playerID]) then return true end
     if (self:getPhase() == constants.PHASE_INGAME or self:getPhase() == constants.PHASE_REVIEW) and (OptionManager:GetOption('allowIngameHeroBuilder')) then
         return true
     end
@@ -5799,7 +5860,7 @@ function Pregame:onPlayerRemoveAbility(eventSourceIndex, args)
     local player = PlayerResource:GetPlayer(playerID)
 
     -- Ensure we are in the picking phase
-    if self:getPhase() ~= constants.PHASE_SELECTION and not self:canPlayerPickSkill() then
+    if self:getPhase() ~= constants.PHASE_SELECTION and not self:canPlayerPickSkill(playerID) then
         network:sendNotification(player, {
             sort = 'lodDanger',
             text = 'lodFailedWrongPhaseSelection'
@@ -5848,9 +5909,9 @@ function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
     -- Grab data
     local playerID = args.PlayerID
     local player = PlayerResource:GetPlayer(playerID)
-
+    print(self:getPhase() ~= constants.PHASE_SELECTION, not self:canPlayerPickSkill(playerID), self.additionalPickTime)
     -- Ensure we are in the picking phase
-    if self:getPhase() ~= constants.PHASE_SELECTION and not self:canPlayerPickSkill() then
+    if self:getPhase() ~= constants.PHASE_SELECTION and not self:canPlayerPickSkill(playerID) then
         network:sendNotification(player, {
             sort = 'lodDanger',
             text = 'lodFailedWrongPhaseSelection'
@@ -6550,6 +6611,7 @@ end
 
 -- Adds bot players to the game
 function Pregame:addBotPlayers()
+    -- self.enabledBots = false
     -- Ensure bots should actually be added
     if self.addedBotPlayers then return end
     self.addedBotPlayers = true
@@ -7187,6 +7249,9 @@ function Pregame:fixSpawnedHero( spawnedUnit )
 
     local mainHero = PlayerResource:GetSelectedHeroEntity(playerID)
 
+    mainHero:RemoveNoDraw()
+    mainHero:RemoveModifierByName("modifier_tribune")
+
     if mainHero and mainHero:IsRealHero() then
         self:applyPrimaryAttribute(playerID, mainHero)
     end
@@ -7668,6 +7733,46 @@ function Pregame:fixSpawnedHero( spawnedUnit )
         if OptionManager:GetOption('bonusGold') > 0 then
             PlayerResource:SetGold(playerID, OptionManager:GetOption('bonusGold'), true)
         end
+
+        if self.optionStore["lodOptionNewAbilitiesBonusGold"] > 0 and StatsClient.AbilityData then
+            for _playerID, usageData in pairs(StatsClient.AbilityData) do
+                if _playerID == playerID then
+                    local currentBuild = self.selectedSkills[playerID] or {}
+
+                    local threshold = self.optionStore["lodOptionNewAbilitiesThreshold"]
+                    local entries = StatsClient.SortedAbilityDataEntries
+                    local realAbilitiesThreshold = math.ceil(StatsClient.totalGameAbilitiesCount * (1 - threshold * 0.01))
+                    local enableAlternativeThreshold = #entries >= realAbilitiesThreshold
+
+                    if enableAlternativeThreshold then
+                        function isBelowThreshold(ability)
+                            if not usageData[ability] then return true end
+                            for i,v in ipairs(entries) do
+                                if v == ability then
+                                    return i / #entries > 1 - threshold * 0.01
+                                end
+                            end
+                            return true
+                        end
+                    else
+                        function isBelowThreshold(ability)
+                            return not usageData[ability]
+                        end
+                    end
+
+                    local newAbilities = 0
+                    for _,v in ipairs(currentBuild) do
+                        if isBelowThreshold(v) then
+                            newAbilities = newAbilities + 1
+                        end
+                    end
+                    local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+                    if newAbilities > 0 and hero then
+                        hero:AddItemByName('item_new_ability_bonus'):SetCurrentCharges(newAbilities)
+                    end
+                end
+            end
+        end
     end
 end
 
@@ -7695,6 +7800,13 @@ function Pregame:fixSpawningIssues()
     ListenToGameEvent('npc_spawned', function(keys)
         -- Grab the unit that spawned
         local spawnedUnit = EntIndexToHScript(keys.entindex)
+
+        if self.wispSpawning then
+            if not self.selectedHeroes[spawnedUnit:GetPlayerOwnerID()] and spawnedUnit:IsRealHero() then
+                spawnedUnit:AddNoDraw()
+                spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_tribune",{})
+            end
+        end
 
         -- Grab their playerID
         if spawnedUnit.GetPlayerID then

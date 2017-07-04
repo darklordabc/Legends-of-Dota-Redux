@@ -43,12 +43,14 @@ function Precache(context)
     if IsInToolsMode() then
         local abilities = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
         for ability,content in pairs(abilities) do
-            for block,val in pairs(content) do
-              if block == "precache" then
-                for precacheType, resource in pairs(val) do
-                    PrecacheResource(precacheType, resource, context)
+            if type(content) == "table" then
+                for block,val in pairs(content) do
+                  if block == "precache" then
+                    for precacheType, resource in pairs(val) do
+                        PrecacheResource(precacheType, resource, context)
+                    end
+                  end
                 end
-              end
             end
         end
     end

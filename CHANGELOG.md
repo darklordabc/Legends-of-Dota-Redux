@@ -35,6 +35,7 @@ All notable changes to this project will be documented in this file.
 - Disabled Pudge bot as hes expected to be causing crashes
 - Fixed CDR talent not working on some abilities
 - Fixed Argent Smite not working on ranged heros
+- Fixed thunder musket working on illusions
 - Added Chi Strike (And Chi Strike OP for single player)
 - Fixed Tempest Double exploit with bonus originality gold 
 - Added Health and Mana Regen flesh heaps
@@ -43,6 +44,7 @@ All notable changes to this project will be documented in this file.
 - Originality Bonus now has a cooldown so players dont get all the gold at start
 - Creep Strength Bonus no longer gives them extra magic resitance, and they dont get as much health bonus anymore.
 - Fat-o-Meter is no longer on by default
+- Using different spawn method
 *
 - Tempest Double now troll combo with omniguard and Nothl protection
 - Thrill of the hunt is now troll combo with other cooldown reduction abilities
@@ -52,7 +54,6 @@ All notable changes to this project will be documented in this file.
 - Added Consumeable version of Silver
 - Starting Gold Reduced to 600, starting level now 4
 - Made Phase Shift a single player ability again
-
 
 
 ## 7.9
