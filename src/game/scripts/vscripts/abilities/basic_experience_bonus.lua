@@ -17,6 +17,6 @@ function modifier_basic_xpm_bonus:OnCreated()
 end
 
 function modifier_basic_xpm_bonus:OnIntervalThink()
-  self:GetCaster():AddExperience(1,DOTA_ModifyXP_Unspecified,false,false)
+  self:GetCaster():AddExperience(1,DOTA_ModifyXP_Unspecified,false,true)
 end
 
