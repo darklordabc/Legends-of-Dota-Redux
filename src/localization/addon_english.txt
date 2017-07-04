@@ -1499,6 +1499,8 @@
     "credit_ability_mjolnir_op" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
     "credit_ability_blademail" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
     "credit_ability_blademail_op" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_basic_movespeed_bonus" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_basic_movespeed_bonus_op" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
 
     "credit_bulwark_strike"           "<font color=\'#7D7D7D\'>Credits: Deathtal | github.com/Deathtal</font>"
     "credit_genos_survival_of_the_fittest"           "<font color=\'#7D7D7D\'>Imported from DotA Resurgence</font>"
