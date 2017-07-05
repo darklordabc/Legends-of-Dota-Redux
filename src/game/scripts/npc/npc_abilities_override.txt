@@ -229,7 +229,7 @@
     "brewmaster_storm_cyclone"
     {
         "MaxLevel"                                                             "1"
-        "ReduxCost"                                                            "80"
+        "ReduxCost"                                                            "120"
         "ReduxFlags"                                                           ""
     }
     "brewmaster_storm_wind_walk"
