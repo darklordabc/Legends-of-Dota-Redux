@@ -7,6 +7,7 @@ function bash_reflect:OnSpellStart()
   if self:GetCursorTarget() == self:GetCaster() then return end
   self:GetCaster():RemoveModifierByName("modifier_bash_reflect")
   self:GetCursorTarget():AddNewModifier(self:GetCaster(),self,"modifier_bash_reflect",{duration = self:GetSpecialValueFor("duration")})
+  self:GetCursorTarget():EmitSound("DOTA_Item.LinkensSphere.Target")
 end
 
 function bash_reflect_op:OnSpellStart()
