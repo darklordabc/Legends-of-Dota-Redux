@@ -3,12 +3,12 @@ ability_wards = class({})
 LinkLuaModifier("modifier_ability_wards_observer_cooldown","abilities/ability_wards.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_ability_wards_sentry_cooldown","abilities/ability_wards.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_ability_wards_type","abilities/ability_wards.lua",LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_ability_wards_type_op","abilities/ability_wards.lua",LUA_MODIFIER_MOTION_NONE)
+--LinkLuaModifier("modifier_ability_wards_type_op","abilities/ability_wards.lua",LUA_MODIFIER_MOTION_NONE)
 
 modifier_ability_wards_observer_cooldown = class({})
 modifier_ability_wards_sentry_cooldown = class({})
 modifier_ability_wards_type = class({})
-modifier_ability_wards_type_op = class({})
+--modifier_ability_wards_type_op = class({})
 
 function modifier_ability_wards_type:IsPermanent() return true end
 function modifier_ability_wards_type:IsHidden() return true end
@@ -93,7 +93,7 @@ ability_wards_op = class({})
 
 function ability_wards_op:OnUpgrade()
   if self:GetLevel() == 1 then
-    local modifier = self:GetCaster():AddNewModifier(self:GetCaster(),self,"modifier_ability_wards_type_op",{})
+    local modifier = self:GetCaster():AddNewModifier(self:GetCaster(),self,"modifier_ability_wards_type",{})
     modifier:SetStackCount(0)
     local modifier = self:GetCaster():AddNewModifier(self:GetCaster(),self,"modifier_ability_wards_observer_cooldown",{})
     modifier:SetStackCount(1)
@@ -104,7 +104,7 @@ function ability_wards_op:OnUpgrade()
 end
 
 function ability_wards_op:GetAOERadius()
-  if self:GetCaster():GetModifierStackCount("modifier_ability_wards_type_op",self:GetCaster()) == 0 then
+  if self:GetCaster():GetModifierStackCount("modifier_ability_wards_type",self:GetCaster()) == 0 then
     return self:GetSpecialValueFor("observer_ward_radius")
   else
     return self:GetSpecialValueFor("sentry_ward_radius")
@@ -119,10 +119,10 @@ function ability_wards_op:GetAbilityTextureName()
   end
 end
 function ability_wards_op:CastFilterResultLocation(vLocation)
-  if self:GetCaster():GetModifierStackCount("modifier_ability_wards_type_op",self:GetCaster()) == 0 and self:GetCaster():GetModifierStackCount("modifier_ability_wards_observer_cooldown",self:GetCaster()) <= 0 then
+  if self:GetCaster():GetModifierStackCount("modifier_ability_wards_type",self:GetCaster()) == 0 and self:GetCaster():GetModifierStackCount("modifier_ability_wards_observer_cooldown",self:GetCaster()) <= 0 then
     return UF_FAIL_CUSTOM
   end
-  if self:GetCaster():GetModifierStackCount("modifier_ability_wards_type_op",self:GetCaster()) == 1 and self:GetCaster():GetModifierStackCount("modifier_ability_wards_sentry_cooldown",self:GetCaster()) <= 0 then
+  if self:GetCaster():GetModifierStackCount("modifier_ability_wards_type",self:GetCaster()) == 1 and self:GetCaster():GetModifierStackCount("modifier_ability_wards_sentry_cooldown",self:GetCaster()) <= 0 then
     return UF_FAIL_CUSTOM
   end
 end
@@ -145,13 +145,13 @@ end
 
 function ability_wards_op:OnSpellStart()
   if self:GetCursorTarget() then
-    if self:GetCaster():GetModifierStackCount("modifier_ability_wards_type_op",self:GetCaster()) == 0 then
-      self:GetCaster():SetModifierStackCount("modifier_ability_wards_type_op",self:GetCaster(),1)
+    if self:GetCaster():GetModifierStackCount("modifier_ability_wards_type",self:GetCaster()) == 0 then
+      self:GetCaster():SetModifierStackCount("modifier_ability_wards_type",self:GetCaster(),1)
     else
-      self:GetCaster():SetModifierStackCount("modifier_ability_wards_type_op",self:GetCaster(),0)
+      self:GetCaster():SetModifierStackCount("modifier_ability_wards_type",self:GetCaster(),0)
     end
   else
-    if self:GetCaster():GetModifierStackCount("modifier_ability_wards_type_op",self:GetCaster()) == 0 then
+    if self:GetCaster():GetModifierStackCount("modifier_ability_wards_type",self:GetCaster()) == 0 then
       local ward = CreateUnitByName("npc_dota_observer_wards",self:GetCursorPosition(),false,self:GetCaster(),self:GetCaster():GetPlayerOwner(),self:GetCaster():GetTeamNumber())
       ward:AddNewModifier(self:GetCaster(),self,"modifier_kill",{duration = self:GetSpecialValueFor("observer_ward_duration")})
       self:GetCaster():FindModifierByName("modifier_ability_wards_observer_cooldown"):DecrementStackCount()
@@ -166,10 +166,12 @@ end
 
 function modifier_ability_wards_observer_cooldown:IsPermanent() return true end
 function modifier_ability_wards_observer_cooldown:DestroyOnExpire() return false end
-function modifier_ability_wards_observer_cooldown:IsHidden() return false end
+function modifier_ability_wards_observer_cooldown:IsHidden() 
+  return self:GetCaster():GetModifierStackCount("modifier_ability_wards_type",self:GetCaster()) ~= 0
+end
 
 function modifier_ability_wards_observer_cooldown:GetTexture()
-  return "custom/ability_observer_ward"
+  return "custom/ability_wards_op"
 end
 
 function modifier_ability_wards_observer_cooldown:OnCreated()
@@ -180,26 +182,41 @@ end
 function modifier_ability_wards_observer_cooldown:OnIntervalThink()
   if not self:GetAbility() then self:Destroy() end
   local cooldown = math.ceil(self:GetAbility():GetSpecialValueFor("observer_ward_cooldown") * self:GetCaster():GetCooldownReduction())
-
   if self:GetStackCount() < self:GetAbility():GetSpecialValueFor("observer_ward_max_stack") then
     if self:GetRemainingTime() < 0 then
       self:IncrementStackCount()
+      self:SetDuration(-1,true)
       self:SetDuration(cooldown,true)
       return
+    else
+      if self:GetRemainingTime() > cooldown then
+        local count = self:GetStackCount()
+        local caster = self:GetCaster()
+        local ab = self:GetAbility()
+        local name = self:GetName()
+        self:Destroy()
+        local modifier = caster:AddNewModifier(caster,ab,name,{duration = cooldown})
+        modifier:SetStackCount(count)
+
+        return
+      end
     end
   end
-  if self:GetRemainingTime() < 0 or self:GetRemainingTime() > cooldown then
-    self:SetDuration(cooldown,true)
-  end
   
+  if self:GetStackCount() == self:GetAbility():GetSpecialValueFor("observer_ward_max_stack") then
+    self:SetDuration(-1,true)
+    self:SetDuration(9999,true)
+  end
 end
 
 function modifier_ability_wards_sentry_cooldown:IsPermanent() return true end
 function modifier_ability_wards_sentry_cooldown:DestroyOnExpire() return false end
-function modifier_ability_wards_sentry_cooldown:IsHidden() return false end
+function modifier_ability_wards_sentry_cooldown:IsHidden() 
+  return self:GetCaster():GetModifierStackCount("modifier_ability_wards_type",self:GetCaster()) ~= 1
+end
 
 function modifier_ability_wards_sentry_cooldown:GetTexture()
-  return "custom/ability_sentry_ward"
+  return "custom/ability_wards_2"
 end
 
 function modifier_ability_wards_sentry_cooldown:OnCreated()
@@ -213,12 +230,27 @@ function modifier_ability_wards_sentry_cooldown:OnIntervalThink()
   if self:GetStackCount() < self:GetAbility():GetSpecialValueFor("sentry_ward_max_stack") then
     if self:GetRemainingTime() < 0 then
       self:IncrementStackCount()
+      self:SetDuration(-1,true)
       self:SetDuration(cooldown,true)
       return
+    else
+      if self:GetRemainingTime() > cooldown then
+        local count = self:GetStackCount()
+        local caster = self:GetCaster()
+        local ab = self:GetAbility()
+        local name = self:GetName()
+        self:Destroy()
+        local modifier = caster:AddNewModifier(caster,ab,name,{duration = cooldown})
+        modifier:SetStackCount(count)
+
+        return
+      end
     end
   end
-  if self:GetRemainingTime() < 0 or self:GetRemainingTime() > cooldown then
-    self:SetDuration(cooldown,true)
+  
+  if self:GetStackCount() == self:GetAbility():GetSpecialValueFor("sentry_ward_max_stack") then
+    self:SetDuration(-1,true)
+    self:SetDuration(9999,true)
   end
 end
   

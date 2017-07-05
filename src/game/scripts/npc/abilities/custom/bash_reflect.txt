@@ -1,0 +1,72 @@
+"DOTAAbilities"
+{
+    "bash_reflect"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/bash_reflect.lua"
+        "AbilityTextureName"                                                   "custom/bash_reflect"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"                                                 "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"                                                 "DOTA_UNIT_TARGET_HERO"
+        "AbilityCastRange"                                                      "700"
+        "AbilityCastPoint"                                                      "0.3"
+        "AbilityCooldown"                                                       "5"
+        "precache"
+        {
+            "particle"  "particles/units/heroes/hero_tiny/tiny_craggy_hit.vpcf"
+            "particle"  "particles/units/heroes/hero_wisp/wisp_guardian.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_tiny.vsndevts"
+        }
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                              "5"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration_multiplier"                                              "1 1.33 1.66 2"
+            }
+        }
+        "ReduxFlags"                                                           "dota_custom"
+        "ReduxCost"                                                            "0"
+    }
+    "bash_reflect_op"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/bash_reflect.lua"
+        "AbilityTextureName"                                                   "custom/bash_reflect_op"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"                                                 "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"                                                 "DOTA_UNIT_TARGET_HERO"
+        "AbilityCastRange"                                                      "700"
+        "AbilityCastPoint"                                                      "0.3"
+        "AbilityCooldown"                                                       "5"
+
+        "precache"
+        {
+            "particle"  "particles/units/heroes/hero_tiny/tiny_craggy_hit.vpcf"
+            "particle"  "particles/units/heroes/hero_wisp/wisp_guardian.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_tiny.vsndevts"
+        }
+        
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                              "5"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration_multiplier"                                              "1.5 2 2.5 3"
+            }
+        }
+        "ReduxFlags"                                                           "dota_custom"
+        "ReduxCost"                                                            "0"
+    }
+}
