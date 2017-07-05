@@ -29,7 +29,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "duration_multiplier"                                              "1 1.33 1.66 2"
+                "duration_multiplier"                                              "100 133 166 200"
             }
         }
         "ReduxFlags"                                                           "dota_custom"
@@ -65,7 +65,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "duration_multiplier"                                              "1.5 2 2.5 3"
+                "duration_multiplier"                                              "150 200 250 300"
             }
         }
         "ReduxFlags"                                                           "dota_custom"
