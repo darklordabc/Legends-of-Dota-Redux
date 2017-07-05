@@ -67,3 +67,4 @@ git update-index --assume-unchanged src/game/particles/true_sight/true_sight_deb
 git update-index --assume-unchanged src/game/particles/true_sight/dust_of_gem_true_sight.vpcf_c
 git update-index --assume-unchanged src/game/sounds/booster_draft_round.vsnd_c
 git update-index --assume-unchanged src/game/sounds/booster_draft_pick.vsnd_c
+git update-index --assume-unchanged src/game/particles/units/heroes/hero_gemini/gemini_abyssal_vortex_start.vpcf_c
