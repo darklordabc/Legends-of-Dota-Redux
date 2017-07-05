@@ -16,6 +16,7 @@
             "particle"  "particles/units/heroes/hero_tiny/tiny_craggy_hit.vpcf"
             "particle"  "particles/units/heroes/hero_wisp/wisp_guardian.vpcf"
             "soundfile" "soundevents/game_sounds_heroes/game_sounds_tiny.vsndevts"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_items.vsndevts"
         }
 
         "AbilitySpecial"
@@ -50,7 +51,8 @@
         {
             "particle"  "particles/units/heroes/hero_tiny/tiny_craggy_hit.vpcf"
             "particle"  "particles/units/heroes/hero_wisp/wisp_guardian.vpcf"
-            "soundfile" "soundevents/game_sounds_heroes/game_sounds_tiny.vsndevts"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_tiny.vsndevts" 
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_items.vsndevts"
         }
         
         "AbilitySpecial"
