@@ -1979,6 +1979,10 @@ function Ingame:FilterModifiers( filterTable )
     if OptionManager:GetOption('memesRedux') == 1 then
         filterTable = memesModifierFilter(filterTable)
     end
+    -- Tenacity
+    if caster:GetTeamNumber() ~= parent:GetTeamNumber() then
+        filterTable["duration"] = filterTable["duration"] * parent:GetTenacity()
+    end
 
     return true
 end

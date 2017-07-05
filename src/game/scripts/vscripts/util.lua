@@ -700,8 +700,15 @@ function CDOTA_BaseNPC:GetCooldownReduction()
   return math.max(0.01,(1 - (cooldown_reduct + cooldown_reduct_stack)*0.01))
 end
 
-
-
+function CDOTA_BaseNPC:GetTenacity()
+    local tenacity = 1
+    for _, parent_modifier in pairs(self:FindAllModifiers()) do
+        if parent_modifier.GetTenacity then
+            tenacity = tenacity * (1- (parent_modifier:GetTenacity()/100))
+        end
+    end
+    return tenacity
+end
 
 
 function ShuffleArray(input)

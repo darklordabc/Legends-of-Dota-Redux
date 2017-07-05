@@ -19,7 +19,7 @@
             "01"
             {
                 "var_type"              "FIELD_FLOAT"
-                "observer_ward_cooldown"          "200 175 150 125"
+                "observer_ward_cooldown"          "150"
             }
             "02"
             {
@@ -33,18 +33,28 @@
             }
             "04"
             {
-                "var_type"              "FIELD_FLOAT"
-                "sentry_ward_cooldown"          "40 32 24 16"
+                "var_type"              "FIELD_INTEGER"
+                "observer_ward_max_stack"          "1 2 3 4"
             }
             "05"
             {
                 "var_type"              "FIELD_FLOAT"
-                "sentry_ward_duration"          "240"
+                "sentry_ward_cooldown"          "40 36 32 28"
             }
             "06"
             {
+                "var_type"              "FIELD_FLOAT"
+                "sentry_ward_duration"          "240"
+            }
+            "07"
+            {
                 "var_type"              "FIELD_INTEGER"
                 "sentry_ward_radius"          "850"
+            }
+            "08"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "sentry_ward_max_stack"          "2 3 4 5"
             }
         }
         "ReduxFlags"                                                           "dota_custom"
@@ -67,7 +77,7 @@
             "01"
             {
                 "var_type"              "FIELD_FLOAT"
-                "observer_ward_cooldown"          "100 80 60 40"
+                "observer_ward_cooldown"          "150"
             }
             "02"
             {
@@ -76,13 +86,33 @@
             }
             "03"
             {
-                "var_type"              "FIELD_FLOAT"
-                "sentry_ward_cooldown"          "20 15 10 5"
+                "var_type"              "FIELD_INTEGER"
+                "observer_ward_radius"          "1600"
             }
             "04"
             {
+                "var_type"              "FIELD_INTEGER"
+                "observer_ward_max_stack"          "2 4 6 8"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "sentry_ward_cooldown"          "40 32 24 16"
+            }
+            "06"
+            {
                 "var_type"              "FIELD_FLOAT"
                 "sentry_ward_duration"          "240"
+            }
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "sentry_ward_radius"          "850"
+            }
+            "08"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "sentry_ward_max_stack"          "3 5 7 9"
             }
         }
         "ReduxFlags"                                                           "dota_custom"
