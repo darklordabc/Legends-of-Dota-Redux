@@ -74,13 +74,15 @@ function ability_wards:OnSpellStart()
     if self:GetCaster():GetModifierStackCount("modifier_ability_wards_type",self:GetCaster()) == 0 then
       local ward = CreateUnitByName("npc_dota_observer_wards",self:GetCursorPosition(),false,self:GetCaster(),self:GetCaster():GetPlayerOwner(),self:GetCaster():GetTeamNumber())
       ward:AddNewModifier(self:GetCaster(),self,"modifier_kill",{duration = self:GetSpecialValueFor("observer_ward_duration")})
-      self:GetCaster():SetModifierStackCount("modifier_ability_wards_observer_cooldown",self:GetCaster(),self:GetSpecialValueFor("observer_ward_cooldown"))
-      self:GetCaster():FindModifierByName("modifier_ability_wards_observer_cooldown"):SetDuration(self:GetSpecialValueFor("sentry_ward_cooldown"),true)
+      local cooldown = math.ceil(self:GetSpecialValueFor("observer_ward_cooldown") * self:GetCaster():GetCooldownReduction())
+      self:GetCaster():SetModifierStackCount("modifier_ability_wards_observer_cooldown",self:GetCaster(),cooldown)
+      self:GetCaster():FindModifierByName("modifier_ability_wards_observer_cooldown"):SetDuration(cooldown,true)
     else
       local ward =  CreateUnitByName("npc_dota_sentry_wards",self:GetCursorPosition(),false,self:GetCaster(),self:GetCaster():GetPlayerOwner(),self:GetCaster():GetTeamNumber())
       ward:AddNewModifier(self:GetCaster(),self,"modifier_kill",{duration = self:GetSpecialValueFor("sentry_ward_duration")})
-      self:GetCaster():SetModifierStackCount("modifier_ability_wards_sentry_cooldown",self:GetCaster(),self:GetSpecialValueFor("sentry_ward_cooldown"))
-      self:GetCaster():FindModifierByName("modifier_ability_wards_sentry_cooldown"):SetDuration(self:GetSpecialValueFor("sentry_ward_cooldown"),true)
+      local cooldown = math.ceil(self:GetSpecialValueFor("sentry_ward_cooldown") * self:GetCaster():GetCooldownReduction())
+      self:GetCaster():SetModifierStackCount("modifier_ability_wards_sentry_cooldown",self:GetCaster(),cooldown)
+      self:GetCaster():FindModifierByName("modifier_ability_wards_sentry_cooldown"):SetDuration(cooldown,true)
     end
   end
 end
@@ -150,13 +152,15 @@ function ability_wards_op:OnSpellStart()
     if self:GetCaster():GetModifierStackCount("modifier_ability_wards_type",self:GetCaster()) == 0 then
       local ward = CreateUnitByName("npc_dota_observer_wards",self:GetCursorPosition(),false,self:GetCaster(),self:GetCaster():GetPlayerOwner(),self:GetCaster():GetTeamNumber())
       ward:AddNewModifier(self:GetCaster(),self,"modifier_kill",{duration = self:GetSpecialValueFor("observer_ward_duration")})
-      self:GetCaster():SetModifierStackCount("modifier_ability_wards_observer_cooldown",self:GetCaster(),self:GetSpecialValueFor("observer_ward_cooldown"))
-      self:GetCaster():FindModifierByName("modifier_ability_wards_observer_cooldown"):SetDuration(self:GetSpecialValueFor("observer_ward_cooldown"),true)
+      local cooldown = math.ceil(self:GetSpecialValueFor("observer_ward_cooldown") * self:GetCaster():GetCooldownReduction())
+      self:GetCaster():SetModifierStackCount("modifier_ability_wards_observer_cooldown",self:GetCaster(),cooldown)
+      self:GetCaster():FindModifierByName("modifier_ability_wards_observer_cooldown"):SetDuration(cooldown,true)
     else
       local ward =  CreateUnitByName("npc_dota_sentry_wards",self:GetCursorPosition(),false,self:GetCaster(),self:GetCaster():GetPlayerOwner(),self:GetCaster():GetTeamNumber())
       ward:AddNewModifier(self:GetCaster(),self,"modifier_kill",{duration = self:GetSpecialValueFor("sentry_ward_duration")})
-      self:GetCaster():SetModifierStackCount("modifier_ability_wards_sentry_cooldown",self:GetCaster(),self:GetSpecialValueFor("sentry_ward_cooldown"))
-      self:GetCaster():FindModifierByName("modifier_ability_wards_sentry_cooldown"):SetDuration(self:GetSpecialValueFor("sentry_ward_cooldown"),true)
+      local cooldown = math.ceil(self:GetSpecialValueFor("sentry_ward_cooldown") * self:GetCaster():GetCooldownReduction())
+      self:GetCaster():SetModifierStackCount("modifier_ability_wards_sentry_cooldown",self:GetCaster(),cooldown)
+      self:GetCaster():FindModifierByName("modifier_ability_wards_sentry_cooldown"):SetDuration(cooldown,true)
     end
   end
 end
