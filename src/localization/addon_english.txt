@@ -7345,5 +7345,14 @@
     "DOTA_Tooltip_ability_basic_spell_amp_bonus_op_Lore"                                  "Knowledge is Power."
     "DOTA_Tooltip_ability_basic_spell_amp_bonus_op_spell_amp_bonus"                                "%SPELL AMPLIFICATION:"
 
+    "DOTA_Tooltip_ability_basic_stat_bonus"                                       "Attribute Bonus"
+    "DOTA_Tooltip_ability_basic_stat_bonus_Description"                           "Gives bonus strengh, intelligence and agility. Has 20 levels."
+    "DOTA_Tooltip_ability_basic_stat_bonus_tooltipBonus"                                  "BONUS ATTRIBUTES PER LEVEL:"
+    "DOTA_Tooltip_ability_basic_stat_bonus_Lore"                                  "The Original and the Best."
+
+    "DOTA_Tooltip_ability_basic_stat_bonus_op"                                       "Attribute Bonus"
+    "DOTA_Tooltip_ability_basic_stat_bonus_op_Description"                           "Gives <font color='#70EA72'>more</font> bonus strengh, intelligence and agility. Has 20 levels."
+    "DOTA_Tooltip_ability_basic_stat_bonus_op_tooltipBonus"                                  "BONUS ATTRIBUTES PER LEVEL:"
+    "DOTA_Tooltip_ability_basic_stat_bonus_op_Lore"                                  "The Original and the Best."
 
 }
