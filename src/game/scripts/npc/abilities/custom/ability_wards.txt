@@ -54,7 +54,7 @@
     {
         "BaseClass"                                                            "ability_lua"
         "ScriptFile"                                                           "abilities/ability_wards.lua"
-        "AbilityTextureName"                                                   "custom/ability_wards" 
+        "AbilityTextureName"                                                   "custom/ability_wards_op" 
         
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
         "AbilityCooldown"                "0"
