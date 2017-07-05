@@ -31,7 +31,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "tenacity_bonus"                                          "20 30 40 50"
+                "tenacity_bonus"                                          "35 50 75 95"
             }
         }
         "ReduxFlags"                                                           "dota_custom"

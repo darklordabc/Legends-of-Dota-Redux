@@ -45,7 +45,7 @@
         "AbilityUnitTargetType"                                                 "DOTA_UNIT_TARGET_HERO"
         "AbilityCastRange"                                                      "700"
         "AbilityCastPoint"                                                      "0.3"
-        "AbilityCooldown"                                                       "5"
+        "AbilityCooldown"                                                       "13"
 
         "precache"
         {
@@ -60,7 +60,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "duration"                                              "5"
+                "duration"                                              "13"
             }
             "02"
             {
@@ -69,6 +69,6 @@
             }
         }
         "ReduxFlags"                                                           "dota_custom"
-        "ReduxCost"                                                            "0"
+        "ReduxCost"                                                            "120"
     }
 }

@@ -63,7 +63,7 @@ function ReflectBashes(filterTable)
   local ability = EntIndexToHScript( ability_index )
   local modifierName = filterTable["name_const"]
   local modifier
-  if parent:IsIllusion() return end
+  if parent:IsIllusion() then return end
   if filterTable["duration"] <= 0 then return end
   if not parent:FindModifierByName("modifier_bash_reflect") then return end
   if caster:GetTeamNumber() == parent:GetTeamNumber() then return end

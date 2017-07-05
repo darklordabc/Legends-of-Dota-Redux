@@ -1276,6 +1276,8 @@ function GenerateTalentAbilityList()
         life_stealer_control = true,
         eat_tree_eldri = true,
         storm_spirit_ball_lightning = true,
+        ability_wards = true,
+        ability_wards_op = true,
     }
 
     abilityKVs = LoadKeyValues('scripts/npc/npc_abilities.txt')
