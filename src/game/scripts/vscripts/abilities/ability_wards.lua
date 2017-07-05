@@ -112,13 +112,8 @@ function ability_wards_op:GetAOERadius()
 end
 
 function ability_wards_op:GetAbilityTextureName()
-<<<<<<< Updated upstream
   if self:GetCaster():GetModifierStackCount("modifier_ability_wards_type",self:GetCaster()) == 0 then
     return "custom/ability_wards"
-=======
-  if self:GetCaster():GetModifierStackCount("modifier_ability_wards_type_op",self:GetCaster()) == 0 then
-    return "custom/ability_observer_ward"
->>>>>>> Stashed changes
   else
     return "custom/ability_wards_2"
   end

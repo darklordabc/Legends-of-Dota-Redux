@@ -1,0 +1,40 @@
+"DOTAAbilities"
+{
+    "basic_tenacity_bonus"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/basic_tenacity_bonus.lua"
+        "AbilityTextureName"                                                   "custom/basic_tenacity_bonus"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "tenacity_bonus"                                          "10 15 20 25"
+            }
+        }
+        "ReduxFlags"                                                           "dota_custom"
+        "ReduxCost"                                                            "0"
+    }
+
+    "basic_tenacity_bonus_op"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/basic_tenacity_bonus.lua"
+        "AbilityTextureName"                                                   "custom/basic_tenacity_bonus_op"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "tenacity_bonus"                                          "20 30 40 50"
+            }
+        }
+        "ReduxFlags"                                                           "dota_custom"
+        "ReduxCost"                                                            "120"
+    }
+}

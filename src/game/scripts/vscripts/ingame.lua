@@ -1980,7 +1980,7 @@ function Ingame:FilterModifiers( filterTable )
         filterTable = memesModifierFilter(filterTable)
     end
     -- Tenacity
-    if caster:GetTeamNumber() ~= parent:GetTeamNumber() then
+    if caster:GetTeamNumber() ~= parent:GetTeamNumber() and filterTable["duration"] > 0 then
         filterTable["duration"] = filterTable["duration"] * parent:GetTenacity()
     end
 

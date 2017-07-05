@@ -5,7 +5,7 @@ modifier_basic_stat_gain_bonus = class({})
 modifier_basic_stat_gain_bonus_op = class({})
 
 LinkLuaModifier("modifier_basic_stat_gain_bonus","abilities/basic_stat_gain_bonus.lua",LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_basic_stat_gain_bonus_op","abilities/basic_movespeed_bonus.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_basic_stat_gain_bonus_op","abilities/basic_stat_gain_bonus.lua",LUA_MODIFIER_MOTION_NONE)
 
 function basic_stat_gain_bonus:GetIntrinsicModifierName()
  return "modifier_basic_stat_gain_bonus"
@@ -63,11 +63,6 @@ function modifier_basic_stat_gain_bonus_op:IsHidden() return true end
 
 function modifier_basic_stat_gain_bonus_op:DeclareFunctions() 
   return {MODIFIER_PROPERTY_STATS_STRENGTH_BONUS, MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,MODIFIER_PROPERTY_STATS_AGILITY_BONUS}
-end
-
-function modifier_basic_stat_gain_bonus_op:GetModifierSpellAmplify_Percentage()
-  if self:GetCaster():PassivesDisabled() then return 0 end
-  return self:GetAbility():GetSpecialValueFor("stat_gain_bonus")
 end
 
 function modifier_basic_stat_gain_bonus_op:GetModifierBonusStats_Strength()

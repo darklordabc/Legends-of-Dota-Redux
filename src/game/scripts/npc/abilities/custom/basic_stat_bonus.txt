@@ -1,0 +1,42 @@
+"DOTAAbilities"
+{
+    "basic_stat_bonus"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/basic_stat_bonus.lua"
+        "AbilityTextureName"                                                   "custom/basic_stat_bonus"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "MaxLevel"                                                              "10"
+        
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "stat_bonus"                                          "3 6 9 12 15 18 21 24 27 30"
+            }
+        }
+        "ReduxFlags"                                                           "dota_custom"
+        "ReduxCost"                                                            "0"
+    }
+
+    "basic_stat_bonus_op"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/basic_stat_bonus.lua"
+        "AbilityTextureName"                                                   "custom/basic_stat_bonus_op"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "MaxLevel"                                                              "10"
+        
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "stat_bonus"                                          "5 10 15 20 25 30 35 40 45 50"
+            }
+        }
+        "ReduxFlags"                                                           "dota_custom"
+        "ReduxCost"                                                            "120"
+    }
+}
