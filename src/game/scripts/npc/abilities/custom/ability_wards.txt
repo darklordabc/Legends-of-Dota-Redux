@@ -15,46 +15,46 @@
         "AbilityCastPoint"               "0.05"
         
         "AbilitySpecial"
-        {
+        {          
             "01"
-            {
-                "var_type"              "FIELD_FLOAT"
-                "observer_ward_cooldown"          "150"
-            }
-            "02"
             {
                 "var_type"              "FIELD_FLOAT"
                 "observer_ward_duration"          "360"
             }
-            "03"
+            "02"
             {
                 "var_type"              "FIELD_INTEGER"
                 "observer_ward_radius"          "1600"
             }
-            "04"
+            "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "observer_ward_max_stack"          "1 2 3 4"
+                "observer_ward_max_stack"          "2 3 4 5"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "sentry_ward_cooldown"          "150"
             }
             "05"
             {
                 "var_type"              "FIELD_FLOAT"
-                "sentry_ward_cooldown"          "40 36 32 28"
-            }
-            "06"
-            {
-                "var_type"              "FIELD_FLOAT"
                 "sentry_ward_duration"          "240"
             }
-            "07"
+            "06"
             {
                 "var_type"              "FIELD_INTEGER"
                 "sentry_ward_radius"          "850"
             }
-            "08"
+            "07"
             {
                 "var_type"              "FIELD_INTEGER"
                 "sentry_ward_max_stack"          "2 3 4 5"
+            }
+            "08"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "observer_ward_cooldown"          "150"
             }
         }
         "ReduxFlags"                                                           "dota_custom"
@@ -73,46 +73,46 @@
         "AbilityCastPoint"               "0.05"
         
        "AbilitySpecial"
-        {
+        {         
             "01"
-            {
-                "var_type"              "FIELD_FLOAT"
-                "observer_ward_cooldown"          "150"
-            }
-            "02"
             {
                 "var_type"              "FIELD_FLOAT"
                 "observer_ward_duration"          "360"
             }
-            "03"
+            "02"
             {
                 "var_type"              "FIELD_INTEGER"
                 "observer_ward_radius"          "1600"
             }
-            "04"
+            "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "observer_ward_max_stack"          "2 4 6 8"
+                "observer_ward_max_stack"          "4 5 6 7"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "sentry_ward_cooldown"          "150"
             }
             "05"
             {
                 "var_type"              "FIELD_FLOAT"
-                "sentry_ward_cooldown"          "40 32 24 16"
-            }
-            "06"
-            {
-                "var_type"              "FIELD_FLOAT"
                 "sentry_ward_duration"          "240"
             }
-            "07"
+            "06"
             {
                 "var_type"              "FIELD_INTEGER"
                 "sentry_ward_radius"          "850"
             }
-            "08"
+            "07"
             {
                 "var_type"              "FIELD_INTEGER"
-                "sentry_ward_max_stack"          "3 5 7 9"
+                "sentry_ward_max_stack"          "4 5 6 7"
+            }
+            "08"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "observer_ward_cooldown"          "150"
             }
         }
         "ReduxFlags"                                                           "dota_custom"

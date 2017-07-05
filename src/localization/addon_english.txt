@@ -7355,4 +7355,24 @@
     "DOTA_Tooltip_ability_basic_stat_bonus_op_tooltipBonus"                                  "BONUS ATTRIBUTES PER LEVEL:"
     "DOTA_Tooltip_ability_basic_stat_bonus_op_Lore"                                  "The Original and the Best."
 
+    "DOTA_Tooltip_ability_ability_wards"                                       "Wards"
+    "DOTA_Tooltip_ability_ability_wards_Description"                           "Gives the hero ability to place wards without spending gold. Self-Cast to change ward type."
+    "DOTA_Tooltip_ability_ability_wards_observer_ward_cooldown"                                  "REPLENISH TIME:"
+    "DOTA_Tooltip_ability_ability_wards_observer_ward_duration"                                  "OBSERVER WARD DURATION:"
+    //"DOTA_Tooltip_ability_ability_wards_observer_ward_radius"                                  "OBSERVER WARD RADIUS:"
+    //"DOTA_Tooltip_ability_ability_wards_observer_ward_max_stack"                                  "OBSERVER WARD MAX STACK:"
+    //"DOTA_Tooltip_ability_ability_wards_sentry_ward_cooldown"                                  "SENTRY WARD REPLENISH TIME:"
+    "DOTA_Tooltip_ability_ability_wards_sentry_ward_duration"                                  "SENTRY WARD DURATION:"
+    //"DOTA_Tooltip_ability_ability_wards_sentry_ward_radius"                                  "SENTRY WARD RADIUS:"
+    "DOTA_Tooltip_ability_ability_wards_sentry_ward_max_stack"                                  "MAX STACK PER TYPE:"
+    "DOTA_Tooltip_ability_ability_wards_Lore"                                  "Circumstances may cause interruptions and delays, but never lose sight of your enemies."
+
+    "DOTA_Tooltip_ability_ability_wards_op"                                       "Wards OP"
+    "DOTA_Tooltip_ability_ability_wards_op_Description"                           "Gives the hero ability to place wards without spending gold. Self-Cast to change ward type. <font color='#70EA72'>Higher stack limit</font>."
+    "DOTA_Tooltip_ability_ability_wards_op_observer_ward_cooldown"                                  "REPLENISH TIME:"
+    "DOTA_Tooltip_ability_ability_wards_op_observer_ward_duration"                                  "OBSERVER WARD DURATION:"
+    "DOTA_Tooltip_ability_ability_wards_op_sentry_ward_duration"                                  "SENTRY WARD DURATION:"
+    "DOTA_Tooltip_ability_ability_wards_op_sentry_ward_max_stack"                                  "MAX STACK PER TYPE:"
+    "DOTA_Tooltip_ability_ability_wards_op_Lore"                                  "Circumstances may cause interruptions and delays, but never lose sight of your enemies."
+    
 }
