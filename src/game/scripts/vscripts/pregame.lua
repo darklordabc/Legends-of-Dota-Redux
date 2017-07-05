@@ -5909,7 +5909,7 @@ function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
     -- Grab data
     local playerID = args.PlayerID
     local player = PlayerResource:GetPlayer(playerID)
-    print(self:getPhase() ~= constants.PHASE_SELECTION, not self:canPlayerPickSkill(playerID), self.additionalPickTime)
+    -- print(self:getPhase() ~= constants.PHASE_SELECTION, not self:canPlayerPickSkill(playerID), self.additionalPickTime)
     -- Ensure we are in the picking phase
     if self:getPhase() ~= constants.PHASE_SELECTION and not self:canPlayerPickSkill(playerID) then
         network:sendNotification(player, {
@@ -6611,7 +6611,7 @@ end
 
 -- Adds bot players to the game
 function Pregame:addBotPlayers()
-    -- self.enabledBots = false
+    self.enabledBots = false
     -- Ensure bots should actually be added
     if self.addedBotPlayers then return end
     self.addedBotPlayers = true
@@ -7208,6 +7208,61 @@ function Pregame:hookBotStuff()
     end, nil)
 end
 
+function Pregame:giveAbilityUsageBonuses(playerID)
+    local pregame = GameRules.pregame
+    local threshold = pregame.optionStore["lodOptionNewAbilitiesThreshold"]
+    local global = StatsClient.GlobalAbilityUsageData
+
+    local globalThreshold = 75
+    function isGlobalBelowThreshold(ability)
+        return (StatsClient.GlobalAbilityUsageData[ability] or 1) > 1 - globalThreshold * 0.01
+    end
+
+    if PlayerResource:IsValidPlayerID(playerID) and not util:isPlayerBot(playerID) then
+        local currentBuild = pregame.selectedSkills[playerID] or {}
+        local usageData = StatsClient:GetAbilityUsageData(playerID) or {}
+        local entries = StatsClient.SortedAbilityDataEntries[playerID] or {}
+        local realAbilitiesThreshold = math.ceil(StatsClient.totalGameAbilitiesCount * (1 - threshold * 0.01))
+        local enableAlternativeThreshold = util:tableCount(entries) >= realAbilitiesThreshold
+
+        if enableAlternativeThreshold then
+            function isBelowThreshold(ability)
+                return (entries[ability] or 1) > 1 - threshold * 0.01
+            end
+        else
+            function isBelowThreshold(ability)
+                return not entries[ability]
+            end
+        end
+
+        local newAbilities = 0
+        local newGlobalAbilities = 0
+        local passiveAbilities = 0
+        for _,v in ipairs(currentBuild) do
+            if usageData and pregame.optionStore["lodOptionNewAbilitiesBonusGold"] > 0 and isBelowThreshold(v) then
+                newAbilities = newAbilities + 1
+            elseif isGlobalBelowThreshold(v) then
+                newGlobalAbilities = newGlobalAbilities + 1
+            end
+            if pregame.flagsInverse[v] and pregame.flagsInverse[v].passive then
+                passiveAbilities = passiveAbilities + 1
+            end
+        end
+        local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+        if hero then
+            if newAbilities > 0 then
+                hero:AddItemByName('item_new_ability_bonus'):SetCurrentCharges(newAbilities)
+            end
+            if newGlobalAbilities > 0 then
+                hero:AddItemByName('item_new_global_ability_bonus'):SetCurrentCharges(newGlobalAbilities)
+            end
+            if passiveAbilities <= 3 then
+                hero:AddItemByName('item_balanced_build_bonus')
+            end
+        end
+    end
+end
+
 -- This function gets runned when heros are recreated with there proper abilities, below is a function that runs at every npc spawn
 function Pregame:fixSpawnedHero( spawnedUnit )
     self.givenBonuses = self.givenBonuses or {}
@@ -7714,6 +7769,8 @@ function Pregame:fixSpawnedHero( spawnedUnit )
     if not self.givenBonuses[playerID] then
         -- We have given bonuses
         self.givenBonuses[playerID] = true
+
+        self:giveAbilityUsageBonuses(playerID)
 
         local startingLevel = OptionManager:GetOption('startingLevel')
         -- Do we need to level up?
