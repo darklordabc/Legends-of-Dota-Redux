@@ -1,0 +1,40 @@
+"DOTAAbilities"
+{
+    "basic_stat_gain_bonus"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/basic_stat_gain_bonus.lua"
+        "AbilityTextureName"                                                   "custom/basic_stat_gain_bonus"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                                  "FIELD_FLOAT"
+                "stat_gain_bonus"                                          "0.3 0.5 0.7 0.9"
+            }
+        }
+        "ReduxFlags"                                                           "dota_custom"
+        "ReduxCost"                                                            "0"
+    }
+
+    "basic_stat_gain_bonus_op"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/basic_stat_gain_bonus.lua"
+        "AbilityTextureName"                                                   "custom/basic_stat_gain_bonus_op"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "stat_gain_bonus"                                         "0.5 0.8 1.1 1.4"
+            }
+        }
+        "ReduxFlags"                                                           "dota_custom"
+        "ReduxCost"                                                            "120"
+    }
+}
