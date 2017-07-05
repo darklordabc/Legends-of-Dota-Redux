@@ -45,7 +45,7 @@ function modifier_bash_reflect:GetEffectName()
 end
 function modifier_bash_reflect:GetEffectAttachType()
   if self:GetParent() ~= self:GetCaster() then
-    return PATTACH_OVERHEAD_FOLLOW
+    return PATTACH_ABSORIGIN_FOLLOW
   end
 end
 
@@ -63,10 +63,12 @@ function ReflectBashes(filterTable)
   local ability = EntIndexToHScript( ability_index )
   local modifierName = filterTable["name_const"]
   local modifier
+  if parent:IsIllusion() return end
   if filterTable["duration"] <= 0 then return end
   if not parent:FindModifierByName("modifier_bash_reflect") then return end
   if caster:GetTeamNumber() == parent:GetTeamNumber() then return end
   if ability:GetAbilityName() == "bash_reflect_op" or ability:GetAbilityName() == "bash_reflect" then return end
+  if parent:FindModifierByName("modifier_bash_reflect"):GetCaster() == parent and parent:PassivesDisabled() then return end
 
   Timers:CreateTimer(function ()
     if not parent:FindModifierByName("modifier_bash_reflect") then return end
