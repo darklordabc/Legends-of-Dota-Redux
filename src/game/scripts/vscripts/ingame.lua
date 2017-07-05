@@ -1979,6 +1979,13 @@ function Ingame:FilterModifiers( filterTable )
     if OptionManager:GetOption('memesRedux') == 1 then
         filterTable = memesModifierFilter(filterTable)
     end
+    -- Tenacity
+    if caster:GetTeamNumber() ~= parent:GetTeamNumber() and filterTable["duration"] > 0 then
+        filterTable["duration"] = filterTable["duration"] * parent:GetTenacity()
+    end
+    -- Bash Reflect
+    local reflect_bashes = require('abilities/bash_reflect')
+    ReflectBashes(filterTable)
 
     return true
 end

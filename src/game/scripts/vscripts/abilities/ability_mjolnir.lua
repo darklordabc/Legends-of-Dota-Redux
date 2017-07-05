@@ -40,7 +40,7 @@ end
 function modifier_ability_mjolnir:OnAttackLanded( keys )
   if IsServer() then
     local attacker = self:GetParent()
-
+    if attacker:PassivesDisabled() then return end
     -- If this attack is irrelevant, do nothing
     if attacker ~= keys.attacker then
       return end
@@ -89,7 +89,7 @@ function modifier_ability_mjolnir_op:OnAttackLanded( keys )
     -- If this attack is irrelevant, do nothing
     if attacker ~= keys.attacker then
       return end
-
+    if attacker:PassivesDisabled() then return end
     -- If this is an illusion, do nothing either
     if attacker:IsIllusion() then
       return end
