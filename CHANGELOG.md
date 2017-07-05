@@ -56,6 +56,7 @@ All notable changes to this project will be documented in this file.
 - Made Phase Shift a single player ability again
 - Drastically reworked ability bonuses
 - Added filter to sort abilities by popularity
+- Diabloic Edict will no longer damage towers that have backdoor protection
 
 
 ## 7.9

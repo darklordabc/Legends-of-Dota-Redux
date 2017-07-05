@@ -1906,6 +1906,14 @@ function Ingame:FilterDamage( filterTable )
         if ability:GetName() == "centaur_return"  and victim.IsBuilding and victim:IsBuilding() then
             filterTable["damage"] = 0
         end
+        -- Stops abusive Combo of Diabloic Edict and multicast tearing down towers in seconds
+        if ability:GetName() == "leshrac_diabolic_edict"  and victim.IsBuilding and victim:IsBuilding() then
+            local protection = victim:FindModifierByName("modifier_backdoor_protection_active")
+
+            if protection then
+             filterTable["damage"] = 0
+            end
+        end
     end
 
     if victim:HasModifier("modifier_ancient_priestess_spirit_link") then
