@@ -180,10 +180,7 @@ function modifier_ability_wards_observer_cooldown:OnCreated()
   end
 end
 function modifier_ability_wards_observer_cooldown:OnIntervalThink()
-  self:DecrementStackCount()
-  if self:GetStackCount() < 0 then
-    self:SetStackCount(0)
-  end
+  self:SetStackCount(self:GetDuration())
 end
 
 function modifier_ability_wards_sentry_cooldown:IsPermanent() return true end
@@ -200,8 +197,5 @@ function modifier_ability_wards_sentry_cooldown:OnCreated()
   end
 end
 function modifier_ability_wards_sentry_cooldown:OnIntervalThink()
-  self:DecrementStackCount()
-  if self:GetStackCount() < 0 then
-    self:SetStackCount(0)
-  end
+  self:SetStackCount(self:GetDuration())
 end
