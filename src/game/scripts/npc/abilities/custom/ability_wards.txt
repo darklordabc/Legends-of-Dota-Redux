@@ -59,6 +59,7 @@
         }
         "ReduxFlags"                                                           "dota_custom"
         "ReduxCost"                                                            "0"
+        "ReduxBans"                                                             "ability_wards_op"
     }
     "ability_wards_op"
     {

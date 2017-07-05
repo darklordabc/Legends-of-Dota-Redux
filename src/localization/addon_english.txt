@@ -7355,6 +7355,16 @@
     "DOTA_Tooltip_ability_basic_stat_bonus_op_tooltipBonus"                                  "BONUS ATTRIBUTES PER LEVEL:"
     "DOTA_Tooltip_ability_basic_stat_bonus_op_Lore"                                  "The Original and the Best."
 
+    "DOTA_Tooltip_ability_basic_stat_gain_bonus"                                       "Improved Stat Gain"
+    "DOTA_Tooltip_ability_basic_stat_gain_bonus_Description"                           "Improves this Hero's stat gain per level. Hero will gain extra stats per level up and they will recieve double stats for their primary attribute."
+    "DOTA_Tooltip_ability_basic_stat_gain_bonus_stat_gain_bonus"                                  "ATTRIBUTES PER LEVEL:"
+    "DOTA_Tooltip_ability_basic_stat_gain_bonus_Lore"                                  "This hero levels up a little bit more than most."
+
+    "DOTA_Tooltip_ability_basic_stat_gain_bonus_op"                                       "Improved Stat Gain OP"
+    "DOTA_Tooltip_ability_basic_stat_gain_bonus_op_Description"                           "Improves this Hero's stat gain per level. Hero will gain extra stats per level up and they will recieve double stats for their primary attribute. <font color='#70EA72'>Higher stat gain bonus</font>."
+    "DOTA_Tooltip_ability_basic_stat_gain_bonus_op_stat_gain_bonus"                                  "ATTRIBUTES PER LEVEL:"
+    "DOTA_Tooltip_ability_basic_stat_gain_bonus_op_Lore"                                  "This hero levels up a fair bit more than most."
+
     "DOTA_Tooltip_ability_ability_wards"                                       "Wards"
     "DOTA_Tooltip_ability_ability_wards_Description"                           "Gives the hero ability to place wards without spending gold. Self-Cast to change ward type."
     "DOTA_Tooltip_ability_ability_wards_observer_ward_cooldown"                                  "REPLENISH TIME:"
@@ -7374,5 +7384,5 @@
     "DOTA_Tooltip_ability_ability_wards_op_sentry_ward_duration"                                  "SENTRY WARD DURATION:"
     "DOTA_Tooltip_ability_ability_wards_op_sentry_ward_max_stack"                                  "MAX STACK PER TYPE:"
     "DOTA_Tooltip_ability_ability_wards_op_Lore"                                  "Circumstances may cause interruptions and delays, but never lose sight of your enemies."
-    
+
 }
