@@ -7333,4 +7333,6 @@
     "DOTA_Tooltip_ability_leshrac_pulse_nova_redux_mana_cost_per_second"                  "MANA/SEC:"
     "DOTA_Tooltip_ability_leshrac_pulse_nova_redux_damage"                                "DAMAGE:"
 
+    "wards_cooldown" "Wards still on cooldown"
+
 }
