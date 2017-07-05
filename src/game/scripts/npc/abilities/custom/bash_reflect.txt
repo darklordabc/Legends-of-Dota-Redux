@@ -11,6 +11,7 @@
         "AbilityCastRange"                                                      "700"
         "AbilityCastPoint"                                                      "0.3"
         "AbilityCooldown"                                                       "5"
+        "CastFilterRejectCaster" "1"
         "precache"
         {
             "particle"  "particles/units/heroes/hero_tiny/tiny_craggy_hit.vpcf"
@@ -46,6 +47,7 @@
         "AbilityCastRange"                                                      "700"
         "AbilityCastPoint"                                                      "0.3"
         "AbilityCooldown"                                                       "5"
+        "CastFilterRejectCaster" "1"
 
         "precache"
         {
