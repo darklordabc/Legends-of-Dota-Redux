@@ -10,7 +10,11 @@
         "AbilityUnitTargetType"                                                 "DOTA_UNIT_TARGET_HERO"
         "AbilityCastRange"                                                      "700"
         "AbilityCastPoint"                                                      "0.3"
+        "AbilityCooldown"                                                       "5"
+        "CastFilterRejectCaster" "1"
+
         "AbilityCooldown"                                                       "13"
+
         "precache"
         {
             "particle"  "particles/units/heroes/hero_tiny/tiny_craggy_hit.vpcf"
@@ -46,6 +50,7 @@
         "AbilityCastRange"                                                      "700"
         "AbilityCastPoint"                                                      "0.3"
         "AbilityCooldown"                                                       "13"
+        "CastFilterRejectCaster" "1"
 
         "precache"
         {
