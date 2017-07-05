@@ -7335,4 +7335,15 @@
 
     "wards_cooldown" "Wards still on cooldown"
 
+    "DOTA_Tooltip_ability_basic_spell_amp_bonus"                                       "Books of Knowledge"
+    "DOTA_Tooltip_ability_basic_spell_amp_bonus_Description"                           "Increases Spell amplification"
+    "DOTA_Tooltip_ability_basic_spell_amp_bonus_Lore"                                  "An investment in knowledge pays the best interest."
+    "DOTA_Tooltip_ability_basic_spell_amp_bonus_spell_amp_bonus"                                "%SPELL AMPLIFICATION:"
+
+    "DOTA_Tooltip_ability_basic_spell_amp_bonus_op"                                       "Books of Power"
+    "DOTA_Tooltip_ability_basic_spell_amp_bonus_op_Description"                           "Increases Spell amplification. <font color='#70EA72'>Gives much more spell amplification</font>."
+    "DOTA_Tooltip_ability_basic_spell_amp_bonus_op_Lore"                                  "Knowledge is Power."
+    "DOTA_Tooltip_ability_basic_spell_amp_bonus_op_spell_amp_bonus"                                "%SPELL AMPLIFICATION:"
+
+
 }

@@ -1,17 +1,17 @@
 basic_spell_amp_bonus=class({})
-basic_movespeed_bonus_op=class({})
+basic_spell_amp_bonus_op=class({})
 
 modifier_basic_spell_amp_bonus = class({})
 modifier_basic_spell_amp_bonus_op = class({})
 
 LinkLuaModifier("modifier_basic_spell_amp_bonus","abilities/basic_spell_amp_bonus.lua",LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_basic_spell_amp_bonus_op","abilities/basic_movespeed_bonus.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_basic_spell_amp_bonus_op","abilities/basic_spell_amp_bonus.lua",LUA_MODIFIER_MOTION_NONE)
 
 function basic_spell_amp_bonus:GetIntrinsicModifierName()
  return "modifier_basic_spell_amp_bonus"
 end
 
-function basic_movespeed_bonus_op:GetIntrinsicModifierName()
+function basic_spell_amp_bonus_op:GetIntrinsicModifierName()
  return "modifier_basic_spell_amp_bonus_op"
 end
 

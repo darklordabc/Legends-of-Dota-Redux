@@ -12,7 +12,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "spell_amp_bonus"                                          "15 25 35 45"
+                "spell_amp_bonus"                                          "5 10 15 20"
             }
         }
         "ReduxFlags"                                                           "dota_custom"
@@ -31,7 +31,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "spell_amp_bonus"                                         "20 40 60 80"
+                "spell_amp_bonus"                                         "30 60 90 120"
             }
         }
         "ReduxFlags"                                                           "dota_custom"
