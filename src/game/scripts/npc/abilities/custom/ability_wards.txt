@@ -50,14 +50,17 @@
         "ReduxFlags"                                                           "dota_custom"
         "ReduxCost"                                                            "0"
     }
-    "ability_ward_op"
+    "ability_wards_op"
     {
         "BaseClass"                                                            "ability_lua"
-        "ScriptFile"                                                           "abilities/ability_blademail.lua"
-        "AbilityTextureName"                                                   "custom/ability_blademail_op"
-        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "ScriptFile"                                                           "abilities/ability_wards.lua"
+        "AbilityTextureName"                                                   "custom/ability_wards" 
+        
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
         "AbilityCooldown"                "0"
         "AbilityManaCost"                "0"
+        "AbilityCastRange"               "500"
+        "AbilityCastPoint"               "0.05"
         
        "AbilitySpecial"
         {
