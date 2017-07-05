@@ -33,9 +33,9 @@ end
 
 function ability_wards:GetAbilityTextureName()
   if self:GetCaster():GetModifierStackCount("modifier_ability_wards_type",self:GetCaster()) == 0 then
-    return "custom/ability_observer_ward"
+    return "custom/ability_wards"
   else
-    return "custom/ability_sentry_ward"
+    return "custom/ability_wards_2"
   end
 end
 function ability_wards:CastFilterResultLocation(vLocation)
