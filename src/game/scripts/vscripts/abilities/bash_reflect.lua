@@ -33,19 +33,19 @@ end
 function modifier_bash_reflect:OnRemoved()
   if IsServer() then
     if self:GetParent() ~= self:GetCaster() then
-      self:GetCaster():AddNewModifier(self:GetCaster(),self:GetAbility(),"modifier_basic_tenacity_bonus",{})
+      self:GetCaster():AddNewModifier(self:GetCaster(),self:GetAbility(),"modifier_bash_reflect",{})
     end
   end
 end
 
 function modifier_bash_reflect:GetEffectName()
   if self:GetParent() ~= self:GetCaster() then
-    return "particles/units/heroes/hero_wisp/wisp_guardian.vpcf"
+    return "particles/bash_reflect_shield.vpcf"
   end
 end
 function modifier_bash_reflect:GetEffectAttachType()
   if self:GetParent() ~= self:GetCaster() then
-    return PATTACH_ABSORIGIN_FOLLOW
+    return PATTACH_OVERHEAD_FOLLOW
   end
 end
 

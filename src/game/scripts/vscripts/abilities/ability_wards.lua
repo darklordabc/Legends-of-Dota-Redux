@@ -155,10 +155,12 @@ function ability_wards_op:OnSpellStart()
       local ward = CreateUnitByName("npc_dota_observer_wards",self:GetCursorPosition(),false,self:GetCaster(),self:GetCaster():GetPlayerOwner(),self:GetCaster():GetTeamNumber())
       ward:AddNewModifier(self:GetCaster(),self,"modifier_kill",{duration = self:GetSpecialValueFor("observer_ward_duration")})
       self:GetCaster():FindModifierByName("modifier_ability_wards_observer_cooldown"):DecrementStackCount()
+      ward:EmitSound("DOTA_Item.ObserverWard.Activate")
     else
       local ward =  CreateUnitByName("npc_dota_sentry_wards",self:GetCursorPosition(),false,self:GetCaster(),self:GetCaster():GetPlayerOwner(),self:GetCaster():GetTeamNumber())
       ward:AddNewModifier(self:GetCaster(),self,"modifier_kill",{duration = self:GetSpecialValueFor("sentry_ward_duration")})
       self:GetCaster():FindModifierByName("modifier_ability_wards_sentry_cooldown"):DecrementStackCount()
+      ward:EmitSound("DOTA_Item.SentryWard.Activate")
     end
   end
 end
@@ -180,7 +182,7 @@ function modifier_ability_wards_observer_cooldown:OnCreated()
   end
 end
 function modifier_ability_wards_observer_cooldown:OnIntervalThink()
-  if not self:GetAbility() then self:Destroy() end
+  if not self:GetAbility() then self:Destroy() return end
   local cooldown = math.ceil(self:GetAbility():GetSpecialValueFor("observer_ward_cooldown") * self:GetCaster():GetCooldownReduction())
   if self:GetStackCount() < self:GetAbility():GetSpecialValueFor("observer_ward_max_stack") then
     if self:GetRemainingTime() < 0 then
@@ -203,7 +205,7 @@ function modifier_ability_wards_observer_cooldown:OnIntervalThink()
     end
   end
   
-  if self:GetStackCount() == self:GetAbility():GetSpecialValueFor("observer_ward_max_stack") then
+  if self:GetStackCount() == self:GetAbility():GetSpecialValueFor("sentry_ward_max_stack") then
     self:SetDuration(-1,true)
     self:SetDuration(9999,true)
   end
@@ -225,7 +227,7 @@ function modifier_ability_wards_sentry_cooldown:OnCreated()
   end
 end
 function modifier_ability_wards_sentry_cooldown:OnIntervalThink()
-  if not self:GetAbility() then self:Destroy() end
+  if not self:GetAbility() then self:Destroy() return end
   local cooldown = math.ceil(self:GetAbility():GetSpecialValueFor("sentry_ward_cooldown") * self:GetCaster():GetCooldownReduction())
   if self:GetStackCount() < self:GetAbility():GetSpecialValueFor("sentry_ward_max_stack") then
     if self:GetRemainingTime() < 0 then
