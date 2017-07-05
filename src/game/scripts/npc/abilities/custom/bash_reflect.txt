@@ -12,6 +12,9 @@
         "AbilityCastPoint"                                                      "0.3"
         "AbilityCooldown"                                                       "5"
         "CastFilterRejectCaster" "1"
+
+        "AbilityCooldown"                                                       "13"
+
         "precache"
         {
             "particle"  "particles/units/heroes/hero_tiny/tiny_craggy_hit.vpcf"
@@ -25,12 +28,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "duration"                                              "5"
+                "duration"                                              "13"
             }
             "02"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "duration_multiplier"                                              "100 133 166 200"
+                "duration_multiplier"                                              "100 140 160 200"
             }
         }
         "ReduxFlags"                                                           "dota_custom"
