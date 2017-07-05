@@ -7245,6 +7245,12 @@
     "DOTA_Tooltip_modifier_imba_deadeye_vision"                                         "Deadeye"
     "DOTA_Tooltip_modifier_imba_deadeye_vision_Description"                             "Increased vision range."
 
+    "DOTA_Tooltip_modifier_ability_wards_observer_cooldown"                                         "Observer Wards Available"
+    "DOTA_Tooltip_modifier_ability_wards_observer_cooldown_Description"                             "How many Observer Wards you can place."
+
+    "DOTA_Tooltip_modifier_ability_wards_sentry_cooldown"                                         "Sentry Wards Available"
+    "DOTA_Tooltip_modifier_ability_wards_sentry_cooldown_Description"                             "How many Sentry Wards you can place."
+
     "DOTA_Tooltip_ability_basic_mana_bonus"            "Goblet of Mana"
     "DOTA_Tooltip_ability_basic_mana_bonus_Description"        "Increases the Max Mana of the Hero."
     "DOTA_Tooltip_ability_basic_mana_bonus_Lore"           "Simple yet refreshing."

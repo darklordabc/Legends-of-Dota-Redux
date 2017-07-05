@@ -34,9 +34,9 @@ end
 
 function ability_wards:GetAbilityTextureName()
   if self:GetCaster():GetModifierStackCount("modifier_ability_wards_type",self:GetCaster()) == 0 then
-    return "custom/ability_wards_op"
+    return "custom/ability_wards"
   else
-    return "custom/ability_wards_op_2"
+    return "custom/ability_wards_2"
   end
 end
 function ability_wards:CastFilterResultLocation(vLocation)
@@ -113,9 +113,9 @@ end
 
 function ability_wards_op:GetAbilityTextureName()
   if self:GetCaster():GetModifierStackCount("modifier_ability_wards_type",self:GetCaster()) == 0 then
-    return "custom/ability_wards"
+    return "custom/ability_wards_op"
   else
-    return "custom/ability_wards_2"
+    return "custom/ability_wards_op_2"
   end
 end
 function ability_wards_op:CastFilterResultLocation(vLocation)
@@ -171,7 +171,7 @@ function modifier_ability_wards_observer_cooldown:IsHidden()
 end
 
 function modifier_ability_wards_observer_cooldown:GetTexture()
-  return "custom/ability_wards_op"
+  return "custom/ability_wards"
 end
 
 function modifier_ability_wards_observer_cooldown:OnCreated()
