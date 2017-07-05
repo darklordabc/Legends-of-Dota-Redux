@@ -4,7 +4,7 @@
     {
         "BaseClass"                                                            "ability_lua"
         "ScriptFile"                                                           "abilities/basic_stat_bonus.lua"
-        "AbilityTextureName"                                                   "custom/basic_stat_bonus"
+        "AbilityTextureName"                                                   "custom/attribute_bonus"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "MaxLevel"                                                              "10"
         
@@ -24,7 +24,7 @@
     {
         "BaseClass"                                                            "ability_lua"
         "ScriptFile"                                                           "abilities/basic_stat_bonus.lua"
-        "AbilityTextureName"                                                   "custom/basic_stat_bonus_op"
+        "AbilityTextureName"                                                   "custom/attribute_bonus_op"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "MaxLevel"                                                              "10"
         
