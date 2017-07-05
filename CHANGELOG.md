@@ -58,6 +58,7 @@ All notable changes to this project will be documented in this file.
 - Added filter to sort abilities by popularity
 - Diabloic Edict will no longer damage towers that have backdoor protection
 - Wukong command is re-enabled but only as a single player ability, because its unstable.
+- Juxtapose has been banished to single player abilities until its lag issues can be sorted
 
 
 ## 7.9
