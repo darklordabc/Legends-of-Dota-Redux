@@ -75,11 +75,14 @@ function ability_wards:OnSpellStart()
     if self:GetCaster():GetModifierStackCount("modifier_ability_wards_type",self:GetCaster()) == 0 then
       local ward = CreateUnitByName("npc_dota_observer_wards",self:GetCursorPosition(),false,self:GetCaster(),self:GetCaster():GetPlayerOwner(),self:GetCaster():GetTeamNumber())
       ward:AddNewModifier(self:GetCaster(),self,"modifier_kill",{duration = self:GetSpecialValueFor("observer_ward_duration")})
+      ward:AddNewModifier(self:GetCaster(),self,"modifier_item_buff_ward",{})
       self:GetCaster():FindModifierByName("modifier_ability_wards_observer_cooldown"):DecrementStackCount()
       ward:EmitSound("DOTA_Item.ObserverWard.Activate")
     else
       local ward =  CreateUnitByName("npc_dota_sentry_wards",self:GetCursorPosition(),false,self:GetCaster(),self:GetCaster():GetPlayerOwner(),self:GetCaster():GetTeamNumber())
       ward:AddNewModifier(self:GetCaster(),self,"modifier_kill",{duration = self:GetSpecialValueFor("sentry_ward_duration")})
+      ward:AddNewModifier(self:GetCaster(),self,"modifier_item_buff_ward",{})
+      ward:AddNewModifier(self:GetCaster(),self,"modifier_item_ward_true_sight",{true_sight_range=self:GetSpecialValueFor("sentry_ward_radius")})
       self:GetCaster():FindModifierByName("modifier_ability_wards_sentry_cooldown"):DecrementStackCount()
       ward:EmitSound("DOTA_Item.SentryWard.Activate")
     end
@@ -150,12 +153,15 @@ function ability_wards_op:OnSpellStart()
   else
     if self:GetCaster():GetModifierStackCount("modifier_ability_wards_type",self:GetCaster()) == 0 then
       local ward = CreateUnitByName("npc_dota_observer_wards",self:GetCursorPosition(),false,self:GetCaster(),self:GetCaster():GetPlayerOwner(),self:GetCaster():GetTeamNumber())
-      ward:AddNewModifier(self:GetCaster(),self,"modifier_kill",{duration = self:GetSpecialValueFor("observer_ward_duration")})
+      ward:AddNewModifier(self:GetCaster(),self,"modifier_kill",{duration = self:GetSpecialValueFor("observer_ward_duration")}) 
+      ward:AddNewModifier(self:GetCaster(),self,"modifier_item_buff_ward",{})
       self:GetCaster():FindModifierByName("modifier_ability_wards_observer_cooldown"):DecrementStackCount()
       ward:EmitSound("DOTA_Item.ObserverWard.Activate")
     else
       local ward =  CreateUnitByName("npc_dota_sentry_wards",self:GetCursorPosition(),false,self:GetCaster(),self:GetCaster():GetPlayerOwner(),self:GetCaster():GetTeamNumber())
       ward:AddNewModifier(self:GetCaster(),self,"modifier_kill",{duration = self:GetSpecialValueFor("sentry_ward_duration")})
+      ward:AddNewModifier(self:GetCaster(),self,"modifier_item_buff_ward",{})
+      ward:AddNewModifier(self:GetCaster(),self,"modifier_item_ward_true_sight",{true_sight_range=self:GetSpecialValueFor("sentry_ward_radius")})
       self:GetCaster():FindModifierByName("modifier_ability_wards_sentry_cooldown"):DecrementStackCount()
       ward:EmitSound("DOTA_Item.SentryWard.Activate")
     end
