@@ -60,6 +60,7 @@ All notable changes to this project will be documented in this file.
 - Wukong command is re-enabled but only as a single player ability, because its unstable.
 - Juxtapose has been banished to single player abilities until its lag issues can be sorted
 - Brewmaster's cyclone is now a single player ability
+- Changed Spell Echo into a basic ability, but increased its cooldown
 
 ## 7.9
 - Improved styles of builds page
