@@ -4,8 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## 9.0
 - Fury of the immortals: Cooldown increased by 5 seconds, non-stacking damage decreased, stun duration decreased by 0.5
-- Increased rate of fire on siege mode
 - Multicast Redux now has a cooldown (in games where single player abilities are banned)
+- Set siege mode transformation time to 3 seconds
+- Fixed Tenactiy and Blade Mail OP not working
 
 ## 8.0
 - Fixed Sight being 4 levels

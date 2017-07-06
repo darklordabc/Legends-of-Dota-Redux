@@ -13,7 +13,7 @@ function modifier_basic_tenacity_bonus:IsPermanent() return true end
 function modifier_basic_tenacity_bonus:IsHidden() return true end
 
 function modifier_basic_tenacity_bonus:GetTenacity()
-  if self:GetCaster():PassivesDisabled() return 0 end
+  if self:GetCaster():PassivesDisabled() then return 0 end
   return self:GetAbility():GetSpecialValueFor("tenacity_bonus")
 end
 
@@ -26,7 +26,7 @@ function modifier_basic_tenacity_bonus_op:IsPermanent() return true end
 function modifier_basic_tenacity_bonus_op:IsHidden() return true end
 
 function modifier_basic_tenacity_bonus_op:GetTenacity()
-  if self:GetCaster():PassivesDisabled() return 0 end
+  if self:GetCaster():PassivesDisabled() then return 0 end
   return self:GetAbility():GetSpecialValueFor("tenacity_bonus")
 end
 
