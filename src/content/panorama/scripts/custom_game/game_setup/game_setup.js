@@ -654,6 +654,7 @@ function OnSelectedSkillsChanged(table_name, key, data) {
             }
         }
         $('#newAbilitiesPanel').SetHasClass('OneOrMore', tickedAbilitiesCount > 0);
+        $('#balancedBuildTick').AddClass('Enabled'); // Forces panorama to update this panel. Without this panorama for some reason not updates #newAbilitiesPanel.
         $('#balancedBuildTick').SetHasClass('Enabled', activeAbilities >= 3);
 
 
