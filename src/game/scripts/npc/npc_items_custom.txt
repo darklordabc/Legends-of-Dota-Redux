@@ -1201,6 +1201,7 @@
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "Model"                         "models/props_gameplay/treasure_chest001.vmdl"
         "ItemKillable"                  "0"
+        "IsTempestDoubleClonable"       "0"
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
@@ -1225,6 +1226,7 @@
         "Model"                         "models/props_gameplay/treasure_chest001.vmdl"
         "ItemKillable"                  "0"
         "AbilitySharedCooldown"         "bonus"
+        "IsTempestDoubleClonable"       "0"
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
@@ -1249,6 +1251,7 @@
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "Model"                         "models/props_gameplay/treasure_chest001.vmdl"
         "ItemKillable"                  "0"
+        "IsTempestDoubleClonable"       "0"
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------

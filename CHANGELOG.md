@@ -45,7 +45,6 @@ All notable changes to this project will be documented in this file.
 - Creep Strength Bonus no longer gives them extra magic resitance, and they dont get as much health bonus anymore.
 - Fat-o-Meter is no longer on by default
 - Using different spawn method
-*
 - Tempest Double now troll combo with omniguard and Nothl protection
 - Thrill of the hunt is now troll combo with other cooldown reduction abilities
 - Added 13 simple abilities (and 13 OP variants of them)
@@ -62,6 +61,11 @@ All notable changes to this project will be documented in this file.
 - Brewmaster's cyclone is now a single player ability
 - Changed Spell Echo into a basic ability, but increased its cooldown
 - Lowered channel time and cooldowns of non-ultimate radiant jungle abilities
+*
+- Made bonuses not cloneable for tempest double
+- Fixed wards not being invisible
+- Fixed blademail and spell lifesteal making you invunlerable
+- Lowered replenish time on wards ability
 
 ## 7.9
 - Improved styles of builds page
