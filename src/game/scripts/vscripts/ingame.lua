@@ -1847,6 +1847,14 @@ function Ingame:FilterDamage( filterTable )
         if ability:GetName() == "centaur_return"  and victim.IsBuilding and victim:IsBuilding() then
             filterTable["damage"] = 0
         end
+        -- Stops abusive Combo of Diabloic Edict and multicast tearing down towers in seconds
+        if ability:GetName() == "leshrac_diabolic_edict"  and victim.IsBuilding and victim:IsBuilding() then
+            local protection = victim:FindModifierByName("modifier_backdoor_protection_active")
+
+            if protection then
+             filterTable["damage"] = 0
+            end
+        end
     end
 
     if victim:HasModifier("modifier_ancient_priestess_spirit_link") then
@@ -1912,6 +1920,13 @@ function Ingame:FilterModifiers( filterTable )
     if OptionManager:GetOption('memesRedux') == 1 then
         filterTable = memesModifierFilter(filterTable)
     end
+    -- Tenacity
+    if caster:GetTeamNumber() ~= parent:GetTeamNumber() and filterTable["duration"] > 0 then
+        filterTable["duration"] = filterTable["duration"] * parent:GetTenacity()
+    end
+    -- Bash Reflect
+    local reflect_bashes = require('abilities/bash_reflect')
+    ReflectBashes(filterTable)
 
     return true
 end

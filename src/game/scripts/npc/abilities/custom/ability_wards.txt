@@ -1,0 +1,122 @@
+// Also add textures  "custom/ability_observer_ward" "custom/ability_sentry_ward"
+// Tooltips "#wards_cooldown"
+"DOTAAbilities"
+{
+    "ability_wards"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/ability_wards.lua"
+        "AbilityTextureName"                                                   "custom/ability_wards" 
+        
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityCooldown"                "0"
+        "AbilityManaCost"                "0"
+        "AbilityCastRange"               "500"
+        "AbilityCastPoint"               "0.05"
+        
+        "AbilitySpecial"
+        {          
+            "01"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "observer_ward_duration"          "360"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "observer_ward_radius"          "1600"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "observer_ward_max_stack"          "2 3 4 5"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "sentry_ward_cooldown"          "150"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "sentry_ward_duration"          "240"
+            }
+            "06"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "sentry_ward_radius"          "850"
+            }
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "sentry_ward_max_stack"          "2 3 4 5"
+            }
+            "08"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "observer_ward_cooldown"          "150"
+            }
+        }
+        "ReduxFlags"                                                           "dota_custom"
+        "ReduxCost"                                                            "0"
+        "ReduxBans"                                                             "ability_wards_op"
+    }
+    "ability_wards_op"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/ability_wards.lua"
+        "AbilityTextureName"                                                   "custom/ability_wards_op" 
+        
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityCooldown"                "0"
+        "AbilityManaCost"                "0"
+        "AbilityCastRange"               "500"
+        "AbilityCastPoint"               "0.05"
+        
+       "AbilitySpecial"
+        {         
+            "01"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "observer_ward_duration"          "360"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "observer_ward_radius"          "1600"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "observer_ward_max_stack"          "4 5 6 7"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "sentry_ward_cooldown"          "150"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "sentry_ward_duration"          "240"
+            }
+            "06"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "sentry_ward_radius"          "850"
+            }
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "sentry_ward_max_stack"          "4 5 6 7"
+            }
+            "08"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "observer_ward_cooldown"          "150"
+            }
+        }
+        "ReduxFlags"                                                           "dota_custom"
+        "ReduxCost"                                                            "120"
+    }
+}

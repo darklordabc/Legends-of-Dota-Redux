@@ -700,8 +700,15 @@ function CDOTA_BaseNPC:GetCooldownReduction()
   return math.max(0.01,(1 - (cooldown_reduct + cooldown_reduct_stack)*0.01))
 end
 
-
-
+function CDOTA_BaseNPC:GetTenacity()
+    local tenacity = 1
+    for _, parent_modifier in pairs(self:FindAllModifiers()) do
+        if parent_modifier.GetTenacity then
+            tenacity = tenacity * (1- (parent_modifier:GetTenacity()/100))
+        end
+    end
+    return tenacity
+end
 
 
 function ShuffleArray(input)
@@ -1269,6 +1276,8 @@ function GenerateTalentAbilityList()
         life_stealer_control = true,
         eat_tree_eldri = true,
         storm_spirit_ball_lightning = true,
+        ability_wards = true,
+        ability_wards_op = true,
     }
 
     abilityKVs = LoadKeyValues('scripts/npc/npc_abilities.txt')

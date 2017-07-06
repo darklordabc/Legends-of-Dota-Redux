@@ -229,7 +229,7 @@
     "brewmaster_storm_cyclone"
     {
         "MaxLevel"                                                             "1"
-        "ReduxCost"                                                            "80"
+        "ReduxCost"                                                            "120"
         "ReduxFlags"                                                           ""
     }
     "brewmaster_storm_wind_walk"
@@ -2200,7 +2200,7 @@
     {
         "ReduxFlags"                                                           "attack_modifier"
         "ReduxPerks"                                                           "attack_modifier"
-        "ReduxCost"                                                            "80"
+        "ReduxCost"                                                            "120" // Made single player because its causes lag, needs more investigation
     }
     "sniper_headshot"
     {
@@ -3469,7 +3469,8 @@
     }
     "monkey_king_wukongs_command"
     {
-        "ReduxCost"                                                            "20"
+        // Made single player ability because its laggy
+        "ReduxCost"                                                            "120"
         "ReduxFlags"                                                           "doNotRandom"
         "ReduxBans"                                                            "tinker_rearm"
     }

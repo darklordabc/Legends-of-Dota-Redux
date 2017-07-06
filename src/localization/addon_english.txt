@@ -1501,6 +1501,18 @@
     "credit_ability_blademail_op" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
     "credit_basic_movespeed_bonus" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
     "credit_basic_movespeed_bonus_op" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_ability_wards" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_ability_wards_op" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_bash_reflect" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_bash_reflect_op" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_basic_spell_amp_bonus" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_basic_spell_amp_bonus_op" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_basic_stat_gain_bonus" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_basic_stat_gain_bonus_op" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_basic_stat_bonus" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_basic_stat_bonus_op" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_basic_tenacity_bonus" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
+    "credit_basic_tenacity_bonus_op" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
 
     "credit_bulwark_strike"           "<font color=\'#7D7D7D\'>Credits: Deathtal | github.com/Deathtal</font>"
     "credit_genos_survival_of_the_fittest"           "<font color=\'#7D7D7D\'>Imported from DotA Resurgence</font>"
@@ -7245,6 +7257,12 @@
     "DOTA_Tooltip_modifier_imba_deadeye_vision"                                         "Deadeye"
     "DOTA_Tooltip_modifier_imba_deadeye_vision_Description"                             "Increased vision range."
 
+    "DOTA_Tooltip_modifier_ability_wards_observer_cooldown"                                         "Observer Wards Available"
+    "DOTA_Toolt4ip_modifier_ability_wards_observer_cooldown_Description"                             "How many Observer Wards you can place."
+
+    "DOTA_Tooltip_modifier_ability_wards_sentry_cooldown"                                         "Sentry Wards Available"
+    "DOTA_Tooltip_modifier_ability_wards_sentry_cooldown_Description"                             "How many Sentry Wards you can place."
+
     "DOTA_Tooltip_ability_basic_mana_bonus"            "Goblet of Mana"
     "DOTA_Tooltip_ability_basic_mana_bonus_Description"        "Increases the Max Mana of the Hero."
     "DOTA_Tooltip_ability_basic_mana_bonus_Lore"           "Simple yet refreshing."
@@ -7332,5 +7350,77 @@
     "DOTA_Tooltip_ability_leshrac_pulse_nova_redux_radius"                                "RADIUS:"
     "DOTA_Tooltip_ability_leshrac_pulse_nova_redux_mana_cost_per_second"                  "MANA/SEC:"
     "DOTA_Tooltip_ability_leshrac_pulse_nova_redux_damage"                                "DAMAGE:"
+
+    "wards_cooldown" "Wards still on cooldown"
+
+    "DOTA_Tooltip_ability_basic_spell_amp_bonus"                                       "Books of Knowledge"
+    "DOTA_Tooltip_ability_basic_spell_amp_bonus_Description"                           "Increases Spell amplification"
+    "DOTA_Tooltip_ability_basic_spell_amp_bonus_Lore"                                  "An investment in knowledge pays the best interest."
+    "DOTA_Tooltip_ability_basic_spell_amp_bonus_spell_amp_bonus"                                "%SPELL AMPLIFICATION:"
+
+    "DOTA_Tooltip_ability_basic_spell_amp_bonus_op"                                       "Books of Power"
+    "DOTA_Tooltip_ability_basic_spell_amp_bonus_op_Description"                           "Increases Spell amplification. <font color='#70EA72'>Gives much more spell amplification</font>."
+    "DOTA_Tooltip_ability_basic_spell_amp_bonus_op_Lore"                                  "Knowledge is Power."
+    "DOTA_Tooltip_ability_basic_spell_amp_bonus_op_spell_amp_bonus"                                "%SPELL AMPLIFICATION:"
+
+    "DOTA_Tooltip_ability_basic_stat_bonus"                                       "Attribute Bonus"
+    "DOTA_Tooltip_ability_basic_stat_bonus_Description"                           "Gives bonus strengh, intelligence and agility. Has 20 levels."
+    "DOTA_Tooltip_ability_basic_stat_bonus_tooltipBonus"                                  "BONUS ATTRIBUTES PER LEVEL:"
+    "DOTA_Tooltip_ability_basic_stat_bonus_Lore"                                  "The Original and the Best."
+
+    "DOTA_Tooltip_ability_basic_stat_bonus_op"                                       "Attribute Bonus"
+    "DOTA_Tooltip_ability_basic_stat_bonus_op_Description"                           "Gives <font color='#70EA72'>more</font> bonus strengh, intelligence and agility. Has 20 levels."
+    "DOTA_Tooltip_ability_basic_stat_bonus_op_tooltipBonus"                                  "BONUS ATTRIBUTES PER LEVEL:"
+    "DOTA_Tooltip_ability_basic_stat_bonus_op_Lore"                                  "The Original and the Best."
+
+    "DOTA_Tooltip_ability_basic_stat_gain_bonus"                                       "Improved Stat Gain"
+    "DOTA_Tooltip_ability_basic_stat_gain_bonus_Description"                           "Improves this Hero's stat gain per level. Hero will gain extra stats per level up and they will recieve double stats for their primary attribute."
+    "DOTA_Tooltip_ability_basic_stat_gain_bonus_stat_gain_bonus"                                  "ATTRIBUTES PER LEVEL:"
+    "DOTA_Tooltip_ability_basic_stat_gain_bonus_Lore"                                  "This hero levels up a little bit more than most."
+
+    "DOTA_Tooltip_ability_basic_stat_gain_bonus_op"                                       "Improved Stat Gain OP"
+    "DOTA_Tooltip_ability_basic_stat_gain_bonus_op_Description"                           "Improves this Hero's stat gain per level. Hero will gain extra stats per level up and they will recieve double stats for their primary attribute. <font color='#70EA72'>Higher stat gain bonus</font>."
+    "DOTA_Tooltip_ability_basic_stat_gain_bonus_op_stat_gain_bonus"                                  "ATTRIBUTES PER LEVEL:"
+    "DOTA_Tooltip_ability_basic_stat_gain_bonus_op_Lore"                                  "This hero levels up a fair bit more than most."
+
+    "DOTA_Tooltip_ability_ability_wards"                                       "Wards"
+    "DOTA_Tooltip_ability_ability_wards_Description"                           "Gives the hero ability to place wards without spending gold. Self-Cast to change ward type."
+    "DOTA_Tooltip_ability_ability_wards_observer_ward_cooldown"                                  "REPLENISH TIME:"
+    "DOTA_Tooltip_ability_ability_wards_observer_ward_duration"                                  "OBSERVER WARD DURATION:"
+    //"DOTA_Tooltip_ability_ability_wards_observer_ward_radius"                                  "OBSERVER WARD RADIUS:"
+    //"DOTA_Tooltip_ability_ability_wards_observer_ward_max_stack"                                  "OBSERVER WARD MAX STACK:"
+    //"DOTA_Tooltip_ability_ability_wards_sentry_ward_cooldown"                                  "SENTRY WARD REPLENISH TIME:"
+    "DOTA_Tooltip_ability_ability_wards_sentry_ward_duration"                                  "SENTRY WARD DURATION:"
+    //"DOTA_Tooltip_ability_ability_wards_sentry_ward_radius"                                  "SENTRY WARD RADIUS:"
+    "DOTA_Tooltip_ability_ability_wards_sentry_ward_max_stack"                                  "MAX STACK PER TYPE:"
+    "DOTA_Tooltip_ability_ability_wards_Lore"                                  "Circumstances may cause interruptions and delays, but never lose sight of your enemies."
+
+    "DOTA_Tooltip_ability_ability_wards_op"                                       "Wards OP"
+    "DOTA_Tooltip_ability_ability_wards_op_Description"                           "Gives the hero ability to place wards without spending gold. Self-Cast to change ward type. <font color='#70EA72'>Higher stack limit</font>."
+    "DOTA_Tooltip_ability_ability_wards_op_observer_ward_cooldown"                                  "REPLENISH TIME:"
+    "DOTA_Tooltip_ability_ability_wards_op_observer_ward_duration"                                  "OBSERVER WARD DURATION:"
+    "DOTA_Tooltip_ability_ability_wards_op_sentry_ward_duration"                                  "SENTRY WARD DURATION:"
+    "DOTA_Tooltip_ability_ability_wards_op_sentry_ward_max_stack"                                  "MAX STACK PER TYPE:"
+    "DOTA_Tooltip_ability_ability_wards_op_Lore"                                  "Circumstances may cause interruptions and delays, but never lose sight of your enemies."
+
+    "DOTA_Tooltip_ability_basic_tenacity_bonus"                                       "Tenacity"
+    "DOTA_Tooltip_ability_basic_tenacity_bonus_Description"                           "Reduces the duration of debuffs inflicted on you by enemies."
+    "DOTA_Tooltip_ability_basic_tenacity_bonus_tenacity_bonus"                                  "%DURATION REDUCTION:"
+    "DOTA_Tooltip_ability_basic_tenacity_bonus_Lore"                                  "'Walk it off!'"
+
+    "DOTA_Tooltip_ability_basic_tenacity_bonus_op"                                       "Tenacity OP"
+    "DOTA_Tooltip_ability_basic_tenacity_bonus_op_Description"                           "<font color='#70EA72'>Greatly</font> reduces the duration of debuffs inflicted on you by enemies."
+    "DOTA_Tooltip_ability_basic_tenacity_bonus_op_tenacity_bonus"                                  "%DURATION REDUCTION:"
+    "DOTA_Tooltip_ability_basic_tenacity_bonus_op_Lore"                                  "'Walk it off!'"
+
+    "DOTA_Tooltip_ability_bash_reflect"                                       "Anti-Bash"
+    "DOTA_Tooltip_ability_bash_reflect_Description"                           "Enemy Heroes that stun you from a passive source will be counter-stunned for a multiplier of the stun duration. Passive sources include all bash abilities/items and other passive abilities, does not include active abilities.\n\nCan be cast on an allied hero to temporarily transfer the protection."
+    "DOTA_Tooltip_ability_bash_reflect_duration_multiplier"                "%DURATION MULTIPLIER:"
+    "DOTA_Tooltip_ability_bash_reflect_Lore"                                  "Stun paid back in spades."
+
+    "DOTA_Tooltip_ability_bash_reflect_op"                                       "Anti-Bash OP"
+    "DOTA_Tooltip_ability_bash_reflect_op_Description"                           "Enemy Heroes that stun you from a passive source will be counter-stunned for a multiplier of the stun duration. Passive sources include all bash abilities/items and other passive abilities, does not include active abilities.\n\nCan be cast on an allied hero to temporarily transfer the protection. <font color='#70EA72'>Larger multiplier</font>."
+    "DOTA_Tooltip_ability_bash_reflect_op_duration_multiplier"                "%DURATION MULTIPLIER:"
+    "DOTA_Tooltip_ability_bash_reflect_op_Lore"                                  "Stun paid back in spades."
 
 }
