@@ -41,7 +41,7 @@
             "03"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "channel_time"                  "20 15 10 5"
+                "channel_time"                  "15 10 5 1"
             }
         }
     }
@@ -86,7 +86,7 @@
             "03"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "channel_time"                  "25 20 15 10"
+                "channel_time"                  "20 15 10 5"
             }
         }
     }
@@ -131,7 +131,7 @@
             "03"
             {
                 "var_type"                      "FIELD_INTEGER"
-                "channel_time"                  "30 25 20 15"
+                "channel_time"                  "30 25 15 5"
             }
         }
     }
