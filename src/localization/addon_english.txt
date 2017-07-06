@@ -1214,7 +1214,9 @@
 
     // New Abilities Bonus
     "newAbilitiesTitle"                             "Ability Bonus"
+    "newAbilitiesTooltip"                             "Ability Bonus Tooltip"
     "balancedBuildTitle"                            "Balanced Build"
+    "balancedBuildTooltip"                            "Balanced Build Tooltip"
 
     /////////////////
     // UNIQUE HERO MECHANICS

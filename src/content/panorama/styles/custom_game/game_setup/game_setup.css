@@ -3705,6 +3705,16 @@ Button:enabled:hover {
     text-transform: uppercase;
 }
 
+#newAbilitiesPanel > Label > Panel
+{
+    horizontal-align: right;
+    margin-right: 5px;
+    width: height-percentage(100%);
+    height: 100%;
+    tooltip-position: top;
+    tooltip-body-position: 50%;
+}
+
 #newAbilitiesTicks
 {
     width: 100%;
@@ -3773,6 +3783,16 @@ Button:enabled:hover {
     margin-bottom: -8px;
     color: white;
     text-transform: uppercase;
+}
+
+#balancedBuildPanel > Label > Panel
+{
+    horizontal-align: right;
+    margin-right: 5px;
+    width: height-percentage(100%);
+    height: 100%;
+    tooltip-position: top;
+    tooltip-body-position: 50%;
 }
 
 #balancedBuildTick
