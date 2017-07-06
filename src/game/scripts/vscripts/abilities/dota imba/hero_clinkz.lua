@@ -339,9 +339,11 @@ end
 function modifier_imba_strafe_mount:OnRemoved()
     if IsServer() then
         -- Start cooldown, reduce it by the duration of the skill
-        if self.ability:IsCooldownReady() then
-            self.ability.time_remaining = self:GetRemainingTime()
-            self.ability:UseResources(false, false, true)
+        if self.ability then
+            if self.ability:IsCooldownReady() then
+                self.ability.time_remaining = self:GetRemainingTime()
+                self.ability:UseResources(false, false, true)
+            end
         end
     end
 end

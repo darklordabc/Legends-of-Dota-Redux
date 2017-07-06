@@ -488,7 +488,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "BaseClass"                     "ability_lua"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-        "AbilityTextureName"            "custom/imba_clinkz_strafe"
+        "AbilityTextureName"            "custom/imba_clinkz_strafe_op"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
         "ScriptFile"                    "abilities/dota imba/hero_clinkz.lua"
