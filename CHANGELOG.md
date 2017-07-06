@@ -61,6 +61,7 @@ All notable changes to this project will be documented in this file.
 - Juxtapose has been banished to single player abilities until its lag issues can be sorted
 - Brewmaster's cyclone is now a single player ability
 - Changed Spell Echo into a basic ability, but increased its cooldown
+- Lowered channel time and cooldowns of non-ultimate radiant jungle abilities
 
 ## 7.9
 - Improved styles of builds page
