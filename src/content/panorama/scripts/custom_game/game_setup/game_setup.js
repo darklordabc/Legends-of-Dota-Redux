@@ -703,9 +703,13 @@ function updateTakenSkills() {
     }
 
     // Rebuild the visible skills
-    calculateFilters();
-    updateHeroPreviewFilters();
-    updateRecommendedBuildFilters();
+    if (currentTab == "pickingPhaseMainTab") {
+        updateRecommendedBuildFilters();
+    } else if (currentTab == "pickingPhaseSkillTab") {
+        calculateFilters();
+    } else {
+        updateHeroPreviewFilters();
+    }
 }
 
 // A ban was sent through

@@ -62,7 +62,9 @@ function showIngameBuilder(args) {
 
         heroBuilderPanel.showBuilderTab('pickingPhaseMainTab');
         
+        heroBuilderPanel.FindChildTraverse("abilityBonusesPanel").visible = args.ingamePicking == true;
         heroBuilderPanel.FindChildTraverse("newAbilitiesPanel").visible = args.ingamePicking == true;
+        heroBuilderPanel.FindChildTraverse("balancedBuildPanel").visible = args.ingamePicking == true;
 
         // Hide the hero selection when spawn hero is pressed
         GameEvents.Subscribe('lodNewHeroBuild', function() {
