@@ -48,7 +48,7 @@ All notable changes to this project will be documented in this file.
 *
 - Tempest Double now troll combo with omniguard and Nothl protection
 - Thrill of the hunt is now troll combo with other cooldown reduction abilities
-- Added 7 simple abilities (and 7 OP variants of them)
+- Added 13 simple abilities (and 13 OP variants of them)
 - Reduced Silvers cost by 250 gold and changed its recipes
 - Fixed Pulse Nova and Lighting Storm bug, they are no longer troll combos
 - Added Consumeable version of Silver
