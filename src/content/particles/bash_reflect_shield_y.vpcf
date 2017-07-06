@@ -21,6 +21,7 @@
 		{
 			_class = "C_OP_BasicMovement"
 			m_fDrag = 0.05
+			m_Gravity = [ 0.0, 0.0, -50.0 ]
 		},
 		{
 			_class = "C_OP_Decay"
@@ -49,8 +50,8 @@
 		},
 		{
 			_class = "C_INIT_RandomRadius"
-			m_flRadiusMin = 130.0
-			m_flRadiusMax = 170.0
+			m_flRadiusMin = 80.0
+			m_flRadiusMax = 120.0
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"

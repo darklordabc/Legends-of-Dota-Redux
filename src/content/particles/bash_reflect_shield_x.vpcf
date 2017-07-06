@@ -3,7 +3,7 @@
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 64
-	m_flConstantRadius = 150.0
+	m_flConstantRadius = 100.0
 	m_Renderers = 
 	[
 		{
