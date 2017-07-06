@@ -3690,7 +3690,7 @@ Button:enabled:hover {
     transform: translateY(3px);
 }
 
-.phase_selection_selected:not(.ingame_menu) #newAbilitiesPanel.GoldBonusEnabled
+.phase_selection_selected #newAbilitiesPanel.GoldBonusEnabled
 {
     visibility: visible;
 }
