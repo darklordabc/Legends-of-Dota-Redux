@@ -48,7 +48,7 @@ All notable changes to this project will be documented in this file.
 *
 - Tempest Double now troll combo with omniguard and Nothl protection
 - Thrill of the hunt is now troll combo with other cooldown reduction abilities
-- Added 7 simple abilities (and 7 OP variants of them)
+- Added 13 simple abilities (and 13 OP variants of them)
 - Reduced Silvers cost by 250 gold and changed its recipes
 - Fixed Pulse Nova and Lighting Storm bug, they are no longer troll combos
 - Added Consumeable version of Silver
@@ -60,6 +60,8 @@ All notable changes to this project will be documented in this file.
 - Wukong command is re-enabled but only as a single player ability, because its unstable.
 - Juxtapose has been banished to single player abilities until its lag issues can be sorted
 - Brewmaster's cyclone is now a single player ability
+- Changed Spell Echo into a basic ability, but increased its cooldown
+- Lowered channel time and cooldowns of non-ultimate radiant jungle abilities
 
 ## 7.9
 - Improved styles of builds page

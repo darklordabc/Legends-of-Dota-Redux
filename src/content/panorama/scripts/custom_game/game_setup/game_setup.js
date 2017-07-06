@@ -225,6 +225,9 @@ var inBuildSaveMode = false
 // Is ingame builder
 $.GetContextPanel().isIngameBuilder = false;
 
+var popularityFilterSlider = $('#popularityFilterSlider');
+var popularityFilterDropDown = $('#popularityFilterDropDown');
+
 (function() {
     var playerInfo = Game.GetLocalPlayerInfo();
     if (playerInfo.player_has_host_privileges){
@@ -651,6 +654,7 @@ function OnSelectedSkillsChanged(table_name, key, data) {
             }
         }
         $('#newAbilitiesPanel').SetHasClass('OneOrMore', tickedAbilitiesCount > 0);
+        $('#balancedBuildTick').AddClass('Enabled'); // Forces panorama to update this panel. Without this panorama for some reason not updates #newAbilitiesPanel.
         $('#balancedBuildTick').SetHasClass('Enabled', activeAbilities >= 3);
 
 
@@ -703,9 +707,13 @@ function updateTakenSkills() {
     }
 
     // Rebuild the visible skills
-    calculateFilters();
-    updateHeroPreviewFilters();
-    updateRecommendedBuildFilters();
+    if (currentTab == "pickingPhaseMainTab") {
+        updateRecommendedBuildFilters();
+    } else if (currentTab == "pickingPhaseSkillTab") {
+        calculateFilters();
+    } else {
+        updateHeroPreviewFilters();
+    }
 }
 
 // A ban was sent through
@@ -2332,8 +2340,9 @@ function getSkillFilterInfo(abilityName) {
         }
     }
 
-    var popularityFilterValue = $('#popularityFilterSlider').value;
-    var isInverseFilter = $('#popularityFilterDropDown').GetSelected().id === 'popularityFilterMode2';
+    var popularityFilterValue = popularityFilterSlider.value;
+
+    var isInverseFilter = popularityFilterDropDown.GetSelected().id === 'popularityFilterMode2';
     if (shouldShow && popularityFilterValue !== (isInverseFilter ? 0 : 100)) {
         shouldShow = isInverseFilter ?
             getAbilityGlobalPickPopularity(abilityName) >= 1 - popularityFilterValue * 0.01 :
@@ -5726,8 +5735,6 @@ function getAbilityGlobalPickPopularity(ability) {
         calculateFilters();
     }, 0.3);
     var popularityFilterValue = $('#popularityFilterValue');
-    var popularityFilterSlider = $('#popularityFilterSlider');
-    var popularityFilterDropDown = $('#popularityFilterDropDown');
     popularityFilterSlider.min = 1;
     popularityFilterSlider.max = 100;
     popularityFilterSlider.value = 100;

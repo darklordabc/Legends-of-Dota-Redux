@@ -925,7 +925,11 @@
 
                         <Panel id="abilityBonusesPanel">
                             <Panel id="newAbilitiesPanel">
-                                <Label text="#newAbilitiesTitle" />
+                                <Label text="#newAbilitiesTitle">
+                                    <Panel onmouseout="UIHideCustomLayoutTooltip(newAbilitiesTooltip)" onmouseover="UIShowCustomLayoutParametersTooltip(newAbilitiesTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=newAbilitiesTooltip)">
+                                        <Image id="infoImage" src="file://{images}/custom_game/infoTooltip.png" />
+                                    </Panel>
+                                </Label>
                                 <Panel id="newAbilitiesTicks">
                                     <Panel id="newAbilitiesTick1"><Panel /></Panel>
                                     <Panel id="newAbilitiesTick2"><Panel /></Panel>
@@ -937,7 +941,11 @@
                             </Panel>
 
                             <Panel id="balancedBuildPanel">
-                                <Label text="#balancedBuildTitle" />
+                                <Label text="#balancedBuildTitle">
+                                    <Panel onmouseout="UIHideCustomLayoutTooltip(balancedBuildTooltip)" onmouseover="UIShowCustomLayoutParametersTooltip(balancedBuildTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=balancedBuildTooltip)">
+                                        <Image id="infoImage" src="file://{images}/custom_game/infoTooltip.png" />
+                                    </Panel>
+                                </Label>
                                 <Panel id="balancedBuildTick" />
                             </Panel>
                         </Panel>
