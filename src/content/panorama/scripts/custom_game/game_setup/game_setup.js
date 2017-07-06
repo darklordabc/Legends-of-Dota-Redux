@@ -225,6 +225,9 @@ var inBuildSaveMode = false
 // Is ingame builder
 $.GetContextPanel().isIngameBuilder = false;
 
+var popularityFilterSlider = $('#popularityFilterSlider');
+var popularityFilterDropDown = $('#popularityFilterDropDown');
+
 (function() {
     var playerInfo = Game.GetLocalPlayerInfo();
     if (playerInfo.player_has_host_privileges){
@@ -2336,8 +2339,9 @@ function getSkillFilterInfo(abilityName) {
         }
     }
 
-    var popularityFilterValue = $('#popularityFilterSlider').value;
-    var isInverseFilter = $('#popularityFilterDropDown').GetSelected().id === 'popularityFilterMode2';
+    var popularityFilterValue = popularityFilterSlider.value;
+
+    var isInverseFilter = popularityFilterDropDown.GetSelected().id === 'popularityFilterMode2';
     if (shouldShow && popularityFilterValue !== (isInverseFilter ? 0 : 100)) {
         shouldShow = isInverseFilter ?
             getAbilityGlobalPickPopularity(abilityName) >= 1 - popularityFilterValue * 0.01 :
@@ -5730,8 +5734,6 @@ function getAbilityGlobalPickPopularity(ability) {
         calculateFilters();
     }, 0.3);
     var popularityFilterValue = $('#popularityFilterValue');
-    var popularityFilterSlider = $('#popularityFilterSlider');
-    var popularityFilterDropDown = $('#popularityFilterDropDown');
     popularityFilterSlider.min = 1;
     popularityFilterSlider.max = 100;
     popularityFilterSlider.value = 100;
