@@ -75,16 +75,13 @@ function ability_wards:OnSpellStart()
     if self:GetCaster():GetModifierStackCount("modifier_ability_wards_type",self:GetCaster()) == 0 then
       local ward = CreateUnitByName("npc_dota_observer_wards",self:GetCursorPosition(),false,self:GetCaster(),self:GetCaster():GetPlayerOwner(),self:GetCaster():GetTeamNumber())
       ward:AddNewModifier(self:GetCaster(),self,"modifier_kill",{duration = self:GetSpecialValueFor("observer_ward_duration")})
-      local cooldown = math.ceil(self:GetSpecialValueFor("observer_ward_cooldown") * self:GetCaster():GetCooldownReduction())
-      self:GetCaster():FindModifierByName("modifier_ability_wards_observer_cooldown"):SetDuration(cooldown,true)
       self:GetCaster():FindModifierByName("modifier_ability_wards_observer_cooldown"):DecrementStackCount()
+      ward:EmitSound("DOTA_Item.ObserverWard.Activate")
     else
       local ward =  CreateUnitByName("npc_dota_sentry_wards",self:GetCursorPosition(),false,self:GetCaster(),self:GetCaster():GetPlayerOwner(),self:GetCaster():GetTeamNumber())
       ward:AddNewModifier(self:GetCaster(),self,"modifier_kill",{duration = self:GetSpecialValueFor("sentry_ward_duration")})
-      local cooldown = math.ceil(self:GetSpecialValueFor("sentry_ward_cooldown") * self:GetCaster():GetCooldownReduction())
-      self:GetCaster():FindModifierByName("modifier_ability_wards_sentry_cooldown"):SetDuration(cooldown,true)
       self:GetCaster():FindModifierByName("modifier_ability_wards_sentry_cooldown"):DecrementStackCount()
-
+      ward:EmitSound("DOTA_Item.SentryWard.Activate")
     end
   end
 end
@@ -205,8 +202,7 @@ function modifier_ability_wards_observer_cooldown:OnIntervalThink()
     end
   end
   
-  if self:GetStackCount() == self:GetAbility():GetSpecialValueFor("sentry_ward_max_stack") then
-    self:SetDuration(-1,true)
+  if self:GetStackCount() >= self:GetAbility():GetSpecialValueFor("observer_ward_max_stack") then
     self:SetDuration(9999,true)
   end
 end
@@ -250,7 +246,7 @@ function modifier_ability_wards_sentry_cooldown:OnIntervalThink()
     end
   end
   
-  if self:GetStackCount() == self:GetAbility():GetSpecialValueFor("sentry_ward_max_stack") then
+  if self:GetStackCount() >= self:GetAbility():GetSpecialValueFor("sentry_ward_max_stack") then
     self:SetDuration(-1,true)
     self:SetDuration(9999,true)
   end
