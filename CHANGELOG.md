@@ -2,6 +2,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 9.0
+- Fury of the immortals: Cooldown increased by 5 seconds, non-stacking damage decreased, stun duration decreased by 0.5
+
 ## 8.0
 - Fixed Sight being 4 levels
 - Removed Review phase and added second load screen to replace strategy time screen
@@ -61,11 +64,11 @@ All notable changes to this project will be documented in this file.
 - Brewmaster's cyclone is now a single player ability
 - Changed Spell Echo into a basic ability, but increased its cooldown
 - Lowered channel time and cooldowns of non-ultimate radiant jungle abilities
-*
 - Made bonuses not cloneable for tempest double
 - Fixed wards not being invisible
 - Fixed blademail and spell lifesteal making you invunlerable
 - Lowered replenish time on wards ability
+
 
 ## 7.9
 - Improved styles of builds page

@@ -28,7 +28,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "AbilityCastRange"                              "600"
         "AbilityCastRangeBuffer"                        "3000"
-        "AbilityCooldown"                               "30.0"
+        "AbilityCooldown"                               "35.0"
         "AbilityCastPoint"                              "1.5"
         "AbilityCastAnimation"                          "ACT_DOTA_CAST_ABILITY_1"
 
@@ -54,7 +54,7 @@
             "04"
             {
                 "var_type"                              "FIELD_INTEGER"
-                "base_damage"                           "80 160 200 260"
+                "base_damage"                           "80 130 180 230"
             }
             "05"
             {
@@ -64,7 +64,7 @@
             "06"
             {
                 "var_type"                              "FIELD_FLOAT"
-                "debuff_duration"                       "0.5 1.0 2.0 2.5"
+                "debuff_duration"                       "0.5 1.0 1.5 2.0"
             }
         }
 
