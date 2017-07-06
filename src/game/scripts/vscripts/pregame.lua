@@ -3991,8 +3991,6 @@ function Pregame:processOptions()
             for abilityName,v in pairs(self.OPSkillsList) do
                 this:banAbility(abilityName)
             end
-        else
-            SpellFixes:SetOPMode(true)
         end
 
         -- Banning Underpowered versions of abilities
@@ -4034,11 +4032,13 @@ function Pregame:processOptions()
             this.perksDisabled = true
         end
 
-        -- LoD ban list
+        -- Single Player Ability Bans
         if not disableBanLists and this.optionStore['lodOptionBanningUseBanList'] == 1 then
             for abilityName,v in pairs(self.SuperOP) do
                 this:banAbility(abilityName)
             end
+        else
+            SpellFixes:SetOPMode(true)
         end
 
         -- All extra ability mutator stuff

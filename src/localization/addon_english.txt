@@ -1462,7 +1462,7 @@
     "warning_templar_assassin_psionic_trap" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Trap.</font>"
     "warning_tiny_grow_lod" "<font color=\'#FF4949\'>Warning:</font> You might need to buy an item, level up this skill, or respawn for the scepter upgrade to work.\nBuying an item and selling it will work.\nCheck the modifier to verify you have the upgrade."
     "warning_ogre_magi_multicast" "<font color=\'#FF4949\'>Warning:</font> Only works with <font color=\'#70EA72\'>Fireblast, Ignire, Bloodlust</font> and <font color=\'#70EA72\'>Unrefined Fireblast</font>. Aghanim's Scepter will not give <font color=\'#70EA72\'>Unrefined Fireblast</font> as an extra ability."
-    "warning_ogre_magi_multicast_lod" "<font color=\'#FF4949\'>Warning:</font> This ability will not have a cooldown if OP abilities are enabled. Aghanim's Scepter will not give <font color=\'#70EA72\'>Unrefined Fireblast</font> as an extra ability."
+    "warning_ogre_magi_multicast_lod" "<font color=\'#FF4949\'>Warning:</font> This ability will not have a cooldown if Single Player abilities are enabled. Aghanim's Scepter will not give <font color=\'#70EA72\'>Unrefined Fireblast</font> as an extra ability."
     "warning_meepo_poof" "<font color=\'#FF4949\'>Warning:</font> Can teleport to any ally who has the same hero as you."
     //"warning_life_stealer_control"                 "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Infest.</font>"
     "warning_true_random_lod_1"                 "<font color=\'#FF4949\'>Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
