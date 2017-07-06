@@ -356,7 +356,7 @@
             "11"
             {
                 "var_type"          "FIELD_FLOAT"
-                "seconds_per_attack"    "5.0 4.0 3.0"
+                "seconds_per_attack"    "3.0 2.0 1.0"
             }
         }
         "OnToggleOn"

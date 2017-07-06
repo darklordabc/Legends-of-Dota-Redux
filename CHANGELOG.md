@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ## 9.0
 - Fury of the immortals: Cooldown increased by 5 seconds, non-stacking damage decreased, stun duration decreased by 0.5
+- Increased rate of fire on siege mode
 
 ## 8.0
 - Fixed Sight being 4 levels
