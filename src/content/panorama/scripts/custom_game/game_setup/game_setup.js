@@ -594,7 +594,7 @@ function OnSelectedSkillsChanged(table_name, key, data) {
             return AbilityUsageData.entries[ability] == null;
         });
 
-        var globalThreshold = 75;
+        var globalThreshold = optionValueList.lodOptionGlobalNewAbilitiesThreshold || 75;
         var isGlobalBelowThreshold = (function(ability) {
             return getAbilityGlobalPickPopularity(ability) > 1 - globalThreshold * 0.01;
         });

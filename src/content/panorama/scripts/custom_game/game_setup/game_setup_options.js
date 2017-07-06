@@ -624,7 +624,7 @@ var advancedOptions = {
                 min: 0,
                 max: 2500,
                 step: 50,
-                default: 500
+                default: 250
             },
             {
                 name: 'lodOptionNewAbilitiesThreshold',
@@ -635,6 +635,36 @@ var advancedOptions = {
                 max: 100,
                 step: 1,
                 default: 20
+            },
+            {
+                name: 'lodOptionGlobalNewAbilitiesBonusGold',
+                des: 'lodOptionDesGlobalNewAbilitiesBonusGold',
+                about: 'lodOptionAboutGlobalNewAbilitiesBonusGold',
+                sort: 'range',
+                min: 0,
+                max: 2500,
+                step: 50,
+                default: 250
+            },
+            {
+                name: 'lodOptionGlobalNewAbilitiesThreshold',
+                des: 'lodOptionDesGlobalNewAbilitiesThreshold',
+                about: 'lodOptionAboutGlobalNewAbilitiesThreshold',
+                sort: 'range',
+                min: 0,
+                max: 100,
+                step: 1,
+                default: 20
+            },
+            {
+                name: 'lodOptionBalancedBuildBonusGold',
+                des: 'lodOptionDesBalancedBuildBonusGold',
+                about: 'lodOptionAboutBalancedBuildBonusGold',
+                sort: 'range',
+                min: 0,
+                max: 3000,
+                step: 100,
+                default: 1000
             },
         ]
     },
