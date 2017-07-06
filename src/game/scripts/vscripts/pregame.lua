@@ -844,6 +844,9 @@ function Pregame:loadDefaultSettings()
     -- Selecting 6 new abilities grants 500 gold
     self:setOption("lodOptionNewAbilitiesThreshold", 20, true)
     self:setOption("lodOptionNewAbilitiesBonusGold", 250, true)
+    self:setOption("lodOptionGlobalNewAbilitiesThreshold", 75, true)
+    self:setOption("lodOptionGlobalNewAbilitiesBonusGold", 250, true)
+    self:setOption("lodOptionBalancedBuildBonusGold", 1000, true)
 end
 
 -- Gets stats for the given player
@@ -2574,6 +2577,36 @@ function Pregame:initOptionSelector()
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
             if value < 0 or value > 2500 then return false end
+
+            -- Valid
+            return true
+        end,
+
+        lodOptionGlobalNewAbilitiesThreshold = function(value)
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 0 or value > 100 then return false end
+
+            -- Valid
+            return true
+        end,
+
+        lodOptionGlobalNewAbilitiesBonusGold = function(value)
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 0 or value > 2500 then return false end
+
+            -- Valid
+            return true
+        end,
+
+        lodOptionBalancedBuildBonusGold = function(value)
+            -- It needs to be a whole number between a certain range
+            if type(value) ~= 'number' then return false end
+            if math.floor(value) ~= value then return false end
+            if value < 0 or value > 3000 then return false end
 
             -- Valid
             return true
@@ -7212,8 +7245,8 @@ function Pregame:giveAbilityUsageBonuses(playerID)
     local pregame = GameRules.pregame
     local threshold = pregame.optionStore["lodOptionNewAbilitiesThreshold"]
     local global = StatsClient.GlobalAbilityUsageData
+    local globalThreshold = pregame.optionStore["lodOptionGlobalNewAbilitiesThreshold"]
 
-    local globalThreshold = 75
     function isGlobalBelowThreshold(ability)
         return (StatsClient.GlobalAbilityUsageData[ability] or 1) > 1 - globalThreshold * 0.01
     end
@@ -7241,7 +7274,7 @@ function Pregame:giveAbilityUsageBonuses(playerID)
         for _,v in ipairs(currentBuild) do
             if usageData and pregame.optionStore["lodOptionNewAbilitiesBonusGold"] > 0 and isBelowThreshold(v) then
                 newAbilities = newAbilities + 1
-            elseif isGlobalBelowThreshold(v) then
+            elseif pregame.optionStore["lodOptionGlobalNewAbilitiesBonusGold"] > 0 and isGlobalBelowThreshold(v) then
                 newGlobalAbilities = newGlobalAbilities + 1
             end
             if pregame.flagsInverse[v] and pregame.flagsInverse[v].passive then
@@ -7256,7 +7289,7 @@ function Pregame:giveAbilityUsageBonuses(playerID)
             if newGlobalAbilities > 0 then
                 hero:AddItemByName('item_new_global_ability_bonus'):SetCurrentCharges(newGlobalAbilities)
             end
-            if passiveAbilities <= 3 then
+            if pregame.optionStore["lodOptionBalancedBuildBonusGold"] > 0 and passiveAbilities <= 3 then
                 hero:AddItemByName('item_balanced_build_bonus')
             end
         end

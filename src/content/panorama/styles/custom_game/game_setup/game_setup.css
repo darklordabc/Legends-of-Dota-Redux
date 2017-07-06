@@ -3410,6 +3410,7 @@ Button:enabled:hover {
     height: 600px;
     flow-children: down;
     visibility: collapse;
+    overflow: squish scroll;
 
     padding: 0 8px 0 8px;
 }

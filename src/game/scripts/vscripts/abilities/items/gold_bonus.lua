@@ -13,16 +13,15 @@ end
 
 item_new_ability_bonus = class(gold_bonus)
 function item_new_ability_bonus:GetGold()
-	--return GameRules.pregame.optionStore["lodOptionNewAbilitiesBonusGold"]
-  return 250
+	return GameRules.pregame.optionStore["lodOptionNewAbilitiesBonusGold"]
 end
 
 item_new_global_ability_bonus = class(gold_bonus)
 function item_new_global_ability_bonus:GetGold()
-	return 250
+  return GameRules.pregame.optionStore["lodOptionGlobalNewAbilitiesBonusGold"]
 end
 
 item_balanced_build_bonus = class(gold_bonus)
 function item_balanced_build_bonus:GetGold()
-	return 1000
+  return GameRules.pregame.optionStore["lodOptionBalancedBuildBonusGold"]
 end
