@@ -3710,7 +3710,7 @@ Button:enabled:hover {
     horizontal-align: right;
     margin-right: 5px;
     width: height-percentage(100%);
-    height: 100%;
+    height: 75%;
     tooltip-position: top;
     tooltip-body-position: 50%;
 }
@@ -3770,7 +3770,7 @@ Button:enabled:hover {
     flow-children: down;
 }
 
-.phase_selection_selected:not(.ingame_menu) #balancedBuildPanel
+.phase_selection_selected #balancedBuildPanel
 {
     visibility: visible;
 }
@@ -3790,7 +3790,7 @@ Button:enabled:hover {
     horizontal-align: right;
     margin-right: 5px;
     width: height-percentage(100%);
-    height: 100%;
+    height: 75%;
     tooltip-position: top;
     tooltip-body-position: 50%;
 }
