@@ -140,9 +140,16 @@ function modifier_item_octarine_core_consumable:OnTakeDamage(keys)
       self:Destroy()
       return
     end
+
+    local damage_flags = keys.damage_flags
     
-    if keys.inflictor:GetAbilityName() == "item_blademail" then return end
-    -- counting the amout of octarine cores
+    if bit.band(damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) == DOTA_DAMAGE_FLAG_HPLOSS then
+      return nil
+    end
+    if bit.band(damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) == DOTA_DAMAGE_FLAG_REFLECTION then
+      return nil
+    end
+    --counting the amout of octarine cores
     local count = 0
     for i=0,self:GetCaster():GetModifierCount() do
       if self:GetCaster():GetModifierNameByIndex(i) == "modifier_item_octarine_core_consumable" then
