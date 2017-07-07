@@ -3,6 +3,28 @@ bash_reflect_op = class({})
 modifier_bash_reflect = class({})
 LinkLuaModifier("modifier_bash_reflect","abilities/bash_reflect.lua",LUA_MODIFIER_MOTION_NONE)
 
+function bash_reflect:CastFilterResultTarget(target)
+  if self:GetCaster() == target then
+    return UF_FAIL_CUSTOM
+  end
+  return UF_SUCCESS
+end
+function bash_reflect:GetCustomCastErrorTarget(target)
+  if self:GetCaster() == target then
+    return "#cant_target_self"
+  end
+end
+function bash_reflect_op:CastFilterResultTarget(target)
+  if self:GetCaster() == target then
+     return UF_FAIL_CUSTOM
+  end
+  return UF_SUCCESS
+end
+function bash_reflect_op:GetCustomCastErrorTarget(target)
+  if self:GetCaster() == target then
+    return "#cant_target_self"
+  end
+end
 function bash_reflect:OnSpellStart()
   self:GetCaster():RemoveModifierByName("modifier_bash_reflect")
   self:GetCursorTarget():AddNewModifier(self:GetCaster(),self,"modifier_bash_reflect",{duration = self:GetSpecialValueFor("duration")})
