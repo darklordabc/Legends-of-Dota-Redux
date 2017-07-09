@@ -13,6 +13,7 @@ function leshrac_pulse_nova_redux:OnToggle()
       self:GetCaster():AddNewModifier(self:GetCaster(),self,"modifier_leshrac_pulse_nova_lighting_redux",{})
     end
   else
+    StopSoundOn("Hero_Leshrac.Pulse_Nova", self:GetCaster())
     self:GetCaster():RemoveModifierByName("modifier_leshrac_pulse_nova_redux")
     self:GetCaster():RemoveModifierByName("modifier_leshrac_pulse_nova_lighting_redux")
   end
