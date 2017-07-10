@@ -321,7 +321,7 @@
             "04"
             {
                 "var_type"          "FIELD_FLOAT"
-                "transform_time"    "3"
+                "transform_time"    "3.0 2.5 2.0"
             }
             "05"
             {

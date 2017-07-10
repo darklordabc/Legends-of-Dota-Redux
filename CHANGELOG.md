@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 - Multicast Redux now has a cooldown (in games where single player abilities are banned)
 - Set siege mode transformation time to 3 seconds
 - Fixed Tenactiy and Blade Mail OP not working
+- Made siege mode transform lower by .5 seconds each level
 
 ## 8.0
 - Fixed Sight being 4 levels
