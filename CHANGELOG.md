@@ -8,6 +8,9 @@ All notable changes to this project will be documented in this file.
 - Set siege mode transformation time to 3 seconds
 - Fixed Tenactiy and Blade Mail OP not working
 - Made siege mode transform lower by .5 seconds each level
+- Hopefully fixed looping sounds with pulse nova
+- Fixed icons being broken in single draft mode when you switcht to most used tab
+- Trickshot and Siege mode is now a troll combo
 
 ## 8.0
 - Fixed Sight being 4 levels

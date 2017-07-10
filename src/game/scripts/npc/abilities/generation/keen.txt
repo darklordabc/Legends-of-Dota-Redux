@@ -294,6 +294,7 @@
         "AbilityCastPoint"              "2 1.5 1"
         "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
         "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "ReduxBans"                     "ebf_clinkz_trickshot"
     
         "precache"
         {
