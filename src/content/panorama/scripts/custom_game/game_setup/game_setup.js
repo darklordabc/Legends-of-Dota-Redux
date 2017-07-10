@@ -2313,6 +2313,11 @@ function getSkillFilterInfo(abilityName) {
         }
     }
 
+    if (activeTabs["mostused"]) {
+        var mostUsed = AbilityUsageData.data[abilityName];
+        cat = !!mostUsed ? "mostused" : "nothing";
+    }
+
     // Check if the tab is active
     if(shouldShow && activeTabs[cat] == null) {
         shouldShow = false;
@@ -2371,11 +2376,6 @@ function getSkillFilterInfo(abilityName) {
                 break;
             }
         }
-    }
-
-    var mostUsed = AbilityUsageData.data[abilityName];
-    if (activeTabs["mostused"]) {
-        shouldShow = !!mostUsed;
     }
 
     return {
@@ -2462,7 +2462,6 @@ function OnSkillTabShown(tabName) {
                     ab.SetHasClass('bannedSkill', filterInfo.banned);
                     ab.SetHasClass('takenSkill', filterInfo.taken);
                     ab.SetHasClass('notDraftable', filterInfo.cantDraft);
-                    ab.SetHasClass('trollCombo', filterInfo.trollCombo);
 
                     if (balanceMode) {
                         // Set the label to the cost of the ability
@@ -2565,7 +2564,6 @@ function OnSkillTabShown(tabName) {
             if (activeTabs["mostused"]) {
                 for (var uses in subSorting)
                 {
-                    $.Msg(uses);
                     var sortGroup = subSorting[uses];
 
                     var subCon = con;
@@ -2698,7 +2696,7 @@ function OnSkillTabShown(tabName) {
                 if (typeof($.GetContextPanel().balanceMode) === "boolean") {
                     label.visible = $.GetContextPanel().balanceMode;
                 }
-                //abcon.SetHasClass('disallowedSkill', true);
+                // abcon.SetHasClass('disallowedSkill', true);
 
                 makeSkillSelectable(abcon);
 
@@ -2767,13 +2765,17 @@ function OnSkillTabShown(tabName) {
                         } else {
                             activeTabs[tabName] = true;
                         }
+
+                        for (var g in abilityStore) {
+                            abilityStore[g].SetHasClass("lodDraftAbility", isDraftGamemode());
+                        }
                     } else {
                         // Reset active tabs
                         activeTabs = {};
                         activeTabs[tabName] = true;
 
                         for (var g in abilityStore) {
-                            abilityStore[g].SetHasClass("lodDraftAbility", tabName == "mostused");
+                            abilityStore[g].SetHasClass("lodDraftAbility", tabName == "mostused" || isDraftGamemode());
                         }
                     }
 
