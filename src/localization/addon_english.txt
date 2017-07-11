@@ -7433,4 +7433,20 @@
     "DOTA_Tooltip_ability_bash_reflect_op_duration_multiplier"                "%DURATION MULTIPLIER:"
     "DOTA_Tooltip_ability_bash_reflect_op_Lore"                                  "Stun paid back in spades."
 
+    "DOTA_Tooltip_ability_skeleton_king_reincarnation_redux"								"Reincarnation Redux"
+	"DOTA_Tooltip_ability_skeleton_king_reincarnation_redux_Description"					"Wraith King's form regroups after death, allowing him to resurrect when killed in battle.  Upon death, enemy units in a %slow_radius% radius will be slowed. <font color='#70EA72'>Longer cooldown.</font>\n\nUpgradable by Aghanim's Scepter."
+	"DOTA_Tooltip_ability_skeleton_king_reincarnation_redux_aghanim_description"			"If a nearby allied hero is slain, they will be transformed into a wraith and have their death delayed for 7 seconds."
+	"DOTA_Tooltip_ability_skeleton_king_reincarnation_redux_Lore"							"Conspirators against the Wraith King wonder why he never stays dead."
+	"DOTA_Tooltip_ability_skeleton_king_reincarnation_redux_Note0"						"Wraith King won't revive if he doesn't have enough mana."
+	"DOTA_Tooltip_ability_skeleton_king_reincarnation_redux_Note1"						"If Wraith King has an Aegis and Reincarnation off cooldown, Reincarnation will trigger first."
+	"DOTA_Tooltip_ability_skeleton_king_reincarnation_redux_Note2"						"Revives with full HP and Mana."
+	"DOTA_Tooltip_ability_skeleton_king_reincarnation_redux_Note3"						"Credit for allies whose death was delayed will go to whoever struck the original killing blow."
+	"DOTA_Tooltip_ability_skeleton_king_reincarnation_redux_Note4"						"Wraith Delay affects Wraith King's actual deaths, not Reincarnate deaths."
+	"DOTA_Tooltip_ability_skeleton_king_reincarnation_redux_reincarnate_time"				"REINCARNATION TIME:"
+	"DOTA_Tooltip_ability_skeleton_king_reincarnation_redux_movespeed"					"%MOVEMENT SLOW:"
+	"DOTA_Tooltip_ability_skeleton_king_reincarnation_redux_attackslow_tooltip"			"ATTACK SPEED SLOW:"
+	"DOTA_Tooltip_ability_skeleton_king_reincarnation_redux_slow_duration"				"SLOW DURATION:"
+	"DOTA_Tooltip_ability_skeleton_king_reincarnation_redux_scepter_duration"				"SCEPTER ALLY DEATH DELAY:"
+	"DOTA_Tooltip_ability_skeleton_king_reincarnation_redux_aura_radius_tooltip_scepter"					"SCEPTER DEATH DELAY RADIUS:"
+
 }

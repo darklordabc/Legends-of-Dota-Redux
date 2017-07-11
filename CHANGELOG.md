@@ -11,6 +11,8 @@ All notable changes to this project will be documented in this file.
 - Hopefully fixed looping sounds with pulse nova
 - Fixed icons being broken in single draft mode when you switcht to most used tab
 - Trickshot and Siege mode is now a troll combo
+- Reincarnation is now a single player ability, but a Redux version has been added which has a longer cooldown
+- Both Reincarnations are now troll combos with shallow grave because its a buggy interaction
 
 ## 8.0
 - Fixed Sight being 4 levels

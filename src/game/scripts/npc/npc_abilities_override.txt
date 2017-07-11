@@ -1153,8 +1153,8 @@
     "skeleton_king_reincarnation"
     {
         "ReduxFlags"                                                           "upgradeable | wtfAutoBan"
-        "ReduxCost"                                                            "10"
-        "ReduxBans"                                                            "tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux"
+        "ReduxCost"                                                            "120"
+        "ReduxBans"                                                            "imba_dazzle_shallow_grave_passive | tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux"
     }
     "zuus_thundergods_wrath"
     {
@@ -4456,12 +4456,9 @@
         "TalentRequiredAbility"                                                   "witch_doctor_paralyzing_cask"
     }
 
-
-
-
     "special_bonus_unique_wraith_king_1"
     {
-        "TalentRequiredAbility"                                                   "skeleton_king_reincarnation"
+        "TalentRequiredAbility"                                                   "skeleton_king_reincarnation_redux"
     }
 
     "special_bonus_unique_wraith_king_2"
@@ -4476,7 +4473,7 @@
 
     "special_bonus_unique_wraith_king_4"
     {
-        "TalentRequiredAbility"                                                   "skeleton_king_reincarnation"
+        "TalentRequiredAbility"                                                   "skeleton_king_reincarnation_redux"
     }
 
     "special_bonus_unique_zeus"
