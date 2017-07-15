@@ -7520,25 +7520,26 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                 else
                     spawnedUnit:RemoveModifierByName('modifier_silencer_int_steal')
                 end
+            -- Disabled due to innates being convereted into normal 4 level abilities
             -- Stalker Innate Auto-Level
-            if spawnedUnit:HasAbility('night_stalker_innate_redux') then
-                local stalkerInnate = spawnedUnit:FindAbilityByName('night_stalker_innate_redux')
-                if stalkerInnate then
-                    if stalkerInnate:GetLevel() ~= 1 then
-                        stalkerInnate:UpgradeAbility(false)
-                    end
-                end
-            end
+            --if spawnedUnit:HasAbility('night_stalker_innate_redux') then
+            --    local stalkerInnate = spawnedUnit:FindAbilityByName('night_stalker_innate_redux')
+            --    if stalkerInnate then
+            --        if stalkerInnate:GetLevel() ~= 1 then
+            --            stalkerInnate:UpgradeAbility(false)
+            --        end
+            --    end
+            --end
 
             -- KOTL Innate Auto-Level
-            if spawnedUnit:HasAbility('keeper_of_the_light_innate_redux') then
-                local kotlInnate = spawnedUnit:FindAbilityByName('keeper_of_the_light_innate_redux')
-                if kotlInnate then
-                    if kotlInnate:GetLevel() ~= 1 then
-                        kotlInnate:UpgradeAbility(false)
-                    end
-                end
-            end
+            --if spawnedUnit:HasAbility('keeper_of_the_light_innate_redux') then
+            --    local kotlInnate = spawnedUnit:FindAbilityByName('keeper_of_the_light_innate_redux')
+            --    if kotlInnate then
+            --        if kotlInnate:GetLevel() ~= 1 then
+            --            kotlInnate:UpgradeAbility(false)
+            --        end
+            --    end
+            --end
 
             -- 'No Charges' fix for Gyro Homing Missle
             if spawnedUnit:HasAbility('gyrocopter_homing_missile') then

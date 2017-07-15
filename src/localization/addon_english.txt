@@ -1486,8 +1486,6 @@
     "warning_pudge_flesh_heap_spell_amp" "<font color=\'#FF4949\'>Warning:</font> Will not show an increase in the tooltip information, but spell damge will be increased. Purple text popups will appear above hero when you do large spell damage.\n"
     "warning_treant_eyes_in_the_forest" "<font color=\'#FF4949\'>Warning:</font> Enemies will have a debuff notification when within 1000 range of an enchanted tree."
     "warning_angel_arena_transmute" "<font color=\'#FF4949\'>Warning:</font> This ability has strange coding, cooldown manipulation abilities will not work on it.\n"
-    "warning_night_stalker_innate_redux" "<font color=\'#FF4949\'>Warning:</font> This ability requires <font color=\'#70EA72\'>Aghanim's Scepter</font> to have any effect.\n"
-    "warning_keeper_of_the_light_innate_redux" "<font color=\'#FF4949\'>Warning:</font> This ability requires <font color=\'#70EA72\'>Aghanim's Scepter</font> to have any effect.\n"
     "warning_chen_holy_persuasion" "<font color=\'#FF4949\'>Warning:</font> Persuading Ancients requires levels in <font color=\'#70EA72\'>Hand of God</font> to have any effect.\n"
     "warning_centaur_return" "<font color=\'#FF4949\'>Warning:</font> Does not damage buildings.\n"
 
@@ -2190,7 +2188,8 @@
 
     // Night Stalker unobstructed vision
     "DOTA_Tooltip_ability_night_stalker_innate_redux"                        "Unobstructed Night Vision"
-    "DOTA_Tooltip_ability_night_stalker_innate_redux_Description"            "Will grant unobstructed vision at night time if you have Aghanim's Scepter upgrade."
+    "DOTA_Tooltip_ability_night_stalker_innate_redux_Description"            "Will grant unobstructed vision at night time.\n\n Upgradeable by Aghanim's Scepter"
+    "DOTA_Tooltip_ability_night_stalker_innate_redux_aghanim_description"            "Improves vision by 1000."
     "DOTA_Tooltip_ability_night_stalker_innate_redux_vision_radius"     "VISION RADIUS:"
 
     "DOTA_Tooltip_modifier_night_stalker_innate_redux"                      "Night Vision"
@@ -2199,7 +2198,9 @@
 
     // KOTL unobstructed vision
     "DOTA_Tooltip_ability_keeper_of_the_light_innate_redux"                        "Unobstructed Day Vision"
-    "DOTA_Tooltip_ability_keeper_of_the_light_innate_redux_Description"            "Will grant unobstructed vision at day time if you have Aghanim's Scepter upgrade."
+    "DOTA_Tooltip_ability_keeper_of_the_light_innate_redux_Description"            "Will grant unobstructed vision at day time.\n\n Upgradeable by Aghanim's Scepter"
+    "DOTA_Tooltip_ability_keeper_of_the_light_innate_aghanim_description"            "Improves vision by 1000."
+    
     "DOTA_Tooltip_ability_keeper_of_the_light_innate_redux_vision_radius"     "VISION RADIUS:"
 
     "DOTA_Tooltip_modifier_keeper_of_the_light_innate_redux"                      "Day Vision"

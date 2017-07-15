@@ -13,6 +13,10 @@ All notable changes to this project will be documented in this file.
 - Trickshot and Siege mode is now a troll combo
 - Reincarnation is now a single player ability, but a Redux version has been added which has a longer cooldown
 - Both Reincarnations are now troll combos with shallow grave because its a buggy interaction
+*
+- Mortal Coil: Decreased Attack speed per agility by 0.25 at all levels. Maximum duration reduced by 0.2 seconds at all levels.
+- Unobstructed day vision and night vision are now normal 4-level abilities and give benefits without aghs, but aghs still gives huge benefit to them.
+- Fixed some missing particles for mercy abilities
 
 ## 8.0
 - Fixed Sight being 4 levels
