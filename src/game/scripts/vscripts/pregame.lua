@@ -7871,6 +7871,8 @@ function Pregame:fixSpawningIssues()
                     lone_druid_spirit_bear = true,
                     necronomicon_warrior_last_will_lod = true,
                     roshan_bash = true,
+                    arc_warden_tempest_double = true,    -- This is to stop tempest doubles from getting the ability and using cooldown reduction to cast again
+                    arc_warden_tempest_double_redux = true,         
                 }
 
                 -- Apply the build

@@ -2812,7 +2812,7 @@
     {
         "ReduxPerks"                                                           "lightning"
         "ReduxCost"                                                            "60"
-        "ReduxBans"                                                            "tinker_rearm | arc_warden_tempest_double_redux"
+        "ReduxBans"                                                            "imba_omniknight_purification | tinker_rearm | arc_warden_tempest_double_redux"
         "ReduxFlags"                                                           ""
     }
     "disruptor_glimpse_op"

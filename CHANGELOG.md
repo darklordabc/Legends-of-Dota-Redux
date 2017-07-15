@@ -17,6 +17,8 @@ All notable changes to this project will be documented in this file.
 - Mortal Coil: Decreased Attack speed per agility by 0.25 at all levels. Maximum duration reduced by 0.2 seconds at all levels.
 - Unobstructed day vision and night vision are now normal 4-level abilities and give benefits without aghs, but aghs still gives huge benefit to them.
 - Fixed some missing particles for mercy abilities
+- Tempest Double and Omniguard are now troll combos due to buggy intereaction
+- Tempest Double clones will now no longer recieve the tempest double ability, meaning they can't cast it to create infinite clones
 
 ## 8.0
 - Fixed Sight being 4 levels
