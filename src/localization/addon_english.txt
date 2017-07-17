@@ -833,7 +833,7 @@
     "hintUrsa"                         "Ursa does 15% extra damage to neutrals, including Roshan."
     "hintStormSpirit"                         "At the start of the game, Storm Spirit gains a free level of Overload, whether he has it or not."
     "hintMorphling"                         "Morphling gains 50% bonus movement speed in water."
-    "hintMonkeyKing"                         "Monkey King starts the game with Mischief."
+    "hintMonkeyKing"                         "At the start of the game, Monkey King gains a free level of Jingu Mastery, whether he has it or not."
     "hintTimbersaw"                         "Timbersaw gains 1% of his max health and mana whenever a nearby tree is cut down."
     "hintTideHunter"                         "When Tidehunter dies, Ravage's cooldown will be refreshed."
     "hintBloodSeeker"                         "When Blood Seeker casts Rupture, 100% of the mana cost will be refunded and cooldown reduced by 20%."
@@ -922,7 +922,7 @@
     "hintUndying"                         "Undying gains +1 strength per creep death or +4 strength per hero death in a 900 radius for 30 seconds."
     "hintVenomancer"                         "Increases the duration of all Poison effects Venomancer applies by 25%."
     "hintViper"                         "Poison effects applied by Viper also lower the target's armor by 2."
-    "hintWarlock"                         "Warlock starts the game with 2 free Observer Wards."
+    "hintWarlock"                         "Warlock starts the game with 4 free Observer Wards."
     "hintWeaver"                         "Weaver will automatically cast Time Lapse upon taking fatal damage. Requires level 6 or higher."
     "hintWindranger"                         "If Windranger has no passives, all her active spells will refund 20% mana and have 20% reduced cooldowns."
     "hintWK"                         "Wraith King can buyback with a 50% reduced cooldown, refunding 50% of the buyback cost and removing the gold penalty."
@@ -1285,9 +1285,8 @@
     "unique_mechanic_medusa"                        "Medusa gains +0.5 mana regeneration per active <font color=\'#ffd966\'>Toggle</font> effect."
     "unique_mechanic_meepo"                 "Meepo's damage is increased by 5% for every other Meepo on his team. Takes 25% max health as damage whenever a Meepo dies."
     "unique_mechanic_mirana"                        "When Mirana casts <font color=\'#ffd966\'>Skillshots</font>, they will have 50% mana refunded and cooldowns reduced by 20%."
-    "unique_mechanic_zuus"                        "Monkey King starts the game with <font color=\'#ffd966\'>Mischief</font>."
     "unique_mechanic_morphling"                              "Morphling gains 50% bonus movement speed in water."
-    "unique_mechanic_monkey_king"                              "Monkey King starts the game with <font color=\'#ffd966\'>Mischief</font>."
+    "unique_mechanic_monkey_king"                              "At the start of the game, Monkey King gains a free level of <font color=\'#ffd966\'>Jingu Mastery</font>, whether he has it or not."
     "unique_mechanic_naga_siren"                        "<font color=\'#ffd966\'>Illusion</font> creating abilities will have 50% of their mana refunded and cooldowns reduced by 20%."
     "unique_mechanic_furion"                        "The cooldowns of all <font color=\'#ffd966\'>Teleportation</font> abilities are reduced by 50% for Nature's Prophet."
     "unique_mechanic_necrolyte"                        "At the start of the game, Necrophos gains a free level of <font color=\'#ffd966\'>Heartstopper Aura</font>, whether he has it or not."
@@ -1337,7 +1336,7 @@
     "unique_mechanic_venomancer"                        "Increases the duration of all <font color=\'#ffd966\'>Poison</font> effects Venomancer applies by 25%."
     "unique_mechanic_viper"                        "<font color=\'#ffd966\'>Poison</font> effects applied by Viper also lower the target's armor by 2."
     "unique_mechanic_visage"                        "<font color=\'#ffd966\'>Summon Familiars</font> will refund 100% of manacost and have its cooldown reduced by 50%."
-    "unique_mechanic_warlock"                        "Warlock starts the game with 2 free <font color=\'#ffd966\'>Observer Wards</font>."
+    "unique_mechanic_warlock"                        "Warlock starts the game with 4 free <font color=\'#ffd966\'>Observer Wards</font>."
     "unique_mechanic_weaver"                        "Weaver will automatically cast <font color='#ffd966'>Time Lapse</font> upon taking fatal damage."
     "unique_mechanic_windrunner"                        "If Windranger has no passives, all her active spells will refund 20% mana and have 20% reduced cooldowns."
     "unique_mechanic_winter_wyvern"         "When Winter Wyvern's health and mana are above 75% she gains flying status after a 5 second delay."
@@ -3570,7 +3569,7 @@
 
     /// MONKEY KING
     "DOTA_Tooltip_modifier_npc_dota_hero_monkey_king_perk"    "Monkey King Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_monkey_king_perk_Description"    "Monkey King starts the game with Mischief."
+    "DOTA_Tooltip_modifier_npc_dota_hero_monkey_king_perk_Description"    "At the start of the game, Monkey King gains a free level of Jingu Mastery, whether he has it or not."
 
     /// MORPHLING​
     "DOTA_Tooltip_modifier_npc_dota_hero_morphling_perk"    "Morphling Perk"
@@ -3792,7 +3791,7 @@
 
     /// WARLOCK​
     "DOTA_Tooltip_modifier_npc_dota_hero_warlock_perk"  "Warlock Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_warlock_perk_Description"  "Warlock starts the game with 2 free Observer Wards."
+    "DOTA_Tooltip_modifier_npc_dota_hero_warlock_perk_Description"  "Warlock starts the game with 4 free Observer Wards."
 
     /// WEAVER
     "DOTA_Tooltip_modifier_npc_dota_hero_weaver_perk"   "Weaver Perk"
