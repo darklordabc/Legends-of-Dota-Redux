@@ -7379,7 +7379,7 @@
     "DOTA_Tooltip_ability_basic_stat_bonus_tooltipBonus"                                  "BONUS ATTRIBUTES PER LEVEL:"
     "DOTA_Tooltip_ability_basic_stat_bonus_Lore"                                  "The Original and the Best."
 
-    "DOTA_Tooltip_ability_basic_stat_bonus_op"                                       "Attribute Bonus"
+    "DOTA_Tooltip_ability_basic_stat_bonus_op"                                       "Attribute Bonus OP"
     "DOTA_Tooltip_ability_basic_stat_bonus_op_Description"                           "Gives <font color='#70EA72'>more</font> bonus strengh, intelligence and agility. Has 20 levels."
     "DOTA_Tooltip_ability_basic_stat_bonus_op_tooltipBonus"                                  "BONUS ATTRIBUTES PER LEVEL:"
     "DOTA_Tooltip_ability_basic_stat_bonus_op_Lore"                                  "The Original and the Best."
