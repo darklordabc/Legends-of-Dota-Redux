@@ -19,6 +19,7 @@ All notable changes to this project will be documented in this file.
 - Fixed some missing particles for mercy abilities
 - Tempest Double and Omniguard are now troll combos due to buggy intereaction
 - Tempest Double clones will now no longer recieve the tempest double ability, meaning they can't cast it to create infinite clones
+- Changed Alchemist's Perk
 
 ## 8.0
 - Fixed Sight being 4 levels
