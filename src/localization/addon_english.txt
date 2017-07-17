@@ -858,7 +858,7 @@
     "hintQOP"                         "Queen of Pain deals 10% more damage to male heroes, but receives 10% more damage from female heroes."
     "hintWisp"                         "Wisp gains 1 free level of Essence Aura Redux, whether it has it or not."
     "hintMeepo"                         "Meepo's damage is increased by 5% for every other Meepo on his team. Takes 25% max health as damage whenever a Meepo dies."
-    "hintPL"                         "At the start of the game, Phantom Lancer gains a free level of Phantom Rush, whether he has it or not."
+    "hintPL"                         "Phantom Lancer gains Phantom Rush as a free ability."
     "hintCM"                         "Crystal Maiden gains +2 movement speed for each level she puts in Support skills."
     "hintAntiMage"                         "After Anti-Mage blinks he will silence enemies within 200 radius for 2 seconds."
     "hintElderTitan"                         "Elder Titan gains 3% bonus movement speed for every aura he is carrying."
@@ -902,7 +902,7 @@
     "hintPudge"                         "Pudge receives 2 charges of Meat Hook. When Meat Hook deals damage, Pudge receives a debuff which prevents Meat Hook from dealing damage."
     "hintPugna"                         "Drain spells will have 50% mana refunded and have 25% reduced cooldowns when cast by Pugna."
     "hintRazor"                         "Reduces the manacost and cooldown of all abilities by 25% when Razor is Static Linked to an enemy."
-    "hintRubick"                         "Rubick gains 1 free level of Null Field, whether he has it or not."
+    "hintRubick"                         "Rubick gains Null Field as a free ability."
     "hintSandKing"                         "Sand King refunds 30% of the manacost of any Channeled abilities he casts."
     //"hintShadowDemon"                         "When Shadow Demon buys an item that is limited by stock, he gains a permanent +1 to all attributes. "
     "hintSilencer"                         "Silence effects applied by Silencer last 25% longer."
@@ -1298,7 +1298,7 @@
     "unique_mechanic_oracle"                        "Support items used by Oracle will have their cooldowns reduced by 20%."
     "unique_mechanic_obsidian_destroyer"                        "<font color=\'#ffd966\'>Astral Imprisonment</font> steals 7 intelligence for 60 seconds when cast by Outworld Devourer."
     "unique_mechanic_phantom_assassin"               "When Phantom Assassin uses <font color=\'#ffd966\'>Dagger</font> abilities they will have 50% of their manacost refunded, and their cooldown reduced by 2 second."
-    "unique_mechanic_phantom_lancer"            "At the start of the game, Phantom Lancer gains a free level of <font color=\'#ffd966\'>Phantom Rush</font>, whether he has it or not."
+    "unique_mechanic_phantom_lancer"            "Phantom Lancer gains <font color=\'#ffd966\'>Phantom Rush</font> as a free ability."
     "unique_mechanic_phoenix"           "Phoenix passively triggers <font color=\'#ffd966\'>Supernova</font> when taking lethal damage."
     "unique_mechanic_puck"          "Puck has a 50% chance to reflect disjointed spells."
     "unique_mechanic_pudge"                        "Pudge receives 2 charges of <font color=\'#ffd966\'>Meat Hook</font>. When Meat Hook deals damage, Pudge receives a debuff which prevents Meat Hook from dealing damage."
@@ -1306,7 +1306,7 @@
     "unique_mechanic_queenofpain"           "Queen of Pain deals 10% more damage to <font color=\'#ffd966\'>Male</font> heroes, but recieves 10% more damage from <font color=\'#ffd966\'>Female</font> heroes."
     "unique_mechanic_razor"                        "Reduces the manacost and cooldown of all abilities by 25% when Razor is <font color=\'#ffd966\'>Static Linked</font> to an enemy."
     "unique_mechanic_riki"                  "Riki's health regeneration is increased by 4 while invisible."
-    "unique_mechanic_rubick"                        "Rubick gains 1 free level of <font color=\'#ffd966\'>Null Field</font>, whether he has it or not. "
+    "unique_mechanic_rubick"                        "Rubick gains <font color=\'#ffd966\'>Null Field</font> as a free ability."
     "unique_mechanic_sand_king"                        "Refund 30% of the manacost of <font color=\'#ffd966\'>Channeled</font> abilities. "
     //"unique_mechanic_shadow_demon"                        "When Shadow Demon buys an item that is limited by stock, he gains a permanent +1 to all attributes."
     "unique_mechanic_nevermore"             "At the start of the game, Shadow Fiend gains a free level of <font color=\'#ffd966\'>Necromastery</font>, whether he has it or not."
@@ -3620,7 +3620,7 @@
 
     /// PHANTOM LANCER​
     "DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk"   "Phantom Lancer Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk_Description"   "At the start of the game, Phantom Lancer gains a free level of Phantom Rush, whether he has it or not.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk_Description"   "Phantom Lancer gains Phantom Rush as a free ability.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
     "DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_cooldown"   "Recharging"
     "DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_cooldown_Description"   "Phantom Rush is on cooldown."
 
@@ -3658,7 +3658,7 @@
 
     /// RUBICK​
     "DOTA_Tooltip_modifier_npc_dota_hero_rubick_perk"   "Rubick Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_rubick_perk_Description"   "Rubick gains 1 free level of Null Field, whether he has it or not."
+    "DOTA_Tooltip_modifier_npc_dota_hero_rubick_perk_Description"   "Rubick gains Null Field as a free ability."
 
     /// SAND KING​
     "DOTA_Tooltip_modifier_npc_dota_hero_sand_king_perk"    "Sand King Perk"

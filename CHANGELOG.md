@@ -20,6 +20,8 @@ All notable changes to this project will be documented in this file.
 - Tempest Double and Omniguard are now troll combos due to buggy intereaction
 - Tempest Double clones will now no longer recieve the tempest double ability, meaning they can't cast it to create infinite clones
 - Changed Alchemist's Perk
+- Hero Perks that give a free level in an ability now show the ability on the hud, it just cant be leveled any further
+- Improved Phantom Lancers and Rubicks perk so that they give an entire free ability instead of just 1 level in it
 
 ## 8.0
 - Fixed Sight being 4 levels

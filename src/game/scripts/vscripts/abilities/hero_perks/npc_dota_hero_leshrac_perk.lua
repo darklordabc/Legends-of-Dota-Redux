@@ -41,7 +41,8 @@ function modifier_npc_dota_hero_leshrac_perk:OnCreated(keys)
             octarine:UpgradeAbility(false)
         else 
             octarine = caster:AddAbility("octarine_vampirism_lod")
-            octarine:SetHidden(true)
+            octarine:SetStolen(true)
+            octarine:SetActivated(true)
             octarine:SetLevel(1)
         end
     end

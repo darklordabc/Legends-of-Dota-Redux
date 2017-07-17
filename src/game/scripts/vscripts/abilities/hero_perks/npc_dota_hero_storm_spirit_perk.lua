@@ -50,7 +50,8 @@ function modifier_npc_dota_hero_storm_spirit_perk:OnCreated(keys)
               overload:UpgradeAbility(false)
           else 
               overload = caster:AddAbility("storm_spirit_overload")
-              overload:SetHidden(true)
+              overload:SetStolen(true)
+              overload:SetActivated(true)
               overload:SetLevel(1)
           end
         end

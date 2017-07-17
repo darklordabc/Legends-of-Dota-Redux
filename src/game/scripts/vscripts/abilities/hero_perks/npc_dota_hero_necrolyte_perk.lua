@@ -44,7 +44,8 @@ function modifier_npc_dota_hero_necrolyte_perk:OnCreated(keys)
             sadist:UpgradeAbility(false)
         else 
             sadist = caster:AddAbility("necrolyte_heartstopper_aura")
-            sadist:SetHidden(true)
+            sadist:SetStolen(true)
+            sadist:SetActivated(true)
             sadist:SetLevel(1)
         end
     end

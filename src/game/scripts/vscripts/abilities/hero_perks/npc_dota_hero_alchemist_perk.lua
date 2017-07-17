@@ -44,7 +44,8 @@ function modifier_npc_dota_hero_alchemist_perk:OnCreated()
             greed:UpgradeAbility(false)
         else 
             greed = caster:AddAbility("alchemist_goblins_greed")
-            greed:SetHidden(true)
+            greed:SetStolen(true)
+            greed:SetActivated(true)
             greed:SetLevel(1)
         end
     end
