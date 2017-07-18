@@ -11,7 +11,7 @@
         "AbilityTextureName"                                                   "custom/imba_omniknight_purification"
         "AbilityCastRange"                                                     "%radius"
         "AbilityCastPoint"                                                     "0.25"
-        "AbilityCooldown"                                                      "25"
+        "AbilityCooldown"                                                      "40 35 30 25"
         "precache"
         {
             "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
@@ -22,17 +22,17 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "heal_base"                                            "90 180 270 360"
+                "heal_base"                                            "200"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "heal_pct"                                             "12"
+                "heal_pct"                                             "8 12 16 20"
             }
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage_factor"                                        "70"
+                "damage_factor"                                        "60"
             }
             "04"
             {
