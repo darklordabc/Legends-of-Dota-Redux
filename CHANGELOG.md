@@ -13,7 +13,6 @@ All notable changes to this project will be documented in this file.
 - Trickshot and Siege mode is now a troll combo
 - Reincarnation is now a single player ability, but a Redux version has been added which has a longer cooldown
 - Both Reincarnations are now troll combos with shallow grave because its a buggy interaction
-*
 - Mortal Coil: Decreased Attack speed per agility by 0.25 at all levels. Maximum duration reduced by 0.2 seconds at all levels.
 - Unobstructed day vision and night vision are now normal 4-level abilities and give benefits without aghs, but aghs still gives huge benefit to them.
 - Fixed some missing particles for mercy abilities
@@ -24,6 +23,9 @@ All notable changes to this project will be documented in this file.
 - Warlock's Perk now gives 4 observer wards instead of 2
 - Hero Perks that give a free level in an ability now show the ability on the hud, it just cant be leveled any further
 - Improved Phantom Lancers and Rubicks perk so that they give an entire free ability instead of just 1 level in it
+*
+- Omniguard cooldown increased at earlier levels, heal increased and heal percent increased
+- Nothl Protection cooldown decreased but duration decreased too 
 
 ## 8.0
 - Fixed Sight being 4 levels
