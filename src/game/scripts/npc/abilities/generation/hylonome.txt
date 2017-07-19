@@ -56,7 +56,7 @@
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "distance"              "-250 -300 -350 -400"
+                "distance"              "-250 -350 -450 -550"
             }
             "04"
             {
@@ -599,7 +599,7 @@
             "02"
             {
                 "var_type"          "FIELD_INTEGER"
-                "heal_reduction"    "20 30 40 50"
+                "heal_reduction"    "10 20 30 40"
             }
             "02"
             {
@@ -609,12 +609,12 @@
             "05"
             {
                 "var_type"          "FIELD_INTEGER"
-                "bleed_damage"      "3"
+                "bleed_damage"      "4"
             }
             "04"
             {
                 "var_type"          "FIELD_INTEGER"
-                "duration"          "7"
+                "duration"          "4"
             }
         }
 
