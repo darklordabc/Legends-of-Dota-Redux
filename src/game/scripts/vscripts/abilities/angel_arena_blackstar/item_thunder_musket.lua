@@ -24,10 +24,8 @@ function ThunderstruckProc(keys)
 	local target = keys.target
 	local ability = keys.ability
 
-	-- If there isn't a valid target, do nothing
-	if not (ability:IsCooldownReady() and caster:IsRealHero())then
-		return end
-
+	-- If it is a valid real hero and cooldown is ready, deal dmg.
+	if (ability:IsCooldownReady() and caster:IsRealHero())then
 	--if PreformAbilityPrecastActions(caster, ability) then
 		ApplyDamage({
 			victim = target,
@@ -40,5 +38,6 @@ function ThunderstruckProc(keys)
 		--SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, target, ability:GetAbilitySpecial("thunderstruck_magical_damage"), nil)
 		ParticleManager:CreateParticle("particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_manavoid_lightning_ti_5.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 	--end
+	end
 	ability:StartCooldown(5)
 end
