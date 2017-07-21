@@ -28,6 +28,7 @@ All notable changes to this project will be documented in this file.
 - Nothl Protection cooldown decreased but duration decreased too 
 - Added master of magic to cooldown ban group
 - Teleporation no longer procs multicast or spell echo
+- Improved Blood Ward
 
 ## 8.0
 - Fixed Sight being 4 levels
