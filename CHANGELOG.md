@@ -26,6 +26,8 @@ All notable changes to this project will be documented in this file.
 *
 - Omniguard cooldown increased at earlier levels, heal increased and heal percent increased
 - Nothl Protection cooldown decreased but duration decreased too 
+- Added master of magic to cooldown ban group
+- Teleporation no longer procs multicast or spell echo
 
 ## 8.0
 - Fixed Sight being 4 levels
