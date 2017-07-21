@@ -2,6 +2,16 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 10.0
+- Omniguard : cooldown increased at earlier levels, heal increased and heal percent increased
+- Nothl Protection:cooldown decreased but duration decreased too 
+- Mortal Coil: Decreased Attack speed per agility by 0.25 at all levels
+- Blood ward: Increased damage
+- Master of Magic: Will be trollcombo with any cooldown reduction ability
+- Anemic aura: Decreased Heal reduction. but increased bleeding damage
+- Eldritch pull: Increased the pull distance
+- teleportation: will no longer trigger Multicast-redux or Arcane echo
+
 ## 9.0
 - Fury of the immortals: Cooldown increased by 5 seconds, non-stacking damage decreased, stun duration decreased by 0.5
 - Multicast Redux now has a cooldown (in games where single player abilities are banned)
@@ -24,8 +34,7 @@ All notable changes to this project will be documented in this file.
 - Hero Perks that give a free level in an ability now show the ability on the hud, it just cant be leveled any further
 - Improved Phantom Lancers and Rubicks perk so that they give an entire free ability instead of just 1 level in it
 *
-- Omniguard cooldown increased at earlier levels, heal increased and heal percent increased
-- Nothl Protection cooldown decreased but duration decreased too 
+
 
 ## 8.0
 - Fixed Sight being 4 levels
