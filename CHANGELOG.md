@@ -26,9 +26,11 @@ All notable changes to this project will be documented in this file.
 *
 - Omniguard cooldown increased at earlier levels, heal increased and heal percent increased
 - Nothl Protection cooldown decreased but duration decreased too 
-- Added master of magic to cooldown ban group
-- Teleporation no longer procs multicast or spell echo
-- Improved Blood Ward
+- Blood ward: Increased damage
+- Master of Magic: Will be trollcombo with any cooldown reduction ability
+- Anemic aura: Decreased Heal reduction. but increased bleeding damage
+- Eldritch pull: Increased the pull distance
+- Teleportation: will no longer trigger Multicast-redux or Arcane echo
 
 ## 8.0
 - Fixed Sight being 4 levels
