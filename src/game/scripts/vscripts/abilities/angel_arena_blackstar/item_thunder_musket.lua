@@ -38,6 +38,7 @@ function ThunderstruckProc(keys)
 		--SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, target, ability:GetAbilitySpecial("thunderstruck_magical_damage"), nil)
 		ParticleManager:CreateParticle("particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_manavoid_lightning_ti_5.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 	--end
+		
+		ability:StartCooldown(ability:GetTrueCooldown())
 	end
-	ability:StartCooldown(ability:GetTrueCooldown())
 end
