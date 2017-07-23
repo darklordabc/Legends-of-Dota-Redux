@@ -169,12 +169,6 @@
 						"ScriptFile"	"abilities/angel_arena_blackstar/item_thunder_musket.lua"
 						"Function"		"ThunderstruckProc"
 					}
-					"Damage"
-					{
-						"Target"		"TARGET"
-						"Type"			"DAMAGE_TYPE_MAGICAL"
-						"Damage"		"%thunderstruck_magical_damage"
-					}
 				}
 
 				"ThinkInterval"  "0.1"
