@@ -32,7 +32,7 @@ if not OptionManager.initialSettings then
 	OptionManager:SetOption('banningTime', 90)
 
 	-- Hero picking time
-	OptionManager:SetOption('heroBanningTime', 60)
+	OptionManager:SetOption('heroBanningTime', 90)
 
 	-- Picking Time (2 minutes)
 	OptionManager:SetOption('pickingTime', 60 * 2)
