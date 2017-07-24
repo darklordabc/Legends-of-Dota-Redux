@@ -32,6 +32,7 @@ All notable changes to this project will be documented in this file.
 - Eldritch pull: Increased the pull distance
 - Teleportation: will no longer trigger Multicast-redux or Arcane echo
 - Lust for life: Fixed level 1 regen rate error It will now regen more than old version.
+- Improved Grape Shot at later levels
 
 ## 8.0
 - Fixed Sight being 4 levels
