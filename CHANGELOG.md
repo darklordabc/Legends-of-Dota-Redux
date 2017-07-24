@@ -31,6 +31,7 @@ All notable changes to this project will be documented in this file.
 - Anemic aura: Decreased Heal reduction. but increased bleeding damage
 - Eldritch pull: Increased the pull distance
 - Teleportation: will no longer trigger Multicast-redux or Arcane echo
+- Lust for life: Fixed level 1 regen rate error It will now regen more than old version.
 
 ## 8.0
 - Fixed Sight being 4 levels
