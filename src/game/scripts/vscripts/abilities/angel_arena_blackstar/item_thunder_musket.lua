@@ -3,7 +3,7 @@ require('lib/keyvalues')
 function UpdateRangedBonus(keys)
 	local caster = keys.caster
 	local ability = keys.ability
-
+	if not ability then return end
 	--if caster:IsRangedAttacker() then
 		if not caster:HasModifier("modifier_item_thunder_musket_ranged") then
 			ability:ApplyDataDrivenModifier(caster, caster, "modifier_item_thunder_musket_ranged", nil)
@@ -24,8 +24,13 @@ function ThunderstruckProc(keys)
 	local target = keys.target
 	local ability = keys.ability
 
+	if not ability then return end
+
+	if not ability:IsCooldownReady() or not caster:IsRealHero() then
+		return
+	end
 	-- If it is a valid real hero and cooldown is ready, deal dmg.
-	if (ability:IsCooldownReady() and caster:IsRealHero())then
+	--if (not ability:IsCooldownReady() and caster:IsRealHero())then
 	--if PreformAbilityPrecastActions(caster, ability) then
 		ApplyDamage({
 			victim = target,
@@ -38,6 +43,6 @@ function ThunderstruckProc(keys)
 		--SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, target, ability:GetAbilitySpecial("thunderstruck_magical_damage"), nil)
 		ParticleManager:CreateParticle("particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_manavoid_lightning_ti_5.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 	--end
-	end
+	--end
 	ability:StartCooldown(5)
 end

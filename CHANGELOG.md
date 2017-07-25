@@ -31,6 +31,8 @@ All notable changes to this project will be documented in this file.
 - Anemic aura: Decreased Heal reduction. but increased bleeding damage
 - Eldritch pull: Increased the pull distance
 - Teleportation: will no longer trigger Multicast-redux or Arcane echo
+- Arcane Symbiote and Ball Lighting is now troll combo
+- ThunderMusket can now no longer be used with illusions
 
 ## 8.0
 - Fixed Sight being 4 levels
