@@ -33,6 +33,8 @@ All notable changes to this project will be documented in this file.
 - Teleportation: will no longer trigger Multicast-redux or Arcane echo
 - Arcane Symbiote and Ball Lighting is now troll combo
 - ThunderMusket can now no longer be used with illusions
+- Lust for life: Fixed level 1 regen rate error It will now regen more than old version.
+- Improved Grape Shot at later levels
 
 ## 8.0
 - Fixed Sight being 4 levels
