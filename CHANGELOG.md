@@ -2,6 +2,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 9.1
+-
+
 ## 9.0
 - Fury of the immortals: Cooldown increased by 5 seconds, non-stacking damage decreased, stun duration decreased by 0.5
 - Multicast Redux now has a cooldown (in games where single player abilities are banned)
@@ -34,7 +37,6 @@ All notable changes to this project will be documented in this file.
 - ThunderMusket can now no longer be used with illusions
 - Lust for life: Fixed level 1 regen rate error It will now regen more than old version.
 - Improved Grape Shot at later level
-*
 - Fixed OmniGuard
 - Made the Custom Morph skills troll combos with Overload
 - Changed Storm Spirit's Perk to Mana Aura instead of Overload
