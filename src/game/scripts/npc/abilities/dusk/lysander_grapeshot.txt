@@ -1,0 +1,165 @@
+"DOTAAbilities" {
+	//=====================================================================================================
+	// LYSANDER: Grapeshot
+	//=====================================================================================================
+	"lysander_grapeshot"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_lua"
+		"ScriptFile"			"abilities/dusk/lysander_grapeshot"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"custom/lysander_grapeshot"
+		"ReduxFlags"                                                           "crit"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"550 650 750 850"
+		"AbilityCastPoint"				"0.2"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"6"
+		"HasScepterUpgrade"				"1"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"30 40 50 60"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"multiplier"			"0.6 0.7 0.8 0.9"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"range_ministun"		"275"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun"					"0.6"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"crit"					"25"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"crit_multiplier"		"1.50"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"base_damage"			"40 60 80 100"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"scepter_chance" 		"20 40 60 80"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"scepter_radius" 		"500"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"captains_compass_increase" "50"
+			}
+
+
+			
+		}
+
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_kunkka.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_silencer.vsndevts"
+			"particle"					"particles/units/heroes/hero_lysander/grapeshot.vpcf"
+			"particle"					"particles/units/heroes/hero_lysander/grapeshot_crit.vpcf"
+
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/dusk/lysander_abilities.lua"
+				"Function"		"grapeshot"
+				"mult"			"%multiplier"
+				"range_ministun""%range_ministun"
+				"stun"			"%stun"
+				"crit"			"%crit"
+				"crit_mult"		"%crit_multiplier"
+				"crit_stun"		"%crit_stun"
+				"base_dmg"		"%base_damage"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_grapeshot_aghanims_crit_timer_check"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"ThinkInterval"  "1.0"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/dusk/lysander_abilities.lua"
+						"Function"		"grapeshot_aghanims"
+					}
+				}
+				
+			}
+
+			"modifier_grapeshot_aghanims_crit_timer"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"10"
+
+				"OnDestroy"
+				{
+					"FireSound"
+					{
+						"EffectName"	"Ability.Ghostship.bell"
+						"Target" 		"CASTER"
+					}
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_grapeshot_aghanims_crit"
+						"Target" 		"CASTER"
+					}
+				}
+			}
+
+			"modifier_grapeshot_aghanims_crit"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"IsBuff"			"1"
+			}
+		}
+	}
+}

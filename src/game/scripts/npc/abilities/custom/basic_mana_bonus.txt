@@ -1,0 +1,40 @@
+"DOTAAbilities"
+{
+    "basic_mana_bonus"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/basic_mana_bonus.lua"
+        "AbilityTextureName"                                                   "custom/basic_mana_bonus"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "mana_bonus"                                          "150 300 450 600"
+            }
+        }
+        "ReduxFlags"                                                           "dota_custom"
+        "ReduxCost"                                                            "0"
+    }
+
+    "basic_mana_bonus_op"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/basic_mana_bonus_op.lua"
+        "AbilityTextureName"                                                   "custom/basic_mana_bonus_op"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "mana_bonus"                                          "300 600 900 1200"
+            }
+        }
+        "ReduxFlags"                                                           "dota_custom"
+        "ReduxCost"                                                            "120"
+    }
+}

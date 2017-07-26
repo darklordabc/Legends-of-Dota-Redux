@@ -138,6 +138,10 @@ function modifier_flesh_heap_str:OnDeath(keys)
     return 
   end
 
+  if keys.unit:IsTempestDouble() then
+    return
+  end
+
   if not IsServer() then 
     return 
   end

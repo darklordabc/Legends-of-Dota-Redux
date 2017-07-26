@@ -8,6 +8,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName"			"custom/phantom_lancer_juxtapose_melee"
+		"ReduxFlags"                                                    "underpowered"
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"

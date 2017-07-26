@@ -5,6 +5,7 @@
 		"MaxLevel" "1"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 		"AbilityCooldown" "2.0"
+		"ReduxFlags" "doNotRandom"
 
 		"AbilitySpecial" {
 			"01" {

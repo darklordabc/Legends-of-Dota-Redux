@@ -10,6 +10,7 @@
         "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
         "AbilityTextureName"            "custom/phantom_assassin_coup_de_grace_melee"
         "ReduxCost"                     "40"
+        "ReduxFlags"                                                    "underpowered" 
         // Special
         //-------------------------------------------------------------------------------------------------------------
         "AbilitySpecial"

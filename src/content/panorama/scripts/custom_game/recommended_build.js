@@ -14,7 +14,7 @@ function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, bu
 
         // Make it selectable and show info
         makeSkillSelectable(slot);
-        
+
         if (curBuild[slotID]) {
             slot.visible = true;
             slot.abilityname = curBuild[slotID];
@@ -35,11 +35,13 @@ function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, bu
     makeHeroSelectable(heroImageCon);
 
     // Add hero name
+    searchTags.push(build.heroName.toLowerCase());
     searchTags.push($.Localize(build.heroName).toLowerCase());
+    searchTags.push(build.description.toLowerCase());
 
     // Add tags
-    for (var i in build.tags) {
-        searchTags.push($.Localize(build.tags[i]).toLowerCase());
+    for (var v of build.tags) {
+        searchTags.push($.Localize(v).toLowerCase());
     }
 
     // Set the title
@@ -63,7 +65,7 @@ function setBuildData(makeHeroSelectable, hookSkillInfo, makeSkillSelectable, bu
     var buildForSend = {};
     for(var slotID = 0; slotID < 6; ++slotID)
         buildForSend[slotID + 1] = curBuild[slotID];
-    
+
     //author
     var authorSteamID = build.steamID;
     var localSteamID = Game.GetLocalPlayerInfo().player_steamid
@@ -104,7 +106,13 @@ function setFavorite(flag) {
 }
 
 function onClickFav() {
-    setFavorite(!$.GetContextPanel().isFavorite);
+    var flag = !$.GetContextPanel().isFavorite;
+    setFavorite(flag);
+    
+    GameEvents.SendCustomGameEventToServer("stats_client_fav_skill_build", {
+        id: $.GetContextPanel().buildID,
+        fav: flag
+    })
 }
 
 function removeBuild() {
@@ -124,7 +132,7 @@ function onSelectBuildVote(vote) {
         newVotes += vote;
     $.GetContextPanel().SetHasClass("votedUp", vote > 0)
     $.GetContextPanel().SetHasClass("votedDown", vote < 0)
-    
+
     $("#buildRating").text = newVotes;
 
     GameEvents.SendCustomGameEventToServer("stats_client_vote_skill_build", {
@@ -195,9 +203,10 @@ function updateFilters(getSkillFilterInfo, getHeroFilterInfo) {
 }
 
 function updateSearchFilter(searchStr) {
-    $.GetContextPanel().SetHasClass('searchFilterHide', !searchStr ? false : searchTags.filter(function(tag){
-        return tag.indexOf(searchStr) != -1;
-    }).length > 0);
+    var regexp = new RegExp(searchStr, 'i');
+    $.GetContextPanel().SetHasClass('searchFilterHide', !(!searchStr || searchTags.some(function(tag) {
+        return tag.search(regexp) > -1;
+    })) );
 }
 
 // When this panel loads

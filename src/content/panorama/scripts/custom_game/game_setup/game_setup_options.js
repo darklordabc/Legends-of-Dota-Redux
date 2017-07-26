@@ -45,7 +45,7 @@ var basicOptions = {
                         value: -1
                     }
                 ],
-                mutators: [ 
+                mutators: [
                     {
                         name: 'lodOptionCommonGamemode',
                         default: {
@@ -58,7 +58,7 @@ var basicOptions = {
                             'lodMutatorSingleDraft': 5,
                             'lodMutatorBoosterDraft': 6,
                         }
-                    },                  
+                    },
                     {
                         about: 'lodMutatorBalanceMode',
                         values: {
@@ -78,7 +78,7 @@ var basicOptions = {
                             'lodMutatorMaxLevel2': 50,
                             'lodMutatorMaxLevel3': 100
                         }
-                    },                   
+                    },
                     {
                         name: 'lodOptionGameSpeedUpgradedUlts',
                         default: {
@@ -88,7 +88,7 @@ var basicOptions = {
                             'lodMutatorUpgradedUlts': 1,
                             'lodMutatorUpgradedUltsNoBots': 2,
                         }
-                    },					
+                    },
                     {
                         about: 'lodMutatorFastStart',
                         values: {
@@ -118,7 +118,7 @@ var basicOptions = {
                                 'lodOptionGameSpeedRespawnTimePercentage': 5
                             }
                         }
-                    },                               
+                    },
                     {
                         name: 'lodOptionGameSpeedStrongTowers',
                         about: 'lodMutatorStrongTowers'
@@ -148,7 +148,7 @@ var basicOptions = {
                     {
                         name: 'lodOptionLaneMultiply',
                         about: 'lodMutatorDoubleCreeps'
-                    }, 
+                    },
                     {
                         name: 'lodOptionNeutralCreepPower',
                         default: {
@@ -170,7 +170,7 @@ var basicOptions = {
                             'lodMutatorCreepTriple': 3,
                             'lodMutatorCreepQuadruple': 4
                         }
-                    },                     
+                    },
                     {
                         name: 'lodOptionCommonMaxUlts',
                         default: {
@@ -181,11 +181,11 @@ var basicOptions = {
                             'lodMutatorMaxUlts3': 4,
                             'lodMutatorMaxUlts4': 6
                         }
-                    },                                  
+                    },
                     {
                         name: 'lodOptionAdvancedCustomSkills',
                         about: 'lodMutatorCustomSkills'
-                    },                    
+                    },
                     {
                         about: 'lodMutatorOPAbilities',
                         values: {
@@ -257,7 +257,7 @@ var basicOptions = {
                     {
                         name: 'lodOptionGameSpeedSharedEXP',
                         about: 'lodMutatorShareEXP'
-                    },                   
+                    },
                     {
                         name: 'lodOptionBotsRadiant',
                         default: {
@@ -320,11 +320,11 @@ var basicOptions = {
                     {
                         name: 'lodOptionCrazyAllVision',
                         about: 'lodMutatorAllVision'
-                    },					
+                    },
                     //{
                     //    name: 'lodOptionCrazyWTF',
                     //    about: 'lodMutatorWTF'
-                   // },                   
+                   // },
                     {
                         name: 'lodOptionCrazyFatOMeter',
                         extraInfo: 'lodOptionAboutCrazyFatOMeter',
@@ -335,7 +335,7 @@ var basicOptions = {
                             'lodMutatorFarmFatOMeter': 1,
                             'lodMutatorKDAFatOMeter': 2
                         }
-                    },                  
+                    },
                     {
                         about: 'lodMutatorIngameBuilder1',
 						extraInfo: 'lodOptionAboutIngameBuilder',
@@ -386,7 +386,7 @@ var basicOptions = {
                         }
                     },
                     {
-                        name: 'lodOptionExtraAbility',        
+                        name: 'lodOptionExtraAbility',
                         default: {
                             'lodMutatorFreeAbility': 0,
                         },
@@ -424,6 +424,11 @@ var basicOptions = {
                         about: 'lodMutatorMemesRedux'
                     },
                     {
+                         name: 'lodOptionBattleThirst',
+                         extraInfo: 'lodOptionAboutBattleThirst',
+                        about: 'lodMutatorBattleThirst'
+                    },
+                    {
                          name: 'lodOptionDarkMoon',
                          extraInfo: 'lodOptionAboutDarkMoon',
                         about: 'lodMutatorDarkMoon'
@@ -442,6 +447,27 @@ var basicOptions = {
                         name: 'lodOptionConsumeItems',
                         extraInfo: 'lodOptionAboutConsumeItems',
                         about: 'lodMutatorConsumeItems'
+                    },
+                    {
+                        about: 'lodMutatorOGBonus',
+                        default: {
+                            'lodOptionNewAbilitiesBonusGold': 0,
+                            'lodOptionNewAbilitiesThreshold': 0
+                        },
+                        states: {
+                            'lodMutatorOGBonus1': {
+                                'lodOptionNewAbilitiesBonusGold': 100,
+                                'lodOptionNewAbilitiesThreshold': 20
+                            },
+                            'lodMutatorOGBonus2': {
+                                'lodOptionNewAbilitiesBonusGold': 500,
+                                'lodOptionNewAbilitiesThreshold': 20
+                            },
+                            'lodMutatorOGBonus3': {
+                                'lodOptionNewAbilitiesBonusGold': 1000,
+                                'lodOptionNewAbilitiesThreshold': 20
+                            }
+                        }
                     },
                 ]
             }
@@ -548,22 +574,22 @@ var advancedOptions = {
                 step: 10,
                 default: 120
             },
-            {
-                name: 'lodOptionDuels',
-                des: 'lodOptionDesDuels',
-                about: 'lodOptionAboutDuels',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
+            //{
+            //    name: 'lodOptionDuels',
+            //    des: 'lodOptionDesDuels',
+            //    about: 'lodOptionAboutDuels',
+            //    sort: 'toggle',
+            //    values: [
+            //        {
+            //            text: 'lodOptionNo',
+            //            value: 0
+            //        },
+            //        {
+            //            text: 'lodOptionYes',
+            //            value: 1
+            //        }
+            //    ]
+            //},
             {
                 name: 'lodOptionIngameBuilder',
                 des: 'lodOptionDesIngameBuilder',
@@ -590,9 +616,59 @@ var advancedOptions = {
                 step: 1,
                 default: 0,
             },
+            {
+                name: 'lodOptionNewAbilitiesBonusGold',
+                des: 'lodOptionDesNewAbilitiesBonusGold',
+                about: 'lodOptionAboutNewAbilitiesBonusGold',
+                sort: 'range',
+                min: 0,
+                max: 2500,
+                step: 50,
+                default: 250
+            },
+            {
+                name: 'lodOptionNewAbilitiesThreshold',
+                des: 'lodOptionDesNewAbilitiesThreshold',
+                about: 'lodOptionAboutNewAbilitiesThreshold',
+                sort: 'range',
+                min: 0,
+                max: 100,
+                step: 1,
+                default: 20
+            },
+            {
+                name: 'lodOptionGlobalNewAbilitiesBonusGold',
+                des: 'lodOptionDesGlobalNewAbilitiesBonusGold',
+                about: 'lodOptionAboutGlobalNewAbilitiesBonusGold',
+                sort: 'range',
+                min: 0,
+                max: 2500,
+                step: 50,
+                default: 250
+            },
+            {
+                name: 'lodOptionGlobalNewAbilitiesThreshold',
+                des: 'lodOptionDesGlobalNewAbilitiesThreshold',
+                about: 'lodOptionAboutGlobalNewAbilitiesThreshold',
+                sort: 'range',
+                min: 0,
+                max: 100,
+                step: 1,
+                default: 20
+            },
+            {
+                name: 'lodOptionBalancedBuildBonusGold',
+                des: 'lodOptionDesBalancedBuildBonusGold',
+                about: 'lodOptionAboutBalancedBuildBonusGold',
+                sort: 'range',
+                min: 0,
+                max: 3000,
+                step: 100,
+                default: 1000
+            },
         ]
     },
-    
+
     // Advanced stuff, for pros
     advanced_selection: {
         custom: true,
@@ -1320,7 +1396,7 @@ var advancedOptions = {
     bots: {
         bot: true,
         custom: true,
-        fields: [			
+        fields: [
             {
                 name: 'lodOptionBotsRadiant',
                 des: 'lodOptionDesBotsRadiant',
@@ -1417,7 +1493,7 @@ var advancedOptions = {
            //          }
            //      ]
            //},
-			
+
             /*{
                 name: 'lodOptionBotsUnfairBalance',
                 des: 'lodOptionDesBotsUnfairBalance',
@@ -1605,6 +1681,22 @@ var advancedOptions = {
                 name: 'lodOptionMemesRedux',
                 des: 'lodOptionDesMemesRedux',
                 about: 'lodOptionAboutMemesRedux',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionBattleThirst',
+                des: 'lodOptionDesBattleThirst',
+                about: 'lodOptionAboutBattleThirst',
                 sort: 'toggle',
                 values: [
                     {

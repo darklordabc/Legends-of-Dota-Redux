@@ -12,7 +12,7 @@
 }
 
 #mainSelectionRoot.show {
-    opacity: 1.0;    
+    opacity: 1.0;
 }
 
 .lodOptionsInterface {
@@ -70,7 +70,7 @@
 #lodPopupMessage {
     width: 600px;
     min-height: 250px;
-    
+
     padding: 16px;
 
     flow-children: down;
@@ -659,7 +659,7 @@ Button:enabled:hover {
 
     transition-property: opacity;
     transition-duration: 0.25s;
-    transition-timing-function: ease-in-out;    
+    transition-timing-function: ease-in-out;
 }
 
 @keyframes 'lodTimerWarningLoop' {
@@ -720,7 +720,7 @@ Button:enabled:hover {
 #backtrackBtn  Label {
 	horizontal-align: center;
 	vertical-align: center;
-	
+
 	font-size: 20px;
 }
 
@@ -737,7 +737,7 @@ Button:enabled:hover {
     transform: translatex( 5000px );
     transition-property: transform;
     transition-duration: 5.00s;
-	
+
     width: 42.5%;
     height: 113px;
 	margin-bottom: 20px;
@@ -759,7 +759,7 @@ Button:enabled:hover {
 #tipPanel.show {
     transform: translatex( 0px );
     transition-property: transform;
-    transition-duration: 5.00s;   
+    transition-duration: 5.00s;
 }
 
 #tipPanel Label {
@@ -781,7 +781,7 @@ Button:enabled:hover {
 
     border:1px solid #000000;
     border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;    
+    border-bottom-left-radius: 5px;
 }
 
 #stageButtonOptionSelection {
@@ -925,10 +925,10 @@ Button:enabled:hover {
 #option_default_info Label {
     height: 200px;
     padding: 30px;
-    
+
     align: center center;
     text-align: center;
-    
+
     font-size: 30px;
 }
 
@@ -1282,7 +1282,7 @@ Button:enabled:hover {
 
 .reviewPlayerContainer {
     padding: 0px 4px 0px 4px;
-    
+
     width: 20%;
     height: 680px;
 
@@ -1329,10 +1329,10 @@ Button:enabled:hover {
 
 @keyframes 'vsShow' {
     0% {
-        transform: scale3d( 0.5, 0.5, 1); 
+        transform: scale3d( 0.5, 0.5, 1);
     }
     70% {
-        transform: scale3d( 1.3, 1.3, 1); 
+        transform: scale3d( 1.3, 1.3, 1);
     }
     100% {
         transform: scale3d( 1, 1, 1);
@@ -1395,7 +1395,7 @@ Button:enabled:hover {
 
 @keyframes 'skillContainerShow' {
     0% {
-        opacity: 0.1; 
+        opacity: 0.1;
     }
     100% {
         opacity: 1;
@@ -1915,7 +1915,7 @@ Button:enabled:hover {
 .pickingHeroList {
     padding-left: 16px;
     width: 100%;
-    height: 170px;
+    /*height: fit-children;*/
     /*background-color: #111111;*/
 	padding-top: 5px;
     margin: 10px 0 10px 0;
@@ -1926,8 +1926,9 @@ Button:enabled:hover {
     margin-left: 30px;
     margin-right: 10px;
 
+    padding-bottom: 20px;
+
     flow-children: right-wrap;
-    vertical-align: middle;
 }
 
 .pickingHeroListHeroes DOTAHeroImage {
@@ -1974,7 +1975,7 @@ Button:enabled:hover {
     background-color: #00000077;
 
     padding: 0 16px 0 16px;
-    flow-children: right;    
+    flow-children: right;
 }
 
 #pickingPhaseSkillTabContentSkills {
@@ -1983,7 +1984,7 @@ Button:enabled:hover {
 
     flow-children: right-wrap;
     overflow: squish scroll;
-    
+
     padding: 8px;
 }
 
@@ -2077,7 +2078,7 @@ Button:enabled:hover {
 
     transition-property: border;
     transition-duration: .2s;
-    transition-timing-function: ease-in-out;    
+    transition-timing-function: ease-in-out;
 }
 
 .lodSearchPanel:hover {
@@ -2237,7 +2238,7 @@ Button:enabled:hover {
     flow-children: down;
 }
 
-#lodBoosterPackLabel { 
+#lodBoosterPackLabel {
     align: center bottom;
     margin-right: 17px;
     margin-left: 19px;
@@ -2321,6 +2322,25 @@ Button:enabled:hover {
     horizontal-align: center;
 }
 
+.quickHighlight {
+    animation-name: lodQuickHighlight;
+    animation-duration: 0.25s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 4;
+}
+
+@keyframes 'lodQuickHighlight' {
+    0% {
+        box-shadow: #00bbFFFF 0px 0px 1px 0px;
+    }
+    50% {
+        box-shadow: #00bbFFFF 0px 0px 8px 0px;
+    }
+    100% {
+        box-shadow: #00bbFFFF 0px 0px 1px 0px;
+    }
+}
+
 .makeThePlayerNoticeThisButton {
     animation-name: lodButtonHighlight;
     animation-duration: 1.51s;
@@ -2353,47 +2373,79 @@ Button:enabled:hover {
     //flow-children: down;
 }
 
-.buildCategoryLabel {
-    font-size: 24px;
+#buildSortingProperties
+{
+    flow-children: right;
+}
+
+.buildSortingProperty {
+    font-size: 20px;
     margin: 10px;
+    color: #939da044;
+    text-transform: uppercase;
+}
+.buildSortingProperty.selected {
+    /*text-decoration: underline;*/
+    color: #ffffff;
 }
 
 #buildLoadMoreBuilds
 {
-    font-size: 24px;
-    margin: 10px;
+/*    width: 50px;
+    height: 25px;*/
+/*    font-size: 24px;*/
+
     horizontal-align: right;
-    color: lightblue;
+    vertical-align: top;
+/*    color: lightblue;*/
+}
+
+#buildLoadMoreBuilds Label
+{
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 #buildLoadMoreBuilds:hover
 {
-    text-decoration: underline;
+    /*text-decoration: underline;*/
 }
 
 #buildLoadMoreBuilds:active
 {
-    color: blue;
+    /*color: blue;*/
 }
 
-.recommendedBuildContainerScrollWrapper{
+#recommendedBuildContainerScrollWrapper{
     width: 100%;
+    height: 100%;
 
     margin-top: 50px;
-
-    overflow: squish scroll;
     visibility: collapse;
 }
 
-#pickingPhaseRecommendedBuildContainer {
-    width: 1330px;
+.pickingPhaseRecommendedBuildContainer {
+    width: 100%;
+    padding-left: 140px;
+    height: 100%;
+
+    overflow: squish scroll;
+
     horizontal-align: center;
     flow-children: right-wrap;
+    opacity: 0;
+}
+.pickingPhaseRecommendedBuildContainer.selected {
+    opacity: 1;
 }
 
-.AspectRatio4x3 #pickingPhaseRecommendedBuildContainer,
-.AspectRatio5x4 #pickingPhaseRecommendedBuildContainer {
-    width: 900px;
+.AspectRatio4x3 .pickingPhaseRecommendedBuildContainer,
+.AspectRatio5x4 .pickingPhaseRecommendedBuildContainer {
+    padding-left: 115px;
+}
+
+.AspectRatio16x10 .pickingPhaseRecommendedBuildContainer {
+    padding-left: 50px;
 }
 
 #buildLoadingIndicator {
@@ -2409,7 +2461,7 @@ Button:enabled:hover {
 #buildLoadingIndicatorText {
     margin-top: 10px;
 
-    font-size: 25px;    
+    font-size: 25px;
 }
 
 .recommendedBuild {
@@ -2417,7 +2469,7 @@ Button:enabled:hover {
 
     background-color: gradient( linear, 0% 0%, 0% 25%, from( #232326 ), to( #1c1d20 ) );
     box-shadow: #00000099 -4px -4px 8px 8px;
-    
+
     margin: 4px;
     flow-children: down;
 }
@@ -2557,7 +2609,7 @@ Button:enabled:hover {
     background-size: 24px 24px;
     background-repeat: no-repeat;
     background-position: 50% 50%;
-    
+
     transition-property: wash-color, pre-transform-scale2d, background-color;
     transition-duration: 0.1s;
     transition-timing-function: ease-in;
@@ -2658,7 +2710,7 @@ Button:enabled:hover {
 
 .votingBackground {
     background-color: gradient( linear, 100% 0%, 100% 100%, from( #272b30 ), color-stop( 0.6, #181a1e ), to( #181a1e ) );
-    box-shadow: black -4px -4px 8px 8px;    
+    box-shadow: black -4px -4px 8px 8px;
 }
 
 #optionVoting {
@@ -2750,7 +2802,7 @@ Button:enabled:hover {
 .optionVoteInfoHeader {
     flow-children: right;
     align: center center;
-	
+
 }
 
 .VotingOptionInfo {
@@ -2854,7 +2906,7 @@ Button:enabled:hover {
     width: 300px;
     padding: 0 8px 0 8px;
 
-    flow-children: down;    
+    flow-children: down;
 }
 
 #optionsPanel {
@@ -2865,9 +2917,9 @@ Button:enabled:hover {
 #optionBasic {
     width: 100%;
     height: fill-parent-flow(1.0);
-    
+
     padding: 8px;
-    
+
     flow-children: down;
 
     //visibility: collapse;
@@ -2875,7 +2927,7 @@ Button:enabled:hover {
     transition-property: opacity, transform;
     transition-duration: 0.4s;
     transition-delay: 0.0s;
-    transition-timing-function: ease-in-out;    
+    transition-timing-function: ease-in-out;
 }
 
 #optionBasic.hide {
@@ -2887,7 +2939,7 @@ Button:enabled:hover {
     height: fill-parent-flow(1);
 
     padding: 8px;
-    
+
     horizontal-align: center;
 
     overflow: clip scroll;
@@ -2911,8 +2963,8 @@ Button:enabled:hover {
     transition-property: opacity, transform;
     transition-duration: 0.4s;
     transition-delay: 0.0s;
-    transition-timing-function: ease-in-out;     
-} 
+    transition-timing-function: ease-in-out;
+}
 
 #optionAdvanced.show {
     transform: translateY(-30px);
@@ -2932,7 +2984,7 @@ Button:enabled:hover {
     height: width-percentage(74%);
     margin: 3px;
     text-align: center;
-    opacity: .5; 
+    opacity: .5;
 }
 
 .AspectRatio4x3 #gamemodesPanel .option {
@@ -3152,12 +3204,12 @@ Button:enabled:hover {
     transition-property: opacity;
     transition-duration: 0.1s;
     transition-delay: 0.0s;
-    transition-timing-function: ease-in-out;     
+    transition-timing-function: ease-in-out;
 }
 
 .optionSwitch Label,
 .optionSwitch .ExpandDownArrow {
-    letter-spacing: 2px;    
+    letter-spacing: 2px;
     vertical-align: center;
 }
 
@@ -3358,6 +3410,7 @@ Button:enabled:hover {
     height: 600px;
     flow-children: down;
     visibility: collapse;
+    overflow: squish scroll;
 
     padding: 0 8px 0 8px;
 }
@@ -3608,4 +3661,184 @@ Button:enabled:hover {
     margin-top: 12px;
     horizontal-align: center;
     width: 40%;
+}
+
+#abilityBonusesPanel
+{
+    width: 100%;
+    height: 60px;
+    flow-children: right;
+}
+
+#newAbilitiesPanel
+{
+    z-index: -999;
+    width: 290px;
+    height: 100%;
+    margin-left: 18px;
+    transform: translateY(-60px);
+    background-color: #202124;
+    box-shadow: #00000099 -4px -4px 8px 8px;
+    border: 2px solid #2b2e2e;
+    transition-duration: .3s;
+    transition-property: transform, background-color, border;
+    visibility: collapse;
+    flow-children: down;
+}
+
+#newAbilitiesPanel.OneOrMore
+{
+    transform: translateY(3px);
+}
+
+.phase_selection_selected #newAbilitiesPanel.GoldBonusEnabled
+{
+    visibility: visible;
+}
+
+#newAbilitiesPanel > Label
+{
+    width: 100%;
+    text-align: center;
+    font-size: 19px;
+    margin-bottom: -8px;
+    color: white;
+    text-transform: uppercase;
+}
+
+#newAbilitiesPanel > Label > Panel
+{
+    horizontal-align: right;
+    margin-right: 5px;
+    width: height-percentage(100%);
+    height: 75%;
+    tooltip-position: top;
+    tooltip-body-position: 50%;
+}
+
+#newAbilitiesTicks
+{
+    width: 100%;
+    height: fill-parent-flow(1);
+    flow-children: right;
+}
+
+#newAbilitiesTicks > Panel
+{
+    vertical-align: center;
+    width: 16.6666667%;
+}
+
+#newAbilitiesTicks > Panel > Panel
+{
+    horizontal-align: center;
+    height: 25px;
+    width: 16px;
+    background-image: url('file://{images}/custom_game/newAbilityTick.png');
+    background-size: 100% 100%;
+    saturation: .1;
+    brightness: .2;
+    transition-duration: .1s;
+    transition-property: saturation, brightness;
+}
+
+#newAbilitiesTicks > Panel.GlobalBonus > Panel
+{
+    background-image: url('file://{images}/custom_game/newGlobalAbilityTick.png');
+    saturation: 1;
+    brightness: 1;
+}
+
+#newAbilitiesTicks > Panel.OwnBonus > Panel
+{
+    saturation: 1;
+    brightness: 1;
+}
+
+#balancedBuildPanel
+{
+    z-index: -999;
+    width: 200px;
+    height: 100%;
+    margin-left: 10px;
+    background-color: #202124;
+    box-shadow: #00000099 -4px -4px 8px 8px;
+    border: 2px solid #2b2e2e;
+    transition-duration: .3s;
+    transition-property: transform, background-color, border;
+    visibility: collapse;
+    transform: translateY(3px);
+    flow-children: down;
+}
+
+.phase_selection_selected #balancedBuildPanel
+{
+    visibility: visible;
+}
+
+#balancedBuildPanel > Label
+{
+    width: 100%;
+    text-align: center;
+    font-size: 19px;
+    margin-bottom: -8px;
+    color: white;
+    text-transform: uppercase;
+}
+
+#balancedBuildPanel > Label > Panel
+{
+    horizontal-align: right;
+    margin-right: 5px;
+    width: height-percentage(100%);
+    height: 75%;
+    tooltip-position: top;
+    tooltip-body-position: 50%;
+}
+
+#balancedBuildTick
+{
+    align: center center;
+    height: 25px;
+    width: 16px;
+    background-image: url('file://{images}/custom_game/newAbilityTick.png');
+    background-size: 100% 100%;
+    saturation: .1;
+    brightness: .2;
+    transition-duration: .1s;
+    transition-property: saturation, brightness, wash-color;
+}
+
+#balancedBuildTick.Enabled
+{
+    saturation: 1;
+    brightness: 1;
+    wash-color: lime;
+}
+
+#popularityFilterGroup
+{
+    width: 30%;
+    min-width: 400px;
+    vertical-align: bottom;
+    horizontal-align: right;
+    margin-left: 4px;
+}
+
+
+#popularityFilterDropDown
+{
+    width: 100%;
+}
+
+#popularityFilterSlider
+{
+    width: 100%;
+}
+
+#popularityFilterValue
+{
+    margin-top: -20px;
+    width: 100px;
+    horizontal-align: right;
 }

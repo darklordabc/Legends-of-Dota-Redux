@@ -37,6 +37,8 @@ function modifier_npc_dota_hero_warlock_perk:OnCreated(keys)
 		Timers:CreateTimer(function()
 			caster:AddItemByName('item_ward_observer')
 			caster:AddItemByName('item_ward_observer')
+			caster:AddItemByName('item_ward_observer')
+			caster:AddItemByName('item_ward_observer')
         return
     end, DoUniqueString('give_warlock_item'), .5)
 	end

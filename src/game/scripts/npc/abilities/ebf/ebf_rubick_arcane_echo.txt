@@ -9,7 +9,7 @@
         {
             "particle"                                                     "particles/rubick_spell_echo.vpcf"
         }
-        "AbilityCooldown"                                                      "12.0 10.0 8.0 6.0"
+        "AbilityCooldown"                                                      "30.0 20.0 10.0 6.0"
         "AbilitySpecial"
         {
             "01"
@@ -41,6 +41,6 @@
             }
         }
         "ReduxCost"                                                            "60"
-        "ReduxBans"                                                            "ogre_magi_multicast_lod"
+        "ReduxBans"                                                            "ogre_magi_multicast_lod | ogre_magi_multicast"
     }
 }

@@ -4,6 +4,7 @@ end
 
 LinkLuaModifier("spell_lab_symbiotic_modifier", "abilities/spell_lab/symbiotic/modifier.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("spell_lab_symbiotic_target", "abilities/spell_lab/symbiotic/target.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("spell_lab_symbiotic_bonus", "abilities/spell_lab/symbiotic/bonus.lua", LUA_MODIFIER_MOTION_NONE)
 
 function spell_lab_symbiotic:GetBehavior()
 	local behav = DOTA_ABILITY_BEHAVIOR_UNIT_TARGET

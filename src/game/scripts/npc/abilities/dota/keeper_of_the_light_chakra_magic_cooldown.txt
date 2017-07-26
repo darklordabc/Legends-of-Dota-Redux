@@ -33,7 +33,7 @@
                 "duration"                                             "15"
             }
         }
-        "ReduxFlags"                                                           "support | dota_custom"
+        "ReduxFlags"                                                           "support | dota_custom | cooldown"
         "ReduxPerks"                                                           "support"
     }
 }

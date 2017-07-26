@@ -1,0 +1,784 @@
+"DOTAAbilities"
+{
+	"bulwark_strike"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST| DOTA_ABILITY_BEHAVIOR_ATTACK"
+    	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+  		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+  		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+  		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+  		"AbilityTextureName"			"custom/bulwark_strike"
+  		"ReduxPerks"                    "attack_modifier | fire | autocast_basic"
+
+  		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_abyssal_underlord.vsndevts"
+			"particle"					"particles/econ/items/alchemist/alchemist_smooth_criminal/alchemist_smooth_criminal_unstable_concoction_explosion.vpcf"
+			"particle"					"particles/status_fx/status_effect_burn.vpcf"
+			"particle"					"particles/molten_lord/ablaze_debuff.vpcf"
+			"particle"					"particles/status_fx/status_effect_doom.vpcf"
+			"particle"					"particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf"
+		}
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+		"AbilityCastRange"				"200"
+		"AbilityCooldown"				"5.0 5.0 5.0 5.0"
+		"AbilityManaCost"				"30 45 50 65"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"armor_multiplier"				"3 4 5 6"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"radius"						"200"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"ablaze_multiplier"				"2"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"ablaze_duration"				"6"
+			}
+		}
+
+		"Modifiers"
+		{	
+			"ablaze_modifier"
+			{
+				"TextureName"			"custom/ablaze"
+				"Duration"				"%ablaze_duration"
+				"IsDebuff"				"1"
+
+				"EffectName"			"particles/molten_lord/ablaze_debuff.vpcf"
+				"EffectAttachType"		"follow_origin"
+
+				"StatusEffectName"		"particles/status_fx/status_effect_doom.vpcf"
+				"StatusEffectPriority"	"10"
+
+				"ThinkInterval"	"0.5"
+				"OnIntervalThink"
+				{
+					"FireSound"
+					{
+						"EffectName"	"Hero_AbyssalUnderlord.Firestorm.Cast"
+						"Target"		"TARGET"
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/deathtal/molten_lord"
+						"Function"		"Ablaze"
+						"Target"		"TARGET"
+					}
+				}
+			}
+			"bulwark_modifier"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"Orb"
+				{
+					"Priority"			"DOTA_ORB_PRIORITY_ABILITY"
+					"CastAttack"		"1"
+				}
+				"OnOrbFire"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/deathtal/molten_lord"
+						"Function"				"CheckCooldown"
+						"sound"					"Hero_Clinkz.DeathPact.Cast"
+					}
+				}
+				"OnOrbImpact"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"abilities/deathtal/molten_lord"
+						"Function"				"BulwarkStrikeDamage"
+						"sound"					"Hero_Clinkz.DeathPact"
+						"particle"				"particles/econ/items/alchemist/alchemist_smooth_criminal/alchemist_smooth_criminal_unstable_concoction_explosion.vpcf"
+						"particle2"				"particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze.vpcf"
+					}
+				}
+			}
+		}
+	}
+
+	"skipping_flames"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityTextureName"			"custom/skipping_flames"
+		"ReduxPerks"                    "fire"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_abyssal_underlord.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_ogre_magi.vsndevts"
+			"particle"					"particles/molten_lord/ablaze_debuff.vpcf"
+			"particle"					"particles/status_fx/status_effect_doom.vpcf"
+			"particle"					"particles/molten_lord/skipping_flames.vpcf"
+			"particle"					"particles/molten_lord/skipping_flames_impact.vpcf"
+		}
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+		"AbilityCooldown"				"20.0 18.0 16.0 14.0"
+		"AbilityManaCost"				"80.0 90.0 100.0 110.0"
+		"AbilityCastRange"				"700"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"1300"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"delay"						"0.2"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"base_damage"				"50 100 150 200"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"mini_stun"					"0.2"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"ablaze_multiplier"				"0.5"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"ablaze_duration"			"6"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/deathtal/molten_lord"
+				"Function"		"SkippingFlames"
+				"Target"		"TARGET"
+				"particle"		"particles/molten_lord/skipping_flames.vpcf"
+				"sound"			"Hero_AbyssalUnderlord.Firestorm.Start"
+			}
+		}
+
+		"Modifiers"
+		{
+			"ablaze_modifier"
+			{
+				"TextureName"			"custom/ablaze"
+				"Duration"				"%ablaze_duration"
+				"IsDebuff"				"1"
+
+				"EffectName"			"particles/molten_lord/ablaze_debuff.vpcf"
+				"EffectAttachType"		"follow_origin"
+
+				"StatusEffectName"		"particles/status_fx/status_effect_doom.vpcf"
+				"StatusEffectPriority"	"10"
+
+				"ThinkInterval"	"0.5"
+				"OnIntervalThink"
+				{
+					"FireSound"
+					{
+						"EffectName"	"Hero_AbyssalUnderlord.Firestorm.Cast"
+						"Target"		"TARGET"
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/deathtal/molten_lord"
+						"Function"		"Ablaze"
+						"Target"		"TARGET"
+					}
+				}
+			}
+			"skipping_flames_modifier"
+			{
+				"IsHidden"					"1"
+				"Duration"					"%delay"
+
+				"OnDestroy"
+				{
+					"Stun"
+					{
+						"Duration"			"%mini_stun"
+						"Target"			"TARGET"
+					}
+					"FireSound"
+					{
+						"EffectName"		"Hero_OgreMagi.Fireblast.Target"
+						"Target"			"TARGET"
+					}
+					"FireEffect"
+					{
+						"EffectName"		"particles/molten_lord/skipping_flames_impact.vpcf"
+						"EffectAttachType"	"attach_origin"
+						"Target"			"TARGET"
+					}
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/deathtal/molten_lord"
+						"Function"			"SkippingFlamesDamage"
+						"Target"			"TARGET"
+					}
+				}
+			}
+		}
+	}
+
+	"unwavering_stance"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"custom/unwavering_stance"
+		"ReduxPerks"                    "fire"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_abyssal_underlord.vsndevts"
+			"particle"					"particles/units/heroes/hero_ursa/ursa_enrage_hero_effect.vpcf"
+			"particle"					"particles/units/heroes/hero_phoenix/phoenix_ambient.vpcf"
+			"particle"					"particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodbath_eztzhok_ember.vpcf"
+			"particle"					"particles/molten_lord/ablaze_debuff.vpcf"
+			"particle"					"particles/status_fx/status_effect_doom.vpcf"
+		}
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+		"AbilityCooldown"				"30.0 28.0 26.0 24.0"
+		"AbilityManaCost"				"0.0"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"5"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"ablaze_duration"	"6"
+			}
+		}
+
+		"OnUpgrade"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"unwavering_stance_check_modifier"
+				"Target" 		"CASTER"
+			}
+		}
+
+		"OnOwnerSpawned"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"unwavering_stance_check_modifier"
+				"Target" 		"CASTER"
+			}
+		}
+
+		"Modifiers"
+		{
+			"ablaze_modifier"
+			{
+				"TextureName"			"custom/ablaze"
+				"Duration"				"%ablaze_duration"
+				"IsDebuff"				"1"
+
+				"EffectName"			"particles/molten_lord/ablaze_debuff.vpcf"
+				"EffectAttachType"		"follow_origin"
+
+				"StatusEffectName"		"particles/status_fx/status_effect_doom.vpcf"
+				"StatusEffectPriority"	"10"
+
+				"ThinkInterval"	"0.5"
+				"OnIntervalThink"
+				{
+					"FireSound"
+					{
+						"EffectName"	"Hero_AbyssalUnderlord.Firestorm.Cast"
+						"Target"		"TARGET"
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/deathtal/molten_lord"
+						"Function"		"Ablaze"
+						"Target"		"TARGET"
+					}
+				}
+			}
+			"unwavering_stance_check_modifier"
+			{
+				"Passive"		"0"
+				"IsHidden"		"1"
+				"ThinkInterval"	"0.1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/deathtal/molten_lord"
+						"Function"			"CheckStun"
+						"particle"			"particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodbath_eztzhok_ember.vpcf"
+						"sound"				"Hero_AbyssalUnderlord.DarkRift.Complete"
+					}
+				}
+			}
+			"unwavering_stance_active_modifier"
+			{
+				"IsBuff"				"1"
+				"Duration"				"%duration"
+
+				"EffectName"			"particles/units/heroes/hero_phoenix/phoenix_ambient.vpcf"
+				"EffectAttachType"		"follow_origin"
+				
+				"StatusEffectName"		"particles/units/heroes/hero_ursa/ursa_enrage_hero_effect.vpcf"
+				"StatusEffectPriority"	"10"
+
+				"ThinkInterval"			"0.05"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/deathtal/molten_lord"
+						"Function"			"StunImmune"
+					}
+				}
+
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile"		"abilities/deathtal/molten_lord"
+						"Function"			"UnwaveringApplyAblaze"
+						"Attacker"			"ATTACKER"
+					}
+				}
+			}
+		}
+	}
+
+	"molten_charge"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"						"3"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"			"custom/molten_charge"
+		"ReduxPerks"                    "fire"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_phoenix.vsndevts"
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_abyssal_underlord.vsndevts"
+			"particle"					"particles/molten_lord/molten_charge_trail.vpcf"
+			"particle"					"particles/molten_lord/molten_charge_blast.vpcf"
+			"particle"					"particles/units/heroes/hero_dragon_knight/dragon_knight_transform_red.vpcf"
+			"particle"					"particles/status_fx/status_effect_phoenix_burning.vpcf"
+			"particle"					"particles/status_fx/status_effect_doom.vpcf"
+			"particle"					"particles/molten_lord/molten_charge_root.vpcf"
+			"particle"					"particles/molten_lord/molten_charge_armor_drain.vpcf"
+			"particle"					"particles/molten_lord/molten_charge_armor_drain_debuff.vpcf"
+			"particle"					"particles/molten_lord/molten_charge_armor_drain_buff.vpcf"
+			"particle"					"particles/molten_lord/ablaze_debuff.vpcf"
+		}
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastRange"				"1500 2000 2500"
+		"AbilityCooldown"				"160.0 130.0 100.0"
+		"AbilityManaCost"				"200.0 250.0 300.0"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"tooltip_radius"		"550"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"speed"					"2000"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"armor_multiplier"		"8 12 16"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius_tree"			"500"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"width"					"100"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"break_distance"		"600"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"slow_duration"			"2 2.5 3"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"root_duration"			"1.5 2 2.5"
+			}
+			"09"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"slow_attack_speed"		"-30 -40 -50"
+			}
+			"10"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"slow_movement_speed"	"-30 -40 -50"
+			}
+			"11"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"armor_drain_bonus"		"1 2 3"
+			}
+			"12"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"armor_drain_loss"		"-1 -2 -3"
+			}
+			"13"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"6"
+			}
+			"14"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"stack_duration"		"20"
+			}
+			"15"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"ablaze_duration"		"6"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/deathtal/molten_lord"
+				"Function"		"MoltenCharge"
+				"Target"		"POINT"
+				"modifier"		"molten_charge_modifier"
+				"particle"		"particles/units/heroes/hero_dragon_knight/dragon_knight_transform_red.vpcf"
+				"sound"			"Hero_Phoenix.FireSpirits.Launch"
+			}
+
+			"ApplyMotionController"
+			{
+				"Target"
+				{
+					"Center"				"CASTER"
+					"Flags"					"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+				}
+				"ScriptFile"				"abilities/deathtal/molten_lord"
+				"HorizontalControlFunction"	"MoltenChargeMotion"
+			}
+		}
+
+		"Modifiers"
+		{
+			"ablaze_modifier"
+			{
+				"TextureName"			"custom/ablaze"
+				"Duration"				"%ablaze_duration"
+				"IsDebuff"				"1"
+
+				"EffectName"			"particles/molten_lord/ablaze_debuff.vpcf"
+				"EffectAttachType"		"follow_origin"
+
+				"StatusEffectName"		"particles/status_fx/status_effect_doom.vpcf"
+				"StatusEffectPriority"	"10"
+
+				"ThinkInterval"			"0.5"
+				"OnIntervalThink"
+				{
+					"FireSound"
+					{
+						"EffectName"	"Hero_AbyssalUnderlord.Firestorm.Cast"
+						"Target"		"TARGET"
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/deathtal/molten_lord"
+						"Function"		"Ablaze"
+						"Target"		"TARGET"
+					}
+				}
+			}
+			"molten_charge_modifier"
+			{
+				"IsHidden"								"1"
+				"IsPurgable"							"0"
+
+				"OverrideAnimation"						"ACT_DOTA_RUN"
+
+				"EffectName"							"particles/molten_lord/molten_charge_trail.vpcf"
+				"EffectAttachType"						"follow_origin"
+
+				"EffectStatusName"						"particles/status_fx/status_effect_phoenix_burning.vpcf"
+				"StatusEffectPriority"					"10"
+
+				"States"
+				{
+					"MODIFIER_STATE_COMMAND_RESTRICTED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+
+				"OnDestroy"
+				{
+					"FireEffect"
+					{
+						"EffectName"			"particles/molten_lord/molten_charge_blast.vpcf"
+						"EffectAttachType"		"attach_origin"
+						"Target"				"CASTER"
+					}
+
+					"FireSound"
+					{
+						"EffectName"			"Hero_Phoenix.SuperNova.Explode"
+						"Target"				"CASTER"
+					}
+
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"  	"CASTER"
+							"Radius" 	"%tooltip_radius"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+							"Flags"     "DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+						}
+					
+						"Action"    
+						{
+							"RunScript"
+							{
+								"ScriptFile"	"abilities/deathtal/molten_lord"
+								"Function"		"MoltenChargeDamage"
+								"Target"		"TARGET"
+							}
+						}
+					}
+
+					"DestroyTrees"
+					{
+						"Target" 						"CASTER"
+						"Radius"						"%radius_tree"
+					}
+				}
+			}
+			"molten_charge_armor_drain_buff_display_modifier"
+			{
+				"IsBuff"			"1"
+
+				"EffectName"		"particles/molten_lord/molten_charge_armor_drain_buff.vpcf"
+				"EffectAttachType"	"follow_overhead"
+			}
+			"molten_charge_armor_drain_debuff_display_modifier"
+			{
+				"IsDebuff"			"1"
+
+				"EffectName"		"particles/molten_lord/molten_charge_armor_drain_debuff.vpcf"
+				"EffectAttachType"	"follow_overhead"
+			}
+			"molten_charge_armor_drain_buff_modifier"
+			{
+				"IsHidden"			"1"
+
+				"Attributes" 		"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Duration"			"%stack_duration"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor_drain_bonus"
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/deathtal/molten_lord"
+						"Function"		"RemoveStacks"
+						"modifier"		"molten_charge_armor_drain_buff_display_modifier"
+					}
+				}
+			}
+			"molten_charge_armor_drain_debuff_modifier"
+			{
+				"IsHidden"			"1"
+
+				"Attributes" 		"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Duration"			"%stack_duration"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor_drain_loss"
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/deathtal/molten_lord"
+						"Function"		"RemoveStacks"
+						"modifier"		"molten_charge_armor_drain_debuff_display_modifier"
+					}
+				}
+			}
+			"molten_charge_armor_drain_modifier"
+			{
+				"IsHidden"			"1"
+
+				"Duration"			"%duration"
+
+				"ThinkInterval"		"1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/deathtal/molten_lord"
+						"Function"		"DrainArmor"
+						"Target"		"TARGET"
+					}
+				}
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/deathtal/molten_lord"
+						"Function"		"DrainArmorParticle"
+						"Target"		"TARGET"
+						"particle"		"particles/molten_lord/molten_charge_armor_drain.vpcf"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/deathtal/molten_lord"
+						"Function"		"DrainArmorParticleEnd"
+						"Target"		"TARGET"
+					}
+				}
+			}
+			"molten_charge_root_modifier"
+			{
+				"IsDebuff"				"1"
+				"Duration"				"%root_duration"
+
+				"EffectName"			"particles/molten_lord/molten_charge_root.vpcf"
+				"EffectAttachType"		"follow_hitloc"
+
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"	
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%slow_attack_speed"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%slow_movement_speed"
+				}
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"ModifierName"		"molten_charge_slow_modifier"
+						"Target"			"TARGET"
+					}
+				}
+			}
+			"molten_charge_slow_modifier"
+			{
+				"IsDebuff"			"1"
+				"Duration"			"%slow_duration"
+
+				"EffectName"			"particles/molten_lord/molten_charge_slow.vpcf"
+				"EffectAttachType"		"follow_hitloc"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%slow_attack_speed"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%slow_movement_speed"
+				}
+			}
+		}
+	}
+}

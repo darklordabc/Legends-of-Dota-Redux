@@ -1,0 +1,637 @@
+"DOTAAbilities"
+{
+    "imba_roshan_fury"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                                     "ability_datadriven"
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"                         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetFlags"                        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+        "AbilityUnitDamageType"                         "DAMAGE_TYPE_MAGICAL"
+        "AbilityTextureName"                            "custom/imba_roshan_fury"
+        "MaxLevel"                                      "4"
+        "ReduxFlags"                                                           "stun"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"                               "50 100 150 200"
+
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_roshan_halloween.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_invoker/invoker_deafening_blast.vpcf"
+        }
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"                              "600"
+        "AbilityCastRangeBuffer"                        "3000"
+        "AbilityCooldown"                               "35.0"
+        "AbilityCastPoint"                              "1.5"
+        "AbilityCastAnimation"                          "ACT_DOTA_CAST_ABILITY_1"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "width"                                 "375"
+            }
+            "02"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "length"                                "600 800 1200 1600"
+            }
+            "03"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "speed"                                 "2000"
+            }
+            "04"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "base_damage"                           "80 130 180 230"
+            }
+            "05"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "stacking_damage"                       "50"
+            }
+            "06"
+            {
+                "var_type"                              "FIELD_FLOAT"
+                "debuff_duration"                       "0.5 1.0 1.5 2.0"
+            }
+        }
+
+        "OnAbilityPhaseStart"
+        {
+            "FireSound"
+            {
+                "EffectName"                            "RoshanDT.Scream"
+                "Target"                                "CASTER"
+            }
+        }
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                            "abilities/dota imba/neutral_roshan.lua"
+                "Function"                              "RoshanFury"
+
+                "sound_cast"                            "Hero_Invoker.DeafeningBlast"
+                "particle_fury"                         "particles/units/heroes/hero_invoker/invoker_deafening_blast.vpcf"
+            }
+        }
+
+        "OnProjectileHitUnit"
+        {
+            "DeleteOnHit"                               "0"
+
+            "RunScript"
+            {
+                "ScriptFile"                            "abilities/dota imba/neutral_roshan.lua"
+                "Function"                              "RoshanFuryHit"
+            }
+        }
+    }
+
+    "imba_roshan_fury_op"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                                     "ability_datadriven"
+        "AbilityBehavior"                               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"                         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetFlags"                        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+        "AbilityUnitDamageType"                         "DAMAGE_TYPE_MAGICAL"
+        "AbilityTextureName"                            "custom/imba_roshan_fury_op"
+        "MaxLevel"                                      "1"
+        "ReduxCost"                                     "120"
+        "ReduxFlags"                                                           "stun"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"                               "0"
+
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_roshan_halloween.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_invoker/invoker_deafening_blast.vpcf"
+        }
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"                              "600"
+        "AbilityCastRangeBuffer"                        "3000"
+        "AbilityCooldown"                               "30.0"
+        "AbilityCastPoint"                              "1.2"
+        "AbilityCastAnimation"                          "ACT_DOTA_CAST_ABILITY_1"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "width"                                 "375"
+            }
+            "02"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "length"                                "1600"
+            }
+            "03"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "speed"                                 "2000"
+            }
+            "04"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "base_damage"                           "500"
+            }
+            "05"
+            {
+                "var_type"                              "FIELD_INTEGER"
+                "stacking_damage"                       "250"
+            }
+            "06"
+            {
+                "var_type"                              "FIELD_FLOAT"
+                "debuff_duration"                       "2.5"
+            }
+        }
+
+        "OnAbilityPhaseStart"
+        {
+            "FireSound"
+            {
+                "EffectName"                            "RoshanDT.Scream"
+                "Target"                                "CASTER"
+            }
+        }
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                            "abilities/dota imba/neutral_roshan.lua"
+                "Function"                              "RoshanFury"
+
+                "sound_cast"                            "Hero_Invoker.DeafeningBlast"
+                "particle_fury"                         "particles/units/heroes/hero_invoker/invoker_deafening_blast.vpcf"
+            }
+        }
+
+        "OnProjectileHitUnit"
+        {
+            "DeleteOnHit"                               "0"
+
+            "RunScript"
+            {
+                "ScriptFile"                            "abilities/dota imba/neutral_roshan.lua"
+                "Function"                              "RoshanFuryHit"
+            }
+        }
+    }
+
+    "imba_ancient_stalwart_defense"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                             "ability_datadriven"
+        "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                    "custom/imba_ancient_stalwart_defense"
+        "MaxLevel"                              "4"
+        "AbilityCastRange"                      "1500"
+        "ReduxFlags"                                                           "support"
+        "ReduxPerks"                                                           "support | aura"
+
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_legion_commander/legion_commander_press.vpcf"
+            "particle"                                                     "particles/units/heroes/hero_legion_commander/legion_commander_press_buff.vpcf"
+        }
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "duration"                      "3.5"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "hp_regen"                      "6 7 8 9"
+            }
+            "03"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "damage_reduction"              "-25 -30 -35 -40"
+            }
+            "04"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "radius"                        "1500"
+            }
+        }
+
+        "Modifiers"
+        {
+            "modifier_imba_stalwart_defense"
+            {
+                "Passive"                       "1"
+                "IsHidden"                      "1"
+                "IsBuff"                        "1"
+                "IsPurgable"                    "0"
+
+                "Aura"                          "modifier_imba_stalwart_defense_aura"
+                "Aura_Radius"                   "%radius"
+                "Aura_Teams"                    "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+                "Aura_Types"                    "DOTA_UNIT_TARGET_HERO"
+                "Aura_Flags"                    "DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS"
+            }
+
+            "modifier_imba_stalwart_defense_aura"
+            {
+                "Passive"                       "0"
+                "IsHidden"                      "1"
+                "IsBuff"                        "1"
+                "IsPurgable"                    "0"
+
+                "OnDeath"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "abilities/dota imba/ancient_abilities.lua"
+                        "Function"              "StalwartDefense"
+
+                        "modifier_buff"         "modifier_imba_stalwart_defense_buff"
+                        "sound_cast"            "Hero_LegionCommander.PressTheAttack"
+                        "particle_hit"          "particles/units/heroes/hero_legion_commander/legion_commander_press.vpcf"
+                        "particle_buff"         "particles/units/heroes/hero_legion_commander/legion_commander_press_buff.vpcf"
+                    }
+                }
+            }
+
+            "modifier_imba_stalwart_defense_buff"
+            {
+                "Passive"                       "0"
+                "IsHidden"                      "0"
+                "IsBuff"                        "1"
+                "IsPurgable"                    "0"
+
+                "Duration"                      "%duration"
+
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "abilities/dota imba/ancient_abilities.lua"
+                        "Function"              "StalwartDefenseParticleEnd"
+                    }
+                }
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"  "%damage_reduction"
+                    "MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"     "%hp_regen"
+                }
+            }
+        }
+    }
+
+    "imba_ancient_stalwart_defense_op"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                             "ability_datadriven"
+        "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                    "custom/imba_ancient_stalwart_defense_op"
+        "MaxLevel"                              "4"
+        "AbilityCastRange"                      "1500"
+        "ReduxFlags"                                                           "support"
+        "ReduxPerks"                                                           "support | aura"
+        "ReduxCost"                                     "120"
+
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_legion_commander/legion_commander_press.vpcf"
+            "particle"                                                     "particles/units/heroes/hero_legion_commander/legion_commander_press_buff.vpcf"
+        }
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_FLOAT"
+                "duration"                      "3.5"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "hp_regen"                      "6 7 8 9"
+            }
+            "03"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "damage_reduction"              "-25 -30 -35 -40"
+            }
+            "04"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "radius"                        "25000"
+            }
+        }
+
+        "Modifiers"
+        {
+            "modifier_imba_stalwart_defense"
+            {
+                "Passive"                       "1"
+                "IsHidden"                      "1"
+                "IsBuff"                        "1"
+                "IsPurgable"                    "0"
+
+                "Aura"                          "modifier_imba_stalwart_defense_aura"
+                "Aura_Radius"                   "%radius"
+                "Aura_Teams"                    "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+                "Aura_Types"                    "DOTA_UNIT_TARGET_HERO"
+                "Aura_Flags"                    "DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS"
+            }
+
+            "modifier_imba_stalwart_defense_aura"
+            {
+                "Passive"                       "0"
+                "IsHidden"                      "1"
+                "IsBuff"                        "1"
+                "IsPurgable"                    "0"
+
+                "OnDeath"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "abilities/dota imba/ancient_abilities.lua"
+                        "Function"              "StalwartDefense"
+
+                        "modifier_buff"         "modifier_imba_stalwart_defense_buff"
+                        "sound_cast"            "Hero_LegionCommander.PressTheAttack"
+                        "particle_hit"          "particles/units/heroes/hero_legion_commander/legion_commander_press.vpcf"
+                        "particle_buff"         "particles/units/heroes/hero_legion_commander/legion_commander_press_buff.vpcf"
+                    }
+                }
+            }
+
+            "modifier_imba_stalwart_defense_buff"
+            {
+                "Passive"                       "0"
+                "IsHidden"                      "0"
+                "IsBuff"                        "1"
+                "IsPurgable"                    "0"
+
+                "Duration"                      "%duration"
+
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"            "abilities/dota imba/ancient_abilities.lua"
+                        "Function"              "StalwartDefenseParticleEnd"
+                    }
+                }
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"  "%damage_reduction"
+                    "MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"     "%hp_regen"
+                }
+            }
+        }
+    }
+
+    "imba_clinkz_strafe"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityTextureName"            "custom/imba_clinkz_strafe"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "ScriptFile"                    "abilities/dota imba/hero_clinkz.lua"
+        "MaxLevel"                      "4"
+
+        // Time
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "30"
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "300"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "90"
+
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "particle"                  "particles/units/heroes/hero_clinkz/clinkz_strafe_fire.vpcf"
+            "soundfile"                 "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
+        }
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "as_bonus"                  "20 40 60 80"
+                "LinkedSpecialBonus"        "special_bonus_imba_clinkz_5"
+            }
+
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "duration"                  "10 20 30 40"
+            }
+
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "bonus_attack_range"        "100 150 200 250"
+                "LinkedSpecialBonus"        "special_bonus_imba_clinkz_1"
+            }
+        }
+    }
+
+    "imba_clinkz_strafe_op"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityTextureName"            "custom/imba_clinkz_strafe_op"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "ScriptFile"                    "abilities/dota imba/hero_clinkz.lua"
+        "MaxLevel"                      "4"
+        "ReduxCost"                                     "120"
+
+        // Time
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "20"
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "300"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "90"
+
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "particle"                  "particles/units/heroes/hero_clinkz/clinkz_strafe_fire.vpcf"
+            "soundfile"                 "soundevents/game_sounds_heroes/game_sounds_clinkz.vsndevts"
+        }
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "as_bonus"                  "20 40 60 80"
+                "LinkedSpecialBonus"        "special_bonus_imba_clinkz_5"
+            }
+
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "duration"                  "120"
+            }
+
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "bonus_attack_range"        "100 200 300 400"
+                "LinkedSpecialBonus"        "special_bonus_imba_clinkz_1"
+            }
+        }
+    }
+
+    "imba_crystal_maiden_arcane_dynamo"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/dota imba/arcane_dynamo"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"            "custom/crystal_maiden_arcane_dynamo"
+        "MaxLevel"                      "4"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "bonus_movespeed_percent"   "5 10 15 20"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "bonus_spellpower_percent"  "5 10 15 20"
+            }
+
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "max_stacks"                "5 10 15 20"
+            }
+        }
+    }
+    "imba_crystal_maiden_arcane_dynamo_op"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/dota imba/arcane_dynamo"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"            "custom/crystal_maiden_arcane_dynamo_op"
+        "MaxLevel"                      "4"
+        "ReduxCost"                                     "120"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "bonus_movespeed_percent"   "40 60 80 100"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "bonus_spellpower_percent"  "40 60 80 100"
+            }
+
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "max_stacks"                "40 60 80 100"
+            }
+        }
+    }
+
+    "imba_drow_ranger_deadeye"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                             "ability_lua"
+        "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                    "custom/drow_deadeye"
+        "MaxLevel"                              "4"
+        "ScriptFile"                            "abilities/dota imba/deadeye"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "day_vision"                    "200 500 800 1100"
+            }
+
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "night_vision"                  "500 800 1100 1400"
+            }
+        }
+    }
+}

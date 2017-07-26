@@ -14,8 +14,7 @@
                 "reduce"                                               "10 20 30 50"
             }
         }
-        "ReduxCost"                                                            "100"
-        "ReduxBans"                                                            "jingtong"
-        "ReduxFlags"                                                           "SuperOP"
+        "ReduxCost"                                                            "120"
+        "ReduxFlags"                                                           "cooldown"
     }
 }

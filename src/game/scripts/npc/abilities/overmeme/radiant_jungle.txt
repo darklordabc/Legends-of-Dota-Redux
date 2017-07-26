@@ -1,0 +1,374 @@
+"DOTAAbilities"
+{
+    "spawn_small_camp"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/overmeme/radiant_jungle/spawn_small_camp"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+        "FightRecapLevel"               "2"
+        "AbilityTextureName" "custom/spawn_small_camp"
+        "ReduxFlags"                                                           "summon"
+        "ReduxPerks"                                                           "neutral | summon_non_ult"
+        
+        "precache"
+        {
+            "particle"  "particles/units/heroes/hero_furion/furion_teleport_flash_end.vpcf"
+        }
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityChannelTime"            "15 10 5 1"
+        "AbilityCooldown"               "90 70 50 30"
+        
+        "AbilityManaCost"               "100 70 40 0"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "camps_spawned"                 "1"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "spawn_radius"                  "350"
+            }
+            "03"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "channel_time"                  "15 10 5 1"
+            }
+        }
+    }
+
+    "spawn_medium_camp"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/overmeme/radiant_jungle/spawn_medium_camp"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+        "FightRecapLevel"               "2"
+        "AbilityTextureName" "custom/spawn_medium_camp"
+        "ReduxFlags"                                                           "summon"
+        "ReduxPerks"                                                           "neutral | summon_non_ult"
+        
+        "precache"
+        {
+            "particle"  "particles/units/heroes/hero_furion/furion_teleport_flash_end.vpcf"
+        }
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityChannelTime"            "20 15 10 5"
+        "AbilityCooldown"               "105 85 65 45"
+        "AbilityManaCost"               "200 170 140 100"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "camps_spawned"                 "1"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "spawn_radius"                  "350"
+            }
+            "03"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "channel_time"                  "20 15 10 5"
+            }
+        }
+    }
+
+    "spawn_large_camp"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/overmeme/radiant_jungle/spawn_large_camp"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+        "FightRecapLevel"               "2"
+        "AbilityTextureName" "custom/spawn_large_camp"
+        "ReduxFlags"                                                           "summon"
+        "ReduxPerks"                                                           "neutral | summon_non_ult"
+        
+        "precache"
+        {
+            "particle"  "particles/units/heroes/hero_furion/furion_teleport_flash_end.vpcf"
+        }
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityChannelTime"            "30 25 15 5"
+        "AbilityCooldown"               "120 100 80 60"
+        "AbilityManaCost"               "300 270 240 200"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "camps_spawned"                 "1"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "spawn_radius"                  "350"
+            }
+            "03"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "channel_time"                  "30 25 15 5"
+            }
+        }
+    }
+
+    "spawn_ancient_camp"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/overmeme/radiant_jungle/spawn_ancient_camp"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+        "FightRecapLevel"               "2"
+        "AbilityTextureName" "custom/spawn_ancient_camp"
+        "ReduxFlags"                                                           "summon"
+        "ReduxPerks"                                                           "neutral | summon_non_ult"
+        
+        "precache"
+        {
+            "particle"  "particles/units/heroes/hero_furion/furion_teleport_flash_end.vpcf"
+        }
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityChannelTime"            "30 15 5"
+        "AbilityCooldown"               "140 100 80"
+        "AbilityManaCost"               "400 300 200"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "camps_spawned"                 "1"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "spawn_radius"                  "350"
+            }
+            "03"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "channel_time"                  "30 15 5"
+            }
+        }
+    }
+
+    "spawn_small_camp_op"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/overmeme/radiant_jungle/spawn_small_camp"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+        "FightRecapLevel"               "2"
+        "AbilityTextureName" "custom/spawn_small_camp_op"
+        "ReduxFlags"                                                           "summon"
+        "ReduxPerks"                                                           "neutral | summon_non_ult"
+        "ReduxCost"                                                            "120"
+        
+        "precache"
+        {
+            "particle"  "particles/units/heroes/hero_furion/furion_teleport_flash_end.vpcf"
+        }
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityChannelTime"            "5"
+        "AbilityCooldown"               "60.0 50 40 20"
+        
+        "AbilityManaCost"               "200 150 100 50"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "camps_spawned"                 "1 2 3 4"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "spawn_radius"                  "350"
+            }
+            "03"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "channel_time"                  "5"
+            }
+        }
+    }
+
+
+    "spawn_medium_camp_op"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/overmeme/radiant_jungle/spawn_medium_camp"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+        "FightRecapLevel"               "2"
+        "AbilityTextureName" "custom/spawn_medium_camp_op"
+        "ReduxFlags"                                                           "summon"
+        "ReduxPerks"                                                           "neutral | summon_non_ult"
+        "ReduxCost"                                                            "120"
+        
+        "precache"
+        {
+            "particle"  "particles/units/heroes/hero_furion/furion_teleport_flash_end.vpcf"
+        }
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityChannelTime"            "5"
+        "AbilityCooldown"               "60.0 50 40 20"
+        
+        "AbilityManaCost"               "200 150 100 50"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "camps_spawned"                 "1 2 3 4"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "spawn_radius"                  "350"
+            }
+            "03"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "channel_time"                  "5"
+            }
+        }
+    }
+
+    "spawn_large_camp_op"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/overmeme/radiant_jungle/spawn_large_camp"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+        "FightRecapLevel"               "2"
+        "AbilityTextureName" "custom/spawn_large_camp_op"
+        "ReduxFlags"                                                           "summon"
+        "ReduxPerks"                                                           "neutral | summon_non_ult"
+        "ReduxCost"                                                            "120"
+        
+        "precache"
+        {
+            "particle"  "particles/units/heroes/hero_furion/furion_teleport_flash_end.vpcf"
+        }
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityChannelTime"            "5"
+        "AbilityCooldown"               "60.0 50 40 20"
+        
+        "AbilityManaCost"               "200 150 100 50"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "camps_spawned"                 "1 2 3 4"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "spawn_radius"                  "350"
+            }
+            "03"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "channel_time"                  "5"
+            }
+        }
+    }
+
+    "spawn_ancient_camp_op"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/overmeme/radiant_jungle/spawn_ancient_camp"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+        "FightRecapLevel"               "2"
+        "AbilityTextureName" "custom/spawn_ancient_camp_op"
+        "ReduxFlags"                                                           "summon"
+        "ReduxPerks"                                                           "neutral | summon_non_ult"
+        "ReduxCost"                                                            "120"
+        
+        "precache"
+        {
+            "particle"  "particles/units/heroes/hero_furion/furion_teleport_flash_end.vpcf"
+        }
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityChannelTime"            "5"
+        "AbilityCooldown"               "60.0 50 40 20"
+        
+        "AbilityManaCost"               "200 150 100 50"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "camps_spawned"                 "1 2 3 4"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "spawn_radius"                  "350"
+            }
+            "03"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "channel_time"                  "5"
+            }
+        }
+    }
+}

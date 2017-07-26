@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Phantom Lancer
---		Perk: At the start of the game, Phantom Lancer gains a free level of Phantom Rush, whether he has it or not.
+--		Perk: Phantom Lancer gains Phantum Rush as a free ability.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_phantom_lancer_perk", "abilities/hero_perks/npc_dota_hero_phantom_lancer_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -61,8 +61,9 @@ function modifier_npc_dota_hero_phantom_lancer_perk:PhantomRushCheck()
 	else 
 		self.freeRush = true
 		rush = caster:AddAbility("phantom_lancer_phantom_edge")
-		rush:SetHidden(true)
-		rush:SetLevel(1)
+		--rush:SetStolen(true)
+        rush:SetActivated(true)
+		--rush:SetLevel(1)
 		self.rush = rush
 		self:StartIntervalThink(0.1)
 	end

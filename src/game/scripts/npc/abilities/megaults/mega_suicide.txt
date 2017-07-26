@@ -1,0 +1,69 @@
+"DOTAAbilities" {
+    "mega_suicide"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "techies_suicide"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "FightRecapLevel"               "1"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "MaxLevel"                      "1"
+        "RequiredLevel"                 "24"
+        "ReduxCost"                                                            "120"
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "3000"
+        "AbilityCastPoint"              "1.0"
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "250"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "750"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "radius"                "400"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "damage"                    "9999"
+            }
+            "03"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "silence_duration"          "7"
+            } 
+            "04"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "hp_cost"               "9999"
+            } 
+            "05"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "duration"              "3"
+            }
+        }
+    }
+    "OnSpellStart"
+    {
+        "RunScript"
+        {
+            "ScriptFile"    "abilities/mega_ultimates/mega_suicide.lua"
+            "Function"        "KABOOM"
+        }
+    }
+}

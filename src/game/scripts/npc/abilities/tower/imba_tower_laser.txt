@@ -83,7 +83,7 @@
                 }
             }
         }
-        "ReduxCost"                                                            "80"
-        "ReduxFlags"                                                           "SuperOP"
+        "ReduxCost"                                                            "120"
+        "ReduxFlags"                                                           ""
     }
 }

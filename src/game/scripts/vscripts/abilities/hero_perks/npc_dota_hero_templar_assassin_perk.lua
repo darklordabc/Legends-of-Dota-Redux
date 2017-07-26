@@ -29,7 +29,7 @@ end
 function modifier_npc_dota_hero_templar_assassin_perk:OnCreated(keys)
     if IsServer() then
         self.check = false
-        self.invisDelay = 5
+        self.invisDelay = 2
         self:GetCaster().invisDuration = 10
         self:GetCaster():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_npc_dota_hero_templar_assassin_invis_break", {Duration = self.invisDelay})
     end

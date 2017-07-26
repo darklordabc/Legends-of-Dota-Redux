@@ -44,7 +44,8 @@ function modifier_npc_dota_hero_wisp_perk:OnCreated(keys)
             essense:UpgradeAbility(false)
         else 
             essense = caster:AddAbility("obsidian_destroyer_essence_aura_redux")
-            essense:SetHidden(true)
+            essense:SetStolen(true)
+            essense:SetActivated(true)
             essense:SetLevel(1)
         end
     end

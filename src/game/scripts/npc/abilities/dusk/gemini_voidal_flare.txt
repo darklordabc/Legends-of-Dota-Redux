@@ -19,7 +19,7 @@
         "AbilityCastPoint"                                                     "0.3 0.3 0.3 0.3"
         "AbilityCooldown"                                                      "9"
         "AbilityDamage"                                                        "50 90 130 170"
-        "AbilityManaCost"                                                      "110 120 130 140"
+        "AbilityManaCost"                                                      "100"
         "AbilitySpecial"
         {
             "01"
@@ -31,6 +31,11 @@
             {
                 "var_type"                                             "FIELD_FLOAT"
                 "magic_missile_stun"                                   "1.00 1.25 1.50 1.75"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "mana_returned"                                   "50 75 100 150"
             }
         }
         "OnSpellStart"

@@ -96,11 +96,12 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
             end
 
             -- Check if they tried to illegally use shadow items, if they did, punish them by not refunding the full price
-            if OptionManager:GetOption('banInvis') == 2 and (keys.abilityname == "item_invis_sword" or keys.abilityname == "item_silver_edge") then
+            if OptionManager:GetOption('banInvis') == 2 and (keys.abilityname == "item_invis_sword" or keys.abilityname == "item_silver_edge" or keys.abilityname == "item_shadow_amulet" or keys.abilityname == "item_glimmer_cape") then
                 for i=0,11 do
                     local item = hero:GetItemInSlot(i)
                     if item ~= nil then
-                        if item:GetName() == "item_invis_sword" or item:GetName() == "item_silver_edge" then
+                        if item:GetName() == "item_invis_sword" or item:GetName() == "item_silver_edge" or item:GetName() == "item_shadow_amulet" or item:GetName() == "item_glimmer_cape" then
+                            -- Punish gold is gold that they dont get refunded
                             local punishAmount = 500
                             hero:ModifyGold(item:GetCost() - punishAmount , false, 0)
                             hero:RemoveItem(item)
@@ -113,7 +114,7 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
 
             -- Check if they have multicast
             local multicastMadness = OptionManager:GetOption('multicastMadness')
-            if canMulticast(keys.abilityname) then
+            if canMulticast(keys.abilityname) and not hero:PassivesDisabled() then
                 local mab = hero:FindAbilityByName('ogre_magi_multicast_lod')
                 if not mab and multicastMadness then
                     mab = hero:AddAbility("ogre_magi_multicast_lod")
@@ -446,7 +447,7 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
             end
 
             -- Check for witchcraft
-            if not noWitchcraft[keys.abilityname] then
+            if not noWitchcraft[keys.abilityname] and not hero:PassivesDisabled() then
                 local mabWitch = hero:FindAbilityByName('death_prophet_witchcraft')
 
                 if mabWitch then
@@ -506,7 +507,7 @@ ListenToGameEvent('entity_hurt', function(keys)
             -- Do they even have the ability in question?
             local ab = ent:FindAbilityByName('abaddon_borrowed_time')    
             local ab2 = ent:FindAbilityByName('abaddon_borrowed_time_redux')
-            if ab and ab:IsCooldownReady() then
+            if ab and ab:IsCooldownReady() and not ent:PassivesDisabled() then
                     -- Grab the level
                     local lvl = ab:GetLevel()
 
@@ -526,7 +527,7 @@ ListenToGameEvent('entity_hurt', function(keys)
 							local cd = ab:GetCooldown(lvl-1)
                             ab:StartCooldown(cd)
                     end    
-            elseif ab2 and ab2:IsCooldownReady() then  
+            elseif ab2 and ab2:IsCooldownReady() and not ent:PassivesDisabled() then  
                     -- Grab the level
                     local lvl = ab2:GetLevel()
 

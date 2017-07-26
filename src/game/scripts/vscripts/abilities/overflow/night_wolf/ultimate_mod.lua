@@ -32,7 +32,7 @@ MODIFIER_PROPERTY_MODEL_CHANGE,
 MODIFIER_PROPERTY_MODEL_SCALE,
 MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
-MODIFIER_PROPERTY_MOVESPEED_MAX,
+--MODIFIER_PROPERTY_MOVESPEED_MAX,
 MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 MODIFIER_PROPERTY_BONUS_NIGHT_VISION
 	}
@@ -64,9 +64,9 @@ function night_wolf_mod:GetModifierModelScale() return 0.25 end
 function night_wolf_mod:GetModifierAttackRangeBonus() return self.AttackBonus end
 function night_wolf_mod:GetModifierMoveSpeedBonus_Constant() return self:GetAbility():GetSpecialValueFor("move_speed") end
 function night_wolf_mod:GetModifierAttackSpeedBonus_Constant() return self:GetAbility():GetSpecialValueFor("attack_speed") end
-function night_wolf_mod:GetModifierMoveSpeed_Max()
-	return self:GetAbility():GetSpecialValueFor("max")
-end
+--function night_wolf_mod:GetModifierMoveSpeed_Max()
+--	return self:GetAbility():GetSpecialValueFor("max")
+--end
 function night_wolf_mod:GetBonusNightVision()
 	if self:GetParent():HasScepter() then
 	return self:GetAbility():GetSpecialValueFor("bonus_vision_scepter")

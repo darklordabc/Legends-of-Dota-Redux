@@ -1,6 +1,21 @@
 "DOTAAbilities"
 {
     //=================================================================================================================
+    //
+    //
+    //
+    //
+    //
+    //
+    //                                  Veera, the Plains Runner    
+    //
+    //
+    //
+    //
+    //
+    //
+    //=================================================================================================================
+    //=================================================================================================================
     // Veera - Evasive Roll (old ability)
     //=================================================================================================================
     "veera_evasive_roll"
@@ -61,7 +76,7 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "movespeed_bonus"       "1 2 2 3"
+                "movespeed_bonus"       "1 2 3 4"
             }
             "02"
             {
@@ -81,7 +96,7 @@
             "05"
             {
                 "var_type"          "FIELD_INTEGER"
-                "agility_bonus"         "15"
+                "agility_bonus"         "10"
             }
     
         }
@@ -359,7 +374,8 @@
         "AbilityCastPoint"          "0.0"
         "AbilityCooldown"           "140 110 80"
         "AbilityProcsMagicStick"        "1"
-        "HasScepterUpgrade"             "1"
+        //"HasScepterUpgrade"             "1"
+        "ReduxFlags"    "cooldown"
     
         "AbilitySpecial"
         {
@@ -498,21 +514,7 @@
             }
         }
     }
-    //=================================================================================================================
-    //
-    //
-    //
-    //
-    //
-    //
-    //                                  Veera, the Plains Runner    
-    //
-    //
-    //
-    //
-    //
-    //
-    //=================================================================================================================
+    
     //=================================================================================================================
     // Veera - Toxic Darts
     //=================================================================================================================
@@ -527,7 +529,7 @@
         "AbilityTextureName"            "custom/veera_toxic_darts"
         "AbilityProcsMagicStick"        "1"
     
-        "AbilityCooldown"       "0.0"
+        "AbilityCooldown"       "7.0 6.0 5.0 4.0"
         "AbilityManaCost"       "20"
     
         "AbilityCastPoint"              "0.15"
@@ -558,7 +560,7 @@
             "05"
             {
                 "var_type"          "FIELD_INTEGER"
-                "width"             "64"
+                "width"             "100"
             }
             "06"
             {
@@ -608,7 +610,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"            "heroes/hero_veera/toxic_darts.lua"
+                "ScriptFile"            "abilities/nextgeneration/hero_veera/toxic_darts.lua"
                 "Function"              "ToxicDartsStartCharge"
             }
         }
@@ -621,7 +623,7 @@
             }
             "RunScript"
             {
-                "ScriptFile"            "heroes/hero_veera/toxic_darts.lua"
+                "ScriptFile"            "abilities/nextgeneration/hero_veera/toxic_darts.lua"
                 "Function"              "ShootDart"
             }
             "LinearProjectile"
@@ -673,7 +675,7 @@
             }
             "RunScript"
             {
-                "ScriptFile"            "heroes/hero_veera/toxic_darts.lua"
+                "ScriptFile"            "abilities/nextgeneration/hero_veera/toxic_darts.lua"
                 "Function"              "ToxicDartsApplyToxicEffect"
             }
         }
@@ -715,7 +717,7 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"            "heroes/hero_veera/toxic_darts.lua"
+                        "ScriptFile"            "abilities/nextgeneration/hero_veera/toxic_darts.lua"
                         "Function"              "ToxicDartsApplyEndEffect"
                     }
                 }

@@ -289,7 +289,8 @@ end
 function hawkeye_hit_n_run(event)
   local caster = event.caster
   local facing = caster:GetForwardVector()
-  local distance = 700
+  local distance = event.ability:GetLevelSpecialValueFor("jump_distance",event.ability:GetLevel()-1)
+  
   
   ProjectileManager:ProjectileDodge(caster)
   

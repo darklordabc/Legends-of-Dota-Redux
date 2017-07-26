@@ -35,6 +35,27 @@ function Debug:init()
         end
     end, 'player say', 0)
 
+    Convars:RegisterCommand('debug_send_abilities', function(c, team)
+        local cmdPlayer = Convars:GetCommandClient()
+        if cmdPlayer then
+            local playerID = cmdPlayer:GetPlayerID()
+            if playerID ~= nil and playerID ~= -1 then
+                -- CreateHTTPRequestScriptVM("GET", "http://127.0.0.1:3333/health"):Send(function(response) PrintTable(response) end)
+                StatsClient:SendAbilityUsageData()
+            end
+        end
+    end, 'debug_send_abilities', 0)
+
+    Convars:RegisterCommand('debug_switch_team', function(c, team)
+        local cmdPlayer = Convars:GetCommandClient()
+        if cmdPlayer then
+            local playerID = cmdPlayer:GetPlayerID()
+            if playerID ~= nil and playerID ~= -1 then
+                GameRules.ingame:balancePlayer(playerID, tonumber(team))
+            end
+        end
+    end, 'debug_switch_team', 0)
+
     Convars:RegisterCommand('level_exp_table', function(c, team)
         local cmdPlayer = Convars:GetCommandClient()
         if cmdPlayer then
@@ -145,6 +166,27 @@ function Debug:init()
             end
         end
     end, 'test', 0)
+
+    Convars:RegisterCommand('debug_talent_test', function()
+        local player = Convars:GetCommandClient()
+        if not player then return end
+        local hero = PlayerResource:GetSelectedHeroEntity(player:GetPlayerID())
+        local count = 0
+        for i = 0, hero:GetAbilityCount() - 1 do
+            local ability = hero:GetAbilityByIndex(i)
+            if ability then
+                if ability:GetAbilityName():find('special_bonus_') then
+                    UTIL_Remove(ability)
+                    count = count + 1
+                end
+            end
+        end
+        print('Removed ' .. count .. ' talents')
+        hero.hasTalent = nil
+        local pregame = require('pregame')
+        pregame.handled = nil
+        pregame:fixSpawnedHero( hero )
+    end, '', 0)
 end
 
 -- Makes the server say stuff

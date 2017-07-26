@@ -1,0 +1,40 @@
+"DOTAAbilities"
+{
+    "basic_gpm_bonus"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/basic_gold_bonus.lua"
+        "AbilityTextureName"                                                   "custom/basic_gpm_bonus"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "gold_bonus"                                          "60 90 120 150"
+            }
+        }
+        "ReduxFlags"                                                           "dota_custom"
+        "ReduxCost"                                                            "0"
+    }
+
+    "basic_gpm_bonus_op"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/basic_gold_bonus.lua"
+        "AbilityTextureName"                                                   "custom/basic_gpm_bonus _op"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "gold_bonus"                                          "100 200 300 400"
+            }
+        }
+        "ReduxFlags"                                                           "dota_custom"
+        "ReduxCost"                                                            "120"
+    }
+}

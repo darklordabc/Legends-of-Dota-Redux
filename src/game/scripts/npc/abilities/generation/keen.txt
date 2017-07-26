@@ -294,6 +294,7 @@
         "AbilityCastPoint"              "2 1.5 1"
         "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
         "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "ReduxBans"                     "ebf_clinkz_trickshot"
     
         "precache"
         {
@@ -321,7 +322,7 @@
             "04"
             {
                 "var_type"          "FIELD_FLOAT"
-                "transform_time"    "2 1.5 1"
+                "transform_time"    "3.0 2.5 2.0"
             }
             "05"
             {
@@ -341,7 +342,7 @@
             "08"
             {
                 "var_type"          "FIELD_INTEGER"
-                "attack_bonus_range"    "1000 1500 2000"
+                "attack_bonus_range"    "1000 2000 3000"
             }
             "09"
             {
@@ -482,7 +483,7 @@
         "AbilityTextureName"            "custom/slag_armor"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
-        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
     
         "AbilityCastRange"              "600"

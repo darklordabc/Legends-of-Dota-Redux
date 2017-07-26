@@ -1,0 +1,141 @@
+"DOTAAbilities" {
+	"floor_is_lava"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT_TARGET"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "MaxLevel"                                                             "1"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "AbilityTextureName"                                                   "jakiro_macropyre"
+        "RequiredLevel"                                                        "24"
+        "AbilityCastPoint"                                                     "0"
+        "AbilityCooldown"                                                      "300"
+        "AbilityManaCost"                                                      "1000"
+        "AbilityModifierSupportValue"                                          "0.0"
+        "ReduxCost"                                                            "120"
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "3600"
+        "AbilityCastPoint"              "0.65"
+
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_invoker/invoker_chaos_meteor.vpcf"
+        }
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "lines"                     "45"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "damage"                    "50"
+            }
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "cast_range"                "3600"                  
+            }
+            "04"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "duration"                "10"                  
+            }
+        }
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/mega_ultimates/floor_is_lava.lua"
+                "Function"        "StartLava"
+            }
+        }
+
+    }
+    "mega_macropyre"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                    "jakiro_macropyre"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "FightRecapLevel"               "2"
+
+        "HasScepterUpgrade"         "1"
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "3600"
+        "AbilityCastPoint"              "0"
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "60 60 60"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "220 330 440"       
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "damage"                    "50"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "cast_range"                "3600"                  
+            }
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "path_radius"               "270"
+            }
+            "04"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "tooltip_duration"          "10"
+            }
+            "05"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "duration"          "10"
+            }   
+            "06"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "burn_interval"             "0.55"
+            }
+            "07"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "damage_scepter"            "75"
+            }
+            "08"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "cast_range_scepter"        "9000"
+            }
+            "09"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "duration_scepter"          "30"
+            }
+        }   
+    }
+}

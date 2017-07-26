@@ -165,6 +165,7 @@ if not OptionManager.initialSettings then
 	OptionManager:SetOption('322', 0)
 	OptionManager:SetOption('refreshCooldownsOnDeath', 0)
 	OptionManager:SetOption('gottaGoFast', 0)
+	OptionManager:SetOption('battleThirst', 0)
 	OptionManager:SetOption('memesRedux', 0)
 
 	--[[

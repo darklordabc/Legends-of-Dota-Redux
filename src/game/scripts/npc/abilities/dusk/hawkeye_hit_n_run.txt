@@ -39,6 +39,11 @@
                 "var_type"                                             "FIELD_INTEGER"
                 "slow"                                                 "-12 -24 -36 -48"
             }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "jump_distance"                                         "700"
+            }
         }
         "precache"
         {

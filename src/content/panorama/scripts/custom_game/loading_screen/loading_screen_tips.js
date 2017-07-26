@@ -79,10 +79,12 @@ var tipsGeneral = [{
     },{
         img: 'file://{images}/custom_game/hints/hint_bots_difficulty.png',
         txt: '#hintBotsDifficulty'
-    },{
-        img: 'file://{images}/custom_game/hints/hint_duels.png',
-        txt: '#hintDuels'
-    },{
+    },
+    //{
+    //    img: 'file://{images}/custom_game/hints/hint_duels.png',
+    //    txt: '#hintDuels'
+    //},
+    {
         img: 'file://{images}/items/wind_lace.png',
         txt: '#hintBotTalents'
     },{
@@ -94,6 +96,12 @@ var tipsGeneral = [{
     },{
         img: 'file://{images}/custom_game/hints/hint_CustomAbility.png',
         txt: '#hintCustomAbility'
+    },{
+        img: 'file://{images}/custom_game/hints/hint_alt.png',
+        txt: '#hintAlt'
+    },{
+        img: 'file://{images}/custom_game/hints/hint_random.png',
+        txt: '#hintRandom'
     },{
         img: 'file://{images}/custom_game/hints/hint_singleplayer.png',
         txt: '#hintSinglePlayer'
@@ -118,6 +126,9 @@ var tipsGeneral = [{
     },{
         img: 'file://{images}/spellicons/courier_shield.png',
         txt: '#hintChatCheats'
+    },{
+        img: 'file://{images}/custom_game/hints/hint_silver.png',
+        txt: '#hintSilver'
     },
 ];
 

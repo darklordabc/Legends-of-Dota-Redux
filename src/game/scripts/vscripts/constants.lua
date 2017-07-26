@@ -19,30 +19,30 @@ Constants.BALANCE_MODE_POINTS = 120
 -- EXP Needed for each level
 Constants.XP_PER_LEVEL_TABLE = {
         0,-- 1
-        200,-- 2
-        500,-- 3
-        900,-- 4
-        1400,-- 5
-        2000,-- 6
-        2615,-- 7
-        3425,-- 8
-        4550,-- 9
-        5225,-- 10
-        6000,-- 11
-        7175,-- 12
-        8375,-- 13
-        9600,-- 14
-        10850,-- 15
-        12125,-- 16
-        13500,-- 17
-        14900,-- 18
-        16325,-- 19
-        20900,-- 20
-        23000,-- 21
-        25200,-- 22
-        27500,-- 23
-        29900,-- 24
-        32400, -- 25
+        240,-- 2
+        600,-- 3
+        1080,-- 4
+        1680,-- 5
+        2300,-- 6
+        2940,-- 7
+        3600,-- 8
+        4280,-- 9
+        5080,-- 10
+        5900,-- 11
+        6740,-- 12
+        7640,-- 13
+        8865,-- 14
+        10115,-- 15
+        11390,-- 16
+        12690,-- 17
+        14015,-- 18
+        15415,-- 19
+        16905,-- 20
+        18405,-- 21
+        20155,-- 22
+        22155,-- 23
+        24405,-- 24
+        26905, -- 25
         35000,-- 26
         37700,-- 27
         40500,-- 28
@@ -240,16 +240,16 @@ Constants.FAT_SCALING = {
 
 -- Imba Stuff
 CAST_RANGE_TALENTS = {}														-- Cast range talent values
-CAST_RANGE_TALENTS["special_bonus_cast_range_50"] = 100
-CAST_RANGE_TALENTS["special_bonus_cast_range_60"] = 125
-CAST_RANGE_TALENTS["special_bonus_cast_range_75"] = 150
-CAST_RANGE_TALENTS["special_bonus_cast_range_100"] = 200
-CAST_RANGE_TALENTS["special_bonus_cast_range_125"] = 250
-CAST_RANGE_TALENTS["special_bonus_cast_range_150"] = 300
-CAST_RANGE_TALENTS["special_bonus_cast_range_175"] = 350
-CAST_RANGE_TALENTS["special_bonus_cast_range_200"] = 400
-CAST_RANGE_TALENTS["special_bonus_cast_range_250"] = 450
-CAST_RANGE_TALENTS["special_bonus_cast_range_300"] = 500
+CAST_RANGE_TALENTS["special_bonus_cast_range_50"] = 50
+CAST_RANGE_TALENTS["special_bonus_cast_range_60"] = 60
+CAST_RANGE_TALENTS["special_bonus_cast_range_75"] = 75
+CAST_RANGE_TALENTS["special_bonus_cast_range_100"] = 100
+CAST_RANGE_TALENTS["special_bonus_cast_range_125"] = 125
+CAST_RANGE_TALENTS["special_bonus_cast_range_150"] = 150
+CAST_RANGE_TALENTS["special_bonus_cast_range_175"] = 175
+CAST_RANGE_TALENTS["special_bonus_cast_range_200"] = 200
+CAST_RANGE_TALENTS["special_bonus_cast_range_250"] = 250
+CAST_RANGE_TALENTS["special_bonus_cast_range_300"] = 300
 
 MAXIMUM_ATTACK_SPEED = 600					-- What should we use for the maximum attack speed?
 

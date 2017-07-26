@@ -443,35 +443,30 @@
         "AbilitySpecial"
         {
             "01"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "assault_bonus_attack_speed"    "30"
-            }
-            "02"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "assault_bonus_armor"           "10"
-            }
-            "03"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "assault_aura_radius"           "900"
-            }
-            "04"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "assault_aura_attack_speed"     "25"
-            }
-            "05"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "assault_aura_positive_armor"   "5"
-            }
-            "06"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "assault_aura_negative_armor"   "-5"
-            }           
+          {
+            "var_type"              "FIELD_INTEGER"
+            "assault_bonus_attack_speed"    "30"
+          }
+          "02"
+          {
+            "var_type"              "FIELD_INTEGER"
+            "assault_bonus_armor"           "10"
+          }
+          "03"
+          {
+            "var_type"              "FIELD_INTEGER"
+            "assault_aura_radius"           "900"
+          }
+          "04"
+          {
+            "var_type"              "FIELD_INTEGER"
+            "assault_aura_attack_speed"     "25"
+          }
+          "05"
+          {
+            "var_type"              "FIELD_INTEGER"
+            "assault_aura_armor"   "5"
+          }
         }
     }
 
@@ -589,7 +584,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "ID"                            "2114"                                                       
         "ItemCost"                      "5500"
-        "AbilityGoldCost"               "5500"
+        "AbilityGoldCost"               "5200"
         "ItemPurchasable"              "0"
         "AbilityCooldown"               "7.0"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
@@ -647,8 +642,8 @@
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
-        "ItemCost"                      "5520"
-        "AbilityGoldCost"               "5520"
+        "ItemCost"                      "5320"
+        "AbilityGoldCost"               "5320"
         "ItemPurchasable"              "0"
         
         // Special  
@@ -757,8 +752,8 @@
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
-        "ItemCost"                      "5400"
-        "AbilityGoldCost"               "5400"
+        "ItemCost"                      "5200"
+        "AbilityGoldCost"               "5200"
         "ItemPurchasable"              "0"
         "AbilitySpecial"
         {
@@ -877,4 +872,395 @@
         }
     }
 
+    "item_redux_silver"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "item_datadriven"
+        "ID"                            "2301"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "Model"                         "models/props_gameplay/red_box.vmdl" 
+        "Effect"                        "particles/generic_gameplay/dropped_item.vpcf"
+        "AbilityTextureName"            "custom/redux_silver"
+        "ItemAliases"					"silver;invis;shadow blade"
+        "FightRecapLevel"               "1"
+        
+        // Stats        
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "600"
+        "AbilityCastPoint"              "0.0"
+        "AbilityCooldown"               "24.0"
+        "AbilityManaCost"               "75"
+        
+        "AbilitySharedCooldown"         ""
+        "MaxUpgradeLevel"               "1"
+        "ItemBaseLevel"                 "1"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+        
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"            "2850"
+        "ItemShopTags"          "utility"
+        "ItemQuality"         "component"
+        "ItemPurchasable"               "1"
+
+        "precache"
+        {
+            "particle"  "particles/items3_fx/silver_edge_slow.vpcf"
+        }
+        
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_all_stats"       "15"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "break_duration"        "5"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "damage_reduction"      "25"
+            }
+        }
+        
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/item_redux_silver.lua"
+                "Function"        "ApplyDamageReductionModifier"
+                "Target"    "TARGET"
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"    "modifier_redux_silver_break"
+                "Target"         "TARGET"
+                "Duration"        "%break_duration"
+            }
+            "FireSound"
+            {
+                "EffectName"    "DOTA_Item.SilverEdge.Target"
+                "Target"         "TARGET"
+            }
+        }
+        
+        "Modifiers"
+        {
+            "modifier_redux_silver_passive"
+            {
+                "Passive"           "1"
+                "IsHidden"          "1"
+                
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"        "%bonus_all_stats"
+                    "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"         "%bonus_all_stats"
+                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"       "%bonus_all_stats"
+                }
+            }
+            "modifier_redux_silver_break"
+            {
+                "Passive"           "0"
+                "IsPurgable"        "1"
+                "IsBuff"            "0"
+                "IsDebuff"            "1"
+                "IsStunDebuff"        "0"
+                "TextureName" "custom/redux_silver"
+
+                "EffectName"        "particles/items3_fx/silver_edge_slow.vpcf"
+                "EffectAttachType"  "follow_origin"
+                
+                "States"
+                {
+                    "MODIFIER_STATE_PASSIVES_DISABLED"        "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+    }
+
+    "item_recipe_redux_silver"
+    {
+        "BaseClass"           "item_datadriven"
+        "ID"              "2302"
+        "Model" "models/props_gameplay/recipe.mdl"
+        "AbilityTextureName"      "item_recipe"
+
+        "ItemCost"            "0"
+        "ItemShopTags"          ""
+
+        "ItemRecipe"          "1"
+        "ItemResult"          "item_redux_silver"
+        "ItemRequirements"
+        {
+            "01"            "item_ultimate_orb;item_redux_silver_consume"
+        }
+    }
+
+    "item_redux_silver_consume"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "item_datadriven"
+        "ID"                            "2303"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "Model"                         "models/props_gameplay/red_box.vmdl" 
+        "Effect"                        "particles/generic_gameplay/dropped_item.vpcf"
+        "AbilityTextureName"            "custom/item_redux_silver_consume"
+        "ItemAliases"                   "silver;invis;shadow blade"
+        "FightRecapLevel"               "1"
+        
+        // Stats        
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "600"
+        "AbilityCastPoint"              "0.0"
+        "AbilityCooldown"               "24.0"
+        "AbilityManaCost"               "75"
+        
+        "AbilitySharedCooldown"         ""
+        "MaxUpgradeLevel"               "1"
+        "ItemBaseLevel"                 "1"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+        
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"            "450"
+        "ItemShopTags"                  "consumable"
+        "ItemQuality"                   "consumable"
+        "ItemStackable"                 "0"
+        "ItemPermanent"                 "0"
+        "ItemInitialCharges"            "1"
+        "ItemQuality"         "component"
+        "ItemPurchasable"               "1"
+
+        "precache"
+        {
+            "particle"  "particles/items3_fx/silver_edge_slow.vpcf"
+        }
+        
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_all_stats"       "0"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "break_duration"        "5"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "damage_reduction"      "25"
+            }
+        }
+        
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/item_redux_silver.lua"
+                "Function"        "ApplyDamageReductionModifierConsume"
+                "Target"    "TARGET"
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"    "modifier_redux_silver_break"
+                "Target"         "TARGET"
+                "Duration"        "%break_duration"
+            }
+            "FireSound"
+            {
+                "EffectName"    "DOTA_Item.SilverEdge.Target"
+                "Target"         "TARGET"
+            }
+        }
+        
+        "Modifiers"
+        {
+            "modifier_redux_silver_passive"
+            {
+                "Passive"           "1"
+                "IsHidden"          "1"
+                
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"        "%bonus_all_stats"
+                    "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"         "%bonus_all_stats"
+                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"       "%bonus_all_stats"
+                }
+            }
+            "modifier_redux_silver_break"
+            {
+                "Passive"           "0"
+                "IsPurgable"        "1"
+                "IsBuff"            "0"
+                "IsDebuff"            "1"
+                "IsStunDebuff"        "0"
+                "TextureName" "custom/redux_silver"
+
+                "EffectName"        "particles/items3_fx/silver_edge_slow.vpcf"
+                "EffectAttachType"  "follow_origin"
+                
+                "States"
+                {
+                    "MODIFIER_STATE_PASSIVES_DISABLED"        "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+    }
+
+    //=================================================================================================================
+    // Bag of Gold
+    //=================================================================================================================
+    "item_bag_of_gold"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityName"                   "item_bag_of_gold"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "Model"                         "models/props_gameplay/gold_coin001.vmdl"
+        "ItemKillable"                  "0"
+        
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "100"
+        "AbilityCastPoint"              "0.0"
+        
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "99999"
+        "ItemPurchasable"               "0"
+        "ItemShopTags"                  "consumable"
+        "ItemQuality"                   "consumable"
+        "ItemStackable"                 "1"
+        "ItemShareability"              "ITEM_FULLY_SHAREABLE"
+        "ItemPermanent"                 "0"
+        "ItemInitialCharges"            "0"
+        "ItemKillable"                  "0"
+        "ItemCastOnPickup"              "1"
+    }
+    //=================================================================================================================
+    // Treasure Chest
+    //=================================================================================================================
+    "item_treasure_chest"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "1001"
+        "AbilityName"                   "item_treasure_chest"
+        "BaseClass"                     "item_bag_of_gold"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_ITEM"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "Model"                         "models/props_gameplay/treasure_chest001.vmdl"
+        "ItemKillable"                  "0"
+        
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "100"
+        "AbilityCastPoint"              "0.0"
+        
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "99999"
+        "ItemPurchasable"               "0"
+        "ItemShopTags"                  "consumable"
+        "ItemQuality"                   "consumable"
+        "ItemStackable"                 "1"
+        "ItemShareability"              "ITEM_FULLY_SHAREABLE"
+        "ItemPermanent"                 "0"
+        "ItemInitialCharges"            "0"
+        "ItemKillable"                  "0"
+        "ItemCastOnPickup"              "1"
+    }
+
+    "item_new_ability_bonus"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "item_lua"
+        "AbilityTextureName"            "custom/item_new_ability_bonus"
+        "ScriptFile"                    "abilities/items/gold_bonus"
+        "AbilityCooldown"               "60"
+        "AbilitySharedCooldown"         "bonus"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "Model"                         "models/props_gameplay/treasure_chest001.vmdl"
+        "ItemKillable"                  "0"
+        "IsTempestDoubleClonable"       "0"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemPurchasable"               "0"
+        "ItemShopTags"                  "consumable"
+        "ItemQuality"                   "consumable"
+        "ItemStackable"                 "0"
+        "ItemPermanent"                 "0"
+        "ItemInitialCharges"            "1"
+        "ItemSellable"                  "0"
+    }
+
+    "item_new_global_ability_bonus"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "item_lua"
+        "AbilityTextureName"            "custom/item_new_global_ability_bonus"
+        "ScriptFile"                    "abilities/items/gold_bonus"
+        "AbilityCooldown"               "60"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "Model"                         "models/props_gameplay/treasure_chest001.vmdl"
+        "ItemKillable"                  "0"
+        "AbilitySharedCooldown"         "bonus"
+        "IsTempestDoubleClonable"       "0"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemPurchasable"               "0"
+        "ItemShopTags"                  "consumable"
+        "ItemQuality"                   "consumable"
+        "ItemStackable"                 "0"
+        "ItemPermanent"                 "0"
+        "ItemInitialCharges"            "1"
+        "ItemSellable"                  "0"
+    }
+
+    "item_balanced_build_bonus"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "item_lua"
+        "AbilityTextureName"            "custom/item_balanced_build_bonus"
+        "ScriptFile"                    "abilities/items/gold_bonus"
+        "AbilityCooldown"               "60"
+        "AbilitySharedCooldown"         "bonus"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "Model"                         "models/props_gameplay/treasure_chest001.vmdl"
+        "ItemKillable"                  "0"
+        "IsTempestDoubleClonable"       "0"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemPurchasable"               "0"
+        "ItemShopTags"                  "consumable"
+        "ItemQuality"                   "consumable"
+        "ItemStackable"                 "0"
+        "ItemPermanent"                 "0"
+        "ItemInitialCharges"            "1"
+        "ItemSellable"                  "0"
+    }
 }

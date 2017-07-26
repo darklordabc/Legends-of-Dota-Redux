@@ -4,11 +4,11 @@ function zhanhun( keys )
 	
 	local ability = keys.event_ability
 	local abilityCooldown = ability:GetCooldown(ability:GetLevel())
-
-	--Does not proc for abilities with zero cooldown or very little cooldown
-	--if keys.ability:GetName() == "zhanhun" then
+	local abilityManaCost = ability:GetManaCost(ability:GetLevel())
+	--Does not proc for abilities with low cooldowns or no manacost
+	if abilityManaCost == 0 then return nil end
 	if abilityCooldown < 3 then return nil end
-	--end
+
 
 	for i = 0,10 do
 		local ability = caster:GetAbilityByIndex(i)
