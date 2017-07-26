@@ -39,6 +39,7 @@ All notable changes to this project will be documented in this file.
 - Made the Custom Morph skills troll combos with Overload
 - Changed Storm Spirit's Perk to Mana Aura instead of Overload
 - Symbtoites will now also be command restricted if their host is (Fix for Infested/Symbiote exploit)
+- Added Tempest Double OP for single player that can recast the ability
 
 ## 8.0
 - Fixed Sight being 4 levels
