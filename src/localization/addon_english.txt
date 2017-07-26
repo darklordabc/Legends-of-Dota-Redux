@@ -831,7 +831,7 @@
     "hintFurion"                         "The cooldowns of all Teleportation abilities are reduced by 50% for Nature's Prophet."
     "hintChen"                         "When Chen sends creeps home to the fountain by casting Test of Faith (Teleport) they will receive an extra ability."
     "hintUrsa"                         "Ursa does 15% extra damage to neutrals, including Roshan."
-    "hintStormSpirit"                         "At the start of the game, Storm Spirit gains a free level of Unstable Current, whether he has it or not."
+    "hintStormSpirit"                         "At the start of the game, Storm Spirit gains a free level of Mana Aura, whether he has it or not."
     "hintMorphling"                         "Morphling gains 50% bonus movement speed in water."
     "hintMonkeyKing"                         "At the start of the game, Monkey King gains a free level of Jingu Mastery, whether he has it or not."
     "hintTimbersaw"                         "Timbersaw gains 1% of his max health and mana whenever a nearby tree is cut down."
