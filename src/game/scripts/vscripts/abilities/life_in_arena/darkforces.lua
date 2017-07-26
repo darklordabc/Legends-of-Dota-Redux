@@ -7,7 +7,7 @@ function DarkForces(event)
 	local damage = mana*mana_percentage*0.01
 	local targets = event.target_entities
 	for _,v in pairs(targets) do
-		ApplyDamage({victim = v, attacker = caster, damage = damage, damage_type = DAMAGE_TYPE_PHYSICAL, ability = ability})
+		ApplyDamage({victim = v, attacker = caster, damage = damage, damage_type = DAMAGE_TYPE_MAGICAL, ability = ability})
 	end
 
 end

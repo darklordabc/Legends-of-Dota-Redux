@@ -2,13 +2,13 @@
 	"dark_knight_dark_forces" {
 		"BaseClass" "ability_datadriven"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityTextureName" "custom/dark_knight_dark_forces"
 		"MaxLevel" "4"
 		"AbilityCastPoint" "0.0"
 		"AbilityCooldown" "14"
-		"AbilityManaCost" "60 100 140 180"
+		"AbilityManaCost" "80 140 200 260"
 		"AbilityCastRange" "300"
 
 		"AbilitySpecial" {
