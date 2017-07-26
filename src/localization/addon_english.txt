@@ -4924,6 +4924,32 @@
         "DOTA_Error_spell_lab_symbiotic_no_self_target" "No self cast."
         "DOTA_Error_spell_lab_symbiotic_no_inception" "Can't cast while being host."
 
+		
+        "DOTA_Tooltip_ability_spell_lab_survivor_str_survival"                                      "Survival of the Biggest"
+        "DOTA_Tooltip_ability_spell_lab_survivor_str_survival_Description" "You have learned to be patient and grow stronger the longer you stay alive. You gain strenght for every minute you survive without dying."
+        "DOTA_Tooltip_ability_spell_lab_survivor_str_survival_bonus"	"STRENGTH PER MINUTE:"
+		"DOTA_Tooltip_ability_spell_lab_survivor_str_survival_Note0"           "Fully retroactive. Reincarnate effects won't reset the stack."
+		
+		"DOTA_Tooltip_spell_lab_survivor_str_survival_modifier" "Survival of the Biggest"
+		"DOTA_Tooltip_spell_lab_survivor_str_survival_modifier_Description" "Strength gained through staying alive."
+		
+		"DOTA_Tooltip_ability_spell_lab_survivor_agi_survival"                                      "Survival of the Quickest"
+        "DOTA_Tooltip_ability_spell_lab_survivor_agi_survival_Description" "You have learned to be patient and become more agile the longer you stay alive. You gain agility for every minute you survive without dying."
+        "DOTA_Tooltip_ability_spell_lab_survivor_agi_survival_bonus"	"AGILITY PER MINUTE:"
+		"DOTA_Tooltip_ability_spell_lab_survivor_agi_survival_Note0"           "Fully retroactive. Reincarnate effects won't reset the stack."
+		
+		"DOTA_Tooltip_spell_lab_survivor_agi_survival_modifier" "Survival of the Quickest"
+		"DOTA_Tooltip_spell_lab_survivor_agi_survival_modifier_Description" "Agility gained through staying alive."
+		
+		"DOTA_Tooltip_ability_spell_lab_survivor_int_survival"                                      "Survival of the Slickest"
+        "DOTA_Tooltip_ability_spell_lab_survivor_int_survival_Description" "You have learned to be patient and grow smarter the longer you stay alive. You gain intelligence for every minute you survive without dying."
+        "DOTA_Tooltip_ability_spell_lab_survivor_int_survival_bonus"	"INTELLECT PER MINUTE:"
+		"DOTA_Tooltip_ability_spell_lab_survivor_int_survival_Note0"           "Fully retroactive. Reincarnate effects won't reset the stack."
+		
+		"DOTA_Tooltip_spell_lab_survivor_int_survival_modifier" "Survival of the Slickest"
+		"DOTA_Tooltip_spell_lab_survivor_int_survival_modifier_Description" "Intelligence gained through staying alive."
+		
+
         "DOTA_Tooltip_ability_item_bag_of_gold"                             "Bag of Gold"
         "DOTA_Tooltip_Ability_item_health_potion"                           "Health Potion"
         "DOTA_Tooltip_Ability_item_mana_potion"                             "Mana Potion"
