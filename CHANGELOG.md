@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 - Dark Forces explosion radius is 300 now instead of 150. It now does magical damage instead of physical, and slightly increased manacost.
 - Silencer's Int Steal ability is now an ultimate
 - Added 3 more Survival of the Fittest type abilities
+- Living bomb: Damage decreased. Now troll combo with Dispersion.
 
 ## 9.0
 - Fury of the immortals: Cooldown increased by 5 seconds, non-stacking damage decreased, stun duration decreased by 0.5
@@ -38,7 +39,7 @@ All notable changes to this project will be documented in this file.
 - Arcane Symbiote and Ball Lighting is now troll combo
 - ThunderMusket can now no longer be used with illusions
 - Lust for life: Fixed level 1 regen rate error It will now regen more than old version.
-- Improved Grape Shot at later level
+- Improved Grape Shot at later levels
 - Fixed OmniGuard
 - Made the Custom Morph skills troll combos with Overload
 - Changed Storm Spirit's Perk to Mana Aura instead of Overload
