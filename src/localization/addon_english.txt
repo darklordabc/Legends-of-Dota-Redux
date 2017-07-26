@@ -831,7 +831,7 @@
     "hintFurion"                         "The cooldowns of all Teleportation abilities are reduced by 50% for Nature's Prophet."
     "hintChen"                         "When Chen sends creeps home to the fountain by casting Test of Faith (Teleport) they will receive an extra ability."
     "hintUrsa"                         "Ursa does 15% extra damage to neutrals, including Roshan."
-    "hintStormSpirit"                         "At the start of the game, Storm Spirit gains a free level of Overload, whether he has it or not."
+    "hintStormSpirit"                         "At the start of the game, Storm Spirit gains a free level of Mana Aura, whether he has it or not."
     "hintMorphling"                         "Morphling gains 50% bonus movement speed in water."
     "hintMonkeyKing"                         "At the start of the game, Monkey King gains a free level of Jingu Mastery, whether he has it or not."
     "hintTimbersaw"                         "Timbersaw gains 1% of his max health and mana whenever a nearby tree is cut down."
@@ -901,7 +901,7 @@
     "hintPA"                         "When Phantom Assassin uses Dagger abilities they will have 50% of their manacost refunded, and their cooldowns reduced by 2 seconds."
     "hintPudge"                         "Pudge receives 2 charges of Meat Hook. When Meat Hook deals damage, Pudge receives a debuff which prevents Meat Hook from dealing damage."
     "hintPugna"                         "Drain spells will have 50% mana refunded and have 25% reduced cooldowns when cast by Pugna."
-    "hintRazor"                         "Reduces the manacost and cooldown of all abilities by 25% when Razor is Static Linked to an enemy."
+    "hintRazor"                         "Reduces the manacost and cooldown of all abilities by 25% when Razor is Static Linked to an enemy. Gains free level in Unstable Current."
     "hintRubick"                         "Rubick gains Null Field as a free ability."
     "hintSandKing"                         "Sand King refunds 30% of the manacost of any Channeled abilities he casts."
     //"hintShadowDemon"                         "When Shadow Demon buys an item that is limited by stock, he gains a permanent +1 to all attributes. "
@@ -1303,7 +1303,7 @@
     "unique_mechanic_pudge"                        "Pudge receives 2 charges of <font color=\'#ffd966\'>Meat Hook</font>. When Meat Hook deals damage, Pudge receives a debuff which prevents Meat Hook from dealing damage."
     "unique_mechanic_pugna"                        "<font color=\'#ffd966\'>Drain</font> spells will have 50% mana refunded and have 25% reduced cooldowns when cast by Pugna."
     "unique_mechanic_queenofpain"           "Queen of Pain deals 10% more damage to <font color=\'#ffd966\'>Male</font> heroes, but recieves 10% more damage from <font color=\'#ffd966\'>Female</font> heroes."
-    "unique_mechanic_razor"                        "Reduces the manacost and cooldown of all abilities by 25% when Razor is <font color=\'#ffd966\'>Static Linked</font> to an enemy."
+    "unique_mechanic_razor"                        "Reduces the manacost and cooldown of all abilities by 25% when Razor is <font color=\'#ffd966\'>Static Linked</font> to an enemy. Gains free level in <font color=\'#ffd966\'>Unstable Current</font>."
     "unique_mechanic_riki"                  "Riki's health regeneration is increased by 4 while invisible."
     "unique_mechanic_rubick"                        "Rubick gains <font color=\'#ffd966\'>Null Field</font> as a free ability."
     "unique_mechanic_sand_king"                        "Refund 30% of the manacost of <font color=\'#ffd966\'>Channeled</font> abilities. "
@@ -1317,7 +1317,7 @@
     "unique_mechanic_sniper"                        "<font color=\'#ffd966\'>Shrapnel</font> will have global cast range if used by Sniper."
     "unique_mechanic_spectre"           "Spectre gains phased movement when casting abilities."
     "unique_mechanic_spirit_breaker"                "<font color=\'#ffd966\'>Skull Basher</font> and  <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero.When Spirit Breaker bashes, he also applies <font color=\'#ffd966\'>Break</font>."
-    "unique_mechanic_storm_spirit"                 "At the start of the game, Storm Spirit gains a free level of <font color=\'#ffd966\'>Overload</font>, whether he has it or not."
+    "unique_mechanic_storm_spirit"                 "At the start of the game, Storm Spirit gains a free level of <font color=\'#ffd966\'>Mana Aura</font>, whether he has it or not."
     "unique_mechanic_sven"                        "At the start of the game, Sven gains a free level of <font color=\'#ffd966\'>Great Cleave</font>, whether he has it or not."
     "unique_mechanic_techies"                        "<font color=\'#ffd966\'>Traps</font> and <font color=\'#ffd966\'>Explosives</font> will have 50% of their mana refunded and cooldowns reduced by 50% when used by Techies."
     "unique_mechanic_templar_assassin"          "Templar Assassin turns invisible for 10 seconds after not moving for 2 seconds. Invisibility breaks upon moving or attacking."
@@ -3649,7 +3649,7 @@
 
     /// RAZOR​
     "DOTA_Tooltip_modifier_npc_dota_hero_razor_perk"    "Razor Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_razor_perk_Description"    "Reduces the manacost and cooldown of all abilities by 25%d% when Razor is Static Linked to an enemy.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_razor_perk_Description"    "Reduces the manacost and cooldown of all abilities by 25%d% when Razor is Static Linked to an enemy. Gains free level in Unstable Current.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
     /// RIKI​
     "DOTA_Tooltip_modifier_npc_dota_hero_riki_perk" "Riki Perk"
@@ -3709,7 +3709,7 @@
 
     /// STORM SPIRIT PERK
     "DOTA_Tooltip_modifier_npc_dota_hero_storm_spirit_perk" "Storm Spirit Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_storm_spirit_perk_Description" "At the start of the game, Storm Spirit gains a free level of Overload, whether he has it or not.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_storm_spirit_perk_Description" "At the start of the game, Storm Spirit gains a free level of Mana Aura, whether he has it or not.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
     /// SVEN​
     "DOTA_Tooltip_modifier_npc_dota_hero_sven_perk" "Sven Perk"
@@ -4346,7 +4346,7 @@
     "DOTA_Tooltip_modifier_lord_of_lightning_lightning_shield_Description" "Opponents around the Lord of Lightning take damage."
 
     "DOTA_Tooltip_ability_dark_knight_dark_forces"  "Dark Forces"
-    "DOTA_Tooltip_ability_dark_knight_dark_forces_Description"  "Spawns flows of darkness every 0.5 seconds at random places in a 150 radius that damage enemies in a 240 radius. Damage is based on the current amount of mana."
+    "DOTA_Tooltip_ability_dark_knight_dark_forces_Description"  "Spawns flows of darkness every 0.5 seconds at random places in a 300 radius that damage enemies in a 240 radius. Damage is based on the current amount of mana."
     "DOTA_Tooltip_ability_dark_knight_dark_forces_mana_percentage"  "%MANA INTO DAMAGE:"
     "DOTA_Tooltip_ability_dark_knight_dark_forces_duration" "DURATION:"
 
@@ -4685,6 +4685,11 @@
     "DOTA_Tooltip_ability_arc_warden_tempest_double_redux_Description"    "Briefly refocusing its fractured elements into a single form, the Arc Warden is able to create a perfect electrical duplication of itself. The duplicate can use all of Arc Warden's current items and spells, except consumables and items that drop on death. The duplicate has seperate item and ability cooldowns. <font color='#70EA72'>Has 50% longer cooldown.</font>"
     "DOTA_Tooltip_ability_arc_warden_tempest_double_redux_Lore"       "Warped by the power of its peers, Arc Warden becomes what it despises most: disharmony."
     "DOTA_Tooltip_ability_arc_warden_tempest_double_redux_duration"   "DURATION:"
+
+    "DOTA_Tooltip_ability_arc_warden_tempest_double_OP"        "Tempest Double OP"
+    "DOTA_Tooltip_ability_arc_warden_tempest_double_OP_Description"    "Briefly refocusing its fractured elements into a single form, the Arc Warden is able to create a perfect electrical duplication of itself. The duplicate can use all of Arc Warden's current items and spells, except consumables and items that drop on death. The duplicate has seperate item and ability cooldowns. <font color='#70EA72'>Shorter cooldown and longer duration. Clones can cast the ability again</font>."
+    "DOTA_Tooltip_ability_arc_warden_tempest_double_OP_Lore"       "Warped by the power of its peers, Arc Warden becomes what it despises most: disharmony."
+    "DOTA_Tooltip_ability_arc_warden_tempest_double_OP_duration"   "DURATION:"
 
    "DOTA_Tooltip_ability_alchemist_chemical_rage_redux"                               "Chemical Rage Redux"
     "DOTA_Tooltip_ability_alchemist_chemical_rage_redux_Description"                  "Alchemist causes his Ogre to enter a chemically induced rage, reducing base attack cooldown and increasing movement speed and regeneration. <font color='#70EA72'>Has 40% shorter duration.</font>"

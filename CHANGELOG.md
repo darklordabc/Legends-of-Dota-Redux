@@ -2,6 +2,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 9.1
+- Dark Forces explosion radius is 300 now instead of 150. It now does magical damage instead of physical, and slightly increased manacost.
+- Silencer's Int Steal ability is now an ultimate
+
 ## 9.0
 - Fury of the immortals: Cooldown increased by 5 seconds, non-stacking damage decreased, stun duration decreased by 0.5
 - Multicast Redux now has a cooldown (in games where single player abilities are banned)
@@ -23,7 +27,6 @@ All notable changes to this project will be documented in this file.
 - Warlock's Perk now gives 4 observer wards instead of 2
 - Hero Perks that give a free level in an ability now show the ability on the hud, it just cant be leveled any further
 - Improved Phantom Lancers and Rubicks perk so that they give an entire free ability instead of just 1 level in it
-*
 - Omniguard cooldown increased at earlier levels, heal increased and heal percent increased
 - Nothl Protection cooldown decreased but duration decreased too 
 - Blood ward: Increased damage
@@ -34,7 +37,13 @@ All notable changes to this project will be documented in this file.
 - Arcane Symbiote and Ball Lighting is now troll combo
 - ThunderMusket can now no longer be used with illusions
 - Lust for life: Fixed level 1 regen rate error It will now regen more than old version.
-- Improved Grape Shot at later levels
+- Improved Grape Shot at later level
+- Fixed OmniGuard
+- Made the Custom Morph skills troll combos with Overload
+- Changed Storm Spirit's Perk to Mana Aura instead of Overload
+- Symbtoites will now also be command restricted if their host is (Fix for Infested/Symbiote exploit)
+- Added Tempest Double OP for single player that can recast the ability
+- Improved Razor's Perk, he also gains free level in Unstable Current.
 
 ## 8.0
 - Fixed Sight being 4 levels

@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Razor
---		Perk: Reduces the manacost and cooldown of all abilities by 25% when Razor is Static Linked to an enemy.
+--		Perk: Reduces the manacost and cooldown of all abilities by 25% when Razor is Static Linked to an enemy. Gains free level in Unstable Current.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_razor_perk", "abilities/hero_perks/npc_dota_hero_razor_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -33,6 +33,16 @@ end
 if IsServer() then
 	function modifier_npc_dota_hero_razor_perk:OnCreated()
 		self.reduction = 25
+	    local caster = self:GetCaster()
+	    local unstableCurrent = caster:FindAbilityByName("razor_unstable_current")
+	    if unstableCurrent then
+	        unstableCurrent:UpgradeAbility(false)
+	    else 
+	        unstableCurrent = caster:AddAbility("razor_unstable_current")
+	        unstableCurrent:SetStolen(true)
+	        unstableCurrent:SetActivated(true)
+	        unstableCurrent:SetLevel(1)
+	    end
 	end
 	function modifier_npc_dota_hero_razor_perk:DeclareFunctions()
 		local funcs = {
