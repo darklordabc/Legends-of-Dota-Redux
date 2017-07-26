@@ -151,7 +151,7 @@ function modifier_flesh_heap_bonus_vision:OnDeath(keys)
     return 
   end
   -----------------------------------------------------------------------------
-  local hKiller = keys.attacker
+  local hKiller = keys.attacker:GetOwnerEntity()
   local hVictim = keys.unit
 
 

@@ -148,7 +148,7 @@ function modifier_flesh_heap_cast_range:OnDeath(keys)
     return 
   end
   -----------------------------------------------------------------------------
-  local hKiller = keys.attacker
+  local hKiller = keys.attacker:GetOwnerEntity()
   local hVictim = keys.unit
 
 

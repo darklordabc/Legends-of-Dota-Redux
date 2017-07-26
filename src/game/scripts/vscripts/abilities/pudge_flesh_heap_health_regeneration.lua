@@ -106,7 +106,7 @@ function modifier_flesh_heap_health_regeneration:OnDeath(keys)
     return 
   end
   -----------------------------------------------------------------------------
-  local hKiller = keys.attacker
+  local hKiller = keys.attacker:GetOwnerEntity()
   local hVictim = keys.unit
 
 
