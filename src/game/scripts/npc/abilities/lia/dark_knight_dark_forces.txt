@@ -9,12 +9,12 @@
 		"AbilityCastPoint" "0.0"
 		"AbilityCooldown" "14"
 		"AbilityManaCost" "60 100 140 180"
-		"AbilityCastRange" "150"
+		"AbilityCastRange" "300"
 
 		"AbilitySpecial" {
 			"01" {
 				"var_type" "FIELD_INTEGER"
-				"radius" "150"
+				"radius" "300"
 			}
 
 			"02" {

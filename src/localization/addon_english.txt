@@ -4346,7 +4346,7 @@
     "DOTA_Tooltip_modifier_lord_of_lightning_lightning_shield_Description" "Opponents around the Lord of Lightning take damage."
 
     "DOTA_Tooltip_ability_dark_knight_dark_forces"  "Dark Forces"
-    "DOTA_Tooltip_ability_dark_knight_dark_forces_Description"  "Spawns flows of darkness every 0.5 seconds at random places in a 150 radius that damage enemies in a 240 radius. Damage is based on the current amount of mana."
+    "DOTA_Tooltip_ability_dark_knight_dark_forces_Description"  "Spawns flows of darkness every 0.5 seconds at random places in a 300 radius that damage enemies in a 240 radius. Damage is based on the current amount of mana."
     "DOTA_Tooltip_ability_dark_knight_dark_forces_mana_percentage"  "%MANA INTO DAMAGE:"
     "DOTA_Tooltip_ability_dark_knight_dark_forces_duration" "DURATION:"
 

@@ -3,7 +3,8 @@
 All notable changes to this project will be documented in this file.
 
 ## 9.1
--
+- Dark Forces explosion radius is 300 now instead of 150
+- Silencer's Int Steal ability is now an ultimate
 
 ## 9.0
 - Fury of the immortals: Cooldown increased by 5 seconds, non-stacking damage decreased, stun duration decreased by 0.5

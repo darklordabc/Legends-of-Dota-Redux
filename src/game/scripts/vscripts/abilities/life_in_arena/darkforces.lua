@@ -16,7 +16,7 @@ function DarkForcesThinker(event)
 	local ability = event.ability
 	local caster = event.caster
 	local target = event.target
-	local position = caster:GetAbsOrigin() + RandomVector(150)
+	local position = caster:GetAbsOrigin() + RandomVector(ability:GetSpecialValueFor("radius"))
 
 	ability:ApplyDataDrivenThinker(caster, position, "modifier_dark_knight_dark_forces_thinker", {duration = 1})
 end
