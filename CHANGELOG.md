@@ -36,6 +36,7 @@ All notable changes to this project will be documented in this file.
 - Improved Grape Shot at later level
 *
 - Fixed OmniGuard
+- Made the Custom Morph skills troll combos with Overload
 
 ## 8.0
 - Fixed Sight being 4 levels
