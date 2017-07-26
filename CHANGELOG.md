@@ -35,6 +35,8 @@ All notable changes to this project will be documented in this file.
 - ThunderMusket can now no longer be used with illusions
 - Lust for life: Fixed level 1 regen rate error It will now regen more than old version.
 - Improved Grape Shot at later levels
+*
+- Living bomb: Damage decreased. Now troll combo with Dispersion.
 
 ## 8.0
 - Fixed Sight being 4 levels
