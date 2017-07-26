@@ -23,7 +23,6 @@ All notable changes to this project will be documented in this file.
 - Warlock's Perk now gives 4 observer wards instead of 2
 - Hero Perks that give a free level in an ability now show the ability on the hud, it just cant be leveled any further
 - Improved Phantom Lancers and Rubicks perk so that they give an entire free ability instead of just 1 level in it
-*
 - Omniguard cooldown increased at earlier levels, heal increased and heal percent increased
 - Nothl Protection cooldown decreased but duration decreased too 
 - Blood ward: Increased damage
@@ -36,7 +35,12 @@ All notable changes to this project will be documented in this file.
 - Lust for life: Fixed level 1 regen rate error It will now regen more than old version.
 - Improved Grape Shot at later levels
 *
+- Fixed OmniGuard
+- Made the Custom Morph skills troll combos with Overload
+- Changed Storm Spirit's Perk to Mana Aura instead of Overload
+- Symbtoites will now also be command restricted if their host is (Fix for Infested/Symbiote exploit)
 - Living bomb: Damage decreased. Now troll combo with Dispersion.
+
 
 ## 8.0
 - Fixed Sight being 4 levels
