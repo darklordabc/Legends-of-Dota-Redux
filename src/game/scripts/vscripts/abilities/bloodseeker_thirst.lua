@@ -1,4 +1,4 @@
-LinkLuaModifier( "modifier_movespeed_cap_1100", "abilities/modifiers/modifier_movespeed_cap_1100.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_movespeed_cap_750", "abilities/modifiers/modifier_movespeed_cap_750.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_movespeed_cap", "abilities/modifiers/modifier_movespeed_cap.lua", LUA_MODIFIER_MOTION_NONE )
 
 --[[
@@ -12,7 +12,7 @@ function CheckThirst(keys)
 
 	-- Removes the 522 move speed cap
 	if ability:GetName() == "bloodseeker_thirst_lod" and not caster:HasModifier("modifier_movespeed_cap_750") then
-		caster:AddNewModifier(caster, nil, "modifier_movespeed_cap_1100", {})
+		caster:AddNewModifier(caster, nil, "modifier_movespeed_cap_750", {})
 	elseif ability:GetName() == "bloodseeker_thirst_lod_op" and not caster:HasModifier("modifier_movespeed_cap") then
 		caster:AddNewModifier(caster, nil, "modifier_movespeed_cap", {})
 	end
