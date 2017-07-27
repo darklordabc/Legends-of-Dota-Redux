@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 - Silencer's Int Steal ability is now an ultimate
 - Added 3 more Survival of the Fittest type abilities
 - Living bomb: Damage decreased. Now troll combo with Dispersion.
-- Thirst: Speed limit now increased to 1100 (from 750)
+- Thirst: Speed limit now increased to 1100 (from 750) and will not work on illusions anymore.
 
 ## 9.0
 - Fury of the immortals: Cooldown increased by 5 seconds, non-stacking damage decreased, stun duration decreased by 0.5
