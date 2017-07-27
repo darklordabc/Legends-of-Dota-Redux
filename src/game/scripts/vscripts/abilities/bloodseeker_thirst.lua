@@ -1,4 +1,4 @@
-LinkLuaModifier( "modifier_movespeed_cap_750", "abilities/modifiers/modifier_movespeed_cap_750.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_movespeed_cap_1100", "abilities/modifiers/modifier_movespeed_cap_1100.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_movespeed_cap", "abilities/modifiers/modifier_movespeed_cap.lua", LUA_MODIFIER_MOTION_NONE )
 
 --[[
@@ -12,7 +12,7 @@ function CheckThirst(keys)
 
 	-- Removes the 522 move speed cap
 	if ability:GetName() == "bloodseeker_thirst_lod" and not caster:HasModifier("modifier_movespeed_cap_750") then
-		caster:AddNewModifier(caster, nil, "modifier_movespeed_cap_750", {})
+		caster:AddNewModifier(caster, nil, "modifier_movespeed_cap_1100", {})
 	elseif ability:GetName() == "bloodseeker_thirst_lod_op" and not caster:HasModifier("modifier_movespeed_cap") then
 		caster:AddNewModifier(caster, nil, "modifier_movespeed_cap", {})
 	end
@@ -30,7 +30,7 @@ function CheckThirst(keys)
 	local visibility_threshold = ability:GetLevelSpecialValueFor( "visibility_threshold_pct", ability:GetLevel() - 1 )/100
 
 	for _,hero in pairs(heroes) do
-		if hero:GetTeam() ~= caster:GetTeam() and hero:IsAlive() then
+		if hero:GetTeam() ~= caster:GetTeam() and hero:IsAlive() and hero:IsRealHero() then
 			healthPercentage = hero:GetHealth() / hero:GetMaxHealth()
 			if healthPercentage <= buff_threshold then 
 				if healthPercentage < visibility_threshold then
