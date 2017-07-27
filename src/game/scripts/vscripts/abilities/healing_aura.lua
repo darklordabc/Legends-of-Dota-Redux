@@ -94,7 +94,7 @@ function modifier_tower_healing_think:OnIntervalThink()
 			if hero_hp_percent <= self.hp_threshold then
 				current_healed_hero = hero
 				HealingWaveBounce(self.caster, self.caster, self.ability, hero)
-				self.ability:StartCooldown(self.ability:GetTrueCooldown())
+				self:GetAbility():UseResources(false, false, true)
 				break
 			end
 		end
