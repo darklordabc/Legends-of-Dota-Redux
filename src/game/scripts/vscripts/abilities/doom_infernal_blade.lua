@@ -26,8 +26,8 @@ function ApplyModifiers(keys)
 	local caster = keys.caster
 	local target = keys.target
 	local ability = keys.ability
-	local cooldown = ability:GetCooldown(ability:GetLevel() - 1)
-	
+	local cooldown = ability:GetTrueCooldown()
+	print(cooldown)
 	-- If the orb was off cooldown in CheckCooldown, we apply modifiers to the target and start the orb cooldown
 	if ability.off_cooldown == 1 then
 		-- Apply the modifiers

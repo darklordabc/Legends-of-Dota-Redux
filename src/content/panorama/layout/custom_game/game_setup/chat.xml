@@ -2,6 +2,7 @@
 	<styles>
 		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
 		<include src="s2r://panorama/styles/play.vcss_c" />
+		<include src="file://{resources}/styles/custom_game/cheats.css" />
 		<include src="file://{resources}/styles/custom_game/game_setup/chat.css" />
 	</styles>
 	<scripts>
@@ -14,6 +15,21 @@
 		    	<Label id="timeStamp" />
 		    	<Panel class="timeStampLine" />
 		    </Panel>
+		</snippet>
+		<snippet name="commandGroup">
+			<Panel class="commandGroup GroupCollapsed">
+				<ToggleButton id="groupHeader" class="ExpandCollapseToggleButton" text="{s:group_title}" />
+				<Panel id="groupContents" />
+			</Panel>
+		</snippet>
+		<snippet name="command">
+			<Panel class="command">
+				<Button id="commandHeader" class="ExpandCollapseToggleButton">
+					<Image id="commandIcon" src="s2r://panorama/images/control_icons/expand_collapse_png1.vtex" />
+					<Label id="commandTitle" text="{s:command_title}" />
+				</Button>
+				<Panel id="commandSettings" />
+			</Panel>
 		</snippet>
 	</snippets>
 
@@ -29,6 +45,7 @@
 				<Label id="channelName" />
 				<TextEntry id="chatInput" multiline="false" textmode="normal" oninputsubmit="say()">
 				</TextEntry>
+				<Image id="votingsButton" class="chatButton" src="file://{images}/control_icons/friends.png" onactivate="showVotings()" />
 				<Image id="emoticonPickerButton" class="chatButton" src="file://{images}/control_icons/emoticon_icon.psd" onactivate="showEmoticonPicker()" />
 			</Panel>
 		</Panel>
@@ -36,6 +53,15 @@
 			<Panel id="emoticonPicker">
 				<Panel id="emoticonContainer" />
 				<Label id="emoticonAlias" />
+			</Panel>
+			<Panel id="votingsPicker">
+				<Panel id="votingsContainer">
+					<Panel class="cheatsRoot" hittest="false">
+						<Panel id="cheatsDisplay" hittest="false">
+							<Panel id="commandList" />
+						</Panel>
+					</Panel>
+				</Panel>
 			</Panel>
 		</Panel>
 	</Panel>

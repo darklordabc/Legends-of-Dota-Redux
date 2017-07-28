@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --    Hero: Alchemist
---    Perk: Alchemist will receives 2 bonus gold every 10 seconds. Alchemist can also gift Aghanim's Scepters. 
+--    Perk: At the start of the game, Alchemist gains a free level of Greevils Greed, whether he has it or not. 
 --    
 --
 --------------------------------------------------------------------------------------------------------
@@ -18,7 +18,7 @@ function modifier_npc_dota_hero_alchemist_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_alchemist_perk:IsHidden()
-  return false
+  return true
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_alchemist_perk:IsPurgable()
@@ -29,21 +29,24 @@ function modifier_npc_dota_hero_alchemist_perk:RemoveOnDeath()
 	return true
 end
 --------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_alchemist_perk:GetTexture()
+  return "alchemist_goblins_greed"
+end
+--------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_alchemist_perk:OnCreated()
-  local intervalTime = 10
-  self.goldAmount = 3
-  self:StartIntervalThink(intervalTime)
+    if IsServer() then
+        local caster = self:GetCaster()
+        local greed = caster:FindAbilityByName("alchemist_goblins_greed")
+
+        if greed then
+            greed:UpgradeAbility(false)
+        else 
+            greed = caster:AddAbility("alchemist_goblins_greed")
+            greed:SetStolen(true)
+            greed:SetActivated(true)
+            greed:SetLevel(1)
+        end
+    end
 end
-
-
-function modifier_npc_dota_hero_alchemist_perk:OnIntervalThink()
-  if IsServer() then
-    local caster = self:GetParent()
-    --SendOverheadEventMessage( nil, OVERHEAD_ALERT_GOLD  , caster, self.goldAmount, nil )
-    caster:PopupNumbers(caster, "gold", Vector(255, 215, 0), 2.0, self.goldAmount, 0, nil)
-    caster:ModifyGold(self.goldAmount,true,DOTA_ModifyGold_GameTick)
-  end
-end
-

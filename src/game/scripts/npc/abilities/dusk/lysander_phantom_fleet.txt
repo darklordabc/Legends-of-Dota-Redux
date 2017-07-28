@@ -17,6 +17,7 @@
 		"FightRecapLevel"				"1"
 		"AnimationPlaybackRate"			"1"
 		"AbilityTextureName"			"custom/lysander_phantom_fleet"
+		"ReduxPerks"                                                           "water"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------

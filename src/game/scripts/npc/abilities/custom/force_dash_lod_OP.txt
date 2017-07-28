@@ -83,8 +83,8 @@
                 }
             }
         }
-        "ReduxFlags"                                                           "mobility | SuperOP"
+        "ReduxFlags"                                                           "mobility"
         "ReduxPerks"                                                           "mobility | enemyMoving"
-        "ReduxCost"                                                            "100"
+        "ReduxCost"                                                            "120"
     }
 }

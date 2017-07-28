@@ -38,4 +38,20 @@ function ApplyDamageReductionModifier( keys )
   local target = keys.target
   
   target:AddNewModifier(caster,ability,"modifier_redux_silver_break_damage_reduction",{duration = ability:GetSpecialValueFor("break_duration")})
+
 end
+
+function ApplyDamageReductionModifierConsume( keys )
+  local caster = keys.caster
+  local ability = keys.ability
+  local target = keys.target
+  
+  target:AddNewModifier(caster,ability,"modifier_redux_silver_break_damage_reduction",{duration = ability:GetSpecialValueFor("break_duration")})
+  
+  local consumeable = caster:FindItemByName("item_redux_silver_consume")
+  if consumeable then
+    consumeable:SpendCharge()
+  end
+
+end
+

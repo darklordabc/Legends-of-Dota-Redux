@@ -1,0 +1,127 @@
+"DOTAAbilities"
+{
+    //=================================================================================================================
+    // Tower ability: Healing Tower (Actives)
+    //=================================================================================================================
+    "imba_tower_healing_tower"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                             "ability_lua"
+        "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityTextureName"                    "custom/tower_healing_wave"
+        "MaxLevel"                              "3"
+        "AbilitySharedWithTeammates"            "1"
+        "AbilityCastRange"                      "900"
+        "AbilityCooldown"                       "6"
+        "ScriptFile"                            "abilities/healing_aura.lua"
+        "ReduxPerks"                                                           "support"
+        "ReduxFlags"                                                           "support"
+        "ReduxCost"                                                            "120"
+
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "particle"                          "particles/hero/tower/tower_healing_wave.vpcf"
+            "soundfile"                         "soundevents/game_sounds_greevils.vsndevts"
+        }
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "search_radius"             "900"
+            }
+
+            "02"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "bounce_delay"              "0.5"
+            }
+
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "bounce_radius"             "600"
+            }
+
+            "04"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "heal_amount"               "150 250 350"
+            }
+
+            "05"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "hp_threshold"              "85"
+            }
+        }
+    }
+
+    "imba_tower_healing_hero"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                             "ability_lua"
+        "AbilityBehavior"                       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityTextureName"                    "custom/tower_healing_wave_hero"
+        "MaxLevel"                              "3"
+        "AbilitySharedWithTeammates"            "1"
+        "AbilityCastRange"                      "900"
+        "AbilityCooldown"                       "30 20 10"
+        "ScriptFile"                            "abilities/healing_aura.lua"
+        "ReduxPerks"                                                           "support"
+        "ReduxFlags"                                                           "support"
+        "ReduxCost"                                                            "40"
+
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "particle"                          "particles/hero/tower/tower_healing_wave.vpcf"
+            "soundfile"                         "soundevents/game_sounds_greevils.vsndevts"
+        }
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "search_radius"             "900"
+            }
+
+            "02"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "bounce_delay"              "0.5"
+            }
+
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "bounce_radius"             "600"
+            }
+
+            "04"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "heal_amount"               "150 250 350"
+            }
+
+            "05"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "hp_threshold"              "85"
+            }
+        }
+    }
+}

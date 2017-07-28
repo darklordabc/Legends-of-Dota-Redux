@@ -31,9 +31,16 @@ end
 function modifier_night_stalker_innate_redux:OnIntervalThink()
   local caster = self:GetParent()
   local ability = self:GetAbility()
-  if caster:HasScepter() and caster:IsAlive() and not GameRules:IsDaytime() then
+  local vision = ability:GetSpecialValueFor("vision_radius")
+  local scepterBonus = ability:GetSpecialValueFor("scepter_bonus")
+
+  if caster:HasScepter() then
+    vision = vision + scepterBonus
+  end
+
+  if caster:IsAlive() and not GameRules:IsDaytime() then
     self:SetStackCount(0)
-    AddFOWViewer(caster:GetTeamNumber(),caster:GetAbsOrigin(),ability:GetSpecialValueFor("vision_radius"),2/32,false)
+    AddFOWViewer(caster:GetTeamNumber(),caster:GetAbsOrigin(),vision,2/32,false)
   else
     self:SetStackCount(1)
   end

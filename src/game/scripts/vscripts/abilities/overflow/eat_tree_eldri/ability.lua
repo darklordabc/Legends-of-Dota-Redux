@@ -15,7 +15,7 @@ function eat_tree_eldri:OnSpellStart()
 	local treeMod = self:GetCaster():FindModifierByName("eat_tree_eldri_mod")
 	if treeMod then
 		local stacks = self:GetCaster():FindModifierByName("eat_tree_eldri_mod"):GetStackCount()
-		print(stacks)
+		--print(stacks)
 		cost = stacks * self:GetSpecialValueFor("mana_cost_per_stack")
 		playersMana = self:GetCaster():GetMana()
 		if playersMana < cost then return end
@@ -23,7 +23,7 @@ function eat_tree_eldri:OnSpellStart()
 		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, self:GetCaster(), cost, nil)
 	end
 
-	
+
 
 	--print(self:GetAbilityIndex())
 	GridNav:DestroyTreesAroundPoint( self:GetCursorPosition() , 1, true)

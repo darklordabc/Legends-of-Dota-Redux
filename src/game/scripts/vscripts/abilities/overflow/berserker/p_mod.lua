@@ -31,6 +31,7 @@ end
 function berserker_mod:OnTakeDamage(keys)
 	if IsServer() then
 		if keys.unit == self:GetParent()  then
+			if self:GetParent():PassivesDisabled() then return end
 			if self:GetStackCount() < self:GetAbility():GetSpecialValueFor("max") then
 				self:IncrementStackCount()
 			end

@@ -223,6 +223,10 @@ function modifier_adventurous_gale_buff:GetModifierMoveSpeedBonus_Percentage()
 	return mult * amt
 end
 
+function modifier_adventurous_gale_buff:IsHidden()
+	return true
+end
+
 function modifier_adventurous_gale_buff:IsDebuff()
 		if self:GetParent():GetTeamNumber() == self:GetAbility():GetCaster():GetTeamNumber() then
 			return false

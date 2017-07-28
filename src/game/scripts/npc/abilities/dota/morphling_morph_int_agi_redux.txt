@@ -9,7 +9,7 @@
     "AbilityTextureName"      "custom/morph_int_agi_redux"
     "FightRecapLevel"       "1"
     "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_3"
-    "ReduxCost"                "20"
+    "ReduxCost"                "120"
     "ReduxFlags"                                                           "dota_custom"
     
     // Time   

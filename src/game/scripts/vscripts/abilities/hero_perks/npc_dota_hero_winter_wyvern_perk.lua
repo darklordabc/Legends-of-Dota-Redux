@@ -45,7 +45,7 @@ end
 function modifier_npc_dota_hero_winter_wyvern_perk:OnIntervalThink()
 	if not IsServer() then return end
 	local caster = self:GetParent()
-	local check = caster:GetHealthPercent() > 90 and caster:GetManaPercent() > 90
+	local check = caster:GetHealthPercent() > 75 and caster:GetManaPercent() > 75
 
 	if not check then self:GetCaster().flying = false end
 

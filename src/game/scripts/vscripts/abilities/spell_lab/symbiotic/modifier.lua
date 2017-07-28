@@ -60,19 +60,25 @@ function spell_lab_symbiotic_modifier:AllowIllusionDuplicate()
 end
 
 function spell_lab_symbiotic_modifier:CheckState()
-	local state = {
-	[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-	[MODIFIER_STATE_MAGIC_IMMUNE] = true,
+local state = {
+[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+[MODIFIER_STATE_MAGIC_IMMUNE] = true,
 [MODIFIER_STATE_INVULNERABLE] = true,
-  [MODIFIER_STATE_UNSELECTABLE] = true,
-  [MODIFIER_STATE_NOT_ON_MINIMAP] = true,
-  [MODIFIER_STATE_NO_HEALTH_BAR] = true,
-  [MODIFIER_STATE_FROZEN] = true,
-  [MODIFIER_STATE_DISARMED] = not self:GetParent():HasScepter(),
-  [MODIFIER_STATE_OUT_OF_GAME] = true,
-  [MODIFIER_STATE_TRUESIGHT_IMMUNE] = true,
-  [MODIFIER_STATE_INVISIBLE] = true
-	}
+[MODIFIER_STATE_UNSELECTABLE] = true,
+[MODIFIER_STATE_NOT_ON_MINIMAP] = true,
+[MODIFIER_STATE_NO_HEALTH_BAR] = true,
+[MODIFIER_STATE_FROZEN] = true,
+[MODIFIER_STATE_DISARMED] = true,
+[MODIFIER_STATE_OUT_OF_GAME] = true,
+[MODIFIER_STATE_TRUESIGHT_IMMUNE] = true,
+[MODIFIER_STATE_INVISIBLE] = true,
+}
+if (self.hHost ~= nil) then
+	state[MODIFIER_STATE_STUNNED] = self.hHost:IsStunned()
+	state[MODIFIER_STATE_SILENCED] = self.hHost:IsSilenced()
+	state[MODIFIER_STATE_MUTED] = self.hHost:IsMuted()
+	state[MODIFIER_STATE_COMMAND_RESTRICTED] = self.hHost:IsCommandRestricted()
+end
 	return state
 end
 
@@ -134,7 +140,7 @@ function spell_lab_symbiotic_modifier:OnSpentMana (kv)
 				end
 
 				-- If hero is below 25% of health, you cannot use hosts health
-				if self.hHost:GetHealth() < self.hHost:GetMaxHealth() / 4 then 
+				if self.hHost:GetHealth() < self.hHost:GetMaxHealth() / 4 then
 					hParent:SetMana(1)
 				else
 					hParent:SetMana(hParent:GetMaxMana())

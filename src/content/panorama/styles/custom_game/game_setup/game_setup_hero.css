@@ -1,3 +1,15 @@
+@keyframes 'lodQuickHighlight' {
+    0% {
+        box-shadow: #00bbFFFF 0px 0px 1px 0px;
+    }
+    50% {
+        box-shadow: #00bbFFFF 0px 0px 8px 0px;
+    }
+    100% {
+        box-shadow: #00bbFFFF 0px 0px 1px 0px;
+    }
+}
+
 .heroRoot {
     width: 90px;
     height: width-percentage(125%);
@@ -24,7 +36,7 @@
 }
 
 .AspectRatio5x4 .heroRoot Label {
-   font-size: 15px; 
+   font-size: 15px;
 }
 
 .AspectRatio16x10 .heroRoot {
@@ -40,7 +52,7 @@
     align: center center;
 
     transition-property: opacity, width, height;
-    transition-duration: 0.25s;    
+    transition-duration: 0.25s;
 }
 
 .unique_heroes_mode .heroRoot.takenHero DOTAHeroImage,
@@ -71,7 +83,10 @@
 }
 
 #heroName {
+/*    clip: rect(0%, 100%, 120%, 0%);*/
     width: 100%;
+
+    /*line-height: 10px;*/
 
     vertical-align: bottom;
     text-align: center;

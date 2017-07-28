@@ -71,7 +71,7 @@
                 "burn_duration"                                        "6.0"
             }
         }
-        "ReduxCost"                                                            "90"
-        "ReduxFlags"                                                           "SuperOP"
+        "ReduxCost"                                                            "120"
+        "ReduxFlags"                                                           ""
     }
 }

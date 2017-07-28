@@ -6,7 +6,7 @@ function HealingAttack (keys)
 	
 	local Heal_Factor = ability:GetSpecialValueFor("Heal_Factor")
 	local Tower_Heal_Factor = ability:GetSpecialValueFor("Tower_Heal_Factor")
-	if caster == attacker then -- only the modifier owner should heal, else enemies would heal too
+	if caster == attacker then -- only the modifier owner should heal, else enemies would heal 
 		if target:IsBuilding() then
 			local healAmount = caster:GetAttackDamage() * Tower_Heal_Factor
 			target:Heal(healAmount,caster)
@@ -14,6 +14,10 @@ function HealingAttack (keys)
 			local healAmount = caster:GetAttackDamage() * Heal_Factor
 			target:Heal(healAmount,caster)
 		end
+		caster:RemoveModifierByName("modifier_argent_smite_aura")
+		Timers:CreateTimer(function(  )
+			caster:RemoveModifierByName("modifier_argent_smite")
+		end)
 	end
 end
 
@@ -37,20 +41,17 @@ function SetCooldown(keys)
 	local ability = attacker:FindAbilityByName("uther_Argent_Smite")
 
 	if ability and target:GetTeam() == attacker:GetTeam() and target:HasModifier("modifier_specially_deniable") then
+		ability:ApplyDataDrivenModifier(attacker,attacker,"modifier_argent_smite",{duration = -1})
 		ability:StartCooldown(ability:GetSpecialValueFor("Cooldown_Factor")) 
 		if target:IsBuilding() then
 			ability:StartCooldown(ability:GetSpecialValueFor("Cooldown_Factor_Building"))
 		end
-		Timers:CreateTimer(0.03, function()
-			attacker:RemoveModifierByName("modifier_argent_smite")
-			if not target:IsNull() then target:RemoveModifierByName("modifier_specially_deniable") end
-			ability:ToggleAbility()
-		end)
 		Timers:CreateTimer(ability:GetSpecialValueFor("Cooldown_Factor"), function()
 			if ability:GetToggleState() == false then
 				ability:ToggleAbility()
 			end
 		end)
+		ability:ToggleAbility()
 	end
 end
 
@@ -60,13 +61,12 @@ function AllowAlliedAttacks(hUnit,hTarget,iOrderType)
 	if (iOrderType == DOTA_UNIT_ORDER_ATTACK_TARGET) and 
 	hUnit:HasModifier("modifier_argent_smite_passive") and 
 	(hUnit:GetTeamNumber() == hTarget:GetTeamNumber()) then
-	  local Argent_Smite = hUnit:FindAbilityByName("uther_Argent_Smite")
-	  if Argent_Smite and Argent_Smite:IsCooldownReady() then
-	  	
-		Argent_Smite:ApplyDataDrivenModifier(hUnit,hTarget,"modifier_specially_deniable",{duration = -1}) -- This allows allied attacks
-		Argent_Smite:ApplyDataDrivenModifier(hUnit,hUnit,"modifier_argent_smite",{duration = -1})
-	 	hUnit.argentSmiteTarget = hTarget -- Storing this to remove the modifier later
-	  end
+		local Argent_Smite = hUnit:FindAbilityByName("uther_Argent_Smite")
+		if Argent_Smite and Argent_Smite:IsCooldownReady() then
+			Argent_Smite:ApplyDataDrivenModifier(hUnit,hUnit,"modifier_argent_smite_aura",{duration = -1}) -- This allows allied attacks
+			Argent_Smite:ApplyDataDrivenModifier(hUnit,hUnit,"modifier_argent_smite",{duration = -1})
+			hUnit.argentSmiteTarget = hTarget -- Storing this to remove the modifier later
+		end
 	end
 end
 
@@ -91,10 +91,10 @@ function StopAllowingAlliedAttacks (hUnit,hTarget,iOrderType)
 	if hUnit:HasModifier("modifier_argent_smite")
 		and ((iOrderType ~= DOTA_UNIT_ORDER_ATTACK_TARGET) or (hUnit:GetTeamNumber() ~= hTarget:GetTeamNumber())) then
 
-		hUnit:RemoveModifierByName("modifier_argent_smite")
+		-- hUnit:RemoveModifierByName("modifier_argent_smite")
 		if not hUnit.argentSmiteTarget:IsNull() then
-			if hUnit.argentSmiteTarget:HasModifier("modifier_specially_deniable") then
-				hUnit.argentSmiteTarget:RemoveModifierByName("modifier_specially_deniable")
+			if hUnit.argentSmiteTarget:HasModifier("modifier_argent_smite_aura") then
+				hUnit.argentSmiteTarget:RemoveModifierByName("modifier_argent_smite_aura")
 			end
 		end
 	end
@@ -121,10 +121,8 @@ function damageFilterArgentSmite(filterTable) -- Setting the damage uther deals 
 	local damageType = filterTable["damagetype_const"]
 	local damage = filterTable["damage"]
 
-	if damageFilterTable.attacker and damageFilterTable.victim then
-		if damageFilterTable.attacker:HasModifier("modifier_argent_smite") 
-		and damageFilterTable.victim:HasModifier("modifier_specially_deniable")
-		and not damageFilterTable.inflictor then
+	if damageFilterTable.attacker and damageFilterTable.victim then 
+		if damageFilterTable.attacker:HasModifier("modifier_argent_smite") and damageFilterTable.victim:HasModifier("modifier_specially_deniable") and not damageFilterTable.inflictor then
 			filterTable["damage"] = 0
 			local particle = ParticleManager:CreateParticle("particles/uther/argent_smite.vpcf",PATTACH_ABSORIGIN,damageFilterTable.victim)
 			EmitSoundOn("Hero_Omniknight.Purification",damageFilterTable.victim)

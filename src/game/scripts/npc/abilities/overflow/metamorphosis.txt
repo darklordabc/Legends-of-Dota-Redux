@@ -45,7 +45,7 @@
             "05"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "move_speed"                                           "270"
+                "move_speed"                                           "-75"
             }
             "06"
             {
@@ -58,6 +58,6 @@
                 "base_damage_scepter"                                  "200 250 300"
             }
         }
-        "ReduxCost"                                                            "20"
+        "ReduxCost"                                                            "40"
     }
 }

@@ -1,8 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --    Hero: Storm Spirit
---    Perk: Restores mana when Storm Spirit travels at high speeds. 
---    Function: Compares position every 0.1 second between the previous position, after the initial 50 units the unit will get its unit moved/10 mana
+--    Perk: Storm Spirit gets a free point into Mana Aura, wheter he has it or not
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_storm_spirit_perk", "abilities/hero_perks/npc_dota_hero_storm_spirit_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -36,14 +35,15 @@ end
 function modifier_npc_dota_hero_storm_spirit_perk:OnCreated(keys)
     if IsServer() then
         local caster = self:GetCaster()
-        local overload = caster:FindAbilityByName("storm_spirit_overload")
-
+        local mana_aura = caster:FindAbilityByName("forest_troll_high_priest_mana_aura")
         if overload then
-            overload:UpgradeAbility(false)
+            mana_aura:UpgradeAbility(false)
         else 
-            overload = caster:AddAbility("storm_spirit_overload")
-            overload:SetHidden(true)
-            overload:SetLevel(1)
+            mana_aura = caster:AddAbility("forest_troll_high_priest_mana_aura")
+            mana_aura:SetStolen(true)
+            mana_aura:SetActivated(true)
+            mana_aura:SetLevel(1)
         end
+
     end
 end

@@ -18,7 +18,7 @@ function spell_reflect_mod:GetReflectSpell(keys)
 		local hAbility = self:GetAbility()
 		if hAbility:GetLevel() < 1 then return false end
 		if hAbility:IsCooldownReady() then
-			hAbility:StartCooldown(hAbility:GetCooldown(hAbility:GetLevel()))
+			hAbility:StartCooldown(hAbility:GetTrueCooldown(hAbility:GetLevel()))
 			self:Reflect(keys)
 		end
 		return 1

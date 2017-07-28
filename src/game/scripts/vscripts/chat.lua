@@ -14,14 +14,14 @@ function Chat:Say( args )
   if channel == 'team' then
     local team = PlayerResource:GetTeam(args["PlayerID"])
     CustomGameEventManager:Send_ServerToTeam(team, "custom_chat_send_message", 
-      { timeStamp = timeStamp, player = args["PlayerID"], channel = channel, msg = msg })
+      { timeStamp = timeStamp, player = args["PlayerID"], channel = channel, msg = msg, localize = args.localize })
   end
 
   if channel == 'all' then
     CustomGameEventManager:Send_ServerToAllClients("custom_chat_send_message", 
-      { timeStamp = timeStamp, player = args["PlayerID"], channel = channel, msg = msg })
+      { timeStamp = timeStamp, player = args["PlayerID"], channel = channel, msg = msg, localize = args.localize })
   end
-  
+  Say(nil, msg, false)
   Commands:OnPlayerChat({
       teamonly = false,
       playerid = args.PlayerID,
