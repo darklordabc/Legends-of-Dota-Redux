@@ -3097,6 +3097,7 @@
     "obsidian_destroyer_essence_aura"
     {
         "ReduxPerks"                                                           "aura"
+        "ReduxCosts"    "120"
         "ReduxBans"                                                            "death_prophet_witchcraft"
         "ReduxBanCategory"                                                     "ToggleSpells"
     }
