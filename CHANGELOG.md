@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - Added 3 more Survival of the Fittest type abilities
 - Living bomb: Damage decreased. Now troll combo with Dispersion.
 - Roshan now has max 70% damage reduction from neutral power mutator
+- Fixed all Legion Commanders becoming spell immune when any one casted duel
 
 ## 9.0
 - Fury of the immortals: Cooldown increased by 5 seconds, non-stacking damage decreased, stun duration decreased by 0.5
