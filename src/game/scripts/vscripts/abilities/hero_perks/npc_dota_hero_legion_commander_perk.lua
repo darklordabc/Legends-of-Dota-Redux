@@ -41,6 +41,7 @@ function modifier_npc_dota_hero_legion_commander_perk:OnAbilityStart(keys)
   if IsServer() then
     local hero = self:GetCaster()
     local target = keys.target
+    if hero ~= keys.caster then return end
     local ability = keys.ability
     local Timers = require('easytimers')
 
