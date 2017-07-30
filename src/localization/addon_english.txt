@@ -6786,6 +6786,7 @@
     "DOTA_Tooltip_ability_zuus_arc_lightning_op_radius"                               "JUMP RANGE:"
 
     "devour_denied"                                                                    "Cannot eat with your mouth full"
+    "cant_target_self"  "Cannot Target Yourself"
     "perk_denied"                                                                    "Overload and Arcane Orb is a troll combo, perk denied"
 
     "only_target_creeps"                            "Cannot consume Ancients"
@@ -7457,13 +7458,13 @@
     "DOTA_Tooltip_ability_basic_tenacity_bonus_op_tenacity_bonus"                                  "%DURATION REDUCTION:"
     "DOTA_Tooltip_ability_basic_tenacity_bonus_op_Lore"                                  "'Walk it off!'"
 
-    "DOTA_Tooltip_ability_bash_reflect"                                       "Anti-Bash"
-    "DOTA_Tooltip_ability_bash_reflect_Description"                           "Enemy Heroes that stun you from a passive source will be counter-stunned for a multiplier of the stun duration. Passive sources include all bash abilities/items and other passive abilities, does not include active abilities.\n\nCan be cast on an allied hero to temporarily transfer the protection."
+    "DOTA_Tooltip_ability_bash_reflect"                                       "Anti-Stun"
+    "DOTA_Tooltip_ability_bash_reflect_Description"                           "Enemy Heroes that stun you from any source will be counter-stunned for a multiplier of the stun duration.\n\nCan be cast on an allied hero to temporarily transfer the protection."
     "DOTA_Tooltip_ability_bash_reflect_duration_multiplier"                "%DURATION MULTIPLIER:"
     "DOTA_Tooltip_ability_bash_reflect_Lore"                                  "Stun paid back in spades."
 
-    "DOTA_Tooltip_ability_bash_reflect_op"                                       "Anti-Bash OP"
-    "DOTA_Tooltip_ability_bash_reflect_op_Description"                           "Enemy Heroes that stun you from a passive source will be counter-stunned for a multiplier of the stun duration. Passive sources include all bash abilities/items and other passive abilities, does not include active abilities.\n\nCan be cast on an allied hero to temporarily transfer the protection. <font color='#70EA72'>Larger multiplier</font>."
+    "DOTA_Tooltip_ability_bash_reflect_op"                                       "Anti-Stun OP"
+    "DOTA_Tooltip_ability_bash_reflect_op_Description"                           "Enemy Heroes that stun you from any source will be counter-stunned for a multiplier of the stun duration.\n\nCan be cast on an allied hero to temporarily transfer the protection. <font color='#70EA72'>Larger multiplier</font>."
     "DOTA_Tooltip_ability_bash_reflect_op_duration_multiplier"                "%DURATION MULTIPLIER:"
     "DOTA_Tooltip_ability_bash_reflect_op_Lore"                                  "Stun paid back in spades."
 
