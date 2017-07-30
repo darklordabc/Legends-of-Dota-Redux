@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 - Silencer's Int Steal ability is now an ultimate
 - Added 3 more Survival of the Fittest type abilities
 - Living bomb: Damage decreased. Now troll combo with Dispersion.
+- Earth Sunder balance rework.
 
 ## 9.0
 - Fury of the immortals: Cooldown increased by 5 seconds, non-stacking damage decreased, stun duration decreased by 0.5
