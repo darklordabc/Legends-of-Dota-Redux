@@ -53,6 +53,7 @@ All notable changes to this project will be documented in this file.
 - Symbtoites will now also be command restricted if their host is (Fix for Infested/Symbiote exploit)
 - Added Tempest Double OP for single player that can recast the ability
 - Improved Razor's Perk, he also gains free level in Unstable Current.
+- Healing Aura now respects cooldown reduction
 
 ## 8.0
 - Fixed Sight being 4 levels
