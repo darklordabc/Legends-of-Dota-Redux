@@ -7,6 +7,8 @@ All notable changes to this project will be documented in this file.
 - Silencer's Int Steal ability is now an ultimate
 - Added 3 more Survival of the Fittest type abilities
 - Living bomb: Damage decreased. Now troll combo with Dispersion.
+- Increase-bloodseeker_thirst-speed-limit to 900
+- Thirst: Will not work on illusions anymore.
 - Roshan now has max 70% damage reduction from neutral power mutator
 - Fixed all Legion Commanders becoming spell immune when any one casted duel
 - Essence Aura is now a single player ability

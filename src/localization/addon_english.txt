@@ -1862,7 +1862,7 @@
 
     // Thirst
     "DOTA_Tooltip_ability_bloodseeker_thirst_lod"                                       "Thirst"
-    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_Description"                           "Bloodseeker is invigorated by the wounds of his enemies, gaining bonus movement speed and attack damage whenever an enemy hero's health falls below 75%, with the bonuses increasing as their health falls further. If an enemy hero's health falls below 25%, he will also gain vision and True Sight of that hero. Bonuses stack per hero. <font color='#70EA72'> Increases movement speed cap to 750.</font>"
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_Description"                           "Bloodseeker is invigorated by the wounds of his enemies, gaining bonus movement speed and attack damage whenever an enemy hero's health falls below 75%, with the bonuses increasing as their health falls further. If an enemy hero's health falls below 25%, he will also gain vision and True Sight of that hero. Bonuses stack per hero. <font color='#70EA72'> Increases movement speed cap to 900.</font>"
     "DOTA_Tooltip_ability_bloodseeker_thirst_lod_Lore"                                  "Strygwyr becomes frenzied when blood is spilled."
     "DOTA_Tooltip_ability_bloodseeker_thirst_lod_Note0"                                 "Not triggered by Illusions."
     "DOTA_Tooltip_ability_bloodseeker_thirst_lod_buff_threshold_pct"                    "%THIRST HEALTH THRESHOLD:"
