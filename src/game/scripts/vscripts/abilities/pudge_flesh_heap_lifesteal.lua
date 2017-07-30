@@ -148,16 +148,14 @@ function modifier_flesh_heap_lifesteal:OnDeath(keys)
     return 
   end
   -----------------------------------------------------------------------------
-  local hKiller = keys.attacker:GetOwnerEntity()
+  local hKiller = keys.attacker:GetPlayerOwner()
   local hVictim = keys.unit
-
 
   if self:GetCaster():GetTeamNumber() ~= hVictim:GetTeamNumber() then
     self.fleshHeapRange = self:GetAbility():GetSpecialValueFor( "flesh_heap_range")
     local vToCaster = self:GetCaster():GetOrigin() - hVictim:GetOrigin()
     local flDistance = vToCaster:Length2D() - (self:GetCaster():GetCollisionPadding() + hVictim:GetCollisionPadding())
-    
-    if hKiller == self:GetCaster() or self.fleshHeapRange >= flDistance then
+    if hKiller == self:GetCaster():GetPlayerOwner() or self.fleshHeapRange >= flDistance then
       if self.nKills == nil then
         self.nKills = 0
       end

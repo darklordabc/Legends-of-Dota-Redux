@@ -101,8 +101,8 @@ function ReflectBashes(filterTable)
       ParticleManager:SetParticleControl(particle, 0, parent:GetAbsOrigin())
       ParticleManager:SetParticleControl(particle, 1, caster:GetAbsOrigin())
       ParticleManager:ReleaseParticleIndex(particle)
-    end
-  --end, DoUniqueString('check_modifier'), FrameTime())
+    --end
+  end, DoUniqueString('check_modifier'), FrameTime())
 end
 
 
