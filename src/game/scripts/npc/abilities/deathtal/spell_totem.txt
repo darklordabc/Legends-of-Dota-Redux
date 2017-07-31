@@ -7,7 +7,7 @@
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityTextureName"			""
+		"AbilityTextureName"				"custom/spell_totem"
 		"HasScepterUpgrade"				"1"
 
 		// Precache
@@ -109,7 +109,7 @@
 		"BaseClass"						"ability_datadriven"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"pugna_nether_ward"
+		"AbilityTextureName"			"custom/spell_totem"
 		"MaxLevel"						"3"
 		"AbilityCastRange"				"1600"
 
