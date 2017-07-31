@@ -7,7 +7,6 @@
         "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
         "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO"
         "AbilityTextureName"                                                   "custom/obsidian_destroyer_essence_aura_redux"
-        "ReduxFlags"                                                    "underpowered" 
         "precache"
         {
             "particle"                                                     "particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_essence_effect.vpcf"

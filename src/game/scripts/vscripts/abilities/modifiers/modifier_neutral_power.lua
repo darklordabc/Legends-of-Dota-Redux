@@ -83,6 +83,9 @@ function modifier_neutral_power:GetModifierIncomingDamage_Percentage()
 	local damage_reduction = -1
 	local stacks = self:GetStackCount()
 
+    -- Max damage reduction is 70%
+	stacks = math.min(70, stacks)
+
 	if unit:GetUnitName() == "npc_dota_roshan" then
 		return damage_reduction * stacks
 	end
