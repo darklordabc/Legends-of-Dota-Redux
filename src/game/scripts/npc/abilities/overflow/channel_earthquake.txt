@@ -14,39 +14,39 @@
 		"AbilityCooldown"               "40"
 		"AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
 		"AbilityManaCost"               "150"
-		"AbilityChannelTime"      "10 14 18 22"
+		"AbilityChannelTime"      "15"
 		"ReduxPerks"                                                           "earth"
 		"AbilitySpecial"
 		{
 			"01"
 			{
 				"var_type"                  "FIELD_INTEGER"
-				"radius"             "350"
+				"radius"             "300"
 			}
 			"02"
 			{
 				"var_type"                  "FIELD_INTEGER"
-				"spot_radius"             "100"
+				"spot_radius"             "125"
 			}
 			"03"
 			{
 				"var_type"                  "FIELD_INTEGER"
-				"damage"             "20 40 60 80"
+				"damage"             "50"
 			}
 			"04"
 			{
 				"var_type"                  "FIELD_FLOAT"
-				"stun_duration"             "0.75"
+				"stun_duration"             "1.0"
 			}
 			"05"
 			{
 				"var_type"                  "FIELD_FLOAT"
-				"think_interval"             "0.5"
+				"think_interval"             "0.6 0.5 0.4 0.3"
 			}
 			"06"
 			{
 				"var_type"                  "FIELD_FLOAT"
-				"tooltip_channel"             "10 14 18 22"
+				"tooltip_channel"             "15"
 			}
 		}
 
