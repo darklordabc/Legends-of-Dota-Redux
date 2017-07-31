@@ -152,7 +152,7 @@
 			"modifier_spell_totem_aura"
 			{
 				"Passive"		"1"
-				"IsHidden"		"0"
+				"IsHidden"		"1"
 				"IsDebuff"		"0"
 
 				"Properties"
