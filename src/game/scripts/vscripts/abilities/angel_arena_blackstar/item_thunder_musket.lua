@@ -44,5 +44,5 @@ function ThunderstruckProc(keys)
 		ParticleManager:CreateParticle("particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_manavoid_lightning_ti_5.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 	--end
 	--end
-	ability:StartCooldown(5)
+	ability:StartCooldown(ability:GetCooldown(-1))
 end
