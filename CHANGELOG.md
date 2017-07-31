@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 9.1
 - Dark Forces explosion radius is 300 now instead of 150. It now does magical damage instead of physical, and slightly increased manacost.
 - Silencer's Int Steal ability is now an ultimate
-- Added 3 more Survival of the Fittest type abilities
+- Added 7 more Survival of the Fittest type abilities
 - Living bomb: Damage decreased. Now troll combo with Dispersion.
 - Increase-bloodseeker_thirst-speed-limit to 900
 - Thirst: Will not work on illusions anymore.

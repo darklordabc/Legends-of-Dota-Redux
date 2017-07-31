@@ -301,6 +301,8 @@
 #base "abilities\spelllab\spell_lab_survivor_int_survival.txt"
 #base "abilities\spelllab\spell_lab_survivor_mana_regen.txt"
 #base "abilities\spelllab\spell_lab_survivor_health_regen.txt"
+#base "abilities\spelllab\spell_lab_survivor_damage_boost.txt"
+#base "abilities\spelllab\spell_lab_survivor_spell_boost.txt"
 #base "abilities\imba\700.txt"
 #base "abilities\imba\imba_dazzle_shallow_grave_passive.txt"
 #base "abilities\imba\imba_dazzle_shallow_grave_passive_one.txt"
