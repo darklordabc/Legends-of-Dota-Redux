@@ -49,6 +49,7 @@
 #base "abilities\overflow\dark_blade.txt"
 #base "abilities\overflow\light_blade.txt"
 #base "abilities\overflow\metamorphosis.txt"
+#base "abilities\overflow\metamorphosis_op.txt"
 #base "abilities\overflow\military.txt"
 #base "abilities\overflow\seer.txt"
 #base "abilities\overflow\spectral_form.txt"

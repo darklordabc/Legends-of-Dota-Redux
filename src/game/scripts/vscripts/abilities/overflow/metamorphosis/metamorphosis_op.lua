@@ -1,11 +1,11 @@
-if metamorphosis == nil then
-	metamorphosis = class({})
+if metamorphosis_op == nil then
+	metamorphosis_op = class({})
 end
 
 LinkLuaModifier( "generic_lua_stun", "abilities/overflow/generic_stun.lua", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "metamorphosis_mod", "abilities/overflow/metamorphosis/metamorphosis_mod.lua", LUA_MODIFIER_MOTION_NONE )
 
-function metamorphosis:GetBehavior()
+function metamorphosis_op:GetBehavior()
 	local behav = DOTA_ABILITY_BEHAVIOR_NO_TARGET
 	if self:GetCaster():HasItemInInventory("item_aegis") then
 		behav = DOTA_ABILITY_BEHAVIOR_PASSIVE
@@ -13,14 +13,14 @@ function metamorphosis:GetBehavior()
 	return behav
 end
 
-function metamorphosis:OnSpellStart()
+function metamorphosis_op:OnSpellStart()
 	EmitSoundOnLocationWithCaster( self:GetCaster():GetOrigin(), "RoshanDT.Scream", self:GetCaster() )
 	local dur = self:GetDuration()
 	if self:hasAegis() then dur = -1 end
 	self.hModifier = self:GetCaster():AddNewModifier( self:GetCaster(), self, "metamorphosis_mod", { duration = dur } )
 end
 
-function metamorphosis:OnInventoryContentsChanged()
+function metamorphosis_op:OnInventoryContentsChanged()
 	if self:hasAegis() and self.hadAegis ~= true then
 		self.hadAegis = true
 		if self:GetLevel() > 0 then
@@ -39,7 +39,7 @@ function metamorphosis:OnInventoryContentsChanged()
 	end
 end
 
-function metamorphosis:OnUpgrade()
+function metamorphosis_op:OnUpgrade()
 	if self:hasAegis() then
 		if self:GetLevel() == 1 then
 			self:OnSpellStart()
@@ -47,6 +47,6 @@ function metamorphosis:OnUpgrade()
 	end
 end
 
-function metamorphosis:hasAegis ()
+function metamorphosis_op:hasAegis ()
 		return self:GetCaster():HasModifier("modifier_item_aegis")
 end

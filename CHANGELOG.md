@@ -7,6 +7,17 @@ All notable changes to this project will be documented in this file.
 - Silencer's Int Steal ability is now an ultimate
 - Added 3 more Survival of the Fittest type abilities
 - Living bomb: Damage decreased. Now troll combo with Dispersion.
+- Increase-bloodseeker_thirst-speed-limit to 900
+- Thirst: Will not work on illusions anymore.
+- Roshan now has max 70% damage reduction from neutral power mutator
+- Fixed all Legion Commanders becoming spell immune when any one casted duel
+- Essence Aura is now a single player ability
+- Anti-Bash Ability is now Anti-Stun and works on active and passive abilities
+- Flesh Heap can now gain stacks from kills by summons (e.g. Nimbus Cloud)
+*
+- Roshanify Aegis inventory bug fixed.
+- Roshanify OP version added for singleplayer.
+- Earth Sunder balance rework.
 
 ## 9.0
 - Fury of the immortals: Cooldown increased by 5 seconds, non-stacking damage decreased, stun duration decreased by 0.5

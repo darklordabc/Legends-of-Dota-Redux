@@ -1,4 +1,4 @@
-Dota 2 Redux
+Legends of Dota Redux
 =====
 
 **Make Modding Great Again.**

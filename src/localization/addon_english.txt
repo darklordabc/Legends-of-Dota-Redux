@@ -1862,7 +1862,7 @@
 
     // Thirst
     "DOTA_Tooltip_ability_bloodseeker_thirst_lod"                                       "Thirst"
-    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_Description"                           "Bloodseeker is invigorated by the wounds of his enemies, gaining bonus movement speed and attack damage whenever an enemy hero's health falls below 75%, with the bonuses increasing as their health falls further. If an enemy hero's health falls below 25%, he will also gain vision and True Sight of that hero. Bonuses stack per hero. <font color='#70EA72'> Increases movement speed cap to 750.</font>"
+    "DOTA_Tooltip_ability_bloodseeker_thirst_lod_Description"                           "Bloodseeker is invigorated by the wounds of his enemies, gaining bonus movement speed and attack damage whenever an enemy hero's health falls below 75%, with the bonuses increasing as their health falls further. If an enemy hero's health falls below 25%, he will also gain vision and True Sight of that hero. Bonuses stack per hero. <font color='#70EA72'> Increases movement speed cap to 900.</font>"
     "DOTA_Tooltip_ability_bloodseeker_thirst_lod_Lore"                                  "Strygwyr becomes frenzied when blood is spilled."
     "DOTA_Tooltip_ability_bloodseeker_thirst_lod_Note0"                                 "Not triggered by Illusions."
     "DOTA_Tooltip_ability_bloodseeker_thirst_lod_buff_threshold_pct"                    "%THIRST HEALTH THRESHOLD:"
@@ -5148,6 +5148,21 @@
 
         "DOTA_Tooltip_metamorphosis_mod"                                             "Morphed into Roshan"
         "DOTA_Tooltip_metamorphosis_mod_Description"                                 "May Roshan be with you."
+		
+		"DOTA_Tooltip_Ability_metamorphosis_op"                                              "Roshanify OP"
+        "DOTA_Tooltip_Ability_metamorphosis_op_Description"                                  "For the limited duration you take form of Mighty Roshan! Provides base damage bonus and chance to stun on every attack.\nEverything is a lot better!\n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>\n"
+        "DOTA_Tooltip_Ability_metamorphosis_op_aghanim_description"                                "Improves Base Damage bonus."
+        "DOTA_Tooltip_Ability_metamorphosis_op_base_damage"                                  "BASE DAMAGE BONUS:"
+        "DOTA_Tooltip_Ability_metamorphosis_op_stun_chance"                                  "%BASH CHANCE:"
+        "DOTA_Tooltip_Ability_metamorphosis_op_stun_duration"                                "BASH DURATION:"
+        "DOTA_Tooltip_Ability_metamorphosis_op_attack_range"                                 "ATTACK RANGE:"
+        "DOTA_Tooltip_Ability_metamorphosis_op_move_speed"                                   "MOVE SPEED BONUS:"
+        "DOTA_Tooltip_Ability_metamorphosis_op_tool_tip_duration"                            "DURATION:"
+        "DOTA_Tooltip_Ability_metamorphosis_op_base_damage_scepter"                        "SCEPTER DAMAGE:"
+        "DOTA_Tooltip_Ability_metamorphosis_op_Note0"                      "Having Aegis of Immortal makes this ability passive."
+
+        "DOTA_Tooltip_metamorphosis_mod_op"                                             "Morphed into Roshan"
+        "DOTA_Tooltip_metamorphosis_mod_op_Description"                                 "May Roshan be with you."
 
         "DOTA_Tooltip_generic_lua_stun"                                             "Stun"
         "DOTA_Tooltip_generic_lua_stun_Description"                                 "Stunned"
@@ -6786,6 +6801,7 @@
     "DOTA_Tooltip_ability_zuus_arc_lightning_op_radius"                               "JUMP RANGE:"
 
     "devour_denied"                                                                    "Cannot eat with your mouth full"
+    "cant_target_self"  "Cannot Target Yourself"
     "perk_denied"                                                                    "Overload and Arcane Orb is a troll combo, perk denied"
 
     "only_target_creeps"                            "Cannot consume Ancients"
@@ -7457,13 +7473,13 @@
     "DOTA_Tooltip_ability_basic_tenacity_bonus_op_tenacity_bonus"                                  "%DURATION REDUCTION:"
     "DOTA_Tooltip_ability_basic_tenacity_bonus_op_Lore"                                  "'Walk it off!'"
 
-    "DOTA_Tooltip_ability_bash_reflect"                                       "Anti-Bash"
-    "DOTA_Tooltip_ability_bash_reflect_Description"                           "Enemy Heroes that stun you from a passive source will be counter-stunned for a multiplier of the stun duration. Passive sources include all bash abilities/items and other passive abilities, does not include active abilities.\n\nCan be cast on an allied hero to temporarily transfer the protection."
+    "DOTA_Tooltip_ability_bash_reflect"                                       "Anti-Stun"
+    "DOTA_Tooltip_ability_bash_reflect_Description"                           "Enemy Heroes that stun you from any source will be counter-stunned for a multiplier of the stun duration.\n\nCan be cast on an allied hero to temporarily transfer the protection."
     "DOTA_Tooltip_ability_bash_reflect_duration_multiplier"                "%DURATION MULTIPLIER:"
     "DOTA_Tooltip_ability_bash_reflect_Lore"                                  "Stun paid back in spades."
 
-    "DOTA_Tooltip_ability_bash_reflect_op"                                       "Anti-Bash OP"
-    "DOTA_Tooltip_ability_bash_reflect_op_Description"                           "Enemy Heroes that stun you from a passive source will be counter-stunned for a multiplier of the stun duration. Passive sources include all bash abilities/items and other passive abilities, does not include active abilities.\n\nCan be cast on an allied hero to temporarily transfer the protection. <font color='#70EA72'>Larger multiplier</font>."
+    "DOTA_Tooltip_ability_bash_reflect_op"                                       "Anti-Stun OP"
+    "DOTA_Tooltip_ability_bash_reflect_op_Description"                           "Enemy Heroes that stun you from any source will be counter-stunned for a multiplier of the stun duration.\n\nCan be cast on an allied hero to temporarily transfer the protection. <font color='#70EA72'>Larger multiplier</font>."
     "DOTA_Tooltip_ability_bash_reflect_op_duration_multiplier"                "%DURATION MULTIPLIER:"
     "DOTA_Tooltip_ability_bash_reflect_op_Lore"                                  "Stun paid back in spades."
 
