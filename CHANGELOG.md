@@ -14,6 +14,9 @@ All notable changes to this project will be documented in this file.
 - Essence Aura is now a single player ability
 - Anti-Bash Ability is now Anti-Stun and works on active and passive abilities
 - Flesh Heap can now gain stacks from kills by summons (e.g. Nimbus Cloud)
+*
+- Roshanify Aegis inventory bug fixed.
+- Roshanify OP version added for singleplayer.
 
 ## 9.0
 - Fury of the immortals: Cooldown increased by 5 seconds, non-stacking damage decreased, stun duration decreased by 0.5
