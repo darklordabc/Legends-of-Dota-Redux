@@ -6932,19 +6932,22 @@
     
     //Totems
     "DOTA_Tooltip_ability_special_bonus_unique_max_totems"		"+1 Max Totems"
-    "DOTA_Tooltip_modifier_totem_damage_loss"				"Damage loss"
+    "DOTA_Tooltip_modifier_totem_damage_loss"					"Damage loss"
     "DOTA_Tooltip_modifier_totem_damage_loss_Description"		"Deals %dMODIFIER_PROPERTY_TOOLTIP%%% less damage"
 
     //Spell Totem
-    "DOTA_Tooltip_ability_spell_totem"					"Spell Totem"
+    "DOTA_Tooltip_ability_spell_totem"						"Spell Totem"
     "DOTA_Tooltip_ability_spell_totem_Description"			"Place a Spell Totem at target location. If you are within radius of it's aura, whenever you cast a spell the totem will cast the same spell at the same target or location as long as the target is also within the cast range of the totem. Abilities with no target will cast as long as you are within the aura radius. Spell Totems are magic immune, and take 1 damage from creeps and 4 from heroes, towers and Roshan. There's a limit on how many totems that can be active at the same time, this is shared between all totem abilities. Placing a totem when at that limit will kill the oldest totem. The damage output of you as well as your totems will be reduced by a percentage stacking multiplicative, this is also shared between all totem abilities.\n\nUpgradable by Aghanim's Scepter."
     "DOTA_Tooltip_ability_spell_totem_radius"				"TOTEM AURA RADIUS:"
     "DOTA_Tooltip_ability_spell_totem_duration"				"TOTEM DURATION:"
     "DOTA_Tooltip_ability_spell_totem_totem_health"			"TOTEM HEALTH:"
     "DOTA_Tooltip_ability_spell_totem_damage_loss"			"%DAMAGE LOSS PER TOTEM:"
     "DOTA_Tooltip_ability_spell_totem_max_totems"			"MAX TOTEM LIMIT:"
-    "DOTA_Tooltip_ability_spell_totem_max_totems_scepter"		"SCEPTER MAX TOTEM LIMIT:"
-    "DOTA_Tooltip_ability_spell_totem_aghanim_description"		"Increases the max amount of totem you can place by one and upgrades the spells cast by the totem to the Scepter level."
+    "DOTA_Tooltip_ability_spell_totem_max_totems_scepter"	"SCEPTER MAX TOTEM LIMIT:"
+    "DOTA_Tooltip_ability_spell_totem_aghanim_description"	"Increases the max amount of totem you can place by one and upgrades the spells cast by the totem to the Scepter level."
+	"DOTA_Tooltip_ability_spell_totem_aura"					"Spell Totem Aura"
+	"DOTA_Tooltip_ability_spell_totem_aura_Description"		"The Spell Totem will cast the same spell as the owner as long as they are within the aura of the totem."
+	"DOTA_Tooltip_ability_spell_totem_aura_radius"			"RADIUS:"
 
     "DOTA_Tooltip_ability_aether_reality_shift"                                       "Reality Shift"
     "DOTA_Tooltip_ability_aether_reality_shift_Description"                           "Aether drags all nearby units from this plane to the next temporarily, returning after the duration ends and damaging and stunning enemy units within range that were not affected by the initial cast.  Units affected are out of game and invulnerable for the duration."
