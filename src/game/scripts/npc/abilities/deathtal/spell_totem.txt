@@ -31,51 +31,51 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"duration"				"15"
+				"duration"				"8 12 16"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"1600"
+				"radius"				"800 1200 1600"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_loss"			"30"
+				"damage_loss"				"30"
 			}
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"max_totems"			"1"
-				"LinkedSpecialBonus"	"special_bonus_unique_max_totems"
+				"max_totems"				"1"
+				"LinkedSpecialBonus"			"special_bonus_unique_max_totems"
 			}
 			"05"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"max_totems_scepter"	"2"
-				"LinkedSpecialBonus"	"special_bonus_unique_max_totems"
+				"max_totems_scepter"			"2"
+				"LinkedSpecialBonus"			"special_bonus_unique_max_totems"
 			}
 			"06"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"totem_health"			"16"
+				"totem_health"				"16"
 			}
 			"07"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"hero_damage"			"4"
+				"hero_damage"				"4"
 			}
 			"08"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"creep_damage"			"1"
+				"creep_damage"				"1"
 			}
 		}
 		"OnSpellStart"
 		{
 			"RunScript"
 			{
-				"ScriptFile"			"abilities/deathtal/spell_totem"
+				"ScriptFile"				"abilities/deathtal/spell_totem"
 				"Function"				"SpawnTotem"
 				"Target"				"POINT"
 				"totem"					"npc_spell_totem"
@@ -111,7 +111,7 @@
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"custom/spell_totem"
 		"MaxLevel"						"3"
-		"AbilityCastRange"				"1600"
+		"AbilityCastRange"				"800 1200 1600"
 
 		"precache"
 		{
@@ -125,17 +125,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"radius"				"1600"
+				"radius"				"800 1200 1600"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"hero_damage"			"4"
+				"hero_damage"				"4"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"creep_damage"			"1"
+				"creep_damage"				"1"
 			}
 		}
 		"OnOwnerDied"
