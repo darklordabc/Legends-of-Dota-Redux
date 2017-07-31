@@ -349,6 +349,13 @@ local _CODE_TO_ANIMATION_TRANSLATE = {
   [345]= "glory",
   [346]= "white",
   [347]= "tidehunter_yippy",
+  [348]= "level1",
+  [349]= "level2",
+  [350]= "level3",
+  [351]= "level4",
+  [352]= "level5",
+  [353]= "level6",
+  [354]= "showcase",
 }
 
 function modifier_animation:OnCreated(keys) 
