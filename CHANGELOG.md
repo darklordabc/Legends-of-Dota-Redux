@@ -19,6 +19,7 @@ All notable changes to this project will be documented in this file.
 - Roshanify Aegis inventory bug fixed.
 - Roshanify OP version added for singleplayer.
 - Earth Sunder balance rework.
+- Made it so Burrow Redux appears when OP abilities are enabled
 
 ## 9.0
 - Fury of the immortals: Cooldown increased by 5 seconds, non-stacking damage decreased, stun duration decreased by 0.5

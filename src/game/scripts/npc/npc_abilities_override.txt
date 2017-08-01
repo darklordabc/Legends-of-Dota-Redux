@@ -1622,6 +1622,7 @@
         "ReduxFlags"                                                           "mobility | invis"
         "ReduxPerks"                                                           "mobility | earth"
         "ReduxCost"                                                            "20"
+        "ReduxBans"                                                            "nyx_assassin_burrow_redux"
     }
     "slark_shadow_dance"
     {

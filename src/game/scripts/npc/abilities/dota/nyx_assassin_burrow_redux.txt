@@ -8,7 +8,8 @@
 		"AbilityTextureName"			"custom/nyx_assassin_burrow_redux"
 		"AbilityBehavior" 				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"ScriptFile"					"abilities/nyx_assassin_burrow_redux.lua"
-		"ReduxFlags"                                                    "underpowered" 
+		"ReduxFlags"                                                    "" 
+		"ReduxCost"	"0"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
