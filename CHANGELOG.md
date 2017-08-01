@@ -16,6 +16,9 @@ All notable changes to this project will be documented in this file.
 - Flesh Heap can now gain stacks from kills by summons (e.g. Nimbus Cloud)
 *
 - Added a few more Survival of the Fittest type abilities
+- Roshanify Aegis inventory bug fixed.
+- Roshanify OP version added for singleplayer.
+- Earth Sunder balance rework.
 
 ## 9.0
 - Fury of the immortals: Cooldown increased by 5 seconds, non-stacking damage decreased, stun duration decreased by 0.5
