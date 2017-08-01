@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file.
 - Anti-Bash Ability is now Anti-Stun and works on active and passive abilities
 - Flesh Heap can now gain stacks from kills by summons (e.g. Nimbus Cloud)
 *
+- Added a few more Survival of the Fittest type abilities
 - Roshanify Aegis inventory bug fixed.
 - Roshanify OP version added for singleplayer.
 - Earth Sunder balance rework.

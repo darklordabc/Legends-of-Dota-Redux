@@ -58,11 +58,15 @@ function spell_lab_survivor_agi_survival_modifier:OnIntervalThink()
     if not self:GetParent():IsAlive() and not self:GetParent():IsReincarnating() then
   		self.lastdeath = GameRules:GetGameTime()
   		self:SetStackCount(0)
+			self:GetParent():CalculateStatBonus()
       return
     end
   	if self:GetAbility():GetLevel() > 0 then
       local stacks = (GameRules:GetGameTime() - self.lastdeath)*self:GetAbility():GetSpecialValueFor("bonus")*0.0166667
   		self:SetStackCount(stacks)
+			if (old ~= self:GetStackCount()) then
+				self:GetParent():CalculateStatBonus()
+			end
   	end
 	end
 end
