@@ -4775,5 +4775,9 @@
         "TalentRequiredAbility"                                                   "abaddon_aphotic_shield"
     }
 
+    "special_bonus_unique_max_totems"
+    {
+        "TalentRequiredAbility"                                                   "spell_totem"
+    }
 
 }
