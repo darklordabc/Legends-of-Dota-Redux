@@ -5272,7 +5272,7 @@
         "DOTA_Tooltip_Ability_channel_earthquake_op_tooltip_channel"                         "CHANNEL TIME:"
 
         "DOTA_Tooltip_Ability_master_magic"                                               "Master of Magic"
-        "DOTA_Tooltip_Ability_master_magic_Description"                                   "Lets you cast spells without without going to cooldown. When cast, provides with number of charges to spend on casting spells. Ultimates require 2 charges.\n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>\n"
+        "DOTA_Tooltip_Ability_master_magic_Description"                                   "Lets you cast spells without without going to cooldown. When cast, provides with number of charges to spend on casting spells. Ultimates require 3 charges.\n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>\n"
         "DOTA_Tooltip_Ability_master_magic_Note0"                                   "Cannot be used with Refresher Orb or Hand Of Midas."
         "DOTA_Tooltip_Ability_master_magic_stacks"                                        "SPELL CHARGES:"
         "DOTA_Tooltip_Ability_master_magic_duration"                                      "DURATION:"

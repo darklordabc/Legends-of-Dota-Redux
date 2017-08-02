@@ -21,6 +21,7 @@ All notable changes to this project will be documented in this file.
 - Earth Sunder balance rework.
 - Made it so Burrow Redux appears when OP abilities are enabled
 - Sleep Cloud: Made Instant Cast, reduced sleep duration to fixed 10, decrease manacost per level, increased radius by 100, 
+- Master of Magic now requires 3 charges to refresh an ultimate
 
 ## 9.0
 - Fury of the immortals: Cooldown increased by 5 seconds, non-stacking damage decreased, stun duration decreased by 0.5

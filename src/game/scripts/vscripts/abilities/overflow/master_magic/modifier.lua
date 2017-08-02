@@ -41,9 +41,9 @@ function master_magic_mod:OnAbilityFullyCast(params)
 			
 			local isUltimate = false
 			-- If its an ultimate, there needs to be two charges, if not, return
-			if params.ability:GetAbilityType() == 1 and self:GetStackCount() < 2 then
+			if params.ability:GetAbilityType() == 1 and self:GetStackCount() < 3 then
 				return
-			elseif params.ability:GetAbilityType() == 1 and self:GetStackCount() >= 2 then
+			elseif params.ability:GetAbilityType() == 1 and self:GetStackCount() >= 3 then
 				isUltimate = true
 			end
 
@@ -52,8 +52,9 @@ function master_magic_mod:OnAbilityFullyCast(params)
 				EmitSoundOnLocationWithCaster( self:GetCaster():GetOrigin(), "Brewmaster_Storm.DispelMagic", self:GetCaster() )
 			else
 				self:DecrementStackCount()
-				-- If its an ultimate reduce an extra stack
+				-- If its an ultimate reduce 2 extra stack
 				if isUltimate == true then
+					self:DecrementStackCount()
 					self:DecrementStackCount()
 				end
 			end
