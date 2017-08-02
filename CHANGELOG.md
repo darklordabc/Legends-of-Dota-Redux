@@ -20,11 +20,12 @@ All notable changes to this project will be documented in this file.
 - Roshanify OP version added for singleplayer.
 - Earth Sunder balance rework.
 - Made it so Burrow Redux appears when OP abilities are enabled
+- Sleep Cloud: Made Instant Cast, reduced sleep duration to fixed 10, decrease manacost per level, increased radius by 100, 
 
 ## 9.0
 - Fury of the immortals: Cooldown increased by 5 seconds, non-stacking damage decreased, stun duration decreased by 0.5
 - Multicast Redux now has a cooldown (in games where single player abilities are banned)
-- Set siege mode transformation time to 3 seconds
+- Set siege mode transformation time to 3 secosnds
 - Fixed Tenactiy and Blade Mail OP not working
 - Made siege mode transform lower by .5 seconds each level
 - Hopefully fixed looping sounds with pulse nova
