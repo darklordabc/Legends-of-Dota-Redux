@@ -681,6 +681,8 @@
         "AbilityTextureName"            "item_octarine_core"
         "BaseClass"                     "item_lua"
         "ScriptFile"                    "abilities/items/octarine_core.lua"
+        // This is a short-gap measure TODO: Make a better fix
+        "IsTempestDoubleClonable"       "0"
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
