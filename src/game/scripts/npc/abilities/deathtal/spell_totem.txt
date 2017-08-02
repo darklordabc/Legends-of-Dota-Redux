@@ -1,0 +1,216 @@
+"DOTAAbilities"
+{
+	"spell_totem"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName"				"custom/spell_totem"
+		"HasScepterUpgrade"				"1"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"model"						"models/props_structures/tower_upgrade/tower_upgrade.vmdl"
+		}
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastRange"				"450"
+		"AbilityCooldown"				"1.0"
+		"AbilityManaCost"				"25"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"8 12 16"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"800 1200 1600"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_loss"				"30"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_totems"				"1"
+				"LinkedSpecialBonus"			"special_bonus_unique_max_totems"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"max_totems_scepter"			"2"
+				"LinkedSpecialBonus"			"special_bonus_unique_max_totems"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"totem_health"				"16"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"hero_damage"				"4"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"creep_damage"				"1"
+			}
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"				"abilities/deathtal/spell_totem"
+				"Function"				"SpawnTotem"
+				"Target"				"POINT"
+				"totem"					"npc_spell_totem"
+				"effect"				"particles/spell_totem/spell_totem_place.vpcf"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_totem_owner"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"IsDebuff"			"1"
+		
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/deathtal/spell_totem"
+						"Function"		"SpellCasted"
+						"totem"			"npc_spell_totem"
+					}
+				}
+			}
+		}
+	}
+	"spell_totem_aura"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"custom/spell_totem"
+		"MaxLevel"						"3"
+		"AbilityCastRange"				"800 1200 1600"
+
+		"precache"
+		{
+			"effect"					"particles/radiant_fx/radiant_tower002_destruction_a2.vpcf"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"800 1200 1600"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"hero_damage"				"4"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"creep_damage"				"1"
+			}
+		}
+		"OnOwnerDied"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"abilities/deathtal/spell_totem"
+				"Function"				"TotemDeath"
+				"death_effect"			"particles/spell_totem/spell_totem_destroy.vpcf"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_spell_totem_aura"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"IsDebuff"		"0"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"-100"
+					"MODIFIER_PROPERTY_DISABLE_HEALING"				"1"
+				}
+				"States"
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_COMMAND_RESTRICTED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"ThinkInterval"		"0.1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/deathtal/spell_totem"
+						"Function"		"TotemScepter"
+					}
+				}
+				"OnAttacked"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/deathtal/spell_totem"
+						"Function"		"TotemAttacked"
+						"attacker"		"ATTACKER"
+					}
+				}
+			}
+			"modifier_totem_scepter"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_IS_SCEPTER"		"1"
+				}
+			}
+		}
+	}
+	"special_bonus_unique_max_totems"
+	{
+		"BaseClass"					"special_bonus_undefined"
+		"AbilityType"				"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"value"				"1"
+			}
+		}
+	}
+}
