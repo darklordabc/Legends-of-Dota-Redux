@@ -167,6 +167,7 @@
     "lodMutatorTrickshot"                              "Trickshot Passive"
     "lodMutatorBorrowed"                              "Borrowed Time"
     "lodMutatorTesla"                              "Tesla Coil"
+    "lodMutatorSurvival"                              "Random Survival"
 
     "lodMutatorFastStart"                           "Fast Start"
     "lodMutatorStrongTowers"                        "Strong Towers"

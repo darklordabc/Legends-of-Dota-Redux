@@ -412,6 +412,7 @@ var basicOptions = {
                             'lodMutatorTrickshot': 19,
                             'lodMutatorBorrowed': 20,
                             'lodMutatorTesla': 21,
+                            'lodMutatorSurvival': 22,
                         }
                     },
                     {

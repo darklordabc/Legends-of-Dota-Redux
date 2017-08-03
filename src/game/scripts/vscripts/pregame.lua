@@ -2979,7 +2979,7 @@ function Pregame:initOptionSelector()
 
         -- Other - Extra ability
         lodOptionExtraAbility = function(value)
-            return value == 0 or value == 1 or value == 2 or value == 3 or value == 4  or value == 5 or value == 6 or value == 7 or value == 8 or value == 9 or value == 10  or value == 11 or value == 12 or value == 13 or value == 14 or value == 15 or value == 16 or value == 17 or value == 18  or value == 19 or value == 20 or value == 21
+            return value == 0 or value == 1 or value == 2 or value == 3 or value == 4  or value == 5 or value == 6 or value == 7 or value == 8 or value == 9 or value == 10  or value == 11 or value == 12 or value == 13 or value == 14 or value == 15 or value == 16 or value == 17 or value == 18  or value == 19 or value == 20 or value == 21 or value == 22
         end,
 
         -- Other -- Gotta Go Fast!
@@ -7702,9 +7702,11 @@ function Pregame:fixSpawnedHero( spawnedUnit )
     if OptionManager:GetOption('extraAbility') > 0 then
         Timers:CreateTimer(function()
             local fleshHeapToGive = nil
+            local survivalToGive = nil
             local essenceshiftToGive = nil
             local rangedTrickshot = nil
 
+            -- Random Flesh Heaps
             if OptionManager:GetOption('extraAbility') == 5 then
 
                 local random = RandomInt(1,10)
@@ -7740,6 +7742,36 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                 end
             end
 
+            -- Random Survivals
+            if OptionManager:GetOption('extraAbility') == 22 then
+
+                local random = RandomInt(1,7)
+                local givenAbility = false
+                -- Randomly choose which flesh heap to give them
+                if random == 1 and not spawnedUnit:HasAbility('spell_lab_survivor_str_survival') then survivalToGive = "spell_lab_survivor_str_survival" ; givenAbility = true
+                elseif random == 2 and not spawnedUnit:HasAbility('spell_lab_survivor_agi_survival') then survivalToGive = "spell_lab_survivor_agi_survival" ; givenAbility = true
+                elseif random == 3 and not spawnedUnit:HasAbility('spell_lab_survivor_int_survival') then survivalToGive = "spell_lab_survivor_int_survival" ; givenAbility = true
+                elseif random == 4 and not spawnedUnit:HasAbility('spell_lab_survivor_mana_regen') then survivalToGive = "spell_lab_survivor_mana_regen" ; givenAbility = true
+                elseif random == 5 and not spawnedUnit:HasAbility('spell_lab_survivor_health_regen') then survivalToGive = "spell_lab_survivor_health_regen" ; givenAbility = true
+                elseif random == 6 and not spawnedUnit:HasAbility('spell_lab_survivor_damage_boost') then survivalToGive = "spell_lab_survivor_damage_boost" ; givenAbility = true
+                elseif random == 7 and not spawnedUnit:HasAbility('spell_lab_survivor_spell_boost') then survivalToGive = "spell_lab_survivor_spell_boost" ; givenAbility = true
+                end
+
+
+
+                -- If they randomly picked a flesh heap they already had, go through this list and try to give them one until they get one
+                if not givenAbility then
+                    if not spawnedUnit:HasAbility('spell_lab_survivor_str_survival') then survivalToGive = "spell_lab_survivor_str_survival"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_agi_survival') then survivalToGive = "spell_lab_survivor_agi_survival"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_int_survival') then survivalToGive = "spell_lab_survivor_int_survival"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_mana_regen') then survivalToGive = "spell_lab_survivor_mana_regen"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_health_regen') then survivalToGive = "spell_lab_survivor_health_regen"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_damage_boost') then survivalToGive = "spell_lab_survivor_damage_boost"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_spell_boost') then survivalToGive = "spell_lab_survivor_spell_boost"
+                    end
+                end
+            end
+
             if OptionManager:GetOption('extraAbility') == 13 then
                 -- Give an essence shift based on heros primary attribute
                 if spawnedUnit:GetPrimaryAttribute() == 0 then essenceshiftToGive = "slark_essence_shift_strength_lod"
@@ -7759,6 +7791,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
             if fleshHeapToGive then abilityToGive = fleshHeapToGive
             elseif essenceshiftToGive then abilityToGive = essenceshiftToGive
             elseif rangedTrickshot then abilityToGive = rangedTrickshot
+            elseif survivalToGive then abilityToGive = survivalToGive
             end
 
             spawnedUnit:AddAbility(abilityToGive)
