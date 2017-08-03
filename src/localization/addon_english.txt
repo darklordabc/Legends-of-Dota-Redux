@@ -2455,16 +2455,16 @@
     "DOTA_Tooltip_modifier_flesh_heap_mana_regeneration_Description"              "Gaining bonus Mana Regeneration"
 
 
-    "DOTA_Tooltip_modifier_flesh_heap_cast_range"                                              "Cast Range"
+    "DOTA_Tooltip_modifier_flesh_heap_cast_range"                                              "Flesh Heap - Cast Range"
     "DOTA_Tooltip_modifier_flesh_heap_cast_range_Description"                                  "Gaining extra cast range per stack"
 
     "DOTA_Tooltip_modifier_flesh_heap_spell_lifesteal"                                              "Spell Life Steal"
     "DOTA_Tooltip_modifier_flesh_heap_spell_lifesteal_Description"                                  "Gaining extra spell life steal per stack"
 
-    "DOTA_Tooltip_modifier_flesh_heap_lifesteal"                                              "Life Steal"
+    "DOTA_Tooltip_modifier_flesh_heap_lifesteal"                                              "Flesh Heap - Life Steal"
     "DOTA_Tooltip_modifier_flesh_heap_lifesteal_Description"                                  "Gaining life steal per stack"
 
-    "DOTA_Tooltip_modifier_flesh_heap_armor"                                              "Armor"
+    "DOTA_Tooltip_modifier_flesh_heap_armor"                                              "Flesh Heap - Armor"
     "DOTA_Tooltip_modifier_flesh_heap_armor_Description"                                  "Gaining extra armor per stack"
 
     "DOTA_Tooltip_modifier_flesh_heap_magic_resistance"                                              "Magic Resistance"
@@ -2473,8 +2473,11 @@
     "DOTA_Tooltip_modifier_flesh_heap_cooldown_reduction"                                              "Cooldown Reduction"
     "DOTA_Tooltip_modifier_flesh_heap_cooldown_reduction_Description"                                  "Gaining extra cooldown reduction per stack"
 
-    "DOTA_Tooltip_modifier_flesh_heap_evasion"                                              "Evasion"
+    "DOTA_Tooltip_modifier_flesh_heap_evasion"                                              "Flesh Heap - Evasion"
     "DOTA_Tooltip_modifier_flesh_heap_evasion_Description"                                  "Gaining extra evasion per stack"
+
+    "DOTA_Tooltip_modifier_flesh_heap_bonus_vision"                                              "Flesh Heap - Bonus Vision"
+    "DOTA_Tooltip_modifier_flesh_heap_bonus_vision_Description"                                  "Gaining extra vision per stack"
 
     // global break
     "DOTA_Tooltip_modifier_silencer_global_break"                                              "Global Break"
