@@ -23,6 +23,8 @@ All notable changes to this project will be documented in this file.
 - Sleep Cloud: Made Instant Cast, reduced sleep duration to fixed 10, decrease manacost per level, increased radius by 100, 
 - Master of Magic now requires 3 charges to refresh an ultimate
 - Added New Option to Free Ability mutator: Random Survivial Ability
+- Added the newer flesh heaps to the Free Random Flesh Heap mutator
+
 ## 9.0
 - Fury of the immortals: Cooldown increased by 5 seconds, non-stacking damage decreased, stun duration decreased by 0.5
 - Multicast Redux now has a cooldown (in games where single player abilities are banned)
