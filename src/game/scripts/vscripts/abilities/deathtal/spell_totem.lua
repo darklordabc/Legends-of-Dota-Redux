@@ -127,6 +127,11 @@ function SpellCasted( keys )
 				end
 				local unit_ability = unit:FindAbilityByName(event_ability:GetAbilityName())
 				unit_ability:OnSpellStart()
+				if unit_ability:GetChannelTime() > 0 then
+					Timers:CreateTimer(unit_ability:GetChannelTime(), function()
+						unit_ability:OnChannelFinish(false)
+					end)
+				end
 			end
 		end
 	end
@@ -172,6 +177,15 @@ function TotemDeath( keys )
 	local owner = caster:GetOwnerEntity()
 
 	local particle = ParticleManager:CreateParticle(keys.death_effect, PATTACH_ABSORIGIN, caster)
+
+	for i = 0, caster:GetAbilityCount() do
+		local totem_ability = caster:GetAbilityByIndex(i)
+		if totem_ability ~= nil then
+			if totem_ability:GetChannelTime() > 0 then
+				totem_ability:OnChannelFinish(true)
+			end
+		end
+	end
 
 	caster:SetModelScale(0)
 
@@ -243,11 +257,11 @@ end
 function modifier_totem_damage_loss:GetModifierTotalDamageOutgoing_Percentage()
 	local stack_count = self:GetStackCount()
 	local damage_loss = self:GetAbility():GetSpecialValueFor("damage_loss")
-	return -100 * ((1.0 - 0.01 * damage_loss)^stack_count - 1)
+	return 100 * ((1.0 - 0.01 * damage_loss)^stack_count - 1)
 end
 
-function modifier_totem_damage_loss:OnTooltip( keys )
+function modifier_totem_damage_loss:OnTooltip()
 	local stack_count = self:GetStackCount()
 	local damage_loss = self:GetAbility():GetSpecialValueFor("damage_loss")
-	return 100 * ((1.0 - 0.01 * damage_loss)^stack_count - 1)
+	return -100 * ((1.0 - 0.01 * damage_loss)^stack_count - 1)
 end
