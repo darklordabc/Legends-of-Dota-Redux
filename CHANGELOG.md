@@ -24,6 +24,7 @@ All notable changes to this project will be documented in this file.
 - Master of Magic now requires 3 charges to refresh an ultimate
 - Added New Option to Free Ability mutator: Random Survivial Ability
 - Added the newer flesh heaps to the Free Random Flesh Heap mutator
+- Reduced stun multiplier on anti-stun
 
 ## 9.0
 - Fury of the immortals: Cooldown increased by 5 seconds, non-stacking damage decreased, stun duration decreased by 0.5
