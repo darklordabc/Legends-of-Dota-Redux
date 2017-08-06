@@ -1,0 +1,28 @@
+"DOTAAbilities"
+{
+    "spell_lab_survivor_life_steal"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/spell_lab/survivor/life_steal.lua"
+        "AbilityTextureName"                                                   "custom/survival_life_steal"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "HasScepterUpgrade"                                                    "0"
+    		"precache"
+    		{
+          "particle"    "particles/generic_gameplay/generic_lifesteal.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+        				"bonus"						"2.5 5.0 7.5 10.0"
+            }
+        }
+        "ReduxFlags"                                                           "tank | attack_modifier"
+        "ReduxBans"                                                            ""
+        "ReduxPerks"                                                           ""
+        "ReduxCost"                                                            "0"
+    }
+}

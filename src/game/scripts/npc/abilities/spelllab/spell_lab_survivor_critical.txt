@@ -1,0 +1,29 @@
+"DOTAAbilities"
+{
+    "spell_lab_survivor_critical"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/spell_lab/survivor/critical.lua"
+        "AbilityTextureName"                                                   "custom/survival_critical"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "HasScepterUpgrade"                                                    "0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+        				"bonus"						"5.0 10.0 15.0 20.0" //damage ptc
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+        				"chance"						"15.0"
+            }
+        }
+        "ReduxFlags"                                                           "crit | attack_modifier"
+        "ReduxBans"                                                            ""
+        "ReduxPerks"                                                           ""
+        "ReduxCost"                                                            "0"
+    }
+}

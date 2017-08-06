@@ -7750,29 +7750,57 @@ function Pregame:fixSpawnedHero( spawnedUnit )
             -- Random Survivals
             if OptionManager:GetOption('extraAbility') == 22 then
 
-                local random = RandomInt(1,7)
+                local random = RandomInt(1,21)
                 local givenAbility = false
                 -- Randomly choose which flesh heap to give them
-                if random == 1 and not spawnedUnit:HasAbility('spell_lab_survivor_str_survival') then survivalToGive = "spell_lab_survivor_str_survival" ; givenAbility = true
-                elseif random == 2 and not spawnedUnit:HasAbility('spell_lab_survivor_agi_survival') then survivalToGive = "spell_lab_survivor_agi_survival" ; givenAbility = true
-                elseif random == 3 and not spawnedUnit:HasAbility('spell_lab_survivor_int_survival') then survivalToGive = "spell_lab_survivor_int_survival" ; givenAbility = true
-                elseif random == 4 and not spawnedUnit:HasAbility('spell_lab_survivor_mana_regen') then survivalToGive = "spell_lab_survivor_mana_regen" ; givenAbility = true
-                elseif random == 5 and not spawnedUnit:HasAbility('spell_lab_survivor_health_regen') then survivalToGive = "spell_lab_survivor_health_regen" ; givenAbility = true
-                elseif random == 6 and not spawnedUnit:HasAbility('spell_lab_survivor_damage_boost') then survivalToGive = "spell_lab_survivor_damage_boost" ; givenAbility = true
-                elseif random == 7 and not spawnedUnit:HasAbility('spell_lab_survivor_spell_boost') then survivalToGive = "spell_lab_survivor_spell_boost" ; givenAbility = true
+                if random == 1  and not spawnedUnit:HasAbility('spell_lab_survivor_cooldown') then survivalToGive = "spell_lab_survivor_cooldown" ; givenAbility = true
+                elseif random == 2  and not spawnedUnit:HasAbility('spell_lab_survivor_critical') then survivalToGive = "spell_lab_survivor_critical" ; givenAbility = true
+                elseif random == 3  and not spawnedUnit:HasAbility('spell_lab_survivor_damage_boost') then survivalToGive = "spell_lab_survivor_damage_boost" ; givenAbility = true
+                elseif random == 4  and not spawnedUnit:HasAbility('spell_lab_survivor_health_regen') then survivalToGive = "spell_lab_survivor_health_regen" ; givenAbility = true
+                elseif random == 5  and not spawnedUnit:HasAbility('spell_lab_survivor_int_survival') then survivalToGive = "spell_lab_survivor_int_survival" ; givenAbility = true
+                elseif random == 6  and not spawnedUnit:HasAbility('spell_lab_survivor_magic_resistance') then survivalToGive = "spell_lab_survivor_magic_resistance" ; givenAbility = true
+                elseif random == 7  and not spawnedUnit:HasAbility('spell_lab_survivor_spell_boost') then survivalToGive = "spell_lab_survivor_spell_boost" ; givenAbility = true
+                elseif random == 8  and not spawnedUnit:HasAbility('spell_lab_survivor_spell_vamp') then survivalToGive = "spell_lab_survivor_spell_vamp" ; givenAbility = true
+                elseif random == 9  and not spawnedUnit:HasAbility('spell_lab_survivor_str_survival') then survivalToGive = "spell_lab_survivor_str_survival" ; givenAbility = true
+                elseif random == 10 and not spawnedUnit:HasAbility('spell_lab_survivor_mana_regen') then survivalToGive = "spell_lab_survivor_mana_regen" ; givenAbility = true
+                elseif random == 11 and not spawnedUnit:HasAbility('spell_lab_survivor_agi_survival') then survivalToGive = "spell_lab_survivor_agi_survival" ; givenAbility = true
+                elseif random == 12 and not spawnedUnit:HasAbility('spell_lab_survivor_attack_speed') then survivalToGive = "spell_lab_survivor_attack_speed" ; givenAbility = true
+                elseif random == 13 and not spawnedUnit:HasAbility('spell_lab_survivor_cast_range') then survivalToGive = "spell_lab_survivor_cast_range" ; givenAbility = true
+                elseif random == 14 and not spawnedUnit:HasAbility('spell_lab_survivor_vision') then survivalToGive = "spell_lab_survivor_vision" ; givenAbility = true
+                elseif random == 15 and not spawnedUnit:HasAbility('spell_lab_survivor_evasion') then survivalToGive = "spell_lab_survivor_evasion" ; givenAbility = true
+                elseif random == 16 and not spawnedUnit:HasAbility('spell_lab_survivor_mana_burn') then survivalToGive = "spell_lab_survivor_mana_burn" ; givenAbility = true
+                elseif random == 17 and not spawnedUnit:HasAbility('spell_lab_survivor_life_steal') then survivalToGive = "spell_lab_survivor_life_steal" ; givenAbility = true
+                elseif random == 18 and not spawnedUnit:HasAbility('spell_lab_survivor_armor') then survivalToGive = "spell_lab_survivor_armor" ; givenAbility = true
+                elseif random == 19 and not spawnedUnit:HasAbility('spell_lab_survivor_attack_range') then survivalToGive = "spell_lab_survivor_attack_range" ; givenAbility = true
+                elseif random == 20 and not spawnedUnit:HasAbility('spell_lab_survivor_move_speed') then survivalToGive = "spell_lab_survivor_move_speed" ; givenAbility = true
+                elseif random == 21 and not spawnedUnit:HasAbility('spell_lab_survivor_bash') then survivalToGive = "spell_lab_survivor_bash" ; givenAbility = true
                 end
 
 
 
                 -- If they randomly picked a flesh heap they already had, go through this list and try to give them one until they get one
                 if not givenAbility then
-                    if not spawnedUnit:HasAbility('spell_lab_survivor_str_survival') then survivalToGive = "spell_lab_survivor_str_survival"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_agi_survival') then survivalToGive = "spell_lab_survivor_agi_survival"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_int_survival') then survivalToGive = "spell_lab_survivor_int_survival"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_mana_regen') then survivalToGive = "spell_lab_survivor_mana_regen"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_health_regen') then survivalToGive = "spell_lab_survivor_health_regen"
+                    if not spawnedUnit:HasAbility('spell_lab_survivor_cooldown') then survivalToGive = "spell_lab_survivor_cooldown"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_critical') then survivalToGive = "spell_lab_survivor_critical"
                     elseif not spawnedUnit:HasAbility('spell_lab_survivor_damage_boost') then survivalToGive = "spell_lab_survivor_damage_boost"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_health_regen') then survivalToGive = "spell_lab_survivor_health_regen"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_int_survival') then survivalToGive = "spell_lab_survivor_int_survival"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_magic_resistance') then survivalToGive = "spell_lab_survivor_magic_resistance"
                     elseif not spawnedUnit:HasAbility('spell_lab_survivor_spell_boost') then survivalToGive = "spell_lab_survivor_spell_boost"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_spell_vamp') then survivalToGive = "spell_lab_survivor_spell_vamp"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_str_survival') then survivalToGive = "spell_lab_survivor_str_survival"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_mana_regen') then survivalToGive = "spell_lab_survivor_mana_regen"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_agi_survival') then survivalToGive = "spell_lab_survivor_agi_survival"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_attack_speed') then survivalToGive = "spell_lab_survivor_attack_speed"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_cast_range') then survivalToGive = "spell_lab_survivor_cast_range"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_vision') then survivalToGive = "spell_lab_survivor_vision"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_evasion') then survivalToGive = "spell_lab_survivor_evasion"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_mana_burn') then survivalToGive = "spell_lab_survivor_mana_burn"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_life_steal') then survivalToGive = "spell_lab_survivor_life_steal"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_armor') then survivalToGive = "spell_lab_survivor_armor"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_attack_range') then survivalToGive = "spell_lab_survivor_attack_range"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_move_speed') then survivalToGive = "spell_lab_survivor_move_speed"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_bash') then survivalToGive = "spell_lab_survivor_bash"
                     end
                 end
             end

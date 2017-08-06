@@ -20,6 +20,7 @@ function spell_lab_survivor_mana_regen_modifier:DeclareFunctions()
 end
 
 function spell_lab_survivor_mana_regen_modifier:GetModifierConstantManaRegen()
+if self:GetParent():PassivesDisabled() then return 0 end
 return self:GetStackCount()
 end
 
@@ -32,10 +33,7 @@ function spell_lab_survivor_mana_regen_modifier:OnDeath(kv)
 end
 
 function spell_lab_survivor_mana_regen_modifier:IsHidden()
-	if self:GetAbility():GetLevel() > 0 then
-	   return false
-	end
-	return true
+	return self:GetStackCount() < 1
 end
 
 function spell_lab_survivor_mana_regen_modifier:AllowIllusionDuplicate ()
@@ -48,13 +46,25 @@ end
 function spell_lab_survivor_mana_regen_modifier:OnCreated()
 	if IsServer() then
 		self.lastdeath = GameRules:GetGameTime()
-		self:SetStackCount(0)
+		if not self:GetParent():IsRealHero() then
+  local hOwner = self:GetParent():GetOwner()
+  if hOwner ~= nil then
+    local hOriginModifier = hOwner:GetAssignedHero():FindModifierByName("spell_lab_survivor_mana_regen_modifier")
+    if hOriginModifier ~= nil then
+      self:SetStackCount(hOriginModifier:GetStackCount())
+    end
+  end
+end
 		self:StartIntervalThink( 1 )
 	end
 end
 
 function spell_lab_survivor_mana_regen_modifier:OnIntervalThink()
 	if IsServer() then
+		if not self:GetParent():IsRealHero() then
+			self:StartIntervalThink( -1 )
+			return
+		end
     if not self:GetParent():IsAlive() and not self:GetParent():IsReincarnating() then
   		self.lastdeath = GameRules:GetGameTime()
   		self:SetStackCount(0)
