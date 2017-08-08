@@ -56,7 +56,7 @@ function Commands:OnPlayerChat(keys)
         end
     elseif string.find(command, "-doublecreeps") or string.find(command, "-dc") then
        if not ingame.voteDoubleCreeps and OptionManager:GetOption('neutralMultiply') < 2 then
-            util:CreateVoting("lodVotingDoubleCreeps", playerID, 10, OptionManager:GetOption('mapname') == 'all_allowed' and 50 or 100, function()
+            util:CreateVoting("lodVotingDoubleCreeps", playerID, 10, OptionManager:GetOption('mapname') == 'all_allowed' and 70 or 100, function()
                 OptionManager:SetOption('neutralMultiply', 2)
                -- pregame:multiplyNeutrals()
                 ingame.voteDoubleCreeps = true
