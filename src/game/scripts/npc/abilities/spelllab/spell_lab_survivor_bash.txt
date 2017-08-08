@@ -1,0 +1,30 @@
+"DOTAAbilities"
+{
+    "spell_lab_survivor_bash"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/spell_lab/survivor/bash.lua"
+        "AbilityTextureName"                                                   "custom/survival_bash"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "HasScepterUpgrade"                                                    "0"
+        "AbilityCooldown"                                                      "1.25"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+        				"bonus"						"1.5 3.0 4.5 6.0" //chance
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+        				"duration"						"0.75"
+            }
+        }
+        "ReduxFlags"                                                           "bash | attack_modifier"
+        "ReduxBans"                                                            ""
+        "ReduxPerks"                                                           ""
+        "ReduxCost"                                                            "0"
+    }
+}

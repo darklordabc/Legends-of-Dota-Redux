@@ -1,0 +1,29 @@
+"DOTAAbilities"
+{
+    "spell_lab_survivor_cleave"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/spell_lab/survivor/cleave.lua"
+        "AbilityTextureName"                                                   "custom/survivor_icon_wip"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "HasScepterUpgrade"                                                    "0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+        				"bonus"						"2.0 4.0 6.0 8.0" //damage pct
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+        				"range"						"450.0"
+            }
+        }
+        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxBans"                                                            ""
+        "ReduxPerks"                                                           ""
+        "ReduxCost"                                                            "0"
+    }
+}
