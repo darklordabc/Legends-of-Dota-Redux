@@ -39,10 +39,15 @@ function Commands:OnPlayerChat(keys)
         return
     end
 
+    local function IsCommand(s)
+        local len = string.len(s)
+        return string.sub(command, 1, len) == s
+    end
+
     ----------------------------
     -- Vote Commands
     ----------------------------
-    if string.find(command, "-antirat") or string.find(command, "-ar")then
+    if IsCommand("-antirat") or IsCommand("-ar") then
         if OptionManager:GetOption('antiRat') == 0 and not ingame.voteEnabledCheatMode then
             util:CreateVoting("lodVotingAntirat", playerID, 10, OptionManager:GetOption('mapname') == 'all_allowed' and 50 or 100, function()
                 OptionManager:SetOption('antiRat', 1) 
@@ -54,9 +59,9 @@ function Commands:OnPlayerChat(keys)
         elseif OptionManager:GetOption('antiRat') == 1 then
             util:DisplayError(playerID, "#antiRatAlreadyOn")
         end
-    elseif string.find(command, "-doublecreeps") or string.find(command, "-dc") then
+    elseif IsCommand("-doublecreeps") or IsCommand("-dc") then
        if not ingame.voteDoubleCreeps and OptionManager:GetOption('neutralMultiply') < 2 then
-            util:CreateVoting("lodVotingDoubleCreeps", playerID, 10, OptionManager:GetOption('mapname') == 'all_allowed' and 70 or 100, function()
+            util:CreateVoting("lodVotingDoubleCreeps", playerID, 10, OptionManager:GetOption('mapname') == 'all_allowed' and 50 or 100, function()
                 OptionManager:SetOption('neutralMultiply', 2)
                -- pregame:multiplyNeutrals()
                 ingame.voteDoubleCreeps = true
@@ -66,7 +71,7 @@ function Commands:OnPlayerChat(keys)
         elseif OptionManager:GetOption('neutralMultiply') > 1 then
             util:DisplayError(playerID, "#multiplyAlreadyOn")
         end
-    elseif string.find(command, "-enablecheat") or string.find(command, "-ec") then
+    elseif IsCommand("-enablecheat") or IsCommand("-ec") then
         if not ingame.voteEnabledCheatMode and not Convars:GetBool("sv_cheats") then
             util:CreateVoting("lodVotingEnableCheatMode", playerID, 10, 100, function()
                 ingame.voteEnabledCheatMode = true
@@ -76,7 +81,8 @@ function Commands:OnPlayerChat(keys)
         elseif ingame.voteEnabledCheatMode or Convars:GetBool("sv_cheats") then
             util:DisplayError(playerID, "#cheatModeAlreadyOn")
         end
-    elseif string.find(command, "-enablekamikaze") or string.find(command, "-ek") then
+
+    elseif IsCommand("-enablekamikaze") or IsCommand("-ek") then
         if not ingame.voteDisableAntiKamikaze then
             util:CreateVoting("lodVotingEnableKamikaze", playerID, 10, 100, function()
                 ingame.voteDisableAntiKamikaze = true
@@ -86,7 +92,7 @@ function Commands:OnPlayerChat(keys)
         elseif ingame.voteDisableAntiKamikaze then
             util:DisplayError(playerID, "#kamikazeAlreadyDeactivated")
         end
-    elseif string.find(command, "-enablebuilder") or string.find(command, "-eb") and OptionManager:GetOption('allowIngameHeroBuilder') == false then
+    elseif IsCommand("-enablebuilder") or IsCommand("-eb") and OptionManager:GetOption('allowIngameHeroBuilder') == false then
         if not ingame.voteEnableBuilder and OptionManager:GetOption('allowIngameHeroBuilder') ~= true then
             util:CreateVoting("lodVotingEnableHeroBuilder", playerID, 10, 100, function()
                 network:enableIngameHeroEditor()
@@ -101,7 +107,7 @@ function Commands:OnPlayerChat(keys)
         elseif OptionManager:GetOption('allowIngameHeroBuilder') == true or ingame.voteEnableBuilder then
             util:DisplayError(playerID, "#heroBuilderAlreadyOn")
         end
-    elseif string.find(command, "-enablerespawn") or string.find(command, "-er") then
+    elseif IsCommand("-enablerespawn") or IsCommand("-er") then
         if not ingame.voteDisableRespawnLimit then
             util:CreateVoting("lodVotingEnableRespawn", playerID, 10, 100, function()
                 ingame.voteDisableRespawnLimit = true
@@ -114,7 +120,7 @@ function Commands:OnPlayerChat(keys)
         elseif ingame.voteDisableRespawnLimit then
             util:DisplayError(playerID, "#respawnAlreadyDeactivated")
         end
-    elseif string.find(command, "-enablefat") or string.find(command, "-ef") then
+    elseif IsCommand("-enablefat") or IsCommand("-ef") then
         if not ingame.voteEnableFatOMeter then
             util:CreateVoting("lodVotingFatOMeter", playerID, 10, OptionManager:GetOption('mapname') == 'all_allowed' and 50 or 100, function()
                 ingame.voteEnableFatOMeter = true
@@ -125,7 +131,7 @@ function Commands:OnPlayerChat(keys)
         elseif ingame.voteEnableFatOMeter then
             util:DisplayError(playerID, "#fatOmeterAlreadyOn")
         end
-    elseif string.find(command, "-enablerefresh") then
+    elseif IsCommand("-enablerefresh") then
         if OptionManager:GetOption('refreshCooldownsOnDeath') ~= 1 and not ingame.voteEnableRefresh then
             util:CreateVoting("lodVotingRefresh", playerID, 10, OptionManager:GetOption('mapname') == 'all_allowed' and 50 or 100, function()
                 ingame.voteEnableRefresh = true
@@ -134,7 +140,7 @@ function Commands:OnPlayerChat(keys)
         else
             util:DisplayError(playerID, "#refresherAlreadyOn")
         end
-    elseif string.find(command, "-switchteam") then
+    elseif IsCommand("-switchteam") then
         local team = PlayerResource:GetTeam(playerID)
         if (ingame.needsTeamBalance and ingame.takeFromTeam == team) or util:isSinglePlayerMode() or IsInToolsMode() then
             local requiredPercentage = 100
@@ -173,11 +179,11 @@ function Commands:OnPlayerChat(keys)
     ----------------------------
     -- Debug Commands
     ----------------------------
-    if string.find(command, "-test") then 
+    if IsCommand("-test") then 
         GameRules:SendCustomMessage('testing testing 1. 2. 3.', 0, 0)
         util:DisplayError(playerID, "tested")
         print(OptionManager:GetOption('mapname'))
-    elseif string.find(command, "-printabilities") then
+    elseif IsCommand("-printabilities") then
         print("-------------HERO STATS------------")
         print("HP: "..tostring(hero:GetHealth()).."/"..tostring(hero:GetMaxHealth()))
         print("EP: "..tostring(hero:GetMana()).."/"..tostring(hero:GetMaxMana()))
@@ -205,7 +211,7 @@ function Commands:OnPlayerChat(keys)
             end
         end
         print("-----------------------------------")
-    elseif string.find(command, "gg") and not string.find(command, "dagger")  then
+    elseif IsCommand("gg") then
         if OptionManager:GetOption('memesRedux') == 1 then
             if ingame.heard["gg"] ~= true then
                 
@@ -218,7 +224,7 @@ function Commands:OnPlayerChat(keys)
 
             end
         end
-    elseif string.find(command, "-bot") then
+    elseif IsCommand("-bot") then
         local splitedcommand = arguments 
         if splitedcommand[1] and splitedcommand[1] == "mode" then
             if not ingame.botsInLateGameMode then 
@@ -228,7 +234,7 @@ function Commands:OnPlayerChat(keys)
             end 
         end
          
-    elseif string.find(command, "-pid") then
+    elseif IsCommand("-pid") then
         --if not ingame.voteEnabledCheatMode then
             for playerID=0,24-1 do
                 local hero = PlayerResource:GetSelectedHeroEntity(playerID)
@@ -236,7 +242,7 @@ function Commands:OnPlayerChat(keys)
                     GameRules:SendCustomMessage( string.sub(hero:GetName(),15) .. ': ' .. playerID ,0,0)
                 end
             end
-    elseif string.find(command, "-printabilities") then 
+    elseif IsCommand("-printabilities") then 
         Timers:CreateTimer(function()        
             -- GameRules:SendCustomMessage("-------------HERO STATS------------", 0, 0)
             -- GameRules:SendCustomMessage("HP: "..tostring(hero:GetHealth()).."/"..tostring(hero:GetMaxHealth()), 0, 0)
@@ -273,7 +279,7 @@ function Commands:OnPlayerChat(keys)
             -- GameRules:SendCustomMessage("-----------------------------------", 0, 0)
         end, DoUniqueString('printabilities'), .5)
 
-    elseif string.find(command, "-fixcasting") then 
+    elseif IsCommand("-fixcasting") then 
         Timers:CreateTimer(function()        
             local status2,err2 = pcall(function()
                 local talents = {}
@@ -316,7 +322,7 @@ function Commands:OnPlayerChat(keys)
         -- Some cheats that work in tools and cheats mode conflict
         local blockConfliction = util:isSinglePlayerMode() or Convars:GetBool("sv_cheats")
         
-        if string.find(command, "-gold") then 
+        if IsCommand("-gold") then 
             -- Give user max gold, unless they specify a number
             if not ingame.heard["freestuff"] then
                 EmitGlobalSound("Event.FreeStuff")
@@ -333,7 +339,7 @@ function Commands:OnPlayerChat(keys)
                 ingame:CommandNotification("-gold", 'Cheat Used (-gold): Given ' .. goldAmount .. ' gold to '.. PlayerResource:GetPlayerName(playerID)) 
             end, DoUniqueString('cheat'), .1)
 
-        elseif string.find(command, "-points") then 
+        elseif IsCommand("-points") then 
             -- Give user max gold, unless they specify a number  
             local pointsAmount = 1
             local splitedcommand = arguments       
@@ -347,7 +353,7 @@ function Commands:OnPlayerChat(keys)
             end, DoUniqueString('cheat'), .1)
 
         -- Some Bot commands are cheats
-        elseif string.find(command, "-bot") then
+        elseif IsCommand("-bot") then
             local splitedcommand = arguments 
             if splitedcommand[1] and splitedcommand[1] == "switch" then
                 if ingame.botsInLateGameMode then
@@ -360,7 +366,7 @@ function Commands:OnPlayerChat(keys)
                 ingame:CommandNotification("-switched", "Bots have switched modes.", 5)
             end    
         
-        elseif string.find(command, "-god") then 
+        elseif IsCommand("-god") then 
             Timers:CreateTimer(function()  
                 local godMode = hero:FindModifierByName("modifier_invulnerable")
                 if godMode then
@@ -372,14 +378,14 @@ function Commands:OnPlayerChat(keys)
                              
             end, DoUniqueString('cheat'), .1)
         -- Remove fog of war
-        elseif string.find(command, "-nofog") then
+        elseif IsCommand("-nofog") then
         GameRules:GetGameModeEntity():SetFogOfWarDisabled(true)
 
          -- Bring back the fog of war
-        elseif string.find(command, "-fog") then
+        elseif IsCommand("-fog") then
         GameRules:GetGameModeEntity():SetFogOfWarDisabled(false)
 
-        elseif string.find(command, "-aghs") or string.find(command, "-aghanim") or string.find(command, "-scepter") then 
+        elseif IsCommand("-aghs") or IsCommand("-aghanim") or IsCommand("-scepter") then 
             Timers:CreateTimer(function()    
                 local scepter = hero:FindModifierByName("modifier_item_ultimate_scepter_consumed")
                 if scepter then
@@ -395,7 +401,7 @@ function Commands:OnPlayerChat(keys)
                              
             end, DoUniqueString('cheat'), .1)
 
-        elseif string.find(command, "-regen") then 
+        elseif IsCommand("-regen") then 
             Timers:CreateTimer(function()  
                 local godMode = hero:FindModifierByName("modifier_fountain_aura_buff")
                 if godMode then
@@ -407,7 +413,7 @@ function Commands:OnPlayerChat(keys)
                              
             end, DoUniqueString('cheat'), .1)
 
-        elseif (string.find(command, "-wtf") and not blockConfliction) or string.find(command, "-wtfmenu") then 
+        elseif (IsCommand("-wtf") and not blockConfliction) or IsCommand("-wtfmenu") then 
             Timers:CreateTimer(function()  
                 print(OptionManager:GetOption('lodOptionCrazyWTF'))
                 if OptionManager:GetOption('lodOptionCrazyWTF') == 1 then
@@ -420,7 +426,7 @@ function Commands:OnPlayerChat(keys)
                              
             end, DoUniqueString('cheat'), .1)
 
-        elseif string.find(command, "-unwtf") and not blockConfliction then 
+        elseif IsCommand("-unwtf") and not blockConfliction then 
             Timers:CreateTimer(function()  
                 if OptionManager:GetOption('lodOptionCrazyWTF') == 1 then
                     OptionManager:SetOption('lodOptionCrazyWTF', 0)
@@ -428,14 +434,14 @@ function Commands:OnPlayerChat(keys)
                 end           
             end, DoUniqueString('cheat'), .1)
  
-        elseif string.find(command, "-bear") then 
+        elseif IsCommand("-bear") then 
             -- Give user 1 level, unless they specify a number after
             local hAncient = Entities:FindByName( nil, "dota_badguys_fort" )
             hAncient:AddAbility("invasion")
             local ab = hAncient:FindAbilityByName("invasion")
             ab:UpgradeAbility(false)
 
-        elseif string.find(command, "-lvlup") then 
+        elseif IsCommand("-lvlup") then 
             -- Give user 1 level, unless they specify a number after
             local levels = 1
             local splitedcommand = arguments       
@@ -450,7 +456,7 @@ function Commands:OnPlayerChat(keys)
                 ingame:CommandNotification("-lvlup", 'Cheat Used (-lvlup): Given ' .. levels .. ' level(s) to '.. PlayerResource:GetPlayerName(playerID)) 
             end, DoUniqueString('cheat'), .1)
 
-        elseif string.find(command, "-item") then 
+        elseif IsCommand("-item") then 
             -- Give user 1 level, unless they specify a number after
             Timers:CreateTimer(function()  
                 local splitedcommand = arguments       
@@ -465,7 +471,7 @@ function Commands:OnPlayerChat(keys)
                 end
             end, DoUniqueString('cheat'), .1)
 
-        elseif string.find(command, "-addability") or string.find(command, "-giveability") or string.find(command, "-add") then 
+        elseif IsCommand("-addability") or IsCommand("-giveability") or IsCommand("-add") then 
             -- Give user 1 level, unless they specify a number after
             Timers:CreateTimer(function()  
               local splitedcommand = arguments       
@@ -495,7 +501,7 @@ function Commands:OnPlayerChat(keys)
                 end
             end, DoUniqueString('cheat'), .1)
 
-        elseif string.find(command, "-spawn") then 
+        elseif IsCommand("-spawn") then 
             -- Give user 1 level, unless they specify a number after
             Timers:CreateTimer(function()  
                 if string.find(command, "golem") then
@@ -507,7 +513,7 @@ function Commands:OnPlayerChat(keys)
         
             end, DoUniqueString('cheat'), .1)
 
-        elseif string.find(command, "-removeability") or string.find(command, "-remove") then 
+        elseif IsCommand("-removeability") or IsCommand("-remove") then 
             -- Give user 1 level, unless they specify a number after
 
             Timers:CreateTimer(function()  
@@ -536,7 +542,7 @@ function Commands:OnPlayerChat(keys)
                 end
             end, DoUniqueString('cheat'), .1)
 
-        elseif string.find(command, "-lvlmax") then 
+        elseif IsCommand("-lvlmax") then 
             Timers:CreateTimer(function()
                 for i=0,100 do
                     hero:HeroLevelUp(true)
@@ -550,27 +556,27 @@ function Commands:OnPlayerChat(keys)
                 ingame:CommandNotification("-lvlmax", 'Cheat Used (-lvlmax): Max level given to '.. PlayerResource:GetPlayerName(playerID)) 
             end, DoUniqueString('cheat'), .1)
 
-        elseif string.find(command, "-dagger") then 
+        elseif IsCommand("-dagger") then 
             Timers:CreateTimer(function()
                 hero:AddItemByName('item_devDagger')
                 ingame:CommandNotification("-item_devDagger", 'Cheat Used (-dagger): Global teleport dagger given to '.. PlayerResource:GetPlayerName(playerID)) 
             end, DoUniqueString('cheat'), 0.2)
 
-        elseif string.find(command, "-dagon") then 
+        elseif IsCommand("-dagon") then 
             Timers:CreateTimer(function()
                 hero:AddItemByName('item_devDagon')
                 ingame:CommandNotification("-item_devDagon", 'Cheat Used (-dagon): Ultra dagon dagon given to '.. PlayerResource:GetPlayerName(playerID)) 
             end, DoUniqueString('cheat'), 0.2)
 
 
-        elseif string.find(command, "-teleport") and not blockConfliction then 
+        elseif IsCommand("-teleport") and not blockConfliction then 
             -- Teleport is not exactly reproduced. If the game is in tools mode or has sv_cheats, leave it as it is, if not give players the teleport dagger.
                 Timers:CreateTimer(function()
                     hero:AddItemByName('item_devDagger')
                     ingame:CommandNotification("-teleport", 'Cheat Used (-teleport): Global teleport dagger given to '.. PlayerResource:GetPlayerName(playerID)) 
                 end, DoUniqueString('cheat'), 0.2)
         
-        elseif string.find(command, "-startgame") and not blockConfliction then 
+        elseif IsCommand("-startgame") and not blockConfliction then 
             Timers:CreateTimer(function()
                 --print(GameRules:GetDOTATime(false,false)) 
                 -- If the game has already started, do nothing.
@@ -580,7 +586,7 @@ function Commands:OnPlayerChat(keys)
                 end
             end, DoUniqueString('cheat'), .1)    
 
-        elseif string.find(command, "-respawn") then 
+        elseif IsCommand("-respawn") then 
             Timers:CreateTimer(function()
                 if not hero:IsAlive() then
                     hero:SetTimeUntilRespawn(1)
@@ -588,7 +594,7 @@ function Commands:OnPlayerChat(keys)
                 ingame:CommandNotification("-respawn", 'Cheat Used (-respawn): Respawned '.. PlayerResource:GetPlayerName(playerID)) 
             end, DoUniqueString('cheat'), 1)
 
-        elseif string.find(command, "-refresh") then 
+        elseif IsCommand("-refresh") then 
             Timers:CreateTimer(function()
 
                 hero:SetMana(hero:GetMaxMana())
