@@ -31,12 +31,12 @@
             "01"
             {
                 "var_type"          "FIELD_FLOAT"
-                "Cooldown_Factor"   "3.0"
+                "Cooldown_Factor"   "2.5 2.0 1.5 1.0"
             }
             "02"
             {
                 "var_type"          "FIELD_FLOAT"
-                "Cooldown_Factor_Building"   "13.0"
+                "Cooldown_Factor_Building"   "5.0 4.0 3.0 2.0"
             }
             "03"
             {
@@ -46,12 +46,12 @@
             "04"
             {
                 "var_type"          "FIELD_FLOAT"
-                "Heal_Factor"       "0.75 1 1.25 1.5"
+                "Heal_Factor"       "0.70"
             }
             "05"
             {
                 "var_type"          "FIELD_FLOAT"
-                "Tower_Heal_Factor"     "0.3 0.4 0.5 0.6"
+                "Tower_Heal_Factor"     "0.50"
             }
         }
     
@@ -330,7 +330,7 @@
         "AbilityCastRange"              "800 950 1100 1250"
         "AbilityCastPoint"              "0.25"
         "AbilityDamage"                 "90 130 170 210"
-        "AbilityCooldown"               "12"
+        "AbilityCooldown"               "8"
         "AbilityManaCost"               "110 120 130 140"
 
         "AbilityDuration"               "8"
@@ -861,11 +861,11 @@
 
         // Time     
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCooldown"               "180.0 130.0 80.0"
+        "AbilityCooldown"               "60.0 40.0 20.0"
 
         // Cost
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityManaCost"               "145 205 265"   
+        "AbilityManaCost"               "200"   
         "AbilitySpecial"
         {
             "01"
