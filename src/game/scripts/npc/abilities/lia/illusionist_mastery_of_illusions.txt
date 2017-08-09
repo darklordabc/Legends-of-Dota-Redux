@@ -40,12 +40,12 @@
             "06"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "life_illusion"                                        "5 6 7"
+                "life_illusion"                                        "10 12 14"
             }
             "07"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "outgoing_damage"                                      "-60 -50 -40"
+                "outgoing_damage"                                      "-40 -30 -20"
             }
             "08"
             {
@@ -55,7 +55,7 @@
             "09"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "outgoing_damage_tooltip"                              "40 50 60"
+                "outgoing_damage_tooltip"                              "60 70 80"
             }
         }
         "precache"
