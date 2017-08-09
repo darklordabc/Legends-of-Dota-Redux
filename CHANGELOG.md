@@ -28,6 +28,8 @@ All notable changes to this project will be documented in this file.
 * 
 - Drasticallyed lowered the effectiveness of spell resistance survival
 - Increased Balanced Build Bonus to 1500
+- Reduced rate for following survivals: Spelll Boost, Spell Amp
+- Improved rate for following survivals: Agi, Attack Speed, Critical Strike, Int
 
 ## 9.0
 - Fury of the immortals: Cooldown increased by 5 seconds, non-stacking damage decreased, stun duration decreased by 0.5
