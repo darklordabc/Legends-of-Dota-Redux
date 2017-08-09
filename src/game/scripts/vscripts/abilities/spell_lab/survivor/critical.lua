@@ -23,7 +23,7 @@ function spell_lab_survivor_critical_modifier:GetModifierPreAttack_CriticalStrik
 if self:GetParent():PassivesDisabled() then return 0 end
 	local chance = self:GetAbility():GetSpecialValueFor("chance")
 	if (math.random(0,100) > chance) then return 0 end
-  return self:GetStackCount()
+  return （self:GetStackCount()+100）
 end
 
 function spell_lab_survivor_critical_modifier:OnDeath(kv)
