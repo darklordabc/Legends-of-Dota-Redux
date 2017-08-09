@@ -71,6 +71,9 @@ function spell_lab_survivor_spell_boost_modifier:OnIntervalThink()
       return
     end
   	if self:GetAbility():GetLevel() > 0 then
+      if isInBase(self:GetParent()) then -- If hero is in base increase their last death time so they dont gain stacks
+        self.lastdeath = self.lastdeath + 1
+      end
       local stacks = (GameRules:GetGameTime() - self.lastdeath)*self:GetAbility():GetSpecialValueFor("bonus")*0.0166667
   		self:SetStackCount(stacks)
   	end
@@ -79,4 +82,20 @@ end
 
 function spell_lab_survivor_spell_boost_modifier:GetAttributes()
 	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT
+end
+
+function isInBase(hero)
+      local foutain = nil -- Search for fountain, if its not nearby, they do not gain stacks
+      local searchRange = 4400 -- 4400 is the range that makes heros have to leave their base (the higher ground) to gain stacks
+
+      if hero:GetTeam() == DOTA_TEAM_GOODGUYS then
+          foutain = Entities:FindAllByNameWithin("ent_dota_fountain_good", hero:GetAbsOrigin(), searchRange)
+      else
+          foutain = Entities:FindAllByNameWithin("ent_dota_fountain_bad", hero:GetAbsOrigin(), searchRange)
+      end
+
+      if #foutain > 0 then
+          -- GameRules:SendCustomMessage('near fountain!', 0, 0)
+          return true
+      end
 end

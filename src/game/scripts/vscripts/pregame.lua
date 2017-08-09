@@ -846,7 +846,7 @@ function Pregame:loadDefaultSettings()
     self:setOption("lodOptionNewAbilitiesBonusGold", 250, true)
     self:setOption("lodOptionGlobalNewAbilitiesThreshold", 75, true)
     self:setOption("lodOptionGlobalNewAbilitiesBonusGold", 250, true)
-    self:setOption("lodOptionBalancedBuildBonusGold", 1000, true)
+    self:setOption("lodOptionBalancedBuildBonusGold", 1500, true)
 end
 
 -- Gets stats for the given player
