@@ -11,17 +11,17 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "bonus_agility"                                        "1 2 3 4"
+                "bonus_agility"                                        "4"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "prt_bonus"                                            "10"
+                "prt_bonus"                                            "10 15 20 25"
             }
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "max_bonus"                                            "200"
+                "max_bonus"                                            "40 60 80 100"
             }
         }
         "Modifiers"
