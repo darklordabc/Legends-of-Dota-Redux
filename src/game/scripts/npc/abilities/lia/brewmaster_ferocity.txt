@@ -7,21 +7,21 @@
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AOE"
         "AbilityTextureName"                                                   "custom/brewmaster_ferocity_str"
         "AbilityUnitTargetFlags"                                               "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-        "AoERadius"                                                            "375 400 425 450"
+        "AoERadius"                                                            "600"
         "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
         "MaxLevel"                                                             "4"
-        "AbilityCastRange"                                                     "375 400 425 450"
+        "AbilityCastRange"                                                     "600"
         "AbilitySpecial"
         {
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "bonus_strength"                                       "1 2 3 4"
+                "bonus_strength"                                       "2 3 4 5"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "375 400 425 450"
+                "radius"                                               "600"
             }
         }
         "ReduxFlags"                                                           "tank"
