@@ -27,6 +27,7 @@ All notable changes to this project will be documented in this file.
 - Double Creeps vote requires 70% of player agreement, not 50% anymore
 *
 - Increased Balanced Build Bonus to 1500
+- Increased the range and attribute bonus on ferocity abilities
 
 ## 9.0
 - Fury of the immortals: Cooldown increased by 5 seconds, non-stacking damage decreased, stun duration decreased by 0.5
