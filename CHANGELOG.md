@@ -29,6 +29,7 @@ All notable changes to this project will be documented in this file.
 - Increased Balanced Build Bonus to 1500
 - Increased the range and attribute bonus on ferocity abilities
 - Increased slow on Fire Spear and tweaked some other numbers
+- Dramatically Increased the duration of Living Flesh zombies
 
 ## 9.0
 - Fury of the immortals: Cooldown increased by 5 seconds, non-stacking damage decreased, stun duration decreased by 0.5
