@@ -36,7 +36,7 @@
             "02"
             {
                 "var_type"          "FIELD_FLOAT"
-                "Cooldown_Factor_Building"   "5.0 4.0 3.0 2.0"
+                "Cooldown_Factor_Building"   "13.0"
             }
             "03"
             {
