@@ -2,6 +2,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 9.2
+-
+
 ## 9.1
 - Dark Forces explosion radius is 300 now instead of 150. It now does magical damage instead of physical, and slightly increased manacost.
 - Silencer's Int Steal ability is now an ultimate
@@ -25,7 +28,6 @@ All notable changes to this project will be documented in this file.
 - Added the newer flesh heaps to the Free Random Flesh Heap mutator
 - Reduced stun multiplier on anti-stun
 - Double Creeps vote requires 70% of player agreement, not 50% anymore
-* 
 - Drasticallyed lowered the effectiveness of spell resistance survival
 - Increased Balanced Build Bonus to 1500
 - Increased the range and attribute bonus on ferocity abilities
@@ -37,7 +39,6 @@ All notable changes to this project will be documented in this file.
 - Fixed Octarine making illusions last forever
 - Cooldown and Spell Boost Survival will now still gain stacks in base IF there is an enemy within 3000 range
 - When Anti-Rat mutator is on, towers with active backdoor protection cannot be damaged
-
 
 ## 9.0
 - Fury of the immortals: Cooldown increased by 5 seconds, non-stacking damage decreased, stun duration decreased by 0.5
