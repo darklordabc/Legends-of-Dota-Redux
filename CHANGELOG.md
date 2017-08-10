@@ -28,6 +28,7 @@ All notable changes to this project will be documented in this file.
 *
 - Increased Balanced Build Bonus to 1500
 - Fixed Octarine making illusions last forever
+- Cooldown and Spell Boost Survival will now still gain stacks in base IF there is an enemy within 3000 range
 
 ## 9.0
 - Fury of the immortals: Cooldown increased by 5 seconds, non-stacking damage decreased, stun duration decreased by 0.5
