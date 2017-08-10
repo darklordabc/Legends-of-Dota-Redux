@@ -25,11 +25,19 @@ All notable changes to this project will be documented in this file.
 - Added the newer flesh heaps to the Free Random Flesh Heap mutator
 - Reduced stun multiplier on anti-stun
 - Double Creeps vote requires 70% of player agreement, not 50% anymore
-*
+* 
+- Drasticallyed lowered the effectiveness of spell resistance survival
 - Increased Balanced Build Bonus to 1500
 - Increased the range and attribute bonus on ferocity abilities
 - Increased slow on Fire Spear and tweaked some other numbers
 - Dramatically Increased the duration of Living Flesh zombies
+- Reduced rate for following survivals: Spelll Boost, Spell Amp
+- Improved rate for following survivals: Agi, Attack Speed, Critical Strike, Int
+- Improved Crit chance for critical strike surival and fixed it having lower than 100% crit damage
+- Fixed Octarine making illusions last forever
+- Cooldown and Spell Boost Survival will now still gain stacks in base IF there is an enemy within 3000 range
+- When Anti-Rat mutator is on, towers with active backdoor protection cannot be damaged
+
 
 ## 9.0
 - Fury of the immortals: Cooldown increased by 5 seconds, non-stacking damage decreased, stun duration decreased by 0.5
