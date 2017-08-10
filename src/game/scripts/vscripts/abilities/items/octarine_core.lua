@@ -135,7 +135,11 @@ end
 
 function modifier_item_octarine_core_consumable:OnTakeDamage(keys)
   if IsServer() and keys.attacker == self:GetCaster() and keys.inflictor then
-
+  
+    if self:GetParent():IsIllusion() or self:GetParent():IsClone() or self:GetParent():IsTempestDouble() then
+      return
+    end
+    
     if not self:GetAbility() then
       self:Destroy()
       return
