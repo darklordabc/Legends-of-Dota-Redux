@@ -28,6 +28,9 @@ All notable changes to this project will be documented in this file.
 * 
 - Drasticallyed lowered the effectiveness of spell resistance survival
 - Increased Balanced Build Bonus to 1500
+- Increased the range and attribute bonus on ferocity abilities
+- Increased slow on Fire Spear and tweaked some other numbers
+- Dramatically Increased the duration of Living Flesh zombies
 - Reduced rate for following survivals: Spelll Boost, Spell Amp
 - Improved rate for following survivals: Agi, Attack Speed, Critical Strike, Int
 - Improved Crit chance for critical strike surival and fixed it having lower than 100% crit damage
