@@ -665,7 +665,7 @@ var advancedOptions = {
                 min: 0,
                 max: 3000,
                 step: 100,
-                default: 1000
+                default: 1500
             },
         ]
     },
