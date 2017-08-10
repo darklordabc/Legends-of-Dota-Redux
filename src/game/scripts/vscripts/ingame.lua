@@ -1866,6 +1866,19 @@ function Ingame:FilterDamage( filterTable )
         end
     end
 
+    if OptionManager:GetOption('antiRat') == 1 and victim.IsBuilding and victim:IsBuilding()  then
+        local protection = victim:FindModifierByName("modifier_backdoor_protection_active")
+
+        if protection then
+         if self.heard["antiRatProtection"] ~= true then
+             GameRules:SendCustomMessage("#antiRatNotification", 0, 0)
+             self.heard["antiRatProtection"] = true
+         end
+         
+         filterTable["damage"] = 0
+        end
+    end
+
     if victim:HasModifier("modifier_ancient_priestess_spirit_link") then
         if victim.spiritLink_damage then
             victim.spiritLink_damage = nil

@@ -474,7 +474,7 @@
 
     "lodOptionAntiRat"                                  "Anti-Rat"
     "lodOptionDesAntiRat"                               "Enable Anti-Rat Protection"
-    "lodOptionAboutAntiRat"                             "When Anti-Rat is enabled, Tier3 towers cannot be destroyed unless all the outer towers are dead."
+    "lodOptionAboutAntiRat"                             "When Anti-Rat is enabled, Tier3 towers cannot be destroyed unless all the outer towers are dead. Also, towers with backdoor protection cannot be damaged."
     "lodMutatorAntiRat"                                 "Anti-Rat"
 
     "lodOptionConsumeItems"                                  "Consumable Items"
@@ -576,6 +576,7 @@
     "minimapMenuReviewGameOptions"                  "Review Game Settings"
     "minimapMenuHeroBuilder"                        "Hero Builder"
 
+    "antiRatNotification"                     "Anti-Rat mutator is active, towers with backdoor protection will not take damage."
     "ingameBuilderNotification"                     "<font color='#70EA72'>Ingame Build Switch is Enabled. Click on the change build icon in the bottom left corner to change your abilities/hero/primaray stat.</font>"
     //"ingameBattleThirstNotification"                     "<font color='#FF0000'>Battle Thirst Is enabled.</font> When you are seen by the enemy, you will gain bonus passive gold and experience, if you stay out of sight for 35 seconds, you will lose this bonus."
     "ingameBuilderReminder"                     "<font color='#70EA72'>Don't forget. Ingame Build Switch is Enabled. Click on the change build icon in the bottom left corner to change your abilities/hero/primaray stat.</font>"
@@ -1369,7 +1370,7 @@
     "command_menu_command_descr_voteRefresh"        "Voting for this makes abilities go of cooldown on when you die, requires majority vote. Shortcuts: -enablerefresh"
 
     "command_menu_command_voteEnableAntiRat"              "Enable Anti-Rat Protection"
-    "command_menu_command_descr_voteEnableAntiRat"        "When Anti-Rat is enabled, Tier3 towers cannot be destroyed unless all the outer towers are dead. Shortcuts: -antirat, -ar"
+    "command_menu_command_descr_voteEnableAntiRat"        "When Anti-Rat is enabled, Tier3 towers cannot be destroyed unless all the outer towers are dead. Also, towers with backdoor protection cannot be damaged. Shortcuts: -antirat, -ar"
 
     "command_menu_command_voteEnableRespawn"            "Disable Late-Game Respawn Rate Increase"
     "command_menu_command_descr_voteEnableRespawn"        "To prevent games with low respawn times lasting for too long or being never-ending, the game will increase respawn rates at the 40 minute mark by 10%, and by another 10% after 10 minutes, continually, until respawn rates are at minimum 50%. This option disables that safeguard. Shortcuts: -enablerespawn -er"
