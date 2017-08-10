@@ -28,12 +28,12 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "goblin_hp"                                            "125 250 375"
+                "goblin_hp"                                            "125 400 700"
             }
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "goblin_damage"                                        "10 30 50"
+                "goblin_damage"                                        "10 43 76"
             }
         }
         "OnSpellStart"
