@@ -7991,7 +7991,14 @@ function Pregame:fixSpawningIssues()
                         end
                     end
 
-
+                    -- Hotfix: Remove the consumed octarines and replace with originals as the consumed ones are bugged. TODO: Fix buggy consumed version
+                    Timers:CreateTimer(function()
+                        local consumeableOct = spawnedUnit:FindItemByName("item_octarine_core_consumable")
+                        if consumeableOct then
+                          spawnedUnit:RemoveItem(consumeableOct)
+                          spawnedUnit:AddItemByName('item_octarine_core')
+                        end
+                    end, DoUniqueString('replaceOctarine'), 0.5)
 
                     Timers:CreateTimer(function()
                         if IsValidEntity(spawnedUnit) then

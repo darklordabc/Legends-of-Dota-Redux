@@ -30,6 +30,11 @@ All notable changes to this project will be documented in this file.
 - Increased Balanced Build Bonus to 1500
 - Reduced rate for following survivals: Spelll Boost, Spell Amp
 - Improved rate for following survivals: Agi, Attack Speed, Critical Strike, Int
+- Improved Crit chance for critical strike surival and fixed it having lower than 100% crit damage
+- Fixed Octarine making illusions last forever
+- Cooldown and Spell Boost Survival will now still gain stacks in base IF there is an enemy within 3000 range
+- When Anti-Rat mutator is on, towers with active backdoor protection cannot be damaged
+
 
 ## 9.0
 - Fury of the immortals: Cooldown increased by 5 seconds, non-stacking damage decreased, stun duration decreased by 0.5
