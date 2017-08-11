@@ -3,7 +3,8 @@
 All notable changes to this project will be documented in this file.
 
 ## 9.2
--
+- Marksmanship and grow is now troll combo .
+- Thundergods wrath :will no longer trigger Arcane echo.
 
 ## 9.1
 - Dark Forces explosion radius is 300 now instead of 150. It now does magical damage instead of physical, and slightly increased manacost.
