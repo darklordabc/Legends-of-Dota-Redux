@@ -931,7 +931,7 @@
     "hintZuus"                         "Zeus refunds 20% of the manacost of any Lightning spells he casts."
     "hintNS"                         "Aghanim's Scepter will give Night Stalker unobstructed night vision."
     "hintEarthShaker"                         "Earth abilities Earthshaker uses heal him for 2% of his health."
-    //"hintGyro"                         "Aghanim's Scepter will give Gyrocopter a side gunner. If 'Free Scepter' option is enabled, this hero will not benefit from it."
+    "hintGyro"                         "At the start of the game, Gyro gains a free level of Side Gunner, whether he has it or not"
     "hintBM"                            "Non-ultimate Summon abilities used by Broodmother will have 20% mana cost refunded and 20% cooldown reduction."
     "hintBristleBack"                           "Bristleback reduces the cooldown of all spells which cost less than 50 mana by 15%. "
     "hintCK"                            "Chaos Knight gains 200 extra gold for each ability he randoms."
@@ -1266,7 +1266,7 @@
     "unique_mechanic_enchantress"           "Enchantress can grow plants without the health cost."
     "unique_mechanic_enigma"                        "When Enigma dies, <font color=\'#ffd966\'>Black Hole</font>'s cooldown will be refreshed."
     "unique_mechanic_faceless_void"                 "Faceless Void can move freely in friendly and enemy chronospheres."
-    //"unique_mechanic_gyrocopter"                    "<font color=\'#ffd966\'>Aghanim's Scepter</font> will give Gyrocopter a side gunner. If 'Free Scepter' option is enabled, this hero will not benefit from it."
+    "unique_mechanic_gyrocopter"                    "At the start of the game, Gyro gains a free level of <font color=\'#ffd966\'>Side Gunner</font>, whether he has it or not."
     "unique_mechanic_huskar"                        "Huskar regenerates 1hp/s for every 10% of health he is missing."
     "unique_mechanic_invoker"           "Invoker gains +5 intelligence each time he uses a different ability, resetting when an ability has been used twice."
     "unique_mechanic_wisp"                   "Wisp gains 1 free level of <font color=\'#ffd966\'>Essence Aura Redux</font>, whether it has it or not."
@@ -3512,7 +3512,8 @@
 
     /// FACELESS VOID PERK HARD-CODED INGAME
 
-    /// GYROCOPTER PERK HARD-CODED INGAME
+    "DOTA_Tooltip_modifier_npc_dota_hero_gyrocopter_perk"   "Gyro Perk"
+    "DOTA_Tooltip_modifier_npc_dota_hero_gyrocopter_perk_Description"   "At the start of the game, Gyro gains a free level of Side Gunner, whether he has it or not.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
 
     /// HUSKAR​
     "DOTA_Tooltip_modifier_npc_dota_hero_huskar_perk"   "Huskar Perk"

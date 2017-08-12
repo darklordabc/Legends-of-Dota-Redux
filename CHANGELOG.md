@@ -6,6 +6,9 @@ All notable changes to this project will be documented in this file.
 - Astral Spirit Return will no longer trigger Essence Aura
 - Disabled Mischeif for now because its buggy
 - Spell Echo is on cooldown while waiting for delay (prevents multiple spells from being echoed)
+- Gyro Hero Model no longer gets auto-attack when he gets Scepter
+- Gyro has a new perk that gives him 1 level in side gunner
+
 
 ## 9.1
 - Dark Forces explosion radius is 300 now instead of 150. It now does magical damage instead of physical, and slightly increased manacost.

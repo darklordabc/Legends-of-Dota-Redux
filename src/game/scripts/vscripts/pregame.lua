@@ -8054,6 +8054,17 @@ function Pregame:fixSpawningIssues()
             end
         end, DoUniqueString('silencerFix'), 2)
 
+        -- Remove Gyro's innate scepter bonus
+        Timers:CreateTimer(function()
+            if IsValidEntity(spawnedUnit) then
+                print("found unit")
+                if spawnedUnit:HasModifier('modifier_gyrocopter_flak_cannon_scepter') then
+                    spawnedUnit:RemoveModifierByName('modifier_gyrocopter_flak_cannon_scepter')
+                    print("removed modifier")
+                end
+            end
+        end, DoUniqueString('gyroFixInnate'), 1)
+
             if Wearables:HasDefaultWearables( spawnedUnit:GetUnitName() ) then
                 Wearables:AttachWearableList( spawnedUnit, Wearables:GetDefaultWearablesList( spawnedUnit:GetUnitName() ) )
             end
