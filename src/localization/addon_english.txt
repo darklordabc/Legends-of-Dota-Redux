@@ -5875,7 +5875,7 @@
 
     "DOTA_Tooltip_ability_hylonome_eldritch_pull_OP"                   "Eldritch Pull OP"
     "DOTA_Tooltip_ability_hylonome_eldritch_pull_OP_lore"              "Eldritch rends the life out of Hylonome's foes."
-    "DOTA_Tooltip_ability_hylonome_eldritch_pull_OP_description"       "Pulls the target enemy toward Hylonome and damages them. Target is stunned while pulled, then slowed. font color=\'#70EA72\'>Longer pull distance, more damage and greater slow.\n</font>\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
+    "DOTA_Tooltip_ability_hylonome_eldritch_pull_OP_description"       "Pulls the target enemy toward Hylonome and damages them. Target is stunned while pulled, then slowed. </font color=\'#70EA72\'>Longer pull distance, more damage and greater slow</font>.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
     "DOTA_Tooltip_ability_hylonome_eldritch_pull_OP_cast_range"            "CAST RANGE:"
     "DOTA_Tooltip_ability_hylonome_eldritch_pull_OP_distance"              "PULL DISTANCE:"
     "DOTA_Tooltip_ability_hylonome_eldritch_pull_OP_move_slow"             "%MOVEMENT SLOW:"
