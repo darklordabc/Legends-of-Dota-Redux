@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 9.2
 - Astral Spirit Return will no longer trigger Essence Aura
 - Disabled Mischeif for now because its buggy
+- Spell Echo is on cooldown while waiting for delay (prevents multiple spells from being echoed)
 
 ## 9.1
 - Dark Forces explosion radius is 300 now instead of 150. It now does magical damage instead of physical, and slightly increased manacost.

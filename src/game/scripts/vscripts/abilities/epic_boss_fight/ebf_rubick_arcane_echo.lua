@@ -164,6 +164,7 @@ function SpellEcho(keys)
 	if echo:GetChannelTime() > 0 then return end -- ignore channeled abilities because theyre obnoxious
 	
 	local delay = ability:GetLevelSpecialValueFor("delay",ability:GetLevel()-1)
+  ability:StartCooldown(ability:GetLevelSpecialValueFor("delay",ability:GetLevel()-1))
   local tempBanList = LoadKeyValues('scripts/kv/bans.kv')
   local no_echo = tempBanList.noSpellEcho
 	if echo and caster:IsRealHero() and not no_echo[ echo:GetName() ] then
