@@ -5641,7 +5641,7 @@
     "DOTA_Tooltip_ability_lone_druid_savage_roar_op_duration"                      "DURATION:"
 
     "DOTA_Tooltip_ability_item_assault_consumable"                                     "Assault Cuirass"
-    "DOTA_Tooltip_ability_item_assault_consumable_Description"                           "<h1>Passive: Assault Aura</h1>Grants attack speed and armor to nearby allied units and structures, and decreases the armor of nearby enemies.\n\n <h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume Assault Cuirass to permanently gain its effects</font>.\n\nMultiple instances of Assault Aura do not stack."
+    "DOTA_Tooltip_ability_item_assault_consumable_Description"                           "<h1>Passive: Assault Aura</h1>Grants attack speed and armor to nearby allied units and structures, and decreases the armor of nearby enemies.\n\n <h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Assault Cuirass to permanently gain its effects</font>.\n\nMultiple instances of Assault Aura do not stack."
     "DOTA_Tooltip_ability_item_assault_consumable_Lore"                                "Forged in the depths of the nether reaches, this hellish mail provides an army with increased armor and attack speed."
     "DOTA_Tooltip_ability_item_assault_consumable_assault_bonus_attack_speed"                  "+$attack"
     "DOTA_Tooltip_ability_item_assault_consumable_assault_bonus_armor"                         "+$armor"
@@ -5650,7 +5650,7 @@
     "DOTA_Tooltip_ability_item_assault_consumable_assault_aura_negative_armorr"                 "AURA ENEMY ARMOR REDUCTION:"
 
     "DOTA_Tooltip_ability_item_skadi_consumable"                           "Eye of Skadi"
-    "DOTA_Tooltip_ability_item_skadi_consumable_Description"                           "<h1>Passive: Cold Attack</h1>Each attack slows the movement and attack speed of the target. The duration of the slow is based on whether the equipped hero is melee or ranged.\n\n<h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume Eye of Skadi to permanently gain its effects</font>."
+    "DOTA_Tooltip_ability_item_skadi_consumable_Description"                           "<h1>Passive: Cold Attack</h1>Each attack slows the movement and attack speed of the target. The duration of the slow is based on whether the equipped hero is melee or ranged.\n\n<h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Eye of Skadi to permanently gain its effects</font>."
     "DOTA_Tooltip_ability_item_skadi_consumable_Lore"                                  "Extremely rare artifact, guarded by the azure dragons."
     "DOTA_Tooltip_ability_item_skadi_consumable_Note0"                                 "Lasts 5 seconds with melee Eye of Skadi, 2.5 seconds with ranged Eye of Skadi."
     "DOTA_Tooltip_ability_item_skadi_consumable_skadi_bonus_all_stats"                       "+$all"
@@ -5662,21 +5662,21 @@
     "DOTA_Tooltip_ability_item_skadi_consumable_skadi_cold_duration_ranged"                  "COLD RANGED DURATION:"
 
     "DOTA_Tooltip_Ability_item_desolator_consumable"               "Desolator"
-    "DOTA_Tooltip_ability_item_desolator_consumable_Description"                       "<h1>Passive: Corruption</h1>Your attacks reduce target's armor for 15 seconds.\n\nDesolator is a Unique Attack Modifier, and does not stack with other Unique Attack Modifiers.\n\n <h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume Desolator to permanently gain its effects</font>."
+    "DOTA_Tooltip_ability_item_desolator_consumable_Description"                       "<h1>Passive: Corruption</h1>Your attacks reduce target's armor for 15 seconds.\n\nDesolator is a Unique Attack Modifier, and does not stack with other Unique Attack Modifiers.\n\n <h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Desolator to permanently gain its effects</font>."
     "DOTA_Tooltip_ability_item_desolator_consumable_Lore"                          "A wicked weapon, used in torturing political criminals."
     "DOTA_Tooltip_ability_item_desolator_consumable_Note0"                             "Armor reduction works on buildings."
     "DOTA_Tooltip_ability_item_desolator_consumable_corruption_armor"                  "ARMOR REDUCTION:"
     "DOTA_Tooltip_ability_item_desolator_consumable_desolator_bonus_damage"                      "+$damage"
 
     "DOTA_Tooltip_Ability_item_greater_crit_consumable"            "Daedalus"
-    "DOTA_Tooltip_ability_item_greater_crit_consumable_Description"                    "<h1>Passive: Critical Strike</h1>Grants each attack a chance to deal additional damage. Critical Strike does not work against buildings.\n\n <h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume Daedalus to permanently gain its effects</font>."
+    "DOTA_Tooltip_ability_item_greater_crit_consumable_Description"                    "<h1>Passive: Critical Strike</h1>Grants each attack a chance to deal additional damage. Critical Strike does not work against buildings.\n\n <h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Daedalus to permanently gain its effects</font>."
     "DOTA_Tooltip_ability_item_greater_crit_consumable_Lore"                       "A weapon of incredible power that is difficult for even the strongest of warriors to control."
     "DOTA_Tooltip_ability_item_greater_crit_consumable_greater_crit_crit_chance"                    "%CRITICAL CHANCE:"
     "DOTA_Tooltip_ability_item_greater_crit_consumable_greater_crit_crit_multiplier"                "%CRITICAL DAMAGE:"
     "DOTA_Tooltip_ability_item_greater_crit_consumable_greater_crit_bonus_damage"                   "+$damage"
 
     "DOTA_Tooltip_Ability_item_octarine_core_consumable"           "Octarine Core"
-    "DOTA_Tooltip_ability_item_octarine_core_consumable_Description"                       "<h1>Passive: Cooldown Reduction</h1>Reduces the cooldown time of all spells and items by %octarine_core_bonus_cooldown%%%.\n<h1>Passive: Spell Lifesteal</h1>A percentage of damage caused by spells is returned to the caster as health.\n\n<h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume Octarine Core to permanently gain its effects</font>."
+    "DOTA_Tooltip_ability_item_octarine_core_consumable_Description"                       "<h1>Passive: Cooldown Reduction</h1>Reduces the cooldown time of all spells and items by %octarine_core_bonus_cooldown%%%.\n<h1>Passive: Spell Lifesteal</h1>A percentage of damage caused by spells is returned to the caster as health.\n\n<h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Octarine Core to permanently gain its effects</font>."
     "DOTA_Tooltip_ability_item_octarine_core_consumable_octarine_core_bonus_intelligence"        "+$int"
     "DOTA_Tooltip_ability_item_octarine_core_consumable_octarine_core_bonus_health"              "+$health"
     "DOTA_Tooltip_ability_item_octarine_core_consumable_octarine_core_bonus_mana"                "+$mana"
@@ -5686,7 +5686,7 @@
     "DOTA_Tooltip_ability_item_octarine_core_consumable_Lore"                      "At the core of spellcraft are spectrums only the very gifted can sense."
 
     "DOTA_Tooltip_Ability_item_heart_consumable"               "Heart of Tarrasque"
-    "DOTA_Tooltip_ability_item_heart_consumable_Description"                           "<h1>Passive: Health Regeneration</h1>Restores a percentage of max health per second. If damage is taken from an enemy hero or Roshan, this ability is disabled for %heart_cooldown_melee% seconds for melee heroes, or %heart_cooldown_ranged_tooltip% seconds for ranged heroes.\n\n <h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume Heart of Tarrasque to permanently gain its effects</font>."
+    "DOTA_Tooltip_ability_item_heart_consumable_Description"                           "<h1>Passive: Health Regeneration</h1>Restores a percentage of max health per second. If damage is taken from an enemy hero or Roshan, this ability is disabled for %heart_cooldown_melee% seconds for melee heroes, or %heart_cooldown_ranged_tooltip% seconds for ranged heroes.\n\n <h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Heart of Tarrasque to permanently gain its effects</font>."
     "DOTA_Tooltip_ability_item_heart_consumable_Lore"                              "Preserved heart of an extinct monster, it bolsters the bearer's fortitude."
     "DOTA_Tooltip_ability_item_heart_consumable_heart_bonus_strength"                        "+$str"
     "DOTA_Tooltip_ability_item_heart_consumable_heart_bonus_health"                          "+$health"
@@ -5694,7 +5694,7 @@
 
     "DOTA_Tooltip_Ability_item_monkey_king_bar_consumable"         "Monkey King Bar"
     "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_Description"                 "<h1>Passive: Mini-Bash</h1>Grants each attack a %monkey_king_bar_bash_chance%%% chance to mini-stun and deal %monkey_king_bar_bash_damage% bonus damage.\n<h1>Passive: True Strike</h1>Prevents your attacks from missing enemy units.\n
-<h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume this item to permanently gain its effects</font>."
+<h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Monkey King Bar to permanently gain its effects</font>."
     "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_Lore"                    "A powerful staff used by a master warrior."
     "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_monkey_king_bar_bonus_damage"                "+$damage"
     "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_monkey_king_bar_bash_chance"                 "%MINI-BASH CHANCE:"
