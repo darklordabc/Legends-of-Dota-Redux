@@ -1266,7 +1266,7 @@ function GenerateTalentAbilityList()
 	end
 
 (function()
-    toIgnore = {
+    toIgnore = { -- These are abilities that wont trigger essence aura (among other things)
         nyx_assassin_burrow = true,
         spectre_reality = true,
         techies_focused_detonate = true,
@@ -1278,6 +1278,7 @@ function GenerateTalentAbilityList()
         storm_spirit_ball_lightning = true,
         ability_wards = true,
         ability_wards_op = true,
+        elder_titan_return_spirit = true,
     }
 
     abilityKVs = LoadKeyValues('scripts/npc/npc_abilities.txt')
