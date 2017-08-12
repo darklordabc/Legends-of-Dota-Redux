@@ -9,7 +9,7 @@ All notable changes to this project will be documented in this file.
 - Gyro no longer gets auto-attack passive when he gets Scepter
 - Gyro has a new perk that gives him 1 level in side gunner
 - Fixed Critical Surival and slightly reduced its rate
-
+- Fixed Entangle having only 1 level
 
 ## 9.1
 - Dark Forces explosion radius is 300 now instead of 150. It now does magical damage instead of physical, and slightly increased manacost.
