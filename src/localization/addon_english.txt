@@ -1771,7 +1771,7 @@
     "DOTA_Tooltip_modifier_redux_silver_break_Description"  "Passives are disabled."
 
     "DOTA_Tooltip_ability_item_redux_silver" "Silver"
-    "DOTA_Tooltip_ability_item_redux_silver_Description" "Active: Break - Shatters the resolve of targeted enemy hero, disabling their passives and reducing their damage output."
+    "DOTA_Tooltip_ability_item_redux_silver_Description" "<h1>Active: Break</h1>Shatters the resolve of targeted enemy hero, disabling their passives and reducing their damage output."
     "DOTA_Tooltip_ability_item_redux_silver_bonus_all_stats"            "+$all"
     "DOTA_Tooltip_ability_item_redux_silver_break_duration"                  "BREAK DURATION:"
     "DOTA_Tooltip_ability_item_redux_silver_damage_reduction"                  "%DAMAGE REDUCTION:"
@@ -1779,7 +1779,7 @@
     "DOTA_Tooltip_ability_item_recipe_redux_silver" "Silver Recipe"
 
     "DOTA_Tooltip_ability_item_redux_silver_consume" "Silver Consumable"
-    "DOTA_Tooltip_ability_item_redux_silver_consume_Description" "Use: Consume the Silver to temporarily Break the passives of target enemy hero and reduce their damage output."
+    "DOTA_Tooltip_ability_item_redux_silver_consume_Description" "<h1>Consume Silver</h1>Consume the Silver to temporarily Break the passives of target enemy hero and reduce their damage output."
     //"DOTA_Tooltip_ability_item_redux_silver_consume_bonus_all_stats"            "+$all"
     "DOTA_Tooltip_ability_item_redux_silver_consume_break_duration"                  "BREAK DURATION:"
     "DOTA_Tooltip_ability_item_redux_silver_consume_damage_reduction"                  "%DAMAGE REDUCTION:"
