@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 - Astral Spirit Return will no longer trigger Essence Aura
 - Disabled Mischeif for now because its buggy
 - Spell Echo is on cooldown while waiting for delay (prevents multiple spells from being echoed)
-- Gyro Hero Model no longer gets auto-attack when he gets Scepter
+- Gyro no longer gets auto-attack passive when he gets Scepter
 - Gyro has a new perk that gives him 1 level in side gunner
 
 
