@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - Spell Echo is on cooldown while waiting for delay (prevents multiple spells from being echoed)
 - Gyro no longer gets auto-attack passive when he gets Scepter
 - Gyro has a new perk that gives him 1 level in side gunner
+- Fixed Critical Surival and slightly reduced its rate
 
 
 ## 9.1
