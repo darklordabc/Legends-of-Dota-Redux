@@ -12,7 +12,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "experience_bonus"                                          "60 90 120 150"
+                "experience_bonus"                                          "50 100 150 200"
             }
         }
         "ReduxFlags"                                                           "dota_custom"
@@ -31,7 +31,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "experience_bonus"                                          "100 200 300 400"
+                "experience_bonus"                                          "100 200 400 800"
             }
         }
         "ReduxFlags"                                                           "dota_custom"
