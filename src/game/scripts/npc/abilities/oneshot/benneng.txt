@@ -79,12 +79,12 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"chance"	"10 15 20 25"
+				"chance"	"10 30 50 70"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"duration"	"2 3 4 5"
+				"duration"	"2"
 			}
 		}
 	}
