@@ -25,7 +25,7 @@ function spell_lab_survivor_bash_modifier:OnAttackLanded(keys)
 			local hAbility = self:GetAbility()
 			if self:GetParent():PassivesDisabled() then return end
 			if hAbility:GetLevel() < 1 then return end
-			if keys.attacker == self:GetParent() and not self:GetParent():IsIllusion() and hAbility:IsCooldownReady() then
+			if keys.attacker == self:GetParent() and not keys.target:IsBuilding() and not keys.target:IsOther() and not self:GetParent():IsIllusion() and hAbility:IsCooldownReady() then
 					local chance = self:GetStackCount()
 					if (math.random(0,100) > chance) then return end
 	 	 			local stun_dur = hAbility:GetSpecialValueFor("duration")
