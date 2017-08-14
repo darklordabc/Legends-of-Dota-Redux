@@ -12,7 +12,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "brawler_agiellect_bonus"                         "40 60 80"
+                "brawler_agility_bonus"                         "40 60 80"
             }
             "02"
             {
@@ -87,7 +87,7 @@
                 }
                 "Properties"
                 {
-                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"      "%brawler_agiellect_bonus"
+                    "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"      "%brawler_agility_bonus"
                 }
             }
         }
