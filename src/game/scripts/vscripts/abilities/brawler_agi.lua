@@ -5,7 +5,6 @@
 	Note: Might be possible to do entirely in datadriven, however, I seem to crash everytime I tried
 	to do so, insteads, I just use simple script
   
-  Reversed by 01der
 ]]
 function brawler_detection( keys )
 	local caster = keys.caster
