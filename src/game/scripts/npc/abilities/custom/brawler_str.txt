@@ -12,7 +12,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "brawler_strellect_bonus"                         "40 60 80"
+                "brawler_strength_bonus"                         "40 60 80"
             }
             "02"
             {
@@ -87,7 +87,7 @@
                 }
                 "Properties"
                 {
-                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"      "%brawler_strellect_bonus"
+                    "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"      "%brawler_strength_bonus"
                 }
             }
         }
