@@ -2680,7 +2680,7 @@
     
      //Drow - Brawler STR
     "DOTA_Tooltip_ability_brawler_str"                                 "Brawler STR"
-    "DOTA_Tooltip_ability_brawler_str_Description"                     "You like to fight close up and personal. Providing a passive bonus to <font color='#70EA72'>Strength</font> if there ARE enemy heroes within a 375 AoE."
+    "DOTA_Tooltip_ability_brawler_str_Description"                     "You like to fight up close and personal. Providing a passive bonus to <font color='#70EA72'>Strength</font> if there <font color='#70EA72'>ARE</font> enemy heroes within a 375 AoE."
     "DOTA_Tooltip_ability_brawler_str_Lore"                                "The fear in their eyes empowers you."
     "DOTA_Tooltip_ability_brawler_str_brawler_strength_bonus"     "BONUS STRENGTH:"
 
@@ -2689,7 +2689,7 @@
 
 //Drow - Brawler INT
     "DOTA_Tooltip_ability_brawler_int"                                 "Brawler INT"
-    "DOTA_Tooltip_ability_brawler_int_Description"                     "You like to fight close up and personal. Providing a passive bonus to <font color='#70EA72'>Intelligence</font> if there ARE enemy heroes within a 375 AoE."
+    "DOTA_Tooltip_ability_brawler_int_Description"                     "You like to fight up close and personal. Providing a passive bonus to <font color='#70EA72'>Intelligence</font> if there <font color='#70EA72'>ARE</font> enemy heroes within a 375 AoE."
     "DOTA_Tooltip_ability_brawler_int_Lore"                                "The fear in their eyes empowers you."
     "DOTA_Tooltip_ability_brawler_int_brawler_intellect_bonus"     "BONUS INTELLIGENCE:"
 
@@ -2698,7 +2698,7 @@
 
 //Drow - Brawler AGI
     "DOTA_Tooltip_ability_brawler_agi"                                 "Brawler AGI"
-    "DOTA_Tooltip_ability_brawler_agi_Description"                     "You like to fight up close and personal. Providing a passive bonus to <font color='#70EA72'>Agility</font> if there ARE enemy heroes within a 375 AoE."
+    "DOTA_Tooltip_ability_brawler_agi_Description"                     "You like to fight up close and personal. Providing a passive bonus to <font color='#70EA72'>Agility</font> if there <font color='#70EA72'>ARE</font> enemy heroes within a 375 AoE."
     "DOTA_Tooltip_ability_brawler_agi_Lore"                                "The fear in their eyes empowers you."
     "DOTA_Tooltip_ability_brawler_agi_brawler_agility_bonus"     "BONUS AGILITY:"
 
