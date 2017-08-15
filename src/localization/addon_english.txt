@@ -1785,7 +1785,7 @@
     "DOTA_Tooltip_ability_item_redux_silver_consume_damage_reduction"                  "%DAMAGE REDUCTION:"
 
     "DOTA_Tooltip_ability_item_recipe_redux_silver_consume" "Silver Consumable Recipe"
-    
+
 
     // tiny
     "DOTA_Tooltip_ability_tiny_grow_lod"                                                "Grow"
@@ -2225,7 +2225,7 @@
     "DOTA_Tooltip_ability_keeper_of_the_light_innate_redux"                        "Unobstructed Day Vision"
     "DOTA_Tooltip_ability_keeper_of_the_light_innate_redux_Description"            "Will grant unobstructed vision at day time.\n\n Upgradeable by Aghanim's Scepter"
     "DOTA_Tooltip_ability_keeper_of_the_light_innate_aghanim_description"            "Improves vision by 1000."
-    
+
     "DOTA_Tooltip_ability_keeper_of_the_light_innate_redux_vision_radius"     "VISION RADIUS:"
 
     "DOTA_Tooltip_modifier_keeper_of_the_light_innate_redux"                      "Day Vision"
@@ -2247,7 +2247,7 @@
 
     "DOTA_Tooltip_modifier_astral_imprisonment_redux"               "Astral Imprisonment"
     "DOTA_Tooltip_modifier_astral_imprisonment_redux_Description"   "Locked away in an Astral Prison, cannot act or be acted upon."
-    
+
     "DOTA_Tooltip_modifier_astral_imprisonment_redux_stacks_counter"   "Astral Imprisonment Charges"
     "DOTA_Tooltip_modifier_astral_imprisonment_redux_stacks_counter"   "You may cast Astral Imprisonment whenever there is a charge."
 
@@ -4959,135 +4959,135 @@
         "DOTA_Error_spell_lab_symbiotic_no_self_target" "No self cast."
         "DOTA_Error_spell_lab_symbiotic_no_inception" "Can't cast while being host."
 
-		
+
 		"DOTA_Tooltip_ability_spell_lab_survivor_cooldown"					"Survival of the Fittest: Cooldown"
 		"DOTA_Tooltip_ability_spell_lab_survivor_cooldown_Description"		"Your survival instinct is enhanced. You gain Cooldown Reduction for every minute you survive without dying. Does not gain stacks if you remain inside your base and there is no enemy heroes nearby."
 		"DOTA_Tooltip_ability_spell_lab_survivor_cooldown_bonus"			"%COOLDOWN REDUCTION PER MINUTE:"
 		"DOTA_Tooltip_ability_spell_lab_survivor_cooldown_Note0"			"Fully retroactive. Reincarnate effects won't reset the stack."
 		"DOTA_Tooltip_spell_lab_survivor_cooldown_modifier"					"Survival of the Fittest: Cooldown"
 		"DOTA_Tooltip_spell_lab_survivor_cooldown_modifier_Description" "Cooldown Reduction gained through staying alive."
-		
+
 		"DOTA_Tooltip_ability_spell_lab_survivor_damage_boost"					"Survival of the Fittest: Damage"
 		"DOTA_Tooltip_ability_spell_lab_survivor_damage_boost_Description"		"Your survival instinct is enhanced. You gain Base Damage for every minute you survive without dying."
 		"DOTA_Tooltip_ability_spell_lab_survivor_damage_boost_bonus"			"BASE DAMAGE PER MINUTE:"
 		"DOTA_Tooltip_ability_spell_lab_survivor_damage_boost_Note0"			"Fully retroactive. Reincarnate effects won't reset the stack."
 		"DOTA_Tooltip_spell_lab_survivor_damage_boost_modifier"					"Survival of the Fittest: Damage"
 		"DOTA_Tooltip_spell_lab_survivor_damage_boost_modifier_Description" "Base Damage gained through staying alive."
-		
+
 		"DOTA_Tooltip_ability_spell_lab_survivor_evasion"					"Survival of the Fittest: Evasion"
 		"DOTA_Tooltip_ability_spell_lab_survivor_evasion_Description"		"Your survival instinct is enhanced. You gain Evasion for every minute you survive without dying."
 		"DOTA_Tooltip_ability_spell_lab_survivor_evasion_bonus"			"%EVASION PER MINUTE:"
 		"DOTA_Tooltip_ability_spell_lab_survivor_evasion_Note0"			"Fully retroactive. Reincarnate effects won't reset the stack."
 		"DOTA_Tooltip_spell_lab_survivor_evasion_modifier"					"Survival of the Fittest: Evasion"
 		"DOTA_Tooltip_spell_lab_survivor_evasion_modifier_Description" "Evasion gained through staying alive."
-		
+
 		"DOTA_Tooltip_ability_spell_lab_survivor_health_regen"					"Survival of the Fittest: Health Regen"
 		"DOTA_Tooltip_ability_spell_lab_survivor_health_regen_Description"		"Your survival instinct is enhanced. You gain Health Regen for every minute you survive without dying."
 		"DOTA_Tooltip_ability_spell_lab_survivor_health_regen_bonus"			"HEALTH REGEN PER MINUTE:"
 		"DOTA_Tooltip_ability_spell_lab_survivor_health_regen_Note0"			"Fully retroactive. Reincarnate effects won't reset the stack."
 		"DOTA_Tooltip_spell_lab_survivor_health_regen_modifier"					"Survival of the Fittest: Health Regen"
 		"DOTA_Tooltip_spell_lab_survivor_health_regen_modifier_Description" "Health Regen gained through staying alive."
-		
+
 		"DOTA_Tooltip_ability_spell_lab_survivor_mana_regen"					"Survival of the Fittest: Mana Regen"
 		"DOTA_Tooltip_ability_spell_lab_survivor_mana_regen_Description"		"Your survival instinct is enhanced. You gain Mana Regen for every minute you survive without dying."
 		"DOTA_Tooltip_ability_spell_lab_survivor_mana_regen_bonus"			"MANA REGEN PER MINUTE:"
 		"DOTA_Tooltip_ability_spell_lab_survivor_mana_regen_Note0"			"Fully retroactive. Reincarnate effects won't reset the stack."
 		"DOTA_Tooltip_spell_lab_survivor_mana_regen_modifier"					"Survival of the Fittest: Mana Regen"
 		"DOTA_Tooltip_spell_lab_survivor_mana_regen_modifier_Description" "Mana Regen gained through staying alive."
-		
+
 		"DOTA_Tooltip_ability_spell_lab_survivor_life_steal"					"Survival of the Fittest: Life Steal"
 		"DOTA_Tooltip_ability_spell_lab_survivor_life_steal_Description"		"Your survival instinct is enhanced. Your attacks gain Life Steal for every minute you survive without dying."
 		"DOTA_Tooltip_ability_spell_lab_survivor_life_steal_bonus"			"%LIFE STEAL PER MINUTE:"
 		"DOTA_Tooltip_ability_spell_lab_survivor_life_steal_Note0"			"Fully retroactive. Reincarnate effects won't reset the stack."
 		"DOTA_Tooltip_spell_lab_survivor_life_steal_modifier"					"Survival of the Fittest: Life Steal"
 		"DOTA_Tooltip_spell_lab_survivor_life_steal_modifier_Description" "Life Steal gained through staying alive."
-		
+
 		"DOTA_Tooltip_ability_spell_lab_survivor_int_survival"					"Survival of the Fittest: Intelligence"
 		"DOTA_Tooltip_ability_spell_lab_survivor_int_survival_Description"		"Your survival instinct is enhanced. You gain Intelligence for every minute you survive without dying."
 		"DOTA_Tooltip_ability_spell_lab_survivor_int_survival_bonus"			"INTELLIGENCE PER MINUTE:"
 		"DOTA_Tooltip_ability_spell_lab_survivor_int_survival_Note0"			"Fully retroactive. Reincarnate effects won't reset the stack."
 		"DOTA_Tooltip_spell_lab_survivor_int_survival_modifier"					"Survival of the Fittest: Intelligence"
 		"DOTA_Tooltip_spell_lab_survivor_int_survival_modifier_Description" "Intelligence gained through staying alive."
-		
+
 		"DOTA_Tooltip_ability_spell_lab_survivor_magic_resistance"					"Survival of the Fittest: Magic Resistance"
 		"DOTA_Tooltip_ability_spell_lab_survivor_magic_resistance_Description"		"Your survival instinct is enhanced. You gain Magic Resistance for every minute you survive without dying."
 		"DOTA_Tooltip_ability_spell_lab_survivor_magic_resistance_bonus"			"%MAGIC RESISTANCE PER MINUTE:"
 		"DOTA_Tooltip_ability_spell_lab_survivor_magic_resistance_Note0"			"Fully retroactive. Reincarnate effects won't reset the stack."
 		"DOTA_Tooltip_spell_lab_survivor_magic_resistance_modifier"					"Survival of the Fittest: Magic Resistance"
 		"DOTA_Tooltip_spell_lab_survivor_magic_resistance_modifier_Description" "Magic Resistance gained through staying alive."
-		
+
 		"DOTA_Tooltip_ability_spell_lab_survivor_move_speed"					"Survival of the Fittest: Movement Speed"
 		"DOTA_Tooltip_ability_spell_lab_survivor_move_speed_Description"		"Your survival instinct is enhanced. You gain Movement Speed for every minute you survive without dying."
 		"DOTA_Tooltip_ability_spell_lab_survivor_move_speed_bonus"			"MOVEMENT SPEED PER MINUTE:"
 		"DOTA_Tooltip_ability_spell_lab_survivor_move_speed_Note0"			"Fully retroactive. Reincarnate effects won't reset the stack."
 		"DOTA_Tooltip_spell_lab_survivor_move_speed_modifier"					"Survival of the Fittest: Movement Speed"
 		"DOTA_Tooltip_spell_lab_survivor_move_speed_modifier_Description" "Movement Speed gained through staying alive."
-		
+
 		"DOTA_Tooltip_ability_spell_lab_survivor_spell_boost"					"Survival of the Fittest: Spell Amplification"
 		"DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_Description"		"Your survival instinct is enhanced. You gain Spell Amplification for every minute you survive without dying. Does not gain stacks if you remain inside your base and there is no enemy heroes nearby."
 		"DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_bonus"			"%SPELL AMP PER MINUTE:"
 		"DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_Note0"			"Fully retroactive. Reincarnate effects won't reset the stack."
 		"DOTA_Tooltip_spell_lab_survivor_spell_boost_modifier"					"Survival of the Fittest: Spell Amplification"
 		"DOTA_Tooltip_spell_lab_survivor_spell_boost_modifier_Description" "Spell Amplification gained through staying alive."
-		
+
 		"DOTA_Tooltip_ability_spell_lab_survivor_spell_vamp"					"Survival of the Fittest: Spell Vampirisim"
 		"DOTA_Tooltip_ability_spell_lab_survivor_spell_vamp_Description"		"Your survival instinct is enhanced. You gain Spell Vampirisim for every minute you survive without dying."
 		"DOTA_Tooltip_ability_spell_lab_survivor_spell_vamp_bonus"			"%SPELL VAMPIRISIM PER MINUTE:"
 		"DOTA_Tooltip_ability_spell_lab_survivor_spell_vamp_Note0"			"Fully retroactive. Reincarnate effects won't reset the stack."
 		"DOTA_Tooltip_spell_lab_survivor_spell_vamp_modifier"					"Survival of the Fittest: Spell Vampirisim"
 		"DOTA_Tooltip_spell_lab_survivor_spell_vamp_modifier_Description" "Spell Vampirisim gained through staying alive."
-		
+
 		"DOTA_Tooltip_ability_spell_lab_survivor_str_survival"					"Survival of the Fittest: Strength"
 		"DOTA_Tooltip_ability_spell_lab_survivor_str_survival_Description"		"Your survival instinct is enhanced. You gain Strength for every minute you survive without dying."
 		"DOTA_Tooltip_ability_spell_lab_survivor_str_survival_bonus"			"STRENGTH PER MINUTE:"
 		"DOTA_Tooltip_ability_spell_lab_survivor_str_survival_Note0"			"Fully retroactive. Reincarnate effects won't reset the stack."
 		"DOTA_Tooltip_spell_lab_survivor_str_survival_modifier"					"Survival of the Fittest: Strength"
 		"DOTA_Tooltip_spell_lab_survivor_str_survival_modifier_Description" "Strength gained through staying alive."
-		
+
 		"DOTA_Tooltip_ability_spell_lab_survivor_vision"					"Survival of the Fittest: Vision"
 		"DOTA_Tooltip_ability_spell_lab_survivor_vision_Description"		"Your survival instinct is enhanced. You gain Vision for every minute you survive without dying."
 		"DOTA_Tooltip_ability_spell_lab_survivor_vision_bonus"			"VISION PER MINUTE:"
 		"DOTA_Tooltip_ability_spell_lab_survivor_vision_Note0"			"Fully retroactive. Reincarnate effects won't reset the stack."
 		"DOTA_Tooltip_spell_lab_survivor_vision_modifier"					"Survival of the Fittest: Vision"
 		"DOTA_Tooltip_spell_lab_survivor_vision_modifier_Description" "Vision gained through staying alive."
-		
+
 		"DOTA_Tooltip_ability_spell_lab_survivor_agi_survival"					"Survival of the Fittest: Agility"
 		"DOTA_Tooltip_ability_spell_lab_survivor_agi_survival_Description"		"Your survival instinct is enhanced. You gain Agility for every minute you survive without dying."
 		"DOTA_Tooltip_ability_spell_lab_survivor_agi_survival_bonus"			"AGILITY PER MINUTE:"
 		"DOTA_Tooltip_ability_spell_lab_survivor_agi_survival_Note0"			"Fully retroactive. Reincarnate effects won't reset the stack."
 		"DOTA_Tooltip_spell_lab_survivor_agi_survival_modifier"					"Survival of the Fittest: Agility"
 		"DOTA_Tooltip_spell_lab_survivor_agi_survival_modifier_Description" "Agility gained through staying alive."
-		
+
 		"DOTA_Tooltip_ability_spell_lab_survivor_armor"					"Survival of the Fittest: Armor"
 		"DOTA_Tooltip_ability_spell_lab_survivor_armor_Description"		"Your survival instinct is enhanced. You gain Armor for every minute you survive without dying."
 		"DOTA_Tooltip_ability_spell_lab_survivor_armor_bonus"			"ARMOR PER MINUTE:"
 		"DOTA_Tooltip_ability_spell_lab_survivor_armor_Note0"			"Fully retroactive. Reincarnate effects won't reset the stack."
 		"DOTA_Tooltip_spell_lab_survivor_armor_modifier"					"Survival of the Fittest: Armor"
 		"DOTA_Tooltip_spell_lab_survivor_armor_modifier_Description" "Armor gained through staying alive."
-		
+
 		"DOTA_Tooltip_ability_spell_lab_survivor_attack_range"					"Survival of the Fittest: Attack Range"
 		"DOTA_Tooltip_ability_spell_lab_survivor_attack_range_Description"		"Your survival instinct is enhanced. You gain Attack Range for every minute you survive without dying."
 		"DOTA_Tooltip_ability_spell_lab_survivor_attack_range_bonus"			"ATTACK RANGE PER MINUTE:"
 		"DOTA_Tooltip_ability_spell_lab_survivor_attack_range_Note0"			"Fully retroactive. Reincarnate effects won't reset the stack."
 		"DOTA_Tooltip_spell_lab_survivor_attack_range_modifier"					"Survival of the Fittest: Attack Range"
 		"DOTA_Tooltip_spell_lab_survivor_attack_range_modifier_Description" "Attack Range gained through staying alive."
-		
+
 		"DOTA_Tooltip_ability_spell_lab_survivor_attack_speed"					"Survival of the Fittest: Attack Speed"
 		"DOTA_Tooltip_ability_spell_lab_survivor_attack_speed_Description"		"Your survival instinct is enhanced. You gain Attack Speed for every minute you survive without dying."
 		"DOTA_Tooltip_ability_spell_lab_survivor_attack_speed_bonus"			"ATTACK SPEED PER MINUTE:"
 		"DOTA_Tooltip_ability_spell_lab_survivor_attack_speed_Note0"			"Fully retroactive. Reincarnate effects won't reset the stack."
 		"DOTA_Tooltip_spell_lab_survivor_attack_speed_modifier"					"Survival of the Fittest: Attack Speed"
 		"DOTA_Tooltip_spell_lab_survivor_attack_speed_modifier_Description" "Attack Speed gained through staying alive."
-		
-		
+
+
 		"DOTA_Tooltip_ability_spell_lab_survivor_cast_range"					"Survival of the Fittest: Cast Range"
 		"DOTA_Tooltip_ability_spell_lab_survivor_cast_range_Description"		"Your survival instinct is enhanced. You gain Cast Range for every minute you survive without dying."
 		"DOTA_Tooltip_ability_spell_lab_survivor_cast_range_bonus"			"CAST RANGE PER MINUTE:"
 		"DOTA_Tooltip_ability_spell_lab_survivor_cast_range_Note0"			"Fully retroactive. Reincarnate effects won't reset the stack."
 		"DOTA_Tooltip_spell_lab_survivor_cast_range_modifier"					"Survival of the Fittest: Cast Range"
 		"DOTA_Tooltip_spell_lab_survivor_cast_range_modifier_Description" "Cast Range gained through staying alive."
-		
-		
+
+
 		"DOTA_Tooltip_ability_spell_lab_survivor_bash"					"Survival of the Fittest: Bash"
 		"DOTA_Tooltip_ability_spell_lab_survivor_bash_Description"		"Your survival instinct is enhanced. Your attacks gain chance to Bash for every minute you survive without dying."
 		"DOTA_Tooltip_ability_spell_lab_survivor_bash_bonus"			"%BASH CHANCE PER MINUTE:"
@@ -5095,7 +5095,7 @@
 		"DOTA_Tooltip_ability_spell_lab_survivor_bash_Note0"			"Fully retroactive. Reincarnate effects won't reset the stack."
 		"DOTA_Tooltip_spell_lab_survivor_bash_modifier"					"Survival of the Fittest: Bash"
 		"DOTA_Tooltip_spell_lab_survivor_bash_modifier_Description" "Bash Chance gained through staying alive."
-		
+
 		"DOTA_Tooltip_ability_spell_lab_survivor_mana_burn"					"Survival of the Fittest: Mana Burn"
 		"DOTA_Tooltip_ability_spell_lab_survivor_mana_burn_Description"		"Your survival instinct is enhanced. Your attacks gain Mana Burn Damage for every minute you survive without dying."
 		"DOTA_Tooltip_ability_spell_lab_survivor_mana_burn_bonus"			"MANA BURN DAMAGE PER MINUTE:"
@@ -5103,7 +5103,7 @@
 		"DOTA_Tooltip_ability_spell_lab_survivor_mana_burn_Note0"			"Fully retroactive. Reincarnate effects won't reset the stack."
 		"DOTA_Tooltip_spell_lab_survivor_mana_burn_modifier"					"Survival of the Fittest: Mana Burn"
 		"DOTA_Tooltip_spell_lab_survivor_mana_burn_modifier_Description" "Mana Burn Damage gained through staying alive."
-		
+
 		"DOTA_Tooltip_ability_spell_lab_survivor_critical"					"Survival of the Fittest: Critical"
 		"DOTA_Tooltip_ability_spell_lab_survivor_critical_Description"		"Your survival instinct is enhanced. Your attacks gain Critical Damage for every minute you survive without dying."
 		"DOTA_Tooltip_ability_spell_lab_survivor_critical_bonus"			"%CRITICAL DAMAGE PER MINUTE:"
@@ -5111,7 +5111,7 @@
 		"DOTA_Tooltip_ability_spell_lab_survivor_critical_Note0"			"Fully retroactive. Reincarnate effects won't reset the stack."
 		"DOTA_Tooltip_spell_lab_survivor_critical_modifier"					"Survival of the Fittest: Critical"
 		"DOTA_Tooltip_spell_lab_survivor_critical_modifier_Description" "Critical Damage gained through staying alive."
-		
+
 
 
         "DOTA_Tooltip_ability_item_bag_of_gold"                             "Bag of Gold"
@@ -5304,7 +5304,7 @@
 
         "DOTA_Tooltip_metamorphosis_mod"                                             "Morphed into Roshan"
         "DOTA_Tooltip_metamorphosis_mod_Description"                                 "May Roshan be with you."
-		
+
 		"DOTA_Tooltip_Ability_metamorphosis_op"                                              "Roshanify OP"
         "DOTA_Tooltip_Ability_metamorphosis_op_Description"                                  "For the limited duration you take form of Mighty Roshan! Provides base damage bonus and chance to stun on every attack.\nEverything is a lot better!\n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>\n"
         "DOTA_Tooltip_Ability_metamorphosis_op_aghanim_description"                                "Improves Base Damage bonus."
@@ -5425,13 +5425,13 @@
         "DOTA_Tooltip_Ability_night_wolf_attack_speed"                                    "ATTACK SPEED BONUS:"
         "DOTA_Tooltip_Ability_night_wolf_bonus_vision_scepter"                                    "SCEPTER VISION BONUS:"
         "DOTA_Tooltip_Ability_night_wolf_aghanim_description"                               "Better sight at night."
-		
+
 		"DOTA_Tooltip_Ability_chi_strike"                                                  "Chi Strike"
 		"DOTA_Tooltip_Ability_chi_strike_Description"                                      "Your basic attack grants shockwave of effect in front of you for a single strike. Procs a melee attack against all targets hit.\n\n<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>\n"
 		"DOTA_Tooltip_Ability_chi_strike_Note0"                                                  "Does not work against buildings.\nAs ranged hero your primary target only procs as ranged attack."
 		"DOTA_Tooltip_Ability_chi_strike_range"											"Range:"
-		
-		
+
+
 		"DOTA_Tooltip_Ability_chi_strike_sp"                                                  "Chi Strike OP"
 		"DOTA_Tooltip_Ability_chi_strike_sp_Description"                                      "Your basic attack grants shockwave of effect <font color='#70EA72'>around target</font> for a single strike. Procs a melee attack against all targets hit. <font color='#70EA72'>Has shorter cooldown and longer range.</font>.\n\n<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>\n"
 		"DOTA_Tooltip_Ability_chi_strike_sp_Note0"                                                  "Does not work against buildings.\nAs ranged hero your primary target only procs as ranged attack."
@@ -5641,64 +5641,65 @@
     "DOTA_Tooltip_ability_lone_druid_savage_roar_op_duration"                      "DURATION:"
 
     "DOTA_Tooltip_ability_item_assault_consumable"                                     "Assault Cuirass"
-    "DOTA_Tooltip_ability_item_assault_consumable_Description"                           "Passive: Assault Aura - Grants attack speed and armor to nearby allied units and structures, and decreases the armor of nearby enemies.\n\n <font color=\'#70EA72\'>Consume the Assault Cuirass to permanently gain its effects.</font>\n\nMultiple instances of Assault Aura do not stack."
+    "DOTA_Tooltip_ability_item_assault_consumable_Description"                           "<h1>Passive: Assault Aura</h1> Grants %assault_aura_attack_speed% attack speed and %assault_aura_armor% armor to nearby allied units and structures, and decreases nearby enemy unit and structure armor by %assault_aura_armor%.<br><br>Radius: %assault_aura_radius%\n\n <h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Assault Cuirass to permanently gain its effects</font>."
+    "DOTA_Tooltip_ability_item_assault_consumable_Note0"                               "Multiple instances of Assault Aura do not stack."
     "DOTA_Tooltip_ability_item_assault_consumable_Lore"                                "Forged in the depths of the nether reaches, this hellish mail provides an army with increased armor and attack speed."
     "DOTA_Tooltip_ability_item_assault_consumable_assault_bonus_attack_speed"                  "+$attack"
     "DOTA_Tooltip_ability_item_assault_consumable_assault_bonus_armor"                         "+$armor"
-    "DOTA_Tooltip_ability_item_assault_consumable_assault_aura_attack_speed"                   "AURA ATTACK SPEED:"
-    "DOTA_Tooltip_ability_item_assault_consumable_assault_aura_positive_armor"                 "AURA ALLY BONUS ARMOR:"
-    "DOTA_Tooltip_ability_item_assault_consumable_assault_aura_negative_armorr"                 "AURA ENEMY ARMOR REDUCTION:"
+    //"DOTA_Tooltip_ability_item_assault_consumable_assault_aura_attack_speed"                   "AURA ATTACK SPEED:"
+    //"DOTA_Tooltip_ability_item_assault_consumable_assault_aura_positive_armor"                 "AURA ALLY BONUS ARMOR:"
+    //"DOTA_Tooltip_ability_item_assault_consumable_assault_aura_negative_armorr"                 "AURA ENEMY ARMOR REDUCTION:"
 
     "DOTA_Tooltip_ability_item_skadi_consumable"                           "Eye of Skadi"
-    "DOTA_Tooltip_ability_item_skadi_consumable_Description"                           "Passive: Cold Attack - Each attack slows the movement and attack speed of the target. The duration of the slow is based on whether the equipped hero is melee or ranged.\n\n <font color=\'#70EA72\'>Consume the Eye of Skadi to permanently gain its effects.\n</font>"
+    "DOTA_Tooltip_ability_item_skadi_consumable_Description"                           "<h1>Passive: Cold Attack</h1> Attacks lower enemy attack speed by %skadi_cold_attack_speed% and movement speed by %skadi_cold_movement_speed%%%. <br><br>Lasts %skadi_cold_duration_melee% seconds when used by melee heroes, and %skadi_cold_duration_ranged% seconds when used by ranged.\n\n<h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Eye of Skadi to permanently gain its effects</font>."
     "DOTA_Tooltip_ability_item_skadi_consumable_Lore"                                  "Extremely rare artifact, guarded by the azure dragons."
     "DOTA_Tooltip_ability_item_skadi_consumable_Note0"                                 "Lasts 5 seconds with melee Eye of Skadi, 2.5 seconds with ranged Eye of Skadi."
     "DOTA_Tooltip_ability_item_skadi_consumable_skadi_bonus_all_stats"                       "+$all"
     "DOTA_Tooltip_ability_item_skadi_consumable_skadi_bonus_health"                          "+$health"
     "DOTA_Tooltip_ability_item_skadi_consumable_skadi_bonus_mana"                            "+$mana"
-    "DOTA_Tooltip_ability_item_skadi_consumable_skadi_cold_movement_speed"                   "%COLD MOVE SLOW:"
-    "DOTA_Tooltip_ability_item_skadi_consumable_skadi_cold_attack_speed"                     "COLD ATTACK SLOW:"
-    "DOTA_Tooltip_ability_item_skadi_consumable_skadi_cold_duration_melee"                       "COLD MELEE DURATION:"
-    "DOTA_Tooltip_ability_item_skadi_consumable_skadi_cold_duration_ranged"                  "COLD RANGED DURATION:"
+   // "DOTA_Tooltip_ability_item_skadi_consumable_skadi_cold_movement_speed"                   "%COLD MOVE SLOW:"
+    //"DOTA_Tooltip_ability_item_skadi_consumable_skadi_cold_attack_speed"                     "COLD ATTACK SLOW:"
+    //"DOTA_Tooltip_ability_item_skadi_consumable_skadi_cold_duration_melee"                       "COLD MELEE DURATION:"
+    //"DOTA_Tooltip_ability_item_skadi_consumable_skadi_cold_duration_ranged"                  "COLD RANGED DURATION:"
 
     "DOTA_Tooltip_Ability_item_desolator_consumable"               "Desolator"
-    "DOTA_Tooltip_ability_item_desolator_consumable_Description"                       "Passive: Corruption - Your attacks reduce target's armor for 15 seconds.\n\nDesolator is a Unique Attack Modifier, and does not stack with other Unique Attack Modifiers.\n\n <font color=\'#70EA72\'>Consume the Desolator to permanently gain its effects.\n</font>"
+    "DOTA_Tooltip_ability_item_desolator_consumable_Description"                       "<h1>Passive: Corruption</h1> Your attacks reduce the target's armor by %desolator_corruption_armor% for %desolator_corruption_duration% seconds.\n\n <h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Desolator to permanently gain its effects</font>."
     "DOTA_Tooltip_ability_item_desolator_consumable_Lore"                          "A wicked weapon, used in torturing political criminals."
     "DOTA_Tooltip_ability_item_desolator_consumable_Note0"                             "Armor reduction works on buildings."
     "DOTA_Tooltip_ability_item_desolator_consumable_corruption_armor"                  "ARMOR REDUCTION:"
     "DOTA_Tooltip_ability_item_desolator_consumable_desolator_bonus_damage"                      "+$damage"
 
     "DOTA_Tooltip_Ability_item_greater_crit_consumable"            "Daedalus"
-    "DOTA_Tooltip_ability_item_greater_crit_consumable_Description"                    "Passive: Critical Strike - Grants each attack a chance to deal additional damage. Critical Strike does not work against buildings.\n\n <font color=\'#70EA72\'>Consume the Daedalus to permanently gain its effects.\n</font>"
+    "DOTA_Tooltip_ability_item_greater_crit_consumable_Description"                    "<h1>Passive: Critical Strike</h1>Grants each attack a %greater_crit_crit_chance%% chance to deal %greater_crit_crit_multiplier%%% additional damage.\n\n <h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Daedalus to permanently gain its effects</font>."
     "DOTA_Tooltip_ability_item_greater_crit_consumable_Lore"                       "A weapon of incredible power that is difficult for even the strongest of warriors to control."
-    "DOTA_Tooltip_ability_item_greater_crit_consumable_greater_crit_crit_chance"                    "%CRITICAL CHANCE:"
-    "DOTA_Tooltip_ability_item_greater_crit_consumable_greater_crit_crit_multiplier"                "%CRITICAL DAMAGE:"
+    //"DOTA_Tooltip_ability_item_greater_crit_consumable_greater_crit_crit_chance"                    "%CRITICAL CHANCE:"
+    //"DOTA_Tooltip_ability_item_greater_crit_consumable_greater_crit_crit_multiplier"                "%CRITICAL DAMAGE:"
     "DOTA_Tooltip_ability_item_greater_crit_consumable_greater_crit_bonus_damage"                   "+$damage"
 
     "DOTA_Tooltip_Ability_item_octarine_core_consumable"           "Octarine Core"
-    "DOTA_Tooltip_ability_item_octarine_core_consumable_Description"                       "Passive: Cooldown Reduction - Reduces the cooldown time of all spells and items by %octarine_core_bonus_cooldown%%%.\nPassive: Spell Lifesteal - A percentage of damage caused by spells is returned to the caster as health.\n\n <font color=\'#70EA72\'>Consume the Octarine Core to permanently gain its effects.\n</font>"
+    "DOTA_Tooltip_ability_item_octarine_core_consumable_Description"                       "<h1>Passive: Cooldown Reduction</h1>Reduces the cooldown time of all spells and items by %octarine_core_bonus_cooldown%%%.\n<h1>Passive: Spell Lifesteal</h1>%octarine_core_hero_lifesteal%%% of spell damage dealt to enemy heroes is returned to the caster as health, regardless of spell damage type.  <br><br>Lifesteal reduced to %octarine_core_creep_lifesteal%%% against creeps.\n\n<h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Octarine Core to permanently gain its effects</font>."
     "DOTA_Tooltip_ability_item_octarine_core_consumable_octarine_core_bonus_intelligence"        "+$int"
     "DOTA_Tooltip_ability_item_octarine_core_consumable_octarine_core_bonus_health"              "+$health"
     "DOTA_Tooltip_ability_item_octarine_core_consumable_octarine_core_bonus_mana"                "+$mana"
-    "DOTA_Tooltip_ability_item_octarine_core_consumable_octarine_core_bonus_cooldown"            "%COOLDOWN REDUCTION:"
-    "DOTA_Tooltip_ability_item_octarine_core_consumable_octarine_core_hero_lifesteal"                "%HERO SPELL LIFESTEAL:"
-    "DOTA_Tooltip_ability_item_octarine_core_consumable_octarine_core_creep_lifesteal"               "%CREEP SPELL LIFESTEAL:"
+    //"DOTA_Tooltip_ability_item_octarine_core_consumable_octarine_core_bonus_cooldown"            "%COOLDOWN REDUCTION:"
+    //"DOTA_Tooltip_ability_item_octarine_core_consumable_octarine_core_hero_lifesteal"                "%HERO SPELL LIFESTEAL:"
+    //"DOTA_Tooltip_ability_item_octarine_core_consumable_octarine_core_creep_lifesteal"               "%CREEP SPELL LIFESTEAL:"
     "DOTA_Tooltip_ability_item_octarine_core_consumable_Lore"                      "At the core of spellcraft are spectrums only the very gifted can sense."
 
     "DOTA_Tooltip_Ability_item_heart_consumable"               "Heart of Tarrasque"
-    "DOTA_Tooltip_ability_item_heart_consumable_Description"                           "Passive: Health Regeneration - Restores a percentage of max health per second. If damage is taken from an enemy hero or Roshan, this ability is disabled for %heart_cooldown_melee% seconds for melee heroes, or %heart_cooldown_ranged_tooltip% seconds for ranged heroes.\n\n <font color=\'#70EA72\'>Consume the Heart of Tarrasque to permanently gain its effects.\n</font>"
+    "DOTA_Tooltip_ability_item_heart_consumable_Description"                           "<h1>Passive: Health Regeneration</h1>Restores %heart_health_regen_rate%%% of max health per second. <br><br>If damage is taken from an enemy hero or Roshan, this ability is disabled for %heart_cooldown_melee% seconds for melee heroes, or %heart_cooldown_ranged_tooltip% seconds for ranged heroes.\n\n <h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Heart of Tarrasque to permanently gain its effects</font>."
     "DOTA_Tooltip_ability_item_heart_consumable_Lore"                              "Preserved heart of an extinct monster, it bolsters the bearer's fortitude."
     "DOTA_Tooltip_ability_item_heart_consumable_heart_bonus_strength"                        "+$str"
     "DOTA_Tooltip_ability_item_heart_consumable_heart_bonus_health"                          "+$health"
-    "DOTA_Tooltip_ability_item_heart_consumable_heart_health_regen_rate"                     "%HEALTH RESTORED PER SECOND:"
+    //"DOTA_Tooltip_ability_item_heart_consumable_heart_health_regen_rate"                     "%HEALTH RESTORED PER SECOND:"
 
     "DOTA_Tooltip_Ability_item_monkey_king_bar_consumable"         "Monkey King Bar"
     "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_Description"                 "<h1>Passive: Mini-Bash</h1>Grants each attack a %monkey_king_bar_bash_chance%%% chance to mini-stun and deal %monkey_king_bar_bash_damage% bonus damage.\n<h1>Passive: True Strike</h1>Prevents your attacks from missing enemy units.\n
 <h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Monkey King Bar to permanently gain its effects</font>."
     "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_Lore"                    "A powerful staff used by a master warrior."
     "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_monkey_king_bar_bonus_damage"                "+$damage"
-    "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_monkey_king_bar_bash_chance"                 "%MINI-BASH CHANCE:"
-    "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_monkey_king_bar_bash_damage"                 "MINI-BASH DAMAGE:"
+    //"DOTA_Tooltip_ability_item_monkey_king_bar_consumable_monkey_king_bar_bash_chance"                 "%MINI-BASH CHANCE:"
+    //"DOTA_Tooltip_ability_item_monkey_king_bar_consumable_monkey_king_bar_bash_damage"                 "MINI-BASH DAMAGE:"
 
     "DOTA_Tooltip_ability_item_new_ability_bonus"                                               "New Ability Bonus"
     "DOTA_Tooltip_ability_item_new_ability_bonus_Description"                                   "Use: Gives you some gold. You can recieve this item for each choosen ability, that you have chosen least often (by default in 20%% of all ever chosen abilities) or haven't chosen at all."

@@ -656,7 +656,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "greater_crit_bonus_damage"          "76"
+                "greater_crit_bonus_damage"          "80"
             }
             "02"
             {
