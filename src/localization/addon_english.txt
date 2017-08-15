@@ -1498,6 +1498,10 @@
     "credit_mercy_angelic_descent" "<font color=\'#7D7D7D\'>Credits: Firetoad | github.com/fcalife</font>"
     "credit_mercy_heroes_never_die" "<font color=\'#7D7D7D\'>Credits: Firetoad | github.com/fcalife</font>"
 
+    "credit_brawler_int" "<font color=\'#7D7D7D\'>Credits: 01der | github.com/01der</font>"
+    "credit_brawler_str" "<font color=\'#7D7D7D\'>Credits: 01der | github.com/01der</font>"
+    "credit_brawler_agi" "<font color=\'#7D7D7D\'>Credits: 01der | github.com/01der</font>"
+
     "credit_basic_mana_bonus" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
     "credit_basic_mana_bonus_op" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
     "credit_basic_health_bonus" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
@@ -2676,6 +2680,35 @@
 
     "DOTA_Tooltip_modifier_marksmanship_str_effect_datadriven"                          "Marksmanship STR"
     "DOTA_Tooltip_modifier_marksmanship_str_effect_datadriven_Description"              "Bonus Strength. Deactivated by nearby enemy heroes."
+    
+    
+     //Drow - Brawler STR
+    "DOTA_Tooltip_ability_brawler_str"                                 "Brawler STR"
+    "DOTA_Tooltip_ability_brawler_str_Description"                     "You like to fight up close and personal. Providing a passive bonus to <font color='#70EA72'>Strength</font> if there <font color='#70EA72'>ARE</font> enemy heroes within a 375 AoE."
+    "DOTA_Tooltip_ability_brawler_str_Lore"                                "The fear in their eyes empowers you."
+    "DOTA_Tooltip_ability_brawler_str_brawler_strength_bonus"     "BONUS STRENGTH:"
+
+    "DOTA_Tooltip_modifier_brawler_str_effect_datadriven"                          "Brawler STR"
+    "DOTA_Tooltip_modifier_brawler_str_effect_datadriven_Description"              "Bonus Strength. Activated by nearby enemy heroes."
+
+//Drow - Brawler INT
+    "DOTA_Tooltip_ability_brawler_int"                                 "Brawler INT"
+    "DOTA_Tooltip_ability_brawler_int_Description"                     "You like to fight up close and personal. Providing a passive bonus to <font color='#70EA72'>Intelligence</font> if there <font color='#70EA72'>ARE</font> enemy heroes within a 375 AoE."
+    "DOTA_Tooltip_ability_brawler_int_Lore"                                "The fear in their eyes empowers you."
+    "DOTA_Tooltip_ability_brawler_int_brawler_intellect_bonus"     "BONUS INTELLIGENCE:"
+
+    "DOTA_Tooltip_modifier_brawler_int_effect_datadriven"                          "Brawler INT"
+    "DOTA_Tooltip_modifier_brawler_int_effect_datadriven_Description"              "Bonus Intelligence. Activated by nearby enemy heroes."
+
+//Drow - Brawler AGI
+    "DOTA_Tooltip_ability_brawler_agi"                                 "Brawler AGI"
+    "DOTA_Tooltip_ability_brawler_agi_Description"                     "You like to fight up close and personal. Providing a passive bonus to <font color='#70EA72'>Agility</font> if there <font color='#70EA72'>ARE</font> enemy heroes within a 375 AoE."
+    "DOTA_Tooltip_ability_brawler_agi_Lore"                                "The fear in their eyes empowers you."
+    "DOTA_Tooltip_ability_brawler_agi_brawler_agility_bonus"     "BONUS AGILITY:"
+
+    "DOTA_Tooltip_modifier_brawler_agi_effect_datadriven"                          "Brawler AGI"
+    "DOTA_Tooltip_modifier_brawler_agi_effect_datadriven_Description"              "Bonus Agility. Activated by nearby enemy heroes."
+
 
     //--------------------
     //HAWKEYE
