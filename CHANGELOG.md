@@ -13,6 +13,18 @@ All notable changes to this project will be documented in this file.
 - SoF Bash no longer works on buildings
 - Fixed texts on Silvers to match new formating and added silver consumeable to the shop page, also updated texts on consumeable items to match new format
 - Potential fixed AA perk anti-regen debuff lasting forever
+- Anomaly: Less mana, longer duration
+- Dead Hawk: Much longer duration, more armor on Hawks
+- Transmute: Higher conversion rate of HP to GOLD
+- Quick Learner: Greately increased amount of EXP gained passively
+- Hit & Run: Changed Icon, Lower Cooldown, jump distances scales with level and its higher at lvl 4
+- Fireball: Lower radius, fixed 100 damage, lower cooldown, duration scales with level now
+- Last Will: Now has 6 levels
+- Hunter's Instinct: Changed icon, higher chance of procing but fixed 2 second duration
+- Berserker: More speed per stack, longer duration, but less max stacks
+- Eldric Anti-Magic: Fixed at 50 damage, lower radius and scales with level, longer duration at level 4
+- Military Training: Gives much more attack speed and gold per levelup
+- Spell Reflect: Lower cooldown on earlier levels
 
 ## 9.1
 - Dark Forces explosion radius is 300 now instead of 150. It now does magical damage instead of physical, and slightly increased manacost.
