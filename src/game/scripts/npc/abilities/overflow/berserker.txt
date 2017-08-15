@@ -20,17 +20,17 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "speed"                                                "10"
+                "speed"                                                "15"
             }
             "03"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "duration"                                             "1.6"
+                "duration"                                             "6"
             }
             "04"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "max"                                                  "10 20 30 40"
+                "max"                                                  "5 10 15 20"
             }
         }
         "ReduxBans"                                                            "pudge_rot"
