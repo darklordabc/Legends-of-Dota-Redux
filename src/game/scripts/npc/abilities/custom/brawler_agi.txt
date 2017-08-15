@@ -54,8 +54,9 @@
                 {
                     "RunScript"
                     {
-                        "ScriptFile"                           "abilities/brawler_agi.lua"
+                        "ScriptFile"                           "abilities/brawler_detection.lua"
                         "Function"                             "brawler_detection"
+                        "modifier_name"                        "modifier_brawler_agi_effect_datadriven"
                     }
                 }
             }
