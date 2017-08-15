@@ -25,6 +25,7 @@ All notable changes to this project will be documented in this file.
 - Eldric Anti-Magic: Fixed at 50 damage, lower radius and scales with level, longer duration at level 4
 - Military Training: Gives much more attack speed and gold per levelup
 - Spell Reflect: Lower cooldown on earlier levels
+- Added 3 Brawler abilities (Reverse Marksmanship for melee heros) 
 
 ## 9.1
 - Dark Forces explosion radius is 300 now instead of 150. It now does magical damage instead of physical, and slightly increased manacost.
@@ -60,7 +61,6 @@ All notable changes to this project will be documented in this file.
 - Fixed Octarine making illusions last forever
 - Cooldown and Spell Boost Survival will now still gain stacks in base IF there is an enemy within 3000 range
 - When Anti-Rat mutator is on, towers with active backdoor protection cannot be damaged
-- Added 3 Brawler abilities (Reverse Marksmanship for melee heros) 
 
 ## 9.0
 - Fury of the immortals: Cooldown increased by 5 seconds, non-stacking damage decreased, stun duration decreased by 0.5
