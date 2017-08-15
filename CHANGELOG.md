@@ -60,6 +60,7 @@ All notable changes to this project will be documented in this file.
 - Fixed Octarine making illusions last forever
 - Cooldown and Spell Boost Survival will now still gain stacks in base IF there is an enemy within 3000 range
 - When Anti-Rat mutator is on, towers with active backdoor protection cannot be damaged
+- Added 3 Brawler abilities (Reverse Marksmanship for melee heros) 
 
 ## 9.0
 - Fury of the immortals: Cooldown increased by 5 seconds, non-stacking damage decreased, stun duration decreased by 0.5
