@@ -1,0 +1,39 @@
+"DOTAAbilities"
+{
+    "drow_splitshot"
+    {
+        "BaseClass"             		"ability_lua"
+        "ScriptFile"					      "redux_testing/drow_splitshot.lua"
+        "AbilityTextureName"			  "medusa_split_shot"
+        "MaxLevel" 						"4"
+
+        "AbilityBehavior"				    "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetFlag"			"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
+        "AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+
+        //cooldown and mana cost are supported if this needs a nerf
+        "AbilityCooldown"				"0.0"
+        "AbilityManaCost"				"0"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"			"FIELD_INTEGER"
+                "split_count"		"2"
+            }
+            "02"
+            {
+                "var_type"			"FIELD_FLOAT"
+                "search_radius"		"375"
+            }
+            "03"
+            {
+                "var_type"			"FIELD_INTEGER"
+                "damage_reduction"	"80 70 60 50"
+            }
+        }
+    }
+}
