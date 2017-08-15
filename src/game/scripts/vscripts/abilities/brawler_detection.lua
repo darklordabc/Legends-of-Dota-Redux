@@ -1,9 +1,14 @@
 function brawler_detection( keys )
 	local caster = keys.caster
-	if caster:PassivesDisabled() then return end
+	local modifierName = keys.modifier_name
+	if caster:PassivesDisabled() then
+		if caster:HasModifier( modifierName ) then
+			caster:RemoveModifierByName( modifierName )
+		end
+		return
+	end
 	local ability = keys.ability
 	local radius = ability:GetSpecialValueFor( "radius" )
-	local modifierName = keys.modifier_name
 
 	local units = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, radius,
 			DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, 0, 0, false )
