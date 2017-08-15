@@ -2702,7 +2702,7 @@
     "DOTA_Tooltip_ability_brawler_agi_Lore"                                "The fear in their eyes empowers you."
     "DOTA_Tooltip_ability_brawler_agi_brawler_agility_bonus"     "BONUS AGILITY:"
 
-    "DOTA_Tooltip_modifier_brawler_agi_effect_datadriven"                          "Brawler AGI
+    "DOTA_Tooltip_modifier_brawler_agi_effect_datadriven"                          "Brawler AGI"
     "DOTA_Tooltip_modifier_brawler_agi_effect_datadriven_Description"              "Bonus Agility. Activated by nearby enemy heroes."
 
 
