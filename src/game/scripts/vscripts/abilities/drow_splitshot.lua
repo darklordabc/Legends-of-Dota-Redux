@@ -1,4 +1,4 @@
-LinkLuaModifier("modifier_drow_splitshot", "redux_testing/drow_splitshot.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_drow_splitshot", "abilities/drow_splitshot.lua", LUA_MODIFIER_MOTION_NONE)
 
 
 drow_splitshot = class({})
