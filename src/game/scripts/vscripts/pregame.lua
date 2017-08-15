@@ -8057,10 +8057,8 @@ function Pregame:fixSpawningIssues()
         -- Remove Gyro's innate scepter bonus
         Timers:CreateTimer(function()
             if IsValidEntity(spawnedUnit) then
-                print("found unit")
                 if spawnedUnit:HasModifier('modifier_gyrocopter_flak_cannon_scepter') then
                     spawnedUnit:RemoveModifierByName('modifier_gyrocopter_flak_cannon_scepter')
-                    print("removed modifier")
                 end
             end
         end, DoUniqueString('gyroFixInnate'), 1)
