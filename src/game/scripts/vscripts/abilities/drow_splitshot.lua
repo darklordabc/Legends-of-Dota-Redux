@@ -1,4 +1,4 @@
-LinkLuaModifier("modifier_drow_splitshot", "abilities/drow_splitshot.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_drow_splitshot", "redux_testing/drow_splitshot.lua", LUA_MODIFIER_MOTION_NONE)
 
 
 drow_splitshot = class({})
@@ -12,7 +12,7 @@ function drow_splitshot:OnProjectileHit( hTarget, vLocation )
 
 	local bUseCastAttackOrb = true
 	local bProcessProcs = true
-	local bSkipCooldown = false
+	local bSkipCooldown = true
 	local bIgnoreInvis = false
 	local bUseProjectile = false
 	local bFakeAttack = false
@@ -20,7 +20,7 @@ function drow_splitshot:OnProjectileHit( hTarget, vLocation )
 
 	self.mod.reduceAttackDamage = true
 
-		PerformAttack(hTarget, bUseCastAttackOrb, bProcessProcs, bSkipCooldown, bIgnoreInvis, bUseProjectile, bFakeAttack, bNeverMiss)
+		self:GetCaster():PerformAttack(hTarget, bUseCastAttackOrb, bProcessProcs, bSkipCooldown, bIgnoreInvis, bUseProjectile, bFakeAttack, bNeverMiss)
 	
 	self.mod.reduceAttackDamage = false
 end
@@ -36,6 +36,7 @@ modifier_drow_splitshot = class({
 })
 
 function modifier_drow_splitshot:OnCreated( kv )
+	if not IsServer() then return end
 
 	--i believe drow ult actually works with illusions, so i guess this works with illusions?
 	--if self:GetParent():IsIllusion() then self:Destroy() return end
@@ -49,10 +50,8 @@ function modifier_drow_splitshot:OnCreated( kv )
 	self.projSpeed = self:GetParent():GetProjectileSpeed()
 	self.projectile = self:GetParent():GetRangedProjectileName()
 
-	print("DROW SHIT: "..tostring(self.projectile), self.projSpeed)
-
 	-- for melee heroes
-	if not self.projectile then
+	if not self.projectile or self.projectile == "particles/base_attacks/ranged_hero.vpcf" then
 		self.projectile = "particles/units/heroes/hero_drow/drow_base_attack.vpcf"
 	end
 	if self.projSpeed <= 0 then
@@ -60,8 +59,14 @@ function modifier_drow_splitshot:OnCreated( kv )
 	end
 end
 
+function debugReset( C )
+	C.reduceAttackDamage = false
+end
+
 function modifier_drow_splitshot:OnAttackLanded( keys )
 	if IsServer() and keys.attacker == self:GetParent() then
+
+		--debugReset(self)
 
 		--According to the wiki, "Splintering arrows are not disabled [by break] and fully work."
 		--prevent infinite loop, break check
@@ -69,11 +74,11 @@ function modifier_drow_splitshot:OnAttackLanded( keys )
 
 		if not self:GetAbility():IsFullyCastable() then return end
 
-		local units = FindUnitsInRadius(self:GetParent():GetTeamNumber(), keys.victim:GetAbsOrigin(), nil, self.searchRadius, self:GetAbility():GetAbilityTargetTeam(), self:GetAbility():GetAbilityTargetType(), self:GetAbility():GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
+		local units = FindUnitsInRadius(self:GetParent():GetTeamNumber(), keys.target:GetAbsOrigin(), nil, self.searchRadius, self:GetAbility():GetAbilityTargetTeam(), self:GetAbility():GetAbilityTargetType(), self:GetAbility():GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
 		if #units <= 1 then return end
 
 		--dont fire projectiles at the primary target
-		local pos = vlua.find(units, keys.victim)
+		local pos = vlua.find(units, keys.target)
 		if pos then
 			table.remove(units, pos)
 		end	
@@ -81,7 +86,7 @@ function modifier_drow_splitshot:OnAttackLanded( keys )
 		local info = {
 			EffectName = self.projectile,
 		--	Target = nil,
-			Source = keys.victim,
+			Source = keys.target,
 			Ability = self:GetAbility(),
 			bDodgeable = true,
 			iMoveSpeed = self.projSpeed,
