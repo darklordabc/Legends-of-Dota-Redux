@@ -12,7 +12,8 @@ function brawler_detection( keys )
 	local radius = ability:GetLevelSpecialValueFor( "radius", ( ability:GetLevel() - 1 ) )
 	local modifierName = "modifier_brawler_agi_effect_datadriven"
 	
-	if caster:PassivesDisabled() then return end
+	--Repetitive code
+	--if caster:PassivesDisabled() then return end
 	
 	-- Count units in radius
 	local units = FindUnitsInRadius( caster:GetTeamNumber(), caster:GetAbsOrigin(), caster, radius,
