@@ -21,7 +21,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"				"0.2"
 		"AbilityCastRange"				"450"
-		"AbilityCooldown"				"1.0"
+		"AbilityCooldown"				"5"
 		"AbilityManaCost"				"25"
 		
 		// Special
@@ -31,7 +31,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"duration"				"8 12 16"
+				"duration"				"30"
 			}
 			"02"
 			{
@@ -46,7 +46,7 @@
 			"04"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"max_totems"				"1"
+				"max_totems"				"1 2 3"
 				"LinkedSpecialBonus"			"special_bonus_unique_max_totems"
 			}
 			"05"
