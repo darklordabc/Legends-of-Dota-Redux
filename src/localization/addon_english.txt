@@ -6975,7 +6975,9 @@
 
     //Spell Totem
     "DOTA_Tooltip_ability_spell_totem"						"Spell Totem"
-    "DOTA_Tooltip_ability_spell_totem_Description"			"Place a Spell Totem at target location. If you are within radius of it's aura, whenever you cast a spell the totem will cast the same spell at the same target or location as long as the target is also within the cast range of the totem. Abilities with no target will cast as long as you are within the aura radius. Spell Totems are magic immune, and take 1 damage from creeps and 4 from heroes, towers and Roshan. There's a limit on how many totems that can be active at the same time, this is shared between all totem abilities. Placing a totem when at that limit will kill the oldest totem. The damage output of you as well as your totems will be reduced by a percentage stacking multiplicative, this is also shared between all totem abilities.\n\nUpgradable by Aghanim's Scepter."
+    "DOTA_Tooltip_ability_spell_totem_Description"			"Whenever you cast a spell the totem will cast the same spell at the same target or location as long as the target is within the cast range of the totem. Abilities with no target will cast as long as you are within the aura radius. The damage output of you as well as your totems will be reduced by a percentage (stacking multiplicative) this is also shared between all totem abilities.\n\nUpgradable by Aghanim's Scepter."
+    "DOTA_Tooltip_ability_spell_totem_Note0"               "Placing a totem when at that limit will kill the oldest totem."
+    "DOTA_Tooltip_ability_spell_totem_Note1"               "Spell Totems are magic immune, and take 1 damage from creeps and 4 from heroes, towers and Roshan."
     "DOTA_Tooltip_ability_spell_totem_radius"				"TOTEM AURA RADIUS:"
     "DOTA_Tooltip_ability_spell_totem_duration"				"TOTEM DURATION:"
     "DOTA_Tooltip_ability_spell_totem_totem_health"			"TOTEM HEALTH:"
