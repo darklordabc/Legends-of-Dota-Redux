@@ -13,7 +13,7 @@ function drow_splitshot:OnProjectileHit( hTarget, vLocation )
 	local bUseCastAttackOrb = true
 	local bProcessProcs = true
 	local bSkipCooldown = true
-	local bIgnoreInvis = false
+	local bIgnoreInvis = true
 	local bUseProjectile = false
 	local bFakeAttack = false
 	local bNeverMiss = false
@@ -21,7 +21,7 @@ function drow_splitshot:OnProjectileHit( hTarget, vLocation )
 	self.mod.reduceAttackDamage = true
 
 		self:GetCaster():PerformAttack(hTarget, bUseCastAttackOrb, bProcessProcs, bSkipCooldown, bIgnoreInvis, bUseProjectile, bFakeAttack, bNeverMiss)
-	
+
 	self.mod.reduceAttackDamage = false
 end
 
@@ -38,14 +38,14 @@ modifier_drow_splitshot = class({
 function modifier_drow_splitshot:OnCreated( kv )
 	if not IsServer() then return end
 
-	--i believe drow ult actually works with illusions, so i guess this works with illusions?
+	--i believe drow ult actually works with illusions, so i guess this should work with illusions?
 	--if self:GetParent():IsIllusion() then self:Destroy() return end
 
 	self:GetAbility().mod = self
 
 	self.splitCount = self:GetAbility():GetSpecialValueFor("split_count")
 	self.searchRadius = self:GetAbility():GetSpecialValueFor("search_radius")
-	self.damageReduction = self:GetAbility():GetSpecialValueFor("damage_reduction") * 0.01
+	self.damageReduction = (-1) * self:GetAbility():GetSpecialValueFor("damage_reduction") * 0.01
 
 	self.projSpeed = self:GetParent():GetProjectileSpeed()
 	self.projectile = self:GetParent():GetRangedProjectileName()
@@ -59,14 +59,8 @@ function modifier_drow_splitshot:OnCreated( kv )
 	end
 end
 
-function debugReset( C )
-	C.reduceAttackDamage = false
-end
-
 function modifier_drow_splitshot:OnAttackLanded( keys )
 	if IsServer() and keys.attacker == self:GetParent() then
-
-		--debugReset(self)
 
 		--According to the wiki, "Splintering arrows are not disabled [by break] and fully work."
 		--prevent infinite loop, break check
