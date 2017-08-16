@@ -209,7 +209,7 @@ function modifier_item_assault_consumable_aura:IsDebuff()
 end
 
 function modifier_item_assault_consumable_aura:IsHidden()
-  if not caster then return true end
+  --if not caster then return true end
   if not caster:IsAlive() then return true end
   return self:GetCaster() == self:GetParent()
 end
@@ -252,7 +252,7 @@ function modifier_item_assault_consumable_aura_enemies:OnIntervalThink()
   end
 end
 function modifier_item_assault_consumable_aura_enemies:IsHidden()
-  if not caster then return true end  
+  --if not caster then return true end  
   if not caster:IsAlive() then return true end
   return self:GetStackCount() == 1
 end
