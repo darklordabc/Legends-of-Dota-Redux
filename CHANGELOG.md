@@ -26,6 +26,8 @@ All notable changes to this project will be documented in this file.
 - Military Training: Gives much more attack speed and gold per levelup
 - Spell Reflect: Lower cooldown on earlier levels
 - Added 3 Brawler abilities (Reverse Marksmanship for melee heros) 
+*
+- Fixed Last Will
 
 ## 9.1
 - Dark Forces explosion radius is 300 now instead of 150. It now does magical damage instead of physical, and slightly increased manacost.

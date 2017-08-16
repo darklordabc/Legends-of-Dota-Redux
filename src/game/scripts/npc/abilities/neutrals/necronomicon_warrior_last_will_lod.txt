@@ -11,7 +11,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "explosion"                                            "500 750 1000 1250"
+                "explosion"                                            "500 750 1000 1250 1500 1750"
             }
         }
         "ReduxPerks"                                                           "neutral"
