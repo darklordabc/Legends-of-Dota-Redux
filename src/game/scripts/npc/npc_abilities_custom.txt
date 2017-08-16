@@ -153,6 +153,7 @@
 #base "abilities\dota\monkey_king_jingu_mastery_lod_ranged.txt"
 #base "abilities\dota\doom_infernal_blade.txt"
 #base "abilities\dota\drow_splitshot.txt"
+#base "abilities\dota\drow_marksmanship_redux.txt"
 #base "abilities\dota\earthshaker_aftershock_lod.txt"
 #base "abilities\dota\huskar_berserkers_blood_lod.txt"
 #base "abilities\dota\invoker_alacrity_lod.txt"
