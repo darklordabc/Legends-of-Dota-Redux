@@ -1920,7 +1920,8 @@ function Ingame:FilterDamage( filterTable )
     return true
 end
 
-
+require('abilities/bash_reflect')
+require('abilities/bash_cooldown')
 function Ingame:FilterModifiers( filterTable )
     local parent_index = filterTable["entindex_parent_const"]
     local caster_index = filterTable["entindex_caster_const"]
@@ -1947,8 +1948,9 @@ function Ingame:FilterModifiers( filterTable )
         filterTable["duration"] = filterTable["duration"] * parent:GetTenacity()
     end
     -- Bash Reflect
-    local reflect_bashes = require('abilities/bash_reflect')
     ReflectBashes(filterTable)
+    -- Bash Cooldown
+    if not BashCooldown(filterTable) then return false end
 
     return true
 end
