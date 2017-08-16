@@ -7690,4 +7690,10 @@
 	"DOTA_Tooltip_ability_skeleton_king_reincarnation_redux_scepter_duration"				"SCEPTER ALLY DEATH DELAY:"
 	"DOTA_Tooltip_ability_skeleton_king_reincarnation_redux_aura_radius_tooltip_scepter"					"SCEPTER DEATH DELAY RADIUS:"
 
+	"DOTA_Tooltip_ability_drow_splitshot"                                       "Splinter Shot"
+	"DOTA_Tooltip_ability_drow_splitshot_Description"                           "Causes Drow Ranger's attacks to splinter on the target, hitting nearby units with normal attacks that deal reduced damage."
+	"DOTA_Tooltip_ability_drow_splitshot_split_count"                           "SPLIT TARGETS:"
+	"DOTA_Tooltip_ability_drow_splitshot_search_radius"                         "SEARCH RANGE:"
+	"DOTA_Tooltip_ability_drow_splitshot_damage_reduction"                      "%DAMAGE REDUCTION:"
+
 }
