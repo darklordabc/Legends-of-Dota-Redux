@@ -40,5 +40,8 @@
                 "damage_reduction"	"80 70 60 50"
             }
         }
+	"ReduxFlags"                    ""
+	"ReduxCost"                     ""
+	"ReduxBans"                     ""
     }
 }
