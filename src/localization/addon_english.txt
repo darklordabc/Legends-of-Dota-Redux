@@ -1502,6 +1502,7 @@
     "credit_brawler_str" "<font color=\'#7D7D7D\'>Credits: 01der | github.com/01der</font>"
     "credit_brawler_agi" "<font color=\'#7D7D7D\'>Credits: 01der | github.com/01der</font>"
 
+    "credit_drow_splitshot" "<font color=\'#7D7D7D\'>Credits: DankBudd | github.com/DankBudd</font>"
     "credit_basic_mana_bonus" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
     "credit_basic_mana_bonus_op" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
     "credit_basic_health_bonus" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
