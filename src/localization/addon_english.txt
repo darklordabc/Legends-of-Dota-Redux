@@ -7696,4 +7696,13 @@
 	"DOTA_Tooltip_ability_drow_splitshot_search_radius"                         "SEARCH RANGE:"
 	"DOTA_Tooltip_ability_drow_splitshot_damage_reduction"                      "%DAMAGE REDUCTION:"
 
+    "DOTA_Tooltip_ability_drow_ranger_marksmanship_redux"                                 "Marksmanship Redux"
+    "DOTA_Tooltip_ability_drow_ranger_marksmanship_redux_Description"                     "Drow's experiences in battle improve her accuracy and effectiveness in combat, providing a passive bonus to Agility. Grants no bonus if there are enemy heroes within 400 range. <font color='#70EA72'>Does not have split shot upgrade</font>."
+    "DOTA_Tooltip_ability_drow_ranger_marksmanship_redux_aghanim_description"             "Causes Drow Ranger's attacks to splinter on the target, hitting nearby units with normal attacks that deal reduced damage."
+    //"DOTA_Tooltip_ability_drow_ranger_marksmanship_redux_split_count_scepter"             "SPLIT COUNT:"
+    //"DOTA_Tooltip_ability_drow_ranger_marksmanship_redux_scepter_range"                   "SEARCH RANGE:"
+    //"DOTA_Tooltip_ability_drow_ranger_marksmanship_redux_damage_reduction_scepter"        "%DAMAGE REDUCTION:"
+    "DOTA_Tooltip_ability_drow_ranger_marksmanship_redux_Lore"                            "The Drow Ranger is the epitome of archery prowess."
+    "DOTA_Tooltip_ability_drow_ranger_marksmanship_redux_marksmanship_agility_bonus"      "BONUS AGILITY:"
+
 }

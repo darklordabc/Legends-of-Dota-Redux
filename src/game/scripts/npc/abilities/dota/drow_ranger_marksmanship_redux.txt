@@ -3,7 +3,10 @@
 		"drow_ranger_marksmanship_redux"
 		{
         "BaseClass"               "drow_ranger_marksmanship"
-        "AbilityTextureName"      ""
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"      "custom/drow_ranger_marksmanship_redux"
+        "MaxLevel"                                                             "3"
 
         "HasScepterUpgrade"			"0"
 
