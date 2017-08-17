@@ -1502,6 +1502,7 @@
     "credit_brawler_str" "<font color=\'#7D7D7D\'>Credits: 01der | github.com/01der</font>"
     "credit_brawler_agi" "<font color=\'#7D7D7D\'>Credits: 01der | github.com/01der</font>"
 
+    "credit_drow_splitshot" "<font color=\'#7D7D7D\'>Credits: DankBudd | github.com/DankBudd</font>"
     "credit_basic_mana_bonus" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
     "credit_basic_mana_bonus_op" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
     "credit_basic_health_bonus" "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
@@ -7689,5 +7690,20 @@
 	"DOTA_Tooltip_ability_skeleton_king_reincarnation_redux_slow_duration"				"SLOW DURATION:"
 	"DOTA_Tooltip_ability_skeleton_king_reincarnation_redux_scepter_duration"				"SCEPTER ALLY DEATH DELAY:"
 	"DOTA_Tooltip_ability_skeleton_king_reincarnation_redux_aura_radius_tooltip_scepter"					"SCEPTER DEATH DELAY RADIUS:"
+
+	"DOTA_Tooltip_ability_drow_splitshot"                                       "Splinter"
+	"DOTA_Tooltip_ability_drow_splitshot_Description"                           "Causes Drow Ranger's attacks to splinter on the target, hitting nearby units with normal attacks that deal reduced damage."
+	"DOTA_Tooltip_ability_drow_splitshot_split_count"                           "SPLIT TARGETS:"
+	"DOTA_Tooltip_ability_drow_splitshot_search_radius"                         "SEARCH RANGE:"
+	"DOTA_Tooltip_ability_drow_splitshot_damage_reduction"                      "%DAMAGE REDUCTION:"
+
+    "DOTA_Tooltip_ability_drow_ranger_marksmanship_redux"                                 "Marksmanship Redux"
+    "DOTA_Tooltip_ability_drow_ranger_marksmanship_redux_Description"                     "Drow's experiences in battle improve her accuracy and effectiveness in combat, providing a passive bonus to Agility. Grants no bonus if there are enemy heroes within 400 range. <font color='#70EA72'>Does not have Splinter upgrade</font>."
+    "DOTA_Tooltip_ability_drow_ranger_marksmanship_redux_aghanim_description"             "Causes Drow Ranger's attacks to splinter on the target, hitting nearby units with normal attacks that deal reduced damage."
+    //"DOTA_Tooltip_ability_drow_ranger_marksmanship_redux_split_count_scepter"             "SPLIT COUNT:"
+    //"DOTA_Tooltip_ability_drow_ranger_marksmanship_redux_scepter_range"                   "SEARCH RANGE:"
+    //"DOTA_Tooltip_ability_drow_ranger_marksmanship_redux_damage_reduction_scepter"        "%DAMAGE REDUCTION:"
+    "DOTA_Tooltip_ability_drow_ranger_marksmanship_redux_Lore"                            "The Drow Ranger is the epitome of archery prowess."
+    "DOTA_Tooltip_ability_drow_ranger_marksmanship_redux_marksmanship_agility_bonus"      "BONUS AGILITY:"
 
 }
