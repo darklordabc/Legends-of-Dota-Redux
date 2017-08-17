@@ -1,10 +1,13 @@
 LinkLuaModifier("modifier_drow_splitshot", "abilities/drow_splitshot.lua", LUA_MODIFIER_MOTION_NONE)
 
-
 drow_splitshot = class({})
 
 function drow_splitshot:GetIntrinsicModifierName()
 	return "modifier_drow_splitshot"
+end
+
+function drow_splitshot:OnUpgrade()
+	self.mod:ForceRefresh()
 end
 
 function drow_splitshot:OnProjectileHit( hTarget, vLocation )
@@ -31,8 +34,10 @@ modifier_drow_splitshot = class({
 	IsPurgable = function(self) return false end,
 	IsPermanent = function(self) return true end,
 	RemoveOnDeath = function(self) return false end,
+	OnRefresh = function(self) self:OnCreated() end,
 	GetAttributes = function(self) return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE+MODIFIER_ATTRIBUTE_PERMANENT end,
 	DeclareFunctions = function(self) return {MODIFIER_EVENT_ON_ATTACK_LANDED, MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE,} end,
+
 })
 
 function modifier_drow_splitshot:OnCreated( kv )
@@ -45,7 +50,7 @@ function modifier_drow_splitshot:OnCreated( kv )
 
 	self.splitCount = self:GetAbility():GetSpecialValueFor("split_count")
 	self.searchRadius = self:GetAbility():GetSpecialValueFor("search_radius")
-	self.damageReduction = (-1) * self:GetAbility():GetSpecialValueFor("damage_reduction") * 0.01
+	self.damageReduction = (-1) * self:GetAbility():GetSpecialValueFor("damage_reduction")
 
 	self.projSpeed = self:GetParent():GetProjectileSpeed()
 	self.projectile = self:GetParent():GetRangedProjectileName()
@@ -60,45 +65,44 @@ function modifier_drow_splitshot:OnCreated( kv )
 end
 
 function modifier_drow_splitshot:OnAttackLanded( keys )
-	if IsServer() and keys.attacker == self:GetParent() then
+	if not IsServer() or keys.attacker ~= self:GetParent() then return end
 
-		--According to the wiki, "Splintering arrows are not disabled [by break] and fully work."
-		--prevent infinite loop, break check
-		if self.reduceAttackDamage --[[or self:GetParent():PassivesDisabled()]] then return end
+	--According to the wiki, "Splintering arrows are not disabled [by break] and fully work."
+	--prevent infinite loop, break check
+	if self.reduceAttackDamage --[[or self:GetParent():PassivesDisabled()]] then return end
 
-		if not self:GetAbility():IsFullyCastable() then return end
+	if not self:GetAbility():IsFullyCastable() then return end
 
-		local units = FindUnitsInRadius(self:GetParent():GetTeamNumber(), keys.target:GetAbsOrigin(), nil, self.searchRadius, self:GetAbility():GetAbilityTargetTeam(), self:GetAbility():GetAbilityTargetType(), self:GetAbility():GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
-		if #units <= 1 then return end
+	local units = FindUnitsInRadius(self:GetParent():GetTeamNumber(), keys.target:GetAbsOrigin(), nil, self.searchRadius, self:GetAbility():GetAbilityTargetTeam(), self:GetAbility():GetAbilityTargetType(), self:GetAbility():GetAbilityTargetFlags(), FIND_ANY_ORDER, false)
+	if #units <= 1 then return end
 
-		--dont fire projectiles at the primary target
-		local pos = vlua.find(units, keys.target)
-		if pos then
-			table.remove(units, pos)
-		end	
+	--dont fire projectiles at the primary target
+	local pos = vlua.find(units, keys.target)
+	if pos then
+		table.remove(units, pos)
+	end	
 
-		local info = {
-			EffectName = self.projectile,
-		--	Target = nil,
-			Source = keys.target,
-			Ability = self:GetAbility(),
-			bDodgeable = true,
-			iMoveSpeed = self.projSpeed,
-			iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
-			bProvidesVision = false,
-		--	iVisionRadius = 0,
-		--	iVisionTeamNumber = self:GetParent():GetTeamNumber(),
-		}
+	local info = {
+		EffectName = self.projectile,
+	--	Target = nil,
+		Source = keys.target,
+		Ability = self:GetAbility(),
+		bDodgeable = true,
+		iMoveSpeed = self.projSpeed,
+		vSourceLoc = keys.target:GetAbsOrigin(),
+		bProvidesVision = false,
+	--	iVisionRadius = 0,
+	--	iVisionTeamNumber = self:GetParent():GetTeamNumber(),
+	}
 
-		for i=1,self.splitCount do
-			if units[i] then
-				info.Target = units[i]
-				ProjectileManager:CreateTrackingProjectile(info)
-			end
+	for i=1,self.splitCount do
+		if units[i] then
+			info.Target = units[i]
+			ProjectileManager:CreateTrackingProjectile(info)
 		end
-
-		self:GetAbility():UseResources(true, false, true)
 	end
+
+	self:GetAbility():UseResources(true, false, true)
 end
 
 --not sure if this is the correct modifier property for this
