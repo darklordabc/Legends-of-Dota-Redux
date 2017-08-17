@@ -48,7 +48,7 @@ function modifier_drow_splitshot:OnCreated( kv )
 
 	self:GetAbility().mod = self
 
-	self.splitCount = self:GetAbility():GetSpecialValueFor("split_count")
+	self.splitCount = self:GetAbility():GetLevelSpecialValueFor("split_count", self:GetAbility():GetLevel() - 1)
 	self.searchRadius = self:GetAbility():GetSpecialValueFor("search_radius")
 	self.damageReduction = (-1) * self:GetAbility():GetSpecialValueFor("damage_reduction")
 

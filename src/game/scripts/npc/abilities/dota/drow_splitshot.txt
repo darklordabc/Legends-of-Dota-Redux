@@ -4,8 +4,8 @@
     {
         "BaseClass"             		"ability_lua"
         "ScriptFile"				"abilities/drow_splitshot.lua"
-        "AbilityTextureName"			"custom/quelling_shot"
-        "MaxLevel" 						"4"
+        "AbilityTextureName"			"custom/drow_splitshot"
+        "ReduxFlags"                    "aoe_attack | attack_modifier"
 
         "AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "MaxLevel"                                                             "3"
