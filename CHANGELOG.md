@@ -2,6 +2,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 9.3
+- Marksmanship agility is now a single player ability
+
 ## 9.2
 - Astral Spirit Return will no longer trigger Essence Aura
 - Disabled Mischeif for now because its buggy

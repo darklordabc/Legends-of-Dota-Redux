@@ -14,13 +14,13 @@
         //"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 
         //cooldown and mana cost are supported if this needs a nerf
-        "AbilityCooldown"				"0.0"
-        "AbilityManaCost"				"0"
+        //"AbilityCooldown"				"0.0"
+        //"AbilityManaCost"				"0"
         
         "precache"
-	{
-	    "particle"  "particles/units/heroes/hero_drow/drow_base_attack.vpcf"
-	}
+	    {
+	       "particle"  "particles/units/heroes/hero_drow/drow_base_attack.vpcf"
+	    }
 
         "AbilitySpecial"
         {
@@ -40,8 +40,5 @@
                 "damage_reduction"	"80 70 60 50"
             }
         }
-	"ReduxFlags"                    ""
-	"ReduxCost"                     ""
-	"ReduxBans"                     ""
     }
 }

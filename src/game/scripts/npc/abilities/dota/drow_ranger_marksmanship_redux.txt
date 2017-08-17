@@ -36,8 +36,8 @@
                 "damage_reduction_scepter" "50"
             }
         }
-        "ReduxFlags"                                                           ""
-        "ReduxCost"                                                            ""
-        "ReduxBans"                                                            ""
+        //"ReduxFlags"                                                           ""
+        //"ReduxCost"                                                            ""
+        //"ReduxBans"                                                            ""
     }
 }
