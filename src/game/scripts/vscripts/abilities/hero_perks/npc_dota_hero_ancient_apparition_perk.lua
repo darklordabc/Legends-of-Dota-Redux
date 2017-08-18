@@ -104,7 +104,6 @@ function trackModifier( filterTable )
   Timers:CreateTimer(0.1, function()
   local modifier = parent:FindModifierByNameAndCaster(modifierName, caster)
   if not modifier or modifier:IsNull() then print("abort tracking") return end
-    local dur = modifier:GetDuration()
     local remaining = modifier:GetRemainingTime()
     local elapsed = modifier:GetElapsedTime()
 
@@ -112,7 +111,7 @@ function trackModifier( filterTable )
     if modifier.prevElapsed > elapsed then
       print("modifier refreshed")
       -- call any functions that need to interact with modifiers on refresh here
-      parent:AddNewModifier(caster,nil,"modifier_npc_dota_hero_ancient_apparition_perk_heal_freeze",{duration = modifierDuration})
+      parent:AddNewModifier(caster,nil,"modifier_npc_dota_hero_ancient_apparition_perk_heal_freeze",{duration = duration})
     end
 
     print("remaining: "..tostring(remaining), "elapsed: "..tostring(elapsed))
