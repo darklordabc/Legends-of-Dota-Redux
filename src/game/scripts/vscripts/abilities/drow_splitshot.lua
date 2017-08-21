@@ -7,7 +7,9 @@ function drow_splitshot:GetIntrinsicModifierName()
 end
 
 function drow_splitshot:OnUpgrade()
-	self.mod:ForceRefresh()
+	if self.mod then
+		self.mod:ForceRefresh()
+	end
 end
 
 function drow_splitshot:OnProjectileHit( hTarget, vLocation )
