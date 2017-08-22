@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 - Marksmanship agility is now a single player ability
 - Added Redux version of marksmanship witout the aghs upgrade, but made a new ability splinter which is the aghs split-shot component
 - Cooldown and Spell Amp survivor now require you to be near an enemy hero
+- Removed cooldown reduction talents
 - Fixed Astral Imprison not doing damage
 
 ## 9.2
