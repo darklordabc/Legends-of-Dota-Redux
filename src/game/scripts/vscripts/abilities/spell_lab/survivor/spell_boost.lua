@@ -71,13 +71,14 @@ function spell_lab_survivor_spell_boost_modifier:OnIntervalThink()
       return
     end
   	if self:GetAbility():GetLevel() > 0 then
-      if isInBase(self:GetParent()) then -- If hero is in base increase their last death time so they dont gain stacks
-        local enemyHeros = FindUnitsInRadius(self:GetParent():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, 3000, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
-        -- If there is an enemy hero within 3000 range, still get stacks
-        if #enemyHeros == 0 then
-          self.lastdeath = self.lastdeath + 1
-        end
+      --if isInBase(self:GetParent()) then -- If hero is in base increase their last death time so they dont gain stacks
+      local enemyHeros = FindUnitsInRadius(self:GetParent():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, 3000, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+      -- If there is no enemy heros within 3000, do not gain stacks
+      if #enemyHeros == 0 then
+       --GameRules:SendCustomMessage('no enemies within 6000', 0, 0)
+        self.lastdeath = self.lastdeath + 1
       end
+      --end
       local stacks = (GameRules:GetGameTime() - self.lastdeath)*self:GetAbility():GetSpecialValueFor("bonus")*0.0166667
   		self:SetStackCount(stacks)
   	end

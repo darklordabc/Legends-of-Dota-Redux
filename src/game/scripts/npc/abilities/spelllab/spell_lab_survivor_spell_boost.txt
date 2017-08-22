@@ -7,6 +7,7 @@
         "AbilityTextureName"                                                   "custom/survivor_spell_boost"
         "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityCastRange"              "3000"
         "HasScepterUpgrade"                                                    "0"
         "AbilitySpecial"
         {
