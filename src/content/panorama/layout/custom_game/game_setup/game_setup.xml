@@ -137,6 +137,7 @@
                                     <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingBanningBlockTrollCombos.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingAdvancedOPAbilities.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingDoubleCreeps.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingUniversalShops.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableCheatMode.png"></Image>
 									<Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableHeroBuilder.png"></Image>
 									<Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableKamikaze.png"></Image>

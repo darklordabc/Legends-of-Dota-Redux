@@ -558,6 +558,9 @@
     "lodVotingDoubleCreepsLine"                     "wants to enable <font color='#70EA72'>Double Neutral Creeps</font>"
     "lodVotingDoubleCreepsLineDescr"                "This will double the amount of neutral creeps.<br><font color='#70EA72'>It is recommended</font>."
 
+    "lodVotingUniversalShopsLine"                     "wants to enable <font color='#70EA72'>Universal Shops</font>"
+    "lodVotingUniversalShopsLineDescr"                "This will allow you to buy any item from any shop.<br><font color='#70EA72'>It is recommended</font>."
+
     "lodVotingFatOMeterLine"                     "wants to enable <font color='#70EA72'>Fat-O-Meter</font>"
     "lodVotingFatOMeterLineDescr"                "This will increase hero's size by their KDA ratio.<br><font color='#70EA72'>It is recommended</font>."
 
@@ -592,6 +595,7 @@
     "antiRatAlreadyOn"                              "Anti-Rat protection already on"
     "cantSwitchYet"                                 "Can't switch until game started"
     "multiplyAlreadyOn"                             "Neutrals already multiplied"
+    "universalShopsAlreadyOn"                             "Universal shops are already on"
     "cheatModeAlreadyOn"                            "Cheat mode already on"
     "kamikazeAlreadyDeactivated"                    "Kamikaze mechanic already deactivated"
     "heroBuilderAlreadyOn"                          "Hero builder already on"
@@ -1371,6 +1375,9 @@
 
     "command_menu_command_voteEnableAntiRat"              "Enable Anti-Rat Protection"
     "command_menu_command_descr_voteEnableAntiRat"        "When Anti-Rat is enabled, Tier3 towers cannot be destroyed unless all the outer towers are dead. Also, towers with backdoor protection cannot be damaged. Shortcuts: -antirat, -ar"
+
+    "command_menu_command_voteEnableUniversalShops"              "Enable Universal Shop"
+    "command_menu_command_descr_voteEnableUniversalShops"        "When Universal Shops are enabled you can purcahse any item from any shop. Shortcuts: -universalshops, -us"
 
     "command_menu_command_voteEnableRespawn"            "Disable Late-Game Respawn Rate Increase"
     "command_menu_command_descr_voteEnableRespawn"        "To prevent games with low respawn times lasting for too long or being never-ending, the game will increase respawn rates at the 40 minute mark by 10%, and by another 10% after 10 minutes, continually, until respawn rates are at minimum 50%. This option disables that safeguard. Shortcuts: -enablerespawn -er"

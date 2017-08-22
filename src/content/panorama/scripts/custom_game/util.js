@@ -12,6 +12,9 @@ Util.commandList = [{
         title: "voteEnableAntiRat",
         chatCommand: "antirat",
     },{
+        title: "voteEnableUniversalShops",
+        chatCommand: "universalshops",
+    },{
         title: "voteEnableRespawn",
         chatCommand: "enablerespawn",
     },{

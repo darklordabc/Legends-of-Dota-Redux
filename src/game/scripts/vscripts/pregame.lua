@@ -3907,6 +3907,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('neutralMultiply', this.optionStore['lodOptionNeutralMultiply'])
         OptionManager:SetOption('laneMultiply', this.optionStore['lodOptionLaneMultiply'])
         OptionManager:SetOption('useFatOMeter', this.optionStore['lodOptionCrazyFatOMeter'])
+        OptionManager:SetOption('universalShops', this.optionStore['lodOptionCrazyUniversalShop'])
         OptionManager:SetOption('allowIngameHeroBuilder', this.optionStore['lodOptionIngameBuilder'] == 1)
         --OptionManager:SetOption('botBonusPoints', this.optionStore['lodOptionBotsBonusPoints'] == 1)
 
