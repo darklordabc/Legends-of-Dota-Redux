@@ -7325,8 +7325,8 @@ function Pregame:fixSpawnedHero( spawnedUnit )
     }
 
     local disabledPerks = {
-        npc_dota_hero_windrunner = false,
-        npc_dota_hero_shadow_demon = true,
+        --npc_dota_hero_windrunner = false,
+        --npc_dota_hero_shadow_demon = true,
         -- npc_dota_hero_spirit_breaker = true,
         --npc_dota_hero_spirit_slardar = true,
         -- npc_dota_hero_chaos_knight = true,

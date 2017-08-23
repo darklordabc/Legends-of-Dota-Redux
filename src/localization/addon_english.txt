@@ -910,7 +910,7 @@
     "hintRazor"                         "Reduces the manacost and cooldown of all abilities by 25% when Razor is Static Linked to an enemy. Gains free level in Unstable Current."
     "hintRubick"                         "Rubick gains Null Field as a free ability."
     "hintSandKing"                         "Sand King refunds 30% of the manacost of any Channeled abilities he casts."
-    //"hintShadowDemon"                         "When Shadow Demon buys an item that is limited by stock, he gains a permanent +1 to all attributes. "
+    "hintShadowDemon"                         "Demonic abilities cast by Shadow Demon will have 20% mana cost refunded and 20% cooldown reduction."
     "hintSilencer"                         "Silence effects applied by Silencer last 25% longer."
     "hintSkywrath"                         "Skywrath Mage refunds 15% of the manacost of spells with a cooldown of 7 seconds or less."
     "hintSlardar"                         "Slardar has an innate Sprint active ability."
@@ -1314,7 +1314,7 @@
     "unique_mechanic_riki"                  "Riki's health regeneration is increased by 4 while invisible."
     "unique_mechanic_rubick"                        "Rubick gains <font color=\'#ffd966\'>Null Field</font> as a free ability."
     "unique_mechanic_sand_king"                        "Refund 30% of the manacost of <font color=\'#ffd966\'>Channeled</font> abilities. "
-    //"unique_mechanic_shadow_demon"                        "When Shadow Demon buys an item that is limited by stock, he gains a permanent +1 to all attributes."
+    "unique_mechanic_shadow_demon"                        "<font color=\'#ffd966\'>Demonic</font> spells cast by Shadow Demon will have 20% mana cost refunded and 20% cooldown reduction."
     "unique_mechanic_nevermore"             "At the start of the game, Shadow Fiend gains a free level of <font color=\'#ffd966\'>Necromastery</font>, whether he has it or not."
     "unique_mechanic_shadow_shaman"             "When Shadow Shaman is targeted by an enemy spell, they will get Hexed for 3 seconds. Has 60 second cooldown."
     "unique_mechanic_silencer"                        "<font color=\'#ffd966\'>Silence</font> effects applied by Silencer last 25% longer."
@@ -3737,7 +3737,7 @@
 
     /// SHADOW DEMON​
     "DOTA_Tooltip_modifier_npc_dota_hero_shadow_demon_perk"               "Shadow Demon Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_shadow_demon_perk_Description"   "Increases all attributes by %dMODIFIER_PROPERTY_STATS_INTELLECT_BONUS%, increasing whenever Shadow Demon buys an item limited in stock.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_shadow_demon_perk_Description"   "Demonic abilities cast by Shadow Demon will have 20%d% mana cost refunded and 20%d% cooldown reduction.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
     /// SHADOW FIEND​
     "DOTA_Tooltip_modifier_npc_dota_hero_nevermore_perk"    "Shadow Fiend Perk"
