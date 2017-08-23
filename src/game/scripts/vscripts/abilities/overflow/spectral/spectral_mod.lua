@@ -19,9 +19,26 @@ MODIFIER_PROPERTY_EVASION_CONSTANT,
 MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
 MODIFIER_PROPERTY_OVERRIDE_ATTACK_MAGICAL,
 MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
-MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT
+MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+MODIFIER_PROPERTY_DAMAGEOUTGOUNG, -- fix this
+MODIFIER_EVENT_ON_ATTACK_LANDED,
 	}
 	return funcs
+end
+
+function spectral_form_mod:OnAttackLanded( keys )
+	if self:GetParent() ~= keys.attacker then return end
+	if keys.target:IsBuilding() then
+		self.reduceDamage = true
+		return
+	end
+	self.reduceDamage = false
+end
+
+function spectral_form_mod:GEetTotalDamage_Outgoing() -- fix this
+	if IsServer() and self.reduceDamage then
+		return self:GetAbility():GetSpecialValueFor("building_reduction")
+	end
 end
 
 function spectral_form_mod:GetModifierConstantHealthRegen() return self:GetAbility():GetSpecialValueFor("health_regen") end
