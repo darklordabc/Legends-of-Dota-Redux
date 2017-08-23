@@ -15,7 +15,7 @@
                 "mana_bonus"                                          "150 300 450 600"
             }
         }
-        "ReduxFlags"                                                           "dota_custom"
+        "ReduxFlags"                                                           "dota_custom | mana"
         "ReduxCost"                                                            "0"
     }
 
@@ -34,7 +34,7 @@
                 "mana_bonus"                                          "300 600 900 1200"
             }
         }
-        "ReduxFlags"                                                           "dota_custom"
+        "ReduxFlags"                                                           "dota_custom | mana"
         "ReduxCost"                                                            "120"
     }
 }

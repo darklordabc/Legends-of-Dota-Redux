@@ -19,7 +19,7 @@
         }
         "ReduxFlags"                                                           ""
         "ReduxBans"                                                            ""
-        "ReduxPerks"                                                           ""
+        //"ReduxPerks"                                                           ""
         "ReduxCost"                                                            "0"
     }
 }

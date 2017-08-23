@@ -24,7 +24,7 @@
                 "flesh_heap_range"                                     "450"
             }
         }
-        "ReduxFlags"                                                           "dota_custom"
+        "ReduxFlags"                                                           "dota_custom | mana"
         "ReduxCost"                                                            "40"
     }
 }

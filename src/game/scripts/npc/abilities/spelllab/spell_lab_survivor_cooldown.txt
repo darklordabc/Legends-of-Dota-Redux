@@ -19,7 +19,7 @@
         }
         "ReduxFlags"                                                           "cooldown"
         "ReduxBans"                                                            ""
-        "ReduxPerks"                                                           ""
+        //"ReduxPerks"                                                           ""
         "ReduxCost"                                                            "0"
     }
 }
