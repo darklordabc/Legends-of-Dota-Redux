@@ -68,7 +68,7 @@
 			}
 			"07"
 			{
-				"var_type"					"FIELD_INTEGER"
+				"var_type"					"FIELD_FLOAT"
 				"building_reduction"				"50"
 			}
 		}
