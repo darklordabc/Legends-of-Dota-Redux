@@ -9,9 +9,10 @@ All notable changes to this project will be documented in this file.
 - Removed cooldown reduction talents
 - Fixed Astral Imprison not doing damage
 - Hopefully fixed AA perk
-*
 - Glaives Int Steal is now ultimate ability
 - You can now vote to enable universal shops with -us or -universalshops or from the vote menu. Requires 50% to succeed
+*
+- Add Mana to categories
 
 ## 9.2
 - Astral Spirit Return will no longer trigger Essence Aura
