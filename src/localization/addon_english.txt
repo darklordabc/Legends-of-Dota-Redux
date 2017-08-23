@@ -822,7 +822,7 @@
     "hintBooster"  "Booster Draft is gamemode based on the popular draft method from MAGIC: THE GATHERING Card Game. Like Single Draft, It is for advanced players who want a fairer game."
     "hintPerks"  "Every Hero in Redux has a special perk that is a unique advantage for that hero. These perks are designed to encourage players to use different heroes and not just pick the few heroes with the best stats. They can be disabled."
     "hintRespawnTimes"  "Respawn rates will increase after 40 minutes and will increase by 10% every 10 minutes, up to 50% respawn rate. This is to prevent games lasting too long and being unendable."
-    "hintMultiplyNeutrals"  "When 'Multiply Neutrals' is enabled, there is chance that cloned neutrals will spawn with special powerups. The chance and power of these powerup will increases as your last-hit count increases."
+    //"hintMultiplyNeutrals"  "When 'Multiply Neutrals' is enabled, there is chance that cloned neutrals will spawn with special powerups. The chance and power of these powerup will increases as your last-hit count increases."
     "hintBalancing"  "A balanced game is a fun game. But balance needs you! If you know a playstyle or ability which is too easy to win with (even if its your favourite), do your part, and report it to the developers."
     "hintGoldBorder"  "Ultimate Abilities have a gold border."
     "hintAntiKamikaze"  "Anti-Kamikaze mechanic: If you die more than 3 times within 60 seconds, you will be penalized with extra respawn time. This is to prevent players taking advantage of lowered respawn."
