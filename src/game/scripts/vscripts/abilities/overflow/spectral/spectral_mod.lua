@@ -20,7 +20,7 @@ MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
 MODIFIER_PROPERTY_OVERRIDE_ATTACK_MAGICAL,
 MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
-MODIFIER_PROPERTY_DAMAGEOUTGOUNG, -- fix this
+MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
 MODIFIER_EVENT_ON_ATTACK_LANDED,
 	}
 	return funcs
@@ -35,9 +35,13 @@ function spectral_form_mod:OnAttackLanded( keys )
 	self.reduceDamage = false
 end
 
-function spectral_form_mod:GEetTotalDamage_Outgoing() -- fix this
+--dont remember what im supposed to return for this
+function spectral_form_mod:GetModifierDamageOutgoing_Percentage()
 	if IsServer() and self.reduceDamage then
-		return self:GetAbility():GetSpecialValueFor("building_reduction")
+		--return reduction
+		--return reduction*0.01
+		--return 100 - reduction
+		return (-1) * self:GetAbility():GetSpecialValueFor("building_reduction")
 	end
 end
 
