@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 - You can now vote to enable universal shops with -us or -universalshops or from the vote menu. Requires 50% to succeed
 *
 - Add Mana to categories
+- Added Perk for Shadow Demon
 
 ## 9.2
 - Astral Spirit Return will no longer trigger Essence Aura
