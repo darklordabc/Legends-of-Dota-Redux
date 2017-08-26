@@ -209,8 +209,8 @@ function modifier_item_assault_consumable_aura:IsDebuff()
 end
 
 function modifier_item_assault_consumable_aura:IsHidden()
-  --if not caster then return true end
-  if not caster:IsAlive() then return true end
+  if not self:GetCaster() then return true end
+  if not self:GetCaster():IsAlive() then return true end
   return self:GetCaster() == self:GetParent()
 end
 
@@ -245,16 +245,16 @@ end
 function modifier_item_assault_consumable_aura_enemies:OnIntervalThink()
   if IsServer() then
     if self:GetParent():CanEntityBeSeenByMyTeam(self:GetCaster()) then
-      self:SetStackCount(0)
+      self.hide = false
     else
-      self:SetStackCount(1)
+      self.hide = true
     end
   end
 end
 function modifier_item_assault_consumable_aura_enemies:IsHidden()
-  --if not caster then return true end  
-  if not caster:IsAlive() then return true end
-  return self:GetStackCount() == 1
+  if not self:GetCaster() then return true end  
+  if not self:GetCaster():IsAlive() then return true end
+  return self.hide
 end
 
 
