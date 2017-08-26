@@ -245,16 +245,16 @@ end
 function modifier_item_assault_consumable_aura_enemies:OnIntervalThink()
   if IsServer() then
     if self:GetParent():CanEntityBeSeenByMyTeam(self:GetCaster()) then
-      self.hide = false
+      self:SetStackCount(0)
     else
-      self.hide = true
+      self:SetStackCount(1)
     end
   end
 end
 function modifier_item_assault_consumable_aura_enemies:IsHidden()
   if not self:GetCaster() then return true end  
   if not self:GetCaster():IsAlive() then return true end
-  return self.hide
+  return self:GetStackCount() == 1
 end
 
 
