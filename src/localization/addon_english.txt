@@ -940,7 +940,7 @@
     "hintBristleBack"                           "Bristleback reduces the cooldown of all spells which cost less than 50 mana by 15%. "
     "hintCK"                            "Chaos Knight gains 200 extra gold for each ability he randoms."
     "hintClockwerk"                         "Clockwerk fires a random flare to any part of the map every 15 seconds. Scales with Rocket Flare."
-    "hintDazzle"                            "Shallow Grave has global cast range when picked by Dazzle."
+    "hintDazzle"                            "Support spells will have 25% cooldown reduction when cast by Dazzle."
     "hintDP"                            "Any Silence from Death Prophet is also a mute."
     "hintDisruptor"                           "Disruptor regenerates .5 mp/s for every 10% of mana he is missing."
 
@@ -1258,7 +1258,7 @@
     "unique_mechanic_rattletrap"                        "Clockwerk fires a random flare to any part of the map every 15 seconds. Scales with <font color=\'#ffd966\'>Rocket Flare</font>."
     "unique_mechanic_crystal_maiden"    "Crystal Maiden gains +2 movement speed for each level put in <font color=\'#ffd966\'>Support</font> abilities."
     "unique_mechanic_dark_seer"             "Dark Seer self-casts <font color=\'#ffd966\'>Surge</font> and <font color=\'#ffd966\'>Ion Shell</font> when casting them on allies."
-    "unique_mechanic_dazzle"                        "<font color=\'#ffd966\'>Shallow Grave</font> has global cast range when picked by Dazzle."
+    "unique_mechanic_dazzle"                        "<font color=\'#ffd966\'>Support</font> spells will have 25% cooldown reduction when cast by Dazzle."
     "unique_mechanic_death_prophet"                        "Any <font color=\'#ffd966\'>Silence</font> applied by Death Prophet also applies Mute."
     "unique_mechanic_disruptor"                        "Disruptor regenerates .5 mp/s for every 10% of mana he is missing."
     "unique_mechanic_doom_bringer"          "<font color=\'#ffd966\'>Demonic</font> spells cast by Doom will have cooldowns reduced by 25%."
@@ -3507,7 +3507,7 @@
 
     /// DAZZLE
     "DOTA_Tooltip_modifier_npc_dota_hero_dazzle_perk"   "Dazzle Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_dazzle_perk_Description"   "Shallow Grave has global cast range when picked by Dazzle.<br><br><font color=\'#7D7D7D\'>By TideSofDarK | github.com/TideSofDarK</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_dazzle_perk_Description"   "Support spells will have 25%d% cooldown reduction when cast by Dazzle.<br><br><font color=\'#7D7D7D\'>By TideSofDarK | github.com/TideSofDarK</font>"
 
     /// DEATH PROPHET​
     "DOTA_Tooltip_modifier_npc_dota_hero_death_prophet_perk"    "Death Prophet Perk"
