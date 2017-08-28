@@ -964,7 +964,7 @@ function CDOTA_BaseNPC:FindItemByName(item_name)
     return nil
 end
 
-local voteCooldown = 300
+local voteCooldown = 150
 util.votesBlocked = {}
 util.votesRejected = {}
 function util:CreateVoting(votingName, initiator, duration, percent, onaccept, onvote, ondecline, voteForInitiator)
