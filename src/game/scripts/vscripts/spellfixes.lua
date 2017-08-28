@@ -523,8 +523,8 @@ ListenToGameEvent('entity_hurt', function(keys)
                             redirect = ab:GetSpecialValueFor('redirect'),
                             redirect_range_tooltip_scepter = ab:GetSpecialValueFor('redirect_range_tooltip_scepter')
                         })
-							-- Apply the cooldown
-							local cd = ab:GetCooldown(lvl-1)
+							-- Apply the cooldown 
+							local cd = ab:GetTrueCooldown(lvl-1)
                             ab:StartCooldown(cd)
                     end    
             elseif ab2 and ab2:IsCooldownReady() and not ent:PassivesDisabled() then  

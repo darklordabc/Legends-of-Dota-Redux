@@ -21,6 +21,7 @@ All notable changes to this project will be documented in this file.
 - Fixed Consumed assault cuirass dissapearing after death
 - Cyclone Trap: You can no longer be cycloned while u have the armour debuff, to prevent troll combos. Also, duration of traps has been increased by 20 seconds.
 - Changed Dazzle's Perk
+- Fixed Borrowed Time not applying cooldown reductions if it activates passively
 
 ## 9.2
 - Astral Spirit Return will no longer trigger Essence Aura
