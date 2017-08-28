@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file.
 - Changed Survival Spell Amp and Cooldown again
 - Added singleplayer OP versions of Spell Amp and Cooldown Survivals
 - Vote cooldowns reduced to 150 seconds instead of 300
+- Fixed Consumed assault cuirass dissapearing after death
 
 ## 9.2
 - Astral Spirit Return will no longer trigger Essence Aura
