@@ -4,9 +4,15 @@ if spell_lab_survivor_cooldown == nil then
 	spell_lab_survivor_cooldown = class({})
 end
 
+if spell_lab_survivor_cooldown_op == nil then
+  spell_lab_survivor_cooldown_op = class({})
+end
+
 LinkLuaModifier("spell_lab_survivor_cooldown_modifier", "abilities/spell_lab/survivor/cooldown.lua", LUA_MODIFIER_MOTION_NONE)
 
 function spell_lab_survivor_cooldown:GetIntrinsicModifierName() return "spell_lab_survivor_cooldown_modifier" end
+
+function spell_lab_survivor_cooldown_op:GetIntrinsicModifierName() return "spell_lab_survivor_cooldown_modifier" end
 
 
 if spell_lab_survivor_cooldown_modifier == nil then
@@ -77,42 +83,45 @@ function spell_lab_survivor_cooldown_modifier:OnIntervalThink()
   		self:SetStackCount(stacks)
   	end
 
-    local parent = self:GetParent()
+    if self:GetAbility():GetName() ~= "spell_lab_survivor_cooldown_op" then
 
-    local parentTeam = parent:GetTeamNumber()
-    local enemyTeam = 3
+      local parent = self:GetParent()
 
-    if parentTeam == 3 then
-      enemyTeam = 2
-    end
+      local parentTeam = parent:GetTeamNumber()
+      local enemyTeam = 3
 
-    parent.counter = parent.counter or 0
-    
-
-    if parent.counter > BATTLE_THIRST_TIME then
-      self.lastdeath = self.lastdeath + 1
-      -- Little alert above players to indicate they are not gaining stacks
-      parent.alertTicker = parent.alertTicker or 3
-      if parent.alertTicker == 3 then
-        SendOverheadEventMessage( parent, OVERHEAD_ALERT_DENY , parent, 1, nil )
-        parent.alertTicker = 0
-      else
-        parent.alertTicker = parent.alertTicker + 1
+      if parentTeam == 3 then
+        enemyTeam = 2
       end
 
-    end
+      parent.counter = parent.counter or 0
     
-    for _,v in pairs(FindUnitsInRadius( parentTeam, parent:GetAbsOrigin(), nil, 2000.0, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE+DOTA_UNIT_TARGET_FLAG_INVULNERABLE+DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false )) do
-      local check = (IsValidEntity(v) and v:IsNull() == false and v.GetPlayerOwnerID and not v:IsClone() and not v:HasModifier("modifier_arc_warden_tempest_double") and not string.match(v:GetUnitName(), "ward") and parent:CanEntityBeSeenByMyTeam(v) and v:GetTeamNumber() == tonumber(enemyTeam) and v:CanEntityBeSeenByMyTeam(parent))
 
-      if check then
-        parent.counter = 0
-        return 1.0
+      if parent.counter > BATTLE_THIRST_TIME then
+        self.lastdeath = self.lastdeath + 1
+        -- Little alert above players to indicate they are not gaining stacks
+        parent.alertTicker = parent.alertTicker or 3
+        if parent.alertTicker == 3 then
+          SendOverheadEventMessage( parent, OVERHEAD_ALERT_DENY , parent, 1, nil )
+          parent.alertTicker = 0
+        else
+          parent.alertTicker = parent.alertTicker + 1
         end
-    end
 
-    parent.counter = parent.counter + 1
-    return 1.0
+      end
+    
+      for _,v in pairs(FindUnitsInRadius( parentTeam, parent:GetAbsOrigin(), nil, 2000.0, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, DOTA_UNIT_TARGET_FLAG_NONE+DOTA_UNIT_TARGET_FLAG_INVULNERABLE+DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false )) do
+        local check = (IsValidEntity(v) and v:IsNull() == false and v.GetPlayerOwnerID and not v:IsClone() and not v:HasModifier("modifier_arc_warden_tempest_double") and not string.match(v:GetUnitName(), "ward") and parent:CanEntityBeSeenByMyTeam(v) and v:GetTeamNumber() == tonumber(enemyTeam) and v:CanEntityBeSeenByMyTeam(parent))
+
+        if check then
+          parent.counter = 0
+          return 1.0
+          end
+      end
+
+      parent.counter = parent.counter + 1
+      return 1.0
+    end
 	end
 end
 

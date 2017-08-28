@@ -1561,6 +1561,8 @@
     "credit_spell_lab_survivor_spell_boost"           "<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>"
 
     "credit_spell_lab_survivor_cooldown"    "<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>"
+    "credit_spell_lab_survivor_cooldown_op"    "<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>"
+    "credit_spell_lab_survivor_spell_boost_op"    "<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>"
     "credit_spell_lab_survivor_critical"    "<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>"
     "credit_spell_lab_survivor_evasion" "<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>"
     "credit_spell_lab_survivor_life_steal"  "<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>"
@@ -5006,7 +5008,14 @@
 		"DOTA_Tooltip_ability_spell_lab_survivor_cooldown_Description"		"Your survival instinct is enhanced. You gain Cooldown Reduction for every minute you survive without dying. Does not gain stacks unless you have been seen by the enemy team in the last 45 seconds."
 		"DOTA_Tooltip_ability_spell_lab_survivor_cooldown_bonus"			"%COOLDOWN REDUCTION PER MINUTE:"
 		"DOTA_Tooltip_ability_spell_lab_survivor_cooldown_Note0"			"Fully retroactive. Reincarnate effects won't reset the stack."
-		"DOTA_Tooltip_spell_lab_survivor_cooldown_modifier"					"Survival of the Fittest: Cooldown"
+		
+        "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_op"                  "Survival of the Fittest: Cooldown OP"
+        "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_op_Description"      "Your survival instinct is enhanced. You gain Cooldown Reduction for every minute you survive without dying. <font color='#70EA72'>No sight requirement and higher rate</font>."
+        "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_op_bonus"            "%COOLDOWN REDUCTION PER MINUTE:"
+        "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_op_Note0"            "Fully retroactive. Reincarnate effects won't reset the stack."
+        
+
+        "DOTA_Tooltip_spell_lab_survivor_cooldown_modifier"					"Survival of the Fittest: Cooldown"
 		"DOTA_Tooltip_spell_lab_survivor_cooldown_modifier_Description" "Cooldown Reduction gained through staying alive."
 
 		"DOTA_Tooltip_ability_spell_lab_survivor_damage_boost"					"Survival of the Fittest: Damage"
@@ -5069,7 +5078,14 @@
 		"DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_Description"		"Your survival instinct is enhanced. You gain Spell Amplification for every minute you survive without dying. Does not gain stacks unless you have been seen by the enemy team in the last 45 seconds."
 		"DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_bonus"			"%SPELL AMP PER MINUTE:"
 		"DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_Note0"			"Fully retroactive. Reincarnate effects won't reset the stack."
-		"DOTA_Tooltip_spell_lab_survivor_spell_boost_modifier"					"Survival of the Fittest: Spell Amplification"
+		
+        "DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_op"                   "Survival of the Fittest: Spell Amplification OP"
+        "DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_op_Description"       "Your survival instinct is enhanced. You gain Spell Amplification for every minute you survive without dying. <font color='#70EA72'>No sight requirement and higher rate</font>."
+        "DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_op_bonus"         "%SPELL AMP PER MINUTE:"
+        "DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_op_Note0"         "Fully retroactive. Reincarnate effects won't reset the stack."
+        
+
+        "DOTA_Tooltip_spell_lab_survivor_spell_boost_modifier"					"Survival of the Fittest: Spell Amplification"
 		"DOTA_Tooltip_spell_lab_survivor_spell_boost_modifier_Description" "Spell Amplification gained through staying alive."
 
 		"DOTA_Tooltip_ability_spell_lab_survivor_spell_vamp"					"Survival of the Fittest: Spell Vampirisim"

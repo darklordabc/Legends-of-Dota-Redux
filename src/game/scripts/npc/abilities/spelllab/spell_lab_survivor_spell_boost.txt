@@ -7,7 +7,6 @@
         "AbilityTextureName"                                                   "custom/survivor_spell_boost"
         "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityCastRange"              "3000"
         "HasScepterUpgrade"                                                    "0"
         "AbilitySpecial"
         {
@@ -21,5 +20,27 @@
         "ReduxBans"                                                            ""
         //"ReduxPerks"                                                           ""
         "ReduxCost"                                                            "0"
+    }
+
+    "spell_lab_survivor_spell_boost_op"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/spell_lab/survivor/spell_boost.lua"
+        "AbilityTextureName"                                                   "custom/survivor_spell_boost_op"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "HasScepterUpgrade"                                                    "0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                        "bonus"                     "2.0 3.0 4.0 5.0"
+            }
+        }
+        "ReduxFlags"                                                           ""
+        "ReduxBans"                                                            ""
+        //"ReduxPerks"                                                           ""
+        "ReduxCost"                                                            "120"
     }
 }
