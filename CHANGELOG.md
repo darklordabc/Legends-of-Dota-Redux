@@ -14,8 +14,9 @@ All notable changes to this project will be documented in this file.
 *
 - Add Mana to categories
 - Added Perk for Shadow Demon
-- Changed Survival Spell Amp and Cooldown again
-- Added singleplayer OP versions of Spell Amp and Cooldown Survivals
+- Changed Soft Spell Amp and Cooldown again
+- Changed how Soft Cooldown works, it should no stack with other sources of cooldown reduction
+- Added singleplayer OP versions of Soft Spell Amp and Cooldown
 - Vote cooldowns reduced to 150 seconds instead of 300
 - Fixed Consumed assault cuirass dissapearing after death
 - Cyclone Trap: You can no longer be cycloned while u have the armour debuff, to prevent troll combos. Also, duration of traps has been increased by 20 seconds.
