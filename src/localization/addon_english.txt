@@ -2961,6 +2961,7 @@
     "DOTA_Tooltip_Ability_zulf_cyclone_trap"            "Cyclone Trap"
     "DOTA_Tooltip_Ability_zulf_cyclone_trap_Description"        "Zulf places a trap on the ground that cyclones the closest enemy unit who walks on it, dealing 50 magical damage and applying a strong dispel. Also reduces the target's armor for a duration.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
     "DOTA_Tooltip_Ability_zulf_cyclone_trap_Lore"           "Stormhunter's especially sadistic brand of wind magic has only improved after his fall from grace."
+    "DOTA_Tooltip_Ability_zulf_cyclone_trap_Note0"           "Enemies cannot be cycloned while they have the armor debuff."
     "DOTA_Tooltip_Ability_zulf_cyclone_trap_Cast_range"     "CAST RANGE:"
     "DOTA_Tooltip_Ability_zulf_cyclone_trap_Armor_reduction"        "ARMOR REDUCTION:"
     "DOTA_Tooltip_Ability_zulf_cyclone_trap_Armor_duration"     "DEBUFF DURATION:"
