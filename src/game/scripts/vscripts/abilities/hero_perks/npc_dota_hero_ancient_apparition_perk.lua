@@ -97,7 +97,9 @@ function trackModifier( filterTable )
   local modifierName = filterTable["name_const"]
   local duration = filterTable["duration"]
 
-  --track modifier
+  --track modifier if on an enemy
+  if parent:GetTeamNumber() == caster:GetTeamNumber() then return end
+
   Timers:CreateTimer(0.1, function()
   local modifier = parent:FindModifierByNameAndCaster(modifierName, caster)
   if not modifier or modifier:IsNull() then return end

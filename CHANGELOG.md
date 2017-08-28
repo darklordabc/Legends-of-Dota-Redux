@@ -9,9 +9,16 @@ All notable changes to this project will be documented in this file.
 - Removed cooldown reduction talents
 - Fixed Astral Imprison not doing damage
 - Hopefully fixed AA perk
-*
 - Glaives Int Steal is now ultimate ability
 - You can now vote to enable universal shops with -us or -universalshops or from the vote menu. Requires 50% to succeed
+*
+- Add Mana to categories
+- Added Perk for Shadow Demon
+- Changed Survival Spell Amp and Cooldown again
+- Added singleplayer OP versions of Spell Amp and Cooldown Survivals
+- Vote cooldowns reduced to 150 seconds instead of 300
+- Fixed Consumed assault cuirass dissapearing after death
+- Cyclone Trap: You can no longer be cycloned while u have the armour debuff, to prevent troll combos. Also, duration of traps has been increased by 20 seconds.
 
 ## 9.2
 - Astral Spirit Return will no longer trigger Essence Aura

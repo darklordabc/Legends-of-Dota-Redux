@@ -822,7 +822,7 @@
     "hintBooster"  "Booster Draft is gamemode based on the popular draft method from MAGIC: THE GATHERING Card Game. Like Single Draft, It is for advanced players who want a fairer game."
     "hintPerks"  "Every Hero in Redux has a special perk that is a unique advantage for that hero. These perks are designed to encourage players to use different heroes and not just pick the few heroes with the best stats. They can be disabled."
     "hintRespawnTimes"  "Respawn rates will increase after 40 minutes and will increase by 10% every 10 minutes, up to 50% respawn rate. This is to prevent games lasting too long and being unendable."
-    "hintMultiplyNeutrals"  "When 'Multiply Neutrals' is enabled, there is chance that cloned neutrals will spawn with special powerups. The chance and power of these powerup will increases as your last-hit count increases."
+    //"hintMultiplyNeutrals"  "When 'Multiply Neutrals' is enabled, there is chance that cloned neutrals will spawn with special powerups. The chance and power of these powerup will increases as your last-hit count increases."
     "hintBalancing"  "A balanced game is a fun game. But balance needs you! If you know a playstyle or ability which is too easy to win with (even if its your favourite), do your part, and report it to the developers."
     "hintGoldBorder"  "Ultimate Abilities have a gold border."
     "hintAntiKamikaze"  "Anti-Kamikaze mechanic: If you die more than 3 times within 60 seconds, you will be penalized with extra respawn time. This is to prevent players taking advantage of lowered respawn."
@@ -910,7 +910,7 @@
     "hintRazor"                         "Reduces the manacost and cooldown of all abilities by 25% when Razor is Static Linked to an enemy. Gains free level in Unstable Current."
     "hintRubick"                         "Rubick gains Null Field as a free ability."
     "hintSandKing"                         "Sand King refunds 30% of the manacost of any Channeled abilities he casts."
-    //"hintShadowDemon"                         "When Shadow Demon buys an item that is limited by stock, he gains a permanent +1 to all attributes. "
+    "hintShadowDemon"                         "Demonic abilities cast by Shadow Demon will have 20% mana cost refunded and 20% cooldown reduction."
     "hintSilencer"                         "Silence effects applied by Silencer last 25% longer."
     "hintSkywrath"                         "Skywrath Mage refunds 15% of the manacost of spells with a cooldown of 7 seconds or less."
     "hintSlardar"                         "Slardar has an innate Sprint active ability."
@@ -1006,8 +1006,9 @@
     "lod_cat_dota_custom"                           "Dota Related Customs"
     "lod_cat_passive"                               "Passive"
     "lod_cat_cooldown"                              "Cooldown Manipulation"
-    "lod_cat_OPSkillsList"                          "OP Abilities"
-    "lod_cat_SuperOP"                               "SuperOP Abilities"
+    "lod_cat_OPSkillsList"                          "OP"
+    "lod_cat_SuperOP"                               "Super OP"
+    "lod_cat_mana"                                  "Mana"
 
     // Categories
     "lodCategory_main"                              "Hero Abilities"
@@ -1313,7 +1314,7 @@
     "unique_mechanic_riki"                  "Riki's health regeneration is increased by 4 while invisible."
     "unique_mechanic_rubick"                        "Rubick gains <font color=\'#ffd966\'>Null Field</font> as a free ability."
     "unique_mechanic_sand_king"                        "Refund 30% of the manacost of <font color=\'#ffd966\'>Channeled</font> abilities. "
-    //"unique_mechanic_shadow_demon"                        "When Shadow Demon buys an item that is limited by stock, he gains a permanent +1 to all attributes."
+    "unique_mechanic_shadow_demon"                        "<font color=\'#ffd966\'>Demonic</font> spells cast by Shadow Demon will have 20% mana cost refunded and 20% cooldown reduction."
     "unique_mechanic_nevermore"             "At the start of the game, Shadow Fiend gains a free level of <font color=\'#ffd966\'>Necromastery</font>, whether he has it or not."
     "unique_mechanic_shadow_shaman"             "When Shadow Shaman is targeted by an enemy spell, they will get Hexed for 3 seconds. Has 60 second cooldown."
     "unique_mechanic_silencer"                        "<font color=\'#ffd966\'>Silence</font> effects applied by Silencer last 25% longer."
@@ -1496,8 +1497,8 @@
     "warning_angel_arena_transmute" "<font color=\'#FF4949\'>Warning:</font> This ability has strange coding, cooldown manipulation abilities will not work on it.\n"
     "warning_chen_holy_persuasion" "<font color=\'#FF4949\'>Warning:</font> Persuading Ancients requires levels in <font color=\'#70EA72\'>Hand of God</font> to have any effect.\n"
     "warning_centaur_return" "<font color=\'#FF4949\'>Warning:</font> Does not damage buildings.\n"
-    "warning_spell_lab_survivor_cooldown" "<font color=\'#FF4949\'>Warning:</font> Does not gain stacks unless there is an enemy Hero within 3000 range.\n"
-    "warning_spell_lab_survivor_spell_boost" "<font color=\'#FF4949\'>Warning:</font> Does not gain stacks unless there is an enemy Hero within 3000 range.\n"
+    "warning_spell_lab_survivor_cooldown" "<font color=\'#FF4949\'>Warning:</font> Does not gain stacks unless you have been seen by the enemy team in the last 45 seconds.\n"
+    "warning_spell_lab_survivor_spell_boost" "<font color=\'#FF4949\'>Warning:</font> Does not gain stacks unless you have been seen by the enemy team in the last 45 seconds.\n"
 
     "credit_mercy_caduceus_healing" "<font color=\'#7D7D7D\'>Credits: Firetoad | github.com/fcalife</font>"
     "credit_mercy_caduceus_power" "<font color=\'#7D7D7D\'>Credits: Firetoad | github.com/fcalife</font>"
@@ -1560,6 +1561,8 @@
     "credit_spell_lab_survivor_spell_boost"           "<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>"
 
     "credit_spell_lab_survivor_cooldown"    "<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>"
+    "credit_spell_lab_survivor_cooldown_op"    "<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>"
+    "credit_spell_lab_survivor_spell_boost_op"    "<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>"
     "credit_spell_lab_survivor_critical"    "<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>"
     "credit_spell_lab_survivor_evasion" "<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>"
     "credit_spell_lab_survivor_life_steal"  "<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>"
@@ -2958,6 +2961,7 @@
     "DOTA_Tooltip_Ability_zulf_cyclone_trap"            "Cyclone Trap"
     "DOTA_Tooltip_Ability_zulf_cyclone_trap_Description"        "Zulf places a trap on the ground that cyclones the closest enemy unit who walks on it, dealing 50 magical damage and applying a strong dispel. Also reduces the target's armor for a duration.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
     "DOTA_Tooltip_Ability_zulf_cyclone_trap_Lore"           "Stormhunter's especially sadistic brand of wind magic has only improved after his fall from grace."
+    "DOTA_Tooltip_Ability_zulf_cyclone_trap_Note0"           "Enemies cannot be cycloned while they have the armor debuff."
     "DOTA_Tooltip_Ability_zulf_cyclone_trap_Cast_range"     "CAST RANGE:"
     "DOTA_Tooltip_Ability_zulf_cyclone_trap_Armor_reduction"        "ARMOR REDUCTION:"
     "DOTA_Tooltip_Ability_zulf_cyclone_trap_Armor_duration"     "DEBUFF DURATION:"
@@ -3736,7 +3740,7 @@
 
     /// SHADOW DEMON​
     "DOTA_Tooltip_modifier_npc_dota_hero_shadow_demon_perk"               "Shadow Demon Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_shadow_demon_perk_Description"   "Increases all attributes by %dMODIFIER_PROPERTY_STATS_INTELLECT_BONUS%, increasing whenever Shadow Demon buys an item limited in stock.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_shadow_demon_perk_Description"   "Demonic abilities cast by Shadow Demon will have 20%d% mana cost refunded and 20%d% cooldown reduction.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
     /// SHADOW FIEND​
     "DOTA_Tooltip_modifier_npc_dota_hero_nevermore_perk"    "Shadow Fiend Perk"
@@ -5002,10 +5006,17 @@
 
 
 		"DOTA_Tooltip_ability_spell_lab_survivor_cooldown"					"Survival of the Fittest: Cooldown"
-		"DOTA_Tooltip_ability_spell_lab_survivor_cooldown_Description"		"Your survival instinct is enhanced. You gain Cooldown Reduction for every minute you survive without dying. Does not gain stacks unless there is an enemy Hero within 3000 range."
+		"DOTA_Tooltip_ability_spell_lab_survivor_cooldown_Description"		"Your survival instinct is enhanced. You gain Cooldown Reduction for every minute you survive without dying. Does not gain stacks unless you have been seen by the enemy team in the last 45 seconds."
 		"DOTA_Tooltip_ability_spell_lab_survivor_cooldown_bonus"			"%COOLDOWN REDUCTION PER MINUTE:"
 		"DOTA_Tooltip_ability_spell_lab_survivor_cooldown_Note0"			"Fully retroactive. Reincarnate effects won't reset the stack."
-		"DOTA_Tooltip_spell_lab_survivor_cooldown_modifier"					"Survival of the Fittest: Cooldown"
+		
+        "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_op"                  "Survival of the Fittest: Cooldown OP"
+        "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_op_Description"      "Your survival instinct is enhanced. You gain Cooldown Reduction for every minute you survive without dying. <font color='#70EA72'>No sight requirement and higher rate</font>."
+        "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_op_bonus"            "%COOLDOWN REDUCTION PER MINUTE:"
+        "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_op_Note0"            "Fully retroactive. Reincarnate effects won't reset the stack."
+        
+
+        "DOTA_Tooltip_spell_lab_survivor_cooldown_modifier"					"Survival of the Fittest: Cooldown"
 		"DOTA_Tooltip_spell_lab_survivor_cooldown_modifier_Description" "Cooldown Reduction gained through staying alive."
 
 		"DOTA_Tooltip_ability_spell_lab_survivor_damage_boost"					"Survival of the Fittest: Damage"
@@ -5065,10 +5076,17 @@
 		"DOTA_Tooltip_spell_lab_survivor_move_speed_modifier_Description" "Movement Speed gained through staying alive."
 
 		"DOTA_Tooltip_ability_spell_lab_survivor_spell_boost"					"Survival of the Fittest: Spell Amplification"
-		"DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_Description"		"Your survival instinct is enhanced. You gain Spell Amplification for every minute you survive without dying. Does not gain stacks unless there is an enemy Hero within 3000 range."
+		"DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_Description"		"Your survival instinct is enhanced. You gain Spell Amplification for every minute you survive without dying. Does not gain stacks unless you have been seen by the enemy team in the last 45 seconds."
 		"DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_bonus"			"%SPELL AMP PER MINUTE:"
 		"DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_Note0"			"Fully retroactive. Reincarnate effects won't reset the stack."
-		"DOTA_Tooltip_spell_lab_survivor_spell_boost_modifier"					"Survival of the Fittest: Spell Amplification"
+		
+        "DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_op"                   "Survival of the Fittest: Spell Amplification OP"
+        "DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_op_Description"       "Your survival instinct is enhanced. You gain Spell Amplification for every minute you survive without dying. <font color='#70EA72'>No sight requirement and higher rate</font>."
+        "DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_op_bonus"         "%SPELL AMP PER MINUTE:"
+        "DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_op_Note0"         "Fully retroactive. Reincarnate effects won't reset the stack."
+        
+
+        "DOTA_Tooltip_spell_lab_survivor_spell_boost_modifier"					"Survival of the Fittest: Spell Amplification"
 		"DOTA_Tooltip_spell_lab_survivor_spell_boost_modifier_Description" "Spell Amplification gained through staying alive."
 
 		"DOTA_Tooltip_ability_spell_lab_survivor_spell_vamp"					"Survival of the Fittest: Spell Vampirisim"
@@ -7703,6 +7721,16 @@
 	"DOTA_Tooltip_ability_drow_splitshot_split_count"                           "SPLIT TARGETS:"
 	"DOTA_Tooltip_ability_drow_splitshot_search_radius"                         "SEARCH RANGE:"
 	"DOTA_Tooltip_ability_drow_splitshot_damage_reduction"                      "%DAMAGE REDUCTION:"
+
+    // Cooldown reduction talents get replaced with a random talent, so this changes their name in the hero picking screen
+    "DOTA_Tooltip_ability_special_bonus_cooldown_reduction_8" "Random Talent"
+    "DOTA_Tooltip_ability_special_bonus_cooldown_reduction_10" "Random Talent"
+    "DOTA_Tooltip_ability_special_bonus_cooldown_reduction_12" "Random Talent"
+    "DOTA_Tooltip_ability_special_bonus_cooldown_reduction_15" "Random Talent"
+    "DOTA_Tooltip_ability_special_bonus_cooldown_reduction_20" "Random Talent"
+    "DOTA_Tooltip_ability_special_bonus_cooldown_reduction_25" "Random Talent"
+    "DOTA_Tooltip_ability_special_bonus_cooldown_reduction_30" "Random Talent"
+    "DOTA_Tooltip_ability_special_bonus_cooldown_reduction_40" "Random Talent"
 
     "DOTA_Tooltip_ability_drow_ranger_marksmanship_redux"                                 "Marksmanship Redux"
     "DOTA_Tooltip_ability_drow_ranger_marksmanship_redux_Description"                     "Drow's experiences in battle improve her accuracy and effectiveness in combat, providing a passive bonus to Agility. Grants no bonus if there are enemy heroes within 400 range. <font color='#70EA72'>Does not have Splinter upgrade</font>."

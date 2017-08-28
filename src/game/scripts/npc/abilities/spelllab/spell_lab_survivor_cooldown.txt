@@ -7,7 +7,6 @@
         "AbilityTextureName"                                                   "custom/survival_cooldown"
         "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityCastRange"              "3000"
         "HasScepterUpgrade"                                                    "0"
         "AbilitySpecial"
         {
@@ -19,7 +18,29 @@
         }
         "ReduxFlags"                                                           "cooldown"
         "ReduxBans"                                                            ""
-        "ReduxPerks"                                                           ""
+        //"ReduxPerks"                                                           ""
         "ReduxCost"                                                            "0"
+    }
+
+    "spell_lab_survivor_cooldown_op"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/spell_lab/survivor/cooldown.lua"
+        "AbilityTextureName"                                                   "custom/survival_cooldown_op"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "HasScepterUpgrade"                                                    "0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                        "bonus"                     "1.0 1.5 2.0 2.5"
+            }
+        }
+        "ReduxFlags"                                                           "cooldown"
+        "ReduxBans"                                                            ""
+        //"ReduxPerks"                                                           ""
+        "ReduxCost"                                                            "120"
     }
 }

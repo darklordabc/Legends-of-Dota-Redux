@@ -315,7 +315,7 @@
         "ID"                            "5491"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
         "MaxLevel"              "4"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"     
-
+        "ReduxFlags"    "mana"
         // Special
         //-------------------------------------------------------------------------------------------------------------
         "AbilitySpecial"
@@ -1217,7 +1217,7 @@
     }
     "crystal_maiden_brilliance_aura"
     {
-        "ReduxFlags"                                                           "support"
+        "ReduxFlags"                                                           "support | mana"
         "ReduxPerks"                                                           "support | aura"
         "ReduxCost"                                                            "10"
     }
@@ -1334,7 +1334,7 @@
     }
     "keeper_of_the_light_chakra_magic"
     {
-        "ReduxFlags"                                                           "support | cooldown"
+        "ReduxFlags"                                                           "support | cooldown | mana"
         "ReduxPerks"                                                           "support"
     }
     "lich_frost_armor"
@@ -1619,7 +1619,7 @@
     }
     "nyx_assassin_burrow"
     {
-        "ReduxFlags"                                                           "mobility | invis"
+        "ReduxFlags"                                                           "mobility | invis | mana"
         "ReduxPerks"                                                           "mobility | earth"
         "ReduxCost"                                                            "20"
         "ReduxBans"                                                            "nyx_assassin_burrow_redux"
@@ -1846,7 +1846,7 @@
     }
     "medusa_mana_shield"
     {
-        "ReduxFlags"                                                           "tank"
+        "ReduxFlags"                                                           "tank | mana"
     }
     "legion_commander_moment_of_courage"
     {
@@ -2425,7 +2425,7 @@
     }
     "keeper_of_the_light_mana_leak"
     {
-        "ReduxFlags"                                                           "stun"
+        "ReduxFlags"                                                           "stun | mana"
     }
     "centaur_hoof_stomp"
     {
@@ -3066,7 +3066,7 @@
     }
     "lion_mana_drain"
     {
-        "ReduxPerks"                                                           "drain | channeled | demon"
+        "ReduxPerks"                                                           "drain | channeled | demon | mana"
     }
     "death_prophet_spirit_siphon"
     {
@@ -3141,6 +3141,7 @@
     {
         "ReduxPerks"                                                           "aura"
         "ReduxCosts"    "120"
+        "ReduxFlags"    "mana"
         "ReduxBans"                                                            "death_prophet_witchcraft"
         "ReduxBanCategory"                                                     "ToggleSpells"
     }
