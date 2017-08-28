@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
 *
 - Add Mana to categories
 - Added Perk for Shadow Demon
+- Changed Survival Spell Amp and Cooldown again
 
 ## 9.2
 - Astral Spirit Return will no longer trigger Essence Aura

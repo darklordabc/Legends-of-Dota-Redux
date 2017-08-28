@@ -1497,8 +1497,8 @@
     "warning_angel_arena_transmute" "<font color=\'#FF4949\'>Warning:</font> This ability has strange coding, cooldown manipulation abilities will not work on it.\n"
     "warning_chen_holy_persuasion" "<font color=\'#FF4949\'>Warning:</font> Persuading Ancients requires levels in <font color=\'#70EA72\'>Hand of God</font> to have any effect.\n"
     "warning_centaur_return" "<font color=\'#FF4949\'>Warning:</font> Does not damage buildings.\n"
-    "warning_spell_lab_survivor_cooldown" "<font color=\'#FF4949\'>Warning:</font> Does not gain stacks unless there is an enemy Hero within 3000 range.\n"
-    "warning_spell_lab_survivor_spell_boost" "<font color=\'#FF4949\'>Warning:</font> Does not gain stacks unless there is an enemy Hero within 3000 range.\n"
+    "warning_spell_lab_survivor_cooldown" "<font color=\'#FF4949\'>Warning:</font> Does not gain stacks unless you have been seen by the enemy team in the last 45 seconds.\n"
+    "warning_spell_lab_survivor_spell_boost" "<font color=\'#FF4949\'>Warning:</font> Does not gain stacks unless you have been seen by the enemy team in the last 45 seconds.\n"
 
     "credit_mercy_caduceus_healing" "<font color=\'#7D7D7D\'>Credits: Firetoad | github.com/fcalife</font>"
     "credit_mercy_caduceus_power" "<font color=\'#7D7D7D\'>Credits: Firetoad | github.com/fcalife</font>"
@@ -5003,7 +5003,7 @@
 
 
 		"DOTA_Tooltip_ability_spell_lab_survivor_cooldown"					"Survival of the Fittest: Cooldown"
-		"DOTA_Tooltip_ability_spell_lab_survivor_cooldown_Description"		"Your survival instinct is enhanced. You gain Cooldown Reduction for every minute you survive without dying. Does not gain stacks unless there is an enemy Hero within 3000 range."
+		"DOTA_Tooltip_ability_spell_lab_survivor_cooldown_Description"		"Your survival instinct is enhanced. You gain Cooldown Reduction for every minute you survive without dying. Does not gain stacks unless you have been seen by the enemy team in the last 45 seconds."
 		"DOTA_Tooltip_ability_spell_lab_survivor_cooldown_bonus"			"%COOLDOWN REDUCTION PER MINUTE:"
 		"DOTA_Tooltip_ability_spell_lab_survivor_cooldown_Note0"			"Fully retroactive. Reincarnate effects won't reset the stack."
 		"DOTA_Tooltip_spell_lab_survivor_cooldown_modifier"					"Survival of the Fittest: Cooldown"
@@ -5066,7 +5066,7 @@
 		"DOTA_Tooltip_spell_lab_survivor_move_speed_modifier_Description" "Movement Speed gained through staying alive."
 
 		"DOTA_Tooltip_ability_spell_lab_survivor_spell_boost"					"Survival of the Fittest: Spell Amplification"
-		"DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_Description"		"Your survival instinct is enhanced. You gain Spell Amplification for every minute you survive without dying. Does not gain stacks unless there is an enemy Hero within 3000 range."
+		"DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_Description"		"Your survival instinct is enhanced. You gain Spell Amplification for every minute you survive without dying. Does not gain stacks unless you have been seen by the enemy team in the last 45 seconds."
 		"DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_bonus"			"%SPELL AMP PER MINUTE:"
 		"DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_Note0"			"Fully retroactive. Reincarnate effects won't reset the stack."
 		"DOTA_Tooltip_spell_lab_survivor_spell_boost_modifier"					"Survival of the Fittest: Spell Amplification"
