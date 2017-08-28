@@ -48,7 +48,7 @@
             "07"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "duration"                                             "60"
+                "duration"                                             "80"
             }
         }
         "precache"
