@@ -1141,7 +1141,7 @@
     }
     "winter_wyvern_arctic_burn"
     {
-        "ReduxFlags"                                                           "upgradeable | attack_modifier"
+        "ReduxFlags"                                                           "upgradeable | attack_modifier | ice"
         "ReduxPerks"                                                           "attack_modifier"
         "ReduxCost"                                                            "20"
     }
@@ -2105,7 +2105,7 @@
     {
         "MaxLevel"                                                             "4"
         "ReduxFlags"                                                           "attack_modifier"
-        "ReduxPerks"                                                           "neutral | attack_modifier"
+        "ReduxPerks"                                                           "neutral | attack_modifier | ice"
         // Special
         //-------------------------------------------------------------------------------------------------------------
         "AbilitySpecial"
