@@ -35,12 +35,8 @@ function spectral_form_mod:OnAttackLanded( keys )
 	self.reduceDamage = false
 end
 
---dont remember what im supposed to return for this
 function spectral_form_mod:GetModifierDamageOutgoing_Percentage()
 	if IsServer() and self.reduceDamage then
-		--return reduction
-		--return reduction*0.01
-		--return 100 - reduction
 		return (-1) * self:GetAbility():GetSpecialValueFor("building_reduction")
 	end
 end
