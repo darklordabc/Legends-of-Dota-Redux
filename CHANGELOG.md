@@ -2,6 +2,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 9.4
+- Fixed Projectiles missing on compendium towers
+
 ## 9.3
 - Marksmanship agility is now a single player ability
 - Added Redux version of marksmanship witout the aghs upgrade, but made a new ability splinter which is the aghs split-shot component
