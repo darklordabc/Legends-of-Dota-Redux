@@ -73,12 +73,12 @@ function perkAncientApparition(filterTable)
   if ability then
     if caster:HasModifier("modifier_npc_dota_hero_ancient_apparition_perk") then
       if ability:HasAbilityFlag("ice") then
-	Timers:CreateTimer(function() trackModifier(filterTable) end)
         local modifierDuration = filterTable["duration"]
-	if modifierDuration == -1 then
-	  modifierDuration = 3
-	end
+        if modifierDuration == -1 then
+          modifierDuration = 3
+        end
         if parent:GetTeamNumber() ~= caster:GetTeamNumber() then
+          Timers:CreateTimer(function() trackModifier(filterTable) end)
           parent:AddNewModifier(caster,nil,"modifier_npc_dota_hero_ancient_apparition_perk_heal_freeze",{duration = modifierDuration})
         end
       end
@@ -97,13 +97,9 @@ function trackModifier( filterTable )
   local modifierName = filterTable["name_const"]
   local duration = filterTable["duration"]
 
-  --track modifier if on an enemy
-  if parent:GetTeamNumber() == caster:GetTeamNumber() then return end
-
   Timers:CreateTimer(0.1, function()
   local modifier = parent:FindModifierByNameAndCaster(modifierName, caster)
   if not modifier or modifier:IsNull() then return end
-    local remaining = modifier:GetRemainingTime()
     local elapsed = modifier:GetElapsedTime()
 
     modifier.prevElapsed = modifier.prevElapsed or elapsed
