@@ -1141,8 +1141,8 @@
     }
     "winter_wyvern_arctic_burn"
     {
-        "ReduxFlags"                                                           "upgradeable | attack_modifier | ice"
-        "ReduxPerks"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "upgradeable | attack_modifier"
+        "ReduxPerks"                                                           "attack_modifier | ice"
         "ReduxCost"                                                            "20"
     }
     "witch_doctor_death_ward"
