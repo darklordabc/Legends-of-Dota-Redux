@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 - Fixed Bounty Runes being broken if players disconnected and shared xp is on
 - Worked a bit more on AA perk
 - Spectral Form now does reduced damage to structures
+- Spell Echo now works with point target abilities, they echo in the same place
 
 ## 9.3
 - Marksmanship agility is now a single player ability
