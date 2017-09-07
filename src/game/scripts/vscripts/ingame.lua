@@ -1472,12 +1472,14 @@ function Ingame:BountyRunePickupFilter(filterTable)
 
         for i=0,DOTA_MAX_TEAM do
             local pID = PlayerResource:GetNthPlayerIDOnTeam(team,i)
-            
             if PlayerResource:IsValidPlayerID(pID) then
-                local otherHero = PlayerResource:GetPlayer(pID):GetAssignedHero()
+                local player = PlayerResource:GetPlayer(pID)
+                if player ~= nil then
+                    local otherHero = player:GetAssignedHero()
 
-                otherHero:AddExperience(math.ceil(filterTable.xp_bounty / util:GetActivePlayerCountForTeam(team)),0,false,false)
-                otherHero.expSkip = true
+                    otherHero:AddExperience(math.ceil(filterTable.xp_bounty / util:GetActivePlayerCountForTeam(team)),0,false,false)
+                    otherHero.expSkip = true
+                end
             end
         end
 
