@@ -6124,7 +6124,7 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
             local draftArray = self.draftArrays[draftID] or {}
             local heroDraft = draftArray.heroDraft or {}
             local abilityDraft = draftArray.abilityDraft or {}
-
+            
             if self.maxDraftHeroes > 0 then
                 local heroName = self.abilityHeroOwner[abilityName]
 
@@ -6133,7 +6133,7 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
                 end
             end
 
-            if self.maxDraftSkills > 0 then
+            if not self.botPlayers.all[playerID] then
                 if not abilityDraft[abilityName] then
                     shouldAdd = false
                 end
