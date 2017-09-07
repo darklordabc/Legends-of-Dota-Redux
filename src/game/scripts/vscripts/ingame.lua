@@ -1472,6 +1472,7 @@ function Ingame:BountyRunePickupFilter(filterTable)
 
         for i=0,DOTA_MAX_TEAM do
             local pID = PlayerResource:GetNthPlayerIDOnTeam(team,i)
+            
             if PlayerResource:IsValidPlayerID(pID) then
                 local otherHero = PlayerResource:GetPlayer(pID):GetAssignedHero()
 
