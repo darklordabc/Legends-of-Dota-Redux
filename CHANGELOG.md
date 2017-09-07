@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 *
 - Fixed Bounty runes spawning in the river at game start (They shouldnt)
 - Reduced the amount of gold military training gives
+- Splinter now has higher damage reduction at earlier levels
 
 ## 9.3
 - Marksmanship agility is now a single player ability
