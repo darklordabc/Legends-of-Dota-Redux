@@ -455,6 +455,24 @@ function Ingame:onStart()
 
     end
 
+    -- Remove powerup runes, spawned before 2 minutes
+    Timers:CreateTimer(function ()
+        if math.floor(GameRules:GetDOTATime(false, false)/60) < 2 then
+            local spawners = Entities:FindAllByClassname("dota_item_rune_spawner_powerup")
+            for k,v in ipairs(spawners) do
+                if v ~= nil then
+                    local nearbyRunes = Entities:FindAllByClassnameWithin("dota_item_rune", v:GetOrigin(), 400)
+                    for _,rune in ipairs(nearbyRunes) do
+                        if rune ~= nil then
+                            UTIL_Remove(rune)
+                        end
+                    end
+                end
+            end
+            return 0.1
+        end
+    end, 'removeRunes', 0.1)
+
     --Attempt to enable cheats
     Convars:SetBool("sv_cheats", true)
 
