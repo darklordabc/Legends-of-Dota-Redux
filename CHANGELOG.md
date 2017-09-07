@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 9.4
 - Fixed Projectiles missing on compendium towers
 - Fixed Bounty Runes being broken if players disconnected and shared xp is on
+- Worked a bit more on AA perk
 
 ## 9.3
 - Marksmanship agility is now a single player ability
