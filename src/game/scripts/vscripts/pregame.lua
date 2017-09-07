@@ -237,28 +237,24 @@ function Pregame:init()
     local needBounty = false
     GameRules:GetGameModeEntity():SetRuneSpawnFilter(function(context, runeStuff)
         totalRunes = totalRunes + 1
-        if totalRunes < 3 then
-            runeStuff.rune_type = DOTA_RUNE_BOUNTY
-        else
-            if totalRunes % 2 == 1 then
-                if math.random() < 0.5 then
-                    needBounty = false
-                    runeStuff.rune_type = DOTA_RUNE_BOUNTY
-                else
-                    needBounty = true
-                    runeStuff.rune_type = util:pickRandomRune()
-                end
-            else
-                if needBounty then
-                    runeStuff.rune_type = DOTA_RUNE_BOUNTY
-                else
-                    runeStuff.rune_type = util:pickRandomRune()
-
-                end
-
-                -- No longer need a bounty rune
+        if totalRunes % 2 == 1 then
+            if math.random() < 0.5 then
                 needBounty = false
+                runeStuff.rune_type = DOTA_RUNE_BOUNTY
+            else
+                needBounty = true
+                runeStuff.rune_type = util:pickRandomRune()
             end
+        else
+            if needBounty then
+                runeStuff.rune_type = DOTA_RUNE_BOUNTY
+            else
+                runeStuff.rune_type = util:pickRandomRune()
+
+            end
+
+            -- No longer need a bounty rune
+            needBounty = false
         end
 
         return true
