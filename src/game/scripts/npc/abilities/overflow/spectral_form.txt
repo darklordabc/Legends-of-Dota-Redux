@@ -69,7 +69,7 @@
 			"07"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"building_reduction"				"50"
+				"building_reduction"				"80"
 			}
 		}
 	}
