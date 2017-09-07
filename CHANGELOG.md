@@ -8,6 +8,8 @@ All notable changes to this project will be documented in this file.
 - Worked a bit more on AA perk
 - Spectral Form now does reduced damage to structures
 - Spell Echo now works with point target abilities, they echo in the same place
+*
+- Fixed Bounty runes spawning in the river at game start (They shouldnt)
 
 ## 9.3
 - Marksmanship agility is now a single player ability
