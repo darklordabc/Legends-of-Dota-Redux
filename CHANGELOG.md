@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 - Spell Echo now works with point target abilities, they echo in the same place
 *
 - Fixed Bounty runes spawning in the river at game start (They shouldnt)
+- Reduced the amount of gold military training gives
 
 ## 9.3
 - Marksmanship agility is now a single player ability
