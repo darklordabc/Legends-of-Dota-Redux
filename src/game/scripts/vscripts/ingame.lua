@@ -636,7 +636,7 @@ end
 function Ingame:CheckConsumableItems()
 
     local itemTable = LoadKeyValues('scripts/kv/consumable_items.kv')
-    for i=0,PlayerResource:GetTeamPlayerCount() do
+    for i=0,24 do
         if PlayerResource:IsValidTeamPlayerID(i) and not util:isPlayerBot(i) then
             local hero = PlayerResource:GetSelectedHeroEntity(i)
             if hero and IsValidEntity(hero) then
