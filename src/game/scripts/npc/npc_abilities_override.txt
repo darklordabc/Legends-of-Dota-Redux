@@ -1292,7 +1292,7 @@
     }
     "skeleton_king_vampiric_aura"
     {
-        "ReduxFlags"                                                           "support | attack_modifier"
+        "ReduxFlags"                                                           "support | attack_modifier | semi_passive"
         "ReduxPerks"                                                           "support | attack_modifier | aura"
         "ReduxCost"                                                            "10"
     }
