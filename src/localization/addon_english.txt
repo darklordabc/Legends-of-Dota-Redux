@@ -1026,7 +1026,7 @@
     "lodFailedInvalidAbility"                       "'{abilityName}' is not a valid ability."
     "lodFailedTooManyUlts"                          "You have {maxUlts}/{maxUlts} ultimate abilities."
     "lodFailedTooManyRegulars"                      "You have {maxRegulars}/{maxRegulars} regular abilities."
-    "lodFailedTooManyPassives"                      "You can't pick more than 3 powerful passives."
+    "lodFailedTooManyPassives"                      "You can't pick more than 3 passives. This is experimental."
     "lodFailedTrollCombo"                           "'{ab1}' can not be picked with '{ab2}' because it is considered a troll combination and troll combinations have been banned."
     "lodFailedUnknownCategory"                      "'{ab}' does not belong to a valid category of skills. (You will only see this error if Redux has been configured incorrectly)."
     "lodFailedBannedCategory"                       "'{ab}' is part of the '{cat}' category which is not allowed in this match."
