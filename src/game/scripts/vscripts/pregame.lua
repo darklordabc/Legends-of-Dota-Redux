@@ -5720,7 +5720,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
     	local powerfulPassives = 0
     	for _,buildAbility in pairs(newBuild) do
     		-- Check that ability is passive and is powerful ability
-    		if SkillManager:isPassive(buildAbility) and self.spellCosts[abilityName] >= 60 then
+    		if SkillManager:isPassive(buildAbility) and self.spellCosts[abilityName] ~= nil and self.spellCosts[abilityName] >= 60 then
     			powerfulPassives = powerfulPassives + 1
     		end
     	end
