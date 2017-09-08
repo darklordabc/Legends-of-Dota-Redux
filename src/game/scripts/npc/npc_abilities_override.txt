@@ -1911,7 +1911,7 @@
     }
     "doom_bringer_infernal_blade"
     {
-        "ReduxFlags"                                                           "crit | attack_modifier"
+        "ReduxFlags"                                                           "crit | attack_modifier | semi_passive"
         "ReduxPerks"                                                           "demon | attack_modifier | fire | autocast_basic"
         "ReduxCost"                                                            "20"
     }
@@ -2149,14 +2149,14 @@
     }
     "huskar_burning_spear"
     {
-        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "attack_modifier | semi_passive"
         "ReduxPerks"                                                           "attack_modifier | fire | self_damage | autocast_basic"
         "ReduxCost"                                                            "10"
         "ReduxBans"                                                            "batrider_sticky_napalm | spell_lab_symbiotic"
     }
     "drow_ranger_frost_arrows"
     {
-        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "attack_modifier | semi_passive"
         "ReduxPerks"                                                           "attack_modifier | ice | autocast_basic"
     }
     "antimage_mana_break"
@@ -2167,7 +2167,7 @@
     }
     "clinkz_searing_arrows"
     {
-        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "attack_modifier | semi_passive" 
         "ReduxPerks"                                                           "attack_modifier | fire | autocast_basic"
     }
     "abaddon_frostmourne"
@@ -2199,12 +2199,12 @@
     }
     "jakiro_liquid_fire"
     {
-        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "attack_modifier | semi_passive"
         "ReduxPerks"                                                           "attack_modifier | fire | autocast_basic | explosive"
     }
     "silencer_glaives_of_wisdom"
     {
-        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "attack_modifier | semi_passive"
         "ReduxPerks"                                                           "attack_modifier | autocast_basic"
         "ReduxCost"                                                            "30"
     }
@@ -2223,7 +2223,7 @@
     }
     "viper_poison_attack"
     {
-        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "attack_modifier | semi_passive"
         "ReduxPerks"                                                           "attack_modifier | poison | autocast_basic"
         "ReduxBans"                                                            "batrider_sticky_napalm"
     }
@@ -2235,7 +2235,7 @@
     }
     "obsidian_destroyer_arcane_orb"
     {
-        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "attack_modifier | semi_passive"
         "ReduxPerks"                                                           "attack_modifier | autocast_basic"
         "ReduxCost"                                                            "20"
     }
