@@ -237,28 +237,24 @@ function Pregame:init()
     local needBounty = false
     GameRules:GetGameModeEntity():SetRuneSpawnFilter(function(context, runeStuff)
         totalRunes = totalRunes + 1
-        if totalRunes < 3 then
-            runeStuff.rune_type = DOTA_RUNE_BOUNTY
-        else
-            if totalRunes % 2 == 1 then
-                if math.random() < 0.5 then
-                    needBounty = false
-                    runeStuff.rune_type = DOTA_RUNE_BOUNTY
-                else
-                    needBounty = true
-                    runeStuff.rune_type = util:pickRandomRune()
-                end
-            else
-                if needBounty then
-                    runeStuff.rune_type = DOTA_RUNE_BOUNTY
-                else
-                    runeStuff.rune_type = util:pickRandomRune()
-
-                end
-
-                -- No longer need a bounty rune
+        if totalRunes % 2 == 1 then
+            if math.random() < 0.5 then
                 needBounty = false
+                runeStuff.rune_type = DOTA_RUNE_BOUNTY
+            else
+                needBounty = true
+                runeStuff.rune_type = util:pickRandomRune()
             end
+        else
+            if needBounty then
+                runeStuff.rune_type = DOTA_RUNE_BOUNTY
+            else
+                runeStuff.rune_type = util:pickRandomRune()
+
+            end
+
+            -- No longer need a bounty rune
+            needBounty = false
         end
 
         return true
@@ -3921,6 +3917,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('neutralMultiply', this.optionStore['lodOptionNeutralMultiply'])
         OptionManager:SetOption('laneMultiply', this.optionStore['lodOptionLaneMultiply'])
         OptionManager:SetOption('useFatOMeter', this.optionStore['lodOptionCrazyFatOMeter'])
+        OptionManager:SetOption('universalShops', this.optionStore['lodOptionCrazyUniversalShop'])
         OptionManager:SetOption('allowIngameHeroBuilder', this.optionStore['lodOptionIngameBuilder'] == 1)
         --OptionManager:SetOption('botBonusPoints', this.optionStore['lodOptionBotsBonusPoints'] == 1)
 
@@ -6141,7 +6138,7 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
             local draftArray = self.draftArrays[draftID] or {}
             local heroDraft = draftArray.heroDraft or {}
             local abilityDraft = draftArray.abilityDraft or {}
-
+            
             if self.maxDraftHeroes > 0 then
                 local heroName = self.abilityHeroOwner[abilityName]
 
@@ -6150,7 +6147,7 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
                 end
             end
 
-            if self.maxDraftSkills > 0 then
+            if not self.botPlayers.all[playerID] then
                 if not abilityDraft[abilityName] then
                     shouldAdd = false
                 end
@@ -7338,8 +7335,8 @@ function Pregame:fixSpawnedHero( spawnedUnit )
     }
 
     local disabledPerks = {
-        npc_dota_hero_windrunner = false,
-        npc_dota_hero_shadow_demon = true,
+        --npc_dota_hero_windrunner = false,
+        --npc_dota_hero_shadow_demon = true,
         -- npc_dota_hero_spirit_breaker = true,
         --npc_dota_hero_spirit_slardar = true,
         -- npc_dota_hero_chaos_knight = true,

@@ -2,6 +2,39 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 9.4
+- Fixed Projectiles missing on compendium towers
+- Fixed Bounty Runes being broken if players disconnected and shared xp is on
+- Worked a bit more on AA perk
+- Spectral Form now does reduced damage to structures
+- Spell Echo now works with point target abilities, they echo in the same place
+*
+- Fixed Bounty runes spawning in the river at game start (They shouldnt)
+- Reduced the amount of gold military training gives
+- Splinter now has higher damage reduction at earlier levels
+- Hopefully fixed bug where items did not convert into consumeable versions
+
+## 9.3
+- Marksmanship agility is now a single player ability
+- Added Redux version of marksmanship witout the aghs upgrade, but made a new ability splinter which is the aghs split-shot component
+- Cooldown and Spell Amp survivor now require you to be near an enemy hero
+- Removed cooldown reduction talents
+- Fixed Astral Imprison not doing damage
+- Hopefully fixed AA perk
+- Glaives Int Steal is now ultimate ability
+- You can now vote to enable universal shops with -us or -universalshops or from the vote menu. Requires 50% to succeed
+*
+- Add Mana to categories
+- Added Perk for Shadow Demon
+- Changed Soft Spell Amp and Cooldown again
+- Changed how Soft Cooldown works, it should no stack with other sources of cooldown reduction
+- Added singleplayer OP versions of Soft Spell Amp and Cooldown
+- Vote cooldowns reduced to 150 seconds instead of 300
+- Fixed Consumed assault cuirass dissapearing after death
+- Cyclone Trap: You can no longer be cycloned while u have the armour debuff, to prevent troll combos. Also, duration of traps has been increased by 20 seconds.
+- Changed Dazzle's Perk
+- Fixed Borrowed Time not applying cooldown reductions if it activates passively
+
 ## 9.2
 - Astral Spirit Return will no longer trigger Essence Aura
 - Disabled Mischeif for now because its buggy

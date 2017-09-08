@@ -18,7 +18,7 @@
         }
         "ReduxFlags"                                                           "mobility"
         "ReduxBans"                                                            ""
-        "ReduxPerks"                                                           ""
+        //"ReduxPerks"                                                           ""
         "ReduxCost"                                                            "0"
     }
 }

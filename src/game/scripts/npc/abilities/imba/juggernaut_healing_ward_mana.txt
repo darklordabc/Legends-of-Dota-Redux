@@ -93,6 +93,6 @@
                 }
             }
         }
-        "ReduxFlags"                                                           "dota_custom"
+        "ReduxFlags"                                                           "dota_custom | mana"
     }
 }

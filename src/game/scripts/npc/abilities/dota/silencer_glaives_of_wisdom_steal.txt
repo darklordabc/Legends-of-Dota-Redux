@@ -2,6 +2,7 @@
 	"silencer_glaives_of_wisdom_steal" {
 		"BaseClass" "ability_datadriven"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName" "custom/silencer_glaives_of_wisdom_steal"
 		"MaxLevel" "1"
 

@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Dazzle
---		Perk: Shallow Grave has double cast range and 50% cooldown reduction when picked by Dazzle.
+--		Perk: Support spells will have 25% cooldown reduction when cast by Dazzle.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_dazzle_perk", "abilities/hero_perks/npc_dota_hero_dazzle_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -20,7 +20,6 @@ function modifier_npc_dota_hero_dazzle_perk:IsHidden()
 	return false
 end
 --------------------------------------------------------------------------------------------------------
---------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_dazzle_perk:IsPurgable()
 	return false
 end
@@ -28,16 +27,31 @@ end
 function modifier_npc_dota_hero_dazzle_perk:RemoveOnDeath()
 	return false
 end
+--------------------------------------------------------------------------------------------------------
 -- Add additional functions
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_dazzle_perk:OnCreated(keys)
-    if IsServer() then
-        local caster = self:GetCaster()
-
-        if caster:HasAbility("dazzle_shallow_grave") and PlayerResource:GetSteamAccountID(caster:GetPlayerOwnerID()) > 0 and not caster:FindAbilityByName("dazzle_shallow_grave"):IsHidden() then
-	        self.grave = caster:AddAbility("dazzle_shallow_grave_perk")
-	        self.grave:SetHidden(true)
-	        caster:SwapAbilities("dazzle_shallow_grave","dazzle_shallow_grave_perk",false,true)
-        end
-    end
+	self.cooldownPercentReduction = 80
+	self.cooldownReduction = self.cooldownPercentReduction / 100
+	return true
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_dazzle_perk:DeclareFunctions()
+	local funcs = {
+	  MODIFIER_EVENT_ON_ABILITY_FULLY_CAST
+	}
+	return funcs
+end
+--------------------------------------------------------------------------------------------------------
+function modifier_npc_dota_hero_dazzle_perk:OnAbilityFullyCast(keys)
+  if IsServer() then
+    local hero = self:GetCaster()
+    local target = keys.target
+    local ability = keys.ability
+    if hero == keys.unit and ability and ability:HasAbilityFlag("support") then
+	  local cooldown = ability:GetCooldownTimeRemaining() * self.cooldownReduction
+      ability:EndCooldown()
+      ability:StartCooldown(cooldown)
+	end
+  end
 end

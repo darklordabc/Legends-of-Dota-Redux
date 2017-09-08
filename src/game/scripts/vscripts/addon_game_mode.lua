@@ -56,6 +56,8 @@ function Precache(context)
     end
     -- COMMENT THE ABOVE OUT IF YOU DO NOT WANT TO COMPILE ASSETS
     PrecacheResource("particle","particles/econ/events/battlecup/battle_cup_fall_destroy_flash.vpcf",context)
+    PrecacheResource("particle","particles/world_tower/tower_upgrade/ti7_radiant_tower_proj.vpcf",context)
+    PrecacheResource("particle","particles/world_tower/tower_upgrade/ti7_dire_tower_projectile.vpcf",context)
     PrecacheResource("soundfile","soundevents/game_sounds_heroes/game_sounds_monkey_king.vsndevts",context)
     PrecacheResource("soundfile","soundevents/memes_redux_sounds.vsndevts",context)
     PrecacheUnitByNameSync("npc_dota_lucifers_claw_doomling", context)
