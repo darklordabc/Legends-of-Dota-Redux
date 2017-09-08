@@ -1,9 +1,9 @@
 "DOTAAbilities"
 {
     "spawnlord_master_freeze"
-    {
+    {   
         "MaxLevel"                                                             "4"
-        "ReduxFlags"                                                           "bash | attack_modifier"
+        "ReduxFlags"                                                           "bash | attack_modifier | semi_passive"
         "ReduxPerks"                                                           "neutral | bash | attack_modifier | autocast_basic"
         "AbilitySpecial"
         {       
@@ -738,7 +738,7 @@
     }
     "abaddon_borrowed_time"
     {
-        "ReduxFlags"                                                           "upgradeable | wtfAutoBan"
+        "ReduxFlags"                                                           "upgradeable | wtfAutoBan | semi_passive"
         "ReduxCost"                                                            "80"
         "ReduxBans"                                                            "furion_teleportation | tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux | meepo_divided_we_stand | phoenix_supernova"
     }
@@ -938,8 +938,8 @@
         "ReduxCost"                                                            "10"
     }
     "magnataur_empower"
-    {
-        "ReduxFlags"                                                           "upgradeable | support | aoe_attack | attack_modifier"
+    {   
+        "ReduxFlags"                                                           "upgradeable | support | aoe_attack | attack_modifier | semi_passive"
         "ReduxPerks"                                                           "support | attack_modifier | rage"
         "ReduxCost"                                                            "20"
     }
@@ -1322,8 +1322,8 @@
         "ReduxPerks"                                                           "support"
     }
     "drow_ranger_trueshot"
-    {
-        "ReduxFlags"                                                           "support"
+    {       
+        "ReduxFlags"                                                           "support | semi_passive"
         "ReduxPerks"                                                           "support | aura"
         "ReduxCost"                                                            "30"
     }
@@ -1969,7 +1969,7 @@
     }
     "medusa_split_shot"
     {
-        "ReduxFlags"                                                           "aoe_attack | attack_modifier"
+        "ReduxFlags"                                                           "aoe_attack | attack_modifier | semi_passive"
         "ReduxPerks"                                                           "attack_modifier"
         "ReduxCost"                                                            "10"
         "ReduxBans"                                                            "holdout_multishot"
@@ -2058,7 +2058,7 @@
     }
     "kunkka_tidebringer"
     {
-        "ReduxFlags"                                                           "aoe_attack | attack_modifier"
+        "ReduxFlags"                                                           "aoe_attack | attack_modifier | semi_passive"
         "ReduxPerks"                                                           "attack_modifier | water | autocast_basic"
         "ReduxCost"                                                            "40"
     }
