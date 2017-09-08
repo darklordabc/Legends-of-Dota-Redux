@@ -5715,6 +5715,26 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
         end
     end
 
+    -- Limit powerful passives
+    if not (util:isSinglePlayerMode() or util:isCoop()) then
+    	local powerfulPassives = 0
+    	for _,buildAbility in pairs(newBuild) do
+    		-- Check that ability is passive and is powerful ability
+    		if SkillManager:isPassive(buildAbility) and self.spellCosts[abilityName] >= 60 then
+    			powerfulPassives = powerfulPassives + 1
+    		end
+    	end
+    	-- Check that we have 3 OP passives
+    	if powerfulPassives >= 4 then
+            network:sendNotification(player, {
+                sort = 'lodDanger',
+                text = 'lodFailedTooManyPassives'
+            })
+            self:PlayAlert(playerID)
+            return
+	    end
+    end
+
     -- Consider unique skills
     if self.optionStore['lodOptionAdvancedUniqueSkills'] == 1 then
         local team = PlayerResource:GetTeam(playerID)
