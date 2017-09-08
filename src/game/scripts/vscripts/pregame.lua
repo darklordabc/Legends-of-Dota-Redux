@@ -1462,15 +1462,15 @@ end
 
 -- Spawns all heroes (this should only be called once!)
 function Pregame:spawnAllHeroes()
-    local minPlayerID = 0
-    local maxPlayerID = 24
-
     if self.wispSpawning then
         return
     end
 
-    for playerID = minPlayerID,maxPlayerID-1 do
-        self:spawnPlayer(playerID)
+    for playerID = 0, DOTA_MAX_TEAM_PLAYERS - 1 do
+        -- Spawn only valid players
+        if PlayerResource:IsValidTeamPlayerID(playerID) then
+            self:spawnPlayer(playerID)
+        end
     end
 
     self:actualSpawnPlayer()
@@ -1527,10 +1527,10 @@ end
 
 function Pregame:actualSpawnPlayer(forceID)
     -- Is there someone to spawn?
-    if #self.spawnQueue <= 0 then return end
+    if #self.spawnQueue <= 0 and not forceID then return end
 
     -- Only spawn ONE player at a time!
-    if self.currentlySpawning then return end
+    if self.currentlySpawning and not forceID then return end
     self.currentlySpawning = true
 
     -- Grab a reference to self
@@ -1550,8 +1550,9 @@ function Pregame:actualSpawnPlayer(forceID)
         local playerID = forceID or table.remove(this.spawnQueue, 1)
 
         -- Don't allow a player to get two heroes
-        if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil then
-            UTIL_Remove(PlayerResource:GetSelectedHeroEntity(playerID))
+        local previousHero = PlayerResource:GetSelectedHeroEntity(playerID)
+        if previousHero then
+            UTIL_Remove(previousHero)
         end
 
         -- Grab their build
@@ -1559,7 +1560,7 @@ function Pregame:actualSpawnPlayer(forceID)
 
         -- Validate the player
         local player = PlayerResource:GetPlayer(playerID)
-        if player ~= nil then
+        if player then
             local heroName = self.selectedHeroes[playerID] or self:getRandomHero()
 
             local spawnTheHero = function()
@@ -1597,6 +1598,19 @@ function Pregame:actualSpawnPlayer(forceID)
             self.spawnedHeroesFor[playerID] = nil
 
             continueSpawning()
+
+            -- Actually, the correct way is to remove queue and spawn all heroes at the same time,
+            -- but it requires too many changes, so for now I made a patch
+            Timers:CreateTimer(function()
+                -- If player is connected
+                if PlayerResource:GetPlayer(playerID) then
+                    self.spawnedHeroesFor[playerID] = true
+                    self:actualSpawnPlayer(playerID)
+                else
+                    -- Wait some more
+                    return 0.2
+                end
+            end, DoUniqueString(''), 0.2)
         end
     end)
 
