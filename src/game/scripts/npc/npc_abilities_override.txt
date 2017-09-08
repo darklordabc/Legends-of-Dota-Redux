@@ -2979,7 +2979,7 @@
     "alchemist_goblins_greed"
     {
         "ReduxPerks"                                                           "scientific"
-        "ReduxCost"                                                            "110"
+        "ReduxCost"                                                            "30"
     }
     "gyrocopter_call_down"
     {
