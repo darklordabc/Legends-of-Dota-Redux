@@ -93,5 +93,6 @@
         }
         "ReduxFlags"                                                           "dota_custom"
         "ReduxCost"                                                            "10"
+        "ReduxBans"                                                            "brawler_str"
     }
 }

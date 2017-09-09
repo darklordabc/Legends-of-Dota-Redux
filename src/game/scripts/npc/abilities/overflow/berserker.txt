@@ -20,12 +20,12 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "speed"                                                "15"
+                "speed"                                                "5"
             }
             "03"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "duration"                                             "6"
+                "duration"                                             "10"
             }
             "04"
             {

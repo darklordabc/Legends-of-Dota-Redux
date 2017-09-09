@@ -42,5 +42,6 @@
         //"ReduxFlags"                                                           ""
         //"ReduxCost"                                                            ""
         //"ReduxBans"                                                            ""
+        "ReduxBans"                                                            "brawler_agi"
     }
 }
