@@ -6213,6 +6213,19 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
             end
         end
 
+        if not (util:isSinglePlayerMode() or util:isCoop()) then
+            local powerfulPassives = 0
+            for _,buildAbility in pairs(build) do
+                if SkillManager:isPassive(buildAbility) or self.flags["semi_passive"][buildAbility] ~= nil then -- and self.spellCosts[buildAbility] ~= nil and self.spellCosts[buildAbility] >= 60 then
+                    powerfulPassives = powerfulPassives + 1
+                end
+            end
+
+            if powerfulPassives >= 3 and SkillManager:isPassive(abilityName) or self.flags["semi_passive"][abilityName] ~= nil then
+                shouldAdd = false
+            end
+        end
+
         -- check bans
         if self.bannedAbilities[abilityName] then
             shouldAdd = false
