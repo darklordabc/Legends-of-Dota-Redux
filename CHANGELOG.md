@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file.
 *
 - Reduced the amount of attack speed per stack for Berserker, but increased the buff duration to 10 seconds
 - Marksmanships are now troll combo with their Brawler equivalents
+- Made Berserker's Rage a semi-passive and fixed Military and Berserker not counting as passives
 
 ## 9.3
 - Marksmanship agility is now a single player ability

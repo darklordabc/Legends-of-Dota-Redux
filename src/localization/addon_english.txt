@@ -1230,7 +1230,7 @@
 
     // New Abilities Bonus
     "newAbilitiesTitle"                             "Ability Bonus"
-    "newAbilitiesTooltip"                             "There are two types of ability bonuses. New Ability bonus (Gold) is when you pick an ability you have never used. Rare ability bonus (Blue) is when you pick a unpopular low-meta ability. Both give 250 gold bonus."
+    "newAbilitiesTooltip"                             "There are two types of ability bonuses. New Ability bonus (Gold) is when you pick an ability you have never used. Rare ability bonus (Blue) is when you pick a unpopular low-meta ability. Both give 1000 gold bonus."
     "balancedBuildTitle"                            "Balanced Build"
     "balancedBuildTooltip"                            "Balanced builds are builds with 3 or less passives. Gives 1000 gold bonus."
 

@@ -1898,7 +1898,7 @@
     }
     "troll_warlord_berserkers_rage"
     {
-        "ReduxFlags"                                                           "bash | attack_modifier"
+        "ReduxFlags"                                                           "bash | attack_modifier | semi_passive"
         "ReduxPerks"                                                           "bash | attack_modifier"
         "ReduxCost"                                                            "30"
         "ReduxBans"                                                            "lone_druid_true_form | tusk_walrus_kick"

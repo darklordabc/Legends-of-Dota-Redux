@@ -839,10 +839,10 @@ function Pregame:loadDefaultSettings()
 
     -- Selecting 6 new abilities grants 500 gold
     self:setOption("lodOptionNewAbilitiesThreshold", 20, true)
-    self:setOption("lodOptionNewAbilitiesBonusGold", 250, true)
+    self:setOption("lodOptionNewAbilitiesBonusGold", 1000, true)
     self:setOption("lodOptionGlobalNewAbilitiesThreshold", 75, true)
-    self:setOption("lodOptionGlobalNewAbilitiesBonusGold", 250, true)
-    self:setOption("lodOptionBalancedBuildBonusGold", 1500, true)
+    self:setOption("lodOptionGlobalNewAbilitiesBonusGold", 1000, true)
+    self:setOption("lodOptionBalancedBuildBonusGold", 0, true)
 end
 
 -- Gets stats for the given player
