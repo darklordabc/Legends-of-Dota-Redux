@@ -7743,4 +7743,11 @@
     "DOTA_Tooltip_ability_drow_ranger_marksmanship_redux_Lore"                            "The Drow Ranger is the epitome of archery prowess."
     "DOTA_Tooltip_ability_drow_ranger_marksmanship_redux_marksmanship_agility_bonus"      "BONUS AGILITY:"
 
+    "DOTA_Tooltip_ability_axe_berserkers_call_op"                                      "Berserker's Global Call"
+    "DOTA_Tooltip_ability_axe_berserkers_call_op_Description"                          "Axe taunts nearby enemy units, forcing them to attack him, while he gains bonus armor during the duration. <font color='#70EA72'>Much larger radius and duration</font>."
+    "DOTA_Tooltip_ability_axe_berserkers_call_op_Note0"                                "Affects units with spell immunity."
+    "DOTA_Tooltip_ability_axe_berserkers_call_op_Lore"                                 "Mogul Khan's warcry taunts opponents into engaging in an unconquerable battle with the Axe." 
+    "DOTA_Tooltip_ability_axe_berserkers_call_op_radius"                               "RADIUS:"
+    "DOTA_Tooltip_ability_axe_berserkers_call_op_bonus_armor"                          "BONUS ARMOR:"
+    "DOTA_Tooltip_ability_axe_berserkers_call_op_duration"                             "DURATION:"
 }

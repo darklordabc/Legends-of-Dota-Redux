@@ -221,6 +221,7 @@
 #base "abilities\dota\skeleton_king_reincarnation_redux.txt" 
 #base "abilities\dota\nevermore_necromastery_op.txt"
 #base "abilities\dota\alchemist_goblins_greed_op.txt"
+#base "abilities\dota\axe_berserkers_call_op.txt"
 #base "abilities\dota\batrider_flamebreak_op.txt"
 #base "abilities\dota\dragon_knight_dragon_blood_OP.txt"
 #base "abilities\dota\feast_redux.txt"
