@@ -3261,7 +3261,7 @@ function Pregame:isAllowed( abilityName )
         allowed = self.optionStore['lodOptionAdvancedNeutralAbilities'] == 1
     elseif cat == 'custom' then
         allowed = self.optionStore['lodOptionAdvancedCustomSkills'] == 1
-    elseif cat == 'dotaimba' then
+    elseif cat == 'superop' then
         allowed = self.optionStore['lodOptionAdvancedImbaAbilities'] == 1
     elseif cat == 'OP' then
         allowed = self.optionStore['lodOptionAdvancedOPAbilities'] == 0
@@ -5658,7 +5658,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
             allowed = self.optionStore['lodOptionAdvancedNeutralAbilities'] == 1
         elseif cat == 'custom' then
             allowed = self.optionStore['lodOptionAdvancedCustomSkills'] == 1
-        elseif cat == 'dotaimba' then
+        elseif cat == 'superop' then
             allowed = self.optionStore['lodOptionAdvancedImbaAbilities'] == 1
         elseif cat == 'OP' then
             allowed = self.optionStore['lodOptionAdvancedOPAbilities'] == 0

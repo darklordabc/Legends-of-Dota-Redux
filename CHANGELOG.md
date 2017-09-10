@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file.
 - Made Berserker's Rage a semi-passive and fixed Military and Berserker not counting as passives
 *
 - Added Bersekers Call OP for single player, and Witchcraft OP
+- Created 'Single Player Abilities' Skill Tab
 
 ## 9.3
 - Marksmanship agility is now a single player ability

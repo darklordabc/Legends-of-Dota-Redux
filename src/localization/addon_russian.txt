@@ -879,7 +879,7 @@
     "lodCategory_neutral"                           "Способности нейтралов"
     "lodCategory_OP"                                "Сверхсильные способности"
     "lodCategory_custom"                            "Пользовательские способности"
-    "lodCategory_dotaimba"                          "Dota IMBA способности"
+    "lodCategory_superop"                           "Dota IMBA способности"
 
     // Error messages
     "lodFailedToFindHero"                           "Пожалуйста, выберите допустимого героя."
