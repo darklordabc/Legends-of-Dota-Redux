@@ -1654,14 +1654,14 @@
     {
         "ReduxFlags"                                                           "mobility"
         "ReduxPerks"                                                           "mobility | blink"
-        "ReduxCost"                                                            "40"
+        "ReduxCost"                                                            "120"
         "ReduxBans"                                                            "nyx_assassin_burrow | nyx_assassin_burrow_redux"
     }
     "antimage_blink"
     {
         "ReduxFlags"                                                           "mobility"
         "ReduxPerks"                                                           "mobility | blink"
-        "ReduxCost"                                                            "40"
+        "ReduxCost"                                                            "120"
         "ReduxBans"                                                            "nyx_assassin_burrow | nyx_assassin_burrow_redux"
     }
     "storm_spirit_ball_lightning"

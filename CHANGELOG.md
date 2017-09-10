@@ -18,6 +18,7 @@ All notable changes to this project will be documented in this file.
 *
 - Added Bersekers Call OP for single player, and Witchcraft OP
 - Created 'Single Player Abilities' Skill Tab
+- Blinks are now single player abilities, redux versions added.
 
 ## 9.3
 - Marksmanship agility is now a single player ability

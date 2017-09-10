@@ -7758,4 +7758,16 @@
     "DOTA_Tooltip_ability_axe_berserkers_call_op_radius"                               "RADIUS:"
     "DOTA_Tooltip_ability_axe_berserkers_call_op_bonus_armor"                          "BONUS ARMOR:"
     "DOTA_Tooltip_ability_axe_berserkers_call_op_duration"                             "DURATION:"
+
+    "DOTA_Tooltip_ability_queenofpain_blink_redux"                                        "Blink Redux"
+    "DOTA_Tooltip_ability_queenofpain_blink_redux_Description"                            "Short distance teleportation that allows Queen of Pain to move in and out of combat. <font color='#70EA72'>Longer cooldown</font>."
+    "DOTA_Tooltip_ability_queenofpain_blink_redux_Lore"                                   "The Secret Queen lives up to her title, making her pain impossible to escape."
+    "DOTA_Tooltip_ability_queenofpain_blink_redux_Note0"                                  "You can use Blink to dodge incoming projectiles."
+    "DOTA_Tooltip_ability_queenofpain_blink_redux_blink_range"                            "RANGE:"
+
+    "DOTA_Tooltip_ability_antimage_blink_redux"                                           "Blink Redux"
+    "DOTA_Tooltip_ability_antimage_blink_redux_Description"                               "Short distance teleportation that allows Anti-Mage to move in and out of combat. <font color='#70EA72'>Longer cooldown</font>."
+    "DOTA_Tooltip_ability_antimage_blink_redux_Lore"                                      "In his encounter with the Dead Gods, Anti-Mage learned the value of being elusive."
+    "DOTA_Tooltip_ability_antimage_blink_redux_Note0"                                     "You can use Blink to dodge incoming projectiles."
+    "DOTA_Tooltip_ability_antimage_blink_redux_blink_range"                               "RANGE:"
 }
