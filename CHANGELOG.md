@@ -15,11 +15,12 @@ All notable changes to this project will be documented in this file.
 - Reduced the amount of attack speed per stack for Berserker, but increased the buff duration to 10 seconds
 - Marksmanships are now troll combo with their Brawler equivalents
 - Made Berserker's Rage a semi-passive and fixed Military and Berserker not counting as passives
-*
 - Added Bersekers Call OP for single player, and Witchcraft OP
 - Created 'Single Player Abilities' Skill Tab
 - Blinks are now single player abilities, redux versions added.
 - Disabled Shared XP in all_allowed, for now
+*
+- Added single player version of sun strike
 
 ## 9.3
 - Marksmanship agility is now a single player ability
