@@ -839,10 +839,10 @@ function Pregame:loadDefaultSettings()
 
     -- Selecting 6 new abilities grants 500 gold
     self:setOption("lodOptionNewAbilitiesThreshold", 20, true)
-    self:setOption("lodOptionNewAbilitiesBonusGold", 250, true)
+    self:setOption("lodOptionNewAbilitiesBonusGold", 1000, true)
     self:setOption("lodOptionGlobalNewAbilitiesThreshold", 75, true)
-    self:setOption("lodOptionGlobalNewAbilitiesBonusGold", 250, true)
-    self:setOption("lodOptionBalancedBuildBonusGold", 1500, true)
+    self:setOption("lodOptionGlobalNewAbilitiesBonusGold", 1000, true)
+    self:setOption("lodOptionBalancedBuildBonusGold", 0, true)
 end
 
 -- Gets stats for the given player
@@ -1697,6 +1697,7 @@ function Pregame:networkHeroes()
         nohero = true,
         donotrandom = true,
         underpowered = true,
+        semi_passive = true,
     }
     -- Prepare flags
     local flagsInverse = {}
@@ -3260,8 +3261,8 @@ function Pregame:isAllowed( abilityName )
         allowed = self.optionStore['lodOptionAdvancedNeutralAbilities'] == 1
     elseif cat == 'custom' then
         allowed = self.optionStore['lodOptionAdvancedCustomSkills'] == 1
-    elseif cat == 'dotaimba' then
-        allowed = self.optionStore['lodOptionAdvancedImbaAbilities'] == 1
+    elseif cat == 'superop' then
+        allowed = 1  -- The check if these abilities are allowed are processed elsewhere.
     elseif cat == 'OP' then
         allowed = self.optionStore['lodOptionAdvancedOPAbilities'] == 0
     elseif cat == nil then
@@ -5657,8 +5658,8 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
             allowed = self.optionStore['lodOptionAdvancedNeutralAbilities'] == 1
         elseif cat == 'custom' then
             allowed = self.optionStore['lodOptionAdvancedCustomSkills'] == 1
-        elseif cat == 'dotaimba' then
-            allowed = self.optionStore['lodOptionAdvancedImbaAbilities'] == 1
+        elseif cat == 'superop' then
+            allowed = 1 -- The check if these abilities are allowed are processed elsewhere.
         elseif cat == 'OP' then
             allowed = self.optionStore['lodOptionAdvancedOPAbilities'] == 0
         end
@@ -5727,6 +5728,27 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
             EmitAnnouncerSoundForPlayer(sound, playerID)
             return
         end
+    end
+
+    -- Limit powerful passives
+    if not (util:isSinglePlayerMode() or util:isCoop()) then
+    	local powerfulPassives = 0
+    	for _,buildAbility in pairs(newBuild) do
+    		-- Check that ability is passive and is powerful ability
+            -- Temporarily limit all passives, indepedent of their power
+    		if SkillManager:isPassive(buildAbility) or self.flags["semi_passive"][buildAbility] ~= nil then -- and self.spellCosts[buildAbility] ~= nil and self.spellCosts[buildAbility] >= 60 then
+    			powerfulPassives = powerfulPassives + 1
+    		end
+    	end
+    	-- Check that we have 3 OP passives
+    	if powerfulPassives >= 4 then
+            network:sendNotification(player, {
+                sort = 'lodDanger',
+                text = 'lodFailedTooManyPassives'
+            })
+            self:PlayAlert(playerID)
+            return
+	    end
     end
 
     -- Consider unique skills
@@ -6189,6 +6211,19 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
                         break
                     end
                 end
+            end
+        end
+
+        if not (util:isSinglePlayerMode() or util:isCoop()) then
+            local powerfulPassives = 0
+            for _,buildAbility in pairs(build) do
+                if SkillManager:isPassive(buildAbility) or self.flags["semi_passive"][buildAbility] ~= nil then -- and self.spellCosts[buildAbility] ~= nil and self.spellCosts[buildAbility] >= 60 then
+                    powerfulPassives = powerfulPassives + 1
+                end
+            end
+
+            if powerfulPassives >= 3 and SkillManager:isPassive(abilityName) or self.flags["semi_passive"][abilityName] ~= nil then
+                shouldAdd = false
             end
         end
 

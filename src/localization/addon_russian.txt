@@ -956,7 +956,7 @@
     "lodCategory_neutral"                           "Способности нейтралов"
     "lodCategory_OP"                                "Сверхсильные способности"
     "lodCategory_custom"                            "Пользовательские способности"
-    "lodCategory_dotaimba"                          "Dota IMBA способности"
+    "lodCategory_superop"                           "Dota IMBA способности"
     "lodCategory_mostused"                          "Часто используемые способности"
 
     // Error messages
@@ -968,6 +968,7 @@
     "lodFailedTooManyUlts"                          "Вы имеете{maxUlts}/{maxUlts} ульта/ультов"
     "lodFailedTooManyRegulars"                      "Вы имеете {maxRegulars}/{maxRegulars} обычные способности/обычных способностей."
     "lodFailedTooManyPassives"                      "Вы не можете выбрать более 3 пассивок."
+
     "lodFailedTrollCombo"                           "'{ab1}' нельзя выбрать вместе с '{ab2}' потому что гладиолус (эта комбинация запрещена)."
     "lodFailedUnknownCategory"                      "'{ab}' не относится к действующей категории навыков. (Вы увидите эту ошибку только если LoD сконфигурировался некорректно)."
     "lodFailedBannedCategory"                       "'{ab}' это часть '{cat}' категории, которая не разрешена в этом матче, так что поиздеваться над игроками не выйдет."

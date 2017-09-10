@@ -487,6 +487,45 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
                         end
                     end
                 end
+
+                local mabWitchOP = hero:FindAbilityByName('death_prophet_witchcraft_op')
+                if mabWitchOP then
+                    -- Grab the level of the ability
+                    local lvl = mabWitchOP:GetLevel()
+
+                    if lvl > 0 then
+                        local ab = hero:FindAbilityByName(keys.abilityname)
+
+                        if ab then
+                            local reduction = lvl * -4
+
+                            -- Octarine Core fix
+                            --if GameRules:isSource1() then
+                                if hero:HasModifier('modifier_item_octarine_core') or hero:HasModifier("modifier_item_octarine_core_consumable") then
+                                    reduction = reduction * 0.75
+                                end
+                            --end
+
+                            local timeRemaining = ab:GetCooldownTimeRemaining()
+                            local newCooldown = timeRemaining + reduction
+                            if newCooldown < 1 then
+                                newCooldown = 1
+                            end
+
+                            if newCooldown < timeRemaining then
+                                ab:EndCooldown()
+                                if newCooldown > 0 then
+                                    ab:StartCooldown(newCooldown)
+                                end
+                            end
+
+                            -- Mana refund
+                            local manaRefund = 5 + 5 * lvl
+                            local currentMana = hero:GetMana()
+                            hero:SetMana(currentMana + manaRefund)
+                        end
+                    end
+                end
             end
         end
     end

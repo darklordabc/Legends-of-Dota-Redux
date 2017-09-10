@@ -1015,7 +1015,7 @@
     "lodCategory_neutral"                           "Neutral Abilities"
     "lodCategory_OP"                                "Over Powered Abilities"
     "lodCategory_custom"                            "Custom Abilities"
-    "lodCategory_dotaimba"                          "Dota IMBA Abilities"
+    "lodCategory_superop"                           "Single Player abilities"
     "lodCategory_mostused"                          "Most Used Abilities"
 
     // Error messages
@@ -1026,6 +1026,7 @@
     "lodFailedInvalidAbility"                       "'{abilityName}' is not a valid ability."
     "lodFailedTooManyUlts"                          "You have {maxUlts}/{maxUlts} ultimate abilities."
     "lodFailedTooManyRegulars"                      "You have {maxRegulars}/{maxRegulars} regular abilities."
+    "lodFailedTooManyPassives"                      "You can't pick more than 3 passives. This is experimental."
     "lodFailedTrollCombo"                           "'{ab1}' can not be picked with '{ab2}' because it is considered a troll combination and troll combinations have been banned."
     "lodFailedUnknownCategory"                      "'{ab}' does not belong to a valid category of skills. (You will only see this error if Redux has been configured incorrectly)."
     "lodFailedBannedCategory"                       "'{ab}' is part of the '{cat}' category which is not allowed in this match."
@@ -1229,7 +1230,7 @@
 
     // New Abilities Bonus
     "newAbilitiesTitle"                             "Ability Bonus"
-    "newAbilitiesTooltip"                             "There are two types of ability bonuses. New Ability bonus (Gold) is when you pick an ability you have never used. Rare ability bonus (Blue) is when you pick a unpopular low-meta ability. Both give 250 gold bonus."
+    "newAbilitiesTooltip"                             "There are two types of ability bonuses. New Ability bonus (Gold) is when you pick an ability you have never used. Rare ability bonus (Blue) is when you pick a unpopular low-meta ability. Both give 1000 gold bonus."
     "balancedBuildTitle"                            "Balanced Build"
     "balancedBuildTooltip"                            "Balanced builds are builds with 3 or less passives. Gives 1000 gold bonus."
 
@@ -2378,6 +2379,14 @@
     //"DOTA_Tooltip_ability_death_prophet_witchcraft_carrion_swarm_mana_cost_adjust"    "MANA COST DECREASE:"
     //"DOTA_Tooltip_ability_death_prophet_witchcraft_exorcism_1_extra_spirits"      "ADDED EXORCISM SPIRITS:"
     "DOTA_Tooltip_ability_death_prophet_witchcraft_bonus_movement_speed"          "%BONUS MOVEMENT SPEED:"
+
+    "DOTA_Tooltip_ability_death_prophet_witchcraft_op"                                 "Witchcraft OP"
+    "DOTA_Tooltip_ability_death_prophet_witchcraft_op_Description"                     "Decreases the cooldowns of abilities by up to <font color='#70EA72'>16</font> seconds, a cooldown can not be lowered below 1 second. The Witchcraft cooldown reduction is applied before octarine core reduction. Will refund 10 mana per level of Witchcraft"
+    "DOTA_Tooltip_ability_death_prophet_witchcraft_op_Lore"                            "With each death, Krobelus adds necromantic power to her repertoire."
+    "DOTA_Tooltip_ability_death_prophet_witchcraft_op_carrion_swarm_cooldown_adjust"   "COOLDOWN DECREASE:"
+    //"DOTA_Tooltip_ability_death_prophet_witchcraft_op_carrion_swarm_mana_cost_adjust"    "MANA COST DECREASE:"
+    //"DOTA_Tooltip_ability_death_prophet_witchcraft_op_exorcism_1_extra_spirits"      "ADDED EXORCISM SPIRITS:"
+    "DOTA_Tooltip_ability_death_prophet_witchcraft_op_bonus_movement_speed"          "%BONUS MOVEMENT SPEED:"
 
     //flesh heap spells
     "DOTA_Tooltip_ability_pudge_flesh_heap_agility"         "Flesh Heap - Agility"
@@ -7742,4 +7751,23 @@
     "DOTA_Tooltip_ability_drow_ranger_marksmanship_redux_Lore"                            "The Drow Ranger is the epitome of archery prowess."
     "DOTA_Tooltip_ability_drow_ranger_marksmanship_redux_marksmanship_agility_bonus"      "BONUS AGILITY:"
 
+    "DOTA_Tooltip_ability_axe_berserkers_call_op"                                      "Berserker's Global Call"
+    "DOTA_Tooltip_ability_axe_berserkers_call_op_Description"                          "Axe taunts nearby enemy units, forcing them to attack him, while he gains bonus armor during the duration. <font color='#70EA72'>Much larger radius and duration</font>."
+    "DOTA_Tooltip_ability_axe_berserkers_call_op_Note0"                                "Affects units with spell immunity."
+    "DOTA_Tooltip_ability_axe_berserkers_call_op_Lore"                                 "Mogul Khan's warcry taunts opponents into engaging in an unconquerable battle with the Axe." 
+    "DOTA_Tooltip_ability_axe_berserkers_call_op_radius"                               "RADIUS:"
+    "DOTA_Tooltip_ability_axe_berserkers_call_op_bonus_armor"                          "BONUS ARMOR:"
+    "DOTA_Tooltip_ability_axe_berserkers_call_op_duration"                             "DURATION:"
+
+    "DOTA_Tooltip_ability_queenofpain_blink_redux"                                        "Blink Redux"
+    "DOTA_Tooltip_ability_queenofpain_blink_redux_Description"                            "Short distance teleportation that allows Queen of Pain to move in and out of combat. <font color='#70EA72'>Longer cooldown</font>."
+    "DOTA_Tooltip_ability_queenofpain_blink_redux_Lore"                                   "The Secret Queen lives up to her title, making her pain impossible to escape."
+    "DOTA_Tooltip_ability_queenofpain_blink_redux_Note0"                                  "You can use Blink to dodge incoming projectiles."
+    "DOTA_Tooltip_ability_queenofpain_blink_redux_blink_range"                            "RANGE:"
+
+    "DOTA_Tooltip_ability_antimage_blink_redux"                                           "Blink Redux"
+    "DOTA_Tooltip_ability_antimage_blink_redux_Description"                               "Short distance teleportation that allows Anti-Mage to move in and out of combat. <font color='#70EA72'>Longer cooldown</font>."
+    "DOTA_Tooltip_ability_antimage_blink_redux_Lore"                                      "In his encounter with the Dead Gods, Anti-Mage learned the value of being elusive."
+    "DOTA_Tooltip_ability_antimage_blink_redux_Note0"                                     "You can use Blink to dodge incoming projectiles."
+    "DOTA_Tooltip_ability_antimage_blink_redux_blink_range"                               "RANGE:"
 }

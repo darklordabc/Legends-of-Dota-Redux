@@ -19,7 +19,6 @@ All notable changes to this project will be documented in this file.
 - Added Bersekers Call OP for single player, and Witchcraft OP
 - Created 'Single Player Abilities' Skill Tab
 - Blinks are now single player abilities, redux versions added.
-- Tried turning of shared xp in all_allowed map
 - Disabled Shared XP in all_allowed, for now
 
 ## 9.3
