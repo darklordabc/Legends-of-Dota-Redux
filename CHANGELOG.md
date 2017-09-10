@@ -16,7 +16,7 @@ All notable changes to this project will be documented in this file.
 - Marksmanships are now troll combo with their Brawler equivalents
 - Made Berserker's Rage a semi-passive and fixed Military and Berserker not counting as passives
 *
-- Added Bersekers Call OP for single player
+- Added Bersekers Call OP for single player, and Witchcraft OP
 
 ## 9.3
 - Marksmanship agility is now a single player ability

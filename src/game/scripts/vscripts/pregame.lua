@@ -1697,6 +1697,7 @@ function Pregame:networkHeroes()
         nohero = true,
         donotrandom = true,
         underpowered = true,
+        semi_passive = true,
     }
     -- Prepare flags
     local flagsInverse = {}
