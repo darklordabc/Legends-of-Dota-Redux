@@ -6222,7 +6222,7 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
                 end
             end
 
-            if powerfulPassives >= 3 and SkillManager:isPassive(abilityName) or self.flags["semi_passive"][abilityName] ~= nil then
+            if powerfulPassives >= 3 and (SkillManager:isPassive(abilityName) or self.flags["semi_passive"][abilityName] ~= nil) then
                 shouldAdd = false
             end
         end
