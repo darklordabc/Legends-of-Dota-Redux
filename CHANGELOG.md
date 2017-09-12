@@ -24,6 +24,7 @@ All notable changes to this project will be documented in this file.
 - Blood Ward reflects higher percentage of damage
 - Blink support cost a little bit more mana
 - Fixed Undying Agi or Int not causing damage to normal units
+- Caduceus Staff: Healing, now has fixed 5 second cooldown and slightly higher manacost
 
 ## 9.3
 - Marksmanship agility is now a single player ability
