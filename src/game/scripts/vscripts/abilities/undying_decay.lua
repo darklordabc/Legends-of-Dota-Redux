@@ -5,25 +5,28 @@ function ScepterCheck( keys )
 	print("not working")
 	EmitSoundOn("Hero_Undying.Decay.Transfer", target)
 	EmitSoundOn("Hero_Undying.Decay.Target", target)
-	local scepterNameModifier = ""
-	local stacks = keys.stacks
-	if caster:HasScepter() then 
-		scepterNameModifier = "_scepter"
-		stacks = keys.scepterstacks
-	end
 	
 	ApplyDamage({victim = target, attacker = caster, damage = ability:GetSpecialValueFor("decay_damage"), damage_type = ability:GetAbilityDamageType(), ability = ability})
 	
-	ability:ApplyDataDrivenModifier(caster, caster, keys.modifierAlly..scepterNameModifier, {duration = ability:GetSpecialValueFor("decay_duration")})
-	ability:ApplyDataDrivenModifier(caster, caster, keys.modifierCounter, {duration = ability:GetSpecialValueFor("decay_duration")})
-	caster:SetModifierStackCount(keys.modifierCounter, caster, caster:GetModifierStackCount(keys.modifierCounter, caster) + stacks)
-	ability:ApplyDataDrivenModifier(caster, target, keys.modifierEnemy..scepterNameModifier, {duration = ability:GetSpecialValueFor("decay_duration")})
-	local decayLink = ParticleManager:CreateParticle(keys.particleLink, PATTACH_POINT_FOLLOW, target)
-			ParticleManager:SetParticleControlEnt(decayLink, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
-			ParticleManager:SetParticleControlEnt(decayLink, 1, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
-			ParticleManager:SetParticleControlEnt(decayLink, 3, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", (caster:GetAbsOrigin() + target:GetAbsOrigin())/2, true)
-	caster:CalculateStatBonus()
-	target:CalculateStatBonus()
+	if target:IsHero() then
+		local scepterNameModifier = ""
+		local stacks = keys.stacks
+		if caster:HasScepter() then 
+			scepterNameModifier = "_scepter"
+			stacks = keys.scepterstacks
+		end
+
+		ability:ApplyDataDrivenModifier(caster, caster, keys.modifierAlly..scepterNameModifier, {duration = ability:GetSpecialValueFor("decay_duration")})
+		ability:ApplyDataDrivenModifier(caster, caster, keys.modifierCounter, {duration = ability:GetSpecialValueFor("decay_duration")})
+		caster:SetModifierStackCount(keys.modifierCounter, caster, caster:GetModifierStackCount(keys.modifierCounter, caster) + stacks)
+		ability:ApplyDataDrivenModifier(caster, target, keys.modifierEnemy..scepterNameModifier, {duration = ability:GetSpecialValueFor("decay_duration")})
+		local decayLink = ParticleManager:CreateParticle(keys.particleLink, PATTACH_POINT_FOLLOW, target)
+		ParticleManager:SetParticleControlEnt(decayLink, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetAbsOrigin(), true)
+		ParticleManager:SetParticleControlEnt(decayLink, 1, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", caster:GetAbsOrigin(), true)
+		ParticleManager:SetParticleControlEnt(decayLink, 3, caster, PATTACH_POINT_FOLLOW, "attach_hitloc", (caster:GetAbsOrigin() + target:GetAbsOrigin())/2, true)
+		caster:CalculateStatBonus()
+		target:CalculateStatBonus()
+	end
 end
 
 function DecreaseModelSize( keys )
