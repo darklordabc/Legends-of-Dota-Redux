@@ -27,6 +27,7 @@ All notable changes to this project will be documented in this file.
 - Caduceus Staff: Healing, now has fixed 5 second cooldown and slightly higher manacost
 - Changed Warlock's Perk
 - Wards Ability now has fixed 3 max stack count, but replish time improves with levels
+- Fixed Crashing
 
 ## 9.3
 - Marksmanship agility is now a single player ability
