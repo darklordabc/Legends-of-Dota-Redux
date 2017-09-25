@@ -29,17 +29,17 @@
             "01"
             {
                 "var_type"		"FIELD_INTEGER"
-                "split_count"		"1 2 3"
+                "split_count"		"1 1 2"
             }
             "02"
             {
-                "var_type"		"FIELD_FLOAT"
+                "var_type"		"FIELD_FLOAT
                 "search_radius"		"375"
             }
             "03"
             {
                 "var_type"		"FIELD_INTEGER"
-                "damage_reduction"	"70 60 50"
+                "damage_reduction"	"80 70 60"
             }
         }
     }
