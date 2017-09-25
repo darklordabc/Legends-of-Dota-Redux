@@ -28,6 +28,7 @@ All notable changes to this project will be documented in this file.
 - Changed Warlock's Perk
 - Wards Ability now has fixed 3 max stack count, but replish time improves with levels
 - Fixed Crashing
+- Last Will: Now have only 4 level. (Same damage at max level)
 
 ## 9.3
 - Marksmanship agility is now a single player ability
