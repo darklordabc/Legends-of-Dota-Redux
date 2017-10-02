@@ -29,7 +29,7 @@
             "01"
             {
                 "var_type"		"FIELD_INTEGER"
-                "split_count"		"1 2 3"
+                "split_count"		"1 1 2"
             }
             "02"
             {
@@ -39,7 +39,7 @@
             "03"
             {
                 "var_type"		"FIELD_INTEGER"
-                "damage_reduction"	"70 60 50"
+                "damage_reduction"	"70 50 40"
             }
         }
     }
