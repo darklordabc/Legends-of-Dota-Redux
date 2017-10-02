@@ -3825,6 +3825,11 @@
         "TalentRequiredAbility"                                                   "lion_impale"
     }
 
+    "special_bonus_unique_lion_3"
+    {
+        "TalentRequiredAbility"                                                   "lion_finger_of_death"
+    }
+
     "special_bonus_unique_lone_druid_1"
     {
         "TalentRequiredAbility"                                                   "lone_druid_spirit_bear"

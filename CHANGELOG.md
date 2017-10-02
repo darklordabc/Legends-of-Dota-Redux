@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 - Limit Passives is now an optional mutator in dota map
 - If Tether is cast while the hero is a symbiote, it will have a 60 second cooldown instead of 12 (Troll combo prevention)
 - Burrows are now troll combos with Infest
+- Fixed Lion's lvl 20 talent not being replaced if you didnt have finger of death
 
 ## 9.4
 - Fixed Projectiles missing on compendium towers
