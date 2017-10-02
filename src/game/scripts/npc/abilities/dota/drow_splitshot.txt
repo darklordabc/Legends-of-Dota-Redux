@@ -33,7 +33,7 @@
             }
             "02"
             {
-                "var_type"		"FIELD_FLOAT
+                "var_type"		"FIELD_FLOAT"
                 "search_radius"		"375"
             }
             "03"
