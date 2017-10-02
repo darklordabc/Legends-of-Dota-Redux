@@ -2186,7 +2186,7 @@
     "DOTA_Tooltip_ability_slark_essence_shift_agility_lod_stat_loss"                    "ALL ATTRIBUTE LOSS:"
     "DOTA_Tooltip_ability_slark_essence_shift_agility_lod_duration"                     "DURATION:"
     "DOTA_Tooltip_modifier_slark_essence_shift_agility_datadriven_buff_counter"                         "Essence Shift (AGI)"
-    "DOTA_Tooltip_modifier_slark_essence_shift_agility_datadriven_buff_counter_Description"             "Stealing %dMODIFIER_PROPERTY_STATS_AGILITY_BONUS% intelligence."
+    "DOTA_Tooltip_modifier_slark_essence_shift_agility_datadriven_buff_counter_Description"             "Stealing %dMODIFIER_PROPERTY_STATS_AGILITY_BONUS% agility."
     "DOTA_Tooltip_modifier_slark_essence_shift_agility_datadriven_debuff_counter"           "Essence Shift (AGI)"
     "DOTA_Tooltip_modifier_slark_essence_shift_agility_datadriven_debuff_counter_Description"   "Losing %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS% of each attribute."
 
