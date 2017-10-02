@@ -1253,6 +1253,7 @@
         "ReduxFlags"                                                           "support | mobility"
         "ReduxPerks"                                                           "support | mobility"
         "ReduxCost"                                                            "20"
+        "ReduxBans"                                                            "nyx_assassin_burrow | nyx_assassin_burrow_redux"
     }
     "witch_doctor_voodoo_restoration"
     {
