@@ -815,17 +815,17 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "bonus_damage_pct"          "60 80 100"
+                "bonus_damage_pct"          "60 80 100"
             }
             "02"
             {
                 "var_type"          "FIELD_INTEGER"
-                "damage_reduction_pct"      "-10 -20 -30"
+                "damage_reduction_pct"      "-10 -20 -30"
             }
             "03"
             {
                 "var_type"          "FIELD_FLOAT"
-                "duration"                  "15.0 20.0 25.0"
+                "duration"                  "15.0 20.0 25.0"
             }
             "04"
             {
