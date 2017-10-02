@@ -7,6 +7,11 @@ All notable changes to this project will be documented in this file.
 - If Tether is cast while the hero is a symbiote, it will have a 60 second cooldown instead of 12 (Troll combo prevention)
 - Burrows are now troll combos with Infest
 - Fixed Lion's lvl 20 talent not being replaced if you didnt have finger of death
+- Last Will: Now have only 4 level. (Same damage at max level)
+- Split shot: Now only splits to 2 targets max.
+- Grapeshot: Buffed damage. Now have 120% at level 4.
+- Fanatism: Now have fixed cooldown. Lower the damage reduction and attack bonus.
+- Reworked Multistrike
 
 ## 9.4
 - Fixed Projectiles missing on compendium towers
@@ -33,11 +38,6 @@ All notable changes to this project will be documented in this file.
 - Changed Warlock's Perk
 - Wards Ability now has fixed 3 max stack count, but replish time improves with levels
 - Fixed Crashing
-- Last Will: Now have only 4 level. (Same damage at max level)
-- Split shot: Now only splits to 2 targets max.
-- Grapeshot: Buffed damage. Now have 120% at level 4.
-- Fanatism: Now have fixed cooldown. Lower the damage reduction and attack bonus.
-- Reworked Multistrike
 
 ## 9.3
 - Marksmanship agility is now a single player ability
