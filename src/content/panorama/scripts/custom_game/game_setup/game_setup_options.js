@@ -470,6 +470,11 @@ var basicOptions = {
                             }
                         }
                     },
+                    {
+                        name: 'lodOptionLimitPassives',
+                        extraInfo: 'lodOptionAboutLimitPassives',
+                        about: 'lodMutatorLimitPassives'
+                    },
                 ]
             }
         ]
@@ -1068,6 +1073,22 @@ var advancedOptions = {
                 name: 'lodOptionConsumeItems',
                 des: 'lodOptionDesConsumeItems',
                 about: 'lodOptionAboutConsumeItems',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionLimitPassives',
+                des: 'lodOptionDesLimitPassives',
+                about: 'lodOptionAboutLimitPassives',
                 sort: 'toggle',
                 values: [
                     {

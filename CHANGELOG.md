@@ -2,6 +2,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 9.5
+- Limit Passives is now an optional mutator in dota map
+
 ## 9.4
 - Fixed Projectiles missing on compendium towers
 - Fixed Bounty Runes being broken if players disconnected and shared xp is on
@@ -19,7 +22,6 @@ All notable changes to this project will be documented in this file.
 - Created 'Single Player Abilities' Skill Tab
 - Blinks are now single player abilities, redux versions added.
 - Disabled Shared XP in all_allowed, for now
-*
 - Added single player version of sun strike
 - Blood Ward reflects higher percentage of damage
 - Blink support cost a little bit more mana
