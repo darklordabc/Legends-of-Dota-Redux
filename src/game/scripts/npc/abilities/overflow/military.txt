@@ -5,7 +5,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"				"ability_lua"
 		"ScriptFile"					"abilities/overflow/military/passive.lua"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName"			"custom/military"
 		"MaxLevel"	"7"
 		// Special
@@ -24,7 +24,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"gold"		"100 200 300 400 500 600 700 800"
+				"gold"		"100 100 200 200 400 400 500"
 			}
 		}
 	}

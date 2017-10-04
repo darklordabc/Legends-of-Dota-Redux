@@ -1,0 +1,51 @@
+"DOTAAbilities"
+{
+   "queenofpain_blink_redux"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                    "queenofpain_blink"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+        "AbilitySound"                  "Hero_QueenOfPain.Blink_in"
+        "AbilityTextureName"            "custom/queenofpain_blink_redux"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_queenofpain.vsndevts"
+        }
+
+        "ReduxFlags"    "mobility"
+        "ReduxPerks"    "mobility | blink"
+        "ReduxCost"     "40"
+        "ReduxBans"     "nyx_assassin_burrow | nyx_assassin_burrow_redux"
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "0"
+        "AbilityCastPoint"              "0.33 0.33 0.33 0.33"
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "20.0 17.0 14.0 11.0"
+        
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "60 60 60 60"
+        
+        // Special  
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "blink_range"           "1300"
+            }
+            
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "min_blink_range"       "200"
+            }
+        }
+    }
+}

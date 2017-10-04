@@ -1,4 +1,4 @@
-require('abilities/hero_perks/npc_dota_hero_shadow_demon_perk')
+--require('abilities/hero_perks/npc_dota_hero_shadow_demon_perk')
 require('abilities/hero_perks/npc_dota_hero_puck_perk')
 require('abilities/hero_perks/npc_dota_hero_bane_perk')
 require('abilities/hero_perks/npc_dota_hero_pudge_perk')
@@ -47,7 +47,7 @@ function heroPerksOrderFilter(filterTable)
   local ability = EntIndexToHScript(abilityIndex)
 
     -- Perk for Shadow Demon
-  perkShadowDemon(filterTable)
+  --perkShadowDemon(filterTable)
 
   return filterTable
 end

@@ -29,12 +29,12 @@
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "observer_ward_max_stack"          "2 3 4 5"
+                "observer_ward_max_stack"          "3"
             }
             "04"
             {
                 "var_type"              "FIELD_FLOAT"
-                "sentry_ward_cooldown"          "100"
+                "sentry_ward_cooldown"          "90 80 70 60"
             }
             "05"
             {
@@ -49,12 +49,12 @@
             "07"
             {
                 "var_type"              "FIELD_INTEGER"
-                "sentry_ward_max_stack"          "2 3 4 5"
+                "sentry_ward_max_stack"          "3"
             }
             "08"
             {
                 "var_type"              "FIELD_FLOAT"
-                "observer_ward_cooldown"          "100"
+                "observer_ward_cooldown"          "90 80 70 60"
             }
         }
         "ReduxFlags"                                                           "dota_custom"
@@ -88,12 +88,12 @@
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "observer_ward_max_stack"          "4 5 6 7"
+                "observer_ward_max_stack"          "7"
             }
             "04"
             {
                 "var_type"              "FIELD_FLOAT"
-                "sentry_ward_cooldown"          "150"
+                "sentry_ward_cooldown"          "80 60 40 20"
             }
             "05"
             {
@@ -108,12 +108,12 @@
             "07"
             {
                 "var_type"              "FIELD_INTEGER"
-                "sentry_ward_max_stack"          "4 5 6 7"
+                "sentry_ward_max_stack"          "7"
             }
             "08"
             {
                 "var_type"              "FIELD_FLOAT"
-                "observer_ward_cooldown"          "150"
+                "observer_ward_cooldown"          "80 60 40 20"
             }
         }
         "ReduxFlags"                                                           "dota_custom"

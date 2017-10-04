@@ -12,6 +12,7 @@
   		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
   		"AbilityTextureName"			"custom/bulwark_strike"
   		"ReduxPerks"                    "attack_modifier | fire | autocast_basic"
+  		"ReduxFlags"                    "attack_modifier | semi_passive"
 
   		// Precache
 		//-------------------------------------------------------------------------------------------------------------

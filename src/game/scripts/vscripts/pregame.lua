@@ -237,28 +237,24 @@ function Pregame:init()
     local needBounty = false
     GameRules:GetGameModeEntity():SetRuneSpawnFilter(function(context, runeStuff)
         totalRunes = totalRunes + 1
-        if totalRunes < 3 then
-            runeStuff.rune_type = DOTA_RUNE_BOUNTY
-        else
-            if totalRunes % 2 == 1 then
-                if math.random() < 0.5 then
-                    needBounty = false
-                    runeStuff.rune_type = DOTA_RUNE_BOUNTY
-                else
-                    needBounty = true
-                    runeStuff.rune_type = util:pickRandomRune()
-                end
-            else
-                if needBounty then
-                    runeStuff.rune_type = DOTA_RUNE_BOUNTY
-                else
-                    runeStuff.rune_type = util:pickRandomRune()
-
-                end
-
-                -- No longer need a bounty rune
+        if totalRunes % 2 == 1 then
+            if math.random() < 0.5 then
                 needBounty = false
+                runeStuff.rune_type = DOTA_RUNE_BOUNTY
+            else
+                needBounty = true
+                runeStuff.rune_type = util:pickRandomRune()
             end
+        else
+            if needBounty then
+                runeStuff.rune_type = DOTA_RUNE_BOUNTY
+            else
+                runeStuff.rune_type = util:pickRandomRune()
+
+            end
+
+            -- No longer need a bounty rune
+            needBounty = false
         end
 
         return true
@@ -537,7 +533,7 @@ function Pregame:init()
 
     if mapName == 'all_allowed' then
         self:setOption('lodOptionCrazyUniversalShop', 0, true)
-        self:setOption('lodOptionGameSpeedSharedEXP', 1, true)
+        self:setOption('lodOptionGameSpeedSharedEXP', 0, true)
         self:setOption('lodOptionBanningUseBanList', 1, true)
         self:setOption('lodOptionAdvancedOPAbilities', 1, true)
         self:setOption('lodOptionGameSpeedMaxLevel', 100, true)
@@ -546,6 +542,7 @@ function Pregame:init()
         self:setOption('lodOptionGameSpeedStartingLevel', 4, true)
         --self:setOption('lodOptionGameSpeedStartingGold', 600, true)
         self:setOption('lodOptionGameSpeedStrongTowers', 1, true)
+        self:setOption('lodOptionLimitPassives', 1, true)
         self:setOption('lodOptionCreepPower', 120, true)
 
         self:setOption('lodOptionGameSpeedTowersPerLane', 3, true)
@@ -683,6 +680,9 @@ function Pregame:loadDefaultSettings()
 
     -- Consumeable Items
     self:setOption('lodOptionConsumeItems', 1, false)
+
+    -- Limit Passives
+    self:setOption('lodOptionLimitPassives', 0, false)
 
     -- Anti Rat option
     self:setOption('lodOptionAntiRat', 0, false)
@@ -843,10 +843,10 @@ function Pregame:loadDefaultSettings()
 
     -- Selecting 6 new abilities grants 500 gold
     self:setOption("lodOptionNewAbilitiesThreshold", 20, true)
-    self:setOption("lodOptionNewAbilitiesBonusGold", 250, true)
+    self:setOption("lodOptionNewAbilitiesBonusGold", 1000, true)
     self:setOption("lodOptionGlobalNewAbilitiesThreshold", 75, true)
-    self:setOption("lodOptionGlobalNewAbilitiesBonusGold", 250, true)
-    self:setOption("lodOptionBalancedBuildBonusGold", 1500, true)
+    self:setOption("lodOptionGlobalNewAbilitiesBonusGold", 1000, true)
+    self:setOption("lodOptionBalancedBuildBonusGold", 0, true)
 end
 
 -- Gets stats for the given player
@@ -1466,15 +1466,15 @@ end
 
 -- Spawns all heroes (this should only be called once!)
 function Pregame:spawnAllHeroes()
-    local minPlayerID = 0
-    local maxPlayerID = 24
-
     if self.wispSpawning then
         return
     end
 
-    for playerID = minPlayerID,maxPlayerID-1 do
-        self:spawnPlayer(playerID)
+    for playerID = 0, DOTA_MAX_TEAM_PLAYERS - 1 do
+        -- Spawn only valid players
+        if PlayerResource:IsValidTeamPlayerID(playerID) then
+            self:spawnPlayer(playerID)
+        end
     end
 
     self:actualSpawnPlayer()
@@ -1531,10 +1531,10 @@ end
 
 function Pregame:actualSpawnPlayer(forceID)
     -- Is there someone to spawn?
-    if #self.spawnQueue <= 0 then return end
+    if #self.spawnQueue <= 0 and not forceID then return end
 
     -- Only spawn ONE player at a time!
-    if self.currentlySpawning then return end
+    if self.currentlySpawning and not forceID then return end
     self.currentlySpawning = true
 
     -- Grab a reference to self
@@ -1554,8 +1554,9 @@ function Pregame:actualSpawnPlayer(forceID)
         local playerID = forceID or table.remove(this.spawnQueue, 1)
 
         -- Don't allow a player to get two heroes
-        if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil then
-            UTIL_Remove(PlayerResource:GetSelectedHeroEntity(playerID))
+        local previousHero = PlayerResource:GetSelectedHeroEntity(playerID)
+        if previousHero then
+            UTIL_Remove(previousHero)
         end
 
         -- Grab their build
@@ -1563,7 +1564,7 @@ function Pregame:actualSpawnPlayer(forceID)
 
         -- Validate the player
         local player = PlayerResource:GetPlayer(playerID)
-        if player ~= nil then
+        if player then
             local heroName = self.selectedHeroes[playerID] or self:getRandomHero()
 
             local spawnTheHero = function()
@@ -1601,6 +1602,19 @@ function Pregame:actualSpawnPlayer(forceID)
             self.spawnedHeroesFor[playerID] = nil
 
             continueSpawning()
+
+            -- Actually, the correct way is to remove queue and spawn all heroes at the same time,
+            -- but it requires too many changes, so for now I made a patch
+            Timers:CreateTimer(function()
+                -- If player is connected
+                if PlayerResource:GetPlayer(playerID) then
+                    self.spawnedHeroesFor[playerID] = true
+                    self:actualSpawnPlayer(playerID)
+                else
+                    -- Wait some more
+                    return 0.2
+                end
+            end, DoUniqueString(''), 0.2)
         end
     end)
 
@@ -1687,6 +1701,7 @@ function Pregame:networkHeroes()
         nohero = true,
         donotrandom = true,
         underpowered = true,
+        semi_passive = true,
     }
     -- Prepare flags
     local flagsInverse = {}
@@ -2770,6 +2785,11 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
+        -- Limit Passives
+        lodOptionLimitPassives = function(value)
+            return value == 0 or value == 1
+        end,
+
         -- Game Speed - Scepter Upgraded
         lodOptionGameSpeedUpgradedUlts = function(value)
             return value == 0 or value == 1 or value == 2
@@ -3250,8 +3270,8 @@ function Pregame:isAllowed( abilityName )
         allowed = self.optionStore['lodOptionAdvancedNeutralAbilities'] == 1
     elseif cat == 'custom' then
         allowed = self.optionStore['lodOptionAdvancedCustomSkills'] == 1
-    elseif cat == 'dotaimba' then
-        allowed = self.optionStore['lodOptionAdvancedImbaAbilities'] == 1
+    elseif cat == 'superop' then
+        allowed = 1  -- The check if these abilities are allowed are processed elsewhere.
     elseif cat == 'OP' then
         allowed = self.optionStore['lodOptionAdvancedOPAbilities'] == 0
     elseif cat == nil then
@@ -3907,6 +3927,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('neutralMultiply', this.optionStore['lodOptionNeutralMultiply'])
         OptionManager:SetOption('laneMultiply', this.optionStore['lodOptionLaneMultiply'])
         OptionManager:SetOption('useFatOMeter', this.optionStore['lodOptionCrazyFatOMeter'])
+        OptionManager:SetOption('universalShops', this.optionStore['lodOptionCrazyUniversalShop'])
         OptionManager:SetOption('allowIngameHeroBuilder', this.optionStore['lodOptionIngameBuilder'] == 1)
         --OptionManager:SetOption('botBonusPoints', this.optionStore['lodOptionBotsBonusPoints'] == 1)
 
@@ -3925,6 +3946,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('banInvis', this.optionStore['lodOptionBanningBanInvis'])
         OptionManager:SetOption('antiRat', this.optionStore['lodOptionAntiRat'])
         OptionManager:SetOption('consumeItems', this.optionStore['lodOptionConsumeItems'])
+        OptionManager:SetOption('limitPassives', this.optionStore['lodOptionLimitPassives'])
 
         -- Enforce max level
         if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -4191,6 +4213,7 @@ function Pregame:processOptions()
                     ['Bans: Block Troll Combos'] = this.optionStore['lodOptionBanningBlockTrollCombos'],
                     ['Bans: Disable Perks'] = this.optionStore['lodOptionDisablePerks'],
                     ['Bans: Consumeable Items'] = this.optionStore['lodOptionConsumeItems'],
+                    ['Bans: Limit Passives'] = this.optionStore['lodOptionLimitPassives'],
                     ['Bans: Host Banning'] = this.optionStore['lodOptionBanningHostBanning'],
                     ['Bans: Max Ability Bans'] = this.optionStore['lodOptionBanningMaxBans'],
                     ['Bans: Max Hero Bans'] = this.optionStore['lodOptionBanningMaxHeroBans'],
@@ -5646,8 +5669,8 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
             allowed = self.optionStore['lodOptionAdvancedNeutralAbilities'] == 1
         elseif cat == 'custom' then
             allowed = self.optionStore['lodOptionAdvancedCustomSkills'] == 1
-        elseif cat == 'dotaimba' then
-            allowed = self.optionStore['lodOptionAdvancedImbaAbilities'] == 1
+        elseif cat == 'superop' then
+            allowed = 1 -- The check if these abilities are allowed are processed elsewhere.
         elseif cat == 'OP' then
             allowed = self.optionStore['lodOptionAdvancedOPAbilities'] == 0
         end
@@ -5716,6 +5739,27 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
             EmitAnnouncerSoundForPlayer(sound, playerID)
             return
         end
+    end
+
+    -- Limit powerful passives
+    if self.optionStore['lodOptionLimitPassives'] == 1 then
+    	local powerfulPassives = 0
+    	for _,buildAbility in pairs(newBuild) do
+    		-- Check that ability is passive and is powerful ability
+            -- Temporarily limit all passives, indepedent of their power
+    		if SkillManager:isPassive(buildAbility) or self.flags["semi_passive"][buildAbility] ~= nil then -- and self.spellCosts[buildAbility] ~= nil and self.spellCosts[buildAbility] >= 60 then
+    			powerfulPassives = powerfulPassives + 1
+    		end
+    	end
+    	-- Check that we have 3 OP passives
+    	if powerfulPassives >= 4 then
+            network:sendNotification(player, {
+                sort = 'lodDanger',
+                text = 'lodFailedTooManyPassives'
+            })
+            self:PlayAlert(playerID)
+            return
+	    end
     end
 
     -- Consider unique skills
@@ -6127,7 +6171,7 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
             local draftArray = self.draftArrays[draftID] or {}
             local heroDraft = draftArray.heroDraft or {}
             local abilityDraft = draftArray.abilityDraft or {}
-
+            
             if self.maxDraftHeroes > 0 then
                 local heroName = self.abilityHeroOwner[abilityName]
 
@@ -6136,7 +6180,7 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
                 end
             end
 
-            if self.maxDraftSkills > 0 then
+            if not self.botPlayers.all[playerID] then
                 if not abilityDraft[abilityName] then
                     shouldAdd = false
                 end
@@ -6178,6 +6222,23 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
                         break
                     end
                 end
+            end
+        end
+
+        if not (util:isSinglePlayerMode() or util:isCoop()) then
+            local powerfulPassives = 0
+            for _,buildAbility in pairs(build) do
+                if SkillManager:isPassive(buildAbility) or self.flags["semi_passive"][buildAbility] ~= nil then -- and self.spellCosts[buildAbility] ~= nil and self.spellCosts[buildAbility] >= 60 then
+                    powerfulPassives = powerfulPassives + 1
+                end
+            end
+			
+	    if (SkillManager:isPassive(abilityName) or self.flags["semi_passive"][abilityName] ~= nil) then
+		powerfulPassives = powerfulPassives + 1
+	    end
+
+            if powerfulPassives >= 3 then
+                shouldAdd = false
             end
         end
 
@@ -7324,8 +7385,8 @@ function Pregame:fixSpawnedHero( spawnedUnit )
     }
 
     local disabledPerks = {
-        npc_dota_hero_windrunner = false,
-        npc_dota_hero_shadow_demon = true,
+        --npc_dota_hero_windrunner = false,
+        --npc_dota_hero_shadow_demon = true,
         -- npc_dota_hero_spirit_breaker = true,
         --npc_dota_hero_spirit_slardar = true,
         -- npc_dota_hero_chaos_knight = true,

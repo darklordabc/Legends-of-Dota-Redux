@@ -142,8 +142,11 @@ function modifier_item_assault_consumable:OnCreated()
 end
 
 function modifier_item_assault_consumable:OnIntervalThink()
-  if not self:GetAbility() or not self:GetCaster():IsAlive() then
+  if not self:GetAbility() then 
     self:Destroy()
+    return
+  end
+  if  self:GetCaster():IsAlive() then
     return
   end
   local caster = self:GetCaster()
@@ -209,8 +212,8 @@ function modifier_item_assault_consumable_aura:IsDebuff()
 end
 
 function modifier_item_assault_consumable_aura:IsHidden()
-  --if not caster then return true end
-  if not caster:IsAlive() then return true end
+  if not self:GetCaster() then return true end
+  --if not self:GetCaster():IsAlive() then return true end
   return self:GetCaster() == self:GetParent()
 end
 
@@ -252,8 +255,8 @@ function modifier_item_assault_consumable_aura_enemies:OnIntervalThink()
   end
 end
 function modifier_item_assault_consumable_aura_enemies:IsHidden()
-  --if not caster then return true end  
-  if not caster:IsAlive() then return true end
+  if not self:GetCaster() then return true end  
+  if not self:GetCaster():IsAlive() then return true end
   return self:GetStackCount() == 1
 end
 

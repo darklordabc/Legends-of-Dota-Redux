@@ -24,7 +24,7 @@
         }
         "ReduxFlags"                                                           "bash | attack_modifier"
         "ReduxBans"                                                            ""
-        "ReduxPerks"                                                           ""
+        //"ReduxPerks"                                                           ""
         "ReduxCost"                                                            "0"
     }
 }

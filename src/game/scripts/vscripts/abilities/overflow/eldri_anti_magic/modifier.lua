@@ -47,7 +47,9 @@ function anti_magic_mod:OnAbilityStart(kv)
 		if kv.ability.IsItem and kv.ability:IsItem() then return end
 		if kv.unit and kv.unit:GetTeam() ~= self:GetCaster():GetTeam() then
 			if (self:GetParent():GetAbsOrigin() - kv.unit:GetAbsOrigin()):Length2D() <= self:GetAbility():GetSpecialValueFor("radius") then
-				self:SpellZap(kv.unit)
+				if not kv.unit:IsMagicImmune() then
+					self:SpellZap(kv.unit)
+				end
 			end
 		end
 	end

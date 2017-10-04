@@ -1,9 +1,9 @@
 "DOTAAbilities"
 {
     "spawnlord_master_freeze"
-    {
+    {   
         "MaxLevel"                                                             "4"
-        "ReduxFlags"                                                           "bash | attack_modifier"
+        "ReduxFlags"                                                           "bash | attack_modifier | semi_passive"
         "ReduxPerks"                                                           "neutral | bash | attack_modifier | autocast_basic"
         "AbilitySpecial"
         {       
@@ -315,7 +315,7 @@
         "ID"                            "5491"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
         "MaxLevel"              "4"
         "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"     
-
+        "ReduxFlags"    "mana"
         // Special
         //-------------------------------------------------------------------------------------------------------------
         "AbilitySpecial"
@@ -738,7 +738,7 @@
     }
     "abaddon_borrowed_time"
     {
-        "ReduxFlags"                                                           "upgradeable | wtfAutoBan"
+        "ReduxFlags"                                                           "upgradeable | wtfAutoBan | semi_passive"
         "ReduxCost"                                                            "80"
         "ReduxBans"                                                            "furion_teleportation | tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux | meepo_divided_we_stand | phoenix_supernova"
     }
@@ -833,7 +833,8 @@
     {
         "ReduxFlags"                                                           "upgradeable | aoe_attack | attack_modifier"
         "ReduxPerks"                                                           "attack_modifier"
-        "ReduxCost"                                                            "80"
+        "ReduxCost"                                                            "120"
+        "ReduxBans"                                                            "brawler_agi"
     }
     "earth_spirit_geomagnetic_grip"
     {
@@ -938,8 +939,8 @@
         "ReduxCost"                                                            "10"
     }
     "magnataur_empower"
-    {
-        "ReduxFlags"                                                           "upgradeable | support | aoe_attack | attack_modifier"
+    {   
+        "ReduxFlags"                                                           "upgradeable | support | aoe_attack | attack_modifier | semi_passive"
         "ReduxPerks"                                                           "support | attack_modifier | rage"
         "ReduxCost"                                                            "20"
     }
@@ -1142,7 +1143,7 @@
     "winter_wyvern_arctic_burn"
     {
         "ReduxFlags"                                                           "upgradeable | attack_modifier"
-        "ReduxPerks"                                                           "attack_modifier"
+        "ReduxPerks"                                                           "attack_modifier | ice"
         "ReduxCost"                                                            "20"
     }
     "witch_doctor_death_ward"
@@ -1217,7 +1218,7 @@
     }
     "crystal_maiden_brilliance_aura"
     {
-        "ReduxFlags"                                                           "support"
+        "ReduxFlags"                                                           "support | mana"
         "ReduxPerks"                                                           "support | aura"
         "ReduxCost"                                                            "10"
     }
@@ -1252,6 +1253,7 @@
         "ReduxFlags"                                                           "support | mobility"
         "ReduxPerks"                                                           "support | mobility"
         "ReduxCost"                                                            "20"
+        "ReduxBans"                                                            "nyx_assassin_burrow | nyx_assassin_burrow_redux"
     }
     "witch_doctor_voodoo_restoration"
     {
@@ -1292,7 +1294,7 @@
     }
     "skeleton_king_vampiric_aura"
     {
-        "ReduxFlags"                                                           "support | attack_modifier"
+        "ReduxFlags"                                                           "support | attack_modifier | semi_passive"
         "ReduxPerks"                                                           "support | attack_modifier | aura"
         "ReduxCost"                                                            "10"
     }
@@ -1322,8 +1324,8 @@
         "ReduxPerks"                                                           "support"
     }
     "drow_ranger_trueshot"
-    {
-        "ReduxFlags"                                                           "support"
+    {       
+        "ReduxFlags"                                                           "support | semi_passive"
         "ReduxPerks"                                                           "support | aura"
         "ReduxCost"                                                            "30"
     }
@@ -1334,7 +1336,7 @@
     }
     "keeper_of_the_light_chakra_magic"
     {
-        "ReduxFlags"                                                           "support | cooldown"
+        "ReduxFlags"                                                           "support | cooldown | mana"
         "ReduxPerks"                                                           "support"
     }
     "lich_frost_armor"
@@ -1619,7 +1621,7 @@
     }
     "nyx_assassin_burrow"
     {
-        "ReduxFlags"                                                           "mobility | invis"
+        "ReduxFlags"                                                           "mobility | invis | mana"
         "ReduxPerks"                                                           "mobility | earth"
         "ReduxCost"                                                            "20"
         "ReduxBans"                                                            "nyx_assassin_burrow_redux"
@@ -1653,14 +1655,14 @@
     {
         "ReduxFlags"                                                           "mobility"
         "ReduxPerks"                                                           "mobility | blink"
-        "ReduxCost"                                                            "40"
+        "ReduxCost"                                                            "120"
         "ReduxBans"                                                            "nyx_assassin_burrow | nyx_assassin_burrow_redux"
     }
     "antimage_blink"
     {
         "ReduxFlags"                                                           "mobility"
         "ReduxPerks"                                                           "mobility | blink"
-        "ReduxCost"                                                            "40"
+        "ReduxCost"                                                            "120"
         "ReduxBans"                                                            "nyx_assassin_burrow | nyx_assassin_burrow_redux"
     }
     "storm_spirit_ball_lightning"
@@ -1846,7 +1848,7 @@
     }
     "medusa_mana_shield"
     {
-        "ReduxFlags"                                                           "tank"
+        "ReduxFlags"                                                           "tank | mana"
     }
     "legion_commander_moment_of_courage"
     {
@@ -1897,7 +1899,7 @@
     }
     "troll_warlord_berserkers_rage"
     {
-        "ReduxFlags"                                                           "bash | attack_modifier"
+        "ReduxFlags"                                                           "bash | attack_modifier | semi_passive"
         "ReduxPerks"                                                           "bash | attack_modifier"
         "ReduxCost"                                                            "30"
         "ReduxBans"                                                            "lone_druid_true_form | tusk_walrus_kick"
@@ -1911,7 +1913,7 @@
     }
     "doom_bringer_infernal_blade"
     {
-        "ReduxFlags"                                                           "crit | attack_modifier"
+        "ReduxFlags"                                                           "crit | attack_modifier | semi_passive"
         "ReduxPerks"                                                           "demon | attack_modifier | fire | autocast_basic"
         "ReduxCost"                                                            "20"
     }
@@ -1969,11 +1971,53 @@
     }
     "medusa_split_shot"
     {
-        "ReduxFlags"                                                           "aoe_attack | attack_modifier"
+        "ReduxFlags"                                                           "aoe_attack | attack_modifier | semi_passive"
         "ReduxPerks"                                                           "attack_modifier"
         "ReduxCost"                                                            "10"
         "ReduxBans"                                                            "holdout_multishot"
     }
+
+    // Remove cooldown reduction talents
+    "special_bonus_cooldown_reduction_8"
+    {
+        "TalentRequiredAbility"                                                   "do_not_give_talent"
+    }
+
+    "special_bonus_cooldown_reduction_10"
+    {
+        "TalentRequiredAbility"                                                   "do_not_give_talent"
+    } 
+
+    "special_bonus_cooldown_reduction_12"
+    {
+        "TalentRequiredAbility"                                                   "do_not_give_talent"
+    } 
+
+    "special_bonus_cooldown_reduction_15"
+    {
+        "TalentRequiredAbility"                                                   "do_not_give_talent"
+    } 
+
+    "special_bonus_cooldown_reduction_20"
+    {
+        "TalentRequiredAbility"                                                   "do_not_give_talent"
+    } 
+
+    "special_bonus_cooldown_reduction_25"
+    {
+        "TalentRequiredAbility"                                                   "do_not_give_talent"
+    } 
+
+    "special_bonus_cooldown_reduction_30"
+    {
+        "TalentRequiredAbility"                                                   "do_not_give_talent"
+    } 
+
+    "special_bonus_cooldown_reduction_40"
+    {
+        "TalentRequiredAbility"                                                   "do_not_give_talent"
+    } 
+
     "black_dragon_splash_attack"
     {
         "ReduxFlags"                                                           "aoe_attack | attack_modifier"
@@ -2016,7 +2060,7 @@
     }
     "kunkka_tidebringer"
     {
-        "ReduxFlags"                                                           "aoe_attack | attack_modifier"
+        "ReduxFlags"                                                           "aoe_attack | attack_modifier | semi_passive"
         "ReduxPerks"                                                           "attack_modifier | water | autocast_basic"
         "ReduxCost"                                                            "40"
     }
@@ -2063,7 +2107,7 @@
     {
         "MaxLevel"                                                             "4"
         "ReduxFlags"                                                           "attack_modifier"
-        "ReduxPerks"                                                           "neutral | attack_modifier"
+        "ReduxPerks"                                                           "neutral | attack_modifier | ice"
         // Special
         //-------------------------------------------------------------------------------------------------------------
         "AbilitySpecial"
@@ -2107,14 +2151,14 @@
     }
     "huskar_burning_spear"
     {
-        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "attack_modifier | semi_passive"
         "ReduxPerks"                                                           "attack_modifier | fire | self_damage | autocast_basic"
         "ReduxCost"                                                            "10"
         "ReduxBans"                                                            "batrider_sticky_napalm | spell_lab_symbiotic"
     }
     "drow_ranger_frost_arrows"
     {
-        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "attack_modifier | semi_passive"
         "ReduxPerks"                                                           "attack_modifier | ice | autocast_basic"
     }
     "antimage_mana_break"
@@ -2125,7 +2169,7 @@
     }
     "clinkz_searing_arrows"
     {
-        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "attack_modifier | semi_passive" 
         "ReduxPerks"                                                           "attack_modifier | fire | autocast_basic"
     }
     "abaddon_frostmourne"
@@ -2157,12 +2201,12 @@
     }
     "jakiro_liquid_fire"
     {
-        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "attack_modifier | semi_passive"
         "ReduxPerks"                                                           "attack_modifier | fire | autocast_basic | explosive"
     }
     "silencer_glaives_of_wisdom"
     {
-        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "attack_modifier | semi_passive"
         "ReduxPerks"                                                           "attack_modifier | autocast_basic"
         "ReduxCost"                                                            "30"
     }
@@ -2181,7 +2225,7 @@
     }
     "viper_poison_attack"
     {
-        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "attack_modifier | semi_passive"
         "ReduxPerks"                                                           "attack_modifier | poison | autocast_basic"
         "ReduxBans"                                                            "batrider_sticky_napalm"
     }
@@ -2193,7 +2237,7 @@
     }
     "obsidian_destroyer_arcane_orb"
     {
-        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "attack_modifier | semi_passive"
         "ReduxPerks"                                                           "attack_modifier | autocast_basic"
         "ReduxCost"                                                            "20"
     }
@@ -2383,7 +2427,7 @@
     }
     "keeper_of_the_light_mana_leak"
     {
-        "ReduxFlags"                                                           "stun"
+        "ReduxFlags"                                                           "stun | mana"
     }
     "centaur_hoof_stomp"
     {
@@ -2937,7 +2981,7 @@
     "alchemist_goblins_greed"
     {
         "ReduxPerks"                                                           "scientific"
-        "ReduxCost"                                                            "110"
+        "ReduxCost"                                                            "30"
     }
     "gyrocopter_call_down"
     {
@@ -3024,7 +3068,7 @@
     }
     "lion_mana_drain"
     {
-        "ReduxPerks"                                                           "drain | channeled | demon"
+        "ReduxPerks"                                                           "drain | channeled | demon | mana"
     }
     "death_prophet_spirit_siphon"
     {
@@ -3099,6 +3143,7 @@
     {
         "ReduxPerks"                                                           "aura"
         "ReduxCosts"    "120"
+        "ReduxFlags"    "mana"
         "ReduxBans"                                                            "death_prophet_witchcraft"
         "ReduxBanCategory"                                                     "ToggleSpells"
     }
@@ -3778,6 +3823,11 @@
     "special_bonus_unique_lion_2"
     {
         "TalentRequiredAbility"                                                   "lion_impale"
+    }
+
+    "special_bonus_unique_lion_3"
+    {
+        "TalentRequiredAbility"                                                   "lion_finger_of_death"
     }
 
     "special_bonus_unique_lone_druid_1"

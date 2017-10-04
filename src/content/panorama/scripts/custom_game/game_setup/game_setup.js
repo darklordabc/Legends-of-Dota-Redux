@@ -2429,7 +2429,7 @@ function OnSkillTabShown(tabName) {
             main: true,
             neutral: isDraftGamemode(),
             custom: true,
-            // dotaimba: true,
+            superop: true,
             mostused: false
         };
 
@@ -2559,7 +2559,7 @@ function OnSkillTabShown(tabName) {
             categorySorting["main"] = 1;
             categorySorting["neutral"] = 2;
             categorySorting["custom"] = 3;
-            // categorySorting["dotaimba"] = 4;
+            categorySorting["superop"] = 4;
 
             if (activeTabs["mostused"]) {
                 for (var uses in subSorting)
@@ -2725,7 +2725,7 @@ function OnSkillTabShown(tabName) {
             'main',
             'neutral',
             'custom',
-            // 'dotaimba',
+            'superop',
             'mostused'
         ];
 
@@ -5015,8 +5015,8 @@ function onAllowedCategoriesChanged() {
         allowedCategories['custom'] = true;
     }
 
-    if(optionValueList['lodOptionAdvancedImbaAbilities'] == 1) {
-        allowedCategories['dotaimba'] = true;
+    if(optionValueList['lodOptionAdvancedCustomSkills'] == 1) {
+        allowedCategories['superop'] = true;
     }
 
     if(optionValueList['lodOptionAdvancedOPAbilities'] == 1) {

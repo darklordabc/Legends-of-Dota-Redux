@@ -470,6 +470,11 @@ var basicOptions = {
                             }
                         }
                     },
+                    {
+                        name: 'lodOptionLimitPassives',
+                        extraInfo: 'lodOptionAboutLimitPassives',
+                        about: 'lodMutatorLimitPassives'
+                    },
                 ]
             }
         ]
@@ -625,7 +630,7 @@ var advancedOptions = {
                 min: 0,
                 max: 2500,
                 step: 50,
-                default: 250
+                default: 1000
             },
             {
                 name: 'lodOptionNewAbilitiesThreshold',
@@ -645,7 +650,7 @@ var advancedOptions = {
                 min: 0,
                 max: 2500,
                 step: 50,
-                default: 250
+                default: 1000
             },
             {
                 name: 'lodOptionGlobalNewAbilitiesThreshold',
@@ -665,7 +670,7 @@ var advancedOptions = {
                 min: 0,
                 max: 3000,
                 step: 100,
-                default: 1500
+                default: 0
             },
         ]
     },
@@ -1068,6 +1073,22 @@ var advancedOptions = {
                 name: 'lodOptionConsumeItems',
                 des: 'lodOptionDesConsumeItems',
                 about: 'lodOptionAboutConsumeItems',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionLimitPassives',
+                des: 'lodOptionDesLimitPassives',
+                about: 'lodOptionAboutLimitPassives',
                 sort: 'toggle',
                 values: [
                     {
