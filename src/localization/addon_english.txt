@@ -1772,6 +1772,9 @@
     // CUSTOM ABILITIES
     ////////////////
 
+    "DOTA_Tooltip_modifier_bash_cooldown"                           "Bash Cooldown"
+    "DOTA_Tooltip_modifier_bash_cooldown_Description"               "Your hero temporary can't be bashed, because it was bashed recently."
+
     //Scepter Buff Modifer
     "DOTA_Tooltip_modifier_item_ultimate_scepter_consumed" "Free Aghanim's Scepter"
     "DOTA_Tooltip_modifier_item_ultimate_scepter_consumed_Description" "Permanently granted 'Ultimate Upgrade' benefit from Aghanim's Scepter. Certain ultimates and abilities will be upgraded."
