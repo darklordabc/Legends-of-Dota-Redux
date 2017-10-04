@@ -12,6 +12,8 @@ All notable changes to this project will be documented in this file.
 - Grapeshot: Buffed damage. Now have 120% at level 4.
 - Fanatism: Now have fixed cooldown. Lower the damage reduction and attack bonus.
 - Reworked Multistrike
+- Fixed Octarine preventing bloodstone suicide
+- Eldrich Anti-Magic tree no longer stuns spell immune units
 
 ## 9.4
 - Fixed Projectiles missing on compendium towers
