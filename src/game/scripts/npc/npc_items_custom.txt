@@ -894,7 +894,48 @@
         }
     }
 
+    "item_aether_lens_consumable"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2232"                                                       // unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityTextureName"            "item_aether_lens"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "abilities/items/aether_lens.lua"
 
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "2350"
+        "AbilityGoldCost"               "2350"
+        "ItemPurchasable"              "0"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "aether_lens_bonus_mana"            "250"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "aether_lens_bonus_mana_regen"      "100"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "aether_lens_cast_range_bonus"          "220"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "aether_lens_spell_amp"             "6"
+            }
+        }
+    }
     "item_devDagon"
     {
         // General

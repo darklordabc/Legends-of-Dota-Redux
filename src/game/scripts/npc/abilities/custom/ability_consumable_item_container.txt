@@ -191,6 +191,27 @@
           "var_type"              "FIELD_FLOAT"
           "monkey_king_bar_bash_stun"             "0.01"
       }
+      // Aether Lens
+      "35"
+      {
+          "var_type"              "FIELD_INTEGER"
+          "aether_lens_bonus_mana"            "250"
+      }
+      "36"
+      {
+          "var_type"              "FIELD_INTEGER"
+          "aether_lens_bonus_mana_regen"      "100"
+      }
+      "37"
+      {
+          "var_type"              "FIELD_INTEGER"
+          "aether_lens_cast_range_bonus"          "220"
+      }
+      "38"
+      {
+          "var_type"              "FIELD_INTEGER"
+          "aether_lens_spell_amp"             "6"
+      }
     }
   }
 }
