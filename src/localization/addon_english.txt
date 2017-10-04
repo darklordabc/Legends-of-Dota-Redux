@@ -5761,6 +5761,15 @@
     //"DOTA_Tooltip_ability_item_greater_crit_consumable_greater_crit_crit_multiplier"                "%CRITICAL DAMAGE:"
     "DOTA_Tooltip_ability_item_greater_crit_consumable_greater_crit_bonus_damage"                   "+$damage"
 
+    "DOTA_Tooltip_Ability_item_aether_lens_consumable"            "Aether Lens"
+    "DOTA_Tooltip_ability_item_aether_lens_consumable_Description"                     "<h1>Passive: Aethereal Focus</h1> Increases targeted spell and item cast range by %aether_lens_cast_range_bonus%.\n\n<h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Aether Lens to permanently gain its effects</font>."
+        "DOTA_Tooltip_ability_item_aether_lens_consumable_Note0"                           "Passive does not stack."
+        "DOTA_Tooltip_ability_item_aether_lens_consumable_aether_lens_bonus_mana"                      "+$mana"
+        "DOTA_Tooltip_ability_item_aether_lens_consumable_aether_lens_bonus_mana_regen"                "%+$mana_regen"
+        "DOTA_Tooltip_ability_item_aether_lens_consumable_aether_lens_spell_amp"                       "%+$spell_amp"
+        //"DOTA_Tooltip_ability_item_aether_lens_cast_range_bonus"               "+$cast_range"                      
+        "DOTA_Tooltip_ability_item_aether_lens_consumable_Lore"                            "Polished with the incantation of his final breath, the gift of a dying mage to his sickly son."
+
     "DOTA_Tooltip_Ability_item_octarine_core_consumable"           "Octarine Core"
     "DOTA_Tooltip_ability_item_octarine_core_consumable_Description"                       "<h1>Passive: Cooldown Reduction</h1>Reduces the cooldown time of all spells and items by %octarine_core_bonus_cooldown%%%.\n<h1>Passive: Spell Lifesteal</h1>%octarine_core_hero_lifesteal%%% of spell damage dealt to enemy heroes is returned to the caster as health, regardless of spell damage type.  <br><br>Lifesteal reduced to %octarine_core_creep_lifesteal%%% against creeps.\n\n<h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Octarine Core to permanently gain its effects</font>."
     "DOTA_Tooltip_ability_item_octarine_core_consumable_octarine_core_bonus_intelligence"        "+$int"
@@ -5772,7 +5781,7 @@
     "DOTA_Tooltip_ability_item_octarine_core_consumable_Lore"                      "At the core of spellcraft are spectrums only the very gifted can sense."
 
     "DOTA_Tooltip_Ability_item_heart_consumable"               "Heart of Tarrasque"
-    "DOTA_Tooltip_ability_item_heart_consumable_Description"                           "<h1>Passive: Health Regeneration</h1>Restores %heart_health_regen_rate%%% of max health per second. <br><br>If damage is taken from an enemy hero or Roshan, this ability is disabled for %heart_cooldown_melee% seconds for melee heroes, or %heart_cooldown_ranged_tooltip% seconds for ranged heroes.\n\n <h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Heart of Tarrasque to permanently gain its effects</font>."
+    "DOTA_Tooltip_ability_item_heart_consumable_Description"                           "<h1>Passive: Health Regeneration</h1>Restores %heart_health_regen_rate%%% of max health per second. <br><br>If damage is taken from an enemy hero or Roshan, this ability is disabled for %heart_cooldown_melee% seconds for melee heroes, or %heart_cooldown_ranged_tooltip% seconds for ranged heroes.\n\n<h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Heart of Tarrasque to permanently gain its effects</font>."
     "DOTA_Tooltip_ability_item_heart_consumable_Lore"                              "Preserved heart of an extinct monster, it bolsters the bearer's fortitude."
     "DOTA_Tooltip_ability_item_heart_consumable_heart_bonus_strength"                        "+$str"
     "DOTA_Tooltip_ability_item_heart_consumable_heart_bonus_health"                          "+$health"
@@ -5800,6 +5809,9 @@
 
     "DOTA_Tooltip_modifier_item_greater_crit_consumable"                            "Consumed Daedaulous"
     "DOTA_Tooltip_modifier_item_greater_crit_consumable_Description" "Permanently gained benefits of Daedaulous"
+
+    "DOTA_Tooltip_modifier_item_aether_lens_consumable"                            "Consumed Aether Lens"
+    "DOTA_Tooltip_modifier_item_aether_lens_consumable_Description" "Permanently gained benefits of Aethe Lens"
 
     "DOTA_Tooltip_modifier_item_skadi_consumable" "Consumed Eye of Skadi"
     "DOTA_Tooltip_modifier_item_skadi_consumable_Description" "Permanently gained benefits of Eye of Skadi"
