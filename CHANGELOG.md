@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
 - Reworked Multistrike
 - Fixed Octarine preventing bloodstone suicide
 - Eldrich Anti-Magic tree no longer stuns spell immune units
+- Added Anti Perma-Bash: If you get bashed, for 5 seconds you cannot be bashed again
 
 ## 9.4
 - Fixed Projectiles missing on compendium towers
