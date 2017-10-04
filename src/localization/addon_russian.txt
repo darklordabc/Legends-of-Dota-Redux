@@ -2186,7 +2186,7 @@
     "DOTA_Tooltip_ability_slark_essence_shift_agility_lod_stat_loss"                    "ALL ATTRIBUTE LOSS:"
     "DOTA_Tooltip_ability_slark_essence_shift_agility_lod_duration"                     "DURATION:"
     "DOTA_Tooltip_modifier_slark_essence_shift_agility_datadriven_buff_counter"                         "Essence Shift (AGI)"
-    "DOTA_Tooltip_modifier_slark_essence_shift_agility_datadriven_buff_counter_Description"             "Stealing %dMODIFIER_PROPERTY_STATS_AGILITY_BONUS% intelligence."
+    "DOTA_Tooltip_modifier_slark_essence_shift_agility_datadriven_buff_counter_Description"             "Stealing %dMODIFIER_PROPERTY_STATS_AGILITY_BONUS% agility."
     "DOTA_Tooltip_modifier_slark_essence_shift_agility_datadriven_debuff_counter"           "Essence Shift (AGI)"
     "DOTA_Tooltip_modifier_slark_essence_shift_agility_datadriven_debuff_counter_Description"   "Losing %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS% of each attribute."
 
@@ -2351,12 +2351,12 @@
     "DOTA_Tooltip_ability_global_stun_hero_stun_duration"                   "HERO STUN:"
 
     "DOTA_Tooltip_ability_aether_range_lod" "Aether Range"
-    "DOTA_Tooltip_ability_aether_range_lod_Description" "Increases spell cast range."
+    "DOTA_Tooltip_ability_aether_range_lod_Description" "Increases spell cast range. Also increases the cast distance of auto-cast abilities."
     "DOTA_Tooltip_ability_aether_range_lod_Lore"        "Great magicians can cast spells from miles away."
     "DOTA_Tooltip_ability_aether_range_lod_cast_range_bonus"        "BONUS CAST RANGE:"
 
     "DOTA_Tooltip_ability_aether_range_lod_OP" "Aether Range OP"
-    "DOTA_Tooltip_ability_aether_range_lod_OP_Description" "<font color='#70EA72'>Greatly</font> increases spell cast range."
+    "DOTA_Tooltip_ability_aether_range_lod_OP_Description" "<font color='#70EA72'>Greatly</font> increases spell cast range. Also increases the cast distance of auto-cast abilities."
     "DOTA_Tooltip_ability_aether_range_lod_OP_Lore"        "Great magicians can cast spells from miles away."
     "DOTA_Tooltip_ability_aether_range_lod_OP_cast_range_bonus"        "BONUS CAST RANGE:"
 

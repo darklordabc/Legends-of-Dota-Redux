@@ -482,6 +482,11 @@
     "lodOptionAboutConsumeItems"                             "This enables some late game items to be able to be consumed and gained as a permanent buff (for the cost of the original price)."
     "lodMutatorConsumeItems"                                 "Consumable Items"
 
+    "lodOptionLimitPassives"                                  "Limit Passives"
+    "lodOptionDesLimitPassives"                               "Enable Limit Passives"
+    "lodOptionAboutLimitPassives"                             "This will force players to have maximum 3 passives. Semi-Passives are counted as passives (like Empower and Vampiric Aura)."
+    "lodMutatorLimitPassives"                                 "Limit Passives"
+
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"
     "lodOptionDesAdvancedNeutralAbilities"          "Allow Neutral Abilities"
     "lodOptionDesAdvancedCustomSkills"              "Allow Custom Abilities"
@@ -928,7 +933,7 @@
     "hintUndying"                         "Undying gains +1 strength per creep death or +4 strength per hero death in a 900 radius for 30 seconds."
     "hintVenomancer"                         "Increases the duration of all Poison effects Venomancer applies by 25%."
     "hintViper"                         "Poison effects applied by Viper also lower the target's armor by 2."
-    "hintWarlock"                         "Warlock starts the game with 4 free Observer Wards."
+    "hintWarlock"                         "Warlock starts the game with a Necronomicon."
     "hintWeaver"                         "Weaver will automatically cast Time Lapse upon taking fatal damage. Requires level 6 or higher."
     "hintWindranger"                         "If Windranger has no passives, all her active spells will refund 20% mana and have 20% reduced cooldowns."
     "hintWK"                         "Wraith King can buyback with a 50% reduced cooldown, refunding 50% of the buyback cost and removing the gold penalty."
@@ -1344,7 +1349,7 @@
     "unique_mechanic_venomancer"                        "Increases the duration of all <font color=\'#ffd966\'>Poison</font> effects Venomancer applies by 25%."
     "unique_mechanic_viper"                        "<font color=\'#ffd966\'>Poison</font> effects applied by Viper also lower the target's armor by 2."
     "unique_mechanic_visage"                        "<font color=\'#ffd966\'>Summon Familiars</font> will refund 100% of manacost and have its cooldown reduced by 50%."
-    "unique_mechanic_warlock"                        "Warlock starts the game with 4 free <font color=\'#ffd966\'>Observer Wards</font>."
+    "unique_mechanic_warlock"                        "Warlock starts the game with a <font color=\'#ffd966\'>Necronomicon</font>."
     "unique_mechanic_weaver"                        "Weaver will automatically cast <font color='#ffd966'>Time Lapse</font> upon taking fatal damage."
     "unique_mechanic_windrunner"                        "If Windranger has no passives, all her active spells will refund 20% mana and have 20% reduced cooldowns."
     "unique_mechanic_winter_wyvern"         "When Winter Wyvern's health and mana are above 75% she gains flying status after a 5 second delay."
@@ -2365,7 +2370,7 @@
     "DOTA_Tooltip_ability_slark_essence_shift_agility_lod_stat_loss"                    "ALL ATTRIBUTE LOSS:"
     "DOTA_Tooltip_ability_slark_essence_shift_agility_lod_duration"                     "DURATION:"
     "DOTA_Tooltip_modifier_slark_essence_shift_agility_datadriven_buff_counter"                         "Essence Shift (AGI)"
-    "DOTA_Tooltip_modifier_slark_essence_shift_agility_datadriven_buff_counter_Description"             "Stealing %dMODIFIER_PROPERTY_STATS_AGILITY_BONUS% intelligence."
+    "DOTA_Tooltip_modifier_slark_essence_shift_agility_datadriven_buff_counter_Description"             "Stealing %dMODIFIER_PROPERTY_STATS_AGILITY_BONUS% agility."
     "DOTA_Tooltip_modifier_slark_essence_shift_agility_datadriven_debuff_counter"           "Essence Shift (AGI)"
     "DOTA_Tooltip_modifier_slark_essence_shift_agility_datadriven_debuff_counter_Description"   "Losing %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS% of each attribute."
 
@@ -2553,12 +2558,12 @@
     "DOTA_Tooltip_ability_global_stun_hero_stun_duration"                   "HERO STUN:"
 
     "DOTA_Tooltip_ability_aether_range_lod" "Aether Range"
-    "DOTA_Tooltip_ability_aether_range_lod_Description" "Increases spell cast range."
+    "DOTA_Tooltip_ability_aether_range_lod_Description" "Increases spell cast range. Also increases the cast distance of auto-cast abilities."
     "DOTA_Tooltip_ability_aether_range_lod_Lore"        "Great magicians can cast spells from miles away."
     "DOTA_Tooltip_ability_aether_range_lod_cast_range_bonus"        "BONUS CAST RANGE:"
 
     "DOTA_Tooltip_ability_aether_range_lod_OP" "Aether Range OP"
-    "DOTA_Tooltip_ability_aether_range_lod_OP_Description" "<font color='#70EA72'>Greatly</font> increases spell cast range."
+    "DOTA_Tooltip_ability_aether_range_lod_OP_Description" "<font color='#70EA72'>Greatly</font> increases spell cast range. Also increases the cast distance of auto-cast abilities."
     "DOTA_Tooltip_ability_aether_range_lod_OP_Lore"        "Great magicians can cast spells from miles away."
     "DOTA_Tooltip_ability_aether_range_lod_OP_cast_range_bonus"        "BONUS CAST RANGE:"
 
@@ -3886,7 +3891,7 @@
 
     /// WARLOCK​
     "DOTA_Tooltip_modifier_npc_dota_hero_warlock_perk"  "Warlock Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_warlock_perk_Description"  "Warlock starts the game with 4 free Observer Wards."
+    "DOTA_Tooltip_modifier_npc_dota_hero_warlock_perk_Description"  "Warlock starts the game with with a Necronomicon"
 
     /// WEAVER
     "DOTA_Tooltip_modifier_npc_dota_hero_weaver_perk"   "Weaver Perk"
@@ -7781,4 +7786,11 @@
     "DOTA_Tooltip_ability_antimage_blink_redux_Lore"                                      "In his encounter with the Dead Gods, Anti-Mage learned the value of being elusive."
     "DOTA_Tooltip_ability_antimage_blink_redux_Note0"                                     "You can use Blink to dodge incoming projectiles."
     "DOTA_Tooltip_ability_antimage_blink_redux_blink_range"                               "RANGE:"
+
+    "DOTA_Tooltip_Ability_item_necronomicon_perk"            "Warlock's Necronomicon"
+    "DOTA_Tooltip_ability_item_necronomicon_perk_Description"                    "<h1>Active: Demonic Summoning</h1>Summons a Warrior and an Archer to fight for you for %summon_duration% seconds.<br><br><h1>Warrior:</h1>Burns mana every hit, and deals magical damage to whoever kills it.  Gains True Sight at level 3.<br>Health: %warrior_health_tooltip%<br>Damage: %warrior_damage_tooltip%<br>Mana Break Damage: %warrior_mana_break_tooltip%<br>Last Will Damage: %explosion%<br><br><h1>Archer:</h1>Has an activated mana burn ability, and a passive movement and attack speed aura.<br>Health: %archer_health_tooltip%<br>Damage: %archer_damage_tooltip%<br>Mana Burn Damage: %archer_mana_burn%<br>Aura Move Speed: %archer_move_speed%<br>Aura Attack Speed: %archer_attack_speed%<br>Aura Radius: %archer_aura_radius_tooltip%"
+    "DOTA_Tooltip_ability_item_necronomicon_perk_Lore"                       "Considered the ultimate in necromancy and demonology, a powerful malefic force is locked within its pages."
+    "DOTA_Tooltip_ability_item_necronomicon_perk_bonus_intellect"                "+$int"
+    "DOTA_Tooltip_ability_item_necronomicon_perk_bonus_strength"                 "+$str" 
+
 }

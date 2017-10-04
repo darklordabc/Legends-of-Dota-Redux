@@ -578,6 +578,118 @@
             }
         }
     }
+
+    "item_necronomicon_perk"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                            "item_necronomicon"                                                       // unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastPoint"              "0.0"
+        "AbilityCooldown"               "90.0"
+        "AbilitySharedCooldown"         "necronomicon"
+        "FightRecapLevel"               "1"
+        "ItemPurchasable"              "0"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "50"
+        "ItemCost"                      "0"
+        "ItemShopTags"                  "int;str;hard_to_tag;see_invis"
+        "ItemQuality"                   "rare"
+        "ItemAliases"                   "necronomicon 1"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+        "MaxUpgradeLevel"               "3"
+        "ItemBaseLevel"                 "1"
+
+        "UpgradesItems"                 "item_necronomicon;item_necronomicon_2"
+        "UpgradeRecipe"                 "item_recipe_necronomicon"
+        
+        // Special  
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_intellect"       "15"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_strength"        "8"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "summon_duration"       "50"
+            }           
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "warrior_health_tooltip"    "700"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "warrior_damage_tooltip"    "75"
+            }
+            "06"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "warrior_mana_feedback" "20"
+            }
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "warrior_mana_break_tooltip"    "20"
+            }
+            "08"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "explosion"             "550"
+            }           
+            "09"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "warrior_truesight"     "1000"
+            }
+            "10"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "archer_health_tooltip" "700"
+            }
+            "11"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "archer_damage_tooltip" "60"
+            }
+            "12"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "archer_mana_burn"      "125"
+            }
+            "13"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "archer_aura_radius_tooltip"    "900"
+            }
+            "14"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "archer_move_speed" "5"
+            }
+            "15"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "archer_attack_speed"   "5"
+            }   
+        }
+    }
+
     "item_heart_consumable"
     {
         // General

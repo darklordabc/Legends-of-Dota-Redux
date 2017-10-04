@@ -127,6 +127,13 @@ function spell_lab_symbiotic_modifier:OnSpentMana (kv)
 			end
 		else
 	    local hParent = self:GetParent()
+	    
+	    -- Tether semi-nerf, prevent players having hearts and giving massive health regen constantly
+	    local tether = hParent:FindAbilityByName("wisp_tether")
+	    if tether then
+	    	tether:StartCooldown(60)
+	    end
+
 			--DeepPrintTable(kv)
 			local mana = self.hHost:GetMana()
 			if self.hHost:GetMana() >= kv.cost then
