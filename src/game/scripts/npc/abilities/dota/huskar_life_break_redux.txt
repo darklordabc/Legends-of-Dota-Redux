@@ -1,0 +1,109 @@
+"DOTAAbilities"
+{
+    "huskar_life_break_redux"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                            "huskar_life_break"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityTextureName"            "custom/huskar_life_break_redux"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"     
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+        "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+        "FightRecapLevel"               "2"
+        "AbilitySound"                  "Hero_Huskar.Life_Break"
+
+        "HasScepterUpgrade"         "1"
+
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_huskar.vsndevts"
+        }
+
+        "ReduxFlags"                                                           "upgradeable"
+        "ReduxPerks"                                                           "self_damage"
+        "ReduxCost"                                                            "40"
+        "ReduxBans"                                                            "spell_lab_symbiotic"
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastPoint"              "0.3 0.3 0.3"
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "48"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "0 0 0"     
+        
+        // Cast Range
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "550"
+        
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityDuration"               "4 5 6"
+        
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "health_cost_percent"       "0.34 0.38 0.42"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "health_damage"             "0.34 0.38 0.42"
+            }
+            "03"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "health_damage_scepter"     "0.65"
+            }
+            "04"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "charge_speed"              "1200"
+            }
+            "05"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "tooltip_health_damage"             "34 38 42"
+            }
+            "06"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "tooltip_health_cost_percent"       "34 38 42"
+                "CalculateSpellDamageTooltip"       "1"
+            }
+            "07"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "movespeed"                 "-40 -50 -60"
+            }
+            "08"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "slow_durtion_tooltip"      "4 5 6"
+            }
+            "09"
+            {
+                "var_type"                          "FIELD_INTEGER"
+                "tooltip_health_damage_scepter"     "65"
+            }
+            "10"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "cooldown_scepter"          "16"
+            }
+        }
+    }
+}

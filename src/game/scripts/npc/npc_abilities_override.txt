@@ -875,7 +875,7 @@
     {
         "ReduxFlags"                                                           "upgradeable"
         "ReduxPerks"                                                           "self_damage"
-        "ReduxCost"                                                            "40"
+        "ReduxCost"                                                            "120"
         "ReduxBans"                                                            "spell_lab_symbiotic"
     }
     "jakiro_macropyre"
@@ -1817,7 +1817,7 @@
     {
         "ReduxFlags"                                                           "tank"
         "ReduxCost"                                                            "40"
-        "ReduxBans"                                                            "furion_teleportation | centaur_return | nyx_assassin_burrow | nyx_assassin_burrow_redux | huskar_life_break "
+        "ReduxBans"                                                            "furion_teleportation | centaur_return | nyx_assassin_burrow | nyx_assassin_burrow_redux | huskar_life_break | huskar_life_break_redux "
     }
     "phantom_assassin_blur"
     {
@@ -3691,7 +3691,7 @@
 
     "special_bonus_unique_huskar"
     {
-        "TalentRequiredAbility"                                                   "huskar_life_break"
+        "TalentRequiredAbility"                                                   "huskar_life_break_redux"
     }
 
     "special_bonus_unique_huskar_2"

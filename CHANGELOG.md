@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file.
 - Fixed Octarine preventing bloodstone suicide
 - Eldrich Anti-Magic tree no longer stuns spell immune units
 - Added Anti Perma-Bash: If you get bashed, for 5 seconds you cannot be bashed again
+- Life Break is now single player ability. Added Redux version with longer cooldown.
 
 ## 9.4
 - Fixed Projectiles missing on compendium towers

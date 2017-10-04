@@ -7808,4 +7808,19 @@
     "DOTA_Tooltip_ability_item_necronomicon_perk_bonus_intellect"                "+$int"
     "DOTA_Tooltip_ability_item_necronomicon_perk_bonus_strength"                 "+$str" 
 
+    "DOTA_Tooltip_ability_huskar_life_break_redux"                                        "Life Break Redux"
+    "DOTA_Tooltip_ability_huskar_life_break_redux_Description"                            "Huskar draws upon his health to break an enemy's life, leaping at a target within attack range to shatter a percentage of that hero's current health, and slowing them.  While leaping, Huskar is Spell Immune. <font color='#70EA72'>Longer cooldown</font>.\n\nUpgradable by Aghanim's Scepter."
+    "DOTA_Tooltip_ability_huskar_life_break_redux_Lore"                                   "No matter the danger, Huskar thrusts himself into melees that only he can survive."
+    "DOTA_Tooltip_ability_huskar_life_break_redux_Note0"                                  "If Huskar is disabled during the charge or the target moves more than 1400 units in 0.015 seconds, the charge stops."
+    "DOTA_Tooltip_ability_huskar_life_break_redux_Note1"                                  "Slow works on Spell Immune units."
+    "DOTA_Tooltip_ability_huskar_life_break_redux_Note2"                                  "Life Break cannot be disjointed."
+    "DOTA_Tooltip_ability_huskar_life_break_redux_tooltip_health_damage"                  "%DAMAGE DEALT:"
+    "DOTA_Tooltip_ability_huskar_life_break_redux_tooltip_health_cost_percent"            "%DAMAGE TAKEN:"
+    "DOTA_Tooltip_ability_huskar_life_break_redux_movespeed"                              "%MOVEMENT SLOW:"
+    "DOTA_Tooltip_ability_huskar_life_break_redux_slow_durtion_tooltip"                               "SLOW DURATION:"
+    
+    "DOTA_Tooltip_ability_huskar_life_break_redux_cooldown_scepter"                       "SCEPTER COOLDOWN:"
+    "DOTA_Tooltip_ability_huskar_life_break_redux_tooltip_health_damage_scepter"          "%SCEPTER DAMAGE DEALT:"
+    "DOTA_Tooltip_ability_huskar_life_break_redux_aghanim_description"                    "Increases damage dealt, reduces cooldown."
+
 }
