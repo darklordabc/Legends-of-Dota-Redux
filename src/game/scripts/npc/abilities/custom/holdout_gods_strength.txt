@@ -8,6 +8,7 @@
 		"AbilityDuration" "25.0"
 		"AbilityManaCost" "125"
 		"ReduxFlags"                                                           "cooldown"
+		"ReduxBans"                                                            "sven_gods_strength"
 
 		"AbilitySpecial" {
 			"01" {
