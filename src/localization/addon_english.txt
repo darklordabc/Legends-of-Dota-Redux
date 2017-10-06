@@ -5191,7 +5191,7 @@
 		"DOTA_Tooltip_spell_lab_survivor_mana_burn_modifier"					"Survival of the Fittest: Mana Burn"
 		"DOTA_Tooltip_spell_lab_survivor_mana_burn_modifier_Description" "Mana Burn Damage gained through staying alive."
 
-		"DOTA_Tooltip_ability_spell_lab_survivor_critical"					"Survival of the Fittest: Critical"
+		"DOTA_Tooltip_ability_spell_lab_survivor_critical"					"Survival of the Crittest"
 		"DOTA_Tooltip_ability_spell_lab_survivor_critical_Description"		"Your survival instinct is enhanced. Your attacks gain Critical Damage for every minute you survive without dying."
 		"DOTA_Tooltip_ability_spell_lab_survivor_critical_bonus"			"%CRITICAL DAMAGE PER MINUTE:"
 		"DOTA_Tooltip_ability_spell_lab_survivor_critical_chance"			"%CRITICAL CHANCE:"
