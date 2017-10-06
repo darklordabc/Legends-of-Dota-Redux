@@ -6,9 +6,14 @@ modifier_bash_cooldown = class({
 })
 
 function BashCooldown( filterTable )
-    local parent = EntIndexToHScript(filterTable.entindex_parent_const)
-    local caster = EntIndexToHScript(filterTable.entindex_caster_const)
-    local ability = EntIndexToHScript(filterTable.entindex_ability_const)
+    local pIndex = filterTable.entindex_parent_const
+    local cIndex = filterTable.entindex_caster_const
+    local aIndex = filterTable.entindex_ability_const
+    if not pIndex or not cIndex or not aIndex then return end
+	
+    local parent = EntIndexToHScript(pIndex)
+    local caster = EntIndexToHScript(cIndex)
+    local ability = EntIndexToHScript(aIndex)
     local modifierName = filterTable.name_const
     -- Reflect only modifiers created by abilities with 'bash' flag
     if ability:HasAbilityFlag('bash') and
