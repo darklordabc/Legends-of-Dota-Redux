@@ -32,13 +32,14 @@ end
 -- Add additional functions
 function modifier_npc_dota_hero_warlock_perk:OnCreated(keys)
 	if IsServer() then
-		local caster = self:GetCaster()
+		if not util:isPlayerBot(self:GetParent():GetPlayerID()) then
+			local caster = self:GetCaster()
 
-		Timers:CreateTimer(function()
-	      caster:AddItemByName('item_necronomicon_perk')
-	      return
-	    end, DoUniqueString('give_necronomicon'), .5)
-		
+			Timers:CreateTimer(function()
+		      caster:AddItemByName('item_necronomicon_perk')
+		      return
+		    end, DoUniqueString('give_necronomicon'), .5)
+		end
 	end
 end
 --------------------------------------------------------------------------------------------------------
