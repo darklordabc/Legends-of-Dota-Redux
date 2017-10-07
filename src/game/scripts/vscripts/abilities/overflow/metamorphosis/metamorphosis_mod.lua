@@ -10,9 +10,16 @@ function metamorphosis_mod:OnCreated( kv )
 		self.AttackBonus = (self:GetParent():GetAttackRange() - self:GetAbility():GetSpecialValueFor("attack_range")) * -1
 		self.OriginalAtkCap = self:GetParent():GetAttackCapability()
 		self:GetParent():SetAttackCapability(DOTA_UNIT_CAP_MELEE_ATTACK)
+		
+		self:StartIntervalThink(0.5)
 	end
 end
 
+function metamorphosis_mod:OnIntervalThink()
+	if self:GetDuration() == -1 and not self:GetCaster():HasModifier("modifier_item_aegis") then
+		self:Destroy()
+	end
+end
 
 function metamorphosis_mod:OnDestroy()
 	if IsServer() then
