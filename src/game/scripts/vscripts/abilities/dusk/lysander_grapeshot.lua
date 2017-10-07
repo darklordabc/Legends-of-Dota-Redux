@@ -67,6 +67,9 @@ function lysander_grapeshot:OnSpellStart()
 			local dmg = mult * (c:GetAverageTrueAttackDamage(c)+base_dmg)
 
 			InflictDamage(t,c,dmg,DAMAGE_TYPE_PHYSICAL)
+				
+			local totem = self:GetCaster():FindModifierByName("modifier_earthshaker_enchant_totem")
+			if totem then totem:Destroy() end
 
 			if sound2 ~= "" then t:EmitSound(sound2) end
 
