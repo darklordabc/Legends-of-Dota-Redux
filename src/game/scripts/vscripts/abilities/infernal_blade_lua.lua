@@ -6,26 +6,16 @@ LinkLuaModifier("modifier_infernal_blade_caster", "redux_testing/infernal_blade_
 infernal_blade_lua = class({})
 
 function infernal_blade_lua:OnAbilityPhaseStart()
-end
-
---manual cast currently bugged? 
---it appears to follow thru with the attack, but it never prints and the override boolean is never set to true.
-function infernal_blade_lua:OnSpellStart()
-	print("testtesttest -- running spell start")
 	if IsServer() then
 		local target = self:GetCursorTarget()
 		if target then
-			print("set true")
 			self.overrideAutocast = true
-
-			self:GetCaster():MoveToTargetToAttack(target)
-
-			--manual cast will spend mana and cooldown before the attack is performed.
-			--so we refund them here, and spend them later.
-			self:RefundManaCost()
-			self:EndCooldown()
 		end
 	end
+end
+
+function infernal_blade_lua:OnSpellStart()
+--	print("fuck you gaben")
 end
 
 function infernal_blade_lua:OnUpgrade()
@@ -83,12 +73,12 @@ modifier_infernal_blade_caster = class({
 
 		local caster = self:GetCaster()
 		local ability = self:GetAbility()
+		local target = keys.target
 
-		print("Pre:", ability:GetAutoCastState(), ability.overrideAutocast, ability:IsFullyCastable())
 		if ability:GetAutoCastState() or ability.overrideAutocast then
-			print("pass 1")
 			if ability:IsFullyCastable() then
-				print("pass 2")
+				--dont infernal roshan or buildings, and dont let illusions use it.
+				if target:GetUnitName() == "npc_dota_roshan" or caster:IsIllusion() or target:IsBuilding() then print("invalid target") return end
 
 				self.p = ParticleManager:CreateParticle("particles/units/heroes/hero_doom_bringer/doom_infernal_blade.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 				ParticleManager:SetParticleControlEnt(self.p, 1, caster, PATTACH_POINT_FOLLOW, "attach_weapon_blur", caster:GetAbsOrigin(), true)
@@ -105,34 +95,23 @@ modifier_infernal_blade_caster = class({
 		local ability = self:GetAbility()
 		local target = keys.target
 
-		print("Post:", ability:GetAutoCastState(), ability.overrideAutocast, ability:IsFullyCastable())
+		--multipurpose particle id ;)
+		if self.p then
+			target:AddNewModifier(caster, ability, "modifier_infernal_blade", {duration = self.duration})
+			target:AddNewModifier(caster, ability, "modifier_infernal_blade_stun", {duration = self.stun})
 
-		if ability:GetAutoCastState() or ability.overrideAutocast then
-			print("pass 3")
-			if ability:IsFullyCastable() then
-				print("pass 4")
-				--dont infernal roshan or buildings, and dont let illusions use it.
-				if target:GetUnitName() == "npc_dota_roshan" or caster:IsIllusion() or target:IsBuilding() then print("invalid target") return end
+			EmitSoundOn("Hero_DoomBringer.InfernalBlade.Target", target)
+			ability:UseResources(true, false, true)
 
-				target:AddNewModifier(caster, ability, "modifier_infernal_blade", {duration = self.duration})
-				target:AddNewModifier(caster, ability, "modifier_infernal_blade_stun", {duration = self.stun})
-
-				ParticleManager:ReleaseParticleIndex(
-					ParticleManager:CreateParticle("particles/units/heroes/hero_doom_bringer/doom_infernal_blade_impact.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
-				)
-
-				EmitSoundOn("Hero_DoomBringer.InfernalBlade.Target", target)
-
-				print("use resources")
-				ability:UseResources(true, false, true)
-			end
+			ParticleManager:ReleaseParticleIndex(
+				ParticleManager:CreateParticle("particles/units/heroes/hero_doom_bringer/doom_infernal_blade_impact.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+			)
 		end
 	end,
 
 	OnOrder = function(self, keys)
 		if not IsServer() then return end
 		if keys.unit ~= self:GetParent() then return end
-		print("set false")
 		self:GetAbility().overrideAutocast = false
 		if self.p then
 			ParticleManager:DestroyParticle(self.p, false)
