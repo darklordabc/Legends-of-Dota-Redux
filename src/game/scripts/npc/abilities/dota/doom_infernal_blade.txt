@@ -2,7 +2,7 @@
 		"infernal_blade_lua"
 	{
 		"BaseClass"             		"ability_lua"
-		"ScriptFile"					"redux_testing/infernal_blade_lua"
+		"ScriptFile"					"abilities/infernal_blade_lua.lua"
 		"AbilityTextureName"			"doom_bringer_infernal_blade"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
