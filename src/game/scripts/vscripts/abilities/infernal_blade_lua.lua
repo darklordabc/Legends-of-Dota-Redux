@@ -1,6 +1,6 @@
-LinkLuaModifier("modifier_infernal_blade", "redux_testing/infernal_blade_lua.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_infernal_blade_stun", "redux_testing/infernal_blade_lua.lua", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_infernal_blade_caster", "redux_testing/infernal_blade_lua.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_infernal_blade", "abilities/infernal_blade_lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_infernal_blade_stun", "abilities/infernal_blade_lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_infernal_blade_caster", "abilities/infernal_blade_lua", LUA_MODIFIER_MOTION_NONE)
 ------------------------------------------------
 
 infernal_blade_lua = class({})
