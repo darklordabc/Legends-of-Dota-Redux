@@ -127,7 +127,7 @@ modifier_infernal_blade_stun = class({
 	IsPurgable = function(self) return true end,
 	IsStunDebuff = function(self) return true end,
 	CheckState = function(self) return {[MODIFIER_STATE_STUNNED] = true,} end,
-
+	GetOverrideAnimation = function(self) return ACT_DOTA_DISABLED end,
 	GetEffectName = function(self) return "particles/generic_gameplay/generic_stunned.vpcf" end,
 	GetEffectAttachType = function(self) return PATTACH_OVERHEAD_FOLLOW end,
 })
