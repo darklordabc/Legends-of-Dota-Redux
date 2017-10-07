@@ -47,7 +47,7 @@ modifier_infernal_blade = class({
 
 	OnIntervalThink = function(self)
 		if not IsServer() then return end
-		local damage = self:GetCaster():GetHealth() * self.burn + self.base
+		local damage = self:GetCaster():GetMaxHealth() * self.burn + self.base
 		ApplyDamage({victim = self:GetParent(), attacker = self:GetCaster(), ability = self, damage = damage, damage_type = self:GetAbility():GetAbilityDamageType()})
 	end,
 })
