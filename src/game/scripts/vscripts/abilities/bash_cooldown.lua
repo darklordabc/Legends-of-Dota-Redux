@@ -9,7 +9,9 @@ function BashCooldown( filterTable )
     local pIndex = filterTable.entindex_parent_const
     local cIndex = filterTable.entindex_caster_const
     local aIndex = filterTable.entindex_ability_const
-    if not pIndex or not cIndex or not aIndex then return end
+    if not pIndex or not cIndex or not aIndex then
+	return true
+    end
 	
     local parent = EntIndexToHScript(pIndex)
     local caster = EntIndexToHScript(cIndex)
