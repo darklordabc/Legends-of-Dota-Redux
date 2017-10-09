@@ -10,12 +10,9 @@ function infernal_blade_lua:OnAbilityPhaseStart()
 		local target = self:GetCursorTarget()
 		if target then
 			self.overrideAutocast = true
+			self:GetCaster():MoveToTargetToAttack(target)
 		end
 	end
-end
-
-function infernal_blade_lua:OnSpellStart()
---	print("fuck you gaben")
 end
 
 function infernal_blade_lua:OnUpgrade()
@@ -37,8 +34,8 @@ modifier_infernal_blade = class({
 	GetEffectAttachType = function(self) return PATTACH_ABSORIGIN_FOLLOW end,
 	
 	OnCreated = function(self, kv)
-		--self.burn = self:GetAbility():GetTalentSpecialValueFor("max_pct_burn") * 0.01
-		self.burn = self:GetAbility():GetSpecialValueFor("max_pct_burn") * 0.01
+		self.burn = self:GetAbility():GetTalentSpecialValueFor("max_pct_burn") * 0.01
+		--self.burn = self:GetAbility():GetSpecialValueFor("max_pct_burn") * 0.01
 		self.base = self:GetAbility():GetSpecialValueFor("base_dmg")
 		self.tick = self:GetAbility():GetSpecialValueFor("interval")
 
