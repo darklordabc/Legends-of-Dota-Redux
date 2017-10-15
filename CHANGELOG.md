@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 - Fixed Dreadnought not doing reduced damage on buildings
 - Fixed Perm Roshanify bug
 - Re-Enabled Shared EXP in all_allowed
+- Tempest Doubles will no longer inherit starfall (buggy)
 
 ## 9.5
 - Limit Passives is now an optional mutator in dota map

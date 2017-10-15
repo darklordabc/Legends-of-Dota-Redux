@@ -1487,6 +1487,8 @@
     "warning_true_random_lod_5"                 "<font color=\'#FF4949\'>Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
     "warning_true_random_lod_6"                 "<font color=\'#FF4949\'>Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
     "warning_doom_bringer_devour_lod" "<font color=\'#FF4949\'>Warning:</font> Will not give you neutral creep abilities of devoured creeps"
+    "warning_arc_warden_tempest_double" "<font color=\'#FF4949\'>Warning:</font> Tempest Doubles will not inherit some specific abilities that are too powerful or buggy."
+    "warning_arc_warden_tempest_double_redux" "<font color=\'#FF4949\'>Warning:</font> Tempest Doubles will not inherit some specific abilities that are too powerful or buggy."
     "warning_illusionist_agility_paws" "<font color=\'#FF4949\'>Warning:</font> Bonus agility can only come from using <font color=\'#70EA72\'>Mastery of Deception</font> and/or <font color=\'#70EA72\'>Mastery of Illusions</font>.\n"
     "warning_bristleback_bristleback" "<font color=\'#FF4949\'>Warning:</font> Quill release will not do any damage unless you have at least 1 level in <font color=\'#70EA72\'>Quill Spray</font>.\n"
     "warning_roshan_bash" "Roshan has a chance to stun on attack. Can stun buildings.\n"
