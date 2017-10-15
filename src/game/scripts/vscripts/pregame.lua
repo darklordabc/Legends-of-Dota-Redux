@@ -533,7 +533,7 @@ function Pregame:init()
 
     if mapName == 'all_allowed' then
         self:setOption('lodOptionCrazyUniversalShop', 0, true)
-        self:setOption('lodOptionGameSpeedSharedEXP', 0, true)
+        self:setOption('lodOptionGameSpeedSharedEXP', 1, true)
         self:setOption('lodOptionBanningUseBanList', 1, true)
         self:setOption('lodOptionAdvancedOPAbilities', 1, true)
         self:setOption('lodOptionGameSpeedMaxLevel', 100, true)

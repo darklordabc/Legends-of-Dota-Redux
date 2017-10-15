@@ -2,6 +2,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 9.6
+- Fixed Templar Assasin losing perk on death
+- Fixed Dreadnought not doing reduced damage on buildings
+- Fixed Perm Roshanify bug
+- Re-Enabled Shared EXP in all_allowed
+
 ## 9.5
 - Limit Passives is now an optional mutator in dota map
 - If Tether is cast while the hero is a symbiote, it will have a 60 second cooldown instead of 12 (Troll combo prevention)
