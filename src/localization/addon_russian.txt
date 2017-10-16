@@ -947,14 +947,14 @@
     "lod_cat_dota_custom"                           "Dota Related Customs"
     "lod_cat_passive"                               "Пассивка"
     "lod_cat_cooldown"                              "Влияющие на перезарядку"
-    "lod_cat_OPSkillsList"                          "Сверхсильные"
-    "lod_cat_SuperOP"                               "Супер сверхсильные"
+    "lod_cat_OPSkillsList"                          "OP"
+    "lod_cat_SuperOP"                               "Супер OP"
     "lod_cat_mana"                                  "Мана"
 
     // Categories
     "lodCategory_main"                              "Способности героев"
     "lodCategory_neutral"                           "Способности нейтралов"
-    "lodCategory_OP"                                "Сверхсильные способности"
+    "lodCategory_OP"                                "OP способности"
     "lodCategory_custom"                            "Пользовательские способности"
     "lodCategory_superop"                           "Single Player способности"
     "lodCategory_mostused"                          "Часто используемые способности"
