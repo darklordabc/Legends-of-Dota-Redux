@@ -326,10 +326,10 @@
     "lodOptionBanningMaxBans10"                     "10 запретов на игрока"
     "lodOptionBanningMaxBans25"                     "25 запретов на игрока"
 
-    "lodOptionDesBanningBlockTrollCombos"           "Запретить комбинации троллей"
-    "lodOptionDesBanningUseBanList"                 "Ban Single Player Abilities (SUPER OP)"
-    "lodOptionDesBanningBanInvis"                   "Запретить способности невидимости"
-    "lodOptionDesBanningBalanceMode"                "Использовать запрет-лист баланс мода"
+    "lodOptionDesBanningBlockTrollCombos"           "Блокировать Troll Combos"
+    "lodOptionDesBanningUseBanList"                 "Запретить Single Player способности (Супер OP)"
+    "lodOptionDesBanningBanInvis"                   "Запретить невидимость"
+    "lodOptionDesBanningBalanceMode"                "Использовать бан-лист баланс мода"
 
     "lodOptionDesGameSpeedStartingLevel"            "Начальный Уровень"
     "lodOptionLevel1"                               "Уровень 1"
