@@ -206,14 +206,14 @@
     "lodMutatorBotsDire2"                           "5 Ботов Сил Тьмы"
     "lodMutatorBotsDire3"                           "10 Ботов Сил Тьмы"
 
-    "lodMutatorCreepNoPower"                        "Нормальные крипы"
+    "lodMutatorCreepNoPower"                        "Обычные крипы"
     "lodMutatorCreepPowerNormal"                    "Крепкие крипы"
     "lodMutatorCreepPowerHigh"                      "Сильные крипы"
     "lodMutatorCreepPowerExtreme"                   "Экстремальные Крипы"
     
     "lodMutatorNeutralCreepNoPower"                 "Обычные нейтралы"
-    "lodMutatorNeutralCreepPowerNormal"             "Сильные нейтралы"
-    "lodMutatorNeutralCreepPowerHigh"               "Сложные нейтралы"
+    "lodMutatorNeutralCreepPowerNormal"             "Крепкие крипы"
+    "lodMutatorNeutralCreepPowerHigh"               "Сильные крипы"
     "lodMutatorNeutralCreepPowerExtreme"            "Экстремальные нейтралы"
     
     "lodMutatorCreepNoMultiply"                     "Кол-во нейтралов(как големы)"
