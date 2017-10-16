@@ -327,7 +327,7 @@
     "lodOptionBanningMaxBans25"                     "25 запретов на игрока"
 
     "lodOptionDesBanningBlockTrollCombos"           "Запретить комбинации троллей"
-    "lodOptionDesBanningUseBanList"                 "Использовать LoD запрет-лист"
+    "lodOptionDesBanningUseBanList"                 "Ban Single Player Abilities (SUPER OP)"
     "lodOptionDesBanningBanInvis"                   "Запретить способности невидимости"
     "lodOptionDesBanningBalanceMode"                "Использовать запрет-лист баланс мода"
 
@@ -956,7 +956,7 @@
     "lodCategory_neutral"                           "Способности нейтралов"
     "lodCategory_OP"                                "Сверхсильные способности"
     "lodCategory_custom"                            "Пользовательские способности"
-    "lodCategory_superop"                           "Dota IMBA способности"
+    "lodCategory_superop"                           "Single Player способности"
     "lodCategory_mostused"                          "Часто используемые способности"
 
     // Error messages
@@ -1302,7 +1302,7 @@
     "unique_mechanic_venomancer"                        "Увеличивает длительность всех <font color=\'#ffd966\'>Ядов</font> на 25%."
     "unique_mechanic_viper"                        "<font color=\'#ffd966\'>Яды</font> наложенные Вайпером снижают броню врага на 2(не стакается :с )."
     "unique_mechanic_visage"                        "<font color=\'#ffd966\'>Summon Familiars</font> вернут весь манакост и снизят свою перезарядку на 50%."
-    "unique_mechanic_warlock"                        "Варлок получает в начале игры 2 <font color=\'#ffd966\'>Observer Wards</font>."
+    "unique_mechanic_warlock"                        "Warlock начинает игру с <font color='#ffd966'>Necronomicon</font>."
     "unique_mechanic_weaver"                        "При получении фатального урона, Вивер использует <font color='#ffd966'>Time Lapse</font>."
     "unique_mechanic_windrunner"                        "Если у Врки нет пассивок, то все активки возвратят 20% маны и на 20% быстрее перезарядятся."
     "unique_mechanic_winter_wyvern"         "Когда здоровье и мана Виверны выше 75%, с задержкой в 5 секунд, она получает Полет."
