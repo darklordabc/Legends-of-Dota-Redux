@@ -209,11 +209,11 @@
     "lodMutatorCreepNoPower"                        "Обычные крипы"
     "lodMutatorCreepPowerNormal"                    "Крепкие крипы"
     "lodMutatorCreepPowerHigh"                      "Сильные крипы"
-    "lodMutatorCreepPowerExtreme"                   "Экстремальные Крипы"
+    "lodMutatorCreepPowerExtreme"                   "Экстремальные крипы"
     
     "lodMutatorNeutralCreepNoPower"                 "Обычные нейтралы"
-    "lodMutatorNeutralCreepPowerNormal"             "Крепкие крипы"
-    "lodMutatorNeutralCreepPowerHigh"               "Сильные крипы"
+    "lodMutatorNeutralCreepPowerNormal"             "Крепкие нейтралы"
+    "lodMutatorNeutralCreepPowerHigh"               "Сильные нейтралы"
     "lodMutatorNeutralCreepPowerExtreme"            "Экстремальные нейтралы"
     
     "lodMutatorCreepNoMultiply"                     "Кол-во нейтралов(как големы)"
