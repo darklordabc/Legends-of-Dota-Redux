@@ -1275,7 +1275,7 @@
     "unique_mechanic_sand_king"                        "Sand King возвращает 30% маны, потраченной на каст <font color=\'#ffd966\'>Прерываемой</font> способности. "
     "unique_mechanic_shadow_demon"                        "Когда Shadow Demon использует <font color=\'#ffd966\'>Демонические</font> способности, они возвращают 20% маны и уменьшают перезарядку на 20%."
     "unique_mechanic_nevermore"             "В начале игры, СФ получает 1 уровень <font color=\'#ffd966\'>Necromastery</font>, внезависимости от ее наличия."
-    "unique_mechanic_shadow_shaman"             "Когда Шаман получает в лицо направленную способность, вражеский кастер получает хекс в лицо на 3 секунды. Перезарядка 60 секунд."
+    "unique_mechanic_shadow_shaman"             "В ответ на направленную способность врага по себе, Shadow Shaman кастует Hex (3 сек). Перезарядка 60 секунд."
     "unique_mechanic_silencer"                        "<font color=\'#ffd966\'>Безмолвия</font> Сайленсера длятся на 25% дольше."
     "unique_mechanic_skywrath_mage"                        "Способности с перезрядкой 7 секунд и менее возвращяют 15% манакоста Скаю."
     "unique_mechanic_slardar"                       "<font color=\'#ffd966\'>Skull Basher</font> и <font color=\'#ffd966\'>Abyssal Blade</font> не будут работать на этом герое. Слардар получает встроенный <font color=\'#ffd966\'>Sprint</font> в инвентар."
