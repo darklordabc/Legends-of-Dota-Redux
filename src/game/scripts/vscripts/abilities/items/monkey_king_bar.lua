@@ -127,9 +127,9 @@ function modifier_item_monkey_king_bar_consumable:OnAttackLanded(keys)
     self.bash_damage = nil
     local random = RandomInt(0,100)
     if random <= self:GetAbility():GetSpecialValueFor("monkey_king_bar_bash_chance") then
-      self.bash_damage = self:GetAbility():GetSpecialValueFor("monkey_king_bar_bash_damage")
        -- Checks
-      if not keys.target:IsBuilding() then
+      if not keys.target:IsBuilding() and self:GetParent():IsRealHero() then
+        self.bash_damage = self:GetAbility():GetSpecialValueFor("monkey_king_bar_bash_damage")
         keys.target:AddNewModifier(self:GetParent(),self,"modifier_stunned",{duration = self:GetAbility():GetSpecialValueFor("monkey_king_bar_bash_stun")})
       end
     end
