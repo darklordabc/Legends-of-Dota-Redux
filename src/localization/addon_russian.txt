@@ -1300,7 +1300,7 @@
     "unique_mechanic_ursa"                   "Урса наносит нейтралам и Рошану на 15% больше урона."
     "unique_mechanic_vengefulspirit"                        "При смерти Венги, убийца навсегда теряет 1 от всех аттрибутов."
     "unique_mechanic_venomancer"                        "Увеличивает длительность всех <font color=\'#ffd966\'>Ядов</font> на 25%."
-    "unique_mechanic_viper"                        "<font color=\'#ffd966\'>Яды</font> наложенные Вайпером снижают броню врага на 2(не стакается :с )."
+    "unique_mechanic_viper"                        "<font color=\'#ffd966\'>Яды</font> наложенные Вайпером снижают броню врага на 2(Не стакаются)."
     "unique_mechanic_visage"                        "<font color=\'#ffd966\'>Summon Familiars</font> вернут весь манакост и снизят свою перезарядку на 50%."
     "unique_mechanic_warlock"                        "Warlock начинает игру с аналогом <font color=\'#ffd966\'>Necronomicon</font> 1 уровня, без возможности улучшения."
     "unique_mechanic_weaver"                        "При получении фатального урона, Вивер использует <font color='#ffd966'>Time Lapse</font>."
