@@ -448,10 +448,10 @@
     "lodOptionAboutBlackForest"                             "Перед началом игры, на карте сажается огромное количество деревьев."
 "lodMutatorBlackForest"                         "Темный лес"
 
-    "lodOptionAntiRat"                                  "Anti-Rat"
-    "lodOptionDesAntiRat"                               "Включить Anti-Rat защиту"
+    "lodOptionAntiRat"                                  "Усилить Backdoor Protection(Anti-Rat)"
+    "lodOptionDesAntiRat"                               "Усилить Backdoor Protection(Anti-Rat)"
     "lodOptionAboutAntiRat"                             "Не сломав все внешние(t2) вышки. Башни(t3) на подъеме невозможно сломать"
-    "lodMutatorAntiRat"                                 "Anti-Rat"
+    "lodMutatorAntiRat"                                 "Усиленный Backdoor Protection(Anti-Rat)"
 
     "lodOptionConsumeItems"                                  "Поглощение предметов"
     "lodOptionDesConsumeItems"                               "Включить поглощение предметов"
