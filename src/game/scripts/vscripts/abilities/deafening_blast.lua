@@ -1,66 +1,159 @@
-LinkLuaModifier("modifier_deafening_blast_knockback", "abilities/deafening_blast", LUA_MODIFIER_MOTION_HORIZONTAL)
+LinkLuaModifier("modifier_deafening_blast_knockback", "abilities/deafening_blast", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_deafening_blast_disarm", "abilities/deafening_blast", LUA_MODIFIER_MOTION_NONE)
+
 
 deafening_blast = class({})
 
 function deafening_blast:OnSpellStart()
 	local pos = self:GetCursorPosition()
 	if not pos then return end
-	self.castpoint = self:GetCaster():GetAbsOrigin()
+	self.hit = self.hit or {}
+	self.castNum = self.castNum or {}
+	self.castNum[#self.castNum+1] = "lordGaben"
 
-	--fire projectile
+	local startRadius = self:GetSpecialValueFor("radius_start")
+	local endRadius = self:GetSpecialValueFor("radius_end")
+	local distance = self:GetSpecialValueFor("travel_distance")
+	local speed = self:GetSpecialValueFor("travel_speed")
+	local max = 10
+
+	--when projectile is completely gone, remove its table data
+	Timers:CreateTimer(max, function() table.remove(self.castNum, 1) end)
+
+	local dir = (pos - self:GetCaster():GetAbsOrigin()):Normalized()
+	dir.z = 0
+
 	local info = {
-		nil,
-		nil,	
+		EffectName = "particles/units/heroes/hero_invoker/invoker_deafening_blast.vpcf",
+		Ability = self,
+		Source = self:GetCaster(),
+		vSpawnOrigin = self:GetCaster():GetAbsOrigin(),
+		fDistance = distance,
+		fStartRadius = startRadius,
+		fEndRadius = endRadius,
+		bHasFrontalCone = true,
+		bReplaceExisting = false,
+		vVelocity = dir * speed,
+		iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+		iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
+		iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		fExpireTime = GameRules:GetGameTime() + max,
+		bDeleteOnHit = false,
+		bProvidesVision = true,
+		iVisionRadius = endRadius,
+		iVisionTeamNumber = self:GetCaster():GetTeamNumber()
 	}
-	ProjectileManager:CreateLinearProjectile(info)
+	ProjectileManager:CreateLinearProjectile( info )
 
-	if self:GetCaster():HasTalent("invoker_talent") then
-		--aoe deafening blast. iterate by 30 degree angles and cast X(11?) times
-		for i=???? do
-			--edit direction and vector or something in info table
-			info.TargetOrSomeShit = new
+	--aoe deafening blast. iterate by 30 degree angles and cast 11 more times
+--	if self:GetCaster():HasTalent("invoker_talent") then
+	if false then
+		for i=1,11 do
 			--fire projectile again
-			ProjectileManager:CreateLinearProjectile(info)
+			info.vVelocity = RotatePosition(Vector(0,0,0), QAngle(0,30*i,0), dir) * speed
+			ProjectileManager:CreateLinearProjectile( info )
 		end
 	end
+
+	EmitSoundOn("Hero_Invoker.DeafeningBlast", self:GetCaster())
 end
+
 
 function deafening_blast:OnProjectileHit( hTarget, vLocation )
 	if not IsServer() or not hTarget or hTarget:IsNull() then return end
-  --apply modifiers on hit (if not spell immune?)
+
+	--grab kv from table
+	local num = #self.castNum
+
+	local mod = hTarget:FindModifierByName("modifier_deafening_blast_knockback")
+	if mod then
+		--dont allow re-apply if same cast hitting multiple times. DO allow if different cast
+		if self.hit[hTarget] == num then return end
+
+		--dont want to deal with modifier refresh bullshit, so get a new modifier
+		hTarget:RemoveModifierByName("modifier_deafening_blast_knockback")
+		hTarget:RemoveModifierByName("modifier_deafening_blast_disarm")
+	end
+
+	--mark unit as hit by this cast
+	self.hit[hTarget] = num
+
+	ApplyDamage({victim = hTarget, attacker = self:GetCaster(), ability = self, damage = self:GetSpecialValueFor("damage"), damage_type = self:GetAbilityDamageType()})
+
+	if hTarget:IsAlive() then
+		local knockback = self:GetSpecialValueFor("knockback_duration") 
+		local disarm = self:GetSpecialValueFor("disarm_duration")
+
+		hTarget:AddNewModifier(self:GetCaster(), self, "modifier_deafening_blast_disarm", {duration = disarm})
+		hTarget:AddNewModifier(self:GetCaster(), self, "modifier_deafening_blast_knockback", {duration = knockback}).castPoint = vLocation
+	end
 end
 
 modifier_deafening_blast_knockback = class({
 	IsHidden = function(self) return true end,
 	IsPurgable = function(self) return false end,
-	GetOverrideAnimation = function(self) return ACT_DOTA_FLAIL end,
+	GetOverrideAnimation = function(self) return ACT_DOTA_DISABLED end,
+	CheckState = function(self) return {[MODIFIER_STATE_NO_UNIT_COLLISION] = true,} end,
+	DeclareFunctions = function(self) return {MODIFIER_EVENT_ON_ORDER,} end,
 
-	OnCreated = function(self)
+	GetEffectName = function(self) return "particles/status_fx/status_effect_frost.vpcf" end,
+	GetEffectAttachType = function(self) return PATTACH_OVERHEAD_FOLLOW end,
+
+	OnCreated = function(self, kv)
 		if not IsServer() then return end
-		self.value = self:GetAbility():GetSpecialValueFor("")
-		--grab a referance to castpoint. so the ability doesnt bug out when trying to use the castpoint from a different cast
-		self.castpoint = self:GetAbility().castpoint
+		self.dur = self:GetDuration()
+		self.speed = 200
 
-		self:SetPriority(DOTA_MOTION_CONTROLLER_PRIORITY_HIGH)
+		self.p = ParticleManager:CreateParticle("particles/units/heroes/hero_invoker/invoker_deafening_blast_knockback_debuff.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
 
-		if self:ApplyHorizontalMotionController() == false then 
-			self:Destroy()
+		self:StartIntervalThink(0.1)
+
+		--grab a reference to the modifier
+		local this = self
+		local tick = 1/30
+		this.timer = Timers:CreateTimer(function()
+			if not this or this:IsNull() then return end
+			--check for vector, try again if not found
+			if not this.castPoint then
+				return tick
+			end
+			--start decreasing speed after 1/3 duration 
+			if this:GetElapsedTime() >= this.dur * (1/3) then
+				this.speed = this.speed * 0.98
+			end
+
+			--move parent away from point of contact
+			local parent = this:GetParent()
+			local speed = this.speed * tick
+			local direction = (parent:GetAbsOrigin() - this.castPoint):Normalized()
+			parent:SetAbsOrigin(parent:GetAbsOrigin() + direction * speed)
+
+			return tick
+		end)
+	end,
+
+	OnIntervalThink = function(self)
+		local radius = self:GetAbility():GetSpecialValueFor("tree_radius")
+		GridNav:DestroyTreesAroundPoint(self:GetParent():GetAbsOrigin(), radius, false)
+	end
+
+	OnDestroy = function(self)
+		if not IsServer() then return end
+		local pos = vlua.find(self:GetAbility().hit, self:GetParent())
+		if pos then
+			table.remove(self:GetAbility().hit, pos)
 		end
+		Timers:RemoveTimer(self.timer)
+
+		FindClearSpaceForUnit(self:GetParent(), self:GetParent():GetAbsOrigin(), true)
+
+		ParticleManager:DestroyParticle(self.p, true)
+		ParticleManager:ReleaseParticleIndex(self.p)
 	end,
 
-	UpdateHorizontalMotion = function(self, me, dt)
-		print("me: "..tostring(me),
-			"dt: "..tostring(dt))
-		if not IsServer() then return end
-
-		--move parent away from cast point. reference wiki for exacts
-
-	end,
-
-	OnHorizontalMotionInterrupted = function(self)
-		self:Destroy()
-	end,	
+	--something something dont let them walk during knockback. turning, spellcasting, attacking(if disarm purged) is allowed
+	--move orders should go thru and continue after knockback ends, so disabling movment directly isnt an option
+	OnOrder = function(self, keys) end,
 })
 
 --seperate modifier because disarm has different purge properties than knockback
@@ -69,7 +162,6 @@ modifier_deafening_blast_disarm = class({
 	IsPurgable = function(self) return false end,
 	IsPurgeException = function(self) return true end,
 	CheckState = function(self) return {[MODIFIER_STATE_DISARMED] = true,} end,
-
-	GetEffectName = function(self) return "" end,
+	GetEffectName = function(self) return "particles/units/heroes/hero_invoker/invoker_deafening_blast_disarm_debuff.vpcf" end,
 	GetEffectAttachType = function(self) return PATTACH_OVERHEAD_FOLLOW end,
 })
