@@ -1038,11 +1038,11 @@
     "option_vote_entry_title_banning"               "Включить дополнительные запреты"
     "option_vote_entry_title_fastStart"             "Включить быстрое начало"
     "option_vote_entry_title_noInvis"               "Без невидимости"
-    "option_vote_entry_title_antirat"               "Включить Anti-Rat защиту"
+    "option_vote_entry_title_antirat"               "Усилить Backdoor Protection (Anti-Rat)"
     "option_vote_entry_title_doubledAbilityPoints"  "Дополнительные очки способностей"
     "option_vote_entry_title_strongTowers"          "Усилить башни"
     "option_vote_entry_title_customAbilities"       "Включить пользовательские способности"
-    "option_vote_entry_title_singlePlayerAbilities" "Включить СУПЕР-OP способности"
+    "option_vote_entry_title_singlePlayerAbilities" "Включить Single Player способности"
     "option_vote_entry_title_OPAbilities"           "Включить OP способности"
     "option_vote_entry_title_heroPerks"             "Включить навыки героев"
 
@@ -1333,7 +1333,7 @@
     "command_menu_command_voteRefresh"           "Включить сбрасывание перезарядки после смерти"
     "command_menu_command_descr_voteRefresh"        "Voting for this makes abilities go of cooldown on when you die, requires majority vote. Shortcuts: -enablerefresh"
 
-    "command_menu_command_voteEnableAntiRat"              "Включить Anti-Rat защиту"
+    "command_menu_command_voteEnableAntiRat"              "Включить усилиленный Backdoor Protection (Anti-Rat)"
     "command_menu_command_descr_voteEnableAntiRat"        "When Anti-Rat is enabled, Tier3 towers cannot be destroyed unless all the outer towers are dead. Also, towers with backdoor protection cannot be damaged. Shortcuts: -antirat, -ar"
 
     "command_menu_command_voteEnableUniversalShops"              "Включить универсальный магазин"
