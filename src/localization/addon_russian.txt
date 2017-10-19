@@ -515,7 +515,7 @@
     "lodVotingSwitchTeamLine"                       "хочет <font color='#70EA72'>Сменить команду</font>"
     "lodVotingSwitchTeamLineDescr"                  "Этот волонтер думает, что сделает игру лучше.<br><font color='#70EA72'>Рекомендуется</font>."
 
-    "lodVotingAntiratLine"                          "хочет включить <font color='#70EA72'>Anti-Rat</font>"
+    "lodVotingAntiratLine"                          "хочет включить <font color='#70EA72'>Усиленный Backdoor Protection (Anti-Rat)</font>"
     "lodVotingAntiratLineDescr"                     "Не сломав все внешние вышки(Т2), вышки на базе врага вы не сломаете.<br><font color='#70EA72'>Рекомендуется</font>."
 
     "lodVotingDoubleCreepsLine"                     "хочет включить <font color='#70EA72'>Удвоение нейтральных крипов</font>"
@@ -542,7 +542,7 @@
     "minimapMenuReviewGameOptions"                  "Посмотреть настройки игры"
     "minimapMenuHeroBuilder"                        "Смена героя"
 
-    "antiRatNotification"                     "Опция Anti-Rat включена, башни с защитой от обхода не будут получать урон."
+    "antiRatNotification"                     "Опция усилиленный Backdoor Protection(Anti-Rat) включена, башни с защитой от обхода не будут получать урон."
     "ingameBuilderNotification"                     "<font color='#00DD0B'>Внутриигровая смена героя включена. Нажмите на иконку смены сборки в верхнем правом углу, чтобы сменить вашу способность/героя/основную хар-ку.</font>"
     "ingameBuilderReminder"                     "<font color='#00DD0B'>Не забывайте. Внутриигровая смена героя включена. Нажмите на иконку смены сборки в верхнем правом углу, чтобы сменить вашу способность/героя/основную хар-ку.</font>"
     "tempDuelBlock"                     "<font color='#FF0000'>Дуэли временно отключены из-за проблемы вылета. Они скоро будут включены. Извините за это.</font>"
@@ -554,7 +554,7 @@
     "votingPlayerBanned"                            "Вы не можете начать голосование, потому что много ваших голосований отклонено"
     "votingsDisabled"                               "Голосования недоступны во время стадии выбора"
 
-    "antiRatAlreadyOn"                              "Anti-Rat защита уже включена"
+    "antiRatAlreadyOn"                              "Усиленный Backdoor Protection (Anti-Rat) уже включен"
     "cantSwitchYet"                                 "Невозможно сменить, пока игра не началась"
     "multiplyAlreadyOn"                             "Нейтралы уже умножены"
     "universalShopsAlreadyOn"                             "Универсальный магазин уже включен"
@@ -948,7 +948,7 @@
     "lod_cat_passive"                               "Пассивка"
     "lod_cat_cooldown"                              "Влияющие на перезарядку"
     "lod_cat_OPSkillsList"                          "OP"
-    "lod_cat_SuperOP"                               "Супер OP"
+    "lod_cat_SuperOP"                               "Single Player"
     "lod_cat_mana"                                  "Мана"
 
     // Categories
