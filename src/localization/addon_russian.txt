@@ -448,10 +448,10 @@
     "lodOptionAboutBlackForest"                             "Перед началом игры, на карте сажается огромное количество деревьев."
 "lodMutatorBlackForest"                         "Темный лес"
 
-    "lodOptionAntiRat"                                  "Анти-крыса"
-    "lodOptionDesAntiRat"                               "Включить анти-крысу"
+    "lodOptionAntiRat"                                  "Anti-Rat"
+    "lodOptionDesAntiRat"                               "Включить Anti-Rat защиту"
     "lodOptionAboutAntiRat"                             "Не сломав все внешние(t2) вышки. Башни(t3) на подъеме невозможно сломать"
-    "lodMutatorAntiRat"                                 "Анти-крыса"
+    "lodMutatorAntiRat"                                 "Anti-Rat"
 
     "lodOptionConsumeItems"                                  "Поглощение предметов"
     "lodOptionDesConsumeItems"                               "Включить поглощение предметов"
@@ -515,7 +515,7 @@
     "lodVotingSwitchTeamLine"                       "хочет <font color='#70EA72'>Сменить команду</font>"
     "lodVotingSwitchTeamLineDescr"                  "Этот волонтер думает, что сделает игру лучше.<br><font color='#70EA72'>Рекомендуется</font>."
 
-    "lodVotingAntiratLine"                          "хочет включить <font color='#70EA72'>Анти-крысятничество</font>"
+    "lodVotingAntiratLine"                          "хочет включить <font color='#70EA72'>Anti-Rat</font>"
     "lodVotingAntiratLineDescr"                     "Не сломав все внешние вышки(Т2), вышки на базе врага вы не сломаете.<br><font color='#70EA72'>Рекомендуется</font>."
 
     "lodVotingDoubleCreepsLine"                     "хочет включить <font color='#70EA72'>Удвоение нейтральных крипов</font>"
@@ -542,7 +542,7 @@
     "minimapMenuReviewGameOptions"                  "Посмотреть настройки игры"
     "minimapMenuHeroBuilder"                        "Смена героя"
 
-    "antiRatNotification"                     "Опция Анти-крыса включена, башни с защитой от обхода не будут получать урон."
+    "antiRatNotification"                     "Опция Anti-Rat включена, башни с защитой от обхода не будут получать урон."
     "ingameBuilderNotification"                     "<font color='#00DD0B'>Внутриигровая смена героя включена. Нажмите на иконку смены сборки в верхнем правом углу, чтобы сменить вашу способность/героя/основную хар-ку.</font>"
     "ingameBuilderReminder"                     "<font color='#00DD0B'>Не забывайте. Внутриигровая смена героя включена. Нажмите на иконку смены сборки в верхнем правом углу, чтобы сменить вашу способность/героя/основную хар-ку.</font>"
     "tempDuelBlock"                     "<font color='#FF0000'>Дуэли временно отключены из-за проблемы вылета. Они скоро будут включены. Извините за это.</font>"
@@ -554,7 +554,7 @@
     "votingPlayerBanned"                            "Вы не можете начать голосование, потому что много ваших голосований отклонено"
     "votingsDisabled"                               "Голосования недоступны во время стадии выбора"
 
-    "antiRatAlreadyOn"                              "Анти-крыса уже включено"
+    "antiRatAlreadyOn"                              "Anti-Rat защита уже включена"
     "cantSwitchYet"                                 "Невозможно сменить, пока игра не началась"
     "multiplyAlreadyOn"                             "Нейтралы уже умножены"
     "universalShopsAlreadyOn"                             "Универсальный магазин уже включен"
@@ -1038,9 +1038,9 @@
     "option_vote_entry_title_banning"               "Включить дополнительные запреты"
     "option_vote_entry_title_fastStart"             "Включить быстрое начало"
     "option_vote_entry_title_noInvis"               "Без невидимости"
-    "option_vote_entry_title_antirat"               "Включить анти-крысу"
+    "option_vote_entry_title_antirat"               "Включить Anti-Rat защиту"
     "option_vote_entry_title_doubledAbilityPoints"  "Дополнительные очки способностей"
-    "option_vote_entry_title_strongTowers"          "Включить сильные башни"
+    "option_vote_entry_title_strongTowers"          "Усилить башни"
     "option_vote_entry_title_customAbilities"       "Включить пользовательские способности"
     "option_vote_entry_title_singlePlayerAbilities" "Включить СУПЕР-OP способности"
     "option_vote_entry_title_OPAbilities"           "Включить OP способности"
@@ -1333,7 +1333,7 @@
     "command_menu_command_voteRefresh"           "Включить сбрасывание перезарядки после смерти"
     "command_menu_command_descr_voteRefresh"        "Voting for this makes abilities go of cooldown on when you die, requires majority vote. Shortcuts: -enablerefresh"
 
-    "command_menu_command_voteEnableAntiRat"              "Включить Анти-крысу"
+    "command_menu_command_voteEnableAntiRat"              "Включить Anti-Rat защиту"
     "command_menu_command_descr_voteEnableAntiRat"        "When Anti-Rat is enabled, Tier3 towers cannot be destroyed unless all the outer towers are dead. Also, towers with backdoor protection cannot be damaged. Shortcuts: -antirat, -ar"
 
     "command_menu_command_voteEnableUniversalShops"              "Включить универсальный магазин"
