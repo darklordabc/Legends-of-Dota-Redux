@@ -1042,8 +1042,8 @@
     "option_vote_entry_title_doubledAbilityPoints"  "Дополнительные очки способностей"
     "option_vote_entry_title_strongTowers"          "Включить сильные башни"
     "option_vote_entry_title_customAbilities"       "Включить пользовательские способности"
-    "option_vote_entry_title_singlePlayerAbilities" "Включить супер сверхсильные способности"
-    "option_vote_entry_title_OPAbilities"           "Включить сверхсильные способности"
+    "option_vote_entry_title_singlePlayerAbilities" "Включить СУПЕР-OP способности"
+    "option_vote_entry_title_OPAbilities"           "Включить OP способности"
     "option_vote_entry_title_heroPerks"             "Включить навыки героев"
 
 
