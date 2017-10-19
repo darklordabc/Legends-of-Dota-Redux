@@ -773,7 +773,7 @@
 // Perk-related Hints
     "hintLina"                          "За каждый вложенный уровень в огненную способность интелект Lina увеличивается на 3."
     "hintLifeStealer"                         "Когда Lifestealer использует Infest, её перезарядка буден снижена до 30 сек."
-    "hintEnigma"                         "Когда Enigma умирает, перезарядка Black Hole будет сброшена."
+    "hintEnigma"                         "Когда Enigma умирает,  её способность Black Hole будет перезаряжена."
     "hintLegionCommander"                         "Когда Legion Commander даёт дуэль, то получает неуязвимость к магии."
     "hintFurion"                         "Перезарядка на все виды телепортов снижена на 50% для Nature's Prophet."
     "hintChen"                         "Когда Chen использует на подконтрольного ему крипа Test of Faith(Teleport), то крип получает дополнительную способность."
