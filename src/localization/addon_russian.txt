@@ -1217,8 +1217,7 @@
     "unique_mechanic_rattletrap"                        "Clockwerk запускает наугад ракету каждые 15 секунд. Урон увеличивается с уровнем <font color=\'#ffd966\'>Rocket Flare</font>."
     "unique_mechanic_crystal_maiden"    "Crystal Maiden получает +2 скорости бега за каждое улучшение <font color=\'#ffd966\'>Саппорт</font> способности."
     "unique_mechanic_dark_seer"             "На Dark Seer`а накладывается <font color=\'#ffd966\'>Surge</font> и <font color=\'#ffd966\'>Ion Shell</font> каждый раз, когда он использует их на союзника."
-    "unique_mechanic_dazzle"                        "Способности <font color=\'#ffd966\'>поддержки</font> у Dazzle`а имеют на 25% сниженную перезарядку.
-"
+    "unique_mechanic_dazzle"                        "Способности <font color=\'#ffd966\'>поддержки</font> у Dazzle`а имеют на 25% сниженную перезарядку."
     "unique_mechanic_death_prophet"                        "Любое <font color=\'#ffd966\'>Безмолвие</font>, использованное Death Prophet так же блокирует инвентарь."
     "unique_mechanic_disruptor"                        "Disruptor регенирирует .5 маны/с за каждые 10% отсутствующей маны."
     "unique_mechanic_doom_bringer"          "<font color=\'#ffd966\'>Демонические</font> способности у Doom имеют на 25% сниженную перезарядку."
