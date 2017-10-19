@@ -513,7 +513,7 @@
     "lodVotingEnableRespawnLineDescr"               "Убирает увеличение возрождения после 40 минут игры.<br><font color='#FF4949'>Не рекомендуется</font>."
 
     "lodVotingSwitchTeamLine"                       "хочет <font color='#70EA72'>Сменить команду</font>"
-    "lodVotingSwitchTeamLineDescr"                  "Этот волонтер думает, что сделает игру лучше.<br><font color='#70EA72'>Рекомендуется</font>."
+    "lodVotingSwitchTeamLineDescr"                  "Этот игрок перешел за другую команду, возможно, игра станет более сбалансированной.<br><font color='#70EA72'>Рекомендуется</font>."
 
     "lodVotingAntiratLine"                          "хочет включить <font color='#70EA72'>Усиленный Backdoor Protection (Anti-Rat)</font>"
     "lodVotingAntiratLineDescr"                     "Не сломав все внешние вышки(Т2), вышки на базе врага вы не сломаете.<br><font color='#70EA72'>Рекомендуется</font>."
