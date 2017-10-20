@@ -8,8 +8,8 @@ function deafening_blast:OnSpellStart()
 	local pos = self:GetCursorPosition()
 	if not pos then return end
 	self.hit = self.hit or {}
-	self.castNum = self.castNum or {}
-	self.castNum[#self.castNum+1] = "lordGaben"
+	self.cast = self.cast or {}
+	table.insert(self.cast, #self.cast)
 
 	local startRadius = self:GetSpecialValueFor("radius_start")
 	local endRadius = self:GetSpecialValueFor("radius_end")
@@ -18,7 +18,7 @@ function deafening_blast:OnSpellStart()
 	local max = 10
 
 	--when projectile is completely gone, remove its table data
-	Timers:CreateTimer(max, function() table.remove(self.castNum, 1) end)
+	Timers:CreateTimer(max, function() table.remove(self.cast, 1) end)
 
 	local dir = (pos - self:GetCaster():GetAbsOrigin()):Normalized()
 	dir.z = 0
@@ -45,11 +45,11 @@ function deafening_blast:OnSpellStart()
 	}
 	ProjectileManager:CreateLinearProjectile( info )
 
+	--might be "special_bonus_unique_invoker_3"
+
 	--aoe deafening blast. iterate by 30 degree angles and cast 11 more times
---	if self:GetCaster():HasTalent("invoker_talent") then
-	if false then
+	if self:GetCaster():HasTalent("special_bonus_unique_invoker_2") then
 		for i=1,11 do
-			--fire projectile again
 			info.vVelocity = RotatePosition(Vector(0,0,0), QAngle(0,30*i,0), dir) * speed
 			ProjectileManager:CreateLinearProjectile( info )
 		end
@@ -62,9 +62,7 @@ end
 function deafening_blast:OnProjectileHit( hTarget, vLocation )
 	if not IsServer() or not hTarget or hTarget:IsNull() then return end
 
-	--grab kv from table
-	local num = #self.castNum
-
+	local num = #self.cast
 	local mod = hTarget:FindModifierByName("modifier_deafening_blast_knockback")
 	if mod then
 		--dont allow re-apply if same cast hitting multiple times. DO allow if different cast
@@ -94,7 +92,6 @@ modifier_deafening_blast_knockback = class({
 	IsPurgable = function(self) return false end,
 	GetOverrideAnimation = function(self) return ACT_DOTA_DISABLED end,
 	CheckState = function(self) return {[MODIFIER_STATE_NO_UNIT_COLLISION] = true,} end,
-	DeclareFunctions = function(self) return {MODIFIER_EVENT_ON_ORDER,} end,
 
 	GetEffectName = function(self) return "particles/status_fx/status_effect_frost.vpcf" end,
 	GetEffectAttachType = function(self) return PATTACH_OVERHEAD_FOLLOW end,
@@ -128,14 +125,19 @@ modifier_deafening_blast_knockback = class({
 			local direction = (parent:GetAbsOrigin() - this.castPoint):Normalized()
 			parent:SetAbsOrigin(parent:GetAbsOrigin() + direction * speed)
 
+			--nullify walking movement
+			if parent:IsMoving() then
+				local movespeed = parent:GetMoveSpeedModifier(parent:GetBaseMoveSpeed()) * tick
+				parent:SetAbsOrigin(parent:GetAbsOrigin() + parent:GetBackwardVector() * movespeed)
+			end
+
+			--this might be a bad solution for removing trees, another ability that uses this method bugs the trees model
+			local radius = self:GetAbility():GetSpecialValueFor("tree_radius")
+			GridNav:DestroyTreesAroundPoint(self:GetParent():GetAbsOrigin(), radius, false)
+
 			return tick
 		end)
 	end,
-
-	OnIntervalThink = function(self)
-		local radius = self:GetAbility():GetSpecialValueFor("tree_radius")
-		GridNav:DestroyTreesAroundPoint(self:GetParent():GetAbsOrigin(), radius, false)
-	end
 
 	OnDestroy = function(self)
 		if not IsServer() then return end
@@ -150,10 +152,6 @@ modifier_deafening_blast_knockback = class({
 		ParticleManager:DestroyParticle(self.p, true)
 		ParticleManager:ReleaseParticleIndex(self.p)
 	end,
-
-	--something something dont let them walk during knockback. turning, spellcasting, attacking(if disarm purged) is allowed
-	--move orders should go thru and continue after knockback ends, so disabling movment directly isnt an option
-	OnOrder = function(self, keys) end,
 })
 
 --seperate modifier because disarm has different purge properties than knockback
