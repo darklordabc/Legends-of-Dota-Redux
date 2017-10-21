@@ -7823,4 +7823,9 @@
     "DOTA_Tooltip_ability_huskar_life_break_redux_tooltip_health_damage_scepter"          "%SCEPTER DAMAGE DEALT:"
     "DOTA_Tooltip_ability_huskar_life_break_redux_aghanim_description"                    "Increases damage dealt, reduces cooldown."
 
+    "DOTA_Tooltip_modifier_deafening_blast_disarm"                                        "Deafening Blast Disarm"
+    "DOTA_Tooltip_modifier_deafening_blast_disarm_Description"                            "Cannot attack."
+    
+    "DOTA_Tooltip_modifier_deafening_blast_knockback"                                     "Deafening Blast Knockback"
+    "DOTA_Tooltip_modifier_deafening_blast_knockback_Description"                         "Reeling back from the deafening blast."
 }
