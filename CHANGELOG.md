@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 - Disarm: have 5 secend duration at max level (was 4), have 600 cast range (was 500).
 - Deafening blast : buffed damage into (80/160/240/320) was(65/130/195/260
 - Jet now counts as a toggle ability (E.g. troll combo with fiery soul)
+- Rewrite Infernal Blade in LUA might help with some bugs
 
 ## 9.5
 - Limit Passives is now an optional mutator in dota map
