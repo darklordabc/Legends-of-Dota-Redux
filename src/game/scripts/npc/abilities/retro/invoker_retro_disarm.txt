@@ -24,12 +24,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "duration"                                             "2 2.5 3 4"
+                "duration"                                             "2 3 4 5"
             }
             "02"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "cast_range"                                           "500"
+                "cast_range"                                           "600"
             }
             "03"
             {
