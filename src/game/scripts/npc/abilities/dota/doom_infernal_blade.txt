@@ -1,33 +1,23 @@
-// Rewrite of Infernal Blade
-// Author: YOLOSPAGHETTI
-// Date: February 8, 2016
-// Version: 6.86
-// Type: Datadriven
-//
-// ----- FILE REQUIREMENTS -----
-// Script files:
-// scripts/vscripts/abilities/doom_infernal_blade.lua
 "DOTAAbilities" {
-	"doom_bringer_infernal_blade_datadriven"
+	"infernal_blade_lua"
 	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"				"ability_datadriven"
-		"AbilityTextureName" "doom_bringer_infernal_blade"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"					"abilities/infernal_blade_lua.lua"
+		"AbilityTextureName"			"doom_bringer_infernal_blade"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"		
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"	
 
 		"AbilityCooldown"				"16 12 8 4"
 		"AbilityManaCost"				"40"
 		"AbilityCastRange"				"150"
-		"AbilityCastPoint"				"0.0 0.0 0.0 0.0"
+		"AbilityCastPoint"				"0.0"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"MaxLevel" 						"4"
 
-		// Precache
-		//-------------------------------------------------------------------------------------------------------------
 		"precache"
 		{
 			"particle"		"particles/generic_gameplay/generic_stunned.vpcf"
@@ -36,130 +26,34 @@
 			"particle"		"particles/units/heroes/hero_doom_bringer/doom_infernal_blade_impact.vpcf"
 			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_doombringer.vsndevts"
 		}
-		
-		
 
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"damage"			"25 30 35 40"		
+				"var_type"			"FIELD_FLOAT"
+				"burn_duration"		"4"
 			}
 			"02"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"health_damage_pct"			"1.25 2.5 3.75 5"		
+				"max_pct_burn"		"1.25 2.5 3.75 5"
+				"LinkedSpecialBonus" "special_bonus_unique_doom_1"
 			}
 			"03"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"burn_duration"			"4.0"		
+				"base_dmg"			"25 30 35 40"
 			}
 			"04"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"stun_duration"		"0.4"			
+				"interval"			"1.0"
 			}
 			"05"
 			{
 				"var_type"			"FIELD_FLOAT"
-				"burn_interval"			"1.0"		
-			}
-		}
-		
-		"Modifiers"
-		{		
-			"modifier_infernal_blade_datadriven"
-			{
-				"Passive"	"1"
-				"IsHidden"	"1"
-
-				"Orb"
-				{
-					"Priority"	"DOTA_ORB_PRIORITY_ABILITY"
-					"CastAttack"	"1"
-				}
-
-				"OnOrbFire"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"abilities/doom_infernal_blade.lua"
-						"Function"		"CheckCooldown"
-						"particle"		"particles/units/heroes/hero_doom_bringer/doom_infernal_blade.vpcf"
-						"sound"			"Hero_DoomBringer.InfernalBlade.PreAttack"
-					}
-				}
-
-				"OnOrbImpact"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"abilities/doom_infernal_blade.lua"
-						"Function"		"ApplyModifiers"
-					}
-				}
-			}
-		
-			"modifier_infernal_blade_damage"
-			{
-				"IsDebuff"	"1"
-				"Duration"	"%burn_duration"
-			
-				"EffectName"		"particles/units/heroes/hero_doom_bringer/doom_infernal_blade_debuff.vpcf"
-				"EffectAttachType"	"follow_origin"
-				
-				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
-				
-				"OnCreated"
-				{
-					"FireEffect"
-					{
-						"EffectName"		"particles/units/heroes/hero_doom_bringer/doom_infernal_blade_impact.vpcf"
-						"EffectAttachType"	"follow_origin"
-						"Target"			"TARGET"
-					}
-					
-					"FireSound"
-					{
-						"EffectName"	"Hero_DoomBringer.InfernalBlade.Target"
-						"Target"		"TARGET"
-					}
-				}
-			
-				"ThinkInterval"	"%burn_interval"
-				"OnIntervalThink"
-				{
-					"Damage"
-					{
-						"Target"  "TARGET"
-						"Type"    "DAMAGE_TYPE_MAGICAL"
-						"Damage"  "%damage"
-					}
-					
-					"RunScript"
-					{
-						"ScriptFile"	"abilities/doom_infernal_blade.lua"
-						"Function"		"DealDamage"
-					}
-				}
-			}
-			
-			"modifier_infernal_blade_stun"
-			{
-				"IsHidden"	"1"
-				"Duration"	"%stun_duration"
-			
-				"EffectName"		"particles/generic_gameplay/generic_stunned.vpcf"
-				"EffectAttachType"	"follow_overhead"
-			
-				"States"
-				{
-					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
-				}
+				"stun_duration"		"0.6"
 			}
 		}
 	}
