@@ -45,13 +45,13 @@ function deafening_blast:OnSpellStart()
 	}
 	ProjectileManager:CreateLinearProjectile( info )
 
-	--might be "special_bonus_unique_invoker_3"
-
 	--aoe deafening blast. iterate by 30 degree angles and cast 11 more times
-	if self:GetCaster():HasTalent("special_bonus_unique_invoker_2") then
-		for i=1,11 do
-			info.vVelocity = RotatePosition(Vector(0,0,0), QAngle(0,30*i,0), dir) * speed
-			ProjectileManager:CreateLinearProjectile( info )
+	if self:GetCaster():HasAbility("special_bonus_unique_invoker_2") then
+		if self:GetCaster():FindAbilityByName("special_bonus_unique_invoker_2"):GetLevel() > 0 then
+			for i=1,11 do
+				info.vVelocity = RotatePosition(Vector(0,0,0), QAngle(0,30*i,0), dir) * speed
+				ProjectileManager:CreateLinearProjectile( info )
+			end
 		end
 	end
 
@@ -68,7 +68,6 @@ function deafening_blast:OnProjectileHit( hTarget, vLocation )
 		--dont allow re-apply if same cast hitting multiple times. DO allow if different cast
 		if self.hit[hTarget] == num then return end
 
-		--dont want to deal with modifier refresh bullshit, so get a new modifier
 		hTarget:RemoveModifierByName("modifier_deafening_blast_knockback")
 		hTarget:RemoveModifierByName("modifier_deafening_blast_disarm")
 	end
@@ -103,8 +102,6 @@ modifier_deafening_blast_knockback = class({
 
 		self.p = ParticleManager:CreateParticle("particles/units/heroes/hero_invoker/invoker_deafening_blast_knockback_debuff.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
 
-		self:StartIntervalThink(0.1)
-
 		--grab a reference to the modifier
 		local this = self
 		local tick = 1/30
@@ -127,11 +124,11 @@ modifier_deafening_blast_knockback = class({
 
 			--nullify walking movement
 			if parent:IsMoving() then
+				local backwardVector = (self:GetAbsOrigin() - (self:GetAbsOrigin() + self:GetForwardVector())):Normalized()
 				local movespeed = parent:GetMoveSpeedModifier(parent:GetBaseMoveSpeed()) * tick
-				parent:SetAbsOrigin(parent:GetAbsOrigin() + parent:GetBackwardVector() * movespeed)
+				parent:SetAbsOrigin(parent:GetAbsOrigin() + backwardVector * movespeed)
 			end
 
-			--this might be a bad solution for removing trees, another ability that uses this method bugs the trees model
 			local radius = self:GetAbility():GetSpecialValueFor("tree_radius")
 			GridNav:DestroyTreesAroundPoint(self:GetParent():GetAbsOrigin(), radius, false)
 
