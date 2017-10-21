@@ -1013,8 +1013,8 @@
     "razor_eye_of_the_storm"
     {
         "ReduxFlags"                                                           "upgradeable"
-        "ReduxPerks"                                                           "lightning"
-        "ReduxBans"                                                            "tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux"
+        "ReduxPerks"                                                           "lightning" 
+        "ReduxBans"                                                            "visage_summon_familiars_stone_form | tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux"
     }
     "sandking_burrowstrike"
     {

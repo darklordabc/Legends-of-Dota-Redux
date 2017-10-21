@@ -20,6 +20,7 @@ All notable changes to this project will be documented in this file.
 - Summon Wolves is now counted as an invisible ability
 - Removed Dead Man's Chest because of a bugy interaction with Nothl Protection
 - Unstable Rift is now troll combo with dispersion
+- Eye of the Storm is now troll combo with Stone Form
 
 ## 9.5
 - Limit Passives is now an optional mutator in dota map
