@@ -2,9 +2,9 @@ LinkLuaModifier("modifier_deafening_blast_knockback", "abilities/deafening_blast
 LinkLuaModifier("modifier_deafening_blast_disarm", "abilities/deafening_blast", LUA_MODIFIER_MOTION_NONE)
 
 
-deafening_blast = class({})
+invoker_deafening_blast_lod = class({})
 
-function deafening_blast:OnSpellStart()
+function invoker_deafening_blast_lod:OnSpellStart()
 	local pos = self:GetCursorPosition()
 	if not pos then return end
 	self.hit = self.hit or {}
@@ -21,6 +21,11 @@ function deafening_blast:OnSpellStart()
 	Timers:CreateTimer(max, function() table.remove(self.cast, 1) end)
 
 	local dir = (pos - self:GetCaster():GetAbsOrigin()):Normalized()
+
+	--check for casting on exact origin of caster
+	if pos == self:GetCaster():GetAbsOrigin() then
+		dir = self:GetCaster():GetForwardVector()
+	end
 	dir.z = 0
 
 	local info = {
@@ -59,7 +64,7 @@ function deafening_blast:OnSpellStart()
 end
 
 
-function deafening_blast:OnProjectileHit( hTarget, vLocation )
+function invoker_deafening_blast_lod:OnProjectileHit( hTarget, vLocation )
 	if not IsServer() or not hTarget or hTarget:IsNull() then return end
 
 	local num = #self.cast
