@@ -1128,7 +1128,7 @@
         "ReduxFlags"                                                           "upgradeable | stun | summon | wtfAutoBan"
         "ReduxPerks"                                                           "fire"
         "ReduxCost"                                                            "20"
-        "ReduxBans"                                                            "tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux"
+        "ReduxBans"                                                            "tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux | arc_warden_tempest_double_redux"
     }
     "weaver_time_lapse"
     {

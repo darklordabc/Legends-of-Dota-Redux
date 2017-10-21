@@ -8002,6 +8002,7 @@ function Pregame:fixSpawningIssues()
                     arc_warden_tempest_double_redux = true,
                     aabs_thunder_musket = true,   
                     mirana_starfall_lod = true,    -- This is buggy with tempest doubles for some reason   
+                    warlock_rain_of_chaos = true,    -- This is buggy with tempest doubles for some reason 
                 }
 
                 -- Apply the build
