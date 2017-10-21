@@ -2583,8 +2583,8 @@
     }
     "lycan_summon_wolves"
     {
-        "ReduxFlags"                                                           "summon"
-        "ReduxPerks"                                                           "summon_non_ult"
+        "ReduxFlags"                                                           "summon | invis"
+        "ReduxPerks"                                                           "summon_non_ult | invis "
     }
     "furion_force_of_nature"
     {
