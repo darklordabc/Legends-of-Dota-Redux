@@ -92,7 +92,7 @@ function invoker_deafening_blast_lod:OnProjectileHit( hTarget, vLocation )
 end
 
 modifier_deafening_blast_knockback = class({
-	IsHidden = function(self) return true end,
+	IsHidden = function(self) return false end,
 	IsPurgable = function(self) return false end,
 	GetOverrideAnimation = function(self) return ACT_DOTA_DISABLED end,
 	CheckState = function(self) return {[MODIFIER_STATE_NO_UNIT_COLLISION] = true,} end,
