@@ -71,9 +71,10 @@ modifier_infernal_blade_caster = class({
 		local caster = self:GetCaster()
 		local ability = self:GetAbility()
 		local target = keys.target
+		local hasMana = ability:GetManaCost(-1) <= caster:GetMana()
 
 		if ability:GetAutoCastState() or ability.overrideAutocast then
-			if ability:IsFullyCastable() then
+			if hasMana and ability:IsCooldownReady() then
 				--dont infernal roshan or buildings, and dont let illusions use it.
 				if target:GetUnitName() == "npc_dota_roshan" or caster:IsIllusion() or target:IsBuilding() then print("invalid target") return end
 
