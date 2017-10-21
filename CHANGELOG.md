@@ -18,6 +18,7 @@ All notable changes to this project will be documented in this file.
 - Spell Echo will now adopt the cooldown of an ultimate, if it echos an ultimate
 - Tempest Double Redux is now troll combo with Infernal Offering because it can cause crashes
 - Summon Wolves is now counted as an invisible ability
+- Removed Dead Man's Chest because of a bugy interaction with Nothl Protection
 
 ## 9.5
 - Limit Passives is now an optional mutator in dota map
