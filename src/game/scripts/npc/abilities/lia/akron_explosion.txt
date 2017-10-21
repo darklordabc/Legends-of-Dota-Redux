@@ -6,7 +6,7 @@
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
         "AbilityTextureName"                                                   "custom/golem_explosion"
-        "AbilityCooldown"                                                      "24 22 20 18"
+        "AbilityCooldown"                                                      "25 22 20 18"
         "AbilityCastRange"                                                     "0"
         "AbilityManaCost"                                                      "70 80 90 100"
         "AoERadius"                                                            "225"
@@ -27,7 +27,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "hp_prc_dmg"                                           "10 15 20 30"
+                "hp_prc_dmg"                                           "5 10 15 20"
             }
             "03"
             {
@@ -37,7 +37,7 @@
             "04"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "duration"                                             "3"
+                "duration"                                             "6"
             }
         }
         "OnSpellStart"
@@ -83,6 +83,6 @@
         }
         "ReduxFlags"                                                           "tank"
         "ReduxPerks"                                                           "self_damage | explosive"
-        "ReduxBans"                                                            "spell_lab_symbiotic"
+        "ReduxBans"                                                            "spell_lab_symbiotic | spectre_dispersion"
     }
 }

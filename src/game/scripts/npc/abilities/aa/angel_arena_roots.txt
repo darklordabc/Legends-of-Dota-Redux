@@ -10,7 +10,7 @@
         "AbilityCastPoint"                                                     "0.5 0.5 0.5"
         "AbilityTextureName"                                                   "custom/angel_arena_roots"
         "MaxLevel"                                                             "3"
-        "AbilityCooldown"                                                      "90 80 70 60"
+        "AbilityCooldown"                                                      "70 50 30"
         "precache"
         {
             "particle"                                                     "particles/units/heroes/hero_treant/treant_overgrowth_vines.vpcf"
@@ -21,7 +21,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "duration"                                             "2.0 2.2 2.5"
+                "duration"                                             "2.0"
             }
             "02"
             {

@@ -806,7 +806,7 @@
     
         "AbilityCastPoint"              "0.3"
     
-        "AbilityCooldown"               "90 70 50"
+        "AbilityCooldown"               "70"
         "AbilityManaCost"               "150 200 250"
         "AbilityProcsMagicStick"        "1"
     
@@ -815,17 +815,17 @@
             "01"
             {
                 "var_type"          "FIELD_INTEGER"
-                "bonus_damage_pct"          "100 125 150"
+                "bonus_damage_pct"          "60 80 100"
             }
             "02"
             {
                 "var_type"          "FIELD_INTEGER"
-                "damage_reduction_pct"      "-50 -55 -60"
+                "damage_reduction_pct"      "-10 -20 -30"
             }
             "03"
             {
                 "var_type"          "FIELD_FLOAT"
-                "duration"                  "25.0"
+                "duration"                  "15.0 20.0 25.0"
             }
             "04"
             {

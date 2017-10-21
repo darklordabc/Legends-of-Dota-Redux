@@ -2,7 +2,7 @@ local Timers = require('easytimers')
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Walock
---		Perk: Warlock starts the game with 2 free Observer Wards.
+--		Perk: Warlock starts the game with a Necronomicon
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_warlock_perk", "abilities/hero_perks/npc_dota_hero_warlock_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -32,15 +32,14 @@ end
 -- Add additional functions
 function modifier_npc_dota_hero_warlock_perk:OnCreated(keys)
 	if IsServer() then
-		local caster = self:GetCaster()
-		
-		Timers:CreateTimer(function()
-			caster:AddItemByName('item_ward_observer')
-			caster:AddItemByName('item_ward_observer')
-			caster:AddItemByName('item_ward_observer')
-			caster:AddItemByName('item_ward_observer')
-        return
-    end, DoUniqueString('give_warlock_item'), .5)
+		if not util:isPlayerBot(self:GetParent():GetPlayerID()) then
+			local caster = self:GetCaster()
+
+			Timers:CreateTimer(function()
+		      caster:AddItemByName('item_necronomicon_perk')
+		      return
+		    end, DoUniqueString('give_necronomicon'), .5)
+		end
 	end
 end
 --------------------------------------------------------------------------------------------------------

@@ -74,10 +74,43 @@ function perkAncientApparition(filterTable)
     if caster:HasModifier("modifier_npc_dota_hero_ancient_apparition_perk") then
       if ability:HasAbilityFlag("ice") then
         local modifierDuration = filterTable["duration"]
+        if modifierDuration == -1 then
+          modifierDuration = 3
+        end
         if parent:GetTeamNumber() ~= caster:GetTeamNumber() then
+          Timers:CreateTimer(function() trackModifier(filterTable) end)
           parent:AddNewModifier(caster,nil,"modifier_npc_dota_hero_ancient_apparition_perk_heal_freeze",{duration = modifierDuration})
         end
       end
     end  
   end
+end
+
+function trackModifier( filterTable )
+  local parentIndex = filterTable["entindex_parent_const"]
+  local casterIndex = filterTable["entindex_caster_const"]
+  if not parentIndex or not casterIndex then
+    return
+  end
+  local parent = EntIndexToHScript( parentIndex )
+  local caster = EntIndexToHScript( casterIndex )
+  local modifierName = filterTable["name_const"]
+  local duration = filterTable["duration"]
+
+  Timers:CreateTimer(0.1, function()
+  local modifier = parent:FindModifierByNameAndCaster(modifierName, caster)
+  if not modifier or modifier:IsNull() then return end
+    local elapsed = modifier:GetElapsedTime()
+
+    modifier.prevElapsed = modifier.prevElapsed or elapsed
+    if modifier.prevElapsed > elapsed then
+      -- call any functions that need to interact with modifiers on refresh here
+      parent:AddNewModifier(caster,nil,"modifier_npc_dota_hero_ancient_apparition_perk_heal_freeze",{duration = duration})
+    end
+
+    if elapsed >= duration then
+      return
+    end
+    return 0.1
+  end)
 end

@@ -5,7 +5,7 @@
         "BaseClass"                                                            "ability_datadriven"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_YES"
-        "AbilityTextureName"                                                   "bloodseeker_thirst"
+        "AbilityTextureName"                                                   "custom/bloodseeker_thirst_lod_op"
         "precache"
         {
             "particle"                                                     "particles/units/heroes/hero_bloodseeker/bloodseeker_vision.vpcf"

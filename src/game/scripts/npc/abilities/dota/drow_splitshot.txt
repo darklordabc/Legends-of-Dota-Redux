@@ -1,0 +1,46 @@
+"DOTAAbilities"
+{
+    "drow_splitshot"
+    {
+        "BaseClass"             		"ability_lua"
+        "ScriptFile"				"abilities/drow_splitshot.lua"
+        "AbilityTextureName"			"custom/drow_splitshot"
+        "ReduxFlags"                    "aoe_attack | attack_modifier"
+
+        "AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "MaxLevel"                                                             "3"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetFlag"			"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
+        //"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+
+        //cooldown and mana cost are supported if this needs a nerf
+        //"AbilityCooldown"				"0.0"
+        //"AbilityManaCost"				"0"
+        
+        "precache"
+	    {
+	       "particle"  "particles/units/heroes/hero_drow/drow_base_attack.vpcf"
+	    }
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"		"FIELD_INTEGER"
+                "split_count"		"1 1 2"
+            }
+            "02"
+            {
+                "var_type"		"FIELD_FLOAT"
+                "search_radius"		"375"
+            }
+            "03"
+            {
+                "var_type"		"FIELD_INTEGER"
+                "damage_reduction"	"70 50 40"
+            }
+        }
+    }
+}

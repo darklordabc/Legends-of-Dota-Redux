@@ -455,6 +455,24 @@ function Ingame:onStart()
 
     end
 
+    -- Remove powerup runes, spawned before 2 minutes
+    Timers:CreateTimer(function ()
+        if math.floor(GameRules:GetDOTATime(false, false)/60) < 2 then
+            local spawners = Entities:FindAllByClassname("dota_item_rune_spawner_powerup")
+            for k,v in ipairs(spawners) do
+                if v ~= nil then
+                    local nearbyRunes = Entities:FindAllByClassnameWithin("dota_item_rune", v:GetOrigin(), 400)
+                    for _,rune in ipairs(nearbyRunes) do
+                        if rune ~= nil then
+                            UTIL_Remove(rune)
+                        end
+                    end
+                end
+            end
+            return 0.1
+        end
+    end, 'removeRunes', 0.1)
+
     --Attempt to enable cheats
     Convars:SetBool("sv_cheats", true)
 
@@ -618,7 +636,7 @@ end
 function Ingame:CheckConsumableItems()
 
     local itemTable = LoadKeyValues('scripts/kv/consumable_items.kv')
-    for i=0,PlayerResource:GetTeamPlayerCount() do
+    for i=0,24 do
         if PlayerResource:IsValidTeamPlayerID(i) and not util:isPlayerBot(i) then
             local hero = PlayerResource:GetSelectedHeroEntity(i)
             if hero and IsValidEntity(hero) then
@@ -1473,10 +1491,13 @@ function Ingame:BountyRunePickupFilter(filterTable)
         for i=0,DOTA_MAX_TEAM do
             local pID = PlayerResource:GetNthPlayerIDOnTeam(team,i)
             if PlayerResource:IsValidPlayerID(pID) then
-                local otherHero = PlayerResource:GetPlayer(pID):GetAssignedHero()
+                local player = PlayerResource:GetPlayer(pID)
+                if player ~= nil then
+                    local otherHero = player:GetAssignedHero()
 
-                otherHero:AddExperience(math.ceil(filterTable.xp_bounty / util:GetActivePlayerCountForTeam(team)),0,false,false)
-                otherHero.expSkip = true
+                    otherHero:AddExperience(math.ceil(filterTable.xp_bounty / util:GetActivePlayerCountForTeam(team)),0,false,false)
+                    otherHero.expSkip = true
+                end
             end
         end
 
@@ -1866,6 +1887,19 @@ function Ingame:FilterDamage( filterTable )
         end
     end
 
+    if OptionManager:GetOption('antiRat') == 1 and victim.IsBuilding and victim:IsBuilding()  then
+        local protection = victim:FindModifierByName("modifier_backdoor_protection_active")
+
+        if protection then
+         if self.heard["antiRatProtection"] ~= true then
+             GameRules:SendCustomMessage("#antiRatNotification", 0, 0)
+             self.heard["antiRatProtection"] = true
+         end
+         
+         filterTable["damage"] = 0
+        end
+    end
+
     if victim:HasModifier("modifier_ancient_priestess_spirit_link") then
         if victim.spiritLink_damage then
             victim.spiritLink_damage = nil
@@ -1907,7 +1941,8 @@ function Ingame:FilterDamage( filterTable )
     return true
 end
 
-
+require('abilities/bash_reflect')
+require('abilities/bash_cooldown')
 function Ingame:FilterModifiers( filterTable )
     local parent_index = filterTable["entindex_parent_const"]
     local caster_index = filterTable["entindex_caster_const"]
@@ -1934,8 +1969,9 @@ function Ingame:FilterModifiers( filterTable )
         filterTable["duration"] = filterTable["duration"] * parent:GetTenacity()
     end
     -- Bash Reflect
-    local reflect_bashes = require('abilities/bash_reflect')
     ReflectBashes(filterTable)
+    -- Bash Cooldown
+    if not BashCooldown(filterTable) then return false end
 
     return true
 end

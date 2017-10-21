@@ -3014,6 +3014,10 @@ Button:enabled:hover {
     padding: 15px 20px;
 }
 
+.Language_russian #gamemodesPanel .optionDescription {
+    text-overflow: shrink;
+}
+
 #gamemodesPanel .option:hover .optionDescription {
     opacity: 1;
     z-index: 1;
@@ -3102,6 +3106,11 @@ Button:enabled:hover {
 #mutatorPanel .mutatorLabel {
     text-shadow: 0 0 3px 4.5 #000000;
     padding: 5px 7px 0 7px;
+}
+
+.Language_russian #mutatorPanel .mutatorLabel {
+    padding: 5px 0px 0 7px;
+    text-overflow: shrink;
 }
 
 #mutatorPanel .mutator .circleWrapper {

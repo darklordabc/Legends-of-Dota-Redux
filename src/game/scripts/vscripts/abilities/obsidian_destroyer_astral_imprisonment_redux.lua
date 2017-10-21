@@ -3,11 +3,19 @@ function AstralImprisonmentEnd( keys )
 	local target = keys.target
 	local modifier = target:FindModifierByName("modifier_astral_imprisonment_redux")
 	local ability = keys.ability
+	local damage = ability:GetSpecialValueFor("damage")
 
 	StopSoundEvent(sound_name, target)
 
 	target:RemoveNoDraw()
 	ParticleManager:DestroyParticle(ability.particles[target:entindex()],false)
+	ParticleManager:ReleaseParticleIndex(ability.particles[target:entindex()])
+	local pos = vlua.find(ability.particles, target:entindex())
+	if pos then
+		table.remove(ability.particles, pos)
+	end
+	
+	ApplyDamage({victim = target, attacker = keys.caster, ability = ability, damage = damage, damage_type = ability:GetAbilityDamageType()})
 end
 
 function AstralImprisonmentStart( keys )

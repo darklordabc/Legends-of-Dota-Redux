@@ -237,28 +237,24 @@ function Pregame:init()
     local needBounty = false
     GameRules:GetGameModeEntity():SetRuneSpawnFilter(function(context, runeStuff)
         totalRunes = totalRunes + 1
-        if totalRunes < 3 then
-            runeStuff.rune_type = DOTA_RUNE_BOUNTY
-        else
-            if totalRunes % 2 == 1 then
-                if math.random() < 0.5 then
-                    needBounty = false
-                    runeStuff.rune_type = DOTA_RUNE_BOUNTY
-                else
-                    needBounty = true
-                    runeStuff.rune_type = util:pickRandomRune()
-                end
-            else
-                if needBounty then
-                    runeStuff.rune_type = DOTA_RUNE_BOUNTY
-                else
-                    runeStuff.rune_type = util:pickRandomRune()
-
-                end
-
-                -- No longer need a bounty rune
+        if totalRunes % 2 == 1 then
+            if math.random() < 0.5 then
                 needBounty = false
+                runeStuff.rune_type = DOTA_RUNE_BOUNTY
+            else
+                needBounty = true
+                runeStuff.rune_type = util:pickRandomRune()
             end
+        else
+            if needBounty then
+                runeStuff.rune_type = DOTA_RUNE_BOUNTY
+            else
+                runeStuff.rune_type = util:pickRandomRune()
+
+            end
+
+            -- No longer need a bounty rune
+            needBounty = false
         end
 
         return true
@@ -546,6 +542,7 @@ function Pregame:init()
         self:setOption('lodOptionGameSpeedStartingLevel', 4, true)
         --self:setOption('lodOptionGameSpeedStartingGold', 600, true)
         self:setOption('lodOptionGameSpeedStrongTowers', 1, true)
+        self:setOption('lodOptionLimitPassives', 1, true)
         self:setOption('lodOptionCreepPower', 120, true)
 
         self:setOption('lodOptionGameSpeedTowersPerLane', 3, true)
@@ -683,6 +680,9 @@ function Pregame:loadDefaultSettings()
 
     -- Consumeable Items
     self:setOption('lodOptionConsumeItems', 1, false)
+
+    -- Limit Passives
+    self:setOption('lodOptionLimitPassives', 0, false)
 
     -- Anti Rat option
     self:setOption('lodOptionAntiRat', 0, false)
@@ -843,10 +843,10 @@ function Pregame:loadDefaultSettings()
 
     -- Selecting 6 new abilities grants 500 gold
     self:setOption("lodOptionNewAbilitiesThreshold", 20, true)
-    self:setOption("lodOptionNewAbilitiesBonusGold", 250, true)
+    self:setOption("lodOptionNewAbilitiesBonusGold", 1000, true)
     self:setOption("lodOptionGlobalNewAbilitiesThreshold", 75, true)
-    self:setOption("lodOptionGlobalNewAbilitiesBonusGold", 250, true)
-    self:setOption("lodOptionBalancedBuildBonusGold", 1000, true)
+    self:setOption("lodOptionGlobalNewAbilitiesBonusGold", 1000, true)
+    self:setOption("lodOptionBalancedBuildBonusGold", 0, true)
 end
 
 -- Gets stats for the given player
@@ -1466,15 +1466,15 @@ end
 
 -- Spawns all heroes (this should only be called once!)
 function Pregame:spawnAllHeroes()
-    local minPlayerID = 0
-    local maxPlayerID = 24
-
     if self.wispSpawning then
         return
     end
 
-    for playerID = minPlayerID,maxPlayerID-1 do
-        self:spawnPlayer(playerID)
+    for playerID = 0, DOTA_MAX_TEAM_PLAYERS - 1 do
+        -- Spawn only valid players
+        if PlayerResource:IsValidTeamPlayerID(playerID) then
+            self:spawnPlayer(playerID)
+        end
     end
 
     self:actualSpawnPlayer()
@@ -1531,10 +1531,10 @@ end
 
 function Pregame:actualSpawnPlayer(forceID)
     -- Is there someone to spawn?
-    if #self.spawnQueue <= 0 then return end
+    if #self.spawnQueue <= 0 and not forceID then return end
 
     -- Only spawn ONE player at a time!
-    if self.currentlySpawning then return end
+    if self.currentlySpawning and not forceID then return end
     self.currentlySpawning = true
 
     -- Grab a reference to self
@@ -1554,8 +1554,9 @@ function Pregame:actualSpawnPlayer(forceID)
         local playerID = forceID or table.remove(this.spawnQueue, 1)
 
         -- Don't allow a player to get two heroes
-        if PlayerResource:GetSelectedHeroEntity(playerID) ~= nil then
-            UTIL_Remove(PlayerResource:GetSelectedHeroEntity(playerID))
+        local previousHero = PlayerResource:GetSelectedHeroEntity(playerID)
+        if previousHero then
+            UTIL_Remove(previousHero)
         end
 
         -- Grab their build
@@ -1563,7 +1564,7 @@ function Pregame:actualSpawnPlayer(forceID)
 
         -- Validate the player
         local player = PlayerResource:GetPlayer(playerID)
-        if player ~= nil then
+        if player then
             local heroName = self.selectedHeroes[playerID] or self:getRandomHero()
 
             local spawnTheHero = function()
@@ -1601,6 +1602,19 @@ function Pregame:actualSpawnPlayer(forceID)
             self.spawnedHeroesFor[playerID] = nil
 
             continueSpawning()
+
+            -- Actually, the correct way is to remove queue and spawn all heroes at the same time,
+            -- but it requires too many changes, so for now I made a patch
+            Timers:CreateTimer(function()
+                -- If player is connected
+                if PlayerResource:GetPlayer(playerID) then
+                    self.spawnedHeroesFor[playerID] = true
+                    self:actualSpawnPlayer(playerID)
+                else
+                    -- Wait some more
+                    return 0.2
+                end
+            end, DoUniqueString(''), 0.2)
         end
     end)
 
@@ -1687,6 +1701,7 @@ function Pregame:networkHeroes()
         nohero = true,
         donotrandom = true,
         underpowered = true,
+        semi_passive = true,
     }
     -- Prepare flags
     local flagsInverse = {}
@@ -2770,6 +2785,11 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
+        -- Limit Passives
+        lodOptionLimitPassives = function(value)
+            return value == 0 or value == 1
+        end,
+
         -- Game Speed - Scepter Upgraded
         lodOptionGameSpeedUpgradedUlts = function(value)
             return value == 0 or value == 1 or value == 2
@@ -2979,7 +2999,7 @@ function Pregame:initOptionSelector()
 
         -- Other - Extra ability
         lodOptionExtraAbility = function(value)
-            return value == 0 or value == 1 or value == 2 or value == 3 or value == 4  or value == 5 or value == 6 or value == 7 or value == 8 or value == 9 or value == 10  or value == 11 or value == 12 or value == 13 or value == 14 or value == 15 or value == 16 or value == 17 or value == 18  or value == 19 or value == 20 or value == 21
+            return value == 0 or value == 1 or value == 2 or value == 3 or value == 4  or value == 5 or value == 6 or value == 7 or value == 8 or value == 9 or value == 10  or value == 11 or value == 12 or value == 13 or value == 14 or value == 15 or value == 16 or value == 17 or value == 18  or value == 19 or value == 20 or value == 21 or value == 22
         end,
 
         -- Other -- Gotta Go Fast!
@@ -3250,8 +3270,8 @@ function Pregame:isAllowed( abilityName )
         allowed = self.optionStore['lodOptionAdvancedNeutralAbilities'] == 1
     elseif cat == 'custom' then
         allowed = self.optionStore['lodOptionAdvancedCustomSkills'] == 1
-    elseif cat == 'dotaimba' then
-        allowed = self.optionStore['lodOptionAdvancedImbaAbilities'] == 1
+    elseif cat == 'superop' then
+        allowed = 1  -- The check if these abilities are allowed are processed elsewhere.
     elseif cat == 'OP' then
         allowed = self.optionStore['lodOptionAdvancedOPAbilities'] == 0
     elseif cat == nil then
@@ -3907,6 +3927,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('neutralMultiply', this.optionStore['lodOptionNeutralMultiply'])
         OptionManager:SetOption('laneMultiply', this.optionStore['lodOptionLaneMultiply'])
         OptionManager:SetOption('useFatOMeter', this.optionStore['lodOptionCrazyFatOMeter'])
+        OptionManager:SetOption('universalShops', this.optionStore['lodOptionCrazyUniversalShop'])
         OptionManager:SetOption('allowIngameHeroBuilder', this.optionStore['lodOptionIngameBuilder'] == 1)
         --OptionManager:SetOption('botBonusPoints', this.optionStore['lodOptionBotsBonusPoints'] == 1)
 
@@ -3925,6 +3946,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('banInvis', this.optionStore['lodOptionBanningBanInvis'])
         OptionManager:SetOption('antiRat', this.optionStore['lodOptionAntiRat'])
         OptionManager:SetOption('consumeItems', this.optionStore['lodOptionConsumeItems'])
+        OptionManager:SetOption('limitPassives', this.optionStore['lodOptionLimitPassives'])
 
         -- Enforce max level
         if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -4191,6 +4213,7 @@ function Pregame:processOptions()
                     ['Bans: Block Troll Combos'] = this.optionStore['lodOptionBanningBlockTrollCombos'],
                     ['Bans: Disable Perks'] = this.optionStore['lodOptionDisablePerks'],
                     ['Bans: Consumeable Items'] = this.optionStore['lodOptionConsumeItems'],
+                    ['Bans: Limit Passives'] = this.optionStore['lodOptionLimitPassives'],
                     ['Bans: Host Banning'] = this.optionStore['lodOptionBanningHostBanning'],
                     ['Bans: Max Ability Bans'] = this.optionStore['lodOptionBanningMaxBans'],
                     ['Bans: Max Hero Bans'] = this.optionStore['lodOptionBanningMaxHeroBans'],
@@ -5646,8 +5669,8 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
             allowed = self.optionStore['lodOptionAdvancedNeutralAbilities'] == 1
         elseif cat == 'custom' then
             allowed = self.optionStore['lodOptionAdvancedCustomSkills'] == 1
-        elseif cat == 'dotaimba' then
-            allowed = self.optionStore['lodOptionAdvancedImbaAbilities'] == 1
+        elseif cat == 'superop' then
+            allowed = 1 -- The check if these abilities are allowed are processed elsewhere.
         elseif cat == 'OP' then
             allowed = self.optionStore['lodOptionAdvancedOPAbilities'] == 0
         end
@@ -5716,6 +5739,27 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
             EmitAnnouncerSoundForPlayer(sound, playerID)
             return
         end
+    end
+
+    -- Limit powerful passives
+    if self.optionStore['lodOptionLimitPassives'] == 1 then
+    	local powerfulPassives = 0
+    	for _,buildAbility in pairs(newBuild) do
+    		-- Check that ability is passive and is powerful ability
+            -- Temporarily limit all passives, indepedent of their power
+    		if SkillManager:isPassive(buildAbility) or self.flags["semi_passive"][buildAbility] ~= nil then -- and self.spellCosts[buildAbility] ~= nil and self.spellCosts[buildAbility] >= 60 then
+    			powerfulPassives = powerfulPassives + 1
+    		end
+    	end
+    	-- Check that we have 3 OP passives
+    	if powerfulPassives >= 4 then
+            network:sendNotification(player, {
+                sort = 'lodDanger',
+                text = 'lodFailedTooManyPassives'
+            })
+            self:PlayAlert(playerID)
+            return
+	    end
     end
 
     -- Consider unique skills
@@ -6127,7 +6171,7 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
             local draftArray = self.draftArrays[draftID] or {}
             local heroDraft = draftArray.heroDraft or {}
             local abilityDraft = draftArray.abilityDraft or {}
-
+            
             if self.maxDraftHeroes > 0 then
                 local heroName = self.abilityHeroOwner[abilityName]
 
@@ -6136,7 +6180,7 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
                 end
             end
 
-            if self.maxDraftSkills > 0 then
+            if not self.botPlayers.all[playerID] then
                 if not abilityDraft[abilityName] then
                     shouldAdd = false
                 end
@@ -6178,6 +6222,23 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
                         break
                     end
                 end
+            end
+        end
+
+        if not (util:isSinglePlayerMode() or util:isCoop()) then
+            local powerfulPassives = 0
+            for _,buildAbility in pairs(build) do
+                if SkillManager:isPassive(buildAbility) or self.flags["semi_passive"][buildAbility] ~= nil then -- and self.spellCosts[buildAbility] ~= nil and self.spellCosts[buildAbility] >= 60 then
+                    powerfulPassives = powerfulPassives + 1
+                end
+            end
+			
+	    if (SkillManager:isPassive(abilityName) or self.flags["semi_passive"][abilityName] ~= nil) then
+		powerfulPassives = powerfulPassives + 1
+	    end
+
+            if powerfulPassives >= 3 then
+                shouldAdd = false
             end
         end
 
@@ -7324,8 +7385,8 @@ function Pregame:fixSpawnedHero( spawnedUnit )
     }
 
     local disabledPerks = {
-        npc_dota_hero_windrunner = false,
-        npc_dota_hero_shadow_demon = true,
+        --npc_dota_hero_windrunner = false,
+        --npc_dota_hero_shadow_demon = true,
         -- npc_dota_hero_spirit_breaker = true,
         --npc_dota_hero_spirit_slardar = true,
         -- npc_dota_hero_chaos_knight = true,
@@ -7702,12 +7763,14 @@ function Pregame:fixSpawnedHero( spawnedUnit )
     if OptionManager:GetOption('extraAbility') > 0 then
         Timers:CreateTimer(function()
             local fleshHeapToGive = nil
+            local survivalToGive = nil
             local essenceshiftToGive = nil
             local rangedTrickshot = nil
 
+            -- Random Flesh Heaps
             if OptionManager:GetOption('extraAbility') == 5 then
 
-                local random = RandomInt(1,10)
+                local random = RandomInt(1,16)
                 local givenAbility = false
                 -- Randomly choose which flesh heap to give them
                 if random == 1 and not spawnedUnit:HasAbility('pudge_flesh_heap') then fleshHeapToGive = "pudge_flesh_heap" ; givenAbility = true
@@ -7720,9 +7783,13 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                 elseif random == 8 and not spawnedUnit:HasAbility('pudge_flesh_heap_cooldown_reduction') then fleshHeapToGive = "pudge_flesh_heap_cooldown_reduction" ; givenAbility = true
                 elseif random == 9 and not spawnedUnit:HasAbility('pudge_flesh_heap_magic_resistance') then fleshHeapToGive = "pudge_flesh_heap_evasion" ; givenAbility = true
                 elseif random == 10 and not spawnedUnit:HasAbility('pudge_flesh_heap_evasion') then fleshHeapToGive = "pudge_flesh_heap_evasion" ; givenAbility = true
+                elseif random == 11 and not spawnedUnit:HasAbility('pudge_flesh_heap_cast_range') then fleshHeapToGive = "pudge_flesh_heap_cast_range" ; givenAbility = true
+                elseif random == 12 and not spawnedUnit:HasAbility('pudge_flesh_heap_spell_lifesteal') then fleshHeapToGive = "pudge_flesh_heap_spell_lifesteal" ; givenAbility = true
+                elseif random == 13 and not spawnedUnit:HasAbility('pudge_flesh_heap_lifesteal') then fleshHeapToGive = "pudge_flesh_heap_lifesteal" ; givenAbility = true
+                elseif random == 14 and not spawnedUnit:HasAbility('pudge_flesh_heap_armor') then fleshHeapToGive = "pudge_flesh_heap_armor" ; givenAbility = true
+                elseif random == 15 and not spawnedUnit:HasAbility('pudge_flesh_heap_health_regeneration') then fleshHeapToGive = "pudge_flesh_heap_health_regeneration" ; givenAbility = true
+                elseif random == 16 and not spawnedUnit:HasAbility('pudge_flesh_heap_mana_regeneration') then fleshHeapToGive = "pudge_flesh_heap_mana_regeneration" ; givenAbility = true
                 end
-
-
 
                 -- If they randomly picked a flesh heap they already had, go through this list and try to give them one until they get one
                 if not givenAbility then
@@ -7736,6 +7803,65 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                     elseif not spawnedUnit:HasAbility('pudge_flesh_heap_cooldown_reduction') then fleshHeapToGive = "pudge_flesh_heap_cooldown_reduction"
                     elseif not spawnedUnit:HasAbility('pudge_flesh_heap_magic_resistance') then fleshHeapToGive = "pudge_flesh_heap_magic_resistance"
                     elseif not spawnedUnit:HasAbility('pudge_flesh_heap_evasion') then fleshHeapToGive = "pudge_flesh_heap_evasion"
+                    -- We dont need to add any more to this list because they will defintely get one of the above because of the max ability slots
+                    end
+                end
+            end
+
+            -- Random Survivals
+            if OptionManager:GetOption('extraAbility') == 22 then
+
+                local random = RandomInt(1,21)
+                local givenAbility = false
+                -- Randomly choose which flesh heap to give them
+                if random == 1  and not spawnedUnit:HasAbility('spell_lab_survivor_cooldown') then survivalToGive = "spell_lab_survivor_cooldown" ; givenAbility = true
+                elseif random == 2  and not spawnedUnit:HasAbility('spell_lab_survivor_critical') then survivalToGive = "spell_lab_survivor_critical" ; givenAbility = true
+                elseif random == 3  and not spawnedUnit:HasAbility('spell_lab_survivor_damage_boost') then survivalToGive = "spell_lab_survivor_damage_boost" ; givenAbility = true
+                elseif random == 4  and not spawnedUnit:HasAbility('spell_lab_survivor_health_regen') then survivalToGive = "spell_lab_survivor_health_regen" ; givenAbility = true
+                elseif random == 5  and not spawnedUnit:HasAbility('spell_lab_survivor_int_survival') then survivalToGive = "spell_lab_survivor_int_survival" ; givenAbility = true
+                elseif random == 6  and not spawnedUnit:HasAbility('spell_lab_survivor_magic_resistance') then survivalToGive = "spell_lab_survivor_magic_resistance" ; givenAbility = true
+                elseif random == 7  and not spawnedUnit:HasAbility('spell_lab_survivor_spell_boost') then survivalToGive = "spell_lab_survivor_spell_boost" ; givenAbility = true
+                elseif random == 8  and not spawnedUnit:HasAbility('spell_lab_survivor_spell_vamp') then survivalToGive = "spell_lab_survivor_spell_vamp" ; givenAbility = true
+                elseif random == 9  and not spawnedUnit:HasAbility('spell_lab_survivor_str_survival') then survivalToGive = "spell_lab_survivor_str_survival" ; givenAbility = true
+                elseif random == 10 and not spawnedUnit:HasAbility('spell_lab_survivor_mana_regen') then survivalToGive = "spell_lab_survivor_mana_regen" ; givenAbility = true
+                elseif random == 11 and not spawnedUnit:HasAbility('spell_lab_survivor_agi_survival') then survivalToGive = "spell_lab_survivor_agi_survival" ; givenAbility = true
+                elseif random == 12 and not spawnedUnit:HasAbility('spell_lab_survivor_attack_speed') then survivalToGive = "spell_lab_survivor_attack_speed" ; givenAbility = true
+                elseif random == 13 and not spawnedUnit:HasAbility('spell_lab_survivor_cast_range') then survivalToGive = "spell_lab_survivor_cast_range" ; givenAbility = true
+                elseif random == 14 and not spawnedUnit:HasAbility('spell_lab_survivor_vision') then survivalToGive = "spell_lab_survivor_vision" ; givenAbility = true
+                elseif random == 15 and not spawnedUnit:HasAbility('spell_lab_survivor_evasion') then survivalToGive = "spell_lab_survivor_evasion" ; givenAbility = true
+                elseif random == 16 and not spawnedUnit:HasAbility('spell_lab_survivor_mana_burn') then survivalToGive = "spell_lab_survivor_mana_burn" ; givenAbility = true
+                elseif random == 17 and not spawnedUnit:HasAbility('spell_lab_survivor_life_steal') then survivalToGive = "spell_lab_survivor_life_steal" ; givenAbility = true
+                elseif random == 18 and not spawnedUnit:HasAbility('spell_lab_survivor_armor') then survivalToGive = "spell_lab_survivor_armor" ; givenAbility = true
+                elseif random == 19 and not spawnedUnit:HasAbility('spell_lab_survivor_attack_range') then survivalToGive = "spell_lab_survivor_attack_range" ; givenAbility = true
+                elseif random == 20 and not spawnedUnit:HasAbility('spell_lab_survivor_move_speed') then survivalToGive = "spell_lab_survivor_move_speed" ; givenAbility = true
+                elseif random == 21 and not spawnedUnit:HasAbility('spell_lab_survivor_bash') then survivalToGive = "spell_lab_survivor_bash" ; givenAbility = true
+                end
+
+
+
+                -- If they randomly picked a flesh heap they already had, go through this list and try to give them one until they get one
+                if not givenAbility then
+                    if not spawnedUnit:HasAbility('spell_lab_survivor_cooldown') then survivalToGive = "spell_lab_survivor_cooldown"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_critical') then survivalToGive = "spell_lab_survivor_critical"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_damage_boost') then survivalToGive = "spell_lab_survivor_damage_boost"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_health_regen') then survivalToGive = "spell_lab_survivor_health_regen"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_int_survival') then survivalToGive = "spell_lab_survivor_int_survival"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_magic_resistance') then survivalToGive = "spell_lab_survivor_magic_resistance"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_spell_boost') then survivalToGive = "spell_lab_survivor_spell_boost"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_spell_vamp') then survivalToGive = "spell_lab_survivor_spell_vamp"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_str_survival') then survivalToGive = "spell_lab_survivor_str_survival"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_mana_regen') then survivalToGive = "spell_lab_survivor_mana_regen"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_agi_survival') then survivalToGive = "spell_lab_survivor_agi_survival"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_attack_speed') then survivalToGive = "spell_lab_survivor_attack_speed"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_cast_range') then survivalToGive = "spell_lab_survivor_cast_range"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_vision') then survivalToGive = "spell_lab_survivor_vision"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_evasion') then survivalToGive = "spell_lab_survivor_evasion"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_mana_burn') then survivalToGive = "spell_lab_survivor_mana_burn"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_life_steal') then survivalToGive = "spell_lab_survivor_life_steal"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_armor') then survivalToGive = "spell_lab_survivor_armor"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_attack_range') then survivalToGive = "spell_lab_survivor_attack_range"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_move_speed') then survivalToGive = "spell_lab_survivor_move_speed"
+                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_bash') then survivalToGive = "spell_lab_survivor_bash"
                     end
                 end
             end
@@ -7759,6 +7885,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
             if fleshHeapToGive then abilityToGive = fleshHeapToGive
             elseif essenceshiftToGive then abilityToGive = essenceshiftToGive
             elseif rangedTrickshot then abilityToGive = rangedTrickshot
+            elseif survivalToGive then abilityToGive = survivalToGive
             end
 
             spawnedUnit:AddAbility(abilityToGive)
@@ -7872,7 +7999,9 @@ function Pregame:fixSpawningIssues()
                     necronomicon_warrior_last_will_lod = true,
                     roshan_bash = true,
                     arc_warden_tempest_double = true,    -- This is to stop tempest doubles from getting the ability and using cooldown reduction to cast again
-                    arc_warden_tempest_double_redux = true,         
+                    arc_warden_tempest_double_redux = true,
+                    aabs_thunder_musket = true,   
+                    mirana_starfall_lod = true,    -- This is buggy with tempest doubles for some reason   
                 }
 
                 -- Apply the build
@@ -7924,7 +8053,14 @@ function Pregame:fixSpawningIssues()
                         end
                     end
 
-
+                    -- Hotfix: Remove the consumed octarines and replace with originals as the consumed ones are bugged. TODO: Fix buggy consumed version
+                    Timers:CreateTimer(function()
+                        local consumeableOct = spawnedUnit:FindItemByName("item_octarine_core_consumable")
+                        if consumeableOct then
+                          spawnedUnit:RemoveItem(consumeableOct)
+                          spawnedUnit:AddItemByName('item_octarine_core')
+                        end
+                    end, DoUniqueString('replaceOctarine'), 0.5)
 
                     Timers:CreateTimer(function()
                         if IsValidEntity(spawnedUnit) then
@@ -7979,6 +8115,15 @@ function Pregame:fixSpawningIssues()
                 end
             end
         end, DoUniqueString('silencerFix'), 2)
+
+        -- Remove Gyro's innate scepter bonus
+        Timers:CreateTimer(function()
+            if IsValidEntity(spawnedUnit) then
+                if spawnedUnit:HasModifier('modifier_gyrocopter_flak_cannon_scepter') then
+                    spawnedUnit:RemoveModifierByName('modifier_gyrocopter_flak_cannon_scepter')
+                end
+            end
+        end, DoUniqueString('gyroFixInnate'), 1)
 
             if Wearables:HasDefaultWearables( spawnedUnit:GetUnitName() ) then
                 Wearables:AttachWearableList( spawnedUnit, Wearables:GetDefaultWearablesList( spawnedUnit:GetUnitName() ) )

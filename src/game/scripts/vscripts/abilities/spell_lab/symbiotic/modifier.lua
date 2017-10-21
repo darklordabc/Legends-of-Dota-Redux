@@ -77,6 +77,7 @@ if (self.hHost ~= nil) then
 	state[MODIFIER_STATE_STUNNED] = self.hHost:IsStunned()
 	state[MODIFIER_STATE_SILENCED] = self.hHost:IsSilenced()
 	state[MODIFIER_STATE_MUTED] = self.hHost:IsMuted()
+	state[MODIFIER_STATE_COMMAND_RESTRICTED] = self.hHost:IsCommandRestricted()
 end
 	return state
 end
@@ -126,6 +127,13 @@ function spell_lab_symbiotic_modifier:OnSpentMana (kv)
 			end
 		else
 	    local hParent = self:GetParent()
+	    
+	    -- Tether semi-nerf, prevent players having hearts and giving massive health regen constantly
+	    local tether = hParent:FindAbilityByName("wisp_tether")
+	    if tether then
+	    	tether:StartCooldown(60)
+	    end
+
 			--DeepPrintTable(kv)
 			local mana = self.hHost:GetMana()
 			if self.hHost:GetMana() >= kv.cost then
