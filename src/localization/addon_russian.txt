@@ -482,7 +482,7 @@
     "lodOptionDesAdvancedUniqueHeroes"              "Уникальные герои"
     "lodOptionDesAdvancedSelectPrimaryAttr"         "Разрешить ручной выбор основного атрибута героя"
     "lodOptionDesBanningMaxHeroBans"                "Максимум запретов героев"
-    "lodOptionDesDisablePerks"                      "Отключить Perk`и героев"
+    "lodOptionDesDisablePerks"                      "Отключить Perks героев"
 
     "lodOptionDesCrazyFatOMeter"                    "Включить Fat-O-Meter"
     "lodOptionNoFatOMeter"                          "Выключено"
@@ -515,7 +515,7 @@
     "lodVotingSwitchTeamLine"                       "хочет <font color='#70EA72'>Сменить команду</font>"
     "lodVotingSwitchTeamLineDescr"                  "Этот игрок хочет перейти за другую команду, возможно, игра станет более сбалансированной.<br><font color='#70EA72'>Рекомендуется</font>."
 
-    "lodVotingAntiratLine"                          "хочет включить <font color='#70EA72'>Усиленный Backdoor Protection (Anti-Rat)</font>"
+    "lodVotingAntiratLine"                          "хочет включить <font color='#70EA72'>Усиленный Backdoor Protection(Anti-Rat)</font>"
     "lodVotingAntiratLineDescr"                     "Не сломав все внешние вышки(Т2), вышки на базе врага вы не сломаете.<br><font color='#70EA72'>Рекомендуется</font>."
 
     "lodVotingDoubleCreepsLine"                     "хочет включить <font color='#70EA72'>Удвоение нейтральных крипов</font>"
@@ -542,7 +542,7 @@
     "minimapMenuReviewGameOptions"                  "Посмотреть настройки игры"
     "minimapMenuHeroBuilder"                        "Смена героя"
 
-    "antiRatNotification"                     "Опция усилиленный Backdoor Protection(Anti-Rat) включена, башни с защитой от обхода не будут получать урон."
+    "antiRatNotification"                     "Опция усиленного Backdoor Protection(Anti-Rat) включена, башни с защитой от обхода не будут получать урон."
     "ingameBuilderNotification"                     "<font color='#00DD0B'>Внутриигровая смена героя включена. Нажмите на иконку смены сборки в верхнем правом углу, чтобы сменить вашу способность/героя/основную хар-ку.</font>"
     "ingameBuilderReminder"                     "<font color='#00DD0B'>Не забывайте. Внутриигровая смена героя включена. Нажмите на иконку смены сборки в верхнем правом углу, чтобы сменить вашу способность/героя/основную хар-ку.</font>"
     "tempDuelBlock"                     "<font color='#FF0000'>Дуэли временно отключены из-за проблемы вылета. Они скоро будут включены. Извините за это.</font>"
@@ -1038,7 +1038,7 @@
     "option_vote_entry_title_banning"               "Включить дополнительные запреты"
     "option_vote_entry_title_fastStart"             "Включить быстрое начало"
     "option_vote_entry_title_noInvis"               "Без невидимости"
-    "option_vote_entry_title_antirat"               "Усилить Backdoor Protection (Anti-Rat)"
+    "option_vote_entry_title_antirat"               "Усилить Backdoor Protection(Anti-Rat)"
     "option_vote_entry_title_doubledAbilityPoints"  "Дополнительные очки способностей"
     "option_vote_entry_title_strongTowers"          "Усилить башни"
     "option_vote_entry_title_customAbilities"       "Включить пользовательские способности"
@@ -1188,7 +1188,7 @@
 
     // New Abilities Bonus
     "newAbilitiesTitle"                             "Бонус за способности"
-    "newAbilitiesTooltip"                             "Есть два типа бонусов. Бонус за новую способность (Золотой) это когда вы выбираете способность, которую никогда не использовали. Бонус за редкую способность (Синий) это когда вы выбираете непопулярную способность. Оба дают 250 золота."
+    "newAbilitiesTooltip"                             "Есть два типа бонусов. Бонус за новую способность (Золотой) это когда вы выбираете способность, которую никогда не использовали. Бонус за редкую способность (Синий) это когда вы выбираете непопулярную способность. Оба дают 1000 золота."
     "balancedBuildTitle"                            "Сбалансированная сборка"
     "balancedBuildTooltip"                            "Сбалансированные сборки - это сборки с 3 или меньше пассивными способностями. Даёт 1000 золота."
 
@@ -1197,7 +1197,7 @@
     ////////////////
 
    "unique_mechanic_abaddon"           "<font color=\'#ffd966\'>Mist Coil</font> лечит Abaddon вместо урона и <font color=\'#ffd966\'>Aphotic Shield</font> получает 2 заряда."
-    "unique_mechanic_alchemist"                     "В начале игры Alchemist получает 1 уровень<font color=\'#ffd966\'>Greevils Greed</font>, независимо от того, есть она или нет."
+    "unique_mechanic_alchemist"                     "В начале игры Alchemist получает 1 уровень <font color=\'#ffd966\'>Greevils Greed</font>, независимо от того, есть она или нет."
     "unique_mechanic_ancient_apparition"            "Ancient Apparition отключает регенерацию здоровья врага при использовании морозных способностей."
     "unique_mechanic_antimage"           "После того, как Anti-Mage использует <font color=\'#ffd966\'>Blink</font>(любой), он обезмолвит врагов в радиусе 200 на 2 секунды."
     "unique_mechanic_arc_warden"                        "Arc Warden может использовать одноразовые предметы раз в 90 секунд без потери. 180 секунд если использован Tome of Knowledge."
@@ -1216,14 +1216,14 @@
     "unique_mechanic_clinkz"                        "Clinkz получает 1 уровень одной <font color=\'#ffd966\'>Автоматической</font> способности (например его стрелы) в начале игры."
     "unique_mechanic_rattletrap"                        "Clockwerk запускает наугад ракету каждые 15 секунд. Урон увеличивается с уровнем <font color=\'#ffd966\'>Rocket Flare</font>."
     "unique_mechanic_crystal_maiden"    "Crystal Maiden получает +2 скорости бега за каждое улучшение <font color=\'#ffd966\'>Саппорт</font> способности."
-    "unique_mechanic_dark_seer"             "На Dark Seer`а накладывается <font color=\'#ffd966\'>Surge</font> и <font color=\'#ffd966\'>Ion Shell</font> каждый раз, когда он использует их на союзника."
-    "unique_mechanic_dazzle"                        "Способности <font color=\'#ffd966\'>поддержки</font> у Dazzle`а имеют на 25% сниженную перезарядку."
+    "unique_mechanic_dark_seer"             "На Dark Seer накладывается <font color=\'#ffd966\'>Surge</font> и <font color=\'#ffd966\'>Ion Shell</font> каждый раз, когда он использует их на союзника."
+    "unique_mechanic_dazzle"                        "Способности <font color=\'#ffd966\'>поддержки</font> у Dazzle имеют на 25% сниженную перезарядку."
     "unique_mechanic_death_prophet"                        "Любое <font color=\'#ffd966\'>Безмолвие</font>, использованное Death Prophet так же блокирует инвентарь."
     "unique_mechanic_disruptor"                        "Disruptor регенирирует .5 маны/с за каждые 10% отсутствующей маны."
     "unique_mechanic_doom_bringer"          "<font color=\'#ffd966\'>Демонические</font> способности у Doom имеют на 25% сниженную перезарядку."
     "unique_mechanic_dragon_knight"             "Когда Dragon Knight находится в форме <font color=\'#ffd966\'>Elder Dragon Form</font>, все его способности накладывают на врага эффекты с драконьей атаки (включая вышки)."
     "unique_mechanic_drow_ranger"                        "<font color=\'#ffd966\'>Gust</font> обезоруживает врага, при использовании Drow Ranger."
-    "unique_mechanic_earth_spirit"                        "За каждый вложенный уровень в <font color=\'#ffd966\'>земляную</font> способность урон Earth Spirit`а увеличивается на 3."
+    "unique_mechanic_earth_spirit"                        "За каждый вложенный уровень в <font color=\'#ffd966\'>земляную</font> способность урон Earth Spirit увеличивается на 3."
     "unique_mechanic_earthshaker"                        "<font color=\'#ffd966\'>Земляные</font> способности лечят Earthshaker на 2% от максимального здоровья при использовании."
     "unique_mechanic_elder_titan"           "Elder Titan получает +3% к скорости бега за каждую ауру в его скилах."
     "unique_mechanic_ember_spirit"                        "Если Ember Spirit имеет <font color=\'#ffd966\'>Fire Remnant</font>, то он получит 1 уровень в начале игры. К тому же Fire Remnant возвращает 50% от стоимости маны."
@@ -1333,7 +1333,7 @@
     "command_menu_command_voteRefresh"           "Включить сбрасывание перезарядки после смерти"
     "command_menu_command_descr_voteRefresh"        "Voting for this makes abilities go of cooldown on when you die, requires majority vote. Shortcuts: -enablerefresh"
 
-    "command_menu_command_voteEnableAntiRat"              "Включить усилиленный Backdoor Protection (Anti-Rat)"
+    "command_menu_command_voteEnableAntiRat"              "Включить усиленный Backdoor Protection(Anti-Rat)"
     "command_menu_command_descr_voteEnableAntiRat"        "When Anti-Rat is enabled, Tier3 towers cannot be destroyed unless all the outer towers are dead. Also, towers with backdoor protection cannot be damaged. Shortcuts: -antirat, -ar"
 
     "command_menu_command_voteEnableUniversalShops"              "Включить универсальный магазин"
@@ -4404,7 +4404,7 @@
 
 
     "DOTA_Tooltip_ability_ebf_rubick_arcane_echo"                                     "Arcane Echo"
-    "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_Description"                         "Rubick, being the grandest magus there is, casts the last ability he used a second time. Echoed spells still require mana. Certain spells will not echo for balance reasons."
+    "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_Description"                         "Rubick, being the grandest magus there is, casts the last ability he used a second time. Echoed spells still require mana. Certain spells will not echo for balance reasons. Echoing Ultimates will cause this ability to take the cooldown of the ultimate."
     "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_Lore"                                 "A jester at heart, Rubick enjoys confusing his enemies."
     "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_delay"                                 "ECHO DELAY:"
 
@@ -6607,17 +6607,17 @@
 
     "only_target_creeps"                            "Cannot consume Ancients"
 
-    "DOTA_Tooltip_ability_doom_bringer_infernal_blade_datadriven"                      "Infernal Blade"
-    "DOTA_Tooltip_ability_doom_bringer_infernal_blade_datadriven_Description"          "Doom swings his burning sword, igniting the enemy. Stuns for %ministun_duration% seconds and applies a %burn_duration% second burn that deals %damage% + %health_damage_pct%%% of the target's Max HP as damage per second."
-    "DOTA_Tooltip_ability_doom_bringer_infernal_blade_datadriven_Lore"                 "Lucifer shares the fire branding bestowed upon him at the time of his exile."
-    "DOTA_Tooltip_ability_doom_bringer_infernal_blade_datadriven_Note0"                    "Interrupts channeling abilities."
-    "DOTA_Tooltip_ability_doom_bringer_infernal_blade_datadriven_damage"      "BASE BURN DAMAGE:"
-    "DOTA_Tooltip_ability_doom_bringer_infernal_blade_datadriven_health_damage_pct"  "%MAX HP AS DAMAGE:"
-    "DOTA_Tooltip_ability_doom_bringer_infernal_blade_datadriven_burn_duration"    "BURN DURATION:"
-    "DOTA_Tooltip_ability_doom_bringer_infernal_blade_datadriven_stun_duration"    "STUN DURATION:"
+    "DOTA_Tooltip_ability_infernal_blade_lua"                      "Infernal Blade"
+    "DOTA_Tooltip_ability_infernal_blade_lua_Description"          "Doom swings his burning sword, igniting the enemy. Stuns for %ministun_duration% seconds and applies a %burn_duration% second burn that deals %damage% + %health_damage_pct%%% of the target's Max HP as damage per second."
+    "DOTA_Tooltip_ability_infernal_blade_lua_Lore"                 "Lucifer shares the fire branding bestowed upon him at the time of his exile."
+    "DOTA_Tooltip_ability_infernal_blade_lua_Note0"                    "Interrupts channeling abilities."
+    "DOTA_Tooltip_ability_infernal_blade_lua_base_dmg"      "BASE BURN DAMAGE:"
+    "DOTA_Tooltip_ability_infernal_blade_lua_max_pct_burn"  "%MAX HP AS DAMAGE:"
+    "DOTA_Tooltip_ability_infernal_blade_lua_burn_duration"    "BURN DURATION:"
+    "DOTA_Tooltip_ability_infernal_blade_lua_stun_duration"    "STUN DURATION:"
 
-    "DOTA_Tooltip_modifier_infernal_blade_damage"                "Infernal Blade Burn"
-    "DOTA_Tooltip_modifier_infernal_blade_damage_Description"    "Dealing damage per second"
+    "DOTA_Tooltip_modifier_infernal_blade"                "Infernal Blade Burn"
+    "DOTA_Tooltip_modifier_infernal_blade_Description"    "Dealing damage per second"
 
     //========================================
     // MEGA ULTIMATES
