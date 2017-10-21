@@ -8,6 +8,11 @@ All notable changes to this project will be documented in this file.
 - Fixed Perm Roshanify bug
 - Re-Enabled Shared EXP in all_allowed
 - Tempest Doubles will no longer inherit starfall (buggy)
+- Gods strength: now it's troll combo with it's Redux version. 
+- Phantom fleet: Cooldown lowered from (140/120/100) to (100/80/60).
+- Disarm: have 5 secend duration at max level (was 4), have 600 cast range (was 500).
+- Deafening blast : buffed damage into (80/160/240/320) was(65/130/195/260
+- Jet now counts as a toggle ability (E.g. troll combo with fiery soul)
 
 ## 9.5
 - Limit Passives is now an optional mutator in dota map
