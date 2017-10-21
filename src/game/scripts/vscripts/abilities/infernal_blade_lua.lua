@@ -71,10 +71,9 @@ modifier_infernal_blade_caster = class({
 		local caster = self:GetCaster()
 		local ability = self:GetAbility()
 		local target = keys.target
-		local hasMana = ability:GetManaCost(-1) <= caster:GetMana()
 
 		if ability:GetAutoCastState() or ability.overrideAutocast then
-			if hasMana and ability:IsCooldownReady() then
+			if ability:GetManaCost(-1) <= caster:GetMana() and ability:IsCooldownReady() then
 				--dont infernal roshan or buildings, and dont let illusions use it.
 				if target:GetUnitName() == "npc_dota_roshan" or caster:IsIllusion() or target:IsBuilding() then print("invalid target") return end
 
@@ -92,18 +91,22 @@ modifier_infernal_blade_caster = class({
 		local caster = self:GetCaster()
 		local ability = self:GetAbility()
 		local target = keys.target
+		
+		if target:IsMagicImmune() then return end
 
 		--multipurpose particle id ;)
 		if self.p then
-			target:AddNewModifier(caster, ability, "modifier_infernal_blade", {duration = self.duration})
-			target:AddNewModifier(caster, ability, "modifier_infernal_blade_stun", {duration = self.stun})
+			if ability:GetManaCost(-1) <= caster:GetMana() and ability:IsCooldownReady() then
+				target:AddNewModifier(caster, ability, "modifier_infernal_blade", {duration = self.duration})
+				target:AddNewModifier(caster, ability, "modifier_infernal_blade_stun", {duration = self.stun})
 
-			EmitSoundOn("Hero_DoomBringer.InfernalBlade.Target", target)
-			ability:UseResources(true, false, true)
+				EmitSoundOn("Hero_DoomBringer.InfernalBlade.Target", target)
+				ability:UseResources(true, false, true)
 
-			ParticleManager:ReleaseParticleIndex(
-				ParticleManager:CreateParticle("particles/units/heroes/hero_doom_bringer/doom_infernal_blade_impact.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
-			)
+				ParticleManager:ReleaseParticleIndex(
+					ParticleManager:CreateParticle("particles/units/heroes/hero_doom_bringer/doom_infernal_blade_impact.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+				)
+			end
 		end
 	end,
 
