@@ -5956,6 +5956,9 @@
     "DOTA_Tooltip_ability_uther_Argent_Smite_Heal_Factor"                                   "HEAL FACTOR:"
     "DOTA_Tooltip_ability_uther_Argent_Smite_Tower_Heal_Factor"                             "TOWER HEAL FACTOR:"
 
+    "DOTA_Tooltip_modifier_argent_smite_aura"               "Argent Smite"
+    "DOTA_Tooltip_modifier_argent_smite_aura_description"           "Force attacking an ally will heal them."
+
 
     "DOTA_Tooltip_ability_uther_Omniscience_wave"                           "Global Dispel"
     "DOTA_Tooltip_ability_uther_Omniscience_wave_Description"               "The Lightbringer creates an expanding wave of light, dispelling magic from allies and enemies as it travels across the map.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>"

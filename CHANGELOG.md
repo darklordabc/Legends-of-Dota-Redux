@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
 - Deafening blast : buffed damage into (80/160/240/320) was(65/130/195/260
 - Jet now counts as a toggle ability (E.g. troll combo with fiery soul)
 - Rewrite Infernal Blade in LUA might help with some bugs
+- Argent Smite now has a higher cooldown but increases heal factor per level
 
 ## 9.5
 - Limit Passives is now an optional mutator in dota map
