@@ -124,7 +124,7 @@ modifier_deafening_blast_knockback = class({
 
 			--nullify walking movement
 			if parent:IsMoving() then
-				local backwardVector = (self:GetAbsOrigin() - (self:GetAbsOrigin() + self:GetForwardVector())):Normalized()
+				local backwardVector = (parent:GetAbsOrigin() - (parent:GetAbsOrigin() + parent:GetForwardVector())):Normalized()
 				local movespeed = parent:GetMoveSpeedModifier(parent:GetBaseMoveSpeed()) * tick
 				parent:SetAbsOrigin(parent:GetAbsOrigin() + backwardVector * movespeed)
 			end
