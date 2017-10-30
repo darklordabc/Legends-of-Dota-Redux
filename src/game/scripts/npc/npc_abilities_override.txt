@@ -4560,7 +4560,7 @@
 
     "special_bonus_unique_doom_1"
     {
-        "TalentRequiredAbility"                                                   "doom_bringer_infernal_blade"
+        "TalentRequiredAbility"                                                   "infernal_blade_lua"
     }
 
     "special_bonus_unique_doom_2"

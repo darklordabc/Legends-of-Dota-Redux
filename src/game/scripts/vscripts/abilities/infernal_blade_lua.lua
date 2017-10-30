@@ -23,6 +23,15 @@ function infernal_blade_lua:OnUpgrade()
 	end	
 end
 
+--hardcoded cooldown decrease for doom perk, since this isnt a 'spell' and is never actually cast.
+function infernal_blade_lua:GetCooldown( nLevel )
+	local reduction = 0
+	if self:GetCaster():HasModifier("modifier_npc_dota_hero_doom_bringer_perk") then
+		reduction = self.BaseClass.GetCooldown(self, nLevel) * 0.25
+	end
+	return self.BaseClass.GetCooldown(self, nLevel) - reduction
+end
+
 
 modifier_infernal_blade = class({
 	IsHidden = function(self) return false end,
@@ -32,23 +41,34 @@ modifier_infernal_blade = class({
 
 	GetEffectName = function(self) return "particles/units/heroes/hero_doom_bringer/doom_infernal_blade_debuff.vpcf" end,
 	GetEffectAttachType = function(self) return PATTACH_ABSORIGIN_FOLLOW end,
-	
-	OnCreated = function(self, kv)
-		self.burn = self:GetAbility():GetTalentSpecialValueFor("max_pct_burn") * 0.01
-		--self.burn = self:GetAbility():GetSpecialValueFor("max_pct_burn") * 0.01
-		self.base = self:GetAbility():GetSpecialValueFor("base_dmg")
-		self.tick = self:GetAbility():GetSpecialValueFor("interval")
 
-		self:StartIntervalThink(self.tick)
+	OnCreated = function(self, kv)
+		if IsServer() then
+			--self.burnPct = self:GetAbility():GetTalentSpecialValueFor("max_pct_burn") * 0.01
+			self.burnPct = self:GetAbility():GetSpecialValueFor("max_pct_burn")
+			self.base = self:GetAbility():GetSpecialValueFor("base_dmg")
+			self.tick = self:GetAbility():GetSpecialValueFor("interval")
+
+			local talent = self:GetCaster():FindAbilityByName("special_bonus_unique_doom_1")
+			if talent then
+				if talent:GetLevel() > 0 then
+					self.burnPct = self.burnPct + talent:GetSpecialValueFor("value")
+				end
+			end
+			self.burnPct = self.burnPct * 0.01
+
+			self:StartIntervalThink(self.tick)
+		end
 	end,
 
 	OnIntervalThink = function(self)
 		if not IsServer() then return end
-		local damage = self:GetCaster():GetMaxHealth() * self.burn + self.base
-		ApplyDamage({victim = self:GetParent(), attacker = self:GetCaster(), ability = self, damage = damage, damage_type = self:GetAbility():GetAbilityDamageType()})
+		local dmg = self.base + (self:GetParent():GetMaxHealth() * self.burnPct)
+		local postDmg = ApplyDamage({victim = self:GetParent(), attacker = self:GetCaster(), ability = self, damage = dmg, damage_type = self:GetAbility():GetAbilityDamageType()})
+
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, self:GetParent(), postDmg, self:GetCaster())
 	end,
 })
-
 
 modifier_infernal_blade_caster = class({
 	IsHidden = function(self) return true end,
@@ -75,7 +95,7 @@ modifier_infernal_blade_caster = class({
 		if ability:GetAutoCastState() or ability.overrideAutocast then
 			if ability:GetManaCost(-1) <= caster:GetMana() and ability:IsCooldownReady() then
 				--dont infernal roshan or buildings, and dont let illusions use it.
-				if target:GetUnitName() == "npc_dota_roshan" or caster:IsIllusion() or target:IsBuilding() then print("invalid target") return end
+				if target:GetUnitName() == "npc_dota_roshan" or caster:IsIllusion() or target:IsBuilding() then return end
 
 				self.p = ParticleManager:CreateParticle("particles/units/heroes/hero_doom_bringer/doom_infernal_blade.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 				ParticleManager:SetParticleControlEnt(self.p, 1, caster, PATTACH_POINT_FOLLOW, "attach_weapon_blur", caster:GetAbsOrigin(), true)
@@ -92,11 +112,13 @@ modifier_infernal_blade_caster = class({
 		local ability = self:GetAbility()
 		local target = keys.target
 		
-		if target:IsMagicImmune() then return end
+		if target:IsMagicImmune() or target:GetTeam() == caster:GetTeam() then return end
 
-		--multipurpose particle id ;)
-		if self.p then
+		if ability:GetAutoCastState() or ability.overrideAutocast then
 			if ability:GetManaCost(-1) <= caster:GetMana() and ability:IsCooldownReady() then
+				--dont infernal roshan or buildings, and dont let illusions use it.
+				if target:GetUnitName() == "npc_dota_roshan" or caster:IsIllusion() or target:IsBuilding() then return end
+
 				target:AddNewModifier(caster, ability, "modifier_infernal_blade", {duration = self.duration})
 				target:AddNewModifier(caster, ability, "modifier_infernal_blade_stun", {duration = self.stun})
 

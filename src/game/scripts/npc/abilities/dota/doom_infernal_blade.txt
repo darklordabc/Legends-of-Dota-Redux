@@ -57,4 +57,7 @@
 			}
 		}
 	}
+    "ReduxFlags"                                                           "attack_modifier | semi_passive"
+    "ReduxPerks"                                                           "demon | attack_modifier | fire | autocast_basic"
+    "ReduxCost"                                                            "20"
 }
