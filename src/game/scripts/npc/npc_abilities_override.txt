@@ -1864,7 +1864,7 @@
     }
     "tiny_craggy_exterior"
     {
-        "ReduxFlags"                                                           "tank"
+        "ReduxFlags"                                                           "aoe_attack"
         "ReduxPerks"                                                           "earth"
         "ReduxCost"                                                            "20"
     }
