@@ -3119,6 +3119,10 @@
     {
         "ReduxPerks"                                                           "aura"
     }
+    "dark_willow_bedlam"
+    { 
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+    }
     "elder_titan_natural_order"
     {
         "ReduxPerks"                                                           "aura | earth"
