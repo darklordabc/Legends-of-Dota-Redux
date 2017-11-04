@@ -2,6 +2,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 9.7
+- Added new heros and updated talent replacement system
+
 ## 9.6
 - Fixed Templar Assasin losing perk on death
 - Fixed Dreadnought not doing reduced damage on buildings
