@@ -87,50 +87,64 @@ function modifier_item_monkey_king_bar_consumable:IsHidden()
   return self:GetAbility().IsItem
 end
 
+
 function modifier_item_monkey_king_bar_consumable:CheckState()
-  local funcs = {
-    [MODIFIER_STATE_CANNOT_MISS] = true,
-  }
-  return funcs
+  if IsServer() then
+    local funcs = {
+      [MODIFIER_STATE_CANNOT_MISS] = self.bAccuracyProcced or false,
+    }
+    return funcs
+   end
 end
 
 function modifier_item_monkey_king_bar_consumable:DeclareFunctions()
   local funcs = {
-    MODIFIER_EVENT_ON_ATTACK_LANDED,
-    MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+    MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+    MODIFIER_EVENT_ON_ATTACK_START,
+    --MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
     MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE_POST_CRIT,
   }
   return funcs
 end
 
-function modifier_item_monkey_king_bar_consumable:GetModifierPreAttack_BonusDamage()
+function modifier_item_monkey_king_bar_consumable:GetModifierAttackSpeedBonus_Constant()
+  if not self:GetAbility() then
+    self:Destroy()
+  end
+  return self:GetAbility():GetSpecialValueFor("monkey_king_bar_bonus_attack_speed")
+end
+
+-- Removed in 7.07
+--[[function modifier_item_monkey_king_bar_consumable:GetModifierPreAttack_BonusDamage()
   if not self:GetAbility() then
     self:Destroy()
   end
   return self:GetAbility():GetSpecialValueFor("monkey_king_bar_bonus_damage")
-end
+end]]
 
 function modifier_item_monkey_king_bar_consumable:GetModifierPreAttack_BonusDamagePostCrit()
   if IsServer() then
-    if not self.bash_damage then 
-      self.bash_damage = 0 
+    if not self.bonus_chance_damage then 
+      self.bonus_chance_damage = 0 
     end
-    return self.bash_damage
+    return self.bonus_chance_damage
   end
 end
 
-function modifier_item_monkey_king_bar_consumable:OnAttackLanded(keys)
+function modifier_item_monkey_king_bar_consumable:OnAttackStart(keys)
   if IsServer() and keys.attacker == self:GetParent() then
     if not self:GetAbility() then
       self:Destroy()
     end
-    self.bash_damage = nil
+    self.bAccuracyProcced = false
+    self.bonus_chance_damage = nil
     local random = RandomInt(0,100)
-    if random <= self:GetAbility():GetSpecialValueFor("monkey_king_bar_bash_chance") then
+    if random <= self:GetAbility():GetSpecialValueFor("monkey_king_bar_bonus_chance") then
        -- Checks
       if not keys.target:IsBuilding() and self:GetParent():IsRealHero() then
-        self.bash_damage = self:GetAbility():GetSpecialValueFor("monkey_king_bar_bash_damage")
-        keys.target:AddNewModifier(self:GetParent(),self,"modifier_stunned",{duration = self:GetAbility():GetSpecialValueFor("monkey_king_bar_bash_stun")})
+        self.bonus_chance_damage = self:GetAbility():GetSpecialValueFor("monkey_king_bar_bonus_chance_damage")
+        -- 7.07 no longer ministuns
+        self.bAccuracyProcced = true
       end
     end
   end
