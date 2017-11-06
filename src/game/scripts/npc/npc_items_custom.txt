@@ -569,7 +569,7 @@
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "desolator_corruption_armor"      "-7"
+                "desolator_corruption_armor"      "-6"
             }
             "03"
             {
@@ -716,12 +716,12 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "heart_bonus_strength"        "45"
+                "heart_bonus_strength"        "40"
             }
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "heart_bonus_health"          "250"
+                "heart_bonus_health"          "500"
             }
             "03"
             {
@@ -874,23 +874,19 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "monkey_king_bar_bonus_damage"          "66"
+                "monkey_king_bar_bonus_attack_speed"          "60"
             }
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "monkey_king_bar_bash_chance"           "35"
+                "monkey_king_bar_bonus_chance"           "75"
             }
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "monkey_king_bar_bash_damage"           "160"
+                "monkey_king_bar_bonus_chance_damage"           "60"
             }
-            "04"
-            {
-                "var_type"              "FIELD_FLOAT"
-                "monkey_king_bar_bash_stun"             "0.01"
-            }
+            
         }
     }
 
@@ -917,23 +913,19 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "aether_lens_bonus_mana"            "250"
+                "aether_lens_bonus_mana"            "450"
             }
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "aether_lens_bonus_mana_regen"      "100"
+                "aether_lens_bonus_mana_regen"      "1.25"
             }
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "aether_lens_cast_range_bonus"          "220"
+                "aether_lens_cast_range_bonus"          "250"
             }
-            "04"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "aether_lens_spell_amp"             "6"
-            }
+            
         }
     }
     "item_devDagon"
