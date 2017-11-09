@@ -128,6 +128,7 @@ function modifier_item_monkey_king_bar_consumable:GetModifierPreAttack_BonusDama
       self.bonus_chance_damage = 0 
     end
     return self.bonus_chance_damage
+
   end
 end
 
@@ -141,8 +142,10 @@ function modifier_item_monkey_king_bar_consumable:OnAttackStart(keys)
     local random = RandomInt(0,100)
     if random <= self:GetAbility():GetSpecialValueFor("monkey_king_bar_bonus_chance") then
        -- Checks
-      if not keys.target:IsBuilding() and self:GetParent():IsRealHero() then
-        self.bonus_chance_damage = self:GetAbility():GetSpecialValueFor("monkey_king_bar_bonus_chance_damage")
+      if not keys.target:IsBuilding() then
+        if self:GetParent():IsRealHero() then
+          self.bonus_chance_damage = self:GetAbility():GetSpecialValueFor("monkey_king_bar_bonus_chance_damage")
+        end
         -- 7.07 no longer ministuns
         self.bAccuracyProcced = true
       end

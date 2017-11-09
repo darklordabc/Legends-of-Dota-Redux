@@ -184,7 +184,7 @@
       "33"
       {
           "var_type"              "FIELD_INTEGER"
-          "monkey_king_bar_bonus_chance_damage"           "160"
+          "monkey_king_bar_bonus_chance_damage"           "60"
       }
       "34" // No longer needed
       {
@@ -199,7 +199,7 @@
       }
       "36"
       {
-          "var_type"              "FIELD_INTEGER"
+          "var_type"              "FIELD_FLOAT"
           "aether_lens_bonus_mana_regen"      "1.25"
       }
       "37"
@@ -210,7 +210,7 @@
       "38" //No longer needed
       {
           "var_type"              "FIELD_INTEGER"
-          "aether_lens_spell_amp"             "6"
+          "aether_lens_spell_amp"             "0"
       }
     }
   }
