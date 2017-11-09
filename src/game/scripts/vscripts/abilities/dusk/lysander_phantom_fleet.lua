@@ -131,9 +131,11 @@ if IsServer() then
 		if hTarget then
 			local stun = self:GetSpecialValueFor("ministun")
 			local damage = self:GetSpecialValueFor("damage")
-			hTarget:AddNewModifier(self:GetCaster(), self, "modifier_stunned", {Duration=stun}) --[[Returns:void
-			No Description Set
-			]]
+			hTarget:AddNewModifier(self:GetCaster(), self, "modifier_stunned", {Duration=stun})
+			
+			if hTarget:IsBuilding() then
+				damage = damage * 0.25
+			end
 			InflictDamage(hTarget,self:GetCaster(),damage,DAMAGE_TYPE_PHYSICAL)
 		end
 	end

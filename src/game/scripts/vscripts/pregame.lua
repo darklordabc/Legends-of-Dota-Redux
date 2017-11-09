@@ -533,7 +533,7 @@ function Pregame:init()
 
     if mapName == 'all_allowed' then
         self:setOption('lodOptionCrazyUniversalShop', 0, true)
-        self:setOption('lodOptionGameSpeedSharedEXP', 0, true)
+        self:setOption('lodOptionGameSpeedSharedEXP', 1, true)
         self:setOption('lodOptionBanningUseBanList', 1, true)
         self:setOption('lodOptionAdvancedOPAbilities', 1, true)
         self:setOption('lodOptionGameSpeedMaxLevel', 100, true)
@@ -542,6 +542,7 @@ function Pregame:init()
         self:setOption('lodOptionGameSpeedStartingLevel', 4, true)
         --self:setOption('lodOptionGameSpeedStartingGold', 600, true)
         self:setOption('lodOptionGameSpeedStrongTowers', 1, true)
+        self:setOption('lodOptionLimitPassives', 1, true)
         self:setOption('lodOptionCreepPower', 120, true)
 
         self:setOption('lodOptionGameSpeedTowersPerLane', 3, true)
@@ -679,6 +680,9 @@ function Pregame:loadDefaultSettings()
 
     -- Consumeable Items
     self:setOption('lodOptionConsumeItems', 1, false)
+
+    -- Limit Passives
+    self:setOption('lodOptionLimitPassives', 0, false)
 
     -- Anti Rat option
     self:setOption('lodOptionAntiRat', 0, false)
@@ -2781,6 +2785,11 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
+        -- Limit Passives
+        lodOptionLimitPassives = function(value)
+            return value == 0 or value == 1
+        end,
+
         -- Game Speed - Scepter Upgraded
         lodOptionGameSpeedUpgradedUlts = function(value)
             return value == 0 or value == 1 or value == 2
@@ -3937,6 +3946,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('banInvis', this.optionStore['lodOptionBanningBanInvis'])
         OptionManager:SetOption('antiRat', this.optionStore['lodOptionAntiRat'])
         OptionManager:SetOption('consumeItems', this.optionStore['lodOptionConsumeItems'])
+        OptionManager:SetOption('limitPassives', this.optionStore['lodOptionLimitPassives'])
 
         -- Enforce max level
         if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -4203,6 +4213,7 @@ function Pregame:processOptions()
                     ['Bans: Block Troll Combos'] = this.optionStore['lodOptionBanningBlockTrollCombos'],
                     ['Bans: Disable Perks'] = this.optionStore['lodOptionDisablePerks'],
                     ['Bans: Consumeable Items'] = this.optionStore['lodOptionConsumeItems'],
+                    ['Bans: Limit Passives'] = this.optionStore['lodOptionLimitPassives'],
                     ['Bans: Host Banning'] = this.optionStore['lodOptionBanningHostBanning'],
                     ['Bans: Max Ability Bans'] = this.optionStore['lodOptionBanningMaxBans'],
                     ['Bans: Max Hero Bans'] = this.optionStore['lodOptionBanningMaxHeroBans'],
@@ -5731,7 +5742,7 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
     end
 
     -- Limit powerful passives
-    if not (util:isSinglePlayerMode() or util:isCoop()) then
+    if self.optionStore['lodOptionLimitPassives'] == 1 then
     	local powerfulPassives = 0
     	for _,buildAbility in pairs(newBuild) do
     		-- Check that ability is passive and is powerful ability
@@ -6221,8 +6232,12 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
                     powerfulPassives = powerfulPassives + 1
                 end
             end
+			
+	    if (SkillManager:isPassive(abilityName) or self.flags["semi_passive"][abilityName] ~= nil) then
+		powerfulPassives = powerfulPassives + 1
+	    end
 
-            if powerfulPassives >= 3 and (SkillManager:isPassive(abilityName) or self.flags["semi_passive"][abilityName] ~= nil) then
+            if powerfulPassives >= 3 then
                 shouldAdd = false
             end
         end
@@ -7985,7 +8000,9 @@ function Pregame:fixSpawningIssues()
                     roshan_bash = true,
                     arc_warden_tempest_double = true,    -- This is to stop tempest doubles from getting the ability and using cooldown reduction to cast again
                     arc_warden_tempest_double_redux = true,
-                    aabs_thunder_musket = true,             
+                    aabs_thunder_musket = true,   
+                    mirana_starfall_lod = true,    -- This is buggy with tempest doubles for some reason   
+                    warlock_rain_of_chaos = true,    -- This is buggy with tempest doubles for some reason 
                 }
 
                 -- Apply the build

@@ -482,6 +482,11 @@
     "lodOptionAboutConsumeItems"                             "This enables some late game items to be able to be consumed and gained as a permanent buff (for the cost of the original price)."
     "lodMutatorConsumeItems"                                 "Consumable Items"
 
+    "lodOptionLimitPassives"                                  "Limit Passives"
+    "lodOptionDesLimitPassives"                               "Enable Limit Passives"
+    "lodOptionAboutLimitPassives"                             "This will force players to have maximum 3 passives. Semi-Passives are counted as passives (like Empower and Vampiric Aura)."
+    "lodMutatorLimitPassives"                                 "Limit Passives"
+
     "lodOptionDesAdvancedHeroAbilities"             "Allow Hero Abilities"
     "lodOptionDesAdvancedNeutralAbilities"          "Allow Neutral Abilities"
     "lodOptionDesAdvancedCustomSkills"              "Allow Custom Abilities"
@@ -1482,6 +1487,8 @@
     "warning_true_random_lod_5"                 "<font color=\'#FF4949\'>Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
     "warning_true_random_lod_6"                 "<font color=\'#FF4949\'>Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
     "warning_doom_bringer_devour_lod" "<font color=\'#FF4949\'>Warning:</font> Will not give you neutral creep abilities of devoured creeps"
+    "warning_arc_warden_tempest_double" "<font color=\'#FF4949\'>Warning:</font> Tempest Doubles will not inherit some specific abilities that are too powerful or buggy."
+    "warning_arc_warden_tempest_double_redux" "<font color=\'#FF4949\'>Warning:</font> Tempest Doubles will not inherit some specific abilities that are too powerful or buggy."
     "warning_illusionist_agility_paws" "<font color=\'#FF4949\'>Warning:</font> Bonus agility can only come from using <font color=\'#70EA72\'>Mastery of Deception</font> and/or <font color=\'#70EA72\'>Mastery of Illusions</font>.\n"
     "warning_bristleback_bristleback" "<font color=\'#FF4949\'>Warning:</font> Quill release will not do any damage unless you have at least 1 level in <font color=\'#70EA72\'>Quill Spray</font>.\n"
     "warning_roshan_bash" "Roshan has a chance to stun on attack. Can stun buildings.\n"
@@ -1766,6 +1773,9 @@
     /////////////////
     // CUSTOM ABILITIES
     ////////////////
+
+    "DOTA_Tooltip_modifier_bash_cooldown"                           "Bash Cooldown"
+    "DOTA_Tooltip_modifier_bash_cooldown_Description"               "Your hero temporary can't be bashed, because it was bashed recently."
 
     //Scepter Buff Modifer
     "DOTA_Tooltip_modifier_item_ultimate_scepter_consumed" "Free Aghanim's Scepter"
@@ -2365,7 +2375,7 @@
     "DOTA_Tooltip_ability_slark_essence_shift_agility_lod_stat_loss"                    "ALL ATTRIBUTE LOSS:"
     "DOTA_Tooltip_ability_slark_essence_shift_agility_lod_duration"                     "DURATION:"
     "DOTA_Tooltip_modifier_slark_essence_shift_agility_datadriven_buff_counter"                         "Essence Shift (AGI)"
-    "DOTA_Tooltip_modifier_slark_essence_shift_agility_datadriven_buff_counter_Description"             "Stealing %dMODIFIER_PROPERTY_STATS_AGILITY_BONUS% intelligence."
+    "DOTA_Tooltip_modifier_slark_essence_shift_agility_datadriven_buff_counter_Description"             "Stealing %dMODIFIER_PROPERTY_STATS_AGILITY_BONUS% agility."
     "DOTA_Tooltip_modifier_slark_essence_shift_agility_datadriven_debuff_counter"           "Essence Shift (AGI)"
     "DOTA_Tooltip_modifier_slark_essence_shift_agility_datadriven_debuff_counter_Description"   "Losing %dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS% of each attribute."
 
@@ -2553,12 +2563,12 @@
     "DOTA_Tooltip_ability_global_stun_hero_stun_duration"                   "HERO STUN:"
 
     "DOTA_Tooltip_ability_aether_range_lod" "Aether Range"
-    "DOTA_Tooltip_ability_aether_range_lod_Description" "Increases spell cast range."
+    "DOTA_Tooltip_ability_aether_range_lod_Description" "Increases spell cast range. Also increases the cast distance of auto-cast abilities."
     "DOTA_Tooltip_ability_aether_range_lod_Lore"        "Great magicians can cast spells from miles away."
     "DOTA_Tooltip_ability_aether_range_lod_cast_range_bonus"        "BONUS CAST RANGE:"
 
     "DOTA_Tooltip_ability_aether_range_lod_OP" "Aether Range OP"
-    "DOTA_Tooltip_ability_aether_range_lod_OP_Description" "<font color='#70EA72'>Greatly</font> increases spell cast range."
+    "DOTA_Tooltip_ability_aether_range_lod_OP_Description" "<font color='#70EA72'>Greatly</font> increases spell cast range. Also increases the cast distance of auto-cast abilities."
     "DOTA_Tooltip_ability_aether_range_lod_OP_Lore"        "Great magicians can cast spells from miles away."
     "DOTA_Tooltip_ability_aether_range_lod_OP_cast_range_bonus"        "BONUS CAST RANGE:"
 
@@ -4637,7 +4647,7 @@
 
 
     "DOTA_Tooltip_ability_ebf_rubick_arcane_echo"                                     "Arcane Echo"
-    "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_Description"                         "Rubick, being the grandest magus there is, casts the last ability he used a second time. Echoed spells still require mana. Certain spells will not echo for balance reasons."
+    "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_Description"                         "Rubick, being the grandest magus there is, casts the last ability he used a second time. Echoed spells still require mana. Certain spells will not echo for balance reasons. Echoing Ultimates will cause this ability to take the cooldown of the ultimate."
     "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_Lore"                                 "A jester at heart, Rubick enjoys confusing his enemies."
     "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_delay"                                 "ECHO DELAY:"
 
@@ -5183,7 +5193,7 @@
 		"DOTA_Tooltip_spell_lab_survivor_mana_burn_modifier"					"Survival of the Fittest: Mana Burn"
 		"DOTA_Tooltip_spell_lab_survivor_mana_burn_modifier_Description" "Mana Burn Damage gained through staying alive."
 
-		"DOTA_Tooltip_ability_spell_lab_survivor_critical"					"Survival of the Fittest: Critical"
+		"DOTA_Tooltip_ability_spell_lab_survivor_critical"					"Survival of the Crittest"
 		"DOTA_Tooltip_ability_spell_lab_survivor_critical_Description"		"Your survival instinct is enhanced. Your attacks gain Critical Damage for every minute you survive without dying."
 		"DOTA_Tooltip_ability_spell_lab_survivor_critical_bonus"			"%CRITICAL DAMAGE PER MINUTE:"
 		"DOTA_Tooltip_ability_spell_lab_survivor_critical_chance"			"%CRITICAL CHANCE:"
@@ -5756,6 +5766,15 @@
     //"DOTA_Tooltip_ability_item_greater_crit_consumable_greater_crit_crit_multiplier"                "%CRITICAL DAMAGE:"
     "DOTA_Tooltip_ability_item_greater_crit_consumable_greater_crit_bonus_damage"                   "+$damage"
 
+    "DOTA_Tooltip_Ability_item_aether_lens_consumable"            "Aether Lens"
+    "DOTA_Tooltip_ability_item_aether_lens_consumable_Description"                     "<h1>Passive: Aethereal Focus</h1> Increases targeted spell and item cast range by %aether_lens_cast_range_bonus%.\n\n<h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Aether Lens to permanently gain its effects</font>."
+        "DOTA_Tooltip_ability_item_aether_lens_consumable_Note0"                           "Passive does not stack."
+        "DOTA_Tooltip_ability_item_aether_lens_consumable_aether_lens_bonus_mana"                      "+$mana"
+        "DOTA_Tooltip_ability_item_aether_lens_consumable_aether_lens_bonus_mana_regen"                "%+$mana_regen"
+        "DOTA_Tooltip_ability_item_aether_lens_consumable_aether_lens_spell_amp"                       "%+$spell_amp"
+        //"DOTA_Tooltip_ability_item_aether_lens_cast_range_bonus"               "+$cast_range"                      
+        "DOTA_Tooltip_ability_item_aether_lens_consumable_Lore"                            "Polished with the incantation of his final breath, the gift of a dying mage to his sickly son."
+
     "DOTA_Tooltip_Ability_item_octarine_core_consumable"           "Octarine Core"
     "DOTA_Tooltip_ability_item_octarine_core_consumable_Description"                       "<h1>Passive: Cooldown Reduction</h1>Reduces the cooldown time of all spells and items by %octarine_core_bonus_cooldown%%%.\n<h1>Passive: Spell Lifesteal</h1>%octarine_core_hero_lifesteal%%% of spell damage dealt to enemy heroes is returned to the caster as health, regardless of spell damage type.  <br><br>Lifesteal reduced to %octarine_core_creep_lifesteal%%% against creeps.\n\n<h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Octarine Core to permanently gain its effects</font>."
     "DOTA_Tooltip_ability_item_octarine_core_consumable_octarine_core_bonus_intelligence"        "+$int"
@@ -5767,7 +5786,7 @@
     "DOTA_Tooltip_ability_item_octarine_core_consumable_Lore"                      "At the core of spellcraft are spectrums only the very gifted can sense."
 
     "DOTA_Tooltip_Ability_item_heart_consumable"               "Heart of Tarrasque"
-    "DOTA_Tooltip_ability_item_heart_consumable_Description"                           "<h1>Passive: Health Regeneration</h1>Restores %heart_health_regen_rate%%% of max health per second. <br><br>If damage is taken from an enemy hero or Roshan, this ability is disabled for %heart_cooldown_melee% seconds for melee heroes, or %heart_cooldown_ranged_tooltip% seconds for ranged heroes.\n\n <h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Heart of Tarrasque to permanently gain its effects</font>."
+    "DOTA_Tooltip_ability_item_heart_consumable_Description"                           "<h1>Passive: Health Regeneration</h1>Restores %heart_health_regen_rate%%% of max health per second. <br><br>If damage is taken from an enemy hero or Roshan, this ability is disabled for %heart_cooldown_melee% seconds for melee heroes, or %heart_cooldown_ranged_tooltip% seconds for ranged heroes.\n\n<h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Heart of Tarrasque to permanently gain its effects</font>."
     "DOTA_Tooltip_ability_item_heart_consumable_Lore"                              "Preserved heart of an extinct monster, it bolsters the bearer's fortitude."
     "DOTA_Tooltip_ability_item_heart_consumable_heart_bonus_strength"                        "+$str"
     "DOTA_Tooltip_ability_item_heart_consumable_heart_bonus_health"                          "+$health"
@@ -5795,6 +5814,9 @@
 
     "DOTA_Tooltip_modifier_item_greater_crit_consumable"                            "Consumed Daedaulous"
     "DOTA_Tooltip_modifier_item_greater_crit_consumable_Description" "Permanently gained benefits of Daedaulous"
+
+    "DOTA_Tooltip_modifier_item_aether_lens_consumable"                            "Consumed Aether Lens"
+    "DOTA_Tooltip_modifier_item_aether_lens_consumable_Description" "Permanently gained benefits of Aethe Lens"
 
     "DOTA_Tooltip_modifier_item_skadi_consumable" "Consumed Eye of Skadi"
     "DOTA_Tooltip_modifier_item_skadi_consumable_Description" "Permanently gained benefits of Eye of Skadi"
@@ -5933,6 +5955,9 @@
     "DOTA_Tooltip_ability_uther_Argent_Smite_Range_Bonus"                                   "RANGE BONUS:"
     "DOTA_Tooltip_ability_uther_Argent_Smite_Heal_Factor"                                   "HEAL FACTOR:"
     "DOTA_Tooltip_ability_uther_Argent_Smite_Tower_Heal_Factor"                             "TOWER HEAL FACTOR:"
+
+    "DOTA_Tooltip_modifier_argent_smite_aura"               "Argent Smite"
+    "DOTA_Tooltip_modifier_argent_smite_aura_description"           "Force attacking an ally will heal them."
 
 
     "DOTA_Tooltip_ability_uther_Omniscience_wave"                           "Global Dispel"
@@ -7044,17 +7069,17 @@
 
     "only_target_creeps"                            "Cannot consume Ancients"
 
-    "DOTA_Tooltip_ability_doom_bringer_infernal_blade_datadriven"                      "Infernal Blade"
-    "DOTA_Tooltip_ability_doom_bringer_infernal_blade_datadriven_Description"          "Doom swings his burning sword, igniting the enemy. Stuns for %ministun_duration% seconds and applies a %burn_duration% second burn that deals %damage% + %health_damage_pct%%% of the target's Max HP as damage per second."
-    "DOTA_Tooltip_ability_doom_bringer_infernal_blade_datadriven_Lore"                 "Lucifer shares the fire branding bestowed upon him at the time of his exile."
-    "DOTA_Tooltip_ability_doom_bringer_infernal_blade_datadriven_Note0"                    "Interrupts channeling abilities."
-    "DOTA_Tooltip_ability_doom_bringer_infernal_blade_datadriven_damage"      "BASE BURN DAMAGE:"
-    "DOTA_Tooltip_ability_doom_bringer_infernal_blade_datadriven_health_damage_pct"  "%MAX HP AS DAMAGE:"
-    "DOTA_Tooltip_ability_doom_bringer_infernal_blade_datadriven_burn_duration"    "BURN DURATION:"
-    "DOTA_Tooltip_ability_doom_bringer_infernal_blade_datadriven_stun_duration"    "STUN DURATION:"
+    "DOTA_Tooltip_ability_infernal_blade_lua"                      "Infernal Blade"
+    "DOTA_Tooltip_ability_infernal_blade_lua_Description"          "Doom swings his burning sword, igniting the enemy. Stuns for %ministun_duration% seconds and applies a %burn_duration% second burn that deals %damage% + %health_damage_pct%%% of the target's Max HP as damage per second."
+    "DOTA_Tooltip_ability_infernal_blade_lua_Lore"                 "Lucifer shares the fire branding bestowed upon him at the time of his exile."
+    "DOTA_Tooltip_ability_infernal_blade_lua_Note0"                    "Interrupts channeling abilities."
+    "DOTA_Tooltip_ability_infernal_blade_lua_base_dmg"      "BASE BURN DAMAGE:"
+    "DOTA_Tooltip_ability_infernal_blade_lua_max_pct_burn"  "%MAX HP AS DAMAGE:"
+    "DOTA_Tooltip_ability_infernal_blade_lua_burn_duration"    "BURN DURATION:"
+    "DOTA_Tooltip_ability_infernal_blade_lua_stun_duration"    "STUN DURATION:"
 
-    "DOTA_Tooltip_modifier_infernal_blade_damage"                "Infernal Blade Burn"
-    "DOTA_Tooltip_modifier_infernal_blade_damage_Description"    "Dealing damage per second"
+    "DOTA_Tooltip_modifier_infernal_blade"                "Infernal Blade Burn"
+    "DOTA_Tooltip_modifier_infernal_blade_Description"    "Dealing damage per second"
 
     //========================================
     // MEGA ULTIMATES
@@ -7787,5 +7812,20 @@
     "DOTA_Tooltip_ability_item_necronomicon_perk_Lore"                       "Considered the ultimate in necromancy and demonology, a powerful malefic force is locked within its pages."
     "DOTA_Tooltip_ability_item_necronomicon_perk_bonus_intellect"                "+$int"
     "DOTA_Tooltip_ability_item_necronomicon_perk_bonus_strength"                 "+$str" 
+
+    "DOTA_Tooltip_ability_huskar_life_break_redux"                                        "Life Break Redux"
+    "DOTA_Tooltip_ability_huskar_life_break_redux_Description"                            "Huskar draws upon his health to break an enemy's life, leaping at a target within attack range to shatter a percentage of that hero's current health, and slowing them.  While leaping, Huskar is Spell Immune. <font color='#70EA72'>Longer cooldown</font>.\n\nUpgradable by Aghanim's Scepter."
+    "DOTA_Tooltip_ability_huskar_life_break_redux_Lore"                                   "No matter the danger, Huskar thrusts himself into melees that only he can survive."
+    "DOTA_Tooltip_ability_huskar_life_break_redux_Note0"                                  "If Huskar is disabled during the charge or the target moves more than 1400 units in 0.015 seconds, the charge stops."
+    "DOTA_Tooltip_ability_huskar_life_break_redux_Note1"                                  "Slow works on Spell Immune units."
+    "DOTA_Tooltip_ability_huskar_life_break_redux_Note2"                                  "Life Break cannot be disjointed."
+    "DOTA_Tooltip_ability_huskar_life_break_redux_tooltip_health_damage"                  "%DAMAGE DEALT:"
+    "DOTA_Tooltip_ability_huskar_life_break_redux_tooltip_health_cost_percent"            "%DAMAGE TAKEN:"
+    "DOTA_Tooltip_ability_huskar_life_break_redux_movespeed"                              "%MOVEMENT SLOW:"
+    "DOTA_Tooltip_ability_huskar_life_break_redux_slow_durtion_tooltip"                               "SLOW DURATION:"
+    
+    "DOTA_Tooltip_ability_huskar_life_break_redux_cooldown_scepter"                       "SCEPTER COOLDOWN:"
+    "DOTA_Tooltip_ability_huskar_life_break_redux_tooltip_health_damage_scepter"          "%SCEPTER DAMAGE DEALT:"
+    "DOTA_Tooltip_ability_huskar_life_break_redux_aghanim_description"                    "Increases damage dealt, reduces cooldown."
 
 }

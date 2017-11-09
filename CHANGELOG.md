@@ -2,6 +2,45 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 9.7
+- Added new heros and updated talent replacement system
+
+## 9.6
+- Fixed Templar Assasin losing perk on death
+- Fixed Dreadnought not doing reduced damage on buildings
+- Fixed Perm Roshanify bug
+- Re-Enabled Shared EXP in all_allowed
+- Tempest Doubles will no longer inherit starfall (buggy)
+- Gods strength: now it's troll combo with it's Redux version. 
+- Phantom fleet: Cooldown lowered from (140/120/100) to (100/80/60).
+- Disarm: have 5 secend duration at max level (was 4), have 600 cast range (was 500).
+- Deafening blast : buffed damage into (80/160/240/320) was(65/130/195/260
+- Jet now counts as a toggle ability (E.g. troll combo with fiery soul)
+- Rewrite Infernal Blade in LUA might help with some bugs
+- Argent Smite now has a higher cooldown but increases heal factor per level
+- Spell Echo will now adopt the cooldown of an ultimate, if it echos an ultimate
+- Tempest Double Redux is now troll combo with Infernal Offering because it can cause crashes
+- Summon Wolves is now counted as an invisible ability
+- Removed Dead Man's Chest because of a bugy interaction with Nothl Protection
+- Unstable Rift is now troll combo with dispersion
+- Eye of the Storm is now troll combo with Stone Form
+
+## 9.5
+- Limit Passives is now an optional mutator in dota map
+- If Tether is cast while the hero is a symbiote, it will have a 60 second cooldown instead of 12 (Troll combo prevention)
+- Burrows are now troll combos with Infest
+- Fixed Lion's lvl 20 talent not being replaced if you didnt have finger of death
+- Last Will: Now have only 4 level. (Same damage at max level)
+- Split shot: Now only splits to 2 targets max.
+- Grapeshot: Buffed damage. Now have 120% at level 4.
+- Fanatism: Now have fixed cooldown. Lower the damage reduction and attack bonus.
+- Reworked Multistrike
+- Fixed Octarine preventing bloodstone suicide
+- Eldrich Anti-Magic tree no longer stuns spell immune units
+- Added Anti Perma-Bash: If you get bashed, for 5 seconds you cannot be bashed again
+- Life Break is now single player ability. Added Redux version with longer cooldown.
+- Aether Lens is now consumeable
+
 ## 9.4
 - Fixed Projectiles missing on compendium towers
 - Fixed Bounty Runes being broken if players disconnected and shared xp is on
@@ -19,7 +58,6 @@ All notable changes to this project will be documented in this file.
 - Created 'Single Player Abilities' Skill Tab
 - Blinks are now single player abilities, redux versions added.
 - Disabled Shared XP in all_allowed, for now
-*
 - Added single player version of sun strike
 - Blood Ward reflects higher percentage of damage
 - Blink support cost a little bit more mana
@@ -27,6 +65,7 @@ All notable changes to this project will be documented in this file.
 - Caduceus Staff: Healing, now has fixed 5 second cooldown and slightly higher manacost
 - Changed Warlock's Perk
 - Wards Ability now has fixed 3 max stack count, but replish time improves with levels
+- Fixed Crashing
 
 ## 9.3
 - Marksmanship agility is now a single player ability

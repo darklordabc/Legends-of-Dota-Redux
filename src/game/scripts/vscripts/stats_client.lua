@@ -2,7 +2,10 @@ StatsClient = StatsClient or class({})
 JSON = JSON or require("lib/json")
 StatsClient.AbilityData = StatsClient.AbilityData or {}
 StatsClient.Debug = IsInToolsMode() and false -- Change to true if you have local server running, so contributors without local server can see some things
-StatsClient.ServerAddress = (StatsClient.Debug and "http://127.0.0.1:3333" or "https://lodr-ark120202.rhcloud.com") .. "/lodServer/"
+StatsClient.ServerAddress = StatsClient.Debug and
+    "http://127.0.0.1:3333/" or
+    "http://lodr-lodr.1d35.starter-us-east-1.openshiftapps.com/"
+
 StatsClient.GameVersion = LoadKeyValues('addoninfo.txt').version
 StatsClient.SortedAbilityDataEntries = StatsClient.SortedAbilityDataEntries or {}
 
