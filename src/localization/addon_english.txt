@@ -3517,7 +3517,7 @@
 
     ///CHEN
     "DOTA_Tooltip_modifier_npc_dota_hero_chen_perk" "Chen Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_chen_perk_Description" "When Chen sends creeps home to the fountain by casting Test of Faith (Teleport) they will receive an extra ability.<br><br><font color=\'#7D7D7D\'>By Wouterz90 | github.com/Wouterz90</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_chen_perk_Description" "When Chen casts Holy Persuasion on a creep they will receive an extra ability.<br><br><font color=\'#7D7D7D\'>By Wouterz90 | github.com/Wouterz90</font>"
 
     /// CLINKZ​
     "DOTA_Tooltip_modifier_npc_dota_hero_clinkz_perk"   "Clinkz Perk"
