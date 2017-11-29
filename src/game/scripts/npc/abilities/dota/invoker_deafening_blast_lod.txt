@@ -1,61 +1,82 @@
 "DOTAAbilities"
 {
-    "invoker_deafening_blast_lod"
-    {
-        "BaseClass"                                                            "invoker_deafening_blast"
-        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-        "MaxLevel"                                                             "4"
-        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
-        "RequiredLevel"                                                        "1"
-        "AbilityCastRange"                                                     "1000"
-        "AbilityCastPoint"                                                     "0"
-        "AbilityCooldown"                                                      "40"
-        "AbilityManaCost"                                                      "200"
-        "AbilityModifierSupportValue"                                          "0.5"
-        "AbilitySpecial"
-        {
-            "01"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "travel_distance"                                      "1000"
-            }
-            "02"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "travel_speed"                                         "1100"
-            }
-            "03"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "radius_start"                                         "175"
-            }
-            "04"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "radius_end"                                           "225"
-            }
-            "05"
-            {
-                "var_type"                                             "FIELD_FLOAT"
-                "end_vision_duration"                                  "1.75"
-            }
-            "06"
-            {
-                "var_type"                                             "FIELD_FLOAT"
-                "damage"                                               "40 120 200 280"
-            }
-            "07"
-            {
-                "var_type"                                             "FIELD_FLOAT"
-                "knockback_duration"                                   "0.25 0.75 1.25 1.75"
-            }
-            "08"
-            {
-                "var_type"                                             "FIELD_FLOAT"
-                "disarm_duration"                                      "1.0 2.0 3.0 4.0"
-            }
-        }
-        "ReduxFlags"                                                           "disarm_break"
-        "ReduxPerks"                                                           "skillshot"
-    }
+	"invoker_deafening_blast_lod"
+	{
+		"BaseClass"					"ability_lua"
+		"ScriptFile"				"abilities/deafening_blast"
+		"AbilityTextureName"		"invoker_deafening_blast"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
+
+		"SpellDispellableType"		"SPELL_DISPELLABLE_YES_STRONG"
+		"AbilityModifierSupportValue" "0.5"
+		
+		"AbilityCastRange"			"1000"
+		"AbilityManaCost"			"200"
+		"AbilityCooldown"			"40"
+		"AbilityCastPoint"			"0"
+		"MaxLevel" 					"4"
+
+		"precache"
+		{
+			"particle"  "particles/status_fx/status_effect_frost.vpcf"
+			"particle"  "particles/units/heroes/hero_invoker/invoker_deafening_blast.vpcf"
+			"particle"  "particles/units/heroes/hero_invoker/invoker_deafening_blast_knockback_debuff.vpcf"
+			"particle"  "particles/units/heroes/hero_invoker/invoker_deafening_blast_disarm_debuff.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"travel_distance"	"1000"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"travel_speed"		"1100"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"radius_start"		"175"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"radius_end"		"225"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"end_vision_duration" "1.75" //unused
+			}
+			"06"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"damage"			"40 120 200 280"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"knockback_duration" "0.25 0.75 1.25 1.75"
+			}
+			"08"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"disarm_duration"	"1.0 2.0 3.0 4.0"
+			}
+			"09"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"tree_radius"		"100"
+			}
+		}
+		"ReduxFlags"		"disarm_break"
+		"ReduxPerks"		"skillshot"
+	}
 }

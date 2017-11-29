@@ -3827,6 +3827,11 @@
         "TalentRequiredAbility"                                                   "invoker_forge_spirit_lod"
     }
 
+    "special_bonus_unique_invoker_2"
+    {
+        "TalentRequiredAbility"                                                   "invoker_deafening_blast_lod"
+    }
+
     //"special_bonus_unique_invoker_2"
     //{
     //    "TalentRequiredAbility"                                           //        "invoker_forge_spirit_lod"

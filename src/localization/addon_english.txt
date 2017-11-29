@@ -1514,6 +1514,8 @@
     "credit_mercy_angelic_descent" "<font color=\'#7D7D7D\'>Credits: Firetoad | github.com/fcalife</font>"
     "credit_mercy_heroes_never_die" "<font color=\'#7D7D7D\'>Credits: Firetoad | github.com/fcalife</font>"
 
+    "credit_invoker_deafening_blast_lod" "<font color=\'#7D7D7D\'>Credits: Fixed by DankBudd | github.com/DankBudd</font>"
+
     "credit_brawler_int" "<font color=\'#7D7D7D\'>Credits: 01der | github.com/01der</font>"
     "credit_brawler_str" "<font color=\'#7D7D7D\'>Credits: 01der | github.com/01der</font>"
     "credit_brawler_agi" "<font color=\'#7D7D7D\'>Credits: 01der | github.com/01der</font>"
@@ -7828,4 +7830,9 @@
     "DOTA_Tooltip_ability_huskar_life_break_redux_tooltip_health_damage_scepter"          "%SCEPTER DAMAGE DEALT:"
     "DOTA_Tooltip_ability_huskar_life_break_redux_aghanim_description"                    "Increases damage dealt, reduces cooldown."
 
+    "DOTA_Tooltip_modifier_deafening_blast_disarm"                                        "Deafening Blast Disarm"
+    "DOTA_Tooltip_modifier_deafening_blast_disarm_Description"                            "Cannot attack."
+    
+    "DOTA_Tooltip_modifier_deafening_blast_knockback"                                     "Deafening Blast Knockback"
+    "DOTA_Tooltip_modifier_deafening_blast_knockback_Description"                         "Reeling back from the deafening blast."
 }
