@@ -482,8 +482,8 @@
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
-        "ItemCost"                      "5775"
-        "AbilityGoldCost"               "5775"
+        "ItemCost"                      "5500"
+        "AbilityGoldCost"               "5500"
         "ItemPurchasable"              "0"
         "ItemShopTags"                  "agi;str;int;hard_to_tag;mana_pool;health_pool;unique"
         "ItemPurchasable"              "0"
@@ -695,7 +695,7 @@
         // General
         //-------------------------------------------------------------------------------------------------------------
         "ID"                            "2114"                                                       
-        "ItemCost"                      "5500"
+        "ItemCost"                      "5200"
         "AbilityGoldCost"               "5200"
         "ItemPurchasable"              "0"
         "AbilityCooldown"               "7.0"
@@ -871,8 +871,8 @@
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
-        "ItemCost"                      "5200"
-        "AbilityGoldCost"               "5200"
+        "ItemCost"                      "4200"
+        "AbilityGoldCost"               "4200"
         "ItemPurchasable"              "0"
         "AbilitySpecial"
         {
