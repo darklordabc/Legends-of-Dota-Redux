@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ## 9.8
 - Updated values of consumeable items to match latest patch
+- Changed Chen's perk so that he only has to cast holy persuasian to give abilities.
 
 ## 9.7
 - Added new heros and updated talent replacement system
