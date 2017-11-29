@@ -840,7 +840,7 @@
     "hintEnigma"                         "When Enigma dies, Black Hole's cooldown will be refreshed."
     "hintLegionCommander"                         "When Legion Commander casts Duel, she will gain spell immunity for the duration of the Duel."
     "hintFurion"                         "The cooldowns of all Teleportation abilities are reduced by 50% for Nature's Prophet."
-    "hintChen"                         "When Chen sends creeps home to the fountain by casting Test of Faith (Teleport) they will receive an extra ability."
+    "hintChen"                         "When Chen casts Holy Persuasion on a creep they will receive an extra ability."
     "hintUrsa"                         "Ursa does 15% extra damage to neutrals, including Roshan."
     "hintStormSpirit"                         "At the start of the game, Storm Spirit gains a free level of Mana Aura, whether he has it or not."
     "hintMorphling"                         "Morphling gains 50% bonus movement speed in water."
@@ -1259,7 +1259,7 @@
     "unique_mechanic_broodmother"                        "Non-ultimate <font color=\'#ffd966\'>Summon</font> abilities will have 20% mana cost refunded and 20% reduced cooldown. "
     "unique_mechanic_centaur"               "Centaur Warrunnertakes 75% damage from  <font color=\'#ffd966\'>Self-Damaging</font> spells."
     "unique_mechanic_chaos_knight"                        "Chaos Knight gains 200 extra gold for each ability he randoms. "
-    "unique_mechanic_chen"                   "When Chen sends creeps home to the fountain by casting <font color=\'#ffd966\'>Test of Faith (Teleport)</font> they will receive an extra ability."
+    "unique_mechanic_chen"                   "When Chen casts <font color=\'#ffd966\'>Holy Persuasion</font> on a creep they will receive an extra ability."
     "unique_mechanic_clinkz"                        "Clinkz will receive a free level in his first non-ultimate <font color=\'#ffd966\'>Autocast</font> ability at the start of the game."
     "unique_mechanic_rattletrap"                        "Clockwerk fires a random flare to any part of the map every 15 seconds. Scales with <font color=\'#ffd966\'>Rocket Flare</font>."
     "unique_mechanic_crystal_maiden"    "Crystal Maiden gains +2 movement speed for each level put in <font color=\'#ffd966\'>Support</font> abilities."
@@ -1487,6 +1487,8 @@
     "warning_true_random_lod_5"                 "<font color=\'#FF4949\'>Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
     "warning_true_random_lod_6"                 "<font color=\'#FF4949\'>Warning:</font> UNSTABLE, will cause crashes. To use, enable OP abilities, but use at your own risk."
     "warning_doom_bringer_devour_lod" "<font color=\'#FF4949\'>Warning:</font> Will not give you neutral creep abilities of devoured creeps"
+    "warning_arc_warden_tempest_double" "<font color=\'#FF4949\'>Warning:</font> Tempest Doubles will not inherit some specific abilities that are too powerful or buggy."
+    "warning_arc_warden_tempest_double_redux" "<font color=\'#FF4949\'>Warning:</font> Tempest Doubles will not inherit some specific abilities that are too powerful or buggy."
     "warning_illusionist_agility_paws" "<font color=\'#FF4949\'>Warning:</font> Bonus agility can only come from using <font color=\'#70EA72\'>Mastery of Deception</font> and/or <font color=\'#70EA72\'>Mastery of Illusions</font>.\n"
     "warning_bristleback_bristleback" "<font color=\'#FF4949\'>Warning:</font> Quill release will not do any damage unless you have at least 1 level in <font color=\'#70EA72\'>Quill Spray</font>.\n"
     "warning_roshan_bash" "Roshan has a chance to stun on attack. Can stun buildings.\n"
@@ -3517,7 +3519,7 @@
 
     ///CHEN
     "DOTA_Tooltip_modifier_npc_dota_hero_chen_perk" "Chen Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_chen_perk_Description" "When Chen sends creeps home to the fountain by casting Test of Faith (Teleport) they will receive an extra ability.<br><br><font color=\'#7D7D7D\'>By Wouterz90 | github.com/Wouterz90</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_chen_perk_Description" "When Chen casts Holy Persuasion on a creep they will receive an extra ability.<br><br><font color=\'#7D7D7D\'>By Wouterz90 | github.com/Wouterz90</font>"
 
     /// CLINKZ​
     "DOTA_Tooltip_modifier_npc_dota_hero_clinkz_perk"   "Clinkz Perk"
@@ -4647,7 +4649,7 @@
 
 
     "DOTA_Tooltip_ability_ebf_rubick_arcane_echo"                                     "Arcane Echo"
-    "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_Description"                         "Rubick, being the grandest magus there is, casts the last ability he used a second time. Echoed spells still require mana. Certain spells will not echo for balance reasons."
+    "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_Description"                         "Rubick, being the grandest magus there is, casts the last ability he used a second time. Echoed spells still require mana. Certain spells will not echo for balance reasons. Echoing Ultimates will cause this ability to take the cooldown of the ultimate."
     "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_Lore"                                 "A jester at heart, Rubick enjoys confusing his enemies."
     "DOTA_Tooltip_ability_ebf_rubick_arcane_echo_delay"                                 "ECHO DELAY:"
 
@@ -5760,7 +5762,7 @@
     "DOTA_Tooltip_ability_item_desolator_consumable_desolator_bonus_damage"                      "+$damage"
 
     "DOTA_Tooltip_Ability_item_greater_crit_consumable"            "Daedalus"
-    "DOTA_Tooltip_ability_item_greater_crit_consumable_Description"                    "<h1>Passive: Critical Strike</h1>Grants each attack a %greater_crit_crit_chance%% chance to deal %greater_crit_crit_multiplier%%% additional damage.\n\n <h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Daedalus to permanently gain its effects</font>."
+    "DOTA_Tooltip_ability_item_greater_crit_consumable_Description"                    "<h1>Passive: Critical Strike</h1>Grants each attack a %greater_crit_crit_chance%%  chance to deal %greater_crit_crit_multiplier_tooltip%%% additional damage.\n\n <h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Daedalus to permanently gain its effects</font>."
     "DOTA_Tooltip_ability_item_greater_crit_consumable_Lore"                       "A weapon of incredible power that is difficult for even the strongest of warriors to control."
     //"DOTA_Tooltip_ability_item_greater_crit_consumable_greater_crit_crit_chance"                    "%CRITICAL CHANCE:"
     //"DOTA_Tooltip_ability_item_greater_crit_consumable_greater_crit_crit_multiplier"                "%CRITICAL DAMAGE:"
@@ -5770,7 +5772,7 @@
     "DOTA_Tooltip_ability_item_aether_lens_consumable_Description"                     "<h1>Passive: Aethereal Focus</h1> Increases targeted spell and item cast range by %aether_lens_cast_range_bonus%.\n\n<h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Aether Lens to permanently gain its effects</font>."
         "DOTA_Tooltip_ability_item_aether_lens_consumable_Note0"                           "Passive does not stack."
         "DOTA_Tooltip_ability_item_aether_lens_consumable_aether_lens_bonus_mana"                      "+$mana"
-        "DOTA_Tooltip_ability_item_aether_lens_consumable_aether_lens_bonus_mana_regen"                "%+$mana_regen"
+        "DOTA_Tooltip_ability_item_aether_lens_consumable_aether_lens_bonus_mana_regen"                "+$mana_regen"
         "DOTA_Tooltip_ability_item_aether_lens_consumable_aether_lens_spell_amp"                       "%+$spell_amp"
         //"DOTA_Tooltip_ability_item_aether_lens_cast_range_bonus"               "+$cast_range"                      
         "DOTA_Tooltip_ability_item_aether_lens_consumable_Lore"                            "Polished with the incantation of his final breath, the gift of a dying mage to his sickly son."
@@ -5793,10 +5795,10 @@
     //"DOTA_Tooltip_ability_item_heart_consumable_heart_health_regen_rate"                     "%HEALTH RESTORED PER SECOND:"
 
     "DOTA_Tooltip_Ability_item_monkey_king_bar_consumable"         "Monkey King Bar"
-    "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_Description"                 "<h1>Passive: Mini-Bash</h1>Grants each attack a %monkey_king_bar_bash_chance%%% chance to mini-stun and deal %monkey_king_bar_bash_damage% bonus damage.\n<h1>Passive: True Strike</h1>Prevents your attacks from missing enemy units.\n
+    "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_Description"                 "<h1>Passive: Pierce</h1>Grants each attack a %monkey_king_bar_bonus_chance%%% chance to pierce through evasion and deal %monkey_king_bar_bonus_chance_damage% bonus pure damage.\n
 <h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Monkey King Bar to permanently gain its effects</font>."
     "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_Lore"                    "A powerful staff used by a master warrior."
-    "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_monkey_king_bar_bonus_damage"                "+$damage"
+    "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_monkey_king_bar_bonus_attack_speed"                "+$attack"
     //"DOTA_Tooltip_ability_item_monkey_king_bar_consumable_monkey_king_bar_bash_chance"                 "%MINI-BASH CHANCE:"
     //"DOTA_Tooltip_ability_item_monkey_king_bar_consumable_monkey_king_bar_bash_damage"                 "MINI-BASH DAMAGE:"
 
@@ -5955,6 +5957,9 @@
     "DOTA_Tooltip_ability_uther_Argent_Smite_Range_Bonus"                                   "RANGE BONUS:"
     "DOTA_Tooltip_ability_uther_Argent_Smite_Heal_Factor"                                   "HEAL FACTOR:"
     "DOTA_Tooltip_ability_uther_Argent_Smite_Tower_Heal_Factor"                             "TOWER HEAL FACTOR:"
+
+    "DOTA_Tooltip_modifier_argent_smite_aura"               "Argent Smite"
+    "DOTA_Tooltip_modifier_argent_smite_aura_description"           "Force attacking an ally will heal them."
 
 
     "DOTA_Tooltip_ability_uther_Omniscience_wave"                           "Global Dispel"
@@ -7066,17 +7071,17 @@
 
     "only_target_creeps"                            "Cannot consume Ancients"
 
-    "DOTA_Tooltip_ability_doom_bringer_infernal_blade_datadriven"                      "Infernal Blade"
-    "DOTA_Tooltip_ability_doom_bringer_infernal_blade_datadriven_Description"          "Doom swings his burning sword, igniting the enemy. Stuns for %ministun_duration% seconds and applies a %burn_duration% second burn that deals %damage% + %health_damage_pct%%% of the target's Max HP as damage per second."
-    "DOTA_Tooltip_ability_doom_bringer_infernal_blade_datadriven_Lore"                 "Lucifer shares the fire branding bestowed upon him at the time of his exile."
-    "DOTA_Tooltip_ability_doom_bringer_infernal_blade_datadriven_Note0"                    "Interrupts channeling abilities."
-    "DOTA_Tooltip_ability_doom_bringer_infernal_blade_datadriven_damage"      "BASE BURN DAMAGE:"
-    "DOTA_Tooltip_ability_doom_bringer_infernal_blade_datadriven_health_damage_pct"  "%MAX HP AS DAMAGE:"
-    "DOTA_Tooltip_ability_doom_bringer_infernal_blade_datadriven_burn_duration"    "BURN DURATION:"
-    "DOTA_Tooltip_ability_doom_bringer_infernal_blade_datadriven_stun_duration"    "STUN DURATION:"
+    "DOTA_Tooltip_ability_infernal_blade_lua"                      "Infernal Blade"
+    "DOTA_Tooltip_ability_infernal_blade_lua_Description"          "Doom swings his burning sword, igniting the enemy. Stuns for %ministun_duration% seconds and applies a %burn_duration% second burn that deals %damage% + %health_damage_pct%%% of the target's Max HP as damage per second."
+    "DOTA_Tooltip_ability_infernal_blade_lua_Lore"                 "Lucifer shares the fire branding bestowed upon him at the time of his exile."
+    "DOTA_Tooltip_ability_infernal_blade_lua_Note0"                    "Interrupts channeling abilities."
+    "DOTA_Tooltip_ability_infernal_blade_lua_base_dmg"      "BASE BURN DAMAGE:"
+    "DOTA_Tooltip_ability_infernal_blade_lua_max_pct_burn"  "%MAX HP AS DAMAGE:"
+    "DOTA_Tooltip_ability_infernal_blade_lua_burn_duration"    "BURN DURATION:"
+    "DOTA_Tooltip_ability_infernal_blade_lua_stun_duration"    "STUN DURATION:"
 
-    "DOTA_Tooltip_modifier_infernal_blade_damage"                "Infernal Blade Burn"
-    "DOTA_Tooltip_modifier_infernal_blade_damage_Description"    "Dealing damage per second"
+    "DOTA_Tooltip_modifier_infernal_blade"                "Infernal Blade Burn"
+    "DOTA_Tooltip_modifier_infernal_blade_Description"    "Dealing damage per second"
 
     //========================================
     // MEGA ULTIMATES

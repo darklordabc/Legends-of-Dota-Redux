@@ -100,7 +100,7 @@ function modifier_item_aether_lens_consumable:DeclareFunctions()
     MODIFIER_PROPERTY_MANA_BONUS,
     MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE,
     MODIFIER_PROPERTY_CAST_RANGE_BONUS,
-    MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
+    --MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
   }
   return funcs
 end
@@ -128,11 +128,11 @@ function modifier_item_aether_lens_consumable:GetModifierCastRangeBonus()
   end
   return self:GetAbility():GetSpecialValueFor("aether_lens_cast_range_bonus")
 end
-
-function modifier_item_aether_lens_consumable:GetModifierSpellAmplify_Percentage()
+-- No longer part of the item in 7.07
+--[[function modifier_item_aether_lens_consumable:GetModifierSpellAmplify_Percentage()
   if not self:GetAbility() then
     self:Destroy()
     return
   end
   return self:GetAbility():GetSpecialValueFor("aether_lens_spell_amp")
-end
+end]]

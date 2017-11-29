@@ -2,6 +2,33 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 9.8
+- Updated values of consumeable items to match latest patch
+- Changed Chen's perk so that he only has to cast holy persuasian to give abilities.
+
+## 9.7
+- Added new heros and updated talent replacement system
+
+## 9.6
+- Fixed Templar Assasin losing perk on death
+- Fixed Dreadnought not doing reduced damage on buildings
+- Fixed Perm Roshanify bug
+- Re-Enabled Shared EXP in all_allowed
+- Tempest Doubles will no longer inherit starfall (buggy)
+- Gods strength: now it's troll combo with it's Redux version. 
+- Phantom fleet: Cooldown lowered from (140/120/100) to (100/80/60).
+- Disarm: have 5 secend duration at max level (was 4), have 600 cast range (was 500).
+- Deafening blast : buffed damage into (80/160/240/320) was(65/130/195/260
+- Jet now counts as a toggle ability (E.g. troll combo with fiery soul)
+- Rewrite Infernal Blade in LUA might help with some bugs
+- Argent Smite now has a higher cooldown but increases heal factor per level
+- Spell Echo will now adopt the cooldown of an ultimate, if it echos an ultimate
+- Tempest Double Redux is now troll combo with Infernal Offering because it can cause crashes
+- Summon Wolves is now counted as an invisible ability
+- Removed Dead Man's Chest because of a bugy interaction with Nothl Protection
+- Unstable Rift is now troll combo with dispersion
+- Eye of the Storm is now troll combo with Stone Form
+
 ## 9.5
 - Limit Passives is now an optional mutator in dota map
 - If Tether is cast while the hero is a symbiote, it will have a 60 second cooldown instead of 12 (Troll combo prevention)

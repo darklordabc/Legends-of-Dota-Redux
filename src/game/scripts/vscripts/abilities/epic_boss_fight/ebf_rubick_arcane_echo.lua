@@ -186,8 +186,26 @@ function SpellEcho(keys)
 								ParticleManager:SetParticleControl(echo_effect, 1, Vector(1,0,0))
 								caster:StartGesture(ACT_DOTA_CAST_ABILITY_5)
 	                            echo:OnSpellStart()
-								ability:StartCooldown(cooldown)
-	            				ParticleManager:ReleaseParticleIndex(echo_effect)
+								
+                -- If its an ultimate, it uses the cooldown of the ultimate             
+                local isUltimate = false
+                
+                if echo:GetAbilityType() == 1 then
+                  isUltimate = true
+                end
+
+                -- If its the OP version of the ability then disable the extra long cooldown
+                if ability:GetName() == "ebf_rubick_arcane_echo_OP" then
+                  isUltimate = false
+                end
+
+                if isUltimate == false then
+                  ability:StartCooldown(cooldown)
+                else
+                  ability:StartCooldown(echo:GetTrueCooldown())
+                end
+
+	            	ParticleManager:ReleaseParticleIndex(echo_effect)
 								--print("not enough mana to echo")
 								caster:SpendMana(fullManacost, ability)
 							end

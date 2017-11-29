@@ -31,7 +31,7 @@
             "01"
             {
                 "var_type"          "FIELD_FLOAT"
-                "Cooldown_Factor"   "2.5 2.0 1.5 1.0"
+                "Cooldown_Factor"   "6.0 5.5 4.5 4.0"
             }
             "02"
             {
@@ -46,7 +46,7 @@
             "04"
             {
                 "var_type"          "FIELD_FLOAT"
-                "Heal_Factor"       "0.70"
+                "Heal_Factor"       "0.7 0.9 1.1 1.40"
             }
             "05"
             {

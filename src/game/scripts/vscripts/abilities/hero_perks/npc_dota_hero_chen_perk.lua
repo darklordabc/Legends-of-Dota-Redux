@@ -1,7 +1,7 @@
   --------------------------------------------------------------------------------------------------------
   --
   --    Hero: Chen
-  --    Perk: When Chen sends creeps home to the fountain by casting Test of Faith (Teleport) they will receive an extra ability.
+  --    Perk: When Chen casts Holy Persuasion on a creep they will receive an extra ability.
   --
   --------------------------------------------------------------------------------------------------------
   LinkLuaModifier( "modifier_npc_dota_hero_chen_perk", "abilities/hero_perks/npc_dota_hero_chen_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -44,7 +44,7 @@ end
       local ability = keys.ability
       
           
-      if ability:GetAbilityName() == "chen_test_of_faith_teleport" and target:IsCreep() then
+      if ability:GetAbilityName() == "chen_holy_persuasion" and target:IsCreep() then
         local boolMana = false -- To check mana costs
         local boolAllowActive = false -- To check if we should allow an active
         if not target.chenAbilityCount then target.chenAbilityCount = 0 end

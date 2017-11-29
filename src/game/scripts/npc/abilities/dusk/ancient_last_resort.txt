@@ -16,7 +16,7 @@
         "AbilityCastRange"                                                     "0"
         "AbilityCastPoint"                                                     "0"
         "AbilityDamage"                                                        "0"
-        "AbilityCooldown"                                                      "300 250 200"
+        "AbilityCooldown"                                                      "240 180 120"
         "AbilityManaCost"                                                      "0"
         "AbilityModifierSupportValue"                                          "0.0"
         "ReduxPerks"                                                           "light"
