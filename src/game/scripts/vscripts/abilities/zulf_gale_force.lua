@@ -109,11 +109,14 @@ function modifier_gale_force_disarm:OnIntervalThink()
 			return nil
 		end
 
-		local damageTable = {victim = parent,
-							attacker = caster,
-							damage = damage,
-							damage_type = DAMAGE_TYPE_PHYSICAL,
-							ability = ability}
+		local damageTable = {
+			victim = parent,
+			attacker = caster,
+			damage = damage,
+			damage_type = DAMAGE_TYPE_PHYSICAL,
+			ability = ability,
+			damage_flags = DOTA_DAMAGE_FLAG_BYPASSES_BLOCK
+		}
 										
 		ApplyDamage(damageTable)
 	end

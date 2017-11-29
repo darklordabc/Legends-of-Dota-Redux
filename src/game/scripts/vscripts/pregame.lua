@@ -533,7 +533,7 @@ function Pregame:init()
 
     if mapName == 'all_allowed' then
         self:setOption('lodOptionCrazyUniversalShop', 0, true)
-        self:setOption('lodOptionGameSpeedSharedEXP', 0, true)
+        self:setOption('lodOptionGameSpeedSharedEXP', 1, true)
         self:setOption('lodOptionBanningUseBanList', 1, true)
         self:setOption('lodOptionAdvancedOPAbilities', 1, true)
         self:setOption('lodOptionGameSpeedMaxLevel', 100, true)
@@ -8000,7 +8000,9 @@ function Pregame:fixSpawningIssues()
                     roshan_bash = true,
                     arc_warden_tempest_double = true,    -- This is to stop tempest doubles from getting the ability and using cooldown reduction to cast again
                     arc_warden_tempest_double_redux = true,
-                    aabs_thunder_musket = true,             
+                    aabs_thunder_musket = true,   
+                    mirana_starfall_lod = true,    -- This is buggy with tempest doubles for some reason   
+                    warlock_rain_of_chaos = true,    -- This is buggy with tempest doubles for some reason 
                 }
 
                 -- Apply the build
