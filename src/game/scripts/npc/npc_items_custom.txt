@@ -780,6 +780,11 @@
                 "var_type"              "FIELD_INTEGER"
                 "greater_crit_crit_multiplier"       "235"
             }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "greater_crit_crit_multiplier_tooltip"       "135"
+            }
         }
     }
     "item_octarine_core_consumable"
@@ -917,7 +922,7 @@
             }
             "02"
             {
-                "var_type"              "FIELD_INTEGER"
+                "var_type"              "FIELD_FLOAT"
                 "aether_lens_bonus_mana_regen"      "1.25"
             }
             "03"
