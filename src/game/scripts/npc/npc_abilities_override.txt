@@ -2018,6 +2018,11 @@
         "TalentRequiredAbility"                                                   "do_not_give_talent"
     } 
 
+    "special_bonus_cooldown_reduction_50"
+    {
+        "TalentRequiredAbility"                                                   "do_not_give_talent"
+    } 
+
     "black_dragon_splash_attack"
     {
         "ReduxFlags"                                                           "aoe_attack | attack_modifier"
