@@ -18,7 +18,7 @@ function BashCooldown( filterTable )
     local ability = EntIndexToHScript(aIndex)
     local modifierName = filterTable.name_const
     -- Reflect only modifiers created by abilities with 'bash' flag
-    if ability:HasAbilityFlag('bash') and
+    if ability:HasAbilityFlag('bash') or ability:GetName() == "item_basher" or ability:GetName() == "item_abyssal_blade" and
     	-- All bash abilities adds passive modifier on it's caster, so we should ignore it
         parent ~= caster then
         if parent:HasModifier('modifier_bash_cooldown') then

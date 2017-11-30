@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - Added Deafening Blast 
 - Removed Drow's Cooldown Reduction talent
 - Fixed bug where heros quickly became lvl 100 once they past lvl 28
+- Bash cooldown now applies to the two bash items
 
 ## 9.7
 - Added new heros and updated talent replacement system
