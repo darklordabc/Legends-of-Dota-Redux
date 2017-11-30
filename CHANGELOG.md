@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - Removed Drow's Cooldown Reduction talent
 - Fixed bug where heros quickly became lvl 100 once they past lvl 28
 - Bash cooldown now applies to the two bash items
+- Arcane Echo now considers Nimbus an ultimate when setting cooldown
 
 ## 9.7
 - Added new heros and updated talent replacement system
