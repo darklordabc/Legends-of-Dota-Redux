@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 - Changed Chen's perk so that he only has to cast holy persuasian to give abilities.
 - Added Deafening Blast 
 - Removed Drow's Cooldown Reduction talent
+- Fixed bug where heros quickly became lvl 100 once they past lvl 28
 
 ## 9.7
 - Added new heros and updated talent replacement system

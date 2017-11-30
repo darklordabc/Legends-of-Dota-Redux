@@ -1447,14 +1447,15 @@ end
 -- Option to modify EXP
 function Ingame:FilterModifyExperience(filterTable)
     local expModifier = OptionManager:GetOption('expModifier')
-    --hotfix start: to stop the insane amount of EXP
+    --hotfix start: to stop the insane amount of EXP when heros with higher level then 28, kill other heros
     if math.abs(filterTable.experience) > 100000 then
+        local Hero = PlayerResource:GetPlayer(filterTable.player_id_const):GetAssignedHero()
+        Hero:AddExperience(math.ceil(250 * expModifier / 100),0,false,false)
         filterTable.experience = 0
-        return false
+        return true
     end
     --hotfix end
-    --print("experience gained")
-    --print(filterTable.experience)
+
 
     if expModifier ~= 1 then
         filterTable.experience = math.ceil(filterTable.experience * expModifier / 100)
