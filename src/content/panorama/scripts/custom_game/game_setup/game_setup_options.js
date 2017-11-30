@@ -475,6 +475,11 @@ var basicOptions = {
                         extraInfo: 'lodOptionAboutLimitPassives',
                         about: 'lodMutatorLimitPassives'
                     },
+                    {
+                        name: 'lodOptionAntiBash',
+                        extraInfo: 'lodOptionAboutAntiBash',
+                        about: 'lodMutatorAntiBash'
+                    },
                 ]
             }
         ]
@@ -1751,6 +1756,22 @@ var advancedOptions = {
                 name: 'lodOptionBlackForest',
                 des: 'lodOptionDesBlackForest',
                 about: 'lodOptionAboutBlackForest',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionAntiBash',
+                des: 'lodOptionDesAntiBash',
+                about: 'lodOptionAboutAntiBash',
                 sort: 'toggle',
                 values: [
                     {

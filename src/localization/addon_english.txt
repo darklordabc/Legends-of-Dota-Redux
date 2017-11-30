@@ -470,7 +470,12 @@
     "lodOptionBlackForest"                                  "Black Forest"
     "lodOptionDesBlackForest"                               "Enable Black Forest"
     "lodOptionAboutBlackForest"                             "At the start of the game a Forest is generated, planting many more trees on the map."
-"lodMutatorBlackForest"                         "Black Forest"
+    "lodMutatorBlackForest"                         "Black Forest"
+
+    "lodOptionAntiBash"                                  "Anti Perma-Stun"
+    "lodOptionDesAntiBash"                               "Enable Anti Perma-Stun"
+    "lodOptionAboutAntiBash"                             "Makes it so when a hero is bashed, they cannot be bashed again for 5 seconds"
+    "lodMutatorAntiBash"                         "Anti Perma-Stun"
 
     "lodOptionAntiRat"                                  "Anti-Rat"
     "lodOptionDesAntiRat"                               "Enable Anti-Rat Protection"

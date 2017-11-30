@@ -1972,8 +1972,9 @@ function Ingame:FilterModifiers( filterTable )
     -- Bash Reflect
     ReflectBashes(filterTable)
     -- Bash Cooldown
-    if not BashCooldown(filterTable) then return false end
-
+    if OptionManager:GetOption('antiBash') == 1 then
+        if not BashCooldown(filterTable) then return false end
+    end
     return true
 end
 

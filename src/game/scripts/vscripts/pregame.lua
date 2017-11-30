@@ -543,6 +543,7 @@ function Pregame:init()
         --self:setOption('lodOptionGameSpeedStartingGold', 600, true)
         self:setOption('lodOptionGameSpeedStrongTowers', 1, true)
         self:setOption('lodOptionLimitPassives', 1, true)
+        self:setOption('lodOptionAntiBash', 1, true)
         self:setOption('lodOptionCreepPower', 120, true)
 
         self:setOption('lodOptionGameSpeedTowersPerLane', 3, true)
@@ -683,6 +684,9 @@ function Pregame:loadDefaultSettings()
 
     -- Limit Passives
     self:setOption('lodOptionLimitPassives', 0, false)
+
+    -- Anti Perma-Stun
+    self:setOption('lodOptionAntiBash', 1, false)
 
     -- Anti Rat option
     self:setOption('lodOptionAntiRat', 0, false)
@@ -2790,6 +2794,11 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
+        -- Anti Perma-Stun
+        lodOptionAntiBash = function(value)
+            return value == 0 or value == 1
+        end,
+
         -- Game Speed - Scepter Upgraded
         lodOptionGameSpeedUpgradedUlts = function(value)
             return value == 0 or value == 1 or value == 2
@@ -3947,6 +3956,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('antiRat', this.optionStore['lodOptionAntiRat'])
         OptionManager:SetOption('consumeItems', this.optionStore['lodOptionConsumeItems'])
         OptionManager:SetOption('limitPassives', this.optionStore['lodOptionLimitPassives'])
+        OptionManager:SetOption('antiBash', this.optionStore['lodOptionAntiBash'])
 
         -- Enforce max level
         if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -4256,6 +4266,7 @@ function Pregame:processOptions()
                     ['Other: Battle Thirst'] = this.optionStore['lodOptionBattleThirst'],
                     ['Other: Item Drops'] = this.optionStore['lodOptionDarkMoon'],
                     ['Other: Black Forest'] = this.optionStore['lodOptionBlackForest'],
+                    ['Other: Anti Perma-Stun'] = this.optionStore['lodOptionAntiBash'],
                     ['Towers: Anti-Rat'] = this.optionStore['lodOptionAntiRat'],
                     ['Towers: Enable Stronger Towers'] = this.optionStore['lodOptionGameSpeedStrongTowers'],
                     ['Towers: Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],
