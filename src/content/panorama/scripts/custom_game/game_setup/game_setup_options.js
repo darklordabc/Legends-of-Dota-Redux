@@ -727,22 +727,22 @@ var advancedOptions = {
                     }
                 ]
             },
-            {
-                name: 'lodOptionAdvancedImbaAbilities',
-                des: 'lodOptionDesAdvancedIMBASkills',
-                about: 'lodOptionAboutAdvancedIMBASkills',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
+            //{
+            //    name: 'lodOptionAdvancedImbaAbilities',
+            //    des: 'lodOptionDesAdvancedIMBASkills',
+            //    about: 'lodOptionAboutAdvancedIMBASkills',
+            //    sort: 'toggle',
+            //    values: [
+            //        {
+            //            text: 'lodOptionNo',
+            //            value: 0
+            //        },
+            //        {
+            //            text: 'lodOptionYes',
+            //            value: 1
+            //        }
+            //    ]
+            //},
             {
                 name: 'lodOptionAdvancedHidePicks',
                 des: 'lodOptionDesAdvancedHidePicks',
