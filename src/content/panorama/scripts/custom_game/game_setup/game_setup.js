@@ -4628,15 +4628,17 @@ function OnPhaseChanged(table_name, key, data) {
                 setSelectedHelperHero();
 
                 // 30 second lock
-                if (!$.GetContextPanel().isSinglePlayer) {
-                    $('#heroBuilderLockButton').SetHasClass("makeThePlayerNoticeThisButton", false)
-                    $('#heroBuilderLockButton').enabled = false;
-                    $('#cooldownOverlay').AddClass("ready");
-                    $.Schedule(30.0, function () {
-                        $('#heroBuilderLockButton').SetHasClass("makeThePlayerNoticeThisButton", true)
-                        $('#heroBuilderLockButton').enabled = true;
-                    })
-                    $('#heroBuilderLockButton').SetHasClass('pressed', !$('#heroBuilderLockButton').BHasClass('pressed'));
+                if (!Game.IsInToolsMode()) {
+                    if (!$.GetContextPanel().isSinglePlayer) {
+                        $('#heroBuilderLockButton').SetHasClass("makeThePlayerNoticeThisButton", false)
+                        $('#heroBuilderLockButton').enabled = false;
+                        $('#cooldownOverlay').AddClass("ready");
+                        $.Schedule(30.0, function () {
+                            $('#heroBuilderLockButton').SetHasClass("makeThePlayerNoticeThisButton", true)
+                            $('#heroBuilderLockButton').enabled = true;
+                        })
+                        $('#heroBuilderLockButton').SetHasClass('pressed', !$('#heroBuilderLockButton').BHasClass('pressed'));
+                    }
                 }
 
                 // Set main tab activated
