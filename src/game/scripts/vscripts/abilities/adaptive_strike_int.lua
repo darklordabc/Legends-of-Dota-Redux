@@ -1,4 +1,4 @@
-LinkLuaModifier("modifier_adaptive_strike_int", "heroes/redux_adaptive_strike_int.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_adaptive_strike_int", "abilities/adaptive_strike_int.lua", LUA_MODIFIER_MOTION_NONE)
 
 adaptive_strike_int = class({})
 
@@ -83,15 +83,11 @@ modifier_adaptive_strike_int = class({
 		if not IsServer() then return end
 
 		local int = self:GetCaster():GetIntellect()
-		local str = self:GetCaster():GetAgility() --75
-		local agi = self:GetCaster():GetStrength() --50
+		local str = self:GetCaster():GetAgility()
+		local agi = self:GetCaster():GetStrength()
 
-		if agi > str then
-			calc = math.abs( (agi - str) / (agi + (agi * 0.5)) )
-		else
-			calc = math.abs( (str - agi) / (str + (str * 0.5)) )
-		end
 
+		--TODO
 		local duration = some_calculation
 		self:SetDuration(duration, true)
 	end,
