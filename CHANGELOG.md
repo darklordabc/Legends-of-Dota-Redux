@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 - Renamed 'dota' map to 'custom' and added ingame info to make it clearer
 - Arcane Echo no longer echos ultimates
 - Magicians Revenge has lower cooldown and deals more damage.
+- Fixed Aether Len's not giving mana regen
 
 ## 9.8
 - Updated values of consumeable items to match latest patch

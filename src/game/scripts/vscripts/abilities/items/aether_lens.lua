@@ -98,7 +98,7 @@ end
 function modifier_item_aether_lens_consumable:DeclareFunctions()
   local funcs = {
     MODIFIER_PROPERTY_MANA_BONUS,
-    MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE,
+    MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
     MODIFIER_PROPERTY_CAST_RANGE_BONUS,
     --MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
   }
@@ -113,7 +113,7 @@ function modifier_item_aether_lens_consumable:GetModifierManaBonus()
   return self:GetAbility():GetSpecialValueFor("aether_lens_bonus_mana")
 end
 
-function modifier_item_aether_lens_consumable:GetModifierPercentageManaRegen()
+function modifier_item_aether_lens_consumable:GetModifierConstantManaRegen()
   if not self:GetAbility() then
     self:Destroy()
     return
