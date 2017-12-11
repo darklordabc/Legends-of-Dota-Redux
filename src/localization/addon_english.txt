@@ -4070,7 +4070,7 @@
     "DOTA_Tooltip_ability_angel_arena_rifle_OP_rifle_bonus_movespeed"       "RIFLE MOVESPEED BONUS:"
     "DOTA_Tooltip_ability_angel_arena_rifle_OP_bonus_attack"                "RIFLE BONUS DAMAGE:"
 
-    "DOTA_Tooltip_ability_angel_arena_revenge"                      "Magicians' Revenge"
+    "DOTA_Tooltip_ability_angel_arena_revenge"                      "Whiteboard's Revenge"
     "DOTA_Tooltip_ability_angel_arena_revenge_Description"          "Punishes each attack, damaging the attacker based on the difference of Intellect between the attacker and the Hero. Non-hero units will be dealt as percentage of Hero's intellect"
     "DOTA_Tooltip_ability_angel_arena_revenge_bonus_int"       "BONUS INTELLECT:"
     "DOTA_Tooltip_ability_angel_arena_revenge_reduce_percent"       "%DIFFERENCE AS DAMAGE:"
