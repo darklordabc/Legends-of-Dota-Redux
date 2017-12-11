@@ -66,7 +66,7 @@ function Pregame:init()
 
     -- If single player redirect players to the more fully-featured map
     if util:isSinglePlayerMode() and not IsInToolsMode() then
-        OptionManager:SetOption('mapname', 'dota')
+        OptionManager:SetOption('mapname', 'custom')
     end
 
     -- Store for selected heroes and skills
