@@ -2,6 +2,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 9.9
+- Removed Call of the wild Boar, broken ability
+
 ## 9.8
 - Updated values of consumeable items to match latest patch
 - Changed Chen's perk so that he only has to cast holy persuasian to give abilities.
