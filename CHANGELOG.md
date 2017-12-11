@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - Fixed a bug where anti-bash mutator was not as effective
 - Phoenix Sun Ray now also gives movement ability
 - Renamed 'dota' map to 'custom' and added ingame info to make it clearer
+- Arcane Echo no longer echos ultimates
 
 ## 9.8
 - Updated values of consumeable items to match latest patch

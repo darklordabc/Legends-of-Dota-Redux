@@ -161,6 +161,9 @@ function SpellEcho(keys)
 	if not ability:IsCooldownReady() then return end
 	local echo = keys.event_ability
 	if echo:IsItem() then return end
+  if echo:GetAbilityType() == 1 and ability:GetName() == "ebf_rubick_arcane_echo" then
+    return
+  end
 	if echo:GetChannelTime() > 0 then return end -- ignore channeled abilities because theyre obnoxious
  	local cursor_pos = echo:GetCursorPosition()
 	
@@ -185,25 +188,9 @@ function SpellEcho(keys)
 								ParticleManager:SetParticleControl(echo_effect, 0, caster:GetAbsOrigin())
 								ParticleManager:SetParticleControl(echo_effect, 1, Vector(1,0,0))
 								caster:StartGesture(ACT_DOTA_CAST_ABILITY_5)
-	                            echo:OnSpellStart()
+	              echo:OnSpellStart()
 								
-                -- If its an ultimate, it uses the cooldown of the ultimate             
-                local isUltimate = false
-                
-                if echo:GetAbilityType() == 1 then
-                  isUltimate = true
-                end
-
-                -- If its the OP version of the ability then disable the extra long cooldown
-                if ability:GetName() == "ebf_rubick_arcane_echo_OP" then
-                  isUltimate = false
-                end
-
-                if isUltimate == false then
-                  ability:StartCooldown(cooldown)
-                else
-                  ability:StartCooldown(echo:GetTrueCooldown())
-                end
+                ability:StartCooldown(cooldown)
 
 	            	ParticleManager:ReleaseParticleIndex(echo_effect)
 								--print("not enough mana to echo")
