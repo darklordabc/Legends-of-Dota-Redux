@@ -4011,13 +4011,11 @@
     "DOTA_Tooltip_modifier_nether_ritual_Description"                   "Gaining HP regen, armor, damage, speed and improved base attack time."
 
     "DOTA_Tooltip_ability_angel_arena_hola_heal"                        "The Saints' Rage"
-    "DOTA_Tooltip_ability_angel_arena_hola_heal_Description"            "All enemies within range have their movement speed reduced, take damage, and all allies within range are healed."
+    "DOTA_Tooltip_ability_angel_arena_hola_heal_Description"            "All enemies within range take damage and all allies within range are healed."
     "DOTA_Tooltip_ability_angel_arena_hola_heal_radius"                 "RADIUS:"
-    "DOTA_Tooltip_ability_angel_arena_hola_heal_slow_percent"           "%SLOW:"
     "DOTA_Tooltip_ability_angel_arena_hola_heal_damage"                 "DAMAGE:"
     "DOTA_Tooltip_ability_angel_arena_hola_heal_heal"                   "HEAL:"
     "DOTA_Tooltip_ability_angel_arena_hola_heal_heal_percent"           "%HEAL:"
-    "DOTA_Tooltip_ability_angel_arena_hola_heal_slow_time"              "SLOW TIME:"
 
     "DOTA_Tooltip_ability_angel_arena_summon_hawk"                  "Dead Hawk"
     "DOTA_Tooltip_ability_angel_arena_summon_hawk_Description"      "Summon a Dead Hawk ally for 180 seconds."

@@ -51,6 +51,11 @@
 				"Radius" "%radius"
 			}
 
+			"RunScript" {
+				"ScriptFile"	"abilities/angel_arena_reborn/hola_heal.lua"
+				"Function"		"HealPercent"
+			}
+
 			"ActOnTargets" {
 				"Target" {
 					"Center" "CASTER"
