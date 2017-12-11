@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 - Removed Call of the wild Boar, broken ability
 - Fixed The Saints Rage not healing
 - Fixed Spell Reflect reflecting allied spells
+- Fixed a bug where anti-bash mutator was not as effective
 
 ## 9.8
 - Updated values of consumeable items to match latest patch
