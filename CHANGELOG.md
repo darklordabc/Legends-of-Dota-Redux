@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - Fixed Spell Reflect reflecting allied spells
 - Fixed a bug where anti-bash mutator was not as effective
 - Phoenix Sun Ray now also gives movement ability
+- Renamed 'dota' map to 'custom' and added ingame info to make it clearer
 
 ## 9.8
 - Updated values of consumeable items to match latest patch
