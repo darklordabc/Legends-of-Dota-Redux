@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 - Magicians Revenge has lower cooldown and deals more damage.
 - Fixed Aether Len's not giving mana regen
 - Changed Underlord's Perk to 2+ to all stats for each level in custom abilities
+- Added Perks for Pangolier and Dark Willow
 
 ## 9.8
 - Updated values of consumeable items to match latest patch

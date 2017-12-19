@@ -415,6 +415,12 @@ var tipsPerks = [{
         img: 'file://{images}/custom_game/hints/hint_underlord.png',
         txt: '#hintUnderlord'
     }, {
+        img: 'file://{images}/custom_game/hints/hint_willow.png',
+        txt: '#hintDarkWillow'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_pangolier.png',
+        txt: '#hintPangolier'
+    }, {
         img: 'file://{images}/custom_game/hints/hint_undying.png',
         txt: '#hintUndying'
     }, {

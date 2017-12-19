@@ -105,6 +105,8 @@
 			<Image src="file://{images}/custom_game/hints/hint_BM.png" />
 			<Image src="file://{images}/custom_game/hints/hint_CK.png" />
 			<Image src="file://{images}/custom_game/hints/hint_clockwerk.png" />
+			<Image src="file://{images}/custom_game/hints/hint_willow.png" />
+			<Image src="file://{images}/custom_game/hints/hint_pangolier.png" />
 			<Image src="file://{images}/custom_game/hints/hint_dazzle.png" />
 			<Image src="file://{images}/custom_game/hints/hint_DP.png" />
 			<Image src="file://{images}/custom_game/hints/hint_monkey_king.png" />
