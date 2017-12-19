@@ -2587,6 +2587,43 @@
         "ReduxFlags"                                                           "summon | doNotRandom"
         "ReduxPerks"                                                           "summon_non_ult"
     }
+     "pangolier_swashbuckle"
+    {
+        "ReduxFlags"                                                           "mobility"
+        "ReduxPerks"                                                           "mobility"
+    }
+     "pangolier_heartpiercer" 
+    {
+        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxPerks"                                                           "attack_modifier"
+    }
+     "pangolier_gyroshell"
+    {
+        "ReduxFlags"                                                           "mobility | stun"
+        "ReduxPerks"                                                           "mobility"
+    }
+     "dark_willow_bramble_maze"
+    {
+        "ReduxFlags"                                                           "stun"
+    }
+     "dark_willow_bedlam"
+    {
+        "ReduxFlags"                                                           "summon"
+        "ReduxPerks"                                                           "summon_non_ult"
+    }
+     "dark_willow_terrorize"
+    {
+        "ReduxFlags"                                                           "stun"
+    }
+     "dark_willow_shadow_realm"
+    {
+        "ReduxFlags"                                                           "tank | support"
+        "ReduxPerks"                                                           "support"
+    }
+     "dark_willow_cursed_crown"
+    {
+        "ReduxFlags"                                                           "stun"
+    }
     "lycan_summon_wolves"
     {
         "ReduxFlags"                                                           "summon | invis"

@@ -935,7 +935,7 @@
     "hintTreant"                         "Treant gets healed for the mana cost of any Nature ability he uses."
     "hintTrollWarlord"                         "Rage effects on Troll Warlord have 20% longer duration."
     "hintUnderlord"                         "Underlord gains +2 to all stats for each level put in a custom ability."
-    "hintDarkWillow"                         "Dark Willow gains +2 to all stats for each level put in a support ability."
+    "hintDarkWillow"                         "Dark Willow gains +2 to all stats for each level put in a Support ability."
     "hintPangolier"                         "At the start of the game, Pangolier gains a free level of Heartpiercer, whether he has it or not."
     "hintUndying"                         "Undying gains +1 strength per creep death or +4 strength per hero death in a 900 radius for 30 seconds."
     "hintVenomancer"                         "Increases the duration of all Poison effects Venomancer applies by 25%."
@@ -1017,7 +1017,7 @@
     "lod_cat_illusion"                              "Illusion"
     "lod_cat_dota_custom"                           "Dota Related Customs"
     "lod_cat_passive"                               "Passive"
-    "lod_cat_cooldown"                              "Cooldown Manipulation"
+    "lod_cat_cooldown"                              "Cooldown Reduction"
     "lod_cat_OPSkillsList"                          "OP"
     "lod_cat_SuperOP"                               "Super OP"
     "lod_cat_mana"                                  "Mana"
@@ -1350,7 +1350,7 @@
     "unique_mechanic_troll_warlord"                 "<font color=\'#ffd966\'>Skull Basher</font> and  <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero. <font color=\'#ffd966\'>Rage</font> effects on Troll Warlord have 20% longer duration."
     "unique_mechanic_tusk"           "<font color=\'#ffd966\'>Walrus Kick</font> and <font color=\'#ffd966\'>Walrus Punch</font> will refund their manacost when used by Tusk."
     "unique_mechanic_abyssal_underlord"                        "Underlord gains +2 to all stats for each level put in a <font color=\'#ffd966\'>Custom</font> ability."
-    "unique_mechanic_dark_willow"                        "Dark Willow gains +2 to all stats for each level put in a <font color=\'#ffd966\'>support</font> ability."
+    "unique_mechanic_dark_willow"                        "Dark Willow gains +2 to all stats for each level put in a <font color=\'#ffd966\'>Support</font> ability."
     "unique_mechanic_pangolier"                        "At the start of the game, Pangolier gains a free level of <font color=\'#ffd966\'>Heartpiercer</font>, whether he has it or not."
     "unique_mechanic_undying"                        "Undying gains +1 strength per creep death or +4 strength per hero death in a 900 radius for 30 seconds."
     "unique_mechanic_ursa"                   "Ursa deals 15% more damage to neutrals and Roshan."
@@ -3877,11 +3877,11 @@
     "DOTA_Tooltip_modifier_npc_dota_hero_abyssal_underlord_perk"    "Underlord Perk"
     "DOTA_Tooltip_modifier_npc_dota_hero_abyssal_underlord_perk_Description"    "Underlord gains +2 to all stats for each level put in a custom ability.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
-    /// PANGOLIER
-    "DOTA_Tooltip_modifier_npc_dota_hero_dark_willow_perk"    "Dark Willow Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_dark_willow_perk_Description"    "Dark Willow gains +2 to all stats for each level put in a support ability."
-
     /// DARK WILLOW
+    "DOTA_Tooltip_modifier_npc_dota_hero_dark_willow_perk"    "Dark Willow Perk"
+    "DOTA_Tooltip_modifier_npc_dota_hero_dark_willow_perk_Description"    "Dark Willow gains +2 to all stats for each level put in a Support ability."
+
+    /// PANGOLIER
     "DOTA_Tooltip_modifier_npc_dota_hero_pangolier_perk"    "Pangolier Perk"
     "DOTA_Tooltip_modifier_npc_dota_hero_pangolier_perk_Description"    "At the start of the game, Pangolier gains a free level of Heartpiercer, whether he has it or not."
 
