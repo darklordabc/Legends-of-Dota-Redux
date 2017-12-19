@@ -934,7 +934,7 @@
     "hintTiny"                         "Tiny does 10% increased damage to buildings."
     "hintTreant"                         "Treant gets healed for the mana cost of any Nature ability he uses."
     "hintTrollWarlord"                         "Rage effects on Troll Warlord have 20% longer duration."
-    "hintUnderlord"                         "Underlord gains +1 to all stats for each level put in a custom ability."
+    "hintUnderlord"                         "Underlord gains +2 to all stats for each level put in a custom ability."
     "hintUndying"                         "Undying gains +1 strength per creep death or +4 strength per hero death in a 900 radius for 30 seconds."
     "hintVenomancer"                         "Increases the duration of all Poison effects Venomancer applies by 25%."
     "hintViper"                         "Poison effects applied by Viper also lower the target's armor by 2."
@@ -1347,7 +1347,7 @@
     "unique_mechanic_treant"                        "Treant gets healed for the mana cost of any <font color=\'#ffd966\'>Nature</font> ability he uses."
     "unique_mechanic_troll_warlord"                 "<font color=\'#ffd966\'>Skull Basher</font> and  <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero. <font color=\'#ffd966\'>Rage</font> effects on Troll Warlord have 20% longer duration."
     "unique_mechanic_tusk"           "<font color=\'#ffd966\'>Walrus Kick</font> and <font color=\'#ffd966\'>Walrus Punch</font> will refund their manacost when used by Tusk."
-    "unique_mechanic_abyssal_underlord"                        "Underlord gains +1 to all stats for each level put in a <font color=\'#ffd966\'>Custom</font> ability."
+    "unique_mechanic_abyssal_underlord"                        "Underlord gains +2 to all stats for each level put in a <font color=\'#ffd966\'>Custom</font> ability."
     "unique_mechanic_undying"                        "Undying gains +1 strength per creep death or +4 strength per hero death in a 900 radius for 30 seconds."
     "unique_mechanic_ursa"                   "Ursa deals 15% more damage to neutrals and Roshan."
     "unique_mechanic_vengefulspirit"                        "When Vengeful Spirit is slain by an enemy hero, she permanently reduces the hero's attributes by 1."
@@ -3871,7 +3871,7 @@
 
     /// UNDERLORD​
     "DOTA_Tooltip_modifier_npc_dota_hero_abyssal_underlord_perk"    "Underlord Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_abyssal_underlord_perk_Description"    "Underlord gains +1 to all stats for each level put in a custom ability.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_abyssal_underlord_perk_Description"    "Underlord gains +2 to all stats for each level put in a custom ability.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
 
     /// UNDYING​
     "DOTA_Tooltip_modifier_npc_dota_hero_undying_perk"  "Undying Perk"

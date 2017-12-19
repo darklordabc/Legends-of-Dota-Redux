@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 - Arcane Echo no longer echos ultimates
 - Magicians Revenge has lower cooldown and deals more damage.
 - Fixed Aether Len's not giving mana regen
+- Changed Underlord's Perk to 2+ to all stats for each level in custom abilities
 
 ## 9.8
 - Updated values of consumeable items to match latest patch
