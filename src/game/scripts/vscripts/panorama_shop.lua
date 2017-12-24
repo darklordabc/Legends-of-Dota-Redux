@@ -217,12 +217,6 @@ PANORAMA_SHOP_ITEMS = {
 				"item_imba_elder_staff",
 				"item_imba_greatwyrm_plate",
 				"item_imba_starfury",
-				"item_imba_hand_of_midas",
-				"item_imba_moon_shard",
-				"item_imba_blink_boots",
-				"item_imba_urn_of_shadows",
-				"item_imba_ancient_janggo",
-				"item_imba_arcane_boots",
 			}
 		}
 	}
