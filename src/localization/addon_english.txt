@@ -7225,10 +7225,6 @@
 
     "DOTA_Tooltip_modifier_imba_deadeye_vision"                                         "Deadeye"
     "DOTA_Tooltip_modifier_imba_deadeye_vision_Description"                             "Increased vision range."
-    
-    ///
-    /// IMBA ITEMS
-    ///
 
     "DOTA_Tooltip_Ability_item_imba_white_queen_cape"           "White Queen's Cape"
     "DOTA_Tooltip_ability_item_imba_white_queen_cape_Description"               "Active: Lesser Avatar - Grants Spell Immunity and 100% Magic Damage Resistance for a short duration. Some Ultimate abilities are able to disable through White Queen Cape."
@@ -7261,111 +7257,6 @@
     "DOTA_Tooltip_ability_item_imba_power_treads_2_bonus_movement_speed"        "+$move_speed"
     "DOTA_Tooltip_ability_item_imba_power_treads_2_bonus_stat"                  "+$selected_attrib"
 
-    "DOTA_Tooltip_Ability_item_imba_azura"                      "Azura (WIP)"
-    "DOTA_Tooltip_ability_item_imba_azura_Description"                          "<font color='#FF7800'>Soul Rend (passive):</font> attacking enemies makes them more vulnerable to magic damage. Stacks up to %max_stacks% times.\n<font color='#FF7800'>Spirit Strike (passive):</font> %proc_chance%%% chance to silence your target for %proc_duration_enemy% seconds with each attack.\n<font color='#FF7800'>Quickspell (passive):</font> grants %bonus_cdr%%% nonstacking cooldown reduction."
-    "DOTA_Tooltip_ability_item_imba_azura_Lore"                                 "Azura is a sword attuned to the spirit world, able to cut flesh and soul in a single strike."
-    "DOTA_Tooltip_ability_item_imba_azura_Note0"                                "Procs from Sange, Yasha, Azura and their upgrades all share the same cooldown."
-    "DOTA_Tooltip_ability_item_imba_azura_Note1"                                "Soul Rend from different sources does not stack."
-    "DOTA_Tooltip_ability_item_imba_azura_Note2"                                "Cooldown reduction does not stack with itself or other Azura upgrades."
-    "DOTA_Tooltip_ability_item_imba_azura_amp_stack"                            "%SOUL REND MAGIC AMP:"
-    "DOTA_Tooltip_ability_item_imba_azura_stack_duration"                       "SOUL REND DURATION:"
-    "DOTA_Tooltip_ability_item_imba_azura_bonus_int"                            "+$int"
-
-    "DOTA_Tooltip_modifier_item_imba_azura_amp"                                         "Soul Rend"
-    "DOTA_Tooltip_modifier_item_imba_azura_amp_Description"                             "Taking %dMODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS%%% extra magic damage."
-
-    "DOTA_Tooltip_modifier_item_imba_azura_amp"                                         "Soul Rend"
-    "DOTA_Tooltip_modifier_item_imba_azura_amp_Description"                             "Increased vulnerability to magic damage"
-
-    "DOTA_Tooltip_Ability_item_imba_elder_staff"                "Elder Staff (WIP)"
-    "DOTA_Tooltip_ability_item_imba_elder_staff_Description"                    "<font color='#FF7800'>Elderburn (Passive):</font> every time you cause damage to an enemy, it is afflicted with a severe burn, dealing %burn_amount%%% of its current health as magical damage over %burn_duration% seconds.\n<font color='#FF7800'>Elder Power (Passive):</font> increases the bearer's spell power and cast range."
-    "DOTA_Tooltip_ability_item_imba_elder_staff_Lore"                           "Every magician longs for this ancient weapon, for it is said the Elder Staff's power is limitless - bound only by the measure of the bearer's own ability."
-    "DOTA_Tooltip_ability_item_imba_elder_staff_Note0"                          "Elderburn's damage does not refresh itself."
-    "DOTA_Tooltip_ability_item_imba_elder_staff_Note1"                          "Spell Power from Aether Lens-based sources does not stack with itself."
-    "DOTA_Tooltip_ability_item_imba_elder_staff_bonus_damage"                   "+$damage"
-    "DOTA_Tooltip_ability_item_imba_elder_staff_bonus_as"                       "+$attack"
-    "DOTA_Tooltip_ability_item_imba_elder_staff_bonus_intellect"                "+$int"
-    "DOTA_Tooltip_ability_item_imba_elder_staff_bonus_mana"                     "+$mana"
-    "DOTA_Tooltip_ability_item_imba_elder_staff_bonus_mana_regen"               "%+$mana_regen"
-    "DOTA_Tooltip_ability_item_imba_elder_staff_cast_range_bonus"               "INCREASED CAST RANGE:"
-    "DOTA_Tooltip_ability_item_imba_elder_staff_spell_power"                    "SPELL POWER:"
-
-    "DOTA_Tooltip_Ability_item_imba_nether_wand"                "Nether Wand (WIP)"
-    "DOTA_Tooltip_ability_item_imba_nether_wand_Description"                    "<font color='#FF7800'>Nether Burn (Passive):</font> every time you cause damage to an enemy, it is afflicted with a wicked burn, dealing %burn_amount%%% of its current health as magical damage over %burn_duration% seconds.\n<font color='#FF7800'>Nether power (passive):</font> increases the bearer's spell power."
-    "DOTA_Tooltip_ability_item_imba_nether_wand_Lore"                           "A wicked wand, whose wild energies are nigh uncontrollable."
-    "DOTA_Tooltip_ability_item_imba_nether_wand_Note0"                          "Nether burn's damage does not refresh itself."
-    "DOTA_Tooltip_ability_item_imba_nether_wand_Note1"                          "Spell Power from Aether Lens-based sources does not stack with itself."
-    "DOTA_Tooltip_ability_item_imba_nether_wand_bonus_damage"                   "+$damage"
-    "DOTA_Tooltip_ability_item_imba_nether_wand_bonus_as"                       "+$attack"
-    "DOTA_Tooltip_ability_item_imba_nether_wand_bonus_intellect"                "+$int"
-    "DOTA_Tooltip_ability_item_imba_nether_wand_spell_power"                    "SPELL POWER:"
-
-    "DOTA_Tooltip_modifier_imba_item_elder_nether_debuff_dot"                           "Nether Burn"
-    "DOTA_Tooltip_modifier_imba_item_elder_nether_debuff_dot_Description"               "Suffering max health-based damage"
-
-    "DOTA_Tooltip_Ability_item_imba_reverb_rapier"              "Reverb Sabre (WIP)"
-    "DOTA_Tooltip_ability_item_imba_reverb_rapier_Description"                  "<font color='#FF7800'>Superb Reverb (Passive):</font> When off-cooldown, causes your attacks to hit three times in quick succession. Tri-attacks apply a %slow_duration% second %movement_slow%%% movement and attack speed slow.\n\n<font color='#00FF40'>Reverb's cooldown is longer on ranged units.</font>"
-    "DOTA_Tooltip_ability_item_imba_reverb_rapier_Lore"                         "Faced with the challenge of combining two Echo Sabres' magic into a single blade, the runesmiths of the Ruined City asked themselves only if they could - never if they should."
-    "DOTA_Tooltip_ability_item_imba_reverb_rapier_Note0"                        "Upon proccing, grants the user 720 attack speed or triples your current bonus, whichever is higher, until the next attack."
-    "DOTA_Tooltip_ability_item_imba_reverb_rapier_bonus_intellect"              "+$int"
-    "DOTA_Tooltip_ability_item_imba_reverb_rapier_bonus_strength"               "+$str"
-    "DOTA_Tooltip_ability_item_imba_reverb_rapier_bonus_attack_speed"           "+$attack"
-    "DOTA_Tooltip_ability_item_imba_reverb_rapier_bonus_damage"                 "+$damage"
-    "DOTA_Tooltip_ability_item_imba_reverb_rapier_bonus_mana_regen"             "%+$mana_regen"
-    "DOTA_Tooltip_ability_item_imba_reverb_rapier_ranged_cooldown"              "RANGED COOLDOWN:"
-
-    "DOTA_Tooltip_modifier_item_imba_reverb_rapier_slow"                                "Reverb Rapier"
-    "DOTA_Tooltip_modifier_item_imba_reverb_rapier_slow_Description"                    "Movement and attack speed slowed"
-
-    "DOTA_Tooltip_Ability_item_imba_shotgun"                    "Rusty Old Shotgun (WIP)"
-    "DOTA_Tooltip_ability_item_imba_shotgun_Description"                        "<font color='#FF7800'>Shotgun! (Passive, Ranged):</font> When off cooldown, ranged heroes that wield it when attacking also fire three small projectiles, dealing %agility_pct_ranged%% of their agility as damage. If all three projectiles hit the same enemy, it is stunned for %ranged_proj_stun% seconds. \n<font color='#FF7800'>Double Barreled (Passive, Melee):</font> Melee heroes deal %agility_pct_melee%% of their agility as an additional damage to their target."
-    "DOTA_Tooltip_ability_item_imba_shotgun_Lore"                               "An old, barely functional shotgun. No one knows how it got here!"                
-    "DOTA_Tooltip_ability_item_imba_shotgun_Note0"                              "Does not proc on-hit effects."
-    "DOTA_Tooltip_ability_item_imba_shotgun_Note1"                              "Bonus effect! the projectiles are colored depending on the theme of the hero."
-    "DOTA_Tooltip_ability_item_imba_shotgun_Note2"                              "Holding Spellfencer will change the projectile's damage type from physical to magical."
-    "DOTA_Tooltip_ability_item_imba_shotgun_bonus_damage"                       "+$damage"
-    "DOTA_Tooltip_ability_item_imba_shotgun_bonus_as"                           "+$attack"
-    "DOTA_Tooltip_ability_item_imba_shotgun_bonus_agi"                          "+$agi"
-
-    "DOTA_Tooltip_Ability_item_imba_starfury"                   "Starfury (WIP)"
-    "DOTA_Tooltip_ability_item_imba_starfury_Description"                       "<font color='#FF7800'>Lightspeed (Passive):</font> Grants a %proc_chance%%% chance per attack to increase your agility by %proc_bonus%%% for a short duration. Does not stack with itself, but can refresh itself when procced again.\n<font color='#FF7800'>Fury of the Stars (Passive):</font> When Starfury is off cooldown, each attack launches shooting stars towards all enemies in %range% range of the original target. Each star deals %agility_pct%% of your current agility to its target."
-    "DOTA_Tooltip_ability_item_imba_starfury_Lore"                              "Thori'dal, the Stars' Fury is an ancient, enchanted bow, which grants its owner unparalleled swiftness in combat."
-    "DOTA_Tooltip_ability_item_imba_starfury_Note0"                             "Does not proc on-hit effects."
-    "DOTA_Tooltip_ability_item_imba_starfury_Note1"                             "When proccing both Lightspeed and Fury of the Stars on the same attack, Lightspeed's bonus agility will still be added as damage to the star projectiles."
-    "DOTA_Tooltip_ability_item_imba_starfury_Note2"                             "Bonus effect! the projectiles are colored depending on the theme of the hero."                
-    "DOTA_Tooltip_ability_item_imba_starfury_bonus_damage"                      "+$damage"
-    "DOTA_Tooltip_ability_item_imba_starfury_bonus_as"                          "+$attack"
-    "DOTA_Tooltip_ability_item_imba_starfury_bonus_agi"                         "+$agi"
-    "DOTA_Tooltip_modifier_item_imba_starfury_buff_dummy"                               "Lightspeed"
-    "DOTA_Tooltip_modifier_item_imba_starfury_buff_dummy_Description"                   "Temporarily increased agility"
-
-    "DOTA_Tooltip_Ability_item_imba_greatwyrm_plate"            "Calaminh's Tutela Plate (WIP)"
-    "DOTA_Tooltip_ability_item_imba_greatwyrm_plate_Description"                "Blocks part of all incoming physical damage. Ranged heroes can only utilize 60%% of the damage block.\n<font color='#FF7800'>Greater Parry (Passive):</font> Also reduces all incoming damage by %damage_reduction%%% and grants %tenacity%%% tenacity.\n<font color='#FF7800'>Bulwark (Active):</font> Temporarily grants nearby allies %active_armor% bonus armor, %damage_block% damage block, %damage_reduction%%% damage reduction, and %tenacity%%% tenacity. Does not stack with the passive bonuses."
-    "DOTA_Tooltip_ability_item_imba_greatwyrm_plate_Lore"                       "With great power comes great responsibility, but they also say absolute power corrupts absolutely. The 87th and missing king of Ulmarain knew the end of times were coming with the clashing of heroes and took a gamble by forging Tutela, the guardian plate - indestructible, unconquerable, and eternal. Even when the world crumbles into ash and cinders, a lone survivor will remain."
-    "DOTA_Tooltip_ability_item_imba_greatwyrm_plate_Note0"                      "\nTenacity reduces the duration of debuffs inflicted on you by enemies."
-    "DOTA_Tooltip_ability_item_imba_greatwyrm_plate_Note1"                      "\nDamage block, damage reduction and tenacity from Stout Shield, Poor Man's Shield, Vanguard, Crimson Guard or Tutela Plate do not stack with themselves or each other."
-    "DOTA_Tooltip_ability_item_imba_greatwyrm_plate_Note2"                      "\nBulwark overrides and does not stack with Crimson Guard's active Guard ability."
-    "DOTA_Tooltip_ability_item_imba_greatwyrm_plate_health"                     "+$health"
-    "DOTA_Tooltip_ability_item_imba_greatwyrm_plate_health_regen"               "+$hp_regen"
-    "DOTA_Tooltip_ability_item_imba_greatwyrm_plate_bonus_stats"                "+$all"
-    "DOTA_Tooltip_ability_item_imba_greatwyrm_plate_armor"                      "+$armor"
-    "DOTA_Tooltip_ability_item_imba_greatwyrm_plate_bonus_strength"             "+$str"
-    "DOTA_Tooltip_ability_item_imba_greatwyrm_plate_damage_block"               "DAMAGE BLOCK:"
-    "DOTA_Tooltip_ability_item_imba_greatwyrm_plate_duration"                   "BULWARK DURATION:"
-    "DOTA_Tooltip_ability_item_imba_greatwyrm_plate_active_radius"              "BULWARK RANGE:"
-
-    "DOTA_Tooltip_modifier_item_imba_greatwyrm_plate_buff"                              "Bulwark"
-    "DOTA_Tooltip_modifier_item_imba_greatwyrm_plate_buff_Description"                  "Gaining increased armor, damage block, and tenacity. All incoming damage is reduced."
-
-    "DOTA_Tooltip_Ability_item_imba_tranquil_boots_2"           "Ironleaf Boots (WIP)"
-    "DOTA_Tooltip_ability_item_imba_tranquil_boots_2_Description"               "<font color='#FF7800'>Tranquility (passive):</font> passively accumulates up to %max_stacks% stacks of tranquility while off cooldown, at a rate of one per second. Each stack increases your movement speed by %move_speed_per_sec%, while granting %health_regen_per_sec% health regen and %armor_per_sec% armor to all allies in %radius% radius.\nAttacking or being attacked puts Ironleaf boots on cooldown, and removes all stacks of Tranquility from you and your allies."
-    "DOTA_Tooltip_ability_item_imba_tranquil_boots_2_Lore"                      "While bearing a powerful regenerative enchantment, which can bolster an entire army's frontline, this pair of boots is still susceptible to direct attacks."
-    "DOTA_Tooltip_ability_item_imba_tranquil_boots_2_base_move_speed"           "+$move_speed"
-    "DOTA_Tooltip_ability_item_imba_tranquil_boots_2_base_armor"                "+$armor"
-    "DOTA_Tooltip_ability_item_imba_tranquil_boots_2_base_health_regen"         "+$hp_regen"
-
-    "DOTA_Tooltip_modifier_item_imba_tranquil_boots_2_stacks"                           "Tranquility"
-    "DOTA_Tooltip_modifier_item_imba_tranquil_boots_2_stacks_Description"               "Increased health regen and armor"
 
 
     // Angel Arena Black Star items

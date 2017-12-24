@@ -206,20 +206,16 @@ PANORAMA_SHOP_ITEMS = {
 	{
 		{
 			{
-				"item_imba_soul_of_truth",
 				"item_imba_white_queen_cape",
-				"item_imba_azura",
-				"item_imba_shotgun",
-				"item_imba_nether_wand",
-				"item_imba_tranquil_boots_2",
-				"item_imba_reverb_rapier",
+				"item_imba_soul_of_truth",
 				"item_imba_power_treads_2",
-				"item_imba_elder_staff",
-				"item_imba_greatwyrm_plate",
-				"item_imba_starfury",
+				"item_rapier",
+				"item_rapier",
+				"item_rapier",
 			}
 		}
 	}
+
 }
 
 SHOP_LIST_STATUS_IN_INVENTORY = 0
