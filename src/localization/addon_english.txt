@@ -874,7 +874,7 @@
     "hintQOP"                         "Queen of Pain deals 10% more damage to male heroes, but receives 10% more damage from female heroes."
     "hintWisp"                         "Wisp gains 1 free level of Essence Aura Redux, whether it has it or not."
     "hintMeepo"                         "Meepo's damage is increased by 5% for every other Meepo on his team. Takes 25% max health as damage whenever a Meepo dies."
-    "hintPL"                         "Phantom Lancer gains Phantom Rush as a free ability."
+    "hintPL"                         "Illusion creating abilities will have cooldowns reduced by 50% when cast by Phantom Lancer."
     "hintCM"                         "Crystal Maiden gains +2 movement speed for each level she puts in Support skills."
     "hintAntiMage"                         "After Anti-Mage blinks he will silence enemies within 200 radius for 2 seconds."
     "hintElderTitan"                         "Elder Titan gains 3% bonus movement speed for every aura he is carrying."
@@ -1317,7 +1317,7 @@
     "unique_mechanic_oracle"                        "Support items used by Oracle will have their cooldowns reduced by 20%."
     "unique_mechanic_obsidian_destroyer"                        "<font color=\'#ffd966\'>Astral Imprisonment</font> steals 7 intelligence for 60 seconds when cast by Outworld Devourer."
     "unique_mechanic_phantom_assassin"               "When Phantom Assassin uses <font color=\'#ffd966\'>Dagger</font> abilities they will have 50% of their manacost refunded, and their cooldown reduced by 2 second."
-    "unique_mechanic_phantom_lancer"            "Phantom Lancer gains <font color=\'#ffd966\'>Phantom Rush</font> as a free ability."
+    "unique_mechanic_phantom_lancer"            "<font color=\'#ffd966\'>Illusion</font> creating abilities will have cooldowns reduced by 50% when cast by Phantom Lancer."
     "unique_mechanic_phoenix"           "Phoenix passively triggers <font color=\'#ffd966\'>Supernova</font> when taking lethal damage."
     "unique_mechanic_puck"          "Puck has a 50% chance to reflect disjointed spells."
     "unique_mechanic_pudge"                        "Pudge receives 2 charges of <font color=\'#ffd966\'>Meat Hook</font>. When Meat Hook deals damage, Pudge receives a debuff which prevents Meat Hook from dealing damage."
@@ -3735,9 +3735,9 @@
 
     /// PHANTOM LANCER​
     "DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk"   "Phantom Lancer Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk_Description"   "Phantom Lancer gains Phantom Rush as a free ability.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
-    "DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_cooldown"   "Recharging"
-    "DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_cooldown_Description"   "Phantom Rush is on cooldown."
+    "DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_perk_Description"   "Illusion creating abilities will have cooldowns reduced by 50%d%.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
+    //"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_cooldown"   "Recharging"
+    //"DOTA_Tooltip_modifier_npc_dota_hero_phantom_lancer_cooldown_Description"   "Phantom Rush is on cooldown."
 
     /// PHOENIX​
     "DOTA_Tooltip_modifier_npc_dota_hero_phoenix_perk"  "Phoenix Perk"

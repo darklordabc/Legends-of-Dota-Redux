@@ -2,6 +2,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 10.0
+- Replaced Phantom Lancer's Perk
+
 ## 9.9
 - Removed Call of the wild Boar, broken ability
 - Fixed The Saints Rage not healing
