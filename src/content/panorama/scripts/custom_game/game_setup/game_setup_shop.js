@@ -55,6 +55,7 @@ function CreateItemList(optionPanel) {
         var ButtonSetAll = TabButton.FindChildTraverse('ButtonSetAll');
         ButtonSetAll.checked = true;
         FillShopPage(TabShopItemlistPanel, ButtonSetAll, shopName, shopContent);
+        ButtonSetAll.AddClass('optionsSlotPanelHost');
         ButtonSetAll.SetPanelEvent('onactivate', function() {
             SetItemsPurchasableFromPanel(TabShopItemlistPanel, ButtonSetAll.checked);
             TabShopItemlistPanel.FindChildrenWithClassTraverse('ButtonSetAll').forEach(function(panel) {
@@ -95,6 +96,7 @@ function FillShopPage(panel, PageButtonSetAll, shopName, shopContent) {
         });
         var ButtonSetAll = $.CreatePanel('ToggleButton', TabButton, '');
         ButtonSetAll.AddClass('ButtonSetAll');
+        ButtonSetAll.AddClass('optionsSlotPanelHost');
         ButtonSetAll.checked = true;
         ButtonSetAll.SetPanelEvent('onactivate', function() {
             SetItemsPurchasableFromPanel(TabShopItemlistPanel, ButtonSetAll.checked);

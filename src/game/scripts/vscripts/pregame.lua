@@ -394,11 +394,9 @@ function Pregame:init()
 
     CustomGameEventManager:RegisterListener('lodSetShopItemsPurchasable', function(eventSourceIndex, args)
         local playerID = args.PlayerID
-        if GameRules:State_Get() == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP and
-           GameRules:PlayerHasCustomGameHostPrivileges(PlayerResource:GetPlayer(playerID)) then
-            if args.silent == 1 then
-                playerID = -1
-            end
+        if self:getPhase() == constants.PHASE_OPTION_SELECTION and
+           isPlayerHost(PlayerResource:GetPlayer(playerID)) then
+            if args.silent == 1 then playerID = -1 end
             PanoramaShop:SetItemsPurchasable(args.items, args.purchasable == 1, playerID)
         end
     end)
