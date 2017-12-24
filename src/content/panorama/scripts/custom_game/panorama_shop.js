@@ -76,8 +76,27 @@ function SearchItems() {
 
 function PushItemsToList() {
 	var isShopPageSelected = false;
-	$.Each(ItemList, function(shopContent, shopName) {
-		shopName = shopName + '';
+	// Get array of tab names which has > 0 active items
+	var enabledPages = Object.keys(ItemList)
+		.filter(function(shopName) {
+			var shopContent = ItemList[shopName];
+			for (var tabName in shopContent) {
+				for (var groupName in shopContent[tabName]) {
+					for (var itemIndex in shopContent[tabName][groupName]) {
+						var itemName = shopContent[tabName][groupName][itemIndex];
+						if (ItemData[itemName] && ItemData[itemName].purchasable) {
+							return true;
+						}
+					}
+				}
+			}
+
+			return false;
+		});
+
+	$.Each(enabledPages, function(shopName) {
+		var shopContent = ItemList[shopName];
+
 		var TabButton = $.CreatePanel('RadioButton', $('#ShopPagesList'), '');
 		TabButton.BLoadLayoutSnippet('ShopPageButton');
 		TabButton.FindChildTraverse('ButtonImage').SetImage('file://{images}/custom_game/shop/page_' + shopName + '.png');
