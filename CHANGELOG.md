@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file.
 - Changed Underlord's Perk to 2+ to all stats for each level in custom abilities
 - Added Perks for Pangolier and Dark Willow
 - Pocket Factory is now troll combow with Rearm Redux
+- Spin Webb no longer counted as invisible
 
 ## 9.8
 - Updated values of consumeable items to match latest patch

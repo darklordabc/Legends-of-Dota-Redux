@@ -1610,7 +1610,7 @@
     }
     "broodmother_spin_web"
     {
-        "ReduxFlags"                                                           "mobility | invis"
+        "ReduxFlags"                                                           "mobility"
         "ReduxPerks"                                                           "mobility"
         "ReduxCost"                                                            "10"
     }
