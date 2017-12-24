@@ -201,21 +201,7 @@ PANORAMA_SHOP_ITEMS = {
 				"item_lotus_sphere",
 			}
 		}
-	},
-	-- 3 - Dota IMBA
-	{
-		{
-			{
-				"item_imba_white_queen_cape",
-				"item_rapier",
-				"item_rapier",
-				"item_rapier",
-				"item_rapier",
-				"item_rapier",
-			}
-		}
 	}
-
 }
 
 SHOP_LIST_STATUS_IN_INVENTORY = 0
@@ -435,7 +421,7 @@ end
 function PanoramaShop:SetItemsPurchasable(items, purchasable, playerID)
 	local needsUpdate = false
 	for _, item in pairs(items) do
-		local result = PanoramaShop:RecursiveSetItemPurchasable(item, purchasable, playerID)	
+		local result = PanoramaShop:RecursiveSetItemPurchasable(item, purchasable, playerID)
 		if result then
 			needsUpdate = true
 			if #result > 1 then

@@ -7226,14 +7226,6 @@
     "DOTA_Tooltip_modifier_imba_deadeye_vision"                                         "Deadeye"
     "DOTA_Tooltip_modifier_imba_deadeye_vision_Description"                             "Increased vision range."
 
-    "DOTA_Tooltip_Ability_item_imba_white_queen_cape"           "White Queen's Cape"
-    "DOTA_Tooltip_ability_item_imba_white_queen_cape_Description"               "Active: Lesser Avatar - Grants Spell Immunity and 100% Magic Damage Resistance for a short duration. Some Ultimate abilities are able to disable through White Queen Cape."
-    "DOTA_Tooltip_ability_item_imba_white_queen_cape_Lore"                      "A heavy cape imbued with a thick layer of protective enchantments."
-    "DOTA_Tooltip_ability_item_imba_white_queen_cape_Note1"                     "Using White Queen Cape may remove some positive buffs."
-    "DOTA_Tooltip_ability_item_imba_white_queen_cape_bonus_strength"            "+$str"
-    "DOTA_Tooltip_ability_item_imba_white_queen_cape_bonus_damage"              "+$damage"
-    "DOTA_Tooltip_ability_item_imba_white_queen_cape_duration"                  "DURATION:"
-
 
     // Angel Arena Black Star items
 
