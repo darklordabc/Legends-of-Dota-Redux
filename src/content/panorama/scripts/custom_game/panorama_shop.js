@@ -97,12 +97,16 @@ function PushItemsToList() {
 	$.Each(enabledPages, function(shopName) {
 		var shopContent = ItemList[shopName];
 
-		var TabButton = $.CreatePanel('RadioButton', $('#ShopPagesList'), '');
-		TabButton.BLoadLayoutSnippet('ShopPageButton');
-		TabButton.FindChildTraverse('ButtonImage').SetImage('file://{images}/custom_game/shop/page_' + shopName + '.png');
-		TabButton.SetPanelEvent('onactivate', function() {
-			SelectShopPage(shopName);
-		});
+		// Don't show tab list when only one tab enabled
+		if (enabledPages.length > 0) {
+			var TabButton = $.CreatePanel('RadioButton', $('#ShopPagesList'), '');
+			TabButton.BLoadLayoutSnippet('ShopPageButton');
+			TabButton.FindChildTraverse('ButtonImage').SetImage('file://{images}/custom_game/shop/page_' + shopName + '.png');
+			TabButton.SetPanelEvent('onactivate', function() {
+				SelectShopPage(shopName);
+			});
+		}
+
 		var TabShopItemlistPanel = $.CreatePanel('Panel', $('#ShopPagesHost'), shopName);
 		TabShopItemlistPanel.BLoadLayoutSnippet('ShopPage');
 		FillShopPage(TabShopItemlistPanel, shopName, shopContent);
