@@ -96,10 +96,11 @@ function PushItemsToList() {
 
 	$.Each(enabledPages, function(shopName) {
 		var shopContent = ItemList[shopName];
+		var TabButton;
 
 		// Don't show tab list when only one tab enabled
-		if (enabledPages.length > 0) {
-			var TabButton = $.CreatePanel('RadioButton', $('#ShopPagesList'), '');
+		if (enabledPages.length > 1) {
+			TabButton = $.CreatePanel('RadioButton', $('#ShopPagesList'), '');
 			TabButton.BLoadLayoutSnippet('ShopPageButton');
 			TabButton.FindChildTraverse('ButtonImage').SetImage('file://{images}/custom_game/shop/page_' + shopName + '.png');
 			TabButton.SetPanelEvent('onactivate', function() {
@@ -112,8 +113,8 @@ function PushItemsToList() {
 		FillShopPage(TabShopItemlistPanel, shopName, shopContent);
 
 		if (!isShopPageSelected) {
+			if (TabButton) TabButton.checked = true;
 			SelectShopPage(shopName);
-			TabButton.checked = true;
 			isShopPageSelected = true;
 		}
 	});
