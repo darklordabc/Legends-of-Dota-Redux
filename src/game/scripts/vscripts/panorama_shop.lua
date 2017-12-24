@@ -33,6 +33,7 @@ PANORAMA_SHOP_ITEMS = {
 				"item_ogre_axe",
 				"item_blade_of_alacrity",
 				"item_staff_of_wizardry",
+				"item_redux_silver_consume",
 			},
 			{
 				"item_ring_of_protection",
