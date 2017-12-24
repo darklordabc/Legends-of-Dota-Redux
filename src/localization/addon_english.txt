@@ -7234,19 +7234,6 @@
     "DOTA_Tooltip_ability_item_imba_white_queen_cape_bonus_damage"              "+$damage"
     "DOTA_Tooltip_ability_item_imba_white_queen_cape_duration"                  "DURATION:"
 
-    "DOTA_Tooltip_Ability_item_imba_soul_of_truth"              "Soul of Truth"
-    "DOTA_Tooltip_ability_item_imba_soul_of_truth_Description"                  "When used, grants its bearer armor, health regeneration, and True Sight in %radius% radius for %duration_tooltip% minutes. The buff is lost on death.\n<font color='#00FF40'>Soul of Truth is a consumable item - it must be used to have any effect.</font>"
-    "DOTA_Tooltip_ability_item_imba_soul_of_truth_Lore"                         "The golden soul of a being incapable of lies or deceit. Its gaze can pierce any disguise or veil."
-    "DOTA_Tooltip_ability_item_imba_soul_of_truth_Note0"                        "Does not stack. Using Soul of Truth again only refreshes the buff's duration."
-    "DOTA_Tooltip_ability_item_imba_soul_of_truth_duration_tooltip"             "DURATION:"
-    "DOTA_Tooltip_ability_item_imba_soul_of_truth_radius"                       "TRUE SIGHT RADIUS:"
-    "DOTA_Tooltip_ability_item_imba_soul_of_truth_armor"                        "+$armor"
-    "DOTA_Tooltip_ability_item_imba_soul_of_truth_health_regen"                 "+$hp_regen"
-
-    "DOTA_Tooltip_modifier_imba_soul_of_truth_buff"                                     "Soul of Truth"
-    "DOTA_Tooltip_modifier_imba_soul_of_truth_buff_Description"                         "True Sight, bonus armor and health regeneration."
-
-
 
     // Angel Arena Black Star items
 
