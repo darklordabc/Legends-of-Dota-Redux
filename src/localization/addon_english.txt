@@ -7230,18 +7230,11 @@
     // Angel Arena Black Star items
 
     "DOTA_Tooltip_ability_item_lucifers_claw" "Lucifer's Claw"
-    "DOTA_Tooltip_ability_item_lucifers_claw_Description" "Active: Unwilling Ritual - Targets non-hero enemy unit. The target gets sacrificed for a Doomling. Doomling possesses the abilities of the sacrificed unit and and adds it's health, damage and mana to Doomling's stats. By default doomling has %doomling_health% health, %doomling_mana% mana, %doomling_damage_min% - %doomling_damage_max% damage, %doomling_health_regen% health regeneration, %doomling_mana_regen% mana regeneration. Normal XP and gold bounty is granted for the target unit.\nPassive: Quell - Increases attack damage against non-hero units, based on whether the equipped hero is ranged or melee. Does not provide bonus damage against Bosses."
-    "DOTA_Tooltip_ability_item_lucifers_claw_Note0" "Doomling also has lifesteal and Quell"
-    "DOTA_Tooltip_ability_item_lucifers_claw_Note1" "The Doomling is summoned Creep-Hero with unlimited duration. It therefore can be targeted by some more spells."
-    "DOTA_Tooltip_ability_item_lucifers_claw_Note2" "Has a 4 second cooldown on Trees."
+    "DOTA_Tooltip_ability_item_lucifers_claw_Description" "<h1>Active: Unwilling Ritual</h1> Targets non-hero enemy unit. The target gets sacrificed for a Doomling. Doomling possesses the abilities of the sacrificed unit and and adds it's health, damage and mana to Doomling's stats. By default doomling has %doomling_health% health, %doomling_mana% mana, %doomling_damage_min%-%doomling_damage_max% damage, %doomling_health_regen% health regeneration, %doomling_mana_regen% mana regeneration. Normal XP and gold bounty is granted for the target unit.\n<h1>Passive: Quell</h1>Increases attack damage against non-hero units by %damage_bonus% for melee heroes, and %damage_bonus_ranged% for ranged."
+    "DOTA_Tooltip_ability_item_lucifers_claw_Note0" "The Doomling is summoned Creep-Hero with unlimited duration. It therefore can be targeted by some more spells."
+    "DOTA_Tooltip_ability_item_lucifers_claw_Note1" "Has a 4 second cooldown on Trees."
     "DOTA_Tooltip_ability_item_lucifers_claw_bonus_health_regen" "+$hp_regen"
-    "DOTA_Tooltip_ability_item_lucifers_claw_bonus_armor" "+$armor"
     "DOTA_Tooltip_ability_item_lucifers_claw_bonus_all_stats" "+$all"
-    "DOTA_Tooltip_ability_item_lucifers_claw_bonus_damage" "+$damage"
-    "DOTA_Tooltip_ability_item_lucifers_claw_lifesteal_percent" "%LIFESTEAL:"
-    "DOTA_Tooltip_ability_item_lucifers_claw_damage_bonus" "%QUELL MELEE DAMAGE:"
-    "DOTA_Tooltip_ability_item_lucifers_claw_damage_bonus_ranged" "%QUELL RANGED DAMAGE:"
-    "DOTA_Tooltip_ability_item_lucifers_claw_quelling_range_tooltip" "CAST RANGE:"
 
     "DOTA_Tooltip_ability_item_steam_footgear" "Steam Footgear"
     "DOTA_Tooltip_ability_item_steam_footgear_Description" "Active: Passability - Gives you unobstructed movement."

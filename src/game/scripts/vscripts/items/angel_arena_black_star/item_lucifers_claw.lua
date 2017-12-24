@@ -42,8 +42,6 @@ function OnSpellStart(keys)
 
 		doomling:CreatureLevelUp(1)
 
-		ability:ApplyDataDrivenModifier(caster, doomling, "modifier_item_lucifers_claw_unique", {})
-		
 		caster.lucifers_claw_doomling_ent = doomling
 	end
 end
