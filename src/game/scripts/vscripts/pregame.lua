@@ -6956,7 +6956,7 @@ function Pregame:getSkillforBot( botInfo, botSkills )
     local isAdded
 
     customSlots = {
-        npc_dota_hero_nevermore = 8
+        npc_dota_hero_nevermore = (maxSlots == 4 and 6 or 8)
     }
 
     if customSlots[heroName] then
