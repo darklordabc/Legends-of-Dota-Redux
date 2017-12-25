@@ -914,6 +914,16 @@ function skillManager:isUlt(skillName)
         return true
     end
 
+    -- Secondary KV check
+    if util:getAbilityKV(skillName, "AbilityType") and string.match(util:getAbilityKV(skillName, "AbilityType"), 'DOTA_ABILITY_TYPE_ULTIMATE') then
+        return true
+    end
+
+    -- Behavior check
+    if util:getAbilityKV(skillName, "AbilityBehavior") and string.match(util:getAbilityKV(skillName, "AbilityBehavior"), 'DOTA_ABILITY_TYPE_ULTIMATE') then
+        return true
+    end
+
     return false
 end
 
