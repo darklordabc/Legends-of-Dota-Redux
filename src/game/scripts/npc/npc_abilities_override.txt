@@ -2608,6 +2608,7 @@
     }
      "dark_willow_bedlam"
     {
+        "AbilityType"                                                      "DOTA_ABILITY_TYPE_ULTIMATE"
         "ReduxFlags"                                                           "summon"
         "ReduxPerks"                                                           "summon_non_ult"
     }

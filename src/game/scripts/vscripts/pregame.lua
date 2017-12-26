@@ -601,7 +601,7 @@ function Pregame:init()
 
     -- Custom -- set preset
     -- if mapName == 'custom' or mapName == 'custom_bot' or mapName == 'dota_180' or mapName == 'custom_702' or mapName == '10_vs_10' then
-    if mapName == 'dota_180' or mapName == 'custom_702' or mapName == 'custom' or mapName == 'all_allowed_advanced' then
+    if mapName == 'dota_180' or mapName == 'custom_702' or mapName == 'custom' or mapName == 'custom_bot' or mapName == 'all_allowed_advanced' then
         self:setOption('lodOptionGamemode', 1)
     end
 
@@ -617,8 +617,10 @@ function Pregame:init()
 
     -- Bot match
     -- if mapName == 'custom_bot' or mapName == 'custom_702' or mapName == 'dota_180' or mapName == '10_vs_10' then
-    if mapName == 'dota_180' or mapName == 'custom_702' or mapName == 'custom' or mapName == 'all_allowed_advanced' then
+    if mapName == 'custom_bot' then
         self.enabledBots = true
+        self:setOption('lodOptionBotsRadiant', 5, true)
+        self:setOption('lodOptionBotsDire', 5, true)
     end
 
     -- 3 VS 3
@@ -762,8 +764,8 @@ function Pregame:loadDefaultSettings()
     self:setOption('lodOptionGameSpeedFreeCourier', 1, true)
 
     -- Set bot options
-    self:setOption('lodOptionBotsRadiant', 5, true)
-    self:setOption('lodOptionBotsDire', 5, true)
+    self:setOption('lodOptionBotsRadiant', 0, true)
+    self:setOption('lodOptionBotsDire', 0, true)
     self:setOption('lodOptionBotsUnfairBalance', 1, true)
 
     -- Turn easy mode off
@@ -1193,7 +1195,7 @@ function Pregame:onThink()
                 end
             else
                 -- Change to picking phase
-                if util:anyBots() or self.enabledBots then
+                if (util:anyBots() or self.enabledBots) and OptionManager:GetOption('mapname') == "custom_bot" then
                     GameRules:GetGameModeEntity():SetCustomGameForceHero("")
                     self:setPhase(constants.PHASE_SELECTION)
                 else
@@ -2024,8 +2026,7 @@ function Pregame:finishOptionSelection()
             end
         else
             -- Hero selection
-            print(self.enabledBots)
-            if util:anyBots() or self.enabledBots then
+            if (util:anyBots() or self.enabledBots) and OptionManager:GetOption('mapname') == "custom_bot" then
                 GameRules:GetGameModeEntity():SetCustomGameForceHero("")
                 self:setPhase(constants.PHASE_SELECTION)
             else
@@ -6718,6 +6719,7 @@ end
 function Pregame:addBotPlayers()
     -- self.enabledBots = false
     -- Ensure bots should actually be added
+    if OptionManager:GetOption('mapname') ~= "custom_bot" then return end
     if self.addedBotPlayers then return end
     self.addedBotPlayers = true
     if not self.enabledBots then return end

@@ -4850,7 +4850,7 @@ function OnOptionChanged(table_name, key, data) {
 
         case 'lodOptionBalanceModePoints':
             SetBalanceModePoints(data.v);
-            break;
+            break;      
     }
 
     $('#importAndExportEntry').text = JSON.stringify(optionValueList).replace(/,/g, ',\n');
@@ -5505,7 +5505,7 @@ function getAbilityGlobalPickPopularity(ability) {
     }
 
     // Bots
-    if(mapName == 'custom') {
+    if(mapName == 'custom_bot') {
         $.GetContextPanel().SetHasClass('disallow_bots', false);
     }
 

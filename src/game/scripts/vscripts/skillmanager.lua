@@ -909,18 +909,30 @@ end
 
 -- Returns true if a skill is an ultimate
 function skillManager:isUlt(skillName)
+    if skillName == "dark_willow_bedlam" then
+        print("bbbbnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn")
+    end
     -- Check if it is tagged as an ulty
     if mainAbList[skillName] and mainAbList[skillName].AbilityType and mainAbList[skillName].AbilityType == 'DOTA_ABILITY_TYPE_ULTIMATE' then
+        if skillName == "dark_willow_bedlam" then
+            print("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn")
+        end
         return true
     end
 
     -- Secondary KV check
     if util:getAbilityKV(skillName, "AbilityType") and string.match(util:getAbilityKV(skillName, "AbilityType"), 'DOTA_ABILITY_TYPE_ULTIMATE') then
+        if skillName == "dark_willow_bedlam" then
+            print("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn")
+        end
         return true
     end
 
     -- Behavior check
     if util:getAbilityKV(skillName, "AbilityBehavior") and string.match(util:getAbilityKV(skillName, "AbilityBehavior"), 'DOTA_ABILITY_TYPE_ULTIMATE') then
+        if skillName == "dark_willow_bedlam" then
+            print("nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn")
+        end
         return true
     end
 
