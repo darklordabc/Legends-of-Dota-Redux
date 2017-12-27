@@ -199,9 +199,9 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
                                     mult = 2
                                 end
                             elseif lvl == 2 then
-                                if r < 2 then
+                                if r < 20 then
                                     mult = 3
-                                elseif r < 4 then
+                                elseif r < 40 then
                                     mult = 2
                                 end
                             elseif lvl == 3 then
