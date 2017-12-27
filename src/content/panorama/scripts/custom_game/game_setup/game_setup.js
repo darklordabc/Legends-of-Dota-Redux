@@ -5505,9 +5505,7 @@ function getAbilityGlobalPickPopularity(ability) {
     }
 
     // Bots
-    if(mapName == 'custom_bot') {
-        $.GetContextPanel().SetHasClass('disallow_bots', false);
-    }
+    $.GetContextPanel().SetHasClass('disallow_bots', mapName !== 'custom_bot');
 
     // Are we on a map that allocates slots for us?
     if(mapName == '3_vs_3' || mapName == '5_vs_5') {
