@@ -999,6 +999,10 @@ function Pregame:applyBuilds()
             end
 
             if hero ~= nil and IsValidEntity(hero) then
+                if self.wispSpawning then
+                    self:validateBuilds(playerID)
+                end
+
                 local build = self.selectedSkills[playerID]
 
                 if build then
@@ -1196,13 +1200,12 @@ function Pregame:onThink()
             else
                 -- Change to picking phase
                 if self:isBackgroundSpawning() then
-                    GameRules:GetGameModeEntity():SetCustomGameForceHero("")
                     self:setPhase(constants.PHASE_SELECTION)
                 else
                     GameRules:SetPreGameTime(180.0)
-                    self.wispSpawning = true
                     self:setPhase(constants.PHASE_SPAWN_HEROES)
                 end
+                self:setWispMethod()
                 self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'), OptionManager:GetOption('pickingTime'))
             end
         end
@@ -1441,6 +1444,15 @@ function Pregame:isBackgroundSpawning()
     return (OptionManager:GetOption('mapname') == "custom_bot" or (self.optionStore['lodOptionGamemode'] ~= 1 and self.optionStore['lodOptionGamemode'] ~= -1))
 end
 
+function Pregame:setWispMethod()
+    if OptionManager:GetOption('mapname') == "custom_bot" then
+        GameRules:GetGameModeEntity():SetCustomGameForceHero("")
+    else
+        GameRules:GetGameModeEntity():SetCustomGameForceHero("npc_dota_hero_wisp")
+        self.wispSpawning = true
+    end 
+end
+
 -- Called to prepare to get player data when someone connects
 function Pregame:preparePlayerDataFetch()
     -- Listen for someone who is connecting
@@ -1476,9 +1488,9 @@ end
 
 -- Spawns all heroes (this should only be called once!)
 function Pregame:spawnAllHeroes()
-    if self.wispSpawning then
-        return
-    end
+    -- if not self:isBackgroundSpawning() then
+    --     return
+    -- end
 
     for playerID = 0, DOTA_MAX_TEAM_PLAYERS - 1 do
         -- Spawn only valid players
@@ -1580,7 +1592,12 @@ function Pregame:actualSpawnPlayer(forceID)
             local spawnTheHero = function()
                 local status2,err2 = pcall(function()
                     -- Create the hero and validate it
-                    if self.wispSpawning then
+                    --local hero = PlayerResource:ReplaceHeroWith(playerID,heroName,0,0)
+
+                    if OptionManager:GetOption('mapname') == 'custom_bot' then
+                        local hero = CreateHeroForPlayer(heroName, player)
+                        UTIL_Remove(hero)
+                    elseif self:isBackgroundSpawning() then
                         local hero = PlayerResource:ReplaceHeroWith(playerID,heroName,0,0)
                     else
                         local hero = CreateHeroForPlayer(heroName, player)
@@ -2031,14 +2048,12 @@ function Pregame:finishOptionSelection()
         else
             -- Hero selection
             if self:isBackgroundSpawning() then
-                GameRules:GetGameModeEntity():SetCustomGameForceHero("")
                 self:setPhase(constants.PHASE_SELECTION)
             else
                 GameRules:SetPreGameTime(180.0)
-                self.wispSpawning = true
                 self:setPhase(constants.PHASE_SPAWN_HEROES)
             end
-            -- Change the below line to "self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'), nil)" to disable unlimited time
+            self:setWispMethod()
             self:setEndOfPhase(Time() + OptionManager:GetOption('pickingTime'), OptionManager:GetOption('pickingTime'))
         end
     end
@@ -3821,19 +3836,14 @@ end]]
 
 -- Validates builds
 function Pregame:validateBuilds(specificID)
-    if self.wispSpawning then
-        if not specificID then return end
-    else
-        -- Only process this once
-        if self.validatedBuilds then return end
-        self.validatedBuilds = true 
-    end
+    if not specificID or self.validatedBuilds then return end
+    self.validatedBuilds = true 
 
     -- Generate 10 builds
     local minPlayerID = 0
     local maxPlayerID = 24
 
-    if self.wispSpawning then
+    if specificID then
         minPlayerID = specificID
         maxPlayerID = specificID+1
     end
@@ -3850,7 +3860,6 @@ function Pregame:validateBuilds(specificID)
             local filter = function (  )
                 return true
             end
-
             if self.selectedPlayerAttr[playerID] == 'str' then
                 filter = function(heroName)
                     return this.heroPrimaryAttr[heroName] == 'str'
@@ -4855,16 +4864,55 @@ function Pregame:onPlayerSelectAllRandomBuild(eventSourceIndex, args)
     end
 end
 
+function PrintTable(t, indent, done)
+  --print ( string.format ('PrintTable type %s', type(keys)) )
+  if type(t) ~= "table" then return end
+
+  done = done or {}
+  done[t] = true
+  indent = indent or 0
+
+  local l = {}
+  for k, v in pairs(t) do
+    table.insert(l, k)
+  end
+
+  table.sort(l)
+  for k, v in ipairs(l) do
+    -- Ignore FDesc
+    if v ~= 'FDesc' then
+      local value = t[v]
+
+      if type(value) == "table" and not done[value] then
+        done [value] = true
+        print(string.rep ("\t", indent)..tostring(v)..":")
+        PrintTable (value, indent + 2, done)
+      elseif type(value) == "userdata" and not done[value] then
+        done [value] = true
+        print(string.rep ("\t", indent)..tostring(v)..": "..tostring(value))
+        PrintTable ((getmetatable(value) and getmetatable(value).__index) or getmetatable(value), indent + 2, done)
+      else
+        if t.FDesc and t.FDesc[v] then
+          print(string.rep ("\t", indent)..tostring(t.FDesc[v]))
+        else
+          print(string.rep ("\t", indent)..tostring(v)..": "..tostring(value))
+        end
+      end
+    end
+  end
+end
+
 -- Player wants to ready up
 function Pregame:onPlayerReady(eventSourceIndex, args)
     local playerID = args.PlayerID
     if self:getPhase() ~= constants.PHASE_BANNING and self:getPhase() ~= constants.PHASE_SELECTION and self:getPhase() ~= constants.PHASE_RANDOM_SELECTION and self:getPhase() ~= constants.PHASE_REVIEW and not self:canPlayerPickSkill(playerID) then return end
+    self:validateBuilds(playerID)
     if self:canPlayerPickSkill(playerID) and IsValidEntity(PlayerResource:GetSelectedHeroEntity(args.PlayerID)) then
         local hero = PlayerResource:GetSelectedHeroEntity(playerID)
         if IsValidEntity(hero) then
-            if self.wispSpawning then
+            -- if self.wispSpawning then
                 self:validateBuilds(playerID)
-            end
+            -- end
             local newBuild = util:DeepCopy(self.selectedSkills[playerID])
             local count = 0
             for key,_ in pairs(newBuild) do
@@ -6214,7 +6262,7 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
                 end
             end
 
-            if not self.botPlayers or not self.botPlayers.all[playerID] then
+            if self.botPlayers and not self.botPlayers.all[playerID] then
                 if not abilityDraft[abilityName] then
                     shouldAdd = false
                 end
@@ -8091,6 +8139,7 @@ function Pregame:fixSpawningIssues()
 
                     -- Hotfix: Remove the consumed octarines and replace with originals as the consumed ones are bugged. TODO: Fix buggy consumed version
                     Timers:CreateTimer(function()
+                        if spawnedUnit:IsNull() then return end
                         local consumeableOct = spawnedUnit:FindItemByName("item_octarine_core_consumable")
                         if consumeableOct then
                           spawnedUnit:RemoveItem(consumeableOct)
