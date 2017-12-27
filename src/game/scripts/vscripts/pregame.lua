@@ -993,7 +993,7 @@ function Pregame:applyBuilds()
     for playerID=0,maxPlayerID-1 do
         Timers:CreateTimer(function ()
             local hero = PlayerResource:GetSelectedHeroEntity(playerID)
-            if self.wispSpawning and hero and hero:GetUnitName() ~= self.selectedHeroes[playerID] then
+            if not self:isBackgroundSpawning() and (self.wispSpawning and hero and hero:GetUnitName() ~= self.selectedHeroes[playerID]) then
                 self:onIngameBuilder(nil, { playerID = playerID, ingamePicking = true })
                 return
             end
@@ -1195,7 +1195,7 @@ function Pregame:onThink()
                 end
             else
                 -- Change to picking phase
-                if (util:anyBots() or self.enabledBots) and OptionManager:GetOption('mapname') == "custom_bot" then
+                if self:isBackgroundSpawning() then
                     GameRules:GetGameModeEntity():SetCustomGameForceHero("")
                     self:setPhase(constants.PHASE_SELECTION)
                 else
@@ -1435,6 +1435,10 @@ function Pregame:onThink()
             ingame:onStart()
         end, DoUniqueString('preventcamping'), 1)
     end
+end
+
+function Pregame:isBackgroundSpawning()
+    return (OptionManager:GetOption('mapname') == "custom_bot" or (self.optionStore['lodOptionGamemode'] ~= 1 and self.optionStore['lodOptionGamemode'] ~= -1))
 end
 
 -- Called to prepare to get player data when someone connects
@@ -2026,7 +2030,7 @@ function Pregame:finishOptionSelection()
             end
         else
             -- Hero selection
-            if (util:anyBots() or self.enabledBots) and OptionManager:GetOption('mapname') == "custom_bot" then
+            if self:isBackgroundSpawning() then
                 GameRules:GetGameModeEntity():SetCustomGameForceHero("")
                 self:setPhase(constants.PHASE_SELECTION)
             else
@@ -6210,7 +6214,7 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
                 end
             end
 
-            if not self.botPlayers.all[playerID] then
+            if not self.botPlayers or not self.botPlayers.all[playerID] then
                 if not abilityDraft[abilityName] then
                     shouldAdd = false
                 end
