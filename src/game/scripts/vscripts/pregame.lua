@@ -4906,7 +4906,9 @@ end
 function Pregame:onPlayerReady(eventSourceIndex, args)
     local playerID = args.PlayerID
     if self:getPhase() ~= constants.PHASE_BANNING and self:getPhase() ~= constants.PHASE_SELECTION and self:getPhase() ~= constants.PHASE_RANDOM_SELECTION and self:getPhase() ~= constants.PHASE_REVIEW and not self:canPlayerPickSkill(playerID) then return end
-    -- self:validateBuilds(playerID)
+    if self:isBackgroundSpawning() and self:getPhase() ~= constants.PHASE_BANNING then
+        self:validateBuilds(playerID)
+    end
     if self:canPlayerPickSkill(playerID) and IsValidEntity(PlayerResource:GetSelectedHeroEntity(args.PlayerID)) then
         local hero = PlayerResource:GetSelectedHeroEntity(playerID)
         if IsValidEntity(hero) then
