@@ -194,6 +194,10 @@ function Commands:OnPlayerChat(keys)
         GameRules:SendCustomMessage('testing testing 1. 2. 3.', 0, 0)
         util:DisplayError(playerID, "tested")
         print(OptionManager:GetOption('mapname'))
+    elseif IsCommand("-fixhero") then 
+        if GameRules.pregame.wispSpawning and hero and hero:GetUnitName() ~= GameRules.pregame.selectedHeroes[playerID] then
+            GameRules.pregame:onIngameBuilder(1, { playerID = playerID, ingamePicking = true })
+        end
     elseif IsCommand("-printabilities") then
         print("-------------HERO STATS------------")
         print("HP: "..tostring(hero:GetHealth()).."/"..tostring(hero:GetMaxHealth()))

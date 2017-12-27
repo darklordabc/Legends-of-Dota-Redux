@@ -66,7 +66,7 @@ function Pregame:init()
 
     -- If single player redirect players to the more fully-featured map
     if util:isSinglePlayerMode() and not IsInToolsMode() then
-        OptionManager:SetOption('mapname', 'custom')
+        OptionManager:SetOption('mapname', 'custom_bot')
     end
 
     -- Store for selected heroes and skills
@@ -2841,6 +2841,15 @@ function Pregame:initOptionSelector()
 
         -- Bots -- Desired number of radiant players
         lodOptionBotsRadiant = function(value)
+            if OptionManager:GetOption('mapname') ~= "custom_bot" and value ~= self.optionStore['lodOptionBotsRadiant'] and self.optionStore['lodOptionBotsRadiant'] ~= 0 then
+                network:sendNotification(getPlayerHost(), {
+                    sort = 'lodDanger',
+                    text = 'lodUseCustomBotMap'
+                })
+                value = self.optionStore['lodOptionBotsRadiant']
+                return true
+            end
+
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end
@@ -2857,6 +2866,15 @@ function Pregame:initOptionSelector()
 
         -- Bots -- Desired number of dire players
         lodOptionBotsDire = function(value)
+            if OptionManager:GetOption('mapname') ~= "custom_bot" and value ~= self.optionStore['lodOptionBotsDire'] and self.optionStore['lodOptionBotsDire'] ~= 0 then
+                network:sendNotification(getPlayerHost(), {
+                    sort = 'lodDanger',
+                    text = 'lodUseCustomBotMap'
+                })
+                value = self.optionStore['lodOptionBotsDire']
+                return true
+            end
+
             -- It needs to be a whole number between a certain range
             if type(value) ~= 'number' then return false end
             if math.floor(value) ~= value then return false end

@@ -1130,6 +1130,7 @@
     "option_vote_entry_info_singlePlayerAbilities"  "Allows to pick 'Single Player abilities' that are designed for solo play against bots, these are extremely powerful and are not designed with multiplayer in mind. Only enabled if custom abilities are also voted for. Player bans are always allowed."
 
     "bots_lod"                                      "Bots"
+    "lodUseCustomBotMap"                            "Bots work ONLY on custom_bot map"
 
     "lodOptionDesBotsRadiant"                       "Desired Radiant Players"
     "lodOptionAboutBotRadiant"                      "Bots will be added to radiant if there is less than this number of players on radiant."
