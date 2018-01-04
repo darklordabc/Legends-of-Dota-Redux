@@ -1954,6 +1954,11 @@ function Ingame:FilterModifiers( filterTable )
     local parent = EntIndexToHScript( parent_index )
     local caster = EntIndexToHScript( caster_index )
     local ability = EntIndexToHScript( ability_index )
+	
+    -- fix random status effects showing up?
+    if filterTable.name_const == "modifier_datadriven" then
+	return false
+    end
 
      -- Hero perks
     if not OptionManager:GetOption('disablePerks') then
