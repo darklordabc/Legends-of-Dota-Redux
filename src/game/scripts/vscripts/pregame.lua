@@ -4213,7 +4213,7 @@ function Pregame:processOptions()
             for i,v in ipairs(constants.XP_PER_LEVEL_TABLE) do
                 if i <= OptionManager:GetOption('maxHeroLevel') then
                     table.insert(newTable, v)
-                    print(i, v)
+                    --print(i, v)
                 end
             end
 
@@ -5827,23 +5827,23 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
 
     -- Limit powerful passives
     if self.optionStore['lodOptionLimitPassives'] == 1 then
-    	local powerfulPassives = 0
-    	for _,buildAbility in pairs(newBuild) do
-    		-- Check that ability is passive and is powerful ability
+        local powerfulPassives = 0
+        for _,buildAbility in pairs(newBuild) do
+            -- Check that ability is passive and is powerful ability
             -- Temporarily limit all passives, indepedent of their power
-    		if SkillManager:isPassive(buildAbility) or self.flags["semi_passive"][buildAbility] ~= nil then -- and self.spellCosts[buildAbility] ~= nil and self.spellCosts[buildAbility] >= 60 then
-    			powerfulPassives = powerfulPassives + 1
-    		end
-    	end
-    	-- Check that we have 3 OP passives
-    	if powerfulPassives >= 4 then
+            if SkillManager:isPassive(buildAbility) or self.flags["semi_passive"][buildAbility] ~= nil then -- and self.spellCosts[buildAbility] ~= nil and self.spellCosts[buildAbility] >= 60 then
+                powerfulPassives = powerfulPassives + 1
+            end
+        end
+        -- Check that we have 3 OP passives
+        if powerfulPassives >= 4 then
             network:sendNotification(player, {
                 sort = 'lodDanger',
                 text = 'lodFailedTooManyPassives'
             })
             self:PlayAlert(playerID)
             return
-	    end
+        end
     end
 
     -- Consider unique skills
@@ -6316,10 +6316,10 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
                     powerfulPassives = powerfulPassives + 1
                 end
             end
-			
-	    if (SkillManager:isPassive(abilityName) or self.flags["semi_passive"][abilityName] ~= nil) then
-		powerfulPassives = powerfulPassives + 1
-	    end
+            
+        if (SkillManager:isPassive(abilityName) or self.flags["semi_passive"][abilityName] ~= nil) then
+        powerfulPassives = powerfulPassives + 1
+        end
 
             if powerfulPassives >= 3 then
                 shouldAdd = false
@@ -7303,30 +7303,32 @@ function Pregame:hookBotStuff()
                     local lowestLevel = 25
                     local lowestAb
 
-                    for k,abilityName in pairs(build) do
-                        -- We are not going to touch hero default skills
-                        if not defaultSkills[abilityName] then
-                            local ab = hero:FindAbilityByName(abilityName)
-                            if ab then
-                                local abLevel = ab:GetLevel()
+                    if build then
+                        for k,abilityName in pairs(build) do
+                            -- We are not going to touch hero default skills
+                            if not defaultSkills[abilityName] then
+                                local ab = hero:FindAbilityByName(abilityName)
+                                if ab then
+                                    local abLevel = ab:GetLevel()
 
-                                -- Has it already hit it's max level?
-                                if abLevel < ab:GetMaxLevel() then
-                                    -- Work out what level we need to be to legally skill this ability
-                                    local nextUpgrade = abLevel * 2 + 1
-                                    if SkillManager:isUlt(abilityName) then
-                                        nextUpgrade = 6 + 5 * abLevel
-                                    end
+                                    -- Has it already hit it's max level?
+                                    if abLevel < ab:GetMaxLevel() then
+                                        -- Work out what level we need to be to legally skill this ability
+                                        local nextUpgrade = abLevel * 2 + 1
+                                        if SkillManager:isUlt(abilityName) then
+                                            nextUpgrade = 6 + 5 * abLevel
+                                        end
 
-                                    -- Can we legally skill this ability?
-                                    if nextUpgrade <= level then
-                                        -- Is this the lowest level skill?
-                                        if abLevel < lowestLevel then
+                                        -- Can we legally skill this ability?
+                                        if nextUpgrade <= level then
+                                            -- Is this the lowest level skill?
+                                            if abLevel < lowestLevel then
 
 
 
-                                            lowestLevel = abLevel
-                                            lowestAb = ab
+                                                lowestLevel = abLevel
+                                                lowestAb = ab
+                                            end
                                         end
                                     end
                                 end

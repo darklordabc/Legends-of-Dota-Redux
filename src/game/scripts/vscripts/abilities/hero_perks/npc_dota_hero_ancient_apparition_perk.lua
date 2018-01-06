@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: Ancient Apparition
---		Perk: Ancient Apparition disables the health regeneration of targets when a Ice ability debuff is applied.
+--    Hero: Ancient Apparition
+--    Perk: Ancient Apparition disables the health regeneration of targets when a Ice ability debuff is applied.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_ancient_apparition_perk", "abilities/hero_perks/npc_dota_hero_ancient_apparition_perk.lua", LUA_MODIFIER_MOTION_NONE )
@@ -12,28 +12,28 @@ function npc_dota_hero_ancient_apparition_perk:GetIntrinsicModifierName()
     return "modifier_npc_dota_hero_ancient_apparition_perk"
 end
 --------------------------------------------------------------------------------------------------------
---		Modifier: modifier_npc_dota_hero_ancient_apparition_perk				
+--    Modifier: modifier_npc_dota_hero_ancient_apparition_perk        
 --------------------------------------------------------------------------------------------------------
 if modifier_npc_dota_hero_ancient_apparition_perk ~= "" then modifier_npc_dota_hero_ancient_apparition_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_ancient_apparition_perk:IsPassive()
-	return true
+  return true
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_ancient_apparition_perk:IsHidden()
-	return false
+  return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_ancient_apparition_perk:IsPurgable()
-	return false
+  return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_ancient_apparition_perk:RemoveOnDeath()
-	return false
+  return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_ancient_apparition_perk:IsBuff()
-	return true
+  return true
 end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
@@ -105,7 +105,7 @@ function trackModifier( filterTable )
     modifier.prevElapsed = modifier.prevElapsed or elapsed
     if modifier.prevElapsed > elapsed then
       -- call any functions that need to interact with modifiers on refresh here
-      parent:AddNewModifier(caster,nil,"modifier_npc_dota_hero_ancient_apparition_perk_heal_freeze",{duration = duration})
+      parent:AddNewModifier(caster,nil,"modifier_npc_dota_hero_ancient_apparition_perk_heal_freeze", {duration = duration})
     end
 
     if elapsed >= duration then

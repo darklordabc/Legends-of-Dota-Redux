@@ -49,7 +49,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"evasion"	"100"
+				"evasion"	"90"
 			}
 			"04"
 			{

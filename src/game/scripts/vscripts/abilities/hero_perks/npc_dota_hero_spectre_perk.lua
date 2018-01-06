@@ -54,7 +54,8 @@ if modifier_npc_dota_hero_spectre_phased ~= "" then modifier_npc_dota_hero_spect
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_spectre_phased:CheckState()
 	local state = {
-	[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+		[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true,
 	}
 	return state
 end

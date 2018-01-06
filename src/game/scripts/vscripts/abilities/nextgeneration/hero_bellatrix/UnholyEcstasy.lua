@@ -76,7 +76,7 @@ function BonusDamage(keys)
     		amount = amount * (1 + (.08 * lens_count))
   		    amount = math.floor(amount)
 
-  		    PopupNumbers(target, "crit", Vector(153, 0, 0), 2.0, amount, nil, POPUP_SYMBOL_POST_DROP)
+  		    target:PopupNumbers(target, "crit", Vector(153, 0, 0), 2.0, amount, nil, POPUP_SYMBOL_POST_DROP)
 
 		ApplyDamage(damage_table)
 

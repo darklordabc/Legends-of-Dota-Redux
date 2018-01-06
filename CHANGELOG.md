@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ## 10.0
 - Replaced Phantom Lancer's Perk
+- Viper perk now stacks with itself, and now reduces armor and magic resist by 10%
+- Spectre perk now gives cliff walking for 4 seconds
+- added 7.07 Grow (is not in 'onehit' troll combo list)
+- fixed Spectral Form doing 0 damage, lowered its evasion to 90%
+- made Bedlam an ultimate
+- removed Pocket Factory
+- fixed Miserable Claws having no projectile
+- potentially fixed many custom abilities having no particles
 
 ## 9.9
 - Removed Call of the wild Boar, broken ability

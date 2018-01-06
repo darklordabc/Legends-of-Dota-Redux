@@ -20,25 +20,26 @@ MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
 MODIFIER_PROPERTY_OVERRIDE_ATTACK_MAGICAL,
 MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
-MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
 MODIFIER_EVENT_ON_ATTACK_LANDED,
 	}
 	return funcs
 end
 
+--manually applying damage since MODIFIER_PROPERTY_OVERRIDE_ATTACK_MAGICAL seems to be broken.
+--	it applys a real attack that can proc skills/items but does 0 dmg.
 function spectral_form_mod:OnAttackLanded( keys )
 	if self:GetParent() ~= keys.attacker then return end
+	local info = {victim = keys.target, attacker = keys.attacker, ability = self:GetAbility(), damage = self:GetParent():GetAverageTrueAttackDamage(keys.attacker), damage_type = DAMAGE_TYPE_MAGICAL}
+	--80% damage reduction
 	if keys.target:IsBuilding() then
-		self.reduceDamage = true
-		return
+		--print("pre", info.damage)
+		info.damage = info.damage - info.damage * self:GetAbility():GetSpecialValueFor("building_reduction") * 0.01
+		--print("post", info.damage)
+		ApplyDamage(info)
+		return true
 	end
-	self.reduceDamage = false
-end
-
-function spectral_form_mod:GetModifierDamageOutgoing_Percentage()
-	if IsServer() and self.reduceDamage then
-		return (-1) * self:GetAbility():GetSpecialValueFor("building_reduction")
-	end
+	ApplyDamage(info)
+	return true
 end
 
 function spectral_form_mod:GetModifierConstantHealthRegen() return self:GetAbility():GetSpecialValueFor("health_regen") end
