@@ -2,25 +2,31 @@
 {
     "firelord_flame_strike"
     {
-        "BaseClass"                                                            "ability_datadriven"
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/life_in_arena/flame_strike.lua"
         "AbilityTextureName"                                                   "custom/firelord_flame_strike"
         "MaxLevel"                                                             "4"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
         "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
         "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
-        "AbilityCastAnimation"                                                 "ACT_DOTA_CAST_CHAOS_METEOR"
+        "AbilityCastAnimation"                                                 "ACT_DOTA_CAST_ABILITY_4"
         "AbilityCastRange"                                                     "1000"
         "AbilityCastPoint"                                                     "0.5"
         "AbilityCooldown"                                                      "13"
         "AbilityManaCost"                                                      "150 170 190 210"
-        "AbilityChannelTime"                                                   "1.33"
+        "AbilityChannelTime"                                                   "0.8"
         "AoERadius"                                                            "175 200 225 250"
+
         "precache"
         {
             "particle"                                                     "particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_requiemofsouls_line_ground.vpcf"
+            "particle"                                                     "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf"
+            "particle"                                                     "particles/units/heroes/hero_lina/lina_spell_light_strike_array_ray.vpcf"
             "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
         }
+
         "AbilitySpecial"
         {
             "01"
@@ -31,110 +37,22 @@
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "first_strike_dps"                                     "25 50 75 100"
+                "damage"                                               "25 50 75 100"
             }
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "first_strike_duration"                                "5"
+                "duration"                                             "5"
             }
             "04"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "delay"                                                "1.33"
+                "delay"                                                "0.8"
             }
-        }
-        "OnSpellStart"
-        {
-            "FireSound"
+            "05"
             {
-                "EffectName"                                           "Hero_Invoker.SunStrike.Charge"
-                "Target"                                               "CASTER"
-            }
-            "FireEffect"
-            {
-                "EffectName"                                           "particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_requiemofsouls_line_ground.vpcf"
-                "EffectAttachType"                                     "world_origin"
-                "TargetPoint"                                          "POINT"
-            }
-        }
-        "OnChannelSucceeded"
-        {
-            "CreateThinker"
-            {
-                "ModifierName"                                         "modifier_flame_strike_thinker1"
-                "Target"                                               "POINT"
-            }
-            "DestroyTrees"
-            {
-                "Target"                                               "POINT"
-                "Radius"                                               "%radius"
-            }
-        }
-        "Modifiers"
-        {
-            "modifier_flame_strike_thinker1"
-            {
-                "IsHidden"                                             "1"
-                "Duration"                                             "%first_strike_duration + 0.1"
-                "Aura_Radius"                                          "%radius"
-                "Aura_Teams"                                           "DOTA_UNIT_TARGET_TEAM_ENEMY"
-                "Aura_Types"                                           "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-                "OnCreated"
-                {
-                    "Damage"
-                    {
-                        "Type"                                 "DAMAGE_TYPE_MAGICAL"
-                        "Damage"                               "%first_strike_dps"
-                        "Target"
-                        {
-                            "Center"                       "TARGET"
-                            "Radius"                       "%radius"
-                            "Teams"                        "DOTA_UNIT_TARGET_TEAM_ENEMY"
-                            "Types"                        "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-                        }
-                    }
-                    "FireSound"
-                    {
-                        "EffectName"                           "Ability.LightStrikeArray"
-                        "Target"                               "TARGET"
-                    }
-                    "AttachEffect"
-                    {
-                        "Target"                               "TARGET"
-                        "EffectName"                           "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf"
-                        "EffectAttachType"                     "follow_origin"
-                        "EffectRadius"                         "%radius"
-                    }
-                }
-                "ThinkInterval"                                        "1"
-                "OnIntervalThink"
-                {
-                    "Damage"
-                    {
-                        "Type"                                 "DAMAGE_TYPE_MAGICAL"
-                        "Damage"                               "%first_strike_dps"
-                        "Target"
-                        {
-                            "Center"                       "TARGET"
-                            "Radius"                       "%radius"
-                            "Teams"                        "DOTA_UNIT_TARGET_TEAM_ENEMY"
-                            "Types"                        "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-                        }
-                    }
-                    "FireSound"
-                    {
-                        "EffectName"                           "Ability.LightStrikeArray"
-                        "Target"                               "TARGET"
-                    }
-                    "AttachEffect"
-                    {
-                        "Target"                               "TARGET"
-                        "EffectName"                           "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf"
-                        "EffectAttachType"                     "follow_origin"
-                        "EffectRadius"                         "%radius"
-                    }
-                }
+                "var_type"                                             "FIELD_FLOAT"
+                "interval"                                             "0.5"
             }
         }
         "ReduxPerks"                                                           "fire"
