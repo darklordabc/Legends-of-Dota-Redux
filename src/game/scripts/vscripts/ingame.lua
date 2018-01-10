@@ -76,7 +76,7 @@ function Ingame:init()
     self.voteAntiRat = false
     self.origianlRespawnRate = nil
     self.timeImbalanceStarted = 0
-    self.radiantBalanceMoney = 0
+	self.radiantBalanceMoney = 0
     self.direBalanceMoney = 0
     self.radiantTotalBalanceMoney = 0
     self.direTotalBalanceMoney = 0
@@ -473,6 +473,30 @@ function Ingame:onStart()
         end
     end, 'removeRunes', 0.1)
 
+    --secondary fix for randomly not getting skill points for levels 18-24
+    --  the other method is inconsistant
+    Timers:CreateTimer(function()
+        local heroes = HeroList:GetAllHeroes()
+        for _,hero in pairs(heroes) do
+            if hero then
+                if hero:IsRealHero() then
+                    local level = hero:GetLevel()-1
+                    local points = hero:GetAbilityPoints()
+                    for i=0,23 do
+                        local ab = hero:GetAbilityByIndex(i)
+                        if ab then
+                            points = points + ab:GetLevel()
+                        end
+                    end
+                    if points < level then
+                        hero:SetAbilityPoints(level-points)
+                    end
+                end
+            end
+        end
+        return 25
+    end, 'giveMissingSkillPoints', 60)
+
     --Attempt to enable cheats
     Convars:SetBool("sv_cheats", true)
 
@@ -646,7 +670,9 @@ function Ingame:CheckConsumableItems()
                         local name = hItem:GetAbilityName()
                         if itemTable[name] then
                             hero:RemoveItem(hItem)
+                            if name == "item_vladmir" then name = "item_vladimir" end
                             hero:AddItemByName(name.."_consumable")
+                            local item = hero:FindItemInInventory(name.."_consumable")
                             local nSlot, hUseless = hero:FindItemByNameEverywhere(name.."_consumable")
                             hero:SwapItems(i,nSlot)
                             --break
@@ -980,87 +1006,87 @@ function Ingame:checkBalanceTeams()
 end
 
 function Ingame:balanceGold()
-    -- If game not started dont check balance
-    if (GameRules:GetDOTATime(false,false) == 0 or util:isCoop()) and not IsInToolsMode() then
-        return
-    end
+	-- If game not started dont check balance
+	if (GameRules:GetDOTATime(false,false) == 0 or util:isCoop()) and not IsInToolsMode() then
+		return
+	end
 
-    local RadiantPlayers = util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS)
-    local DirePlayers = util:GetActivePlayerCountForTeam(DOTA_TEAM_BADGUYS)
-    local losingTeam = nil
-    local fountainArea = nil
+	local RadiantPlayers = util:GetActivePlayerCountForTeam(DOTA_TEAM_GOODGUYS)
+	local DirePlayers = util:GetActivePlayerCountForTeam(DOTA_TEAM_BADGUYS)
+	local losingTeam = nil
+	local fountainArea = nil
 
-    -- If balance returns, clear the slate
-    if RadiantPlayers == DirePlayers then
-        self.timeImbalanceStarted = 0
-        self.radiantBalanceMoney = 0
-        self.direBalanceMoney = 0
-        return
-    end
+	-- If balance returns, clear the slate
+	if RadiantPlayers == DirePlayers then
+		self.timeImbalanceStarted = 0
+		self.radiantBalanceMoney = 0
+		self.direBalanceMoney = 0
+		return
+	end
 
-    if RadiantPlayers < DirePlayers then
-        losingTeam = "goodGuys"
-        fountainArea = Vector(-6327.858398, -5892.900391, 384.000000)
-    else
-        losingTeam = "badGuys"
-        fountainArea = Vector(6234.006348, 5780.487305, 384.000000)
-    end
+	if RadiantPlayers < DirePlayers then
+		losingTeam = "goodGuys"
+		fountainArea = Vector(-6327.858398, -5892.900391, 384.000000)
+	else
+		losingTeam = "badGuys"
+		fountainArea = Vector(6234.006348, 5780.487305, 384.000000)
+	end
 
-    if self.timeImbalanceStarted == 0 then
-        self.timeImbalanceStarted = GameRules:GetDOTATime(false,false)
-    end
+	if self.timeImbalanceStarted == 0 then
+		self.timeImbalanceStarted = GameRules:GetDOTATime(false,false)
+	end
 
-    local timeSinceLastCheck = GameRules:GetDOTATime(false,false) - self.timeImbalanceStarted
-    --print(timeSinceLastCheck)
+	local timeSinceLastCheck = GameRules:GetDOTATime(false,false) - self.timeImbalanceStarted
+	--print(timeSinceLastCheck)
 
-    if timeSinceLastCheck > 180 then
-        local multiplier = 1
-        if losingTeam == "goodGuys" then
-            multiplier = DirePlayers - RadiantPlayers
-        else
-            multiplier = RadiantPlayers - DirePlayers
-        end
+	if timeSinceLastCheck > 180 then
+		local multiplier = 1
+		if losingTeam == "goodGuys" then
+			multiplier = DirePlayers - RadiantPlayers
+		else
+			multiplier = RadiantPlayers - DirePlayers
+		end
 
-        local moneyToGive = (180 * multiplier) * OptionManager:GetOption('goldPerTick')
+		local moneyToGive = (180 * multiplier) * OptionManager:GetOption('goldPerTick')
 
-        if losingTeam == "goodGuys" then
-            self.radiantBalanceMoney = self.radiantBalanceMoney + moneyToGive
-        else
-            self.direBalanceMoney = self.direBalanceMoney + moneyToGive
-        end
+		if losingTeam == "goodGuys" then
+			self.radiantBalanceMoney = self.radiantBalanceMoney + moneyToGive
+		else
+			self.direBalanceMoney = self.direBalanceMoney + moneyToGive
+		end
 
-        self.timeImbalanceStarted = GameRules:GetDOTATime(false,false)
-        --print(moneyToGive)
-        --print(self.radiantBalanceMoney)
-        --print(self.direBalanceMoney)
-    end
+		self.timeImbalanceStarted = GameRules:GetDOTATime(false,false)
+		--print(moneyToGive)
+		--print(self.radiantBalanceMoney)
+		--print(self.direBalanceMoney)
+	end
 
-    local moneySize = 10
-    if self.direBalanceMoney >= 200 or self.radiantBalanceMoney >= 200 then
-        moneySize = 20
-    end
+	local moneySize = 10
+	if self.direBalanceMoney >= 200 or self.radiantBalanceMoney >= 200 then
+		moneySize = 20
+	end
 
-    if self.radiantBalanceMoney >= moneySize * 10 or self.direBalanceMoney >= moneySize * 10 then
-        for playerID=0,24-1 do
-          local hero = PlayerResource:GetSelectedHeroEntity(playerID)
-          if hero and PlayerResource:IsValidPlayerID(playerID) and IsValidEntity(hero) then
-              local state = PlayerResource:GetConnectionState(playerID)
-              if state == 1 or state == 2 then
-                if losingTeam == "goodGuys" and hero:GetTeam() == DOTA_TEAM_GOODGUYS and self.radiantBalanceMoney >= 1 then
-                    hero:ModifyGold(moneySize, false, 0)
-                    SendOverheadEventMessage(hero:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, hero, moneySize, nil)
-                    self.radiantBalanceMoney = self.radiantBalanceMoney - moneySize
+	if self.radiantBalanceMoney >= moneySize * 10 or self.direBalanceMoney >= moneySize * 10 then
+		for playerID=0,24-1 do
+	      local hero = PlayerResource:GetSelectedHeroEntity(playerID)
+	      if hero and PlayerResource:IsValidPlayerID(playerID) and IsValidEntity(hero) then
+	          local state = PlayerResource:GetConnectionState(playerID)
+	          if state == 1 or state == 2 then
+	          	if losingTeam == "goodGuys" and hero:GetTeam() == DOTA_TEAM_GOODGUYS and self.radiantBalanceMoney >= 1 then
+	          		hero:ModifyGold(moneySize, false, 0)
+	          		SendOverheadEventMessage(hero:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, hero, moneySize, nil)
+	          		self.radiantBalanceMoney = self.radiantBalanceMoney - moneySize
                     self.radiantTotalBalanceMoney = self.radiantTotalBalanceMoney + moneySize
-                elseif losingTeam == "badGuys" and hero:GetTeam() == DOTA_TEAM_BADGUYS and self.direBalanceMoney >= 1 then
-                    hero:ModifyGold(moneySize, false, 0)
-                    SendOverheadEventMessage(hero:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, hero, moneySize, nil)
-                    self.direBalanceMoney = self.direBalanceMoney - moneySize
+	          	elseif losingTeam == "badGuys" and hero:GetTeam() == DOTA_TEAM_BADGUYS and self.direBalanceMoney >= 1 then
+	          		hero:ModifyGold(moneySize, false, 0)
+	          		SendOverheadEventMessage(hero:GetPlayerOwner(), OVERHEAD_ALERT_GOLD, hero, moneySize, nil)
+	          		self.direBalanceMoney = self.direBalanceMoney - moneySize
                     self.direTotalBalanceMoney = self.direTotalBalanceMoney + moneySize
-                end
-              end
-          end
-        end
-    end
+	          	end
+	          end
+	      end
+	    end
+	end
 
     -- Display message once every while, informing players of balance mechanic in use
     if self.heard["balanceGold"] ~= true and (self.radiantTotalBalanceMoney > 0 or self.direTotalBalanceMoney > 0) then
@@ -1174,20 +1200,20 @@ function Ingame:handleRespawnModifier()
                             --print(RespawnNotificationLevel)
                             if not util:isPlayerBot(playerID) then
                                 if util:isSinglePlayerMode() or Convars:GetBool("sv_cheats") or self.voteEnabledCheatMode then
-                                    if not hero.RespawnNotificationLevel then
-                                        hero.RespawnNotificationLevel = 0
-                                    end
-                                    if hero.RespawnNotificationLevel < 2 then
-                                        if hero.RespawnNotificationLevel == 0 then
-                                            GameRules:SendCustomMessage('#respawnCheatNotification', 0, 0)
-                                            hero.RespawnNotificationLevel = 1
-                                        elseif hero.RespawnNotificationLevel == 1 and timeLeft > 30 then
-                                            GameRules:SendCustomMessage('#respawnCheatNotification', 0, 0)
-                                            hero.RespawnNotificationLevel = 2
-                                        end
-                                    end
+    	                            if not hero.RespawnNotificationLevel then
+    	                                hero.RespawnNotificationLevel = 0
+    	                            end
+    	                            if hero.RespawnNotificationLevel < 2 then
+    	                                if hero.RespawnNotificationLevel == 0 then
+    	                                    GameRules:SendCustomMessage('#respawnCheatNotification', 0, 0)
+    	                                    hero.RespawnNotificationLevel = 1
+    	                                elseif hero.RespawnNotificationLevel == 1 and timeLeft > 30 then
+    	                                    GameRules:SendCustomMessage('#respawnCheatNotification', 0, 0)
+    	                                    hero.RespawnNotificationLevel = 2
+    	                                end
+    	                            end
                                 end
-                            end
+                        	end
 
                             -------
                             -- Imbalanced-Comepenstation Mechanic Start
@@ -1805,21 +1831,21 @@ end
 function Ingame:UpgradeTower( tower )
     -- Fetch tower abilities
     for _,abName in pairs(tower.strongTowerAbilities) do
-        print(abName)
+		print(abName)
         local upgradeAb = tower:FindAbilityByName(abName)
-        if upgradeAb:GetLevel() < upgradeAb:GetMaxLevel() then
-            upgradeAb:SetLevel( upgradeAb:GetLevel() + 1 )
-            return
-        end
+		if upgradeAb:GetLevel() < upgradeAb:GetMaxLevel() then
+			upgradeAb:SetLevel( upgradeAb:GetLevel() + 1 )
+			return
+		end
     end
-    local sisterTower = FindSisterTower(tower)
-    local difference = 0
-    if sisterTower then
-        local difference = GetEquivalentTowerAbilityPowerValue(sisterTower, self.towerList, #tower.strongTowerAbilities) - GetTowerAbilityPowerValue(tower, self.towerList)
-    end
-    tower.strongTowerAbilities = tower.strongTowerAbilities or {}
-    local towerAbName = PullTowerAbility(self.towerList, self.usedRandomTowers, self.banList, tower.strongTowerAbilities, difference, tower:GetLevel() * 10, tower)
-    if towerAbName then
+	local sisterTower = FindSisterTower(tower)
+	local difference = 0
+	if sisterTower then
+		local difference = GetEquivalentTowerAbilityPowerValue(sisterTower, self.towerList, #tower.strongTowerAbilities) - GetTowerAbilityPowerValue(tower, self.towerList)
+	end
+	tower.strongTowerAbilities = tower.strongTowerAbilities or {}
+	local towerAbName = PullTowerAbility(self.towerList, self.usedRandomTowers, self.banList, tower.strongTowerAbilities, difference, tower:GetLevel() * 10, tower)
+	if towerAbName then
         tower:AddAbility(towerAbName):SetLevel(1)
         table.insert(tower.strongTowerAbilities, towerAbName)
         self.usedRandomTowers[towerAbName] = true

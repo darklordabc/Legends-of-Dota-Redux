@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
---    Hero: Viper
---    Perk: Poison effects applied by Viper lower the target's armor and magic resistance by 10%
+--		Hero: Viper
+--		Perk: Poison effects applied by Viper lower the target's armor and magic resistance by 10%
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_viper_perk", "abilities/hero_perks/npc_dota_hero_viper_perk.lua" , LUA_MODIFIER_MOTION_NONE )
@@ -9,7 +9,7 @@ LinkLuaModifier( "modifier_npc_dota_hero_viper_armor_debuff", "abilities/hero_pe
 --------------------------------------------------------------------------------------------------------
 npc_dota_hero_viper_perk = class({ GetIntrinsicModifierName = function() return "modifier_npc_dota_hero_viper_perk" end, })
 --------------------------------------------------------------------------------------------------------
---    Modifier: modifier_npc_dota_hero_viper_perk       
+--		Modifier: modifier_npc_dota_hero_viper_perk				
 --------------------------------------------------------------------------------------------------------
 modifier_npc_dota_hero_viper_perk = class({
   IsHidden = function() return false end,

@@ -195,7 +195,7 @@ function Commands:OnPlayerChat(keys)
         util:DisplayError(playerID, "tested")
         print(OptionManager:GetOption('mapname'))
     elseif IsCommand("-fixhero") then 
-        if GameRules.pregame:isWispSpawning() and hero and hero:GetUnitName() ~= GameRules.pregame.selectedHeroes[playerID] then
+        if GameRules.pregame.isWispSpawning and hero and hero:GetUnitName() ~= GameRules.pregame.selectedHeroes[playerID] then
             GameRules.pregame:onIngameBuilder(1, { playerID = playerID, ingamePicking = true })
         end
     elseif IsCommand("-printabilities") then

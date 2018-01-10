@@ -2,7 +2,7 @@ function CheckOrb( keys )
 	local caster = keys.caster
 	local ability = keys.ability
 
-	if ability:IsCooldownReady() then
+	if ability and ability:IsCooldownReady() then
 		ability:ApplyDataDrivenModifier(caster, caster, "modifier_slag_armor_orb", {Duration = 0.9})
 	end
 end

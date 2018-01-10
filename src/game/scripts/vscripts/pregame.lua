@@ -66,7 +66,7 @@ function Pregame:init()
 
     -- If single player redirect players to the more fully-featured map
     if util:isSinglePlayerMode() and not IsInToolsMode() then
-        OptionManager:SetOption('mapname', 'custom_bot')
+   --     OptionManager:SetOption('mapname', 'custom_bot')
     end
 
     -- Store for selected heroes and skills
@@ -4904,14 +4904,18 @@ end
 
 -- Player wants to ready up
 function Pregame:onPlayerReady(eventSourceIndex, args)
+    print("Pregame:onPlayerReady")
     local playerID = args.PlayerID
     if self:getPhase() ~= constants.PHASE_BANNING and self:getPhase() ~= constants.PHASE_SELECTION and self:getPhase() ~= constants.PHASE_RANDOM_SELECTION and self:getPhase() ~= constants.PHASE_REVIEW and not self:canPlayerPickSkill(playerID) then return end
     if self:isBackgroundSpawning() and self:getPhase() ~= constants.PHASE_BANNING then
+        print("\tcase1")
         self:validateBuilds(playerID)
     end
     if self:canPlayerPickSkill(playerID) and IsValidEntity(PlayerResource:GetSelectedHeroEntity(args.PlayerID)) then
+        print("\tcase2")
         local hero = PlayerResource:GetSelectedHeroEntity(playerID)
         if IsValidEntity(hero) then
+            print("\tcase2 validation")
             -- if self.wispSpawning then
                 self:validateBuilds(playerID)
             -- end
@@ -4993,6 +4997,7 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
             end,playerID)
         end
     else
+        print("\tcase3")
         local playerID = args.PlayerID
 
         -- Ensure we have a store for this player's ready state
@@ -5019,6 +5024,7 @@ end
 
 -- Checks if people are ready
 function Pregame:checkForReady()
+    print("Pregame:checkForReady")
     -- Network it
     network:sendReadyState(self.isReady)
 
@@ -5666,13 +5672,13 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
     end
 
     if hero and GameRules.perks["heroAbilityPairs"][hero] == abilityName then
-            network:sendNotification(player, {
-                sort = 'lodDanger',
-                text = 'lodHeroAndAbilityAreLocked'
-            })
-            self:PlayAlert(playerID)
-            return
-        end
+        network:sendNotification(player, {
+            sort = 'lodDanger',
+            text = 'lodHeroAndAbilityAreLocked'
+        })
+        self:PlayAlert(playerID)
+        return
+    end
 
     -- Don't allow picking banned abilities
     -- Unless they are paired
@@ -5773,7 +5779,6 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
         end
     else
         -- Category not found, don't allow this skill
-
         network:sendNotification(player, {
             sort = 'lodDanger',
             text = 'lodFailedUnknownCategory',
@@ -5827,23 +5832,23 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
 
     -- Limit powerful passives
     if self.optionStore['lodOptionLimitPassives'] == 1 then
-        local powerfulPassives = 0
-        for _,buildAbility in pairs(newBuild) do
-            -- Check that ability is passive and is powerful ability
+    	local powerfulPassives = 0
+    	for _,buildAbility in pairs(newBuild) do
+    		-- Check that ability is passive and is powerful ability
             -- Temporarily limit all passives, indepedent of their power
-            if SkillManager:isPassive(buildAbility) or self.flags["semi_passive"][buildAbility] ~= nil then -- and self.spellCosts[buildAbility] ~= nil and self.spellCosts[buildAbility] >= 60 then
-                powerfulPassives = powerfulPassives + 1
-            end
-        end
-        -- Check that we have 3 OP passives
-        if powerfulPassives >= 4 then
+    		if SkillManager:isPassive(buildAbility) or self.flags["semi_passive"][buildAbility] ~= nil then -- and self.spellCosts[buildAbility] ~= nil and self.spellCosts[buildAbility] >= 60 then
+    			powerfulPassives = powerfulPassives + 1
+    		end
+    	end
+    	-- Check that we have 3 OP passives
+    	if powerfulPassives >= 4 then
             network:sendNotification(player, {
                 sort = 'lodDanger',
                 text = 'lodFailedTooManyPassives'
             })
             self:PlayAlert(playerID)
             return
-        end
+	    end
     end
 
     -- Consider unique skills
@@ -6070,7 +6075,7 @@ function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
     -- Grab data
     local playerID = args.PlayerID
     local player = PlayerResource:GetPlayer(playerID)
-    -- print(self:getPhase() ~= constants.PHASE_SELECTION, not self:canPlayerPickSkill(playerID), self.additionalPickTime)
+    
     -- Ensure we are in the picking phase
     if self:getPhase() ~= constants.PHASE_SELECTION and not self:canPlayerPickSkill(playerID) then
         network:sendNotification(player, {
@@ -6316,10 +6321,10 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
                     powerfulPassives = powerfulPassives + 1
                 end
             end
-            
-        if (SkillManager:isPassive(abilityName) or self.flags["semi_passive"][abilityName] ~= nil) then
-        powerfulPassives = powerfulPassives + 1
-        end
+			
+	    if (SkillManager:isPassive(abilityName) or self.flags["semi_passive"][abilityName] ~= nil) then
+		powerfulPassives = powerfulPassives + 1
+	    end
 
             if powerfulPassives >= 3 then
                 shouldAdd = false

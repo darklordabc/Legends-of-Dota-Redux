@@ -29,14 +29,10 @@ end
 --	it applys a real attack that can proc skills/items but does 0 dmg.
 function spectral_form_mod:OnAttackLanded( keys )
 	if self:GetParent() ~= keys.attacker then return end
-	local info = {victim = keys.target, attacker = keys.attacker, ability = self:GetAbility(), damage = self:GetParent():GetAverageTrueAttackDamage(keys.attacker), damage_type = DAMAGE_TYPE_MAGICAL}
+	local info = {victim = keys.target, attacker = keys.attacker, ability = self:GetAbility(), damage = self:GetParent():GetAverageTrueAttackDamage(keys.target), damage_type = DAMAGE_TYPE_MAGICAL}
 	--80% damage reduction
 	if keys.target:IsBuilding() then
-		--print("pre", info.damage)
 		info.damage = info.damage - info.damage * self:GetAbility():GetSpecialValueFor("building_reduction") * 0.01
-		--print("post", info.damage)
-		ApplyDamage(info)
-		return true
 	end
 	ApplyDamage(info)
 	return true

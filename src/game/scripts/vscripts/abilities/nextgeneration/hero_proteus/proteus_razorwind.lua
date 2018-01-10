@@ -4,7 +4,7 @@ function RazorWind( keys )
 	local ability = keys.ability
 
 	if target:TriggerSpellAbsorb(ability) then
-		RemoveLinkens(target)
+		--RemoveLinkens(target)
 		return
 	end
 
