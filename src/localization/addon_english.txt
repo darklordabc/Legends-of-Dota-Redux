@@ -883,7 +883,7 @@
     "hintWD"                         "Healing abilities have 25% extra effectiveness when used by Witch Doctor."
     "hintClinkz"                         "Clinkz will receive a free level in his first non-ultimate Autocast ability at the start of the game."
     "hintOgreMagi"                         "When Ogre Magi casts a spell, there is a 2% chance to refund the manacost of that spell and refresh its cooldown."
-    "hintVS"                         "When Vengeful Spirit is slain by an enemy hero, she permanently reduces the hero's attributes by 1."
+    "hintVS"                         "Vengeful Spirit spawns a spirit of vengence on death that lasts until she has respawned."
     "hintVisage"                         "For Visage, Summon Familiars will refund 100% of manacost and have its cooldown reduced by 50%."
     "hintNaga"                         "Illusion creating abilities will have 50% of their mana refunded and cooldowns reduced by 20%, when used by Naga."
     "hintBH"                         "Bounty Hunter deals 10% more damage to Tracked enemies."
@@ -923,7 +923,7 @@
     "hintShadowDemon"                         "Demonic abilities cast by Shadow Demon will have 20% mana cost refunded and 20% cooldown reduction."
     "hintSilencer"                         "Silence effects applied by Silencer last 25% longer."
     "hintSkywrath"                         "Skywrath Mage refunds 15% of the manacost of spells with a cooldown of 7 seconds or less."
-    "hintSlardar"                         "Slardar has an innate Sprint active ability."
+    "hintSlardar"                         "Physical damage dealt by Slarder is increased by 50%"
     "hintSniper"                         "When Sniper uses Shrapnel it will have a global cast range."
     "hintSpiritBreaker"                   "When Spirit Breaker bashes, he also applies Break."
     "hintSven"                         "At the start of the game, Sven gains a free level of Great Cleave, whether he has it or not."
@@ -939,7 +939,7 @@
     "hintPangolier"                         "At the start of the game, Pangolier gains a free level of Heartpiercer, whether he has it or not."
     "hintUndying"                         "Undying gains +1 strength per creep death or +4 strength per hero death in a 900 radius for 30 seconds."
     "hintVenomancer"                         "Increases the duration of all Poison effects Venomancer applies by 25%."
-    "hintViper"                         "Poison effects applied by Viper also lower the target's armor by 2."
+    "hintViper"                         "Poison effects applied by Viper also lower the target's armor and magic resistance by 10%."
     "hintWarlock"                         "Warlock starts the game with a Necronomicon."
     "hintWeaver"                         "Weaver will automatically cast Time Lapse upon taking fatal damage. Requires level 6 or higher."
     "hintWindranger"                         "If Windranger has no passives, all her active spells will refund 20% mana and have 20% reduced cooldowns."
@@ -1333,7 +1333,7 @@
     "unique_mechanic_shadow_shaman"             "When Shadow Shaman is targeted by an enemy spell, they will get Hexed for 3 seconds. Has 60 second cooldown."
     "unique_mechanic_silencer"                        "<font color=\'#ffd966\'>Silence</font> effects applied by Silencer last 25% longer."
     "unique_mechanic_skywrath_mage"                        "Skywrath Mage refunds 15% of the manacost of spells with a cooldown of 7 seconds or less."
-    "unique_mechanic_slardar"                       "<font color=\'#ffd966\'>Skull Basher</font> and  <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero. Slardar has an innate <font color=\'#ffd966\'>Sprint</font> active ability."
+    "unique_mechanic_slardar"                       "<font color=\'#ffd966\'>Skull Basher</font> and  <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero. Physical damage dealt by Slarder is increased by 50%."
     "unique_mechanic_slark"                        "Slark gains +3 agility for each level put in an <font color=\'#ffd966\'>Mobility</font>/<font color=\'#ffd966\'>Escape</font> skill."
     "unique_mechanic_sniper"                        "<font color=\'#ffd966\'>Shrapnel</font> will have global cast range if used by Sniper."
     "unique_mechanic_spectre"           "Spectre gains phased movement when casting abilities."
@@ -1355,9 +1355,9 @@
     "unique_mechanic_pangolier"                        "At the start of the game, Pangolier gains a free level of <font color=\'#ffd966\'>Heartpiercer</font>, whether he has it or not."
     "unique_mechanic_undying"                        "Undying gains +1 strength per creep death or +4 strength per hero death in a 900 radius for 30 seconds."
     "unique_mechanic_ursa"                   "Ursa deals 15% more damage to neutrals and Roshan."
-    "unique_mechanic_vengefulspirit"                        "When Vengeful Spirit is slain by an enemy hero, she permanently reduces the hero's attributes by 1."
+    "unique_mechanic_vengefulspirit"                        "Vengeful Spirit spawns a spirit of vengence on death that lasts until she has respawned"
     "unique_mechanic_venomancer"                        "Increases the duration of all <font color=\'#ffd966\'>Poison</font> effects Venomancer applies by 25%."
-    "unique_mechanic_viper"                        "<font color=\'#ffd966\'>Poison</font> effects applied by Viper also lower the target's armor by 2."
+    "unique_mechanic_viper"                        "<font color=\'#ffd966\'>Poison</font> effects applied by Viper also lower the target's armor and magic resistance by 10%."
     "unique_mechanic_visage"                        "<font color=\'#ffd966\'>Summon Familiars</font> will refund 100% of manacost and have its cooldown reduced by 50%."
     "unique_mechanic_warlock"                        "Warlock starts the game with a <font color=\'#ffd966\'>Necronomicon</font>."
     "unique_mechanic_weaver"                        "Weaver will automatically cast <font color='#ffd966'>Time Lapse</font> upon taking fatal damage."
@@ -1826,7 +1826,7 @@
 
 
     // tiny
-    "DOTA_Tooltip_ability_tiny_grow_lod"                                                "Grow"
+    "DOTA_Tooltip_ability_tiny_grow_lod"                                                "Grow (Pre 7.07)"
     "DOTA_Tooltip_ability_tiny_grow_lod_Description"                                    "Tiny gains craggy mass that increases his power at the cost of his attack speed. Improves movement speed.\n\nUpgradable by Aghanim's Scepter."
     "DOTA_Tooltip_ability_tiny_grow_lod_Lore"                                           "Watching a hill become a mountain is awe-inspiring - especially if the mountain begins laying waste to adversaries."
     "DOTA_Tooltip_ability_tiny_grow_lod_Note0"                                          "Cleave damage is reduced by armor type but not by armor value."
@@ -1846,7 +1846,7 @@
     "DOTA_Tooltip_tiny_grow_lod_scepter"                    "Tiny Grow Scepter"
     "DOTA_Tooltip_tiny_grow_lod_scepter_Description"        "Granting %dMODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE% bonus damage, %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT% attack speed loss, %dMODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT% bonus movespeed %dMODIFIER_PROPERTY_ATTACK_RANGE_BONUS% bonus range and cleave damage."
 
-    "DOTA_Tooltip_ability_tiny_grow_lod_redux"                                                "Grow Redux"
+    "DOTA_Tooltip_ability_tiny_grow_lod_redux"                                                "Grow (Pre 7.07) Redux"
     "DOTA_Tooltip_ability_tiny_grow_lod_redux_Description"                                    "Tiny gains craggy mass that increases his power at the cost of his attack speed. Improves movement speed. <font color=\'#70EA72\'>Attack speed peanlty is doubled</font>.\n\nUpgradable by Aghanim's Scepter."
     "DOTA_Tooltip_ability_tiny_grow_lod_redux_Lore"                                           "Watching a hill become a mountain is awe-inspiring - especially if the mountain begins laying waste to adversaries."
     "DOTA_Tooltip_ability_tiny_grow_lod_redux_Note0"                                          "Cleave damage is reduced by armor type but not by armor value."
@@ -3802,7 +3802,7 @@
 
     /// SLARDAR​
     "DOTA_Tooltip_modifier_npc_dota_hero_slardar_perk"  "Slardar Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_slardar_perk_Description"  "Slardar has an innate Sprint active ability."
+    "DOTA_Tooltip_modifier_npc_dota_hero_slardar_perk_Description"  "Physical damage dealt by Slarder is increased by 50%"
 
     /// SLARK​
     "DOTA_Tooltip_modifier_npc_dota_hero_slark_perk"    "Slark Perk"
@@ -3814,9 +3814,9 @@
 
     /// SPECTRE​
     "DOTA_Tooltip_modifier_npc_dota_hero_spectre_perk"  "Spectre Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_spectre_perk_Description"  "Spectre gains phased movement for 4 seconds every time she uses an ability.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_spectre_perk_Description"  "Spectre gains flying movement for 4 seconds every time she uses an ability.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
     "DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased"    "Phased"
-    "DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased_Description"    "Spectre's Perk. Spectre has phased movement after casting a spell."
+    "DOTA_Tooltip_modifier_npc_dota_hero_spectre_phased_Description"    "Spectre's Perk. Spectre has flying movement after casting a spell."
 
     /// SPIRIT BREAKER​
     "DOTA_Tooltip_modifier_npc_dota_hero_spirit_breaker_perk"  "Space Cow Perk"
@@ -3896,9 +3896,7 @@
 
     /// VENGEFUL SPIRIT​
     "DOTA_Tooltip_modifier_npc_dota_hero_vengefulspirit_perk"   "Vengeful Spirit Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_vengefulspirit_perk_Description"   "When Vengeful Spirit is slain by an enemy hero, she permanently reduces the hero's attributes by 1.<br><br><font color=\'#7D7D7D\'>By SwordBacon | github.com/SwordBacon</font>"
-    "DOTA_Tooltip_modifier_npc_dota_hero_vengefulspirit_perk_debuff"               "Stat Reduction"
-    "DOTA_Tooltip_modifier_npc_dota_hero_vengefulspirit_perk_debuff_Description"   "Vengeful Spirit's Perk. Reduces all attributes by %dMODIFIER_PROPERTY_STATS_INTELLECT_BONUS%. The amount increases eact time you kill Vengeful Spirit."
+    "DOTA_Tooltip_modifier_npc_dota_hero_vengefulspirit_perk_Description"   "Vengeful Spirit spawns a spirit of vengence on death that lasts until she has respawned.<br><br><font color=\'#7D7D7D\'>By DankBudd | github.com/DankBudd</font>"
 
     /// VENOMANCER​
     "DOTA_Tooltip_modifier_npc_dota_hero_venomancer_perk"   "Venomancer Perk"
@@ -3906,9 +3904,9 @@
 
     /// VIPER​
     "DOTA_Tooltip_modifier_npc_dota_hero_viper_perk"    "Viper Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_viper_perk_Description"    "Poison effects applied by Viper also lower the target's armor by 2.<br><br><font color=\'#7D7D7D\'>By Yahnich | github.com/Yahnich</font>"
+    "DOTA_Tooltip_modifier_npc_dota_hero_viper_perk_Description"    "Poison effects applied by Viper also lower the target's armor and magic resistance by 10%.<br><br><font color=\'#7D7D7D\'>By DankBudd | github.com/DankBudd</font>"
     "DOTA_Tooltip_modifier_npc_dota_hero_viper_armor_debuff"               "Corroded Armor"
-    "DOTA_Tooltip_modifier_npc_dota_hero_viper_armor_debuff_Description"   "Viper's Perk. Armor reduced by %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS% while affected by Poison abilities."
+    "DOTA_Tooltip_modifier_npc_dota_hero_viper_armor_debuff_Description"   "Viper's Perk. Armor reduced by %fMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS% and Magic Resistance reduced by %dMODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS% while affected by Poison abilities."
 
     /// VISAGE​
     "DOTA_Tooltip_modifier_npc_dota_hero_visage_perk"               "Visage Perk"
@@ -4286,14 +4284,9 @@
     "DOTA_Tooltip_ability_firelord_flame_strike"    "Flame Strike"
     "DOTA_Tooltip_ability_firelord_flame_strike_Description"    "Conjures a pillar of fire which damages ground units in a target area for 5 seconds. When interrupted during the channeling, the spell does nothing, cooldown and mana are wasted."
     "DOTA_Tooltip_ability_firelord_flame_strike_radius" "RADIUS:"
-    "DOTA_Tooltip_ability_firelord_flame_strike_first_strike_dps"   "DAMAGE PER SECOND:"
+    "DOTA_Tooltip_ability_firelord_flame_strike_damage"   "DAMAGE:"
     "DOTA_Tooltip_ability_firelord_flame_strike_delay"  "CHANNELING TIME:"
-
-    "DOTA_Tooltip_modifier_flame_strike_first_burn" "Flame Strike"
-    "DOTA_Tooltip_modifier_flame_strike_first_burn_Description" "This unit is taking damage."
-
-    "DOTA_Tooltip_modifier_flame_strike_second_burn"    "Flame Strike"
-    "DOTA_Tooltip_modifier_flame_strike_second_burn_Description"    "This unit is taking damage."
+    "DOTA_Tooltip_ability_firelord_flame_strike_interval" "TICK RATE:"
 
     "DOTA_Tooltip_ability_firelord_fire_trap"   "Fire Trap"
     "DOTA_Tooltip_ability_firelord_fire_trap_Description"   "Sets an invisible trap that stuns the caught enemies. The trap activates when an enemy unit approaches."
@@ -5817,6 +5810,62 @@
     "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_monkey_king_bar_bonus_attack_speed"                "+$attack"
     //"DOTA_Tooltip_ability_item_monkey_king_bar_consumable_monkey_king_bar_bash_chance"                 "%MINI-BASH CHANCE:"
     //"DOTA_Tooltip_ability_item_monkey_king_bar_consumable_monkey_king_bar_bash_damage"                 "MINI-BASH DAMAGE:"
+
+    //Consumable Kaya
+    "DOTA_Tooltip_ability_item_kaya_consumable"                        "Kaya"
+    "DOTA_Tooltip_ability_item_kaya_consumable_Lore"                   "The staff of a renowned sorceress, lost for countless millennia."
+    "DOTA_Tooltip_ability_item_kaya_consumable_Note0"                  "Multiple instances of this item do not stack."
+    "DOTA_Tooltip_ability_item_kaya_consumable_bonus_intellect_kaya"       "+$int"
+    "DOTA_Tooltip_ability_item_kaya_consumable_spell_amp"                  "%+Spell Amplification"
+    "DOTA_Tooltip_ability_item_kaya_consumable_manacost_reduction"         "%+Manacost and Manaloss Reduction"
+
+    //Consumable Aeon Disk
+    "DOTA_Tooltip_ability_item_aeon_disk_consumable"                   "Aeon Disk"
+    "DOTA_Tooltip_ability_item_aeon_disk_consumable_Description"                   "<h1>Passive: Combo Breaker</h1> When you take damage and your health falls below %health_threshold_pct%%, a strong dispel is applied and you gain a %buff_duration% second buff that causes all damage you deal and are dealt to be reduced to zero. Only triggers on player based damage. \n\n<h1>Passive: Status Resistance</h1> Reduces status effect durations by %status_resistance%%. "
+    "DOTA_Tooltip_ability_item_aeon_disk_consumable_lore"                          "A powerful artifact long ago smuggled out of the Ivory Incubarium. Or so many believe."
+    "DOTA_Tooltip_ability_item_aeon_disk_consumable_bonus_health"                  "+$health"
+    "DOTA_Tooltip_ability_item_aeon_disk_consumable_bonus_mana"                    "+$mana"
+
+    //Consumable Echo Sabre
+    "DOTA_Tooltip_Ability_item_echo_sabre_consumable"                              "Echo Sabre"
+    "DOTA_Tooltip_Ability_item_echo_sabre_consumable_Description"                  "<h1>Passive: Echo Strike</h1> Causes melee attacks to attack twice in quick succession. The double attacks apply a %movement_slow%% movement slow for %slow_duration% seconds on each strike."
+    "DOTA_Tooltip_Ability_item_echo_sabre_consumable_Lore"                         "A deceptively swift blade imbued with resonant magic."
+    "DOTA_Tooltip_Ability_item_echo_sabre_consumable_bonus_intellect"               "+$int"
+    "DOTA_Tooltip_Ability_item_echo_sabre_consumable_bonus_strength"                "+$str"
+    "DOTA_Tooltip_Ability_item_echo_sabre_consumable_bonus_attack_speed"            "+$attack"
+    "DOTA_Tooltip_Ability_item_echo_sabre_consumable_bonus_damage"                  "+$damage"
+    "DOTA_Tooltip_Ability_item_echo_sabre_consumable_bonus_mana_regen"              "+$mana_regen"
+    //"DOTA_Tooltip_Ability_item_echo_sabre_consumable_movement_slow"                 "%MOVEMENT SLOW:"
+    //"DOTA_Tooltip_Ability_item_echo_sabre_consumable_slow_duration"                 "SLOW DURATION:"
+
+    //Consumable Vlads
+    "DOTA_Tooltip_ability_item_vladimir_consumable"                         "Vladmir's Offering"
+    "DOTA_Tooltip_ability_item_vladimir_consumable_Description"                         "<h1>Passive: Vladmir's Aura</h1>Grants lifesteal (%vampiric_aura%%% for melee heroes, %vampiric_aura_ranged%%% for ranged), %hp_regen% health regeneration, %mana_regen_aura% mana regeneration, %damage_aura%%% bonus attack damage, and %armor_aura% armor to nearby allies. <br><br>Radius: %aura_radius%"
+    "DOTA_Tooltip_ability_item_vladimir_consumable_Lore"                                "An eerie mask that is haunted with the malice of a fallen vampire."
+    "DOTA_Tooltip_ability_item_vladimir_consumable_Note0"                               "Multiple instances of Vladmir's Aura do not stack."
+    "DOTA_Tooltip_ability_item_vladimir_consumable_bonus_all_stats"                     "+$all"
+
+    //Vlads modifiers
+    "DOTA_Tooltip_modifier_item_vladimir_consumable"                    "Vladmir's Offering"
+    ""DOTA_Tooltip_modifier_item_vladimir_consumable_Description"       "Permanently gained benefits of Vladmir's Offering"
+    "DOTA_Tooltip_modifier_item_vladimir_consumable_aura"               "Vladmir's Aura"
+    "DOTA_Tooltip_modifier_item_vladimir_consumable_aura_Description"   "Gaining %dMODIFIER_PROPERTY_TOOLTIP%%% lifesteal, as well as %dMODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE%%% bonus attack damage, %dMODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT% health regen, 0.8 mana regen, and %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS_UNIQUE% armor."
+
+    //Echo Sabre modifiers
+    "DOTA_Tooltip_modifier_item_echo_sabre_consumable"                          "Consumed Echo Sabre"
+    "DOTA_Tooltip_modifier_item_echo_sabre_consumable_Description"              "Permanently gained benefits of Echo Sabre"
+    "DOTA_Tooltip_modifier_item_echo_sabre_consumable_debuff"                   "Echo Sabre Slow"
+    "DOTA_Tooltip_modifier_item_echo_sabre_consumable_debuff_Description"       "Movement speed reduced by 100%%."
+
+    //Aeon Disk modifiers
+    "DOTA_Tooltip_modifier_item_aeon_disk_consumable"                                                "Consumed Aeon Disk"
+    "DOTA_Tooltip_modifier_item_aeon_disk_consumable_Description"                                    "Permanently gained benifits of Aeon Disk"
+    "DOTA_Tooltip_modifier_item_aeon_disk_consumable_buff"                                           "Combo Breaker"
+    "DOTA_Tooltip_modifier_item_aeon_disk_consumable_buff_Description"                               "Immune to damage and unable to deal damage"
+
+    //Kaya modifiers
+    "DOTA_Tooltip_modifier_item_kaya_consumable"    "Consumed Kaya"
+    "DOTA_Tooltip_modifier_item_kaya_consumable_Description"    "Permanently gained benifits of Kaya"
 
     "DOTA_Tooltip_ability_item_new_ability_bonus"                                               "New Ability Bonus"
     "DOTA_Tooltip_ability_item_new_ability_bonus_Description"                                   "Use: Gives you some gold. You can recieve this item for each choosen ability, that you have chosen least often (by default in 20%% of all ever chosen abilities) or haven't chosen at all."
