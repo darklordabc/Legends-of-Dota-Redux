@@ -12,6 +12,15 @@ All notable changes to this project will be documented in this file.
 - removed Pocket Factory
 - fixed Miserable Claws having no projectile
 - potentially fixed many custom abilities having no particles
+- recoded Flame Strike since it didnt work at all.
+- fixed Synthesis not removing Day Time buff when toggled off
+- fixed an exploit with Argent Smite, additionally now applies a soft dispel on attack
+- added consumable vlads, echo sabre, aeon disk and kaya.
+- updated lane creep bonus health method
+- Vengeful Spirit perk changed
+- Slarder perk changed
+- fixed consumable AC not applying -armor aura
+- fixed occasionally not getting skill points on level up
 
 ## 9.9
 - Removed Call of the wild Boar, broken ability
