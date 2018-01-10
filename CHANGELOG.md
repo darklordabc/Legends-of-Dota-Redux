@@ -21,6 +21,7 @@ All notable changes to this project will be documented in this file.
 - Slarder perk changed
 - fixed consumable AC not applying -armor aura
 - fixed occasionally not getting skill points on level up
+- fixed neutral evasion skill having fixed 14% evasion
 
 ## 9.9
 - Removed Call of the wild Boar, broken ability

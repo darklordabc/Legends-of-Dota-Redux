@@ -7370,6 +7370,9 @@
     "DOTA_Tooltip_ability_imba_tower_healing_hero_bounce_delay"                        "BOUNCE DELAY:"
     "DOTA_Tooltip_ability_imba_tower_healing_hero_bounce_radius"                       "BOUNCE RANGE:"
 
+    "DOTA_Tooltip_ability_neutral_evasion"                                             "Evasion"
+    "DOTA_Tooltip_ability_neutral_evasion_Description"                                 "Passively granted evasion"
+    "DOTA_Tooltip_ability_neutral_evasion_evasion"                                     "%EVASION:"
 
     // Overthrow
     "DOTA_Tooltip_modifier_get_xp"                  "Golden Aura"
