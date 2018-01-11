@@ -1415,4 +1415,211 @@
         "ItemInitialCharges"            "1"
         "ItemSellable"                  "0"
     }
+
+    "item_vladimir_consumable"
+    {
+        "ID"                            "2081"
+        "ScriptFile"                    "abilities/items/vladimir.lua"
+        "BaseClass"                     "item_lua"
+        "AbilityTextureName"            "item_vladmir"
+        "AbilityCastRange"              "900"
+        "ItemCost"                      "2250"
+
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityGoldCost"               "2250"
+        "ItemPurchasable"              "0"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_all_stats"       "2"
+            }   
+            "02"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "hp_regen"              "2.5"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "mana_regen_aura"       "0.65"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "armor_aura"            "4"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "damage_aura"           "15"
+            }           
+            "06"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "vampiric_aura"         "15"
+            }
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "vampiric_aura_ranged"  "10"
+            }
+            "08"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "aura_radius"           "900"
+            }           
+        }
+    }
+
+    "item_echo_sabre_consumable"
+    {
+        "ID"                            "2252"
+        "ScriptFile"                    "abilities/items/echo_sabre.lua"
+        "BaseClass"                     "item_lua"
+        "AbilityTextureName"            "item_echo_sabre"
+        "FightRecapLevel"               "1"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+        "AbilityCooldown"               "5.0"
+        "ItemCost"                      "2650"
+
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityGoldCost"               "2650"
+        "ItemPurchasable"              "0"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_intellect"       "10"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_strength"        "10"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_attack_speed"    "10"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_damage"          "15"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "bonus_mana_regen"      "0.75"
+            }
+            "06"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "proc_damage"           "0"
+            }
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "movement_slow"         "100"
+            }
+            "08"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "attack_speed_slow"         "0"
+            }
+            "09"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "slow_duration"         "0.7"
+            }
+        }
+    }
+
+    "item_aeon_disk_consumable"
+    {
+        "ID"                            "2256"
+        "ScriptFile"                    "abilities/items/aeon_disk.lua"
+        "BaseClass"                     "item_lua"
+        "AbilityTextureName"            "item_aeon_disk"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+        "AbilityCooldown"               "100.0"
+        "ItemCost"                      "3350"
+
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityGoldCost"               "3350"
+        "ItemPurchasable"              "0"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_health"          "250"
+            }           
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_mana"            "250"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "health_threshold_pct"  "80"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "status_resistance"     "25"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "buff_duration"         "2.5"
+            }
+        }
+    }
+
+    "item_kaya_consumable"
+    {
+        "ID"                            "2259"
+        "ScriptFile"                    "abilities/items/kaya.lua"
+        "AbilityTextureName"            "item_kaya"
+        "BaseClass"                     "item_lua"
+        "ItemCost"                      "1950"
+
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityGoldCost"               "1950"
+        "ItemPurchasable"              "0"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_intellect_kaya"       "16"
+            }           
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "spell_amp"             "10"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "manacost_reduction"    "10"
+            }
+        }
+    }
 }
