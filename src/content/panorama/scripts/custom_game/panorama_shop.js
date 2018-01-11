@@ -52,22 +52,23 @@ function SearchItems() {
 		});
 		$.GetContextPanel().SetHasClass('InSearchMode', searchStr.length > 0);
 		if (searchStr.length > 0) {
-			var FoundItems = [];
-			for (var itemName in ItemData) {
-				if (itemName.lastIndexOf('item_recipe_')) {
-					for (var key in ItemData[itemName].names) {
-						if (ItemData[itemName].names[key].search(new RegExp(searchStr, 'i')) > -1) {
-							FoundItems.push(itemName);
-							break;
-						}
-					}
-				}
-			}
+			var searchRegExp = new RegExp(searchStr, 'i');
+			var foundItems = Object.keys(ItemData).filter(function(itemName) {
+				var localizedName = $.Localize('DOTA_Tooltip_ability_' + itemName);
+				return itemName.lastIndexOf('item_recipe_', 0) !== 0 &&
+					Object.keys(ItemData[itemName].names)
+						.map(function(key) { return ItemData[itemName].names[key] })
+						.concat(localizedName)
+						.some(function (title) {
+							return title.search(searchRegExp) > -1;
+						});
+			});
 
-			FoundItems.sort(function(x1, x2) {
+			foundItems.sort(function(x1, x2) {
 				return ItemData[x1].cost - ItemData[x2].cost;
 			});
-			$.Each(FoundItems, function(itemName) {
+
+			$.Each(foundItems, function(itemName) {
 				SnippetCreate_SmallItem($.CreatePanel('Panel', ShopSearchOverlay, 'ShopSearchOverlay_item_' + itemName), itemName);
 			});
 		}

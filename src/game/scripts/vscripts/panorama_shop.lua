@@ -223,10 +223,6 @@ if PanoramaShop == nil then
 	}
 	PanoramaShop.UnitsInShop = {}
 
-	LANG_ENGLISH = {}
-	util:MergeTables(LANG_ENGLISH, LoadKeyValues("resource/addon_english.txt")["Tokens"])
-	util:MergeTables(LANG_ENGLISH, LoadKeyValues("scripts/kv/dota_items_english.txt")["Tokens"])
-
 	PlayerTables:CreateTable("panorama_shop_data", {}, {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23})
 end
 
@@ -308,6 +304,7 @@ function PanoramaShop:InitializeItemTable()
 			cost = GetTrueItemCost(name),
 			names = {name:lower()},
 		}
+
 		if kv.ItemAliases then
 			for _,v in ipairs(util:split(kv.ItemAliases, ";")) do
 				if not util:contains(itemdata.names, v:lower()) then
@@ -315,12 +312,7 @@ function PanoramaShop:InitializeItemTable()
 				end
 			end
 		end
-		local translated_english = LANG_ENGLISH["DOTA_Tooltip_Ability_" .. name] or LANG_ENGLISH["DOTA_Tooltip_ability_" .. name]
-		if translated_english then
-			if not util:contains(itemdata.names, translated_english:lower()) then
-				table.insert(itemdata.names, translated_english:lower())
-			end
-		end
+
 		if RecipesToCheck[name] then
 			local recipedata = {
 				visible = GetTrueItemCost(RecipesToCheck[name]) > 0,
