@@ -1565,6 +1565,8 @@
     "credit_skipping_flames"           "<font color=\'#7D7D7D\'>Credits: Deathtal | github.com/Deathtal</font>"
     "credit_unwavering_stance"           "<font color=\'#7D7D7D\'>Credits: Deathtal | github.com/Deathtal</font>"
     "credit_molten_charge"           "<font color=\'#7D7D7D\'>Credits: Deathtal | github.com/Deathtal</font>"
+    "credit_pudge_flesh_heap_minion_damage"           "<font color=\'#7D7D7D\'>Credits: Deathtal | github.com/Deathtal</font>"
+    
     "credit_spell_lab_symbiotic"           "<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>"
     "credit_sight"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
     "credit_zhanhun"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
@@ -7259,6 +7261,13 @@
     "DOTA_Tooltip_molten_charge_armor_drain_debuff_display_modifier"    "ARMOR LOST"
     "DOTA_Tooltip_molten_charge_root_modifier"                          "ROOTED"
     "DOTA_Tooltip_molten_charge_slow_modifier"                          "SLOWED"
+    
+    //Minion
+    "DOTA_Tooltip_ability_pudge_flesh_heap_minion_damage"                                   "Flesh Heap - Minion Damage"
+    "DOTA_Tooltip_ability_pudge_flesh_heap_minion_damage_Description"                       "<font color='#70EA72'>Gives increased damage dealt by all minions whenever the owner or its minions kills an enemy Hero or it dies in the vicinity of the owner.</font> Flesh Heap Minion Damage is retroactive, meaning it can gain charges before it is skilled, which then become active."
+    "DOTA_Tooltip_ability_pudge_flesh_heap_minion_damage_flesh_heap_minion_damage_amount"   "%MINION DAMAGE PER STACK:"
+    "DOTA_Tooltip_modifier_flesh_heap_minion_damage"                                        "Flesh Heap - Minion Damage"
+    "DOTA_Tooltip_modifier_flesh_heap_minion_damage_Description"                            "The minions owned by this hero deal %dMODIFIER_PROPERTY_TOOLTIP%%% more damage."
 
     "DOTA_Tooltip_ability_aether_reality_shift"                                       "Reality Shift"
     "DOTA_Tooltip_ability_aether_reality_shift_Description"                           "Aether drags all nearby units from this plane to the next temporarily, returning after the duration ends and damaging and stunning enemy units within range that were not affected by the initial cast.  Units affected are out of game and invulnerable for the duration."
