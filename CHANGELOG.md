@@ -2,26 +2,30 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 10.1
+- Recoded Flame Strike since it didnt work at all.
+- Fixed Synthesis not removing Day Time buff when toggled off
+- Fixed an exploit with Argent Smite, additionally now applies a soft dispel on attack
+- Updated lane creep bonus health method
+- Vengeful Spirit perk changed
+- Slarder perk changed
+- Fixed consumable AC not applying -armor aura
+- Fixed occasionally not getting skill points on level up
+- Fixed neutral evasion skill having fixed 14% evasion
+- Replaced Standard Map with Classic map. It is now default.
+
+
 ## 10.0
 - Replaced Phantom Lancer's Perk
 - Viper perk now stacks with itself, and now reduces armor and magic resist by 10%
 - Spectre perk now gives cliff walking for 4 seconds
-- added 7.07 Grow (is not in 'onehit' troll combo list)
-- fixed Spectral Form doing 0 damage, lowered its evasion to 90%
-- made Bedlam an ultimate
-- removed Pocket Factory
-- fixed Miserable Claws having no projectile
-- potentially fixed many custom abilities having no particles
-- recoded Flame Strike since it didnt work at all.
-- fixed Synthesis not removing Day Time buff when toggled off
-- fixed an exploit with Argent Smite, additionally now applies a soft dispel on attack
-- added consumable vlads, echo sabre, aeon disk and kaya.
-- updated lane creep bonus health method
-- Vengeful Spirit perk changed
-- Slarder perk changed
-- fixed consumable AC not applying -armor aura
-- fixed occasionally not getting skill points on level up
-- fixed neutral evasion skill having fixed 14% evasion
+- Added 7.07 Grow (is not in 'onehit' troll combo list)
+- Fixed Spectral Form doing 0 damage, lowered its evasion to 90%
+- Made Bedlam an ultimate
+- Removed Pocket Factory
+- Fixed Miserable Claws having no projectile
+- Potentially fixed many custom abilities having no particles
+
 
 ## 9.9
 - Removed Call of the wild Boar, broken ability
