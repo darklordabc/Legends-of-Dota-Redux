@@ -1716,7 +1716,7 @@
     "credit_juggernaut_healing_ward_mana"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 and SwordBacon</font>"
     "credit_angel_arena_lightning"           "<font color=\'#7D7D7D\'>Imported from <font color='#f26868'>Angel Arena Reborn.</font>"
     "credit_angel_arena_magic_fire"          "<font color=\'#7D7D7D\'>Imported from <font color='#f26868'>Angel Arena Reborn.</font></font>"
-    "credit_angel_arena_night_vampire"           "<font color=\'#7D7D7D\'>Imported from <font color='#f26868'>Angel Arena Reborn.</font></font>"4
+    "credit_angel_arena_night_vampire"           "<font color=\'#7D7D7D\'>Imported from <font color='#f26868'>Angel Arena Reborn.</font></font>"
     "credit_angel_arena_revenge"          "<font color=\'#7D7D7D\'>Imported from <font color='#f26868'>Angel Arena Reborn.</font></font>"
     "credit_angel_arena_rifle_OP"           "<font color=\'#7D7D7D\'>Imported from <font color='#f26868'>Angel Arena Reborn.</font></font>"
     "credit_angel_arena_roots"           "<font color=\'#7D7D7D\'>Imported from <font color='#f26868'>Angel Arena Reborn.</font></font>"
@@ -5818,8 +5818,7 @@
     //"DOTA_Tooltip_ability_item_heart_consumable_heart_health_regen_rate"                     "%HEALTH RESTORED PER SECOND:"
 
     "DOTA_Tooltip_Ability_item_monkey_king_bar_consumable"         "Monkey King Bar"
-    "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_Description"                 "<h1>Passive: Pierce</h1>Grants each attack a %monkey_king_bar_bonus_chance%%% chance to pierce through evasion and deal %monkey_king_bar_bonus_chance_damage% bonus pure damage.\n
-<h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Monkey King Bar to permanently gain its effects</font>."
+    "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_Description"                 "<h1>Passive: Pierce</h1>Grants each attack a %monkey_king_bar_bonus_chance%%% chance to pierce through evasion and deal %monkey_king_bar_bonus_chance_damage% bonus pure damage.\n<h1><font color=\'#70EA72\'>Consume</font></h1><font color=\'#70EA72\'>Consume the Monkey King Bar to permanently gain its effects</font>."
     "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_Lore"                    "A powerful staff used by a master warrior."
     "DOTA_Tooltip_ability_item_monkey_king_bar_consumable_monkey_king_bar_bonus_attack_speed"                "+$attack"
     //"DOTA_Tooltip_ability_item_monkey_king_bar_consumable_monkey_king_bar_bash_chance"                 "%MINI-BASH CHANCE:"
@@ -5861,7 +5860,7 @@
 
     //Vlads modifiers
     "DOTA_Tooltip_modifier_item_vladimir_consumable"                    "Vladmir's Offering"
-    ""DOTA_Tooltip_modifier_item_vladimir_consumable_Description"       "Permanently gained benefits of Vladmir's Offering"
+    "DOTA_Tooltip_modifier_item_vladimir_consumable_Description"       "Permanently gained benefits of Vladmir's Offering"
     "DOTA_Tooltip_modifier_item_vladimir_consumable_aura"               "Vladmir's Aura"
     "DOTA_Tooltip_modifier_item_vladimir_consumable_aura_Description"   "Gaining %dMODIFIER_PROPERTY_TOOLTIP%%% lifesteal, as well as %dMODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE%%% bonus attack damage, %dMODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT% health regen, 0.8 mana regen, and %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS_UNIQUE% armor."
 
@@ -7410,12 +7409,7 @@
     "InstructionsObjective"                         "OBJECTIVE"
     "InstructionsObjectiveText"                     "Slay your enemies! Be the first to earn the goal number of kills, or the team with the most kills when the round ends, and you will be victorious."
     "InstructionsHowToPlay"                         "HOW TO PLAY"
-    "InstructionsLines"                             "-Approach the Midas Throne to earn bonus gold and experience.<br>
-                                                    -Snatch up any giant coins the Over Boss tosses to earn even more gold.<br>
-                                                    -Keep an eye out for item deliveries. An icon will appear on your map where an item will appear.<br>
-                                                    -The fewer kills your team has, the better the item you will receive from a delivery.<br>
-                                                    -Slay anyone who isn't on your team."
-
+    "InstructionsLines"                             "-Approach the Midas Throne to earn bonus gold and experience.<br>-Snatch up any giant coins the Over Boss tosses to earn even more gold.<br>-Keep an eye out for item deliveries. An icon will appear on your map where an item will appear.<br>-The fewer kills your team has, the better the item you will receive from a delivery.<br>-Slay anyone who isn't on your team."
     "Chest"                                         "ITEM"
     "ItemWillSpawn"                                 "IS ABOUT TO BE DELIVERED!"
     "ItemHasSpawned"                                "IS ON ITS WAY!"
