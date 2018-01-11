@@ -178,8 +178,9 @@ modifier_item_vladimir_consumable_aura = class({
       return
     end
     if IsServer() then
+      local average = (self:GetParent():GetBaseDamageMin() + self:GetParent():GetBaseDamageMax()) / 2
       self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_vlads_info", {})
-      self:GetParent():SetModifierStackCount("modifier_vlads_info", self:GetCaster(), self:GetParent():GetAttackDamage())
+      self:GetParent():SetModifierStackCount("modifier_vlads_info", self:GetCaster(), average)
     end
     local damage = self:GetParent():GetModifierStackCount("modifier_vlads_info", self:GetCaster()) or 0
     return damage * self:GetAbility():GetSpecialValueFor("damage_aura") * 0.01
@@ -202,6 +203,13 @@ modifier_item_vladimir_consumable_aura = class({
 })
 
 modifier_vlads_info = class({
-  IsHidden = function() return true end,
+  IsHidden = function(self) 
+    if IsServer() then
+      if not self:GetParent():HasModifier("modifier_item_vladimir_consumable_aura") then
+        self:Destroy()
+      end
+    end
+    return true 
+  end,
   IsPurgable = function() return false end,
 })
