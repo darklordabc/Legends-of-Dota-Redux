@@ -500,6 +500,25 @@ function PanoramaShop:RecursiveSetItemPurchasable(item, purchasable, playerID)
 				end
 			end
 		end
+		-- And enable all items it builds to (only if it's the only missing component)
+		-- This function already has too much repeative code. TODO: Refactor it
+		for _,itemBuiltTo in ipairs(PanoramaShop.FormattedData[item].BuildsInto or {}) do
+			local canEnable = true
+			for _, itemComponents in ipairs(PanoramaShop.FormattedData[itemBuiltTo].Recipe.items) do
+				canEnable = true
+				for _,v in ipairs(itemComponents) do
+					if v ~= item and not PanoramaShop.FormattedData[v].purchasable then
+						canEnable = false
+					end
+				end
+			end
+			if canEnable then
+				table.insert(disabledList, itemBuiltTo)
+				for _,v in ipairs(self:RecursiveSetItemPurchasable(itemBuiltTo, true) or {}) do
+					table.insert(disabledList, v)
+				end
+			end
+		end
 	else
 		-- Disabling an item should also disable all items it builds to
 		for _,v in ipairs(PanoramaShop.FormattedData[item].BuildsInto or {}) do
