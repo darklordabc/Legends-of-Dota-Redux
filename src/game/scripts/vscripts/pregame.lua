@@ -8054,6 +8054,8 @@ function Pregame:fixSpawnedHero( spawnedUnit )
         -- Any bonus gold?
         if OptionManager:GetOption('bonusGold') > 0 then
             PlayerResource:SetGold(playerID, OptionManager:GetOption('bonusGold'), true)
+        else
+            PlayerResource:SetGold(playerID, 625, true)
         end
     end
 end
