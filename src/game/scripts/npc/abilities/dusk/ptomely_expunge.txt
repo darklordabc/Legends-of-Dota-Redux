@@ -1,35 +1,35 @@
 "DOTAAbilities" {
 //=====================================================================================================
-// HAWKEYE: Ricochet
+// PTOMELY: Expunge
 //=====================================================================================================
-"hawkeye_ricochet"
+"ptomely_expunge"
 {
 	// General
 	//-------------------------------------------------------------------------------------------------------------
 	"BaseClass"						"ability_lua"
-	"ScriptFile"					"abilities/dusk/hawkeye_ricochet"
-	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+	"ScriptFile"					"abilities/dusk/ptomely_expunge"
+	"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-	"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-	"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
-	"AbilityTextureName"			"custom/hawkeye_ricochet"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+	"AbilityTextureName"			"custom/ptomely_expunge"
 
 	// Casting
 	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCastRange"				"650"
-	"AbilityCastPoint"				"0.15"
+	"AbilityCastRange"				"1000"
+	"AbilityCastPoint"				"0.40"
 	
 	// Time		
 	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCooldown"				"10 8 6 4"
+	"AbilityCooldown"				"110"
+	"HasScepterUpgrade"             "1"
 
 	// Cost
 	//-------------------------------------------------------------------------------------------------------------
-	"AbilityManaCost"				"50"
+	"AbilityManaCost"				"200 400 600"
 	
 	// Stats
 	//-------------------------------------------------------------------------------------------------------------
@@ -41,25 +41,41 @@
 	{
 		"01"
 		{
-			"var_type"					"FIELD_INTEGER"
-			"hits"						"4"
+			"var_type"					"FIELD_FLOAT"
+			"duration"					"2.5"
 		}
 		"02"
 		{
 			"var_type"					"FIELD_INTEGER"
-			"damage_reduction"			"-80 -72 -64 -56"
+			"mana_drain"				"25 40 55"
+		}
+		"03"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"radius"					"575"
+		}
+		"04"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"slow"						"75"
+		}
+		"05"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"scepter_mana_drain"		"15"
+		}
+		"06"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"base_drain"				"150 200 250"
 		}
 	}
 	
 	"precache"
 		{
-		"particle" "particles\item_fx\desolator_projectile.vpcf"
-		"particle" "particles\units\heroes\hero_ancient_apparition\ancient_apparition_cold_feet_frozen.vpcf"
-		"soundfile" "soundevents\game_sounds_heroes\game_sounds_tusk.vsndevts"
-		}
-	
-	"Modifiers"
-		{
+		"particle" "particles\units\heroes\hero_ptomely\expunge.vpcf"
+		"particle" "particles\units\heroes\hero_ptomely\expunge_drain.vpcf"
+		"soundfile" "soundevents\hero_ptomely.vsndevts"
 		}
 }
 }

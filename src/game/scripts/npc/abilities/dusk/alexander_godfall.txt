@@ -1,30 +1,32 @@
 "DOTAAbilities" {
 //=====================================================================================================
-// AETHER: Reality Shift
+// ALEXANDER: Godfall
 //=====================================================================================================
-"aether_reality_shift"
+"alexander_godfall"
 {
 	// General
 	//-------------------------------------------------------------------------------------------------------------
 	"BaseClass"						"ability_lua"
-	"ScriptFile"					"abilities/dusk/aether_reality_shift"
+	"ScriptFile"					"abilities/dusk/alexander_godfall"
 	"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-	"AbilityTextureName"			"custom/aether_reality_shift"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+	"AbilityChannelTime"			"1"
+	"AbilityTextureName"			"custom/alexander_godfall"
 
 	// Casting
 	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCastRange"				"400 425 450"
-	"AbilityCastPoint"				"0.0"
+	"AbilityCastRange"				"0"
+	"AbilityCastPoint"				"0"
 	
 	// Time		
 	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCooldown"				"100 90 80"
+	"AbilityCooldown"				"70"
+
+	"HasScepterUpgrade"				"1"
 
 	// Cost
 	//-------------------------------------------------------------------------------------------------------------
-	"AbilityManaCost"				"200 300 400"
+	"AbilityManaCost"				"125"
 	
 	// Stats
 	//-------------------------------------------------------------------------------------------------------------
@@ -34,37 +36,36 @@
 	//-------------------------------------------------------------------------------------------------------------
 	"AbilitySpecial"
 	{
-		"01"
+	"01"
 		{
-			"var_type"					"FIELD_INTEGER"
-			"duration"					"4"
+			"var_type"						"FIELD_INTEGER"
+			"duration"						"7"
 		}
-		"02"
+	"02"
 		{
-			"var_type"					"FIELD_INTEGER"
-			"radius"					"400 425 450"
+			"var_type"						"FIELD_INTEGER"
+			"damage"						"135 170 205"
 		}
-		"03"
+	"03"
 		{
-			"var_type"					"FIELD_FLOAT"
-			"stun"						"2 3 4"
-		}
-		"04"
-		{
-			"var_type"					"FIELD_INTEGER"
-			"damage"					"225 350 475"
-		}
-		"05"
-		{
-			"var_type"					"FIELD_INTEGER"
-			"predamage"					"200 300 400"
+			"var_type"						"FIELD_INTEGER"
+			"scepter_mult"					"75"
 		}
 	}
 	
 	"precache"
 		{
-			"soundfile" "soundevents/game_sounds_heroes/game_sounds_obsidian_destroyer.vsndevts"
-			"particle" "particles/units/heroes/hero_aether/aether_reality_shift.vpcf"
+		"particle" "particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_spirit_form_ambient.vpcf"
+		"particle" "particles/units/heroes/hero_alexander/godfall_start.vpcf"
+		"particle" "particles/units/heroes/hero_alexander/godfall_charged.vpcf"
+		"particle" "particles/units/heroes/hero_alexander/godfall_strike.vpcf"
+		"particle" "particles/units/heroes/hero_alexander/godfall_success.vpcf"
+		"soundfile" "soundevents\hero_alexander.vsndevts"
+		"soundfile" "soundevents/game_sounds_heroes/game_sounds_luna.vsndevts"
+		}
+	
+	"Modifiers"
+		{
 		}
 }
 }

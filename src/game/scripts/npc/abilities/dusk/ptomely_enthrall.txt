@@ -1,0 +1,124 @@
+"DOTAAbilities" {
+//=====================================================================================================
+// PTOMELY: Enthrall
+//=====================================================================================================
+"ptomely_enthrall"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"abilities/dusk/ptomely_enthrall"
+	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+	"AbilityTextureName"			"custom/ptomely_enthrall"
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"775"
+	"AbilityCastPoint"				"0.45"
+	
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"14"
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"100"
+	
+	// Stats
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityModifierSupportValue"	"0.0"	// All about the damage
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"magic_resistance_reduction" "12 16 20 24"
+		}
+		"02"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"duration"					"8"
+		}
+	}
+	
+	"precache"
+		{
+		"particle" "particles\units\heroes\hero_ptomely\enthrall.vpcf"
+		"particle" "particles\units\heroes\hero_ancient_apparition\ancient_apparition_cold_feet_frozen.vpcf"
+		"soundfile" "soundevents\hero_ptomely.vsndevts"
+		}
+		
+	"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"Ptomely.Enthrall"
+				"Target" 		"TARGET"
+			}
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_enthralled"
+				"Target"
+				{
+					"Center"  	"TARGET"
+					"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				}
+				"Duration"		"%duration"
+			}
+
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_enthralled_ally"
+				"Target"
+				{
+					"Center"  	"TARGET"
+					"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				}
+				"Duration"		"%duration"
+			}
+		}
+	
+	"Modifiers"
+		{
+			"modifier_enthralled"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+			
+				"EffectName"		"particles\units\heroes\hero_ptomely\enthrall.vpcf"
+				"EffectAttachType"	"follow_origin"
+			
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance_reduction"
+				}
+			}
+
+			"modifier_enthralled_ally"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+			
+				"EffectName"		"particles\units\heroes\hero_ptomely\enthrall.vpcf"
+				"EffectAttachType"	"follow_origin"
+			
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS" "%magic_resistance_reduction_ally"
+				}
+			}
+		}
+}
+}

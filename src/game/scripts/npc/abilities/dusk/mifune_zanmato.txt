@@ -1,0 +1,88 @@
+"DOTAAbilities" {
+//=====================================================================================================
+// MIFUNE: Zanmato
+//=====================================================================================================
+"mifune_zanmato"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_lua"
+	"ScriptFile"					"abilities/dusk/mifune_zanmato"
+	"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+	"AoERadius"						"600"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	"AbilityTextureName"			"custom/mifune_zanmato"
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"450"
+	"AbilityCastPoint"				"0.3"
+	
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"75"
+	"HasScepterUpgrade"				"1"
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"115"
+	
+	// Stats
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityModifierSupportValue"	"0.0"	// All about the damage
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"radius"					"650"
+		}
+		
+		"02"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"bonus_hero_damage"			"75 125 175"
+		}
+					
+		"03"
+		{
+			"var_type"					"FIELD_FLOAT"
+			"attack_interval"			"0.10"
+		}
+
+		"04"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"creep_damage_penalty"		"0"
+		}
+
+		"05"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"orb_damage"				"80 120 160"
+		}
+	}
+	
+	"precache"
+	{
+		"soundfile"						"soundevents/game_sounds_heroes/game_sounds_ember_spirit.vsndevts"
+		"soundfile" 					"soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
+		"particle"						"particles/units/heroes/hero_ember_spirit/ember_spirit_sleight_of_fist_cast.vpcf"
+		"particle"						"particles/units/heroes/hero_ember_spirit/ember_spirit_sleight_of_fist_caster.vpcf" // for dummy
+		"particle"						"particles/units/heroes/hero_ember_spirit/ember_spirit_sleight_of_fist_targetted_marker.vpcf"
+		"particle"						"particles/units/heroes/hero_ember_spirit/ember_spirit_sleightoffist_tgt.vpcf"
+		"particle"						"particles/units/heroes/hero_ember_spirit/ember_spirit_sleightoffist_trail.vpcf"
+		"particle"						"particles/units/heroes/hero_mifune/mifune_orb.vpcf"
+		"particle"						"particles/units/heroes/hero_jakiro/jakiro_liquid_fire_explosion.vpcf"
+	}
+
+}
+}

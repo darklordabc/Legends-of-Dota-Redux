@@ -1,130 +1,162 @@
-"DOTAAbilities"
+"DOTAAbilities" {
+//=====================================================================================================
+// HAWKEYE: Double Tap
+//=====================================================================================================
+"hawkeye_double_tap"
 {
-    "hawkeye_double_tap"
-    {
-        "BaseClass"                                                            "ability_datadriven"
-        "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
-        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT"
-        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
-        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO"
-        "AbilityUnitTargetFlags"                                               "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_YES"
-        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_PHYSICAL"
-        "AnimationPlaybackRate"                                                "2.25"
-        "AbilityTextureName"                                                   "custom/hawkeye_double_tap"
-        "AbilityCastRange"                                                     "1600"
-        "AbilityCastPoint"                                                     "0.75"
-        "AbilityCooldown"                                                      "26 24 22 20"
-        "AbilityManaCost"                                                      "75"
-        "AbilityModifierSupportValue"                                          "0.0"
-        "AbilitySpecial"
-        {
-            "01"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "base_damage"                                          "30 40 50 60"
-            }
-            "02"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "duration"                                             "12"
-            }
-            "03"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "range"                                                "1600"
-            }
-            "04"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "shot_speed_scepter"                                   "4000"
-            }
-            "05"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "range_scepter"                                        "2000"
-            }
-            "06"
-            {
-                "var_type"                                             "FIELD_FLOAT"
-                "mult"                                                 "0.50 0.60 0.70 0.80"
-            }
-            "07"
-            {
-                "var_type"                                             "FIELD_FLOAT"
-                "mult_scepter"                                         "2.00"
-            }
-        }
-        "precache"
-        {
-            "soundfile"                                                    "soundevents\game_sounds_heroes\game_sounds_sniper.vsndevts"
-        }
-        "OnUpgrade"
-        {
-            "LevelUpAbility"
-            {
-                "Target"                                               "CASTER"
-                "AbilityName"                                          "hawkeye_double_tap_second_shot"
-            }
-        }
-        "OnAbilityPhaseStart"
-        {
-            "FireSound"
-            {
-                "Target"                                               "CASTER"
-                "EffectName"                                           "Ability.AssassinateLoad"
-            }
-        }
-        "OnSpellStart"
-        {
-            "RunScript"
-            {
-                "ScriptFile"                                           "abilities/dusk/hawkeye_abilities.lua"
-                "Function"                                             "hawkeye_double_tap"
-                "mult"                                                 "%mult"
-                "mult_scepter"                                         "%mult_scepter"
-            }
-            "FireSound"
-            {
-                "Target"                                               "CASTER"
-                "EffectName"                                           "Hero_Sniper.AssassinateProjectile"
-            }
-        }
-        "OnProjectileHitUnit"
-        {
-            "RunScript"
-            {
-                "ScriptFile"                                           "abilities/dusk/hawkeye_abilities.lua"
-                "Function"                                             "hawkeye_double_tap_hit"
-                "mult"                                                 "%mult"
-            }
-            "FireSound"
-            {
-                "Target"
-                {
-                    "Center"                                       "TARGET"
-                    "Flags"                                        "DOTA_UNIT_TARGET_FLAG_DEAD"
-                }
-                "EffectName"                                           "Hero_Sniper.AssassinateDamage"
-            }
-            "DeleteOnHit"                                                  "0"
-        }
-        "Modifiers"
-        {
-            "hawkeye_double_tap_second_shot_effect_mod"
-            {
-                "Duration"                                             "8"
-                "IsBuff"                                               "1"
-                "OnDestroy"
-                {
-                    "RunScript"
-                    {
-                        "ScriptFile"                           "abilities/dusk/hawkeye_abilities.lua"
-                        "Function"                             "hawkeye_double_tap_reset"
-                    }
-                }
-            }
-        }
-        "ReduxPerks"                                                           "skillshot"
-    }
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_datadriven"
+	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
+	"AnimationPlaybackRate"			"2.25"
+	"AbilityTextureName"			"sniper_assassinate"
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"1600"
+	"AbilityCastPoint"				"0.75"
+	
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"26 24 22 20"
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"75"
+	
+	// Stats
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityModifierSupportValue"	"0.0"	// All about the damage
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"base_damage"				"30 40 50 60"
+		}
+		"02"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"duration"					"12"
+		}
+		"03"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"range"						"1600"
+		}
+		"04"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"shot_speed_scepter"		"4000"
+		}
+		"05"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"range_scepter"				"2000"
+		}
+		"06"
+		{
+			"var_type"					"FIELD_FLOAT"
+			"mult"						"0.50 0.60 0.70 0.80"
+		}
+		"07"
+		{
+			"var_type"					"FIELD_FLOAT"
+			"mult_scepter"				"2.00"
+		}
+	}
+	
+	"precache"
+		{
+		"soundfile" "soundevents\game_sounds_heroes\game_sounds_sniper.vsndevts"
+		}
+	"OnUpgrade"
+		{
+		"LevelUpAbility"
+			{
+			"Target" "CASTER"
+			"AbilityName" "hawkeye_double_tap_visuals"
+			}
+		"LevelUpAbility"
+			{
+			"Target" "CASTER"
+			"AbilityName" "hawkeye_double_tap_second_shot"
+			}
+		}
+		
+	"OnAbilityPhaseStart"
+	{
+		"FireSound"
+		{
+			"Target"				"CASTER"
+			"EffectName"			"Ability.AssassinateLoad"
+		}
+	}
+		
+	"OnSpellStart"
+		{
+		"RunScript"
+			{
+			"ScriptFile" "abilities/dusk/hawkeye_abilities.lua"
+			"Function" "hawkeye_double_tap"
+			"mult" "%mult"
+			"mult_scepter" "%mult_scepter"
+			}
+		"FireSound"
+			{
+			"Target"				"CASTER"
+			"EffectName"			"Ability.Assassinate"
+			}
+		"FireSound"
+			{
+			"Target" "CASTER"
+			"EffectName"			"Hero_Sniper.AssassinateProjectile"
+			}
+		}
+	"OnProjectileHitUnit"
+		{
+		"RunScript"
+			{
+			"ScriptFile" "abilities/dusk/hawkeye_abilities.lua"
+			"Function" "hawkeye_double_tap_hit"
+			"mult" "%mult"
+			}
+		"FireSound"
+			{
+			"Target"
+						{
+						"Center" "TARGET"
+						"Flags" "DOTA_UNIT_TARGET_FLAG_DEAD"	
+						}
+			"EffectName"			"Hero_Sniper.AssassinateDamage"
+			}
+		"DeleteOnHit" "0"
+		}
+	
+	"Modifiers"
+		{		
+		"hawkeye_double_tap_second_shot_effect_mod"
+			{
+			"Duration" "8"
+			"IsBuff" "1"
+			"OnDestroy"
+				{
+				"RunScript"
+					{
+					"ScriptFile" "abilities/dusk/hawkeye_abilities.lua"
+					"Function" "hawkeye_double_tap_reset"
+					}
+				}
+			}
+		}
+}
 }

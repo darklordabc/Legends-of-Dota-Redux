@@ -1,35 +1,33 @@
 "DOTAAbilities" {
 //=====================================================================================================
-// HAWKEYE: Ricochet
+// LIGHTNING: Boltblast
 //=====================================================================================================
-"hawkeye_ricochet"
+"lightning_boltblast"
 {
 	// General
 	//-------------------------------------------------------------------------------------------------------------
 	"BaseClass"						"ability_lua"
-	"ScriptFile"					"abilities/dusk/hawkeye_ricochet"
+	"ScriptFile"					"abilities/dusk/lightning_boltblast"
 	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILTIY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_AOE"
 	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-	"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-	"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
-	"AbilityTextureName"			"custom/hawkeye_ricochet"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+	"AbilityTextureName"			"custom/lightning_boltblast"
+	"AoERadius"						"315"
 
 	// Casting
 	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCastRange"				"650"
-	"AbilityCastPoint"				"0.15"
+	"AbilityCastRange"				"975"
+	"AbilityCastPoint"				"0.4"
 	
 	// Time		
 	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCooldown"				"10 8 6 4"
+	"AbilityCooldown"				"8"
 
 	// Cost
 	//-------------------------------------------------------------------------------------------------------------
-	"AbilityManaCost"				"50"
+	"AbilityManaCost"				"80 90 100 110"
 	
 	// Stats
 	//-------------------------------------------------------------------------------------------------------------
@@ -41,21 +39,40 @@
 	{
 		"01"
 		{
-			"var_type"					"FIELD_INTEGER"
-			"hits"						"4"
+			"var_type"					"FIELD_FLOAT"
+			"explosion_delay"			"1.0"
 		}
 		"02"
 		{
 			"var_type"					"FIELD_INTEGER"
-			"damage_reduction"			"-80 -72 -64 -56"
+			"explosion_damage"			"120 180 240 300"
+		}
+		"03"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"movespeed_slow"			"-40"
+		}
+		"04"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"attack_slow"				"-50"
+		}
+		"05"
+		{
+			"var_type"					"FIELD_FLOAT"
+			"slow_duration"				"1.2 1.6 2.0 2.4"
+		}
+		"05"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"radius"					"315"
 		}
 	}
 	
 	"precache"
 		{
-		"particle" "particles\item_fx\desolator_projectile.vpcf"
-		"particle" "particles\units\heroes\hero_ancient_apparition\ancient_apparition_cold_feet_frozen.vpcf"
-		"soundfile" "soundevents\game_sounds_heroes\game_sounds_tusk.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+			"particle"  "particles/units/heroes/hero_lightning/boltblast.vpcf"
 		}
 	
 	"Modifiers"

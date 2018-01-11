@@ -1,72 +1,87 @@
-"DOTAAbilities"
+"DOTAAbilities" {
+//=====================================================================================================
+// ANCIENT: Defensive Wave
+//=====================================================================================================
+"ancient_defensive_wave"
 {
-    "ancient_defensive_wave"
-    {
-        "BaseClass"                                                            "ability_datadriven"
-        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
-        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
-        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
-        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
-        "AbilityCastAnimation"                                                 "ACT_DOTA_ATTACK"
-        "AbilityTextureName"                                                   "custom\ancient_giga_graviton"
-        "MaxLevel"                                                             "3"
-        "AbilitySharedWithTeammates"                                           "3"
-        "AbilityCastRange"                                                     "1250"
-        "AbilityCastPoint"                                                     "0.2"
-        "AbilityCooldown"                                                      "21 14 7"
-        "AbilityManaCost"                                                      "0"
-        "AbilityModifierSupportValue"                                          "0.0"
-        "AbilitySpecial"
-        {
-            "01"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "duration"                                             "16"
-            }
-            "02"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "1250"
-            }
-            "03"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "hpthreshhold"                                         "33 44 66"
-            }
-        }
-        "precache"
-        {
-            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_luna.vsndevts"
-            "particle"                                                     "particles/econ/items/luna/luna_lucent_ti5/luna_eclipse_impact_moonfall.vpcf"
-        }
-        "Modifiers"
-        {
-            "modifier_defensive_wave"
-            {
-                "Passive"                                              "1"
-                "IsHidden"                                             "0"
-                "IsDebuff"                                             "0"
-                "ThinkInterval"                                        "0.1"
-                "OnIntervalThink"
-                {
-                    "RunScript"
-                    {
-                        "ScriptFile"                           "abilities/dusk/ancient_abilities.lua"
-                        "Function"                             "d_waves"
-                    }
-                }
-            }
-            "modifier_defensive_wave_warning"
-            {
-                "Passive"                                              "0"
-                "IsHidden"                                             "1"
-                "IsDebuff"                                             "0"
-            }
-        }
-        "ReduxCost"                                                            "120"
-        "ReduxFlags"                                                           ""
-        "ReduxPerks"                                                           "light"
-    }
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_datadriven"
+	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+	"AbilityTextureName"			"custom/ancient_giga_graviton"
+	"MaxLevel"						"1"
+	"AbilitySharedWithTeammates" 	"1"
+
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"1250"
+	"AbilityCastPoint"				"0.2"
+	
+	// Time		
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCooldown"				"180"
+
+	// Cost
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityManaCost"				"0"
+	
+	// Stats
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityModifierSupportValue"	"0.0"	// All about the damage
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"duration"					"16"
+		}
+		"02"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"radius"					"1250"
+		}
+	}
+	
+	"precache"
+		{
+			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_luna.vsndevts"
+			"particle"					"particles/econ/items/luna/luna_lucent_ti5/luna_eclipse_impact_moonfall.vpcf"
+			"particle"					"particles/units/heroes/hero_tek/skycrack_eff.vpcf"
+		}
+	
+	"Modifiers"
+		{
+			"modifier_defensive_wave"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+			
+				"ThinkInterval"  "0.1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"buildings/ancient_abilities.lua"
+						"Function"		"d_waves"
+					}
+				}
+			}
+			"modifier_defensive_wave_warning"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+			}
+		}
+}
 }

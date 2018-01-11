@@ -1,35 +1,37 @@
 "DOTAAbilities" {
 //=====================================================================================================
-// HAWKEYE: Detonator Dart
+// HERO: One Punch
 //=====================================================================================================
-"hawkeye_detonator_dart"
+"hero_one_punch"
 {
 	// General
 	//-------------------------------------------------------------------------------------------------------------
 	"BaseClass"						"ability_lua"
-	"ScriptFile"					"abilities/dusk/hawkeye_detonator_dart"
+	"ScriptFile"					"abilities/dusk/hero_one_punch"
 	"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-	"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
-	"AoERadius"						"375"
-	"AbilityTextureName"			"custom/hawkeye_detonator_dart"
+	"AbilityTextureName"			"custom/hero_one_punch"
+	"AnimationPlaybackRate"			"0.9"
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
 
 	// Casting
 	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCastRange"				"650"
-	"AbilityCastPoint"				"0.2"
+	"AbilityCastRange"				"150"
+	"AbilityCastPoint"				"0.5"
 	
 	// Time		
 	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCooldown"				"60 55 50"
+	"AbilityCooldown"				"90 80 70"
+	"HasScepterUpgrade"				"1"
 
 	// Cost
 	//-------------------------------------------------------------------------------------------------------------
-	"AbilityManaCost"				"90"
+	"AbilityManaCost"				"125"
 	
 	// Stats
 	//-------------------------------------------------------------------------------------------------------------
@@ -42,42 +44,48 @@
 		"01"
 		{
 			"var_type"					"FIELD_INTEGER"
-			"damage"					"325 400 475"
+			"crit"						"225 250 275"
 		}
 		"02"
 		{
-			"var_type"					"FIELD_INTEGER"
-			"ticks"						"5"
+			"var_type"					"FIELD_FLOAT"
+			"landing_delay"				"1.50"
 		}
 		"03"
 		{
 			"var_type"					"FIELD_INTEGER"
-			"initial_damage"			"30 40 50"
+			"landing_aoe"				"250"
 		}
 		"04"
 		{
-			"var_type"					"FIELD_FLOAT"
-			"tick_time"					"1.00"
+			"var_type"					"FIELD_INTEGER"
+			"landing_damage"			"240 300 360"
 		}
 		"05"
 		{
+			"var_type"					"FIELD_FLOAT"
+			"landing_stun"				"1.25 1.50 1.75"
+		}
+		"06"
+		{
 			"var_type"					"FIELD_INTEGER"
-			"radius"					"375"
+			"scepter_crit"				"300 325 350"
+		}
+		"07"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"scepter_landing_damage"	"150 175 200"
 		}
 	}
 	
 	"precache"
 		{
-		"particle"  "particles/units/heroes/hero_phoenix/phoenix_supernova_reborn.vpcf"
-		"particle"  "particles/units/heroes/hero_hawkeye/detonator_dart.vpcf"
-		"particle" "particles\units\heroes\hero_hawkeye\det_dart_tag.vpcf"
-		"particle" "particles\units\heroes\hero_gyrocopter\gyrocopter_base_attack.vpcf"
-		"soundfile" "soundevents\game_sounds_heroes\game_sounds_gyrocopter.vsndevts"
-		"soundfile" "soundevents\hero_tek.vsndevts"
-		}
-	
-	"Modifiers"
-		{
+		"soundfile" "soundevents/game_sounds_heroes/game_sounds_tusk.vsndevts"
+		"soundfile" "soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts"
+		"soundfile" "soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
+		"particle" "particles/units/heroes/hero_tusk/tusk_walruspunch_start.vpcf"
+		"particle" "particles/units/heroes/hero_hero/one_punch_mega_crit.vpcf"
+		"particle" "particles/units/heroes/hero_axe/axe_culling_blade_kill.vpcf"
 		}
 }
 }

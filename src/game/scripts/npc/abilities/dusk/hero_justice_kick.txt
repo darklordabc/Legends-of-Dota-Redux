@@ -1,31 +1,32 @@
 "DOTAAbilities" {
 //=====================================================================================================
-// HAWKEYE: Ricochet
+// HERO: Justice Kick
 //=====================================================================================================
-"hawkeye_ricochet"
+"hero_justice_kick"
 {
 	// General
 	//-------------------------------------------------------------------------------------------------------------
 	"BaseClass"						"ability_lua"
-	"ScriptFile"					"abilities/dusk/hawkeye_ricochet"
+	"ScriptFile"					"abilities/dusk/hero_justice_kick"
 	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
 	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NONE"
 	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-	"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-	"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
-	"AbilityTextureName"			"custom/hawkeye_ricochet"
+	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+	"AbilityTextureName"			"custom/hero_justice_kick"
+	"AnimationPlaybackRate"			"1.4"
+	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_5"
 
 	// Casting
 	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCastRange"				"650"
-	"AbilityCastPoint"				"0.15"
+	"AbilityCastRange"				"150"
+	"AbilityCastPoint"				"0.3"
 	
 	// Time		
 	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCooldown"				"10 8 6 4"
+	"AbilityCooldown"				"8 7 6 5"
 
 	// Cost
 	//-------------------------------------------------------------------------------------------------------------
@@ -42,24 +43,31 @@
 		"01"
 		{
 			"var_type"					"FIELD_INTEGER"
-			"hits"						"4"
+			"damage"					"90 120 150 180"
 		}
 		"02"
 		{
 			"var_type"					"FIELD_INTEGER"
-			"damage_reduction"			"-80 -72 -64 -56"
+			"distance"					"475"
+		}
+		"03"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"slow"						"-100"
+		}
+		"04"
+		{
+			"var_type"					"FIELD_INTEGER"
+			"duration"					"1"
 		}
 	}
 	
 	"precache"
 		{
-		"particle" "particles\item_fx\desolator_projectile.vpcf"
-		"particle" "particles\units\heroes\hero_ancient_apparition\ancient_apparition_cold_feet_frozen.vpcf"
-		"soundfile" "soundevents\game_sounds_heroes\game_sounds_tusk.vsndevts"
-		}
-	
-	"Modifiers"
-		{
+		"soundfile" "soundevents/game_sounds_heroes/game_sounds_tusk.vsndevts"
+		"soundfile" "soundevents/hero_hero.vsndevts"
+		"particle" "particles/units/heroes/hero_hero/hero_justice_kick.vpcf"
+		"particle" "particles/units/heroes/hero_hero/one_punch_mega_crit.vpcf"
 		}
 }
 }

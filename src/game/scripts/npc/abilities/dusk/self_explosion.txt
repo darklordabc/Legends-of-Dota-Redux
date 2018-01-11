@@ -2,7 +2,6 @@
 {
     "self_explosion"
     {
-        "ID"                                                                   "1852"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "BaseClass"                                                            "ability_datadriven"
         "AbilityTextureName"                                                   "custom\holdout_blade_fury"
