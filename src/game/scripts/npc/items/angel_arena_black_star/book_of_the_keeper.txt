@@ -3,7 +3,6 @@
 	"item_recipe_book_of_the_keeper"
 	{
 		"BaseClass"						"item_datadriven"
-		"ID"							"-1"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
 		"ItemCost"						"9300"
@@ -18,7 +17,6 @@
 	"item_book_of_the_keeper"
 	{
 		"BaseClass"						"item_datadriven"
-		"ID"							"-1"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"item_arena/book_of_the_keeper"
 		"ItemShopTags"					"int;regen_mana;hard_to_tag"

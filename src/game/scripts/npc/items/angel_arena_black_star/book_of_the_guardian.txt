@@ -3,7 +3,6 @@
 	"item_recipe_book_of_the_guardian"
 	{
 		"BaseClass"						"item_datadriven"
-		"ID"							"-1"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
 		"ItemCost"						"2050"
@@ -20,7 +19,6 @@
 		"BaseClass"						"item_lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
 		"ScriptFile"					"items/angel_arena_black_star/item_book_of_the_guardian.lua"
-		"ID"							"-1"
 		"AbilityTextureName"			"item_arena/book_of_the_guardian"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"ItemShopTags"					"int;regen_mana;hard_to_tag"

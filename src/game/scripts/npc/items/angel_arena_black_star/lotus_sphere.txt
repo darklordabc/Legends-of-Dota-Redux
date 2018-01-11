@@ -3,7 +3,6 @@
 	"item_recipe_lotus_sphere"
 	{
 		"BaseClass"						"item_datadriven"
-		"ID"							"-1"
 		"Model"							"models/props_gameplay/recipe.mdl"
 		"AbilityTextureName"			"item_recipe"
 		"ItemCost"						"4500"
@@ -18,7 +17,6 @@
 	"item_lotus_sphere"
 	{
 		"BaseClass"             		"item_lua"
-		"ID"							"-1"
 		"ScriptFile"					"items/angel_arena_black_star/item_lotus_sphere.lua"
 		"AbilityTextureName"			"item_arena/lotus_sphere"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
