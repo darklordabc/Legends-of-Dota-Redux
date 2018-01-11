@@ -1,4 +1,4 @@
-#base "items/angel_arena_black_star/index.txt"
+#base "items/angel-arena-black-star/index.txt"
 
 "DOTAAbilities"
 {
