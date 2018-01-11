@@ -16,6 +16,7 @@ function chi_strike:OnProjectileHit(hTarget, vLocation)
 	if self.original_target and self.original_target == hTarget then
 	return false
 	end
+	self.chi_on = true
 	local cap = self:GetCaster():GetAttackCapability()
 	local acq = self:GetCaster():GetAcquisitionRange()
 	local pos = self:GetCaster():GetAbsOrigin()
@@ -27,5 +28,6 @@ function chi_strike:OnProjectileHit(hTarget, vLocation)
 	self:GetCaster():SetAbsOrigin(pos)
 	self:GetCaster():SetAcquisitionRange(acq)
 	self:GetCaster():SetAttackCapability(cap)
+	self.chi_on = false
 	return false
 end

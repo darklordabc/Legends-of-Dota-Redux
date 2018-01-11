@@ -1,0 +1,47 @@
+"DotaAbilities"
+{
+		"drow_ranger_marksmanship_redux"
+		{
+        "BaseClass"               "drow_ranger_marksmanship"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"      "custom/drow_ranger_marksmanship_redux"
+        "MaxLevel"                                                             "3"
+
+        "HasScepterUpgrade"			"0"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                 "FIELD_INTEGER"
+                "marksmanship_agility_bonus" "40 60 80"
+                "LinkedSpecialBonus"         "special_bonus_unique_drow_ranger_3"
+            }
+            "02"
+            {
+                "var_type"                 "FIELD_INTEGER"
+                "radius"                   "400"
+            }
+            "03"
+            {
+                "var_type"                 "FIELD_INTEGER"
+                "split_count_scepter"      "0"
+            }
+            "04"
+            {
+                "var_type"                 "FIELD_INTEGER"
+                "scepter_range"            "375"
+            }
+            "05"
+            {
+                "var_type"                 "FIELD_INTEGER"
+                "damage_reduction_scepter" "50"
+            }
+        }
+        //"ReduxFlags"                                                           ""
+        //"ReduxCost"                                                            ""
+        //"ReduxBans"                                                            ""
+        "ReduxBans"                                                            "brawler_agi"
+    }
+}

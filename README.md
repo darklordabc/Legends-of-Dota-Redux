@@ -1,4 +1,4 @@
-Dota 2 Redux
+Legends of Dota Redux
 =====
 
 **Make Modding Great Again.**
@@ -24,13 +24,27 @@ Dota 2 Redux
  - Nodejs
 
 ### How to extract from Github to Steam ###
- - Download the Git repository from either using the manual option from website or from using Source (recommended method)
- 
+- Install dota 2 workshop tools if you haven't already.
+- Install [Node JS](https://nodejs.org/en/)
+- Setup Github account.
+- Use some git client to clone the redux repository (GitKraken, SourceTree. etc.)
 ![Manual Method](http://i.imgur.com/wUGrQRg.png)
-
- - Unzip the file, and go to `\script_generator folder` and open `settings_example.json`. The `dotaDir` setting is not necesarry to be filled out because the script finds your dota folder via registry entries. The `addonName` is the name of your mod folder you want to create, THERE MUST BE NO FOLDER WITH THAT NAME THERE ALREADY, if there is a folder existing the compiling will fail. 
- - Once you have set an `addonName`, use `compile.bat`, and it should compile all the necessary files into a dota folder, these files will also be mklinked to the steam folder counterparts. 
- - These two folders should now exist in steam `SteamApps\common\dota 2 beta\game\dota_addons\<addonName>` and `SteamApps\common\dota 2 beta\content\dota_addons\<addonName>`
+- After cloning the repository to your computer edit your dota 2 path in `script_generator/settings_example.json`, set your `addonName` to something unique and rename the file to `settings.json`:
+```
+{
+    "addonName" : "mycopyof_redux",
+    "scriptDir":    "SRC/",
+    "scriptDirOut": "BIN/",
+    "dotaDir":      "C:/Program Files (x86)/Steam/steamapps/common/dota 2 beta/",
+    "customDir":    "CUSTOM/",
+    "noPermute":    true
+}
+```
+- Run `compile.bat`
+- Create shortcut to run the workshop tools with your cloned repo. Set the shortcut target to something like this:
+```
+"C:\Program Files (x86)\Steam\steamapps\common\dota 2 beta\game\bin\win64\dota2.exe" -addon dr_redux -tools -steam  -console -vconsole
+```
 
 ### Running Dota 2 Redux ###
  - Start the Dota 2 Mod Tools by Right-Clicking on Dota 2 and clicking "Launch Dota 2 - Tools"

@@ -90,8 +90,8 @@
                 "var_type"                                             "FIELD_FLOAT"
                 "self_mana_regen"                                      "2.0 3.0 4.0 5.0"
             }
-        }
-        "ReduxFlags"                                                           "support"
+        }   
+        "ReduxFlags"                                                           "support | mana | semi_passive"
         "ReduxPerks"                                                           "support"
     }
 }

@@ -26,7 +26,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"140 120 100"
+		"AbilityCooldown"				"100 80 60"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -91,38 +91,6 @@
 			"particle"					"particles/units/heroes/hero_lysander/phantom_fleet_cannoball.vpcf"
 
 
-		}
-
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"abilities/dusk/lysander_abilities.lua"
-				"Function"		"phantom_fleet_start"
-				"speed"			"%speed"
-				"damage"		"%damage"
-				"minimum_interval" "%minimum_interval"
-				"maximum_interval" "%maximum_interval"
-				"interval"		"%interval"
-				"ministun"		"%ministun"
-				"duration"		"%duration"
-			}
-		}
-
-		"OnProjectileHitUnit"
-		{
-			"DeleteOnHit"	"0"
-			"RunScript"
-			{
-				"ScriptFile"	"abilities/dusk/lysander_abilities.lua"
-				"Function"		"phantom_fleet_hit_unit"
-				"damage"		"%damage"
-				"stun"			"%ministun"
-			}
-		}	
-
-		"Modifiers"
-		{
 		}
 	}
 }

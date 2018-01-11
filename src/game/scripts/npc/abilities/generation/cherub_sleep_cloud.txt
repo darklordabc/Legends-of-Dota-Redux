@@ -3,20 +3,20 @@
     "cherub_sleep_cloud"
     {
         "BaseClass"                                                            "ability_datadriven"
-        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
         "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
         "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
         "AbilityTextureName"                                                   "custom/cherub_sleep_cloud"
-        "AbilityCastPoint"                                                     "0.3"
+        "AbilityCastPoint"                                                     "0.0"
         "AbilityCooldown"                                                      "45"
-        "AbilityManaCost"                                                      "160"
+        "AbilityManaCost"                                                      "160 120 80 40"
         "AbilityProcsMagicStick"                                               "1"
         "AbilitySpecial"
         {
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "450 550 650 750"
+                "radius"                                               "550 650 750 850"
             }
             "02"
             {
@@ -26,7 +26,7 @@
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "duration"                                             "11 16 21 26"
+                "duration"                                             "10"
             }
             "04"
             {

@@ -40,7 +40,8 @@ function modifier_npc_dota_hero_luna_perk:OnCreated(keys)
             blessing:UpgradeAbility(false)
         else 
             blessing = caster:AddAbility("luna_lunar_blessing")
-            blessing:SetHidden(true)
+            blessing:SetStolen(true)
+            blessing:SetActivated(true)
             blessing:SetLevel(1)
         end
     end

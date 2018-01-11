@@ -112,9 +112,6 @@ var tipsGeneral = [{
         img: 'file://{images}/custom_game/hints/hint_RespawnTimes.png',
         txt: '#hintRespawnTimes'
     },{
-        img: 'file://{images}/custom_game/hints/hint_MultiplyNeutrals.png',
-        txt: '#hintMultiplyNeutrals'
-    },{
         img: 'file://{images}/custom_game/hints/hint_Balancing.png',
         txt: '#hintBalancing'
     },{
@@ -417,6 +414,12 @@ var tipsPerks = [{
     }, {
         img: 'file://{images}/custom_game/hints/hint_underlord.png',
         txt: '#hintUnderlord'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_willow.png',
+        txt: '#hintDarkWillow'
+    }, {
+        img: 'file://{images}/custom_game/hints/hint_pangolier.png',
+        txt: '#hintPangolier'
     }, {
         img: 'file://{images}/custom_game/hints/hint_undying.png',
         txt: '#hintUndying'

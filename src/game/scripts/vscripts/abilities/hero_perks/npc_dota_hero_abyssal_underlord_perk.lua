@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Underlord
---		Perk: Underlord gains +1 to all stats for each level put in a custom ability.
+--		Perk: Underlord gains +2 to all stats for each level put in a custom ability.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_abyssal_underlord_perk", "abilities/hero_perks/npc_dota_hero_abyssal_underlord_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
@@ -38,7 +38,7 @@ function modifier_npc_dota_hero_abyssal_underlord_perk:DeclareFunctions()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_abyssal_underlord_perk:OnCreated()
-	self.bonusPerLevel = 1
+	self.bonusPerLevel = 2
 	self.bonusAmount = 1
 	if IsServer() then
 		self:StartIntervalThink(0.1)

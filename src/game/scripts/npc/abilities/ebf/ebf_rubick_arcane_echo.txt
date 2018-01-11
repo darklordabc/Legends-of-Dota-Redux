@@ -3,20 +3,19 @@
     "ebf_rubick_arcane_echo"
     {
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
         "BaseClass"                                                            "ability_datadriven"
         "AbilityTextureName"                                                   "custom/rubick_spell_echo"
         "precache"
         {
             "particle"                                                     "particles/rubick_spell_echo.vpcf"
         }
-        "AbilityCooldown"                                                      "20.0 12.0 6.0"
+        "AbilityCooldown"                                                      "30.0 20.0 10.0 6.0"
         "AbilitySpecial"
         {
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "delay"                                                "1.5"
+                "delay"                                                "2.0 1.5 1.0 0.5"
             }
             "02"
             {

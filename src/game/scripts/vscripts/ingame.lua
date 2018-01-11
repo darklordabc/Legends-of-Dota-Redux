@@ -464,6 +464,48 @@ function Ingame:onStart()
 
     end
 
+    -- Remove powerup runes, spawned before 2 minutes
+    Timers:CreateTimer(function ()
+        if math.floor(GameRules:GetDOTATime(false, false)/60) < 2 then
+            local spawners = Entities:FindAllByClassname("dota_item_rune_spawner_powerup")
+            for k,v in ipairs(spawners) do
+                if v ~= nil then
+                    local nearbyRunes = Entities:FindAllByClassnameWithin("dota_item_rune", v:GetOrigin(), 400)
+                    for _,rune in ipairs(nearbyRunes) do
+                        if rune ~= nil then
+                            UTIL_Remove(rune)
+                        end
+                    end
+                end
+            end
+            return 0.1
+        end
+    end, 'removeRunes', 0.1)
+
+    --secondary fix for randomly not getting skill points for levels 18-24
+    --  the other method is inconsistant
+    Timers:CreateTimer(function()
+        local heroes = HeroList:GetAllHeroes()
+        for _,hero in pairs(heroes) do
+            if hero then
+                if hero:IsRealHero() then
+                    local level = hero:GetLevel()-1
+                    local points = hero:GetAbilityPoints()
+                    for i=0,23 do
+                        local ab = hero:GetAbilityByIndex(i)
+                        if ab then
+                            points = points + ab:GetLevel()
+                        end
+                    end
+                    if points < level then
+                        hero:SetAbilityPoints(level-points)
+                    end
+                end
+            end
+        end
+        return 25
+    end, 'giveMissingSkillPoints', 60)
+
     --Attempt to enable cheats
     Convars:SetBool("sv_cheats", true)
 
@@ -537,44 +579,7 @@ function Ingame:onStart()
     ListenToGameEvent("player_reconnected", Dynamic_Wrap(Ingame, 'OnPlayerReconnect'), self)
 
     ListenToGameEvent("player_chat", Dynamic_Wrap(Commands, 'OnPlayerChat'), self)
-
-    if GameRules.pregame.optionStore["lodOptionNewAbilitiesBonusGold"] > 0 and StatsClient.AbilityData then
-        for playerID, usageData in pairs(StatsClient.AbilityData) do
-            local currentBuild = GameRules.pregame.selectedSkills[playerID] or {}
-
-            local threshold = GameRules.pregame.optionStore["lodOptionNewAbilitiesThreshold"]
-            local entries = StatsClient.SortedAbilityDataEntries
-            local realAbilitiesThreshold = math.ceil(StatsClient.totalGameAbilitiesCount * (1 - threshold * 0.01))
-            local enableAlternativeThreshold = #entries >= realAbilitiesThreshold
-
-            if enableAlternativeThreshold then
-                function isBelowThreshold(ability)
-                    if not usageData[ability] then return true end
-                    for i,v in ipairs(entries) do
-                        if v == ability then
-                            return i / #entries > 1 - threshold * 0.01
-                        end
-                    end
-                    return true
-                end
-            else
-                function isBelowThreshold(ability)
-                    return not usageData[ability]
-                end
-            end
-
-            local newAbilities = 0
-            for _,v in ipairs(currentBuild) do
-                if isBelowThreshold(v) then
-                    newAbilities = newAbilities + 1
-                end
-            end
-            local hero = PlayerResource:GetSelectedHeroEntity(playerID)
-            if newAbilities > 0 and hero then
-                hero:AddItemByName('item_new_ability_bonus'):SetCurrentCharges(newAbilities)
-            end
-        end
-    end
+    
     -- Set it to no team balance
     self:setNoTeamBalanceNeeded()
 end
@@ -664,7 +669,7 @@ end
 function Ingame:CheckConsumableItems()
 
     local itemTable = LoadKeyValues('scripts/kv/consumable_items.kv')
-    for i=0,PlayerResource:GetTeamPlayerCount() do
+    for i=0,24 do
         if PlayerResource:IsValidTeamPlayerID(i) and not util:isPlayerBot(i) then
             local hero = PlayerResource:GetSelectedHeroEntity(i)
             if hero and IsValidEntity(hero) then
@@ -674,7 +679,9 @@ function Ingame:CheckConsumableItems()
                         local name = hItem:GetAbilityName()
                         if itemTable[name] then
                             hero:RemoveItem(hItem)
+                            if name == "item_vladmir" then name = "item_vladimir" end
                             hero:AddItemByName(name.."_consumable")
+                            local item = hero:FindItemInInventory(name.."_consumable")
                             local nSlot, hUseless = hero:FindItemByNameEverywhere(name.."_consumable")
                             hero:SwapItems(i,nSlot)
                             --break
@@ -1151,9 +1158,18 @@ function Ingame:handleRespawnModifier()
                 -- Ensure we are not using aegis!
                 if hero:IsReincarnating() then
                     local reincarnation = hero:FindAbilityByName("skeleton_king_reincarnation")
+                    local reincarnation2 = hero:FindAbilityByName("skeleton_king_reincarnation_redux")
                     if reincarnation then
                         local respawnTime = reincarnation:GetSpecialValueFor("reincarnate_time")
                         if reincarnation:GetTrueCooldown() - reincarnation:GetCooldownTimeRemaining() < respawnTime - 1 then
+                            hero:SetTimeUntilRespawn(respawnTime)
+                        end
+                    else
+                        hero:SetTimeUntilRespawn(5)
+                    end
+                    if reincarnation2 then
+                        local respawnTime = reincarnation2:GetSpecialValueFor("reincarnate_time")
+                        if reincarnation2:GetTrueCooldown() - reincarnation2:GetCooldownTimeRemaining() < respawnTime - 1 then
                             hero:SetTimeUntilRespawn(respawnTime)
                         end
                     else
@@ -1466,14 +1482,15 @@ end
 -- Option to modify EXP
 function Ingame:FilterModifyExperience(filterTable)
     local expModifier = OptionManager:GetOption('expModifier')
-    --hotfix start: to stop the insane amount of EXP
+    --hotfix start: to stop the insane amount of EXP when heros with higher level then 28, kill other heros
     if math.abs(filterTable.experience) > 100000 then
+        local Hero = PlayerResource:GetPlayer(filterTable.player_id_const):GetAssignedHero()
+        Hero:AddExperience(math.ceil(250 * expModifier / 100),0,false,false)
         filterTable.experience = 0
-        return false
+        return true
     end
     --hotfix end
-    --print("experience gained")
-    --print(filterTable.experience)
+
 
     if expModifier ~= 1 then
         filterTable.experience = math.ceil(filterTable.experience * expModifier / 100)
@@ -1510,10 +1527,13 @@ function Ingame:BountyRunePickupFilter(filterTable)
         for i=0,DOTA_MAX_TEAM do
             local pID = PlayerResource:GetNthPlayerIDOnTeam(team,i)
             if PlayerResource:IsValidPlayerID(pID) then
-                local otherHero = PlayerResource:GetPlayer(pID):GetAssignedHero()
+                local player = PlayerResource:GetPlayer(pID)
+                if player ~= nil then
+                    local otherHero = player:GetAssignedHero()
 
-                otherHero:AddExperience(math.ceil(filterTable.xp_bounty / util:GetActivePlayerCountForTeam(team)),0,false,false)
-                otherHero.expSkip = true
+                    otherHero:AddExperience(math.ceil(filterTable.xp_bounty / util:GetActivePlayerCountForTeam(team)),0,false,false)
+                    otherHero.expSkip = true
+                end
             end
         end
 
@@ -1893,6 +1913,27 @@ function Ingame:FilterDamage( filterTable )
         if ability:GetName() == "centaur_return"  and victim.IsBuilding and victim:IsBuilding() then
             filterTable["damage"] = 0
         end
+        -- Stops abusive Combo of Diabloic Edict and multicast tearing down towers in seconds
+        if ability:GetName() == "leshrac_diabolic_edict"  and victim.IsBuilding and victim:IsBuilding() then
+            local protection = victim:FindModifierByName("modifier_backdoor_protection_active")
+
+            if protection then
+             filterTable["damage"] = 0
+            end
+        end
+    end
+
+    if OptionManager:GetOption('antiRat') == 1 and victim.IsBuilding and victim:IsBuilding()  then
+        local protection = victim:FindModifierByName("modifier_backdoor_protection_active")
+
+        if protection then
+         if self.heard["antiRatProtection"] ~= true then
+             GameRules:SendCustomMessage("#antiRatNotification", 0, 0)
+             self.heard["antiRatProtection"] = true
+         end
+         
+         filterTable["damage"] = 0
+        end
     end
 
     if victim:HasModifier("modifier_ancient_priestess_spirit_link") then
@@ -1936,7 +1977,8 @@ function Ingame:FilterDamage( filterTable )
     return true
 end
 
-
+require('abilities/bash_reflect')
+require('abilities/bash_cooldown')
 function Ingame:FilterModifiers( filterTable )
     local parent_index = filterTable["entindex_parent_const"]
     local caster_index = filterTable["entindex_caster_const"]
@@ -1958,7 +2000,16 @@ function Ingame:FilterModifiers( filterTable )
     if OptionManager:GetOption('memesRedux') == 1 then
         filterTable = memesModifierFilter(filterTable)
     end
-
+    -- Tenacity
+    if caster:GetTeamNumber() ~= parent:GetTeamNumber() and filterTable["duration"] > 0 then
+        filterTable["duration"] = filterTable["duration"] * parent:GetTenacity()
+    end
+    -- Bash Reflect
+    ReflectBashes(filterTable)
+    -- Bash Cooldown
+    if OptionManager:GetOption('antiBash') == 1 then
+        if not BashCooldown(filterTable) then return false end
+    end
     return true
 end
 

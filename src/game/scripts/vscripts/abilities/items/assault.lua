@@ -142,8 +142,11 @@ function modifier_item_assault_consumable:OnCreated()
 end
 
 function modifier_item_assault_consumable:OnIntervalThink()
-  if not self:GetAbility() then
+  if not self:GetAbility() then 
     self:Destroy()
+    return
+  end
+  if not self:GetCaster():IsAlive() then
     return
   end
   local caster = self:GetCaster()
@@ -181,11 +184,7 @@ end
 function modifier_item_assault_consumable_aura:GetModifierPhysicalArmorBonus()
   if not self:GetAbility() or not self:GetAbility():GetSpecialValueFor("assault_aura_armor") then self:Destroy() return end
   if self:GetCaster():GetTeamNumber() == self:GetParent():GetTeamNumber() then
-    if not self:GetParent():IsBuilding() then
-      return self:GetAbility():GetSpecialValueFor("assault_aura_armor")
-    else
-      return 0
-    end
+    return self:GetAbility():GetSpecialValueFor("assault_aura_armor")
   else
     return -self:GetAbility():GetSpecialValueFor("assault_aura_armor")
   end
@@ -209,6 +208,8 @@ function modifier_item_assault_consumable_aura:IsDebuff()
 end
 
 function modifier_item_assault_consumable_aura:IsHidden()
+  if not self:GetCaster() then return true end
+  --if not self:GetCaster():IsAlive() then return true end
   return self:GetCaster() == self:GetParent()
 end
 
@@ -250,6 +251,8 @@ function modifier_item_assault_consumable_aura_enemies:OnIntervalThink()
   end
 end
 function modifier_item_assault_consumable_aura_enemies:IsHidden()
+  if not self:GetCaster() then return false end  
+  if not self:GetCaster():IsAlive() then return false end
   return self:GetStackCount() == 1
 end
 

@@ -69,6 +69,11 @@ var phases = {
     }
 };
 
+var parent = $.GetContextPanel().GetParent();
+while(parent.id != "Hud")
+    parent = parent.GetParent();
+
+
 // Hero data
 var heroData = {};
 var abilityHeroOwner = {};
@@ -186,7 +191,7 @@ var AbilityPerks = {};
 var VotingOptionPanels = {};
 var constantBalancePointsValue = GameUI.AbilityCosts.BALANCE_MODE_POINTS;
 
-var AbilityUsageData = {data: {}, entries: {}};
+var AbilityUsageData = {data: {}, entries: {}, global: {}, totalGameAbilitiesCount: 1};
 
 // Used to calculate filters (stub function)
 var calculateFilters = function(){};
@@ -219,6 +224,9 @@ var inBuildSaveMode = false
 
 // Is ingame builder
 $.GetContextPanel().isIngameBuilder = false;
+
+var popularityFilterSlider = $('#popularityFilterSlider');
+var popularityFilterDropDown = $('#popularityFilterDropDown');
 
 (function() {
     var playerInfo = Game.GetLocalPlayerInfo();
@@ -579,37 +587,36 @@ function OnSelectedSkillsChanged(table_name, key, data) {
             }
         }
         var balance = constantBalancePointsValue;
-        var newAbilities = 0;
+        var tickedAbilitiesCount = 0;
+        var activeAbilities = 0;
 
         var threshold = optionValueList.lodOptionNewAbilitiesThreshold || 20;
         var fetchedAbilityData = AbilityUsageData.data;
-        var sortedAbilityData = AbilityUsageData.entries;
-        var entriesCount = Object.keys(sortedAbilityData).length;
         var realAbilitiesThreshold = Math.ceil(AbilityUsageData.totalGameAbilitiesCount * (1 - threshold * 0.01));
-        var enableAlternativeThreshold = entriesCount >= realAbilitiesThreshold;
+        var enableAlternativeThreshold = Object.keys(AbilityUsageData.entries).length >= realAbilitiesThreshold;
 
         var isBelowThreshold = enableAlternativeThreshold ? (function(ability) {
-            if (!fetchedAbilityData[ability]) {
-                return true;
-            }
-            for (var i in sortedAbilityData) {
-                if (sortedAbilityData[i] === ability) {
-                    return (+i + 1) / entriesCount > 1 - threshold * 0.01;
-                }
-            }
-            return true;
+            var rarity = AbilityUsageData.entries[ability] == null ? 1 : AbilityUsageData.entries[ability];
+            return rarity > 1 - threshold * 0.01;
         }) : (function(ability) {
-            return !fetchedAbilityData[ability];
+            return AbilityUsageData.entries[ability] == null;
+        });
+
+        var globalThreshold = optionValueList.lodOptionGlobalNewAbilitiesThreshold || 75;
+        var isGlobalBelowThreshold = (function(ability) {
+            return getAbilityGlobalPickPopularity(ability) > 1 - globalThreshold * 0.01;
         });
 
         for (var i = 1; i <= 6; i++) {
-            $('#newAbilitiesTick' + i).RemoveClass('Enabled');
+            $('#newAbilitiesTick' + i).RemoveClass('OwnBonus');
+            $('#newAbilitiesTick' + i).RemoveClass('GlobalBonus');
         }
 
         for(var key in selectedSkills[playerID]) {
             var ab = $('#lodYourAbility' + key);
             var abName = selectedSkills[playerID][key];
             var isNewAbility = false;
+            var isGlobalNewAbility = false;
 
             if(ab != null) {
                 ab.abilityname = abName;
@@ -618,9 +625,12 @@ function OnSelectedSkillsChanged(table_name, key, data) {
 
                 var abCost = ab.GetChild(0);
 
-                if (isBelowThreshold(abName)){
-                    newAbilities++;
+                if (isBelowThreshold(abName)) {
                     isNewAbility = true;
+                    tickedAbilitiesCount++;
+                } else if (isGlobalBelowThreshold(abName)) {
+                    isGlobalNewAbility = true;
+                    tickedAbilitiesCount++;
                 }
 
                 if (balanceMode) {
@@ -641,12 +651,19 @@ function OnSelectedSkillsChanged(table_name, key, data) {
                         abCost.visible = $.GetContextPanel().balanceMode;
                     }
                 }
+                if (!flagDataInverse[abName] || !flagDataInverse[abName].passive) {
+                    activeAbilities++;
+                }
             }
 
-            $('#newAbilitiesTick' + key).SetHasClass('Enabled', isNewAbility);
+            $('#newAbilitiesTick' + key).SetHasClass('OwnBonus', isNewAbility);
+            if (!isNewAbility && isGlobalNewAbility) {
+                $('#newAbilitiesTick' + key).AddClass('GlobalBonus');
+            }
         }
-        $('#newAbilitiesPanel').SetHasClass('OneOrMore', newAbilities > 0);
-        $('#newAbilitiesPanel').SetHasClass('All', newAbilities === 6);
+        $('#newAbilitiesPanel').SetHasClass('OneOrMore', tickedAbilitiesCount > 0);
+        $('#balancedBuildTick').AddClass('Enabled'); // Forces panorama to update this panel. Without this panorama for some reason not updates #newAbilitiesPanel.
+        $('#balancedBuildTick').SetHasClass('Enabled', activeAbilities >= 3);
 
 
         // Update current price
@@ -698,9 +715,13 @@ function updateTakenSkills() {
     }
 
     // Rebuild the visible skills
-    calculateFilters();
-    updateHeroPreviewFilters();
-    updateRecommendedBuildFilters();
+    if (currentTab == "pickingPhaseMainTab") {
+        updateRecommendedBuildFilters();
+    } else if (currentTab == "pickingPhaseSkillTab") {
+        calculateFilters();
+    } else {
+        updateHeroPreviewFilters();
+    }
 }
 
 // A ban was sent through
@@ -2300,6 +2321,11 @@ function getSkillFilterInfo(abilityName) {
         }
     }
 
+    if (activeTabs["mostused"]) {
+        var mostUsed = AbilityUsageData.data[abilityName];
+        cat = !!mostUsed ? "mostused" : "nothing";
+    }
+
     // Check if the tab is active
     if(shouldShow && activeTabs[cat] == null) {
         shouldShow = false;
@@ -2327,6 +2353,15 @@ function getSkillFilterInfo(abilityName) {
         }
     }
 
+    var popularityFilterValue = popularityFilterSlider.value;
+
+    var isInverseFilter = popularityFilterDropDown.GetSelected().id === 'popularityFilterMode2';
+    if (shouldShow && popularityFilterValue !== (isInverseFilter ? 0 : 100)) {
+        shouldShow = isInverseFilter ?
+            getAbilityGlobalPickPopularity(abilityName) >= 1 - popularityFilterValue * 0.01 :
+            getAbilityGlobalPickPopularity(abilityName) <= popularityFilterValue * 0.01;
+    }
+
     // Check draft array
     if(abilityDraft != null) {
         if(!abilityDraft[abilityName]) {
@@ -2349,11 +2384,6 @@ function getSkillFilterInfo(abilityName) {
                 break;
             }
         }
-    }
-
-    var mostUsed = AbilityUsageData.data[abilityName];
-    if (activeTabs["mostused"]) {
-        shouldShow = !!mostUsed;
     }
 
     return {
@@ -2407,7 +2437,7 @@ function OnSkillTabShown(tabName) {
             main: true,
             neutral: isDraftGamemode(),
             custom: true,
-            // dotaimba: true,
+            superop: true,
             mostused: false
         };
 
@@ -2440,7 +2470,6 @@ function OnSkillTabShown(tabName) {
                     ab.SetHasClass('bannedSkill', filterInfo.banned);
                     ab.SetHasClass('takenSkill', filterInfo.taken);
                     ab.SetHasClass('notDraftable', filterInfo.cantDraft);
-                    ab.SetHasClass('trollCombo', filterInfo.trollCombo);
 
                     if (balanceMode) {
                         // Set the label to the cost of the ability
@@ -2538,12 +2567,11 @@ function OnSkillTabShown(tabName) {
             categorySorting["main"] = 1;
             categorySorting["neutral"] = 2;
             categorySorting["custom"] = 3;
-            // categorySorting["dotaimba"] = 4;
+            categorySorting["superop"] = 4;
 
             if (activeTabs["mostused"]) {
                 for (var uses in subSorting)
                 {
-                    $.Msg(uses);
                     var sortGroup = subSorting[uses];
 
                     var subCon = con;
@@ -2676,7 +2704,7 @@ function OnSkillTabShown(tabName) {
                 if (typeof($.GetContextPanel().balanceMode) === "boolean") {
                     label.visible = $.GetContextPanel().balanceMode;
                 }
-                //abcon.SetHasClass('disallowedSkill', true);
+                // abcon.SetHasClass('disallowedSkill', true);
 
                 makeSkillSelectable(abcon);
 
@@ -2705,7 +2733,7 @@ function OnSkillTabShown(tabName) {
             'main',
             'neutral',
             'custom',
-            // 'dotaimba',
+            'superop',
             'mostused'
         ];
 
@@ -2745,13 +2773,17 @@ function OnSkillTabShown(tabName) {
                         } else {
                             activeTabs[tabName] = true;
                         }
+
+                        for (var g in abilityStore) {
+                            abilityStore[g].SetHasClass("lodDraftAbility", isDraftGamemode());
+                        }
                     } else {
                         // Reset active tabs
                         activeTabs = {};
                         activeTabs[tabName] = true;
 
                         for (var g in abilityStore) {
-                            abilityStore[g].SetHasClass("lodDraftAbility", tabName == "mostused");
+                            abilityStore[g].SetHasClass("lodDraftAbility", tabName == "mostused" || isDraftGamemode());
                         }
                     }
 
@@ -4603,7 +4635,7 @@ function OnPhaseChanged(table_name, key, data) {
 
             // Message for players selecting skills
             if(currentPhase == PHASE_SELECTION) {
-                $("#newAbilitiesPanel").visible = CustomNetTables.GetTableValue("options", "lodOptionNewAbilitiesBonusGold").v > 0;
+                $("#newAbilitiesPanel").SetHasClass('GoldBonusEnabled', CustomNetTables.GetTableValue("options", "lodOptionNewAbilitiesBonusGold").v > 0);
 
                 // Enable tabs
                 $("#tabsSelector").visible = true;
@@ -4611,15 +4643,17 @@ function OnPhaseChanged(table_name, key, data) {
                 setSelectedHelperHero();
 
                 // 30 second lock
-                if (!$.GetContextPanel().isSinglePlayer) {
-                    $('#heroBuilderLockButton').SetHasClass("makeThePlayerNoticeThisButton", false)
-                    $('#heroBuilderLockButton').enabled = false;
-                    $('#cooldownOverlay').AddClass("ready");
-                    $.Schedule(30.0, function () {
-                        $('#heroBuilderLockButton').SetHasClass("makeThePlayerNoticeThisButton", true)
-                        $('#heroBuilderLockButton').enabled = true;
-                    })
-                    $('#heroBuilderLockButton').SetHasClass('pressed', !$('#heroBuilderLockButton').BHasClass('pressed'));
+                if (!Game.IsInToolsMode()) {
+                    if (!$.GetContextPanel().isSinglePlayer) {
+                        $('#heroBuilderLockButton').SetHasClass("makeThePlayerNoticeThisButton", false)
+                        $('#heroBuilderLockButton').enabled = false;
+                        $('#cooldownOverlay').AddClass("ready");
+                        $.Schedule(30.0, function () {
+                            $('#heroBuilderLockButton').SetHasClass("makeThePlayerNoticeThisButton", true)
+                            $('#heroBuilderLockButton').enabled = true;
+                        })
+                        $('#heroBuilderLockButton').SetHasClass('pressed', !$('#heroBuilderLockButton').BHasClass('pressed'));
+                    }
                 }
 
                 // Set main tab activated
@@ -4831,7 +4865,7 @@ function OnOptionChanged(table_name, key, data) {
 
         case 'lodOptionBalanceModePoints':
             SetBalanceModePoints(data.v);
-            break;
+            break;      
     }
 
     $('#importAndExportEntry').text = JSON.stringify(optionValueList).replace(/,/g, ',\n');
@@ -4998,8 +5032,8 @@ function onAllowedCategoriesChanged() {
         allowedCategories['custom'] = true;
     }
 
-    if(optionValueList['lodOptionAdvancedImbaAbilities'] == 1) {
-        allowedCategories['dotaimba'] = true;
+    if(optionValueList['lodOptionAdvancedCustomSkills'] == 1) {
+        allowedCategories['superop'] = true;
     }
 
     if(optionValueList['lodOptionAdvancedOPAbilities'] == 1) {
@@ -5232,6 +5266,10 @@ function UpdateTimer() {
         placeInto.text = "∞";
     }
 
+    if ($.GetContextPanel().isInitialIngameBuilder) {
+        placeInto.text = parent.FindChildTraverse("GameTime").text;
+    }
+
     $.Schedule(0.1, UpdateTimer);
 }
 
@@ -5439,6 +5477,10 @@ function saveCurrentBuild() {
     saveCurrentBuildToggleWindow(false)
 }
 
+function getAbilityGlobalPickPopularity(ability) {
+    return AbilityUsageData.global[ability] == null ? 1 : AbilityUsageData.global[ability];
+}
+
 //--------------------------------------------------------------------------------------------------
 // Entry point called when the team select panel is created
 //--------------------------------------------------------------------------------------------------
@@ -5478,9 +5520,7 @@ function saveCurrentBuild() {
     }
 
     // Bots
-    if(mapName == 'custom') {
-        $.GetContextPanel().SetHasClass('disallow_bots', false);
-    }
+    $.GetContextPanel().SetHasClass('disallow_bots', mapName !== 'custom_bot');
 
     // Are we on a map that allocates slots for us?
     if(mapName == '3_vs_3' || mapName == '5_vs_5') {
@@ -5700,10 +5740,6 @@ function saveCurrentBuild() {
         })
     }
 
-    var parent = $.GetContextPanel().GetParent();
-    while(parent.id != "Hud")
-        parent = parent.GetParent();
-
     var votings = $.CreatePanel('Panel', $.GetContextPanel(), '');
     votings.BLoadLayout('file://{resources}/layout/custom_game/ingame_votings.xml', false, false);
 
@@ -5711,4 +5747,36 @@ function saveCurrentBuild() {
     parent.FindChildTraverse("PreGame").FindChildTraverse("HeroPickControls").visible = false;
     parent.FindChildTraverse("PreGame").FindChildTraverse("EnterGameRepickButton").visible = false;
     // parent.FindChildTraverse("PreGame").FindChildTraverse("EnterGameReRandomButton").visible = false;
+
+    var calculateFiltersDebounced = util.debounce(function() {
+        calculateFilters();
+    }, 0.3);
+    var popularityFilterValue = $('#popularityFilterValue');
+    popularityFilterSlider.min = 1;
+    popularityFilterSlider.max = 100;
+    popularityFilterSlider.value = 100;
+
+    var updateSliderFromNumberEntry = (function() {
+        popularityFilterSlider.value = popularityFilterValue.value;
+        calculateFiltersDebounced();
+    });
+    addInputChangedEvent(popularityFilterValue.FindChildTraverse('TextEntry'), updateSliderFromNumberEntry);
+    popularityFilterValue.FindChildTraverse('IncrementButton').SetPanelEvent('onactivate', function() {
+        popularityFilterValue.value++;
+        updateSliderFromNumberEntry();
+    });
+    popularityFilterValue.FindChildTraverse('DecrementButton').SetPanelEvent('onactivate', function() {
+        popularityFilterValue.value--;
+        updateSliderFromNumberEntry();
+    });
+    popularityFilterDropDown.SetPanelEvent('oninputsubmit', function() {
+        calculateFilters();
+    });
+
+    hookSliderChange(popularityFilterSlider, function(panel, newValue) {
+        popularityFilterValue.value = newValue;
+        calculateFiltersDebounced();
+    }, function() {
+        calculateFilters();
+    });
 })();

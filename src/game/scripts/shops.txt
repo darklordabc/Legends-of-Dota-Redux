@@ -35,7 +35,7 @@
 		"item"		"item_ogre_axe"
 		"item"		"item_blade_of_alacrity"
 		"item"		"item_staff_of_wizardry"
-		"item"		"item_river_painter7"	
+		"item"		"item_redux_silver_consume"	
 		"item"		"item_river_painter6"	
 		"item"		"item_river_painter5"	
 		"item"		"item_river_painter4"	

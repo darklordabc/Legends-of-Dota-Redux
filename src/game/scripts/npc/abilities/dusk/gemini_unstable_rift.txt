@@ -9,6 +9,7 @@
         "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
         "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
         "FightRecapLevel"                                                      "1"
+        "ReduxBans"                                                            "spectre_dispersion"
         "AbilityTextureName"                                                   "custom/gemini_unstable_rift"
         "precache"
         {

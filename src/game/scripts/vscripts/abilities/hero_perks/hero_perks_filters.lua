@@ -1,4 +1,4 @@
-require('abilities/hero_perks/npc_dota_hero_shadow_demon_perk')
+--require('abilities/hero_perks/npc_dota_hero_shadow_demon_perk')
 require('abilities/hero_perks/npc_dota_hero_puck_perk')
 require('abilities/hero_perks/npc_dota_hero_bane_perk')
 require('abilities/hero_perks/npc_dota_hero_pudge_perk')
@@ -47,7 +47,7 @@ function heroPerksOrderFilter(filterTable)
   local ability = EntIndexToHScript(abilityIndex)
 
     -- Perk for Shadow Demon
-  perkShadowDemon(filterTable)
+  --perkShadowDemon(filterTable)
 
   return filterTable
 end
@@ -62,9 +62,6 @@ function heroPerksModifierFilter(filterTable)
   local parent = EntIndexToHScript( parent_index )
   local caster = EntIndexToHScript( caster_index )
   local ability = EntIndexToHScript( ability_index )
-
-  -- Uther argent smite
-  argentSmiteDoNotDebuffAllies(filterTable)
   
   targetPerks_modifier = {
     npc_dota_hero_dragon_knight_perk = true,
@@ -75,7 +72,6 @@ function heroPerksModifierFilter(filterTable)
     npc_dota_hero_venomancer_perk = true,
     npc_dota_hero_silencer_perk = true,
     npc_dota_hero_viper_perk = true,
-    npc_dota_hero_slardar_perk = true,
     npc_dota_hero_spirit_breaker_perk = true,
     npc_dota_hero_troll_warlord_perk = true,
   }
@@ -98,8 +94,6 @@ function heroPerksModifierFilter(filterTable)
   perkSilencer(filterTable)
   -- Perk for Viper
   perkViper(filterTable)
-  -- Perk for Slardar
-  perkSlardar(filterTable)
   -- Perk for Spirit Breaker
   perkSpaceCow(filterTable)
   -- Perk for Troll Warlord
@@ -111,20 +105,21 @@ function heroPerksModifierFilter(filterTable)
 end
 
 function heroPerksDamageFilter(filterTable)
-    local victim_index = filterTable["entindex_victim_const"]
-    local attacker_index = filterTable["entindex_attacker_const"]
-    local ability_index = filterTable["entindex_inflictor_const"]
-    if not victim_index or not attacker_index then
-        return filterTable
-    end
-    local parent = EntIndexToHScript( victim_index )
-    local caster = EntIndexToHScript( attacker_index )
+  local victim_index = filterTable["entindex_victim_const"]
+  local attacker_index = filterTable["entindex_attacker_const"]
+  local ability_index = filterTable["entindex_inflictor_const"]
+  if not victim_index or not attacker_index then
+      return filterTable
+  end
+  local parent = EntIndexToHScript( victim_index )
+  local caster = EntIndexToHScript( attacker_index )
 
   
   targetPerks_damage = {
     npc_dota_hero_abaddon_perk = true,
     npc_dota_hero_pudge_perk = true,
-    npc_dota_hero_bane_perk = true
+    npc_dota_hero_bane_perk = true,
+    npc_dota_hero_slardar_perk = true,
   }
   local targetPerk = caster:FindAbilityByName(caster:GetName() .. "_perk")
   if not targetPerk then return filterTable end
@@ -135,9 +130,12 @@ function heroPerksDamageFilter(filterTable)
   PerkPudge(filterTable)
    -- Perk for Bane
   PerkBane(filterTable)
+  -- Perk for Slardar
+  local slardar = perkSlardar(filterTable)
+  if type(slarder) == "table" then
+    filterTable = slardar
+  end
 
-  
-  
   return filterTable
 end
 

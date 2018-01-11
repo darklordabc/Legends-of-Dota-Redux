@@ -5,7 +5,7 @@
         "BaseClass"                                                            "ability_datadriven"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "AbilityTextureName"                                                   "custom/angel_arena_revenge"
-        "AbilityCooldown"                                                      "0.5"
+        "AbilityCooldown"                                                      "0.3"
         "MaxLevel"                                                             "4"
         "AbilitySpecial"
         {     
@@ -17,7 +17,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "reduce_percent"                                       "25 40 55 70"
+                "reduce_percent"                                       "40 60 80 100"
             }
         }
         "Modifiers"

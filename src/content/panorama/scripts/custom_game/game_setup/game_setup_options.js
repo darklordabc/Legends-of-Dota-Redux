@@ -412,6 +412,7 @@ var basicOptions = {
                             'lodMutatorTrickshot': 19,
                             'lodMutatorBorrowed': 20,
                             'lodMutatorTesla': 21,
+                            'lodMutatorSurvival': 22,
                         }
                     },
                     {
@@ -468,6 +469,16 @@ var basicOptions = {
                                 'lodOptionNewAbilitiesThreshold': 20
                             }
                         }
+                    },
+                    {
+                        name: 'lodOptionLimitPassives',
+                        extraInfo: 'lodOptionAboutLimitPassives',
+                        about: 'lodMutatorLimitPassives'
+                    },
+                    {
+                        name: 'lodOptionAntiBash',
+                        extraInfo: 'lodOptionAboutAntiBash',
+                        about: 'lodMutatorAntiBash'
                     },
                 ]
             }
@@ -624,7 +635,7 @@ var advancedOptions = {
                 min: 0,
                 max: 2500,
                 step: 50,
-                default: 500
+                default: 1000
             },
             {
                 name: 'lodOptionNewAbilitiesThreshold',
@@ -635,6 +646,36 @@ var advancedOptions = {
                 max: 100,
                 step: 1,
                 default: 20
+            },
+            {
+                name: 'lodOptionGlobalNewAbilitiesBonusGold',
+                des: 'lodOptionDesGlobalNewAbilitiesBonusGold',
+                about: 'lodOptionAboutGlobalNewAbilitiesBonusGold',
+                sort: 'range',
+                min: 0,
+                max: 2500,
+                step: 50,
+                default: 1000
+            },
+            {
+                name: 'lodOptionGlobalNewAbilitiesThreshold',
+                des: 'lodOptionDesGlobalNewAbilitiesThreshold',
+                about: 'lodOptionAboutGlobalNewAbilitiesThreshold',
+                sort: 'range',
+                min: 0,
+                max: 100,
+                step: 1,
+                default: 20
+            },
+            {
+                name: 'lodOptionBalancedBuildBonusGold',
+                des: 'lodOptionDesBalancedBuildBonusGold',
+                about: 'lodOptionAboutBalancedBuildBonusGold',
+                sort: 'range',
+                min: 0,
+                max: 3000,
+                step: 100,
+                default: 0
             },
         ]
     },
@@ -691,22 +732,22 @@ var advancedOptions = {
                     }
                 ]
             },
-            {
-                name: 'lodOptionAdvancedImbaAbilities',
-                des: 'lodOptionDesAdvancedIMBASkills',
-                about: 'lodOptionAboutAdvancedIMBASkills',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
+            //{
+            //    name: 'lodOptionAdvancedImbaAbilities',
+            //    des: 'lodOptionDesAdvancedIMBASkills',
+            //    about: 'lodOptionAboutAdvancedIMBASkills',
+            //    sort: 'toggle',
+            //    values: [
+            //        {
+            //            text: 'lodOptionNo',
+            //            value: 0
+            //        },
+            //        {
+            //            text: 'lodOptionYes',
+            //            value: 1
+            //        }
+            //    ]
+            //},
             {
                 name: 'lodOptionAdvancedHidePicks',
                 des: 'lodOptionDesAdvancedHidePicks',
@@ -1037,6 +1078,22 @@ var advancedOptions = {
                 name: 'lodOptionConsumeItems',
                 des: 'lodOptionDesConsumeItems',
                 about: 'lodOptionAboutConsumeItems',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionLimitPassives',
+                des: 'lodOptionDesLimitPassives',
+                about: 'lodOptionAboutLimitPassives',
                 sort: 'toggle',
                 values: [
                     {
@@ -1699,6 +1756,22 @@ var advancedOptions = {
                 name: 'lodOptionBlackForest',
                 des: 'lodOptionDesBlackForest',
                 about: 'lodOptionAboutBlackForest',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionAntiBash',
+                des: 'lodOptionDesAntiBash',
+                about: 'lodOptionAboutAntiBash',
                 sort: 'toggle',
                 values: [
                     {

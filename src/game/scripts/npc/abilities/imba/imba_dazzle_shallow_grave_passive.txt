@@ -14,7 +14,7 @@
             "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
             "particle"                                                     "particles/units/heroes/hero_dazzle/dazzle_shallow_grave.vpcf"
         }
-        "AbilityCooldown"                                                      "60.0 50.0 40.0 30.0"
+        "AbilityCooldown"                                                      "50.0 45.0 40.0 35.0"
         "AbilitySpecial"
         {
             "01"
@@ -25,12 +25,12 @@
             "02"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "passive_cooldown_scepter"                             "60.0 50.0 40.0 30.0"
+                "passive_cooldown_scepter"                             "50.0 45.0 40.0 35.0"
             }
             "03"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "passive_duration"                                     "3.0 3.5 4.0 4.5"
+                "passive_duration"                                     "1.5 2.0 2.5 3.0"
             }
         }
         "OnSpellStart"
@@ -143,6 +143,6 @@
             }
         }
         "ReduxCost"                                                            "30"
-        "ReduxBans"                                                            "oracle_false_promise" // Buggy interaction
+        "ReduxBans"                                                            "arc_warden_tempest_double | arc_warden_tempest_double_redux | oracle_false_promise" // Buggy interaction
     }
 }

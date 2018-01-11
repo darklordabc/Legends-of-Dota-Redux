@@ -8,6 +8,7 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"				"custom/chi_strike_sp"
 		"AbilityCooldown"               "2.0"
+		"AbilityCastRange"				"1250 1500 1750 2000"
 		//"MaxLevel"	"7"
 		// Special
 		//-------------------------------------------------------------------------------------------------------------

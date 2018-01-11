@@ -62,7 +62,7 @@ function hackHotkeys() {
     var defaultLetters = ['Q', 'W', 'E', 'D', 'F', 'R'];
     for (var i = 0; i <= 5; i++) {
         var ability = hud.FindChildTraverse("Ability"+i)
-        if (ability && ability.FindChildTraverse("HotkeyText").text == 'R' && i != 5) {
+        if (ability && ability.FindChildTraverse("HotkeyText") && ability.FindChildTraverse("HotkeyText").text == 'R' && i != 5) {
             ability.FindChildTraverse("HotkeyText").text = defaultLetters[i];
         }
     }

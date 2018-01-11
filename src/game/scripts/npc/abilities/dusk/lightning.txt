@@ -572,7 +572,7 @@
             // Casting
         //-------------------------------------------------------------------------------------------------------------
         "AbilityCastPoint"              "0.1 0.1 0.1 0.1"
-        "AbilityCastRange"              "675 775 875"
+        "AbilityCastRange"              "675 775 875 975"
         "AbilityCooldown"               "2.5"
         
         // Cost
@@ -595,7 +595,7 @@
             "02"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                "cast_range"                                           "675 775 875"
+                "cast_range"                                           "675 775 875 975"
             }
         }
         

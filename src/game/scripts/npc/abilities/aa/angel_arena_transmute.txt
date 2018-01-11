@@ -16,7 +16,7 @@
 		"AbilitySpecial" {
 			"01" {
 				"var_type" "FIELD_INTEGER"
-				"hp_percent" "20 30 40"
+				"hp_percent" "60 80 100"
 			}
 		}
 

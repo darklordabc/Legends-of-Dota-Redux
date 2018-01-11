@@ -32,17 +32,22 @@ end
 function modifier_npc_dota_hero_monkey_king_perk:OnCreated(keys)
     if IsServer() then
         local caster = self:GetCaster()
-        local Mischief​ = caster:FindAbilityByName("monkey_king_mischief")
+        local Mischief​ = caster:FindAbilityByName("monkey_king_jingu_mastery_lod")
+        local Mischief​B = caster:FindAbilityByName("monkey_king_jingu_mastery_lod_melee")
 
-        if Mischief​ then
+        if Mischief​B and not Mischief​ then
+            Mischief​B:UpgradeAbility(false)
+            Mischief​B:SetHidden(false)
+        elseif Mischief​ and not Mischief​B then
             Mischief​:UpgradeAbility(false)
             Mischief​:SetHidden(false)
         else 
-            Mischief​ = caster:AddAbility("monkey_king_mischief")
-            caster:AddAbility("monkey_king_untransform")
-            Mischief​:SetHidden(false)
+            Mischief​ = caster:AddAbility("monkey_king_jingu_mastery_lod")
+            Mischief​:SetStolen(true)
+            Mischief​:SetActivated(true)
             Mischief​:SetLevel(1)
         end
+
     end
 end
 --------------------------------------------------------------------------------------------------------

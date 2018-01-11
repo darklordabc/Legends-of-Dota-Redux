@@ -71,7 +71,10 @@
 
         // Toggle spells
         "ToggleSpells" {
+        "proteus_jet"           "1"
             "courier_go_to_secretshop"          "1"
+            "ability_wards"                 "1"
+            "ability_wards_op"              "1"
             "courier_return_stash_items"        "1"
             "courier_return_to_base"            "1"
             "courier_take_stash_items"          "1"
@@ -87,10 +90,10 @@
             "meepo_poof"                        "1"
             "morphling_morph_agi"               "1"
             "morphling_morph_str"               "1"
-	    "morphling_morph_agi_int_redux"	"1"
-	    "morphling_morph_str_int_redux"	"1"
-	    "morphling_morph_int_str_redux"	"1"
-	    "morphling_morph_int_agi_redux"	"1"
+            "morph_agi_int_redux"   "1"
+            "morph_str_int_redux"   "1"
+            "morph_int_str_redux"   "1"
+            "morph_int_agi_redux"   "1"
             "pudge_rot"                         "1"
             "riki_blink_strike"                 "1"
             "shredder_chakram"                  "1"
@@ -106,8 +109,8 @@
             "spectre_reality"                   "1" // Can be used over and over
             "skeleton_king_vampiric_aura"       "1" // New update allows it to be toggled
             "life_stealer_assimilate"           "1"
-            "elder_titan_return_spirit"         "1"
-            "cherub_synthesis"          "1"
+            "cherub_synthesis"           "1"
+            "elder_titan_return_spirit" "1"
         }
     }
 
@@ -115,13 +118,13 @@
     "BannedGroups" {
         // The one hit combo group
         "1" {
-	    "ursa_overpower"			"1"
-	    "ursa_overpower_melee"        	"1"// Range hero got multi totem/walrus punch.
+        "ursa_overpower"            "1"
+        "ursa_overpower_melee"          "1"// Range hero got multi totem/walrus punch.
             "bounty_hunter_jinada"              "1"
             "brewmaster_drunken_brawler"        "1"
             "earthshaker_enchant_totem"         "1"
             "kunkka_tidebringer"                "1"
-            "tiny_grow"                         "1"
+            //"tiny_grow"                         "1"
             "tusk_walrus_punch"                 "1"
             "weaver_geminate_attack"            "1"
             "terrorblade_metamorphosis"         "1"
@@ -183,19 +186,46 @@
         }
         // Cooldown manipulation abilities
         "7" {
-            		"keeper_of_the_light_chakra_magic"	"1" // lod's rearm + CD reduction talent.
-			"keeper_of_the_light_chakra_magic_cooldown"	"1"
-			"tinker_rearm_lod"	"1"
-			"tinker_rearm"	"1"
-			//"aabs_nightshadow"	"1"
-			"pudge_flesh_heap_cooldown_reduction"	"1"
-			//"holdout_gods_strength"	"1"
-			"jingtong"	"1"
-			"zhanhun"	"1"
-			"zhanhun_op"	"1"
-			"jingtong_op"	"1"
-			//"proteus_rarefaction"	"1"
-			"death_prophet_witchcraft" "1"
+                    "keeper_of_the_light_chakra_magic"  "1" // lod's rearm + CD reduction talent.
+            "keeper_of_the_light_chakra_magic_cooldown" "1"
+            "tinker_rearm_lod"  "1"
+            "tinker_rearm"  "1"
+            //"aabs_nightshadow"    "1"
+            "pudge_flesh_heap_cooldown_reduction"   "1"
+            //"holdout_gods_strength"   "1"
+            "jingtong"  "1"
+            "zhanhun"   "1"
+            "zhanhun_op"    "1"
+            "jingtong_op"   "1"
+            //"proteus_rarefaction" "1"
+            "death_prophet_witchcraft" "1"
+                    "veera_thrill_of_the_hunt"  "1"
+            "master_magic" "1" //Allowed you Master_magic + CD reduction + Nimbus or any global ability.
+          "spell_lab_survivor_cooldown" "1"
+        }
+        // Survival
+        "8" {
+          "spell_lab_survivor_cooldown" "1"
+          "spell_lab_survivor_critical" "1"
+          "spell_lab_survivor_damage_boost" "1"
+          "spell_lab_survivor_health_regen" "1"
+          "spell_lab_survivor_int_survival" "1"
+          "spell_lab_survivor_magic_resistance" "1"
+          "spell_lab_survivor_spell_boost" "1"
+          "spell_lab_survivor_spell_vamp" "1"
+          "spell_lab_survivor_str_survival" "1"
+          "spell_lab_survivor_mana_regen" "1"
+          "spell_lab_survivor_agi_survival" "1"
+          "spell_lab_survivor_attack_speed" "1"
+          "spell_lab_survivor_cast_range" "1"
+          "spell_lab_survivor_vision" "1"
+          "spell_lab_survivor_evasion" "1"
+          "spell_lab_survivor_mana_burn" "1"
+          "spell_lab_survivor_life_steal" "1"
+          "spell_lab_survivor_armor" "1"
+          "spell_lab_survivor_attack_range" "1"
+          "spell_lab_survivor_move_speed" "1"
+          "spell_lab_survivor_bash" "1"
         }
     }
 
@@ -209,8 +239,11 @@
         }
     }
 
+
     // Stop multicast on these spells
     "noMulticast" {
+        "ability_wards"                 "1"
+        "ability_wards_op"                 "1"
         "arc_warden_tempest_double"                 "1"
         "arc_warden_tempest_double_redux"                 "1"
         "uther_Hurl_Hammer"                 "1"
@@ -263,12 +296,15 @@
         "angel_arena_tome_agi_op"  "1"
         "angel_arena_tome_med_op"  "1"
         "master_magic"  "1"
+    "furion_teleportation" "1"
     }
 
     "noSpellEcho" {
+        "ability_wards"                 "1"
+        "ability_wards_op"                 "1"
         "master_magic"  "1"
         "hawkeye_ricochet"            "1"
-        "android_pocket_factory"            "1"
+        //"android_pocket_factory"            "1"
         "monkey_king_wukongs_command"            "1"
         "witch_doctor_paralyzing_cask"            "1"
         "angel_arena_tome_lvlup"  "1"
@@ -304,6 +340,7 @@
         "phoenix_supernova" "1"
         "phoenix_launch_fire_spirit"    "1"
         "spell_lab_symbiotic"  "1"
+        "furion_teleportation" "1"
     }
 
     // Abiltiies that won't have their cooldowns lowered by our patch

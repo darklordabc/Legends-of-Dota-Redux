@@ -56,7 +56,7 @@ function modifier_octarine_vampirism_lod_buff:OnTakeDamage(params)
     local nHeroHeal = self.hero_lifesteal / 100
     local nCreepHeal = self.creep_lifesteal / 100
     if params.inflictor then
-        if params.inflictor:GetAbilityName() == "item_blademail" then return end
+        if params.inflictor.GetAbilityName and params.inflictor:GetAbilityName() == "item_blademail" then return end
 
         if params.attacker == hero then
             local heal_amount = 0

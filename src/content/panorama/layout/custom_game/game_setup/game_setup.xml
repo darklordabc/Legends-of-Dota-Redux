@@ -166,6 +166,7 @@
                                     <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingBanningBlockTrollCombos.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingAdvancedOPAbilities.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingDoubleCreeps.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingUniversalShops.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableCheatMode.png"></Image>
 									<Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableHeroBuilder.png"></Image>
 									<Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableKamikaze.png"></Image>
@@ -183,6 +184,8 @@
 
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorAntiRat.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorConsumeItems.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorLimitPassives.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorAntiBash.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBanningBanInvis.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBanningBanInvis2.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorUpgradedUlts.png"></Image>
@@ -254,6 +257,7 @@
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorMulticast.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorTesla.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorTrickshot.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorSurvival.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBorrowed.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorRespawn.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorPermaInvis.png"></Image>
@@ -893,6 +897,15 @@
                                             <ToggleButton id="buttonShowTier12" text="#balance_mode_tier_12" onactivate="toggleShowTier('12')" />
                                         </Panel>
 
+                                        <Panel class="filtersGroup" id="popularityFilterGroup">
+                                            <DropDown id="popularityFilterDropDown" class="buildingHelperInfoText">
+                                                <Label id="popularityFilterMode1" text="#filter_by_popularity" />
+                                                <Label id="popularityFilterMode2" text="#filter_by_unpopularity" />
+                                            </DropDown>
+                                            <Slider id="popularityFilterSlider" class="HorizontalSlider" direction="horizontal" />
+                                            <NumberEntry id="popularityFilterValue" min="1" max="100" value="100" />
+                                        </Panel>
+
                                         <Panel id="boosterDraftBoosters" onmouseover="UIShowCustomLayoutParametersTooltip( BoosterDraftTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=boosterDraftTip1 )" onmouseout="UIHideCustomLayoutTooltip( BoosterDraftTooltip )">
                                         </Panel>
                                     </Panel>
@@ -943,15 +956,30 @@
                             </Panel>
                         </Panel>
 
-                        <Panel id="newAbilitiesPanel">
-                            <Label text="#newAbilitiesTitle" />
-                            <Panel id="newAbilitiesTicks">
-                                <Panel id="newAbilitiesTick1"><Panel /></Panel>
-                                <Panel id="newAbilitiesTick2"><Panel /></Panel>
-                                <Panel id="newAbilitiesTick3"><Panel /></Panel>
-                                <Panel id="newAbilitiesTick4"><Panel /></Panel>
-                                <Panel id="newAbilitiesTick5"><Panel /></Panel>
-                                <Panel id="newAbilitiesTick6"><Panel /></Panel>
+                        <Panel id="abilityBonusesPanel">
+                            <Panel id="newAbilitiesPanel">
+                                <Label text="#newAbilitiesTitle">
+                                    <Panel onmouseout="UIHideCustomLayoutTooltip(newAbilitiesTooltip)" onmouseover="UIShowCustomLayoutParametersTooltip(newAbilitiesTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=newAbilitiesTooltip)">
+                                        <Image id="infoImage" src="file://{images}/custom_game/infoTooltip.png" />
+                                    </Panel>
+                                </Label>
+                                <Panel id="newAbilitiesTicks">
+                                    <Panel id="newAbilitiesTick1"><Panel /></Panel>
+                                    <Panel id="newAbilitiesTick2"><Panel /></Panel>
+                                    <Panel id="newAbilitiesTick3"><Panel /></Panel>
+                                    <Panel id="newAbilitiesTick4"><Panel /></Panel>
+                                    <Panel id="newAbilitiesTick5"><Panel /></Panel>
+                                    <Panel id="newAbilitiesTick6"><Panel /></Panel>
+                                </Panel>
+                            </Panel>
+
+                            <Panel id="balancedBuildPanel">
+                                <Label text="#balancedBuildTitle">
+                                    <Panel onmouseout="UIHideCustomLayoutTooltip(balancedBuildTooltip)" onmouseover="UIShowCustomLayoutParametersTooltip(balancedBuildTooltip, file://{resources}/layout/custom_game/custom_tooltip.xml, text=balancedBuildTooltip)">
+                                        <Image id="infoImage" src="file://{images}/custom_game/infoTooltip.png" />
+                                    </Panel>
+                                </Label>
+                                <Panel id="balancedBuildTick" />
                             </Panel>
                         </Panel>
 

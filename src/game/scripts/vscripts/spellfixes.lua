@@ -199,9 +199,9 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
                                     mult = 2
                                 end
                             elseif lvl == 2 then
-                                if r < 2 then
+                                if r < 20 then
                                     mult = 3
-                                elseif r < 4 then
+                                elseif r < 40 then
                                     mult = 2
                                 end
                             elseif lvl == 3 then
@@ -487,6 +487,45 @@ ListenToGameEvent('dota_player_used_ability', function(keys)
                         end
                     end
                 end
+
+                local mabWitchOP = hero:FindAbilityByName('death_prophet_witchcraft_op')
+                if mabWitchOP then
+                    -- Grab the level of the ability
+                    local lvl = mabWitchOP:GetLevel()
+
+                    if lvl > 0 then
+                        local ab = hero:FindAbilityByName(keys.abilityname)
+
+                        if ab then
+                            local reduction = lvl * -4
+
+                            -- Octarine Core fix
+                            --if GameRules:isSource1() then
+                                if hero:HasModifier('modifier_item_octarine_core') or hero:HasModifier("modifier_item_octarine_core_consumable") then
+                                    reduction = reduction * 0.75
+                                end
+                            --end
+
+                            local timeRemaining = ab:GetCooldownTimeRemaining()
+                            local newCooldown = timeRemaining + reduction
+                            if newCooldown < 1 then
+                                newCooldown = 1
+                            end
+
+                            if newCooldown < timeRemaining then
+                                ab:EndCooldown()
+                                if newCooldown > 0 then
+                                    ab:StartCooldown(newCooldown)
+                                end
+                            end
+
+                            -- Mana refund
+                            local manaRefund = 5 + 5 * lvl
+                            local currentMana = hero:GetMana()
+                            hero:SetMana(currentMana + manaRefund)
+                        end
+                    end
+                end
             end
         end
     end
@@ -523,8 +562,8 @@ ListenToGameEvent('entity_hurt', function(keys)
                             redirect = ab:GetSpecialValueFor('redirect'),
                             redirect_range_tooltip_scepter = ab:GetSpecialValueFor('redirect_range_tooltip_scepter')
                         })
-							-- Apply the cooldown
-							local cd = ab:GetCooldown(lvl-1)
+							-- Apply the cooldown 
+							local cd = ab:GetTrueCooldown(lvl-1)
                             ab:StartCooldown(cd)
                     end    
             elseif ab2 and ab2:IsCooldownReady() and not ent:PassivesDisabled() then  

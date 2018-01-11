@@ -22,17 +22,17 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "heal_base"                                            "90 180 270 360"
+                "heal_base"                                            "200"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "heal_pct"                                             "12"
+                "heal_pct"                                             "8 12 16 20"
             }
             "03"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "damage_factor"                                        "70"
+                "damage_factor"                                        "50"
             }
             "04"
             {

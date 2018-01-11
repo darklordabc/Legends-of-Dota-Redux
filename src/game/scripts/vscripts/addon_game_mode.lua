@@ -52,17 +52,21 @@ function Precache(context)
     if IsInToolsMode() then
         local abilities = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
         for ability,content in pairs(abilities) do
-            for block,val in pairs(content) do
-              if block == "precache" then
-                for precacheType, resource in pairs(val) do
-                    PrecacheResource(precacheType, resource, context)
+            if type(content) == "table" then
+                for block,val in pairs(content) do
+                  if block == "precache" then
+                    for precacheType, resource in pairs(val) do
+                        PrecacheResource(precacheType, resource, context)
+                    end
+                  end
                 end
-              end
             end
         end
     end
     -- COMMENT THE ABOVE OUT IF YOU DO NOT WANT TO COMPILE ASSETS
     PrecacheResource("particle","particles/econ/events/battlecup/battle_cup_fall_destroy_flash.vpcf",context)
+    PrecacheResource("particle","particles/world_tower/tower_upgrade/ti7_radiant_tower_proj.vpcf",context)
+    PrecacheResource("particle","particles/world_tower/tower_upgrade/ti7_dire_tower_projectile.vpcf",context)
     PrecacheResource("soundfile","soundevents/game_sounds_heroes/game_sounds_monkey_king.vsndevts",context)
     PrecacheResource("soundfile","soundevents/memes_redux_sounds.vsndevts",context)
     PrecacheUnitByNameSync("npc_dota_lucifers_claw_doomling", context)

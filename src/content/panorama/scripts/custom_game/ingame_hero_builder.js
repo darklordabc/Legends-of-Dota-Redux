@@ -7,26 +7,41 @@ var spawnedHeroBuilder = false;
 
 var heroBuilderPanel = null;
 
-function showIngameBuilder() {
+function showIngameBuilder(args) {
     if(!spawnedHeroBuilder) {
         spawnedHeroBuilder = true;
 
         var balanceMode = GameUI.AbilityCosts.balanceModeEnabled == 1 ? true : false;
 
         // Spawn the hero builder
-        try {
-            heroBuilderPanel = $.GetContextPanel().GetParent().GetParent().GetParent().FindChildTraverse("CustomUIContainer_GameSetup").GetChild(0).GetChild(0);
-            if (heroBuilderPanel != null) {
-                heroBuilderPanel.SetParent($('#heroBuilderDisplay'))
-            } else {
-                throw true;
+        // if (args.ingamePicking == true) {
+            if (!heroBuilderPanel) {
+                heroBuilderPanel = $.CreatePanel('Panel', $('#heroBuilderDisplay'), '');
+                heroBuilderPanel.BLoadLayout('file://{resources}/layout/custom_game/game_setup/game_setup.xml', false, false);
             }
-        } catch (err) {
-            heroBuilderPanel = $.CreatePanel('Panel', $('#heroBuilderDisplay'), '');
-            heroBuilderPanel.BLoadLayout('file://{resources}/layout/custom_game/game_setup/game_setup.xml', false, false);
-        }
+        // } else {
+        //     try {
+        //         heroBuilderPanel = $.GetContextPanel().GetParent().GetParent().GetParent().FindChildTraverse("CustomUIContainer_GameSetup").GetChild(0).GetChild(0);
+        //         if (heroBuilderPanel != null) {
+        //             heroBuilderPanel.SetParent($('#heroBuilderDisplay'))
+        //         } else {
+        //             throw true;
+        //         }
+        //     } catch (err) {
+        //         heroBuilderPanel = $.CreatePanel('Panel', $('#heroBuilderDisplay'), '');
+        //         heroBuilderPanel.BLoadLayout('file://{resources}/layout/custom_game/game_setup/game_setup.xml', false, false);
+        //     }  
+        // }
+
+        // $.Msg(heroBuilderPanel.id);
+        $.Schedule(1.0, (function () {
+            $('#heroBuilderDisplay').visible = true;
+        }))
+
         heroBuilderPanel.visible = true;
         heroBuilderPanel.isIngameBuilder = true;
+        heroBuilderPanel.isInitialIngameBuilder = args.ingamePicking == true;
+
         util.blockMouseWheel(heroBuilderPanel);
 
         // Boot it into selection mode
@@ -51,11 +66,10 @@ function showIngameBuilder() {
         heroBuilderPanel.FindChildTraverse("chat").visible = false;
 
         heroBuilderPanel.showBuilderTab('pickingPhaseMainTab');
-
-        // Hide the hero selection when spawn hero is pressed
-        GameEvents.Subscribe('lodNewHeroBuild', function() {
-            $('#heroBuilderDisplay').visible = false;
-        });
+        
+        heroBuilderPanel.FindChildTraverse("abilityBonusesPanel").visible = args.ingamePicking == true;
+        heroBuilderPanel.FindChildTraverse("newAbilitiesPanel").visible = args.ingamePicking == true;
+        heroBuilderPanel.FindChildTraverse("balancedBuildPanel").visible = args.ingamePicking == true;
 
         // Make it visible
         $('#heroBuilderDisplay').visible = true;      
@@ -70,7 +84,12 @@ function showIngameBuilder() {
 }
 
 (function() {
-    GameEvents.Subscribe('lodShowIngameBuilder', function() {
-        showIngameBuilder();
+    GameEvents.Subscribe('lodShowIngameBuilder', function(args) {
+        showIngameBuilder(args);
     })
+    // Hide the hero selection when spawn hero is pressed
+    GameEvents.Subscribe('lodNewHeroBuild', function() {
+        $('#heroBuilderDisplay').visible = false;
+    });
+    GameEvents.SendCustomGameEventToServer("lodCheckIngameBuilder", {})
 })();

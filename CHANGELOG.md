@@ -2,6 +2,239 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 10.0
+- Replaced Phantom Lancer's Perk
+- Viper perk now stacks with itself, and now reduces armor and magic resist by 10%
+- Spectre perk now gives cliff walking for 4 seconds
+- added 7.07 Grow (is not in 'onehit' troll combo list)
+- fixed Spectral Form doing 0 damage, lowered its evasion to 90%
+- made Bedlam an ultimate
+- removed Pocket Factory
+- fixed Miserable Claws having no projectile
+- potentially fixed many custom abilities having no particles
+- recoded Flame Strike since it didnt work at all.
+- fixed Synthesis not removing Day Time buff when toggled off
+- fixed an exploit with Argent Smite, additionally now applies a soft dispel on attack
+- added consumable vlads, echo sabre, aeon disk and kaya.
+- updated lane creep bonus health method
+- Vengeful Spirit perk changed
+- Slarder perk changed
+- fixed consumable AC not applying -armor aura
+- fixed occasionally not getting skill points on level up
+- fixed neutral evasion skill having fixed 14% evasion
+
+## 9.9
+- Removed Call of the wild Boar, broken ability
+- Fixed The Saints Rage not healing
+- Fixed Spell Reflect reflecting allied spells
+- Fixed a bug where anti-bash mutator was not as effective
+- Phoenix Sun Ray now also gives movement ability
+- Renamed 'dota' map to 'custom' and added ingame info to make it clearer
+- Arcane Echo no longer echos ultimates
+- Magicians Revenge has lower cooldown and deals more damage.
+- Fixed Aether Len's not giving mana regen
+- Changed Underlord's Perk to 2+ to all stats for each level in custom abilities
+- Added Perks for Pangolier and Dark Willow
+- Pocket Factory is now troll combow with Rearm Redux
+- Spin Webb no longer counted as invisible
+
+## 9.8
+- Updated values of consumeable items to match latest patch
+- Changed Chen's perk so that he only has to cast holy persuasian to give abilities.
+- Added Deafening Blast 
+- Removed Drow's Cooldown Reduction talent
+- Fixed bug where heros quickly became lvl 100 once they past lvl 28
+- Bash cooldown now applies to the two bash items
+- Arcane Echo now considers Nimbus an ultimate when setting cooldown
+- Anti Perma-Stun Mechanic is now a mutator in the advanced map
+
+## 9.7
+- Added new heros and updated talent replacement system
+
+## 9.6
+- Fixed Templar Assasin losing perk on death
+- Fixed Dreadnought not doing reduced damage on buildings
+- Fixed Perm Roshanify bug
+- Re-Enabled Shared EXP in all_allowed
+- Tempest Doubles will no longer inherit starfall (buggy)
+- Gods strength: now it's troll combo with it's Redux version. 
+- Phantom fleet: Cooldown lowered from (140/120/100) to (100/80/60).
+- Disarm: have 5 secend duration at max level (was 4), have 600 cast range (was 500).
+- Deafening blast : buffed damage into (80/160/240/320) was(65/130/195/260
+- Jet now counts as a toggle ability (E.g. troll combo with fiery soul)
+- Rewrite Infernal Blade in LUA might help with some bugs
+- Argent Smite now has a higher cooldown but increases heal factor per level
+- Spell Echo will now adopt the cooldown of an ultimate, if it echos an ultimate
+- Tempest Double Redux is now troll combo with Infernal Offering because it can cause crashes
+- Summon Wolves is now counted as an invisible ability
+- Removed Dead Man's Chest because of a bugy interaction with Nothl Protection
+- Unstable Rift is now troll combo with dispersion
+- Eye of the Storm is now troll combo with Stone Form
+
+## 9.5
+- Limit Passives is now an optional mutator in dota map
+- If Tether is cast while the hero is a symbiote, it will have a 60 second cooldown instead of 12 (Troll combo prevention)
+- Burrows are now troll combos with Infest
+- Fixed Lion's lvl 20 talent not being replaced if you didnt have finger of death
+- Last Will: Now have only 4 level. (Same damage at max level)
+- Split shot: Now only splits to 2 targets max.
+- Grapeshot: Buffed damage. Now have 120% at level 4.
+- Fanatism: Now have fixed cooldown. Lower the damage reduction and attack bonus.
+- Reworked Multistrike
+- Fixed Octarine preventing bloodstone suicide
+- Eldrich Anti-Magic tree no longer stuns spell immune units
+- Added Anti Perma-Bash: If you get bashed, for 5 seconds you cannot be bashed again
+- Life Break is now single player ability. Added Redux version with longer cooldown.
+- Aether Lens is now consumeable
+
+## 9.4
+- Fixed Projectiles missing on compendium towers
+- Fixed Bounty Runes being broken if players disconnected and shared xp is on
+- Worked a bit more on AA perk
+- Spectral Form now does reduced damage to structures
+- Spell Echo now works with point target abilities, they echo in the same place
+- Fixed Bounty runes spawning in the river at game start (They shouldnt)
+- Reduced the amount of gold military training gives
+- Splinter now has higher damage reduction at earlier levels
+- Hopefully fixed bug where items did not convert into consumeable versions
+- Reduced the amount of attack speed per stack for Berserker, but increased the buff duration to 10 seconds
+- Marksmanships are now troll combo with their Brawler equivalents
+- Made Berserker's Rage a semi-passive and fixed Military and Berserker not counting as passives
+- Added Bersekers Call OP for single player, and Witchcraft OP
+- Created 'Single Player Abilities' Skill Tab
+- Blinks are now single player abilities, redux versions added.
+- Disabled Shared XP in all_allowed, for now
+- Added single player version of sun strike
+- Blood Ward reflects higher percentage of damage
+- Blink support cost a little bit more mana
+- Fixed Undying Agi or Int not causing damage to normal units
+- Caduceus Staff: Healing, now has fixed 5 second cooldown and slightly higher manacost
+- Changed Warlock's Perk
+- Wards Ability now has fixed 3 max stack count, but replish time improves with levels
+- Fixed Crashing
+
+## 9.3
+- Marksmanship agility is now a single player ability
+- Added Redux version of marksmanship witout the aghs upgrade, but made a new ability splinter which is the aghs split-shot component
+- Cooldown and Spell Amp survivor now require you to be near an enemy hero
+- Removed cooldown reduction talents
+- Fixed Astral Imprison not doing damage
+- Hopefully fixed AA perk
+- Glaives Int Steal is now ultimate ability
+- You can now vote to enable universal shops with -us or -universalshops or from the vote menu. Requires 50% to succeed
+*
+- Add Mana to categories
+- Added Perk for Shadow Demon
+- Changed Soft Spell Amp and Cooldown again
+- Changed how Soft Cooldown works, it should no stack with other sources of cooldown reduction
+- Added singleplayer OP versions of Soft Spell Amp and Cooldown
+- Vote cooldowns reduced to 150 seconds instead of 300
+- Fixed Consumed assault cuirass dissapearing after death
+- Cyclone Trap: You can no longer be cycloned while u have the armour debuff, to prevent troll combos. Also, duration of traps has been increased by 20 seconds.
+- Changed Dazzle's Perk
+- Fixed Borrowed Time not applying cooldown reductions if it activates passively
+
+## 9.2
+- Astral Spirit Return will no longer trigger Essence Aura
+- Disabled Mischeif for now because its buggy
+- Spell Echo is on cooldown while waiting for delay (prevents multiple spells from being echoed)
+- Gyro no longer gets auto-attack passive when he gets Scepter
+- Gyro has a new perk that gives him 1 level in side gunner
+- Fixed Critical Surival and slightly reduced its rate
+- Fixed Entangle having only 1 level
+- SoF Bash no longer works on buildings
+- Fixed texts on Silvers to match new formating and added silver consumeable to the shop page, also updated texts on consumeable items to match new format
+- Potential fixed AA perk anti-regen debuff lasting forever
+- Anomaly: Less mana, longer duration
+- Dead Hawk: Much longer duration, more armor on Hawks
+- Transmute: Higher conversion rate of HP to GOLD
+- Quick Learner: Greately increased amount of EXP gained passively
+- Hit & Run: Changed Icon, Lower Cooldown, jump distances scales with level and its higher at lvl 4
+- Fireball: Lower radius, fixed 100 damage, lower cooldown, duration scales with level now
+- Last Will: Now has 6 levels
+- Hunter's Instinct: Changed icon, higher chance of procing but fixed 2 second duration
+- Berserker: More speed per stack, longer duration, but less max stacks
+- Eldric Anti-Magic: Fixed at 50 damage, lower radius and scales with level, longer duration at level 4
+- Military Training: Gives much more attack speed and gold per levelup
+- Spell Reflect: Lower cooldown on earlier levels
+- Added 3 Brawler abilities (Reverse Marksmanship for melee heros) 
+*
+- Fixed Last Will
+
+## 9.1
+- Dark Forces explosion radius is 300 now instead of 150. It now does magical damage instead of physical, and slightly increased manacost.
+- Silencer's Int Steal ability is now an ultimate
+- Added 3 more Survival of the Fittest type abilities
+- Living bomb: Damage decreased. Now troll combo with Dispersion.
+- Increase-bloodseeker_thirst-speed-limit to 900
+- Thirst: Will not work on illusions anymore.
+- Roshan now has max 70% damage reduction from neutral power mutator
+- Fixed all Legion Commanders becoming spell immune when any one casted duel
+- Essence Aura is now a single player ability
+- Anti-Bash Ability is now Anti-Stun and works on active and passive abilities
+- Flesh Heap can now gain stacks from kills by summons (e.g. Nimbus Cloud)
+- Added many more survival abilities
+- Roshanify Aegis inventory bug fixed.
+- Roshanify OP version added for singleplayer.
+- Earth Sunder balance rework.
+- Made it so Burrow Redux appears when OP abilities are enabled
+- Sleep Cloud: Made Instant Cast, reduced sleep duration to fixed 10, decrease manacost per level, increased radius by 100, 
+- Master of Magic now requires 3 charges to refresh an ultimate
+- Added New Option to Free Ability mutator: Random Survivial Ability
+- Added the newer flesh heaps to the Free Random Flesh Heap mutator
+- Reduced stun multiplier on anti-stun
+- Double Creeps vote requires 70% of player agreement, not 50% anymore
+- Drasticallyed lowered the effectiveness of spell resistance survival
+- Increased Balanced Build Bonus to 1500
+- Increased the range and attribute bonus on ferocity abilities
+- Increased slow on Fire Spear and tweaked some other numbers
+- Dramatically Increased the duration of Living Flesh zombies
+- Reduced rate for following survivals: Spelll Boost, Spell Amp
+- Improved rate for following survivals: Agi, Attack Speed, Critical Strike, Int
+- Improved Crit chance for critical strike surival and fixed it having lower than 100% crit damage
+- Fixed Octarine making illusions last forever
+- Cooldown and Spell Boost Survival will now still gain stacks in base IF there is an enemy within 3000 range
+- When Anti-Rat mutator is on, towers with active backdoor protection cannot be damaged
+
+## 9.0
+- Fury of the immortals: Cooldown increased by 5 seconds, non-stacking damage decreased, stun duration decreased by 0.5
+- Multicast Redux now has a cooldown (in games where single player abilities are banned)
+- Set siege mode transformation time to 3 secosnds
+- Fixed Tenactiy and Blade Mail OP not working
+- Made siege mode transform lower by .5 seconds each level
+- Hopefully fixed looping sounds with pulse nova
+- Fixed icons being broken in single draft mode when you switcht to most used tab
+- Trickshot and Siege mode is now a troll combo
+- Reincarnation is now a single player ability, but a Redux version has been added which has a longer cooldown
+- Both Reincarnations are now troll combos with shallow grave because its a buggy interaction
+- Mortal Coil: Decreased Attack speed per agility by 0.25 at all levels. Maximum duration reduced by 0.2 seconds at all levels.
+- Unobstructed day vision and night vision are now normal 4-level abilities and give benefits without aghs, but aghs still gives huge benefit to them.
+- Fixed some missing particles for mercy abilities
+- Tempest Double and Omniguard are now troll combos due to buggy intereaction
+- Tempest Double clones will now no longer recieve the tempest double ability, meaning they can't cast it to create infinite clones
+- Changed Alchemist's Perk
+- Changed Monkey Kings Perk
+- Warlock's Perk now gives 4 observer wards instead of 2
+- Hero Perks that give a free level in an ability now show the ability on the hud, it just cant be leveled any further
+- Improved Phantom Lancers and Rubicks perk so that they give an entire free ability instead of just 1 level in it
+- Omniguard cooldown increased at earlier levels, heal increased and heal percent increased
+- Nothl Protection cooldown decreased but duration decreased too 
+- Blood ward: Increased damage
+- Master of Magic: Will be trollcombo with any cooldown reduction ability
+- Anemic aura: Decreased Heal reduction. but increased bleeding damage
+- Eldritch pull: Increased the pull distance
+- Teleportation: will no longer trigger Multicast-redux or Arcane echo
+- Arcane Symbiote and Ball Lighting is now troll combo
+- ThunderMusket can now no longer be used with illusions
+- Lust for life: Fixed level 1 regen rate error It will now regen more than old version.
+- Improved Grape Shot at later levels
+- Fixed OmniGuard
+- Made the Custom Morph skills troll combos with Overload
+- Changed Storm Spirit's Perk to Mana Aura instead of Overload
+- Symbtoites will now also be command restricted if their host is (Fix for Infested/Symbiote exploit)
+- Added Tempest Double OP for single player that can recast the ability
+- Improved Razor's Perk, he also gains free level in Unstable Current.
+
 ## 8.0
 - Fixed Sight being 4 levels
 - Removed Review phase and added second load screen to replace strategy time screen
@@ -35,13 +268,36 @@ All notable changes to this project will be documented in this file.
 - Disabled Pudge bot as hes expected to be causing crashes
 - Fixed CDR talent not working on some abilities
 - Fixed Argent Smite not working on ranged heros
+- Fixed thunder musket working on illusions
 - Added Chi Strike (And Chi Strike OP for single player)
 - Fixed Tempest Double exploit with bonus originality gold 
 - Added Health and Mana Regen flesh heaps
-*
 - Fixed the Spawn Camps OP versions, reduced manacost of 100 for all of them.
 - Maybe fixed gyro missle 'no charges' bug, may require respawning to fix
-
+- Originality Bonus now has a cooldown so players dont get all the gold at start
+- Creep Strength Bonus no longer gives them extra magic resitance, and they dont get as much health bonus anymore.
+- Fat-o-Meter is no longer on by default
+- Using different spawn method
+- Tempest Double now troll combo with omniguard and Nothl protection
+- Thrill of the hunt is now troll combo with other cooldown reduction abilities
+- Added 13 simple abilities (and 13 OP variants of them)
+- Reduced Silvers cost by 250 gold and changed its recipes
+- Fixed Pulse Nova and Lighting Storm bug, they are no longer troll combos
+- Added Consumeable version of Silver
+- Starting Gold Reduced to 600, starting level now 4
+- Made Phase Shift a single player ability again
+- Drastically reworked ability bonuses
+- Added filter to sort abilities by popularity
+- Diabloic Edict will no longer damage towers that have backdoor protection
+- Wukong command is re-enabled but only as a single player ability, because its unstable.
+- Juxtapose has been banished to single player abilities until its lag issues can be sorted
+- Brewmaster's cyclone is now a single player ability
+- Changed Spell Echo into a basic ability, but increased its cooldown
+- Lowered channel time and cooldowns of non-ultimate radiant jungle abilities
+- Made bonuses not cloneable for tempest double
+- Fixed wards not being invisible
+- Fixed blademail and spell lifesteal making you invunlerable
+- Lowered replenish time on wards ability
 
 
 ## 7.9

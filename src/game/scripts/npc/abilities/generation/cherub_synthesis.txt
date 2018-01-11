@@ -28,6 +28,7 @@
 
 		"precache" {
 			"particle" "particles/econ/generic/generic_aoe_persistent_sphere_1/generic_aoe_persistent_sphere_1_f.vpcf"
+			"particle" "particles/units/heroes/hero_phoenix/phoenix_sunray_beam_friend.vpcf"
 		}
 
 		"OnToggleOn" {
@@ -69,6 +70,10 @@
 						"ModifierName" "modifier_synthesis_night"
 						"Target" "CASTER"
 					}
+					"RemoveModifier" {
+						"ModifierName" "modifier_synthesis_day"
+						"Target" "CASTER"
+					}
 				}
 			}
 
@@ -90,7 +95,7 @@
 						"Function" "SynthesisDay"
 					}
 
-					"FireEffect" {
+					"AttachEffect" {
 						"EffectName" "particles/units/heroes/hero_phoenix/phoenix_sunray_beam_friend.vpcf"
 						"EffectAttachType" "follow_origin"
 						"Target" "CASTER"
@@ -117,7 +122,7 @@
 						"Function" "SynthesisNight"
 					}
 
-					"FireEffect" {
+					"AttachEffect" {
 						"EffectName" "particles/units/heroes/hero_phoenix/phoenix_sunray_beam_friend.vpcf"
 						"EffectAttachType" "follow_origin"
 						"Target" "CASTER"

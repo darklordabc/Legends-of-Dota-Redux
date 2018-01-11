@@ -135,14 +135,25 @@ end
 
 function modifier_item_octarine_core_consumable:OnTakeDamage(keys)
   if IsServer() and keys.attacker == self:GetCaster() and keys.inflictor then
-
+  
+    if self:GetParent():IsIllusion() or self:GetParent():IsClone() or self:GetParent():IsTempestDouble() then
+      return
+    end
+    
     if not self:GetAbility() then
       self:Destroy()
       return
     end
+
+    local damage_flags = keys.damage_flags
     
-    if keys.inflictor:GetAbilityName() == "item_blademail" then return end
-    -- counting the amout of octarine cores
+    if bit.band(damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) == DOTA_DAMAGE_FLAG_HPLOSS then
+      return nil
+    end
+    if bit.band(damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) == DOTA_DAMAGE_FLAG_REFLECTION then
+      return nil
+    end
+    --counting the amout of octarine cores
     local count = 0
     for i=0,self:GetCaster():GetModifierCount() do
       if self:GetCaster():GetModifierNameByIndex(i) == "modifier_item_octarine_core_consumable" then
@@ -157,8 +168,12 @@ function modifier_item_octarine_core_consumable:OnTakeDamage(keys)
       healFactor = self:GetAbility():GetSpecialValueFor("octarine_core_creep_lifesteal") * 0.01 / count
     end
     local heal = healFactor * keys.damage
-    self:GetCaster():Heal(heal,self:GetAbility())
-    ParticleManager:CreateParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN, self:GetCaster())
+    
+    --make sure unit isnt dead before we heal them
+    if self:GetCaster():GetHealth() > 0 then 
+      self:GetCaster():Heal(heal,self:GetAbility())
+      ParticleManager:CreateParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN, self:GetCaster())
+    end
   end
 end
 

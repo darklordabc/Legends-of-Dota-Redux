@@ -20,6 +20,27 @@
         "ReduxPerks"                                                           "lightning"
         "ReduxFlags"                                                    "underpowered"  
         "ReduxCost"                                                            "30"
-        "ReduxBans"                                                            "tinker_rearm"
+        "ReduxBans"                                                            "imba_omniknight_purification | tinker_rearm"
+    }
+
+    "arc_warden_tempest_double_op"
+    {
+        "BaseClass"                                                            "arc_warden_tempest_double"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "FightRecapLevel"                                                      "2"
+        "AbilityTextureName"                                                   "custom/arc_warden_tempest_double_op"
+        "AbilityCastPoint"                                                     "0.15"
+        "AbilityCooldown"                                                      "25"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                             "30 60 120"
+            }
+        }
+        "ReduxPerks"                                                           "lightning" 
+        "ReduxCost"                                                            "120"
     }
 }

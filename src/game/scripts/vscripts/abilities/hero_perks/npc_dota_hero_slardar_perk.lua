@@ -1,10 +1,10 @@
 --------------------------------------------------------------------------------------------------------
 --
 --		Hero: Slardar
---		Perk: Slardar gets 1 gold whenever he bashes a unit.
+--		Perk: Physical damage dealt by Slarder is increased by 50%
 --
 --------------------------------------------------------------------------------------------------------
-LinkLuaModifier( "modifier_npc_dota_hero_slardar_perk", "abilities/hero_perks/npc_dota_hero_slardar_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_npc_dota_hero_slardar_perk", "abilities/hero_perks/npc_dota_hero_slardar_perk.lua", LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
 if npc_dota_hero_slardar_perk ~= "" then npc_dota_hero_slardar_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
@@ -17,7 +17,7 @@ function modifier_npc_dota_hero_slardar_perk:IsPassive()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_slardar_perk:IsHidden()
-	return true
+	return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_slardar_perk:IsPurgable()
@@ -32,14 +32,24 @@ end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_slardar_perk:OnCreated()
   if IsServer() then
-    local caster = self:GetCaster()
-    
-    Timers:CreateTimer(function()
-      caster:AddItemByName('item_sprint')
-        return
-    end, DoUniqueString('give_slard_sprint'), .5)
   end
 end
 
 function perkSlardar(filterTable)
+  local victim_index = filterTable["entindex_victim_const"]
+  local attacker_index = filterTable["entindex_attacker_const"]
+  local ability_index = filterTable["entindex_inflictor_const"]
+  if not victim_index or not attacker_index then
+    return filterTable
+  end
+  local victim = EntIndexToHScript( victim_index )
+  local attacker = EntIndexToHScript( attacker_index )
+  local damageType = filterTable.damagetype_const
+
+  if attacker:HasModifier("modifier_npc_dota_hero_slardar_perk") then
+    if damageType == DAMAGE_TYPE_PHYSICAL then
+      filterTable.damage = filterTable.damage * 1.50
+    end
+  end
+  return filterTable
 end

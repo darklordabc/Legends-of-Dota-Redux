@@ -45,6 +45,8 @@ function modifier_npc_dota_hero_meepo_perk:DeclareFunctions()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_meepo_perk:OnIntervalThink()
+	if not IsServer() then return end
+	
 	local caster = self:GetCaster()
 	local heroes = HeroList:GetAllHeroes()
 

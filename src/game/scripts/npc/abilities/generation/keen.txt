@@ -294,6 +294,7 @@
         "AbilityCastPoint"              "2 1.5 1"
         "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
         "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "ReduxBans"                     "ebf_clinkz_trickshot"
     
         "precache"
         {
@@ -321,7 +322,7 @@
             "04"
             {
                 "var_type"          "FIELD_FLOAT"
-                "transform_time"    "2 1.5 1"
+                "transform_time"    "3.0 2.5 2.0"
             }
             "05"
             {
