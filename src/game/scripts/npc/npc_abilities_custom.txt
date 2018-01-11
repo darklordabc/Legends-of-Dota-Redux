@@ -407,6 +407,7 @@
 #base "abilities\neutrals\necronomicon_warrior_last_will_lod.txt"
 #base "abilities\neutrals\necronomicon_warrior_mana_burn_lod.txt"
 #base "abilities\neutrals\warlock_golem_permanent_immolation_lod.txt"
+#base "abilities\neutrals\neutral_evasion.txt"
 #base "abilities\perks\npc_dota_hero_abaddon_perk.txt"
 #base "abilities\perks\npc_dota_hero_abyssal_underlord_perk.txt"
 #base "abilities\perks\npc_dota_hero_monkey_king_perk.txt"
