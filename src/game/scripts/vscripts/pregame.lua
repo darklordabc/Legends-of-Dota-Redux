@@ -401,6 +401,15 @@ function Pregame:init()
         this:onPlayerSelectRandomHero(eventSourceIndex, args)
     end)
 
+    CustomGameEventManager:RegisterListener('lodSetShopItemsPurchasable', function(eventSourceIndex, args)
+        local playerID = args.PlayerID
+        if self:getPhase() == constants.PHASE_OPTION_SELECTION and
+           isPlayerHost(PlayerResource:GetPlayer(playerID)) then
+            if args.silent == 1 then playerID = -1 end
+            PanoramaShop:SetItemsPurchasable(args.items, args.purchasable == 1, playerID)
+        end
+    end)
+
     --List of keys in perks.kv, that aren't perks
     local NotPerks = {
         chen_creep_abilities = true,
@@ -668,6 +677,8 @@ function Pregame:init()
     self.spawnQueue = {}
     self.currentlySpawning = false
     self.cachedPlayerHeroes = {}
+
+    PanoramaShop:InitializeItemTable()
 end
 
 -- Load Default Values

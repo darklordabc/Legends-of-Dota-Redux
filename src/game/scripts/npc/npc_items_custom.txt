@@ -1,5 +1,18 @@
+#base "items/angel-arena-black-star/index.txt"
+
 "DOTAAbilities"
 {
+    "item_dummy"
+    {
+        "ID"                            "1998"
+        "BaseClass"                     "item_datadriven"
+        "ItemPurchasable"               "0"
+        "ItemCost"                      "0"
+        "ItemKillable"                  "0"
+        "ItemSellable"                  "0"
+        "AllowedInBackpack"             "1"
+        "IsTempestDoubleClonable"       "0"
+    }
     //=================================================================================================================
     // Dummy Item
     //=================================================================================================================

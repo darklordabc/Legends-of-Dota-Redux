@@ -33,6 +33,7 @@ function SendMessage( text ) {
 
 function RecordPlayerSC( ) {
     var check = (function checkSettingCode() {
+        SaveDisabledItems();
         var data = $('#importAndExportEntry').text;
 
         var decodeData;

@@ -69,7 +69,7 @@ function LoadGameKeyValues()
 		AbilityKV = {base = "npc_abilities",custom = "npc_abilities_custom"},
 		ItemKV = {base = "items", custom = "npc_items_custom"},
 		UnitKV = {base = "npc_units", custom = "npc_units_custom"},
-		HeroKV = {base = "npc_heroes", custom = "npc_heroes_custom", new = "heroes/new"}
+		HeroKV = {base = "npc_heroes", custom = "npc_heroes_custom"}
 	}
 	if not override then
 		print("[KeyValues] Critical Error on "..override..".txt")
@@ -82,7 +82,9 @@ function LoadGameKeyValues()
 		for k,v in pairs(override) do
 			if file[k] then
 				if type(v) == "table" then
-					--table.merge(file[k], v)
+					for i,_v in pairs(v) do
+						file[k][i] = _v
+					end
 				else
 					file[k] = v
 				end
@@ -97,26 +99,26 @@ function LoadGameKeyValues()
 						local override_hero = v.override_hero
 						if override_hero then
 							if file[override_hero] then
-								--table.deepmerge(file[k], file[override_hero])
+								util:MergeTables(file[k], file[override_hero])
 							end
 							if custom_file[override_hero] then
-								--table.deepmerge(file[k], custom_file[override_hero])
+								util:MergeTables(file[k], custom_file[override_hero])
 							end
 						end
-						--table.deepmerge(file[k], v)
+						util:MergeTables(file[k], v)
 					else
-						--table.deepmerge(file[k], v)
+						util:MergeTables(file[k], v)
 					end
 				end
 			else
-				--table.deepmerge(file, custom_file)
+				util:MergeTables(file, custom_file)
 			end
 		else
 			print("[KeyValues] Critical Error on " .. KVFilePaths.custom .. ".txt")
 			return
 		end
 		if KVFilePaths.new then
-			--table.deepmerge(file, LoadKeyValues(scriptPath .. KVFilePaths.new .. ".txt"))
+			util:MergeTables(file, LoadKeyValues(scriptPath .. KVFilePaths.new .. ".txt"))
 		end
 		
 		KeyValues[KVType] = file
@@ -214,6 +216,14 @@ function GetAbilitySpecial(name, key, level)
 			end
 		end
 	else return t end
+end
+
+function string.split(inputstr, sep)
+	local t = {}
+	for str in string.gmatch(inputstr, "([^" .. (sep or "%s") .. "]+)") do
+		table.insert(t, str)
+	end
+	return t
 end
 
 function GetItemNameById(itemid)

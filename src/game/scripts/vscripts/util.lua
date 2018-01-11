@@ -1171,6 +1171,13 @@ function util:DisplayError(pid, message)
     end
 end
 
+function util:EmitSoundOnClient(pid, sound)
+    local player = PlayerResource:GetPlayer(pid)
+    if player then
+        CustomGameEventManager:Send_ServerToPlayer(player, "lodEmitClientSound", {sound=sound})
+    end
+end
+
 -- Returns a set of abilities that won't trigger stuff like aftershock / essence aura
 local toIgnore
 function util:getToggleIgnores()
