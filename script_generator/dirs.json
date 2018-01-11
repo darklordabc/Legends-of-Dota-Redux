@@ -7,6 +7,7 @@
 		"dota/game/scripts",
 		"dota/game/scripts/npc",
 		"dota/game/scripts/npc/abilities",
+		"dota/game/scripts/npc/items",
 
 		"dota/game/panorama",
  		"dota/game/panorama/localization",
@@ -86,6 +87,7 @@
 		{ "link": "../dota/game/scripts/npc/npc_abilities_custom.txt", "dir": "../src/game/scripts/npc/npc_abilities_custom.txt" },
 		{ "link": "../dota/game/scripts/npc/npc_heroes_custom.txt", "dir": "../script_generator/BIN/npc_heroes_custom.txt" },
 		{ "link": "../dota/game/scripts/npc/abilities", "dir": "../src/game/scripts/npc/abilities" },
+		{ "link": "../dota/game/scripts/npc/items", "dir": "../src/game/scripts/npc/items" },
 		
 		{ "link": "../dota/game/materials", "dir": "../src/game/materials" },
 

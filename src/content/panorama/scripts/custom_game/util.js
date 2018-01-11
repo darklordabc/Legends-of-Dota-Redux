@@ -346,31 +346,38 @@ Util.debounce = (function debounce(func, wait, immediate) {
 	GameUI.CustomUIConfig().Util = Util;
 
     GameUI.SetMouseCallback( function( eventName, arg ) {
-        var nMouseButton = arg
         var CONSUME_EVENT = true;
         var CONTINUE_PROCESSING_EVENT = false;
-        if ( GameUI.GetClickBehaviors() !== CLICK_BEHAVIORS.DOTA_CLICK_BEHAVIOR_NONE )
+        var ClickBehaviors = GameUI.GetClickBehaviors();
+        if ( ClickBehaviors !== CLICK_BEHAVIORS.DOTA_CLICK_BEHAVIOR_NONE )
             return CONTINUE_PROCESSING_EVENT;
+        var result = CONTINUE_PROCESSING_EVENT;
 
-        if (eventName === "pressed" && (arg == 5 || arg == 6))
-        {
-            for (var key in Util.mouseWheelBlockingPanels) {
-                var panel = Util.mouseWheelBlockingPanels[key];
+        if (eventName === "pressed") {
+            if (arg === 5 || arg === 6) {
+                for (var key in Util.mouseWheelBlockingPanels) {
+                    var panel = Util.mouseWheelBlockingPanels[key];
+                    try {
+                        var pX = panel.GetPositionWithinWindow()["x"];
+                        var pY = panel.GetPositionWithinWindow()["y"];
 
-                try {
-                    var pX = panel.GetPositionWithinWindow()["x"];
-                    var pY = panel.GetPositionWithinWindow()["y"];
+                        var rect = [[pX, pY], [pX + panel.actuallayoutwidth, pY], [pX + panel.actuallayoutwidth, pY + panel.actuallayoutheight], [pX, pY + panel.actuallayoutheight]]; //Util.isPointInRect(, [pX, pY, , ])
 
-                    var rect = [[pX, pY], [pX + panel.actuallayoutwidth, pY], [pX + panel.actuallayoutwidth, pY + panel.actuallayoutheight], [pX, pY + panel.actuallayoutheight]]; //Util.isPointInRect(, [pX, pY, , ])
-
-                    if (Util.isPointInRect(GameUI.GetCursorPosition(), rect) && panel.visible && panel.enabled && panel.BCanSeeInParentScroll()) {
-                        return CONSUME_EVENT;
+                        if (Util.isPointInRect(GameUI.GetCursorPosition(), rect) && panel.visible && panel.enabled && panel.BCanSeeInParentScroll()) {
+                            return CONSUME_EVENT;
+                        }
+                    } catch (err) {
                     }
-                } catch (err) {
+                }
+            } else if (arg === 0) {
+                for (var k in Game.MouseEvents.OnLeftPressed) {
+                    var r = Game.MouseEvents.OnLeftPressed[k](ClickBehaviors, eventName, arg);
+                    if (r === true)
+                        result = r;
                 }
             }
         }
 
-        return CONTINUE_PROCESSING_EVENT;
+        return result;
     } );
 })()

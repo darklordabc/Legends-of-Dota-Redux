@@ -3404,6 +3404,7 @@
     "item_flying_courier"
     {
         "ReduxPerks"                                                           "limited"
+        "ItemInitialStockTime"                                                 "270"
     }
     "item_infused_raindrop"
     {

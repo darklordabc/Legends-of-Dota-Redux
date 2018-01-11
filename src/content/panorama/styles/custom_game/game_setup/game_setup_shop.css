@@ -1,0 +1,190 @@
+#option_panel_items
+{
+    height: 100%;
+}
+
+#option_panel_items_shop
+{
+    width: 100%;
+    height: 100%;
+}
+
+#ShopPagesList
+{
+    width: 208px;
+    background-image: url("s2r://panorama/images/hud/reborn/bg_shop_guide_psd.vtex");
+    background-position: bottom;
+    background-size: cover;
+    flow-children: down;
+    transition-property: opacity, width;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+}
+
+.ShopPageButton {
+    width: 100%;
+    height: 40px;
+    background-color: #555;
+    margin-bottom: 5px;
+    flow-children: none;
+}
+.ShopPageButton .RadioBox {
+    visibility: collapse;
+}
+.ShopPageButton > Image {
+    width: 100%;
+    height: 100%;
+    transition-property: saturation, brightness, transform;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+    saturation: 0.6;
+    brightness: 0.7;
+}
+.ShopPageButton:hover > Image {
+    saturation: 0.8;
+    brightness: 0.85;
+    transform: translateX(2px);
+}
+.ShopPageButton:selected > Image {
+    saturation: 1;
+    brightness: 1;
+}
+
+.ButtonSetAll
+{
+    align: right center;
+}
+
+#ShopItemList
+{
+    width: 500px;
+    height: 100%;
+    horizontal-align: right;
+    flow-children: down;
+    background-image: url("s2r://panorama/images/hud/reborn/bg_mainshop_psd.vtex");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+
+.ItemsPageInnerContainer {
+    height: 100%;
+    horizontal-align: center;
+    flow-children: right-wrap;
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 0.15s;
+}
+.ItemsPageInnerContainer.SelectedPage {
+    opacity: 1;
+}
+
+
+.ShopPageElement {
+    width: 100%;
+    height: 100%;
+    horizontal-align: center;
+    /* opacity: 0; */
+    visibility: collapse;
+    transition-property: opacity;
+    transition-duration: 0.15s;
+}
+.ShopPageElement.SelectedPage {
+    /* opacity: 1; */
+    visibility: visible;
+}
+
+#ShopPagesHost {
+    height: 100%;
+    width: 100%;
+    flow-children: down;
+}
+
+#ShopItems {
+    margin-top: 30px;
+    height: 100%;
+    width: 100%;
+}
+
+.InSearchMode #ShopPagesHost {
+    visibility: collapse;
+}
+
+#ShopSearchOverlay {
+    margin-top: 1px;
+    margin-left: 2px;
+    width: 100%;
+    height: 100%;
+    visibility: collapse;
+    flow-children: right-wrap;
+    overflow: squish scroll;
+}
+
+.InSearchMode #ShopSearchOverlay {
+    visibility: visible;
+}
+
+#ShopTabs {
+    align: center top;
+    height: 28px;
+    horizontal-align: center;
+    flow-children: right;
+    width: 100%;
+    margin-left: 6px;
+    margin-right: 6px;
+    background-size: cover;
+    border-radius: 3px;
+    border: 1px solid rgba(91, 104, 114, 0.46667);
+}
+
+.ShopTabButton {
+    height: 100%;
+    padding-left: 1px;
+    padding-right: 1px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    background-color: black;
+}
+.ShopTabButton .RadioBox {
+    visibility: collapse;
+}
+.ShopTabButton Label {
+    margin: 4px;
+    align: center center;
+    font-size: 14px;
+    color: #5b6872;
+    font-weight: bold;
+}
+.ShopTabButton:selected {
+    background-color: rgba(87, 100, 109, 0.46667);
+}
+.ShopTabButton:selected Label {
+    color: white;
+}
+
+.ShopItemGroup {
+    height: 100%;
+    flow-children: down;
+}
+
+
+.SmallItemPanel {
+    width: 63px;
+    height: width-percentage(72.7%);
+    margin: 0px 2px;
+    border-radius: 3px;
+    transition-property: position, brightness, border;
+    transition-duration: 0.1s;
+    border: 1px solid transparent;
+}
+.SmallItemPanel:hover {
+    brightness: 1.6;
+}
+.SmallItemPanel:active {
+    brightness: 0.8;
+}
+
+.SmallItemPanel.purchasable
+{
+    border: 1px solid lime;
+}
