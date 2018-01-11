@@ -5714,7 +5714,7 @@ function getAbilityGlobalPickPopularity(ability) {
     $('#chat').BLoadLayout('file://{resources}/layout/custom_game/game_setup/chat.xml', false, false);
 
     if (mapName == "classic"){
-        $.Each(["doubledAbilityPoints", "fastStart", "banning", "strongTowers", "customAbilities","allPick"], function(name) {
+        $.Each(["allPick", "OPAbilities", "noInvis"], function(name) {
             addVotingOption(name);
         })
     }
