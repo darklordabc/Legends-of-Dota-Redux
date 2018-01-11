@@ -118,6 +118,7 @@
 #base "abilities\custom\zuus_thundergods_vengeance.txt"
 #base "abilities\custom\ability_consumable_item_container.txt"
 #base "abilities\deathtal\molten_lord.txt"
+#base "abilities\deathtal\pudge_flesh_heap_minion_damage.txt"
 #base "abilities\dnd\makecatapults_lua.txt"
 #base "abilities\dnd\makemeleecreeps_lua.txt"
 #base "abilities\dnd\makerangedcreeps_lua.txt"
