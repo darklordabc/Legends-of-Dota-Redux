@@ -13,6 +13,9 @@ All notable changes to this project will be documented in this file.
 - Fixed occasionally not getting skill points on level up
 - Fixed neutral evasion skill having fixed 14% evasion
 - Replaced Standard Map with Classic map. It is now default.
+- Single Draft is now default gamemode
+- Replaced Standard Shop with new Panarama shop
+- Added "Items" tab to custom game advanced settings, allowing more control of allowed/disallowed items
 
 
 ## 10.0
