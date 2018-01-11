@@ -121,6 +121,14 @@ function Pregame:init()
 
     self.votingStatFlags = {}
     self.optionVoteSettings = {
+        allPick = {
+            onselected = function(self)
+                self:setOption('lodOptionGamemode', 1, true)
+            end,
+            onunselected = function(self)
+                self:setOption('lodOptionGamemode', 5, true)
+            end
+        },
         banning = {
             onselected = function(self)
                 self:setOption('lodOptionBanning', 3, true)
@@ -516,8 +524,8 @@ function Pregame:init()
     end
 
     -- Standard gamemode featuring voting system
-    if mapName == 'standard' then
-        self:setOption('lodOptionGamemode', 1)
+    if mapName == 'classic' then
+        self:setOption('lodOptionGamemode', 5, true)
         self:setOption('lodOptionBalanceMode', 1, true)
         OptionManager:SetOption('banningTime', 50)
         --self:setOption('lodOptionBanningBalanceMode', 1, true)
@@ -529,6 +537,8 @@ function Pregame:init()
         self:setOption('lodOptionGameSpeedRespawnTimePercentage', 35, true)
         self:setOption('lodOptionCrazyUniversalShop', 0, true)
         self.useOptionVoting = true
+    else
+        self.optionVoteSettings.allPick = nil
     end
 
     if mapName == 'all_allowed' then
@@ -6875,6 +6885,8 @@ end
 
 -- Generate builds for bots
 function Pregame:generateBotBuilds()
+    if OptionManager:GetOption('mapname') ~= "custom_bot" then return end
+    
     -- Ensure bots are actually enabled
     if not self.enabledBots then return end
 

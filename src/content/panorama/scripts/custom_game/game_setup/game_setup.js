@@ -4566,7 +4566,7 @@ function OnPhaseChanged(table_name, key, data) {
             if (currentPhase == PHASE_OPTION_VOTING)
             {
                 var mapName = Game.GetMapInfo().map_display_name;
-                if (mapName.match("standard"))
+                if (mapName.match("classic"))
                     $('#middleButtons').visible = false;
             }
 
@@ -5713,8 +5713,8 @@ function getAbilityGlobalPickPopularity(ability) {
 
     $('#chat').BLoadLayout('file://{resources}/layout/custom_game/game_setup/chat.xml', false, false);
 
-    if (mapName == "standard"){
-        $.Each(["doubledAbilityPoints", "fastStart", "banning", "strongTowers", "customAbilities"], function(name) {
+    if (mapName == "classic"){
+        $.Each(["doubledAbilityPoints", "fastStart", "banning", "strongTowers", "customAbilities","allPick"], function(name) {
             addVotingOption(name);
         })
     }
