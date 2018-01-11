@@ -411,19 +411,17 @@ function PanoramaShop:InitializeItemTable()
 end
 
 function PanoramaShop:SetItemsPurchasable(items, purchasable, playerID)
-	local needsUpdate = false
 	for _, item in pairs(items) do
-		local result = PanoramaShop:RecursiveSetItemPurchasable(item, purchasable, playerID)
-		if result then
-			needsUpdate = true
-			if #result > 1 then
-				table.remove(result, 1)
+		local results = PanoramaShop:RecursiveSetItemPurchasable(item, purchasable, playerID)
+		for text, result in pairs(results) do
+			if #result > 0 then
 				for k,v in pairs(result) do
 					result[k] = "DOTA_Tooltip_ability_" .. v
 				end
+
 				network:sendNotification(PlayerResource:GetPlayer(playerID), {
 					sort = "lodInfo",
-					text = purchasable and "lodInfoAlsoEnabled" or "lodInfoAlsoDisabled",
+					text = text,
 					list = {
 						separator = ", ",
 						elements = result
@@ -432,16 +430,16 @@ function PanoramaShop:SetItemsPurchasable(items, purchasable, playerID)
 			end
 		end
 	end
-	if needsUpdate then
-		PlayerTables:SetTableValue("panorama_shop_data", "ItemData", util:DeepCopy(PanoramaShop.FormattedData))
-	end
+
+	PlayerTables:SetTableValue("panorama_shop_data", "ItemData", util:DeepCopy(PanoramaShop.FormattedData))
 end
 
 function PanoramaShop:RecursiveSetItemPurchasable(item, purchasable, playerID)
-	if not PanoramaShop.FormattedData[item] then return end
-	if PanoramaShop.FormattedData[item].purchasable == purchasable then return end
-	local disabledList = {item}
+	local modifiedItems = { lodInfoRequiredEnabled = {}, lodInfoDerivativeDisabled = {}, lodInfoDerivativeEnabled = {} }
+	if not PanoramaShop.FormattedData[item] then return modifiedItems end
+	if PanoramaShop.FormattedData[item].purchasable == purchasable then return modifiedItems end
 	local recipeName = item:gsub("item_", "item_recipe_")
+
 	if PanoramaShop.FormattedData[recipeName] then
 		-- 0 cost recipe means that item can be built just from it's components, so shop can't disable it
 		if not purchasable and PanoramaShop.FormattedData[recipeName].cost == 0 then
@@ -468,7 +466,7 @@ function PanoramaShop:RecursiveSetItemPurchasable(item, purchasable, playerID)
 					}
 				})
 				GameRules.pregame:PlayAlert(playerID)
-				return
+				return modifiedItems
 			else
 				local canDisable = false
 				for _, itemComponents in ipairs(PanoramaShop.FormattedData[item].Recipe.items) do
@@ -480,7 +478,7 @@ function PanoramaShop:RecursiveSetItemPurchasable(item, purchasable, playerID)
 					end
 				end
 				if not canDisable then
-					return
+					return modifiedItems
 				end
 			end
 		end
@@ -494,8 +492,9 @@ function PanoramaShop:RecursiveSetItemPurchasable(item, purchasable, playerID)
 		if PanoramaShop.FormattedData[item].Recipe then
 			for _, itemComponents in ipairs(PanoramaShop.FormattedData[item].Recipe.items) do
 				for _,v in ipairs(itemComponents) do
-					for _,v in ipairs(self:RecursiveSetItemPurchasable(v, true) or {}) do
-						table.insert(disabledList, v)
+					table.insert(modifiedItems.lodInfoRequiredEnabled, v)
+					for _,v in ipairs(self:RecursiveSetItemPurchasable(v, true).lodInfoRequiredEnabled) do
+						table.insert(modifiedItems.lodInfoRequiredEnabled, v)
 					end
 				end
 			end
@@ -513,21 +512,23 @@ function PanoramaShop:RecursiveSetItemPurchasable(item, purchasable, playerID)
 				end
 			end
 			if canEnable then
-				table.insert(disabledList, itemBuiltTo)
-				for _,v in ipairs(self:RecursiveSetItemPurchasable(itemBuiltTo, true) or {}) do
-					table.insert(disabledList, v)
+				table.insert(modifiedItems.lodInfoDerivativeEnabled, itemBuiltTo)
+				for _,v in ipairs(self:RecursiveSetItemPurchasable(itemBuiltTo, true).lodInfoDerivativeEnabled) do
+					table.insert(modifiedItems.lodInfoDerivativeEnabled, v)
 				end
 			end
 		end
 	else
 		-- Disabling an item should also disable all items it builds to
 		for _,v in ipairs(PanoramaShop.FormattedData[item].BuildsInto or {}) do
-			for _,v in ipairs(self:RecursiveSetItemPurchasable(v, false) or {}) do
-				table.insert(disabledList, v)
+			table.insert(modifiedItems.lodInfoDerivativeDisabled, v)
+			for _,v in ipairs(self:RecursiveSetItemPurchasable(v, false).lodInfoDerivativeDisabled) do
+				table.insert(modifiedItems.lodInfoDerivativeDisabled, v)
 			end
 		end
 	end
-	return disabledList
+
+	return modifiedItems
 end
 
 function PanoramaShop:StartItemStocks()
