@@ -22,7 +22,7 @@
 
         // Damage.
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityDamage"                 "85 130 145 175"
+        //"AbilityDamage"                 "85 130 145 175"
 
         // Time     
         //-------------------------------------------------------------------------------------------------------------
@@ -36,21 +36,27 @@
         //-------------------------------------------------------------------------------------------------------------
         "AbilitySpecial"
         {
-            "01"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "radius"                "5000"
-            }
-            "02"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "jump_count"            "100"
-            }
-            "03"
-            {
-                "var_type"              "FIELD_FLOAT"
-                "jump_delay"            "0.25 0.25 0.25 0.25"
-            }
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"arc_damage"			"85 130 145 175"
+				"LinkedSpecialBonus"	"special_bonus_unique_zeus_2"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"5000"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"jump_count"			"100"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"jump_delay"			"0.25 0.25 0.25 0.25"
+			}
         }
     }
 
