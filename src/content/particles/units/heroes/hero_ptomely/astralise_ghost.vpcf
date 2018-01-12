@@ -47,7 +47,7 @@
 		{
 			_class = "C_OP_RenderSprites"
 			m_bAdditive = true
-			m_hTexture = resource:"materials/materials/particle/basic_glow.vtex"
+			m_hTexture = resource:"materials/particle/particle_glow_01.vtex"
 		},
 	]
 	m_Initializers = 
@@ -71,6 +71,21 @@
 	[
 		{
 			_class = "C_OP_InstantaneousEmitter"
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
 		},
 	]
 }
