@@ -2348,7 +2348,12 @@
         "ReduxFlags"                                                           "stun"
         "ReduxPerks"                                                           "skillshot"
     }
-    "morphling_adaptive_strike"
+    "morphling_adaptive_strike_agi"
+    {
+        "ReduxFlags"                                                           "stun"
+        "ReduxPerks"                                                           "water"
+    }
+    "morphling_adaptive_strike_str"
     {
         "ReduxFlags"                                                           "stun"
         "ReduxPerks"                                                           "water | enemyMoving"
@@ -4303,7 +4308,8 @@
 
     "special_bonus_unique_morphling_3"
     {
-        "TalentRequiredAbility"                                                   "morphling_adaptive_strike"
+        "TalentRequiredAbility"                                                   "morphling_adaptive_strike_agi"
+        //"TalentRequiredAbility"                                                   "morphling_adaptive_strike_str"
     }
 
     "special_bonus_unique_morphling_4"
