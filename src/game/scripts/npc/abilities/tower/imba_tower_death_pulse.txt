@@ -34,6 +34,18 @@
                 "projectile_speed"                                     "400"
             }
         }
+
+        "OnProjectileHitUnit"
+        {
+            "DeleteOnHit"    "1"
+            
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/tower_abilities.lua"
+                "Function"        "DeathPulseHit"
+            }
+        }
+
         "Modifiers"
         {
             "modifier_imba_tower_death_pulse"
@@ -47,6 +59,45 @@
                     {
                         "ScriptFile"                           "abilities/tower_abilities.lua"
                         "Function"                             "DeathPulse"
+                    }
+                }
+            }
+            "modifier_imba_tower_death_pulse_cast"
+            {
+                "IsHidden"  "1"
+                "OnCreated"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Necrolyte.DeathPulse"
+                        "Target"         "TARGET"
+                    }
+                    "ActOnTargets"
+                    {
+                        "Target"
+                        {
+                            "Center"    "TARGET"
+                            "Radius"    "%area_of_effect"
+                            "Teams"     "DOTA_UNIT_TARGET_TEAM_BOTH"
+                            "Types"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                        }
+                        "Action"
+                        {
+                            "TrackingProjectile"
+                            {
+                                "Target"            "TARGET"
+                                "EffectName"        "particles/units/heroes/hero_necrolyte/necrolyte_pulse_enemy.vpcf"
+                                "Dodgeable"         "0"
+                                "ProvidesVision"    "0"
+                                "MoveSpeed"         "%projectile_speed"
+                                "SourceAttachment"  "DOTA_PROJECTILE_ATTACHMENT_HITLOCATION"
+                            }
+                        }
+                    }
+                    "RemoveModifier"
+                    {
+                        "ModifierName"    "modifier_imba_tower_death_pulse_cast"
+                        "Target"         "TARGET"
                     }
                 }
             }
