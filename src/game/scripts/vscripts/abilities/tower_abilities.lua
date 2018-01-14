@@ -971,7 +971,10 @@ function DeathPulse( keys )
 
 	-- Check if the ability should be cast
 	if #heroes >= 1 or #creeps >= 1 then
-		local pulse = caster:FindAbilityByName("necrolyte_death_pulse_tower")
+		ability:ApplyDataDrivenModifier(caster, caster, "modifier_imba_tower_death_pulse_cast", {})
+		ability:UseResources(true, false, true)
+
+	--[[	local pulse = caster:FindAbilityByName("necrolyte_death_pulse_tower")
 		if not pulse then
 			caster:AddAbility("necrolyte_death_pulse_tower")
 			pulse = caster:FindAbilityByName("necrolyte_death_pulse_tower")
@@ -986,6 +989,18 @@ function DeathPulse( keys )
 
 		-- Put the ability on cooldown
 		ability:StartCooldown(ability:GetCooldown(ability_level))
+	]]
+	end
+end
+
+function DeathPulseHit( keys )
+	if keys.target and keys.ability and keys.caster then
+		local damageHeal = keys.ability:GetSpecialValueFor("healdamage")
+		if keys.target:GetTeam() ~= keys.caster:GetTeam() then
+			ApplyDamage({victim = keys.target, attacker = keys.caster, ability = keys.ability, damage = damageHeal, damage_type = DAMAGE_TYPE_MAGICAL})
+		else
+			keys.target:Heal(damageHeal, keys.caster)
+		end
 	end
 end
 
