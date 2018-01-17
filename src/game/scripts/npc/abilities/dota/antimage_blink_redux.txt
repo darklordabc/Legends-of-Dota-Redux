@@ -12,7 +12,7 @@
             "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
         }
 
-        "ReduxFlags"    "mobility"
+        "ReduxFlags"    "mobility | underpowered"
         "ReduxPerks"    "mobility | blink"
         "ReduxCost"     "40"
         "ReduxBans"     "nyx_assassin_burrow | nyx_assassin_burrow_redux"

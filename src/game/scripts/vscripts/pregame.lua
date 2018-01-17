@@ -124,6 +124,8 @@ function Pregame:init()
         allPick = {
             onselected = function(self)
                 self:setOption('lodOptionGamemode', 1, true)
+                self:setOption('lodOptionLimitPassives', 1, true)
+                self:setOption('lodOptionBalanceMode', 0, true)
             end,
             onunselected = function(self)
                 self:setOption('lodOptionGamemode', 5, true)
@@ -535,7 +537,7 @@ function Pregame:init()
     -- Standard gamemode featuring voting system
     if mapName == 'classic' then
         self:setOption('lodOptionGamemode', 5, true)
-        self:setOption('lodOptionBalanceMode', 1, true)
+        self:setOption('lodOptionBalanceMode', 0, true)
         OptionManager:SetOption('banningTime', 50)
         --self:setOption('lodOptionBanningBalanceMode', 1, true)
         --self:setOption('lodOptionGameSpeedRespawnTimePercentage', 70, true)
