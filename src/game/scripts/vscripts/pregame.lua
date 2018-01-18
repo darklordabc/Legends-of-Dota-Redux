@@ -534,24 +534,6 @@ function Pregame:init()
         self.useOptionVoting = true
     end
 
-    -- Standard gamemode featuring voting system
-    if mapName == 'classic' then
-        self:setOption('lodOptionGamemode', 5, true)
-        self:setOption('lodOptionBalanceMode', 0, true)
-        OptionManager:SetOption('banningTime', 50)
-        --self:setOption('lodOptionBanningBalanceMode', 1, true)
-        --self:setOption('lodOptionGameSpeedRespawnTimePercentage', 70, true)
-        --self:setOption('lodOptionBuybackCooldownTimeConstant', 210, true)
-        self:setOption('lodOptionGameSpeedGoldModifier', 150, true)
-        self:setOption('lodOptionGameSpeedEXPModifier', 150, true)
-        self:setOption('lodOptionGameSpeedMaxLevel', 100, true)
-        self:setOption('lodOptionGameSpeedRespawnTimePercentage', 35, true)
-        self:setOption('lodOptionCrazyUniversalShop', 0, true)
-        self.useOptionVoting = true
-    else
-        self.optionVoteSettings.allPick = nil
-    end
-
     if mapName == 'all_allowed' then
         self:setOption('lodOptionCrazyUniversalShop', 0, true)
         self:setOption('lodOptionGameSpeedSharedEXP', 1, true)
@@ -668,6 +650,28 @@ function Pregame:init()
 
         self:setOption('lodOptionBotsRadiant', 10, true)
         self:setOption('lodOptionBotsDire', 10, true)
+    end
+
+    -- Standard gamemode featuring voting system
+    if mapName == 'classic' then
+        self:setOption('lodOptionGamemode', 5, true)
+        self:setOption('lodOptionBalanceMode', 0, true)
+        OptionManager:SetOption('banningTime', 50)
+        self:setOption('lodOptionBanning', 3, true)
+        self:setOption('lodOptionBanningMaxBans', 3, true)
+        self:setOption('lodOptionBanningMaxHeroBans', 2, true)
+        --self:setOption('lodOptionBanningBalanceMode', 1, true)
+        --self:setOption('lodOptionGameSpeedRespawnTimePercentage', 70, true)
+        --self:setOption('lodOptionBuybackCooldownTimeConstant', 210, true)
+        self:setOption('lodOptionGameSpeedGoldModifier', 150, true)
+        self:setOption('lodOptionGameSpeedEXPModifier', 150, true)
+        self:setOption('lodOptionGameSpeedMaxLevel', 100, true)
+        self:setOption('lodOptionGameSpeedRespawnTimePercentage', 35, true)
+        self:setOption('lodOptionCrazyUniversalShop', 0, true)
+        self.useOptionVoting = true
+        self.optionVoteSettings.banning = nil
+    else
+        self.optionVoteSettings.allPick = nil
     end
 
     -- Exports for stat collection
