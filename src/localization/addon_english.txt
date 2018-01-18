@@ -924,7 +924,7 @@
     "hintShadowDemon"                         "Demonic abilities cast by Shadow Demon will have 20% mana cost refunded and 20% cooldown reduction."
     "hintSilencer"                         "Silence effects applied by Silencer last 25% longer."
     "hintSkywrath"                         "Skywrath Mage refunds 15% of the manacost of spells with a cooldown of 7 seconds or less."
-    "hintSlardar"                         "Physical damage dealt by Slarder is increased by 50%"
+    "hintSlardar"                         "Physical damage dealt by Slardar's abilities is increased by 50%"
     "hintSniper"                         "When Sniper uses Shrapnel it will have a global cast range."
     "hintSpiritBreaker"                   "When Spirit Breaker bashes, he also applies Break."
     "hintSven"                         "At the start of the game, Sven gains a free level of Great Cleave, whether he has it or not."
@@ -1341,7 +1341,7 @@
     "unique_mechanic_shadow_shaman"             "When Shadow Shaman is targeted by an enemy spell, they will get Hexed for 3 seconds. Has 60 second cooldown."
     "unique_mechanic_silencer"                        "<font color=\'#ffd966\'>Silence</font> effects applied by Silencer last 25% longer."
     "unique_mechanic_skywrath_mage"                        "Skywrath Mage refunds 15% of the manacost of spells with a cooldown of 7 seconds or less."
-    "unique_mechanic_slardar"                       "<font color=\'#ffd966\'>Skull Basher</font> and  <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero. Physical damage dealt by Slarder is increased by 50%."
+    "unique_mechanic_slardar"                       "<font color=\'#ffd966\'>Skull Basher</font> and  <font color=\'#ffd966\'>Abyssal Blade</font> will not proc for this hero. Physical damage dealt by Slardar's abilities is increased by 50%"
     "unique_mechanic_slark"                        "Slark gains +3 agility for each level put in an <font color=\'#ffd966\'>Mobility</font>/<font color=\'#ffd966\'>Escape</font> skill."
     "unique_mechanic_sniper"                        "<font color=\'#ffd966\'>Shrapnel</font> will have global cast range if used by Sniper."
     "unique_mechanic_spectre"           "Spectre gains phased movement when casting abilities."
@@ -3819,7 +3819,7 @@
 
     /// SLARDAR​
     "DOTA_Tooltip_modifier_npc_dota_hero_slardar_perk"  "Slardar Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_slardar_perk_Description"  "Physical damage dealt by Slarder is increased by 50%"
+    "DOTA_Tooltip_modifier_npc_dota_hero_slardar_perk_Description"  "Physical damage dealt by Slardar's abilities is increased by 50%"
 
     /// SLARK​
     "DOTA_Tooltip_modifier_npc_dota_hero_slark_perk"    "Slark Perk"
