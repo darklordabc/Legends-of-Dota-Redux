@@ -66,7 +66,7 @@ function Pregame:init()
 
     -- If single player redirect players to the more fully-featured map
     if util:isSinglePlayerMode() and not IsInToolsMode() then
-   --     OptionManager:SetOption('mapname', 'custom_bot')
+        OptionManager:SetOption('mapname', 'custom_bot')
     end
 
     -- Store for selected heroes and skills
