@@ -1399,7 +1399,9 @@ function Pregame:onThink()
         -- Spawn all humans
         Timers:CreateTimer(function()
             -- Spawn all players
-            this:spawnAllHeroes()
+            if OptionManager:GetOption('mapname') == 'custom_bot' then
+                this:spawnAllHeroes()
+            end
         end, DoUniqueString('spawnbots'), 0.1)
 
         -- Move to ingame
@@ -1515,10 +1517,6 @@ end
 
 -- Spawns all heroes (this should only be called once!)
 function Pregame:spawnAllHeroes()
-    -- if not self:isBackgroundSpawning() then
-    --     return
-    -- end
-
     for playerID = 0, DOTA_MAX_TEAM_PLAYERS - 1 do
         -- Spawn only valid players
         if PlayerResource:IsValidTeamPlayerID(playerID) then
@@ -1527,47 +1525,6 @@ function Pregame:spawnAllHeroes()
     end
 
     self:actualSpawnPlayer()
-
-    -- self.spawnQueueID = -1
-    -- self.spawnDelay = 2.5
-
-    -- if IsInToolsMode() then
-    --     self.spawnDelay = 0
-    -- end
-
-    -- self.playerQueue = function (hero)
-    --     PauseGame(true)
-    --     self.spawnQueueID = self.spawnQueueID + 1
-
-    --     -- Update queue info
-    --     CustomGameEventManager:Send_ServerToAllClients("lodSpawningQueue", {queue = self.spawnQueueID})
-
-    --     -- End pause if every player is checked
-    --     if self.spawnQueueID > 24 then
-    --         PauseGame(false)
-    --         self.spawnQueueID = nil
-    --         self.heroesSpawned = true
-    --         onSpawned()
-    --         return
-    --     end
-
-    --     -- Skip disconnected players
-    --     if PlayerResource:GetConnectionState(self.spawnQueueID) < 1 then
-    --         self.playerQueue()
-    --         return
-    --     end
-    --     -- if not hero then
-    --     --     self.playerQueue()
-    --     --     return
-    --     -- end
-
-    --     -- Keep spawning
-    --     Timers:CreateTimer(function()
-    --         self:spawnPlayer(self.spawnQueueID, self.playerQueue)
-    --     end, DoUniqueString('playerSpawn'), self.spawnDelay)
-    -- end
-
-    -- self.playerQueue(true)
 end
 
 -- Spawns a given player
@@ -1619,17 +1576,8 @@ function Pregame:actualSpawnPlayer(forceID)
             local spawnTheHero = function()
                 local status2,err2 = pcall(function()
                     -- Create the hero and validate it
-                    --local hero = PlayerResource:ReplaceHeroWith(playerID,heroName,0,0)
-
-                    if OptionManager:GetOption('mapname') == 'custom_bot' then
-                        local hero = CreateHeroForPlayer(heroName, player)
-                        UTIL_Remove(hero)
-                    elseif self:isBackgroundSpawning() then
-                        local hero = PlayerResource:ReplaceHeroWith(playerID,heroName,0,0)
-                    else
-                        local hero = CreateHeroForPlayer(heroName, player)
-                        UTIL_Remove(hero)
-                    end
+                    local hero = CreateHeroForPlayer(heroName, player)
+                    UTIL_Remove(hero)
                 end)
 
                 continueSpawning()
@@ -8121,6 +8069,29 @@ function Pregame:fixSpawningIssues()
             if not self.selectedHeroes[spawnedUnit:GetPlayerOwnerID()] and spawnedUnit:IsRealHero() then
                 spawnedUnit:AddNoDraw()
                 spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_tribune",{})
+            end
+
+            if spawnedUnit:IsRealHero() then
+                local playerID = spawnedUnit:GetPlayerID()
+                Timers:CreateTimer(function()
+                    if self:isBackgroundSpawning() then
+                        if not self.handled[spawnedUnit] then
+                            local mainHero = PlayerResource:GetSelectedHeroEntity(playerID)
+                            local heroName = self.selectedHeroes[playerID] or self:getRandomHero()
+                            
+                            mainHero = PlayerResource:ReplaceHeroWith(playerID,heroName,0,0)
+
+                            if IsValidEntity(mainHero) then
+                                self:fixSpawnedHero( mainHero )
+                            else
+                                return 0.5
+                            end
+                        end
+                    else
+
+                    end
+                end, DoUniqueString('applyHeroStuff'), .1)
+                return
             end
         end
 
