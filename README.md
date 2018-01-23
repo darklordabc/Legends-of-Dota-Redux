@@ -19,6 +19,10 @@ Legends of Dota Redux
 ### Discord Chat Server ###
  - Click [here](https://discordapp.com/channels/242335821426851842/242335821426851842).
 
+### Ingame Comments Display ###
+ - Click [here](http://ec2-52-59-238-84.eu-central-1.compute.amazonaws.com/wordpress/#messages).
+
+
 ### Requirements to Compile and Run ###
  - Dota 2 Workshop Tools
  - Nodejs
