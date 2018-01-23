@@ -7264,7 +7264,7 @@
     
     //Minion
     "DOTA_Tooltip_ability_pudge_flesh_heap_minion_damage"                                   "Flesh Heap - Minion Damage"
-    "DOTA_Tooltip_ability_pudge_flesh_heap_minion_damage_Description"                       "<font color='#70EA72'>Gives increased damage dealt by all minions whenever the owner or its minions kills an enemy Hero or it dies in the vicinity of the owner.</font> Flesh Heap Minion Damage is retroactive, meaning it can gain charges before it is skilled, which then become active."
+    "DOTA_Tooltip_ability_pudge_flesh_heap_minion_damage_Description"                       "<font color='#70EA72'>Gives increased damage dealt by all minions whenever the owner or its minions kills an enemy Hero or it dies in the vicinity of the owner.</font> Flesh Heap Minion Damage is retroactive, meaning it can gain charges before it is skilled, which then become active. Minions will not show bonus damage in their stats but they will be have it when they attack."
     "DOTA_Tooltip_ability_pudge_flesh_heap_minion_damage_flesh_heap_minion_damage_amount"   "%MINION DAMAGE PER STACK:"
     "DOTA_Tooltip_modifier_flesh_heap_minion_damage"                                        "Flesh Heap - Minion Damage"
     "DOTA_Tooltip_modifier_flesh_heap_minion_damage_Description"                            "The minions owned by this hero deal %dMODIFIER_PROPERTY_TOOLTIP%%% more damage."
