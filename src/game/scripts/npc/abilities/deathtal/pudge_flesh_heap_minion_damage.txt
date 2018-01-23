@@ -1,0 +1,30 @@
+"DOTAAbilities"
+{
+	"pudge_flesh_heap_minion_damage"
+	{
+		"BaseClass"														"ability_lua"
+		"AbilityTextureName"											"custom/flesh_heap_minion_damage"
+		"ScriptFile"													"abilities/deathtal/pudge_flesh_heap_minion_damage.lua"
+		"AbilityBehavior"												"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastRange"												"450"
+		"precache"
+		{
+			"particle"													"particles/units/heroes/hero_pudge/pudge_fleshheap_count.vpcf"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"												"FIELD_FLOAT"
+				"flesh_heap_minion_damage_amount"						"1 2 3 4"
+			}
+			"02"
+			{
+				"var_type"												"FIELD_INTEGER"
+				"flesh_heap_range"										"450"
+			}
+		}
+		"ReduxFlags"													"dota_custom"
+		"ReduxCost"														"40"
+	}
+}
