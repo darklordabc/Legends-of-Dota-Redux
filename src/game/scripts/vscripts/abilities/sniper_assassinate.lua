@@ -40,7 +40,24 @@ function sniper_assassinate_redux:ProcsMagicStick()
   return true
 end
 function sniper_assassinate_redux:GetBackswingTime()
-  return 1.17
+  local talent = self:GetCaster():FindAbilityByName("special_bonus_unique_sniper_4")
+  if talent then
+    if talent:GetLevel() > 0 then
+      return 0.5
+    end
+  end
+
+  return 2.87
+end
+function sniper_assassinate_redux:GetCastPoint()
+  local talent = self:GetCaster():FindAbilityByName("special_bonus_unique_sniper_4")
+  if talent then
+    if talent:GetLevel() > 0 then
+      return 0.5
+    end
+  end
+
+  return 2.0 
 end
 
 -------------------------------------------------------------------------------------------
