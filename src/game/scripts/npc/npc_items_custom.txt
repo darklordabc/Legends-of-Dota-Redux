@@ -1,4 +1,5 @@
-#base "items/angel-arena-black-star/index.txt"
+//TODO: Reenable AABS items
+//#base "items/angel-arena-black-star/index.txt"
 
 "DOTAAbilities"
 {
