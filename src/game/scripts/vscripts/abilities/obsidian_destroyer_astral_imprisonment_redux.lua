@@ -4,6 +4,7 @@ function AstralImprisonmentEnd( keys )
 	local modifier = target:FindModifierByName("modifier_astral_imprisonment_redux")
 	local ability = keys.ability
 	local damage = ability:GetSpecialValueFor("damage")
+	local radius = ability:GetSpecialValueFor("radius")
 
 	StopSoundEvent(sound_name, target)
 
@@ -15,7 +16,9 @@ function AstralImprisonmentEnd( keys )
 		table.remove(ability.particles, pos)
 	end
 	
-	ApplyDamage({victim = target, attacker = keys.caster, ability = ability, damage = damage, damage_type = ability:GetAbilityDamageType()})
+	for k,v in pairs(FindUnitsInRadius(keys.caster:GetTeam(), keys.target:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)) do
+		ApplyDamage({victim = v, attacker = keys.caster, ability = ability, damage = damage, damage_type = ability:GetAbilityDamageType()})
+	end
 end
 
 function AstralImprisonmentStart( keys )
