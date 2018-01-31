@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 - Added Flesh Heap - Minion Damage
 - Removed the two Entangle Talents, they were not working with heroes
 - Fixed Spectre's Perk
-- Echo Sabre, Valdimirs Offering is now consumeable.
+- Echo Sabre, Valdimirs Offering, Kaya is now consumeable.
 
 ## 10.1
 - Recoded Flame Strike since it didnt work at all.
