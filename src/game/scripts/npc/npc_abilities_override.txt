@@ -780,8 +780,8 @@
     }
     "brewmaster_primal_split"
     {
-        "ReduxFlags"                                                           "upgradeable | mobility | summon"
-        "ReduxPerks"                                                           "mobility"
+        "ReduxFlags"                                                           "upgradeable | mobility | summon | physical"
+        "ReduxPerks"                                                           "mobility | physical"
     }
     "bristleback_viscous_nasal_goo"
     {
@@ -850,8 +850,8 @@
     }
     "elder_titan_earth_splitter"
     {
-        "ReduxFlags"                                                           "upgradeable | disarm_break"
-        "ReduxPerks"                                                           "earth | skillshot | enemyMoving"
+        "ReduxFlags"                                                           "upgradeable | disarm_break | physical"
+        "ReduxPerks"                                                           "earth | skillshot | enemyMoving | physical"
         "ReduxCost"                                                            "0"
     }
     "enchantress_impetus"
@@ -886,8 +886,9 @@
     }
     "juggernaut_omni_slash"
     {
-        "ReduxFlags"                                                           "upgradeable"
+        "ReduxFlags"                                                           "physical | upgradeable"
         "ReduxCost"                                                            "20"
+        "ReduxPerks"                                                           "physical"
     }
     "keeper_of_the_light_illuminate"
     {
@@ -941,8 +942,8 @@
     }
     "magnataur_empower"
     {   
-        "ReduxFlags"                                                           "upgradeable | support | aoe_attack | attack_modifier | semi_passive"
-        "ReduxPerks"                                                           "support | attack_modifier | rage"
+        "ReduxFlags"                                                           "upgradeable | support | aoe_attack | attack_modifier | semi_passive | physical"
+        "ReduxPerks"                                                           "support | attack_modifier | rage | physical"
         "ReduxCost"                                                            "20"
     }
     "meepo_divided_we_stand"
@@ -1013,8 +1014,8 @@
     }
     "razor_eye_of_the_storm"
     {
-        "ReduxFlags"                                                           "upgradeable"
-        "ReduxPerks"                                                           "lightning" 
+        "ReduxFlags"                                                           "upgradeable | physical"
+        "ReduxPerks"                                                           "lightning | physical" 
         "ReduxBans"                                                            "visage_summon_familiars_stone_form | tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux"
     }
     "sandking_burrowstrike"
@@ -1586,14 +1587,14 @@
     }
     "riki_permanent_invisibility"
     {
-        "ReduxFlags"                                                           "mobility | invis"
-        "ReduxPerks"                                                           "mobility"
+        "ReduxFlags"                                                           "mobility | invis | physical"
+        "ReduxPerks"                                                           "mobility | physical"
         "ReduxCost"                                                            "120"
     }
     "bounty_hunter_wind_walk"
     {
-        "ReduxFlags"                                                           "mobility | invis"
-        "ReduxPerks"                                                           "mobility"
+        "ReduxFlags"                                                           "mobility | invis | physical"
+        "ReduxPerks"                                                           "mobility | physical"
         "ReduxCost"                                                            "40"
     }
     "clinkz_wind_walk"
@@ -1616,8 +1617,8 @@
     }
     "nyx_assassin_vendetta"
     {
-        "ReduxFlags"                                                           "mobility | invis"
-        "ReduxPerks"                                                           "mobility"
+        "ReduxFlags"                                                           "mobility | invis | physical"
+        "ReduxPerks"                                                           "mobility | physical"
         "ReduxCost"                                                            "10"
     }
     "nyx_assassin_burrow"
@@ -1636,8 +1637,8 @@
     }
     "templar_assassin_meld"
     {
-        "ReduxFlags"                                                           "mobility | invis"
-        "ReduxPerks"                                                           "mobility"
+        "ReduxFlags"                                                           "mobility | invis | physical"
+        "ReduxPerks"                                                           "mobility | physical"
         "ReduxCost"                                                            "10"
     }
     "weaver_shukuchi"
@@ -1794,7 +1795,8 @@
     }
     "centaur_return"
     {
-        "ReduxFlags"                                                           "tank"
+        "ReduxFlags"                                                           "tank | physical"
+        "ReduxPerks"                                                           "physical"
         "ReduxCost"                                                            "40"
     }
     "morphling_morph_str"
@@ -1865,8 +1867,8 @@
     }
     "tiny_craggy_exterior"
     {
-        "ReduxFlags"                                                           "aoe_attack"
-        "ReduxPerks"                                                           "earth"
+        "ReduxFlags"                                                           "aoe_attack | physical"
+        "ReduxPerks"                                                           "earth | physical"
         "ReduxCost"                                                            "20"
     }
     "dragon_knight_dragon_blood"
@@ -1882,8 +1884,8 @@
     }
     "slardar_bash"
     {
-        "ReduxFlags"                                                           "bash | attack_modifier"
-        "ReduxPerks"                                                           "bash | attack_modifier"
+        "ReduxFlags"                                                           "bash | attack_modifier | physical"
+        "ReduxPerks"                                                           "bash | attack_modifier | physical"
         "ReduxCost"                                                            "40"
     }
     "spirit_breaker_greater_bash"
@@ -2066,14 +2068,14 @@
     }
     "kunkka_tidebringer"
     {
-        "ReduxFlags"                                                           "aoe_attack | attack_modifier | semi_passive"
-        "ReduxPerks"                                                           "attack_modifier | water | autocast_basic"
+        "ReduxFlags"                                                           "aoe_attack | attack_modifier | semi_passive | physical"
+        "ReduxPerks"                                                           "attack_modifier | water | autocast_basic | physical"
         "ReduxCost"                                                            "40"
     }
     "sven_great_cleave"
     {
-        "ReduxFlags"                                                           "aoe_attack | attack_modifier"
-        "ReduxPerks"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "aoe_attack | attack_modifier | physical"
+        "ReduxPerks"                                                           "attack_modifier | physical"
         "ReduxCost"                                                            "10"
     }
     "templar_assassin_psi_blades"
@@ -2084,8 +2086,8 @@
     }
     "luna_moon_glaive"
     {
-        "ReduxFlags"                                                           "aoe_attack | attack_modifier"
-        "ReduxPerks"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "aoe_attack | attack_modifier | physical"
+        "ReduxPerks"                                                           "attack_modifier | physical"
         "ReduxCost"                                                            "10"
     }
     "gyrocopter_flak_cannon"
@@ -2095,8 +2097,8 @@
     }
     "dragon_knight_elder_dragon_form"
     {
-        "ReduxFlags"                                                           "aoe_attack | attack_modifier"
-        "ReduxPerks"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "aoe_attack | attack_modifier | physical"
+        "ReduxPerks"                                                           "attack_modifier | physical"
         "ReduxCost"                                                            "30"
     }
     "monkey_king_jingu_mastery"
@@ -2137,15 +2139,15 @@
     }
     "life_stealer_feast"
     {
-        "ReduxFlags"                                                           "attack_modifier"
-        "ReduxPerks"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "attack_modifier | physical"
+        "ReduxPerks"                                                           "attack_modifier | physical"
         "ReduxCost"                                                            "80"
         "ReduxBans"                                                            "holdout_multishot | life_stealer_feast_melee"
     }
     "ursa_fury_swipes"
     {
-        "ReduxFlags"                                                           "attack_modifier"
-        "ReduxPerks"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "attack_modifier | physical"
+        "ReduxPerks"                                                           "attack_modifier | physical"
         "ReduxCost"                                                            "80"
         "ReduxBans"                                                            "ursa_fury_swipes_lod"
     }
@@ -2169,14 +2171,14 @@
     }
     "antimage_mana_break"
     {
-        "ReduxFlags"                                                           "attack_modifier"
-        "ReduxPerks"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "attack_modifier | physical"
+        "ReduxPerks"                                                           "attack_modifier | physical"
         "ReduxCost"                                                            "10"
     }
     "clinkz_searing_arrows"
     {
-        "ReduxFlags"                                                           "attack_modifier | semi_passive" 
-        "ReduxPerks"                                                           "attack_modifier | fire | autocast_basic"
+        "ReduxFlags"                                                           "attack_modifier | semi_passive | physical" 
+        "ReduxPerks"                                                           "attack_modifier | fire | autocast_basic | physical"
     }
     "abaddon_frostmourne"
     {
@@ -2255,8 +2257,8 @@
     }
     "sniper_headshot"
     {
-        "ReduxFlags"                                                           "attack_modifier"
-        "ReduxPerks"                                                           "attack_modifier"
+        "ReduxFlags"                                                           "attack_modifier | physical"
+        "ReduxPerks"                                                           "attack_modifier | physical"
         "ReduxCost"                                                            "10"
     }
     "storm_spirit_overload"
@@ -2313,7 +2315,8 @@
     }
     "monkey_king_boundless_strike"
     {
-        "ReduxFlags"                                                           "stun"
+        "ReduxFlags"                                                           "stun | physical"
+        "ReduxPerks"                                                           "physical"
         "ReduxCost"                                                            "20"
     }
     "shadow_shaman_voodoo"
@@ -2374,8 +2377,8 @@
     }
     "slardar_slithereen_crush"
     {
-        "ReduxFlags"                                                           "stun"
-        "ReduxPerks"                                                           "water"
+        "ReduxFlags"                                                           "stun | physical"
+        "ReduxPerks"                                                           "water | physical"
     }
     "vengefulspirit_magic_missile"
     {
@@ -2398,8 +2401,8 @@
     }
     "dazzle_poison_touch"
     {
-        "ReduxFlags"                                                           "stun"
-        "ReduxPerks"                                                           "poison"
+        "ReduxFlags"                                                           "stun | physical"
+        "ReduxPerks"                                                           "poison | physical"
     }
     "ancient_apparition_cold_feet"
     {
@@ -2413,8 +2416,8 @@
     }
     "alchemist_unstable_concoction"
     {
-        "ReduxFlags"                                                           "stun"
-        "ReduxPerks"                                                           "scientific | explosive"
+        "ReduxFlags"                                                           "stun | physical"
+        "ReduxPerks"                                                           "scientific | physical | explosive"
     }
     "chaos_knight_chaos_bolt"
     {
@@ -2589,13 +2592,13 @@
     }
     "invoker_forge_spirit"
     {
-        "ReduxFlags"                                                           "summon | doNotRandom"
-        "ReduxPerks"                                                           "summon_non_ult"
+        "ReduxFlags"                                                           "physical | summon | doNotRandom"
+        "ReduxPerks"                                                           "physical | summon_non_ult"
     }
      "pangolier_swashbuckle"
     {
-        "ReduxFlags"                                                           "mobility"
-        "ReduxPerks"                                                           "mobility"
+        "ReduxFlags"                                                           "mobility | physical"
+        "ReduxPerks"                                                           "mobility | physical"
     }
      "pangolier_heartpiercer" 
     {
@@ -2632,8 +2635,8 @@
     }
     "lycan_summon_wolves"
     {
-        "ReduxFlags"                                                           "summon | invis"
-        "ReduxPerks"                                                           "summon_non_ult | invis "
+        "ReduxFlags"                                                           "summon | invis | physical"
+        "ReduxPerks"                                                           "summon_non_ult | invis | physical"
     }
     "furion_force_of_nature"
     {
@@ -2646,10 +2649,25 @@
         "ReduxPerks"                                                           "summon_non_ult"
         "ReduxCost"                                                            "10"
     }
+    "death_prophet_exorcism"
+    {
+        "ReduxFlags"                                                           "physical"
+        "ReduxPerks"                                                           "physical"
+    }
+    "dazzle_shadow_wave"
+    {
+        "ReduxFlags"                                                           "physical"
+        "ReduxPerks"                                                           "physical"
+    }
+    "elder_titan_echo_stomp"
+    {
+        "ReduxFlags"                                                           "physical"
+        "ReduxPerks"                                                           "physical"
+    }
     "phantom_assassin_stifling_dagger"
     {
-        "ReduxFlags"                                                           "silence"
-        "ReduxPerks"                                                           "dagger | silence"
+        "ReduxFlags"                                                           "silence | physical"
+        "ReduxPerks"                                                           "dagger | silence | physical"
         "ReduxCost"                                                            "20"
     }
     "bloodseeker_blood_bath"
@@ -2870,7 +2888,8 @@
     }
     "alchemist_acid_spray"
     {
-        "ReduxPerks"                                                           "poison | scientific"
+        "ReduxFlags"                                                           "physical"
+        "ReduxPerks"                                                           "poison | scientific | physical"
     }
     "pudge_rot"
     {
@@ -2991,7 +3010,8 @@
     }
     "tidehunter_anchor_smash"
     {
-        "ReduxPerks"                                                           "water"
+        "ReduxFlags"                                                           "physical"
+        "ReduxPerks"                                                           "water | physical"
     }
     "brewmaster_thunder_clap"
     {
@@ -3195,7 +3215,7 @@
     "obsidian_destroyer_essence_aura"
     {
         "ReduxPerks"                                                           "aura"
-        "ReduxCosts"    "120"
+        "ReduxCost"    "120"
         "ReduxFlags"    "mana"
         "ReduxBans"                                                            "death_prophet_witchcraft"
         "ReduxBanCategory"                                                     "ToggleSpells"
@@ -3328,6 +3348,8 @@
     "weaver_the_swarm"
     {
         "ReduxPerks"                                                           "skillshot"
+        "ReduxFlags"                                                           "physical"
+        "ReduxPerks"                                                           "physical"
     }
     "kun_torrent"
     {
@@ -3517,6 +3539,8 @@
     }
     "leshrac_diabolic_edict"
     {
+        "ReduxFlags"                                                           "physical"
+        "ReduxPerks"                                                           "physical"
         "ReduxBans"                                                            "batrider_sticky_napalm"
     }
     "lone_druid_true_form"
@@ -3534,6 +3558,8 @@
     }
     "bristleback_quill_spray"
     {
+        "ReduxFlags"                                                           "physical"
+        "ReduxPerks"                                                           "physical"
         "ReduxBans"                                                            "death_prophet_witchcraft"
     }
     "elder_titan_return_spirit"
