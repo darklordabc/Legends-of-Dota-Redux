@@ -4098,10 +4098,10 @@
         "TalentRequiredAbility"                                                   "lone_druid_spirit_bear"
     }
 
-    "special_bonus_unique_lone_druid_3"
-    {
-        "TalentRequiredAbility"                                                   "lone_druid_spirit_bear_entangle"
-    }
+    //"special_bonus_unique_lone_druid_3"
+    //{
+    //   "TalentRequiredAbility"                                                   "lone_druid_spirit_bear_entangle"
+    //}
 
     "special_bonus_unique_lone_druid_4"
     {
@@ -4128,10 +4128,10 @@
         "TalentRequiredAbility"                                                   "lone_druid_true_form_battle_cry"
     }
 
-    "special_bonus_unique_lone_druid_9"
-    {
-        "TalentRequiredAbility"                                                   "lone_druid_spirit_bear_entangle"
-    }
+    //"special_bonus_unique_lone_druid_9"
+    //{
+    //    "TalentRequiredAbility"                                                   "lone_druid_spirit_bear_entangle"
+    //}
 
 
     "special_bonus_unique_luna_1"
