@@ -7143,6 +7143,7 @@
     "DOTA_Tooltip_ability_zuus_arc_lightning_op"                                       "Arc Lightning OP"
     "DOTA_Tooltip_ability_zuus_arc_lightning_op_Description"                           "Hurls a bolt of lightning that leaps through nearby enemy units.<font color='#70EA72'>Increased damage and greately increased amount of jumps and range of jumps.</font>"
     "DOTA_Tooltip_ability_zuus_arc_lightning_op_Lore"                                  "Arc Lightning is Zeus' favorite spell to use against puny mortals."
+    "DOTA_Tooltip_ability_zuus_arc_lightning_op_arc_damage"                            "DAMAGE:"
     "DOTA_Tooltip_ability_zuus_arc_lightning_op_jump_count"                            "JUMPS:"
     "DOTA_Tooltip_ability_zuus_arc_lightning_op_radius"                               "JUMP RANGE:"
 

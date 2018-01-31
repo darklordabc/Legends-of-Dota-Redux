@@ -7718,6 +7718,21 @@ function Pregame:fixSpawnedHero( spawnedUnit )
             --        end
             --    end
             --end
+				
+             -- 'No Charges' fix for Tiny Toss
+            if spawnedUnit:HasAbility('tiny_toss') then
+                Timers:CreateTimer(function()
+                    local toss = spawnedUnit:FindAbilityByName('tiny_toss')
+                    local tossTalent = spawnedUnit:FindAbilityByName('special_bonus_unique_tiny_5')
+                    if tossTalent and tossTalent:GetLevel() > 0 then
+                        if not spawnedUnit:HasModifier("modifier_tiny_toss_charge_counter") then
+                            spawnedUnit:AddNewModifier(spawnedUnit, toss, "modifier_tiny_toss_charge_counter", {})
+                        end
+                    else
+                        spawnedUnit:RemoveModifierByName("modifier_tiny_toss_charge_counter")
+                    end
+                end, DoUniqueString('tossFix'), 1)
+            end
 
             -- 'No Charges' fix for Gyro Homing Missle
             if spawnedUnit:HasAbility('gyrocopter_homing_missile') then

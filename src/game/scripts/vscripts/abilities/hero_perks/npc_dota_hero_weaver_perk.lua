@@ -85,7 +85,7 @@ if IsServer() then
     end
 
     function modifier_npc_dota_hero_weaver_perk:GetMinHealth(params)
-        if self.lapse and self.lapse:GetLevel() > 0 and not self:GetParent():HasModifier("modifier_npc_dota_hero_weaver_perk_delay") and self:GetParent():IsRealHero() then
+        if self.lapse and not self.lapse:IsNull() and self.lapse:GetLevel() > 0 and not self:GetParent():HasModifier("modifier_npc_dota_hero_weaver_perk_delay") and self:GetParent():IsRealHero() then
             return 1
         else
             return 0

@@ -298,6 +298,27 @@ function Ingame:OnPlayerPurchasedItem(keys)
     end
 end
 
+function Ingame:OnPlayerLearnedAbility( keys )
+    local chargeTalents = {
+        ["special_bonus_unique_ember_spirit_4"] = "ember_spirit_sleight_of_fist",
+        ["special_bonus_unique_morphling_6"] = "morphling_waveform",
+    }
+    local abilityName = chargeTalents[keys.abilityname]
+    if abilityName then
+        Timers:CreateTimer(function()
+            local hero = PlayerResource:GetSelectedHeroEntity(keys.PlayerID)
+            if hero then
+                local talent = hero:FindAbilityByName(keys.abilityname)
+                local count = talent and talent:GetSpecialValueFor("value") or 0
+                local charges = hero:FindModifierByName("modifier_"..abilityName.."_charge_counter")
+                if charges then
+                    charges:SetStackCount(count)
+                end
+            end
+        end, DoUniqueString("fixManyCharges"), 0.3)
+    end
+end
+
 function Ingame:FilterExecuteOrder(filterTable)
     local order_type = filterTable.order_type
     local units = filterTable["units"]
@@ -305,15 +326,15 @@ function Ingame:FilterExecuteOrder(filterTable)
     local unit = EntIndexToHScript(units["0"])
     local ability = EntIndexToHScript(filterTable.entindex_ability)
     local target = EntIndexToHScript(filterTable.entindex_target)
-
-    if order_type == DOTA_UNIT_ORDER_PURCHASE_ITEM then
-        return false
-    end
-
-    if units[1] and order_type == DOTA_UNIT_ORDER_SELL_ITEM and ability and not units[1]:IsIllusion() and not units[1]:IsTempestDouble() then
-        PanoramaShop:SellItem(units[1], ability)
-        return false
-    end
+	
+    if order_type == DOTA_UNIT_ORDER_PURCHASE_ITEM then		
+        return false		
+    end		
+		
+    if units[1] and order_type == DOTA_UNIT_ORDER_SELL_ITEM and ability and not units[1]:IsIllusion() and not units[1]:IsTempestDouble() then		
+        PanoramaShop:SellItem(units[1], ability)		
+        return false		
+    end		
 
     -- Block Alchemists Innate, heroes should not have innate abilities
     if ability and target then
@@ -579,6 +600,8 @@ function Ingame:onStart()
     ListenToGameEvent("player_reconnected", Dynamic_Wrap(Ingame, 'OnPlayerReconnect'), self)
 
     ListenToGameEvent("player_chat", Dynamic_Wrap(Commands, 'OnPlayerChat'), self)
+
+    ListenToGameEvent("dota_player_learned_ability", Dynamic_Wrap(Ingame, "OnPlayerLearnedAbility"), self)
     
     -- Set it to no team balance
     self:setNoTeamBalanceNeeded()
