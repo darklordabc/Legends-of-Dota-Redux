@@ -1887,7 +1887,9 @@
     "DOTA_Tooltip_ability_sniper_shrapnel_perk_slow_movement_speed"                      "%MOVEMENT SLOW:"
     "DOTA_Tooltip_ability_sniper_shrapnel_perk_radius"                                   "RADIUS:"
     "DOTA_Tooltip_ability_sniper_shrapnel_perk_duration"                                 "DURATION:"
+    "DOTA_Tooltip_ability_sniper_shrapnel_perk_shrapnel_damage"                          "DAMAGE:"
 
+    
     // Dazzle
     "DOTA_Tooltip_ability_dazzle_shallow_grave_perk"                                     "Shallow Grave"
     "DOTA_Tooltip_ability_dazzle_shallow_grave_perk_Description"                         "An ally blessed with Shallow Grave, no matter how close to death, cannot die while under its protection."
