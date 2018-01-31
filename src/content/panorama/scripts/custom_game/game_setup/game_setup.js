@@ -5420,6 +5420,12 @@ function addVotingOption(name) {
                 largestPercentage = i;
             }
         }
+        if (name == "customAbilities") {
+            if (votePercentages[1] < 100) {
+                votePercentages[1] = 0;
+                votePercentages[0] = 100;
+            }
+        }
         $.Each([panel.FindChildTraverse("voteCountNoPercentage"), panel.FindChildTraverse("voteCountYesPercentage")], function(countLabel, index) {
             countLabel.text = votePercentages[index] + "%";
             countLabel.style.color = voteCount == 0 ? "white" : (i == largestPercentage ? "#0BB416" : "grey");
@@ -5729,7 +5735,7 @@ function getAbilityGlobalPickPopularity(ability) {
     $('#chat').BLoadLayout('file://{resources}/layout/custom_game/game_setup/chat.xml', false, false);
 
     if (mapName == "classic"){
-        $.Each(["allPick", "OPAbilities", "noInvis"], function(name) {
+        $.Each(["customAbilities", "allPick", "OPAbilities", "noInvis"], function(name) {
             addVotingOption(name);
         })
     }

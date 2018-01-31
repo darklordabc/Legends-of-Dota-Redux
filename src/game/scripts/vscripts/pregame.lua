@@ -2200,6 +2200,9 @@ function Pregame:processVoteData()
     local results = {}
     local counts = {}
 
+    local need_unanimous_voting = {}
+    need_unanimous_voting["customAbilities"] = true
+
     for optionName,data in pairs(self.voteData or {}) do
         counts[optionName] = {}
 
@@ -2209,6 +2212,12 @@ function Pregame:processVoteData()
 
         local maxNumber = 0
         for choice,count in pairs(counts[optionName]) do
+            if need_unanimous_voting[optionName] then
+                if choice == 0 then
+                    results[optionName] = choice
+                    break
+                end
+            end
             if count > maxNumber then
                 maxNumber = count
                 results[optionName] = choice
