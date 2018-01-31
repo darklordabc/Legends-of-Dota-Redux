@@ -3603,6 +3603,7 @@
     }
     "neutral_spell_immunity"
     {
+        "ReduxCost"                                                            "200"
         "ReduxFlags"                                                           ""
     }
     "backdoor_protection"

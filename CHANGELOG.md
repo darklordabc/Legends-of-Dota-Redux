@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - Fixed Spectre's Perk
 - Echo Sabre, Valdimirs Offering, Kaya, Aeon Disk is now consumeable.
 - Added Physical Damage category filter in skill pick menu
+- Enabled Spell Immunity Neutral ability as a single player ability
 
 ## 10.1
 - Recoded Flame Strike since it didnt work at all.
