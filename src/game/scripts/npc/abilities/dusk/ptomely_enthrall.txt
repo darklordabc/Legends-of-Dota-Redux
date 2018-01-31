@@ -1,62 +1,62 @@
 "DOTAAbilities" {
-//=====================================================================================================
-// PTOMELY: Enthrall
-//=====================================================================================================
-"ptomely_enthrall"
-{
-	// General
-	//-------------------------------------------------------------------------------------------------------------
-	"BaseClass"						"ability_lua"
-	"ScriptFile"					"abilities/dusk/ptomely_enthrall"
-	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
-	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
-	"AbilityTextureName"			"custom/ptomely_enthrall"
-
-	// Casting
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCastRange"				"775"
-	"AbilityCastPoint"				"0.45"
-	
-	// Time		
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCooldown"				"14"
-
-	// Cost
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityManaCost"				"100"
-	
-	// Stats
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityModifierSupportValue"	"0.0"	// All about the damage
-
-	// Special
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilitySpecial"
+	//=====================================================================================================
+	// PTOMELY: Enthrall
+	//=====================================================================================================
+	"ptomely_enthrall"
 	{
-		"01"
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/dusk/ptomely_enthrall"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_3"
+		"AbilityTextureName"			"custom/ptomely_enthrall"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"775"
+		"AbilityCastPoint"				"0.45"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"14"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// All about the damage
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
 		{
-			"var_type"					"FIELD_INTEGER"
-			"magic_resistance_reduction" "12 16 20 24"
-		}
-		"02"
-		{
-			"var_type"					"FIELD_INTEGER"
-			"duration"					"8"
-		}
-	}
-	
-	"precache"
-		{
-		"particle" "particles\units\heroes\hero_ptomely\enthrall.vpcf"
-		"particle" "particles\units\heroes\hero_ancient_apparition\ancient_apparition_cold_feet_frozen.vpcf"
-		"soundfile" "soundevents\hero_ptomely.vsndevts"
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"magic_resistance_reduction" "12 16 20 24"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"8"
+			}
 		}
 		
-	"OnSpellStart"
+		"precache"
+		{
+			"particle" "particles/units/heroes/hero_ptomely/enthrall.vpcf"
+			"particle" "particles/units/heroes/hero_ancient_apparition/ancient_apparition_cold_feet_frozen.vpcf"
+			"soundfile" "soundevents/hero_ptomely.vsndevts"
+		}
+			
+		"OnSpellStart"
 		{
 			"FireSound"
 			{
@@ -87,8 +87,8 @@
 				"Duration"		"%duration"
 			}
 		}
-	
-	"Modifiers"
+		
+		"Modifiers"
 		{
 			"modifier_enthralled"
 			{
@@ -96,7 +96,7 @@
 				"IsHidden"			"0"
 				"IsDebuff"			"1"
 			
-				"EffectName"		"particles\units\heroes\hero_ptomely\enthrall.vpcf"
+				"EffectName"		"particles/units/heroes/hero_ptomely/enthrall.vpcf"
 				"EffectAttachType"	"follow_origin"
 			
 				"Properties"
@@ -111,7 +111,7 @@
 				"IsHidden"			"0"
 				"IsDebuff"			"1"
 			
-				"EffectName"		"particles\units\heroes\hero_ptomely\enthrall.vpcf"
+				"EffectName"		"particles/units/heroes/hero_ptomely/enthrall.vpcf"
 				"EffectAttachType"	"follow_origin"
 			
 				"Properties"
@@ -120,5 +120,8 @@
 				}
 			}
 		}
-}
+
+		"ReduxPerks"	"support"
+		"ReduxFlags"	""
+	}
 }

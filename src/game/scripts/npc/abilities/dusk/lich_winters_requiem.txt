@@ -1,99 +1,101 @@
 "DOTAAbilities" {
-//=====================================================================================================
-// LICH: Winter's Requiem
-//=====================================================================================================
-"lich_winters_requiem"
-{
-	// General
-	//-------------------------------------------------------------------------------------------------------------
-	"BaseClass"						"ability_lua"
-	"ScriptFile"					"abilities/dusk/lich_winters_requiem"
-	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-	"AbilityTextureName"			"custom/lich_traveling_frost"
-
-	// Casting
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCastRange"				"900"
-	"AbilityCastPoint"				"0.3"
-	
-	// Time		
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCooldown"				"22 20 18 16"
-
-	// Cost
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityManaCost"				"155"
-	
-	// Stats
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityModifierSupportValue"	"0.0"	// All about the damage
-
-	// Special
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilitySpecial"
+	//=====================================================================================================
+	// LICH: Winter's Requiem
+	//=====================================================================================================
+	"lich_winters_requiem"
 	{
-		"01"
-		{
-			"var_type"					"FIELD_INTEGER"
-			"damage"					"80 120 160 200"
-		}
-		"02"
-		{
-			"var_type"					"FIELD_FLOAT"
-			"delay"						"0.8"
-		}
-		"03"
-		{
-			"var_type"					"FIELD_FLOAT"
-			"interval"					"0.15"
-		}
-		"04"
-		{
-			"var_type"					"FIELD_INTEGER"
-			"radius"					"900"
-		}
-		"05"
-		{
-			"var_type"					"FIELD_INTEGER"
-			"damage_radius"				"175"
-		}
-		"06"
-		{
-			"var_type"					"FIELD_INTEGER"
-			"buffer"					"600"
-		}
-		"07"
-		{
-			"var_type"					"FIELD_INTEGER"
-			"targets"					"2 3 4 5"
-		}
-		"08"
-		{
-			"var_type"					"FIELD_INTEGER"
-			"slow"						"25"
-		}
-		"09"
-		{
-			"var_type"					"FIELD_FLOAT"
-			"slow_duration"				"2.0"
-		}
-	}
-	
-	"precache"
-		{
-		"particle" "particles/status_fx/status_effect_frost_lich.vpcf"
-		"particle" "particles\units\heroes\hero_ancient_apparition\ancient_apparition_cold_feet_frozen.vpcf"
-		"particle" "particles/units/heroes/hero_lich/winters_requiem.vpcf"
-		"particle" "particles/units/heroes/hero_lich/winters_requiem_target.vpcf"
-		"soundfile" "soundevents\game_sounds_heroes\game_sounds_tusk.vsndevts"
-		"soundfile" "soundevents/game_sounds_heroes/game_sounds_keeper_of_the_light.vsndevts"
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/dusk/lich_winters_requiem"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/lich_traveling_frost"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"900"
+		"AbilityCastPoint"				"0.3"
 		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"22 20 18 16"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"155"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// All about the damage
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"80 120 160 200"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"delay"						"0.8"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"interval"					"0.15"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"900"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_radius"				"175"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"buffer"					"600"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"targets"					"2 3 4 5"
+			}
+			"08"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"slow"						"25"
+			}
+			"09"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"slow_duration"				"2.0"
+			}
 		}
-}
+		
+		"precache"
+		{
+			"particle" "particles/status_fx/status_effect_frost_lich.vpcf"
+			"particle" "particles/units/heroes/hero_ancient_apparition/ancient_apparition_cold_feet_frozen.vpcf"
+			"particle" "particles/units/heroes/hero_lich/winters_requiem.vpcf"
+			"particle" "particles/units/heroes/hero_lich/winters_requiem_target.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_tusk.vsndevts"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_keeper_of_the_light.vsndevts"
+		}
+
+		"ReduxPerks"    "ice"
+        "ReduxFlags"    ""	
+	}
 }

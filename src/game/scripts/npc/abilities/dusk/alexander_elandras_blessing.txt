@@ -70,8 +70,11 @@
 		}
 		
 		"Modifiers"
-			{
+		{
 
-			}
+		}
+
+		"ReduxPerks"	"support"
+		"ReduxFlags"	""
 	}
 }

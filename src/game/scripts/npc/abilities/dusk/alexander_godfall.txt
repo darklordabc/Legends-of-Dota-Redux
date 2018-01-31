@@ -1,71 +1,74 @@
 "DOTAAbilities" {
-//=====================================================================================================
-// ALEXANDER: Godfall
-//=====================================================================================================
-"alexander_godfall"
-{
-	// General
-	//-------------------------------------------------------------------------------------------------------------
-	"BaseClass"						"ability_lua"
-	"ScriptFile"					"abilities/dusk/alexander_godfall"
-	"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
-	"AbilityChannelTime"			"1"
-	"AbilityTextureName"			"custom/alexander_godfall"
-
-	// Casting
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCastRange"				"0"
-	"AbilityCastPoint"				"0"
-	
-	// Time		
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCooldown"				"70"
-
-	"HasScepterUpgrade"				"1"
-
-	// Cost
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityManaCost"				"125"
-	
-	// Stats
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityModifierSupportValue"	"0.0"	// All about the damage
-
-	// Special
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilitySpecial"
+	//=====================================================================================================
+	// ALEXANDER: Godfall
+	//=====================================================================================================
+	"alexander_godfall"
 	{
-	"01"
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/dusk/alexander_godfall"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityChannelTime"			"1"
+		"AbilityTextureName"			"custom/alexander_godfall"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"70"
+
+		"HasScepterUpgrade"				"1"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"125"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// All about the damage
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
 		{
-			"var_type"						"FIELD_INTEGER"
-			"duration"						"7"
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"duration"						"7"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"damage"						"135 170 205"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"scepter_mult"					"75"
+			}
 		}
-	"02"
+		
+		"precache"
 		{
-			"var_type"						"FIELD_INTEGER"
-			"damage"						"135 170 205"
+			"particle" "particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_spirit_form_ambient.vpcf"
+			"particle" "particles/units/heroes/hero_alexander/godfall_start.vpcf"
+			"particle" "particles/units/heroes/hero_alexander/godfall_charged.vpcf"
+			"particle" "particles/units/heroes/hero_alexander/godfall_strike.vpcf"
+			"particle" "particles/units/heroes/hero_alexander/godfall_success.vpcf"
+			"soundfile" "soundevents\hero_alexander.vsndevts"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_luna.vsndevts"
 		}
-	"03"
+		
+		"Modifiers"
 		{
-			"var_type"						"FIELD_INTEGER"
-			"scepter_mult"					"75"
 		}
+
+		"ReduxPerks"	"channeled | light"
+		"ReduxFlags"	""
 	}
-	
-	"precache"
-		{
-		"particle" "particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_spirit_form_ambient.vpcf"
-		"particle" "particles/units/heroes/hero_alexander/godfall_start.vpcf"
-		"particle" "particles/units/heroes/hero_alexander/godfall_charged.vpcf"
-		"particle" "particles/units/heroes/hero_alexander/godfall_strike.vpcf"
-		"particle" "particles/units/heroes/hero_alexander/godfall_success.vpcf"
-		"soundfile" "soundevents\hero_alexander.vsndevts"
-		"soundfile" "soundevents/game_sounds_heroes/game_sounds_luna.vsndevts"
-		}
-	
-	"Modifiers"
-		{
-		}
-}
 }

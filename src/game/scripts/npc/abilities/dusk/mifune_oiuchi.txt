@@ -1,71 +1,71 @@
 "DOTAAbilities" {
-//=====================================================================================================
-// MIFUNE: Oiuchi
-//=====================================================================================================
-"mifune_oiuchi"
-{
-	// General
-	//-------------------------------------------------------------------------------------------------------------
-	"BaseClass"						"ability_datadriven"
-	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
-	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-	"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
-	"AbilityTextureName"			"custom/mifune_oiuchi"
-
-	// Casting
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCastRange"				"0"
-	"AbilityCastPoint"				"0"
-	
-	// Time		
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCooldown"				"0"
-
-	// Cost
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityManaCost"				"0"
-	
-	// Stats
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityModifierSupportValue"	"0.0"	// All about the damage
-
-	// Special
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilitySpecial"
+	//=====================================================================================================
+	// MIFUNE: Oiuchi
+	//=====================================================================================================
+	"mifune_oiuchi"
 	{
-	"01"
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"AbilityTextureName"			"custom/mifune_oiuchi"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// All about the damage
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
 		{
-			"var_type"						"FIELD_FLOAT"
-			"dmg_per_agi_pt"				"0.15 0.30 0.45 0.60" // percentage total
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"dmg_per_agi_pt"				"0.15 0.30 0.45 0.60" // percentage total
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_agi"						"0"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"chance"						"100"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"threshold"						"40"
+			}
 		}
-	"02"
+		
+		"precache"
 		{
-			"var_type"						"FIELD_INTEGER"
-			"bonus_agi"						"0"
+			"particle" "particles/test_particle/channel_field_1.vpcf"
+			"particle" "particles/units/heroes/hero_skeletonking/skeleton_king_weapon_blur_critical.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
 		}
-	"03"
-		{
-			"var_type"						"FIELD_INTEGER"
-			"chance"						"100"
-		}
-	"04"
-		{
-			"var_type"						"FIELD_INTEGER"
-			"threshold"						"40"
-		}
-	}
-	
-	"precache"
-		{
-		"particle" "particles/test_particle/channel_field_1.vpcf"
-		"particle" "particles/units/heroes/hero_skeletonking/skeleton_king_weapon_blur_critical.vpcf"
-		"soundfile" "soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
-		}
-	
-	"Modifiers"
+		
+		"Modifiers"
 		{
 			"modifier_mifune_ouichi"
 			{
@@ -118,5 +118,8 @@
 				}	
 			}	
 		}
-}
+		
+		"ReduxPerks"	""
+		"ReduxFlags"	""
+	}
 }

@@ -1,66 +1,69 @@
 "DOTAAbilities" {
-//=====================================================================================================
-// HERO: Heroic Soul
-//=====================================================================================================
-"hero_heroic_soul"
-{
-	// General
-	//-------------------------------------------------------------------------------------------------------------
-	"BaseClass"				"ability_lua"
-	"ScriptFile"			"abilities/dusk/hero_heroic_soul"
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"	
-	"FightRecapLevel"				"1"
-	"AbilityTextureName"			"custom/hero_heroic_soul"
-
-	// Casting
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCastRange"				"0"
-	"AbilityCastPoint"				"0"
-	
-	// Time		
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCooldown"				"20 18 16 14"
-
-	// Cost
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityManaCost"				"80"
-
-	// Special
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilitySpecial"
+	//=====================================================================================================
+	// HERO: Heroic Soul
+	//=====================================================================================================
+	"hero_heroic_soul"
 	{
-		"01"
-		{
-			"var_type"				"FIELD_FLOAT"
-			"bonus_damage"			"15 30 45 60"
-		}
-		"02"
-		{
-			"var_type"				"FIELD_INTEGER"
-			"bonus_movespeed"		"40"
-		}
-		"03"
-		{
-			"var_type"				"FIELD_INTEGER"
-			"duration"				"3"
-		}
-		"04"
-		{
-			"var_type"				"FIELD_INTEGER"
-			"damage_reduction"		"60"
-		}
-		"05"
-		{
-			"var_type"					"FIELD_FLOAT"
-			"damage_reduction_duration" "0.5"
-		}
-	}
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_lua"
+		"ScriptFile"			"abilities/dusk/hero_heroic_soul"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"	
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"custom/hero_heroic_soul"
 
-	"precache"
-	{
-		"soundfile"			"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
-		"particle"			"particles/units/heroes/hero_sven/sven_spell_gods_strength.vpcf"
-		"particle"			"particles/status_fx/status_effect_gods_strength.vpcf"
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"20 18 16 14"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"80"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"bonus_damage"			"15 30 45 60"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_movespeed"		"40"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"3"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_reduction"		"60"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"damage_reduction_duration" "0.5"
+			}
+		}
+
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
+			"particle"			"particles/units/heroes/hero_sven/sven_spell_gods_strength.vpcf"
+			"particle"			"particles/status_fx/status_effect_gods_strength.vpcf"
+		}
+
+		"ReduxPerks"    "mobility"
+        "ReduxFlags"    ""
 	}
-}
 }

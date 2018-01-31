@@ -1,52 +1,53 @@
 "DOTAAbilities" {
-//=====================================================================================================
-// LICH: Cold Aura
-//=====================================================================================================
-"lich_deep_freeze"
-{
-	// General
-	//-------------------------------------------------------------------------------------------------------------
-	"BaseClass"				"ability_lua"
-	"ScriptFile"			"abilities/dusk/lich_deep_freeze"
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
-	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-	"FightRecapLevel"				"1"
-	"AbilityTextureName"			"lich_frost_armor"
-
-	// Casting
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCastRange"				"0"
-	"AbilityCastPoint"				"0"
-	
-	// Time		
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCooldown"				"8"
-
-	// Cost
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityManaCost"				"0"
-
-	// Special
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilitySpecial"
+	//=====================================================================================================
+	// LICH: Cold Aura
+	//=====================================================================================================
+	"lich_deep_freeze"
 	{
-		"01"
-		{
-			"var_type"				"FIELD_INTEGER"
-			"damage"				"40 80 120 160"
-		}
-		"02"
-		{
-			"var_type"				"FIELD_FLOAT"
-			"stun"				"0.50 0.60 0.70 0.80"
-		}
-	}
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_lua"
+		"ScriptFile"			"abilities/dusk/lich_deep_freeze"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"lich_frost_armor"
 
-	"precache"
-	{
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0"
 		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8"
 
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"40 80 120 160"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"stun"				"0.50 0.60 0.70 0.80"
+			}
+		}
+
+		"precache"
+		{
+		}
+
+		"ReduxPerks"    "ice | aura"
+        "ReduxFlags"    ""
 	}
-}
 }

@@ -4,7 +4,7 @@
     {
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
         "BaseClass"                                                            "ability_datadriven"
-        "AbilityTextureName"                                                   "custom\holdout_blade_fury"
+        "AbilityTextureName"                                                   "custom/holdout_blade_fury"
         "AbilityCastRange"                                                     "1000"
         "AbilityCastPoint"                                                     "0.0"
         "AbilityCooldown"                                                      "10.0"

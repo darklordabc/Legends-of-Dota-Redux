@@ -1,66 +1,66 @@
 "DOTAAbilities" {
-//=====================================================================================================
-// ANCIENT: Last Resort
-//=====================================================================================================
-"ancient_last_resort"
-{
-	// General
-	//-------------------------------------------------------------------------------------------------------------
-	"BaseClass"						"ability_datadriven"
-	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-	"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
-	"AbilityTextureName"			"custom/ancient_last_resort"
-	"MaxLevel"						"1"
-	"AbilitySharedWithTeammates" 	"1"
-
-	// Casting
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCastRange"				"0"
-	"AbilityCastPoint"				"0"
-	
-	"AbilityDamage" 				"0"
-	
-	// Time		
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCooldown"				"9999"
-
-	// Cost
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityManaCost"				"0"
-	
-	// Stats
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityModifierSupportValue"	"0.0"	// All about the damage
-
-	// Special
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilitySpecial"
+	//=====================================================================================================
+	// ANCIENT: Last Resort
+	//=====================================================================================================
+	"ancient_last_resort"
 	{
-		"01"
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityTextureName"			"custom/ancient_last_resort"
+		"MaxLevel"						"1"
+		"AbilitySharedWithTeammates" 	"1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0"
+		
+		"AbilityDamage" 				"0"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"9999"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// All about the damage
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
 		{
-			"var_type"					"FIELD_INTEGER"
-			"duration"					"8"
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"8"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"1250"
+			}
 		}
-		"02"
+		
+		"precache"
 		{
-			"var_type"					"FIELD_INTEGER"
-			"radius"					"1250"
+				"soundfile"					"soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
+				"particle"					"particles/units/building/last_resort_ally.vpcf"
+				"particle"					"particles/units/heroes/hero_tek/skycrack_eff.vpcf"
 		}
-	}
-	
-	"precache"
-		{
-			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
-			"particle"					"particles/units/building/last_resort_ally.vpcf"
-			"particle"					"particles/units/heroes/hero_tek/skycrack_eff.vpcf"
-		}
-	
-	"Modifiers"
+		
+		"Modifiers"
 		{
 			"modifier_last_resort"
 			{
@@ -162,5 +162,8 @@
 				}
 			}
 		}
-}
+	
+		"ReduxPerks"	""
+		"ReduxFlags"	""
+	}
 }

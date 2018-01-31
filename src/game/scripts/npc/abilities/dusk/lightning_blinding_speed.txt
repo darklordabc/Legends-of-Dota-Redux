@@ -1,228 +1,230 @@
 "DOTAAbilities" {
-//=====================================================================================================
-// LIGHTNING: Blinding Speed
-//=====================================================================================================
-"lightning_blinding_speed"
-{
-	// General
-	//-------------------------------------------------------------------------------------------------------------
-	"BaseClass"						"ability_datadriven"
-	"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-	"AbilityTextureName"			"custom/lightning_blinding_speed"
-
-	// Casting
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCastRange"				"80"
-	"AbilityCastPoint"				"0"
-	
-	// Time		
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCooldown"				"70 60 50"
-
-	// Cost
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityManaCost"				"175"
-	
-	// Stats
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityModifierSupportValue"	"0.0"	// All about the damage
-
-	// Special
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilitySpecial"
+	//=====================================================================================================
+	// LIGHTNING: Blinding Speed
+	//=====================================================================================================
+	"lightning_blinding_speed"
 	{
-		"01"
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName"			"custom/lightning_blinding_speed"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"80"
+		"AbilityCastPoint"				"0"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"70 60 50"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"175"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// All about the damage
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
 		{
-			"var_type"					"FIELD_INTEGER"
-			"speed"						"1400 1500 1600"
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"speed"						"1400 1500 1600"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"60 100 140"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"80"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"6"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"scepter_speed"				"1750 2000 2375"
+			}
 		}
-		"02"
-		{
-			"var_type"					"FIELD_INTEGER"
-			"damage"					"60 100 140"
-		}
-		"03"
-		{
-			"var_type"					"FIELD_INTEGER"
-			"radius"					"80"
-		}
-		"04"
-		{
-			"var_type"					"FIELD_FLOAT"
-			"duration"					"6"
-		}
-		"05"
-		{
-			"var_type"					"FIELD_INTEGER"
-			"scepter_speed"				"1750 2000 2375"
-		}
-	}
-	
-	"precache"
+		
+		"precache"
 		{
 			"particle"  "particles/units/heroes/hero_stormspirit/stormspirit_overload_discharge.vpcf"
 			"particle"	"particles/units/heroes/hero_stormspirit/stormspirit_ball_lightning.vpcf"
 		}
 
-	"OnSpellStart"
-	{
-		"ApplyModifier"
+		"OnSpellStart"
 		{
-			"ModifierName"	"modifier_bloodseeker_thirst_speed"
-			"Target" 		"CASTER"
-			"Duration"		"%duration"
-			"IsHidden"		"1"
-			"IsPurgable"	"1"
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_bloodseeker_thirst_speed"
+				"Target" 		"CASTER"
+				"Duration"		"%duration"
+				"IsHidden"		"1"
+				"IsPurgable"	"1"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/dusk/lightning_abilities.lua"
+				"Function"		"blinding_speed"
+			}
 		}
-		"RunScript"
+		
+		"Modifiers"
 		{
-			"ScriptFile"	"abilities/dusk/lightning_abilities.lua"
-			"Function"		"blinding_speed"
+			"modifier_blinding_speed_active"
+			{
+				"Duration" "%duration"
+				"IsBuff" "1"
+
+				"Aura"          	"modifier_blinding_speed_damage_apply"
+				"Aura_Radius"   	"%radius"
+				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE"
+
+				"ThinkInterval"  "0.1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/dusk/lightning_abilities.lua"
+						"Function"		"check_pos"
+					}
+				}
+
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"				"CASTER"	
+						"EffectName"			"particles/units/heroes/hero_stormspirit/stormspirit_ball_lightning.vpcf"
+						"EffectAttachType"		"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"CASTER"			"attach_hitloc"
+							"CASTER"			"attach_hitloc"
+						}
+					}
+				}
+
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE" "%speed"	
+				    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL" "1"
+				    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL"	"1"
+				    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE"	"1"
+				}
+			
+				"States"
+				{
+					"MODIFIER_STATE_FLYING"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			
+			}
+			"modifier_blinding_speed_active_aghs"
+			{
+				"Duration" "%duration"
+				"IsBuff" "1"
+
+				"Aura"          	"modifier_blinding_speed_damage_apply"
+				"Aura_Radius"   	"%radius"
+				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE"
+
+				"ThinkInterval"  "0.1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/dusk/lightning_abilities.lua"
+						"Function"		"check_pos"
+					}
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/dusk/lightning_abilities.lua"
+						"Function"		"purge"
+					}
+				}
+
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"				"CASTER"	
+						"EffectName"			"particles/units/heroes/hero_stormspirit/stormspirit_ball_lightning.vpcf"
+						"EffectAttachType"		"start_at_customorigin"
+						"ControlPointEntities"
+						{
+							"CASTER"			"attach_hitloc"
+							"CASTER"			"attach_hitloc"
+						}
+					}
+				}
+
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE" "%scepter_speed"
+				    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL" "1"
+				    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL"	"1"
+				    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE"	"1"
+				}
+			
+				"States"
+				{
+					"MODIFIER_STATE_FLYING"				"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			
+			}
+			"modifier_blinding_speed_damage_apply"
+			{
+				"Duration"			"0.4"
+				"IsPurgable"		"0"
+				"IsBuff"			"0"
+				"IsDebuff"			"1"
+				"IsStunDebuff"		"0"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "-40"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-35"
+				}
+				"OnCreated"
+				{
+					"FireEffect"
+					{
+						"Target"				"TARGET"
+						"EffectName"			"particles/units/heroes/hero_stormspirit/stormspirit_overload_discharge.vpcf"
+						"EffectAttachType"		"start_at_origin"
+					}
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%damage"
+					}
+				}
+			}
 		}
+
+		"ReduxPerks"	"lightning"
+		"ReduxFlags"	""
 	}
-	
-	"Modifiers"
-		{
-		"modifier_blinding_speed_active"
-		{
-			"Duration" "%duration"
-			"IsBuff" "1"
-
-			"Aura"          	"modifier_blinding_speed_damage_apply"
-			"Aura_Radius"   	"%radius"
-			"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-			"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-			"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE"
-
-			"ThinkInterval"  "0.1"
-			"OnIntervalThink"
-			{
-				"RunScript"
-				{
-					"ScriptFile"	"abilities/dusk/lightning_abilities.lua"
-					"Function"		"check_pos"
-				}
-			}
-
-			"OnCreated"
-			{
-				"AttachEffect"
-				{
-					"Target"				"CASTER"	
-					"EffectName"			"particles/units/heroes/hero_stormspirit/stormspirit_ball_lightning.vpcf"
-					"EffectAttachType"		"start_at_customorigin"
-					"ControlPointEntities"
-					{
-						"CASTER"			"attach_hitloc"
-						"CASTER"			"attach_hitloc"
-					}
-				}
-			}
-
-			"Properties"
-			{
-			    "MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE" "%speed"	
-			    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL" "1"
-			    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL"	"1"
-			    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE"	"1"
-			}
-		
-			"States"
-			{
-				"MODIFIER_STATE_FLYING"				"MODIFIER_STATE_VALUE_ENABLED"
-				"MODIFIER_STATE_NO_HEALTH_BAR"		"MODIFIER_STATE_VALUE_ENABLED"
-				"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
-			}
-		
-		}
-		"modifier_blinding_speed_active_aghs"
-		{
-			"Duration" "%duration"
-			"IsBuff" "1"
-
-			"Aura"          	"modifier_blinding_speed_damage_apply"
-			"Aura_Radius"   	"%radius"
-			"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-			"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-			"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE"
-
-			"ThinkInterval"  "0.1"
-			"OnIntervalThink"
-			{
-				"RunScript"
-				{
-					"ScriptFile"	"abilities/dusk/lightning_abilities.lua"
-					"Function"		"check_pos"
-				}
-				"RunScript"
-				{
-					"ScriptFile"	"abilities/dusk/lightning_abilities.lua"
-					"Function"		"purge"
-				}
-			}
-
-			"OnCreated"
-			{
-				"AttachEffect"
-				{
-					"Target"				"CASTER"	
-					"EffectName"			"particles/units/heroes/hero_stormspirit/stormspirit_ball_lightning.vpcf"
-					"EffectAttachType"		"start_at_customorigin"
-					"ControlPointEntities"
-					{
-						"CASTER"			"attach_hitloc"
-						"CASTER"			"attach_hitloc"
-					}
-				}
-			}
-
-			"Properties"
-			{
-			    "MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE" "%scepter_speed"
-			    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL" "1"
-			    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL"	"1"
-			    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE"	"1"
-			}
-		
-			"States"
-			{
-				"MODIFIER_STATE_FLYING"				"MODIFIER_STATE_VALUE_ENABLED"
-				"MODIFIER_STATE_NO_HEALTH_BAR"		"MODIFIER_STATE_VALUE_ENABLED"
-				"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
-			}
-		
-		}
-		"modifier_blinding_speed_damage_apply"
-		{
-			"Duration"			"0.4"
-			"IsPurgable"		"0"
-			"IsBuff"			"0"
-			"IsDebuff"			"1"
-			"IsStunDebuff"		"0"
-			//Purge(bool RemovePositiveBuffs, bool RemoveDebuffs, bool BuffsCreatedThisFrameOnly, bool RemoveStuns, bool RemoveExceptions)
-
-			"Properties"
-			{
-				"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "-40"
-			    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-35"
-			}
-			"OnCreated"
-			{
-				"FireEffect"
-				{
-					"Target"				"TARGET"
-					"EffectName"			"particles/units/heroes/hero_stormspirit/stormspirit_overload_discharge.vpcf"
-					"EffectAttachType"		"start_at_origin"
-				}
-				"Damage"
-				{
-					"Target"		"TARGET"
-					"Type"			"DAMAGE_TYPE_MAGICAL"
-					"Damage"		"%damage"
-				}
-			}
-		}
-		}
-}
 }

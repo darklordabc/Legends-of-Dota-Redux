@@ -1,73 +1,76 @@
 "DOTAAbilities" {
-//=====================================================================================================
-// HERO: Justice Kick
-//=====================================================================================================
-"hero_justice_kick"
-{
-	// General
-	//-------------------------------------------------------------------------------------------------------------
-	"BaseClass"						"ability_lua"
-	"ScriptFile"					"abilities/dusk/hero_justice_kick"
-	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NONE"
-	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-	"AbilityTextureName"			"custom/hero_justice_kick"
-	"AnimationPlaybackRate"			"1.4"
-	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_5"
-
-	// Casting
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCastRange"				"150"
-	"AbilityCastPoint"				"0.3"
-	
-	// Time		
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCooldown"				"8 7 6 5"
-
-	// Cost
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityManaCost"				"50"
-	
-	// Stats
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityModifierSupportValue"	"0.0"	// All about the damage
-
-	// Special
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilitySpecial"
+	//=====================================================================================================
+	// HERO: Justice Kick
+	//=====================================================================================================
+	"hero_justice_kick"
 	{
-		"01"
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/dusk/hero_justice_kick"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NONE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/hero_justice_kick"
+		"AnimationPlaybackRate"			"1.4"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_5"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"150"
+		"AbilityCastPoint"				"0.3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8 7 6 5"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// All about the damage
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
 		{
-			"var_type"					"FIELD_INTEGER"
-			"damage"					"90 120 150 180"
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"90 120 150 180"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"distance"					"475"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"slow"						"-100"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"1"
+			}
 		}
-		"02"
+		
+		"precache"
 		{
-			"var_type"					"FIELD_INTEGER"
-			"distance"					"475"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_tusk.vsndevts"
+			"soundfile" "soundevents/hero_hero.vsndevts"
+			"particle" "particles/units/heroes/hero_hero/hero_justice_kick.vpcf"
+			"particle" "particles/units/heroes/hero_hero/one_punch_mega_crit.vpcf"
 		}
-		"03"
-		{
-			"var_type"					"FIELD_INTEGER"
-			"slow"						"-100"
-		}
-		"04"
-		{
-			"var_type"					"FIELD_INTEGER"
-			"duration"					"1"
-		}
+
+		"ReduxPerks"    "enemyMoving"
+        "ReduxFlags"    ""
 	}
-	
-	"precache"
-		{
-		"soundfile" "soundevents/game_sounds_heroes/game_sounds_tusk.vsndevts"
-		"soundfile" "soundevents/hero_hero.vsndevts"
-		"particle" "particles/units/heroes/hero_hero/hero_justice_kick.vpcf"
-		"particle" "particles/units/heroes/hero_hero/one_punch_mega_crit.vpcf"
-		}
-}
 }

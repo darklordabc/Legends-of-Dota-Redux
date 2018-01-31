@@ -1,81 +1,84 @@
 "DOTAAbilities" {
-//=====================================================================================================
-// PTOMELY: Expunge
-//=====================================================================================================
-"ptomely_expunge"
-{
-	// General
-	//-------------------------------------------------------------------------------------------------------------
-	"BaseClass"						"ability_lua"
-	"ScriptFile"					"abilities/dusk/ptomely_expunge"
-	"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
-	"AbilityTextureName"			"custom/ptomely_expunge"
-
-	// Casting
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCastRange"				"1000"
-	"AbilityCastPoint"				"0.40"
-	
-	// Time		
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCooldown"				"110"
-	"HasScepterUpgrade"             "1"
-
-	// Cost
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityManaCost"				"200 400 600"
-	
-	// Stats
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityModifierSupportValue"	"0.0"	// All about the damage
-
-	// Special
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilitySpecial"
+	//=====================================================================================================
+	// PTOMELY: Expunge
+	//=====================================================================================================
+	"ptomely_expunge"
 	{
-		"01"
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/dusk/ptomely_expunge"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AbilityTextureName"			"custom/ptomely_expunge"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.40"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"110"
+		"HasScepterUpgrade"             "1"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"200 400 600"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// All about the damage
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
 		{
-			"var_type"					"FIELD_FLOAT"
-			"duration"					"2.5"
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"2.5"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"mana_drain"				"25 40 55"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"575"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"slow"						"75"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"scepter_mana_drain"		"15"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"base_drain"				"150 200 250"
+			}
 		}
-		"02"
+		
+		"precache"
 		{
-			"var_type"					"FIELD_INTEGER"
-			"mana_drain"				"25 40 55"
+			"particle" "particles/units/heroes/hero_ptomely/expunge.vpcf"
+			"particle" "particles/units/heroes/hero_ptomely/expunge_drain.vpcf"
+			"soundfile" "soundevents/hero_ptomely.vsndevts"
 		}
-		"03"
-		{
-			"var_type"					"FIELD_INTEGER"
-			"radius"					"575"
-		}
-		"04"
-		{
-			"var_type"					"FIELD_INTEGER"
-			"slow"						"75"
-		}
-		"05"
-		{
-			"var_type"					"FIELD_INTEGER"
-			"scepter_mana_drain"		"15"
-		}
-		"06"
-		{
-			"var_type"					"FIELD_INTEGER"
-			"base_drain"				"150 200 250"
-		}
+
+		"ReduxPerks"	""
+		"ReduxFlags"	""
 	}
-	
-	"precache"
-		{
-		"particle" "particles\units\heroes\hero_ptomely\expunge.vpcf"
-		"particle" "particles\units\heroes\hero_ptomely\expunge_drain.vpcf"
-		"soundfile" "soundevents\hero_ptomely.vsndevts"
-		}
-}
 }

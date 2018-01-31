@@ -1,65 +1,68 @@
 "DOTAAbilities" {
-//=====================================================================================================
-// CRIMSON: Ancient Pact
-//=====================================================================================================
-"crimson_blood_sorcery"
-{
-	// General
-	//-------------------------------------------------------------------------------------------------------------
-	"BaseClass"				"ability_datadriven"
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"	
-	"FightRecapLevel"				"1"
-	"AbilityTextureName"			"bloodseeker_thirst"
-
-	// Casting
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCastRange"				"0"
-	"AbilityCastPoint"				"0"
-	
-	// Time		
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCooldown"				"32 24 16 8"
-
-	// Cost
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityManaCost"				"0"
-
-	// Special
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilitySpecial"
+	//=====================================================================================================
+	// CRIMSON: Ancient Pact
+	//=====================================================================================================
+	"crimson_blood_sorcery"
 	{
-		"01"
-		{
-			"var_type"				"FIELD_FLOAT"
-			"mult"					"0.75"
-		}
-		"02"
-		{
-			"var_type"				"FIELD_INTEGER"
-			"regen"					"2 4 6 8"
-		}
-	}
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"	
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"bloodseeker_thirst"
 
-	"precache"
-	{
-		"soundfile"			"soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts"
-		"particle"			"particles/units/heroes/hero_skywrath_mage/skywrath_mage_ancient_seal_debuff_rune.vpcf"
-		"particle"			"particles/units/heroes/hero_skywrath_mage/skywrath_mage_ancient_seal_silence.vpcf"
-	}
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"32 24 16 8"
 
-	"OnSpellStart"
-	{
-		"RunScript"
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
 		{
-			"ScriptFile"	"abilities/dusk/crimson_abilities.lua"
-			"Function"		"AncientPact"
-			"x"			"%mult"
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"mult"					"0.75"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"regen"					"2 4 6 8"
+			}
 		}
-		"FireSound"
+
+		"precache"
 		{
-			"EffectName"	"Hero_Clinkz.DeathPact"
-			"Target" 		"CASTER"	
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts"
+			"particle"			"particles/units/heroes/hero_skywrath_mage/skywrath_mage_ancient_seal_debuff_rune.vpcf"
+			"particle"			"particles/units/heroes/hero_skywrath_mage/skywrath_mage_ancient_seal_silence.vpcf"
 		}
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/dusk/crimson_abilities.lua"
+				"Function"		"AncientPact"
+				"x"			"%mult"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Clinkz.DeathPact"
+				"Target" 		"CASTER"	
+			}
+		}
+
+		"ReduxPerks"	"demon | self_damage"
+		"ReduxFlags"	""
 	}
-}
 }

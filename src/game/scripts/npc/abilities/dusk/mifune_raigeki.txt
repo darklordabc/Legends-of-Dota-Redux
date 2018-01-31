@@ -1,83 +1,85 @@
 "DOTAAbilities" {
-//=====================================================================================================
-// MIFUNE: Raigeki
-//=====================================================================================================
-"mifune_raigeki"
-{
-	// General
-	//-------------------------------------------------------------------------------------------------------------
-	"BaseClass"						"ability_lua"
-	"ScriptFile"					"abilities/dusk/mifune_raigeki"
-	"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
-	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
-	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-	"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
-	"AnimationPlaybackRate"			"0.9"
-	"AbilityTextureName"			"custom/mifune_raigeki"
-
-	// Casting
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCastRange"				"1000"
-	"AbilityCastPoint"				"0.3"
-	
-	// Time		
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCooldown"				"6"
-
-	// Cost
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityManaCost"				"65 75 85 95"
-	
-	// Stats
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityModifierSupportValue"	"0.0"	// All about the damage
-
-	// Special
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilitySpecial"
+	//=====================================================================================================
+	// MIFUNE: Raigeki
+	//=====================================================================================================
+	"mifune_raigeki"
 	{
-	"01"
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/dusk/mifune_raigeki"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AnimationPlaybackRate"			"0.9"
+		"AbilityTextureName"			"custom/mifune_raigeki"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1000"
+		"AbilityCastPoint"				"0.3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"6"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"65 75 85 95"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// All about the damage
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
 		{
-			"var_type"						"FIELD_INTEGER"
-			"initial_damage"				"80 120 160 200"
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"initial_damage"				"80 120 160 200"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"explosion_damage"				"60 90 120 150"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"delay"							"1.25"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"range"							"1250"
+			}
+			"05"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"slow"							"-20"
+			}
+			"06"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"slow_duration"					"2"
+			}
+
 		}
-	"02"
+		
+		"precache"
 		{
-			"var_type"						"FIELD_INTEGER"
-			"explosion_damage"				"60 90 120 150"
-		}
-	"03"
-		{
-			"var_type"						"FIELD_FLOAT"
-			"delay"							"1.25"
-		}
-	"04"
-		{
-			"var_type"						"FIELD_INTEGER"
-			"range"							"1250"
-		}
-	"05"
-		{
-			"var_type"						"FIELD_INTEGER"
-			"slow"							"-20"
-		}
-	"06"
-		{
-			"var_type"						"FIELD_FLOAT"
-			"slow_duration"					"2"
+			"particle" "particles/test_particle/channel_field_1.vpcf"
+			"particle" "particles/units/heroes/hero_magnataur/magnataur_shockwave.vpcf"
+			"particle" "particles/units/heroes/hero_mifune/mifune_shockwave.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
 		}
 
+		"ReduxPerks"	""
+		"ReduxFlags"	""
 	}
-	
-	"precache"
-		{
-		"particle" "particles/test_particle/channel_field_1.vpcf"
-		"particle" "particles/units/heroes/hero_magnataur/magnataur_shockwave.vpcf"
-		"particle" "particles/units/heroes/hero_mifune/mifune_shockwave.vpcf"
-		"soundfile" "soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
-		}
-
-}
 }

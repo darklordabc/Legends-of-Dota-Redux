@@ -1,84 +1,87 @@
 "DOTAAbilities" {
-//=====================================================================================================
-// LICH: Absolute Zero
-//=====================================================================================================
-"lich_absolute_zero"
-{
-	// General
-	//-------------------------------------------------------------------------------------------------------------
-	"BaseClass"						"ability_lua"
-	"ScriptFile"					"abilities/dusk/lich_absolute_zero"
-	"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-	"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-	"AbilityTextureName"			"custom/lich_absolute_zero"
-
-	// Casting
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCastRange"				"950"
-	"AbilityCastPoint"				"0.4"
-	
-	// Time		
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCooldown"				"70"
-
-	// Cost
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityManaCost"				"175"
-	
-	// Stats
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityModifierSupportValue"	"0.0"	// All about the damage
-
-	// Special
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilitySpecial"
+	//=====================================================================================================
+	// LICH: Absolute Zero
+	//=====================================================================================================
+	"lich_absolute_zero"
 	{
-		"01"
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/dusk/lich_absolute_zero"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"custom/lich_absolute_zero"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"950"
+		"AbilityCastPoint"				"0.4"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"70"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"175"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// All about the damage
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
 		{
-			"var_type"					"FIELD_FLOAT"
-			"duration"					"5.00 5.75 6.5"
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"5.00 5.75 6.5"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"575"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"move_slow"					"100"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attack_slow"				"100"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cast_slow"					"50"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"aura_move_slow"			"20 30 40"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"aura_attack_slow"			"20 30 40"
+			}
 		}
-		"02"
+		
+		"precache"
 		{
-			"var_type"					"FIELD_INTEGER"
-			"radius"					"575"
+			"particle" "particles/status_fx/status_effect_frost_lich.vpcf"
+			"particle" "particles/units/heroes/hero_ancient_apparition/ancient_apparition_cold_feet_frozen.vpcf"
+			"soundfile" "soundevents/hero_lich.vsndevts"
 		}
-		"03"
-		{
-			"var_type"					"FIELD_INTEGER"
-			"move_slow"					"100"
-		}
-		"04"
-		{
-			"var_type"					"FIELD_INTEGER"
-			"attack_slow"				"100"
-		}
-		"05"
-		{
-			"var_type"					"FIELD_INTEGER"
-			"cast_slow"					"50"
-		}
-		"06"
-		{
-			"var_type"					"FIELD_INTEGER"
-			"aura_move_slow"			"20 30 40"
-		}
-		"07"
-		{
-			"var_type"					"FIELD_INTEGER"
-			"aura_attack_slow"			"20 30 40"
-		}
+
+		"ReduxPerks"    "ice"
+        "ReduxFlags"    ""
 	}
-	
-	"precache"
-		{
-		"particle" "particles/status_fx/status_effect_frost_lich.vpcf"
-		"particle" "particles\units\heroes\hero_ancient_apparition\ancient_apparition_cold_feet_frozen.vpcf"
-		"soundfile" "soundevents\hero_lich.vsndevts"
-		}
-}
 }
