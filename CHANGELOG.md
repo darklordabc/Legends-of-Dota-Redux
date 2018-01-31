@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 - Removed the two Entangle Talents, they were not working with heroes
 - Fixed Spectre's Perk
 - Echo Sabre, Valdimirs Offering, Kaya, Aeon Disk is now consumeable.
+- Added Physical Damage category filter in skill pick menu
 
 ## 10.1
 - Recoded Flame Strike since it didnt work at all.
