@@ -2,6 +2,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 10.3
+- Essence Aura is now actually a single player ability
+
 ## 10.2
 - Added Flesh Heap - Minion Damage
 - Removed the two Entangle Talents, they were not working with heroes
