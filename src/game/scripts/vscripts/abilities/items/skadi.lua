@@ -106,8 +106,13 @@ function modifier_item_skadi_consumable:DeclareFunctions()
     MODIFIER_PROPERTY_HEALTH_BONUS,
     MODIFIER_PROPERTY_MANA_BONUS,
     MODIFIER_EVENT_ON_ATTACK_LANDED,
+    MODIFIER_PROPERTY_PROJECTILE_NAME,
   }
   return funcs
+end
+
+function modifier_item_skadi_consumable:GetModifierProjectileName()
+  return "particles/items2_fx/skadi_projectile.vpcf"
 end
 
 function modifier_item_skadi_consumable:GetModifierBonusStats_Strength()
