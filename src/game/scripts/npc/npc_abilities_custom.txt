@@ -253,7 +253,6 @@
 #base "abilities\dusk\alexander_godfall.txt"
 #base "abilities\dusk\alexander_radiant.txt"
 #base "abilities\dusk\alexander_soulseal.txt"
-#base "abilities\dusk\alexander_steadfast.txt"
 
 #base "abilities\dusk\gemini_extraplanar_pact.txt"
 #base "abilities\dusk\gemini_abyssal_vortex.txt"
