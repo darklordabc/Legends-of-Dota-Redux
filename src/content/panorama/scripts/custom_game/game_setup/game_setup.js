@@ -2775,7 +2775,7 @@ function OnSkillTabShown(tabName) {
                         }
 
                         for (var g in abilityStore) {
-                            abilityStore[g].SetHasClass("lodDraftAbility", isDraftGamemode());
+                            abilityStore[g].SetHasClass("lodDraftAbility", isDraftGamemode() && currentPhase == PHASE_SELECTION);
                         }
                     } else {
                         // Reset active tabs
@@ -2783,7 +2783,7 @@ function OnSkillTabShown(tabName) {
                         activeTabs[tabName] = true;
 
                         for (var g in abilityStore) {
-                            abilityStore[g].SetHasClass("lodDraftAbility", tabName == "mostused" || isDraftGamemode());
+                            abilityStore[g].SetHasClass("lodDraftAbility", tabName == "mostused" || (isDraftGamemode() && currentPhase == PHASE_SELECTION));
                         }
                     }
 
@@ -4683,7 +4683,10 @@ function OnPhaseChanged(table_name, key, data) {
                     }
                 }
 
-                if (isDraftGamemode()) {
+                if (isDraftGamemode() && currentPhase == PHASE_SELECTION) {
+                    for (var g in abilityStore) {
+                        abilityStore[g].SetHasClass("lodDraftAbility", isDraftGamemode() && currentPhase == PHASE_SELECTION);
+                    }
                     $.Msg($("#pickingPhaseSkillTabContentSkills").Children().length);
                     for (var k in $("#pickingPhaseSkillTabContentSkills").Children()) {
                         var panel = $("#pickingPhaseSkillTabContentSkills").Children()[k];
