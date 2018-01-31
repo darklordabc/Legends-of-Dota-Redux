@@ -1118,7 +1118,7 @@
     "option_vote_entry_title_antirat"               "Enable Anit-Rat"
     "option_vote_entry_title_doubledAbilityPoints"  "Extra Ability Points"
     "option_vote_entry_title_strongTowers"          "Enable Stronger Towers"
-    "option_vote_entry_title_customAbilities"       "Enable Custom Abilities"
+    "option_vote_entry_title_customAbilities"       "<font color='#FF4949'>Enable Experimental Abilities</font>"
     "option_vote_entry_title_singlePlayerAbilities" "Enable SUPER-OP Abilities"
     "option_vote_entry_title_OPAbilities"           "Enable OP Abilities"
     "option_vote_entry_title_heroPerks"             "Enable Hero Perks"

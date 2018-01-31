@@ -29,7 +29,7 @@
         <snippet name="optionVotePhase">
             <Panel class="optionVotePhase">
                 <Panel class="optionVoteInfoHeader">
-                    <Label class="optionVoteHeader" text="{s:title}" />
+                    <Label class="optionVoteHeader" text="{s:title}" html="true" />
                     <Panel class="VotingOptionInfo" id="VotingOptionInfo" onmouseout="UIHideCustomLayoutTooltip( voteOptionInfoTooltip )">
                         <Image hittest="false" id="infoImage" src="file://{images}/custom_game/infoTooltip.png" />
                     </Panel>

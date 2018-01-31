@@ -684,7 +684,7 @@ function Pregame:init()
     self.currentlySpawning = false
     self.cachedPlayerHeroes = {}
 
-    PanoramaShop:InitializeItemTable()
+    -- PanoramaShop:InitializeItemTable()
 end
 
 -- Load Default Values
@@ -2201,7 +2201,7 @@ function Pregame:processVoteData()
     local counts = {}
 
     local need_unanimous_voting = {}
-    need_unanimous_voting["customAbilities"] = true
+    need_unanimous_voting["customAbilities"] = true and OptionManager:GetOption('mapname') == 'classic'
 
     for optionName,data in pairs(self.voteData or {}) do
         counts[optionName] = {}

@@ -36,7 +36,7 @@ require('stats_client')
 require('lib/playertables')
 require('lib/notifications')
 require('lib/keyvalues')
-require('panorama_shop')
+-- require('panorama_shop')
 
 -- Misc functions for Angel Arena Black Star abilities/items
 require('lib/util_aabs')

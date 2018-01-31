@@ -5735,7 +5735,7 @@ function getAbilityGlobalPickPopularity(ability) {
     $('#chat').BLoadLayout('file://{resources}/layout/custom_game/game_setup/chat.xml', false, false);
 
     if (mapName == "classic"){
-        $.Each(["customAbilities", "allPick", "OPAbilities", "noInvis"], function(name) {
+        $.Each(["allPick", "OPAbilities", "noInvis", "customAbilities"], function(name) {
             addVotingOption(name);
         })
     }
