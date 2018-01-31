@@ -1803,7 +1803,7 @@ var advancedOptions = {
         ]
     },
 
-    items: {
-        custom: true
-    }
+    // items: {
+    //     custom: true
+    // }
 }
