@@ -1470,7 +1470,7 @@ function Pregame:onThink()
 end
 
 function Pregame:isBackgroundSpawning()
-    return (OptionManager:GetOption('mapname') == "custom_bot" or (self.optionStore['lodOptionGamemode'] ~= 1 and self.optionStore['lodOptionGamemode'] ~= -1))
+    return OptionManager:GetOption('mapname') == "custom_bot" or (self.optionStore['lodOptionGamemode'] ~= 1 and (self.optionStore['lodOptionGamemode'] ~= -1 or self.optionStore['lodOptionCommonGamemode'] ~= 1))
 end
 
 function Pregame:setWispMethod()
