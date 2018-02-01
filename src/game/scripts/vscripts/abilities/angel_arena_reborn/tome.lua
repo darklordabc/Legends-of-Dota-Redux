@@ -1,5 +1,21 @@
 local Constants = require('constants') -- XP TABLE
-LinkLuaModifier( "modifier_medical_tractate",	'abilities/angel_arena_reborn/modifier_medical_tractate', 	LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_medical_tractate",	'abilities/angel_arena_reborn/modifier_medical_tractate', LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_stats_tome",	'abilities/angel_arena_reborn/tome', LUA_MODIFIER_MOTION_NONE )
+
+modifier_stats_tome = {
+	IsHidden = function() return true end,
+	IsPurgable = function() return false end,
+	RemoveOnDeath = function() return false end,
+	AllowIllusionDuplicate = function() return true end,
+	GetAttributes = function() return MODIFIER_ATTRIBUTE_MULTIPLE end,
+	DeclareFunctions = function() return {MODIFIER_PROPERTY_STATS_STRENGTH_BONUS, MODIFIER_PROPERTY_STATS_AGILITY_BONUS, MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,} end,
+	GetModifierBonusStats_Strength = function(self) return self.str and self.str * self:GetStackCount() end,
+	GetModifierBonusStats_Agility = function(self) return self.agi and self.agi * self:GetStackCount() end,
+	GetModifierBonusStats_Intellect = function(self) return self.int and self.int * self:GetStackCount() end,
+	OnRefresh = function(self, kv) self:OnCreated(kv) end,
+	OnCreated = function(self, kv) self[kv.stat] = self:GetAbility():GetSpecialValueFor(kv.stat) end,
+}
+
 function UpgradeStats(keys)
 	local caster = keys.caster
 	--local cost = keys.ability:GetCost() 
@@ -14,46 +30,53 @@ function UpgradeStats(keys)
 	--_G.tPlayers[caster:GetPlayerOwnerID() ].books = _G.tPlayers[caster:GetPlayerOwnerID() ].books or 0
 	--_G.tPlayers[caster:GetPlayerOwnerID() ].books = _G.tPlayers[caster:GetPlayerOwnerID() ].books + cost
 
-	if str then caster:ModifyStrength(str) end
-	if agi then caster:ModifyAgility(agi) end
-	if int then caster:ModifyIntellect(int) end
+	--if str then caster:ModifyStrength(str) end
+	--if agi then caster:ModifyAgility(agi) end
+	--if int then caster:ModifyIntellect(int) end
 	
 	if keys.ability:GetName() == "angel_arena_tome_agi" or keys.ability:GetName() == "angel_arena_tome_agi_op" then
-		if not caster.agiTomesUsed then
-			caster.agiTomesUsed = 1 
-		else
-			caster.agiTomesUsed = caster.agiTomesUsed + 1
-		end
+		caster.agiTomesUsed = caster.agiTomesUsed and caster.agiTomesUsed + 1 or 1
+
+		caster.agiMod = caster.agiMod or caster:AddNewModifier(caster, keys.ability, "modifier_stats_tome", {stat = "agi"})
+		caster.agiMod:SetStackCount(caster.agiTomesUsed)
+
 		SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, caster, caster.agiTomesUsed, nil)
 	end
 
 	if keys.ability:GetName() == "angel_arena_tome_str" or keys.ability:GetName() == "angel_arena_tome_str_op" then
-		if not caster.strTomesUsed then
-			caster.strTomesUsed = 1 
-		else
-			caster.strTomesUsed = caster.strTomesUsed + 1
-		end
+		caster.strTomesUsed = caster.strTomesUsed and caster.strTomesUsed + 1 or 1
+
+		caster.strMod = caster.strMod or caster:AddNewModifier(caster, keys.ability, "modifier_stats_tome", {stat = "str"})
+		caster.strMod:SetStackCount(caster.strTomesUsed)
+
 		SendOverheadEventMessage(nil, OVERHEAD_ALERT_CRITICAL, caster, caster.strTomesUsed, nil)
 	end
 
 	if keys.ability:GetName() == "angel_arena_tome_int" or keys.ability:GetName() == "angel_arena_tome_int_op" then
-		if not caster.intTomesUsed then
-			caster.intTomesUsed = 1 
-		else
-			caster.intTomesUsed = caster.intTomesUsed + 1
-		end
+		caster.intTomesUsed = caster.intTomesUsed and caster.intTomesUsed + 1 or 1
+
+		caster.intMod = caster.intMod or caster:AddNewModifier(caster, keys.ability, "modifier_stats_tome", {stat = "int"})
+		caster.intMod:SetStackCount(caster.intTomesUsed)
+
 		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, caster, caster.intTomesUsed, nil)
 	end
 
 	if keys.ability:GetName() == "angel_arena_tome_gods" or keys.ability:GetName() == "angel_arena_tome_gods_op" then
-		if not caster.intTomesUsed then
-			caster.intTomesUsed = 1 
-		else
-			caster.intTomesUsed = caster.intTomesUsed + 1
-		end
+		caster.agiTomesUsed = caster.agiTomesUsed and caster.agiTomesUsed + 1 or 1
+		caster.strTomesUsed = caster.strTomesUsed and caster.strTomesUsed + 1 or 1
+		caster.intTomesUsed = caster.intTomesUsed and caster.intTomesUsed + 1 or 1
+
+		caster.agiMod = caster.agiMod or caster:AddNewModifier(caster, keys.ability, "modifier_stats_tome", {stat = "agi"})
+		caster.agiMod:SetStackCount(caster.agiTomesUsed)
+
+		caster.strMod = caster.strMod or caster:AddNewModifier(caster, keys.ability, "modifier_stats_tome", {stat = "str"})
+		caster.strMod:SetStackCount(caster.strTomesUsed)
+
+		caster.intMod = caster.intMod or caster:AddNewModifier(caster, keys.ability, "modifier_stats_tome", {stat = "int"})
+		caster.intMod:SetStackCount(caster.intTomesUsed)
+
 		SendOverheadEventMessage(nil, OVERHEAD_ALERT_XP, caster, caster.intTomesUsed, nil)
 	end
-	
 end
 
 
