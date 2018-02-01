@@ -14,6 +14,7 @@ modifier_stats_tome = {
 	GetModifierBonusStats_Intellect = function(self) return self.int and self.int * self:GetStackCount() end,
 	OnRefresh = function(self, kv) self:OnCreated(kv) end,
 	OnCreated = function(self, kv) self[kv.stat] = self:GetAbility():GetSpecialValueFor(kv.stat) end,
+	OnStackCountChanged = function(self, count) self:ForceRefresh() end,
 }
 
 function UpgradeStats(keys)
