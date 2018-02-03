@@ -132,9 +132,9 @@ function modifier_reality_shift_show:OnDestroy()
 		local p = 0
 
 		ScreenShake(caster:GetAbsOrigin(), 1200, 170, delay, 1200, 0, true)
-	 
+
 		if target:GetTeam() ~= caster:GetTeam() then
-			DealDamage(target,caster,50,DAMAGE_TYPE_MAGICAL)
+			DealDamage(target,caster,dmg,DAMAGE_TYPE_MAGICAL)
 		end
 
 		if caster == target then

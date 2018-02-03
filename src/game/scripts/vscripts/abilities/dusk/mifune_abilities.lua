@@ -37,7 +37,9 @@ function ouichi(keys)
 	if caster:IsIllusion() then fd = fd * 0.25 end
 
 	DealDamage(target,caster,fd,DAMAGE_TYPE_PURE)
-	PopupDamage(target,math.ceil(fd))
+
+	local tp,cp = PlayerResource:GetPlayer(target:GetPlayerOwnerID()),PlayerResource:GetPlayer(caster:GetPlayerOwnerID())
+	SendOverheadEventMessage(tp or cp, OVERHEAD_ALERT_CRITICAL, target, math.ceil(fd), cp)
 
 	ParticleManager:CreateParticle("particles/units/heroes/hero_skeletonking/skeleton_king_weapon_blur_critical.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster) --[[Returns:int
 	Creates a new particle effect

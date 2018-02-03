@@ -79,7 +79,7 @@ end
 function modifier_astralise:OnIntervalThink()
 	if IsServer() then
 		local target = self:GetParent()
-		if target.astralise_unit then
+		if target.astralise_unit and not target.astralise_unit:IsNull() then
 			local loc = target.astralise_unit:GetAbsOrigin()
 			local radius = self:GetAbility():GetSpecialValueFor("radius")
 			local pct = self:GetAbility():GetSpecialValueFor("pulse_damage")/100
@@ -145,4 +145,31 @@ function FastDummy(target, team, duration, vision)
       end)
   end
   return dummy
+end
+
+function FindEnemies(caster,point,radius,targets,flags)
+  local targets = targets or DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_CREEP
+  local flags = flags or DOTA_UNIT_TARGET_FLAG_NONE
+  return FindUnitsInRadius( caster:GetTeamNumber(),
+                            point,
+                            nil,
+                            radius,
+                            DOTA_UNIT_TARGET_TEAM_ENEMY,
+                            targets,
+                            flags,
+                            FIND_CLOSEST,
+                            false)
+end
+
+function FindAllies(caster,point,radius,targets)
+  local targets = targets or DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_CREEP
+  return FindUnitsInRadius( caster:GetTeamNumber(),
+                            point,
+                            nil,
+                            radius,
+                            DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+                            targets,
+                            DOTA_UNIT_TARGET_FLAG_NONE,
+                            FIND_CLOSEST,
+                            false)
 end

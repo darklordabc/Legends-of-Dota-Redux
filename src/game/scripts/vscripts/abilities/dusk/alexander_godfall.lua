@@ -90,7 +90,7 @@ function modifier_godfall:OnAttackLanded(params)
 
 		target:Purge(true,false,false,false,false)
 
-		InflictDamage(target,caster,self:GetAbility()damage,DAMAGE_TYPE_PURE)
+		InflictDamage(target,caster,self:GetAbility(),damage,DAMAGE_TYPE_PURE)
 
 		target:EmitSound("Alexander.Godfall")
 

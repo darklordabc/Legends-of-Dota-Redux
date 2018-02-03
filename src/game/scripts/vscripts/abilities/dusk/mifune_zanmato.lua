@@ -129,9 +129,7 @@ function mifune_zanmato:OnSpellStart()
 			)
 		end
 
-		local stuntime = counter*attack_interval+0.6
-
-		if stuntime < 1 then stuntime = 1 end
+		local stuntime = math.max(counter*attack_interval+0.6, 1)
 
 		main_target:AddNewModifier( caster, self, modifierTargetMainName, {Duration = stuntime} )
 		
@@ -142,32 +140,31 @@ function mifune_zanmato:OnSpellStart()
 				for _,target in pairs(units) do
 					target:RemoveModifierByName(modifierTargetName)
 					if target ~= main_target then
-					local info = 
-					  {
-					  Target = main_target,
-					  Source = target,
-					  Ability = self,  
-					  EffectName = "particles/units/heroes/hero_mifune/mifune_orb.vpcf",
-					  vSpawnOrigin = target:GetAbsOrigin(),
-					  fDistance = distance,
-					  fStartRadius = 20,
-					  fEndRadius = 20,
-					  bHasFrontalCone = false,
-					  bReplaceExisting = false,
-					  iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
-					  iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
-					  iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-					  fExpireTime = GameRules:GetGameTime() + 10.0,
-					  bDeleteOnHit = true,
-					  iMoveSpeed = 950,
-					  bProvidesVision = true,
-					  iVisionRadius = 275,
-					  iVisionTeamNumber = caster:GetTeamNumber(),
-					  iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_HITLOCATION
-					  }
-			  
-			  		local projectile = ProjectileManager:CreateTrackingProjectile(info)
-				end
+						local info = {
+							Target = main_target,
+							Source = target,
+							Ability = self,  
+							EffectName = "particles/units/heroes/hero_mifune/mifune_orb.vpcf",
+							vSpawnOrigin = target:GetAbsOrigin(),
+							fDistance = distance,
+							fStartRadius = 20,
+							fEndRadius = 20,
+							bHasFrontalCone = false,
+							bReplaceExisting = false,
+							iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+							iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
+							iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+							fExpireTime = GameRules:GetGameTime() + 10.0,
+							bDeleteOnHit = true,
+							iMoveSpeed = 950,
+							bProvidesVision = true,
+							iVisionRadius = 275,
+							iVisionTeamNumber = caster:GetTeamNumber(),
+							iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_HITLOCATION
+						}
+				
+						local projectile = ProjectileManager:CreateTrackingProjectile(info)
+					end
 				end
 				caster:RemoveModifierByName( casterModifierName )
 				caster.zanmato_active = false
@@ -250,7 +247,8 @@ end
 modifier_zanmato_dummy = class({})
 
 function modifier_zanmato_dummy:OnCreated()
-	ParticleManager:CreateParticle("particles/units/heroes/hero_ember_spirit/ember_spirit_sleight_of_fist_caster.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
+	local p = ParticleManager:CreateParticle("particles/units/heroes/hero_ember_spirit/ember_spirit_sleight_of_fist_caster.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
+	self:AddParticle(p, false, false, 100, true, false)
 end
 
 function modifier_zanmato_dummy:CheckState()

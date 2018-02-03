@@ -16,9 +16,7 @@ function ptomely_mirror_blade:OnSpellStart()
 
 	local n = 0
 
-	local unit = CreateModifierThinker( caster,
-		self,
-		"modifier_truesight",{Duration=0.20*blades+0.10}, caster:GetAbsOrigin(), caster:GetTeamNumber(), false )
+	local unit = CreateModifierThinker(caster, self, "modifier_truesight",{Duration=0.20*blades+0.10}, caster:GetAbsOrigin(), caster:GetTeamNumber(), false)
 
 	Timers:CreateTimer(0.20,function()
 		local rv = RandomVector(RandomInt(-0.1,0.1))

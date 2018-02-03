@@ -22,12 +22,9 @@ if IsServer() then
 	end
 
 	function mifune_genso:GenIllusion(caster,target,ability)
-		local caster = caster
-		local target = target
 		local player = caster:GetPlayerID()
-		local ability = ability
 		local unit_name = caster:GetUnitName()
-		local origin = target:GetAbsOrigin() + RandomVector(200)
+		local origin = target:GetAbsOrigin() + RandomVector(128)
 		local duration = ability:GetLevelSpecialValueFor( "illusion_duration", ability:GetLevel() - 1 )
 		local outgoingDamage = ability:GetLevelSpecialValueFor( "illusion_damage", ability:GetLevel() - 1 )
 		local incomingDamage = ability:GetLevelSpecialValueFor( "illusion_incoming", ability:GetLevel() - 1 )
@@ -61,7 +58,9 @@ if IsServer() then
 				local abilityLevel = ability:GetLevel()
 				local abilityName = ability:GetAbilityName()
 				local illusionAbility = illusion:FindAbilityByName(abilityName)
-				illusionAbility:SetLevel(abilityLevel)
+				if illusionAbility then
+					illusionAbility:SetLevel(abilityLevel)
+				end
 			end
 		end
 
@@ -75,9 +74,6 @@ if IsServer() then
 			end
 		end
 
-		-- Add our datadriven Metamorphosis modifier if appropiate
-		-- You can add other buffs that want to be passed to illusions this way
-		local meta_ability = ability
 		illusion:AddNewModifier(caster, ability, "modifier_genso_illusion", {Duration = duration})
 
 		-- Set the unit as an illusion
@@ -87,21 +83,21 @@ if IsServer() then
 		-- Without MakeIllusion the unit counts as a hero, e.g. if it dies to neutrals it says killed by neutrals, it respawns, etc.
 		illusion:MakeIllusion()
 
-		local order = 
-			{
-				UnitIndex = illusion:entindex(),
-				OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-				TargetIndex = target:entindex()
-			}
+		-- spawned heroes get no draw applied from pregame.lua
+		illusion:RemoveNoDraw()
+
+		local order = {
+			UnitIndex = illusion:entindex(),
+			OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+			TargetIndex = target:entindex()
+		}
 
 		ExecuteOrderFromTable(order)
-		illusion:SetForceAttackTarget(target) --[[Returns:void
-		No Description Set
-		]]
+		illusion:SetForceAttackTarget(target)
 
 		illusion.attack_target = target
 
-		if not illusion:IsIllusion() then illusion:MakeIllusion() illusion:AddNewModifier(caster, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage }) end
+		--if not illusion:IsIllusion() then illusion:MakeIllusion() illusion:AddNewModifier(caster, ability, "modifier_illusion", { duration = duration, outgoing_damage = outgoingDamage, incoming_damage = incomingDamage }) end
 	end
 
 end

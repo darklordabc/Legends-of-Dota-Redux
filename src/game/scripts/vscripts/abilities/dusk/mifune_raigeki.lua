@@ -11,6 +11,10 @@ function mifune_raigeki:OnSpellStart()
 
 	local tpos = self:GetCursorPosition()
 
+	if tpos == cpos then
+		tpos = cpos + caster:GetForwardVector()
+	end
+
 	local direction = (tpos-cpos):Normalized()
 
 	local endpos = cpos + direction * range
@@ -40,10 +44,7 @@ function mifune_raigeki:OnSpellStart()
 	ProjectileManager:CreateLinearProjectile(proj)
 	caster:EmitSound("Hero_Magnataur.ShockWave.Particle")
 
-	local unit =
-			CreateModifierThinker( caster,
-			self,
-			"", {Duration=delay*2}, endpos, caster:GetTeamNumber(), false )
+	local unit = CreateModifierThinker(caster, self, "modifier_kill", {Duration=delay*3}, endpos, caster:GetTeamNumber(), false)
 
 	Timers:CreateTimer(delay*0.30,function()
 		unit:EmitSound("Hero_Magnataur.Empower.Target")
