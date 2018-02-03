@@ -12,7 +12,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
 		"FightRecapLevel"				"1"
-		"AbilityTextureName"			"lich_frost_armor"
+		"AbilityTextureName"			"custom/lich_cold_aura_dusk"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -47,7 +47,7 @@
 		{
 		}
 
-		"ReduxPerks"	"ice | aura"
-		"ReduxFlags"	""
+		"ReduxPerks"	"ice"
+		"ReduxFlags"	"bash"
 	}
 }

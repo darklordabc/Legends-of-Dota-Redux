@@ -10,6 +10,7 @@
 		"ScriptFile"					"abilities/dusk/alexander_godfall"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
 		"AbilityChannelTime"			"1"
 		"AbilityTextureName"			"custom/alexander_godfall"
 
