@@ -2,6 +2,7 @@ local Constants = require('constants') -- XP TABLE
 LinkLuaModifier( "modifier_medical_tractate",	'abilities/angel_arena_reborn/modifier_medical_tractate', LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_stats_tome",	'abilities/angel_arena_reborn/tome', LUA_MODIFIER_MOTION_NONE )
 
+--each tome ability will apply their own instance of this modifier
 modifier_stats_tome = {
 	IsHidden = function() return true end,
 	IsPurgable = function() return false end,
@@ -12,71 +13,81 @@ modifier_stats_tome = {
 	GetModifierBonusStats_Strength = function(self) return self.str and self.str * self:GetStackCount() end,
 	GetModifierBonusStats_Agility = function(self) return self.agi and self.agi * self:GetStackCount() end,
 	GetModifierBonusStats_Intellect = function(self) return self.int and self.int * self:GetStackCount() end,
-	OnRefresh = function(self, kv) self:OnCreated(kv) end,
-	OnCreated = function(self, kv) self[kv.stat] = self:GetAbility():GetSpecialValueFor(kv.stat) end,
-	OnStackCountChanged = function(self, count) self:ForceRefresh() end,
+
+	OnStackCountChanged = function(self, count) self:OnCreated({stat = self.stat}) end,
+	OnCreated = function(self, kv)
+		if IsServer() then
+			self.stat = self.stat or kv.stat
+			self[self.stat] = self:GetAbility():GetSpecialValueFor(self.stat)
+			print(self.stat, self[self.stat])
+			self:GetParent():CalculateStatBonus()
+		end
+	end,
 }
+
+--creates and stores a new stats modifier to preserve the previous uses of the lower level tomes.
+function LevelTome(keys)
+	local name = string.sub(keys.ability:GetName(), name:len() - 3)
+	--'gods'
+	if name == "ods" then
+		for k,v in pairs({"agi", "str", "int"})
+			keys.ability[v.."Mod"] = keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_stats_tome", {stat = v})
+		end
+		return
+	end
+	keys.ability[name.."Mod"] = keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_stats_tome", {stat = name})
+end
 
 function UpgradeStats(keys)
 	local caster = keys.caster
-	--local cost = keys.ability:GetCost() 
-	local str = keys.ability:GetSpecialValueFor("str")
-	local agi = keys.ability:GetSpecialValueFor("agi")
-	local int = keys.ability:GetSpecialValueFor("int")
+	local ability = keys.ability
+	--local cost = ability:GetCost() 
+	local str = ability:GetSpecialValueFor("str")
+	local agi = ability:GetSpecialValueFor("agi")
+	local int = ability:GetSpecialValueFor("int")
 
 	if not caster or not caster:IsRealHero() then return end
 	if caster:HasModifier("modifier_arc_warden_tempest_double") then return end
-	
-	--_G.tPlayers[caster:GetPlayerOwnerID() ] = _G.tPlayers[caster:GetPlayerOwnerID() ] or {}
-	--_G.tPlayers[caster:GetPlayerOwnerID() ].books = _G.tPlayers[caster:GetPlayerOwnerID() ].books or 0
-	--_G.tPlayers[caster:GetPlayerOwnerID() ].books = _G.tPlayers[caster:GetPlayerOwnerID() ].books + cost
 
-	--if str then caster:ModifyStrength(str) end
-	--if agi then caster:ModifyAgility(agi) end
-	--if int then caster:ModifyIntellect(int) end
-	
-	if keys.ability:GetName() == "angel_arena_tome_agi" or keys.ability:GetName() == "angel_arena_tome_agi_op" then
-		caster.agiTomesUsed = caster.agiTomesUsed and caster.agiTomesUsed + 1 or 1
+	if ability:GetName() == "angel_arena_tome_agi" or ability:GetName() == "angel_arena_tome_agi_op" then
+		ability.agiMod = (ability.agiMod and not ability.agiMod:IsNull()) and ability.agiMod or caster:AddNewModifier(caster, ability, "modifier_stats_tome", {stat = "agi"})
 
-		caster.agiMod = caster.agiMod or caster:AddNewModifier(caster, keys.ability, "modifier_stats_tome", {stat = "agi"})
-		caster.agiMod:SetStackCount(caster.agiTomesUsed)
+		ability.agiTomesUsed = ability.agiTomesUsed and ability.agiTomesUsed + 1 or 1
+		ability.agiMod:SetStackCount(ability.agiTomesUsed)
 
-		SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, caster, caster.agiTomesUsed, nil)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, caster, ability.agiTomesUsed, nil)
 	end
 
-	if keys.ability:GetName() == "angel_arena_tome_str" or keys.ability:GetName() == "angel_arena_tome_str_op" then
-		caster.strTomesUsed = caster.strTomesUsed and caster.strTomesUsed + 1 or 1
+	if ability:GetName() == "angel_arena_tome_str" or ability:GetName() == "angel_arena_tome_str_op" then
+		ability.strMod = (ability.strMod and not ability.strMod:IsNull()) and ability.strMod or caster:AddNewModifier(caster, ability, "modifier_stats_tome", {stat = "str"})
 
-		caster.strMod = caster.strMod or caster:AddNewModifier(caster, keys.ability, "modifier_stats_tome", {stat = "str"})
-		caster.strMod:SetStackCount(caster.strTomesUsed)
+		ability.strTomesUsed = ability.strTomesUsed and ability.strTomesUsed + 1 or 1
+		ability.strMod:SetStackCount(ability.strTomesUsed)
 
-		SendOverheadEventMessage(nil, OVERHEAD_ALERT_CRITICAL, caster, caster.strTomesUsed, nil)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_CRITICAL, caster, ability.strTomesUsed, nil)
 	end
 
-	if keys.ability:GetName() == "angel_arena_tome_int" or keys.ability:GetName() == "angel_arena_tome_int_op" then
-		caster.intTomesUsed = caster.intTomesUsed and caster.intTomesUsed + 1 or 1
+	if ability:GetName() == "angel_arena_tome_int" or ability:GetName() == "angel_arena_tome_int_op" then
+		ability.intMod = (ability.intMod and not ability.intMod:IsNull()) and ability.intMod or caster:AddNewModifier(caster, ability, "modifier_stats_tome", {stat = "int"})
 
-		caster.intMod = caster.intMod or caster:AddNewModifier(caster, keys.ability, "modifier_stats_tome", {stat = "int"})
-		caster.intMod:SetStackCount(caster.intTomesUsed)
+		ability.intTomesUsed = ability.intTomesUsed and ability.intTomesUsed + 1 or 1
+		ability.intMod:SetStackCount(ability.intTomesUsed)
 
-		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, caster, caster.intTomesUsed, nil)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, caster, ability.intTomesUsed, nil)
 	end
 
-	if keys.ability:GetName() == "angel_arena_tome_gods" or keys.ability:GetName() == "angel_arena_tome_gods_op" then
-		caster.agiTomesUsed = caster.agiTomesUsed and caster.agiTomesUsed + 1 or 1
-		caster.strTomesUsed = caster.strTomesUsed and caster.strTomesUsed + 1 or 1
-		caster.intTomesUsed = caster.intTomesUsed and caster.intTomesUsed + 1 or 1
+	if ability:GetName() == "angel_arena_tome_gods" or ability:GetName() == "angel_arena_tome_gods_op" then
+		ability.agiMod = (ability.agiMod and not ability.agiMod:IsNull()) and ability.agiMod or caster:AddNewModifier(caster, ability, "modifier_stats_tome", {stat = "agi"})
+		ability.strMod = (ability.strMod and not ability.strMod:IsNull()) and ability.strMod or caster:AddNewModifier(caster, ability, "modifier_stats_tome", {stat = "str"})
+		ability.intMod = (ability.intMod and not ability.intMod:IsNull()) and ability.intMod or caster:AddNewModifier(caster, ability, "modifier_stats_tome", {stat = "int"})
 
-		caster.agiMod = caster.agiMod or caster:AddNewModifier(caster, keys.ability, "modifier_stats_tome", {stat = "agi"})
-		caster.agiMod:SetStackCount(caster.agiTomesUsed)
+		ability.godTomesUsed = ability.godTomesUsed and ability.godTomesUsed + 1 or 1
 
-		caster.strMod = caster.strMod or caster:AddNewModifier(caster, keys.ability, "modifier_stats_tome", {stat = "str"})
-		caster.strMod:SetStackCount(caster.strTomesUsed)
+		ability.agiMod:SetStackCount(ability.godTomesUsed)
+		ability.strMod:SetStackCount(ability.godTomesUsed)
+		ability.intMod:SetStackCount(ability.godTomesUsed)
 
-		caster.intMod = caster.intMod or caster:AddNewModifier(caster, keys.ability, "modifier_stats_tome", {stat = "int"})
-		caster.intMod:SetStackCount(caster.intTomesUsed)
-
-		SendOverheadEventMessage(nil, OVERHEAD_ALERT_XP, caster, caster.intTomesUsed, nil)
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_XP, caster, ability.godTomesUsed, nil)
 	end
 end
 
