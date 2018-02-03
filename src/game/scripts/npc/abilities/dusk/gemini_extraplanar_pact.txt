@@ -68,7 +68,7 @@
 			"soundfile"	"soundevents/hero_gemini.vsndevts"
 		}
 
-		"ReduxPerks"    ""
-        "ReduxFlags"    ""
+		"ReduxPerks"	""
+		"ReduxFlags"	""
 	}
 }

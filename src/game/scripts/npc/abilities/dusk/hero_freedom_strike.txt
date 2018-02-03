@@ -72,7 +72,7 @@
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
 		}
 
-		"ReduxPerks"    ""
-        "ReduxFlags"    ""
+		"ReduxPerks"	""
+		"ReduxFlags"	""
 	}
 }

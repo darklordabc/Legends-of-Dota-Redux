@@ -90,8 +90,8 @@
 
 				"Properties"
 				{
-				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%bonus_movespeed"
-				    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_attackspeed"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%bonus_movespeed"
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_attackspeed"
 				}
 			}
 			"modifier_blinding_speed_passive"
@@ -115,7 +115,7 @@
 			}
 		}
 
-		"ReduxPerks"    "lightning"
-        "ReduxFlags"    ""
+		"ReduxPerks"	"lightning"
+		"ReduxFlags"	""
 	}
 }

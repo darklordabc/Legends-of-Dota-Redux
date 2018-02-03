@@ -55,7 +55,7 @@
 			"particle" "particles/generic_gameplay/generic_silenced.vpcf"
 			"particle" "particles/units/heroes/hero_alexander/soulseal.vpcf"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_keeper_of_the_light.vsndevts"
-			"soundfile" "soundevents\hero_alexander.vsndevts"
+			"soundfile" "soundevents/hero_alexander.vsndevts"
 		}
 		
 		"Modifiers"

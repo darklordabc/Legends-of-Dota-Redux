@@ -88,7 +88,7 @@
 			"particle" "particles/units/heroes/hero_axe/axe_culling_blade_kill.vpcf"
 		}
 
-		"ReduxPerks"    ""
-        "ReduxFlags"    ""
+		"ReduxPerks"	""
+		"ReduxFlags"	""
 	}
 }

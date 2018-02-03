@@ -68,7 +68,7 @@
 		{
 		}
 
-		"ReduxPerks"    "lightning"
-        "ReduxFlags"    ""
+		"ReduxPerks"	"lightning"
+		"ReduxFlags"	""
 	}
 }

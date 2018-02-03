@@ -70,7 +70,7 @@
 			"particle" "particles/units/heroes/hero_hero/one_punch_mega_crit.vpcf"
 		}
 
-		"ReduxPerks"    "enemyMoving"
-        "ReduxFlags"    ""
+		"ReduxPerks"	"enemyMoving"
+		"ReduxFlags"	""
 	}
 }

@@ -159,7 +159,7 @@
 			}
 		}
 
-		"ReduxPerks"    "scientific"
-        "ReduxFlags"    ""
+		"ReduxPerks"	"scientific | skillshot"
+		"ReduxFlags"	""
 	}
 }

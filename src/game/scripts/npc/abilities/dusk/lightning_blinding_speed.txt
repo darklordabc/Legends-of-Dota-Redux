@@ -89,11 +89,11 @@
 				"Duration" "%duration"
 				"IsBuff" "1"
 
-				"Aura"          	"modifier_blinding_speed_damage_apply"
+				"Aura"		  	"modifier_blinding_speed_damage_apply"
 				"Aura_Radius"   	"%radius"
-				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE"
+				"Aura_Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags"		"DOTA_UNIT_TARGET_FLAG_NONE"
 
 				"ThinkInterval"  "0.1"
 				"OnIntervalThink"
@@ -122,10 +122,10 @@
 
 				"Properties"
 				{
-				    "MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE" "%speed"	
-				    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL" "1"
-				    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL"	"1"
-				    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE"	"1"
+					"MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE" "%speed"	
+					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL" "1"
+					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL"	"1"
+					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE"	"1"
 				}
 			
 				"States"
@@ -141,11 +141,11 @@
 				"Duration" "%duration"
 				"IsBuff" "1"
 
-				"Aura"          	"modifier_blinding_speed_damage_apply"
+				"Aura"		  	"modifier_blinding_speed_damage_apply"
 				"Aura_Radius"   	"%radius"
-				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE"
+				"Aura_Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags"		"DOTA_UNIT_TARGET_FLAG_NONE"
 
 				"ThinkInterval"  "0.1"
 				"OnIntervalThink"
@@ -179,10 +179,10 @@
 
 				"Properties"
 				{
-				    "MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE" "%scepter_speed"
-				    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL" "1"
-				    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL"	"1"
-				    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE"	"1"
+					"MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE" "%scepter_speed"
+					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL" "1"
+					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL"	"1"
+					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE"	"1"
 				}
 			
 				"States"
@@ -204,7 +204,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "-40"
-				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-35"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-35"
 				}
 				"OnCreated"
 				{

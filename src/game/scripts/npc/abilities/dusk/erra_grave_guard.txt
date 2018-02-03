@@ -1,74 +1,74 @@
 "DOTAAbilities" {
-    "erra_grave_guard"
-    {
-        // General
-        //-------------------------------------------------------------------------------------------------------------
-        "BaseClass"             "ability_lua"
-        "ScriptFile"            "abilities/dusk/erra_grave_guard"
-        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
-        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
-        "AnimationPlaybackRate"         "1"
-        "FightRecapLevel"               "1"
-        "AbilityTextureName"            "custom/erra_grave_guard"
-        
-        // Casting
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilityCastRange"              "0"
-        "AbilityCastPoint"              "0.0"
+	"erra_grave_guard"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"			 "ability_lua"
+		"ScriptFile"			"abilities/dusk/erra_grave_guard"
+		"AbilityBehavior"			   "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"		 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"			 "SPELL_IMMUNITY_ENEMIES_NO"
+		"AnimationPlaybackRate"		 "1"
+		"FightRecapLevel"			   "1"
+		"AbilityTextureName"			"custom/erra_grave_guard"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"			  "0"
+		"AbilityCastPoint"			  "0.0"
 
-        // Time     
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilityCooldown"               "100 80 60 40"
+		// Time	 
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"			   "100 80 60 40"
 
-        // Cost
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilityManaCost"               "175"
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"			   "175"
 
-        // Stats
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilityModifierSupportValue"   "0.5"   // Applies two modifiers
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"   "0.5"   // Applies two modifiers
 
-        // Special
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilitySpecial"
-        {
-            "01"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "duration"              "6"
-            }
-            
-            "02"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "hp_recovery"           "60 80 100 120"
-            }
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			  "FIELD_INTEGER"
+				"duration"			  "6"
+			}
+			
+			"02"
+			{
+				"var_type"			  "FIELD_INTEGER"
+				"hp_recovery"		   "60 80 100 120"
+			}
 
-            "03"    
-            {
-                "var_type"              "FIELD_INTEGER"
-                "mp_recovery"           "15 30 45 60"
-            }
-            "04"
-            {
-                "var_type"              "FIELD_INTEGER"
-                "threshold"             "25"
-            }
-        }
+			"03"	
+			{
+				"var_type"			  "FIELD_INTEGER"
+				"mp_recovery"		   "15 30 45 60"
+			}
+			"04"
+			{
+				"var_type"			  "FIELD_INTEGER"
+				"threshold"			 "25"
+			}
+		}
 
-        "precache"
-        {
-            "soundfile" "soundevents/hero_erra.vsndevts"
-            "particle"  "particles/units/heroes/hero_erra/grave_guard.vpcf"
-            "particle"  "particles/units/heroes/hero_erra/grave_guard_unit.vpcf"
-        }
+		"precache"
+		{
+			"soundfile" "soundevents/hero_erra.vsndevts"
+			"particle"  "particles/units/heroes/hero_erra/grave_guard.vpcf"
+			"particle"  "particles/units/heroes/hero_erra/grave_guard_unit.vpcf"
+		}
 
-        "Modifiers"
-        {
-        }
+		"Modifiers"
+		{
+		}
 
-        "ReduxPerks"    ""
-        "ReduxFlags"    ""
-    }
+		"ReduxPerks"	""
+		"ReduxFlags"	""
+	}
 }

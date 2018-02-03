@@ -74,7 +74,7 @@
 			}
 		}
 
-		"ReduxPerks"    ""
-        "ReduxFlags"    ""
+		"ReduxPerks"	""
+		"ReduxFlags"	""
 	}
 }

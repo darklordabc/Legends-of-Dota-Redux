@@ -67,7 +67,7 @@
 		{
 		}
 
-		"ReduxPerks"    "support"
-	    "ReduxFlags"    ""   
+		"ReduxPerks"	"support"
+		"ReduxFlags"	""   
 	}
 }

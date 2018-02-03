@@ -95,7 +95,7 @@
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_keeper_of_the_light.vsndevts"
 		}
 
-		"ReduxPerks"    "ice"
-        "ReduxFlags"    ""	
+		"ReduxPerks"	"ice"
+		"ReduxFlags"	""	
 	}
 }

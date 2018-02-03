@@ -136,12 +136,12 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%slow"
-				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow"
 				}
 			}
 		}
 
-		"ReduxPerks"    "lightning"
-        "ReduxFlags"    ""
+		"ReduxPerks"	"lightning"
+		"ReduxFlags"	""
 	}
 }

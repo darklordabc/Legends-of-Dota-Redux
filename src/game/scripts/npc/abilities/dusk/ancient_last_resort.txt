@@ -85,11 +85,11 @@
 				"IsDebuff"			"0"
 				"Duration"			"%duration"
 
-				"Aura"          	"modifier_last_resort_invulnerability"
+				"Aura"		  	"modifier_last_resort_invulnerability"
 				"Aura_Radius"   	"%radius"
-				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
-				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE"
+				"Aura_Teams"		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+				"Aura_Flags"		"DOTA_UNIT_TARGET_FLAG_NONE"
 				"Aura_ApplyToCaster" "0"
 				
 			}

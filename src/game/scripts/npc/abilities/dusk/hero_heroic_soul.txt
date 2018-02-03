@@ -63,7 +63,7 @@
 			"particle"			"particles/status_fx/status_effect_gods_strength.vpcf"
 		}
 
-		"ReduxPerks"    "mobility"
-        "ReduxFlags"    ""
+		"ReduxPerks"	"mobility"
+		"ReduxFlags"	""
 	}
 }

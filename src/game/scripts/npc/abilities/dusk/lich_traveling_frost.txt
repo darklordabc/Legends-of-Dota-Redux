@@ -83,7 +83,7 @@
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_tusk.vsndevts"
 		}
 
-		"ReduxPerks"    "ice | skillshot"
-        "ReduxFlags"    ""
+		"ReduxPerks"	"ice | skillshot"
+		"ReduxFlags"	""
 	}
 }

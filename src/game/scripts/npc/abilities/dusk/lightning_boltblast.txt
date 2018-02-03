@@ -79,7 +79,7 @@
 		{
 		}
 
-		"ReduxPerks"    "lightning | explosive"
-        "ReduxFlags"    ""
+		"ReduxPerks"	"lightning | explosive"
+		"ReduxFlags"	""
 	}
 }

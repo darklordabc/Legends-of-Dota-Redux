@@ -85,7 +85,7 @@
 		{
 		}
 
-		"ReduxPerks"    "mobility"
-        "ReduxFlags"    ""
+		"ReduxPerks"	"mobility"
+		"ReduxFlags"	"mobility"
 	}
 }

@@ -62,7 +62,7 @@
 		{
 		}
 
-		"ReduxPerks"    ""
-        "ReduxFlags"    ""
+		"ReduxPerks"	""
+		"ReduxFlags"	""
 	}
 }

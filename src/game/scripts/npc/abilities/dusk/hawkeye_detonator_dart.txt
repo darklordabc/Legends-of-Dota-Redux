@@ -80,7 +80,7 @@
 		{
 		}
 
-		"ReduxPerks"    "scientific | explosive"
-        "ReduxFlags"    ""
+		"ReduxPerks"	"scientific | explosive"
+		"ReduxFlags"	""
 	}
 }

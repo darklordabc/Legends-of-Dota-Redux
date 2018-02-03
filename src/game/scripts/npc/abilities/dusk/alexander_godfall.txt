@@ -60,7 +60,7 @@
 			"particle" "particles/units/heroes/hero_alexander/godfall_charged.vpcf"
 			"particle" "particles/units/heroes/hero_alexander/godfall_strike.vpcf"
 			"particle" "particles/units/heroes/hero_alexander/godfall_success.vpcf"
-			"soundfile" "soundevents\hero_alexander.vsndevts"
+			"soundfile" "soundevents/hero_alexander.vsndevts"
 			"soundfile" "soundevents/game_sounds_heroes/game_sounds_luna.vsndevts"
 		}
 		

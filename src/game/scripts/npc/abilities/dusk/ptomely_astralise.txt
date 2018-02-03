@@ -73,7 +73,7 @@
 			"07"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"ally_heal"					"30"
+				"ally_heal"					"50"
 			}
 		}
 		

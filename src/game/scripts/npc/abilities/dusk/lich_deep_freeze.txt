@@ -47,7 +47,7 @@
 		{
 		}
 
-		"ReduxPerks"    "ice | aura"
-        "ReduxFlags"    ""
+		"ReduxPerks"	"ice | aura"
+		"ReduxFlags"	""
 	}
 }

@@ -72,13 +72,13 @@
 		{
 			"TrackingProjectile"
 			{
-				"Target"           "TARGET"
-			    "EffectName"       "particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/phantom_assassin_stifling_dagger_arcana.vpcf"
-			    "Dodgeable"        "1"
-			    "ProvidesVision"   "1"
-			    "VisionRadius"     "300"
-			    "MoveSpeed"        "1500"
-			    "SourceAttachment"  "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+				"Target"		   "TARGET"
+				"EffectName"	   "particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/phantom_assassin_stifling_dagger_arcana.vpcf"
+				"Dodgeable"		"1"
+				"ProvidesVision"   "1"
+				"VisionRadius"	 "300"
+				"MoveSpeed"		"1500"
+				"SourceAttachment"  "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
 			}
 
 			"FireSound"
@@ -202,7 +202,7 @@
 			}
 		}
 
-		"ReduxPerks"    "lightning | dagger"
-        "ReduxFlags"    ""
+		"ReduxPerks"	"lightning | dagger"
+		"ReduxFlags"	""
 	}
 }

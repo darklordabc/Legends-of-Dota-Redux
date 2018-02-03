@@ -77,7 +77,7 @@
 		{
 		}
 
-		"ReduxPerks"    "water | support"
-        "ReduxFlags"    ""
+		"ReduxPerks"	"water | support"
+		"ReduxFlags"	""
 	}
 }

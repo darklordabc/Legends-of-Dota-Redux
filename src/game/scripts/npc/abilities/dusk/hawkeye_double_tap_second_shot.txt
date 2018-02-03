@@ -121,36 +121,36 @@
 		{
 
 			"modifier_show_target"
-	        {
-	            "IsHidden"              "0"
-	            "IsPurgeble"            "0"
-	            "IsDebuff"              "1"
-	            "Duration"              "2.00"
-	            
-	            "EffectName"            "particles/units/heroes/hero_sniper/sniper_crosshair.vpcf"
-	            "EffectAttachType"      "follow_overhead"
+			{
+				"IsHidden"			  "0"
+				"IsPurgeble"			"0"
+				"IsDebuff"			  "1"
+				"Duration"			  "2.00"
+				
+				"EffectName"			"particles/units/heroes/hero_sniper/sniper_crosshair.vpcf"
+				"EffectAttachType"	  "follow_overhead"
 
-	            "States"
-	            {
-	            	"MODIFIER_STATE_PROVIDES_VISION"		"MODIFIER_STATE_VALUE_ENABLED"
-	            }
-	        }
+				"States"
+				{
+					"MODIFIER_STATE_PROVIDES_VISION"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
 
-	        "modifier_stop_commands"
-	        {
-	        	"Passive"			"0"
-	        	"IsHidden"			"1"
-	        	"IsDebuff"			"0"
-	        	"Duration"			"2.00"
-	        
-	        	"States"
-	        	{
-	        		"MODIFIER_STATE_COMMAND_RESTRICTED"		"MODIFIER_STATE_VALUE_ENABLED"
-	        	}
-	        }
+			"modifier_stop_commands"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"2.00"
+			
+				"States"
+				{
+					"MODIFIER_STATE_COMMAND_RESTRICTED"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
 		}
 
 		"ReduxPerks"	""
-		"ReduxFlags"	""
+		"ReduxFlags"	"doNotRandom"
 	}
 }

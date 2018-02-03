@@ -81,7 +81,7 @@
 			"soundfile" "soundevents/hero_lich.vsndevts"
 		}
 
-		"ReduxPerks"    "ice"
-        "ReduxFlags"    ""
+		"ReduxPerks"	"ice"
+		"ReduxFlags"	""
 	}
 }
