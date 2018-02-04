@@ -19,7 +19,6 @@ modifier_stats_tome = {
 		if IsServer() then
 			self.stat = self.stat or kv.stat
 			self[self.stat] = self:GetAbility():GetSpecialValueFor(self.stat)
-			print(self.stat, self[self.stat])
 			self:GetParent():CalculateStatBonus()
 		end
 	end,
@@ -27,15 +26,20 @@ modifier_stats_tome = {
 
 --creates and stores a new stats modifier to preserve the previous uses of the lower level tomes.
 function LevelTome(keys)
-	local name = string.sub(keys.ability:GetName(), name:len() - 3)
-	--'gods'
-	if name == "ods" then
-		for k,v in pairs({"agi", "str", "int"})
-			keys.ability[v.."Mod"] = keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_stats_tome", {stat = v})
+	local name = keys.ability:GetName():gsub("_op", "")
+	name = name:sub(name:len() - 2)
+
+	--wait a frame so that the ability is actually leveled up.
+	Timers:CreateTimer(function()
+		--'gods'
+		if name == "ods" then
+			for k,v in pairs({"agi", "str", "int"}) do
+				keys.ability[v.."Mod"] = keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_stats_tome", {stat = v})
+			end
+			return
 		end
-		return
-	end
-	keys.ability[name.."Mod"] = keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_stats_tome", {stat = name})
+		keys.ability[name.."Mod"] = keys.caster:AddNewModifier(keys.caster, keys.ability, "modifier_stats_tome", {stat = name})
+	end)
 end
 
 function UpgradeStats(keys)
@@ -50,42 +54,32 @@ function UpgradeStats(keys)
 	if caster:HasModifier("modifier_arc_warden_tempest_double") then return end
 
 	if ability:GetName() == "angel_arena_tome_agi" or ability:GetName() == "angel_arena_tome_agi_op" then
-		ability.agiMod = (ability.agiMod and not ability.agiMod:IsNull()) and ability.agiMod or caster:AddNewModifier(caster, ability, "modifier_stats_tome", {stat = "agi"})
-
 		ability.agiTomesUsed = ability.agiTomesUsed and ability.agiTomesUsed + 1 or 1
-		ability.agiMod:SetStackCount(ability.agiTomesUsed)
+		ability.agiMod:IncrementStackCount()
 
 		SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, caster, ability.agiTomesUsed, nil)
 	end
 
 	if ability:GetName() == "angel_arena_tome_str" or ability:GetName() == "angel_arena_tome_str_op" then
-		ability.strMod = (ability.strMod and not ability.strMod:IsNull()) and ability.strMod or caster:AddNewModifier(caster, ability, "modifier_stats_tome", {stat = "str"})
-
 		ability.strTomesUsed = ability.strTomesUsed and ability.strTomesUsed + 1 or 1
-		ability.strMod:SetStackCount(ability.strTomesUsed)
+		ability.strMod:IncrementStackCount()
 
 		SendOverheadEventMessage(nil, OVERHEAD_ALERT_CRITICAL, caster, ability.strTomesUsed, nil)
 	end
 
 	if ability:GetName() == "angel_arena_tome_int" or ability:GetName() == "angel_arena_tome_int_op" then
-		ability.intMod = (ability.intMod and not ability.intMod:IsNull()) and ability.intMod or caster:AddNewModifier(caster, ability, "modifier_stats_tome", {stat = "int"})
-
 		ability.intTomesUsed = ability.intTomesUsed and ability.intTomesUsed + 1 or 1
-		ability.intMod:SetStackCount(ability.intTomesUsed)
+		ability.intMod:IncrementStackCount()
 
 		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, caster, ability.intTomesUsed, nil)
 	end
 
 	if ability:GetName() == "angel_arena_tome_gods" or ability:GetName() == "angel_arena_tome_gods_op" then
-		ability.agiMod = (ability.agiMod and not ability.agiMod:IsNull()) and ability.agiMod or caster:AddNewModifier(caster, ability, "modifier_stats_tome", {stat = "agi"})
-		ability.strMod = (ability.strMod and not ability.strMod:IsNull()) and ability.strMod or caster:AddNewModifier(caster, ability, "modifier_stats_tome", {stat = "str"})
-		ability.intMod = (ability.intMod and not ability.intMod:IsNull()) and ability.intMod or caster:AddNewModifier(caster, ability, "modifier_stats_tome", {stat = "int"})
-
 		ability.godTomesUsed = ability.godTomesUsed and ability.godTomesUsed + 1 or 1
 
-		ability.agiMod:SetStackCount(ability.godTomesUsed)
-		ability.strMod:SetStackCount(ability.godTomesUsed)
-		ability.intMod:SetStackCount(ability.godTomesUsed)
+		ability.agiMod:IncrementStackCount()
+		ability.strMod:IncrementStackCount()
+		ability.intMod:IncrementStackCount()
 
 		SendOverheadEventMessage(nil, OVERHEAD_ALERT_XP, caster, ability.godTomesUsed, nil)
 	end
