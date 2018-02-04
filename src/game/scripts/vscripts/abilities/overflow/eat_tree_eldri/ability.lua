@@ -16,19 +16,22 @@ function eat_tree_eldri:OnSpellStart()
 	if treeMod then
 		local stacks = self:GetCaster():FindModifierByName("eat_tree_eldri_mod"):GetStackCount()
 		--print(stacks)
-		cost = stacks * self:GetSpecialValueFor("mana_cost_per_stack")
-		playersMana = self:GetCaster():GetMana()
+		local cost = stacks * self:GetSpecialValueFor("mana_cost_per_stack")
+		local playersMana = self:GetCaster():GetMana()
 		if playersMana < cost then return end
-		self:GetCaster():SetMana(playersMana - cost)
+		self:GetCaster():SpendMana(cost, self)
 		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, self:GetCaster(), cost, nil)
 	end
 
+	--GridNav:DestroyTreesAroundPoint( self:GetCursorPosition() , 1, true)
+	local tree = GridNav:GetAllTreesAroundPoint(self:GetCursorPosition(), 1, true)[1]
+	if tree then
+		tree:CutDown(self:GetCaster():GetTeamNumber())
+	end
 
-
-	--print(self:GetAbilityIndex())
-	GridNav:DestroyTreesAroundPoint( self:GetCursorPosition() , 1, true)
 	EmitSoundOnLocationWithCaster( self:GetCaster():GetOrigin(), "Hero_Omniknight.GuardianAngel", self:GetCaster() )
 	self:GetCaster():AddNewModifier( self:GetCaster(), self, "eat_tree_eldri_mod", { duration = self:GetSpecialValueFor("duration") , stack = 1 } )
+	self:GetCaster():CalculateStatBonus()
 end
 
 function eat_tree_eldri:GetBehavior()
