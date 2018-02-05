@@ -1004,7 +1004,7 @@
                 <Image id="lodBoosterDraftMessage" src="file://{images}/custom_game/boosterDraft.png" scaling="stretch-to-fit-preserve-aspect"/>
             </Panel>
 
-            <Panel class="lodPopupMessageAcceptContainer">
+            <Panel class="lodPopupMessageAcceptContainer" id="lodPopupMessageAcceptContainer">
                 <Button class="lockBuildButton makeThePlayerNoticeThisButton" onactivate="onAcceptPopup()">
                     <Label text="acceptHosting" />
                 </Button>

@@ -2,6 +2,8 @@
 
 var util = GameUI.CustomUIConfig().Util;
 
+var LOCAL_WARNING = false;
+
 // Phases
 var PHASE_LOADING = 1;          // Waiting for players, etc
 var PHASE_OPTION_VOTING = 2;    // Selection options
@@ -5278,14 +5280,23 @@ function UpdateTimer() {
 
 // Player has accepting the hosting message
 function onAcceptPopup() {
-    $('#lodPopupMessage').visible = false;
-    $('#lodOptionsRoot').SetHasClass("darkened", false);
-    $('#tipPanel').SetHasClass("darkened", false);
+    if (LOCAL_WARNING) {
+        
+    } else {
+        $('#lodPopupMessage').visible = false;
+        $('#lodOptionsRoot').SetHasClass("darkened", false);
+        $('#tipPanel').SetHasClass("darkened", false);        
+    }
 }
 
 // Shows a popup message to a player
 function showPopupMessage(msg) {
     $('#lodPopupMessageLabel').text = $.Localize(msg);
+
+    if (LOCAL_WARNING) {
+        $('#lodPopupMessageAcceptContainer').visible = false;
+        $('#lodPopupMessageLabel').SetHasClass("large", true);
+    }
 
     // QUICKER DEBUGGING CHANGE - Only show pops in non-tools mode
     if (!Game.IsInToolsMode()) {
@@ -5788,4 +5799,8 @@ function getAbilityGlobalPickPopularity(ability) {
     }, function() {
         calculateFilters();
     });
+
+    if (LOCAL_WARNING) {
+        showPopupMessage('lodLocalWarning');        
+    }
 })();
