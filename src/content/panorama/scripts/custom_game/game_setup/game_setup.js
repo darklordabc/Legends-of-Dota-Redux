@@ -2439,6 +2439,7 @@ function OnSkillTabShown(tabName) {
             main: true,
             neutral: isDraftGamemode(),
             custom: true,
+            imba: isIMBA(),
             superop: true,
             mostused: false
         };
@@ -2570,6 +2571,7 @@ function OnSkillTabShown(tabName) {
             categorySorting["neutral"] = 2;
             categorySorting["custom"] = 3;
             categorySorting["superop"] = 4;
+            categorySorting["imba"] = 5;
 
             if (activeTabs["mostused"]) {
                 for (var uses in subSorting)
@@ -2735,6 +2737,7 @@ function OnSkillTabShown(tabName) {
             'main',
             'neutral',
             'custom',
+            'imba',
             'superop',
             'mostused'
         ];
@@ -4517,6 +4520,14 @@ function OnPlayerSelectedTeam( nPlayerId, nTeamId, bSuccess ) {
     }
 }
 
+function isIMBA() {
+    if (!CustomNetTables.GetTableValue("options", "lodOptionAdvancedImbaAbilities")) {
+        return false;
+    }
+    var netTableValue = CustomNetTables.GetTableValue("options", "lodOptionAdvancedImbaAbilities").v;
+    return netTableValue == 1;
+}
+
 function isDraftGamemode() {
     if (!CustomNetTables.GetTableValue("options", "lodOptionCommonGamemode")) {
         return false;
@@ -5035,6 +5046,10 @@ function onAllowedCategoriesChanged() {
 
     if(optionValueList['lodOptionAdvancedCustomSkills'] == 1) {
         allowedCategories['custom'] = true;
+    }
+
+    if(optionValueList['lodOptionAdvancedImbaAbilities'] == 1) {
+        allowedCategories['imba'] = true;
     }
 
     if(optionValueList['lodOptionAdvancedCustomSkills'] == 1) {
