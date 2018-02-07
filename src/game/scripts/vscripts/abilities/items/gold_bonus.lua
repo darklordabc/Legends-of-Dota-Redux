@@ -11,6 +11,7 @@ if IsServer() then
     else
       caster:AddNewModifier(caster, self, "gold_bonus_modifier", { duration = gold })
     end
+    caster:EmitSound("DOTA_Item.Hand_Of_Midas")
     self:SpendCharge()
   end
 end
@@ -41,6 +42,10 @@ if IsServer() then
     self:GetParent():ModifyGold(self:GetGold(), true, DOTA_ModifyGold_Unspecified)  
     
     self:SetStackCount(tonumber(string.sub(tostring(math.ceil(self:GetGold() * self:GetRemainingTime())), 0, 2)))
+  end
+
+  function gold_bonus_modifier:IsPurgable()
+    return false
   end
 
   function gold_bonus_modifier:GetAttributes()
