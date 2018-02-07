@@ -1034,6 +1034,7 @@
     "lodCategory_custom"                            "Custom Abilities"
     "lodCategory_superop"                           "Single Player abilities"
     "lodCategory_mostused"                          "Most Used Abilities"
+    "lodCategory_imba"                              "DOTA IMBA Abilities"
 
     // Error messages
     "lodFailedToFindHero"                           "Please select a valid hero."
