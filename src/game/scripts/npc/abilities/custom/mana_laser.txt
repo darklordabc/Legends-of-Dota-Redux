@@ -1,0 +1,32 @@
+"DOTAAbilities"
+{
+    "mana_laser"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/mana_laser.lua"
+        "AbilityTextureName"                                                   "custom/mana_laser"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"                "4 3 2 1"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "search_radius"          "900"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "gold_cost"             "3000"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "laser_damage"          "75 150 225 300"
+            }
+        }
+        "ReduxFlags"                                                           "dota_custom"
+        "ReduxCost"                                                            "80"
+    }
+}
+    

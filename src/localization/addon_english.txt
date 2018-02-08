@@ -7770,6 +7770,10 @@
 
     "wards_cooldown" "Wards still on cooldown"
 
+    "DOTA_Tooltip_ability_mana_laser"                                       "Mana Laser"
+    "DOTA_Tooltip_ability_mana_laser_bonus_Description"                           "Shoots a laser at a random target based on your mana percentage. Upgrade this to increase the frequency."
+    "DOTA_Tooltip_ability_mana_laser_laser_damage"                                "MAX DAMAGE:"
+
     "DOTA_Tooltip_ability_basic_spell_amp_bonus"                                       "Books of Knowledge"
     "DOTA_Tooltip_ability_basic_spell_amp_bonus_Description"                           "Increases Spell amplification"
     "DOTA_Tooltip_ability_basic_spell_amp_bonus_Lore"                                  "An investment in knowledge pays the best interest."
