@@ -857,7 +857,7 @@ function CDOTA_BaseNPC:GetIncomingDamagePct()
 end
 
 -- Tenacity
-function CDOTA_BaseNPC:GetTenacity()
+function CDOTA_BaseNPC:GetIMBATenacity()
 
 	-- Fetch tenacity from modifiers
 	local tenacity = 1

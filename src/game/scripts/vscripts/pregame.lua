@@ -2907,7 +2907,7 @@ function Pregame:initOptionSelector()
         -- Advanced -- Enable Hero Abilities
         lodOptionAdvancedHeroAbilities = function(value)
             -- Disables IMBA Abilities
-            if value == 1 and not util:isCoop() then
+            if value == 1 then
                 self:setOption('lodOptionAdvancedImbaAbilities', 0, true)
             end
 
@@ -2916,7 +2916,7 @@ function Pregame:initOptionSelector()
 
         -- Advanced -- Enable Neutral Abilities
         lodOptionAdvancedNeutralAbilities = function(value)
-            if value == 1 and not util:isCoop() then
+            if value == 1 then
                 self:setOption('lodOptionAdvancedImbaAbilities', 0, true)
             end
 
@@ -2925,7 +2925,7 @@ function Pregame:initOptionSelector()
 
         -- Advanced -- Enable Custom Abilities
         lodOptionAdvancedCustomSkills = function(value)
-            if value == 1 and not util:isCoop() then
+            if value == 1 then --and not util:isCoop()
                 self:setOption('lodOptionAdvancedImbaAbilities', 0, true)
             end
 
