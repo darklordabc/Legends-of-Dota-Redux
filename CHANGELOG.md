@@ -2,6 +2,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 10.4
+- Fixed Neutral Evasion ability and made it a single level ability.
+
 ## 10.3
 - Essence Aura is now actually a single player ability
 

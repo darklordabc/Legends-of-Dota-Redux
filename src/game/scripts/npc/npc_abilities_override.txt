@@ -2784,11 +2784,20 @@
     "blue_dragonspawn_overseer_evasion"
     {
         "ReduxPerks"                                                           "neutral"
+        "MaxLevel"                      "4"
         "ReduxFlags"                                                           "doNotRandom"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "evasion_chance_pct"    "15 30 45 100"
+            }
+        }
     }
     "blue_dragonspawn_sorcerer_evasion"
     {
-        "MaxLevel"                      "4"
+        "MaxLevel"                      "1"
         "ReduxPerks"                                                           "neutral"
         "ReduxFlags"                                                           "doNotRandom"
         // Special
@@ -2798,7 +2807,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "evasion_chance_pct"    "15 30 45 60"
+                "evasion_chance_pct"    "38"
             }
         }
     }
