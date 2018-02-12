@@ -24,6 +24,11 @@
                 "var_type"              "FIELD_FLOAT"
                 "laser_damage"          "75 150 225 300"
             }
+            "04"
+            {
+                "var_type" "FIELD_INTEGER"
+                "max_bounces"           "4"
+            }
         }
         "ReduxFlags"                                                           "dota_custom"
         "ReduxCost"                                                            "80"

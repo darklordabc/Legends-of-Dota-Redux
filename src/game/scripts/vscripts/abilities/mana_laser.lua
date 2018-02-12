@@ -1,4 +1,5 @@
 LinkLuaModifier("modifier_mana_laser", "abilities/mana_laser.lua", LUA_MODIFIER_MOTION_NONE)
+--if IsServer() then PrecacheItemByNameAsync("particles/other/tinker_laser.vpcf", function() end) end
 
 mana_laser = {}
 mana_laser.__index = mana_laser
@@ -22,11 +23,39 @@ function mana_laser.OnSpellStart(self)
     local caster = self.GetCaster(self)
     local modifier = caster.SetModifierStackCount(caster,"modifier_mana_laser",caster,caster.GetModifierStackCount(caster,"modifier_mana_laser",caster)+1)
 end
-function mana_laser.OnProjectileHit(self,target,location)
+function mana_laser.OnProjectileHit_ExtraData(self,target,location,data)
     if target then
+        if data.nProjectileNumber == 1 then
+            self["targets"] = {}
+        end
+        --self["targets"] = self[targets] or {}
+        table.insert(self["targets"],target)
+        local max_bounces = self:GetSpecialValueFor("max_bounces")
         local caster = self.GetCaster(self)
         caster.EmitSound(caster,"Hero_Tinker.LaserImpact")
-        ApplyDamage({damage=(self.GetSpecialValueFor(self,"laser_damage")*caster.GetMana(caster))/caster.GetMaxMana(caster),ability=self,victim=target,attacker=caster,damage_type=DAMAGE_TYPE_MAGICAL})
+        ApplyDamage({
+            damage=(1-((1/max_bounces) * (data.nProjectileNumber-1)))*(self.GetSpecialValueFor(self,"laser_damage")*caster.GetMana(caster))/caster.GetMaxMana(caster),
+            ability=self,
+            victim=target,
+            attacker=caster,
+            damage_type=DAMAGE_TYPE_MAGICAL
+        })
+        if caster:HasScepter() and data.nProjectileNumber < 4 then
+            local range = self.GetSpecialValueFor(self,"search_radius")
+            local units = FindUnitsInRadius(caster.GetTeamNumber(caster),target.GetAbsOrigin(caster),nil,range,DOTA_UNIT_TARGET_TEAM_ENEMY,DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC,DOTA_UNIT_TARGET_FLAG_NONE,FIND_ANY_ORDER,false)
+            for _,unit in pairs(units) do
+                --local unit = units[i+1]
+                if not self["targets"][unit] then
+                    local projectile_speed = 5000
+                    if unit.IsHero(unit) then
+                        projectile_speed=(caster.GetRangeToUnit(caster,unit)*2)
+                    end
+                    caster.EmitSound(caster,"Hero_Tinker.Laser")
+                    ProjectileManager.CreateTrackingProjectile(ProjectileManager,{Target=unit,vSourceLoc=unit:GetAbsOrigin(),Source=unit,Ability=self,EffectName="particles/other/tinker_laser.vpcf",bDodgeable=true,iMoveSpeed=projectile_speed,ExtraData = {nProjectileNumber = data.nProjectileNumber+1}})
+                    break
+                end
+            end
+        end
     end
     return true
 end
@@ -49,20 +78,18 @@ function modifier_mana_laser.OnIntervalThink(self)
     if self.ability.IsCooldownReady(self.ability) then
         local range = self.ability.GetSpecialValueFor(self.ability,"search_radius")
         local units = FindUnitsInRadius(caster.GetTeamNumber(caster),caster.GetAbsOrigin(caster),nil,range,DOTA_UNIT_TARGET_TEAM_ENEMY,DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC,DOTA_UNIT_TARGET_FLAG_NONE,FIND_ANY_ORDER,false)
-        for i=0,#units-1,1 do
-            local unit = units[i+1]
+        for _,unit in pairs(units) do
+            --local unit = units[i+1]
             if caster:CanEntityBeSeenByMyTeam(unit) then
-                local projectile_speed = 10000
+                local projectile_speed = 5000
                 if unit.IsHero(unit) then
                     projectile_speed=(caster.GetRangeToUnit(caster,unit)*2)
                 end
                 caster.EmitSound(caster,"Hero_Tinker.Laser")
-                ProjectileManager.CreateTrackingProjectile(ProjectileManager,{Target=unit,Source=caster,Ability=self.ability,EffectName="particles/units/heroes/hero_tinker/tinker_laser.vpcf",bDodgeable=true,iMoveSpeed=projectile_speed})
+                ProjectileManager.CreateTrackingProjectile(ProjectileManager,{Target=unit,Source=caster,Ability=self.ability,EffectName="particles/other/tinker_laser.vpcf",bDodgeable=true,iMoveSpeed=projectile_speed,ExtraData = {nProjectileNumber = 1}})
                 self.ability.StartCooldown(self.ability,self.ability.GetCooldown(self.ability,-1))
                 local cd = self.ability.GetCooldownTimeRemaining(self.ability)
-                
                 self.ability.EndCooldown(self.ability)
-                
                 self.ability.StartCooldown(self.ability,cd/(self.GetStackCount(self)+1))
                 break
             end
