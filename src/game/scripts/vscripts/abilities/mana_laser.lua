@@ -46,7 +46,7 @@ function mana_laser.OnProjectileHit_ExtraData(self,target,location,data)
             for _,unit in pairs(units) do
                 --local unit = units[i+1]
                 if not self["targets"][unit] then
-                    local projectile_speed = 5000
+                    local projectile_speed = 3000
                     if unit.IsHero(unit) then
                         projectile_speed=(caster.GetRangeToUnit(caster,unit)*2)
                     end
@@ -75,13 +75,15 @@ function modifier_mana_laser.OnCreated(self)
 end
 function modifier_mana_laser.OnIntervalThink(self)
     local caster = self.GetCaster(self)
+    if (not caster:IsAlive()) or (caster:PassivesDisabled()) or (not caster:IsRealHero()) then return end
+
     if self.ability.IsCooldownReady(self.ability) then
         local range = self.ability.GetSpecialValueFor(self.ability,"search_radius")
         local units = FindUnitsInRadius(caster.GetTeamNumber(caster),caster.GetAbsOrigin(caster),nil,range,DOTA_UNIT_TARGET_TEAM_ENEMY,DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC,DOTA_UNIT_TARGET_FLAG_NONE,FIND_ANY_ORDER,false)
         for _,unit in pairs(units) do
             --local unit = units[i+1]
             if caster:CanEntityBeSeenByMyTeam(unit) then
-                local projectile_speed = 5000
+                local projectile_speed = 3000
                 if unit.IsHero(unit) then
                     projectile_speed=(caster.GetRangeToUnit(caster,unit)*2)
                 end
