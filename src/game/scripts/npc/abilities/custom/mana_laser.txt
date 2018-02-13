@@ -7,6 +7,7 @@
         "AbilityTextureName"                                                   "custom/mana_laser"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "AbilityCooldown"                "4 3 2 1"
+        "HasScepterUpgrade"              "1"
         "AbilitySpecial"
         {
             "01"
