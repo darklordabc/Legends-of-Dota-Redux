@@ -50,7 +50,7 @@ function mana_laser.OnProjectileHit_ExtraData(self,target,location,data)
                     if unit.IsHero(unit) then
                         projectile_speed=(caster.GetRangeToUnit(caster,unit)*2)
                     end
-                    caster.EmitSound(caster,"Hero_Tinker.Laser")
+                    caster:EmitSoundParams("Hero_Tinker.Laser",1,0.25,1)
                     ProjectileManager.CreateTrackingProjectile(ProjectileManager,{Target=unit,vSourceLoc=unit:GetAbsOrigin(),Source=unit,Ability=self,EffectName="particles/other/tinker_laser.vpcf",bDodgeable=true,iMoveSpeed=projectile_speed,ExtraData = {nProjectileNumber = data.nProjectileNumber+1}})
                     break
                 end
@@ -87,7 +87,7 @@ function modifier_mana_laser.OnIntervalThink(self)
                 if unit.IsHero(unit) then
                     projectile_speed=(caster.GetRangeToUnit(caster,unit)*2)
                 end
-                caster.EmitSound(caster,"Hero_Tinker.Laser")
+                caster:EmitSoundParams("Hero_Tinker.Laser",1,0.25,1)
                 ProjectileManager.CreateTrackingProjectile(ProjectileManager,{Target=unit,Source=caster,Ability=self.ability,EffectName="particles/other/tinker_laser.vpcf",bDodgeable=true,iMoveSpeed=projectile_speed,ExtraData = {nProjectileNumber = 1}})
                 self.ability.StartCooldown(self.ability,self.ability.GetCooldown(self.ability,-1))
                 local cd = self.ability.GetCooldownTimeRemaining(self.ability)
