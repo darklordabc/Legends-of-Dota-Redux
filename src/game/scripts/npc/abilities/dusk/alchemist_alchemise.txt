@@ -1,4 +1,7 @@
 "DOTAAbilities" {
+	//=====================================================================================================
+	// ALCHEMIST: Alchemise
+	//=====================================================================================================
 	"alchemist_alchemise"
 	{
 		// General
@@ -12,8 +15,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"custom/alchemist_alchemise"
-		"ReduxCost"                                                            "20"
-	
+
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"350"
@@ -22,7 +24,7 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"30"
-	
+
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"50"
@@ -30,12 +32,12 @@
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityModifierSupportValue"	"0.0"	// All about the damage
-	
+
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-		"01"
+			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"transmute_gold"				"80 105 130 155"
@@ -43,25 +45,27 @@
 		}
 		
 		"precache"
-			{
+		{
 			"particle" "particles/items2_fx/hand_of_midas.vpcf"
 			"particle" "particles/units/heroes/hero_alchemist/alchemist_lasthit_coins.vpcf"
 			"particle" "particles/units/heroes/hero_alchemist/alchemist_lasthit_msg_gold.vpcf"
 			"soundfile" "soundevents/game_sounds_items.vsndevts"
-			}
+		}
 			
 		"OnSpellStart"
-			{
+		{
 			"RunScript"
-				{
+			{
 				"ScriptFile" "abilities/dusk/alchemist_abilities.lua"
 				"Function" "alchemist_alchemise_transmute_target"
 				"gold" "%transmute_gold"
-				}
 			}
+		}
 		
 		"Modifiers"
-			{
-			}
+		{
+		}
+		"ReduxPerks"	""
+		"ReduxFlags"	""
 	}
 }

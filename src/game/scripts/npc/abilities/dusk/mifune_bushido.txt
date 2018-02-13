@@ -1,0 +1,73 @@
+"DOTAAbilities" {
+	//=====================================================================================================
+	// MIFUNE: Bushido
+	//=====================================================================================================
+	"mifune_bushido"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/dusk/mifune_bushido"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityTextureName"			"custom/mifune_bushido"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"38 32 26 20"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"80"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// All about the damage
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"percent"						"30 45 60 75" // percentage total
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_damage"					"10 15 20 25" // percent
+			}
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"base_attack_time"				"1.0"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"duration"						"8.0"
+			}
+		}
+		
+		"precache"
+		{
+			"particle" "particles/test_particle/channel_field_1.vpcf"
+			"particle" "particles/units/heroes/hero_skeletonking/skeleton_king_weapon_blur_critical.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
+		}
+		
+		"Modifiers"
+		{	
+		}
+
+		"ReduxPerks"	""
+		"ReduxFlags"	""
+	}
+}

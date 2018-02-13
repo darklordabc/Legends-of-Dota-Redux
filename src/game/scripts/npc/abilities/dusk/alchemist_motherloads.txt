@@ -1,4 +1,7 @@
 "DOTAAbilities" {
+	//=====================================================================================================
+	// ALCHEMIST: Motherloads!
+	//=====================================================================================================
 	"alchemist_motherloads"
 	{
 		// General
@@ -12,7 +15,7 @@
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"AbilityTextureName"			"custom/alchemist_motherloads"
-	
+
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"125"
@@ -21,7 +24,7 @@
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"				"60"
-	
+
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"100"
@@ -29,27 +32,27 @@
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityModifierSupportValue"	"0.0"	// All about the damage
-	
+
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-		"01"
+			"01"
 			{
 				"var_type"						"FIELD_FLOAT"
-				"percent"						"125 150 175"
+				"percent"						"200 250 300"
 			}
-		"02"
+			"02"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"duration"						"25 30 35"
 			}
-		"03"
+			"03"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"damage"						"4 5 6"
 			}
-		"04"
+			"04"
 			{
 				"var_type"						"FIELD_FLOAT"
 				"bonus_gold"					"4 5 6"
@@ -57,73 +60,76 @@
 		}
 		
 		"precache"
-			{
+		{
 			"particle" "particles/items2_fx/hand_of_midas.vpcf"
-			"particle" "particles\status_fx\status_effect_alchemist_gold_armor.vpcf"
+			"particle" "particles/status_fx/status_effect_alchemist_gold_armor.vpcf"
 			"particle" "particles/units/heroes/hero_alchemist/alchemist_lasthit_coins.vpcf"
 			"particle" "particles/units/heroes/hero_alchemist/alchemist_lasthit_msg_gold.vpcf"
 			"soundfile" "soundevents/game_sounds_items.vsndevts"
-			}
+		}
 			
 		"OnSpellStart"
-			{
+		{
 			"ApplyModifier"
-				{
+			{
 				"ModifierName" "alchemist_motherloads_bonus_gold_mod"
 				"Target" "TARGET"
-				}
 			}
+		}
 		
 		"Modifiers"
-			{
+		{
 			"alchemist_gold_armor_mod"
-				{
+			{
 				"Duration" "10"
 				"IsBuff" "1"
 				"IsPurgable" "0"
-				"StatusEffectName" "particles\status_fx\status_effect_alchemist_gold_armor.vpcf"
+				"StatusEffectName" "particles/status_fx/status_effect_alchemist_gold_armor.vpcf"
 				"StatusEffectPriority" "15"
 				"Properties"
-					{
+				{
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%regen"
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%regen"
 					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "%regen"
-					}
 				}
+			}
 			"alchemist_motherloads_bonus_gold_mod"
-				{
+			{
 				"Duration" "%duration"
 				"OnKill"
-					{
+				{
 					"RunScript"
-						{
+					{
 						"ScriptFile" "abilities/dusk/alchemist_abilities.lua"
 						"Function" "alchemist_multiply_gold_tgt"
 						"gold" "%percent"
-						}
-					}
-				}
-			"alchemist_motherloads_target_mod"
-				{
-				"Duration" "%duration"
-				"OnCreated"
-					{
-					"RunScript"
-						{
-						"ScriptFile" "abilities/dusk/alchemist_abilities.lua"
-						"Function" "alchemist_increase_bounty_tgt"
-						"gold" "%percent"
-						}
-					}
-				"OnDestroy"
-					{
-					"RunScript"
-						{
-						"ScriptFile" "abilities/dusk/alchemist_abilities.lua"
-						"Function" "alchemist_reset_bounty_tgt"
-						}
 					}
 				}
 			}
+			"alchemist_motherloads_target_mod"
+			{
+				"Duration" "%duration"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile" "abilities/dusk/alchemist_abilities.lua"
+						"Function" "alchemist_increase_bounty_tgt"
+						"gold" "%percent"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile" "abilities/dusk/alchemist_abilities.lua"
+						"Function" "alchemist_reset_bounty_tgt"
+					}
+				}
+			}
+		}
+
+		"ReduxPerks"	""
+		"ReduxFlags"	""
 	}
 }

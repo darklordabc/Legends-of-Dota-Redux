@@ -1,0 +1,89 @@
+"DOTAAbilities" {
+	//=====================================================================================================
+	// LICH: Traveling Frost
+	//=====================================================================================================
+	"lich_traveling_frost"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/dusk/lich_traveling_frost"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"tusk_ice_shards"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"2000"
+		"AbilityCastPoint"				"0.4"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"16 14 12 10"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"110 120 130 140"
+
+		"HasScepterUpgrade"				"1"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// All about the damage
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"80 120 160 200"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"stun"						"1.2 1.6 2.0 2.4"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"speed"						"900"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"width"						"150"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"range"						"2000"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"scepter_units"				"4"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"scepter_radius"			"120"
+			}
+		}
+		
+		"precache"
+		{
+			"particle" "particles/units/heroes/hero_tusk/tusk_ice_shards_projectile.vpcf"
+			"particle" "particles/units/heroes/hero_ancient_apparition/ancient_apparition_cold_feet_frozen.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_tusk.vsndevts"
+		}
+
+		"ReduxPerks"	"ice | skillshot"
+		"ReduxFlags"	""
+	}
+}

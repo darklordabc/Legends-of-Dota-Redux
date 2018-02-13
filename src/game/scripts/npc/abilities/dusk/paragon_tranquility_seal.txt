@@ -1,152 +1,61 @@
 "DOTAAbilities" {
+	//=====================================================================================================
+	// PARAGON: Tranquility Seal
+	//=====================================================================================================
 	"paragon_tranquility_seal"
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"				"ability_datadriven"
+		"BaseClass"				"ability_lua"
+		"ScriptFile"			"abilities/dusk/paragon_tranquility_seal"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"custom/paragon_tranquility_seal"
-	
-		"ReduxPerks"                                                           "light"
+
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"800"
+		"AbilityCastRange"				"300 600 900 1200"
 		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"28.0"
-	
+		"AbilityCooldown"				"50.0 40.0 30.0 20.0"
+
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"				"75"
-	
+
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"3 4 5 6"
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"4"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"radius"					"310"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"secondary"				"50 100 150 200"
+				"var_type"				"FIELD_INTEGER"
+				"range"					"300 600 900 1200"
 			}
 		}
-	
+
 		"precache"
 		{
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts"
-			"particle"			"particles/units/heroes/hero_skywrath_mage/skywrath_mage_ancient_seal_debuff_rune.vpcf"
+			"particle"			"particles/units/heroes/hero_paragon/tranquil_seal_rune.vpcf"
 			"particle"			"particles/units/heroes/hero_skywrath_mage/skywrath_mage_ancient_seal_silence.vpcf"
-		}
-	
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"abilities/dusk/paragon_abilities.lua"
-				"Function"		"TranquilSeal"
-			}
-			"FireSound"
-				{
-				"Target" "TARGET"
-				"EffectName" "Hero_SkywrathMage.AncientSeal.Target"
-				}
 		}
 		
 		"Modifiers"
-			{
-			"paragon_tranquil_seal_mod_ally"
-				{
-				"Duration" "%duration"
-				"IsDebuff" "0"
-				"IsBuff" "1"
-				"IsPurgable" "0"
-				"EffectName" "particles/units/heroes/hero_skywrath_mage/skywrath_mage_ancient_seal_debuff.vpcf"
-				"Properties"
-					{
-					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL" "1"
-					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL" "1"
-					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE" "1"
-					}
-				"OnDealDamage"
-					{
-					"RunScript"
-						{
-						"ScriptFile"	"abilities/dusk/paragon_abilities.lua"
-						"Function" "paragon_tranquil_reverse_damage"
-						"dmg" "%attack_damage"
-						}
-					}
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"Target"				"TARGET"
-						"EffectName"			"particles/units/heroes/hero_skywrath_mage/skywrath_mage_ancient_seal_debuff_rune.vpcf"
-						"EffectAttachType"		"start_at_customorigin"
-						"ControlPointEntities"
-						{
-							"TARGET"			"attach_origin"
-						}
-					}
-					
-				}
-				"States" {
-					"MODIFIER_STATE_DISARMED" "MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_SILENCED" "MODIFIER_STATE_VALUE_ENABLED"
-				}
-				}
-			"paragon_tranquil_seal_mod_enemy"
-				{
-				"Duration" "%duration"
-				"IsDebuff" "1"
-				"IsBuff" "0"
-				"IsPurgable" "0"
-				"EffectName" "particles/units/heroes/hero_skywrath_mage/skywrath_mage_ancient_seal_debuff.vpcf"
-				"Properties"
-					{
-					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL" "1"
-					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL" "1"
-					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE" "1"
-					}
-				"OnDealDamage"
-					{
-					"RunScript"
-						{
-						"ScriptFile"	"abilities/dusk/paragon_abilities.lua"
-						"Function" "paragon_tranquil_reverse_damage"
-						"dmg" "%attack_damage"
-						}
-					}
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"Target"				"TARGET"
-						"EffectName"			"particles/units/heroes/hero_skywrath_mage/skywrath_mage_ancient_seal_debuff_rune.vpcf"
-						"EffectAttachType"		"start_at_customorigin"
-						"ControlPointEntities"
-						{
-							"TARGET"			"attach_origin"
-						}
-					}
-					
-				}
-				}
-			}
+		{
+		}
+
+		"ReduxPerks"	"support"
+		"ReduxFlags"	""
 	}
 }

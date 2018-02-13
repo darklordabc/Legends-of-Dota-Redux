@@ -22,6 +22,8 @@ Legends of Dota Redux
 ### Ingame Comments Display ###
  - Click [here](http://ec2-52-59-238-84.eu-central-1.compute.amazonaws.com/wordpress/#messages).
 
+### How to play on local host (non-dedicated servers) ###
+ - For players that have poor ping to dedicated servers, you may want to play locally (hosted on your own computer) todo this use this command in the console to launch a local game "dota_launch_custom_game 786348190 custom_bot".
 
 ### Requirements to Compile and Run ###
  - Dota 2 Workshop Tools

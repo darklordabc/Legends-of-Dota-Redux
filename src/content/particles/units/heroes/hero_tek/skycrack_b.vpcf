@@ -43,7 +43,7 @@
 		{
 			_class = "C_OP_RenderSprites"
 			m_flSelfIllumAmount = 1.0
-			m_hTexture = resource:"materials/materials/particle/basic_glow.vtex"
+			m_hTexture = resource:"materials/particle/particle_glow_01.vtex"
 			m_bDisableZBuffering = true
 		},
 	]
@@ -76,6 +76,29 @@
 		{
 			_class = "C_OP_InstantaneousEmitter"
 			m_nParticlesToEmit = 64
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
 		},
 	]
 }
