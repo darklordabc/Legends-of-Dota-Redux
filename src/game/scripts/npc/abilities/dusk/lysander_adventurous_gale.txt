@@ -17,9 +17,6 @@
 		"AnimationPlaybackRate"			"0.6"
 		"AbilityTextureName"			"custom/lysander_adventurous_gale"
 
-		"ReduxFlags"                                                           "mobility"
-        "ReduxPerks"                                                           "mobility | water"
-
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"1200"
@@ -74,12 +71,13 @@
 		{
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_kunkka.vsndevts"
 			"particle"					"particles/units/heroes/hero_lysander/mystical_wave.vpcf"
-
-
 		}
 
 		"Modifiers"
 		{
 		}
+
+		"ReduxPerks"	"water | support"
+		"ReduxFlags"	""
 	}
 }

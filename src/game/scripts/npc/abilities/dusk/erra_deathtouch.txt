@@ -1,0 +1,66 @@
+"DOTAAbilities" {
+	"erra_deathtouch"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"			 "ability_lua"
+		"ScriptFile"			"abilities/dusk/erra_deathtouch"
+		"AbilityBehavior"			   "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityType"				   "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityUnitTargetTeam"		 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"		 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"		 "DAMAGE_TYPE_MAGICAL"   
+		"SpellImmunityType"			 "SPELL_IMMUNITY_ENEMIES_NO"
+		"AnimationPlaybackRate"		 "0.5"
+		"FightRecapLevel"			   "1"
+		"AbilityTextureName"			"custom/erra_deathtouch"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"			  "150"
+		"AbilityCastPoint"			  "1.0"
+
+		// Time	 
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"			   "135.0 90.0 45.0"
+
+		// Damage.
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"				 "400 560 720"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"			   "200 325 450"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			  "FIELD_INTEGER"
+				"dot_amount"			"50 70 90"
+			}
+			
+			"02"
+			{
+				"var_type"			  "FIELD_FLOAT"
+				"dot_duration"		  "12.0"
+			}
+		}
+
+		"precache"
+		{
+			"soundfile" "soundevents/hero_erra.vsndevts"
+			"particle"  "particles/units/heroes/hero_erra/deathtouch.vpcf"
+			"particle"  "particles/units/heroes/hero_erra/deathtouch_unit.vpcf"
+		}
+
+		"Modifiers"
+		{
+		}
+
+		"ReduxPerks"	"poison"
+		"ReduxFlags"	""
+	}
+}

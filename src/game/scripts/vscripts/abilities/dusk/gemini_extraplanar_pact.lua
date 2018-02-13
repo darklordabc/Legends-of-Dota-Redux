@@ -10,8 +10,6 @@ function gemini_extraplanar_pact:OnSpellStart()
 	local oog_dur = self:GetSpecialValueFor("out_of_game_duration")
 	local dur = self:GetSpecialValueFor("duration")
 
-	local hp_mana = self:GetSpecialValueFor("health_and_mana_loss")/100
-
 	local part = "particles/units/heroes/hero_gemini/gemini_extraplanar_pact_oog.vpcf"
 
 	local caster = self:GetCaster()
@@ -30,8 +28,6 @@ function gemini_extraplanar_pact:OnSpellStart()
 		target:AddNewModifier(caster, self, mod2, {Duration = dur}) --[[Returns:void
 		No Description Set
 		]]
-
-		target:CalculateStatBonus()
 
 	end)
 
@@ -55,50 +51,29 @@ modifier_extraplanar_pact = class({})
 
 function modifier_extraplanar_pact:DeclareFunctions()
 	local func = {
-		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
-		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
-		MODIFIER_PROPERTY_STATS_AGILITY_BONUS
+		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT
+		-- MODIFIER_PROPERTY_MAGICAL_CONSTANT_BLOCK
 	}
 	return func
 end
+
+function modifier_extraplanar_pact:GetModifierConstantHealthRegen()
+	return self:GetAbility():GetSpecialValueFor("health_regen")
+end
+
+function modifier_extraplanar_pact:GetModifierConstantManaRegen()
+	return self:GetAbility():GetSpecialValueFor("mana_regen")
+end
+
+-- function modifier_extraplanar_pact:GetModifierMagical_ConstantBlock()
+	-- return self:GetAbility():GetSpecialValueFor("magic_block")
+-- end
 
 function modifier_extraplanar_pact:GetEffectName()
 	local part = "particles/units/heroes/hero_gemini/gemini_extraplanar_pact_unit.vpcf"
 
 	return part
-end
-
-function modifier_extraplanar_pact:GetModifierBonusStats_Strength()
-	local amt_main = self:GetAbility():GetSpecialValueFor("bonus_main_stat") --[[Returns:table
-	No Description Set
-	]]
-	local amt_lesser = self:GetAbility():GetSpecialValueFor("bonus_secondary")
-	if self:GetParent():GetPrimaryAttribute() == 0 then
-		return amt_main
-	end
-	return amt_lesser
-end
-
-function modifier_extraplanar_pact:GetModifierBonusStats_Agility()
-	local amt_main = self:GetAbility():GetSpecialValueFor("bonus_main_stat") --[[Returns:table
-	No Description Set
-	]]
-	local amt_lesser = self:GetAbility():GetSpecialValueFor("bonus_secondary")
-	if self:GetParent():GetPrimaryAttribute() == 1 then
-		return amt_main
-	end
-	return amt_lesser
-end
-
-function modifier_extraplanar_pact:GetModifierBonusStats_Intellect()
-	local amt_main = self:GetAbility():GetSpecialValueFor("bonus_main_stat") --[[Returns:table
-	No Description Set
-	]]
-	local amt_lesser = self:GetAbility():GetSpecialValueFor("bonus_secondary")
-	if self:GetParent():GetPrimaryAttribute() == 2 then
-		return amt_main
-	end
-	return amt_lesser
 end
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -130,7 +105,7 @@ function FastDummy(target, team, duration, vision)
   vision = vision or  250
   local dummy = CreateUnitByName("npc_dummy_unit", target, false, nil, nil, team)
   if dummy ~= nil then
-    dummy:SetAbsOrigin(target) -- CreateUnitByName uses only the x and y coordinates so we have to move it with SetAbsOrigin()
+    dummy:SetAbsOrigin(target)
     dummy:SetDayTimeVisionRange(vision)
     dummy:SetNightTimeVisionRange(vision)
     dummy:AddNewModifier(dummy, nil, "modifier_phased", { duration = 9999})
@@ -138,16 +113,11 @@ function FastDummy(target, team, duration, vision)
     dummy:AddNewModifier(dummy, nil, "modifier_kill", {duration = duration+0.03})
       Timers:CreateTimer(duration,function()
         if not dummy:IsNull() then
-          print("=====================Destroying UNIT=====================")
           dummy:ForceKill(true)
           --dummy:Destroy()
           UTIL_Remove(dummy)
-        else
-          print("=====================UNIT is already REMOVED=====================")
         end
-      end
-      )
-    
+      end)
   end
   return dummy
 end

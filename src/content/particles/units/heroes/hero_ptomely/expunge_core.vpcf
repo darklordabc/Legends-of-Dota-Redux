@@ -18,7 +18,7 @@
 		{
 			_class = "C_OP_RenderSprites"
 			m_bAdditive = true
-			m_hTexture = resource:"materials/nature/sand_cracked002_spring_mask_psd_85d4d9e0.vtex"
+			m_hTexture = resource:"materials/particle/sand_dust.vtex"
 		},
 	]
 	m_Initializers = 
@@ -58,6 +58,28 @@
 	[
 		{
 			m_ChildRef = resource:"particles/units/heroes/hero_ptomely/expunge_core_core.vpcf"
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
 		},
 	]
 }

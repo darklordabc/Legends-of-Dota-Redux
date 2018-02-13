@@ -1,4 +1,3 @@
-require('lib/physics')
 lysander_adventurous_gale = class({})
 
 LinkLuaModifier("modifier_adventurous_gale","abilities/dusk/lysander_adventurous_gale",LUA_MODIFIER_MOTION_NONE)
@@ -223,10 +222,6 @@ function modifier_adventurous_gale_buff:GetModifierMoveSpeedBonus_Percentage()
 	return mult * amt
 end
 
-function modifier_adventurous_gale_buff:IsHidden()
-	return true
-end
-
 function modifier_adventurous_gale_buff:IsDebuff()
 		if self:GetParent():GetTeamNumber() == self:GetAbility():GetCaster():GetTeamNumber() then
 			return false
@@ -278,16 +273,6 @@ function modifier_adventurous_gale_push:OnIntervalThink()
 		local target = self:GetParent()
 		local caster = self:GetAbility():GetCaster()
 
-		--local doDmg = nil
-
-		--if doDmg then
-
-		----	if doDmg > 0 then
-				--self:GetAbility():InflictDamage(target,caster,doDmg*0.03,DAMAGE_TYPE_MAGICAL)
-		--	end
-
-		--end
-
 		-- local direction = caster.aw_direction
 		-- local distance = caster.aw_distance
 
@@ -332,31 +317,4 @@ function modifier_adventurous_gale_push:CheckState()
 		[MODIFIER_STATE_ROOTED] = true
 	}
 	return state
-end
-
-function FastDummy(target, team, duration, vision)
-  duration = duration or 0.03
-  vision = vision or  250
-  local dummy = CreateUnitByName("npc_dummy_unit", target, false, nil, nil, team)
-  if dummy ~= nil then
-    dummy:SetAbsOrigin(target) -- CreateUnitByName uses only the x and y coordinates so we have to move it with SetAbsOrigin()
-    dummy:SetDayTimeVisionRange(vision)
-    dummy:SetNightTimeVisionRange(vision)
-    dummy:AddNewModifier(dummy, nil, "modifier_phased", { duration = 9999})
-    dummy:AddNewModifier(dummy, nil, "modifier_invulnerable", { duration = 9999})
-    dummy:AddNewModifier(dummy, nil, "modifier_kill", {duration = duration+0.03})
-      Timers:CreateTimer(duration,function()
-        if not dummy:IsNull() then
-          print("=====================Destroying UNIT=====================")
-          dummy:ForceKill(true)
-          --dummy:Destroy()
-          UTIL_Remove(dummy)
-        else
-          print("=====================UNIT is already REMOVED=====================")
-        end
-      end
-      )
-    
-  end
-  return dummy
 end

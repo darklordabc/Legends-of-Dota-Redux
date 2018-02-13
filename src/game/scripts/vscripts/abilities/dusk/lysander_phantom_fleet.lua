@@ -1,4 +1,3 @@
-require('lib/physics')
 lysander_phantom_fleet = class({})
 
 LinkLuaModifier("modifier_phantom_fleet_slow","abilities/dusk/lysander_phantom_fleet",LUA_MODIFIER_MOTION_NONE)
@@ -131,12 +130,10 @@ if IsServer() then
 		if hTarget then
 			local stun = self:GetSpecialValueFor("ministun")
 			local damage = self:GetSpecialValueFor("damage")
-			hTarget:AddNewModifier(self:GetCaster(), self, "modifier_stunned", {Duration=stun})
-			
-			if hTarget:IsBuilding() then
-				damage = damage * 0.25
-			end
-			InflictDamage(hTarget,self:GetCaster(),damage,DAMAGE_TYPE_PHYSICAL)
+			hTarget:AddNewModifier(self:GetCaster(), self, "modifier_stunned", {Duration=stun}) --[[Returns:void
+			No Description Set
+			]]
+			InflictDamage(hTarget,self:GetCaster(),self,damage,DAMAGE_TYPE_PHYSICAL)
 		end
 	end
 end
@@ -180,12 +177,24 @@ function modifier_phantom_fleet_slow_buff:GetModifierMoveSpeedBonus_Percentage()
 	return -self:GetSpecialValueFor("slow")
 end
 
+function InflictDamage(target,attacker,ability,damage,damage_type,flags)
+	local flags = flags or 0
+	ApplyDamage({
+	    victim = target,
+	    attacker = attacker,
+	    damage = damage,
+	    damage_type = damage_type,
+	    damage_flags = flags,
+	    ability = ability
+  	})
+end
+
 function FastDummy(target, team, duration, vision)
   duration = duration or 0.03
   vision = vision or  250
   local dummy = CreateUnitByName("npc_dummy_unit", target, false, nil, nil, team)
   if dummy ~= nil then
-    dummy:SetAbsOrigin(target) -- CreateUnitByName uses only the x and y coordinates so we have to move it with SetAbsOrigin()
+    dummy:SetAbsOrigin(target)
     dummy:SetDayTimeVisionRange(vision)
     dummy:SetNightTimeVisionRange(vision)
     dummy:AddNewModifier(dummy, nil, "modifier_phased", { duration = 9999})
@@ -193,36 +202,11 @@ function FastDummy(target, team, duration, vision)
     dummy:AddNewModifier(dummy, nil, "modifier_kill", {duration = duration+0.03})
       Timers:CreateTimer(duration,function()
         if not dummy:IsNull() then
-          print("=====================Destroying UNIT=====================")
           dummy:ForceKill(true)
           --dummy:Destroy()
           UTIL_Remove(dummy)
-        else
-          print("=====================UNIT is already REMOVED=====================")
         end
-      end
-      )
-    
+      end)
   end
   return dummy
-end
-
-function InflictDamage(target,attacker,damage,damage_type,flags)
-
-	local flags = flags or 0
-
-	ApplyDamage({
-	    victim = target,
-	    attacker = attacker,
-	    damage = damage,
-	    damage_type = damage_type,
-	    damage_flags = flags,
-	    ability = self
-  	})
-
-  	--print("INFLICT: ","ABILITY: "..self:GetName(),"DAMAGE/TYPE: "..damage.." / "..damage_type)
-  	--if flags ~= 0 then
-  	--	print("FLAGS: "..flags)
-  	--end
-
 end

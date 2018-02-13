@@ -1,0 +1,68 @@
+"DOTAAbilities" {
+	//=====================================================================================================
+	// ALEXANDER: Soulseal
+	//=====================================================================================================
+	"alexander_soulseal"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/dusk/alexander_soulseal"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityTextureName"			"custom/alexander_soulseal"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"450"
+		"AbilityCastPoint"				"0.3"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"22"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"80"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// All about the damage
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"duration"						"3 4 5 6"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"slow"							"-20 -25 -30 -35"
+			}
+		}
+		
+		"precache"
+		{
+			"particle" "particles/test_particle/channel_field_1.vpcf"
+			"particle" "particles/generic_gameplay/generic_silenced.vpcf"
+			"particle" "particles/units/heroes/hero_alexander/soulseal.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_keeper_of_the_light.vsndevts"
+			"soundfile" "soundevents/hero_alexander.vsndevts"
+		}
+		
+		"Modifiers"
+		{
+		}
+
+		"ReduxPerks"	"silence"
+		"ReduxFlags"	""
+	}
+}
