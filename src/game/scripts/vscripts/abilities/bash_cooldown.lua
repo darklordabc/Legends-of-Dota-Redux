@@ -17,16 +17,15 @@ function BashCooldown( filterTable )
     local caster = EntIndexToHScript(cIndex)
     local ability = EntIndexToHScript(aIndex)
     local modifierName = filterTable.name_const
-    local modifier = parent:FindModifierByNameAndCaster(modifierName, caster)
-
+    local duration = filterTable.duration
     local abbysalActiveDuration = 2.0
+
     -- Reflect only modifiers created by abilities with 'bash' flag
     if (ability:HasAbilityFlag('bash') or ability:GetName() == "item_basher" or ability:GetName() == "item_abyssal_blade") and
     	-- All bash abilities adds passive modifier on it's caster, so we should ignore it
         parent ~= caster then
         --allow abbysal blade active to stun because its not a bash.
-        print("mod duration: "..modifier:GetDuration(), "abbysal duration: "..abbysalActiveDuration)
-        if modifierName == "modifier_stunned" and modifier:GetDuration() == abbysalActiveDuration then return true end
+        if modifierName == "modifier_bashed" and duration == abbysalActiveDuration then return true end
         if parent:HasModifier('modifier_bash_cooldown') then
         	-- Unit was bashed in a short time. Don't add this modifier
             return false
@@ -51,6 +50,7 @@ function trackModifier( filterTable )
     local caster = EntIndexToHScript( casterIndex )
     local modifierName = filterTable["name_const"]
     local duration = filterTable["duration"]
+    local abbysalActiveDuration = 2.0
 
     Timers:CreateTimer(0.1, function()
         local modifier = parent:FindModifierByNameAndCaster(modifierName, caster)
@@ -62,6 +62,8 @@ function trackModifier( filterTable )
           -- call any functions that need to interact with modifiers on refresh here
             if parent and not parent:IsNull() then
                 if parent:HasModifier("modifier_bash_cooldown") then
+                    --if this is abbysal blade active dont destroy
+                    if modifierName == "modifier_bashed" and duration == abbysalActiveDuration then return end
                     modifier:Destroy()
                 end
             end

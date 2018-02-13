@@ -184,24 +184,24 @@ PANORAMA_SHOP_ITEMS = {
 		}
 	},
 	-- 2 - Angel Arena Black Star
-	{
-		{
-			{
-				"item_aether_lens_arena",
-				"item_aether_lens_2",
-				"item_aether_lens_3",
-				"item_aether_lens_4",
-				"item_aether_lens_5",
-			},
-			{
-				"item_steam_footgear",
-				"item_lucifers_claw",
-				"item_book_of_the_keeper",
-				"item_book_of_the_guardian",
-				"item_lotus_sphere",
-			}
-		}
-	}
+	--{
+	--	{
+	--		{
+	--			"item_aether_lens_arena",
+	--			"item_aether_lens_2",
+	--			"item_aether_lens_3",
+	--			"item_aether_lens_4",
+	--			"item_aether_lens_5",
+	--		},
+	--		{
+	--			"item_steam_footgear",
+	--			"item_lucifers_claw",
+	--			"item_book_of_the_keeper",
+	--			"item_book_of_the_guardian",
+	--			"item_lotus_sphere",
+	--		}
+	--	}
+	--}
 }
 
 SHOP_LIST_STATUS_IN_INVENTORY = 0

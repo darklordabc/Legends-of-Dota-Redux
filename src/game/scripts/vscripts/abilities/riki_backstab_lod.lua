@@ -1,4 +1,6 @@
 function CheckBackstab(params)
+	if params.target:IsBuilding() then return end
+	if params.attacker:PassivesDisabled() then return end
 	
 	local ability = params.ability
 	local agilityDamageMultiplier = ability:GetLevelSpecialValueFor("agility_damage", ability:GetLevel() - 1) / 100
@@ -29,7 +31,9 @@ function CheckBackstab(params)
 		-- Set Control Point 1 for the backstab particle; this controls where it's positioned in the world. In this case, it should be positioned on the victim.
 		ParticleManager:SetParticleControlEnt(particle, 1, params.target, PATTACH_POINT_FOLLOW, "attach_hitloc", params.target:GetAbsOrigin(), true) 
 		-- Apply extra backstab damage based on Riki's agility
-		ApplyDamage({victim = params.target, attacker = params.attacker, damage = params.attacker:GetAgility() * agilityDamageMultiplier, damage_type = ability:GetAbilityDamageType()})
+		if params.attacker:IsRealHero() then
+			ApplyDamage({victim = params.target, attacker = params.attacker, damage = params.attacker:GetAgility() * agilityDamageMultiplier, damage_type = ability:GetAbilityDamageType()})
+		end
 	else
 		--EmitSoundOn(params.sound2, params.target)
 		-- uncomment this if regular (non-backstab) attack has no sound

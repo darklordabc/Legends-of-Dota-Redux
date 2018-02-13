@@ -66,7 +66,7 @@ function Pregame:init()
 
     -- If single player redirect players to the more fully-featured map
     if util:isSinglePlayerMode() and not IsInToolsMode() then
-   --     OptionManager:SetOption('mapname', 'custom_bot')
+        OptionManager:SetOption('mapname', 'custom_bot')
     end
 
     -- Store for selected heroes and skills
@@ -403,14 +403,14 @@ function Pregame:init()
         this:onPlayerSelectRandomHero(eventSourceIndex, args)
     end)
 
-    CustomGameEventManager:RegisterListener('lodSetShopItemsPurchasable', function(eventSourceIndex, args)
-        local playerID = args.PlayerID
-        if self:getPhase() == constants.PHASE_OPTION_SELECTION and
-           isPlayerHost(PlayerResource:GetPlayer(playerID)) then
-            if args.silent == 1 then playerID = -1 end
-            PanoramaShop:SetItemsPurchasable(args.items, args.purchasable == 1, playerID)
-        end
-    end)
+    -- CustomGameEventManager:RegisterListener('lodSetShopItemsPurchasable', function(eventSourceIndex, args)
+    --     local playerID = args.PlayerID
+    --     if self:getPhase() == constants.PHASE_OPTION_SELECTION and
+    --        isPlayerHost(PlayerResource:GetPlayer(playerID)) then
+    --         if args.silent == 1 then playerID = -1 end
+    --         PanoramaShop:SetItemsPurchasable(args.items, args.purchasable == 1, playerID)
+    --     end
+    -- end)
 
     --List of keys in perks.kv, that aren't perks
     local NotPerks = {
@@ -534,24 +534,6 @@ function Pregame:init()
         self.useOptionVoting = true
     end
 
-    -- Standard gamemode featuring voting system
-    if mapName == 'classic' then
-        self:setOption('lodOptionGamemode', 5, true)
-        self:setOption('lodOptionBalanceMode', 0, true)
-        OptionManager:SetOption('banningTime', 50)
-        --self:setOption('lodOptionBanningBalanceMode', 1, true)
-        --self:setOption('lodOptionGameSpeedRespawnTimePercentage', 70, true)
-        --self:setOption('lodOptionBuybackCooldownTimeConstant', 210, true)
-        self:setOption('lodOptionGameSpeedGoldModifier', 150, true)
-        self:setOption('lodOptionGameSpeedEXPModifier', 150, true)
-        self:setOption('lodOptionGameSpeedMaxLevel', 100, true)
-        self:setOption('lodOptionGameSpeedRespawnTimePercentage', 35, true)
-        self:setOption('lodOptionCrazyUniversalShop', 0, true)
-        self.useOptionVoting = true
-    else
-        self.optionVoteSettings.allPick = nil
-    end
-
     if mapName == 'all_allowed' then
         self:setOption('lodOptionCrazyUniversalShop', 0, true)
         self:setOption('lodOptionGameSpeedSharedEXP', 1, true)
@@ -670,6 +652,28 @@ function Pregame:init()
         self:setOption('lodOptionBotsDire', 10, true)
     end
 
+    -- Standard gamemode featuring voting system
+    if mapName == 'classic' then
+        self:setOption('lodOptionGamemode', 5, true)
+        self:setOption('lodOptionBalanceMode', 0, true)
+        OptionManager:SetOption('banningTime', 50)
+        self:setOption('lodOptionBanning', 3, true)
+        self:setOption('lodOptionBanningMaxBans', 3, true)
+        self:setOption('lodOptionBanningMaxHeroBans', 2, true)
+        --self:setOption('lodOptionBanningBalanceMode', 1, true)
+        --self:setOption('lodOptionGameSpeedRespawnTimePercentage', 70, true)
+        --self:setOption('lodOptionBuybackCooldownTimeConstant', 210, true)
+        self:setOption('lodOptionGameSpeedGoldModifier', 150, true)
+        self:setOption('lodOptionGameSpeedEXPModifier', 150, true)
+        self:setOption('lodOptionGameSpeedMaxLevel', 100, true)
+        self:setOption('lodOptionGameSpeedRespawnTimePercentage', 35, true)
+        self:setOption('lodOptionCrazyUniversalShop', 0, true)
+        self.useOptionVoting = true
+        self.optionVoteSettings.banning = nil
+    else
+        self.optionVoteSettings.allPick = nil
+    end
+
     -- Exports for stat collection
     local this = self
     function PlayerResource:getPlayerStats(playerID)
@@ -680,7 +684,7 @@ function Pregame:init()
     self.currentlySpawning = false
     self.cachedPlayerHeroes = {}
 
-    PanoramaShop:InitializeItemTable()
+    -- PanoramaShop:InitializeItemTable()
 end
 
 -- Load Default Values
@@ -1395,7 +1399,9 @@ function Pregame:onThink()
         -- Spawn all humans
         Timers:CreateTimer(function()
             -- Spawn all players
-            this:spawnAllHeroes()
+            if OptionManager:GetOption('mapname') == 'custom_bot' then
+                this:spawnAllHeroes()
+            end
         end, DoUniqueString('spawnbots'), 0.1)
 
         -- Move to ingame
@@ -1464,7 +1470,7 @@ function Pregame:onThink()
 end
 
 function Pregame:isBackgroundSpawning()
-    return (OptionManager:GetOption('mapname') == "custom_bot" or (self.optionStore['lodOptionGamemode'] ~= 1 and self.optionStore['lodOptionGamemode'] ~= -1))
+    return OptionManager:GetOption('mapname') == "custom_bot" or (self.optionStore['lodOptionGamemode'] ~= 1 and (self.optionStore['lodOptionGamemode'] ~= -1 or self.optionStore['lodOptionCommonGamemode'] ~= 1))
 end
 
 function Pregame:setWispMethod()
@@ -1511,10 +1517,6 @@ end
 
 -- Spawns all heroes (this should only be called once!)
 function Pregame:spawnAllHeroes()
-    -- if not self:isBackgroundSpawning() then
-    --     return
-    -- end
-
     for playerID = 0, DOTA_MAX_TEAM_PLAYERS - 1 do
         -- Spawn only valid players
         if PlayerResource:IsValidTeamPlayerID(playerID) then
@@ -1523,47 +1525,6 @@ function Pregame:spawnAllHeroes()
     end
 
     self:actualSpawnPlayer()
-
-    -- self.spawnQueueID = -1
-    -- self.spawnDelay = 2.5
-
-    -- if IsInToolsMode() then
-    --     self.spawnDelay = 0
-    -- end
-
-    -- self.playerQueue = function (hero)
-    --     PauseGame(true)
-    --     self.spawnQueueID = self.spawnQueueID + 1
-
-    --     -- Update queue info
-    --     CustomGameEventManager:Send_ServerToAllClients("lodSpawningQueue", {queue = self.spawnQueueID})
-
-    --     -- End pause if every player is checked
-    --     if self.spawnQueueID > 24 then
-    --         PauseGame(false)
-    --         self.spawnQueueID = nil
-    --         self.heroesSpawned = true
-    --         onSpawned()
-    --         return
-    --     end
-
-    --     -- Skip disconnected players
-    --     if PlayerResource:GetConnectionState(self.spawnQueueID) < 1 then
-    --         self.playerQueue()
-    --         return
-    --     end
-    --     -- if not hero then
-    --     --     self.playerQueue()
-    --     --     return
-    --     -- end
-
-    --     -- Keep spawning
-    --     Timers:CreateTimer(function()
-    --         self:spawnPlayer(self.spawnQueueID, self.playerQueue)
-    --     end, DoUniqueString('playerSpawn'), self.spawnDelay)
-    -- end
-
-    -- self.playerQueue(true)
 end
 
 -- Spawns a given player
@@ -1615,17 +1576,8 @@ function Pregame:actualSpawnPlayer(forceID)
             local spawnTheHero = function()
                 local status2,err2 = pcall(function()
                     -- Create the hero and validate it
-                    --local hero = PlayerResource:ReplaceHeroWith(playerID,heroName,0,0)
-
-                    if OptionManager:GetOption('mapname') == 'custom_bot' then
-                        local hero = CreateHeroForPlayer(heroName, player)
-                        UTIL_Remove(hero)
-                    elseif self:isBackgroundSpawning() then
-                        local hero = PlayerResource:ReplaceHeroWith(playerID,heroName,0,0)
-                    else
-                        local hero = CreateHeroForPlayer(heroName, player)
-                        UTIL_Remove(hero)
-                    end
+                    local hero = CreateHeroForPlayer(heroName, player)
+                    UTIL_Remove(hero)
                 end)
 
                 continueSpawning()
@@ -1729,6 +1681,10 @@ function Pregame:networkHeroes()
                 end
             end
             if not string.match(k, "special_bonus_") and not string.match(k, "perk") then
+                if string.match(k, "imba_") and not string.match(k, "tower") then
+                    flags["imba"] = flags["imba"] or {}
+                    flags["imba"][k] = 1
+                end
                 if v["AbilityBehavior"] and string.match(v["AbilityBehavior"], "DOTA_ABILITY_BEHAVIOR_PASSIVE") then
                     flags["passive"] = flags["passive"] or {}
                     flags["passive"][k] = 1
@@ -2248,6 +2204,9 @@ function Pregame:processVoteData()
     local results = {}
     local counts = {}
 
+    local need_unanimous_voting = {}
+    need_unanimous_voting["customAbilities"] = true and OptionManager:GetOption('mapname') == 'classic'
+
     for optionName,data in pairs(self.voteData or {}) do
         counts[optionName] = {}
 
@@ -2257,6 +2216,12 @@ function Pregame:processVoteData()
 
         local maxNumber = 0
         for choice,count in pairs(counts[optionName]) do
+            if need_unanimous_voting[optionName] then
+                if choice == 0 then
+                    results[optionName] = choice
+                    break
+                end
+            end
             if count > maxNumber then
                 maxNumber = count
                 results[optionName] = choice
@@ -2942,7 +2907,7 @@ function Pregame:initOptionSelector()
         -- Advanced -- Enable Hero Abilities
         lodOptionAdvancedHeroAbilities = function(value)
             -- Disables IMBA Abilities
-            if value == 1 and not util:isCoop() then
+            if value == 1 then
                 self:setOption('lodOptionAdvancedImbaAbilities', 0, true)
             end
 
@@ -2951,7 +2916,7 @@ function Pregame:initOptionSelector()
 
         -- Advanced -- Enable Neutral Abilities
         lodOptionAdvancedNeutralAbilities = function(value)
-            if value == 1 and not util:isCoop() then
+            if value == 1 then
                 self:setOption('lodOptionAdvancedImbaAbilities', 0, true)
             end
 
@@ -2960,7 +2925,7 @@ function Pregame:initOptionSelector()
 
         -- Advanced -- Enable Custom Abilities
         lodOptionAdvancedCustomSkills = function(value)
-            if value == 1 and not util:isCoop() then
+            if value == 1 then --and not util:isCoop()
                 self:setOption('lodOptionAdvancedImbaAbilities', 0, true)
             end
 
@@ -2970,7 +2935,7 @@ function Pregame:initOptionSelector()
         -- Advanced -- Enable IMBA Abilities
         lodOptionAdvancedImbaAbilities = function(value)
         -- If you use IMBA abilities, you cannot use any other major category of abilities.
-            if value == 1 and not util:isCoop() then
+            if value == 1 then -- and not util:isCoop() then
                 self:setOption('lodOptionAdvancedHeroAbilities', 0, true)
                 self:setOption('lodOptionAdvancedNeutralAbilities', 0, true)
                 self:setOption('lodOptionAdvancedCustomSkills', 0, true)
@@ -3340,6 +3305,8 @@ function Pregame:isAllowed( abilityName )
         allowed = self.optionStore['lodOptionAdvancedNeutralAbilities'] == 1
     elseif cat == 'custom' then
         allowed = self.optionStore['lodOptionAdvancedCustomSkills'] == 1
+    elseif cat == 'imba' then
+        allowed = self.optionStore['lodOptionAdvancedImbaAbilities'] == 1
     elseif cat == 'superop' then
         allowed = 1  -- The check if these abilities are allowed are processed elsewhere.
     elseif cat == 'OP' then
@@ -5782,6 +5749,8 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
             allowed = self.optionStore['lodOptionAdvancedNeutralAbilities'] == 1
         elseif cat == 'custom' then
             allowed = self.optionStore['lodOptionAdvancedCustomSkills'] == 1
+        elseif cat == 'imba' then
+            allowed = self.optionStore['lodOptionAdvancedImbaAbilities'] == 1
         elseif cat == 'superop' then
             allowed = 1 -- The check if these abilities are allowed are processed elsewhere.
         elseif cat == 'OP' then
@@ -8117,6 +8086,29 @@ function Pregame:fixSpawningIssues()
             if not self.selectedHeroes[spawnedUnit:GetPlayerOwnerID()] and spawnedUnit:IsRealHero() then
                 spawnedUnit:AddNoDraw()
                 spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_tribune",{})
+            end
+
+            if spawnedUnit:IsRealHero() then
+                local playerID = spawnedUnit:GetPlayerID()
+                Timers:CreateTimer(function()
+                    if self:isBackgroundSpawning() then
+                        if not self.handled[spawnedUnit] then
+                            local mainHero = PlayerResource:GetSelectedHeroEntity(playerID)
+                            local heroName = self.selectedHeroes[playerID] or self:getRandomHero()
+                            
+                            mainHero = PlayerResource:ReplaceHeroWith(playerID,heroName,0,0)
+
+                            if IsValidEntity(mainHero) then
+                                self:fixSpawnedHero( mainHero )
+                            else
+                                return 0.5
+                            end
+                        end
+                    else
+
+                    end
+                end, DoUniqueString('applyHeroStuff'), .1)
+                return
             end
         end
 

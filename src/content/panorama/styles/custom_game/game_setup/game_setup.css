@@ -2787,7 +2787,7 @@ Button:enabled:hover {
     flow-children: down;
     horizontal-align: middle;
 
-	width: 220px;
+	width: 250px;
     margin-top: 16px;
     padding: 8px;
     border: 1px solid #444444;
@@ -3850,4 +3850,9 @@ Button:enabled:hover {
     margin-top: -20px;
     width: 100px;
     horizontal-align: right;
+}
+
+#lodPopupMessageLabel.large
+{
+    font-size: 26px;
 }

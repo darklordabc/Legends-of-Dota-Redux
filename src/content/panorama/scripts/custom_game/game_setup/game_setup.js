@@ -2,6 +2,8 @@
 
 var util = GameUI.CustomUIConfig().Util;
 
+var LOCAL_WARNING = false;
+
 // Phases
 var PHASE_LOADING = 1;          // Waiting for players, etc
 var PHASE_OPTION_VOTING = 2;    // Selection options
@@ -2437,6 +2439,7 @@ function OnSkillTabShown(tabName) {
             main: true,
             neutral: isDraftGamemode(),
             custom: true,
+            imba: isIMBA(),
             superop: true,
             mostused: false
         };
@@ -2568,6 +2571,7 @@ function OnSkillTabShown(tabName) {
             categorySorting["neutral"] = 2;
             categorySorting["custom"] = 3;
             categorySorting["superop"] = 4;
+            categorySorting["imba"] = 5;
 
             if (activeTabs["mostused"]) {
                 for (var uses in subSorting)
@@ -2733,6 +2737,7 @@ function OnSkillTabShown(tabName) {
             'main',
             'neutral',
             'custom',
+            'imba',
             'superop',
             'mostused'
         ];
@@ -2775,7 +2780,7 @@ function OnSkillTabShown(tabName) {
                         }
 
                         for (var g in abilityStore) {
-                            abilityStore[g].SetHasClass("lodDraftAbility", isDraftGamemode());
+                            abilityStore[g].SetHasClass("lodDraftAbility", isDraftGamemode() && currentPhase == PHASE_SELECTION);
                         }
                     } else {
                         // Reset active tabs
@@ -2783,7 +2788,7 @@ function OnSkillTabShown(tabName) {
                         activeTabs[tabName] = true;
 
                         for (var g in abilityStore) {
-                            abilityStore[g].SetHasClass("lodDraftAbility", tabName == "mostused" || isDraftGamemode());
+                            abilityStore[g].SetHasClass("lodDraftAbility", tabName == "mostused" || (isDraftGamemode() && currentPhase == PHASE_SELECTION));
                         }
                     }
 
@@ -4515,6 +4520,14 @@ function OnPlayerSelectedTeam( nPlayerId, nTeamId, bSuccess ) {
     }
 }
 
+function isIMBA() {
+    if (!CustomNetTables.GetTableValue("options", "lodOptionAdvancedImbaAbilities")) {
+        return false;
+    }
+    var netTableValue = CustomNetTables.GetTableValue("options", "lodOptionAdvancedImbaAbilities").v;
+    return netTableValue == 1;
+}
+
 function isDraftGamemode() {
     if (!CustomNetTables.GetTableValue("options", "lodOptionCommonGamemode")) {
         return false;
@@ -4683,7 +4696,10 @@ function OnPhaseChanged(table_name, key, data) {
                     }
                 }
 
-                if (isDraftGamemode()) {
+                if (isDraftGamemode() && currentPhase == PHASE_SELECTION) {
+                    for (var g in abilityStore) {
+                        abilityStore[g].SetHasClass("lodDraftAbility", isDraftGamemode() && currentPhase == PHASE_SELECTION);
+                    }
                     $.Msg($("#pickingPhaseSkillTabContentSkills").Children().length);
                     for (var k in $("#pickingPhaseSkillTabContentSkills").Children()) {
                         var panel = $("#pickingPhaseSkillTabContentSkills").Children()[k];
@@ -5032,6 +5048,10 @@ function onAllowedCategoriesChanged() {
         allowedCategories['custom'] = true;
     }
 
+    if(optionValueList['lodOptionAdvancedImbaAbilities'] == 1) {
+        allowedCategories['imba'] = true;
+    }
+
     if(optionValueList['lodOptionAdvancedCustomSkills'] == 1) {
         allowedCategories['superop'] = true;
     }
@@ -5275,14 +5295,23 @@ function UpdateTimer() {
 
 // Player has accepting the hosting message
 function onAcceptPopup() {
-    $('#lodPopupMessage').visible = false;
-    $('#lodOptionsRoot').SetHasClass("darkened", false);
-    $('#tipPanel').SetHasClass("darkened", false);
+    if (LOCAL_WARNING) {
+        
+    } else {
+        $('#lodPopupMessage').visible = false;
+        $('#lodOptionsRoot').SetHasClass("darkened", false);
+        $('#tipPanel').SetHasClass("darkened", false);        
+    }
 }
 
 // Shows a popup message to a player
 function showPopupMessage(msg) {
     $('#lodPopupMessageLabel').text = $.Localize(msg);
+
+    if (LOCAL_WARNING) {
+        $('#lodPopupMessageAcceptContainer').visible = false;
+        $('#lodPopupMessageLabel').SetHasClass("large", true);
+    }
 
     // QUICKER DEBUGGING CHANGE - Only show pops in non-tools mode
     if (!Game.IsInToolsMode()) {
@@ -5418,6 +5447,12 @@ function addVotingOption(name) {
             votePercentages[i] = Math.round((info[i] / voteCount) * 100);
             if (votePercentages[i] >= votePercentages[largestPercentage]) {
                 largestPercentage = i;
+            }
+        }
+        if (name == "customAbilities") {
+            if (votePercentages[1] < 100) {
+                votePercentages[1] = 0;
+                votePercentages[0] = 100;
             }
         }
         $.Each([panel.FindChildTraverse("voteCountNoPercentage"), panel.FindChildTraverse("voteCountYesPercentage")], function(countLabel, index) {
@@ -5729,7 +5764,7 @@ function getAbilityGlobalPickPopularity(ability) {
     $('#chat').BLoadLayout('file://{resources}/layout/custom_game/game_setup/chat.xml', false, false);
 
     if (mapName == "classic"){
-        $.Each(["allPick", "OPAbilities", "noInvis"], function(name) {
+        $.Each(["allPick", "OPAbilities", "noInvis", "customAbilities"], function(name) {
             addVotingOption(name);
         })
     }
@@ -5779,4 +5814,8 @@ function getAbilityGlobalPickPopularity(ability) {
     }, function() {
         calculateFilters();
     });
+
+    if (LOCAL_WARNING) {
+        showPopupMessage('lodLocalWarning');        
+    }
 })();

@@ -174,7 +174,7 @@
       "31"
       {
           "var_type"              "FIELD_INTEGER"
-          "monkey_king_bonus_attack_speed"	"60"
+          "monkey_king_bar_bonus_attack_speed"	"60"
       }
       "32"
       {
@@ -211,6 +211,125 @@
       {
           "var_type"              "FIELD_INTEGER"
           "aether_lens_spell_amp"             "0"
+      }
+      //Aeon Disk
+      "39"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "bonus_health"            "250"
+      }
+      "40"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "bonus_mana"              "250"
+      }
+      "41"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "status_resistance"       "25"
+      }
+      "42"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "health_threshold_pct"    "70"
+      }
+      "43"
+      {
+        "var_type"                "FIELD_FLOAT"
+        "buff_duration"           "2.5"
+      }
+      //Echo Sabre
+      "44"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "bonus_attack_speed"      "10"
+      }
+      "45"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "bonus_damage"            "15"
+      }
+      "46"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "bonus_intellect"         "10"
+      }
+      "47"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "bonus_strength"          "10"
+      }
+      "48"
+      {
+        "var_type"                "FIELD_FLOAT"
+        "bonus_mana_regen"        "0.75"
+      }
+      "49"
+      {
+        "var_type"                "FIELD_FLOAT"
+        "slow_duration"           "0.7"
+      }
+      "50"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "movement_slow"           "100"
+      }
+      //Kaya
+      "51"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "bonus_intellect_kaya"    "16"
+      }
+      "52"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "spell_amp"               "10"
+      }
+      "53"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "manacost_reduction"       "10"
+      }
+      //Vlads
+      "54"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "aura_radius"             "900"
+      }
+      "55"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "bonus_all_stats"         "2"
+      }
+      "56"
+      {
+        "var_type"                "FIELD_FLOAT"
+        "hp_regen"                "2.5"
+      }
+      "57"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "vampiric_aura_ranged"    "10"
+      }
+      "58"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "vampiric_aura"           "15"
+      }
+      "59"
+      {
+        "var_type"                "FIELD_FLOAT"
+        "mana_regen_aura"          "0.65"
+      }
+      "60"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "armor_aura"              "4"
+      }
+      "61"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "damage_aura"             "15"
       }
     }
   }

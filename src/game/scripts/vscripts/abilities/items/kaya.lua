@@ -85,6 +85,8 @@ modifier_item_kaya_consumable = class({
 	IsPassive = function() return true end,
 	RemoveOnDeath = function() return false end,
 	GetTexture = function() return "item_kaya" end,
+	GetAttributes = function() return MODIFIER_ATTRIBUTE_MULTIPLE end,
+	
 	GetModifierBonusStats_Intellect = function(self)
 		if not self:GetAbility() then
       		self:Destroy()

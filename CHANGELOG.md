@@ -2,6 +2,23 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 10.4
+- Fixed Neutral Evasion ability and made it a single level ability.
+- The two Tiny Grows are now troll combos with each other.
+- Removed the two broken entangle talents from game. Attached the Naga siren mirror image damage talent to the ability. 
+
+## 10.3
+- Essence Aura is now actually a single player ability
+
+## 10.2
+- Added Flesh Heap - Minion Damage
+- Removed the two Entangle Talents, they were not working with heroes
+- Fixed Spectre's Perk
+- Echo Sabre, Valdimirs Offering, Kaya, Aeon Disk is now consumeable.
+- Added Physical Damage category filter in skill pick menu
+- Enabled Spell Immunity Neutral ability as a single player ability
+- Disabled the new Panarama shop for now until bugs can be fixed
+
 ## 10.1
 - Recoded Flame Strike since it didnt work at all.
 - Fixed Synthesis not removing Day Time buff when toggled off
@@ -17,7 +34,6 @@ All notable changes to this project will be documented in this file.
 - Replaced Standard Shop with new Panarama shop
 - Added "Items" tab to custom game advanced settings, allowing more control of allowed/disallowed items
 
-
 ## 10.0
 - Replaced Phantom Lancer's Perk
 - Viper perk now stacks with itself, and now reduces armor and magic resist by 10%
@@ -28,7 +44,6 @@ All notable changes to this project will be documented in this file.
 - Removed Pocket Factory
 - Fixed Miserable Claws having no projectile
 - Potentially fixed many custom abilities having no particles
-
 
 ## 9.9
 - Removed Call of the wild Boar, broken ability

@@ -144,6 +144,10 @@ function modifier_flesh_heap_spell_amp:OnDeath(keys)
     return
   end
 
+  if keys.unit:IsReincarnating() then
+    return
+  end
+
   if not IsServer() then 
     return 
   end

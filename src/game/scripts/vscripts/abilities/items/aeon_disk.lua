@@ -79,6 +79,7 @@ modifier_item_aeon_disk_consumable = class({
 	RemoveOnDeath = function() return false end,
 	DestroyOnExpire = function() return false end,
 	GetTexture = function() return "item_aeon_disk" end,
+	GetAttributes = function() return MODIFIER_ATTRIBUTE_MULTIPLE end,
 	
 	DeclareFunctions = function()
 		return {
@@ -131,6 +132,8 @@ modifier_item_aeon_disk_consumable = class({
 				ParticleManager:SetParticleControlEnt(p, 4, self:GetParent(), PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", dir*50, true)
 
 				EmitSoundOn("DOTA_Item.ComboBreaker", self:GetParent())
+
+				self:GetParent():Purge(false, true, false, true, false)
 
 				local mod = self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_item_aeon_disk_consumable_buff", {duration = self:GetAbility():GetSpecialValueFor("buff_duration")})
 				if mod then
