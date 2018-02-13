@@ -7771,9 +7771,10 @@
     "wards_cooldown" "Wards still on cooldown"
 
     "DOTA_Tooltip_ability_mana_laser"                                       "Infinitus Guardian"
-    "DOTA_Tooltip_ability_mana_laser_bonus_Description"                           "Shoots a laser at a random target based on your mana percentage. Upgrade this to increase the frequency."
+    "DOTA_Tooltip_ability_mana_laser_Description"                           "Shoots a laser at a random target based on your mana percentage. Upgrade this to increase the frequency."
     "DOTA_Tooltip_ability_mana_laser_laser_damage"                                "MAX DAMAGE:"
-     "DOTA_Tooltip_ability_mana_laser_aghanim_description"                          "Laser bounces up to 4 times, each bounce reduces 25% damage."
+    "DOTA_Tooltip_ability_mana_laser_search_radius"                                "RADIUS:"
+    "DOTA_Tooltip_ability_mana_laser_Aghanim_Description"                          "Laser bounces up to 4 times, each bounce reduces 25% damage."
 
     "DOTA_Tooltip_ability_basic_spell_amp_bonus"                                       "Books of Knowledge"
     "DOTA_Tooltip_ability_basic_spell_amp_bonus_Description"                           "Increases Spell amplification"
