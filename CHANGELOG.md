@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 10.4
 - Fixed Neutral Evasion ability and made it a single level ability.
 - The two Tiny Grows are now troll combos with each other.
+- Removed the two broken entangle talents from game. Attached the Naga siren mirror image damage talent to the ability. 
 
 ## 10.3
 - Essence Aura is now actually a single player ability

@@ -4134,10 +4134,17 @@
         "TalentRequiredAbility"                                                   "lone_druid_spirit_bear"
     }
 
-    //"special_bonus_unique_lone_druid_3"
-    //{
-    //   "TalentRequiredAbility"                                                   "lone_druid_spirit_bear_entangle"
-    //}
+    // These two entangle talents do not work, they are supposed to be on bear. 
+    "special_bonus_unique_lone_druid_3"
+    {
+       "TalentRequiredAbility"                                                   "do_not_give_talent"
+    }
+
+    "special_bonus_unique_lone_druid_9"
+    {
+        "TalentRequiredAbility"                                                   "do_not_give_talent"
+    }
+    // end of broken entangle talents
 
     "special_bonus_unique_lone_druid_4"
     {
@@ -4163,12 +4170,6 @@
     {
         "TalentRequiredAbility"                                                   "lone_druid_true_form_battle_cry"
     }
-
-    //"special_bonus_unique_lone_druid_9"
-    //{
-    //    "TalentRequiredAbility"                                                   "lone_druid_spirit_bear_entangle"
-    //}
-
 
     "special_bonus_unique_luna_1"
     {
@@ -4381,6 +4382,11 @@
     "special_bonus_unique_naga_siren_3"
     {
         "TalentRequiredAbility"                                                   "naga_siren_rip_tide"
+    }
+
+    "special_bonus_unique_naga_siren_4"
+    {
+        "TalentRequiredAbility"                                                   "naga_siren_mirror_image"
     }
 
     "special_bonus_unique_necrophos"
