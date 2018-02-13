@@ -1504,6 +1504,8 @@
     "warning_shredder_chakram" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will not give <font color=\'#70EA72\'>Second Chakram</font> as an extra ability.</font>"
     "warning_shredder_chakram_2" "<font color=\'#FF4949\'>Warning:</font> Requires original <font color=\'#70EA72\'>Chakram.</font>"
     "warning_spectre_haunt" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Reality.</font>"
+    "warning_imba_abaddon_aphotic_shield" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Overchannel.</font>"
+    "warning_imba_abaddon_mist_coil" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Overchannel.</font>"
     "warning_shadow_demon_shadow_poison" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Shadow Poison Release.</font>"
     "warning_nevermore_requiem" "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Necromastery</font> and stored souls to do damage."
     "warning_templar_assassin_psionic_trap" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Trap.</font>"
