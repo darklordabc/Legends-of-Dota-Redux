@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 - The two Tiny Grows are now troll combos with each other.
 - Removed the two broken entangle talents from game. Attached the Naga siren mirror image damage talent to the ability. 
 - Updated Dusk abilities with their latest LUA versions
+- Fixed save game settings not working
 
 ## 10.3
 - Essence Aura is now actually a single player ability
