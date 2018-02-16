@@ -7,7 +7,7 @@ modifier_stats_tome = {
 	IsHidden = function() return true end,
 	IsPurgable = function() return false end,
 	RemoveOnDeath = function() return false end,
-	AllowIllusionDuplicate = function() return true end,
+	--AllowIllusionDuplicate = function() return true end,
 	GetAttributes = function() return MODIFIER_ATTRIBUTE_MULTIPLE end,
 	DeclareFunctions = function() return {MODIFIER_PROPERTY_STATS_STRENGTH_BONUS, MODIFIER_PROPERTY_STATS_AGILITY_BONUS, MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,} end,
 	GetModifierBonusStats_Strength = function(self) return self.str and self.str * self:GetStackCount() end,
@@ -18,14 +18,44 @@ modifier_stats_tome = {
 	OnCreated = function(self, kv)
 		if IsServer() then
 			self.stat = self.stat or kv.stat
-			self[self.stat] = self:GetAbility():GetSpecialValueFor(self.stat)
+			self[self.stat] = self[self.stat] or self:GetAbility():GetSpecialValueFor(self.stat)
 			self:GetParent():CalculateStatBonus()
 		end
 	end,
 }
 
+--these two listeners are just for volvos illusions. the tome modifiers are given to custom illusions in the util function that makes them
+ListenToGameEvent("dota_illusions_created", function(keys)
+	_G.lastIllusionCreator = keys.original_entindex
+end, nil)
+
+ListenToGameEvent("npc_spawned", function(keys)
+	local illusion = EntIndexToHScript(keys.entindex)
+
+	--not using timers here because it was giving me errors
+	illusion:SetContextThink(DoUniqueString("statTomesForIllusions"), function()
+		
+		--make sure this is a valve illusion
+		if not illusion or illusion:IsNull() or not illusion:IsIllusion() or illusion:HasModifier("modifier_stats_tome") then return end
+
+		local original = _G.lastIllusionCreator and EntIndexToHScript(_G.lastIllusionCreator)
+		if not original or original:IsNull() then return end
+
+		--make sure this unit actually has stats
+		if illusion.GetStrength then
+			--copy over all the stat modifiers from the original hero
+			for k,v in pairs(original:FindAllModifiersByName("modifier_stats_tome")) do
+				local instance = illusion:AddNewModifier(illusion, v:GetAbility(), "modifier_stats_tome", {stat = v.stat})
+				instance:SetStackCount(v:GetStackCount())
+			end
+		end
+		return
+	end, 0.1)
+end, nil)
+
 --creates and stores a new stats modifier to preserve the previous uses of the lower level tomes.
 function LevelTome(keys)
+	if keys.caster:IsIllusion() then return end
 	local name = keys.ability:GetName():gsub("_op", "")
 	name = name:sub(name:len() - 2)
 
