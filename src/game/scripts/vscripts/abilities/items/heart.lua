@@ -125,6 +125,9 @@ function modifier_item_heart_consumable:GetModifierHealthRegenPercentage()
       self:Destroy()
       return
     end
+    if self:GetParent():IsIllusion() then
+      return 0
+    end
     if self:GetRemainingTime() <= 0 or self:GetRemainingTime() >= 20 then
       return self:GetAbility():GetSpecialValueFor("heart_health_regen_rate")
     end
