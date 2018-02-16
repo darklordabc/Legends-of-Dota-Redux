@@ -1,3 +1,4 @@
+require('lib/physics')
 lysander_phantom_fleet = class({})
 
 LinkLuaModifier("modifier_phantom_fleet_slow","abilities/dusk/lysander_phantom_fleet",LUA_MODIFIER_MOTION_NONE)
@@ -60,6 +61,7 @@ if IsServer() then
 			endTime = 1.5,
 			callback = function()
 			local direction = RotatePosition(Vector(0,0,0), QAngle(0,RandomInt(-8,8),0), direction)
+			direction.z = 0
 		local info = 
 		  {
 		  Ability = self,
@@ -90,6 +92,7 @@ if IsServer() then
 			endTime = 1,
 			callback = function()
 			local direction = RotatePosition(Vector(0,0,0), QAngle(0,RandomInt(-8,8),0), direction)
+			direction.z = 0
 		local info = 
 		  {
 		  Ability = self,
