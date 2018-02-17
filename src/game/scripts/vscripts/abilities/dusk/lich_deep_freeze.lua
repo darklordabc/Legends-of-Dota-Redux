@@ -28,6 +28,7 @@ function modifier_deep_freeze:OnAttackLanded(params)
 	local stun = self:GetAbility():GetSpecialValueFor("stun")
 
 	if attacker == self:GetParent() then
+		if attacker:IsIllusion() then return end
 		if target:IsBuilding() then return end
 		if not target:IsAlive() then return end
 		if target:IsMagicImmune() then return end
