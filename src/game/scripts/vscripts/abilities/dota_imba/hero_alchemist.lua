@@ -1200,7 +1200,7 @@ function imba_alchemist_chemical_rage:OnSpellStart()
 	-- See if enough enemies are nearby to inform them about the visitation rules of your swamp
 	local radius_of_swamp = 800
 	local enemies = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, radius_of_swamp, DOTA_UNIT_TARGET_TEAM_ENEMY,DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NONE,FIND_ANY_ORDER, false)
-	local swamp_maximum_occupancy = IMBA_PLAYERS_ON_GAME * 0.25
+	local swamp_maximum_occupancy = PlayerResource:GetTeamPlayerCount() * 0.25
 
 	--Wait how many of you are there around me?
 	if #enemies >= swamp_maximum_occupancy then
@@ -1505,7 +1505,7 @@ end
 -- Scepter gold attacks modifier
 modifier_mammonite_passive = modifier_mammonite_passive or class({})
 
-function modifier_mammonite_passive:IsHidden() return true end
+function modifier_mammonite_passive:IsHidden() return not self:GetAbility():GetToggleState() end
 function modifier_mammonite_passive:IsPurgable() return false end
 function modifier_mammonite_passive:IsDebuff() return false end
 function modifier_mammonite_passive:RemoveOnDeath() return false end
@@ -1522,9 +1522,11 @@ function modifier_mammonite_passive:OnRefresh()
 end
 
 function modifier_mammonite_passive:DeclareFunctions()
-	local decFuncs = {MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+	local decFuncs = {
+		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 		MODIFIER_EVENT_ON_ATTACK_FINISHED,
-		MODIFIER_PROPERTY_ABILITY_LAYOUT}
+		--MODIFIER_PROPERTY_ABILITY_LAYOUT
+	}
 
 	return decFuncs
 end
@@ -1535,14 +1537,14 @@ end
 
 function modifier_mammonite_passive:GetModifierPreAttack_BonusDamage()
 	if IsServer() then
-		if self.caster:HasScepter() then
+		--if self.caster:HasScepter() then
 			if self.ability:GetToggleState() then
 				local gold = self.caster:GetGold()
 				local gold_percent = self.gold_damage * 0.01
 				local gold_damage = gold * gold_percent
 				return gold_damage
 			end
-		end
+		--end
 	end
 end
 
@@ -1552,14 +1554,14 @@ function modifier_mammonite_passive:OnAttackFinished(keys)
 
 		-- Only apply if the attacker is the caster
 		if self.caster == attacker then
-			if self.caster:HasScepter() then
+			--if self.caster:HasScepter() then
 				if self.ability:GetToggleState() then
 					local gold = self.caster:GetGold()
 					local gold_percent = self.gold_damage * 0.01
 					local gold_damage = gold * gold_percent
 					self.caster:SpendGold(gold_damage, DOTA_ModifyGold_Unspecified)
 				end
-			end
+			--end
 		end
 	end
 end
