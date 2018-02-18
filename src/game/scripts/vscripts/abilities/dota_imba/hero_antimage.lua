@@ -443,7 +443,7 @@ function modifier_imba_antimage_blink_charges:OnCreated()
 			self:SetStackCount(self.max_charge_count)
 		else
 			-- Illusions find their owner and its charges
-			local playerid = self.caster:GetPlayerID()
+			local playerid = self.caster:GetPlayerOwnerID()
 			local real_hero = playerid:GetAssignedHero()
 
 			if hero:HasModifier(self.modifier_charge) then

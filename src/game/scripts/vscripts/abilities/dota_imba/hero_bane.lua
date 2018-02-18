@@ -525,7 +525,7 @@ function imba_bane_nightmare:OnSpellStart()
 		local enfeeble	=	caster:FindAbilityByName("imba_bane_enfeeble")
 		local enfeeble_duration	=	enfeeble:GetSpecialValueFor("enfeeble_duration")
 
-		if caster:GetTeamNumber() ~= target:GetTeamNumber() and caster:HasTalent("special_bonus_imba_bane_1") then
+		if enfeeble and caster:GetTeamNumber() ~= target:GetTeamNumber() and caster:HasTalent("special_bonus_imba_bane_1") then
 			for i=1, talent_enfeeble_stacks do
 				target:AddNewModifier(caster, enfeeble, "modifier_imba_enfeeble_debuff", {duration = enfeeble_duration} )
 			end

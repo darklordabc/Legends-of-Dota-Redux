@@ -1505,7 +1505,7 @@ end
 -- Scepter gold attacks modifier
 modifier_mammonite_passive = modifier_mammonite_passive or class({})
 
-function modifier_mammonite_passive:IsHidden() return not self:GetAbility():GetToggleState() end
+function modifier_mammonite_passive:IsHidden() return true end
 function modifier_mammonite_passive:IsPurgable() return false end
 function modifier_mammonite_passive:IsDebuff() return false end
 function modifier_mammonite_passive:RemoveOnDeath() return false end
