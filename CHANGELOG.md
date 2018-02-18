@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 - Fixed Heart givving illusions regen
 - Holy Wrath no longer can kill wards
 - Fixed Phantom Fleet
+- Added Bananas ability from Memes Redux
 
 ## 10.4
 - Fixed Neutral Evasion ability and made it a single level ability.
