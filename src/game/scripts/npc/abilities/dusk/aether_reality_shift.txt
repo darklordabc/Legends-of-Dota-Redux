@@ -62,9 +62,11 @@
 		}
 		
 		"precache"
-			{
-				"soundfile" "soundevents/game_sounds_heroes/game_sounds_obsidian_destroyer.vsndevts"
-				"particle" "particles/units/heroes/hero_aether/aether_reality_shift.vpcf"
-			}
+		{
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_obsidian_destroyer.vsndevts"
+			"particle" "particles/units/heroes/hero_aether/aether_reality_shift.vpcf"
+		}
 	}
+	"ReduxPerks"	""
+	"ReduxFlags"	""
 }

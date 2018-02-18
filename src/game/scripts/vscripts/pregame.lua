@@ -1681,6 +1681,10 @@ function Pregame:networkHeroes()
                 end
             end
             if not string.match(k, "special_bonus_") and not string.match(k, "perk") then
+                if string.match(k, "imba_") and not string.match(k, "tower") then
+                    flags["imba"] = flags["imba"] or {}
+                    flags["imba"][k] = 1
+                end
                 if v["AbilityBehavior"] and string.match(v["AbilityBehavior"], "DOTA_ABILITY_BEHAVIOR_PASSIVE") then
                     flags["passive"] = flags["passive"] or {}
                     flags["passive"][k] = 1
@@ -2903,7 +2907,7 @@ function Pregame:initOptionSelector()
         -- Advanced -- Enable Hero Abilities
         lodOptionAdvancedHeroAbilities = function(value)
             -- Disables IMBA Abilities
-            if value == 1 and not util:isCoop() then
+            if value == 1 then
                 self:setOption('lodOptionAdvancedImbaAbilities', 0, true)
             end
 
@@ -2912,7 +2916,7 @@ function Pregame:initOptionSelector()
 
         -- Advanced -- Enable Neutral Abilities
         lodOptionAdvancedNeutralAbilities = function(value)
-            if value == 1 and not util:isCoop() then
+            if value == 1 then
                 self:setOption('lodOptionAdvancedImbaAbilities', 0, true)
             end
 
@@ -2921,7 +2925,7 @@ function Pregame:initOptionSelector()
 
         -- Advanced -- Enable Custom Abilities
         lodOptionAdvancedCustomSkills = function(value)
-            if value == 1 and not util:isCoop() then
+            if value == 1 then --and not util:isCoop()
                 self:setOption('lodOptionAdvancedImbaAbilities', 0, true)
             end
 
@@ -2931,7 +2935,7 @@ function Pregame:initOptionSelector()
         -- Advanced -- Enable IMBA Abilities
         lodOptionAdvancedImbaAbilities = function(value)
         -- If you use IMBA abilities, you cannot use any other major category of abilities.
-            if value == 1 and not util:isCoop() then
+            if value == 1 then -- and not util:isCoop() then
                 self:setOption('lodOptionAdvancedHeroAbilities', 0, true)
                 self:setOption('lodOptionAdvancedNeutralAbilities', 0, true)
                 self:setOption('lodOptionAdvancedCustomSkills', 0, true)
@@ -3301,6 +3305,8 @@ function Pregame:isAllowed( abilityName )
         allowed = self.optionStore['lodOptionAdvancedNeutralAbilities'] == 1
     elseif cat == 'custom' then
         allowed = self.optionStore['lodOptionAdvancedCustomSkills'] == 1
+    elseif cat == 'imba' then
+        allowed = self.optionStore['lodOptionAdvancedImbaAbilities'] == 1
     elseif cat == 'superop' then
         allowed = 1  -- The check if these abilities are allowed are processed elsewhere.
     elseif cat == 'OP' then
@@ -5743,6 +5749,8 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
             allowed = self.optionStore['lodOptionAdvancedNeutralAbilities'] == 1
         elseif cat == 'custom' then
             allowed = self.optionStore['lodOptionAdvancedCustomSkills'] == 1
+        elseif cat == 'imba' then
+            allowed = self.optionStore['lodOptionAdvancedImbaAbilities'] == 1
         elseif cat == 'superop' then
             allowed = 1 -- The check if these abilities are allowed are processed elsewhere.
         elseif cat == 'OP' then

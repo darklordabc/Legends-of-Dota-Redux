@@ -214,7 +214,7 @@ function modifier_flesh_heap_minion_damage_creep:GetModifierTotalDamageOutgoing_
 	local flesh_heap = owner:FindModifierByName("modifier_flesh_heap_minion_damage")
 	local flesh_heap_minion_damage_amount = flesh_heap.flesh_heap_minion_damage_amount
 
-	if IsServer() and attacker == self:GetParent() and attacker:IsHero() == false then
+	if IsServer() and attacker == self:GetParent() and not attacker:IsIllusion() then
 		if damage > 100 and flesh_heap:GetAbility():GetLevel() > 0 then
 			local displayNumber = flesh_heap:GetStackCount() * flesh_heap_minion_damage_amount * damage * 0.01
 			SendOverheadEventMessage(nil,4, attacker, displayNumber, nil)

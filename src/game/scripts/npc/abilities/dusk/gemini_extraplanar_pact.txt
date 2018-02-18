@@ -1,10 +1,10 @@
 "DOTAAbilities" {
 	//=====================================================================================================
 	// GEMINI: Extraplanar Pact
+	// 		Drags the target into another plane to make a pact with an extraplanar being.
+	// 		When they return, they gain multiple powerful bonuses, but lose a portion of their current Health and Mana.
 	//=====================================================================================================
 	"gemini_extraplanar_pact"
-	// Drags the target into another plane to make a pact with an extraplanar being.
-	// When they return, they gain multiple powerful bonuses, but lose a portion of their current Health and Mana.
 		{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -25,7 +25,7 @@
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"36"
+		"AbilityCooldown"				"16"
 
 		// Damage.
 		//-------------------------------------------------------------------------------------------------------------
@@ -33,7 +33,7 @@
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"165"
+		"AbilityManaCost"				"125"
 
 		// Special
 		//-------------------------------------------------------------------------------------------------------------
@@ -42,17 +42,17 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_main_stat"		"10 20 30 40" // pct
+				"health_regen"			"25 50 75 100"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_secondary"		"5 10 15 20"
+				"mana_regen"			"20 40 60 80"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_FLOAT"
-				"duration"				"12.25"
+				"duration"				"2.25"
 			}
 			"04"
 			{
@@ -67,5 +67,8 @@
 			"particle"  "particles/units/heroes/hero_gemini/gemini_extraplanar_pact_unit.vpcf"
 			"soundfile"	"soundevents/hero_gemini.vsndevts"
 		}
+
+		"ReduxPerks"	""
+		"ReduxFlags"	""
 	}
 }

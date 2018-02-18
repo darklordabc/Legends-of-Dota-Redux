@@ -3851,3 +3851,8 @@ Button:enabled:hover {
     width: 100px;
     horizontal-align: right;
 }
+
+#lodPopupMessageLabel.large
+{
+    font-size: 26px;
+}

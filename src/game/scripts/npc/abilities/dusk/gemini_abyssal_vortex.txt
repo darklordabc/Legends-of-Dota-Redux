@@ -1,136 +1,197 @@
-"DOTAAbilities"
-{
-    "gemini_abyssal_vortex"
-    {
-        "BaseClass"                                                            "ability_datadriven"
-        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
-        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
-        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_BOTH"
-        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
-        "AbilityUnitTargetFlags"                                               "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
-        "AoERadius"                                                            "600"
-        "FightRecapLevel"                                                      "1"
-        "AbilityTextureName"                                                   "enigma_black_hole"
-        "precache"
-        {
-            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_warlock.vsndevts"
-            "particle"                                                     "particles/units/heroes/hero_gemini/gemini_abyssal_vortex_start.vpcf"
-        }
-        "AbilityCastRange"                                                     "1000"
-        "AbilityCastPoint"                                                     "0.3 0.3 0.3 0.3"
-        "AbilityCooldown"                                                      "160"
-        "AbilityDamage"                                                        "225 450 600"
-        "AbilityManaCost"                                                      "400 600 800"
-        "AbilitySpecial"
-        {
-            "01"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "chargetime"                                           "4"
-            }
-            "02"
-            {
-                "var_type"                                             "FIELD_FLOAT"
-                "radius"                                               "600"
-            }
-            "03"
-            {
-                "var_type"                                             "FIELD_FLOAT"
-                "pull_speed"                                           "100 130 160"
-            }
-        }
-        "OnSpellStart"
-        {
-            "CreateThinker"
-            {
-                "ModifierName"                                         "gemini_abyssal_vortex_start_mod"
-                "Target"                                               "POINT"
-            }
-            "DelayedAction"
-            {
-                "Delay"                                                "1"
-                "Action"
-                {
-                    "CreateThinker"
-                    {
-                        "ModifierName"                         "gemini_abyssal_vortex_mod"
-                        "Target"                               "POINT"
-                    }
-                }
-            }
-        }
-        "Modifiers"
-        {
-            "gemini_abyssal_vortex_mod"
-            {
-                "Duration"                                             "%chargetime"
-                "ThinkInterval"                                        "0.06"
-                "OnIntervalThink"
-                {
-                    "RunScript"
-                    {
-                        "ScriptFile"                           "abilities/dusk/gemini_abilities.lua"
-                        "Function"                             "abyssal_vortex_aura"
-                        "radius"                               "%radius"
-                        "pull_speed"                           "%pull_speed"
-                        "damage"                               "%AbilityDamage"
-                    }
-                }
-                "OnCreated"
-                {
-                    "RunScript"
-                    {
-                        "ScriptFile"                           "abilities/dusk/gemini_abilities.lua"
-                        "Function"                             "abyssal_vortex_begin_sound"
-                    }
-                    "AttachEffect"
-                    {
-                        "EffectName"                           "particles/units/heroes/hero_enigma/enigma_blackhole_fallback_mid.vpcf"
-                        "EffectAttachType"                     "follow_origin"
-                        "Target"                               "TARGET"
-                        "ControlPoints"
-                        {
-                            "00"                           "0 0 100"
-                            "01"                           "%radius %radius %radius"
-                            "02"                           "%radius %radius %radius"
-                        }
-                    }
-                }
-                "OnDestroy"
-                {
-                    "RunScript"
-                    {
-                        "ScriptFile"                           "abilities/dusk/gemini_abilities.lua"
-                        "Function"                             "abyssal_vortex_stop_sound"
-                    }
-                }
-            }
-            "gemini_abyssal_vortex_start_mod"
-            {
-                "Duration"                                             "2"
-                "OnCreated"
-                {
-                    "FireSound"
-                    {
-                        "EffectName"                           "Hero_Warlock.RainOfChaos_buildup"
-                        "Target"                               "TARGET"
-                    }
-                    "FireEffect"
-                    {
-                        "EffectName"                           "particles/units/heroes/hero_gemini/gemini_abyssal_vortex_start.vpcf"
-                        "EffectAttachType"                     "follow_origin"
-                        "Target"                               "TARGET"
-                        "ControlPoints"
-                        {
-                            "00"                           "0 0 0"
-                            "01"                           "%radius 0 0"
-                        }
-                    }
-                }
-            }
-        }
-        "ReduxFlags"                                                           "stun"
-    }
+"DOTAAbilities" {
+	//=====================================================================================================
+	// GEMINI: Abyssal Vortex
+	//=====================================================================================================
+	"gemini_abyssal_vortex"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AoERadius"						"600"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"enigma_black_hole"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_enigma.vsndevts"
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_warlock.vsndevts"
+			"particle"			"particles/units/heroes/hero_enigma/enigma_blackhole.vpcf"
+			"particle"			"particles/units/heroes/hero_enigma/enigma_blackhole_fallback_low.vpcf"
+			"particle"			"particles/units/heroes/hero_enigma/enigma_blackhole_fallback_mid.vpcf"
+			"particle"			"particles/units/heroes/hero_gemini/gemini_abyssal_vortex_start.vpcf"
+		}
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"750"
+		"AbilityCastPoint"				"0.4 0.4 0.4 0.4"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"160"
+
+		"HasScepterUpgrade"				"1"
+
+		// Damage.
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"75 125 175"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"175 250 325"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"chargetime"			"5.00 5.75 6.50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"675"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"pull_speed"			"120 180 240"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"scepter_stundur"		"1.40"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"CreateThinker"
+			{
+				"ModifierName" "gemini_abyssal_vortex_start_mod"
+				"Target" "POINT"
+			}
+			"DelayedAction"
+			{
+				"Delay" "1"
+				"Action"
+				{
+					"CreateThinker"
+					{
+						"ModifierName" "gemini_abyssal_vortex_mod"
+						"Target" "POINT"
+					}
+				}
+			}
+		}
+		
+		"Modifiers"
+		{
+			"gemini_abyssal_vortex_mod"
+			{
+				"Duration" "%chargetime"
+				"ThinkInterval" "0.06"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile" "abilities/dusk/gemini_abilities.lua"
+						"Function" "abyssal_vortex_aura"
+						"radius" "%radius"
+						"pull_speed" "%pull_speed"
+						"damage" "%AbilityDamage"
+					}
+				}
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile" "abilities/dusk/gemini_abilities.lua"
+						"Function" "abyssal_vortex_begin_sound"
+					}
+					"AttachEffect"
+					{
+						"EffectName" "particles/units/heroes/hero_enigma/enigma_blackhole.vpcf"
+						"EffectAttachType" "follow_origin"
+						"Target" "TARGET"
+						"ControlPoints"
+						{
+							"00" "0 0 100"
+							"01" "%radius %radius %radius"
+							"02" "%radius %radius %radius"
+						}
+					}
+					"AttachEffect"
+					{
+						"EffectName" "particles/units/heroes/hero_enigma/enigma_blackhole_fallback_low.vpcf"
+						"EffectAttachType" "follow_origin"
+						"Target" "TARGET"
+						"ControlPoints"
+						{
+							"00" "0 0 100"
+							"01" "%radius %radius %radius"
+							"02" "%radius %radius %radius"
+						}
+					}
+					"AttachEffect"
+					{
+						"EffectName" "particles/units/heroes/hero_enigma/enigma_blackhole_fallback_mid.vpcf"
+						"EffectAttachType" "follow_origin"
+						"Target" "TARGET"
+						"ControlPoints"
+						{
+							"00" "0 0 100"
+							"01" "%radius %radius %radius"
+							"02" "%radius %radius %radius"
+						}
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile" "abilities/dusk/gemini_abilities.lua"
+						"Function" "abyssal_vortex_stop_sound"
+					}
+				}
+			}
+			"gemini_abyssal_vortex_start_mod"
+			{
+				"Duration" "2"
+				"OnCreated"
+				{
+					"FireSound"
+					{
+						"EffectName" "Hero_Warlock.RainOfChaos_buildup"
+						"Target" "TARGET"
+					}
+					"FireEffect"
+					{
+						"EffectName" "particles/units/heroes/hero_gemini/gemini_abyssal_vortex_start.vpcf"
+						"EffectAttachType" "follow_origin"
+						"Target" "TARGET"
+						"ControlPoints"
+						{
+							"00" "0 0 0"
+							"01" "%radius 0 0"
+						}
+					}
+				}
+			}
+		}
+
+		"ReduxPerks"	"enemyMoving | trap"
+		"ReduxFlags"	""
+	}
 }

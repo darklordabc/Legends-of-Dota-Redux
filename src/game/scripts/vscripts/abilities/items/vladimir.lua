@@ -75,12 +75,12 @@ modifier_item_vladimir_consumable = class({
     end
     return self:GetAbility().IsItem
   end,
-
   IsPurgable = function() return false end,
   IsPassive = function() return true end,
   IsPermanent = function() return true end,
   RemoveOnDeath = function() return false end,
   GetTexture = function() return "item_vladmir" end,
+  GetAttributes = function() return MODIFIER_ATTRIBUTE_MULTIPLE end,
 
   IsAura = function() return true end,
   GetAuraSearchTeam = function() return DOTA_UNIT_TARGET_TEAM_FRIENDLY end,
@@ -156,6 +156,7 @@ modifier_item_vladimir_consumable_aura = class({
     end
     return self:GetParent():IsRangedAttacker() and self:GetAbility():GetSpecialValueFor("vampiric_aura_ranged") or self:GetAbility():GetSpecialValueFor("vampiric_aura")
   end,
+
   GetModifierConstantManaRegen = function(self)     
     if not self:GetAbility() then
       self:Destroy()
@@ -207,6 +208,7 @@ modifier_vlads_info = class({
     if IsServer() then
       if not self:GetParent():HasModifier("modifier_item_vladimir_consumable_aura") then
         self:Destroy()
+        return
       end
     end
     return true 

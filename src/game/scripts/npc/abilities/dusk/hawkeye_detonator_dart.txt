@@ -1,123 +1,86 @@
-"DOTAAbilities"
-{
-    "hawkeye_detonator_dart"
-    {
-        "BaseClass"                                                            "ability_datadriven"
-        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
-        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
-        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
-        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
-        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
-        "AbilityCastAnimation"                                                 "ACT_DOTA_ATTACK"
-        "AoERadius"                                                            "375"
-        "AbilityTextureName"                                                   "custom/hawkeye_detonator_dart"
-        "AbilityCastRange"                                                     "650"
-        "AbilityCastPoint"                                                     "0.4"
-        "AbilityCooldown"                                                      "60 55 50"
-        "AbilityManaCost"                                                      "90"
-        "AbilityModifierSupportValue"                                          "0.0"
-        "AbilitySpecial"
-        {
-            "01"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "damage"                                               "325 400 475"
-            }
-            "02"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "ticks"                                                "6"
-            }
-            "03"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "initial_damage"                                       "30 40 50"
-            }
-            "04"
-            {
-                "var_type"                                             "FIELD_FLOAT"
-                "tick_time"                                            "1.00 0.80 0.60"
-            }
-            "05"
-            {
-                "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "1.00 0.80 0.60"
-            }
-        }
-        "precache"
-        {
-            "particle"                                                     "particles\units\heroes\hero_gyrocopter\gyrocopter_base_attack.vpcf"
-            "soundfile"                                                    "soundevents\hero_tek.vsndevts"
-        }
-        "OnSpellStart"
-        {
-            "TrackingProjectile"
-            {
-                "Target"                                               "TARGET"
-                "EffectName"                                           "particles\units\heroes\hero_sniper\sniper_base_attack.vpcf"
-                "Dodgeable"                                            "0"
-                "ProvidesVision"                                       "0"
-                "VisionRadius"                                         "0"
-                "MoveSpeed"                                            "2300"
-                "SourceAttachment"                                     "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
-            }
-        }
-        "OnProjectileHitUnit"
-        {
-            "ApplyModifier"
-            {
-                "Target"                                               "TARGET"
-                "ModifierName"                                         "modifier_detonator_dart"
-            }
-            "Damage"
-            {
-                "Target"                                               "TARGET"
-                "Type"                                                 "DAMAGE_TYPE_MAGICAL"
-                "Damage"                                               "%initial_damage"
-            }
-        }
-        "Modifiers"
-        {
-            "modifier_detonator_dart"
-            {
-                "Passive"                                              "0"
-                "IsHidden"                                             "0"
-                "IsDebuff"                                             "1"
-                "EffectName"                                           "particles/units/heroes/hero_hawkeye/detonator_dart.vpcf"
-                "EffectAttachType"                                     "follow_origin"
-                "ThinkInterval"                                        "%tick_time"
-                "OnIntervalThink"
-                {
-                    "RunScript"
-                    {
-                        "ScriptFile"                           "abilities/dusk/hawkeye_abilities.lua"
-                        "Function"                             "DetonateTick"
-                        "damage"                               "%damage"
-                        "radius"                               "%radius"
-                    }
-                }
-                "OnCreated"
-                {
-                    "RunScript"
-                    {
-                        "ScriptFile"                           "abilities/dusk/hawkeye_abilities.lua"
-                        "Function"                             "DetonateCountdown"
-                        "ticks"                                "%ticks"
-                    }
-                }
-                "OnOwnerDied"
-                {
-                    "RunScript"
-                    {
-                        "ScriptFile"                           "abilities/dusk/hawkeye_abilities.lua"
-                        "Function"                             "DetonateCountdown"
-                        "ticks"                                "%ticks"
-                        "explode"                              "1"
-                    }
-                }
-            }
-        }
-        "ReduxPerks"                                                           "scientific | explosive"
-    }
+"DOTAAbilities" {
+	//=====================================================================================================
+	// HAWKEYE: Detonator Dart
+	//=====================================================================================================
+	"hawkeye_detonator_dart"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/dusk/hawkeye_detonator_dart"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AoERadius"						"375"
+		"AbilityTextureName"			"custom/hawkeye_detonator_dart"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"650"
+		"AbilityCastPoint"				"0.2"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"60 55 50"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"90"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// All about the damage
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"325 400 475"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"ticks"						"5"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"initial_damage"			"30 40 50"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"tick_time"					"1.00"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"375"
+			}
+		}
+		
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_phoenix/phoenix_supernova_reborn.vpcf"
+			"particle"  "particles/units/heroes/hero_hawkeye/detonator_dart.vpcf"
+			"particle" "particles/units/heroes/hero_hawkeye/det_dart_tag.vpcf"
+			"particle" "particles/units/heroes/hero_gyrocopter/gyrocopter_base_attack.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_gyrocopter.vsndevts"
+			"soundfile" "soundevents/hero_tek.vsndevts"
+		}
+		
+		"Modifiers"
+		{
+		}
+
+		"ReduxPerks"	"scientific | explosive"
+		"ReduxFlags"	""
+	}
 }

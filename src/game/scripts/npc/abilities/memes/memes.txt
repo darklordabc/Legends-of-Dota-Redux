@@ -1,0 +1,265 @@
+"DOTAAbilities"
+{
+    "lina_banana"
+        {
+            "precache"
+            {
+                "particle"          "particles/units/heroes/hero_treant/treant_overgrowth_vines.vpcf"
+            }
+            // General
+            //-------------------------------------------------------------------------------------------------------------
+            "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
+            "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+            "BaseClass"                     "ability_datadriven"
+            "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_TREE"
+            "AbilityTextureName"            "custom/banana_op"
+            "FightRecapLevel"               "2"
+            "LevelsBetweenUpgrades"         "2"
+            "MaxLevel"                      "4"
+            "AbilityCooldown"               "55 50 45 40"
+            "AbilityManaCost"               "60 70 80 90"
+            "AbilityCastRange"              "150"
+            "AbilityCastPoint"              "0.3"
+            "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_2"
+            "AOERadius"                     "%tree_radius"
+            "ReduxCost"                     "120"
+            // Special
+            //-------------------------------------------------------------------------------------------------------------
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"                  "FIELD_INTEGER"
+                    "int_per_tree"              "5 7 9 11"
+                }
+                "02"
+                {
+                    "var_type"                  "FIELD_INTEGER"
+                    "cooldown_tooltip"          "55 50 45 40"
+                }
+                "03"
+                {
+                    "var_type"                  "FIELD_INTEGER"
+                    "tree_radius"               "10"
+                }
+            }
+            "OnSpellStart"
+            {
+                "DestroyTrees"
+                {
+                    "Target"        "POINT"
+                    "Radius"        "%tree_radius"
+                }
+                "ApplyModifier"
+                {
+                    "ModifierName"  "modifier_banana"
+                    "Target"        "CASTER"
+                }
+                "FireSound"
+                {
+                    "EffectName"    "Memes.Tree"
+                    "Target"        "CASTER"
+                }
+            }
+            "Modifiers"
+            {
+                "modifier_banana"
+                {
+                    "Passive"           "0"
+                    "IsHidden"          "1"
+                    "Attributes"        "MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_MULTIPLE"
+                    "Properties"
+                    {
+                        "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"   "%int_per_tree"
+                    }
+                }
+            }
+        }
+    "lina_banana_redux"
+        {
+            "precache"
+            {
+                "particle"          "particles/units/heroes/hero_treant/treant_overgrowth_vines.vpcf"
+            }
+            // General
+            //-------------------------------------------------------------------------------------------------------------
+            "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
+            "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+            "BaseClass"                     "ability_datadriven"
+            "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_TREE"
+            "AbilityTextureName"            "custom/Banana"
+            "FightRecapLevel"               "2"
+            "LevelsBetweenUpgrades"         "2"
+            "MaxLevel"                      "4"
+            "AbilityCooldown"               "55 50 45 40"
+            "AbilityManaCost"               "60 70 80 90"
+            "AbilityCastRange"              "150"
+            "AbilityCastPoint"              "0.3"
+            "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_2"
+            "AOERadius"                     "%tree_radius"
+            "ReduxCost"                     "0"
+            // Special
+            //-------------------------------------------------------------------------------------------------------------
+            "AbilitySpecial"
+            {
+                "01"
+                {
+                    "var_type"                  "FIELD_INTEGER"
+                    "int_per_tree"              "1"
+                }
+                "02"
+                {
+                    "var_type"                  "FIELD_INTEGER"
+                    "cooldown_tooltip"          "60 50 40 20"
+                }
+                "03"
+                {
+                    "var_type"                  "FIELD_INTEGER"
+                    "tree_radius"               "10"
+                }
+            }
+            "OnSpellStart"
+            {
+                "DestroyTrees"
+                {
+                    "Target"        "POINT"
+                    "Radius"        "%tree_radius"
+                }
+                "ApplyModifier"
+                {
+                    "ModifierName"  "modifier_banana"
+                    "Target"        "CASTER"
+                }
+                "FireSound"
+                {
+                    "EffectName"    "Memes.Tree"
+                    "Target"        "CASTER"
+                }
+            }
+            "Modifiers"
+            {
+                "modifier_banana"
+                {
+                    "Passive"           "0"
+                    "IsHidden"          "1"
+                    "Attributes"        "MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_MULTIPLE"
+                    "Properties"
+                    {
+                        "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"   "%int_per_tree"
+                    }
+                }
+            }
+        }
+
+    "lina_blazer"
+    {
+        "precache"
+        {
+            "particle"          "particles/units/heroes/hero_lina/lina_spell_laguna_blade.vpcf"
+            "soundfile"         "soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
+        }
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"
+        "BaseClass"                     "ability_datadriven"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityTextureName"            "custom/Blazer"
+        "FightRecapLevel"               "2"
+        "LevelsBetweenUpgrades"         "5"
+        "MaxLevel"                      "3"
+        "AOERadius"                     "%radius"
+        "AbilityCooldown"               "60 40 20"
+        "AbilityManaCost"               "420"
+        "ReduxCost"                     "120"
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "damage"                    "44 66 88"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "duration"                  "20"
+            }
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "radius"                    "700"
+            }
+        }
+        "OnSpellStart"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_blazer"
+                "Target"        "CASTER"
+                "Duration"      "%duration"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Memes.Blazer"
+                "Target"        "CASTER"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_blazer"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "Attributes"        "MODIFIER_ATTRIBUTE_MULTIPLE"
+                "ThinkInterval"     "0.4"
+                "OnIntervalThink"
+                {
+                    "ActOnTargets"
+                    {
+                        "Target"
+                        {
+                            "Center"    "CASTER"
+                            "Radius"    "%radius"
+                            "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                            "Types"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                            "Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
+                            "MaxTargets" "2"
+                            "Random"     "1"
+                        }
+                    
+                        "Action"    
+                        {
+                            "Damage"
+                            {
+                                "Target"        "TARGET"
+                                "Type"          "DAMAGE_TYPE_PURE"
+                                "Damage"        "%damage"
+                            }
+
+                            "FireEffect"
+                            {
+                                "EffectName"    "particles/units/heroes/hero_lina/lina_spell_laguna_blade.vpcf"
+                                "EffectAttachType"  "start_at_customorigin"
+
+                                "ControlPointEntities"
+                                {
+                                    "CASTER"    "attach_attack1"
+                                    "TARGET"    "attach_hitloc"
+                                }
+                            }
+                            "Heal"
+                            {
+                                "Target"        "CASTER"
+                                "HealAmount"    "%damage"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

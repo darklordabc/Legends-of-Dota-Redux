@@ -10,14 +10,13 @@
 		"ScriptFile"			"abilities/dusk/lysander_grapeshot"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
 		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"custom/lysander_grapeshot"
-		"ReduxFlags"                                                           "crit"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -82,9 +81,6 @@
 				"var_type"				"FIELD_INTEGER"
 				"captains_compass_increase" "50"
 			}
-
-
-			
 		}
 
 		"precache"
@@ -161,5 +157,8 @@
 				"IsBuff"			"1"
 			}
 		}
+
+		"ReduxPerks"	""
+		"ReduxFlags"	"crit"
 	}
 }

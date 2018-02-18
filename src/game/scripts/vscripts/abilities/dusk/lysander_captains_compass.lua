@@ -8,11 +8,17 @@ function lysander_captains_compass:OnSpellStart()
 	local t = self:GetCursorTarget()
 	local duration = self:GetSpecialValueFor("duration")
 
+	if t:TriggerSpellAbsorb(self) then return end
+	t:TriggerSpellReflect(self)
+
 	local mod = self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_captains_compass_buff", {Duration=duration}) --[[Returns:void
 	No Description Set
 	]]
 
 	local tmod = t:AddNewModifier(self:GetCaster(), self, "modifier_captains_compass", {Duration=duration}) --[[Returns:void
+	No Description Set
+	]]
+	t:AddNewModifier(self:GetCaster(), self, "modifier_truesight", {Duration=duration}) --[[Returns:void
 	No Description Set
 	]]
 end
@@ -26,30 +32,6 @@ function modifier_captains_compass_buff:DeclareFunctions()
 	}
 	return funcs
 end
-
--- function modifier_captains_compass_buff:GetModifierMoveSpeedBonus_Percentage()
--- 	local movespeed = self:GetAbility():GetSpecialValueFor("movespeed")
--- 	local t = nil
--- 	if self.linkedModifier then t = self.linkedModifier:GetParent() else print("No linked modifier") return end
--- 	if not t then print("t not found") return end
-
--- 	local tloc = t:GetAbsOrigin()
--- 	local tx = tloc["x"]
--- 	local ty = tloc["y"]
--- 	local cloc = self:GetParent():GetAbsOrigin()
--- 	local cx = cloc["x"]
--- 	local cy = cloc["x"]
-
--- 	local d = math.sqrt((tx^2 - cx^2) + (ty^2 - cy^2)) -- self:GetParent():GetRangeToUnit(t)
-
--- 	local max_range = 2000
--- 	local f = 1-(d/max_range)
--- 	if f < 0 then f = 0 end
-
--- 	return movespeed * f
-
--- 	end
--- end
 
 function modifier_captains_compass_buff:GetModifierMoveSpeedBonus_Percentage()
 	local movespeed = self:GetAbility():GetSpecialValueFor("movespeed")
@@ -86,8 +68,6 @@ function modifier_captains_compass_buff:GetModifierMoveSpeedBonus_Percentage()
 			f = math.floor(f)
 
 			if f < 0 then f = 0 end
-
-			print(f)
 
 			self:SetStackCount(f)
 		end

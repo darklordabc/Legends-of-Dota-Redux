@@ -1,6 +1,6 @@
 local constants = require('constants')
 local Timers = require('easytimers')
-require('lib/util_imba')
+
 require('abilities/hero_perks/hero_perks_filters')
 require('abilities/epic_boss_fight/ebf_mana_fiend_essence_amp')
 require('abilities/global_mutators/global_mutator')
@@ -2012,6 +2012,7 @@ function Ingame:FilterModifiers( filterTable )
     local parent = EntIndexToHScript( parent_index )
     local caster = EntIndexToHScript( caster_index )
     local ability = EntIndexToHScript( ability_index )
+    local modifier_name = filterTable.name_const
 
      -- Hero perks
     if not OptionManager:GetOption('disablePerks') then
@@ -2026,6 +2027,24 @@ function Ingame:FilterModifiers( filterTable )
     -- Tenacity
     if caster:GetTeamNumber() ~= parent:GetTeamNumber() and filterTable["duration"] > 0 then
         filterTable["duration"] = filterTable["duration"] * parent:GetTenacity()
+        if parent.GetIMBATenacity then
+            local original_duration = filterTable.duration
+            local actually_duration = original_duration
+            local tenacity = parent:GetIMBATenacity()
+            if parent:GetTeam() ~= caster:GetTeam() and filterTable.duration > 0 then --and tenacity ~= 0 then                
+                actually_duration = actually_duration * (100 - tenacity) * 0.01
+            end
+
+            local modifier_handler = parent:FindModifierByName(modifier_name)
+            if modifier_handler then
+                if modifier_handler.IgnoreTenacity then
+                    if modifier_handler:IgnoreTenacity() then
+                        actually_duration = original_duration
+                    end
+                end
+            end
+            filterTable.duration = actually_duration
+        end
     end
     -- Bash Reflect
     ReflectBashes(filterTable)

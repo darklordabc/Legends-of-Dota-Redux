@@ -2,6 +2,20 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 10.5
+- Fixed Heart givving illusions regen
+- Holy Wrath no longer can kill wards
+- Fixed Phantom Fleet
+- Added Bananas ability from Memes Redux (Standard and SP version)
+- Added Lagoona Blaze It from Memes Redux as a single player ability
+
+## 10.4
+- Fixed Neutral Evasion ability and made it a single level ability.
+- The two Tiny Grows are now troll combos with each other.
+- Removed the two broken entangle talents from game. Attached the Naga siren mirror image damage talent to the ability. 
+- Updated Dusk abilities with their latest LUA versions
+- Fixed save game settings not working
+
 ## 10.3
 - Essence Aura is now actually a single player ability
 

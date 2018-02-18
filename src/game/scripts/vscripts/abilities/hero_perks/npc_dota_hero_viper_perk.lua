@@ -60,8 +60,7 @@ function ViperPoisonTracker(self, ent)
           end
         end
         if count > 0 then
-          v:AddNewModifier(self, nil, "modifier_npc_dota_hero_viper_armor_debuff", {})
-          local mod = v:FindModifierByNameAndCaster("modifier_npc_dota_hero_viper_armor_debuff", self)
+          local mod = v:FindModifierByNameAndCaster("modifier_npc_dota_hero_viper_armor_debuff", self) or v:AddNewModifier(self, nil, "modifier_npc_dota_hero_viper_armor_debuff", {})
           if mod then
             mod:SetStackCount(count)
           end
@@ -87,6 +86,7 @@ modifier_npc_dota_hero_viper_armor_debuff = class({
   IsHidden = function() return false end,
   IsPurgable = function() return false end,
   GetTexture = function() return "custom/npc_dota_hero_viper_perk" end,
+  GetAttributes = function() return MODIFIER_ATTRIBUTE_MULTIPLE end,
 
   DeclareFunctions = function() return {MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS, MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS} end,
   GetModifierMagicalResistanceBonus = function(self) return self.debuff * self:GetStackCount() end,

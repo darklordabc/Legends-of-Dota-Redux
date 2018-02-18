@@ -2784,11 +2784,20 @@
     "blue_dragonspawn_overseer_evasion"
     {
         "ReduxPerks"                                                           "neutral"
+        "MaxLevel"                      "4"
         "ReduxFlags"                                                           "doNotRandom"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "evasion_chance_pct"    "15 30 45 100"
+            }
+        }
     }
     "blue_dragonspawn_sorcerer_evasion"
     {
-        "MaxLevel"                      "4"
+        "MaxLevel"                      "1"
         "ReduxPerks"                                                           "neutral"
         "ReduxFlags"                                                           "doNotRandom"
         // Special
@@ -2798,7 +2807,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "evasion_chance_pct"    "15 30 45 60"
+                "evasion_chance_pct"    "38"
             }
         }
     }
@@ -4125,10 +4134,17 @@
         "TalentRequiredAbility"                                                   "lone_druid_spirit_bear"
     }
 
-    //"special_bonus_unique_lone_druid_3"
-    //{
-    //   "TalentRequiredAbility"                                                   "lone_druid_spirit_bear_entangle"
-    //}
+    // These two entangle talents do not work, they are supposed to be on bear. 
+    "special_bonus_unique_lone_druid_3"
+    {
+       "TalentRequiredAbility"                                                   "do_not_give_talent"
+    }
+
+    "special_bonus_unique_lone_druid_9"
+    {
+        "TalentRequiredAbility"                                                   "do_not_give_talent"
+    }
+    // end of broken entangle talents
 
     "special_bonus_unique_lone_druid_4"
     {
@@ -4154,12 +4170,6 @@
     {
         "TalentRequiredAbility"                                                   "lone_druid_true_form_battle_cry"
     }
-
-    //"special_bonus_unique_lone_druid_9"
-    //{
-    //    "TalentRequiredAbility"                                                   "lone_druid_spirit_bear_entangle"
-    //}
-
 
     "special_bonus_unique_luna_1"
     {
@@ -4372,6 +4382,11 @@
     "special_bonus_unique_naga_siren_3"
     {
         "TalentRequiredAbility"                                                   "naga_siren_rip_tide"
+    }
+
+    "special_bonus_unique_naga_siren_4"
+    {
+        "TalentRequiredAbility"                                                   "naga_siren_mirror_image"
     }
 
     "special_bonus_unique_necrophos"
