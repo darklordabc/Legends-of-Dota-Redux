@@ -1135,7 +1135,7 @@ function modifier_imba_track_debuff_mark:OnCreated()
 
 	if IsServer() then
 		-- Adjust custom lobby gold settings to the gold
-		local custom_gold_bonus = tonumber(CustomNetTables:GetTableValue("game_options", "bounty_multiplier")["1"])
+		local custom_gold_bonus = 1-- tonumber(CustomNetTables:GetTableValue("game_options", "bounty_multiplier")["1"])
 		self.bonus_gold_self = self.bonus_gold_self * (custom_gold_bonus / 100)
 		self.bonus_gold_allies = self.bonus_gold_allies * (custom_gold_bonus / 100)
 
