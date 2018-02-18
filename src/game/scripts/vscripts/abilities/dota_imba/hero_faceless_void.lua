@@ -47,7 +47,7 @@ function imba_faceless_void_timelord:IsInnateAbility()
 end
 
 function imba_faceless_void_timelord:GetBehavior()
-	return DOTA_ABILITY_BEHAVIOR_PASSIVE + DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE end
+	return DOTA_ABILITY_BEHAVIOR_PASSIVE end
 
 function imba_faceless_void_timelord:GetIntrinsicModifierName()
 	return "modifier_imba_faceless_void_timelord" end
