@@ -1465,6 +1465,24 @@
     "panorama_shop_stackable_purchase"                  "Purchased item was dropped on the base, because your hero has same stackable item in inventory"
     "dota_hud_error_panorama_shop_dropped_items_limit"  "Dropped items limit was reached"
     "dota_hud_error_panorama_shop_item_disabled"        "This item or one of it's components is disabled in this match"
+    // Imported from Dota IMBA (Not all may be in use)
+    "dota_hud_error_cant_use_already_hexed"                                      "Target already hexed."
+    "dota_hud_error_clone_cant_use"                                              "Cannot be used by clones."
+    "dota_hud_error_cant_use_on_wards"                                            "Cannot use on wards."
+    "dota_hud_error_cant_use_on_necrobook"                                        "Cannot use on necrobook minions."
+    "dota_hud_error_shadow_jaunt_track"                                          "Ability can only be used on Tracked enemies"
+    "dota_hud_error_cant_cast_on_self"                                            "Ability cannot be cast on yourself"
+    "dota_hud_error_lich_self_ice_armor"                                            "Ice Armor is eternally applied to you!"
+    "dota_hud_error_life_drain_self"                                                "You cannot suck yourself"  
+    "dota_hud_error_life_drain_target"                                            "This target is already being Life Drained"
+    "dota_hud_error_mana_drain_self"                                                "You cannot suck yourself"
+    "dota_hud_error_mana_drain_no_mana"                                          "This unit has no mana"
+    "dota_hud_error_cant_item_enough_slots"                                      "Not enough free slots to pickup this item!"
+    "dota_hud_error_cant_item_courier"                                            "Couriers can't pick up this item!"
+    "dota_hud_error_cant_item_give"                                              "You can't give this item to someone else!"
+    "dota_hud_error_cant_use_disarmed"                                            "Can't use ability when disarmed"
+    "dota_hud_error_cant_cast_on_spirits"                                          "This unit is already bound to you"
+    "dota_hud_error_cast_only_pumpkin"                                                  "You can't target towers!"
 
     /////////////////
     // Skill Warnings
@@ -9229,8 +9247,7 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
     // Dazzle's Ressurection
     ////===============================================================================================================
     "DOTA_Tooltip_ability_imba_dazzle_ressurection"                                "Ressurection"
-    "DOTA_Tooltip_ability_imba_dazzle_ressurection_Description"                    "After a %delay% second delay, brings the targeted hero back from the dead, and places them near Dazzle.\nShould the target be alive before the ressurection delay ends, the ressurection will fail, the cooldown will reset, the mana refunded."
-    "DOTA_Tooltip_ability_imba_dazzle_ressurection_Note0"                            "To target a hero, click on their portrait on the top bar, or target in their approximate point of death. The spell will search for a corpse in a 300 unit radius of the cast point."
+    "DOTA_Tooltip_ability_imba_dazzle_ressurection_Description"                    "After a %delay% second delay, brings the targeted hero back from the dead, and places them near Dazzle.\nShould the target be alive before the ressurection delay ends, the ressurection will fail, the cooldown will reset, the mana refunded.\nTo target a hero, click on their portrait on the top bar, or target in their approximate point of death. The spell will search for a corpse in a 300 unit radius of the cast point."
     "DOTA_Tooltip_ability_imba_dazzle_ressurection_Lore"                              "To keep someone alive is childs play. But to bring someone back from the dead, is truly a master feat."
 
     ////===============================================================================================================
