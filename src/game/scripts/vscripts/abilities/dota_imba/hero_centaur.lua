@@ -116,7 +116,9 @@ function imba_centaur_hoof_stomp:OnSpellStart()
 		self.lastCasterLocation = nil
 
 		caster:RemoveModifierByName("modifier_imba_return_passive")
-		caster:AddNewModifier(caster,caster:FindAbilityByName("imba_centaur_return"),"modifier_imba_return_passive",{})
+		if caster:HasAbility("imba_centaur_return") then
+			caster:AddNewModifier(caster,caster:FindAbilityByName("imba_centaur_return"),"modifier_imba_return_passive",{})
+		end
 
 		-- Ability specials
 		local radius = ability:GetSpecialValueFor("radius")
@@ -786,9 +788,9 @@ function modifier_imba_return_passive:OnTakeDamage(keys)
 			-- Note: Might remove this `if` this happens again
 			if attacker:FindModifierByName("modifier_imba_spiked_carapace") then
 				self.reflect_handler = true
-				Timers:CreateTimer(FrameTime(),function()
+				Timers:CreateTimer(function()
 					self.reflect_handler = false
-				end)
+				end, DoUniqueString('fixreflect'), FrameTime())
 			end
 
 			-- Add return particle
