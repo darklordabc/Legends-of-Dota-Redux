@@ -287,10 +287,12 @@ function modifier_chaos_knight_phantasm_cast:OnDestroy()
 		EmitSoundOn("Hero_ChaosKnight.Phantasm.Plus", caster)
 	end
 
-	for i=1, images_count do
+	caster.phantasm_illusions = ability:CreateIllusions(caster,images_count,flDuration,incomingDamage,outgoingDamage,25)
+
+	--[[for i=1, images_count do
 		local illusion = IllusionManager:CreateIllusion(caster, ability, casterOrigin, caster, {damagein=incomingDamage, damageout=outgoingDamage, unique="chaos_knight_phantasm_"..i, duration=duration})
 		table.insert(caster.phantasm_illusions, illusion)
-	end
+	end]]
 
 	for i=1, #caster.phantasm_illusions+1 do
 		if i ~= #caster.phantasm_illusions+1 then
