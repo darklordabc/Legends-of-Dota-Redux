@@ -7402,7 +7402,10 @@ function Pregame:giveAbilityUsageBonuses(playerID)
         local currentBuild = pregame.selectedSkills[playerID] or {}
         local usageData = StatsClient:GetAbilityUsageData(playerID) or {}
         local entries = StatsClient.SortedAbilityDataEntries[playerID] or {}
-        local realAbilitiesThreshold = math.ceil(StatsClient.totalGameAbilitiesCount * (1 - threshold * 0.01))
+        local realAbilitiesThreshold = 1
+      if (StatsClient.totalGameAbilitiesCount ~= nil) then
+          realAbilitiesThreshold = math.ceil(StatsClient.totalGameAbilitiesCount * (1 - threshold * 0.01))
+        end
         local enableAlternativeThreshold = util:tableCount(entries) >= realAbilitiesThreshold
 
         if enableAlternativeThreshold then
