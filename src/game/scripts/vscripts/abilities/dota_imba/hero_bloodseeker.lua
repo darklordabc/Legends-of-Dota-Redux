@@ -462,6 +462,7 @@ function modifier_imba_thirst_passive:OnIntervalThink()
 		local enemies = FindUnitsInRadius(self:GetParent():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS + DOTA_UNIT_TARGET_FLAG_DEAD + DOTA_UNIT_TARGET_FLAG_INVULNERABLE, 0, false)
 		local hpDeficit = 0
 		for _,enemy in pairs(enemies) do
+			enemy.thirstDeathTimer = enemy.thirstDeathTimer or 0
 			if self:GetCaster():PassivesDisabled() or not self:GetCaster():IsAlive() then
 				enemy:RemoveModifierByName("modifier_imba_thirst_debuff_vision")
 			else
@@ -497,11 +498,17 @@ function modifier_imba_thirst_passive:DeclareFunctions()
 end
 
 function modifier_imba_thirst_passive:GetModifierPreAttack_BonusDamage(params)
-	return self:GetStackCount() * self.damage
+	-- check NaN
+	if self:GetStackCount() * self.damage == self:GetStackCount() * self.damage then
+		return self:GetStackCount() * self.damage
+	end
 end
 
 function modifier_imba_thirst_passive:GetModifierMoveSpeedBonus_Percentage(params)
-	return self:GetStackCount() * self.movespeed
+	-- check NaN
+	if self:GetStackCount() * self.movespeed == self:GetStackCount() * self.movespeed then
+		return self:GetStackCount() * self.movespeed
+	end
 end
 
 function modifier_imba_thirst_passive:GetModifierMoveSpeed_Max()
@@ -808,7 +815,7 @@ function modifier_imba_rupture_charges:OnCreated()
 			self:SetStackCount(self.max_charge_count)
 		else
 			-- Illusions find their owner and its charges
-			local playerid = self.caster:GetPlayerID()
+			local playerid = self.caster:GetPlayerOwnerID()
 			local real_hero = playerid:GetAssignedHero()
 
 			if hero:HasModifier(self.modifier_charge) then
