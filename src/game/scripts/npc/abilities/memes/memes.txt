@@ -150,4 +150,116 @@
                 }
             }
         }
+
+    "lina_blazer"
+    {
+        "precache"
+        {
+            "particle"          "particles/units/heroes/hero_lina/lina_spell_laguna_blade.vpcf"
+            "soundfile"         "soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
+        }
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"
+        "BaseClass"                     "ability_datadriven"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityTextureName"            "custom/Blazer"
+        "FightRecapLevel"               "2"
+        "LevelsBetweenUpgrades"         "5"
+        "MaxLevel"                      "3"
+        "AOERadius"                     "%radius"
+        "AbilityCooldown"               "60 40 20"
+        "AbilityManaCost"               "420"
+        "ReduxCost"                     "120"
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "damage"                    "44 66 88"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "duration"                  "20"
+            }
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "radius"                    "700"
+            }
+        }
+        "OnSpellStart"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_blazer"
+                "Target"        "CASTER"
+                "Duration"      "%duration"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Memes.Blazer"
+                "Target"        "CASTER"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_blazer"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "Attributes"        "MODIFIER_ATTRIBUTE_MULTIPLE"
+                "ThinkInterval"     "0.4"
+                "OnIntervalThink"
+                {
+                    "ActOnTargets"
+                    {
+                        "Target"
+                        {
+                            "Center"    "CASTER"
+                            "Radius"    "%radius"
+                            "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                            "Types"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                            "Flags"     "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE"
+                            "MaxTargets" "2"
+                            "Random"     "1"
+                        }
+                    
+                        "Action"    
+                        {
+                            "Damage"
+                            {
+                                "Target"        "TARGET"
+                                "Type"          "DAMAGE_TYPE_PURE"
+                                "Damage"        "%damage"
+                            }
+
+                            "FireEffect"
+                            {
+                                "EffectName"    "particles/units/heroes/hero_lina/lina_spell_laguna_blade.vpcf"
+                                "EffectAttachType"  "start_at_customorigin"
+
+                                "ControlPointEntities"
+                                {
+                                    "CASTER"    "attach_attack1"
+                                    "TARGET"    "attach_hitloc"
+                                }
+                            }
+                            "Heal"
+                            {
+                                "Target"        "CASTER"
+                                "HealAmount"    "%damage"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
