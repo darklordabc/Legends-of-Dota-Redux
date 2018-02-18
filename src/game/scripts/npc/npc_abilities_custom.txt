@@ -63,6 +63,7 @@
 #base "abilities\overflow\master_magic_op.txt"
 #base "abilities\overflow\grow_beard.txt"
 #base "abilities\overflow\night_wolf.txt"
+#base "abilities\memes\memes.txt"
 #base "abilities\custom\basic_mana_bonus.txt" 
 #base "abilities\custom\bash_reflect.txt"
 #base "abilities\custom\basic_mana_bonus.txt"

@@ -1497,6 +1497,7 @@
     "warning_lone_druid_true_form"              "<font color=\'#FF4949\'>Hero Requirement:</font> Requires picking a hero with more than 400 range or else you will be unable to attack."
     "troll_warlord_berserkers_rage"              "<font color=\'#FF4949\'>Hero Requirement:</font> Requires picking a hero with more than 350 range or else you will be unable to attack."
     "warning_puck_illusory_orb"                 "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Ethereal Jaunt</font>."
+    "warning_imba_dragon_knight_elder_dragon_form"                 "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Elder Dragon Charge</font>."
     "warning_luna_eclipse"                      "<font color=\'#FF4949\'>Warning:</font> This spell does no damage without <font color=\'#70EA72\'>Lucent Beam.</font>"
     "warning_lone_druid_spirit_bear"            "<font color=\'#FF4949\'>Hero Requirement:</font> Bear Icon will not appear on the left side of the screen unless you play as <font color=\'#70EA72\'>Lone Druid.</font>"
     //"warning_lone_druid_true_form_battle_cry"   "<font color=\'#FF4949\'>Warning:</font> Disabled, unless you have at least one point in <font color=\'#70EA72\'>True Form.</font></font>"
@@ -1606,6 +1607,9 @@
     "credit_unwavering_stance"           "<font color=\'#7D7D7D\'>Credits: Deathtal | github.com/Deathtal</font>"
     "credit_molten_charge"           "<font color=\'#7D7D7D\'>Credits: Deathtal | github.com/Deathtal</font>"
     "credit_pudge_flesh_heap_minion_damage"           "<font color=\'#7D7D7D\'>Credits: Deathtal | github.com/Deathtal</font>"
+
+    "credit_lina_banana"           "<font color=\'#7D7D7D\'>Imported from Memes Reborn</font>"
+    "credit_lina_banana_redux"           "<font color=\'#7D7D7D\'>Imported from Memes Reborn</font>"
     
     "credit_spell_lab_symbiotic"           "<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>"
     "credit_sight"           "<font color=\'#7D7D7D\'>Imported from One Shot One Kill</font>"
@@ -16911,6 +16915,16 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
     "DOTA_Tooltip_ability_ptomely_expunge_radius"                                     "RADIUS:"
     "DOTA_Tooltip_ability_ptomely_expunge_slow"                                       "SLOW:"
     "DOTA_Tooltip_ability_ptomely_expunge_base_drain"                                 "BASE MANA DRAIN:"
+
+    "DOTA_Tooltip_ability_lina_banana"                                  "Bananas! OP"
+    "DOTA_Tooltip_ability_lina_banana_Description"                      "Everybody knows, brain love bananas and Lina know it. <font color='#70EA72'>Gives more int</font>."
+    "DOTA_Tooltip_ability_lina_banana_int_per_tree"                     "INTELLIGENCE PER TREE:"
+    "DOTA_Tooltip_ability_lina_banana_cooldown_tooltip"                 "COOLDOWN:"
+
+    "DOTA_Tooltip_ability_lina_banana_redux"                                  "Bananas!"
+    "DOTA_Tooltip_ability_lina_banana_redux_Description"                      "Everybody knows, brain love bananas and Lina know it."
+    "DOTA_Tooltip_ability_lina_banana_redux_int_per_tree"                     "INTELLIGENCE PER TREE:"
+    "DOTA_Tooltip_ability_lina_banana_redux_cooldown_tooltip"                 "COOLDOWN:"
 
     "DOTA_Tooltip_ability_ptomely_mirror_blade"                                       "Mirror Blade"
     "DOTA_Tooltip_ability_ptomely_mirror_blade_Description"                           "Fires multiple blades of pure energy towards the target location, dealing Physical damage based upon Ptomely's Intelligence.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
