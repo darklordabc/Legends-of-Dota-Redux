@@ -1,0 +1,117 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf1:version{d47d07e6-072c-49cb-9718-5bfd8d6c3d21} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 24
+	m_flConstantRadius = 2.0
+	m_flMaxDrawDistance = 1500.0
+	m_bShouldSort = false
+	m_flAggregateRadius = 512.0
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderTrails"
+			VisibilityInputs = 
+			{
+				m_flRadiusScaleMin = 0.0
+				m_flProxyRadius = 8.0
+			}
+			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
+			m_flOverbrightFactor = 6.0
+			m_flAddSelfAmount = 2.0
+			m_bSaturateColorPreAlphaBlend = false
+			m_hTexture = resource:"materials/particle/sparks/sparks.vtex"
+			m_flMaxLength = 232.0
+			m_flLengthFadeInTime = 0.05
+			m_flAnimationRate = 0.0
+			m_flRadiusScale = 0.5
+			m_flFinalTextureScaleV = -1.0
+			m_flFinalTextureOffsetV = 1.0
+			m_vEndTrailTintFactor = [ 1.0, 1.0, 1.0, 0.0 ]
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flBias = 0.95
+			m_flEndScale = 0.5
+			m_flStartScale = 6.0
+		},
+		{
+			_class = "C_OP_PositionLock"
+			m_nControlPointNumber = 1
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphere"
+			m_LocalCoordinateSystemSpeedMax = [ 1500.0, 1500.0, 1500.0 ]
+			m_LocalCoordinateSystemSpeedMin = [ -1500.0, -1500.0, -1500.0 ]
+			m_fSpeedMax = 500.0
+			m_bLocalCoords = true
+			m_vecDistanceBiasAbs = [ 0.0, 0.0, 1.0 ]
+			m_vecDistanceBias = [ 1.0, 1.0, -1.0 ]
+			m_nControlPointNumber = 1
+		},
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeRandExponent = 0.75
+			m_fLifetimeMax = 0.09
+			m_fLifetimeMin = 0.08
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMax = [ 255, 182, 133, 255 ]
+			m_ColorMin = [ 255, 247, 210, 255 ]
+		},
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMax = 24.0
+			m_flRadiusMin = 6.0
+		},
+		{
+			_class = "C_INIT_RandomTrailLength"
+			m_flMinLength = 0.042
+		},
+		{
+			_class = "C_INIT_RandomSequence"
+			m_nSequenceMax = 4
+			m_nSequenceMin = 3
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_flStartTime = 0.3
+		},
+	]
+	m_ConstantColor = [ 255, 0, 0, 255 ]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+}
