@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - Fixed Phantom Fleet
 - Added Bananas ability from Memes Redux (Standard and SP version)
 - Added Lagoona Blaze It from Memes Redux as a single player ability
+- Reduced Slardar's Perk to 25% bonus damage from physical sources
 
 ## 10.4
 - Fixed Neutral Evasion ability and made it a single level ability.
