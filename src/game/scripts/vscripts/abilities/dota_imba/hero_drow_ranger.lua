@@ -1122,7 +1122,7 @@ function modifier_imba_trueshot:OnIntervalThink()
 
 
 		-- Set the values in the nettable
-		CustomNetTables:SetTableValue( "player_table", "precision_aura_drow_agility"..tostring(self.parent:GetPlayerOwnerID()), { precision_aura_drow_agility = drow_agility})
+		CustomNetTables:SetTableValue( "heroes", "precision_aura_drow_agility"..tostring(self.parent:GetPlayerOwnerID()), { precision_aura_drow_agility = drow_agility})
 	end
 end
 
@@ -1134,9 +1134,9 @@ function modifier_imba_trueshot:DeclareFunctions()
 end
 
 function modifier_imba_trueshot:GetModifierPreAttack_BonusDamage()
-	if CustomNetTables:GetTableValue("player_table", "precision_aura_drow_agility"..tostring(self.parent:GetPlayerOwnerID())) then
-		if CustomNetTables:GetTableValue("player_table", "precision_aura_drow_agility"..tostring(self.parent:GetPlayerOwnerID())).precision_aura_drow_agility then
-			local drow_agility = CustomNetTables:GetTableValue("player_table", "precision_aura_drow_agility"..tostring(self.parent:GetPlayerOwnerID())).precision_aura_drow_agility
+	if CustomNetTables:GetTableValue("heroes", "precision_aura_drow_agility"..tostring(self.parent:GetPlayerOwnerID())) then
+		if CustomNetTables:GetTableValue("heroes", "precision_aura_drow_agility"..tostring(self.parent:GetPlayerOwnerID())).precision_aura_drow_agility then
+			local drow_agility = CustomNetTables:GetTableValue("heroes", "precision_aura_drow_agility"..tostring(self.parent:GetPlayerOwnerID())).precision_aura_drow_agility
 
 			-- Calculate bonus damage
 			local bonus_damage = drow_agility * (self.agi_to_damage_pct/100)
@@ -1157,9 +1157,9 @@ end
 
 function modifier_imba_trueshot:GetModifierBonusStats_Agility()
 	-- Check if Drow's agility was indexed
-	if CustomNetTables:GetTableValue("player_table", "precision_aura_drow_agility"..tostring(self.parent:GetPlayerOwnerID())) then
-		if CustomNetTables:GetTableValue("player_table", "precision_aura_drow_agility"..tostring(self.parent:GetPlayerOwnerID())).precision_aura_drow_agility then
-			local drow_agility = CustomNetTables:GetTableValue("player_table", "precision_aura_drow_agility"..tostring(self.parent:GetPlayerOwnerID())).precision_aura_drow_agility
+	if CustomNetTables:GetTableValue("heroes", "precision_aura_drow_agility"..tostring(self.parent:GetPlayerOwnerID())) then
+		if CustomNetTables:GetTableValue("heroes", "precision_aura_drow_agility"..tostring(self.parent:GetPlayerOwnerID())).precision_aura_drow_agility then
+			local drow_agility = CustomNetTables:GetTableValue("heroes", "precision_aura_drow_agility"..tostring(self.parent:GetPlayerOwnerID())).precision_aura_drow_agility
 			-- Only applies when the active component works
 			if self.caster:HasModifier(self.modifier_active) then
 				-- Only applies to heroes
@@ -1370,7 +1370,9 @@ function modifier_imba_marksmanship:OnIntervalThink()
 		end
 
 		-- Either way, recalculate stats.
-		self.caster:CalculateStatBonus()
+		if self.caster and self.caster.CalculateStatBonus then
+			self.caster:CalculateStatBonus()
+		end
 	end
 end
 
