@@ -4795,8 +4795,9 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
 
 
         "DOTA_Tooltip_ability_spell_lab_survivor_cooldown"                  "Survival of the Fittest: Cooldown"
-        "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_Description"      "Your survival instinct is enhanced. You gain Cooldown Reduction for every minute you survive without dying. Does not gain stacks unless you have been seen by the enemy team in the last 45 seconds."
+        "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_Description"      "Your survival instinct is enhanced. You gain Cooldown Reduction for every minute you survive without dying. Does not gain stacks unless you have been seen by the enemy team recently."
         "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_bonus"            "%COOLDOWN REDUCTION PER MINUTE:"
+		"DOTA_Tooltip_ability_spell_lab_survivor_cooldown_battle_thirst"    "LAST SEEN COOLDOWN (SECONDS):"
         "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_Note0"            "Fully retroactive. Reincarnate effects won't reset the stack."
         
         "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_op"                  "Survival of the Fittest: Cooldown OP"
@@ -4865,8 +4866,9 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
         "DOTA_Tooltip_spell_lab_survivor_move_speed_modifier_Description" "Movement Speed gained through staying alive."
 
         "DOTA_Tooltip_ability_spell_lab_survivor_spell_boost"                   "Survival of the Fittest: Spell Amplification"
-        "DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_Description"       "Your survival instinct is enhanced. You gain Spell Amplification for every minute you survive without dying. Does not gain stacks unless you have been seen by the enemy team in the last 45 seconds."
+        "DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_Description"       "Your survival instinct is enhanced. You gain Spell Amplification for every minute you survive without dying. Does not gain stacks unless you have been seen by the enemy team recently."
         "DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_bonus"         "%SPELL AMP PER MINUTE:"
+		"DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_battle_thirst"    "LAST SEEN COOLDOWN (SECONDS):"
         "DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_Note0"         "Fully retroactive. Reincarnate effects won't reset the stack."
         
         "DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_op"                   "Survival of the Fittest: Spell Amplification OP"
