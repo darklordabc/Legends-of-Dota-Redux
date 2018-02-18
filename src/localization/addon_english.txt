@@ -8530,7 +8530,7 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
     // Beastmaster's Summon Hawk: Invisibility
     ////===============================================================================================================
     "DOTA_Tooltip_ability_imba_beastmaster_hawk_invis"                              "Invisibility"
-    "DOTA_Tooltip_ability_imba_beastmaster_hawk_invis_Description"                  "If motionless for some time, the Hawk becomes invisible."
+    "DOTA_Tooltip_ability_imba_beastmaster_hawk_invis_Description"                  "If motionless for some time, the Hawk becomes invisible. Can attack and cast spells while invisible and it will not break invisiblity."
     "DOTA_Tooltip_ability_imba_beastmaster_hawk_invis_fade_time"                      "FADE TIME:"
 
     "DOTA_Tooltip_modifier_imba_hawk_invis"                                      "Invisible"
