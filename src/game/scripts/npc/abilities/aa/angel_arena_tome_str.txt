@@ -42,6 +42,14 @@
                 "Function"          "UpgradeStats"
             }      
         }
+        "OnUpgrade"
+        {
+            "RunScript"
+            {
+                "ScriptFile" "abilities/angel_arena_reborn/tome.lua"
+                "Function"  "LevelTome"
+            }
+        }
 
     }
 }

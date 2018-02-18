@@ -834,6 +834,15 @@ function CDOTABaseAbility:CreateIllusions(hTarget,nIllusions,flDuration,flIncomi
         illusion:SetMana(hTarget:GetMana())
         illusion:AddNewModifier(caster, ability, "modifier_illusion", {duration = flDuration, outgoing_damage=flOutgoingDamage, incoming_damage = flIncomingDamage})
 
+        --make sure this unit actually has stats
+        if illusion.GetStrength then
+            --copy over all the stat modifiers from the original hero
+            for k,v in pairs(hTarget:FindAllModifiersByName("modifier_stats_tome")) do
+                local instance = illusion:AddNewModifier(illusion, v:GetAbility(), "modifier_stats_tome", {stat = v.stat})
+                instance:SetStackCount(v:GetStackCount())
+            end
+        end
+
         local level = hTarget:GetLevel()
         for i=1,level-1 do
             illusion:HeroLevelUp(false)
