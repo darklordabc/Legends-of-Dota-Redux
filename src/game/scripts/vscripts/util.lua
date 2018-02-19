@@ -1291,6 +1291,7 @@ function GenerateTalentAbilityList()
         winter_wyvern_arctic_burn = true,
         life_stealer_control = true,
         eat_tree_eldri = true,
+        shadow_demon_shadow_poison_release = true,
         storm_spirit_ball_lightning = true,
         ability_wards = true,
         ability_wards_op = true,

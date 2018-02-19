@@ -11,6 +11,8 @@ All notable changes to this project will be documented in this file.
 - Reduced Slardar's Perk to 25% bonus damage from physical sources
 - Bonus stats from tomes should apply to illusions now
 - Worked on Various Dota Imba abilities, many fixes
+- Shadow Posion release will no longer trigger some passives like Essence Aura
+- Haunt and Shadow demon poison is now troll combo with static field
 
 
 ## 10.4
