@@ -13,6 +13,8 @@ All notable changes to this project will be documented in this file.
 - Worked on Various Dota Imba abilities, many fixes
 - Shadow Posion release will no longer trigger some passives like Essence Aura
 - Haunt and Shadow demon poison is now troll combo with static field
+- Passives are now limited on Classic map
+- Disabled the broken abilities on the pick screen until they can be fixed
 
 
 ## 10.4
