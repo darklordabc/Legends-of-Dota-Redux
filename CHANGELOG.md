@@ -9,6 +9,9 @@ All notable changes to this project will be documented in this file.
 - Added Bananas ability from Memes Redux (Standard and SP version)
 - Added Lagoona Blaze It from Memes Redux as a single player ability
 - Reduced Slardar's Perk to 25% bonus damage from physical sources
+- Bonus stats from tomes should apply to illusions now
+- Worked on Various Dota Imba abilities, many fixes
+
 
 ## 10.4
 - Fixed Neutral Evasion ability and made it a single level ability.

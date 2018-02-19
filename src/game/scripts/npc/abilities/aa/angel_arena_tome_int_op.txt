@@ -33,6 +33,14 @@
                 "Function"                                             "UpgradeStats"
             }
         }
+        "OnUpgrade"
+        {
+            "RunScript"
+            {
+                "ScriptFile" "abilities/angel_arena_reborn/tome.lua"
+                "Function"  "LevelTome"
+            }
+        }
         "ReduxCost"                                                            "120"
         "ReduxFlags"                                                           ""
     }
