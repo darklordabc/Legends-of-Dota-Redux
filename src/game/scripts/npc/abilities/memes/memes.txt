@@ -16,7 +16,7 @@
             "FightRecapLevel"               "2"
             "LevelsBetweenUpgrades"         "2"
             "MaxLevel"                      "4"
-            "AbilityCooldown"               "55 50 45 40"
+            "AbilityCooldown"               "60 50 40 20"
             "AbilityManaCost"               "60 70 80 90"
             "AbilityCastRange"              "150"
             "AbilityCastPoint"              "0.3"
@@ -35,7 +35,7 @@
                 "02"
                 {
                     "var_type"                  "FIELD_INTEGER"
-                    "cooldown_tooltip"          "55 50 45 40"
+                    "cooldown_tooltip"          "60 50 40 20"
                 }
                 "03"
                 {
@@ -91,7 +91,7 @@
             "FightRecapLevel"               "2"
             "LevelsBetweenUpgrades"         "2"
             "MaxLevel"                      "4"
-            "AbilityCooldown"               "55 50 45 40"
+            "AbilityCooldown"               "60 50 40 20"
             "AbilityManaCost"               "60 70 80 90"
             "AbilityCastRange"              "150"
             "AbilityCastPoint"              "0.3"
@@ -127,7 +127,7 @@
                 }
                 "ApplyModifier"
                 {
-                    "ModifierName"  "modifier_banana"
+                    "ModifierName"  "modifier_banana_redux"
                     "Target"        "CASTER"
                 }
                 "FireSound"
@@ -138,7 +138,7 @@
             }
             "Modifiers"
             {
-                "modifier_banana"
+                "modifier_banana_redux"
                 {
                     "Passive"           "0"
                     "IsHidden"          "1"
@@ -258,6 +258,310 @@
                             }
                         }
                     }
+                }
+            }
+        }
+    }
+
+    "lina_coconut_redux"
+    {
+        "precache"
+        {
+            "particle"          "particles/units/heroes/hero_treant/treant_overgrowth_vines.vpcf"
+        }
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "BaseClass"                     "ability_datadriven"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_TREE"
+        "AbilityTextureName"            "custom/coconut"
+        "FightRecapLevel"               "2"
+        "LevelsBetweenUpgrades"         "2"
+        "MaxLevel"                      "4"
+        "AbilityCooldown"               "60 50 40 20"
+        "AbilityManaCost"               "60 70 80 90"
+        "AbilityCastRange"              "150"
+        "AbilityCastPoint"              "0.3"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_2"
+        "AOERadius"                     "%tree_radius"
+        "ReduxCost"                     "0"
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "str_per_tree"              "1"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "cooldown_tooltip"          "60 50 40 20"
+            }
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "tree_radius"               "10"
+            }
+        }
+        "OnSpellStart"
+        {
+            "DestroyTrees"
+            {
+                "Target"        "POINT"
+                "Radius"        "%tree_radius"
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_coconut_redux"
+                "Target"        "CASTER"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Memes.Tree"
+                "Target"        "CASTER"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_coconut_redux"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "Attributes"        "MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_MULTIPLE"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"   "%str_per_tree"
+                }
+            }
+        }
+    }
+
+    "lina_coconut"
+    {
+        "precache"
+        {
+            "particle"          "particles/units/heroes/hero_treant/treant_overgrowth_vines.vpcf"
+        }
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "BaseClass"                     "ability_datadriven"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_TREE"
+        "AbilityTextureName"            "custom/coconut_op"
+        "FightRecapLevel"               "2"
+        "LevelsBetweenUpgrades"         "2"
+        "MaxLevel"                      "4"
+        "AbilityCooldown"               "60 50 40 20"
+        "AbilityManaCost"               "60 70 80 90"
+        "AbilityCastRange"              "150"
+        "AbilityCastPoint"              "0.3"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_2"
+        "AOERadius"                     "%tree_radius"
+        "ReduxCost"                     "120"
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "str_per_tree"              "5 7 9 11"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "cooldown_tooltip"          "60 50 40 20"
+            }
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "tree_radius"               "10"
+            }
+        }
+        "OnSpellStart"
+        {
+            "DestroyTrees"
+            {
+                "Target"        "POINT"
+                "Radius"        "%tree_radius"
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_coconut"
+                "Target"        "CASTER"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Memes.Tree"
+                "Target"        "CASTER"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_coconut"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "Attributes"        "MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_MULTIPLE"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"   "%str_per_tree"
+                }
+            }
+        }
+    }
+
+    "lina_grapefruit_redux"
+    {
+        "precache"
+        {
+            "particle"          "particles/units/heroes/hero_treant/treant_overgrowth_vines.vpcf"
+        }
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "BaseClass"                     "ability_datadriven"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_TREE"
+        "AbilityTextureName"            "custom/grapefruit"
+        "FightRecapLevel"               "2"
+        "LevelsBetweenUpgrades"         "2"
+        "MaxLevel"                      "4"
+        "AbilityCooldown"               "60 50 40 20"
+        "AbilityManaCost"               "60 70 80 90"
+        "AbilityCastRange"              "150"
+        "AbilityCastPoint"              "0.3"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_2"
+        "AOERadius"                     "%tree_radius"
+        "ReduxCost"                     "0"
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "agi_per_tree"              "1"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "cooldown_tooltip"          "60 50 40 20"
+            }
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "tree_radius"               "10"
+            }
+        }
+        "OnSpellStart"
+        {
+            "DestroyTrees"
+            {
+                "Target"        "POINT"
+                "Radius"        "%tree_radius"
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_grapefruit_redux"
+                "Target"        "CASTER"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Memes.Tree"
+                "Target"        "CASTER"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_grapefruit_redux"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "Attributes"        "MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_MULTIPLE"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"   "%agi_per_tree"
+                }
+            }
+        }
+    }
+
+    "lina_grapefruit"
+    {
+        "precache"
+        {
+            "particle"          "particles/units/heroes/hero_treant/treant_overgrowth_vines.vpcf"
+        }
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "BaseClass"                     "ability_datadriven"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_TREE"
+        "AbilityTextureName"            "custom/grapefruit_op"
+        "FightRecapLevel"               "2"
+        "LevelsBetweenUpgrades"         "2"
+        "MaxLevel"                      "4"
+        "AbilityCooldown"               "60 50 40 20"
+        "AbilityManaCost"               "60 70 80 90"
+        "AbilityCastRange"              "150"
+        "AbilityCastPoint"              "0.3"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_2"
+        "AOERadius"                     "%tree_radius"
+        "ReduxCost"                     "120"
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "agi_per_tree"              "5 7 9 11"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "cooldown_tooltip"          "60 50 40 20"
+            }
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "tree_radius"               "10"
+            }
+        }
+        "OnSpellStart"
+        {
+            "DestroyTrees"
+            {
+                "Target"        "POINT"
+                "Radius"        "%tree_radius"
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_grapefruit"
+                "Target"        "CASTER"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Memes.Tree"
+                "Target"        "CASTER"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_grapefruit"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "Attributes"        "MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_MULTIPLE"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"   "%agi_per_tree"
                 }
             }
         }

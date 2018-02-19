@@ -2,6 +2,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 10.6
+- Added Grapefruit and Coconuts ability
+
 ## 10.5
 - Fixed Heart givving illusions regen
 - Holy Wrath no longer can kill wards

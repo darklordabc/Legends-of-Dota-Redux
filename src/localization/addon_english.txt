@@ -1610,6 +1610,10 @@
 
     "credit_lina_banana"           "<font color=\'#7D7D7D\'>Imported from Memes Reborn</font>"
     "credit_lina_banana_redux"           "<font color=\'#7D7D7D\'>Imported from Memes Reborn</font>"
+    "credit_lina_coconut"           "<font color=\'#7D7D7D\'>Imported from Memes Reborn</font>"
+    "credit_lina_coconut_redux"           "<font color=\'#7D7D7D\'>Imported from Memes Reborn</font>"
+    "credit_lina_grapefruit"           "<font color=\'#7D7D7D\'>Imported from Memes Reborn</font>"
+    "credit_lina_grapefruit_redux"           "<font color=\'#7D7D7D\'>Imported from Memes Reborn</font>"
 
     "credit_lina_blazer"           "<font color=\'#7D7D7D\'>Imported from Memes Reborn</font>"
     
@@ -16925,14 +16929,30 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
     "DOTA_Tooltip_ability_ptomely_expunge_base_drain"                                 "BASE MANA DRAIN:"
 
     "DOTA_Tooltip_ability_lina_banana"                                  "Bananas! OP"
-    "DOTA_Tooltip_ability_lina_banana_Description"                      "Everybody knows, brain love bananas and Lina know it. <font color='#70EA72'>Gives more int</font>."
+    "DOTA_Tooltip_ability_lina_banana_Description"                      "Everybody knows, brain love bananas and Lina know it. <font color='#70EA72'>Gives more intelligence</font>."
     "DOTA_Tooltip_ability_lina_banana_int_per_tree"                     "INTELLIGENCE PER TREE:"
-    "DOTA_Tooltip_ability_lina_banana_cooldown_tooltip"                 "COOLDOWN:"
 
     "DOTA_Tooltip_ability_lina_banana_redux"                                  "Bananas!"
     "DOTA_Tooltip_ability_lina_banana_redux_Description"                      "Everybody knows, brain love bananas and Lina know it."
     "DOTA_Tooltip_ability_lina_banana_redux_int_per_tree"                     "INTELLIGENCE PER TREE:"
-    "DOTA_Tooltip_ability_lina_banana_redux_cooldown_tooltip"                 "COOLDOWN:"
+
+    "DOTA_Tooltip_ability_lina_coconut_redux"                                  "Coconuts!"
+    "DOTA_Tooltip_ability_lina_coconut_redux_Description"                      "Everybody knows, muscles love coconuts and Lina know it."
+    "DOTA_Tooltip_ability_lina_coconut_redux_str_per_tree"                     "STRENGTH PER TREE:"
+
+    "DOTA_Tooltip_ability_lina_coconut"                                  "Coconuts! OP"
+    "DOTA_Tooltip_ability_lina_coconut_Description"                      "Everybody knows, muscles love coconuts and Lina know it. <font color='#70EA72'>Gives more strength</font>."
+    "DOTA_Tooltip_ability_lina_coconut_str_per_tree"                     "STRENGTH PER TREE:"
+
+    "DOTA_Tooltip_ability_lina_grapefruit_redux"                                  "Grapefruits!"
+    "DOTA_Tooltip_ability_lina_grapefruit_redux_Description"                      "Everybody knows, flexiblity love grapefruits and Lina know it."
+    "DOTA_Tooltip_ability_lina_grapefruit_redux_agi_per_tree"                     "AGILITY PER TREE:"
+
+    "DOTA_Tooltip_ability_lina_grapefruit"                                  "Grapefruits! OP"
+    "DOTA_Tooltip_ability_lina_grapefruit_Description"                      "Everybody knows, flexiblity love grapefruits and Lina know it. <font color='#70EA72'>Gives more agility</font>."
+    "DOTA_Tooltip_ability_lina_grapefruit_agi_per_tree"                     "AGILITY PER TREE:"
+
+
 
     "DOTA_Tooltip_ability_lina_blazer"                                  "Lagoona Blaze It"
     "DOTA_Tooltip_ability_lina_blazer_Description"                      "Blazes her Enemies with Unstable blaze fire, dealing damage to enemies, that close to her."
