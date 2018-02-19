@@ -2506,7 +2506,8 @@
 	{
 		"BaseClass"                    "npc_dota_base_additive"    // Class of entity of link to.
 	
-	
+		"Ability1"					"dummy_unit_state"
+		
 		// Attack
 		//----------------------------------------------------------------
 		"AttackCapabilities"  "DOTA_UNIT_CAP_NO_ATTACK"
