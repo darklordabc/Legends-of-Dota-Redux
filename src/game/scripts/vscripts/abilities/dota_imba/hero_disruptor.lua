@@ -54,37 +54,46 @@ modifier_imba_stormbearer = modifier_imba_stormbearer or class({})
 function modifier_imba_stormbearer:AllowIllusionDuplicate()	return true	end
 function modifier_imba_stormbearer:GetAttributes()	return MODIFIER_ATTRIBUTE_PERMANENT	end
 function modifier_imba_stormbearer:IsDebuff()	return false	end
-function modifier_imba_stormbearer:IsHidden()	return false	end
+function modifier_imba_stormbearer:IsHidden()	return self.ability:GetLevel() == 0 end
 function modifier_imba_stormbearer:IsPurgable()	return false	end
 
 function modifier_imba_stormbearer:OnCreated()
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
-	self.ms_per_stack = self.ability:GetSpecialValueFor("ms_per_stack")
-	self.scepter_ms_per_stack = self.ability:GetSpecialValueFor("scepter_ms_per_stack")
 end
 
 function modifier_imba_stormbearer:DeclareFunctions()
-	local decFuncs = {MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT}
+	local decFuncs = {MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT, MODIFIER_EVENT_ON_TAKEDAMAGE}
 	return decFuncs
 end
 
 function modifier_imba_stormbearer:GetModifierMoveSpeedBonus_Constant()
-	self.scepter = self.caster:HasScepter()
 	-- Does nothing if the caster is disabled
 	if self.caster:PassivesDisabled() then
 		return nil
 	end
-
-	local stacks = self:GetStackCount()
-	local move_speed_increase
-
-	if self.scepter then
-		move_speed_increase = (self.scepter_ms_per_stack) * stacks
-	else
-		move_speed_increase = (self.ms_per_stack) * stacks
+	if self.ability:GetLevel() == 0 then
+		return nil
 	end
-	return move_speed_increase
+
+	return self.ability:GetSpecialValueFor("ms_per_stack") * self:GetStackCount()
+end
+
+function modifier_imba_stormbearer:OnTakeDamage(keys)
+	if not IsServer() or keys.attacker ~= self.caster or keys.unit:GetTeam() == self.caster or not keys.unit:IsRealHero() then return end
+
+	if self.ability:GetLevel() == 0 then
+		return
+	end
+
+	if keys.damage >= 10 and keys.damage_type == DAMAGE_TYPE_MAGICAL then
+		if self.ability:IsCooldownReady() then
+
+			IncrementStormbearerStacks(self.caster)
+
+			self.ability:UseResources(true, false, true)
+		end
+	end
 end
 
 function IncrementStormbearerStacks(caster, stacks)
@@ -311,9 +320,9 @@ function ThunderStrikeBoltStrike(self)
 			ApplyDamage(damageTable)
 
 			-- Give a Stormbearer stack to caster
-			if self.caster:HasModifier(stormbearer_buff) and enemy:IsRealHero() then
-				IncrementStormbearerStacks(self.caster)
-			end
+			--if self.caster:HasModifier(stormbearer_buff) and enemy:IsRealHero() then
+			--	IncrementStormbearerStacks(self.caster)
+			--end
 		end
 	end
 end
@@ -839,9 +848,9 @@ function modifier_imba_glimpse_storm_debuff:OnIntervalThink()
 			ApplyDamage(damageTable)
 
 			-- Give a Stormbearer stack to caster
-			if self.caster:HasModifier(self.stormbearer_buff) and self.target:IsRealHero() then
-				IncrementStormbearerStacks(self.caster)
-			end
+			--if self.caster:HasModifier(self.stormbearer_buff) and self.target:IsRealHero() then
+			--	IncrementStormbearerStacks(self.caster)
+			--end
 
 		end
 	end
@@ -1478,9 +1487,9 @@ function modifier_imba_static_storm:OnIntervalThink()
 			ApplyDamage(damageTable)
 
 			-- Give a Stormbearer stack to caster
-			if self.caster:HasModifier(self.stormbearer_buff) and enemy:IsRealHero() then
-				IncrementStormbearerStacks(self.caster)
-			end
+			--if self.caster:HasModifier(self.stormbearer_buff) and enemy:IsRealHero() then
+			--	IncrementStormbearerStacks(self.caster)
+			--end
 		end
 	end
 	self.pulse_num = self.pulse_num + 1
