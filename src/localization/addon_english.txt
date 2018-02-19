@@ -16959,6 +16959,33 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
     "DOTA_Tooltip_ability_lina_blazer_damage"                      "DAMAGE:"
     "DOTA_Tooltip_ability_lina_blazer_radius"                      "RADIUS:"
 
+    "DOTA_Tooltip_ability_disruptor_glimpse_OP"                             "Glimpse OP"
+    "DOTA_Tooltip_ability_disruptor_glimpse_OP_Description"                 "Teleports the target hero back to where it was 4 seconds ago.  Instantly kills illusions. <font color='#70EA72'>Double cast-range</font>."
+    "DOTA_Tooltip_ability_disruptor_glimpse_OP_Lore"                            "Playing with electricity can have unexpected results."
+    "DOTA_Tooltip_ability_disruptor_glimpse_OP_Note0"                           "The travel time is a function of the distance the target will travel."
+    "DOTA_Tooltip_ability_disruptor_glimpse_OP_cast_range"                      "CAST RANGE:"
+
+    "DOTA_Tooltip_ability_disruptor_kinetic_field_OP"                           "Kinetic Field OP"
+    "DOTA_Tooltip_ability_disruptor_kinetic_field_OP_Description"               "After a short formation time, creates a circular barrier of kinetic energy that enemies can't pass. <font color='#70EA72'>Global cast-range, double duration, instant formation and larger radius</font>."
+    "DOTA_Tooltip_ability_disruptor_kinetic_field_OP_Lore"                      "The stryder is immune to the gale-force winds that will consume its adversaries."
+    "DOTA_Tooltip_ability_disruptor_kinetic_field_OP_Note0"                 "Magic immune units can travel through the field."
+    "DOTA_Tooltip_ability_disruptor_kinetic_field_OP_formation_time"            "FORMATION TIME:"
+    "DOTA_Tooltip_ability_disruptor_kinetic_field_OP_duration"                  "DURATION:"
+    "DOTA_Tooltip_ability_disruptor_kinetic_field_OP_radius"                    "RADIUS:"
+
+    "DOTA_Tooltip_ability_frost_lord_freezing"  "Cold Embrace"
+    "DOTA_Tooltip_ability_frost_lord_freezing_Description"  "Gives Frost Lord a chance to freeze his attacker and deal damage to him."
+    "DOTA_Tooltip_ability_frost_lord_freezing_freezing_chance"  "%CHANCE TO FREEZE:"
+    "DOTA_Tooltip_ability_frost_lord_freezing_stun_hero_duration"   "FREEZE DURATION:"
+    
+    "DOTA_Tooltip_ability_frost_lord_freezing_OP"   "Cold Embrace OP"
+    "DOTA_Tooltip_ability_frost_lord_freezing_OP_Description"   "Gives Frost Lord a chance to freeze his attacker and deal damage to him. <font color='#70EA72'>Higher chance to proc and longer freeze duration.</font>"
+    "DOTA_Tooltip_ability_frost_lord_freezing_OP_freezing_chance"   "%CHANCE TO FREEZE:"
+    "DOTA_Tooltip_ability_frost_lord_freezing_OP_stun_hero_duration"    "FREEZE DURATION:"
+
+    "DOTA_Tooltip_modifier_frost_lord_freezing_block"   "Cold Embrace"
+    "DOTA_Tooltip_modifier_frost_lord_freezing_block_Description"   "This unit is frozen."
+
     "DOTA_Tooltip_ability_ptomely_mirror_blade"                                       "Mirror Blade"
     "DOTA_Tooltip_ability_ptomely_mirror_blade_Description"                           "Fires multiple blades of pure energy towards the target location, dealing Physical damage based upon Ptomely's Intelligence.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
     "DOTA_Tooltip_ability_ptomely_mirror_blade_damage"                                "DAMAGE PER INT:"
