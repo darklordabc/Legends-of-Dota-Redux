@@ -470,8 +470,10 @@ function modifier_imba_enigma_eidolon:OnAttackLanded(keys)
 			if not target:HasModifier("modifier_imba_enigma_eidolon_attack_counter") then
 				target:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_imba_enigma_eidolon_attack_counter", {})
 			end
-			if self.last_target:FindModifierByNameAndCaster("modifier_imba_enigma_eidolon_attacks_debuff", self:GetParent()) then
-				self.last_target:FindModifierByNameAndCaster("modifier_imba_enigma_eidolon_attacks_debuff", self:GetParent()):Destroy()
+			if self.last_target and not self.last_target:IsNull() then
+				if self.last_target:FindModifierByNameAndCaster("modifier_imba_enigma_eidolon_attacks_debuff", self:GetParent()) then
+					self.last_target:FindModifierByNameAndCaster("modifier_imba_enigma_eidolon_attacks_debuff", self:GetParent()):Destroy()
+				end
 			end
 			self.last_target = target
 			target:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_imba_enigma_eidolon_attacks_debuff", {duration = self:GetAbility():GetSpecialValueFor("increased_mass_duration")})
@@ -907,7 +909,7 @@ function modifier_imba_enigma_black_hole_pull:HorizontalMotion(unit, time)
 	self.pull_distance =  CalculatePullLength(self:GetCaster(), self:GetParent(), self.base_pull_distance) / (1.0 / FrameTime())
 	local thinker = self:GetAbility().thinker
 	local pos = unit:GetAbsOrigin()
-	if thinker and self:GetAbility():IsChanneling() and not self:GetParent():HasModifier("modifier_imba_enigma_black_hole") then
+	if thinker and not thinker:IsNull() and self:GetAbility():IsChanneling() and not self:GetParent():HasModifier("modifier_imba_enigma_black_hole") then
 		local thinker_pos = thinker:GetAbsOrigin()
 		local next_pos = GetGroundPosition((pos + (thinker_pos - pos):Normalized() * self.pull_distance), unit)
 		unit:SetAbsOrigin(next_pos)
