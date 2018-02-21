@@ -95,6 +95,7 @@ function spell_lab_souls_base_modifier:OnCreated(kv)
 	if IsServer() then
 		local hOwner = self:GetParent()
 		if (self.bDrop) then
+			self.fFoundTime = 0
 			--DebugDrawCircle(self:GetParent():GetAbsOrigin(), Vector(255,0,0),1.0,128, true, 300)
 			self.nFXIndex = ParticleManager:CreateParticle( "particles/spell_lab/soul_remnant.vpcf", PATTACH_ABSORIGIN, self:GetParent() )
 			local Colour = self:GetColour()
@@ -120,15 +121,30 @@ function spell_lab_souls_base_modifier:OnIntervalThink()
 			self:GetParent():ForceKill(false)
 			return
 		end
-		local tUnits = FindUnitsInRadius(self:GetParent():GetTeam(), self:GetParent():GetAbsOrigin(), nil, 128, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS + DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO, FIND_ANY_ORDER, false)
+		local bFound = false
+		local tUnits = FindUnitsInRadius(self:GetParent():GetTeam(), self:GetParent():GetAbsOrigin(), nil, 256, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS + DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO, FIND_ANY_ORDER, false)
 		if #tUnits > 0 then
 			for i=1,#tUnits do
 				if tUnits[i] == self:GetCaster() then
-					self:GiveSouls(tUnits[i])
-					self:StartIntervalThink(-1)
-					self:GetParent():ForceKill(false)
+					bFound = tUnits[i]
 				end
 			end
+		end
+		if bFound then
+			self.fFoundTime = self.fFoundTime + self.fInterval
+			local nFXIndex = ParticleManager:CreateParticle( "particles/spell_lab/souls_gain.vpcf", PATTACH_ABSORIGIN, self:GetCaster() )
+			ParticleManager:SetParticleControl( nFXIndex, 0, self:GetParent():GetAbsOrigin() )
+			ParticleManager:SetParticleControlEnt(nFXIndex, 1, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetCaster():GetAbsOrigin(), true )
+
+			local Colour = self:GetColour()
+			ParticleManager:SetParticleControl(nFXIndex, 15, Vector(Colour[1],Colour[2],Colour[3]))
+			if self.fFoundTime > 5.0 then
+				self:GiveSouls(bFound)
+				self:StartIntervalThink(-1)
+				self:GetParent():ForceKill(false)
+			end
+		else
+			self.fFoundTime = 0
 		end
 	end
 end
