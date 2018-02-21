@@ -4799,15 +4799,13 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
 
 
         "DOTA_Tooltip_ability_spell_lab_survivor_cooldown"                  "Survival of the Fittest: Cooldown"
-        "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_Description"      "Your survival instinct is enhanced. You gain <font color='#70EA72'>
-Cooldown Reduction</font> for every minute you survive without dying. Does not gain stacks unless you have been seen by the enemy team recently.\nIf you die you will regenerate at double the rate to your highest achieved stack count."
+        "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_Description"      "Your survival instinct is enhanced. You gain <font color='#70EA72'>Cooldown Reduction</font> for every minute you survive without dying. Does not gain stacks unless you have been seen by the enemy team recently.\nIf you die you will regenerate at double the rate to your highest achieved stack count."
         "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_bonus"            "%COOLDOWN REDUCTION PER MINUTE:"
 		"DOTA_Tooltip_ability_spell_lab_survivor_cooldown_battle_thirst"    "LAST SEEN COOLDOWN (SECONDS):"
         "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_Note0"            "Fully retroactive. Reincarnate effects won't reset the stack."
         
         "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_op"                  "Survival of the Fittest: Cooldown OP"
-        "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_op_Description"      "Your survival instinct is enhanced. You gain <font color='#70EA72'>Cooldown Reduction
-</font> for every minute you survive without dying.\nIf you die you will regenerate at double the rate to your highest achieved stack count. <font color='#70EA72'>No sight requirement and higher rate</font>."
+        "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_op_Description"      "Your survival instinct is enhanced. You gain <font color='#70EA72'>Cooldown Reduction</font> for every minute you survive without dying.\nIf you die you will regenerate at double the rate to your highest achieved stack count. <font color='#70EA72'>No sight requirement and higher rate</font>."
         "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_op_bonus"            "%COOLDOWN REDUCTION PER MINUTE:"
         "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_op_Note0"            "Fully retroactive. Reincarnate effects won't reset the stack."
         
