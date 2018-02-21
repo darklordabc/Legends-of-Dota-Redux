@@ -45,6 +45,7 @@ end
 function spell_lab_survivor_base_modifier:OnCreated()
 	if IsServer() then
 		self.lastdeath = GameRules:GetGameTime()
+		self.bestStack = 0
 		if not self:GetParent():IsRealHero() then
   local hOwner = self:GetParent():GetOwner()
   if hOwner ~= nil then
@@ -72,9 +73,11 @@ function spell_lab_survivor_base_modifier:OnIntervalThink()
   	if self:GetAbility():GetLevel() > 0 then
 			local max = self:GetAbility():GetSpecialValueFor("max")
 			local old = self:GetStackCount()
-			if (max ~= nil and max > 0 and old >= max) return end
+			if (max ~= nil and max > 0 and old >= max) then return end
+			if (self:GetStackCount() < self.bestStack) then self.lastdeath = self.lastdeath - 1 end
       local stacks = (GameRules:GetGameTime() - self.lastdeath)*self:GetAbility():GetSpecialValueFor("bonus")*0.0166667
   		self:SetStackCount(stacks)
+			if (stacks > self.bestStack) then self.bestStack = stacks end
 			if (old ~= self:GetStackCount()) then
 				self:GetParent():CalculateStatBonus()
 			end

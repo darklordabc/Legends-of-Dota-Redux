@@ -1,24 +1,24 @@
 "DOTAAbilities"
 {
-    "spell_lab_survivor_attack_range"
+    "spell_lab_souls_int"
     {
         "BaseClass"                                                            "ability_lua"
-        "ScriptFile"                                                           "abilities/spell_lab/survivor/attack_range.lua"
-        "AbilityTextureName"                                                   "custom/survival_attack_range"
+        "ScriptFile"                                                           "abilities/spell_lab/souls/int.lua"
+        "AbilityTextureName"                                                   "custom/souls/int"
         "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
         "HasScepterUpgrade"                                                    "0"
+        "precache"
+        {
+            "particle"                                                     "particles/spell_lab/soul_remnant.vpcf"
+            "particle"                                                     "particles/spell_lab/souls_gain.vpcf"
+        }
         "AbilitySpecial"
         {
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-        				"bonus"						"10.0 20.0 30.0 40.0"
-            }
-            "02"
-            {
-                "var_type"                                             "FIELD_FLOAT"
-        				"max"						"1500.0"
+        				"per_soul"						"0.25 0.5 0.75 1.0"
             }
         }
         "ReduxFlags"                                                           ""
