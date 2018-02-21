@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## 10.6
 - Added Grapefruit and Coconuts ability
+- Reworked Survival Abilities. They will now regenerate at double the rate to the highest stack count.
+- Added Lingering Souls abilities
 
 ## 10.5
 - Fixed Heart givving illusions regen
