@@ -8,6 +8,8 @@ All notable changes to this project will be documented in this file.
 - Added Lingering Souls abilities
 - Lina's fruits no longer trigger multicast or spell echo
 - Abilities with no theortical limit are now one troll combo group, you can only have one. Includes Flesh Heaps, Fruits, Tomes, Survial and Souls.
+- Lina's fruits now have 30 seconds cooldown at max instead of 20
+- Tomes have their prices reduced by 100 and cooldown by 10 (Except for Medical Tractate)
 
 ## 10.5
 - Fixed Heart givving illusions regen

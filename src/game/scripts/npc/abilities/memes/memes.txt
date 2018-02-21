@@ -16,7 +16,7 @@
             "FightRecapLevel"               "2"
             "LevelsBetweenUpgrades"         "2"
             "MaxLevel"                      "4"
-            "AbilityCooldown"               "60 50 40 20"
+            "AbilityCooldown"               "60 50 40 30"
             "AbilityManaCost"               "60 70 80 90"
             "AbilityCastRange"              "150"
             "AbilityCastPoint"              "0.3"
@@ -35,7 +35,7 @@
                 "02"
                 {
                     "var_type"                  "FIELD_INTEGER"
-                    "cooldown_tooltip"          "60 50 40 20"
+                    "cooldown_tooltip"          "60 50 40 30"
                 }
                 "03"
                 {
@@ -91,7 +91,7 @@
             "FightRecapLevel"               "2"
             "LevelsBetweenUpgrades"         "2"
             "MaxLevel"                      "4"
-            "AbilityCooldown"               "60 50 40 20"
+            "AbilityCooldown"               "60 50 40 30"
             "AbilityManaCost"               "60 70 80 90"
             "AbilityCastRange"              "150"
             "AbilityCastPoint"              "0.3"
@@ -110,7 +110,7 @@
                 "02"
                 {
                     "var_type"                  "FIELD_INTEGER"
-                    "cooldown_tooltip"          "60 50 40 20"
+                    "cooldown_tooltip"          "60 50 40 30"
                 }
                 "03"
                 {
@@ -279,7 +279,7 @@
         "FightRecapLevel"               "2"
         "LevelsBetweenUpgrades"         "2"
         "MaxLevel"                      "4"
-        "AbilityCooldown"               "60 50 40 20"
+        "AbilityCooldown"               "60 50 40 30"
         "AbilityManaCost"               "60 70 80 90"
         "AbilityCastRange"              "150"
         "AbilityCastPoint"              "0.3"
@@ -298,7 +298,7 @@
             "02"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "cooldown_tooltip"          "60 50 40 20"
+                "cooldown_tooltip"          "60 50 40 30"
             }
             "03"
             {
@@ -355,7 +355,7 @@
         "FightRecapLevel"               "2"
         "LevelsBetweenUpgrades"         "2"
         "MaxLevel"                      "4"
-        "AbilityCooldown"               "60 50 40 20"
+        "AbilityCooldown"               "60 50 40 30"
         "AbilityManaCost"               "60 70 80 90"
         "AbilityCastRange"              "150"
         "AbilityCastPoint"              "0.3"
@@ -374,7 +374,7 @@
             "02"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "cooldown_tooltip"          "60 50 40 20"
+                "cooldown_tooltip"          "60 50 40 30"
             }
             "03"
             {
@@ -431,7 +431,7 @@
         "FightRecapLevel"               "2"
         "LevelsBetweenUpgrades"         "2"
         "MaxLevel"                      "4"
-        "AbilityCooldown"               "60 50 40 20"
+        "AbilityCooldown"               "60 50 40 30"
         "AbilityManaCost"               "60 70 80 90"
         "AbilityCastRange"              "150"
         "AbilityCastPoint"              "0.3"
@@ -450,7 +450,7 @@
             "02"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "cooldown_tooltip"          "60 50 40 20"
+                "cooldown_tooltip"          "60 50 40 30"
             }
             "03"
             {
@@ -507,7 +507,7 @@
         "FightRecapLevel"               "2"
         "LevelsBetweenUpgrades"         "2"
         "MaxLevel"                      "4"
-        "AbilityCooldown"               "60 50 40 20"
+        "AbilityCooldown"               "60 50 40 30"
         "AbilityManaCost"               "60 70 80 90"
         "AbilityCastRange"              "150"
         "AbilityCastPoint"              "0.3"
@@ -526,7 +526,7 @@
             "02"
             {
                 "var_type"                  "FIELD_INTEGER"
-                "cooldown_tooltip"          "60 50 40 20"
+                "cooldown_tooltip"          "60 50 40 30"
             }
             "03"
             {
