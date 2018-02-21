@@ -11,6 +11,9 @@ function spell_lab_souls_base_modifier:OnDeath(kv)
   if IsServer() then
 		if self.bDrop then
 			if kv.unit == self:GetCaster() then
+				if (not self.bPickedup) then
+					ParticleManager:DestroyParticle(self.nFXIndex,false)
+				end
 				self:GetParent():ForceKill(false)
 			end
 		else
@@ -52,7 +55,7 @@ end
 
 function spell_lab_souls_base_modifier:GiveSouls (hTarget)
 	if (self.bPickedup) then return end
-	ParticleManager:DestroyParticle(self.nFXIndex,false);
+	ParticleManager:DestroyParticle(self.nFXIndex,false)
 	self.bPickedup = true
 	hTarget:FindModifierByName(self:GetName()):GainSouls(self:GetStackCount())
 	local nFXIndex = ParticleManager:CreateParticle( "particles/spell_lab/souls_gain.vpcf", PATTACH_CUSTOMORIGIN, nil )
@@ -85,7 +88,7 @@ function spell_lab_souls_base_modifier:OnCreated(kv)
 
 	--DeepPrintTable(kv)
 	self.bDrop = (kv.stacks ~= nil and kv.stacks > 0)
-	self.bPickedup = false;
+	self.bPickedup = false
 	if IsServer() then
 		local hOwner = self:GetParent()
 		if (self.bDrop) then
@@ -98,7 +101,7 @@ function spell_lab_souls_base_modifier:OnCreated(kv)
 			self:SetStackCount(kv.stacks)
 			self.fInterval = 0.5
 			self.fTime = 0
-			self.bDrop = true;
+			self.bDrop = true
 			self:StartIntervalThink(self.fInterval)
 		end
 	end
