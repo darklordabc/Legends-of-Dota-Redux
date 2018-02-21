@@ -16950,19 +16950,19 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
 
 
     "DOTA_Tooltip_ability_spell_lab_souls_agi"                                  "Lingering Souls: Agility"
-    "DOTA_Tooltip_ability_spell_lab_souls_agi_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Agility</font>.\nIf you die, you have <font color='#70EA72'>5 minutes</font> to recover the souls.\nIf you were to die before you can recover the souls, they are <font color='#70EA72'>lost forever</font>.\nHero kills earn you <font color='#70EA72'>10</font> souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_agi_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Agility</font>.\nIf you die, you have 5 minutes to recover the souls.\nIf you were to die before you can recover the souls, they are lost forever.\nHero kills earn you 10 souls."
     "DOTA_Tooltip_ability_spell_lab_souls_agi_per_soul"                      "AGILITY PER SOUL:"
 	
 	"DOTA_Tooltip_ability_spell_lab_souls_str"                                  "Lingering Souls: Strength"
-    "DOTA_Tooltip_ability_spell_lab_souls_str_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Strength</font>.\nIf you die, you have <font color='#70EA72'>5 minutes</font> to recover the souls.\nIf you were to die before you can recover the souls, they are <font color='#70EA72'>lost forever</font>.\nHero kills earn you <font color='#70EA72'>10</font> souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_str_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Strength</font>.\nIf you die, you have 5 minutes to recover the souls.\nIf you were to die before you can recover the souls, they are lost forever.\nHero kills earn you 10 souls."
     "DOTA_Tooltip_ability_spell_lab_souls_str_per_soul"                      "STRENGTH PER SOUL:"
 	
 	"DOTA_Tooltip_ability_spell_lab_souls_int"                                  "Lingering Souls: Intelligence"
-    "DOTA_Tooltip_ability_spell_lab_souls_int_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Intelligence</font>.\nIf you die, you have <font color='#70EA72'>5 minutes</font> to recover the souls.\nIf you were to die before you can recover the souls, they are <font color='#70EA72'>lost forever</font>.\nHero kills earn you <font color='#70EA72'>10</font> souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_int_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Intelligence</font>.\nIf you die, you have 5 minutes to recover the souls.\nIf you were to die before you can recover the souls, they are lost forever.\nHero kills earn you 10 souls."
     "DOTA_Tooltip_ability_spell_lab_souls_int_per_soul"                      "INTELLIGENCE PER SOUL:"
 	
 	"DOTA_Tooltip_ability_spell_lab_souls_damage"                                  "Lingering Souls: Damage"
-    "DOTA_Tooltip_ability_spell_lab_souls_damage_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Base Damage</font>.\nIf you die, you have <font color='#70EA72'>5 minutes</font> to recover the souls.\nIf you were to die before you can recover the souls, they are <font color='#70EA72'>lost forever</font>.\nHero kills earn you <font color='#70EA72'>10</font> souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_damage_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Base Damage</font>.\nIf you die, you have 5 minutes to recover the souls.\nIf you were to die before you can recover the souls, they are lost forever.\nHero kills earn you 10 souls."
     "DOTA_Tooltip_ability_spell_lab_souls_damage_per_soul"                      "BASE DAMAGE PER SOUL:"
 	
 	
