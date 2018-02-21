@@ -15,6 +15,16 @@
                 "var_type"                                             "FIELD_FLOAT"
         				"bonus"						"0.75 1.0 1.25 1.50"
             }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+        				"battle_thirst"						"45.0"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+        				"max"						"50.0"
+            }
         }
         "ReduxFlags"                                                           "cooldown"
         "ReduxBans"                                                            ""
