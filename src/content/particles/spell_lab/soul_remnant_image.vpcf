@@ -51,6 +51,7 @@
 			m_Frequency = 255.0
 			m_Rate = 1.0
 			m_nField = 3
+			m_flOscMult = 1.5
 		},
 		{
 			_class = "C_OP_SequenceFromModel"
@@ -70,6 +71,11 @@
 			m_nField = 18
 			m_Rate = 30.0
 			m_flEndTime = 0.5
+		},
+		{
+			_class = "C_OP_OscillateScalarSimple"
+			m_Rate = 1.0
+			m_nField = 12
 		},
 	]
 	m_Initializers = 

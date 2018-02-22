@@ -23,9 +23,10 @@
 		},
 		{
 			_class = "C_OP_RenderBlobs"
-			m_cutoffRadius = 15.0
-			m_renderRadius = 3.0
+			m_cutoffRadius = 8.0
+			m_renderRadius = 4.0
 			m_hMaterial = resource:"materials/particle/blobs/blob_black_oil_surface.vmat"
+			m_cubeWidth = 2.0
 		},
 	]
 	m_Operators = 
@@ -131,6 +132,7 @@
 	[
 		{
 			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 29.5
 		},
 	]
 	m_ForceGenerators = 

@@ -50,8 +50,9 @@
 		{
 			_class = "C_OP_OscillateScalarSimple"
 			m_nField = 3
-			m_Rate = 1.0
-			m_Frequency = 255.0
+			m_Rate = 4.0
+			m_flOscMult = 1.0
+			m_flOscAdd = 0.1
 		},
 		{
 			_class = "C_OP_SequenceFromModel"
@@ -104,6 +105,7 @@
 			m_flInputMax = 1000.0
 			m_nFieldOutput = 13
 			m_flOutputMax = 1000.0
+			m_bDisableOperator = true
 		},
 	]
 	m_Emitters = 
