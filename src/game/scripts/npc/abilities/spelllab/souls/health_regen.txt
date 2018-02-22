@@ -1,0 +1,29 @@
+"DOTAAbilities"
+{
+    "spell_lab_souls_health_regen"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/spell_lab/souls/health_regen.lua"
+        "AbilityTextureName"                                                   "custom/souls/health_regen"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "HasScepterUpgrade"                                                    "0"
+        "precache"
+        {
+            "particle"                                                     "particles/spell_lab/soul_remnant.vpcf"
+            "particle"                                                     "particles/spell_lab/souls_gain.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+        				"per_soul"						"0.1 0.15 0.2 0.25"
+            }
+        }
+        "ReduxFlags"                                                           ""
+        "ReduxBans"                                                            ""
+        //"ReduxPerks"                                                           ""
+        "ReduxCost"                                                            "0"
+    }
+}

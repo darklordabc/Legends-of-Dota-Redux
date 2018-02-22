@@ -4,6 +4,8 @@ end
 
 function spell_lab_souls_base_modifier:GetSoulsBonus()
 if self:GetParent():PassivesDisabled() then return 0 end
+local max = self:GetAbility():GetSpecialValueFor("max")
+if (max > 0) then return math.min(max,self:GetStackCount()) end
 return self:GetStackCount()
 end
 
@@ -22,8 +24,11 @@ function spell_lab_souls_base_modifier:OnDeath(kv)
 				if (kv.unit:IsIllusion()) then
 					return
 				else
-					self:DropSouls()
-					self:SetStackCount(0)
+					local max = self:GetAbility():GetSpecialValueFor("max")
+					local remove = self:GetStackCount()
+					if (max > 0) then remove = math.min(max, self:GetStackCount()) end
+					self:DropSouls(remove)
+					self:SetStackCount(self:GetStackCount()-remove)
 					self:GetParent():CalculateStatBonus()
 				end
 	    elseif kv.unit ~= self:GetParent() and kv.attacker == self:GetParent() then
@@ -68,9 +73,9 @@ function spell_lab_souls_base_modifier:GiveSouls (hTarget)
 	--self:GetParent():Kill(self:GetAbility(),nil)
 end
 
-function spell_lab_souls_base_modifier:DropSouls ()
+function spell_lab_souls_base_modifier:DropSouls (count)
 	if (self:GetStackCount() > 0) then
-		local keys = {stacks = self:GetStackCount()}
+		local keys = {stacks = count}
 		--print("Souls Drop: " .. self:GetStackCount() .. " modifier_name: " .. self:GetName())
 		local hDrop = CreateModifierThinker(self:GetCaster(), self:GetAbility(), self:GetName(), keys, self:GetParent():GetAbsOrigin(), self:GetCaster():GetTeam(), false)
 	end
@@ -100,6 +105,8 @@ function spell_lab_souls_base_modifier:OnCreated(kv)
 			self.nFXIndex = ParticleManager:CreateParticle( "particles/spell_lab/soul_remnant.vpcf", PATTACH_ABSORIGIN, self:GetParent() )
 			local Colour = self:GetColour()
 			ParticleManager:SetParticleControlEnt( self.nFXIndex, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetOrigin(), true )
+			ParticleManager:SetParticleControlEnt(self.nFXIndex, 1, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetCaster():GetAbsOrigin(), true )
+			ParticleManager:SetParticleControl(self.nFXIndex , 2, Vector(1,0.5,0))
 			ParticleManager:SetParticleControl(self.nFXIndex , 15, Vector(Colour[1],Colour[2],Colour[3]))
 			self:AddParticle( self.nFXIndex, false, false, -1, false, false )
 			self:SetStackCount(kv.stacks)

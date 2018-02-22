@@ -17027,5 +17027,90 @@ Cooldown Reduction</font> for every minute you survive without dying. Does not g
 	"DOTA_Tooltip_spell_lab_souls_int_modifier_Description"                      "Soul Count"
 	"DOTA_Tooltip_spell_lab_souls_damage_modifier"                                  "Lingering Souls: Damage"
 	"DOTA_Tooltip_spell_lab_souls_damage_modifier_Description"                      "Soul Count"
+	
+	
+    "DOTA_Tooltip_ability_spell_lab_souls_vision"                                  "Lingering Souls: Vision"
+    "DOTA_Tooltip_ability_spell_lab_souls_vision_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Vision</font>.\nIf you die, you have <font color='#70EA72'>5 minutes</font> to recover the souls.\nIf you were to die before you can recover the souls, they are <font color='#70EA72'>lost forever</font>.\nHero kills earn you <font color='#70EA72'>10</font> souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_vision_per_soul"                      "VISION PER SOUL:"
+	
+	"DOTA_Tooltip_spell_lab_souls_vision_modifier"                                  "Lingering Souls: Vision"
+	"DOTA_Tooltip_spell_lab_souls_vision_modifier_Description"                      "Soul Count"
+	
+	"DOTA_Tooltip_ability_spell_lab_souls_armor"                                  "Lingering Souls: Armor"
+    "DOTA_Tooltip_ability_spell_lab_souls_armor_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Armor</font>.\nIf you die, you have <font color='#70EA72'>5 minutes</font> to recover the souls.\nIf you were to die before you can recover the souls, they are <font color='#70EA72'>lost forever</font>.\nHero kills earn you <font color='#70EA72'>10</font> souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_armor_per_soul"                      "ARMOR PER SOUL:"
+	
+	"DOTA_Tooltip_spell_lab_souls_armor_modifier"                                  "Lingering Souls: Armor"
+	"DOTA_Tooltip_spell_lab_souls_armor_modifier_Description"                      "Soul Count"
 
+    "DOTA_Tooltip_ability_spell_lab_souls_attack_range"                                  "Lingering Souls: Attack Range"
+    "DOTA_Tooltip_ability_spell_lab_souls_attack_range_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Attack Range</font>.\nIf you die, you have <font color='#70EA72'>5 minutes</font> to recover the souls.\nIf you were to die before you can recover the souls, they are <font color='#70EA72'>lost forever</font>.\nHero kills earn you <font color='#70EA72'>10</font> souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_attack_range_per_soul"                      "ATTACK RANGE PER SOUL:"
+	
+	"DOTA_Tooltip_spell_lab_souls_attack_range_modifier"                                  "Lingering Souls: Attack Range"
+	"DOTA_Tooltip_spell_lab_souls_attack_range_modifier_Description"                      "Soul Count"
+
+    "DOTA_Tooltip_ability_spell_lab_souls_attack_speed"                                  "Lingering Souls: Attack Speed"
+    "DOTA_Tooltip_ability_spell_lab_souls_attack_speed_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Attack Speed</font>.\nIf you die, you have <font color='#70EA72'>5 minutes</font> to recover the souls.\nIf you were to die before you can recover the souls, they are <font color='#70EA72'>lost forever</font>.\nHero kills earn you <font color='#70EA72'>10</font> souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_attack_speed_per_soul"                      "ATTACK SPEED PER SOUL:"
+	
+	"DOTA_Tooltip_spell_lab_souls_attack_speed_modifier"                                  "Lingering Souls: Attack Speed"
+	"DOTA_Tooltip_spell_lab_souls_attack_speed_modifier_Description"                      "Soul Count"
+
+    "DOTA_Tooltip_ability_spell_lab_souls_cast_range"                                  "Lingering Souls: Cast Range"
+    "DOTA_Tooltip_ability_spell_lab_souls_cast_range_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Cast Range</font>.\nIf you die, you have <font color='#70EA72'>5 minutes</font> to recover the souls.\nIf you were to die before you can recover the souls, they are <font color='#70EA72'>lost forever</font>.\nHero kills earn you <font color='#70EA72'>10</font> souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_cast_range_per_soul"                      "CAST RANGE PER SOUL:"
+	
+	"DOTA_Tooltip_spell_lab_souls_cast_range_modifier"                                  "Lingering Souls: Cast Range"
+	"DOTA_Tooltip_spell_lab_souls_cast_range_modifier_Description"                      "Soul Count"
+
+    "DOTA_Tooltip_ability_spell_lab_souls_cooldown"                                  "Lingering Souls: Cooldown"
+    "DOTA_Tooltip_ability_spell_lab_souls_cooldown_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Cooldown</font>.\nIf you die, you have <font color='#70EA72'>5 minutes</font> to recover the souls.\nIf you were to die before you can recover the souls, they are <font color='#70EA72'>lost forever</font>.\nHero kills earn you <font color='#70EA72'>10</font> souls.\n<font color='#FFEA72'>SOUL LIMIT is maximum number souls that are counted towards Cooldown reduction. If you die, you keep souls over that limit.</font> "
+    "DOTA_Tooltip_ability_spell_lab_souls_cooldown_per_soul"                      "%COOLDOWN REDUCTION PER SOUL:"
+    "DOTA_Tooltip_ability_spell_lab_souls_cooldown_max"                      "SOUL LIMIT:"
+	
+	"DOTA_Tooltip_spell_lab_souls_cooldown_modifier"                                  "Lingering Souls: Cooldown"
+	"DOTA_Tooltip_spell_lab_souls_cooldown_modifier_Description"                      "Soul Count"
+
+    "DOTA_Tooltip_ability_spell_lab_souls_evasion"                                  "Lingering Souls: Evasion"
+    "DOTA_Tooltip_ability_spell_lab_souls_evasion_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Evasion</font>.\nIf you die, you have <font color='#70EA72'>5 minutes</font> to recover the souls.\nIf you were to die before you can recover the souls, they are <font color='#70EA72'>lost forever</font>.\nHero kills earn you <font color='#70EA72'>10</font> souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_evasion_per_soul"                      "%EVASION PER SOUL:"
+	
+	"DOTA_Tooltip_spell_lab_souls_evasion_modifier"                                  "Lingering Souls: Evasion"
+	"DOTA_Tooltip_spell_lab_souls_evasion_modifier_Description"                      "Soul Count"
+
+    "DOTA_Tooltip_ability_spell_lab_souls_health_regen"                                  "Lingering Souls: Health Regen"
+    "DOTA_Tooltip_ability_spell_lab_souls_health_regen_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Health Regen</font>.\nIf you die, you have <font color='#70EA72'>5 minutes</font> to recover the souls.\nIf you were to die before you can recover the souls, they are <font color='#70EA72'>lost forever</font>.\nHero kills earn you <font color='#70EA72'>10</font> souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_health_regen_per_soul"                      "HEALTH REGEN PER SOUL:"
+	
+	"DOTA_Tooltip_spell_lab_souls_health_regen_modifier"                                  "Lingering Souls: Health Regen"
+	"DOTA_Tooltip_spell_lab_souls_health_regen_modifier_Description"                      "Soul Count"
+
+    "DOTA_Tooltip_ability_spell_lab_souls_magic_resistance"                                  "Lingering Souls: Magic Resistance"
+    "DOTA_Tooltip_ability_spell_lab_souls_magic_resistance_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Magic Resistance</font>.\nIf you die, you have <font color='#70EA72'>5 minutes</font> to recover the souls.\nIf you were to die before you can recover the souls, they are <font color='#70EA72'>lost forever</font>.\nHero kills earn you <font color='#70EA72'>10</font> souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_magic_resistance_per_soul"                      "%MAGIC RESISTANCE PER SOUL:"
+	
+	"DOTA_Tooltip_spell_lab_souls_magic_resistance_modifier"                                  "Lingering Souls: Magic Resistance"
+	"DOTA_Tooltip_spell_lab_souls_magic_resistance_modifier_Description"                      "Soul Count"
+
+    "DOTA_Tooltip_ability_spell_lab_souls_mana_regen"                                  "Lingering Souls: Mana Regen"
+    "DOTA_Tooltip_ability_spell_lab_souls_mana_regen_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Mana Regen</font>.\nIf you die, you have <font color='#70EA72'>5 minutes</font> to recover the souls.\nIf you were to die before you can recover the souls, they are <font color='#70EA72'>lost forever</font>.\nHero kills earn you <font color='#70EA72'>10</font> souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_mana_regen_per_soul"                      "MANA REGEN PER SOUL:"
+	
+	"DOTA_Tooltip_spell_lab_souls_mana_regen_modifier"                                  "Lingering Souls: Mana Regen"
+	"DOTA_Tooltip_spell_lab_souls_mana_regen_modifier_Description"                      "Soul Count"
+
+    "DOTA_Tooltip_ability_spell_lab_souls_move_speed"                                  "Lingering Souls: Move Speed"
+    "DOTA_Tooltip_ability_spell_lab_souls_move_speed_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Move Speed</font>.\nIf you die, you have <font color='#70EA72'>5 minutes</font> to recover the souls.\nIf you were to die before you can recover the souls, they are <font color='#70EA72'>lost forever</font>.\nHero kills earn you <font color='#70EA72'>10</font> souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_move_speed_per_soul"                      "MOVE SPEED PER SOUL:"
+	
+	"DOTA_Tooltip_spell_lab_souls_move_speed_modifier"                                  "Lingering Souls: Move Speed"
+	"DOTA_Tooltip_spell_lab_souls_move_speed_modifier_Description"                      "Soul Count"
+
+    "DOTA_Tooltip_ability_spell_lab_souls_spell_boost"                                  "Lingering Souls: Spell Amplification"
+    "DOTA_Tooltip_ability_spell_lab_souls_spell_boost_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Spell Amplification</font>.\nIf you die, you have <font color='#70EA72'>5 minutes</font> to recover the souls.\nIf you were to die before you can recover the souls, they are <font color='#70EA72'>lost forever</font>.\nHero kills earn you <font color='#70EA72'>10</font> souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_spell_boost_per_soul"                      "%SPELL AMPLIFICATION PER SOUL:"
+	
+	"DOTA_Tooltip_spell_lab_souls_spell_boost_modifier"                                  "Lingering Souls: Spell Amplification"
+	"DOTA_Tooltip_spell_lab_souls_spell_boost_modifier_Description"                      "Soul Count"
 }
