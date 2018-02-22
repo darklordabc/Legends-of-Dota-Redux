@@ -2,10 +2,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+
 ## 10.6
 - Added Grapefruit and Coconuts ability
 - Reworked Survival Abilities. They will now regenerate at double the rate to the highest stack count.
-- Added Lingering Souls abilities
+- Added 16 Lingering Souls abilities
 - Lina's fruits no longer trigger multicast or spell echo
 - Abilities with no theortical limit are now one troll combo group, you can only have one. Includes Flesh Heaps, Fruits, Tomes, Survial and Souls.
 - Lina's fruits now have 30 seconds cooldown at max instead of 20
