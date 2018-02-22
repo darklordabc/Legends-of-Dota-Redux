@@ -11,6 +11,8 @@ All notable changes to this project will be documented in this file.
 - Lina's fruits now have 30 seconds cooldown at max instead of 20
 - Tomes have their prices reduced by 100 and cooldown by 10
 - Readded Silver Items
+*
+- Rapidfire and Impetus are now troll combos
 
 ## 10.5
 - Fixed Heart givving illusions regen
