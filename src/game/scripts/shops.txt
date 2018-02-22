@@ -14,7 +14,8 @@
 		"item"		"item_tome_of_knowledge"
 		"item"		"item_dust"
 		"item"		"item_courier"
-		"item"		"item_bottle"		
+		"item"		"item_bottle"	
+		"item"		"item_redux_silver_consume"		
 	}
 
 	"attributes"
@@ -93,7 +94,8 @@
 		"item"		"item_pers"
 		"item"		"item_hand_of_midas"
 		"item"		"item_travel_boots"		
-		"item"		"item_moon_shard"					
+		"item"		"item_moon_shard"
+		"item"		"item_redux_silver"					
 	}
 
 	// Level 2 - Blue Recipes
