@@ -118,7 +118,10 @@ function modifier_grapeshot_scepter:OnAttackLanded(params)
 
 		if hit then
 			local ab = self:GetAbility()
-			local en = FindEnemies(self:GetParent(),self:GetParent():GetAbsOrigin(),radius)
+
+			local en = FindUnitsInRadius(self:GetParent():GetTeam(), self:GetParent():GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+
+			--local en = FindEnemies(self:GetParent(),self:GetParent():GetAbsOrigin(),radius)
 
 			local enl = #en
 
