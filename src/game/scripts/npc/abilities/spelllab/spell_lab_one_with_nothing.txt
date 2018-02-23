@@ -1,0 +1,28 @@
+"DOTAAbilities"
+{
+    "spell_lab_one_with_nothing"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/spell_lab/own/ability.lua"
+        "AbilityTextureName"                                                   "custom/spell_lab_one_with_nothing"
+        "AbilityCooldown"                                                      "80.0 40.0 20.0 10.0"
+        "AbilityManaCost"                                                      "25"
+        "AbilityCastRange"                                                     "0"
+        "AbilityCastPoint"                                                     "0"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNRESTRICTED | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_CHANNEL | DOTA_ABILITY_BEHAVIOR_DONT_CANCEL_MOVEMENT"
+        "HasScepterUpgrade"                                                    "0"
+        "AbilitySpecial"
+        {
+        }
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_creeps.vsndevts"
+            "particle"                                                     "particles/spell_lab/one_with_nothing.vpcf"
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+        //"ReduxBans"                                                            ""
+        //"ReduxPerks"                                                           "support | mobility"
+        "ReduxCost"                                                            "90"
+    }
+}

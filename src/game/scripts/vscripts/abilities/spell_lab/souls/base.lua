@@ -32,6 +32,7 @@ function spell_lab_souls_base_modifier:OnDeath(kv)
 					self:GetParent():CalculateStatBonus()
 				end
 	    elseif kv.unit ~= self:GetParent() and kv.attacker == self:GetParent() then
+				if (kv.unit:IsRealHero() and kv.unity:GetTeam() == self:GetParent():GetTeam()) then return end
 				self:GainSoul(kv.unit)
 			end
 		end

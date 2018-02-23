@@ -17111,4 +17111,9 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
 	
 	"DOTA_Tooltip_spell_lab_souls_spell_boost_modifier"                                  "Lingering Souls: Spell Amplification"
 	"DOTA_Tooltip_spell_lab_souls_spell_boost_modifier_Description"                      "Soul Count"
+	
+	
+    "DOTA_Tooltip_ability_spell_lab_one_with_nothing"                                  "One With Nothing"
+    "DOTA_Tooltip_ability_spell_lab_one_with_nothing_Description"                      "Instantly spend your mana pool."
+    "DOTA_Tooltip_ability_spell_lab_one_with_nothing_Lore"								"When nothing remains, everything is equally possible."
 }

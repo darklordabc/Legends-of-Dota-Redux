@@ -334,6 +334,7 @@
 #base "abilities\generation\zulf_jet_stream.txt"
 #base "abilities\generation\zulf_typhoon.txt"
 #base "abilities\generation\zulf_typhoon_OP.txt"
+#base "abilities\spelllab\spell_lab_one_with_nothing.txt"
 #base "abilities\spelllab\spell_lab_symbiotic.txt"
 #base "abilities\spelllab\spell_lab_survivor_cleave.txt"
 #base "abilities\spelllab\spell_lab_survivor_cooldown.txt"
