@@ -50,7 +50,7 @@
 
 				"OnAttackLanded" {
 					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_sandking_nerfed.lua"
+						"ScriptFile" "abilities/hero_sandking.lua"
 						"Function" "CausticFinale"
 						"modifier_debuff" "modifier_imba_caustic_finale"
 						"modifier_prevent" "modifier_imba_caustic_finale_prevent"
@@ -77,7 +77,7 @@
 
 				"OnDestroy" {
 					"RunScript" {
-						"ScriptFile" "abilities/dota imba/hero_sandking_nerfed.lua"
+						"ScriptFile" "abilities/hero_sandking.lua"
 						"Function" "CausticFinaleEnd"
 						"modifier_debuff" "modifier_imba_caustic_finale"
 						"modifier_prevent" "modifier_imba_caustic_finale_prevent"
