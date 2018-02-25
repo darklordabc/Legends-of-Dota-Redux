@@ -27,15 +27,14 @@ end
 
 modifier_deathtouch_dot = class({})
 
-function modifier_deathtouch_dot:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
-	}
-	return funcs
+function modifier_deathtouch_dot:OnCreated(table)
+	local tick = 0.25
+	self.damage = self:GetAbility():GetSpecialValueFor("dot_amount") * tick
+	self:StartIntervalThink(tick)
 end
 
-function modifier_deathtouch_dot:GetModifierConstantHealthRegen()
-	return -self:GetAbility():GetSpecialValueFor("dot_amount")
+function modifier_deathtouch_dot:OnIntervalThink()
+	InflictDamage(self:GetParent(), self:GetCaster(), self:GetAbility(), self.damage, self:GetAbility():GetAbilityDamageType())
 end
 
 function modifier_deathtouch_dot:GetAttributes()
