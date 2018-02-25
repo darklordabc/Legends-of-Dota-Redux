@@ -16590,7 +16590,7 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
 
     "DOTA_Tooltip_ability_hawkeye_detonator_dart" "Detonator Dart"
     "DOTA_Tooltip_ability_hawkeye_detonator_dart_description" "Hawkeye pins an enemy with one of his powerful explosive devices.  After a short delay, the unit explodes, dealing large damage in a significant area.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
-    "DOTA_Tooltip_ability_hawkeye_detonator_dart_Note0" "If the unit dies, the explosion occurs regardless of the countdown."
+    //"DOTA_Tooltip_ability_hawkeye_detonator_dart_Note0" "If the unit dies, the explosion occurs regardless of the countdown."
     "DOTA_Tooltip_ability_hawkeye_detonator_dart_damage" "EXPLOSION DAMAGE:"
     "DOTA_Tooltip_ability_hawkeye_detonator_dart_initial_damage" "INITIAL DAMAGE:"
     "DOTA_Tooltip_ability_hawkeye_detonator_dart_duration" "DELAY:"
