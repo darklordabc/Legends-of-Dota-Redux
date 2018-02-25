@@ -1987,8 +1987,10 @@ function Ingame:FilterDamage( filterTable )
     end
 
     if victim:HasModifier("modifier_enthrall") then
-        if filterTable["damagetype_const"] == DAMAGE_TYPE_PHYSICAL then
-            filterTable["damagetype_const"] = DAMAGE_TYPE_MAGICAL
+        if not victim:IsAttackImmune() then
+            if filterTable["damagetype_const"] == DAMAGE_TYPE_PHYSICAL then
+                filterTable["damagetype_const"] = DAMAGE_TYPE_MAGICAL
+            end
         end
     end
 

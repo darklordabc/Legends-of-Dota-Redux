@@ -85,18 +85,17 @@ function mifune_zanmato:OnSpellStart()
 						
 						-- Move hero there
 						FindClearSpaceForUnit( caster, target:GetAbsOrigin(), false )
-						
+
 						if target:IsHero() then
 							caster:AddNewModifier(caster, self, modifierHeroName, {}) --[[Returns:void
 							No Description Set
 							]]
 
-							if self:GetCaster():HasScepter() then
-								if self:GetCaster():HasAbility("mifune_genso") then
-									local genso = self:GetCaster():FindAbilityByName("mifune_genso")
+							if caster:HasScepter() then
+								if caster:HasAbility("mifune_genso") then
+									local genso = caster:FindAbilityByName("mifune_genso")
 									if genso and genso:GetLevel() > 0 then
-										genso:SetCursorCastTarget(main_target)
-										genso:OnSpellStart()
+										genso:GenIllusion(caster, main_target, genso)
 									end
 								end
 							end

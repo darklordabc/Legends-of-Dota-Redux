@@ -125,7 +125,7 @@ function abyssal_vortex_aura(event)
       v:SetPhysicsVelocity(direction * pull_speed * 1.25 * (distance))
     end
 
-    if caster:HasScepter() then
+    if v:GetTeam() ~= caster:GetTeam() and caster:HasScepter() then
       --target is the thinker
       target.beenStunned = target.beenStunned or {}
       if truedistance > 0.95 and not target.beenStunned[v] then

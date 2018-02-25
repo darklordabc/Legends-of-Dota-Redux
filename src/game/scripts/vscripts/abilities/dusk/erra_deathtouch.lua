@@ -34,7 +34,9 @@ function modifier_deathtouch_dot:OnCreated(table)
 end
 
 function modifier_deathtouch_dot:OnIntervalThink()
-	InflictDamage(self:GetParent(), self:GetCaster(), self:GetAbility(), self.damage, self:GetAbility():GetAbilityDamageType())
+	if IsServer() then
+		InflictDamage(self:GetParent(), self:GetCaster(), self:GetAbility(), self.damage, self:GetAbility():GetAbilityDamageType())
+	end
 end
 
 function modifier_deathtouch_dot:GetAttributes()
