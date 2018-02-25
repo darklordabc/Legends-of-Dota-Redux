@@ -90,6 +90,16 @@ function mifune_zanmato:OnSpellStart()
 							caster:AddNewModifier(caster, self, modifierHeroName, {}) --[[Returns:void
 							No Description Set
 							]]
+
+							if self:GetCaster():HasScepter() then
+								if self:GetCaster():HasAbility("mifune_genso") then
+									local genso = self:GetCaster():FindAbilityByName("mifune_genso")
+									if genso and genso:GetLevel() > 0 then
+										genso:SetCursorCastTarget(main_target)
+										genso:OnSpellStart()
+									end
+								end
+							end
 						end
 						
 						caster:PerformAttack( target,
