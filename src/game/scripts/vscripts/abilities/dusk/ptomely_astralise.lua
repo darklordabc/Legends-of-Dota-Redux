@@ -61,7 +61,7 @@ function modifier_astralise:OnCreated(kv)
 		local caster = self:GetAbility():GetCaster()
 		local target = self:GetParent()
 		local duration = self:GetDuration()
-		local loc = target:GetAbsOrigin() + target:GetForwardVector()*-200
+		local loc = target:GetAbsOrigin() + target:GetForwardVector()*-150
 
 		loc = loc + Vector(0,0,90)
 

@@ -16911,7 +16911,7 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
     "DOTA_Tooltip_modifier_expunge_Description"                                       "Mana is being drained!"
 
     "DOTA_Tooltip_ability_ptomely_astralise"                                          "Astralise"
-    "DOTA_Tooltip_ability_ptomely_astralise_Description"                              "The targeted unit has its soul removed from its body, dealing damage to enemies, and emitting pulses that heal allies and damage enemies. Deals damage based on a percentage of the target's Intelligence. Heals for half the amount.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
+    "DOTA_Tooltip_ability_ptomely_astralise_Description"                              "The targeted unit has its soul removed from its body, stunning them and making them immune to magical damage, and emitting pulses that heal allies and damage enemies. Deals damage based on a percentage of the target's Intelligence. Heals for half the amount.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
     "DOTA_Tooltip_ability_ptomely_astralise_Note0"                                    "There is a 0.5s delay before pulses start."
     "DOTA_Tooltip_ability_ptomely_astralise_damage"                                   "DAMAGE:"
     "DOTA_Tooltip_ability_ptomely_astralise_radius"                                   "RADIUS:"
