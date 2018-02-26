@@ -1986,6 +1986,14 @@ function Ingame:FilterDamage( filterTable )
         filterTable["damage"] = filterTable["damage"] - blocked
     end
 
+    if victim:HasModifier("modifier_enthrall") then
+        if not victim:IsAttackImmune() then
+            if filterTable["damagetype_const"] == DAMAGE_TYPE_PHYSICAL then
+                filterTable["damagetype_const"] = DAMAGE_TYPE_MAGICAL
+            end
+        end
+    end
+
      -- Hero perks
     if not OptionManager:GetOption('disablePerks') then
         filterTable = heroPerksDamageFilter(filterTable)
