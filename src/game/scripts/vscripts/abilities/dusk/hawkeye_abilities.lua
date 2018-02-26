@@ -214,7 +214,7 @@ function hawkeye_double_tap_hit(event)
     attacker = caster,
     victim = target,
     damage = damage,
-    damage_type = DAMAGE_TYPE_PHYSICAL,
+    damage_type = event.ability:GetAbilityDamageType(),
     ability = event.ability
     }
     ApplyDamage(dmgTable)
