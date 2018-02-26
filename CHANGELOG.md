@@ -14,6 +14,9 @@ All notable changes to this project will be documented in this file.
 - Readded Silver Items
 - Rapidfire and Impetus are now troll combos
 - Fixed Strong Towers being broken
+*
+- Fixed Caustic Finale
+- Fixed an Exploit with Antimage perk
 
 
 ## 10.5
