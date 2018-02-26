@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file.
 *
 - Fixed Caustic Finale
 - Fixed an Exploit with Antimage perk
+- Fixed numerous issies with some Dusk abilities
 
 
 ## 10.5
