@@ -150,12 +150,13 @@ function modifier_item_heart_consumable:OnTakeDamage(keys)
     if self:GetCaster():IsRangedAttacker() then
       local cooldown = self:GetAbility():GetSpecialValueFor("heart_cooldown_ranged_tooltip")
     end
-    if self:GetAbility():IsItem() then
-      if IsServer() then
-        self:GetAbility():StartCooldown(cooldown)
+    if IsServer() then
+      local cdr = self:GetParent():GetCooldownReduction()
+      if self:GetAbility():IsItem() then
+        self:GetAbility():StartCooldown(cooldown * cdr)
       end
+      self:SetDuration(cooldown * cdr, true)
     end
-    self:SetDuration(cooldown,true)
   end
 end
 
