@@ -19,7 +19,8 @@ All notable changes to this project will be documented in this file.
 - Fixed numerous issies with some Dusk abilities
 - Temporarily made the souls ability as single player abilities until they can be rebalanced
 - Whiteboard's revenge now has 1 second cooldown instead of 0.3
-- Survival skills have been made single player as they are not working at the advertised rate
+- Survival have been reworked to retain 33% stacks after death.
+- Souls abilities now have been reworked to have flat bonus and Soft Limit on souls 100/150/200/250
 
 
 ## 10.5
