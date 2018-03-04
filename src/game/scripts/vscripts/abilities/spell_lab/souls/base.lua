@@ -122,7 +122,7 @@ end
 function spell_lab_souls_base_modifier:OnIntervalThink()
 	if IsServer() then
 		self.fTime = self.fTime + self.fInterval
-		if (self.fTime > 180) then
+		if (self.fTime > 60) then
 			if (not self.bPickedup) then
 				ParticleManager:DestroyParticle(self.nFXIndex,false)
 			end

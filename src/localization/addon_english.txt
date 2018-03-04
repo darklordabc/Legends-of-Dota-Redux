@@ -4799,13 +4799,13 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
 
 
         "DOTA_Tooltip_ability_spell_lab_survivor_cooldown"                  "Survival of the Fittest: Cooldown"
-        "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_Description"      "Your survival instinct is enhanced. You gain <font color='#70EA72'>Cooldown Reduction</font> for every minute you survive without dying. Does not gain stacks unless you have been seen by the enemy team recently.\nIf you die you will regenerate at double the rate to your highest achieved stack count."
+        "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_Description"      "Your survival instinct is enhanced. You gain <font color='#70EA72'>Cooldown Reduction</font> for every minute you survive without dying. Does not gain stacks unless you have been seen by the enemy team recently.\nYou keep 33% of your stacks after death."
         "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_bonus"            "%COOLDOWN REDUCTION PER MINUTE:"
 		"DOTA_Tooltip_ability_spell_lab_survivor_cooldown_battle_thirst"    "LAST SEEN COOLDOWN (SECONDS):"
         "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_Note0"            "Fully retroactive. Reincarnate effects won't reset the stack."
         
         "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_op"                  "Survival of the Fittest: Cooldown OP"
-        "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_op_Description"      "Your survival instinct is enhanced. You gain <font color='#70EA72'>Cooldown Reduction</font> for every minute you survive without dying.\nIf you die you will regenerate at double the rate to your highest achieved stack count. <font color='#70EA72'>No sight requirement and higher rate</font>."
+        "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_op_Description"      "Your survival instinct is enhanced. You gain <font color='#70EA72'>Cooldown Reduction</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death. <font color='#70EA72'>No sight requirement and higher rate</font>."
         "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_op_bonus"            "%COOLDOWN REDUCTION PER MINUTE:"
         "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_op_Note0"            "Fully retroactive. Reincarnate effects won't reset the stack."
         
@@ -4815,7 +4815,7 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
 
         "DOTA_Tooltip_ability_spell_lab_survivor_damage_boost"                  "Survival of the Fittest: Damage"
         "DOTA_Tooltip_ability_spell_lab_survivor_damage_boost_Description"      "Your survival instinct is enhanced. You gain <font color='#70EA72'>Base Damage
-</font> for every minute you survive without dying.\nIf you die you will regenerate at double the rate to your highest achieved stack count."
+</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death."
         "DOTA_Tooltip_ability_spell_lab_survivor_damage_boost_bonus"            "BASE DAMAGE PER MINUTE:"
         "DOTA_Tooltip_ability_spell_lab_survivor_damage_boost_Note0"            "Fully retroactive. Reincarnate effects won't reset the stack."
         "DOTA_Tooltip_spell_lab_survivor_damage_boost_modifier"                 "Survival of the Fittest: Damage"
@@ -4823,7 +4823,7 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
 
         "DOTA_Tooltip_ability_spell_lab_survivor_evasion"                   "Survival of the Fittest: Evasion"
         "DOTA_Tooltip_ability_spell_lab_survivor_evasion_Description"       "Your survival instinct is enhanced. You gain <font color='#70EA72'>Evasion
-</font> for every minute you survive without dying.\nIf you die you will regenerate at double the rate to your highest achieved stack count."
+</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death."
         "DOTA_Tooltip_ability_spell_lab_survivor_evasion_bonus"         "%EVASION PER MINUTE:"
         "DOTA_Tooltip_ability_spell_lab_survivor_evasion_Note0"         "Fully retroactive. Reincarnate effects won't reset the stack."
         "DOTA_Tooltip_spell_lab_survivor_evasion_modifier"                  "Survival of the Fittest: Evasion"
@@ -4831,7 +4831,7 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
 
         "DOTA_Tooltip_ability_spell_lab_survivor_health_regen"                  "Survival of the Fittest: Health Regen"
         "DOTA_Tooltip_ability_spell_lab_survivor_health_regen_Description"      "Your survival instinct is enhanced. You gain <font color='#70EA72'>Health Regen
-</font> for every minute you survive without dying.\nIf you die you will regenerate at double the rate to your highest achieved stack count."
+</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death."
         "DOTA_Tooltip_ability_spell_lab_survivor_health_regen_bonus"            "HEALTH REGEN PER MINUTE:"
         "DOTA_Tooltip_ability_spell_lab_survivor_health_regen_Note0"            "Fully retroactive. Reincarnate effects won't reset the stack."
         "DOTA_Tooltip_spell_lab_survivor_health_regen_modifier"                 "Survival of the Fittest: Health Regen"
@@ -4839,48 +4839,48 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
 
         "DOTA_Tooltip_ability_spell_lab_survivor_mana_regen"                    "Survival of the Fittest: Mana Regen"
         "DOTA_Tooltip_ability_spell_lab_survivor_mana_regen_Description"        "Your survival instinct is enhanced. You gain <font color='#70EA72'>Mana Regen
-</font> for every minute you survive without dying.\nIf you die you will regenerate at double the rate to your highest achieved stack count."
+</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death."
         "DOTA_Tooltip_ability_spell_lab_survivor_mana_regen_bonus"          "MANA REGEN PER MINUTE:"
         "DOTA_Tooltip_ability_spell_lab_survivor_mana_regen_Note0"          "Fully retroactive. Reincarnate effects won't reset the stack."
         "DOTA_Tooltip_spell_lab_survivor_mana_regen_modifier"                   "Survival of the Fittest: Mana Regen"
         "DOTA_Tooltip_spell_lab_survivor_mana_regen_modifier_Description" "Mana Regen gained through staying alive."
 
         "DOTA_Tooltip_ability_spell_lab_survivor_life_steal"                    "Survival of the Fittest: Life Steal"
-        "DOTA_Tooltip_ability_spell_lab_survivor_life_steal_Description"        "Your survival instinct is enhanced. Your attacks gain <font color='#70EA72'>Life Steal</font> for every minute you survive without dying.\nIf you die you will regenerate at double the rate to your highest achieved stack count."
+        "DOTA_Tooltip_ability_spell_lab_survivor_life_steal_Description"        "Your survival instinct is enhanced. Your attacks gain <font color='#70EA72'>Life Steal</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death."
         "DOTA_Tooltip_ability_spell_lab_survivor_life_steal_bonus"          "%LIFE STEAL PER MINUTE:"
         "DOTA_Tooltip_ability_spell_lab_survivor_life_steal_Note0"          "Fully retroactive. Reincarnate effects won't reset the stack."
         "DOTA_Tooltip_spell_lab_survivor_life_steal_modifier"                   "Survival of the Fittest: Life Steal"
         "DOTA_Tooltip_spell_lab_survivor_life_steal_modifier_Description" "Life Steal gained through staying alive."
 
         "DOTA_Tooltip_ability_spell_lab_survivor_int_survival"                  "Survival of the Fittest: Intelligence"
-        "DOTA_Tooltip_ability_spell_lab_survivor_int_survival_Description"      "Your survival instinct is enhanced. You gain <font color='#70EA72'>Intelligence</font> for every minute you survive without dying.\nIf you die you will regenerate at double the rate to your highest achieved stack count."
+        "DOTA_Tooltip_ability_spell_lab_survivor_int_survival_Description"      "Your survival instinct is enhanced. You gain <font color='#70EA72'>Intelligence</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death."
         "DOTA_Tooltip_ability_spell_lab_survivor_int_survival_bonus"            "INTELLIGENCE PER MINUTE:"
         "DOTA_Tooltip_ability_spell_lab_survivor_int_survival_Note0"            "Fully retroactive. Reincarnate effects won't reset the stack."
         "DOTA_Tooltip_spell_lab_survivor_int_survival_modifier"                 "Survival of the Fittest: Intelligence"
         "DOTA_Tooltip_spell_lab_survivor_int_survival_modifier_Description" "Intelligence gained through staying alive."
 
         "DOTA_Tooltip_ability_spell_lab_survivor_magic_resistance"                  "Survival of the Fittest: Magic Resistance"
-        "DOTA_Tooltip_ability_spell_lab_survivor_magic_resistance_Description"      "Your survival instinct is enhanced. You gain <font color='#70EA72'>Magic Resistance</font> for every minute you survive without dying.\nIf you die you will regenerate at double the rate to your highest achieved stack count."
+        "DOTA_Tooltip_ability_spell_lab_survivor_magic_resistance_Description"      "Your survival instinct is enhanced. You gain <font color='#70EA72'>Magic Resistance</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death."
         "DOTA_Tooltip_ability_spell_lab_survivor_magic_resistance_bonus"            "%MAGIC RESISTANCE PER MINUTE:"
         "DOTA_Tooltip_ability_spell_lab_survivor_magic_resistance_Note0"            "Fully retroactive. Reincarnate effects won't reset the stack."
         "DOTA_Tooltip_spell_lab_survivor_magic_resistance_modifier"                 "Survival of the Fittest: Magic Resistance"
         "DOTA_Tooltip_spell_lab_survivor_magic_resistance_modifier_Description" "Magic Resistance gained through staying alive."
 
         "DOTA_Tooltip_ability_spell_lab_survivor_move_speed"                    "Survival of the Fittest: Movement Speed"
-        "DOTA_Tooltip_ability_spell_lab_survivor_move_speed_Description"        "Your survival instinct is enhanced. You gain <font color='#70EA72'>Movement Speed</font> for every minute you survive without dying.\nIf you die you will regenerate at double the rate to your highest achieved stack count."
+        "DOTA_Tooltip_ability_spell_lab_survivor_move_speed_Description"        "Your survival instinct is enhanced. You gain <font color='#70EA72'>Movement Speed</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death."
         "DOTA_Tooltip_ability_spell_lab_survivor_move_speed_bonus"          "MOVEMENT SPEED PER MINUTE:"
         "DOTA_Tooltip_ability_spell_lab_survivor_move_speed_Note0"          "Fully retroactive. Reincarnate effects won't reset the stack."
         "DOTA_Tooltip_spell_lab_survivor_move_speed_modifier"                   "Survival of the Fittest: Movement Speed"
         "DOTA_Tooltip_spell_lab_survivor_move_speed_modifier_Description" "Movement Speed gained through staying alive."
 
         "DOTA_Tooltip_ability_spell_lab_survivor_spell_boost"                   "Survival of the Fittest: Spell Amplification"
-        "DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_Description"       "Your survival instinct is enhanced. You gain <font color='#70EA72'>Spell Amplification</font> for every minute you survive without dying. Does not gain stacks unless you have been seen by the enemy team recently.\nIf you die you will regenerate at double the rate to your highest achieved stack count."
+        "DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_Description"       "Your survival instinct is enhanced. You gain <font color='#70EA72'>Spell Amplification</font> for every minute you survive without dying. Does not gain stacks unless you have been seen by the enemy team recently.\nYou keep 33% of your stacks after death."
         "DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_bonus"         "%SPELL AMP PER MINUTE:"
 		"DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_battle_thirst"    "LAST SEEN COOLDOWN (SECONDS):"
         "DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_Note0"         "Fully retroactive. Reincarnate effects won't reset the stack."
         
         "DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_op"                   "Survival of the Fittest: Spell Amplification OP"
-        "DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_op_Description"       "Your survival instinct is enhanced. You gain <font color='#70EA72'>Spell Amplification</font> for every minute you survive without dying.\nIf you die you will regenerate at double the rate to your highest achieved stack count. <font color='#70EA72'>No sight requirement and higher rate</font>."
+        "DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_op_Description"       "Your survival instinct is enhanced. You gain <font color='#70EA72'>Spell Amplification</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death. <font color='#70EA72'>No sight requirement and higher rate</font>."
         "DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_op_bonus"         "%SPELL AMP PER MINUTE:"
         "DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_op_Note0"         "Fully retroactive. Reincarnate effects won't reset the stack."
         
@@ -4889,49 +4889,49 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
         "DOTA_Tooltip_spell_lab_survivor_spell_boost_modifier_Description" "Spell Amplification gained through staying alive."
 
         "DOTA_Tooltip_ability_spell_lab_survivor_spell_vamp"                    "Survival of the Fittest: Spell Vampirisim"
-        "DOTA_Tooltip_ability_spell_lab_survivor_spell_vamp_Description"        "Your survival instinct is enhanced. You gain <font color='#70EA72'>Spell Vampirisim</font> for every minute you survive without dying.\nIf you die you will regenerate at double the rate to your highest achieved stack count."
+        "DOTA_Tooltip_ability_spell_lab_survivor_spell_vamp_Description"        "Your survival instinct is enhanced. You gain <font color='#70EA72'>Spell Vampirisim</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death."
         "DOTA_Tooltip_ability_spell_lab_survivor_spell_vamp_bonus"          "%SPELL VAMPIRISIM PER MINUTE:"
         "DOTA_Tooltip_ability_spell_lab_survivor_spell_vamp_Note0"          "Fully retroactive. Reincarnate effects won't reset the stack."
         "DOTA_Tooltip_spell_lab_survivor_spell_vamp_modifier"                   "Survival of the Fittest: Spell Vampirisim"
         "DOTA_Tooltip_spell_lab_survivor_spell_vamp_modifier_Description" "Spell Vampirisim gained through staying alive."
 
         "DOTA_Tooltip_ability_spell_lab_survivor_str_survival"                  "Survival of the Fittest: Strength"
-        "DOTA_Tooltip_ability_spell_lab_survivor_str_survival_Description"      "Your survival instinct is enhanced. You gain <font color='#70EA72'>Strength</font> for every minute you survive without dying.\nIf you die you will regenerate at double the rate to your highest achieved stack count."
+        "DOTA_Tooltip_ability_spell_lab_survivor_str_survival_Description"      "Your survival instinct is enhanced. You gain <font color='#70EA72'>Strength</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death."
         "DOTA_Tooltip_ability_spell_lab_survivor_str_survival_bonus"            "STRENGTH PER MINUTE:"
         "DOTA_Tooltip_ability_spell_lab_survivor_str_survival_Note0"            "Fully retroactive. Reincarnate effects won't reset the stack."
         "DOTA_Tooltip_spell_lab_survivor_str_survival_modifier"                 "Survival of the Fittest: Strength"
         "DOTA_Tooltip_spell_lab_survivor_str_survival_modifier_Description" "Strength gained through staying alive."
 
         "DOTA_Tooltip_ability_spell_lab_survivor_vision"                    "Survival of the Fittest: Vision"
-        "DOTA_Tooltip_ability_spell_lab_survivor_vision_Description"        "Your survival instinct is enhanced. You gain <font color='#70EA72'>Vision</font> for every minute you survive without dying.\nIf you die you will regenerate at double the rate to your highest achieved stack count."
+        "DOTA_Tooltip_ability_spell_lab_survivor_vision_Description"        "Your survival instinct is enhanced. You gain <font color='#70EA72'>Vision</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death."
         "DOTA_Tooltip_ability_spell_lab_survivor_vision_bonus"          "VISION PER MINUTE:"
         "DOTA_Tooltip_ability_spell_lab_survivor_vision_Note0"          "Fully retroactive. Reincarnate effects won't reset the stack."
         "DOTA_Tooltip_spell_lab_survivor_vision_modifier"                   "Survival of the Fittest: Vision"
         "DOTA_Tooltip_spell_lab_survivor_vision_modifier_Description" "Vision gained through staying alive."
 
         "DOTA_Tooltip_ability_spell_lab_survivor_agi_survival"                  "Survival of the Fittest: Agility"
-        "DOTA_Tooltip_ability_spell_lab_survivor_agi_survival_Description"      "Your survival instinct is enhanced. You gain <font color='#70EA72'>Agility</font> for every minute you survive without dying.\nIf you die you will regenerate at double the rate to your highest achieved stack count."
+        "DOTA_Tooltip_ability_spell_lab_survivor_agi_survival_Description"      "Your survival instinct is enhanced. You gain <font color='#70EA72'>Agility</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death."
         "DOTA_Tooltip_ability_spell_lab_survivor_agi_survival_bonus"            "AGILITY PER MINUTE:"
         "DOTA_Tooltip_ability_spell_lab_survivor_agi_survival_Note0"            "Fully retroactive. Reincarnate effects won't reset the stack."
         "DOTA_Tooltip_spell_lab_survivor_agi_survival_modifier"                 "Survival of the Fittest: Agility"
         "DOTA_Tooltip_spell_lab_survivor_agi_survival_modifier_Description" "Agility gained through staying alive."
 
         "DOTA_Tooltip_ability_spell_lab_survivor_armor"                 "Survival of the Fittest: Armor"
-        "DOTA_Tooltip_ability_spell_lab_survivor_armor_Description"     "Your survival instinct is enhanced. You gain <font color='#70EA72'>Armor</font> for every minute you survive without dying.\nIf you die you will regenerate at double the rate to your highest achieved stack count."
+        "DOTA_Tooltip_ability_spell_lab_survivor_armor_Description"     "Your survival instinct is enhanced. You gain <font color='#70EA72'>Armor</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death."
         "DOTA_Tooltip_ability_spell_lab_survivor_armor_bonus"           "ARMOR PER MINUTE:"
         "DOTA_Tooltip_ability_spell_lab_survivor_armor_Note0"           "Fully retroactive. Reincarnate effects won't reset the stack."
         "DOTA_Tooltip_spell_lab_survivor_armor_modifier"                    "Survival of the Fittest: Armor"
         "DOTA_Tooltip_spell_lab_survivor_armor_modifier_Description" "Armor gained through staying alive."
 
         "DOTA_Tooltip_ability_spell_lab_survivor_attack_range"                  "Survival of the Fittest: Attack Range"
-        "DOTA_Tooltip_ability_spell_lab_survivor_attack_range_Description"      "Your survival instinct is enhanced. You gain <font color='#70EA72'>Attack Range</font> for every minute you survive without dying.\nIf you die you will regenerate at double the rate to your highest achieved stack count."
+        "DOTA_Tooltip_ability_spell_lab_survivor_attack_range_Description"      "Your survival instinct is enhanced. You gain <font color='#70EA72'>Attack Range</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death."
         "DOTA_Tooltip_ability_spell_lab_survivor_attack_range_bonus"            "ATTACK RANGE PER MINUTE:"
         "DOTA_Tooltip_ability_spell_lab_survivor_attack_range_Note0"            "Fully retroactive. Reincarnate effects won't reset the stack."
         "DOTA_Tooltip_spell_lab_survivor_attack_range_modifier"                 "Survival of the Fittest: Attack Range"
         "DOTA_Tooltip_spell_lab_survivor_attack_range_modifier_Description" "Attack Range gained through staying alive."
 
         "DOTA_Tooltip_ability_spell_lab_survivor_attack_speed"                  "Survival of the Fittest: Attack Speed"
-        "DOTA_Tooltip_ability_spell_lab_survivor_attack_speed_Description"      "Your survival instinct is enhanced. You gain <font color='#70EA72'>Attack Speed</font> for every minute you survive without dying.\nIf you die you will regenerate at double the rate to your highest achieved stack count."
+        "DOTA_Tooltip_ability_spell_lab_survivor_attack_speed_Description"      "Your survival instinct is enhanced. You gain <font color='#70EA72'>Attack Speed</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death."
         "DOTA_Tooltip_ability_spell_lab_survivor_attack_speed_bonus"            "ATTACK SPEED PER MINUTE:"
         "DOTA_Tooltip_ability_spell_lab_survivor_attack_speed_Note0"            "Fully retroactive. Reincarnate effects won't reset the stack."
         "DOTA_Tooltip_spell_lab_survivor_attack_speed_modifier"                 "Survival of the Fittest: Attack Speed"
@@ -4939,7 +4939,7 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
 
 
         "DOTA_Tooltip_ability_spell_lab_survivor_cast_range"                    "Survival of the Fittest: Cast Range"
-        "DOTA_Tooltip_ability_spell_lab_survivor_cast_range_Description"        "Your survival instinct is enhanced. You gain <font color='#70EA72'>Cast Range</font> for every minute you survive without dying.\nIf you die you will regenerate at double the rate to your highest achieved stack count."
+        "DOTA_Tooltip_ability_spell_lab_survivor_cast_range_Description"        "Your survival instinct is enhanced. You gain <font color='#70EA72'>Cast Range</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death."
         "DOTA_Tooltip_ability_spell_lab_survivor_cast_range_bonus"          "CAST RANGE PER MINUTE:"
         "DOTA_Tooltip_ability_spell_lab_survivor_cast_range_Note0"          "Fully retroactive. Reincarnate effects won't reset the stack."
         "DOTA_Tooltip_spell_lab_survivor_cast_range_modifier"                   "Survival of the Fittest: Cast Range"
@@ -4947,7 +4947,7 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
 
 
         "DOTA_Tooltip_ability_spell_lab_survivor_bash"                  "Survival of the Fittest: Bash"
-        "DOTA_Tooltip_ability_spell_lab_survivor_bash_Description"      "Your survival instinct is enhanced. Your attacks gain chance to <font color='#70EA72'>Bash</font> for every minute you survive without dying.\nIf you die you will regenerate at double the rate to your highest achieved stack count."
+        "DOTA_Tooltip_ability_spell_lab_survivor_bash_Description"      "Your survival instinct is enhanced. Your attacks gain chance to <font color='#70EA72'>Bash</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death."
         "DOTA_Tooltip_ability_spell_lab_survivor_bash_bonus"            "%BASH CHANCE PER MINUTE:"
         "DOTA_Tooltip_ability_spell_lab_survivor_bash_duration"         "BASH DURATION:"
         "DOTA_Tooltip_ability_spell_lab_survivor_bash_Note0"            "Fully retroactive. Reincarnate effects won't reset the stack."
@@ -4955,7 +4955,7 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
         "DOTA_Tooltip_spell_lab_survivor_bash_modifier_Description" "Bash Chance gained through staying alive."
 
         "DOTA_Tooltip_ability_spell_lab_survivor_mana_burn"                 "Survival of the Fittest: Mana Burn"
-        "DOTA_Tooltip_ability_spell_lab_survivor_mana_burn_Description"     "Your survival instinct is enhanced. Your attacks gain <font color='#70EA72'>Mana Burn Damage</font> for every minute you survive without dying.\nIf you die you will regenerate at double the rate to your highest achieved stack count."
+        "DOTA_Tooltip_ability_spell_lab_survivor_mana_burn_Description"     "Your survival instinct is enhanced. Your attacks gain <font color='#70EA72'>Mana Burn Damage</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death."
         "DOTA_Tooltip_ability_spell_lab_survivor_mana_burn_bonus"           "MANA BURN DAMAGE PER MINUTE:"
         "DOTA_Tooltip_ability_spell_lab_survivor_mana_burn_damage_pct"      "%MANA BURNED AS PHYSICAL DAMAGE:"
         "DOTA_Tooltip_ability_spell_lab_survivor_mana_burn_Note0"           "Fully retroactive. Reincarnate effects won't reset the stack."
@@ -4963,7 +4963,7 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
         "DOTA_Tooltip_spell_lab_survivor_mana_burn_modifier_Description" "Mana Burn Damage gained through staying alive."
 
         "DOTA_Tooltip_ability_spell_lab_survivor_critical"                  "Survival of the Crittest"
-        "DOTA_Tooltip_ability_spell_lab_survivor_critical_Description"      "Your survival instinct is enhanced. Your attacks gain <font color='#70EA72'>Critical Damage</font> for every minute you survive without dying.\nIf you die you will regenerate at double the rate to your highest achieved stack count."
+        "DOTA_Tooltip_ability_spell_lab_survivor_critical_Description"      "Your survival instinct is enhanced. Your attacks gain <font color='#70EA72'>Critical Damage</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death."
         "DOTA_Tooltip_ability_spell_lab_survivor_critical_bonus"            "%CRITICAL DAMAGE PER MINUTE:"
         "DOTA_Tooltip_ability_spell_lab_survivor_critical_chance"           "%CRITICAL CHANCE:"
         "DOTA_Tooltip_ability_spell_lab_survivor_critical_Note0"            "Fully retroactive. Reincarnate effects won't reset the stack."
@@ -17001,20 +17001,24 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
 
 
     "DOTA_Tooltip_ability_spell_lab_souls_agi"                                  "Lingering Souls: Agility"
-    "DOTA_Tooltip_ability_spell_lab_souls_agi_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Agility</font>.\nIf you die, you have 5 minutes to recover the souls.\nIf you were to die before you can recover the souls, they are lost forever.\nHero kills earn you 10 souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_agi_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Agility</font>.\nIf you die, you have 1 minute to recover the souls.\nIf you were to die before you can recover the souls, they are lost forever.\nHero kills earn you 10 souls.\n<font color='#FFEA72'>SOUL LIMIT is maximum number souls that are counted towards Agility. If you die, you keep souls over that limit.</font> "
     "DOTA_Tooltip_ability_spell_lab_souls_agi_per_soul"                      "AGILITY PER SOUL:"
+    "DOTA_Tooltip_ability_spell_lab_souls_agi_max"                      "SOUL LIMIT:"
 	
 	"DOTA_Tooltip_ability_spell_lab_souls_str"                                  "Lingering Souls: Strength"
-    "DOTA_Tooltip_ability_spell_lab_souls_str_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Strength</font>.\nIf you die, you have 5 minutes to recover the souls.\nIf you were to die before you can recover the souls, they are lost forever.\nHero kills earn you 10 souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_str_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Strength</font>.\nIf you die, you have 1 minute to recover the souls.\nIf you were to die before you can recover the souls, they are lost forever.\nHero kills earn you 10 souls.\n<font color='#FFEA72'>SOUL LIMIT is maximum number souls that are counted towards Strength. If you die, you keep souls over that limit.</font> "
     "DOTA_Tooltip_ability_spell_lab_souls_str_per_soul"                      "STRENGTH PER SOUL:"
+    "DOTA_Tooltip_ability_spell_lab_souls_str_max"                      "SOUL LIMIT:"
 	
 	"DOTA_Tooltip_ability_spell_lab_souls_int"                                  "Lingering Souls: Intelligence"
-    "DOTA_Tooltip_ability_spell_lab_souls_int_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Intelligence</font>.\nIf you die, you have 5 minutes to recover the souls.\nIf you were to die before you can recover the souls, they are lost forever.\nHero kills earn you 10 souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_int_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Intelligence</font>.\nIf you die, you have 1 minute to recover the souls.\nIf you were to die before you can recover the souls, they are lost forever.\nHero kills earn you 10 souls.\n<font color='#FFEA72'>SOUL LIMIT is maximum number souls that are counted towards Intelligence. If you die, you keep souls over that limit.</font> "
     "DOTA_Tooltip_ability_spell_lab_souls_int_per_soul"                      "INTELLIGENCE PER SOUL:"
+    "DOTA_Tooltip_ability_spell_lab_souls_int_max"                      "SOUL LIMIT:"
 	
 	"DOTA_Tooltip_ability_spell_lab_souls_damage"                                  "Lingering Souls: Damage"
-    "DOTA_Tooltip_ability_spell_lab_souls_damage_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Base Damage</font>.\nIf you die, you have 5 minutes to recover the souls.\nIf you were to die before you can recover the souls, they are lost forever.\nHero kills earn you 10 souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_damage_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Base Damage</font>.\nIf you die, you have 1 minute to recover the souls.\nIf you were to die before you can recover the souls, they are lost forever.\nHero kills earn you 10 souls.\n<font color='#FFEA72'>SOUL LIMIT is maximum number souls that are counted towards Base Damage. If you die, you keep souls over that limit.</font> "
     "DOTA_Tooltip_ability_spell_lab_souls_damage_per_soul"                      "BASE DAMAGE PER SOUL:"
+    "DOTA_Tooltip_ability_spell_lab_souls_damage_max"                      "SOUL LIMIT:"
 	
 	
 	"DOTA_Tooltip_spell_lab_souls_str_modifier"                                  "Lingering Souls: Strength"
@@ -17028,42 +17032,47 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
 	
 	
     "DOTA_Tooltip_ability_spell_lab_souls_vision"                                  "Lingering Souls: Vision"
-    "DOTA_Tooltip_ability_spell_lab_souls_vision_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Vision</font>.\nIf you die, you have <font color='#70EA72'>5 minutes</font> to recover the souls.\nIf you were to die before you can recover the souls, they are <font color='#70EA72'>lost forever</font>.\nHero kills earn you <font color='#70EA72'>10</font> souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_vision_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Vision</font>.\nIf you die, you have 1 minute to recover the souls.\nIf you were to die before you can recover the souls, they are lost forever.\nHero kills earn you 10 souls.\n<font color='#FFEA72'>SOUL LIMIT is maximum number souls that are counted towards Vision. If you die, you keep souls over that limit.</font> "
     "DOTA_Tooltip_ability_spell_lab_souls_vision_per_soul"                      "VISION PER SOUL:"
+    "DOTA_Tooltip_ability_spell_lab_souls_vision_max"                      "SOUL LIMIT:"
 	
 	"DOTA_Tooltip_spell_lab_souls_vision_modifier"                                  "Lingering Souls: Vision"
 	"DOTA_Tooltip_spell_lab_souls_vision_modifier_Description"                      "Soul Count"
 	
 	"DOTA_Tooltip_ability_spell_lab_souls_armor"                                  "Lingering Souls: Armor"
-    "DOTA_Tooltip_ability_spell_lab_souls_armor_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Armor</font>.\nIf you die, you have <font color='#70EA72'>5 minutes</font> to recover the souls.\nIf you were to die before you can recover the souls, they are <font color='#70EA72'>lost forever</font>.\nHero kills earn you <font color='#70EA72'>10</font> souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_armor_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Armor</font>.\nIf you die, you have 1 minute to recover the souls.\nIf you were to die before you can recover the souls, they are lost forever.\nHero kills earn you 10 souls.\n<font color='#FFEA72'>SOUL LIMIT is maximum number souls that are counted towards Armor. If you die, you keep souls over that limit.</font> "
     "DOTA_Tooltip_ability_spell_lab_souls_armor_per_soul"                      "ARMOR PER SOUL:"
+    "DOTA_Tooltip_ability_spell_lab_souls_armor_max"                      "SOUL LIMIT:"
 	
 	"DOTA_Tooltip_spell_lab_souls_armor_modifier"                                  "Lingering Souls: Armor"
 	"DOTA_Tooltip_spell_lab_souls_armor_modifier_Description"                      "Soul Count"
 
     "DOTA_Tooltip_ability_spell_lab_souls_attack_range"                                  "Lingering Souls: Attack Range"
-    "DOTA_Tooltip_ability_spell_lab_souls_attack_range_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Attack Range</font>.\nIf you die, you have <font color='#70EA72'>5 minutes</font> to recover the souls.\nIf you were to die before you can recover the souls, they are <font color='#70EA72'>lost forever</font>.\nHero kills earn you <font color='#70EA72'>10</font> souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_attack_range_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Attack Range</font>.\nIf you die, you have 1 minute to recover the souls.\nIf you were to die before you can recover the souls, they are lost forever.\nHero kills earn you 10 souls.\n<font color='#FFEA72'>SOUL LIMIT is maximum number souls that are counted towards Attack Range. If you die, you keep souls over that limit.</font> "
     "DOTA_Tooltip_ability_spell_lab_souls_attack_range_per_soul"                      "ATTACK RANGE PER SOUL:"
+    "DOTA_Tooltip_ability_spell_lab_souls_attack_range_max"                      "SOUL LIMIT:"
 	
 	"DOTA_Tooltip_spell_lab_souls_attack_range_modifier"                                  "Lingering Souls: Attack Range"
 	"DOTA_Tooltip_spell_lab_souls_attack_range_modifier_Description"                      "Soul Count"
 
     "DOTA_Tooltip_ability_spell_lab_souls_attack_speed"                                  "Lingering Souls: Attack Speed"
-    "DOTA_Tooltip_ability_spell_lab_souls_attack_speed_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Attack Speed</font>.\nIf you die, you have <font color='#70EA72'>5 minutes</font> to recover the souls.\nIf you were to die before you can recover the souls, they are <font color='#70EA72'>lost forever</font>.\nHero kills earn you <font color='#70EA72'>10</font> souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_attack_speed_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Attack Speed</font>.\nIf you die, you have 1 minute to recover the souls.\nIf you were to die before you can recover the souls, they are lost forever.\nHero kills earn you 10 souls.\n<font color='#FFEA72'>SOUL LIMIT is maximum number souls that are counted towards Attack Speed. If you die, you keep souls over that limit.</font> "
     "DOTA_Tooltip_ability_spell_lab_souls_attack_speed_per_soul"                      "ATTACK SPEED PER SOUL:"
+    "DOTA_Tooltip_ability_spell_lab_souls_attack_speed_max"                      "SOUL LIMIT:"
 	
 	"DOTA_Tooltip_spell_lab_souls_attack_speed_modifier"                                  "Lingering Souls: Attack Speed"
 	"DOTA_Tooltip_spell_lab_souls_attack_speed_modifier_Description"                      "Soul Count"
 
     "DOTA_Tooltip_ability_spell_lab_souls_cast_range"                                  "Lingering Souls: Cast Range"
-    "DOTA_Tooltip_ability_spell_lab_souls_cast_range_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Cast Range</font>.\nIf you die, you have <font color='#70EA72'>5 minutes</font> to recover the souls.\nIf you were to die before you can recover the souls, they are <font color='#70EA72'>lost forever</font>.\nHero kills earn you <font color='#70EA72'>10</font> souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_cast_range_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Cast Range</font>.\nIf you die, you have 1 minute to recover the souls.\nIf you were to die before you can recover the souls, they are lost forever.\nHero kills earn you 10 souls.\n<font color='#FFEA72'>SOUL LIMIT is maximum number souls that are counted towards Cast Range. If you die, you keep souls over that limit.</font> "
     "DOTA_Tooltip_ability_spell_lab_souls_cast_range_per_soul"                      "CAST RANGE PER SOUL:"
+    "DOTA_Tooltip_ability_spell_lab_souls_cast_range_max"                      "SOUL LIMIT:"
 	
 	"DOTA_Tooltip_spell_lab_souls_cast_range_modifier"                                  "Lingering Souls: Cast Range"
 	"DOTA_Tooltip_spell_lab_souls_cast_range_modifier_Description"                      "Soul Count"
 
     "DOTA_Tooltip_ability_spell_lab_souls_cooldown"                                  "Lingering Souls: Cooldown"
-    "DOTA_Tooltip_ability_spell_lab_souls_cooldown_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Cooldown</font>.\nIf you die, you have <font color='#70EA72'>5 minutes</font> to recover the souls.\nIf you were to die before you can recover the souls, they are <font color='#70EA72'>lost forever</font>.\nHero kills earn you <font color='#70EA72'>10</font> souls.\n<font color='#FFEA72'>SOUL LIMIT is maximum number souls that are counted towards Cooldown reduction. If you die, you keep souls over that limit.</font> "
+    "DOTA_Tooltip_ability_spell_lab_souls_cooldown_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Cooldown</font>.\nIf you die, you have 1 minute to recover the souls.\nIf you were to die before you can recover the souls, they are lost forever.\nHero kills earn you 10 souls.\n<font color='#FFEA72'>SOUL LIMIT is maximum number souls that are counted towards Cooldown Reduction. If you die, you keep souls over that limit.</font> "
     "DOTA_Tooltip_ability_spell_lab_souls_cooldown_per_soul"                      "%COOLDOWN REDUCTION PER SOUL:"
     "DOTA_Tooltip_ability_spell_lab_souls_cooldown_max"                      "SOUL LIMIT:"
 	
@@ -17071,49 +17080,55 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
 	"DOTA_Tooltip_spell_lab_souls_cooldown_modifier_Description"                      "Soul Count"
 
     "DOTA_Tooltip_ability_spell_lab_souls_evasion"                                  "Lingering Souls: Evasion"
-    "DOTA_Tooltip_ability_spell_lab_souls_evasion_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Evasion</font>.\nIf you die, you have <font color='#70EA72'>5 minutes</font> to recover the souls.\nIf you were to die before you can recover the souls, they are <font color='#70EA72'>lost forever</font>.\nHero kills earn you <font color='#70EA72'>10</font> souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_evasion_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Evasion</font>.\nIf you die, you have 1 minute to recover the souls.\nIf you were to die before you can recover the souls, they are lost forever.\nHero kills earn you 10 souls.\n<font color='#FFEA72'>SOUL LIMIT is maximum number souls that are counted towards Evasion. If you die, you keep souls over that limit.</font> "
     "DOTA_Tooltip_ability_spell_lab_souls_evasion_per_soul"                      "%EVASION PER SOUL:"
+    "DOTA_Tooltip_ability_spell_lab_souls_evasion_max"                      "SOUL LIMIT:"
 	
 	"DOTA_Tooltip_spell_lab_souls_evasion_modifier"                                  "Lingering Souls: Evasion"
 	"DOTA_Tooltip_spell_lab_souls_evasion_modifier_Description"                      "Soul Count"
 
     "DOTA_Tooltip_ability_spell_lab_souls_health_regen"                                  "Lingering Souls: Health Regen"
-    "DOTA_Tooltip_ability_spell_lab_souls_health_regen_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Health Regen</font>.\nIf you die, you have <font color='#70EA72'>5 minutes</font> to recover the souls.\nIf you were to die before you can recover the souls, they are <font color='#70EA72'>lost forever</font>.\nHero kills earn you <font color='#70EA72'>10</font> souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_health_regen_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Health Regen</font>.\nIf you die, you have 1 minute to recover the souls.\nIf you were to die before you can recover the souls, they are lost forever.\nHero kills earn you 10 souls.\n<font color='#FFEA72'>SOUL LIMIT is maximum number souls that are counted towards Health Regen. If you die, you keep souls over that limit.</font> "
     "DOTA_Tooltip_ability_spell_lab_souls_health_regen_per_soul"                      "HEALTH REGEN PER SOUL:"
+    "DOTA_Tooltip_ability_spell_lab_souls_health_regen_max"                      "SOUL LIMIT:"
 	
 	"DOTA_Tooltip_spell_lab_souls_health_regen_modifier"                                  "Lingering Souls: Health Regen"
 	"DOTA_Tooltip_spell_lab_souls_health_regen_modifier_Description"                      "Soul Count"
 
     "DOTA_Tooltip_ability_spell_lab_souls_magic_resistance"                                  "Lingering Souls: Magic Resistance"
-    "DOTA_Tooltip_ability_spell_lab_souls_magic_resistance_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Magic Resistance</font>.\nIf you die, you have <font color='#70EA72'>5 minutes</font> to recover the souls.\nIf you were to die before you can recover the souls, they are <font color='#70EA72'>lost forever</font>.\nHero kills earn you <font color='#70EA72'>10</font> souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_magic_resistance_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Magic Resistance</font>.\nIf you die, you have 1 minute to recover the souls.\nIf you were to die before you can recover the souls, they are lost forever.\nHero kills earn you 10 souls.\n<font color='#FFEA72'>SOUL LIMIT is maximum number souls that are counted towards Magic Resistance. If you die, you keep souls over that limit.</font> "
     "DOTA_Tooltip_ability_spell_lab_souls_magic_resistance_per_soul"                      "%MAGIC RESISTANCE PER SOUL:"
+    "DOTA_Tooltip_ability_spell_lab_souls_magic_resistance_max"                      "SOUL LIMIT:"
 	
 	"DOTA_Tooltip_spell_lab_souls_magic_resistance_modifier"                                  "Lingering Souls: Magic Resistance"
 	"DOTA_Tooltip_spell_lab_souls_magic_resistance_modifier_Description"                      "Soul Count"
 
     "DOTA_Tooltip_ability_spell_lab_souls_mana_regen"                                  "Lingering Souls: Mana Regen"
-    "DOTA_Tooltip_ability_spell_lab_souls_mana_regen_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Mana Regen</font>.\nIf you die, you have <font color='#70EA72'>5 minutes</font> to recover the souls.\nIf you were to die before you can recover the souls, they are <font color='#70EA72'>lost forever</font>.\nHero kills earn you <font color='#70EA72'>10</font> souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_mana_regen_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Mana Regen</font>.\nIf you die, you have 1 minute to recover the souls.\nIf you were to die before you can recover the souls, they are lost forever.\nHero kills earn you 10 souls.\n<font color='#FFEA72'>SOUL LIMIT is maximum number souls that are counted towards Mana Regen. If you die, you keep souls over that limit.</font> "
     "DOTA_Tooltip_ability_spell_lab_souls_mana_regen_per_soul"                      "MANA REGEN PER SOUL:"
+    "DOTA_Tooltip_ability_spell_lab_souls_mana_regen_max"                      "SOUL LIMIT:"
 	
 	"DOTA_Tooltip_spell_lab_souls_mana_regen_modifier"                                  "Lingering Souls: Mana Regen"
 	"DOTA_Tooltip_spell_lab_souls_mana_regen_modifier_Description"                      "Soul Count"
 
     "DOTA_Tooltip_ability_spell_lab_souls_move_speed"                                  "Lingering Souls: Move Speed"
-    "DOTA_Tooltip_ability_spell_lab_souls_move_speed_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Move Speed</font>.\nIf you die, you have <font color='#70EA72'>5 minutes</font> to recover the souls.\nIf you were to die before you can recover the souls, they are <font color='#70EA72'>lost forever</font>.\nHero kills earn you <font color='#70EA72'>10</font> souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_move_speed_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Move Speed</font>.\nIf you die, you have 1 minute to recover the souls.\nIf you were to die before you can recover the souls, they are lost forever.\nHero kills earn you 10 souls.\n<font color='#FFEA72'>SOUL LIMIT is maximum number souls that are counted towards Move Speed. If you die, you keep souls over that limit.</font> "
     "DOTA_Tooltip_ability_spell_lab_souls_move_speed_per_soul"                      "MOVE SPEED PER SOUL:"
+    "DOTA_Tooltip_ability_spell_lab_souls_move_speed_max"                      "SOUL LIMIT:"
 	
 	"DOTA_Tooltip_spell_lab_souls_move_speed_modifier"                                  "Lingering Souls: Move Speed"
 	"DOTA_Tooltip_spell_lab_souls_move_speed_modifier_Description"                      "Soul Count"
 
     "DOTA_Tooltip_ability_spell_lab_souls_spell_boost"                                  "Lingering Souls: Spell Amplification"
-    "DOTA_Tooltip_ability_spell_lab_souls_spell_boost_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Spell Amplification</font>.\nIf you die, you have <font color='#70EA72'>5 minutes</font> to recover the souls.\nIf you were to die before you can recover the souls, they are <font color='#70EA72'>lost forever</font>.\nHero kills earn you <font color='#70EA72'>10</font> souls."
+    "DOTA_Tooltip_ability_spell_lab_souls_spell_boost_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Spell Amplification</font>.\nIf you die, you have 1 minute to recover the souls.\nIf you were to die before you can recover the souls, they are lost forever.\nHero kills earn you 10 souls.\n<font color='#FFEA72'>SOUL LIMIT is maximum number souls that are counted towards Spell Amplification. If you die, you keep souls over that limit.</font> "
     "DOTA_Tooltip_ability_spell_lab_souls_spell_boost_per_soul"                      "%SPELL AMPLIFICATION PER SOUL:"
+    "DOTA_Tooltip_ability_spell_lab_souls_spell_boost_max"                      "SOUL LIMIT:"
 	
 	"DOTA_Tooltip_spell_lab_souls_spell_boost_modifier"                                  "Lingering Souls: Spell Amplification"
 	"DOTA_Tooltip_spell_lab_souls_spell_boost_modifier_Description"                      "Soul Count"
 	
 	
     "DOTA_Tooltip_ability_spell_lab_one_with_nothing"                                  "One With Nothing"
-    "DOTA_Tooltip_ability_spell_lab_one_with_nothing_Description"                      "Instantly spend your mana pool."
+    "DOTA_Tooltip_ability_spell_lab_one_with_nothing_Description"                      "Instantly spend your entire mana pool."
     "DOTA_Tooltip_ability_spell_lab_one_with_nothing_Lore"								"When nothing remains, everything is equally possible."
 }

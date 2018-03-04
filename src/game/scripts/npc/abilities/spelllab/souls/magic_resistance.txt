@@ -18,7 +18,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-        				"per_soul"						"0.2 0.3 0.4 0.5"
+        				"per_soul"						"0.3"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+        				"max"						"100 150 200 250"
             }
         }
         "ReduxFlags"                                                           ""
