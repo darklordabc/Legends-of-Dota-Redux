@@ -14,10 +14,12 @@ All notable changes to this project will be documented in this file.
 - Readded Silver Items
 - Rapidfire and Impetus are now troll combos
 - Fixed Strong Towers being broken
-*
 - Fixed Caustic Finale
 - Fixed an Exploit with Antimage perk
 - Fixed numerous issies with some Dusk abilities
+- Temporarily made the souls ability as single player abilities until they can be rebalanced
+- Whiteboard's revenge now has 1 second cooldown instead of 0.3
+- Survival skills have been made single player as they are not working at the advertised rate
 
 
 ## 10.5
