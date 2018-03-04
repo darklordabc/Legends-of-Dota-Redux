@@ -120,9 +120,9 @@ modifier_item_aeon_disk_consumable = class({
 			if self:GetParent():GetHealth() <= self:GetParent():GetMaxHealth() * self:GetAbility():GetSpecialValueFor("health_threshold_pct") * 0.01 then
 				self:GetParent():SetHealth(self:GetParent():GetHealth()+keys.damage)
 				if self:GetAbility():IsItem() then
-					self:GetAbility():StartCooldown(self:GetAbility():GetCooldown(-1))
+					self:GetAbility():UseResources(false, false, true)
 				else
-					self:SetDuration(100, true)
+					self:SetDuration(90 * self:GetParent():GetCooldownReduction(), true)
 				end
 
 				local dir = (self:GetParent():GetAbsOrigin() - keys.attacker:GetAbsOrigin()):Normalized()

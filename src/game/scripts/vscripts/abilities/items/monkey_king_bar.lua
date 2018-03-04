@@ -103,6 +103,7 @@ function modifier_item_monkey_king_bar_consumable:DeclareFunctions()
     MODIFIER_EVENT_ON_ATTACK_START,
     --MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
     MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE_POST_CRIT,
+    MODIFIER_EVENT_ON_ATTACK_LANDED,
   }
   return funcs
 end
@@ -148,6 +149,20 @@ function modifier_item_monkey_king_bar_consumable:OnAttackStart(keys)
         end
         -- 7.07 no longer ministuns
         self.bAccuracyProcced = true
+      end
+    end
+  end
+end
+
+function modifier_item_monkey_king_bar_consumable:OnAttackLanded(keys)
+  if IsServer() and keys.attacker == self:GetParent() then
+    if not self:GetAbility() then
+      self:Destroy()
+    end
+    if self.bAccuracyProcced then
+      local target = keys.victim or keys.unit
+      if target then
+        target:EmitSound("DOTA_Item.MKB.proc")
       end
     end
   end

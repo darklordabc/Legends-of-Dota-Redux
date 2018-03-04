@@ -1561,7 +1561,7 @@
         "BaseClass"                     "item_lua"
         "AbilityTextureName"            "item_aeon_disk"
         "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
-        "AbilityCooldown"               "100.0"
+        "AbilityCooldown"               "90.0"
         "ItemCost"                      "3350"
 
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"

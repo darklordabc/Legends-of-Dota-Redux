@@ -132,6 +132,7 @@ modifier_item_echo_sabre_consumable = class({
   end,
 
   OnAttackLanded = function(self, keys)
+    if not IsServer() then return end
     if self:GetParent() ~= keys.attacker then return end
     if self:GetParent():IsRangedAttacker() then return end
     if self:GetAbility():IsItem() and not self:GetAbility():IsCooldownReady() or not self:GetAbility():IsItem() and self:GetRemainingTime() >= 0 then return end
@@ -141,9 +142,9 @@ modifier_item_echo_sabre_consumable = class({
       keys.target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_item_echo_sabre_consumable_debuff", {duration = self:GetAbility():GetSpecialValueFor("slow_duration")})
     end
     if self:GetAbility():IsItem() then
-      self:GetAbility():StartCooldown(self:GetAbility():GetCooldown(-1))
+      self:GetAbility():UseResources(false, false, true)
     else
-      self:SetDuration(5, true)
+      self:SetDuration(5 * self:GetParent():GetCooldownReduction(), true)
     end
   end,
 })
