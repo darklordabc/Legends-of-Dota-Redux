@@ -19,6 +19,6 @@
         "ReduxFlags"                                                           "tank"
         "ReduxBans"                                                            ""
         //"ReduxPerks"                                                           ""
-        "ReduxCost"                                                            "0"
+        "ReduxCost"                                                            "120"
     }
 }

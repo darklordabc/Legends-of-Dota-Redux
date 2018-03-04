@@ -29,7 +29,7 @@
         "ReduxFlags"                                                           "cooldown"
         "ReduxBans"                                                            ""
         //"ReduxPerks"                                                           ""
-        "ReduxCost"                                                            "0"
+        "ReduxCost"                                                            "120"
     }
 
     "spell_lab_survivor_cooldown_op"

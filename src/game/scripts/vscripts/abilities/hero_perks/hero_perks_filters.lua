@@ -14,7 +14,6 @@ require('abilities/hero_perks/npc_dota_hero_obsidian_destroyer_perk')
 require('abilities/hero_perks/npc_dota_hero_death_prophet_perk')
 require('abilities/hero_perks/npc_dota_hero_drow_ranger_perk')
 require('abilities/hero_perks/npc_dota_hero_abaddon_perk')
-require('abilities/hero_perks/npc_dota_hero_slardar_perk')
 
 function heroPerksProjectileFilter(filterTable)
   local targetIndex = filterTable["entindex_target_const"]
@@ -131,10 +130,7 @@ function heroPerksDamageFilter(filterTable)
    -- Perk for Bane
   PerkBane(filterTable)
   -- Perk for Slardar
-  local slardar = perkSlardar(filterTable)
-  if type(slarder) == "table" then
-    filterTable = slardar
-  end
+  perkSlardar(filterTable)
 
   return filterTable
 end

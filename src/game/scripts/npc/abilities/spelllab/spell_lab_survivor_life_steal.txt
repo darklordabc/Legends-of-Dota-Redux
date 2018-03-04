@@ -23,6 +23,6 @@
         "ReduxFlags"                                                           "tank | attack_modifier"
         "ReduxBans"                                                            ""
         //"ReduxPerks"                                                           ""
-        "ReduxCost"                                                            "0"
+        "ReduxCost"                                                            "120"
     }
 }
