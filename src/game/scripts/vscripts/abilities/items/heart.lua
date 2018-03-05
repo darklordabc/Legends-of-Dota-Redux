@@ -151,7 +151,7 @@ function modifier_item_heart_consumable:OnTakeDamage(keys)
       local cooldown = self:GetAbility():GetSpecialValueFor("heart_cooldown_ranged_tooltip")
     end
     if IsServer() then
-      local cdr = self:GetParent():GetCooldownReduction()
+      local cdr = 1 - self:GetParent():GetCooldownReduction()
       if self:GetAbility():IsItem() then
         self:GetAbility():StartCooldown(cooldown * cdr)
       end

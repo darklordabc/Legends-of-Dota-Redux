@@ -122,7 +122,7 @@ modifier_item_aeon_disk_consumable = class({
 				if self:GetAbility():IsItem() then
 					self:GetAbility():UseResources(false, false, true)
 				else
-					self:SetDuration(90 * self:GetParent():GetCooldownReduction(), true)
+					self:SetDuration(90 * (1-self:GetParent():GetCooldownReduction()), true)
 				end
 
 				local dir = (self:GetParent():GetAbsOrigin() - keys.attacker:GetAbsOrigin()):Normalized()

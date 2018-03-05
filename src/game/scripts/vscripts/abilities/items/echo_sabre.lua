@@ -144,7 +144,7 @@ modifier_item_echo_sabre_consumable = class({
     if self:GetAbility():IsItem() then
       self:GetAbility():UseResources(false, false, true)
     else
-      self:SetDuration(5 * self:GetParent():GetCooldownReduction(), true)
+      self:SetDuration(5 * (1-self:GetParent():GetCooldownReduction()), true)
     end
   end,
 })
