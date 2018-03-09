@@ -2843,6 +2843,117 @@ _Description"    "Converting Mana into Health"
     "purple_flower"         "Purple Lotus"
 
     //-------------------------------------------------------------------
+    // Cherub, the Dancing Flower
+    //-------------------------------------------------------------------
+    "DOTA_Tooltip_ability_cherub_sleep_cloud"                     "Sleep Cloud"
+    "DOTA_Tooltip_ability_cherub_sleep_cloud_Description"    "Cherub emits a cloud of soothing aromas which put enemies to sleep if they are within the cloud's radius for 3 seconds. Enemies will wake up when the cloud duration ends or when they take a certain amount of damage."
+    "DOTA_Tooltip_ability_cherub_sleep_cloud_Radius"      "RADIUS:"
+    "DOTA_Tooltip_ability_cherub_sleep_cloud_Sleep_timer"    "TIME TO SLEEP:"
+    "DOTA_Tooltip_ability_cherub_sleep_cloud_Duration"      "DURATION:"
+    "DOTA_Tooltip_ability_cherub_sleep_cloud_Damage_to_wake"  "DAMAGE TO WAKE:"
+
+    "DOTA_Tooltip_ability_cherub_synthesis"                      "Synthesis"
+    "DOTA_Tooltip_ability_cherub_synthesis_Description"      "While Toggled, converts Cherub's mana into health or health into mana, depending on the day/night cycle. During the day, converts her health into mana. During the night, converts her mana into health."
+    "DOTA_Tooltip_ability_cherub_synthesis_Base_conversion_rate"  "BASE CONVERSION RATE:"
+    "DOTA_Tooltip_ability_cherub_synthesis_mana_to_health"    "%MANA TO HEALTH (NIGHT):"
+    "DOTA_Tooltip_ability_cherub_synthesis_health_to_mana"    "%HEALTH TO MANA (DAY):"
+
+    "DOTA_Tooltip_ability_cherub_explosive_spore"                "Explosive Spore"
+    "DOTA_Tooltip_ability_cherub_explosive_spore_Description"  "Cherub creates a floating spore with flying movement. Spores will explode after 10 seconds or upon dying, dealing magical damage in an area of effect and lifestealing based on damage dealt."
+    "DOTA_Tooltip_ability_cherub_explosive_spore_Note0"      "Spores have 0 armor and 0%d%% magical resistance, and give 30 gold and 25 experience when killed."
+    "DOTA_Tooltip_ability_cherub_explosive_spore_Delay"      "EXPLODE DELAY:"
+    "DOTA_Tooltip_ability_cherub_explosive_spore_Radius"    "EXPLODE RADIUS:"
+    "DOTA_Tooltip_ability_cherub_explosive_spore_Damage"      "DAMAGE:"
+    "DOTA_Tooltip_ability_cherub_explosive_spore_Lifesteal_hero"  "%LIFESTEAL (HERO):"
+    "DOTA_Tooltip_ability_cherub_explosive_spore_Lifesteal_creep"  "%LIFESTEAL (CREEP):"
+    "DOTA_Tooltip_ability_cherub_explosive_spore_Spore_health"    "SPORE HEALTH:"
+    "DOTA_Tooltip_ability_cherub_explosive_spore_Spore_movespeed"  "SPORE MOVEMENT SPEED:"
+
+    "DOTA_Tooltip_ability_cherub_flower_garden"      "Flower Garden"
+    "DOTA_Tooltip_ability_cherub_flower_garden_Description"    "Cherub fertilizes the ground, creating a garden plot temporarily. Costs 25%d%% of Cherub's Max health. Cherub can plant any one of six different flowers on her garden plots, which have increased stats based on the level of this ability. Flowers have a short-range teleport ability.\nUpgradable by Aghanim's Scepter."
+    "DOTA_Tooltip_ability_cherub_flower_garden_Note0"      "Each flower has 0 armor and 0%d%% magic resistance."
+    "DOTA_Tooltip_ability_cherub_flower_garden_Duration"      "DURATION:"
+    "DOTA_Tooltip_ability_cherub_flower_garden_Flower_health"    "FLOWER HEALTH:"
+    "DOTA_Tooltip_ability_cherub_flower_garden_Scepter_flower_armor"  "SCEPTER THORNS ARMOR:"
+    "DOTA_Tooltip_ability_cherub_flower_garden_Scepter_damage_return"  "SCEPTER THORNS DAMAGE RETURN:"
+    "DOTA_Tooltip_ability_cherub_flower_garden_Aghanim_Description"    "Adds thorns to all flowers, increasing armor and returning damage when attacked."
+
+    "DOTA_Tooltip_ability_garden_white_flower"    "White Flower"
+    "DOTA_Tooltip_ability_garden_white_flower_Description"  "Plants a white flower which deals low attack damage from a high range. Maximum of 6 flowers. "
+    "DOTA_Tooltip_ability_garden_white_flower_Range"    "ATTACK RANGE:"
+    "DOTA_Tooltip_ability_garden_white_flower_Damage"       "DAMAGE:"
+
+    "DOTA_Tooltip_ability_garden_red_flower"    "Red Flower"
+    "DOTA_Tooltip_ability_garden_red_flower_Description"  "Plants a red flower which deals high attack damage from a short range. Maximum of 6 flowers. "
+    "DOTA_Tooltip_ability_garden_red_flower_Range"      "ATTACK RANGE:"
+    "DOTA_Tooltip_ability_garden_red_flower_Damage"      "DAMAGE:"
+
+    "DOTA_Tooltip_ability_garden_pink_blossom"    "Pink Blossom"
+    "DOTA_Tooltip_ability_garden_pink_blossom_Description"  "Plants a pink blossom which heals three random allies every second. Maximum of 3 flowers. "
+    "DOTA_Tooltip_ability_garden_pink_blossom_Radius"    "SEARCH RADIUS:"
+    "DOTA_Tooltip_ability_garden_pink_blossom_Targets"    "MAX TARGETS:"
+    "DOTA_Tooltip_ability_garden_pink_blossom_Heal_amount"  "HEAL AMOUNT:"
+
+    "DOTA_Tooltip_ability_garden_blue_blossom"    "Blue Blossom"
+    "DOTA_Tooltip_ability_garden_blue_blossom_Description"  "Plants a blue blossom which restores mana in an area every 5 seconds. Maximum of 4 flowers. "
+    "DOTA_Tooltip_ability_garden_blue_blossom_Radius"    "RADIUS:"
+    "DOTA_Tooltip_ability_garden_blue_blossom_Restore_amount"  "RESTORE AMOUNT:"
+
+    "DOTA_Tooltip_ability_garden_yellow_daisy"    "Yellow Daisy"
+    "DOTA_Tooltip_ability_garden_yellow_daisy_Description"  "Plants a yellow daisy which increases attackspeed for nearby allies. Maximum of 2 flowers. "
+    "DOTA_Tooltip_ability_garden_yellow_daisy_Radius"    "AURA RADIUS:"
+    "DOTA_Tooltip_ability_garden_yellow_daisy_Attackspeed_bonus"    "BONUS ATTACKSPEED:"
+
+    "DOTA_Tooltip_ability_garden_purple_lotus"    "Purple Lotus"
+    "DOTA_Tooltip_ability_garden_purple_lotus_Description"  "Plants a purple lotus which increases magic resistance for nearby allies. Maximum of 2 flowers. "
+    "DOTA_Tooltip_ability_garden_purple_lotus_Radius"    "AURA RADIUS:"
+    "DOTA_Tooltip_ability_garden_purple_lotus_resistance"  "%MAGIC RESISTANCE:"
+
+    // Base flowers
+    "DOTA_Tooltip_ability_garden_white_flower_base"    "White Flower"
+    "DOTA_Tooltip_ability_garden_white_flower_base_Description"  "Plants a white flower which deals low attack damage from a high range. Maximum of 6 flowers. Costs 25%d%% of your maximum health and requires 2 seconds of channelling to plant. Has a short-range teleport ability."
+    "DOTA_Tooltip_ability_garden_white_flower_base_Range"    "ATTACK RANGE:"
+    "DOTA_Tooltip_ability_garden_white_flower_base_White_flower_damage"       "DAMAGE:"
+    "DOTA_Tooltip_ability_garden_white_flower_base_Flower_health"    "FLOWER HEALTH:"
+
+    "DOTA_Tooltip_ability_garden_red_flower_base"    "Red Flower"
+    "DOTA_Tooltip_ability_garden_red_flower_base_Description"  "Plants a red flower which deals high attack damage from a short range. Maximum of 6 flowers. Costs 25%d%% of your maximum health and requires 2 seconds of channelling to plant. Has a short-range teleport ability. "
+    "DOTA_Tooltip_ability_garden_red_flower_base_Range"      "ATTACK RANGE:"
+    "DOTA_Tooltip_ability_garden_red_flower_base_Red_flower_damage"      "DAMAGE:"
+    "DOTA_Tooltip_ability_garden_red_flower_base_Flower_health"    "FLOWER HEALTH:"
+
+    "DOTA_Tooltip_ability_garden_red_flower_base_OP"    "Scarlet Flower OP"
+    "DOTA_Tooltip_ability_garden_red_flower_base_OP_Description"  "Plants a red flower which deals high attack damage from a <font color='#70EA72'>massive</font> range. Maximum of 6 flowers. Costs 25%d%% of your maximum health and requires 2 seconds of channelling to plant. Has a short-range teleport ability.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
+    "DOTA_Tooltip_ability_garden_red_flower_base_OP_Range"      "ATTACK RANGE:"
+    "DOTA_Tooltip_ability_garden_red_flower_base_OP_Red_flower_damage"      "DAMAGE:"
+    "DOTA_Tooltip_ability_garden_red_flower_base_OP_Flower_health"    "FLOWER HEALTH:"
+
+    "DOTA_Tooltip_ability_garden_pink_blossom_base"    "Pink Blossom"
+    "DOTA_Tooltip_ability_garden_pink_blossom_base_Description"  "Plants a pink blossom which heals three random allies every second. Maximum of 3 flowers. Costs 25%d%% of your maximum health and requires 2 seconds of channelling to plant. Has a short-range teleport ability."
+    "DOTA_Tooltip_ability_garden_pink_blossom_base_Radius"    "SEARCH RADIUS:"
+    "DOTA_Tooltip_ability_garden_pink_blossom_base_Targets"    "MAX TARGETS:"
+    "DOTA_Tooltip_ability_garden_pink_blossom_base_Heal_amount"  "HEAL AMOUNT:"
+    "DOTA_Tooltip_ability_garden_pink_blossom_base_Flower_health"    "FLOWER HEALTH:"
+
+    "DOTA_Tooltip_ability_garden_blue_blossom_base"    "Blue Blossom"
+    "DOTA_Tooltip_ability_garden_blue_blossom_base_Description"  "Plants a blue blossom which restores mana in an area every 5 seconds. Maximum of 4 flowers. Costs 25%d%% of your maximum health and requires 2 seconds of channelling to plant. Has a short-range teleport ability."
+    "DOTA_Tooltip_ability_garden_blue_blossom_base_Radius"    "RADIUS:"
+    "DOTA_Tooltip_ability_garden_blue_blossom_base_Restore_amount"  "RESTORE AMOUNT:"
+    "DOTA_Tooltip_ability_garden_blue_blossom_base_Flower_health"  "FLOWER HEALTH:"
+
+    "DOTA_Tooltip_ability_garden_yellow_daisy_base"    "Yellow Daisy"
+    "DOTA_Tooltip_ability_garden_yellow_daisy_base_Description"  "Plants a yellow daisy which increases attackspeed for nearby allies. Maximum of 2 flowers. Costs 25%d%% of your maximum health and requires 2 seconds of channelling to plant. Has a short-range teleport ability."
+    "DOTA_Tooltip_ability_garden_yellow_daisy_base_Radius"    "AURA RADIUS:"
+    "DOTA_Tooltip_ability_garden_yellow_daisy_base_Attackspeed_bonus"    "BONUS ATTACKSPEED:"
+    "DOTA_Tooltip_ability_garden_yellow_daisy_base_Flower_health"    "FLOWER HEALTH:"
+
+    "DOTA_Tooltip_ability_garden_purple_lotus_base"    "Purple Lotus"
+    "DOTA_Tooltip_ability_garden_purple_lotus_base_Description"  "Plants a purple lotus which increases magic resistance for nearby allies. Maximum of 2 flowers. Costs 25%d%% of your maximum health and requires 2 seconds of channelling to plant. Has a short-range teleport ability."
+    "DOTA_Tooltip_ability_garden_purple_lotus_base_Radius"    "AURA RADIUS:"
+    "DOTA_Tooltip_ability_garden_purple_lotus_base_resistance"  "%MAGIC RESISTANCE:"
+    "DOTA_Tooltip_ability_garden_purple_lotus_base_Flower_health"    "FLOWER HEALTH:"
+
+    //-------------------------------------------------------------------
     // Zulf, the Stormhunter
     //-------------------------------------------------------------------
     "DOTA_Tooltip_Ability_zulf_cyclone_trap"            "Cyclone Trap"
