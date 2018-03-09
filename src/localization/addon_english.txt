@@ -7596,25 +7596,25 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
     "DOTA_Tooltip_modifier_imba_stalwart_defense_buff_Description"                  "Regenerating health and taking reduced damage"
 
     "DOTA_Tooltip_ability_magnataur_reverse_polarity"                                "Reverse Polarity"
-    "DOTA_Tooltip_ability_magnataur_reverse_polarity_Description"                    "Changes properties of matter, sucking all nearby enemies to the back of the ancient while stunning and damaging them.\n<font color='#00FF40'>Usable when below 50%% health.</font>"
+    "DOTA_Tooltip_ability_magnataur_reverse_polarity_Description"                    "Changes properties of matter, sucking all nearby enemies to the back of the ancient while stunning and damaging them."
     "DOTA_Tooltip_ability_magnataur_reverse_polarity_Lore"                          "The Ancient's last line of defense is also the strongest."
 
     "DOTA_Tooltip_ability_abaddon_borrowed_time"                                      "Borrowed Time"
-    "DOTA_Tooltip_ability_abaddon_borrowed_time_Description"                          "Summons the aid of the Font of Avernus, converting all incoming damage into healing.\n<font color='#00FF40'>Usable when below 70%% health.</font>"
+    "DOTA_Tooltip_ability_abaddon_borrowed_time_Description"                          "Summons the aid of the Font of Avernus, converting all incoming damage into healing."
     "DOTA_Tooltip_ability_abaddon_borrowed_time_Lore"                                "No harm can come to one protected by the gift of Avernus."
     "DOTA_Tooltip_ability_abaddon_borrowed_time_hp_threshold"                        "HEALTH THRESHOLD:"
     "DOTA_Tooltip_ability_abaddon_borrowed_time_duration"                            "DURATION:"                
 
     "DOTA_Tooltip_ability_axe_berserkers_call"                                      "Berserker's Call"
-    "DOTA_Tooltip_ability_axe_berserkers_call_Description"                          "Taunts nearby enemy units, forcing them to stay in place and attack, but gaining massive armor for the duration.\n<font color='#00FF40'>Usable when below 70%% health.</font>"
+    "DOTA_Tooltip_ability_axe_berserkers_call_Description"                          "Taunts nearby enemy units, forcing them to stay in place and attack, but gaining massive armor for the duration."
     "DOTA_Tooltip_ability_axe_berserkers_call_Lore"                                "Mimicry is the oldest form of flattery, and the Axe was flattered indeed when he witnessed an Ancient performing his patented taunt." 
 
     "DOTA_Tooltip_ability_nyx_assassin_spiked_carapace"                            "Spiked Carapace"
-    "DOTA_Tooltip_ability_nyx_assassin_spiked_carapace_Description"                     "Prevents damage and reflects the first instance of damage done back to each attacker.\n<font color='#00FF40'>Usable when below 70%% health.</font>"
+    "DOTA_Tooltip_ability_nyx_assassin_spiked_carapace_Description"                     "Prevents damage and reflects the first instance of damage done back to each attacker."
     "DOTA_Tooltip_ability_nyx_assassin_spiked_carapace_Lore"                          "The Ancient's destructive single-mindedness hasn't completely erased its ability to appreciate irony; it is with a malignant glee that it springs this spiked trap to punish its enemies."
 
     "DOTA_Tooltip_ability_venomancer_poison_nova"                                    "Poison Nova"
-    "DOTA_Tooltip_ability_venomancer_poison_nova_Description"                        "Launches a gigantic wave of poison, which damages affected enemies over time.\n<font color='#00FF40'>Usable when below 90%% health.</font>"
+    "DOTA_Tooltip_ability_venomancer_poison_nova_Description"                        "Launches a gigantic wave of poison, which damages affected enemies over time."
     "DOTA_Tooltip_ability_venomancer_poison_nova_Lore"                              "The Ancient spreads its influence, a vicious flesh-eating poison for any not aligned with its objectives."
     "DOTA_Tooltip_ability_venomancer_poison_nova_radius"                              "RADIUS:"
     "DOTA_Tooltip_ability_venomancer_poison_nova_duration"                          "DURATION:"
