@@ -19,6 +19,6 @@
         "ReduxFlags"                                                           "support"
         "ReduxBans"                                                            ""
         //"ReduxPerks"                                                           ""
-        "ReduxCost"                                                            "120"
+        "ReduxCost"                                                            "60"
     }
 }
