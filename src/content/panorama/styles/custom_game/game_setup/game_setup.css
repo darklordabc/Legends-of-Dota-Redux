@@ -2787,7 +2787,7 @@ Button:enabled:hover {
     flow-children: down;
     horizontal-align: middle;
 
-	width: 220px;
+	width: 250px;
     margin-top: 16px;
     padding: 8px;
     border: 1px solid #444444;
@@ -3014,6 +3014,10 @@ Button:enabled:hover {
     padding: 15px 20px;
 }
 
+.Language_russian #gamemodesPanel .optionDescription {
+    text-overflow: shrink;
+}
+
 #gamemodesPanel .option:hover .optionDescription {
     opacity: 1;
     z-index: 1;
@@ -3102,6 +3106,11 @@ Button:enabled:hover {
 #mutatorPanel .mutatorLabel {
     text-shadow: 0 0 3px 4.5 #000000;
     padding: 5px 7px 0 7px;
+}
+
+.Language_russian #mutatorPanel .mutatorLabel {
+    padding: 5px 0px 0 7px;
+    text-overflow: shrink;
 }
 
 #mutatorPanel .mutator .circleWrapper {
@@ -3841,4 +3850,9 @@ Button:enabled:hover {
     margin-top: -20px;
     width: 100px;
     horizontal-align: right;
+}
+
+#lodPopupMessageLabel.large
+{
+    font-size: 26px;
 }

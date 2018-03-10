@@ -6,8 +6,8 @@
         "BaseClass"                     "ability_datadriven"
         "ID"                            "1192"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-        "AbilityCooldown"				"80 70 60 50"
-        "AbilityGoldCost"            "1000 1500 2000"
+        "AbilityCooldown"				"70 60 50 40"
+        "AbilityGoldCost"            "900 1400 1900"
         "AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
         "MaxLevel"                  "3"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -31,7 +31,7 @@
 			"02" // This is for the tooltips
 			{
 				"var_type" "FIELD_FLOAT"
-				"gold_cost_toolip" "1000 1500 2000"
+				"gold_cost_toolip" "900 1400 1900"
 			}
 		}
 

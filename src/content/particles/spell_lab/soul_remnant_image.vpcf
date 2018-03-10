@@ -1,0 +1,162 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf1:version{d47d07e6-072c-49cb-9718-5bfd8d6c3d21} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_flConstantRadius = 1.0
+	m_nConstantSequenceNumber1 = 18
+	m_bShouldSort = false
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_hOverrideMaterial = resource:"materials/particle/blobs/blob_black_oil_surface.vmat"
+			m_nModelCP = 1
+			m_nSkin = 1
+			m_bOrientZ = true
+			m_bManualAnimFrame = true
+			m_nBodyGroupField = 19
+			m_nSubModelField = 19
+			m_nManualFrameField = 18
+			m_bSuppressTint = true
+			m_ModelList = 
+			[
+				{
+					m_model = resource:"maps/journey_assets/props/rocks/journey_stoneforest04.vmdl"
+				},
+			]
+			m_bAnimated = true
+			m_bForceDrawInterlevedWithSiblings = true
+			m_nLOD = 1
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Orient2DRelToCP"
+			m_flOpEndFadeOutTime = 0.1
+			m_flOpStartFadeOutTime = 0.1
+			m_flRotOffset = 90.0
+			m_nFieldOutput = 12
+		},
+		{
+			_class = "C_OP_RemapCPtoScalar"
+			m_nField = 1
+			m_nCPInput = 2
+			m_flInputMax = 10.0
+			m_flOutputMax = 10.0
+		},
+		{
+			_class = "C_OP_OscillateScalarSimple"
+			m_Frequency = 255.0
+			m_Rate = 1.0
+			m_nField = 3
+			m_flOscMult = 1.5
+		},
+		{
+			_class = "C_OP_SequenceFromModel"
+			m_bDisableOperator = true
+			m_nControlPointNumber = 1
+			m_flInputMax = 1000.0
+			m_nFieldOutput = 13
+			m_flOutputMax = 1000.0
+			m_flOpStartFadeOutTime = 0.25
+			m_flOpEndFadeOutTime = 0.25
+		},
+		{
+			_class = "C_OP_EndCapTimedDecay"
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_nField = 18
+			m_Rate = 30.0
+			m_flEndTime = 0.5
+		},
+		{
+			_class = "C_OP_OscillateScalarSimple"
+			m_Rate = 1.0
+			m_nField = 12
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMax = 1.0
+			m_fLifetimeMin = 1.0
+		},
+		{
+			_class = "C_INIT_CreateWithinSphere"
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_bLocalCoords = true
+			m_OffsetMax = [ 2.0, 0.0, 0.0 ]
+			m_OffsetMin = [ 2.0, 0.0, 0.0 ]
+		},
+		{
+			_class = "C_INIT_RandomNamedModelSequence"
+			m_bModelFromRenderer = true
+			m_names = 
+			[
+				"attack_1_injured",
+			]
+			m_nFieldOutput = 13
+		},
+		{
+			_class = "C_INIT_RemapCPtoScalar"
+			m_flOutputMax = 1000.0
+			m_nFieldOutput = 13
+			m_flInputMax = 1000.0
+			m_nCPInput = 2
+		},
+		{
+			_class = "C_INIT_RemapCPtoVector"
+			m_nCPInput = 15
+			m_nFieldOutput = 6
+			m_vInputMax = [ 255.0, 255.0, 255.0 ]
+			m_vOutputMax = [ 1.0, 1.0, 1.0 ]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 1
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/spell_lab/soul_remnant_bits.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/spell_lab/soul_remnant_image_b.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/spell_lab/soul_remnant_bits_b.vpcf"
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 1.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+}

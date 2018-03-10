@@ -19,7 +19,7 @@
             "pudge_flesh_heap"            "1"
             "silencer_global_break"            "1"
             "silencer_global_disarm"            "1"
-            "juggernaut_healing_ward_mana"      "1"
+            //"juggernaut_healing_ward_mana"      "1"
             "ogre_magi_multicast_lod"            "1"
             "death_prophet_witchcraft"            "1"
             "earthshaker_aftershock_lod"            "1"
@@ -44,7 +44,8 @@
             "ancient_apparition_cold_feet"            "1"
             "ancient_apparition_ice_blast"            "1"
             "ancient_apparition_ice_vortex"            "1"
-            "antimage_blink"            "1"
+            "antimage_blink"            "1"     
+            "antimage_blink_redux"  "1"
             "antimage_mana_break"            "1"
             "antimage_mana_void"            "1"
             "antimage_spell_shield"            "1"
@@ -60,7 +61,6 @@
             "batrider_flamebreak"            "1"
             "batrider_flaming_lasso"            "1"
             "batrider_sticky_napalm"            "1"
-            "beastmaster_call_of_the_wild_boar"            "1"
             "beastmaster_call_of_the_wild"            "1"
             "beastmaster_inner_beast"            "1"
             "beastmaster_primal_roar"            "1"
@@ -98,7 +98,6 @@
             "chen_holy_persuasion"            "1"
             "chen_penitence"            "1"
             "chen_test_of_faith"            "1"
-            "chen_test_of_faith_teleport"            "1"
             "clinkz_death_pact"            "1"
             "clinkz_searing_arrows"            "1"
             "clinkz_strafe"            "1"
@@ -131,10 +130,12 @@
             "dragon_knight_elder_dragon_form"            "1"
             "drow_ranger_frost_arrows"            "1"
             "drow_ranger_marksmanship"            "1"
+            "drow_ranger_marksmanship_redux"        "1"
             "drow_ranger_trueshot"            "1"
             "drow_ranger_wave_of_silence"            "1"
-                  "marksmanship_int"                        "1"
-                  "marksmanship_str"                        "1"
+            "drow_splitshot"            "1"
+            "marksmanship_int"                        "1"
+            "marksmanship_str"                        "1"     
             "earth_spirit_boulder_smash"            "1"
             "earth_spirit_geomagnetic_grip"            "1"
             "earth_spirit_magnetize"            "1"
@@ -175,6 +176,7 @@
             "huskar_burning_spear"            "1"
             "huskar_inner_vitality"            "1"
             "huskar_life_break"            "1"
+            "huskar_life_break_redux"     "1"
             "huskar_berserkers_blood_lod"   "1"
             "invoker_alacrity_lod"            "1"
             "invoker_chaos_meteor_lod"            "1"
@@ -185,6 +187,7 @@
             "invoker_ice_wall_lod"            "1"
             "invoker_sun_strike_lod"            "1"
             "invoker_tornado_lod"            "1"
+            "invoker_deafening_blast_lod" "1"
             "jakiro_dual_breath"            "1"
             "jakiro_ice_path"            "1"
             "jakiro_liquid_fire"            "1"
@@ -263,8 +266,9 @@
             "monkey_king_jingu_mastery_lod"  "1"
             "monkey_king_jingu_mastery_lod_melee"  "1"
             "monkey_king_wukongs_command"   "1"
-            "monkey_king_mischief"  "1"
-            "morphling_adaptive_strike"            "1"
+            //"monkey_king_mischief"  "1"
+            "morphling_adaptive_strike_agi"            "1"
+            "morphling_adaptive_strike_str"           "1"
             "morphling_morph_agi"            "1"
             "morphling_morph_str"            "1"
             "morphling_replicate"            "1"
@@ -338,6 +342,7 @@
             "pugna_nether_blast"            "1"
             "pugna_nether_ward"            "1"
             "queenofpain_blink"            "1"
+            "queenofpain_blink_redux"     "1" 
             "queenofpain_scream_of_pain"            "1"
             "queenofpain_shadow_strike"            "1"
             "queenofpain_sonic_wave"            "1"
@@ -437,6 +442,7 @@
             "tinker_march_of_the_machines"            "1"
             "tiny_avalanche"            "1"
             "tiny_craggy_exterior"            "1"
+            "tiny_grow"            "1"
             "tiny_grow_lod"            "1"
             "tiny_grow_lod_redux"            "1"
             "tiny_toss"            "1"
@@ -524,7 +530,7 @@
             "arc_warden_tempest_double_op"            "1"
             "death_prophet_spirit_siphon"            "1"
             //"doom_bringer_infernal_blade"            "1"
-            "doom_bringer_infernal_blade_datadriven"             "1"
+            "infernal_blade_lua"             "1"
             "faceless_void_time_dilation"            "1"
             "lone_druid_savage_roar"            "1"
             "riki_tricks_of_the_trade"            "1"
@@ -550,6 +556,15 @@
             "ogre_magi_multicast"            "1"
             // Aftershock
             "earthshaker_aftershock"            "1"
+            "pangolier_swashbuckle" "1"
+            "pangolier_shield_crash"      "1"
+            "pangolier_heartpiercer"      "1"
+            "pangolier_gyroshell"   "1"
+            "dark_willow_bramble_maze"    "1"
+            "dark_willow_bedlam"    "1"
+            "dark_willow_terrorize" "1"
+            "dark_willow_shadow_realm"    "1"
+            "dark_willow_cursed_crown"    "1"
         }
         // The neutrals skills
         "neutral" {
@@ -573,13 +588,13 @@
 
                 // "black_dragon_fireball"                "1"
 
-                // "neutral_spell_immunity"                "1"
+                "neutral_spell_immunity"                "1"
                 // "black_dragon_dragonhide_aura"                      "1"
             }
             "blue_dragonspawn_group" {
                 "blue_dragonspawn_overseer_devotion_aura"                "1"
-                // "blue_dragonspawn_overseer_evasion"                "1"
                 "blue_dragonspawn_sorcerer_evasion"                "1"
+                //"neutral_evasion"                "1"
             }
             "centaur_khan_group" {
                 "centaur_khan_endurance_aura"                "1"
@@ -657,8 +672,10 @@
             //}
         }
         // The custom skills in LoD
-        "custom" {
-            "flesh_heap"{
+        "custom"
+        {
+            "flesh_heap"
+            {
                   "pudge_flesh_heap_agility"            "1"
                   "pudge_flesh_heap_int"            "1"
                   "pudge_flesh_heap_move_speed"     "1"
@@ -674,30 +691,63 @@
                   "pudge_flesh_heap_armor" "1"
                   "pudge_flesh_heap_health_regeneration" "1"
                   "pudge_flesh_heap_mana_regeneration" "1"
+                  "pudge_flesh_heap_minion_damage" "1"
+            }
+           "brawler"{
+                 "brawler_int"                             "1"
+                 "brawler_str"                             "1"
+                 "brawler_agi"                             "1"
            }
            "imbaRoshan"{
-                  "imba_roshan_fury"      "1"
-                  "imba_roshan_fury_op"      "1"
+                  //"imba_roshan_fury"      "1"
+                  "imba_tower_healing_hero"     "1"
            }
-           "imba700misc"{
-                  "imba_ancient_stalwart_defense"     "1"
-                  "imba_ancient_stalwart_defense_op"  "1"
-                  "imba_clinkz_strafe"    "1"
-                  "imba_clinkz_strafe_op" "1"
-                  "imba_crystal_maiden_arcane_dynamo" "1"
-                  "imba_crystal_maiden_arcane_dynamo_op" "1"
-                  "imba_drow_ranger_deadeye"    "1"
-                 }
-            "spell_lab" {
-                  "spell_lab_symbiotic" "1"
-                  "spell_lab_survivor_str_survival" "1"
-                  "spell_lab_survivor_agi_survival" "1"
-                  "spell_lab_survivor_int_survival" "1"
-                  "spell_lab_survivor_mana_regen" "1"
-                  "spell_lab_survivor_health_regen" "1"
+            "survivor" {
+                  "spell_lab_survivor_cooldown" "1"
+                  "spell_lab_survivor_critical" "1"
                   "spell_lab_survivor_damage_boost" "1"
+                  "spell_lab_survivor_evasion" "1"
+                  "spell_lab_survivor_health_regen" "1"
+                  "spell_lab_survivor_int_survival" "1"
+                  "spell_lab_survivor_life_steal" "1"
+                  "spell_lab_survivor_magic_resistance" "1"
+                  "spell_lab_survivor_mana_burn" "1"
+                  "spell_lab_survivor_mana_regen" "1"
+                  "spell_lab_survivor_move_speed" "1"
                   "spell_lab_survivor_spell_boost" "1"
-                  "arcane_mastery"   "1"
+                  "spell_lab_survivor_spell_vamp" "1"
+                  "spell_lab_survivor_str_survival" "1"
+                  "spell_lab_survivor_vision" "1"
+                  "spell_lab_survivor_agi_survival" "1"
+                  "spell_lab_survivor_armor" "1"
+                  "spell_lab_survivor_attack_range" "1"
+                  "spell_lab_survivor_attack_speed" "1"
+                  "spell_lab_survivor_bash" "1"
+                  "spell_lab_survivor_cast_range" "1"
+            }
+            "spell_lab_souls" {
+                "spell_lab_souls_str" "1"
+                "spell_lab_souls_vision" "1"
+                "spell_lab_souls_agi" "1"
+                "spell_lab_souls_armor" "1"
+                "spell_lab_souls_attack_range" "1"
+                "spell_lab_souls_attack_speed" "1"
+                "spell_lab_souls_cast_range" "1"
+                "spell_lab_souls_cooldown" "1"
+                "spell_lab_souls_damage" "1"
+                "spell_lab_souls_evasion" "1"
+                "spell_lab_souls_health_regen" "1"
+                "spell_lab_souls_int" "1"
+                "spell_lab_souls_magic_resistance" "1"
+                "spell_lab_souls_mana_regen" "1"
+                "spell_lab_souls_move_speed" "1"
+                "spell_lab_souls_spell_boost" "1"
+             }
+            "spell_lab" {
+                "spell_lab_one_with_nothing" "1"
+                "spell_lab_symbiotic" "1"
+                "arcane_mastery"   "1"
+                "spell_lab_missile_storm" "1"
             }
             "oneshotonekill" {
                   "jingtong"  "1"
@@ -729,13 +779,7 @@
                   "spawn_medium_camp"           "1"
                   "spawn_large_camp"            "1"
                   "spawn_ancient_camp"          "1"
-            }
-            "radiant_jungle_op"{
-                  "spawn_small_camp_op"            "1"
-                  "spawn_medium_camp_op"           "1"
-                  "spawn_large_camp_op"            "1"
-                  "spawn_ancient_camp_op"          "1"
-            }
+            }        
             "overflow_ult" {
                   "night_wolf" "1"
                   "dark_blade"      "1"
@@ -810,7 +854,7 @@
 
             "suna_abiliites"{
                   "suna_blight_and_wither"      "1"
-                  "suna_dead_mans_chest"  "1"
+            //    "suna_dead_mans_chest"  "1"
             //    "suna_kyonshi"    "1"
             //    "suna_mind_control"     "1" //SUB-ABILITY
                   "suna_puppeteer"  "1"
@@ -882,7 +926,6 @@
                   "alexander_godfall"     "1"
                   "alexander_radiant"     "1"
                   "alexander_soulseal"    "1"
-               //   "alexander_steadfast"   "1"
             }
 
             "lightning_abilities"{
@@ -893,17 +936,17 @@
             }
 
             "ptomely_abilities"{
-                  //"ptomely_astralise"     "1" //Particles missing
+                  "ptomely_astralise"     "1"
                   "ptomely_enthrall"      "1"
-                  "ptomely_expunge" "1"
-                  //"ptomely_mirror_blade"  "1" //Particles missing
+                  "ptomely_expunge"       "1"
+                  "ptomely_mirror_blade"  "1"
             }
 
             "mifune_abilities"{
-                  //"mifune_raigeki"    "1" // First wave doesnt shoot
+                  "mifune_raigeki"  "1"
+                  "mifune_genso"    "1"
                   "mifune_oiuchi"   "1"
-                  //"mifune_genso"  "1" //All custom illsuion abilities are broken
-                 //"mifune_zanmato"  "1"
+                  "mifune_zanmato"  "1"
             }
 
             "erra_abilities"{
@@ -915,16 +958,14 @@
 
             "lich_abilities"{
                   "lich_absolute_zero" "1"
-                  "lich_cold_aura_dusk"  "1"
+                  "lich_deep_freeze"  "1"
                   "lich_traveling_frost"  "1"
                   "lich_winters_requiem"  "1"
             }
 
             "hero_abilities"{
-                  //"hero_hyper_kick" "1"
                   "hero_justice_kick"     "1"
                   "hero_one_punch"  "1"
-                  //"hints_attack_me_not"   "1"
                   "hero_freedom_strike"   "1"
                   "hero_heroic_soul"      "1"
             }
@@ -972,16 +1013,7 @@
                   "angel_arena_tome_agi"  "1"
                   "angel_arena_tome_med"  "1"
             }
-
-            "angel_arena_tome_op" {
-                  "angel_arena_tome_lvlup_op"  "1"
-                  "angel_arena_tome_gods_op"  "1"
-                  "angel_arena_tome_int_op"  "1"
-                  "angel_arena_tome_str_op"  "1"
-                  "angel_arena_tome_agi_op"  "1"
-                  "angel_arena_tome_med_op"  "1"
-            }
-
+          
             "life_in_arena" {
                   "ancient_priestess_surge_of_intelligence" "1"
                   "ancient_priestess_spirit_link"     "1"
@@ -1014,7 +1046,7 @@
                   "brewmaster_ferocity_all"     "1"
             }
             "life_in_arena_ult" {
-                  "android_pocket_factory"      "1"
+                  //"android_pocket_factory"      "1"
                   "ancient_priestess_ritual_protection" "1"
                   "berserker_madness"     "1"
                   "frost_lord_ice"  "1"
@@ -1038,59 +1070,11 @@
                   "invoker_retro_deafening_blast"      "1"
             }
 
-            "imba_towers_700" {
-                  "imba_tower_healing_tower"    "1"
-                  "imba_tower_healing_hero"     "1"
-            }
-
             "imba_towers_weak" {
-                "omniknight_degen_aura_tower"   "1"
-                "omniknight_degen_aura_damage_tower"   "1"
-                "vassal_shield"   "1"
-                "titan_command_aura"    "1"
-                "bahamut_reckoning_aura"  "1"
                 "imba_tower_aegis"   "1"
-                "imba_tower_atrophy"   "1"
-                "imba_tower_force"   "1"
                 "imba_tower_forest"   "1"
-                "imba_tower_mana_burn"   "1"
-                "imba_tower_mana_flare"   "1"
-                "imba_tower_mindblast"   "1"
-                "imba_tower_permabash"   "1"
-                "imba_tower_plague"   "1"
                 "imba_tower_self_repair"   "1"
-                "imba_tower_spacecow"   "1"
                 "imba_tower_thorns"   "1"
-            }
-            "imba_towers_medium" {
-                  "invoker_retro_invisibility_aura_tower"      "1"
-                  //"imba_tower_plasma_field"     "1"
-                  "imba_tower_death_pulse"      "1"
-                  "imba_tower_berserk"   "1"
-                  "imba_tower_spell_shield"   "1"
-                  "imba_tower_hex_aura"   "1"
-                  "imba_tower_vicious"   "1"
-                  "imba_tower_nature"   "1"
-                  "imba_tower_chrono"   "1"
-                  "summoner_tesla_coil"   "1"
-                  "lich_cold_aura"    "1"
-                  "imba_tower_laser"   "1"
-                  "imba_tower_disease"   "1"
-            }
-            "imba_towers_strong" {
-                  "imba_tower_multihit"   "1"
-                  "imba_tower_sniper"   "1"
-                  "imba_tower_grievous_wounds"   "1"
-                  "imba_tower_essence_drain"   "1"
-                  "imba_tower_machinegun"   "1"
-                  "imba_tower_salvo"   "1"
-                  "imba_tower_fervor"   "1"
-                  "imba_tower_split"   "1"
-            }
-            "imba" {
-                  "imba_dazzle_shallow_grave_passive" "1"
-                  "imba_omniknight_degen_aura"  "1"
-                  "imba_omniknight_purification"      "1"
             }
             "ebf" {
                   "ebf_rubick_arcane_echo" "1"
@@ -1127,31 +1111,18 @@
             "basic_abilities"
             {
                   "basic_tenacity_bonus" "1"
-                  "basic_tenacity_bonus_op"   "1"
                   "basic_mana_bonus" "1"
-                  "basic_mana_bonus_op"   "1"
                   "basic_health_bonus" "1"
-                  "basic_health_bonus_op" "1"
                   "basic_gpm_bonus" "1"
-                  "basic_gpm_bonus_op" "1"
                   "basic_movespeed_bonus" "1"
-                  "basic_movespeed_bonus_op" "1"
                   "basic_xpm_bonus" "1"
-                  "basic_xpm_bonus_op" "1"
                   "basic_spell_amp_bonus" "1"
-                  "basic_spell_amp_bonus_op"   "1"
                   "basic_stat_gain_bonus" "1"
-                  "basic_stat_gain_bonus_op"   "1"
                   "basic_stat_bonus" "1"
-                  "basic_stat_bonus_op"   "1"
                   "ability_mjolnir" "1"
-                  "ability_mjolnir_op"    "1"
                   "ability_blademail" "1"
-                  "ability_blademail_op" "1"
                   "ability_wards"   "1"
-                  "ability_wards_op" "1"
                   "bash_reflect" "1"
-                  "bash_reflect_op" "1"
             }
 
 
@@ -1167,53 +1138,698 @@
                   "unwavering_stance"     "1"
                   "molten_charge"    "1"
             }
+      
+            "DoD" {
+                  "makemeleecreeps_lua"   "1"
+                  "makerangedcreeps_lua"   "1"
+                  "makecatapults_lua"   "1"
+            }
+            "memes_reborn"{
+                  "lina_banana_redux"     "1"
+                  "lina_coconut_redux"    "1"
+                  "lina_grapefruit_redux" "1"
+            }
+            
+        }
+        "imba"
+        {
+            "hero_clinkz"
+            {
+                "imba_clinkz_searing_arrows"  "1"
+                "imba_clinkz_death_pact"  "1"
+                "imba_clinkz_skeleton_walk"  "1"
+                //"imba_clinkz_strafe"  "1"
+            }
+            "hero_magnataur"
+            {
+                "imba_magnataur_skewer"  "1"
+                "imba_magnataur_shockwave"  "1"
+                "imba_magnataur_empower"  "1"
+                "imba_magnataur_reverse_polarity"  "1"
+            }
+            "hero_silencer"
+            {
+                "imba_silencer_global_silence"  "1"
+                "imba_silencer_arcane_curse"  "1"
+                "imba_silencer_glaives_of_wisdom"  "1"
+                "imba_silencer_arcane_supremacy"  "1"
+                "imba_silencer_last_word"  "1"
+            }
+            "hero_ursa"
+            {
+                "imba_ursa_territorial_hunter"  "1"
+                "imba_ursa_earthshock"  "1"
+                "imba_ursa_enrage"  "1"
+                "imba_ursa_fury_swipes"  "1"
+                "imba_ursa_overpower"  "1"
+            }
+            "hero_sniper"
+            {
+                "imba_sniper_assassinate"  "1"
+                "imba_sniper_take_aim"  "1"
+                "imba_sniper_shrapnel"  "1"
+                "imba_sniper_headshot"  "1"
+            }
+            "hero_necrolyte"
+            {
+                "imba_necrolyte_ghost_shroud"  "1"
+                "imba_necrolyte_sadist"  "1"
+                "imba_necrolyte_death_pulse"  "1"
+                "imba_necrolyte_heartstopper_aura"  "1"
+                "imba_necrolyte_reapers_scythe"  "1"
+            }
+            "hero_warlock"
+            {
+                "imba_warlock_upheaval"  "1"
+                "imba_warlock_shadow_word"  "1"
+                "imba_warlock_rain_of_chaos"  "1"
+                "imba_warlock_flaming_fists"  "1"
+                "imba_warlock_golem_spell_immunity"  "1"
+                "imba_warlock_permanent_immolation"  "1"
+                "imba_warlock_fatal_bonds"  "1"
+            }
+            "hero_drow_ranger"
+            {
+                //"imba_drow_ranger_deadeye"  "1"
+                "imba_drow_ranger_marksmanship"  "1"
+                "imba_drow_ranger_frost_arrows"  "1"
+                "imba_drow_ranger_gust"  "1"
+                "imba_drow_ranger_trueshot"  "1"
+            }
+            "hero_pudge"
+            {
+                "imba_pudge_dismember"  "1"
+                "imba_pudge_rot"  "1"
+                "imba_pudge_sharp_hook"  "1"
+                "imba_pudge_meat_hook"  "1"
+                "imba_pudge_light_hook"  "1"
+            }
+            "hero_disruptor"
+            {
+                "imba_disruptor_static_storm"  "1"
+                "imba_disruptor_glimpse"  "1"
+                "imba_disruptor_kinetic_field"  "1"
+                "imba_disruptor_stormbearer"  "1"
+                "imba_disruptor_thunder_strike"  "1"
+            }
+            // "hero_shredder"
+            // {
+            //     "imba_shredder_timber_chain"  "1"
+            //     "imba_shredder_chakram"  "1"
+            //     "imba_shredder_whirling_death"  "1"
+            //     "imba_shredder_return_chakram"  "1"
+            //     "imba_shredder_dendrophobia"  "1"
+            //     "imba_shredder_reactive_armor"  "1"
+            // }
+            "hero_skeleton_king"
+            {
+                "imba_wraith_king_mortal_strike"  "1"
+                "imba_wraith_king_reincarnation"  "1"
+                "imba_wraith_king_wraith_soul_strike"  "1"
+                "imba_wraith_king_kingdom_come"  "1"
+                "imba_wraith_king_vampiric_aura"  "1"
+                "imba_wraith_king_wraithfire_blast"  "1"
+            }
+            "hero_faceless_void"
+            {
+                "imba_faceless_void_time_lock"  "1"
+                "imba_faceless_void_chronosphere"  "1"
+                "imba_faceless_void_time_walk"  "1"
+                "imba_faceless_void_timelord"  "1"
+                "imba_faceless_void_time_dilation"  "1"
+            }
+            "hero_phoenix"
+            {
+                "imba_phoenix_supernova"  "1"
+                //"imba_phoenix_launch_fire_spirit"  "1"
+                "imba_phoenix_fire_spirits"  "1"
+                "imba_phoenix_sun_ray"  "1"
+                // "imba_phoenix_icarus_dive_stop"  "1"
+                // "imba_phoenix_sun_ray_toggle_move"  "1"
+                "imba_phoenix_icarus_dive"  "1"
+                // "imba_phoenix_burning_wings"  "1"
+                // "imba_phoenix_sun_ray_stop"  "1"
+            }
+            "hero_lion"
+            {
+                "imba_lion_mana_drain"  "1"
+                "imba_lion_hex"  "1"
+                "imba_lion_earth_spike"  "1"
+                "imba_lion_finger_of_death"  "1"
+            }
+            "hero_tidehunter"
+            {
+                "imba_tidehunter_ravage"  "1"
+            }
+            "hero_naga_siren"
+            {
+                "imba_naga_siren_rip_tide"  "1"
+                "imba_naga_siren_mirror_image"  "1"
+            }
+            "hero_crystal_maiden"
+            {
+                "imba_crystal_maiden_crystal_nova"  "1"
+                "imba_crystal_maiden_arcane_dynamo"  "1"
+                "imba_crystal_maiden_freezing_field"  "1"
+                "imba_crystal_maiden_brilliance_aura"  "1"
+                "imba_crystal_maiden_frostbite"  "1"
+            }
+            "hero_jakiro"
+            {
+                "imba_jakiro_ice_breath"  "1"
+                "imba_jakiro_fire_breath"  "1"
+                "imba_jakiro_liquid_fire"  "1"
+                "imba_jakiro_ice_path"  "1"
+                "imba_jakiro_macropyre"  "1"
+            }
+            "hero_enigma"
+            {
+                "imba_enigma_malefice"  "1"
+                "imba_enigma_black_hole"  "1"
+                "imba_enigma_midnight_pulse"  "1"
+                "imba_enigma_demonic_conversion"  "1"
+            }
+            "hero_tiny"
+            {
+                "imba_tiny_craggy_exterior"  "1"
+                "imba_tiny_toss"  "1"
+                "imba_tiny_rolling_stone"  "1"
+                "imba_tiny_avalanche"  "1"
+                "imba_tiny_grow"  "1"
+            }
+            "hero_abaddon"
+            {
+                "imba_abaddon_aphotic_shield"  "1"
+                "imba_abaddon_curse_of_avernus"  "1"
+                "imba_abaddon_mist_coil"  "1"
+                //"imba_abaddon_over_channel"  "1"
+                "imba_abaddon_borrowed_time"  "1"
+            }
+            "hero_omniknight"
+            {
+                "imba_omniknight_repel"  "1"
+                "imba_omniknight_guardian_angel"  "1"
+                "imba_omniknight_purification"  "1"
+                "imba_omniknight_hammer_of_virtue"  "1"
+            }
+            "hero_beastmaster"
+            {
+                "imba_beastmaster_summon_boar"  "1"
+                "imba_beastmaster_hawk_invis"  "1"
+                "imba_beastmaster_summon_hawk"  "1"
+                "imba_beastmaster_boar_poison"  "1"
+            }
+            "hero_shadow_shaman"
+            {
+                "imba_shadow_shaman_mass_serpent_ward"  "1"
+            }
+            "hero_nevermore"
+            {
+                "imba_nevermore_necromastery"  "1"
+                "imba_nevermore_shadowraze_close"  "1"
+                "imba_nevermore_dark_lord"  "1"
+                "imba_nevermore_requiem"  "1"
+                "imba_nevermore_shadowraze_far"  "1"
+                "imba_nevermore_shadowraze_medium"  "1"
+            }
+            "hero_hell_empress"
+            {
+                "imba_empress_hurl_through_hell"  "1"
+                "imba_empress_ambient_effects"  "1"
+                "imba_empress_royal_wrath"  "1"
+                "imba_empress_hellbolt"  "1"
+                "imba_empress_eleven_curses"  "1"
+            }
+            "hero_alchemist"
+            {
+                "imba_alchemist_mammonite"  "1"
+                "imba_alchemist_goblins_greed"  "1"
+                "imba_alchemist_acid_spray"  "1"
+                "imba_alchemist_chemical_rage"  "1"
+                //"imba_alchemist_greevils_greed"  "1"
+                "imba_alchemist_unstable_concoction"  "1"
+            }
+            "hero_chaos_knight"
+            {
+                "imba_chaos_knight_phantasm"  "1"
+                "imba_chaos_knight_reality_rift"  "1"
+            }
+            "hero_sand_king"
+            {
+                "imba_sandking_epicenter"  "1"
+                "imba_sandking_caustic_finale"  "1"
+                "imba_sandking_burrowstrike"  "1"
+                "imba_sandking_sand_storm"  "1"
+            }
+            "hero_pugna"
+            {
+                "imba_pugna_nether_blast"  "1"
+                "imba_pugna_life_drain"  "1"
+                "imba_pugna_nether_ward"  "1"
+                "imba_pugna_decrepify"  "1"
+                "imba_pugna_nether_ward_aura"  "1"
+                "imba_pugna_life_drain_end"  "1"
+            }
+            "hero_sly_king"
+            {
+                "imba_sly_king_winterbringer"  "1"
+                "imba_sly_king_frozen_skin"  "1"
+                "imba_sly_king_burrow_blast"  "1"
+                "imba_sly_king_frost_gale"  "1"
+            }
+            "hero_tinker"
+            {
+                "imba_tinker_march_of_the_machines"  "1"
+                "imba_tinker_laser"  "1"
+                "imba_tinker_rearm"  "1"
+                "imba_tinker_heat_seeking_missile"  "1"
+                "imba_tinker_technomancy"  "1"
+            }
+            "hero_sven"
+            {
+                "imba_sven_warcry"  "1"
+                "imba_sven_colossal_slash"  "1"
+                "imba_sven_great_cleave"  "1"
+                "imba_sven_storm_bolt"  "1"
+                "imba_sven_gods_strength"  "1"
+            }
+            "hero_lycan"
+            {
+                "imba_lycan_wolfsbane"  "1"
+                "imba_summoned_wolf_pack_leader"  "1"
+                "imba_lycan_shapeshift"  "1"
+                "imba_lycan_feral_impulse"  "1"
+                "imba_lycan_howl"  "1"
+                "imba_lycan_summon_wolves"  "1"
+                "imba_summoned_wolf_wicked_crunch"  "1"
+                "imba_summoned_wolf_hunter_instincts"  "1"
+                "imba_summoned_wolf_invisibility"  "1"
+            }
+            "hero_scaldris"
+            {
+                "imba_scaldris_absolute_zero"  "1"
+                "imba_scaldris_jet_blaze"  "1"
+                "imba_scaldris_living_flame"  "1"
+                "imba_scaldris_heatwave"  "1"
+                "imba_scaldris_freeze"  "1"
+                "imba_scaldris_scorch"  "1"
+                "imba_scaldris_cold_front"  "1"
+                "imba_scaldris_ice_floes"  "1"
+                "imba_scaldris_antipode"  "1"
+            }
+            "hero_lich"
+            {
+                "imba_lich_chain_frost"  "1"
+                "imba_lich_frost_nova"  "1"
+                "imba_lich_cold_front"  "1"
+                "imba_lich_frost_armor"  "1"
+                "imba_lich_dark_ritual"  "1"
+            }
+            "hero_bane"
+            {
+                "imba_bane_enfeeble"  "1"
+                "imba_bane_brain_sap"  "1"
+                "imba_bane_fiends_grip"  "1"
+                "imba_bane_nightmare_end"  "1"
+                "imba_bane_nightmare"  "1"
+            }
+            "hero_kunkka"
+            {
+                "imba_kunkka_torrent"  "1"
+                "imba_kunkka_ebb_and_flow"  "1"
+                "imba_kunkka_tidebringer"  "1"
+                "imba_kunkka_return"  "1"
+                "imba_kunkka_ghostship"  "1"
+                "imba_kunkka_x_marks_the_spot"  "1"
+            }
+            "hero_axe"
+            {
+                "imba_axe_berserkers_call"  "1"
+                "imba_axe_culling_blade"  "1"
+                "imba_axe_battle_hunger"  "1"
+                "imba_axe_counter_helix"  "1"
+            }
+            "hero_vengefulspirit"
+            {
+                "imba_vengefulspirit_swap_back"  "1"
+                "imba_vengefulspirit_nether_swap"  "1"
+                "imba_vengefulspirit_rancor"  "1"
+                "imba_vengefulspirit_command_aura"  "1"
+                "imba_vengefulspirit_wave_of_terror"  "1"
+                "imba_vengefulspirit_magic_missile"  "1"
+            }
+            "hero_pangolier"
+            {
+                "imba_pangolier_swashbuckle"  "1"
+                "imba_pangolier_gyroshell"  "1"
+                "imba_pangolier_shield_crash"  "1"
+                "imba_pangolier_heartpiercer"  "1"
+            }
+            "hero_doom_bringer"
+            {
+                "imba_doom_bringer_doom"  "1"
+            }
+            "hero_nyx_assassin"
+            {
+                "imba_nyx_assassin_spiked_carapace"  "1"
+                "imba_nyx_assassin_mana_burn"  "1"
+                "imba_nyx_assassin_impale"  "1"
+                "imba_nyx_assassin_vendetta"  "1"
+            }
+            "hero_storm_spirit"
+            {
+                "imba_storm_spirit_overload"  "1"
+                "imba_storm_spirit_static_remnant"  "1"
+                "imba_storm_spirit_electric_vortex"  "1"
+                "imba_storm_spirit_ball_lightning"  "1"
+            }
+            "hero_phantom_lancer"
+            {
+                "imba_phantom_lancer_spirit_lance"  "1"
+            }
+            "hero_slardar"
+            {
+                "imba_slardar_corrosive_haze"  "1"
+                "imba_slardar_slithereen_crush"  "1"
+                "imba_slardar_bash_of_the_deep"  "1"
+                "imba_slardar_guardian_sprint"  "1"
+                "imba_slardar_rain_cloud"  "1"
+            }
+            "hero_phantom_assassin"
+            {
+                "imba_phantom_assassin_coup_de_grace"  "1"
+                "imba_phantom_assassin_stifling_dagger"  "1"
+                "imba_phantom_assassin_phantom_strike"  "1"
+                "imba_phantom_assassin_blur"  "1"
+            }
+            "hero_queenofpain"
+            {
+                "imba_queenofpain_blink"  "1"
+                "imba_queenofpain_shadow_strike"  "1"
+                "imba_queenofpain_scream_of_pain"  "1"
+                "imba_queenofpain_sonic_wave"  "1"
+                "imba_queenofpain_delightful_torment"  "1"
+            }
+            "hero_riki"
+            {
+                "imba_riki_tricks_of_the_trade"  "1"
+                "imba_riki_cloak_and_dagger"  "1"
+                "imba_riki_blink_strike"  "1"
+                "imba_riki_smoke_screen"  "1"
+            }
+            "hero_night_stalker"
+            {
+                "imba_night_stalker_crippling_fear"  "1"
+                "imba_night_stalker_darkness"  "1"
+                "imba_night_stalker_void"  "1"
+                "imba_night_stalker_hunter_in_the_night"  "1"
+                "imba_night_stalker_stalker_in_the_night"  "1"
+            }
+            "hero_mirana"
+            {
+                "imba_mirana_starfall"  "1"
+                "imba_mirana_moonlight_shadow"  "1"
+                "imba_mirana_arrow"  "1"
+                "imba_mirana_leap"  "1"
+            }
+            "hero_juggernaut"
+            {
+                "imba_juggernaut_healing_ward"  "1"
+                "imba_juggernaut_healing_ward_passive"  "1"
+                "imba_juggernaut_blade_dance"  "1"
+                "imba_juggernaut_blade_fury"  "1"
+                "imba_juggernaut_omni_slash"  "1"
+            }
+            "hero_dragon_knight"
+            {
+                "imba_dragon_knight_dragon_blood"  "1"
+                //"imba_dragon_knight_elder_dragon_charge"  "1"
+                "imba_dragon_knight_elder_dragon_form"  "1"
+                "imba_dragon_knight_dragon_tail"  "1"
+                "imba_dragon_knight_breathe_fire"  "1"
+            }
+            "hero_witch_doctor"
+            {
+                "imba_witch_doctor_death_ward"  "1"
+                "imba_witch_doctor_voodoo_restoration"  "1"
+                "imba_witch_doctor_maledict"  "1"
+                "imba_witch_doctor_paralyzing_cask"  "1"
+            }
+            "hero_skywrath_mage"
+            {
+                "imba_skywrath_mage_concussive_shot"  "1"
+                "imba_skywrath_mage_mystic_flare"  "1"
+                "imba_skywrath_mage_arcane_bolt"  "1"
+            }
+            "hero_obsidian_destroyer"
+            {
+                "imba_obsidian_destroyer_essence_aura"  "1"
+                "imba_obsidian_destroyer_sanity_eclipse"  "1"
+                "imba_obsidian_destroyer_astral_imprisonment"  "1"
+                "imba_obsidian_destroyer_arcane_orb"  "1"
+            }
+            "hero_techies"
+            {
+                "imba_techies_remote_mine_pinpoint_detonation"  "1"
+                "imba_techies_focused_detonate"  "1"
+                "imba_techies_stasis_trap"  "1"
+                "imba_techies_remote_mine"  "1"
+                "imba_techies_stasis_trap_trigger"  "1"
+                "imba_techies_minefield_sign"  "1"
+                //"imba_techies_proximity_mine_trigger"  "1"
+                "imba_techies_blast_off"  "1"
+            }
+            "hero_bounty_hunter"
+            {
+                "imba_bounty_hunter_shadow_walk"  "1"
+                "imba_bounty_hunter_jinada"  "1"
+                "imba_bounty_hunter_shuriken_toss"  "1"
+                "imba_bounty_hunter_headhunter"  "1"
+                "imba_bounty_hunter_track"  "1"
+            }
+            "hero_rubick"
+            {
+                //"imba_rubick_spell_steal_controller"  "1"
+                "imba_rubick_telekinesis"  "1"
+            }
+            "hero_troll_warlord"
+            {
+                "imba_troll_warlord_berserkers_rage"  "1"
+                "imba_troll_warlord_battle_trance"  "1"
+                "imba_troll_warlord_fervor"  "1"
+                "imba_troll_warlord_whirling_axes_melee"  "1"
+                "imba_troll_warlord_whirling_axes_ranged"  "1"
+            }
+            "hero_spectre"
+            {
+                "imba_spectre_reality"  "1"
+                "imba_spectre_haunt"  "1"
+            }
+            "hero_venomancer"
+            {
+                "imba_venomancer_venomous_gale"  "1"
+                "imba_venomancer_plague_ward"  "1"
+                "imba_venomancer_poison_sting"  "1"
+                "imba_venomancer_poison_nova"  "1"
+                "imba_venomancer_toxicity"  "1"
+            }
+            "hero_lina"
+            {
+                "imba_lina_dragon_slave"  "1"
+                "imba_lina_light_strike_array"  "1"
+                "imba_lina_fiery_soul"  "1"
+                "imba_lina_laguna_blade"  "1"
+            }
+            "hero_antimage"
+            {
+                "imba_antimage_spell_shield"  "1"
+                "imba_antimage_mana_void"  "1"
+                "imba_antimage_mana_break"  "1"
+                "imba_antimage_blink"  "1"
+            }
+            "hero_elder_titan"
+            {
+                "imba_elder_titan_natural_order"  "1"
+                "imba_elder_titan_echo_stomp"  "1"
+                "imba_elder_titan_return_spirit"  "1"
+                "imba_elder_titan_earth_splitter"  "1"
+                "imba_elder_titan_ancestral_spirit"  "1"
+                "imba_elder_titan_echo_stomp_spirit"  "1"
+            }
+            "hero_centaur"
+            {
+                "imba_centaur_hoof_stomp"  "1"
+                "imba_centaur_double_edge"  "1"
+                "imba_centaur_return"  "1"
+                "imba_centaur_thick_hide"  "1"
+                "imba_centaur_stampede"  "1"
+            }
+            "hero_bloodseeker"
+            {
+                "imba_bloodseeker_blood_bath"  "1"
+                "imba_bloodseeker_thirst"  "1"
+                "imba_bloodseeker_bloodrage"  "1"
+                "imba_bloodseeker_rupture"  "1"
+            }
+            "hero_dazzle"
+            {
+                "imba_dazzle_ressurection"  "1"
+                "imba_dazzle_shadow_wave"  "1"
+                "imba_dazzle_poison_touch"  "1"
+                "imba_dazzle_shallow_grave"  "1"
+                "imba_dazzle_weave"  "1"
+            }
+        }
+        // The IMBA skills in LoD
+        "superop" {
+            "radiant_jungle_op"
+            {
+                  "spawn_small_camp_op"            "1"
+                  "spawn_medium_camp_op"           "1"
+                  "spawn_large_camp_op"            "1"
+                  "spawn_ancient_camp_op"          "1"
+            }
 
-          "singlePlayer" {
-                  "bloodseeker_thirst_lod_op"            "1"
-                  "hylonome_eldritch_pull_op"      "1"
-                  "batrider_flamebreak_op"      "1"
-                  "lone_druid_savage_roar_op"   "1"
+            "angel_arena_tome_op" 
+            {
+                  "angel_arena_tome_lvlup_op"  "1"
+                  "angel_arena_tome_gods_op"  "1"
+                  "angel_arena_tome_int_op"  "1"
+                  "angel_arena_tome_str_op"  "1"
+                  "angel_arena_tome_agi_op"  "1"
+                  "angel_arena_tome_med_op"  "1"
+            }
+
+            "imba_towers_700_and_survivor" 
+            {
+                  "imba_tower_healing_tower"    "1"
+                  //"imba_roshan_fury_op"      "1"
+                  "spell_lab_survivor_cooldown_op"    "1"
+                  "spell_lab_survivor_spell_boost_op" "1"
+            }
+
+            "imba_towers_weak" 
+            {
+                "omniknight_degen_aura_tower"   "1"
+                "omniknight_degen_aura_damage_tower"   "1"
+                "vassal_shield"   "1"
+                "titan_command_aura"    "1"
+                "bahamut_reckoning_aura"  "1"
+                "imba_tower_atrophy"   "1"
+                "imba_tower_force"   "1"
+                "imba_tower_mana_burn"   "1"
+                "imba_tower_mana_flare"   "1"
+                "imba_tower_mindblast"   "1"
+                "imba_tower_permabash"   "1"
+                "imba_tower_plague"   "1"
+                "imba_tower_spacecow"   "1"
+            }
+
+            "imba_towers_medium" 
+            {
+                  "invoker_retro_invisibility_aura_tower"      "1"
+                  //"imba_tower_plasma_field"     "1"
+                  "imba_tower_death_pulse"      "1"
+                  "imba_tower_berserk"   "1"
+                  "imba_tower_spell_shield"   "1"
+                  "imba_tower_hex_aura"   "1"
+                  "imba_tower_vicious"   "1"
+                  "imba_tower_nature"   "1"
+                  "imba_tower_chrono"   "1"
+                  "summoner_tesla_coil"   "1"
+                  "lich_cold_aura"    "1"
+                  "imba_tower_laser"   "1"
+                  "imba_tower_disease"   "1"
+            }
+            "imba_towers_strong" 
+            {
+                  "imba_tower_multihit"   "1"
+                  "imba_tower_sniper"   "1"
+                  "imba_tower_grievous_wounds"   "1"
+                  "imba_tower_essence_drain"   "1"
+                  "imba_tower_machinegun"   "1"
+                  "imba_tower_salvo"   "1"
+                  "imba_tower_fervor"   "1"
+                  "imba_tower_split"   "1"
+            }
+
+            "memes_reborn_op"{
+                  "lina_banana"     "1"
+                  "lina_blazer"     "1"
+                  "lina_coconut"    "1"
+                  "lina_grapefruit" "1"
+            }
+
+            "basic_abilities"
+            {
+                  "basic_tenacity_bonus_op"   "1"
+                  "basic_mana_bonus_op"   "1"
+                  "basic_health_bonus_op" "1"
+                  "basic_gpm_bonus_op" "1"
+                  "basic_movespeed_bonus_op" "1"
+                  "basic_xpm_bonus_op" "1"
+                  "basic_spell_amp_bonus_op"   "1"
+                  "basic_stat_gain_bonus_op"   "1"
+                  "basic_stat_bonus_op"   "1"
+                  "ability_mjolnir_op"    "1"
+                  "ability_blademail_op" "1"
+                  "ability_wards_op" "1"
+                  "bash_reflect_op" "1"
+            }
+
+            "singlePlayer_actives" {
                   "abyssal_underlord_dark_rift_op"   "1"
+                  "axe_berserkers_call_op"      "1"
+                  "batrider_flamebreak_op"      "1"
+                  "bloodseeker_thirst_lod_op"            "1"
+                  "dark_seer_vacuum_op"   "1" 
+                  "global_stun"     "1"   
                   "invoker_chaos_meteor_op"   "1"
-                  "ogre_magi_bloodlust_op"              "1"
-                  "ogre_magi_bloodlust_reverse"           "1"
-                  "dark_seer_vacuum_op"   "1"
-                  "tusk_walrus_kick_op"   "1"
+                  "lich_chain_frost_op"   "1"                    
+                  "tusk_walrus_kick_op"   "1"           
+            }
+            "singlePlayer_actives_2" {
                   "disruptor_kinetic_field_OP"  "1"
                   "disruptor_glimpse_OP"  "1"
-                  "garden_red_flower_base_OP"   "1"
-                  "lone_druid_spirit_bear_return_lod_OP"    "1"
-                  "global_stun"     "1"
-                  "force_dash_lod_OP"     "1"
-                  "zulf_typhoon_OP" "1"
-                  "angel_arena_rifle_OP" "1"
-                  "android_cluster_rockets_OP" "1"
-                  "serpent_queen_ball_lightning_op"   "1"
-                  "zuus_lightning_bolt_global"            "1"
-                  "shards_of_truesight_lod_OP"  "1"
-                  "lich_chain_frost_op"   "1"
+                  "ogre_magi_bloodlust_op"              "1"
+                  "ogre_magi_bloodlust_reverse"           "1"
                   "zuus_arc_lightning_op" "1"
+                  "zuus_lightning_bolt_global"            "1"
+                  "lone_druid_savage_roar_op"   "1"
+                  "lone_druid_spirit_bear_return_lod_OP"    "1"
             }
-             "singlePlayer_passive" {
+            "singlePlayer_actives_3" {
+                  "android_cluster_rockets_OP" "1"
+                  "angel_arena_rifle_OP" "1"
+                  "serpent_queen_ball_lightning_op"   "1"
+                  "shards_of_truesight_lod_OP"  "1"
+                  "garden_red_flower_base_OP"   "1"
+                  "hylonome_eldritch_pull_op"      "1"
+                  "force_dash_lod_OP"     "1"
+                  "zulf_typhoon_OP" "1"  
+            }
+            "singlePlayer_passive" {
                   "imba_tower_aegis_OP"   "1"
-                  "erra_grave_guard_op"   "1"
+                  //"erra_grave_guard_op"   "1" //Has been deleted since we brought in the LUA versions
                   "dragon_knight_dragon_blood_OP"     "1"
                   "alchemist_goblins_greed_op"  "1"
                   "shredder_reactive_armor_op"  "1"
                   "nevermore_necromastery_op"   "1"
-                  "imba_juggernaut_healing_ward_passive_redux"      "1"
+                  //"imba_juggernaut_healing_ward_passive_redux"      "1"
                   "obsidian_destroyer_essence_aura_lod_health"    "1"
-                  "frost_lord_freezing_OP"      "1"
-                  "ebf_rubick_arcane_echo_OP"   "1"
-                  "octarine_vampirism_lod_OP"   "1"
-                  "aether_range_lod_OP"   "1"
-                  //"linkens_guard_lod"     "1"
-                  "lord_of_lightning_holy_wrath_OP"   "1"
+                  //"linkens_guard_lod"     "1"                                          
+            }
+            "singlePlayer_passive_2" {
                   "angel_arena_razor_power_OP"  "1"
                   "angel_arena_nether_ritual"   "1"
                   "ebf_clinkz_trickshot_passive"      "1"
+                  "lord_of_lightning_holy_wrath_OP"   "1"
+                  "octarine_vampirism_lod_OP"   "1"
+                  "aether_range_lod_OP"   "1"
+                  "ebf_rubick_arcane_echo_OP"   "1"
+                  "frost_lord_freezing_OP"      "1"
             }
-            "singlePlayer_passive_2" {
+            "singlePlayer_passive_3" {
                   "zhanhun_op"   "1"
                   "jingtong_op"  "1"
                   "spell_reflect_op" "1"
@@ -1221,12 +1837,10 @@
                   "channel_earthquake_op" "1"
                   "chi_strike_sp"  "1"
                   "metamorphosis_op"   "1"
+                  "death_prophet_witchcraft_op"  "1"
+                  "invoker_sun_strike_lod_op"   "1"
             }
-            "DoD" {
-                  "makemeleecreeps_lua"   "1"
-                  "makerangedcreeps_lua"   "1"
-                  "makecatapults_lua"   "1"
-            }
+
             "mega_ultimates" {
                   "mega_black_hole"   "1"
                   "armageddon"        "1"
@@ -1239,13 +1853,26 @@
                   "mega_call_down"  "1"
                   "mega_flare"      "1"
             }
-        }
-        // The IMBA skills in LoD
-        "dotaimba" {
 
       }
     }
     "heroToSkillMap" {
+        "npc_dota_hero_antimage" {
+            "Ability1"            "antimage_blink"
+            "Ability2"            "antimage_blink_redux"
+            "Ability3"            "antimage_mana_break"
+            "Ability4"            "antimage_mana_void"
+            "Ability5"            "antimage_spell_shield"
+        }
+
+        "npc_dota_hero_queenofpain" {
+            "Ability1"            "queenofpain_blink"
+            "Ability2"            "queenofpain_blink_redux"
+            "Ability3"            "queenofpain_scream_of_pain"
+            "Ability4"            "queenofpain_shadow_strike"
+            "Ability5"            "queenofpain_sonic_wave"
+        }
+
         "npc_dota_hero_invoker" {
             "Ability1"            "invoker_alacrity_lod"
             "Ability2"            "invoker_chaos_meteor_lod"
@@ -1256,6 +1883,7 @@
             "Ability7"            "invoker_ice_wall_lod"
             "Ability8"            "invoker_sun_strike_lod"
             "Ability9"            "invoker_tornado_lod"
+            "Ability10"           "invoker_deafening_blast_lod"
         }
 
         "npc_dota_hero_life_stealer" {
@@ -1277,8 +1905,9 @@
             "Ability1"            "tiny_avalanche"
             "Ability2"            "tiny_craggy_exterior"
             "Ability3"            "tiny_toss"
-            "Ability4"            "tiny_grow_lod"
-            "Ability5"            "tiny_grow_lod_redux"
+            "Ability4"            "tiny_grow"
+            "Ability5"            "tiny_grow_lod"
+            "Ability6"            "tiny_grow_lod_redux"
         }
         "npc_dota_hero_skeleton_king" {
             "Ability1"            "skeleton_king_hellfire_blast"
@@ -1366,7 +1995,7 @@
             "Ability2"            "juggernaut_blade_dance"
             "Ability3"            "juggernaut_healing_ward"
             "Ability4"            "juggernaut_omni_slash"
-            "Ability5"            "juggernaut_healing_ward_mana"
+            //"Ability5"            "juggernaut_healing_ward_mana"
         }
         "npc_dota_hero_obsidian_destroyer" {
             "Ability1"            "obsidian_destroyer_arcane_orb"
@@ -1452,7 +2081,7 @@
         "npc_dota_hero_doom_bringer" {
             "Ability1"            "doom_bringer_devour_lod"
             "Ability2"            "doom_bringer_scorched_earth"
-            "Ability3"            "doom_bringer_infernal_blade_datadriven"
+            "Ability3"            "infernal_blade_lua"
             "Ability4"            "doom_bringer_doom"
         }
       "npc_dota_hero_huskar" {
@@ -1460,7 +2089,8 @@
             "Ability2"            "huskar_burning_spear"
             "Ability3"            "huskar_inner_vitality"
             "Ability4"            "huskar_life_break"
-            "Ability5"            "huskar_berserkers_blood_lod"
+            "Ability5"            "huskar_life_break_redux"
+            "Ability6"            "huskar_berserkers_blood_lod"
         }
       "npc_dota_hero_drow_ranger" {
             "Ability1"            "drow_ranger_frost_arrows"
@@ -1469,6 +2099,8 @@
             "Ability4"            "drow_ranger_marksmanship"
             "Ability5"            "marksmanship_int"
             "Ability6"            "marksmanship_str"
+            "Ability7"            "drow_ranger_marksmanship_redux"
+            "Ability8"            "drow_splitshot"
         }
        "npc_dota_hero_skywrath_mage"
         {
@@ -1494,8 +2126,8 @@
             "Ability3"  "monkey_king_primal_spring"
             "Ability4"  "monkey_king_jingu_mastery_lod"
             "Ability5" "monkey_king_jingu_mastery_lod_melee"
-            "Ability6" "monkey_king_mischief"
-            "Ability7"  "monkey_king_wukongs_command"
+            //"Ability6" "monkey_king_mischief"
+            "Ability6"  "monkey_king_wukongs_command"
         }
         "npc_dota_hero_necrolyte"
         {
@@ -1518,7 +2150,7 @@
             "Ability2"  "phantom_lancer_phantom_edge"
             "Ability3"  "phantom_lancer_juxtapose"
             //"Ability4"  "phantom_lancer_juxtapose_melee"
-            "Ability4s"  "phantom_lancer_spirit_lance"
+            "Ability4"  "phantom_lancer_spirit_lance"
         }
         "npc_dota_hero_alchemist"
         {
@@ -1601,15 +2233,24 @@
         "npc_dota_hero_morphling"
         {
             "Ability1"  "morphling_waveform"
-            "Ability2"  "morphling_adaptive_strike"
-            "Ability3"  "morphling_morph_agi"
-            "Ability4"  "morphling_morph_str"
-            "Ability5"  "morphling_replicate"
-            "Ability6"  "morphling_hybrid"
-            "Ability7"  "morph_int_str_redux"
-            "Ability8"  "morph_str_int_redux"
-            "Ability9"  "morph_agi_int_redux"
-            "Ability10"  "morph_int_agi_redux"
+            "Ability2"  "morphling_adaptive_strike_agi"
+            "Ability3"  "morphling_adaptive_strike_str"
+            "Ability4"  "morphling_morph_agi"
+            "Ability5"  "morphling_morph_str"
+            "Ability6"  "morphling_replicate"
+            "Ability7"  "morphling_hybrid"
+            "Ability8"  "morph_int_str_redux"
+            "Ability9"  "morph_str_int_redux"
+            "Ability10"  "morph_agi_int_redux"
+            "Ability11"  "morph_int_agi_redux"
+        }
+        "npc_dota_hero_dark_willow"
+        {
+            "Ability1"  "dark_willow_bramble_maze"
+            "Ability2"  "dark_willow_shadow_realm"
+            "Ability3"  "dark_willow_cursed_crown"
+            "Ability4"  "dark_willow_bedlam"
+            "Ability5"  "dark_willow_terrorize"
         }
     }
 }

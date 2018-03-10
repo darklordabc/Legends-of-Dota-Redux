@@ -1,6 +1,6 @@
 "AddonInfo"
 {
-	maps			"all_allowed standard dota"
+	maps			"classic all_allowed custom custom_bot"
 
 	"IsPlayable"	"1"
     "version"       "3.1.2"
@@ -13,5 +13,27 @@
     "10_vs_10"
     {
         "MaxPlayers"                    "20"
+    }
+
+    "Default_Keys"
+    {
+        "01"
+        {
+            "Key" "F4"
+            "Command" "+F4Pressed"
+            "Name" "Toggle Shop"
+        }
+        "02"
+        {
+            "Key" "F5"
+            "Command" "+F5Pressed"
+            "Name" "Quickbuy"
+        }
+        "03"
+        {
+            "Key" "F8"
+            "Command" "+F8Pressed"
+            "Name" "Buy sticky item"
+        }
     }
 }

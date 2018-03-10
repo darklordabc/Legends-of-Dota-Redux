@@ -135,7 +135,11 @@ end
 
 function modifier_item_octarine_core_consumable:OnTakeDamage(keys)
   if IsServer() and keys.attacker == self:GetCaster() and keys.inflictor then
-
+  
+    if self:GetParent():IsIllusion() or self:GetParent():IsClone() or self:GetParent():IsTempestDouble() then
+      return
+    end
+    
     if not self:GetAbility() then
       self:Destroy()
       return
@@ -164,8 +168,12 @@ function modifier_item_octarine_core_consumable:OnTakeDamage(keys)
       healFactor = self:GetAbility():GetSpecialValueFor("octarine_core_creep_lifesteal") * 0.01 / count
     end
     local heal = healFactor * keys.damage
-    self:GetCaster():Heal(heal,self:GetAbility())
-    ParticleManager:CreateParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN, self:GetCaster())
+    
+    --make sure unit isnt dead before we heal them
+    if self:GetCaster():GetHealth() > 0 then 
+      self:GetCaster():Heal(heal,self:GetAbility())
+      ParticleManager:CreateParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN, self:GetCaster())
+    end
   end
 end
 

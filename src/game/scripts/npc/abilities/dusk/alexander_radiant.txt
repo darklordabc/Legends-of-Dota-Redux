@@ -1,0 +1,72 @@
+"DOTAAbilities" {
+	//=====================================================================================================
+	// ALEXANDER: Radiant
+	//=====================================================================================================
+	"alexander_radiant"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/dusk/alexander_radiant"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName"			"custom/alexander_radiant"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"325"
+		"AbilityCastPoint"				"0"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"40"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"80"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// All about the damage
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"duration"						"8"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"regen"							"5.0 7.5 10.0 12.5"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"miss"							"40"
+			}
+			"04"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"radius"						"400"
+			}
+		}
+		
+		"precache"
+		{
+			"particle" "particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_spirit_form_ambient.vpcf"
+			"particle" "particles/status_fx/status_effect_keeper_spirit_form.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_keeper_of_the_light.vsndevts"
+		}
+		
+		"Modifiers"
+		{
+		}
+
+		"ReduxPerks"	"light | aura"
+		"ReduxFlags"	""
+	}
+}

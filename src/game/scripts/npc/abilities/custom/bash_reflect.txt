@@ -34,8 +34,8 @@
                 "var_type"                                             "FIELD_FLOAT"
                 "duration_multiplier"                                              "50 75 100 125"
             }
-        }
-        "ReduxFlags"                                                           "dota_custom"
+        }    
+        "ReduxFlags"                                                           "dota_custom | semi_passive"
         "ReduxCost"                                                            "0"
     }
     "bash_reflect_op"

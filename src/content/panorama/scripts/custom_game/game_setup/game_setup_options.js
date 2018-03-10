@@ -470,6 +470,16 @@ var basicOptions = {
                             }
                         }
                     },
+                    {
+                        name: 'lodOptionLimitPassives',
+                        extraInfo: 'lodOptionAboutLimitPassives',
+                        about: 'lodMutatorLimitPassives'
+                    },
+                    {
+                        name: 'lodOptionAntiBash',
+                        extraInfo: 'lodOptionAboutAntiBash',
+                        about: 'lodMutatorAntiBash'
+                    },
                 ]
             }
         ]
@@ -625,7 +635,7 @@ var advancedOptions = {
                 min: 0,
                 max: 2500,
                 step: 50,
-                default: 250
+                default: 1000
             },
             {
                 name: 'lodOptionNewAbilitiesThreshold',
@@ -645,7 +655,7 @@ var advancedOptions = {
                 min: 0,
                 max: 2500,
                 step: 50,
-                default: 250
+                default: 1000
             },
             {
                 name: 'lodOptionGlobalNewAbilitiesThreshold',
@@ -665,7 +675,7 @@ var advancedOptions = {
                 min: 0,
                 max: 3000,
                 step: 100,
-                default: 1000
+                default: 0
             },
         ]
     },
@@ -723,20 +733,20 @@ var advancedOptions = {
                 ]
             },
             {
-                name: 'lodOptionAdvancedImbaAbilities',
-                des: 'lodOptionDesAdvancedIMBASkills',
-                about: 'lodOptionAboutAdvancedIMBASkills',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
+               name: 'lodOptionAdvancedImbaAbilities',
+               des: 'lodOptionDesAdvancedIMBASkills',
+               about: 'lodOptionAboutAdvancedIMBASkills',
+               sort: 'toggle',
+               values: [
+                   {
+                       text: 'lodOptionNo',
+                       value: 0
+                   },
+                   {
+                       text: 'lodOptionYes',
+                       value: 1
+                   }
+               ]
             },
             {
                 name: 'lodOptionAdvancedHidePicks',
@@ -1068,6 +1078,22 @@ var advancedOptions = {
                 name: 'lodOptionConsumeItems',
                 des: 'lodOptionDesConsumeItems',
                 about: 'lodOptionAboutConsumeItems',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionLimitPassives',
+                des: 'lodOptionDesLimitPassives',
+                about: 'lodOptionAboutLimitPassives',
                 sort: 'toggle',
                 values: [
                     {
@@ -1742,6 +1768,22 @@ var advancedOptions = {
                     }
                 ]
             },
+            {
+                name: 'lodOptionAntiBash',
+                des: 'lodOptionDesAntiBash',
+                about: 'lodOptionAboutAntiBash',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
             //{
             //    name: 'lodOptionMonkeyBusiness',
             //    des: 'lodOptionDesMonkeyBusiness',
@@ -1759,5 +1801,9 @@ var advancedOptions = {
             //    ]
             //},
         ]
-    }
+    },
+
+    // items: {
+    //     custom: true
+    // }
 }

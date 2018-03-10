@@ -1,6 +1,6 @@
 local constants = require('constants')
 local Timers = require('easytimers')
-require('lib/util_imba')
+
 require('abilities/hero_perks/hero_perks_filters')
 require('abilities/epic_boss_fight/ebf_mana_fiend_essence_amp')
 require('abilities/global_mutators/global_mutator')
@@ -298,6 +298,27 @@ function Ingame:OnPlayerPurchasedItem(keys)
     end
 end
 
+function Ingame:OnPlayerLearnedAbility( keys )
+    local chargeTalents = {
+        ["special_bonus_unique_ember_spirit_4"] = "ember_spirit_sleight_of_fist",
+        ["special_bonus_unique_morphling_6"] = "morphling_waveform",
+    }
+    local abilityName = chargeTalents[keys.abilityname]
+    if abilityName then
+        Timers:CreateTimer(function()
+            local hero = PlayerResource:GetSelectedHeroEntity(keys.PlayerID)
+            if hero then
+                local talent = hero:FindAbilityByName(keys.abilityname)
+                local count = talent and talent:GetSpecialValueFor("value") or 0
+                local charges = hero:FindModifierByName("modifier_"..abilityName.."_charge_counter")
+                if charges then
+                    charges:SetStackCount(count)
+                end
+            end
+        end, DoUniqueString("fixManyCharges"), 0.3)
+    end
+end
+
 function Ingame:FilterExecuteOrder(filterTable)
     local order_type = filterTable.order_type
     local units = filterTable["units"]
@@ -305,6 +326,15 @@ function Ingame:FilterExecuteOrder(filterTable)
     local unit = EntIndexToHScript(units["0"])
     local ability = EntIndexToHScript(filterTable.entindex_ability)
     local target = EntIndexToHScript(filterTable.entindex_target)
+	
+    -- if order_type == DOTA_UNIT_ORDER_PURCHASE_ITEM then		
+    --     return false		
+    -- end		
+		
+    -- if units[1] and order_type == DOTA_UNIT_ORDER_SELL_ITEM and ability and not units[1]:IsIllusion() and not units[1]:IsTempestDouble() then		
+    --     PanoramaShop:SellItem(units[1], ability)		
+    --     return false		
+    -- end		
 
     -- Block Alchemists Innate, heroes should not have innate abilities
     if ability and target then
@@ -455,6 +485,48 @@ function Ingame:onStart()
 
     end
 
+    -- Remove powerup runes, spawned before 2 minutes
+    Timers:CreateTimer(function ()
+        if math.floor(GameRules:GetDOTATime(false, false)/60) < 2 then
+            local spawners = Entities:FindAllByClassname("dota_item_rune_spawner_powerup")
+            for k,v in ipairs(spawners) do
+                if v ~= nil then
+                    local nearbyRunes = Entities:FindAllByClassnameWithin("dota_item_rune", v:GetOrigin(), 400)
+                    for _,rune in ipairs(nearbyRunes) do
+                        if rune ~= nil then
+                            UTIL_Remove(rune)
+                        end
+                    end
+                end
+            end
+            return 0.1
+        end
+    end, 'removeRunes', 0.1)
+
+    --secondary fix for randomly not getting skill points for levels 18-24
+    --  the other method is inconsistant
+    Timers:CreateTimer(function()
+        local heroes = HeroList:GetAllHeroes()
+        for _,hero in pairs(heroes) do
+            if hero then
+                if hero:IsRealHero() then
+                    local level = hero:GetLevel()-1
+                    local points = hero:GetAbilityPoints()
+                    for i=0,23 do
+                        local ab = hero:GetAbilityByIndex(i)
+                        if ab then
+                            points = points + ab:GetLevel()
+                        end
+                    end
+                    if points < level then
+                        hero:SetAbilityPoints(level-points)
+                    end
+                end
+            end
+        end
+        return 25
+    end, 'giveMissingSkillPoints', 60)
+
     --Attempt to enable cheats
     Convars:SetBool("sv_cheats", true)
 
@@ -528,6 +600,8 @@ function Ingame:onStart()
     ListenToGameEvent("player_reconnected", Dynamic_Wrap(Ingame, 'OnPlayerReconnect'), self)
 
     ListenToGameEvent("player_chat", Dynamic_Wrap(Commands, 'OnPlayerChat'), self)
+
+    ListenToGameEvent("dota_player_learned_ability", Dynamic_Wrap(Ingame, "OnPlayerLearnedAbility"), self)
     
     -- Set it to no team balance
     self:setNoTeamBalanceNeeded()
@@ -618,7 +692,7 @@ end
 function Ingame:CheckConsumableItems()
 
     local itemTable = LoadKeyValues('scripts/kv/consumable_items.kv')
-    for i=0,PlayerResource:GetTeamPlayerCount() do
+    for i=0,24 do
         if PlayerResource:IsValidTeamPlayerID(i) and not util:isPlayerBot(i) then
             local hero = PlayerResource:GetSelectedHeroEntity(i)
             if hero and IsValidEntity(hero) then
@@ -628,7 +702,9 @@ function Ingame:CheckConsumableItems()
                         local name = hItem:GetAbilityName()
                         if itemTable[name] then
                             hero:RemoveItem(hItem)
+                            if name == "item_vladmir" then name = "item_vladimir" end
                             hero:AddItemByName(name.."_consumable")
+                            local item = hero:FindItemInInventory(name.."_consumable")
                             local nSlot, hUseless = hero:FindItemByNameEverywhere(name.."_consumable")
                             hero:SwapItems(i,nSlot)
                             --break
@@ -1429,14 +1505,15 @@ end
 -- Option to modify EXP
 function Ingame:FilterModifyExperience(filterTable)
     local expModifier = OptionManager:GetOption('expModifier')
-    --hotfix start: to stop the insane amount of EXP
+    --hotfix start: to stop the insane amount of EXP when heros with higher level then 28, kill other heros
     if math.abs(filterTable.experience) > 100000 then
+        local Hero = PlayerResource:GetPlayer(filterTable.player_id_const):GetAssignedHero()
+        Hero:AddExperience(math.ceil(250 * expModifier / 100),0,false,false)
         filterTable.experience = 0
-        return false
+        return true
     end
     --hotfix end
-    --print("experience gained")
-    --print(filterTable.experience)
+
 
     if expModifier ~= 1 then
         filterTable.experience = math.ceil(filterTable.experience * expModifier / 100)
@@ -1473,10 +1550,13 @@ function Ingame:BountyRunePickupFilter(filterTable)
         for i=0,DOTA_MAX_TEAM do
             local pID = PlayerResource:GetNthPlayerIDOnTeam(team,i)
             if PlayerResource:IsValidPlayerID(pID) then
-                local otherHero = PlayerResource:GetPlayer(pID):GetAssignedHero()
+                local player = PlayerResource:GetPlayer(pID)
+                if player ~= nil then
+                    local otherHero = player:GetAssignedHero()
 
-                otherHero:AddExperience(math.ceil(filterTable.xp_bounty / util:GetActivePlayerCountForTeam(team)),0,false,false)
-                otherHero.expSkip = true
+                    otherHero:AddExperience(math.ceil(filterTable.xp_bounty / util:GetActivePlayerCountForTeam(team)),0,false,false)
+                    otherHero.expSkip = true
+                end
             end
         end
 
@@ -1866,6 +1946,19 @@ function Ingame:FilterDamage( filterTable )
         end
     end
 
+    if OptionManager:GetOption('antiRat') == 1 and victim.IsBuilding and victim:IsBuilding()  then
+        local protection = victim:FindModifierByName("modifier_backdoor_protection_active")
+
+        if protection then
+         if self.heard["antiRatProtection"] ~= true then
+             GameRules:SendCustomMessage("#antiRatNotification", 0, 0)
+             self.heard["antiRatProtection"] = true
+         end
+         
+         filterTable["damage"] = 0
+        end
+    end
+
     if victim:HasModifier("modifier_ancient_priestess_spirit_link") then
         if victim.spiritLink_damage then
             victim.spiritLink_damage = nil
@@ -1893,6 +1986,14 @@ function Ingame:FilterDamage( filterTable )
         filterTable["damage"] = filterTable["damage"] - blocked
     end
 
+    if victim:HasModifier("modifier_enthrall") then
+        if not victim:IsAttackImmune() then
+            if filterTable["damagetype_const"] == DAMAGE_TYPE_PHYSICAL then
+                filterTable["damagetype_const"] = DAMAGE_TYPE_MAGICAL
+            end
+        end
+    end
+
      -- Hero perks
     if not OptionManager:GetOption('disablePerks') then
         filterTable = heroPerksDamageFilter(filterTable)
@@ -1907,7 +2008,8 @@ function Ingame:FilterDamage( filterTable )
     return true
 end
 
-
+require('abilities/bash_reflect')
+require('abilities/bash_cooldown')
 function Ingame:FilterModifiers( filterTable )
     local parent_index = filterTable["entindex_parent_const"]
     local caster_index = filterTable["entindex_caster_const"]
@@ -1918,6 +2020,7 @@ function Ingame:FilterModifiers( filterTable )
     local parent = EntIndexToHScript( parent_index )
     local caster = EntIndexToHScript( caster_index )
     local ability = EntIndexToHScript( ability_index )
+    local modifier_name = filterTable.name_const
 
      -- Hero perks
     if not OptionManager:GetOption('disablePerks') then
@@ -1932,11 +2035,31 @@ function Ingame:FilterModifiers( filterTable )
     -- Tenacity
     if caster:GetTeamNumber() ~= parent:GetTeamNumber() and filterTable["duration"] > 0 then
         filterTable["duration"] = filterTable["duration"] * parent:GetTenacity()
+        if parent.GetIMBATenacity then
+            local original_duration = filterTable.duration
+            local actually_duration = original_duration
+            local tenacity = parent:GetIMBATenacity()
+            if parent:GetTeam() ~= caster:GetTeam() and filterTable.duration > 0 then --and tenacity ~= 0 then                
+                actually_duration = actually_duration * (100 - tenacity) * 0.01
+            end
+
+            local modifier_handler = parent:FindModifierByName(modifier_name)
+            if modifier_handler then
+                if modifier_handler.IgnoreTenacity then
+                    if modifier_handler:IgnoreTenacity() then
+                        actually_duration = original_duration
+                    end
+                end
+            end
+            filterTable.duration = actually_duration
+        end
     end
     -- Bash Reflect
-    local reflect_bashes = require('abilities/bash_reflect')
     ReflectBashes(filterTable)
-
+    -- Bash Cooldown
+    if OptionManager:GetOption('antiBash') == 1 then
+        if not BashCooldown(filterTable) then return false end
+    end
     return true
 end
 

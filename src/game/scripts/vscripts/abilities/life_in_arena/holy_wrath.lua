@@ -10,7 +10,7 @@ function damageTo(event)
 		return 
 	end
 	
-	if attacker:IsBuilding() then return end
+	if attacker:IsBuilding() or attacker:IsOther() then return end
 	--
 	local damage_per_int = ability:GetSpecialValueFor("damage_per_int")
 	local radius_dop_dmg = ability:GetSpecialValueFor("radius_dop_dmg")

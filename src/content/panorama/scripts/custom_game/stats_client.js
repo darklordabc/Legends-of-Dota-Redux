@@ -1,5 +1,7 @@
 var ServerDebug = Game.IsInToolsMode() && false; // Change to true if you have local server running, so contributors without local server can see some things
-var ServerAddress = ServerDebug ? 'http://127.0.0.1:3333/lodServer/' : 'https://lodr-ark120202.rhcloud.com/lodServer/';
+var ServerAddress = ServerDebug ?
+	'http://127.0.0.1:3333/' :
+	'http://lodr-lodr.1d35.starter-us-east-1.openshiftapps.com/';
 
 function GetDataFromServer(path, params, resolve, reject) {
 	var encodedParams = params == null ? '' : '?' + Object.keys(params).map(function(key) {

@@ -1,5 +1,3 @@
--- Uther (added it here because I dont want it in the ingame files)
-require('abilities/nextgeneration/hero_uther/Argent_Smite')
 -- Proteus
 require('abilities/nextgeneration/hero_proteus/proteus_jet')
 
@@ -13,14 +11,6 @@ function nextGenOrderFilter(filterTable)
   local unit = EntIndexToHScript(units["0"])
   local target = EntIndexToHScript(targetIndex)
   local ability = EntIndexToHScript(abilityIndex)
-
-
-  -- Uther controls
-  AllowAlliedAttacks(unit,target,order_type)
-  if CancelOtherAlliedAttacks(unit,target,order_type) == false then
-    --return false -- I think this can be skipped
-  end
-  StopAllowingAlliedAttacks(unit,target,order_type)
   
   -- Proteus order filters
   jetOrder(filterTable)
@@ -39,10 +29,6 @@ function nextGenModifierFilter(filterTable)
   local caster = EntIndexToHScript( caster_index )
   local ability = EntIndexToHScript( ability_index )
 
-  -- Uther argent smite
-  argentSmiteDoNotDebuffAllies(filterTable)
-  
-  
   -- Returning the filterTable
   return filterTable
 end
@@ -57,9 +43,5 @@ function nextGenDamageFilter(filterTable)
     local parent = EntIndexToHScript( victim_index )
     local caster = EntIndexToHScript( attacker_index )
 
-    -- Argent smite not hurting allies
-    filterTable = damageFilterArgentSmite(filterTable)
-
-  
   return filterTable
 end

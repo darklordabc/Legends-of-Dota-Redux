@@ -64,7 +64,7 @@ function ScepterStarfallCheck( keys )
 	if caster:IsIllusion() then return end
 	if caster:PassivesDisabled() then return end
 	-- Check if we actually have scepter
-	if caster:HasScepter() and caster:IsInvisible() == false then
+	if ability and caster:HasScepter() and caster:IsInvisible() == false then
 		local abLevel = ability:GetLevel()
 
 		local abRadius = ability:GetLevelSpecialValueFor('starfall_radius', abLevel - 1)

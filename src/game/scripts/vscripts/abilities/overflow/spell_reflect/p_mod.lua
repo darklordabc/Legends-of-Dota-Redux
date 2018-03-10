@@ -17,6 +17,7 @@ function spell_reflect_mod:GetReflectSpell(keys)
 	if IsServer() then
 		local hAbility = self:GetAbility()
 		if hAbility:GetLevel() < 1 then return false end
+		if keys.ability:GetCaster():GetTeam() == self:GetCaster():GetTeam() then return false end
 		if hAbility:IsCooldownReady() then
 			hAbility:StartCooldown(hAbility:GetTrueCooldown(hAbility:GetLevel()))
 			self:Reflect(keys)

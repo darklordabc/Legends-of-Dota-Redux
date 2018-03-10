@@ -66,5 +66,8 @@
 		"Modifiers"
 		{
 		}
+
+		"ReduxPerks"	"support"
+		"ReduxFlags"	""   
 	}
 }

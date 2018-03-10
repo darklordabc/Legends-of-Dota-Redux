@@ -6,8 +6,8 @@
         "BaseClass"                     "ability_datadriven"
         "ID"                            "1197"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-        "AbilityCooldown"               "80 70 60 50"
-        "AbilityGoldCost"            "1200 1600 2000"
+        "AbilityCooldown"               "70 60 50 40"
+        "AbilityGoldCost"            "1100 1500 1900"
         "AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
         "MaxLevel"                  "3"
         "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -43,7 +43,7 @@
             "04" // This is for the tooltips
             {
                 "var_type" "FIELD_FLOAT"
-                "gold_cost_toolip" "1200 1600 2000"
+                "gold_cost_toolip" "1100 1500 1900"
             }
         }
 
@@ -55,6 +55,14 @@
                 "ScriptFile"        "abilities/angel_arena_reborn/tome.lua"
                 "Function"          "UpgradeStats"
             }      
+        }
+        "OnUpgrade"
+        {
+            "RunScript"
+            {
+                "ScriptFile" "abilities/angel_arena_reborn/tome.lua"
+                "Function"  "LevelTome"
+            }
         }
 
     }

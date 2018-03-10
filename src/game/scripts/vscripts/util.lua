@@ -834,6 +834,15 @@ function CDOTABaseAbility:CreateIllusions(hTarget,nIllusions,flDuration,flIncomi
         illusion:SetMana(hTarget:GetMana())
         illusion:AddNewModifier(caster, ability, "modifier_illusion", {duration = flDuration, outgoing_damage=flOutgoingDamage, incoming_damage = flIncomingDamage})
 
+        --make sure this unit actually has stats
+        if illusion.GetStrength then
+            --copy over all the stat modifiers from the original hero
+            for k,v in pairs(hTarget:FindAllModifiersByName("modifier_stats_tome")) do
+                local instance = illusion:AddNewModifier(illusion, v:GetAbility(), "modifier_stats_tome", {stat = v.stat})
+                instance:SetStackCount(v:GetStackCount())
+            end
+        end
+
         local level = hTarget:GetLevel()
         for i=1,level-1 do
             illusion:HeroLevelUp(false)
@@ -964,7 +973,7 @@ function CDOTA_BaseNPC:FindItemByName(item_name)
     return nil
 end
 
-local voteCooldown = 300
+local voteCooldown = 150
 util.votesBlocked = {}
 util.votesRejected = {}
 function util:CreateVoting(votingName, initiator, duration, percent, onaccept, onvote, ondecline, voteForInitiator)
@@ -1171,6 +1180,13 @@ function util:DisplayError(pid, message)
     end
 end
 
+function util:EmitSoundOnClient(pid, sound)
+    local player = PlayerResource:GetPlayer(pid)
+    if player then
+        CustomGameEventManager:Send_ServerToPlayer(player, "lodEmitClientSound", {sound=sound})
+    end
+end
+
 -- Returns a set of abilities that won't trigger stuff like aftershock / essence aura
 local toIgnore
 function util:getToggleIgnores()
@@ -1266,7 +1282,7 @@ function GenerateTalentAbilityList()
 	end
 
 (function()
-    toIgnore = {
+    toIgnore = { -- These are abilities that wont trigger essence aura (among other things)
         nyx_assassin_burrow = true,
         spectre_reality = true,
         techies_focused_detonate = true,
@@ -1275,9 +1291,11 @@ function GenerateTalentAbilityList()
         winter_wyvern_arctic_burn = true,
         life_stealer_control = true,
         eat_tree_eldri = true,
+        shadow_demon_shadow_poison_release = true,
         storm_spirit_ball_lightning = true,
         ability_wards = true,
         ability_wards_op = true,
+        elder_titan_return_spirit = true,
     }
 
     abilityKVs = LoadKeyValues('scripts/npc/npc_abilities.txt')

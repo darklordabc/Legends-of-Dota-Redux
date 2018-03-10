@@ -752,7 +752,7 @@ function execScript() {
 	var cmd = "reg query HKEY_CURRENT_USER\\Software\\Valve\\Steam /v SteamPath";
 	exec(cmd, function(error, stdout, stderr) {
 		// Set Dota 2 dir from registry or settings
-	  	var dotaPath = stdout.match(/(?=REG_SZ).*/g)[0].replace('REG_SZ', '').trim() + '/SteamApps/common/dota 2 beta/' || settings.dotaDir;
+	  	var dotaPath = (settings && settings.dotaDir) || stdout.match(/(?=REG_SZ).*/g)[0].replace('REG_SZ', '').trim() + '/SteamApps/common/dota 2 beta/';
 		
 	  	// Run compiling
 		runEverything( dotaPath );

@@ -4,12 +4,14 @@
         <include src="s2r://panorama/styles/popups/popup_settings.vcss_c" />
         <include src="s2r://panorama/styles/play.vcss_c" />
         <include src="file://{resources}/styles/custom_game/game_setup/game_setup.css" />
+        <include src="file://{resources}/styles/custom_game/game_setup/game_setup_shop.css" />
     </styles>
     <scripts>
         <include src="file://{resources}/scripts/custom_game/stat_uploader_functions.js" />
         <include src="file://{resources}/scripts/custom_game/stats_client.js" />
         <include src="file://{resources}/scripts/custom_game/loading_screen/loading_screen_tips.js" />
         <include src="file://{resources}/scripts/custom_game/game_setup/game_setup_options.js" />
+        <include src="file://{resources}/scripts/custom_game/game_setup/game_setup_shop.js" />
         <include src="file://{resources}/scripts/custom_game/game_setup/game_setup.js" />
         <include src="file://{resources}/scripts/custom_game/universal_votings.js" />
     </scripts>
@@ -27,7 +29,7 @@
         <snippet name="optionVotePhase">
             <Panel class="optionVotePhase">
                 <Panel class="optionVoteInfoHeader">
-                    <Label class="optionVoteHeader" text="{s:title}" />
+                    <Label class="optionVoteHeader" text="{s:title}" html="true" />
                     <Panel class="VotingOptionInfo" id="VotingOptionInfo" onmouseout="UIHideCustomLayoutTooltip( voteOptionInfoTooltip )">
                         <Image hittest="false" id="infoImage" src="file://{images}/custom_game/infoTooltip.png" />
                     </Panel>
@@ -49,6 +51,33 @@
                     </Panel>
                 </Panel>
             </Panel>
+        </snippet>
+
+        <!-- Item List -->
+        <snippet name="option_panel_items_shop">
+            <Panel>
+                <Panel id="ShopPagesList" />
+                <Panel id="ShopItemList">
+                    <!-- TODO?
+                    <Panel id="ShopSearch">
+                        <TextEntry id="ShopSearchEntry" oncancel="ClearSearch()" oninputsubmit="DropInputFocus()" placeholder="#panorama_shop_search_placeholder"/>
+                    </Panel> -->
+                    <Panel id="ShopPagesHost" />
+                    <Panel id="ShopSearchOverlay" />
+                </Panel>
+            </Panel>
+        </snippet>
+        <snippet name="ShopPage">
+            <Panel class="ShopPageElement">
+                <Panel id="ShopTabs" />
+                <Panel id="ShopItems" />
+            </Panel>
+        </snippet>
+        <snippet name="ShopPageButton">
+            <RadioButton group="shop" class="ShopPageButton">
+                <Image id="ButtonImage"/>
+                <ToggleButton id="ButtonSetAll" class="ButtonSetAll" />
+            </RadioButton>
         </snippet>
     </snippets>
     <Panel class="lodOptionsInterface" hittest="false">
@@ -137,6 +166,7 @@
                                     <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingBanningBlockTrollCombos.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingAdvancedOPAbilities.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingDoubleCreeps.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingUniversalShops.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableCheatMode.png"></Image>
 									<Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableHeroBuilder.png"></Image>
 									<Image class="optionImageCached" src="file://{images}/custom_game/votings/lodVotingEnableKamikaze.png"></Image>
@@ -154,6 +184,8 @@
 
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorAntiRat.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorConsumeItems.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorLimitPassives.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorAntiBash.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBanningBanInvis.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBanningBanInvis2.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorUpgradedUlts.png"></Image>
@@ -972,7 +1004,7 @@
                 <Image id="lodBoosterDraftMessage" src="file://{images}/custom_game/boosterDraft.png" scaling="stretch-to-fit-preserve-aspect"/>
             </Panel>
 
-            <Panel class="lodPopupMessageAcceptContainer">
+            <Panel class="lodPopupMessageAcceptContainer" id="lodPopupMessageAcceptContainer">
                 <Button class="lockBuildButton makeThePlayerNoticeThisButton" onactivate="onAcceptPopup()">
                     <Label text="acceptHosting" />
                 </Button>

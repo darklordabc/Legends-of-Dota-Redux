@@ -32,6 +32,20 @@ require('commands')
 --Interaction with server (https://github.com/darklordabc/Legends-of-Dota-Server)
 require('stats_client')
 
+-- Custom Shop
+require('lib/playertables')
+require('lib/notifications')
+require('lib/keyvalues')
+-- require('panorama_shop')
+
+-- Misc functions for Angel Arena Black Star abilities/items
+require('lib/util_aabs')
+
+-- IMBA
+require('lib/util_imba')
+require('lib/util_imba_funcs')
+require('lib/animations')
+
 -- Precaching
 function Precache(context)
     local soundList = LoadKeyValues('scripts/kv/sounds.kv')
@@ -56,6 +70,8 @@ function Precache(context)
     end
     -- COMMENT THE ABOVE OUT IF YOU DO NOT WANT TO COMPILE ASSETS
     PrecacheResource("particle","particles/econ/events/battlecup/battle_cup_fall_destroy_flash.vpcf",context)
+    PrecacheResource("particle","particles/world_tower/tower_upgrade/ti7_radiant_tower_proj.vpcf",context)
+    PrecacheResource("particle","particles/world_tower/tower_upgrade/ti7_dire_tower_projectile.vpcf",context)
     PrecacheResource("soundfile","soundevents/game_sounds_heroes/game_sounds_monkey_king.vsndevts",context)
     PrecacheResource("soundfile","soundevents/memes_redux_sounds.vsndevts",context)
     PrecacheUnitByNameSync("npc_dota_lucifers_claw_doomling", context)
@@ -81,6 +97,31 @@ function Activate()
     -- Change random seed
     local timeTxt = string.gsub(string.gsub(GetSystemTime(), ':', ''), '0','')
     math.randomseed(tonumber(timeTxt))
+
+    -- print("888888")
+    -- local shit = LoadKeyValues('scripts/npc/abilities/imba/imba_abilities.kv')
+    -- local shit2 = {}
+    -- local i = 1
+    -- for k,v in pairs(shit) do
+    --     if v.ScriptFile and string.match(k, "imba") and not string.match(k, "special_bonus") and not string.match(k, "imba_tower_") and not string.match(k, "ancient") and not string.match(k, "behemoth") and not string.match(k, "fountain") and not string.match(k, "imba_mega") and not string.match(k, "imba_super") and not string.match(k, "imba_roshan") then
+    --         local newKey = string.gsub(v.ScriptFile, "abilities/dota_imba/", "")
+    --         newKey = string.gsub(newKey, ".lua", "")
+    --         shit2[newKey] = shit2[newKey] or {}
+    --         table.insert(shit2[newKey], "\""..k.."\"".."  ".."\"1\"")
+    --         -- print(i)
+    --         i = i + 1
+    --     end
+    -- end
+
+    -- for k,v in pairs(shit2) do
+    --     print("\""..k.."\"")
+    --     print("{")
+    --     for k1,v1 in pairs(v) do
+    --         print("    "..v1)
+    --     end
+    --     print("}")
+    -- end
+    -- print("888888")
 
     -- Load specific modules
 

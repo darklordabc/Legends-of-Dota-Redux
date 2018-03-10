@@ -1,0 +1,24 @@
+"DOTAAbilities"
+{
+    "spell_lab_survivor_attack_speed"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/spell_lab/survivor/attack_speed.lua"
+        "AbilityTextureName"                                                   "custom/survival_attack_speed"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "HasScepterUpgrade"                                                    "0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+        				"bonus"						"4.5 6.0 7.5 9.0"
+            }
+        }
+        "ReduxFlags"                                                           ""
+        "ReduxBans"                                                            ""
+        //"ReduxPerks"                                                           ""
+        "ReduxCost"                                                            "60"
+    }
+}

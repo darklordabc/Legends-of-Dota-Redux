@@ -59,7 +59,7 @@
         {
             "soundfile" "soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
             "soundfile" "soundevents/game_sounds_heroes/game_sounds_nightstalker.vsndevts"
-            "particle"  "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodbath_eztzhok_burst.vpcf"
+            "particle"  "particles/units/heroes/hero_bane/bane_projectile.vpcf"
             "particle"  "particles/achlys_miserable_claws_debuff.vpcf"
             "particle"  "particles/achlys_miserable_claws_root.vpcf"
         }
@@ -83,7 +83,7 @@
                 "Orb"
                 {
                     "Priority"          "DOTA_ORB_PRIORITY_ABILITY"
-                    "ProjectileName"    "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodbath_eztzhok_burst.vpcf"
+                    "ProjectileName"    "particles/units/heroes/hero_bane/bane_projectile.vpcf"
                     "CastAttack"        "1"
                 }
 
@@ -95,11 +95,6 @@
                         "EffectName"    "Hero_LifeStealer.PreAttack"
                         "Target"        "CASTER"
                     }
-                    "FireSound"
-                    {
-                        "EffectName"    "Hero_Nightstalker.Attack"
-                        "Target"        "TARGET"
-                    }
                     "SpendMana"
                     {
                         "Mana" "%AbilityManaCost"
@@ -110,6 +105,12 @@
                 // Call IncreaseStackCount to keep stack count on modifier_burning_spear_datadriven_debuff_counter updated
                 "OnOrbImpact"
                 {
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Nightstalker.Attack"
+                        "Target"        "TARGET"
+                    }
+                    
                     "ApplyModifier"
                     {
                         "ModifierName"  "modifier_achlys_miserable_claws_debuff"

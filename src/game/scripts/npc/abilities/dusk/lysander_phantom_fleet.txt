@@ -11,13 +11,12 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityCastAnimation"			"ACT_DOTA_TELEPORT_END"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
 		"FightRecapLevel"				"1"
 		"AnimationPlaybackRate"			"1"
 		"AbilityTextureName"			"custom/lysander_phantom_fleet"
-		"ReduxPerks"                                                           "water"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -89,8 +88,6 @@
 			"soundfile"					"soundevents/game_sounds_heroes/game_sounds_gyrocopter.vsndevts"
 			"particle"					"particles/units/heroes/hero_lysander/phantom_fleet_ship_main.vpcf"
 			"particle"					"particles/units/heroes/hero_lysander/phantom_fleet_cannoball.vpcf"
-
-
 		}
 
 		"OnSpellStart"
@@ -124,5 +121,8 @@
 		"Modifiers"
 		{
 		}
+
+		"ReduxPerks"	"water"
+		"ReduxFlags"	""
 	}
 }

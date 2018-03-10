@@ -32,7 +32,7 @@ local subAbilities = LoadKeyValues('scripts/kv/abilityDeps.kv')
 -- A list of sub abilities to find main abilities connected to them
 local mainAbilities = {}
 for l,m in pairs(subAbilities) do
-	mainAbilities[m]=l
+    mainAbilities[m]=l
 end
 
 -- List of units that we can precache
@@ -154,10 +154,10 @@ end
 
 -- Precaches a skill -- DODGY!
 local alreadyCached = {}
-local customSkill = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
+local customSkills = LoadKeyValues('scripts/npc/npc_abilities_custom.txt')
 function skillManager:precacheSkill(skillName, callback)
     local heroID = skillOwningHero[skillName]
-	local customSkill = customSkill[skillName]
+    local customSkill = customSkills[skillName]
 
     if heroID then
         local heroName = heroIDToName[heroID]
@@ -165,7 +165,9 @@ function skillManager:precacheSkill(skillName, callback)
         if heroName then
             -- Have we already cached this?
             if alreadyCached[heroName] then
-                callback()
+                if callback ~= nil then
+                    callback()
+                end
                 return
             end
             alreadyCached[heroName] = true
@@ -175,31 +177,25 @@ function skillManager:precacheSkill(skillName, callback)
                 -- Precache source2 style
                 PrecacheUnitByNameAsync('npc_precache_'..heroName, function()
                     CreateUnitByName('npc_precache_'..heroName, Vector(-10000, -10000, 0), false, nil, nil, 0)
-
-                    if callback ~= nil then
-                        callback()
-                    end
                 end)
             else
                 print('Failed to precache unit: npc_precache_'..heroName)
-
-                if callback ~= nil then
-                    callback()
-                end
+            end
+            if callback ~= nil then
+                callback()
             end
         end
-	elseif customSkill then
-		if alreadyCached[skillName] then
-			if callback() then
+    end
+    if customSkill then
+        if alreadyCached[skillName] then
+            if callback ~= nil then
                 callback()
-                return
-			else
-				return
-			end
-		end
-		alreadyCached[skillName] = true
-		PrecacheItemByNameAsync(skillName, function()
-			local precache = CreateUnitByName('npc_precache_always', Vector(-10000, -10000, 0), false, nil, nil, 0)
+            end
+            return
+        end
+        alreadyCached[skillName] = true
+        PrecacheItemByNameAsync(skillName, function()
+            local precache = CreateUnitByName('npc_precache_always', Vector(-10000, -10000, 0), false, nil, nil, 0)
             local hAbility = precache:AddAbility(skillName)
             if callback ~= nil then
                callback()
@@ -207,7 +203,9 @@ function skillManager:precacheSkill(skillName, callback)
         end)
     else
         -- Done
-        callback()
+        if callback ~= nil then
+            callback()
+        end
     end
 end
 
@@ -259,7 +257,7 @@ function skillManager:RemoveAllSkills(hero)
     if hero == nil then return end
 
     
-	
+    
     -- Remove all old skills
     for k,v in pairs(currentSkillList[hero]) do
         if hero:HasAbility(v) then
@@ -270,7 +268,7 @@ function skillManager:RemoveAllSkills(hero)
             --        hero:RemoveAbility(v)
             --    end
             --end
-	end
+        end
     end
 
     -- Build the skill list
@@ -656,7 +654,7 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
             end
 
             -- Precache
-            skillManager:precacheSkill(v, function() return 1 end)
+            skillManager:precacheSkill(v)
 
             local multV = self:GetMultiplierSkillName(v)
             if isRealHero then
@@ -807,7 +805,7 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
             abNum = abNum + 1
 
             -- Precache
-            skillManager:precacheSkill(k, function() return 1 end)
+            skillManager:precacheSkill(k)
 
             -- Grab the real name (this was different for mult, disabled for now)
             local realAbility = k
@@ -911,6 +909,16 @@ end
 function skillManager:isUlt(skillName)
     -- Check if it is tagged as an ulty
     if mainAbList[skillName] and mainAbList[skillName].AbilityType and mainAbList[skillName].AbilityType == 'DOTA_ABILITY_TYPE_ULTIMATE' then
+        return true
+    end
+
+    -- Secondary KV check
+    if util:getAbilityKV(skillName, "AbilityType") and string.match(util:getAbilityKV(skillName, "AbilityType"), 'DOTA_ABILITY_TYPE_ULTIMATE') then
+        return true
+    end
+
+    -- Behavior check
+    if util:getAbilityKV(skillName, "AbilityBehavior") and string.match(util:getAbilityKV(skillName, "AbilityBehavior"), 'DOTA_ABILITY_TYPE_ULTIMATE') then
         return true
     end
 

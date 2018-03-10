@@ -1,171 +1,101 @@
-function HealingAttack (keys) 
-	local caster = keys.caster
-	local target = keys.target
-	local ability = keys.ability
-	local attacker = keys.attacker
-	
-	local Heal_Factor = ability:GetSpecialValueFor("Heal_Factor")
-	local Tower_Heal_Factor = ability:GetSpecialValueFor("Tower_Heal_Factor")
-	if caster == attacker then -- only the modifier owner should heal, else enemies would heal 
-		if target:IsBuilding() then
-			local healAmount = caster:GetAttackDamage() * Tower_Heal_Factor
-			target:Heal(healAmount,caster)
-		else
-			local healAmount = caster:GetAttackDamage() * Heal_Factor
-			target:Heal(healAmount,caster)
-		end
-		caster:RemoveModifierByName("modifier_argent_smite_aura")
-		Timers:CreateTimer(function(  )
-			caster:RemoveModifierByName("modifier_argent_smite")
-		end)
-	end
-end
+LinkLuaModifier("modifier_argent_smite_passive", "abilities/nextgeneration/hero_uther/Argent_Smite.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_argent_smite_negate_damage", "abilities/nextgeneration/hero_uther/Argent_Smite.lua", LUA_MODIFIER_MOTION_NONE)
 
---[[function GiveUtherNewHammer(keys) -- HasHammer gets first declared in the game INIT phase and Activating HurlHammer sets it to false, getting the hammer back is true again
-	local caster = keys.caster
-	if caster.HasHammer == true then
-		CosmeticLib:ReplaceWithSlotName( keys.caster, "weapon", 7580 )
-	end
-end
+uther_Argent_Smite = class({})
 
-function GiveUtherOldHammer(keys)
-	local caster = keys.caster
-	if caster.HasHammer == true then
-		CosmeticLib:ReplaceWithSlotName( keys.caster, "weapon", 4246 )
-	end
-end]]
-
-function SetCooldown(keys)
-	local attacker = keys.attacker
-	local target = keys.target
-	local ability = attacker:FindAbilityByName("uther_Argent_Smite")
-
-	if ability and target:GetTeam() == attacker:GetTeam() and target:HasModifier("modifier_specially_deniable") then
-		ability:ApplyDataDrivenModifier(attacker,attacker,"modifier_argent_smite",{duration = -1})
-		ability:StartCooldown(ability:GetSpecialValueFor("Cooldown_Factor")) 
-		if target:IsBuilding() then
-			ability:StartCooldown(ability:GetSpecialValueFor("Cooldown_Factor_Building"))
-		end
-		Timers:CreateTimer(ability:GetSpecialValueFor("Cooldown_Factor"), function()
-			if ability:GetToggleState() == false then
-				ability:ToggleAbility()
-			end
-		end)
-		ability:ToggleAbility()
-	end
-end
-
-
---OrderFilter
-function AllowAlliedAttacks(hUnit,hTarget,iOrderType)
-	if (iOrderType == DOTA_UNIT_ORDER_ATTACK_TARGET) and 
-	hUnit:HasModifier("modifier_argent_smite_passive") and 
-	(hUnit:GetTeamNumber() == hTarget:GetTeamNumber()) then
-		local Argent_Smite = hUnit:FindAbilityByName("uther_Argent_Smite")
-		if Argent_Smite and Argent_Smite:IsCooldownReady() then
-			Argent_Smite:ApplyDataDrivenModifier(hUnit,hUnit,"modifier_argent_smite_aura",{duration = -1}) -- This allows allied attacks
-			Argent_Smite:ApplyDataDrivenModifier(hUnit,hUnit,"modifier_argent_smite",{duration = -1})
-			hUnit.argentSmiteTarget = hTarget -- Storing this to remove the modifier later
+function uther_Argent_Smite:OnToggle()
+	if self:GetToggleState() then
+		self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_argent_smite_passive", {})
+	else
+		local mod = self:GetCaster():FindModifierByNameAndCaster("modifier_argent_smite_passive", self:GetCaster())
+		if mod then
+			self:GetCaster():SetForceAttackTargetAlly(nil)
+			mod:Destroy()
 		end
 	end
 end
 
---OrderFilter
-function CancelOtherAlliedAttacks (hUnit,hTarget,iOrderType)
-	-- When an ally of Uther tries to attack an ally the order gets changed to Move here.
-	if not hTarget then return end
-	if (iOrderType == DOTA_UNIT_ORDER_ATTACK_TARGET) and 
-		not hUnit:HasModifier("modifier_argent_smite_passive") and
-		(hTarget:IsNPC()) and 
-		(hTarget:HasModifier("modifier_specially_deniable")) and
-		(hUnit:GetTeamNumber() == hTarget:GetTeamNumber()) then
+modifier_argent_smite_passive = class({
+	IsHidden = function() return false end,
+	IsPurgable = function() return false end,
 
-		hUnit:MoveToNPC(hTarget) 
-    return false
-  end
-end
-
---OrderFilter
-function StopAllowingAlliedAttacks (hUnit,hTarget,iOrderType)
-	-- If uther does something other than attack an ally we remove all the effects that have something to do with that here.
-	if hUnit:HasModifier("modifier_argent_smite")
-		and ((iOrderType ~= DOTA_UNIT_ORDER_ATTACK_TARGET) or (hUnit:GetTeamNumber() ~= hTarget:GetTeamNumber())) then
-
-		-- hUnit:RemoveModifierByName("modifier_argent_smite")
-		if not hUnit.argentSmiteTarget:IsNull() then
-			if hUnit.argentSmiteTarget:HasModifier("modifier_argent_smite_aura") then
-				hUnit.argentSmiteTarget:RemoveModifierByName("modifier_argent_smite_aura")
+	DeclareFunctions = function() return {MODIFIER_PROPERTY_ATTACK_RANGE_BONUS, MODIFIER_EVENT_ON_ORDER, MODIFIER_EVENT_ON_ATTACK_LANDED, MODIFIER_EVENT_ON_ATTACK_START} end,	
+	GetModifierAttackRangeBonus = function(self) return self.range or 0 end,
+	OnOrder = function(self, keys)
+		if self:GetParent() == keys.unit then
+			self.range = 0
+			if keys.order_type == DOTA_UNIT_ORDER_ATTACK_TARGET then
+				if keys.target:GetTeam() == self:GetParent():GetTeam() then
+					if self:GetAbility():IsCooldownReady() then
+						if (self:GetParent():GetAbsOrigin() - keys.target:GetAbsOrigin()):Length2D() <= 1000 then
+							self:GetParent():SetForceAttackTargetAlly(keys.target)
+							self.range = self:GetParent():IsRangedAttacker() and self:GetAbility():GetSpecialValueFor("Range_Bonus") or 300
+						end
+					end
+				end
 			end
 		end
-	end
-end
+	end,
 
---DamageFilter
-function damageFilterArgentSmite(filterTable) -- Setting the damage uther deals to allies to 0
-	local damageFilterTable = {}
-	local attackerIndex = filterTable["entindex_attacker_const"]
-	if attackerIndex then
-		damageFilterTable.attacker = EntIndexToHScript(attackerIndex)
-	end
-	
-	local victimIndex = filterTable["entindex_victim_const"]
-	if victimIndex then
-		damageFilterTable.victim = EntIndexToHScript(victimIndex)
-	end
+	OnAttackStart = function(self, keys)
+		if self:GetParent() ~= keys.attacker then return end
+		if self:GetParent():GetTeam() ~= keys.target:GetTeam() then return end
 
-	local inflictorIndex = filterTable["entindex_inflictor_const"]
-	if inflictorIndex then
-		damageFilterTable.inflictor = EntIndexToHScript(inflictorIndex)
-	end
+		self:GetParent():SetForceAttackTargetAlly(nil)
+		self.range = 0
+	end,
 
-	local damageType = filterTable["damagetype_const"]
-	local damage = filterTable["damage"]
+	OnAttackLanded = function(self, keys)
+		if not IsServer() then return end
+		if keys.attacker ~= self:GetParent() then return end
+		if keys.target:GetTeam() ~= self:GetParent():GetTeam() then return end
 
-	if damageFilterTable.attacker and damageFilterTable.victim then 
-		if damageFilterTable.attacker:HasModifier("modifier_argent_smite") and damageFilterTable.victim:HasModifier("modifier_specially_deniable") and not damageFilterTable.inflictor then
-			filterTable["damage"] = 0
-			local particle = ParticleManager:CreateParticle("particles/uther/argent_smite.vpcf",PATTACH_ABSORIGIN,damageFilterTable.victim)
-			EmitSoundOn("Hero_Omniknight.Purification",damageFilterTable.victim)
-			ParticleManager:SetParticleControl(particle,0,damageFilterTable.victim:GetAbsOrigin())
-			ParticleManager:SetParticleControl(particle,1,Vector(150, 150, 150))
+		local factor = keys.target:IsBuilding() and self:GetAbility():GetSpecialValueFor("Tower_Heal_Factor") or self:GetAbility():GetSpecialValueFor("Heal_Factor")
+		local heal = keys.attacker:GetAttackDamage() * factor
+
+		keys.target:Heal(heal, self:GetParent())
+
+		self:GetParent():SetForceAttackTargetAlly(nil)
+		self.range = 0
+
+		--make sure they are actually still alive when the projectile hits them
+		if keys.target:IsAlive() and self:GetAbility():IsCooldownReady() then
+			--attack damage hasnt yet been applied, give them a modifier that will negate the damage.
+			keys.target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_argent_smite_negate_damage", {duration = 1})
+
+			--purge any effects applied by this attack
+			keys.target:Purge(true, true, true, true, true)
+
+			--soft dispel
+			keys.target:Purge(false, true, false, false, false)
+
+			EmitSoundOn("Hero_Omniknight.Purification", keys.target)
+
+			local p = ParticleManager:CreateParticle("particles/uther/argent_smite.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.target)
+			ParticleManager:SetParticleControl(p, 0, keys.target:GetAbsOrigin())
+			ParticleManager:SetParticleControl(p, 1, Vector(150, 150, 150))
 		end
-	end
-	return filterTable
-end
+	end,
+})
+
+modifier_argent_smite_negate_damage = class({
+	IsHidden = function() return true end,
+	IsPurgable = function() return false end,
+	DeclareFunctions = function() return {MODIFIER_EVENT_ON_TAKEDAMAGE,} end,
+	--really weird inconsistant damage. the actual damage dealt can be 1 damage off from keys.damage
+	OnTakeDamage = function(self, keys)
+		if self:GetParent() == keys.unit then
+			if self:GetParent():GetTeam() == keys.attacker:GetTeam() then
+				if keys.attacker:HasModifier("modifier_argent_smite_passive") then
+					if self:GetAbility() and self:GetAbility():IsCooldownReady() then
+						self:GetParent():SetHealth( math.ceil(self:GetParent():GetHealth()+keys.damage) )
+						self:GetAbility():StartCooldown(self:GetParent():IsBuilding() and self:GetAbility():GetSpecialValueFor("Cooldown_Factor_Building") or self:GetAbility():GetSpecialValueFor("Cooldown_Factor"))
+					end
+				end
+			end
+		end
+	end,
+})
 
 
---Modifier Gained filter
-function argentSmiteDoNotDebuffAllies(filterTable)
-	local modifierCasterIndex = filterTable["entindex_caster_const"]
-	local modifierCaster = EntIndexToHScript(modifierCasterIndex)
-	local modifierAbilityIndex = filterTable["entindex_ability_const"]
-	if modifierAbilityIndex then
-		local modifierAbility = EntIndexToHScript(modifierAbilityIndex)
-	end
-	local modifierDuration = filterTable["duration"]
-	local modifierTargetIndex =  filterTable["entindex_parent_const"]
-	local modifierTarget = EntIndexToHScript(modifierTargetIndex)
-	local modifierName = filterTable["name_const"]
 
-	local hCaster = modifierCaster
-	local hTarget = modifierTarget
-	local sModifierName = modifierName
-
-
-	local modifierTable = {
-		modifier_sange_buff = true,
-		modifier_sange_debuff = true,
-		modifier_bashed = true,
-		modifier_sange_and_yasha_buff = true,
-		modifier_sange_and_yasha_debuff = true,
-		modifier_item_skadi_slow = true,
-		modifier_silver_edge_debuff = true,
-		modifier_desolator_debuff = true,
-		modifier_item_orb_of_venom_slow = true,
-		modifier_blight_stone_buff = true,
-		modifier_blight_stone_debuff = true,
-	}
-	if hCaster:HasModifier("modifier_argent_smite") and hCaster:GetTeamNumber() == hTarget:GetTeamNumber() and modifierTable[sModifierName] then
-		return false
-	end
-end

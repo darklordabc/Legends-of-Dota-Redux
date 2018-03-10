@@ -1,0 +1,76 @@
+""
+{
+	"item_recipe_book_of_the_keeper"
+	{
+		"BaseClass"						"item_datadriven"
+		"Model"							"models/props_gameplay/recipe.mdl"
+		"AbilityTextureName"			"item_recipe"
+		"ItemCost"						"9300"
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_book_of_the_keeper"
+		"ItemRequirements"
+		{
+			"01"						"item_mystic_staff;item_pers"
+		}
+	}
+
+	"item_book_of_the_keeper"
+	{
+		"BaseClass"						"item_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"			"item_arena/book_of_the_keeper"
+		"ItemShopTags"					"int;regen_mana;hard_to_tag"
+		"ItemQuality"					"epic"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_intellect"		"35"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health_regen"	"18"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_mana_regen"		"225"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"50"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"spell_amp_pct"			"20"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_item_book_of_the_keeper"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"Attributes" 		"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"				"%bonus_intellect"
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"				"%bonus_health_regen"
+					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"				"%bonus_mana_regen"
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"				"%bonus_damage"
+					"MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE"			"%spell_amp_pct"
+				}
+			}
+		}
+	}
+}

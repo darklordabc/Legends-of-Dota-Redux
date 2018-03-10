@@ -6,6 +6,9 @@ function lysander_grapeshot:OnSpellStart()
 	local c = self:GetCaster()
 	local t = self:GetCursorTarget()
 
+	if t:TriggerSpellAbsorb(self) then return end
+	t:TriggerSpellReflect(self)
+
 	if t then
 
 		local base_dmg = self:GetSpecialValueFor("base_damage")
@@ -25,10 +28,8 @@ function lysander_grapeshot:OnSpellStart()
 
 		local cc_mult = self:GetSpecialValueFor("captains_compass_increase")/100
 
-		local bonus = 0 --self:FetchTalent() or 0
-
 		local r = RandomInt(1,100)
-		local crit = self:GetSpecialValueFor("crit") + bonus
+		local crit = self:GetSpecialValueFor("crit")
 
 		local noStuns = self.noStuns or false
 
@@ -66,7 +67,7 @@ function lysander_grapeshot:OnSpellStart()
 
 			local dmg = mult * (c:GetAverageTrueAttackDamage(c)+base_dmg)
 
-			InflictDamage(t,c,dmg,DAMAGE_TYPE_PHYSICAL)
+			InflictDamage(t,c,self,dmg,DAMAGE_TYPE_PHYSICAL)
 
 			if sound2 ~= "" then t:EmitSound(sound2) end
 
@@ -117,7 +118,9 @@ function modifier_grapeshot_scepter:OnAttackLanded(params)
 
 		if hit then
 			local ab = self:GetAbility()
-			local en = FindUnitsInRadius(self:GetParent():GetTeamNumber(), self:GetParent():GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+
+			local en = FindUnitsInRadius(self:GetParent():GetTeam(), self:GetParent():GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
+
 			--local en = FindEnemies(self:GetParent(),self:GetParent():GetAbsOrigin(),radius)
 
 			local enl = #en
@@ -154,7 +157,7 @@ function modifier_grapeshot_scepter:IsHidden()
 	-- end
 end
 
-function InflictDamage(target,attacker,damage,damage_type,flags)
+function InflictDamage(target,attacker,ability,damage,damage_type,flags)
 
 	local flags = flags or 0
 
@@ -164,12 +167,6 @@ function InflictDamage(target,attacker,damage,damage_type,flags)
 	    damage = damage,
 	    damage_type = damage_type,
 	    damage_flags = flags,
-	    ability = self
+	    ability = ability
   	})
-
-  	--print("INFLICT: ","ABILITY: "..self:GetName(),"DAMAGE/TYPE: "..damage.." / "..damage_type)
-  	--if flags ~= 0 then
-  	--	print("FLAGS: "..flags)
-  	--end
-
 end

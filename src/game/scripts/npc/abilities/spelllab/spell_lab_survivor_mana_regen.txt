@@ -18,7 +18,7 @@
         }
         "ReduxFlags"                                                           "mana"
         "ReduxBans"                                                            ""
-        "ReduxPerks"                                                           ""
-        "ReduxCost"                                                            "0"
+        //"ReduxPerks"                                                           ""
+        "ReduxCost"                                                            "60"
     }
 }

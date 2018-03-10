@@ -1,5 +1,19 @@
+//TODO: Reenable AABS items
+//#base "items/angel-arena-black-star/index.txt"
+
 "DOTAAbilities"
 {
+    "item_dummy"
+    {
+        "ID"                            "1998"
+        "BaseClass"                     "item_datadriven"
+        "ItemPurchasable"               "0"
+        "ItemCost"                      "0"
+        "ItemKillable"                  "0"
+        "ItemSellable"                  "0"
+        "AllowedInBackpack"             "1"
+        "IsTempestDoubleClonable"       "0"
+    }
     //=================================================================================================================
     // Dummy Item
     //=================================================================================================================
@@ -482,8 +496,8 @@
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
-        "ItemCost"                      "5775"
-        "AbilityGoldCost"               "5775"
+        "ItemCost"                      "5500"
+        "AbilityGoldCost"               "5500"
         "ItemPurchasable"              "0"
         "ItemShopTags"                  "agi;str;int;hard_to_tag;mana_pool;health_pool;unique"
         "ItemPurchasable"              "0"
@@ -569,7 +583,7 @@
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "desolator_corruption_armor"      "-7"
+                "desolator_corruption_armor"      "-6"
             }
             "03"
             {
@@ -578,12 +592,124 @@
             }
         }
     }
+
+    "item_necronomicon_perk"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                            "item_necronomicon"                                                       // unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastPoint"              "0.0"
+        "AbilityCooldown"               "90.0"
+        "AbilitySharedCooldown"         "necronomicon"
+        "FightRecapLevel"               "1"
+        "ItemPurchasable"              "0"
+
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "50"
+        "ItemCost"                      "0"
+        "ItemShopTags"                  "int;str;hard_to_tag;see_invis"
+        "ItemQuality"                   "rare"
+        "ItemAliases"                   "necronomicon 1"
+        "ItemDeclarations"              "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+        "MaxUpgradeLevel"               "3"
+        "ItemBaseLevel"                 "1"
+
+        "UpgradesItems"                 "item_necronomicon;item_necronomicon_2"
+        "UpgradeRecipe"                 "item_recipe_necronomicon"
+        
+        // Special  
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_intellect"       "15"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_strength"        "8"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "summon_duration"       "50"
+            }           
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "warrior_health_tooltip"    "700"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "warrior_damage_tooltip"    "75"
+            }
+            "06"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "warrior_mana_feedback" "20"
+            }
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "warrior_mana_break_tooltip"    "20"
+            }
+            "08"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "explosion"             "550"
+            }           
+            "09"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "warrior_truesight"     "1000"
+            }
+            "10"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "archer_health_tooltip" "700"
+            }
+            "11"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "archer_damage_tooltip" "60"
+            }
+            "12"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "archer_mana_burn"      "125"
+            }
+            "13"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "archer_aura_radius_tooltip"    "900"
+            }
+            "14"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "archer_move_speed" "5"
+            }
+            "15"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "archer_attack_speed"   "5"
+            }   
+        }
+    }
+
     "item_heart_consumable"
     {
         // General
         //-------------------------------------------------------------------------------------------------------------
         "ID"                            "2114"                                                       
-        "ItemCost"                      "5500"
+        "ItemCost"                      "5200"
         "AbilityGoldCost"               "5200"
         "ItemPurchasable"              "0"
         "AbilityCooldown"               "7.0"
@@ -604,12 +730,12 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "heart_bonus_strength"        "45"
+                "heart_bonus_strength"        "40"
             }
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "heart_bonus_health"          "250"
+                "heart_bonus_health"          "500"
             }
             "03"
             {
@@ -656,7 +782,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "greater_crit_bonus_damage"          "76"
+                "greater_crit_bonus_damage"          "80"
             }
             "02"
             {
@@ -667,6 +793,11 @@
             {
                 "var_type"              "FIELD_INTEGER"
                 "greater_crit_crit_multiplier"       "235"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "greater_crit_crit_multiplier_tooltip"       "135"
             }
         }
     }
@@ -682,7 +813,7 @@
         "BaseClass"                     "item_lua"
         "ScriptFile"                    "abilities/items/octarine_core.lua"
         // This is a short-gap measure TODO: Make a better fix
-        "IsTempestDoubleClonable"       "0"
+        "IsTempestDoubleClonable"       "1"
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
@@ -754,35 +885,68 @@
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
-        "ItemCost"                      "5200"
-        "AbilityGoldCost"               "5200"
+        "ItemCost"                      "4200"
+        "AbilityGoldCost"               "4200"
         "ItemPurchasable"              "0"
         "AbilitySpecial"
         {
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "monkey_king_bar_bonus_damage"          "66"
+                "monkey_king_bar_bonus_attack_speed"          "60"
             }
             "02"
             {
                 "var_type"              "FIELD_INTEGER"
-                "monkey_king_bar_bash_chance"           "35"
+                "monkey_king_bar_bonus_chance"           "75"
             }
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "monkey_king_bar_bash_damage"           "160"
+                "monkey_king_bar_bonus_chance_damage"           "60"
             }
-            "04"
-            {
-                "var_type"              "FIELD_FLOAT"
-                "monkey_king_bar_bash_stun"             "0.01"
-            }
+            
         }
     }
 
+    "item_aether_lens_consumable"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2232"                                                       // unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityTextureName"            "item_aether_lens"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "abilities/items/aether_lens.lua"
 
+        // Item Info
+        //-------------------------------------------------------------------------------------------------------------
+        "ItemCost"                      "2350"
+        "AbilityGoldCost"               "2350"
+        "ItemPurchasable"              "0"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "aether_lens_bonus_mana"            "450"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "aether_lens_bonus_mana_regen"      "1.25"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "aether_lens_cast_range_bonus"          "250"
+            }
+            
+        }
+    }
     "item_devDagon"
     {
         // General
@@ -1198,7 +1362,6 @@
         "BaseClass"                     "item_lua"
         "AbilityTextureName"            "custom/item_new_ability_bonus"
         "ScriptFile"                    "abilities/items/gold_bonus"
-        "AbilityCooldown"               "60"
         "AbilitySharedCooldown"         "bonus"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "Model"                         "models/props_gameplay/treasure_chest001.vmdl"
@@ -1223,7 +1386,6 @@
         "BaseClass"                     "item_lua"
         "AbilityTextureName"            "custom/item_new_global_ability_bonus"
         "ScriptFile"                    "abilities/items/gold_bonus"
-        "AbilityCooldown"               "60"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "Model"                         "models/props_gameplay/treasure_chest001.vmdl"
         "ItemKillable"                  "0"
@@ -1248,7 +1410,6 @@
         "BaseClass"                     "item_lua"
         "AbilityTextureName"            "custom/item_balanced_build_bonus"
         "ScriptFile"                    "abilities/items/gold_bonus"
-        "AbilityCooldown"               "60"
         "AbilitySharedCooldown"         "bonus"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "Model"                         "models/props_gameplay/treasure_chest001.vmdl"
@@ -1264,5 +1425,212 @@
         "ItemPermanent"                 "0"
         "ItemInitialCharges"            "1"
         "ItemSellable"                  "0"
+    }
+
+    "item_vladimir_consumable"
+    {
+        "ID"                            "2081"
+        "ScriptFile"                    "abilities/items/vladimir.lua"
+        "BaseClass"                     "item_lua"
+        "AbilityTextureName"            "item_vladmir"
+        "AbilityCastRange"              "900"
+        "ItemCost"                      "2250"
+
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityGoldCost"               "2250"
+        "ItemPurchasable"              "0"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_all_stats"       "2"
+            }   
+            "02"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "hp_regen"              "2.5"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "mana_regen_aura"       "0.65"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "armor_aura"            "4"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "damage_aura"           "15"
+            }           
+            "06"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "vampiric_aura"         "15"
+            }
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "vampiric_aura_ranged"  "10"
+            }
+            "08"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "aura_radius"           "900"
+            }           
+        }
+    }
+
+    "item_echo_sabre_consumable"
+    {
+        "ID"                            "2252"
+        "ScriptFile"                    "abilities/items/echo_sabre.lua"
+        "BaseClass"                     "item_lua"
+        "AbilityTextureName"            "item_echo_sabre"
+        "FightRecapLevel"               "1"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+        "AbilityCooldown"               "5.0"
+        "ItemCost"                      "2650"
+
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityGoldCost"               "2650"
+        "ItemPurchasable"              "0"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_intellect"       "10"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_strength"        "10"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_attack_speed"    "10"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_damage"          "15"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "bonus_mana_regen"      "0.75"
+            }
+            "06"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "proc_damage"           "0"
+            }
+            "07"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "movement_slow"         "100"
+            }
+            "08"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "attack_speed_slow"         "0"
+            }
+            "09"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "slow_duration"         "0.7"
+            }
+        }
+    }
+
+    "item_aeon_disk_consumable"
+    {
+        "ID"                            "2256"
+        "ScriptFile"                    "abilities/items/aeon_disk.lua"
+        "BaseClass"                     "item_lua"
+        "AbilityTextureName"            "item_aeon_disk"
+        "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+        "AbilityCooldown"               "90.0"
+        "ItemCost"                      "3350"
+
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityGoldCost"               "3350"
+        "ItemPurchasable"              "0"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_health"          "250"
+            }           
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_mana"            "250"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "health_threshold_pct"  "70"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "status_resistance"     "25"
+            }
+            "05"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "buff_duration"         "2.5"
+            }
+        }
+    }
+
+    "item_kaya_consumable"
+    {
+        "ID"                            "2259"
+        "ScriptFile"                    "abilities/items/kaya.lua"
+        "AbilityTextureName"            "item_kaya"
+        "BaseClass"                     "item_lua"
+        "ItemCost"                      "1950"
+
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityGoldCost"               "1950"
+        "ItemPurchasable"              "0"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "bonus_intellect_kaya"       "16"
+            }           
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "spell_amp"             "10"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "manacost_reduction"    "10"
+            }
+        }
     }
 }

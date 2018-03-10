@@ -19,18 +19,38 @@ Legends of Dota Redux
 ### Discord Chat Server ###
  - Click [here](https://discordapp.com/channels/242335821426851842/242335821426851842).
 
+### Ingame Comments Display ###
+ - Click [here](http://ec2-52-59-238-84.eu-central-1.compute.amazonaws.com/wordpress/#messages).
+
+### How to play Singple Player hosted on your machine ###
+ - For players that have poor ping to dedicated servers, you may want to play locally (hosted on your own computer) todo this use this command in the console to launch a local game "dota_launch_custom_game 786348190 custom_bot".
+
 ### Requirements to Compile and Run ###
  - Dota 2 Workshop Tools
  - Nodejs
 
 ### How to extract from Github to Steam ###
- - Download the Git repository from either using the manual option from website or from using Source (recommended method)
- 
+- Install dota 2 workshop tools if you haven't already.
+- Install [Node JS](https://nodejs.org/en/)
+- Setup Github account.
+- Use some git client to clone the redux repository (GitKraken, SourceTree. etc.)
 ![Manual Method](http://i.imgur.com/wUGrQRg.png)
-
- - Unzip the file, and go to `\script_generator folder` and open `settings_example.json`. The `dotaDir` setting is not necesarry to be filled out because the script finds your dota folder via registry entries. The `addonName` is the name of your mod folder you want to create, THERE MUST BE NO FOLDER WITH THAT NAME THERE ALREADY, if there is a folder existing the compiling will fail. 
- - Once you have set an `addonName`, use `compile.bat`, and it should compile all the necessary files into a dota folder, these files will also be mklinked to the steam folder counterparts. 
- - These two folders should now exist in steam `SteamApps\common\dota 2 beta\game\dota_addons\<addonName>` and `SteamApps\common\dota 2 beta\content\dota_addons\<addonName>`
+- After cloning the repository to your computer edit your dota 2 path in `script_generator/settings_example.json`, set your `addonName` to something unique and rename the file to `settings.json`:
+```
+{
+    "addonName" : "mycopyof_redux",
+    "scriptDir":    "SRC/",
+    "scriptDirOut": "BIN/",
+    "dotaDir":      "C:/Program Files (x86)/Steam/steamapps/common/dota 2 beta/",
+    "customDir":    "CUSTOM/",
+    "noPermute":    true
+}
+```
+- Run `compile.bat`
+- Create shortcut to run the workshop tools with your cloned repo. Set the shortcut target to something like this:
+```
+"C:\Program Files (x86)\Steam\steamapps\common\dota 2 beta\game\bin\win64\dota2.exe" -addon dr_redux -tools -steam  -console -vconsole
+```
 
 ### Running Dota 2 Redux ###
  - Start the Dota 2 Mod Tools by Right-Clicking on Dota 2 and clicking "Launch Dota 2 - Tools"
@@ -85,4 +105,5 @@ Emoji | Represents |
 | [<img src="https://avatars2.githubusercontent.com/u/3754510?v=3&s=400" width="100px;"/><br /><sub>ash47</sub>](https://github.com/ash47)<br />🌟| [<img src="https://avatars2.githubusercontent.com/u/16277198?v=3&u=74f7571b7e976b4e58cf57ffdc9f2b375d1b3634&s=400" width="100px;"/><br /><sub>darklordabc</sub>](https://github.com/darklordabc)<br />😈 | [<img src="https://avatars3.githubusercontent.com/u/10674957?v=3&s=400" width="100px;"/><br /><sub>SwordBacon</sub>](https://github.com/SwordBacon)<br /> 👑✨🍭🌴😜| [<img src="https://avatars3.githubusercontent.com/u/1160901?v=3&s=400" width="100px;"/><br /><sub>TideSofDarK</sub>](https://github.com/TideSofDarK)<br /> 👑✨🍭🌴🚀🚩| [<img src="https://avatars2.githubusercontent.com/u/8745863?v=3&s=400" width="100px;"/><br /><sub>lcd1232</sub>](https://github.com/lcd1232)<br /> 👑👀 🔧 | [<img src="https://avatars2.githubusercontent.com/u/13403439?v=3&s=400" width="100px;"/><br /><sub>K1llMan</sub>](https://github.com/K1llMan)<br /> 👑🚀 | [<img src="https://avatars2.githubusercontent.com/u/9636071?v=3&s=400" width="100px;"/><br /><sub>Myrl</sub>](https://github.com/Myrl)<br />👑🚩🍭 |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | [<img src="https://avatars3.githubusercontent.com/u/10646605?v=3&s=400" width="100px;"/><br /><sub>James Garbagnati</sub>](https://github.com/CarpeSwag)<br /> 👑✨🚀| [<img src="https://avatars0.githubusercontent.com/u/3296600?v=3&s=400" width="100px;"/><br /><sub>kernelpicnic</sub>](https://github.com/kernel-picnic)<br /> 👑🚀 | [<img src="https://avatars3.githubusercontent.com/u/11750369?v=3&s=400" width="100px;"/><br /><sub>ark120202</sub>](https://github.com/ark120202)<br />✨🚀🚩 | [<img src="https://avatars0.githubusercontent.com/u/11517760?v=3&s=400" width="100px;"/><br /><sub>Wouterz90</sub>](https://github.com/Wouterz90)<br /> 👑✨🍭🌴|[<img src="https://avatars3.githubusercontent.com/u/19353059?v=3&s=400" width="100px;"/><br /><sub>Yahnich</sub>](https://github.com/Yahnich)<br /> 👑✨🍭🌴|[<img src="https://avatars1.githubusercontent.com/u/25548968?v=3&s=400" width="100px;"/><br /><sub>OtsoTurpeinen</sub>](https://github.com/OtsoTurpeinen)<br /> 👑✨🍭🚣|[<img src="https://avatars2.githubusercontent.com/u/12683859?v=3&s=400" width="100px;"/><br /><sub>jhqz103</sub>](https://github.com/jhqz103)<br /> 🈷|
+| [<img src="https://avatars0.githubusercontent.com/u/18477016?s=400&v=4" width="100px;"/><br /><sub>DankBudd</sub>](https://github.com/DankBudd)<br /> 👑✨| 
 <!-- ALL-CONTRIBUTORS-LIST:END -->

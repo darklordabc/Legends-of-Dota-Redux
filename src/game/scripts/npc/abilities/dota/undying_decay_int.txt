@@ -86,7 +86,7 @@
                     "Center"                                       "POINT"
                     "Radius"                                       "%radius"
                     "Teams"                                        "DOTA_UNIT_TARGET_TEAM_ENEMY"
-                    "Types"                                        "DOTA_UNIT_TARGET_HERO"
+                    "Types"                                        "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
                 }
                 "Action"
                 {

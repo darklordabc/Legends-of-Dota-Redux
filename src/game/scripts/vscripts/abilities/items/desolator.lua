@@ -125,8 +125,13 @@ modifier_item_desolator_consumable_corruption = class({})
 function modifier_item_desolator_consumable_corruption:DeclareFunctions()
   local funcs = {
     MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+    MODIFIER_PROPERTY_PROJECTILE_NAME, 
   }
   return funcs
+end
+
+function modifier_item_desolator_consumable_corruption:GetModifierProjectileName()
+  return "particles/items_fx/desolator_projectile.vpcf"
 end
 
 function modifier_item_desolator_consumable_corruption:IsDebuff()

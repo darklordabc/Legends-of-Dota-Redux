@@ -1,0 +1,28 @@
+"DOTAAbilities"
+{
+    "spell_lab_survivor_spell_vamp"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/spell_lab/survivor/spell_vamp.lua"
+        "AbilityTextureName"                                                   "custom/survival_spell_vamp"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "HasScepterUpgrade"                                                    "0"
+    		"precache"
+    		{
+          "particle"    "particles/items3_fx/octarine_core_lifesteal.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+        				"bonus"						"2.0 4.0 6.0 8.0"
+            }
+        }
+        "ReduxFlags"                                                           "tank"
+        "ReduxBans"                                                            ""
+        //"ReduxPerks"                                                           ""
+        "ReduxCost"                                                            "60"
+    }
+}
