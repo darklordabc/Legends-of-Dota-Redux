@@ -24,7 +24,7 @@
         "ReduxFlags"                                                           ""
         "ReduxBans"                                                            ""
         //"ReduxPerks"                                                           ""
-        "ReduxCost"                                                            "120"
+        "ReduxCost"                                                            "60"
     }
 
     "spell_lab_survivor_spell_boost_op"

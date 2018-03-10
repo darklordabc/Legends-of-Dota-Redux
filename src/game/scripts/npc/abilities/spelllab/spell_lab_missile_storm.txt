@@ -1,0 +1,39 @@
+"DOTAAbilities"
+{
+    "spell_lab_missile_storm"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/spell_lab/storm/missile_storm.lua"
+        "AbilityTextureName"                                                   "custom/spell_lab_missile_storm"
+        "AbilityCooldown"                                                      "16"
+        "AbilityManaCost"                                                      "100 120 140 160"
+        "AbilityCastRange"                                                     "750"
+        "AbilityCastPoint"                                                     "0.21"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "HasScepterUpgrade"                                                    "0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+      				"var_type"				"FIELD_INTEGER"
+      				"damage"	"50 125 200 275"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+        				"duration"						"0.75"
+            }
+        }
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/spell_lab_sounds.vsndevts"
+            "particle"                                                     "particles/spell_lab/storm_missile.vpcf"
+        }
+        "ReduxFlags"                                                           ""
+        //"ReduxBans"                                                            ""
+        //"ReduxPerks"                                                           "support | mobility"
+        "ReduxCost"                                                            "40"
+		     "AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+    }
+}

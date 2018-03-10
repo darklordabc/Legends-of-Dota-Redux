@@ -17242,4 +17242,14 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
     "DOTA_Tooltip_ability_spell_lab_one_with_nothing"                                  "One With Nothing"
     "DOTA_Tooltip_ability_spell_lab_one_with_nothing_Description"                      "Instantly spend your entire mana pool."
     "DOTA_Tooltip_ability_spell_lab_one_with_nothing_Lore"								"When nothing remains, everything is equally possible."
+	
+	
+    "DOTA_Tooltip_ability_spell_lab_missile_storm"                                  "Missile Storm"
+    "DOTA_Tooltip_ability_spell_lab_missile_storm_Description"                      "Fires a magic missile at an enemy unit, stunning and dealing damage. This stun stacks with itself.\n\n<h1><font color=\'#7072EA\'>Storm</font></h1>When you cast ability with <font color='#7072EA'>Storm</font> it is cast one additional time for each ability cast in last three seconds. Abilities with zero cooldown are ignored."
+    "DOTA_Tooltip_ability_spell_lab_missile_storm_damage"                                  "DAMAGE:"
+    "DOTA_Tooltip_ability_spell_lab_missile_storm_duration"                                  "STUN DURATION:"
+    "DOTA_Tooltip_ability_spell_lab_missile_storm_Lore"								"A simple Skywrath technique, honed beyond mere Magic Missile."
+	
+	"DOTA_Tooltip_spell_lab_storm_modifier"	"Storm"
+	"DOTA_Tooltip_spell_lab_storm_modifier_Description"	"Spells cast in last three seconds."
 }
