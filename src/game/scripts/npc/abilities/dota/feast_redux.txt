@@ -1,0 +1,48 @@
+"DOTAAbilities"
+{
+    "life_stealer_feast_melee"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                            "life_stealer_feast"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityTextureName"            "custom/life_stealer_feast_melee"
+        "ReduxFlags"                                                           "attack_modifier | underpowered"
+        "ReduxPerks"                                                           "attack_modifier"
+        "ReduxCost"                                                            "30"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "hp_leech_percent"      "4.5 5.5 6.5 7.5"
+            }
+        }
+    }
+
+    "life_stealer_feast_ranged"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                            "life_stealer_feast"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityTextureName"            "custom/life_stealer_feast_melee"
+
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_FLOAT"
+                "hp_leech_percent"      "2.25 2.75 3.25 3.75"
+            }
+        }
+    }
+}

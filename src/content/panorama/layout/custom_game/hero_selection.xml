@@ -1,0 +1,14 @@
+<root>
+    <styles>
+        <include src="file://{resources}/styles/custom_game/hero_selection.css" />
+    </styles>
+
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/hero_selection.js" />
+    </scripts>
+
+    <Panel hittest="False">
+    	
+<!--         <Button id="spawn" onactivate="onSpawnButton()"><Label id="loadingLabel" text="Loading..." /></Button> -->
+    </Panel>
+</root>

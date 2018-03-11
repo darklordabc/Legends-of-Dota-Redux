@@ -1,0 +1,55 @@
+"DOTAAbilities"
+{
+    "imba_tower_plasma_field"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "custom/imba_tower_plasma_field"
+        "MaxLevel"                                                             "3"
+        "AbilitySharedWithTeammates"                                           "1"
+        "AbilityCastRange"                                                     "800 1000 1200"
+        "AbilityCooldown"                                                      "15"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "precache"
+        {
+            "soundfile"                                                    "sounds/weapons/hero/razor/plasma_field.vsnd"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "plasma_radius"                                        "700 800 900"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "plasma_damage_min"                                    "100 200 300"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "plasma_damage_max"                                    "200 400 600"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_tower_plasma_field"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "ThinkInterval"                                        "0.5"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/tower_abilities.lua"
+                        "Function"                             "PlasmaField"
+                    }
+                }
+            }
+        }
+        "ReduxCost"                                                            "120"
+        "ReduxFlags"                                                           ""
+    }
+}

@@ -1,0 +1,41 @@
+"DOTAAbilities"
+{
+    "angel_arena_tome_lvlup_op"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "ID"                                                                   "1192"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityCooldown"                                                      "30"
+        "AbilityGoldCost"                                                      "250 375 500"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "MaxLevel"                                                             "3"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO"
+        "AbilityTextureName"                                                   "custom/tome_lvlup_op"
+        "AbilityCastPoint"                                                     "0.0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "exp"                                                  "50 75 100"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "gold_cost_toolip"                                     "250 375 500"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "Target"                                               "CASTER"
+                "ScriptFile"                                           "abilities/angel_arena_reborn/tome.lua"
+                "Function"                                             "tome_levelup"
+            }
+        }
+        "ReduxCost"                                                            "120"
+        "ReduxFlags"                                                           ""
+    }
+}

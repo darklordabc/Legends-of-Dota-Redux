@@ -1,0 +1,16 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/team_switch.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/team_switch.js" />
+	</scripts>
+	<Panel hittest="false" class="TeamSwitchRoot">
+        <Panel id="OffsetHack">
+            <Button id="TeamSwitch_Button" onactivate="TeamSwitchButton()" onmouseover="TeamSwitchOnHover()" onmouseout="DOTAHideTextTooltip()"> 
+                <Image src="file://{images}/custom_game/switch.png" id="TeamSwitch_Icon" scaling="stretch-to-fit-preserve-aspect" />
+                <Label id="TeamSwitch_ButtonTitle" text="#teamSwitch_title" class="TeamSwitchButtonFont" />
+            </Button>
+        </Panel>
+	</Panel>
+</root>

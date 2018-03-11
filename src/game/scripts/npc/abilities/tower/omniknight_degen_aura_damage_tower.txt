@@ -1,0 +1,103 @@
+"DOTAAbilities"
+{
+    "omniknight_degen_aura_damage_tower"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "MaxLevel"                                                             "3"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityTextureName"                                                   "custom/omniknight_degen_aura_damage_tower"
+        "AbilityCastRange"                                                     "1000"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "1000"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "stack_rate"                                           "1.0"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "sticky_time"                                          "5"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "stack_reduction_pct"                                  "1 2 3"
+            }
+        }
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_omniknight/omniknight_degen_aura_debuff.vpcf"
+        }
+        "OnUpgrade"
+        {
+            "RemoveModifier"
+            {
+                "ModifierName"                                         "modifier_imba_degen_aura_attack"
+                "Target"                                               "CASTER"
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"                                         "modifier_imba_degen_aura_attack"
+                "Target"                                               "CASTER"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_degen_aura_attack"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "Aura"                                                 "modifier_imba_degen_aura_effect_attack"
+                "Aura_Radius"                                          "%radius"
+                "Aura_Teams"                                           "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                "Aura_Types"                                           "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                "Aura_Flags"                                           "DOTA_UNIT_TARGET_FLAG_NONE"
+            }
+            "modifier_imba_degen_aura_effect_attack"
+            {
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "1"
+                "IsHidden"                                             "1"
+                "EffectName"                                           "particles/units/heroes/hero_omniknight/omniknight_degen_aura_debuff.vpcf"
+                "EffectAttachType"                                     "follow_origin"
+                "Duration"                                             "%sticky_time"
+                "ThinkInterval"                                        "%stack_rate"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/hero_omniknight.lua"
+                        "Function"                             "DegenAura"
+                        "modifier_stacks"                      "modifier_imba_degen_aura_stacks_attack"
+                    }
+                }
+            }
+            "modifier_imba_degen_aura_stacks_attack"
+            {
+                "IsDebuff"                                             "1"
+                "IsHidden"                                             "0"
+                "IsPurgable"                                           "1"
+                "Duration"                                             "%sticky_time"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"     "-1"
+                }
+            }
+        }
+        "ReduxCost"                                                            "120"
+        "ReduxFlags"                                                           ""
+        "ReduxPerks"    "aura"
+    }
+}

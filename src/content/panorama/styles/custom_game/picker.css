@@ -1,0 +1,124 @@
+Label {
+    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+}
+
+.pickerRoot
+{
+    align: right center;
+
+    border: 1px solid #333333;
+    border-radius: 4px;
+
+    background-color: #222222f5;
+    box-shadow: -2px -2px 4px 4px #000000;
+
+    flow-children: down;
+}
+
+.pickerRoot.horizontal {
+    flow-children: right;  
+}
+
+/*  Slider  */
+#sliderArea {
+    width: 100%;
+    height: fit-children;
+
+    flow-children: right;
+}
+
+#sliderArea.vertical {
+    height: 100%;
+    width: fit-children;
+
+    flow-children: down;
+} 
+
+.slider {
+    width: 100%;
+    height: fit-children;
+
+    overflow: scroll squish;
+    flow-children: right;
+}
+
+.vertical .slider {
+    height: 100%;
+    width: fit-children;
+
+    overflow: squish scroll;
+    flow-children: down;
+}
+
+#pickerArea {
+    width: fill-parent-flow(1);
+    height: fill-parent-flow(1);
+
+    background-color: #333333f5;
+
+    padding: 4px;
+    overflow: squish scroll;
+    flow-children: down;
+}
+
+/*  Category    */
+.category {
+    width: 100%;
+
+    margin: 4px;
+    flow-children: down;
+}
+
+.category Label {
+    margin: 4px;
+    font-size: 24px;
+
+    color: #939da0;
+}
+
+.category #categoryContent {
+    flow-children: right-wrap;
+}
+
+.categoryIcon {
+    width: 40px;
+    height: 40px;
+}
+
+.categoryIcon Image {
+    width: 100%;
+    height: 100%;
+
+    padding: 4px;
+
+    wash-color: #939da0;
+
+    transition-property: wash-color;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-in-out;    
+}
+
+.categoryIcon.active {
+    background-color: #333333f5;
+}
+
+.categoryIcon.active Image,
+.categoryIcon:hover Image {
+    wash-color: white;
+}
+
+/*  Ability     */
+.abilityContainer {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 4px;
+
+    margin: 4px;
+}
+
+/*  Tooltip */
+.tooltip {
+    font-size: 24px;
+    color: red;
+}

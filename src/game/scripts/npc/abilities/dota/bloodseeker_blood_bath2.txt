@@ -1,0 +1,34 @@
+"DOTAAbilities"
+{
+    "bloodseeker_blood_bath2"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/bloodseeker_blood_bath"
+        "AbilityTextureName"                                                   "custom/bloodbath_two"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "precache"
+        {
+            "particle"                                                     "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodbath.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "heal_radius"                                          "325"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "hero_max_hp_heal"                                     "10 20 30 40"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "non_hero_max_hp_heal"                                 "10 15 20 25"
+            }
+        }
+        "ReduxFlags"                                                           "dota_custom"
+        "ReduxCost"                                                            "80"
+    }
+}

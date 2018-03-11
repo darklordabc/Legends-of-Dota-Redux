@@ -1,0 +1,118 @@
+@keyframes 'lodQuickHighlight' {
+    0% {
+        box-shadow: #00bbFFFF 0px 0px 1px 0px;
+    }
+    50% {
+        box-shadow: #00bbFFFF 0px 0px 8px 0px;
+    }
+    100% {
+        box-shadow: #00bbFFFF 0px 0px 1px 0px;
+    }
+}
+
+.heroRoot {
+    width: 90px;
+    height: width-percentage(125%);
+
+    margin: -20px -37px -13px 0px;
+    clip: rect(0%, 75%, 100%, 25%);
+
+    transform-origin: 50% 50%;
+    z-index: 0;
+}
+
+/*.heroRoot .should_hide_this_hero {
+
+}*/
+
+.AspectRatio4x3 .heroRoot {
+    width: 77px;
+    margin: -13px -30px -13px 0px;
+}
+
+.AspectRatio5x4 .heroRoot {
+    width: 70px;
+    margin: -13px -30px -13px 0px;
+}
+
+.AspectRatio5x4 .heroRoot Label {
+   font-size: 15px;
+}
+
+.AspectRatio16x10 .heroRoot {
+    width: 93px;
+    margin: -18px -37px -18px 0px;
+}
+
+.heroRoot DOTAHeroImage,
+.heroRoot DOTAHeroMovie {
+    width: 70%;
+    height: 70%;
+
+    align: center center;
+
+    transition-property: opacity, width, height;
+    transition-duration: 0.25s;
+}
+
+.unique_heroes_mode .heroRoot.takenHero DOTAHeroImage,
+.unique_heroes_mode .heroRoot.takenHero DOTAHeroMovie {
+    opacity: 0.2;
+    saturation: 0.0;
+    wash-color: #ffff00ff;
+}
+
+.heroRoot.takenHero.should_hide_this_hero DOTAHeroImage,
+.heroRoot.takenHero.should_hide_this_hero DOTAHeroMovie,
+.heroRoot.should_hide_this_hero DOTAHeroImage,
+.heroRoot.should_hide_this_hero DOTAHeroMovie {
+    opacity: 0.2;
+    saturation: 0.0;
+    wash-color: #777777aa;
+}
+
+.heroRoot.banned DOTAHeroImage,
+.heroRoot.banned DOTAHeroMovie {
+    opacity: 0.2;
+    saturation: 0.0;
+    wash-color: #ff0000ff;
+}
+
+.heroRoot DOTAHeroMovie {
+    opacity: 0;
+}
+
+#heroName {
+/*    clip: rect(0%, 100%, 120%, 0%);*/
+    width: 100%;
+
+    /*line-height: 10px;*/
+
+    vertical-align: bottom;
+    text-align: center;
+
+    background-color: #111111cc;
+    visibility: collapse;
+}
+
+/* Hover handlers */
+.heroRoot:hover {
+    clip: rect(0%, 100%, 100%, 0%);
+    z-index: 10;
+}
+
+.heroRoot:hover DOTAHeroMovie {
+    width: 100%;
+    height: 100%;
+
+    opacity: 1;
+}
+
+.heroRoot:hover DOTAHeroImage {
+    width: 100%;
+    opacity: 0;
+}
+
+.heroRoot:hover #heroName {
+    visibility: visible;
+}

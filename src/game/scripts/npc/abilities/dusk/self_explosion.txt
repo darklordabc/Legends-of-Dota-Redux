@@ -1,0 +1,154 @@
+"DOTAAbilities"
+{
+	"self_explosion"
+	{
+		"AbilityBehavior"													  "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"BaseClass"															"ability_datadriven"
+		"AbilityTextureName"												   "custom/holdout_blade_fury"
+		"AbilityCastRange"													 "1000"
+		"AbilityCastPoint"													 "0.0"
+		"AbilityCooldown"													  "10.0"
+		"AbilityChannelTime"												   "4.0"
+		"AbilityUnitDamageType"												"DAMAGE_TYPE_PURE"
+		"AbilityCastAnimation"												 "ACT_DOTA_DISABLED"
+		"AbilityDamage"														"400 600 800 1000"
+		"precache"
+		{
+			"particle"													 "particles/econ/generic/generic_aoe_explosion_sphere_1/generic_aoe_explosion_sphere_1.vpcf"
+			"soundfile"													"soundevents/game_sounds_heroes/game_sounds_gyrocopter.vsndevts"
+		}
+		"AbilityManaCost"													  "300"
+		"SideShop"															 "1"
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"											   "CASTER"
+				"ModifierName"										 "modifier_channel_start"
+			}
+			"FireSound"
+			{
+				"EffectName"										   "Hero_Gyrocopter.CallDown.Fire"
+				"Target"											   "CASTER"
+			}
+		}
+		"OnChannelSucceeded"
+		{
+			"RemoveModifier"
+			{
+				"Target"											   "CASTER"
+				"ModifierName"										 "modifier_channel_start"
+			}
+			"AttachEffect"
+			{
+				"EffectName"										   "particles/econ/generic/generic_aoe_explosion_sphere_1/generic_aoe_explosion_sphere_1.vpcf"
+				"EffectAttachType"									 "follow_origin"
+				"EffectRadius"										 "%radius"
+				"EffectDurationScale"								  "1"
+				"EffectLifeDurationScale"							  "1"
+				"EffectColorA"										 "255 0 0"
+				"EffectColorB"										 "255 0 0"
+				"Target"											   "CASTER"
+			}
+			"Damage"
+			{
+				"Type"												 "DAMAGE_TYPE_PURE"
+				"Damage"											   "%damage"
+				"Target"
+				{
+					"Center"									   "CASTER"
+					"Radius"									   "%radius"
+					"Teams"										"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types"										"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				}
+			}
+			"Knockback"
+			{
+				"Center"											   "CASTER"
+				"Target"
+				{
+					"Center"									   "CASTER"
+					"Radius"									   "%radius"
+					"Teams"										"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				}
+				"Duration"											 "%duration"
+				"Distance"											 "%distance"
+				"Height"											   "%height"
+			}
+			"FireSound"
+			{
+				"EffectName"										   "Hero_Gyrocopter.CallDown.Damage"
+				"Target"											   "CASTER"
+			}
+		}
+		"OnChannelFinish"
+		{
+			"RemoveModifier"
+			{
+				"Target"											   "CASTER"
+				"ModifierName"										 "modifier_channel_start"
+			}
+		}
+		"OnChannelInterrupted"
+		{
+			"RemoveModifier"
+			{
+				"Target"											   "CASTER"
+				"ModifierName"										 "modifier_channel_start"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_channel_start"
+			{
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"IsHidden"							 "1"
+						"EffectName"						   "particles/units/heroes/hero_gyrocopter/gyro_calldown_marker_c.vpcf"
+						"EffectAttachType"					 "follow_origin"
+						"Target"							   "CASTER"
+						"EffectRadius"						 "%radius"
+						"EffectColorA"						 "255 0 0"
+						"EffectColorB"						 "255 0 0"
+						"ControlPoints"
+						{
+							"00"						   "50 100 5"
+						}
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"											 "FIELD_FLOAT"
+				"duration"											 "0.5"
+			}
+			"02"
+			{
+				"var_type"											 "FIELD_INTEGER"
+				"damage"											   "400 600 800 1000"
+			}
+			"03"
+			{
+				"var_type"											 "FIELD_INTEGER"
+				"radius"											   "550 550 600 650"
+			}
+			"04"
+			{
+				"var_type"											 "FIELD_INTEGER"
+				"distance"											 "400 500 600 700"
+			}
+			"05"
+			{
+				"var_type"											 "FIELD_INTEGER"
+				"height"											   "100 200 300 400"
+			}
+		}
+		"ReduxBans"															"spell_lab_symbiotic"
+		"ReduxPerks"														   "scientific | trap | explosive"
+	}
+}

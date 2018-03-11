@@ -1,0 +1,36 @@
+<root>
+    <styles>
+        <include src="file://{resources}/styles/custom_game/game_setup/game_setup.css" />
+    </styles>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/team_player.js" />
+    </scripts>
+    <Panel class="teamPlayerContainer no_hero_selected">
+        <Panel class="playerAvatarImagePanel">
+            <Panel class="lodTopAvatarPanel">
+                <DOTAAvatarImage id="playerAvatar" />
+                <Label class="lodPlayerReadyText" text="Ready" />
+            </Panel>
+            <Panel id="playerHeroImageContainer">
+                <DOTAHeroImage id="playerHeroImage" class="playerHeroImageTop" src="file://{images}/heroes/npc_dota_hero_default.png" />
+                <Image id="playerNoHeroSelected" class="playerHeroImageTop" src="file://{images}/heroes/npc_dota_hero_default.png" />
+                <Image id="playerAttribute" src="file://{images}/primary_attribute_icons/primary_attribute_icon_strength.psd" class="doNotShow" />
+                <Label class="lodPlayerReadyText" text="Ready" />
+            </Panel>
+
+            <Panel class="playerNameContainer">
+                <Label id="playerIsHostPanel" />
+                <Label id="playerName" text="PLAYER_NAME" />
+            </Panel>
+        </Panel>
+        <Panel id="playerSkillContainer">
+            <DOTAAbilityImage id="playerSkill1" abilityname="life_stealer_empty_1" onactivate="onPlayerAbilityClicked(1)" />
+            <DOTAAbilityImage id="playerSkill2" abilityname="life_stealer_empty_1" onactivate="onPlayerAbilityClicked(2)" />
+            <DOTAAbilityImage id="playerSkill3" abilityname="life_stealer_empty_1" onactivate="onPlayerAbilityClicked(3)" />
+            <DOTAAbilityImage id="playerSkill4" abilityname="life_stealer_empty_1" onactivate="onPlayerAbilityClicked(4)" />
+            <DOTAAbilityImage id="playerSkill5" abilityname="life_stealer_empty_1" onactivate="onPlayerAbilityClicked(5)" />
+            <DOTAAbilityImage id="playerSkill6" abilityname="life_stealer_empty_1" onactivate="onPlayerAbilityClicked(6)" />
+        </Panel>
+      
+    </Panel>
+</root>

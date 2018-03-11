@@ -1,0 +1,52 @@
+"DOTAAbilities"
+{
+   "antimage_blink_redux"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                    "antimage_blink"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+        "AbilityTextureName"            "custom/antimage_blink_redux"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
+        }
+
+        "ReduxFlags"    "mobility | underpowered"
+        "ReduxPerks"    "mobility | blink"
+        "ReduxCost"     "40"
+        "ReduxBans"     "nyx_assassin_burrow | nyx_assassin_burrow_redux"
+
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastPoint"              "0.4 0.4 0.4 0.4"
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "17.0 14.0 12.0 10.0"
+        
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "60 60 60 60"
+        
+        "AbilitySound"                  "Hero_Antimage.Blink_out"
+
+        // Special  
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "blink_range"           "925 1000 1075 1150"
+            }
+            
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "min_blink_range"       "200"
+            }
+        }
+    }
+}

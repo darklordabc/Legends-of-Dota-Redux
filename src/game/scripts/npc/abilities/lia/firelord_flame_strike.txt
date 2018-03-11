@@ -1,0 +1,60 @@
+"DOTAAbilities"
+{
+    "firelord_flame_strike"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/life_in_arena/flame_strike.lua"
+        "AbilityTextureName"                                                   "custom/firelord_flame_strike"
+        "MaxLevel"                                                             "4"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "AbilityCastAnimation"                                                 "ACT_DOTA_CAST_ABILITY_4"
+        "AbilityCastRange"                                                     "1000"
+        "AbilityCastPoint"                                                     "0.5"
+        "AbilityCooldown"                                                      "13"
+        "AbilityManaCost"                                                      "150 170 190 210"
+        "AbilityChannelTime"                                                   "0.8"
+        "AoERadius"                                                            "175 200 225 250"
+
+        "precache"
+        {
+            "particle"                                                     "particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_requiemofsouls_line_ground.vpcf"
+            "particle"                                                     "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf"
+            "particle"                                                     "particles/units/heroes/hero_lina/lina_spell_light_strike_array_ray.vpcf"
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
+        }
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "175 200 225 250"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage"                                               "25 50 75 100"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "duration"                                             "5"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "delay"                                                "0.8"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "interval"                                             "0.5"
+            }
+        }
+        "ReduxPerks"                                                           "fire"
+    }
+}

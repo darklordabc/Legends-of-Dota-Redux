@@ -1,0 +1,59 @@
+"DOTAAbilities"
+{
+    "angel_arena_tome_gods_op"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "ID"                                                                   "1197"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityCooldown"                                                      "30"
+        "AbilityGoldCost"                                                      "300 400 500"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "MaxLevel"                                                             "3"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO"
+        "AbilityTextureName"                                                   "custom/tome_un_3_op"
+        "AbilityCastPoint"                                                     "0.0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "str"                                                  "2 3 5"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "agi"                                                  "2 3 5"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "int"                                                  "2 3 5"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "gold_cost_toolip"                                     "300 400 500"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "Target"                                               "CASTER"
+                "ScriptFile"                                           "abilities/angel_arena_reborn/tome.lua"
+                "Function"                                             "UpgradeStats"
+            }
+        }
+        "OnUpgrade"
+        {
+            "RunScript"
+            {
+                "ScriptFile" "abilities/angel_arena_reborn/tome.lua"
+                "Function"  "LevelTome"
+            }
+        }
+        "ReduxCost"                                                            "120"
+        "ReduxFlags"                                                           ""
+    }
+}

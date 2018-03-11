@@ -1,0 +1,134 @@
+"DOTAAbilities" {
+	"cherub_synthesis" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+		"AbilityTextureName" "custom/cherub_synthesis"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"base_conversion_rate" "10 20 30 40"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"health_to_mana" "80 100 120 140"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"mana_to_health" "125 150 175 200"
+			}
+
+			"04" {
+				"var_type" "FIELD_FLOAT"
+				"think_interval" "0.1"
+			}
+		}
+
+		"precache" {
+			"particle" "particles/econ/generic/generic_aoe_persistent_sphere_1/generic_aoe_persistent_sphere_1_f.vpcf"
+			"particle" "particles/units/heroes/hero_phoenix/phoenix_sunray_beam_friend.vpcf"
+		}
+
+		"OnToggleOn" {
+			"ApplyModifier" {
+				"ModifierName" "modifier_synthesis_active"
+				"Target" "CASTER"
+			}
+		}
+
+		"OnToggleOff" {
+			"RemoveModifier" {
+				"ModifierName" "modifier_synthesis_active"
+				"Target" "CASTER"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_synthesis_active" {
+				"Passive" "0"
+				"IsHidden" "1"
+
+				"OnCreated" {
+					"RunScript" {
+						"ScriptFile" "abilities/cherub_synthesis.lua"
+						"Function" "SynthesisCreate"
+					}
+				}
+				"ThinkInterval" "%think_interval"
+
+				"OnIntervalThink" {
+					"RunScript" {
+						"ScriptFile" "abilities/cherub_synthesis.lua"
+						"Function" "SynthesisCheck"
+					}
+				}
+
+				"OnDestroy" {
+					"RemoveModifier" {
+						"ModifierName" "modifier_synthesis_night"
+						"Target" "CASTER"
+					}
+					"RemoveModifier" {
+						"ModifierName" "modifier_synthesis_day"
+						"Target" "CASTER"
+					}
+				}
+			}
+
+			"modifier_synthesis_day" {
+				"Passive" "0"
+				"IsHidden" "0"
+
+				"OnCreated" {
+					"RemoveModifier" {
+						"ModifierName" "modifier_synthesis_night"
+						"Target" "CASTER"
+					}
+				}
+				"ThinkInterval" "%think_interval"
+
+				"OnIntervalThink" {
+					"RunScript" {
+						"ScriptFile" "abilities/cherub_synthesis.lua"
+						"Function" "SynthesisDay"
+					}
+
+					"AttachEffect" {
+						"EffectName" "particles/units/heroes/hero_phoenix/phoenix_sunray_beam_friend.vpcf"
+						"EffectAttachType" "follow_origin"
+						"Target" "CASTER"
+					}
+				}
+			}
+
+			"modifier_synthesis_night" {
+				"Passive" "0"
+				"IsHidden" "0"
+				"TextureName" "night_stalker_void"
+
+				"OnCreated" {
+					"RemoveModifier" {
+						"ModifierName" "modifier_synthesis_day"
+						"Target" "CASTER"
+					}
+				}
+				"ThinkInterval" "%think_interval"
+
+				"OnIntervalThink" {
+					"RunScript" {
+						"ScriptFile" "abilities/cherub_synthesis.lua"
+						"Function" "SynthesisNight"
+					}
+
+					"AttachEffect" {
+						"EffectName" "particles/units/heroes/hero_phoenix/phoenix_sunray_beam_friend.vpcf"
+						"EffectAttachType" "follow_origin"
+						"Target" "CASTER"
+					}
+				}
+			}
+		}
+	}
+}

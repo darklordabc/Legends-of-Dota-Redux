@@ -1,0 +1,48 @@
+"DOTAAbilities" {
+    "eat_tree_eldri"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_lua"
+		"ScriptFile"					"abilities/overflow/eat_tree_eldri/ability.lua"
+		"AbilityTextureName"			"custom/eat_tree_eldri"
+		"AbilityCastPoint"              "0.3"
+		"AbilityCooldown"               "2"
+		"AbilityManaCost"               "0"
+		"AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityCastRange"              "150"
+		"AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_CUSTOM"
+		"AbilityUnitTargetType"         "DOTA_UNIT_TARGET_TREE"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"                  "FIELD_FLOAT"
+				"duration"					"60.0"
+			}
+			"02"
+			{
+				"var_type"                  "FIELD_INTEGER"
+				"bonus"						"10"
+			}
+			"03"
+			{
+				"var_type"                  "FIELD_FLOAT"
+				"regen"						"0.1"
+			}
+			"04"
+			{
+				"var_type"                  "FIELD_INTEGER"
+				"mana_cost_per_stack"		"100 75 50 25"
+			}
+		}
+		"precache"
+		{
+			"soundfile"				"soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
+			"particle"                  "particles/eldri_power.vpcf"
+		}
+	}
+}

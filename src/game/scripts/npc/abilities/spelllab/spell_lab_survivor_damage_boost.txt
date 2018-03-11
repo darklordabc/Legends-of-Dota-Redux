@@ -1,0 +1,24 @@
+"DOTAAbilities"
+{
+    "spell_lab_survivor_damage_boost"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/spell_lab/survivor/damage_boost.lua"
+        "AbilityTextureName"                                                   "custom/survivor_damage_boost"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "HasScepterUpgrade"                                                    "0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+        				"bonus"						"2.5 5.0 7.5 10.0"
+            }
+        }
+        "ReduxFlags"                                                           ""
+        "ReduxBans"                                                            ""
+        //"ReduxPerks"                                                           ""
+        "ReduxCost"                                                            "60"
+    }
+}

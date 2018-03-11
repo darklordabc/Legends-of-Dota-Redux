@@ -1,0 +1,48 @@
+"DOTAAbilities"
+{
+    "imba_tower_mana_flare"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "custom/mana_flare"
+        "MaxLevel"                                                             "3"
+        "AbilitySharedWithTeammates"                                           "1"
+        "AbilityCastRange"                                                     "800 1000 1200"
+        "AbilityCooldown"                                                      "10 9 8"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "burn_aoe"                                             "800 1000 1200"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "burn_pct"                                             "21 28 35"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_tower_mana_flare"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "ThinkInterval"                                        "0.5"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/tower_abilities.lua"
+                        "Function"                             "ManaFlare"
+                        "particle_burn"                        "particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf"
+                        "sound_burn"                           "Hero_NyxAssassin.ManaBurn.Target"
+                    }
+                }
+            }
+        }
+        "ReduxCost"                                                            "120"
+        "ReduxFlags"                                                           ""
+    }
+}

@@ -1,0 +1,88 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/play.vcss_c" />
+		<include src="s2r://panorama/styles/dashboard_page_profile.vcss_c" />
+		<include src="file://{resources}/styles/custom_game/changelog.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/stat_uploader_functions.js" /> 
+	    <include src="file://{resources}/scripts/custom_game/changelog.js" /> 
+	</scripts>
+
+	<snippets>
+		<snippet name="userPic">
+			<Panel class="userPicRoot">
+				<DOTAAvatarImage class="userPic" id="avatar"/>
+				<Panel class="userPicInfo">
+					<Panel class="userPicNameFlag">
+						<Label id="userPicName" class="userPicName" text="Nickname" />
+						<Image id="userPicFlag" />
+					</Panel>
+					<Label id="userPicDescription" class="userPicDescription" text="Info" />
+				</Panel>
+				<Panel class="userPicMessages" id="userPicMessages"/>
+			</Panel>
+		</snippet>
+		<snippet name="devMessage">
+			<Button class="devMessage">
+				<Label class="devMessageLabel" id="devMessageLabel" text="1" />
+			</Button>
+		</snippet>
+	</snippets>
+
+	<Panel class="changelogRoot" hittest="false">
+		<Button id="changelogNotification" onactivate='toggleChangelog(toggleCredits)'>
+			<Label id="changelogNotificationLabel" text="1" />
+		</Button>
+		<Panel id="changelogDisplay" class="changelogDisplayHidden" hittest="false">
+			<Button id="closeChangelogButton" class="CloseButton" onactivate='toggleChangelog()'>
+			</Button>
+			<Panel id="Title">
+				<Label id="TitleName" text="#addonname" />
+				<Label id="SubTitleName" text="#addonname_description" />
+				<Panel id="OptionSelect" hittest="false">
+					<RadioButton id="showDescriptionButton" class="ProfileContentRightTabOption" text="#lodDescriptionButtonText" onactivate="toggleDescription()"/>
+					<Label class="ProfileContentRightTabOptionSeparator" tabindex="auto" text="/" />
+					<RadioButton id="showUpdatesButton" class="ProfileContentRightTabOption" text="#lodUpdatesButtonText" onactivate="toggleUpdates()"/>
+					<Label class="ProfileContentRightTabOptionSeparator" tabindex="auto" text="/" />
+					<RadioButton id="showCreditsButton" class="ProfileContentRightTabOption" text="#lodCreditsButtonText" onactivate="toggleCredits()"/>
+				</Panel>
+				<Panel class="horizontalSeparator"/>
+				<Panel id="currentDisplay" hittest="false" onmouseout="UIHideCustomLayoutTooltip( SendTooltip )">
+					<Panel class="displayPanel" id="descriptionDisplay" hittest="false">
+						<Panel class="descriptionTextPanel" hittest="false">
+							<Label class="displayText" html="true" text="#lodDescriptionText" />
+						</Panel>
+						<Panel class="submitRoot">
+							<Panel class="submitPanel" id="submitInputRoot">
+								<TextEntry id="submitInput" multiline="true" textmode="normal" class="submitText" placeholder="#lodMessagePlaceholder" >
+								</TextEntry>
+							</Panel>
+<!-- 							<Panel class="submitPanelTxt">
+								<Label class="submitPnlText" text="#lodLeaveComment" />
+							</Panel> -->
+							<TextButton id="submitButton" class="PlayButton" text="#lodMessageSubmit" onactivate="sendMessage()">
+							</TextButton>
+						</Panel>
+					</Panel>
+					<Panel class="displayPanel" id="updateDisplay" hittest="false">
+						<Panel class="displayHeader" hittest="false">
+							<Panel class="updateClipper" id="updateClipper" hittest="false">
+								<Panel class="displayHeader updateEntry" hittest="false">
+									<Label class="updateHeaderText" text="4.2" />  
+									<Label class="displayText" text="*Fixed sniper always getting shrapnel even if he didn't pick it\n*Fixed Strong towers not getting extra abilities on upgrade\n*You can now see bot's talents upgrades, view looking at the tree. \n*Added variety of Free Scepter mutator, now it can be set disabled for bots\n*Removed Monkey Business and Sliders mutator\n*Added new mutator that gives all players certain abilities. Different states, give different abilities.\n*Added new tower abilities: Reckoning Aura, Frostbite Aura, Titan command aura\n*Removed IMBA reality tower ability (cause it sucked)\n*Bots now receive 100 gold/exp when being teleported back to base from a tower\n*Explosive spore movement speed increased to 400 from 200\n*Reworked logic on giving tower abilities: At start of game, tier 1 towers only get weak abilities, tier 2 get weak or medium abilities, tier 3 and 4 get given strong abilities. When towers are given random\nabilities, they can get any type of tower. \n*Bots will now stay in defensive behavior for the first 8 minutes of the game, even if they are high levels. This is to prevent immediately pushing at level 6.\n"/>
+								</Panel>
+								<Panel class="horizontalSeparator"/>
+							</Panel>
+						</Panel>
+					</Panel>
+					<Panel class="displayPanel" id="creditsDisplay" hittest="false">
+						<Panel id="creditsPanel" class="creditsPanel" hittest="false">
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>		
+		</Panel>
+	</Panel>
+</root>

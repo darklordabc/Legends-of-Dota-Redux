@@ -1,0 +1,50 @@
+"DOTAAbilities"
+{
+    "dark_seer_vacuum_op"
+    {
+        "BaseClass"                                                            "dark_seer_vacuum"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "SpellDispellableType"                                                 "SPELL_DISPELLABLE_YES_STRONG"
+        "AbilityTextureName"                                                   "custom/dark_seer_vacuum_op"
+        "FightRecapLevel"                                                      "1"
+        "LevelsBetweenUpgrades"                                                "2"
+        "MaxLevel"                                                             "4"
+        "AbilityCastRange"                                                     "600"
+        "AbilityCastPoint"                                                     "0.4"
+        "AbilityCooldown"                                                      "60 50 40 30"
+        "AbilityManaCost"                                                      "200"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "1000 2000 3000 4000"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                             "1.5"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage"                                               "100 200 300 400"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius_tree"                                          "800"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "cast_range"                                           "600"
+            }
+        }
+        "ReduxPerks"                                                           "enemyMoving"
+        "ReduxCost"                                                            "120"
+        "ReduxFlags"                                                           ""
+    }
+}

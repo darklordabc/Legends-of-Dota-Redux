@@ -1,0 +1,89 @@
+"DOTAAbilities"
+{
+    "imba_tower_laser"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "custom/imba_tower_laser"
+        "MaxLevel"                                                             "3"
+        "AbilitySharedWithTeammates"                                           "1"
+        "AbilityCastRange"                                                     "800 1000 1200"
+        "AbilityCooldown"                                                      "10 9 8"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "blind_chance"                                         "100"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "blind_aoe"                                            "800 1000 1200"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "blind_duration"                                       "2.0 2.5 3.0"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "projectile_speed"                                     "1000"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "min_creeps"                                           "4"
+            }
+        }
+        "OnProjectileHitUnit"
+        {
+            "DeleteOnHit"                                                  "1"
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/tower_abilities.lua"
+                "Function"                                             "LaserHit"
+                "modifier_blind"                                       "modifier_imba_tower_laser_blind"
+                "particle_blind"                                       "particles/units/heroes/hero_tinker/laser_cutter_sparks_k.vpcf"
+                "sound_impact"                                         "Hero_Tinker.LaserImpact"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_tower_laser"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "ThinkInterval"                                        "0.5"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/tower_abilities.lua"
+                        "Function"                             "Laser"
+                        "projectile_laser"                     "particles/units/heroes/hero_tinker/tinker_base_attack.vpcf"
+                        "sound_impact"                         "Hero_Tinker.LaserImpact"
+                    }
+                }
+            }
+            "modifier_imba_tower_laser_blind"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "1"
+                "Duration"                                             "%blind_duration"
+                "EffectName"                                           "particles/ambient/tower_laser_blind.vpcf"
+                "EffectAttachType"                                     "follow_overhead"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MISS_PERCENTAGE"            "%blind_chance"
+                }
+            }
+        }
+        "ReduxCost"                                                            "120"
+        "ReduxFlags"                                                           ""
+    }
+}

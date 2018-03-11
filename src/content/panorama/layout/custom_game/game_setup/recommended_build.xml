@@ -1,0 +1,61 @@
+<root>
+    <styles>
+        <include src="file://{resources}/styles/custom_game/game_setup/game_setup.css" />
+    </styles>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/recommended_build.js" />
+    </scripts>
+    <Panel class="recommendedBuild">
+        <Panel class="recommendedBuildContainer">
+            <Panel class="recommendedBuildLeftSide">
+                <Panel class="recommendedBuildRating">
+                    <Panel id="recommendedBuildUpVote" class="recommendedBuildVote up" onactivate="onSelectBuildVote(1)" />
+                    <Label id="buildRating" text="0" />
+                    <Panel id="recommendedBuildDownVote" class="recommendedBuildVote down" onactivate="onSelectBuildVote(-1)" />
+                </Panel>
+                <Panel class="recommendedBuildActions">
+                    <Panel id="recommendedBuildFavourite" onactivate="onClickFav()" />
+                    <Panel id="recommendedBuildRemove" onactivate="removeBuild()" />
+                </Panel>
+            </Panel>
+            <Panel class="recommendedBuildRightSide">
+                <Panel class="recommendedBuildHolder">
+                    <Panel class="recommendedHeroImageCon">
+                        <DOTAHeroImage id="recommendedHeroImage" />
+                        <Image id="recommendedAttribute" src="file://{images}/primary_attribute_icons/primary_attribute_icon_strength.psd" />
+                    </Panel>
+                    <Panel id="recommendedSkillContainer">
+                        <DOTAAbilityImage id="recommendedSkill1" abilityname="life_stealer_empty_1">
+                            <Label id="recommendedSkillCost1" class="skillCostRecommended" text="" />
+                        </DOTAAbilityImage>
+                        <DOTAAbilityImage id="recommendedSkill2" abilityname="life_stealer_empty_1">
+                            <Label id="recommendedSkillCost2" class="skillCostRecommended" text="" />
+                        </DOTAAbilityImage>
+                        <DOTAAbilityImage id="recommendedSkill3" abilityname="life_stealer_empty_1">
+                            <Label id="recommendedSkillCost3" class="skillCostRecommended" text="" />
+                        </DOTAAbilityImage>
+                        <DOTAAbilityImage id="recommendedSkill4" abilityname="life_stealer_empty_1">
+                            <Label id="recommendedSkillCost4" class="skillCostRecommended" text="" />
+                        </DOTAAbilityImage>
+                        <DOTAAbilityImage id="recommendedSkill5" abilityname="life_stealer_empty_1">
+                            <Label id="recommendedSkillCost5" class="skillCostRecommended" text="" />
+                        </DOTAAbilityImage>
+                        <DOTAAbilityImage id="recommendedSkill6" abilityname="life_stealer_empty_1">
+                            <Label id="recommendedSkillCost6" class="skillCostRecommended" text="" />
+                        </DOTAAbilityImage>
+                    </Panel>
+                </Panel>
+                <Panel class="recommendedBuildBottomRow">
+                    <Panel class="recommendedBuildTitle">
+                        <Label id="buildName" text="Build Name" />
+                        <DOTAUserName id="buildAuthor" />
+                    </Panel>
+                    <Label id="buildDesc" />
+                </Panel>
+            </Panel>
+        </Panel>
+        <Panel id="recommendedSelectButton" class="heroBuildMenuButtonChoose" onactivate="onSelectBuildPressed()">
+            <Label text="selectBuild" />
+        </Panel>
+    </Panel>
+</root>

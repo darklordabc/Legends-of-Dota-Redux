@@ -1,3 +1,7 @@
+
+var exec = require('child_process').exec;
+var path = require('path');
+
 var fs = require('fs')
 
 // Script directories
@@ -29,7 +33,7 @@ var abilities = {};
     Prepare language files
 */
 
-var langs = ['english', 'schinese'];
+var langs = ['english', 'schinese', 'russian', 'korean', 'koreana'];
 var langIn = {};
 var langOut = {};
 var specialChar;    // Special character needed for doto encoding
@@ -98,6 +102,12 @@ function prepareLanguageFiles(next) {
             var ourData
             if(lang == 'english') {
                 ourData = ''+fs.readFileSync(langDir + 'addon_' + lang + '.txt');
+            } else if(lang == 'russian') {
+                ourData = ''+fs.readFileSync(langDir + 'addon_' + lang + '.txt');
+            } else if(lang == 'korean') {
+                ourData = ''+fs.readFileSync(langDir + 'addon_' + lang + '.txt');
+            } else if(lang == 'koreana') {
+                ourData = ''+fs.readFileSync(langDir + 'addon_' + lang + '.txt');
             } else {
                 ourData = ''+fs.readFileSync(langDir + 'addon_' + lang + '.txt', 'utf16le').substring(1);
             }
@@ -143,9 +153,15 @@ function generatePrecacheData(next) {
         // List of heroes to ignore differs based on s1 and s2
         // In s2, no bots are supported, so we can just strip every hero
         var ignoreHeroes = {
-            npc_dota_hero_techies: true,
-            npc_dota_hero_gyrocopter: true,
-            npc_dota_hero_riki: true
+            // npc_dota_hero_techies: true,
+            // npc_dota_hero_gyrocopter: true,
+            // npc_dota_hero_riki: true
+        };
+
+        var ignoreSpecialAbilities = {
+            npc_dota_hero_techies: true
+            // npc_dota_hero_gyrocopter: true,
+            // npc_dota_hero_riki: true
         };
 
         var heroes = rootHeroes.DOTAHeroes;
@@ -158,13 +174,25 @@ function generatePrecacheData(next) {
             if(!ignoreHeroes[name]) {
                 newKV[name+'_lod'] = {
                     override_hero: name,
-                    AbilityLayout: 6
+                    AbilityLayout: 6,
+                    Enabled: data.Enabled
                 }
 
-                if(data.BotImplemented != 1) {
-                    newKV[name+'_lod'].Ability1 = 'attribute_bonus';
-
-                    for(var i=2;i<=16;++i) {
+                if(true) { //data.BotImplemented == 1 || ignoreSpecialAbilities[name]
+                    for(var i=10;i<=17;++i) {
+                        if(heroes[name]['Ability' + i]) {
+                            newKV[name+'_lod']['Ability' + i] = '';
+                        }
+                    }
+                    if(name == 'npc_dota_hero_invoker') {
+                        for(var i=18;i<=24;++i) {
+                            if(heroes[name]['Ability' + i]) {
+                                newKV[name+'_lod']['Ability' + i] = '';
+                            }
+                        }
+                    }
+                } else {
+                    for(var i=1;i<=24;++i) {
                         if(heroes[name]['Ability' + i]) {
                             newKV[name+'_lod']['Ability' + i] = '';
                         }
@@ -274,10 +302,10 @@ function loadCustomAbilities(next) {
 }
 
 /*
-	Process Skill Warnings
+	Process Skill Tooltips
 */
 
-function generateSkillWarnings(next) {
+function generateSkillAddendums(next) {
 	// Grab a reference to english
     var english = langIn.english;
 
@@ -305,6 +333,36 @@ function generateSkillWarnings(next) {
 		        if(langFile[searchKey]) {
 		        	storeValue = langFile[searchKey] + '<br><br>' + storeValue + '<br>';
 		        }
+
+		        // Store it
+		        storeTo[searchKey] = storeValue;
+    		}
+    	}
+    	if(word.indexOf('credit_') == 0) {
+    		var value = english[word];
+
+    		var abilityName = word.replace('credit_', '');
+
+    		for(var i=0; i<langs.length; ++i) {
+    			// Grab a language
+		        var lang = langs[i];
+		        var langFile = langIn[lang];
+		        var storeTo = langOut[lang];
+
+		        var storeValue = value;
+
+		        // Does this language have a different translation of the word?
+		        if(langFile[word]) {
+		        	storeValue = langFile[word];
+		        }
+
+		        // Do we have anything to change?
+		        var searchKey = 'DOTA_Tooltip_ability_' + abilityName+ '_Description';
+		        if(langFile[searchKey] && storeTo[searchKey] == langFile[searchKey]) {
+		        	storeValue = langFile[searchKey] + '<br><br>' + storeValue + '<br>';
+		        } else if (langFile[searchKey] && storeTo[searchKey] != langOut[lang]){
+					storeValue = storeTo[searchKey] + storeValue + '<br>';
+				}
 
 		        // Store it
 		        storeTo[searchKey] = storeValue;
@@ -562,60 +620,144 @@ function toKV(obj, key) {
 }
 
 /*
+	Make links
+*/
+var deleteFolderRecursive = function(path) {
+  if( fs.existsSync(path) ) {
+    fs.readdirSync(path).forEach(function(file,index){
+      var curPath = path + "/" + file;
+      if(fs.lstatSync(curPath).isDirectory()) { // recurse
+        deleteFolderRecursive(curPath);
+      } else { // delete file
+        fs.unlinkSync(curPath);
+      }
+    });
+    fs.rmdirSync(path);
+  }
+};
+
+function makeLink( dir, link ) {
+	try {
+	    fs.accessSync(link, fs.F_OK);
+	    fs.rmdirSync(link);
+	} 
+	catch (e) {
+	    // It isn't accessible
+	}
+
+	if (fs.statSync(dir).isDirectory())
+	{
+		var cmd = 'mklink /D /J ' + '"' + path.resolve(link).replace(/\//g, '\\') + '" "' + path.resolve(dir).replace(/\//g, '\\') + '"';
+		exec(cmd, function(error, stdout, stderr){ });
+
+		//fs.symlinkSync(path.resolve(dir), link, 'junction');
+	}
+	else
+		fs.link(dir, link);	
+}
+
+function makeLinks( dotaPath ) {
+	console.log('Making links!');
+	// Cleanup the old copy of it
+	deleteFolderRecursive("../dota");
+
+	var dirs = require('./dirs.json');
+	
+	// Make dirs
+	dirs.makeDirs.forEach(function(element, index, array){
+ 		fs.mkdirSync('../' + element);
+	})
+
+	// Create links
+	dirs.linkDirs.forEach(function(element, index, array){
+		makeLink( element.dir, element.link )
+	})
+
+	// Make links for content and game dirs
+	var content = '/content/dota_addons/';
+	var game = '/game/dota_addons/';
+
+	makeLink( "../dota/content" , dotaPath + content + settings.addonName );
+	makeLink( "../dota/game" , dotaPath + game + settings.addonName );
+}
+
+
+/*
     Run everything
 */
 
-// Prepare hte languge files
-prepareLanguageFiles(function() {
-    // Load our custom units
-    loadCustomUnits(function() {
-        // Load abilities
-        loadAbilities(function() {
-            // Load items
-            //loadItems(function() {
-                // Load our custom items
-                //loadCustomItems(function() {
-                    // Load our custom abilities
-                    loadCustomAbilities(function() {
-                        // Generate the custom item abilities
-                        //generateAbilityItems(function() {
-                            // Generate our precache data
-                            generatePrecacheData(function() {
-                                //doCSP(function() {
-                                    //doLvl1Ults(function() {
-                                    	generateSkillWarnings(function() {
-                                    		// Output language files
-	                                        for(var i=0; i<langs.length; ++i) {
-	                                            (function(lang) {
-	                                                fs.writeFile(scriptDirOut+'addon_' + lang + '_token.txt', specialChar + toKV({Tokens: langOut[lang]}, 'lang'), 'utf16le', function(err) {
-                                                        if (err) throw err;
+function runEverything( dotaPath ) {
+	resourcePath = dotaPath + 'game/dota/resource/';   // The directory to read resource files from
 
-                                                        console.log('Finished saving ' + lang + '!');
-                                                    });
+	// Prepare hte languge files
+	prepareLanguageFiles(function() {
+	    // Load our custom units
+	    loadCustomUnits(function() {
+	        // Load abilities
+	        loadAbilities(function() {
+	            // Load items
+	            //loadItems(function() {
+	                // Load our custom items
+	                //loadCustomItems(function() {
+	                    // Load our custom abilities
+	                    loadCustomAbilities(function() {
+	                        // Generate the custom item abilities
+	                        //generateAbilityItems(function() {
+	                            // Generate our precache data
+	                            generatePrecacheData(function() {
+	                                //doCSP(function() {
+	                                    //doLvl1Ults(function() {
+	                                    	generateSkillAddendums(function() {
+	                                    		// Output language files
+		                                        for(var i=0; i<langs.length; ++i) {
+		                                            (function(lang) {
+		                                                fs.writeFile(scriptDirOut+'addon_' + lang + '_token.txt', specialChar + toKV({Tokens: langOut[lang]}, 'lang'), 'utf16le', function(err) {
+	                                                        if (err) throw err;
 
-                                                    fs.writeFile(scriptDirOut+'addon_' + lang + '.txt', specialChar + toKV(langOut[lang], 'addon'), 'utf16le', function(err) {
-                                                        if (err) throw err;
+	                                                        console.log('Finished saving ' + lang + '!');
+	                                                    });
 
-                                                        console.log('Finished saving ' + lang + '!');
-                                                    });
-	                                            })(langs[i]);
-	                                        }
+	                                                    fs.writeFile(scriptDirOut+'addon_' + lang + '.txt', specialChar + toKV(langOut[lang], 'addon'), 'utf16le', function(err) {
+	                                                        if (err) throw err;
 
-	                                        // Output custom files
+	                                                        console.log('Finished saving ' + lang + '!');
+	                                                    });
+		                                            })(langs[i]);
+		                                        }
 
-	                                        fs.writeFile(scriptDirOut+'npc_units_custom.txt', toKV(customUnits, 'DOTAUnits'), function(err) {
-	                                            if (err) throw err;
+		                                        // Output custom files
 
-	                                            console.log('Done saving custom units file!');
-	                                        });
-                                    	});
-                                    //});
-                                //});
-                            });
-                        //});
-                    });
-                //});
-            //});
-        });
-    });
-});
+		                                        fs.writeFile(scriptDirOut+'npc_units_custom.txt', toKV(customUnits, 'DOTAUnits'), function(err) {
+		                                            if (err) throw err;
+
+		                                            console.log('Done saving custom units file!');
+		                                        });
+
+                                        		makeLinks( dotaPath );
+	                                    	});
+	                                    //});
+	                                //});
+	                            });
+	                        //});
+	                    });
+	                //});
+	            //});
+	        });
+	    });
+	});	
+}
+
+function execScript() {
+	// Get Steam path
+	var cmd = "reg query HKEY_CURRENT_USER\\Software\\Valve\\Steam /v SteamPath";
+	exec(cmd, function(error, stdout, stderr) {
+		// Set Dota 2 dir from registry or settings
+	  	var dotaPath = (settings && settings.dotaDir) || stdout.match(/(?=REG_SZ).*/g)[0].replace('REG_SZ', '').trim() + '/SteamApps/common/dota 2 beta/';
+		
+	  	// Run compiling
+		runEverything( dotaPath );
+	});
+}
+
+
+execScript();

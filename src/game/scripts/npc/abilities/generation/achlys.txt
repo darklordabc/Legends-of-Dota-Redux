@@ -1,0 +1,690 @@
+"DOTAAbilities"
+{
+    //=================================================================================================================
+    // Achlys - Miserable Claws
+    //=================================================================================================================
+    "achlys_miserable_claws"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityTextureName"            "custom/achlys_miserable_claws"
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "150"
+
+        // Damage.
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityDuration"               "8"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "15"
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "armor_per_stack"   "-0.5 -1 -1.5 -2"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "slow_per_stack"    "-3 -4 -5 -6"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "duration"          "8"
+            }
+            "04"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "root_duration"     "3"
+            }
+        }
+
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_nightstalker.vsndevts"
+            "particle"  "particles/units/heroes/hero_bane/bane_projectile.vpcf"
+            "particle"  "particles/achlys_miserable_claws_debuff.vpcf"
+            "particle"  "particles/achlys_miserable_claws_root.vpcf"
+        }
+
+        // Datadriven
+        //-------------------------------------------------------------------------------------------------------------
+        "Modifiers"
+        {
+            // Modifier to handle OrbEffect-Behaviour
+            "modifier_achlys_miserable_claws_handler"
+            {
+                // Will always stay on the caster once the ability is upgraded
+                // Hidden
+                "Passive"           "1"
+                "IsHidden"          "1"
+                "IsBuff"            "0"
+                "IsDebuff"          "0"
+                "IsPurgable"        "0"
+
+                // OrbEffect-Behaviour
+                "Orb"
+                {
+                    "Priority"          "DOTA_ORB_PRIORITY_ABILITY"
+                    "ProjectileName"    "particles/units/heroes/hero_bane/bane_projectile.vpcf"
+                    "CastAttack"        "1"
+                }
+
+                // HealthCost is handled here
+                "OnOrbFire"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_LifeStealer.PreAttack"
+                        "Target"        "CASTER"
+                    }
+                    "SpendMana"
+                    {
+                        "Mana" "%AbilityManaCost"
+                    }
+                }
+
+                // Apply the hidden dot modifier to the target here
+                // Call IncreaseStackCount to keep stack count on modifier_burning_spear_datadriven_debuff_counter updated
+                "OnOrbImpact"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Nightstalker.Attack"
+                        "Target"        "TARGET"
+                    }
+                    
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "modifier_achlys_miserable_claws_debuff"
+                        "Target"        "TARGET"
+                    }
+
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_achlys/achlys_miserable_claws"
+                        "Function"      "IncreaseStackCount"
+                        "modifier_counter_name"     "modifier_achlys_miserable_claws_debuff_counter"
+                    }
+                }
+            }
+
+            // Modifier to show stack count
+            // Only visual
+            "modifier_achlys_miserable_claws_debuff_counter"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsBuff"            "0"
+                "IsDebuff"          "1"
+                "IsPurgable"        "1"
+                
+                "OnAttacked"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_achlys/achlys_miserable_claws"
+                        "Function"      "CheckRoot"
+                    }
+                }
+            }
+
+            // Modifier to handle the dot
+            "modifier_achlys_miserable_claws_debuff"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsBuff"            "0"
+                "IsDebuff"          "1"
+                "IsPurgable"        "1"
+                "Duration"          "%duration"
+                
+                "EffectName"        "particles/achlys_miserable_claws_debuff.vpcf"
+                "EffectAttachType"  "follow_origin"
+
+                // Allow multiple instances of this modifier on the target
+                // Modifiers stack additivly (dmg) with independent durations
+                "Attributes"        "MODIFIER_ATTRIBUTE_MULTIPLE"
+
+                // Updating visual modifier's stack count
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_achlys/achlys_miserable_claws"
+                        "Function"      "DecreaseStackCount"
+
+                        "modifier_counter_name"     "modifier_achlys_miserable_claws_debuff_counter"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"  "%slow_per_stack"
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"        "%armor_per_stack"
+                }
+            }
+            "modifier_achlys_miserable_claws_root"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsBuff"            "0"
+                "IsDebuff"          "1"
+                "IsPurgable"        "1"
+                
+                "EffectName"    "particles/achlys_miserable_claws_root.vpcf"
+                "EffectAttachType"  "follow_origin"
+                
+                "OnCreated"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Bane.Nightmare"
+                        "Target"        "CASTER"
+                    }
+                }
+
+                "ThinkInterval" "0.03"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_achlys/achlys_miserable_claws"
+                        "Function"      "CheckAngle"
+                    }
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_ROOTED" "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+    }
+    //=================================================================================================================
+    // Achlys - Night's Embrace
+    //=================================================================================================================
+    "achlys_nights_embrace"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PHYSICAL"
+        "AbilityTextureName"            "custom/achlys_nights_embrace"
+        "AbilityProcsMagicStick"        "1"
+        "HasScepterUpgrade"             "1"
+        "ReduxFlags"                                                           "invis"
+
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+         {
+          "soundfile"   "soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"
+          "soundfile"   "soundevents/game_sounds_heroes/game_sounds_shadow_demon.vsndevts"
+          "particle"    "particles/achlys_nights_embrace.vpcf"
+          "particle"    "particles/achlys_nights_embrace_invis.vpcf"
+          "particle"    "particles/generic_hero_status/status_invisibility_start.vpcf"
+         }
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "25"
+        "AbilityCastPoint"              "0.0 0.0 0.0 0.0"
+        "AbilityDuration"               "15"
+        
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "50"
+        
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "mana_cost_pct"             "2"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "damage_per_sec"            "10 15 20 25"
+            }
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "duration"                  "15"
+            }
+            "04"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "fade_time"                 "0.2"
+            }
+            "05"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "damage_per_tick"               "2 3 4 5"
+            }
+        }
+
+        "OnSpellStart"
+        {
+            "FireEffect"
+            {
+                "EffectName"    "particles/achlys_nights_embrace.vpcf"
+                "Target"    "CASTER"
+                "EffectAttachType"  "attach_origin"
+            }
+            "FireSound"
+            {
+                "Target"    "CASTER"
+                "EffectName"    "Hero_Bane.Enfeeble"
+            }
+            "ApplyModifier"
+            {
+                "Target"    "CASTER"
+                "ModifierName"  "modifier_achlys_nights_embrace_fade"
+            }
+        }
+
+        "Modifiers"
+        {
+            "modifier_achlys_nights_embrace_fade"
+            {
+                "Duration"  "%fade_time"
+                "IsHidden"  "1"
+                "IsBuff"    "1"
+                "EffectName"    "particles/generic_hero_status/status_invisibility_start.vpcf"
+                "EffectAttachType"  "follow_origin"
+                "OnDestroy"
+                {
+                    "ApplyModifier"
+                    {
+                        "Target"    "CASTER"
+                        "ModifierName"  "modifier_achlys_nights_embrace"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_achlys/achlys_nights_embrace"
+                        "Function"      "AddInvis"
+                    }
+                }
+            }
+            "modifier_achlys_nights_embrace"
+            {
+                "Duration"  "%duration"
+
+                "EffectName"        "particles/achlys_nights_embrace_invis.vpcf"
+                "EffectAttachType"  "follow_origin"
+                
+                "IsBuff"    "1"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_achlys/achlys_nights_embrace"
+                        "Function"      "AddDamage"
+                    }
+                }
+                "OnAttackLanded"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_ShadowDemon.ShadowPoison.Release"
+                        "Target"        "TARGET"
+                    }
+                    "RemoveModifier"
+                    {
+                        "Target"    "CASTER"
+                        "ModifierName"  "modifier_achlys_nights_embrace_damage"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_achlys/achlys_nights_embrace"
+                        "Function"      "ScepterCheck"
+                    }
+                }
+                "OnAbilityExecuted"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_achlys/achlys_nights_embrace"
+                        "Function"      "ScepterCheck"
+                    }
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_INVISIBLE"  "MODIFIER_STATE_VALUE_ENABLED" 
+                }
+                "ThinkInterval" "0.2"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_achlys/achlys_nights_embrace"
+                        "Function"      "AddDamage"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RemoveModifier"
+                    {
+                        "Target"    "CASTER"
+                        "ModifierName"  "modifier_achlys_nights_embrace_damage"
+                    }
+                    "RemoveModifier"
+                    {
+                        "Target"    "CASTER"
+                        "ModifierName"  "modifier_hidden_invis"
+                    }
+                    "FireSound"
+                    {
+                        "Target"    "CASTER"
+                        "EffectName"    "Hero_Bane.Nightmare.End"
+                    }
+                }
+            }
+            "modifier_achlys_nights_embrace_damage"
+            {
+                "IsHidden"  "1"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"  "%damage_per_tick"
+                }
+            }
+        }
+    }
+    //=================================================================================================================
+    // Achlys - Sorrow Rising
+    //=================================================================================================================
+    "achlys_sorrow_rising"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"             "ability_datadriven"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"            "custom/achlys_sorrow_rising"
+        "ReduxCost"                                                            "30"
+
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "particle"          "particles/achlys_sorrow_rising_damage.vpcf"
+            "particle"          "particles/achlys_sorrow_rising_evasion.vpcf"
+        }
+
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "evasion_per_hp_pct"        "0.35 0.5 0.65 0.8"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "damage_per_mana_pct"       "0.35 0.5 0.65 0.8"
+            }
+        }
+
+        "Modifiers"
+        {
+            "modifier_achlys_sorrow_rising_passive"
+            {
+                "Passive"   "1"
+                "IsHidden"  "1"
+
+                "ThinkInterval" "0.1"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_achlys/achlys_sorrow_rising"
+                        "Function"      "HandleStacks"
+                        "mana"          "modifier_achlys_sorrow_rising_stacks_mana"
+                        "health"        "modifier_achlys_sorrow_rising_stacks_health"
+                    }
+                }
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_EVASION_CONSTANT"    "%bonus_evasion"
+                }
+            }
+
+            "modifier_achlys_sorrow_rising_stacks_health"
+            {
+                "IsHidden"  "1"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_EVASION_CONSTANT"    "%evasion_per_hp_pct"
+                }
+            }
+            "modifier_achlys_sorrow_rising_stacks_mana"
+            {
+                "IsHidden"  "1"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"   "%damage_per_mana_pct"
+                }
+            }
+        }
+    }
+    //=================================================================================================================
+    // Achlys - Death Mist
+    //=================================================================================================================
+    "achlys_death_mist"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_datadriven"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"       
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"  
+        "FightRecapLevel"               "2"
+        "AbilityTextureName"            "custom/achlys_death_mist"
+        "AbilityProcsMagicStick"        "1"
+
+
+        // Precache
+        //-------------------------------------------------------------------------------------------------------------
+        "precache"
+        {
+            "soundfile"         "soundevents/game_sounds_heroes/game_sounds_nightstalker.vsndevts"
+            "soundfile"         "soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"
+            "particle"          "particles/achlys_death_mist_startup.vpcf"
+            "particle"          "particles/achlys_death_mist_main.vpcf"
+            "particle"          "particles/achlys_death_mist_main_shockwave.vpcf"
+        }
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastPoint"              "0.5"
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "120 100 80"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        
+        // Cast Range
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastRange"              "600"
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityModifierSupportValue"   "0.1"   // Primarily about the damage
+        
+        // Special
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "self_damage"               "50 40 30"
+            }
+            "02"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "damage_per_health"         "30 45 60"
+            }
+            "03"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "self_burn"                 "50"
+            }
+            "04"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "burn_per_mana"             "40 60 80"
+            }
+            "05"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "damage_duration"           "3"
+            }
+            "06"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "damage_radius"         "600"
+            }
+            "07"
+            {
+                "var_type"                  "FIELD_FLOAT"
+                "tick_rate"                 "0.03"
+            }
+        }
+        "OnAbilityPhaseStart"
+        {
+            "FireSound"
+            {
+                "EffectName"    "Hero_Bane.BrainSap"
+                "Target"        "CASTER"
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_achlys_death_mist_warmup"
+                "Target"    "CASTER"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/nextgeneration/hero_achlys/achlys_death_mist"
+                "Function"      "InitDeathMist"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Hero_Bane.BrainSap.Target"
+                "Target"        "CASTER"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Hero_Nightstalker.Darkness.Team"
+                "Target"        "CASTER"
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_achlys_death_mist_fx"
+                "Target"    "CASTER"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_achlys_death_mist_warmup"
+            {
+                "Duration"  "0.5"
+                "IsHidden"  "1"
+                
+                "OnOrder"
+                {
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "modifier_achlys_death_mist_warmup"
+                        "Target"    "CASTER"
+                    }
+                }
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "EffectName"    "particles/achlys_death_mist_startup.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"            "CASTER"
+                        "ControlPointEntities"
+                        {
+                            "CASTER"                "attach_hitloc"
+                            "CASTER"                "attach_hitloc"
+                        }
+                    }
+                }   
+            }
+            "modifier_achlys_death_mist_fx"
+            {
+                "Duration"  "%damage_duration"
+                "IsHidden"  "1"
+                
+                "Aura" "modifier_achlys_death_mist"
+                "Aura_Radius" "600"
+                "Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                "Aura_Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_achlys/achlys_death_mist"
+                        "Function"      "StartMist"
+                    }
+                }
+            }
+            "modifier_achlys_death_mist"
+            {
+                "IsDebuff"  "1"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_achlys/achlys_death_mist"
+                        "Function"      "DeathMistTick"
+                    }
+                }
+                "ThinkInterval" "%tick_rate"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_achlys/achlys_death_mist"
+                        "Function"      "DeathMistTick"
+                    }
+                }
+            }
+        }
+    }
+}

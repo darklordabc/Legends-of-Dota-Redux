@@ -1,0 +1,33 @@
+"DOTAAbilities"
+{
+    "alchemist_aghnaim_magic_redux"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitTargetFlags"                                               "DOTA_UNIT_TARGET_FLAG_NONE"
+        "AbilityTextureName"                                                   "custom/alchemist_aghnaim_magic_redux"
+        "AbilityCastRange"                                                     "250"
+        "AbilityManaCost"                                                      "120 150 180 210"
+        "AbilityCooldown"                                                      "120 90 60 30"
+        "AbilityCastPoint"                                                     "0.3"
+        "ScriptFile"                                                           "abilities/alchemist_aghnaim_magic"
+        "precache"
+        {
+            "particle"                                                     "particles/alchemist_aghnaim_magic_aghs.vpcf"
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_alchemist.vsndevts"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "duration"                                             "30 60 90 120"
+            }
+        }
+        "ReduxFlags"                                                           "upgradeable | support | dota_custom"
+        "ReduxPerks"                                                           "support"
+        "ReduxCost"                                                            "10"
+    }
+}

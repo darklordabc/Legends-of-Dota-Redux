@@ -1,0 +1,186 @@
+"DOTAAbilities" {
+	"obsidian_destroyer_astral_imprisonment_redux"
+	{
+		"BaseClass"                                                            "ability_datadriven"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY | DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilityTextureName"			"obsidian_destroyer_astral_imprisonment"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilitySound"					"Hero_ObsidianDestroyer.AstralImprisonment"
+		"HasScepterUpgrade"			"1"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDuration"				"4.0"
+		"AbilityCooldown"				"22 18 14 10"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"225 300 375 450"
+		"AbilityCastPoint"				"0.25 0.25 0.25 0.25"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"120 140 160 180"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.5" // applies multiple modifiers
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_obsidian_destroyer.vsndevts"		
+			"particle"		"particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_prison.vpcf"	
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"prison_duration"		"4.0"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"		"400"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"		"100 175 250 325"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range_tooltip"	"225 300 375 450"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"max_charges_scepter"		"2"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"charge_restore_time_scepter"		"12"
+			}
+			"07"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"scepter_range_bonus"	"300"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName" "Hero_ObsidianDestroyer.AstralImprisonment.Cast"
+				"Target"	"TARGET"
+			}
+
+			"FireSound"
+			{
+				"EffectName"	"Hero_ObsidianDestroyer.AstralImprisonment"
+				"Target"	"TARGET"
+			}	
+
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_astral_imprisonment_redux"
+				"Target"	"TARGET"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_astral_imprisonment_redux_stacks_counter"
+			{
+				"IsHidden" "0"
+			}
+			"modifier_astral_imprisonment_redux_stack"
+			{
+				"Duration" "%charge_restore_time_scepter"
+				"IsHidden"			"1"
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/obsidian_destroyer_astral_imprisonment_redux.lua"
+						"Function"	"AstralImprisonmentCheckStack"				
+					}
+				}
+			}
+			"modifier_astral_imprisonment_redux_stacks"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"IsPurgable"		"0"
+				"IsBuff"			"1"
+				"IsStunDebuff"		"0"
+
+				"ThinkInterval"  "0.1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/obsidian_destroyer_astral_imprisonment_redux.lua"
+						"Function"	"AstralImprisonmentCheckStacks"				
+					}
+				}
+			}
+			"modifier_astral_imprisonment_redux"
+			{
+				"Duration"	"%prison_duration"
+				"IsDebuff"	"1"
+				"IsHidden"	"0"
+
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_OUT_OF_GAME"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/obsidian_destroyer_astral_imprisonment_redux.lua"
+						"Function"	"AstralImprisonmentStart"				
+					}
+				}
+
+				"OnDestroy"
+				{
+					"FireSound"
+					{
+						"EffectName"	"Hero_ObsidianDestroyer.AstralImprisonment.End"
+						"Target"	"TARGET"
+					}
+
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/obsidian_destroyer_astral_imprisonment_redux.lua"
+						"Function"	"AstralImprisonmentEnd"					
+					}
+				}				
+			}
+		}
+	}	
+}

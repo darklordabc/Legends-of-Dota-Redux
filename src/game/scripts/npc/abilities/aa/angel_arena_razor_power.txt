@@ -1,0 +1,51 @@
+"DOTAAbilities"
+{
+    "angel_arena_razor_power"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityUnitTargetFlags"                                               "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_YES"
+        "AbilityTextureName"                                                   "custom/angel_arena_razor_power"
+        "MaxLevel"                                                             "4"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "400"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage_percent"                                       "35 40 45 50"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_passive_razor_power"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "OnAttackLanded"
+                {
+                    "RunScript"
+                    {
+                        "Target"
+                        {
+                            "Center"                       "TARGET"
+                            "Flags"                        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+                        }
+                        "ScriptFile"                           "abilities/angel_arena_reborn/holy_book.lua"
+                        "Function"                             "HolyBook_attack"
+                        "Radius"                               "%radius"
+                        "Damage"                               "%attack_damage"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "aoe_attack | attack_modifier"
+        "ReduxPerks"                                                           "attack_modifier"
+        "ReduxCost"                                                            "30"
+    }
+}

@@ -1,0 +1,35 @@
+"DOTAAbilities" {
+	"holdout_gods_strength" {
+		"AbilityTextureName" "custom/sven_gods_strength_lod"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint" "0.3 0.3 0.3"
+		"AbilityCooldown" "60.0"
+		"AbilityDuration" "25.0"
+		"AbilityManaCost" "125"
+		"ReduxFlags"                                                           "cooldown"
+		"ReduxBans"                                                            "sven_gods_strength"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"bonus_strength" "15 30 45"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"model_scale" "25"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"cooldown_reduction_per_kill" "1.0 1.5 2.0"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"gods_strength_damage" "50 75 100"
+			}
+		}
+	}
+}

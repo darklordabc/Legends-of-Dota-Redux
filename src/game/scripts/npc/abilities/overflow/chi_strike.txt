@@ -1,0 +1,38 @@
+"DOTAAbilities" {
+	"chi_strike"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_lua"
+		"ScriptFile"					"abilities/overflow/chi_strike/ability.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"				"custom/chi_strike"
+		"AbilityCooldown"               "7.0 6.0 5.0 4.0"
+		"AbilityCastRange"				"700 800 900 1000"
+		//"MaxLevel"	"7"
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"	"particles/chi_strike_wave.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_magnataur.vsndevts"
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"range"			"700 800 900 1000"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"speed"			"1500"
+			}
+		}
+		"ReduxFlags"                                                           "aoe_attack | attack_modifier"
+		"ReduxPerks"                                                           "attack_modifier"
+		"ReduxCost"																														"30"
+		"ReduxBans"																														""
+	}
+}

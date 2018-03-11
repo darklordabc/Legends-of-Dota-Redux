@@ -1,0 +1,88 @@
+"DOTAAbilities"
+{
+    "imba_tower_plague"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "custom/tower_rot"
+        "MaxLevel"                                                             "3"
+        "AbilitySharedWithTeammates"                                           "1"
+        "AbilityCastRange"                                                     "700"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage_per_second"                                    "30 40 50"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "slow"                                                 "-15 -25 -35"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "area_of_effect"                                       "700"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage_per_tick"                                      "15 20 25"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "tick_rate"                                            "0.5"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_tower_plague"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "Aura"                                                 "modifier_imba_tower_plague_aura"
+                "Aura_Radius"                                          "%area_of_effect"
+                "Aura_Teams"                                           "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                "Aura_Types"                                           "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                "Aura_ApplyToCaster"                                   "0"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/tower_abilities.lua"
+                        "Function"                             "PlagueParticle"
+                        "particle_plague"                      "particles/units/heroes/hero_pudge/pudge_rot_radius.vpcf"
+                    }
+                }
+            }
+            "modifier_imba_tower_plague_aura"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "1"
+                "ThinkInterval"                                        "%tick_rate"
+                "OnIntervalThink"
+                {
+                    "Damage"
+                    {
+                        "Target"                               "TARGET"
+                        "Type"                                 "DAMAGE_TYPE_PHYSICAL"
+                        "Damage"                               "%damage_per_tick"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%slow"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow"
+                }
+            }
+        }
+        "ReduxPerks"                                                           "aura"
+        "ReduxCost"                                                            "120"
+        "ReduxFlags"                                                           ""
+    }
+}

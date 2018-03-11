@@ -1,0 +1,91 @@
+"DOTAAbilities" {
+	"benneng"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/benneng"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_sniper/sniper_crosshair.vpcf"
+		}
+		"Modifiers"
+		{
+			"modifier_benneng"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"OnKill"
+				{
+					"Random"
+					{
+						"Chance"	"%chance"
+						"PseudoRandom"	"1"
+						"OnSuccess"
+						{
+							"RunScript"
+							{
+								"Target"	"CASTER"
+								"ScriptFile"	"scripts/vscripts/abilities/oneshotonekill/beast_ninja.lua"
+								"Function"	"benneng"
+							}
+						}
+					}
+				}
+			}
+			"benneng_beibu"
+			{
+				"Duration"	"%duration"
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"Target"	"TARGET"
+						"EffectAttachType"	"follow_overhead"
+						"EffectName"	"particles/units/heroes/hero_sniper/sniper_crosshair.vpcf"
+					}
+				}
+			}
+			"bengneng_sight"
+			{
+				"Duration"	"%duration"
+				"OnCreated"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_tower_truesight_aura"
+					}
+				}
+				"OnDestroy"
+				{
+					"RemoveModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_tower_truesight_aura"
+					}
+				}
+				"OnDeath"
+				{
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_tower_truesight_aura"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"chance"	"20 30 40 50"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"2"
+			}
+		}
+	}
+}

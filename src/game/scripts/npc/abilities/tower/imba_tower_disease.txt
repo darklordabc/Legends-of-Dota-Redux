@@ -1,0 +1,56 @@
+"DOTAAbilities"
+{
+    "imba_tower_disease"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "custom/disease_aura"
+        "MaxLevel"                                                             "3"
+        "AbilitySharedWithTeammates"                                           "1"
+        "AbilityCastRange"                                                     "1200"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "stat_reduction"                                       "-10 -20 -30"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "aura_radius"                                          "1200"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_tower_disease"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "Aura"                                                 "modifier_imba_tower_disease_aura"
+                "Aura_Radius"                                          "%aura_radius"
+                "Aura_Teams"                                           "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                "Aura_Types"                                           "DOTA_UNIT_TARGET_HERO"
+                "Aura_Flags"                                           "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+                "Aura_ApplyToCaster"                                   "0"
+            }
+            "modifier_imba_tower_disease_aura"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "0"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"       "%stat_reduction"
+                    "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"        "%stat_reduction"
+                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"      "%stat_reduction"
+                }
+            }
+        }
+        "ReduxPerks"                                                           "aura"
+        "ReduxCost"                                                            "120"
+        "ReduxFlags"                                                           ""
+    }
+}

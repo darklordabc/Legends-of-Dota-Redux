@@ -1,0 +1,110 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/hudstyles.vcss_c" />
+		<include src="s2r://panorama/styles/hud/hud_reborn.vcss_c" />
+		<include src="s2r://panorama/styles/hud/dota_hud_xp.vcss_c" />
+		<include src="file://{resources}/styles/custom_game/scoreboard_flyout.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/scoreboard_flyout.js" />
+	</scripts>
+	<snippets>
+		<snippet name="Team">
+			<Panel class="Team">
+				<Panel id="TeamHeader" class="LeftRightFlow">
+					<Label id="TeamScoreLabel" text="{d:score}" require-composition-layer="true" always-cache-composition-layer="true"/>
+					<Label id="TeamLabel" require-composition-layer="true" always-cache-composition-layer="true"/>
+					<Panel id="Legend">
+						<Label id="AbilitiesLabel" class="SubheaderDesc" text="#DOTA_Scoreboard_Header_Abilities"/>
+						<Label id="LvlLabel" class="SubheaderDesc" text="#DOTA_Scoreboard_Header_Lvl"/>
+						<Label id="GoldLabel" class="SubheaderDesc" text="#DOTA_Scoreboard_Header_Gold"/>
+						<Label id="KillsLabel" class="SubheaderDesc KDALabel" text="#DOTA_Scoreboard_K"/>
+						<Label id="DeathsLabel" class="SubheaderDesc KDALabel" text="#DOTA_Scoreboard_D"/>
+						<Label id="AssistsLabel" class="SubheaderDesc KDALabel" text="#DOTA_Scoreboard_A"/>
+						<Label id="UltLabel" class="SubheaderDesc" text="#DOTA_Scoreboard_Ult"/>
+						<Label id="MuteLabel" class="SubheaderDesc" text="#DOTA_Scoreboard_Mute"/>
+					</Panel>
+				</Panel>
+				<Panel id="TeamPlayersContainer" hittest="false" class="TopBottomFlow" />
+			</Panel>
+		</snippet>
+		<snippet name="Player">
+			<Panel class="ScoreboardPlayer LeftRightFlow EmptyPlayerRow ShowXPBar NonHero">
+				<Panel id="PlayerColor"/>
+				<DOTAAvatarImage id="AvatarImage" class="ScoreboardAvatar" />
+				<DOTAHeroImage id="HeroImage" class="ScoreboardHeroImage" />
+				<Panel id="PlayerAndHeroNameContainer" class="TopBottomFlow">
+					<Label id="PlayerNameLabel" class="PlayerNameLabel" text=""/>
+					<Label id="HeroNameLabel" class="HeroNameLabel" text=""/>
+				</Panel>
+
+				<Panel id="AbilityList">
+					<Panel id="AbilityListAbilities" />
+					<Panel id="AbilityListTalents" />
+				</Panel>
+
+				<Panel id="ScoreboardXP" class="ScoreboardXP">
+					<Panel id="LevelBackground" onactivate="DOTAHUDXPBarClicked();" />
+					<Label id="LevelLabel" class="MonoNumbersFont" text="{d:level}" hittest="false" style="width: 100%;" />
+					<CircularProgressBar id="CircularXPProgress" onactivate="DOTAHUDXPBarClicked();" />
+					<CircularProgressBar id="CircularXPProgressBlur" hittest="false"/>
+					<!-- <ProgressBar id="XPProgress" onactivate="DOTAHUDXPBarClicked();" >
+						<Label id="XPLabel" text="#DOTA_Hud_XP" hittest="false" />
+					</ProgressBar> -->
+				</Panel>
+				<Panel id="GoldContainer">
+					<Panel id="ScoreboardBuybackIndicator" class="ScoreboardBuybackIndicator" onmouseout="UIHideTextTooltip();" onmouseover="UIShowTextTooltip( #DOTA_StatTooltip_Buyback_Ready );"/>
+					<Label class="ScoreboardGold MonoNumbersFont" text="{d:gold}"/>		
+				</Panel>
+				<Label class="KDANumbers KDAKills MonoNumbersFont" text="{d:kills}"/>
+				<Label class="KDANumbers MonoNumbersFont" text="{d:deaths}"/>
+				<Label class="KDANumbers MonoNumbersFont" text="{d:assists}"/>
+				<Panel id="ScoreboardUltIndicator">
+					<Label id="UltCooldownSeconds" text="{d:ult_cooldown}"/>
+					<Panel id="UltIcon" class="ScoreboardUltIndicator UltNotLearned"/>
+				</Panel>
+				<Panel id="ScoreboardMuteButtons" class="LeftRightFlow">
+					<ToggleButton id="VoiceMute" class="ScoreboardMuteButton Voice"/>
+					<!-- <ToggleButton id="TextMute" class="ScoreboardMuteButton Text"/> -->
+				</Panel>	
+			</Panel>
+		</snippet>
+		<snippet name="SharedControlPlayer">
+			<Panel class="SharedControlPlayer LeftRightFlow" hittest="false">
+				<!-- <ToggleButton id="UnitControlButton" onmouseout="UIHideTextTooltip()" onmouseover="UIShowTextTooltip(#DOTA_HUD_SharedUnits)"/>
+				<ToggleButton id="HeroControlButton" onmouseout="UIHideTextTooltip()" onmouseover="UIShowTextTooltip(#DOTA_HUD_SharedHero)"/> -->
+				<ToggleButton id="DisableHelpButton" onmouseout="UIHideTextTooltip()" onmouseover="UIShowTextTooltip(#DOTA_HUD_DisableHelp)" hittest="true"/>
+			</Panel>
+		</snippet>
+		<snippet name="HeroAbility">
+			<Panel class="HeroAbility">
+				<DOTAAbilityImage id="HeroAbilityImage" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="base ScoreboardClosed" hittest="false">
+		<Panel id="SharedUnitControl" hittest="false">
+			<Panel id="SharedUnitHeaders" class="LeftRightFlow" hittest="false" hittestchildren="false">
+				<!-- <Label id="UnitLabel" text="#DOTA_Scoreboard_Header_Unit" class="SharedUnitLabels"/>
+				<Label id="HeroLabel" text="#DOTA_Scoreboard_Header_Hero" class="SharedUnitLabels"/> -->
+				<Label id="DisableHelpLabel" text="#DOTA_Scoreboard_Header_Help" class="SharedUnitLabels"/>
+			</Panel>
+			<Panel id="PlayersContainer" class="TopBottomFlow" hittest="false"/>
+		</Panel>
+		<DOTASharedContent id="SharedContent" />
+		<Panel id="Background" hittest="false" class="TopBottomFlow">
+			<Panel id="TeamList" hittest="true" hittestchildren="true"/>
+			<Panel id="NestedMenuButtons" class="LeftRightFlow">
+				<Panel id="CoachMuteContainer">
+					<DOTASettingsCheckbox convar="dota_mute_other_coaches" text="#DOTA_Scoreboard_MuteOtherCoaches" />
+				</Panel>
+				<Panel id="NestContainer" hittest="false" hittestchildren="true">
+					<Button id="CombatLogButton" onactivate="DOTAHUDToggleCombatLog();" onmouseover="UIShowTextTooltip(#DOTA_HUD_CombatLog)"  onmouseout="UIHideTextTooltip()"/>
+					<!-- <Button id="SharedContentButton" onactivate="DOTAHUDToggleSharedContent();" onmouseover="UIShowTextTooltip( #DOTA_HUD_SharedContent )"  onmouseout="UIHideTextTooltip()" /> -->
+					<Button id="SharedUnitsButton"  onactivate="$.GetContextPanel().ToggleClass('SharedUnitControl')" onmouseover="UIShowTextTooltip(#DOTA_HUD_SharedUnitControl)"  onmouseout="UIHideTextTooltip()"/>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

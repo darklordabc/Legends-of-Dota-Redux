@@ -1,0 +1,175 @@
+"DOTAAbilities"
+{
+    "android_cluster_rockets"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityTextureName"                                                   "custom/android_cluster_rockets"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "AbilityCastAnimation"                                                 "ACT_DOTA_CAST_ABILITY_2"
+        "MaxLevel"                                                             "4"
+        "RequiredLevel"                                                        "1"
+        "LevelsBetweenUpgrades"                                                "2"
+        "AbilityCastRange"                                                     "1500"
+        "AbilityCastPoint"                                                     "0.3"
+        "AbilityCooldown"                                                      "40.0"
+        "AbilityManaCost"                                                      "50 75 100 125"
+        "AOERadius"                                                            "%radius"
+        "AbilityChannelTime"                                                   "1.01"
+        "precache"
+        {
+            "particle"                                                      "particles/units/heroes/hero_tinker/tinker_missile.vpcf"
+            "particle"                                                      "particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
+            "soundfile"                                                     "soundevents/game_sounds_heroes/game_sounds_gyrocopter.vsndevts"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage"                                               "75"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "projectile_count"                                     "3 6 12 24"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "stun_duration"                                        "1"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "250 300 350 400"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "projectile_speed"                                     "550"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "projectile_radius"                                    "100"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "projectile_interval"                                  "0.16 0.084 0.056 0.036"
+            }
+        }
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "Target"                                               "CASTER"
+                "EffectName"                                           "Hero_Tinker.Heat-Seeking_Missile"
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"                                         "modifier_cluster_rockets"
+                "Target"
+                {
+                    "Center"                                       "CASTER"
+                    "Flags"                                        "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+                }
+            }
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/life_in_arena/ClusterRockets.lua"
+                "Function"                                             "StartClusterRockets"
+                "Target"                                               "POINT"
+            }
+        }
+        "OnChannelFinish"
+        {
+            "RemoveModifier"
+            {
+                "ModifierName"                                         "modifier_cluster_rockets"
+                "Target"
+                {
+                    "Center"                                       "CASTER"
+                    "Flags"                                        "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+                }
+            }
+        }
+        "OnProjectileHitUnit"
+        {
+            "FireSound"
+            {
+                "Target"                                               "TARGET"
+                "EffectName"                                           "Hero_Gyrocopter.Rocket_Barrage.Impact"
+            }
+            "FireEffect"
+            {
+                "Target"                                               "TARGET"
+                "EffectName"                                           "particles/units/heroes/hero_tinker/tinker_missle_explosion.vpcf"
+                "EffectAttachType"                                     "start_at_customorigin"
+                "ControlPointEntities"
+                {
+                    "TARGET"                                       "attach_origin"
+                }
+            }
+            "ActOnTargets"
+            {
+                "Target"
+                {
+                    "Center"                                       "PROJECTILE"
+                    "Radius"                                       "%projectile_radius"
+                    "Teams"                                        "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                    "Types"                                        "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                }
+                "Action"
+                {
+                    "Damage"
+                    {
+                        "Target"                               "TARGET"
+                        "Damage"                               "%damage"
+                        "Type"                                 "DAMAGE_TYPE_MAGICAL"
+                    }
+                    "Stun"
+                    {
+                        "Duration"                             "%stun_duration"
+                        "Target"                               "TARGET"
+                    }
+                }
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_cluster_rockets"
+            {
+                "IsHidden"                                             "1"
+                "Attributes"                                           "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "EffectName"                           "particles/units/heroes/hero_tinker/tinker_rearm.vpcf"
+                        "EffectAttachType"                     "attach_origin"
+                        "Target"                               "CASTER"
+                        "ControlPointEntities"
+                        {
+                            "CASTER"                       "attach_attack1"
+                        }
+                    }
+                }
+                "ThinkInterval"                                        "%projectile_interval"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/life_in_arena/ClusterRockets.lua"
+                        "Function"                             "FireClusterRocket"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "stun"
+        "ReduxPerks"                                                           "scientific | explosive"
+    }
+}

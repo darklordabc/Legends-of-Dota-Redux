@@ -1,0 +1,34 @@
+"DOTAAbilities"
+{
+    "imba_tower_machinegun"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "gyrocopter_skyhigh_flak_cannon"
+        "MaxLevel"                                                             "3"
+        "AbilitySharedWithTeammates"                                           "1"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_as"                                             "75 125 175"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_tower_machinegun"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%bonus_as"
+                }
+            }
+        }
+        "ReduxCost"                                                            "120"
+        "ReduxFlags"                                                           ""
+    }
+}

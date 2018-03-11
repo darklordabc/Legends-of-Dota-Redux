@@ -1,0 +1,84 @@
+"DOTAAbilities" {
+	"side_gunner_redux" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName" "custom/side_gunner_redux"
+		"HasScepterUpgrade"			"1"
+		"ReduxCost"                                                            "20"
+
+		"AOERadius"	"600"
+
+		"precache"
+		{
+			"particle"  "particles/units/heroes/hero_gyrocopter/gyro_base_attack.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_gyrocopter.vsndevts"
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"interval"			"6.5 5.0 3.5 2.0"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"interval_scepter"	"5.5 4.0 2.5 1.0"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"range"				"600"
+			}
+		}
+
+		"OnUpgrade"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_side_gunner_redux"
+				"Target" 		"CASTER"
+			}
+		}
+
+		"OnOwnerSpawned"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_side_gunner_redux"
+				"Target" 		"CASTER"
+			}
+		}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"RunScript" {
+				"ScriptFile" "abilities/side_gunner_redux.lua"
+				"Function" "Impact"
+				"Target" "TARGET"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_side_gunner_redux" {
+				"Passive" "0"
+				"IsHidden" "1"
+
+				"ThinkInterval" "0.3"
+
+				"OnIntervalThink" {
+					"RunScript" {
+						"ScriptFile" "abilities/side_gunner_redux.lua"
+						"Function" "Shot"
+					}
+				}
+			}
+			"modifier_side_gunner_redux_cd" {
+				"Passive" "0"
+				"IsHidden" "0"
+			}
+		}
+	}
+}

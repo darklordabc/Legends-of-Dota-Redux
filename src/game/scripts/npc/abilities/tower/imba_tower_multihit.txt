@@ -1,0 +1,43 @@
+"DOTAAbilities"
+{
+    "imba_tower_multihit"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "custom/imba_tower_multihit"
+        "MaxLevel"                                                             "3"
+        "AbilitySharedWithTeammates"                                           "1"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_attacks"                                        "1 2 3"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "delay"                                                "0.15"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_tower_multihit"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "OnAttackStart"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/tower_abilities.lua"
+                        "Function"                             "Multihit"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "aoe_attack | attack_modifier"
+        "ReduxCost"                                                            "120"
+    }
+}

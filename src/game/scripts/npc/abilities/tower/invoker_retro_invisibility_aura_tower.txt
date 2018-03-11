@@ -1,0 +1,108 @@
+"DOTAAbilities" {
+	"invoker_retro_invisibility_aura_tower" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityTextureName" "custom/invoker_retro_invisibility_aura"
+		"SpellImmunityType" "SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityCastRange" "500 600 700"
+		"FightRecapLevel" "1"
+		"MaxLevel" "3"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"ReduxFlags"                                                           "invis"
+		"ReduxCost"                                                            "120"
+		
+		"precache" {
+			"particle" "particles/units/heroes/hero_invoker/invoker_retro_invisibility_aura.vpcf"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_FLOAT"
+				"radius" "500 600 700"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"fade_time" "3 2 1.5"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"pip_current" "1"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_invoker_retro_invisibility_aura" {
+				"Passive" "1"
+				"IsHidden" "0"
+				"ThinkInterval" "0.03"
+
+				"OnIntervalThink" {
+					"RunScript" {
+						"ScriptFile" "abilities/retro_dota/invoker_retro_invisibility_aura_tower.lua"
+						"Function" "modifier_invoker_retro_invisibility_aura_on_interval_think"
+						"FadeTime" "%fade_time"
+					}
+				}
+
+				"OnCreated" {
+					"RunScript" {
+						"ScriptFile" "abilities/retro_dota/invoker_retro_invisibility_aura_tower.lua"
+						"Function" "modifier_invoker_retro_invisibility_aura_on_created"
+					}
+				}
+
+				"OnDestroy" {
+					"RunScript" {
+						"ScriptFile" "abilities/retro_dota/invoker_retro_invisibility_aura_tower.lua"
+						"Function" "modifier_invoker_retro_invisibility_aura_on_destroy"
+					}
+				}
+			}
+
+			"modifier_invoker_retro_invisibility_aura_in_radius" {
+				"Duration" ".5"
+				"Passive" "0"
+				"IsHidden" "1"
+
+				"OnAbilityExecuted" {
+					"RunScript" {
+						"ScriptFile" "abilities/retro_dota/invoker_retro_invisibility_aura.lua"
+						"Function" "modifier_invoker_retro_invisibility_aura_in_radius_on_ability_executed"
+					}
+				}
+
+				"OnAttackStart" {
+					"RunScript" {
+						"ScriptFile" "abilities/retro_dota/invoker_retro_invisibility_aura.lua"
+						"Function" "modifier_invoker_retro_invisibility_aura_in_radius_on_attack_start"
+					}
+				}
+			}
+
+			"modifier_invoker_retro_invisibility_aura_effect" {
+				"Passive" "0"
+				"IsHidden" "0"
+				"IsBuff" "1"
+				"IsDebuff" "0"
+				"IsPurgable" "0"
+				"Duration" ".5"
+				"Attributes" "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"TextureName" "invoker_retro_invisibility_aura"
+
+				"States" {
+					"MODIFIER_STATE_INVISIBLE" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"ThinkInterval" ".03"
+
+				"OnIntervalThink" {
+					"RunScript" {
+						"ScriptFile" "abilities/retro_dota/invoker_retro_invisibility_aura.lua"
+						"Function" "modifier_invoker_retro_invisibility_aura_effect_on_interval_think"
+					}
+				}
+			}
+		}
+	}
+}

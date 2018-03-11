@@ -1,0 +1,40 @@
+"DOTAAbilities"
+{
+    "treant_eyes_in_the_forest_notification"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+        "AbilityTextureName"                                                   "treant_eyes_in_the_forest"
+        "MaxLevel"                                                             "1"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "1000"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_eyes_in_the_forest_notification"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "IsDebuff"                                             "0"
+                "Aura"                                                 "modifier_eyes_in_the_forest_notification_eff"
+                "Aura_Radius"                                          "%radius"
+                "Aura_Teams"                                           "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                "Aura_Types"                                           "DOTA_UNIT_TARGET_HERO"
+                "Aura_Flags"                                           "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+                "Aura_ApplyToCaster"                                   "0"
+            }
+            "modifier_eyes_in_the_forest_notification_eff"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsDebuff"                                             "1"
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

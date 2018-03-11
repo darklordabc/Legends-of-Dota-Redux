@@ -1,0 +1,48 @@
+"DOTAAbilities"
+{
+    "invoker_cold_snap_lod"
+    {
+        "BaseClass"                                                            "invoker_cold_snap"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "MaxLevel"                                                             "4"
+        "RequiredLevel"                                                        "1"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "AbilityCastRange"                                                     "1000"
+        "AbilityCastPoint"                                                     "0"
+        "AbilityCooldown"                                                      "20"
+        "AbilityManaCost"                                                      "100"
+        "AbilityModifierSupportValue"                                          "0.15"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                             "3.0 4.0 5.0 6.0"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "freeze_duration"                                      "0.4"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "freeze_cooldown"                                      "0.77 0.71 0.66 0.60"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "freeze_damage"                                        "7 21 35 49"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "damage_trigger"                                       "10.0"
+            }
+        }
+        "ReduxFlags"                                                           "stun"
+        "ReduxPerks"                                                           "ice"
+    }
+}

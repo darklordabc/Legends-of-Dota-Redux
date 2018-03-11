@@ -1,0 +1,804 @@
+"DOTAAbilities"
+{
+        //=================================================================================================================
+    //
+    //
+    //
+    //
+    //
+    //
+    //                                  Uther, the Lightbringer (Silver Knight)
+    //                                  Original concept by summer-penguin
+    //                                  Code provided by Pongping
+    //
+    //
+    //
+    //
+    //
+    //=================================================================================================================
+    "uther_Argent_Smite"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/nextgeneration/hero_uther/Argent_Smite.lua"
+        "AbilityTextureName"            "custom/uther_Argent_Smite"
+        "MaxLevel"                      "4"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_ALL"
+        "AbilityCastRange"              "550"
+
+        "precache"
+        {
+            "particle"  "particles/ui/ui_godrays.vpcf"
+            "particle"  "particles/uther/argent_smite.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
+        }
+    
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "Cooldown_Factor"   "6.0 5.5 4.5 4.0"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "Cooldown_Factor_Building"   "13.0"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "Range_Bonus"       "400"
+            }
+            "04"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "Heal_Factor"       "0.7 0.9 1.1 1.40"
+            }
+            "05"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "Tower_Heal_Factor"     "0.50"
+            }
+        }
+    }
+
+    "uther_compass"
+    {
+      "BaseClass"                 "ability_datadriven"
+      "AbilityTextureName"          "custom/uther_compass"
+      "AbilityBehavior"             "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+      "AbilityUnitTargetTeam"       "DOTA_UNIT_TARGET_TEAM_ENEMY"
+      "AbilityUnitTargetType"       "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+      "AbilityType"                 "DOTA_ABILITY_TYPE_ULTIMATE"
+    
+      "AbilityCooldown"        "180 150 120"
+      "AbilityManaCost"        "145 205 265"
+         
+      "AbilityCastRange"        "1200"
+      "AbilityCastPoint"        "0.6"
+      "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"
+    
+      "AbilitySpecial"
+      {
+        "01"
+        {
+          "var_type"      "FIELD_INTEGER"
+          "duration"      "15"
+        }
+        "02"
+        {
+          "var_type"      "FIELD_INTEGER"
+          "radius"    "1200"
+        }
+        "03"
+        {
+          "var_type"      "FIELD_INTEGER"
+          "check_radius"    "2500"
+        }
+      }
+      "precache"
+      {
+        "particle"    "particles/units/heroes/hero_disruptor/disruptor_kineticfield.vpcf"
+        "soundfile" "soundevents/game_sounds_heroes/game_sounds_visage.vsndevts"
+      }
+    
+      "OnSpellStart"
+      {
+        "RunScript"
+        {
+          "ScriptFile"  "abilities/nextgeneration/hero_uther/compass.lua"
+          "Function"    "CreateHalo"
+        }
+      }
+      "Modifiers"
+      {
+        "modifier_uther_compass_control_movement"
+        {
+          "Passive"      "0"
+          "IsHidden"      "1"
+          "IsDebuff"      "1"
+          "ThinkInterval"  "0.04"
+          
+          "OnIntervalThink"
+          {
+            "RunScript"
+            {
+              "ScriptFile"  "abilities/nextgeneration/hero_uther/compass.lua"
+              "Function"    "CompassPositionCheck"
+            }
+          }
+        }
+        "modifier_uther_compass_control_orders"
+        {
+          "Passive"      "0"
+          "IsHidden"      "0"
+          "IsDebuff"      "1"
+        }
+        "modifier_uther_compass_halo"
+        {
+          "Passive"      "0"
+          "IsHidden"      "1"
+          "IsDebuff"      "0"
+          "Aura"            "modifier_uther_compass_control_orders"
+          "Aura_Radius"     "20000"
+          "Aura_Teams"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
+          "Aura_Types"      "DOTA_UNIT_TARGET_HERO"
+          "Aura_Flags"      "DOTA_UNIT_TARGET_FLAG_NONE"
+          "Aura_ApplyToCaster" "0"
+    
+        }
+        "modifier_uther_compass_halo2" // Something like a wall or kinetic field
+        {
+          "Passive"      "0"
+          "IsHidden"      "1"
+          "IsDebuff"      "0"
+          "Aura"            "modifier_uther_compass_control_movement"
+          "Aura_Radius"     "%radius"
+          "Aura_Teams"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
+          "Aura_Types"      "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+          "Aura_Flags"      "DOTA_UNIT_TARGET_FLAG_NONE"
+          "Aura_ApplyToCaster" "0"
+           "OnDestroy"
+          {
+            "RunScript"
+            {
+              "ScriptFile"  "abilities/nextgeneration/hero_uther/compass.lua"
+              "Function"    "RemoveHalo"
+            }
+          }
+        }
+      }
+    }
+    "uther_Hail_Back"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "custom/uther_hail_back"
+        "MaxLevel"                      "1"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"    
+        "AbilityCooldown"        "0.5"
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/nextgeneration/hero_uther/hurl_hammer.lua"
+                "Function"      "ReturnHammer"
+            }
+        }
+    }
+    "uther_Hurl_Hammer"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "custom/uther_hurl_hammer"
+        "MaxLevel"                      "4"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "AbilityProcsMagicStick"        "1"
+        "HasScepterUpgrade"             "1"
+
+        "AbilityCastRange"              "800 950 1100 1250"
+        "AbilityCastPoint"              "0.25"
+        "AbilityDamage"                 "90 130 170 210"
+        "AbilityCooldown"               "8"
+        "AbilityManaCost"               "110 120 130 140"
+
+        "AbilityDuration"               "8"
+        "AoERadius"                     "250"
+
+        "ReduxBans"                                                            "spell_lab_symbiotic"
+        "ReduxPerks"                                                           "light"
+    
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "Hammer_Size"       "250"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "scepter_Hammer_Size"       "500"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "stun_duration"     "1 1.25 1.5 1.75"
+            }
+            "04"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "Movement_Speed_Bonus"  "15"
+            }
+            "05"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "Automatic_Return"  "18"
+            }
+            "06"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "ministun_duration" "0.01"
+            }
+            "07"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "hammer_speed"      "800 950 1100 1250"
+            }
+            "08"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "scepter_damage"    "120 200 280 360"
+            }
+        }
+        "precache"
+        {
+            "particle"  "particles/uther/hurl_hammer.vpcf"
+            "particle"  "particles/econ/courier/courier_trail_05/courier_trail_05.vpcf"
+            "model"     "models/heroes/omniknight/hammer.vmdl"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_templar_assassin.vsndevts"
+        }
+
+        "OnUpgrade"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/nextgeneration/hero_uther/hurl_hammer.lua"
+                "Function"      "LearnHurlBack"
+            }
+        }
+
+        "OnSpellStart"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_hammer_thrown"
+                "Target"        "CASTER"
+                "Duration"      "%Automatic_Return"
+            }
+
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/nextgeneration/hero_uther/hurl_hammer.lua"
+                "Function"      "ThrowHammer"
+                "Target"        "POINT"
+            }
+        }
+
+        "Modifiers"
+        {
+            "modifier_hammer_thrown"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsPurgable"        "0"
+                "IsBuff"            "0"
+                "IsDebuff"          "0"
+                "IsStunDebuff"      "0"
+
+                "OnAttackStart"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_uther/hurl_hammer.lua"
+                        "Function"      "CancelAttack"
+                    }
+                }
+                "OnDeath"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_uther/hurl_hammer.lua"
+                        "Function"      "RemoveHammer"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_uther/hurl_hammer.lua"
+                        "Function"      "ReturnHammer"
+                    }
+                }
+        
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%Movement_Speed_Bonus" 
+                }
+            }
+            "modifier_hammer_moving_dummy"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+
+                "OnDestroy"
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "modifier_hammer_stationary_dummy"
+                        "Target"        "CASTER"
+                    }
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/econ/items/omniknight/hammer_ti6_immortal/omniknight_purification_ti6_immortal.vpcf"
+                        "EffectAttachType"      "attach_origin"
+                        "Target"                "TARGET"
+                        "ControlPointEntities"
+                        {
+                            "TARGET"    "follow_origin"
+                            "TARGET"    "follow_origin"
+                            "TARGET"    "follow_origin"
+                            "TARGET"    "follow_origin"
+                        }
+                        "ControlPoints"
+                        {
+                            "00"    "0 0 0"
+                            "01"    "%Hammer_Size*2 %Hammer_Size*2 %Hammer_Size*2"
+                        }
+                    }
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_TemplarAssassin.Trap.Explode"
+                        "Target"        "TARGET"
+                    }
+                    "ActOnTargets"
+                    {
+                        "Target"
+                        {
+                            "Center"    "TARGET"
+                            "Radius"    "%Hammer_Size"
+                            "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                            "Types"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                        }
+                    
+                        "Action"    
+                        {
+                            "ApplyModifier"
+                            {
+                                "ModifierName"  "modifier_hammer_stun"
+                                "Target"        "TARGET"
+                                "Duration"      "%stun_duration"
+                            }
+                            "Damage"
+                            {
+                                "Target"        "TARGET"
+                                "Type"          "DAMAGE_TYPE_MAGICAL"
+                                "Damage"        "%AbilityDamage"
+                            }
+                            "FireEffect"
+                            {
+                                "EffectName"        "particles/units/heroes/hero_omniknight/omniknight_purification_hit.vpcf"
+                                "EffectAttachType"  "follow_origin"
+                                "Target"            "TARGET"
+                                "ControlPointEntities"
+                                {
+                                    "TARGET"    "attach_hitloc"
+                                    "TARGET"    "attach_hitloc"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            "modifier_hammer_moving_dummy_scepter"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+
+                "OnDestroy"
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "modifier_hammer_stationary_dummy"
+                        "Target"        "CASTER"
+                        //"Duration"        "-1"
+                    }
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/econ/items/omniknight/hammer_ti6_immortal/omniknight_purification_ti6_immortal.vpcf"
+                        "EffectAttachType"      "attach_origin"
+                        "Target"                "TARGET"
+                        "ControlPointEntities"
+                        {
+                            "TARGET"    "attach_origin"
+                            "TARGET"    "attach_origin"
+                            "TARGET"    "attach_origin"
+                        }
+                        "ControlPoints"
+                        {
+                            "00"    "0 0 0"
+                            "01"    "%scepter_Hammer_Size*2 %scepter_Hammer_Size*2 %scepter_Hammer_Size*2"
+                        }
+                    }
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_TemplarAssassin.Trap.Explode"
+                        "Target"        "TARGET"
+                    }
+                    "ActOnTargets"
+                    {
+                        "Target"
+                        {
+                            "Center"    "TARGET"
+                            "Radius"    "%scepter_Hammer_Size"
+                            "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                            "Types"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                        }
+                    
+                        "Action"
+                        {
+                            "ApplyModifier"
+                            {
+                                "ModifierName"  "modifier_hammer_stun"
+                                "Target"        "TARGET"
+                                "Duration"      "%stun_duration"
+                            }
+                            "FireEffect"
+                            {
+                                "EffectName"        "particles/units/heroes/hero_omniknight/omniknight_purification_hit.vpcf"
+                                "EffectAttachType"  "follow_origin"
+                                "Target"            "TARGET"
+                                "ControlPointEntities"
+                                {
+                                    "TARGET"    "attach_hitloc"
+                                    "TARGET"    "attach_hitloc"
+                                }
+                            }
+                            "Damage"
+                            {
+                                "Target"        "TARGET"
+                                "Type"          "DAMAGE_TYPE_MAGICAL"
+                                "Damage"        "%scepter_damage"
+                            }
+                        }
+                    }
+                }
+            }
+            "modifier_hammer_stun"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "1"
+                "IsStunDebuff"      "1"
+                "OverrideAnimation"     "ACT_DOTA_DISABLED"
+            
+                "EffectName"        "particles/generic_gameplay/generic_stunned.vpcf"
+                "EffectAttachType"  "follow_overhead"
+            
+                "States"
+                {
+                    "MODIFIER_STATE_STUNNED"        "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+            "modifier_hammer_stationary_dummy"
+            {   
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+            
+                "ThinkInterval"  "0.1"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_uther/hurl_hammer.lua"
+                        "Function"      "PickUpHammer"
+                    }
+                }
+            }
+            "modifier_hammer_dummy"
+            {
+                "IsHidden" "1"
+                "States"
+                {
+                    "MODIFIER_STATE_NO_HEALTH_BAR"      "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_ATTACK_IMMUNE"      "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NO_UNIT_COLLISION"  "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_COMMAND_RESTRICTED"     "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY"   "MODIFIER_STATE_VALUE_ENABLED"
+                }
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_uther/hurl_hammer.lua"
+                        "Function"      "HammerParticle"
+                    }
+                }
+            }
+        }
+    }
+    "uther_Omniscience"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "custom/uther_omniscience"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "value"             "25"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "max_stacks"        "2 3 4"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "duration"          "10"
+            }
+        }
+        "OnUpgrade"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/nextgeneration/hero_uther/Omniscience.lua"
+                "Function"      "AddCharges"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_omniscience"
+            {
+                "Passive"           "1"
+                "IsHidden"          "0"
+                "IsDebuff"          "0"
+    
+                "Attributes"        "MODIFIER_ATTRIBUTE_PERMANENT"
+                
+    
+                "OnOrder"
+                // OnSpellStart as a Modifier Event, you can Apply it on a target to trigger any Actions.
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_uther/Omniscience.lua"
+                        "Function"      "Omniscience"
+                    }
+                }
+            }
+            "modifier_omniscience_dummy"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+            
+            
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_uther/Omniscience.lua"
+                        "Function"      "AddCharges"
+                    }
+                }
+            }
+        }
+    }
+    "uther_Threatening_Bolt"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "custom/uther_Threatening_Bolt"
+        "MaxLevel"                      "4"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "AbilityCooldown"               "7"
+        "AbilityDuration"               "5"
+        "AbilityCastRange"              "2000"
+        "AbilityCastPoint"              "0.3"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
+        "AbilityManaCost"               "70 80 90 100"
+        "AbilityProcsMagicStick"        "1"
+        "ReduxPerks"                                                           "light"
+    
+        "precache"
+        {
+            "model"     "models/heroes/vengeful/vengeful_terror_head.vmdl"
+            "particle"  "particles/econ/courier/courier_trail_spirit/courier_trail_spirit.vpcf"
+            "particle"  "particles/units/heroes/hero_sven/sven_storm_bolt_projectile_explosion.vpcf"
+            "particle"  "particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_recall_source.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_chen.vsndevts"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_keeper_of_the_light.vsndevts"
+        }
+    
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "bolt_speed"            "400"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "damage"            "125 200 275 350"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "attacks_needed"    "3"
+            }
+            "04"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "explosion_radius"  "250"
+            }
+        }
+    
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/nextgeneration/hero_uther/threatening_bolt.lua"
+                "Function"      "Launch_Bolt"
+                "Target"        "POINT"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_bolt_dummy"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+        
+                "EffectName"        "particles/econ/courier/courier_trail_spirit/courier_trail_spirit.vpcf"
+                "EffectAttachType"  "follow_origin"
+    
+                "Properties"
+                {
+                   "MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE" "-99.9%" 
+                }
+        
+                "ThinkInterval"  "0.03"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_uther/threatening_bolt.lua"
+                        "Function"      "Direct_Bolt"
+                    }
+                }
+                "OnAttacked"
+                // "%attack_damage" is set to the damage value after mitigation
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_uther/threatening_bolt.lua"
+                        "Function"      "LoseHP"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_uther/threatening_bolt.lua"
+                        "Function"      "destroy"
+                    }
+                }
+            }
+        }
+    }
+    "uther_omniscience_wave"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"             "ability_datadriven"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+        "FightRecapLevel"               "2"
+        "AbilityTextureName"            "custom/uther_omniscience"
+        "AbilityProcsMagicStick"        "1"
+        "ReduxPerks"                                                           "light"
+
+        // Casting
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastPoint"              "0.7 0.5 0.3"
+        "AbilityCastRange"              "25000"
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "60.0 40.0 20.0"
+
+        // Cost
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityManaCost"               "200"   
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "blast_final_radius"            "25000"
+            }
+            "02"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "blast_speed_per_second"        "5000"
+            }
+            "03"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "blast_vision_radius"           "800"
+            }
+            "04"
+            {
+                "var_type"                      "FIELD_INTEGER"
+                "blast_vision_duration"         "2"
+            }
+        }
+
+        "precache"
+        {
+            "particle"  "particles/units/heroes/hero_brewmaster/brewmaster_dispel_magic.vpcf"
+            "particle"  "particles/uther_omniscience_waveactive.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_wisp.vsndevts"
+        }
+        
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "EffectName"    "Hero_Wisp.Tether.Stun"
+                "Target"        "CASTER"
+            }
+            "RunScript"
+            {
+                "ScriptFile"                    "abilities/nextgeneration/hero_uther/omniscience_wave.lua"
+                "Function"                      "WaveStart"
+                "BlastFinalRadius"              "%blast_final_radius"
+                "BlastSpeedPerSecond"           "%blast_speed_per_second"
+                "BlastDamage"                   "%blast_damage"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_omniscience_wave"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsBuff"            "1"
+            }
+            "modifier_omniscience_wave_hidden"
+            {
+                "Duration"          "%blast_debuff_duration"
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsPurgable"        "0"
+            }
+        }
+    }
+}

@@ -1,0 +1,96 @@
+"DOTAAbilities"
+{
+    "illusionist_mastery_of_illusions"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitTargetFlags"                                               "DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityTextureName"                                                   "custom/illusionist_mastery_of_illusions"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "MaxLevel"                                                             "3"
+        "AbilityCastRange"                                                     "700 700 700"
+        "AbilityCastPoint"                                                     "0.0 0.0 0.0"
+        "AbilityCooldown"                                                      "30.0"
+        "AbilityManaCost"                                                      "100 120 140"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "reduce_spell_damage_pct"                              "-30"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration_hero"                                        "3.0"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration_other"                                       "3.0"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "count_illusion"                                       "3"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "life_illusion"                                        "5 6 7"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "outgoing_damage"                                      "-60 -50 -40"
+            }
+            "08"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "incoming_damage"                                      "300 250 200"
+            }
+            "09"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "outgoing_damage_tooltip"                              "40 50 60"
+            }
+        }
+        "precache"
+        {
+            "particle"                                                     "particles/units/heroes/hero_pugna/pugna_decrepify.vpcf"
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_pugna.vsndevts"
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/life_in_arena/illusionist_mastery_of_illusions.lua"
+                "Function"                                             "AddModifier"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_illusionist_mastery_of_illusions"
+            {
+                "IsDebuff"                                             "1"
+                "EffectName"                                           "particles/units/heroes/hero_pugna/pugna_decrepify.vpcf"
+                "EffectAttachType"                                     "follow_origin"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_DECREPIFY_UNIQUE""%reduce_spell_damage_pct"
+                    "MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL""1"
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_DISARMED"                      "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_LOW_ATTACK_PRIORITY"           "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "illusion"
+        "ReduxPerks"                                                           "illusion"
+    }
+}

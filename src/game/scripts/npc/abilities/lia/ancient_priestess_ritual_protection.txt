@@ -1,0 +1,40 @@
+"DOTAAbilities"
+{
+    "ancient_priestess_ritual_protection"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/life_in_arena/ancient_priestess_ritual_protection.lua"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityTextureName"                                                   "custom/ancient_priestess_ritual_protection"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "MaxLevel"                                                             "3"
+        "AbilityCastPoint"                                                     "0"
+        "AbilityCooldown"                                                      "60"
+        "AbilityManaCost"                                                      "150 200 250"
+        "precache"
+        {
+            "particle"                                                     "particles/lotus_orb_shell_custom.vpcf"
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_mirana.vsndevts"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage_absorb"                                        "200 300 400"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "600"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "duration"                                             "10"
+            }
+        }
+        "ReduxFlags"                                                           "support"
+        "ReduxPerks"                                                           "support | light"
+    }
+}

@@ -1,0 +1,29 @@
+<root>
+    <styles>
+        <include src="file://{resources}/styles/custom_game/game_setup/game_setup.css" />
+    </styles>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/all_random_build.js" />
+    </scripts>
+    <Panel class="allRandomBuildContainer">
+        <Panel id="selectedHeroHighlighter" class="allRandomBuildInnerContainer" onactivate="onSelectRandomHero()">
+             <Panel>
+                <DOTAHeroImage id="allRandomHeroImage" heroname="npc_dota_hero_axe" />
+                <Label id="allRandomHeroName" class="allRandomHeroName" text="heroName" />
+            </Panel>
+        </Panel>
+
+        <Panel class="allRandomBuildSpacing" />
+
+        <Panel id="selectedBuildHighlighter" class="allRandomBuildInnerContainer" onactivate="onSelectRandomBuild()">
+            <Panel id="allRandomSkillContainer">
+                <DOTAAbilityImage id="skill1" abilityname="life_stealer_empty_1" />
+                <DOTAAbilityImage id="skill2" abilityname="life_stealer_empty_1" />
+                <DOTAAbilityImage id="skill3" abilityname="life_stealer_empty_1" />
+                <DOTAAbilityImage id="skill4" abilityname="life_stealer_empty_1" />
+                <DOTAAbilityImage id="skill5" abilityname="life_stealer_empty_1" />
+                <DOTAAbilityImage id="skill6" abilityname="life_stealer_empty_1" />
+            </Panel>
+        </Panel>
+    </Panel>
+</root>

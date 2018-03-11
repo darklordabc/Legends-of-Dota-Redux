@@ -1,0 +1,71 @@
+"DOTAAbilities"
+{
+    "spell_lab_symbiotic"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/spell_lab/symbiotic/ability.lua"
+        "AbilityTextureName"                                                   "custom/spell_lab_symbiotic"
+        "AbilityCooldown"                                                      "120.0 60.0 35.0"
+        "AbilityManaCost"                                                      "200"
+        "AbilityCastRange"                                                     "150"
+        "AbilityCastPoint"                                                     "0.2"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_YES"
+        "HasScepterUpgrade"                                                    "1"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus"                                                "0"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "mana_regen"                                           "50 100 150"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "vis_duration"                                         "3.0 2.5 2.0"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "magic_armor"                                          "-12"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "physical_armor"                                       "-6.0"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "update_rate"                                          "0.03"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "range_scepter"                                          "900"
+            }
+            "08"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "stat_scepter"                                          "1"
+            }
+        }
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_bane.vsndevts"
+            "particle"                                                     "particles/spell_lab/symbiotic_overhead.vpcf"
+        }
+        "ReduxFlags"                                                           "upgradeable | support | mobility | doNotRandom"
+        "ReduxBans"                                                            "storm_spirit_ball_lightning | life_stealer_assimilate | terrorblade_sunder"
+        "ReduxPerks"                                                           "support | mobility"
+        "ReduxCost"                                                            "40"
+    }
+}

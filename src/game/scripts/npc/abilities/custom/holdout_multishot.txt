@@ -1,0 +1,43 @@
+"DOTAAbilities" {
+	"holdout_multishot" {
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityCastRange" "700 750 800 850"
+		"AbilityCastPoint" "0"
+		"AbilityCooldown" "0"
+		"AbilityManaCost" "12 15 18 22"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"arrow_width" "35"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"arrow_speed" "1250.0"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"arrow_range" "700.0 750.0 800.0 850.0"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"arrow_spread" "50"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"arrow_count" "5 6 6 7"
+			}
+
+			"06" {
+				"var_type" "FIELD_INTEGER"
+				"damage_reduction_pct" "80 75 70 65"
+			}
+		}
+	}
+}

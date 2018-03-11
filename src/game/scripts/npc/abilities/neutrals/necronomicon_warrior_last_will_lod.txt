@@ -1,0 +1,19 @@
+"DOTAAbilities"
+{
+    "necronomicon_warrior_last_will_lod"
+    {
+        "BaseClass"                                                            "necronomicon_warrior_last_will"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_PURE"
+        "MaxLevel"                                                             "4"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "explosion"                                            "400 800 1200 1600"
+            }
+        }
+        "ReduxPerks"                                                           "neutral"
+    }
+}

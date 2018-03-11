@@ -1,0 +1,75 @@
+"DOTAAbilities" {
+	"erra_to_dust"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"			 "ability_lua"
+		"ScriptFile"			"abilities/dusk/erra_to_dust"
+		"AbilityBehavior"			   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"		 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"			 "SPELL_IMMUNITY_ENEMIES_NO"
+		"AnimationPlaybackRate"		 "1"
+		"FightRecapLevel"			   "1"
+		"AbilityTextureName"			"custom/erra_to_dust"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"			  "875"
+		"AbilityCastPoint"			  "0.3"
+
+		// Time	 
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"			   "45"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"			   "115"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"   "0.5"   // Applies two modifiers
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			  "FIELD_INTEGER"
+				"hp_to_bonus_damage"	"4 6 8 10"
+			}
+			
+			"02"
+			{
+				"var_type"			  "FIELD_INTEGER"
+				"creep_hp_to_bonus_damage" "2"
+			}
+
+			"03"
+			{
+				"var_type"			  "FIELD_INTEGER"
+				"duration"			  "10"
+			}
+
+			"04"
+			{
+				"var_type"			  "FIELD_INTEGER"
+				"radius"				"875"
+			}
+		}
+
+		"precache"
+		{
+			"soundfile" "soundevents/hero_erra.vsndevts"
+			"particle"  "particles/units/heroes/hero_erra/to_dust.vpcf"
+			"particle"  "particles/units/heroes/hero_erra/to_dust_affected_unit.vpcf"
+		}
+
+		"Modifiers"
+		{
+		}
+
+		"ReduxPerks"	""
+		"ReduxFlags"	""
+	}
+}

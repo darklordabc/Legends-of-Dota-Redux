@@ -1,0 +1,73 @@
+"DOTAAbilities"
+{
+    "imba_juggernaut_healing_ward"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityTextureName"                                                   "juggernaut_healing_ward"
+        "AOERadius"                                                            "%heal_radius"
+        "AbilityCastRange"                                                     "400"
+        "AbilityCastPoint"                                                     "0.3"
+        "AbilityCooldown"                                                      "60"
+        "AbilityManaCost"                                                      "120 125 130 135"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_juggernaut.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_juggernaut/juggernaut_ward_heal.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "heal_radius"                                          "500"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "heal_per_sec"                                         "2 3 4 5"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "health"                                               "3 3 6 9"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "duration"                                             "25"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius_bonus_totem"                                   "250"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "heal_bonus_totem"                                     "2"
+            }
+            "07"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "health_bonus_totem"                                   "9"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/dota imba/hero_juggernaut.lua"
+                "Function"                                             "HealingWard"
+                "Target"                                               "POINT"
+                "sound_cast"                                           "Hero_Juggernaut.HealingWard.Cast"
+                "sound_loop"                                           "Hero_Juggernaut.HealingWard.Loop"
+                "particle_ward"                                        "particles/units/heroes/hero_juggernaut/juggernaut_healing_ward.vpcf"
+                "particle_eruption"                                    "particles/units/heroes/hero_juggernaut/juggernaut_healing_ward_eruption.vpcf"
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

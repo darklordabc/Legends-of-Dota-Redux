@@ -1,0 +1,62 @@
+"DOTAAbilities"
+{
+    "imba_tower_berserk"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "custom/imba_tower_berserk"
+        "MaxLevel"                                                             "3"
+        "AbilitySharedWithTeammates"                                           "1"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "stack_as"                                             "4 6 8"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "stack_dmg"                                            "2 4 6"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "hp_per_stack"                                         "4"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_tower_berserk"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "ThinkInterval"                                        "0.5"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/tower_abilities.lua"
+                        "Function"                             "Berserk"
+                        "modifier_berserk"                     "modifier_imba_tower_berserk_buff"
+                    }
+                }
+            }
+            "modifier_imba_tower_berserk_buff"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%stack_as"
+                    "MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"     "%stack_dmg"
+                }
+            }
+        }
+        "ReduxCost"                                                            "120"
+        "ReduxFlags"                                                           ""
+    }
+}

@@ -1,0 +1,36 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/styles/play.vcss_c" />
+		<include src="file://{resources}/styles/custom_game/cheats.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/cheats.js" /> 
+	</scripts>
+	<snippets>
+		<snippet name="commandGroup">
+			<Panel class="commandGroup GroupCollapsed">
+				<ToggleButton id="groupHeader" class="ExpandCollapseToggleButton" text="{s:group_title}" />
+				<Panel id="groupContents" />
+			</Panel>
+		</snippet>
+		<snippet name="command">
+			<Panel class="command">
+				<Button id="commandHeader" class="ExpandCollapseToggleButton">
+					<Image id="commandIcon" src="s2r://panorama/images/control_icons/expand_collapse_png1.vtex" />
+					<Label id="commandTitle" text="{s:command_title}" />
+				</Button>
+				<Panel id="commandSettings" />
+			</Panel>
+		</snippet>
+	</snippets>
+	<Panel class="cheatsRoot" hittest="false">
+		<Panel id="cheatsDisplay" class="cheatsDisplayHidden" hittest="false">
+			<Panel class="commandMenuBlock">
+				<Label id="commandMenuTitle" text="Command Menu" />
+				<Button id="closeCheatsButton" class="CloseButton" onactivate='toggleCheats()'/>
+			</Panel>
+			<Panel id="commandList" />
+		</Panel>
+	</Panel>
+</root>

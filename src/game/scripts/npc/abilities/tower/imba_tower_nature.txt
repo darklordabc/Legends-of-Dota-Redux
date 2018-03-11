@@ -1,0 +1,82 @@
+"DOTAAbilities"
+{
+    "imba_tower_nature"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "custom/imba_tower_nature"
+        "MaxLevel"                                                             "3"
+        "AbilitySharedWithTeammates"                                           "1"
+        "AbilityCastRange"                                                     "800 1000 1200"
+        "AbilityCooldown"                                                      "10 9 8"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "root_radius"                                          "800 1000 1200"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "root_duration"                                        "2.0 2.5 3.0"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "root_damage"                                          "30 45 60"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "min_creeps"                                           "4"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_tower_nature"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "ThinkInterval"                                        "0.5"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/tower_abilities.lua"
+                        "Function"                             "Nature"
+                        "sound_root"                           "Hero_Treant.Overgrowth.Cast"
+                        "modifier_root"                        "modifier_imba_tower_nature_root"
+                    }
+                }
+            }
+            "modifier_imba_tower_nature_root"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "1"
+                "Duration"                                             "%root_duration"
+                "EffectName"                                           "particles/units/heroes/hero_treant/treant_overgrowth_vines.vpcf"
+                "EffectAttachType"                                     "follow_origin"
+                "ThinkInterval"                                        "1.0"
+                "OnIntervalThink"
+                {
+                    "Damage"
+                    {
+                        "Target"                               "TARGET"
+                        "Type"                                 "DAMAGE_TYPE_MAGICAL"
+                        "Damage"                               "%root_damage"
+                    }
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_ROOTED"                        "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "stun"
+        "ReduxCost"                                                            "120"
+    }
+}

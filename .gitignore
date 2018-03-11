@@ -214,10 +214,32 @@ pip-log.txt
 #Mr Developer
 .mr.developer.cfg
 
-dota/
+dota/game/
+dota/content/
+
+# Compiled formats
+*.vpcf_c
+*.vtex_c
+*.vsndevts_c
+*.vmat_c
+*.vjs_c
+*.vxml_c
+*.vcss_c
+*.vmdl_c
+*.vanim_c
+*.vmesh_c
+*.vagrp_c
+*.vsnd_c
+*.vseq_c
 
 #Script generator (your settings file)
 script_generator/settings.json
 script_generator/BIN/
 
 lod_game/resource/flash3/images/workshop/
+setup shortcut.ahk
+setup shortcut - Shortcut.lnk
+Dota 2 tester.lnk
+.eslintrc.yml
+Copy to Steam.lnk
+redux to zzz.lnk

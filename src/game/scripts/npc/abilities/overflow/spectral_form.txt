@@ -1,0 +1,76 @@
+"DOTAAbilities" {
+	"spectral_form"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"				"ability_lua"
+		"ScriptFile"					"abilities/overflow/spectral/spectral.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"HasScepterUpgrade"			"1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0.1"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"custom/spectral_form"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+
+		// Time
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"60.0 40.0 20.0"
+		"AbilityDuration"				"15.0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"140"
+
+		"precache"
+		{
+			"particle"	"particles/items_fx/ghost.vpcf"
+			"particle"	"particles/status_fx/status_effect_ghost.vpcf"
+			"particle"	"particles/units/heroes/hero_sven/sven_gods_strength_hero_effect.vpcf"
+			"soundfile"	"soundevents/game_sounds_creeps.vsndevts"
+		}
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"health_regen"	"30 40 50"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"mana_regen"	"30 40 50"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"evasion"	"90"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"magic_weak"	"-100 -75 -50"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius_scepter"	"500"
+			}
+			"06"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"	"15"
+			}
+			"07"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"building_reduction"				"80"
+			}
+		}
+	}
+}

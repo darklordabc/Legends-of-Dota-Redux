@@ -666,7 +666,7 @@
       "bloodseeker_bloodrage":{
          "duration":true
       },
-      "bloodseeker_thirst":{
+      "bloodseeker_thirst_lod":{
          "visibility_threshold_pct":true,
          "invis_threshold_pct":true
       },

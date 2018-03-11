@@ -1,0 +1,55 @@
+"DOTAAbilities"
+{
+    "imba_tower_atrophy"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "bane_enfeeble"
+        "MaxLevel"                                                             "3"
+        "AbilitySharedWithTeammates"                                           "1"
+        "AbilityCastRange"                                                     "1200"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage_reduction"                                     "-30 -45 -60"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "aura_radius"                                          "1200"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_tower_atrophy"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "Aura"                                                 "modifier_imba_tower_atrophy_aura"
+                "Aura_Radius"                                          "%aura_radius"
+                "Aura_Teams"                                           "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                "Aura_Types"                                           "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                "Aura_Flags"                                           "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+                "Aura_ApplyToCaster"                                   "0"
+            }
+            "modifier_imba_tower_atrophy_aura"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "0"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE""%damage_reduction"
+                }
+            }
+        }
+        "ReduxPerks"                                                           "aura"
+        "ReduxCost"                                                            "120"
+        "ReduxBans"                                                            "abyssal_underlord_atrophy_aura"
+        "ReduxFlags"                                                           ""
+    }
+}

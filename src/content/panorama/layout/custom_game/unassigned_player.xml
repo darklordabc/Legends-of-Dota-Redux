@@ -1,0 +1,13 @@
+<root>
+    <styles>
+        <include src="file://{resources}/styles/custom_game/game_setup/game_setup.css" />
+    </styles>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/unassigned_player.js" />
+    </scripts>
+    <Panel class="unassignedPlayerContainer">
+        <DOTAAvatarImage id="playerAvatar" />
+        <Label id="playerIsHostPanel" />
+        <Label id="playerName" text="PLAYER_NAME" />
+    </Panel>
+</root>

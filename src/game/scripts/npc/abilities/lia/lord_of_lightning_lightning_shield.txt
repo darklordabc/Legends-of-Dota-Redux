@@ -1,0 +1,78 @@
+"DOTAAbilities"
+{
+    "lord_of_lightning_lightning_shield"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityTextureName"                                                   "custom/lightning_lord_lightning_shield"
+        "MaxLevel"                                                             "4"
+        "RequiredLevel"                                                        "1"
+        "LevelsBetweenUpgrades"                                                "2"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "AbilityCastAnimation"                                                 "ACT_DOTA_CAST_ABILITY_3"
+        "AbilityCastRange"                                                     "600"
+        "AbilityCastPoint"                                                     "0"
+        "AbilityCooldown"                                                      "16 14 12 10"
+        "AbilityManaCost"                                                      "120"
+        "AOERadius"                                                            "300"
+        "precache"
+        {
+            "particle"                                                     "particles/lightning_shield_hit.vpcf"
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "300"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage_per_second"                                    "20 40 60 80"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "think_interval"                                       "0.3"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "duration"                                             "8"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/life_in_arena/lightning_shield.lua"
+                "Function"                                             "LightningShieldOnSpellStart"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_lord_of_lightning_lightning_shield"
+            {
+                "IsPurgable"                                           "1"
+                "Duration"                                             "%duration"
+                "EffectName"                                           "particles/lightning_shield.vpcf"
+                "EffectAttachType"                                     "follow_origin"
+                "ThinkInterval"                                        "%think_interval"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/life_in_arena/lightning_shield.lua"
+                        "Function"                             "ModifierLightningShieldOnIntervalThink"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "support"
+        "ReduxPerks"                                                           "support | lightning"
+    }
+}

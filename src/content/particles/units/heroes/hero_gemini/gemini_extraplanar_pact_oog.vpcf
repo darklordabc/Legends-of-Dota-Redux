@@ -1,0 +1,107 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndTime = 0.5
+			m_flStartScale = 24.0
+			m_flEndScale = 12.0
+			m_bEaseInAndOut = true
+			m_flBias = 0.75
+		},
+		{
+			_class = "C_OP_SpinUpdate"
+		},
+		{
+			_class = "C_OP_LerpEndCapScalar"
+			m_flOutput = 0.0
+			m_flLerpTime = 0.25
+		},
+		{
+			_class = "C_OP_EndCapTimedDecay"
+			m_flDecayTime = 0.25
+		},
+		{
+			_class = "C_OP_OscillateScalar"
+			m_RateMin = 25.0
+			m_RateMax = 50.0
+			m_FrequencyMax = 4.0
+			m_nField = 3
+			m_flEndTime_min = 99999.0
+			m_flEndTime_max = 99999.0
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_bDisableZBuffering = true
+			m_hTexture = resource:"materials/particle/arc_warden/arc_warden_eye.vtex"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphere"
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ 0.0, 0.0, 75.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 75.0 ]
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+		},
+		{
+			_class = "C_INIT_RandomAlpha"
+			m_nAlphaMin = 50
+			m_nAlphaMax = 136
+		},
+		{
+			_class = "C_INIT_RandomRotationSpeed"
+			m_flDegreesMin = 280.0
+		},
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMin = 1.0
+			m_fLifetimeMax = 2.0
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin = [ 75, 0, 130, 255 ]
+			m_ColorMax = [ 0, 0, 0, 255 ]
+		},
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMin = 5.0
+			m_flRadiusMax = 14.0
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_gemini/gemini_extraplanar_pact_oog_core.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_gemini/gemini_extraplanar_pact_oog_shockwave.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_gemini/gemini_extraplanar_pact_oog_orbs.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_gemini/gemini_extraplanar_pact_oog_shockwave_end.vpcf"
+			m_bEndCap = true
+		},
+	]
+}

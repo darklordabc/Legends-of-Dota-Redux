@@ -1,0 +1,97 @@
+"DOTAAbilities" {
+	"angel_arena_demonic" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "custom/angel_arena_demonic"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel" "3"
+		"AbilityCastPoint" "0.0"
+		"AbilityCooldown" "140.0"
+		"AbilityManaCost" "200 250 300"
+		"ReduxPerks"                                                           "demon"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_FLOAT"
+				"duration" "20 30 40"
+			}
+
+			"02" {
+				"var_type" "FIELD_FLOAT"
+				"transformation_time" "0.35"
+			}
+
+			"03" {
+				"var_type" "FIELD_FLOAT"
+				"base_attack_time" "1.2"
+			}
+
+			"04" {
+				"var_type" "FIELD_INTEGER"
+				"bonus_range" "120"
+			}
+
+			"05" {
+				"var_type" "FIELD_INTEGER"
+				"tooltip_attack_range" "248"
+			}
+
+			"06" {
+				"var_type" "FIELD_INTEGER"
+				"bonus_damage" "60 80 120"
+			}
+
+			"07" {
+				"var_type" "FIELD_INTEGER"
+				"bonus_hp" "500 1000 1200"
+			}
+		}
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts"
+			"particle" "particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis_ambient.vpcf"
+		}
+
+		"OnSpellStart" {
+			"FireSound" {
+				"EffectName" "Hero_Terrorblade.Metamorphosis"
+				"Target" "CASTER"
+			}
+
+			"FireEffect" {
+				"EffectName" "particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis_transform.vpcf"
+				"EffectAttachType" "follow_origin"
+				"Target" "CASTER"
+			}
+
+			"ApplyModifier" {
+				"ModifierName" "modifier_demonic"
+				"Target" "CASTER"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_demonic" {
+				"Duration" "%duration"
+				"EffectName" "particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis.vpcf"
+				"EffectAttachType" "follow_origin"
+				"AllowsIllusionDuplicate" "1"
+
+				"OnCreated" {
+					"AttachEffect" {
+						"EffectName" "particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis_ambient.vpcf"
+						"EffectAttachType" "follow_origin"
+						"Target" "TARGET"
+					}
+				}
+
+				"Properties" {
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS" "%bonus_range"
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "%bonus_damage"
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT" "%base_attack_time"
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "%bonus_hp"
+				}
+			}
+		}
+	}
+}

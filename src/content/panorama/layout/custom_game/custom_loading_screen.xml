@@ -1,0 +1,190 @@
+<root>
+	<styles>
+        <include src="s2r://panorama/styles/dotastyles.vcss_c" />
+        <include src="s2r://panorama/styles/popups/popup_settings.vcss_c" />
+        <include src="s2r://panorama/styles/play.vcss_c" />
+        <include src="file://{resources}/styles/custom_game/game_setup/game_setup.css" />
+        <include src="file://{resources}/styles/custom_game/loading_screen.css" />
+    </styles>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/loading_screen/loading_screen_data.js" />
+        <include src="file://{resources}/scripts/custom_game/loading_screen/loading_screen_tips.js" />
+        <include src="file://{resources}/scripts/custom_game/loading_screen/loading_screen.js" />
+    </scripts>
+
+	<Panel class="LoDLoadingRoot">
+		<Panel id="CustomBackground">
+			<Image id="BackgroundImage" />
+			<Panel id="vignette" />
+
+            <Panel class="creditContainer">            
+                <Label class="creditText" id="BackgroundTitle"/>
+                <Label class="creditText" text="by"/>
+                <Panel>
+				    <Label hittest="false" class="creditText" id="BackgroundCredit"/>
+                </Panel>
+			</Panel>
+
+            <Panel id="buildLoadingIndicator">
+                <Panel id="buildLoadingSpinner" class="Spinner" />
+                <Label id="buildLoadingIndicatorText" text="#loading" />
+            </Panel>
+		</Panel>
+
+        <Panel class="LoDDeps">
+            <Image src="file://{images}/custom_game/hints/hint_empowering_haste.png" />
+			<Image src="file://{images}/custom_game/hints/ogre_magi_multicast_lod.png" />
+			<Image src="file://{images}/custom_game/hints/hint_warnings.png" />
+			<Image src="file://{images}/custom_game/hints/hint_balancemode.png" />
+			<Image src="file://{images}/custom_game/hints/hint_scoreboard.png" />
+			<Image src="file://{images}/custom_game/hints/hint_saveload.png" />
+			<Image src="file://{images}/custom_game/hints/commentButton.png" />
+			<Image src="file://{images}/custom_game/hints/hint_fatOMeter.png" />
+			<Image src="file://{images}/custom_game/hints/hint_UniversalShop.png" />
+			<Image src="file://{images}/custom_game/hints/hint_removeability.png" />
+			<Image src="file://{images}/custom_game/hints/hint_timbersaw.png" />
+			<Image src="file://{images}/custom_game/hints/hint_morphling.png" />
+			<Image src="file://{images}/custom_game/hints/hint_storm_spirit.png" />
+			<Image src="file://{images}/custom_game/hints/hint_ursa.png" />
+			<Image src="file://{images}/custom_game/hints/hint_chen.png" />
+			<Image src="file://{images}/custom_game/hints/hint_furion.png" />
+			<Image src="file://{images}/custom_game/hints/hint_enigma.png" />
+			<Image src="file://{images}/custom_game/hints/hint_lina.png" />
+			<Image src="file://{images}/custom_game/hints/hint_life_stealer.png" />			
+			<Image src="file://{images}/custom_game/hints/hint_tide_hunter.png" />
+			<Image src="file://{images}/custom_game/hints/hint_legion_commander.png" />
+			<Image src="file://{images}/custom_game/hints/hint_blood_seeker.png" />
+			<Image src="file://{images}/custom_game/hints/hint_riki.png" />
+			<Image src="file://{images}/custom_game/hints/hint_batrider.png" />
+			<Image src="file://{images}/custom_game/hints/hint_brewmaster.png" />
+			<Image src="file://{images}/custom_game/hints/hint_shadowfiend.png" />
+			<Image src="file://{images}/custom_game/hints/hint_puck.png" />
+			<Image src="file://{images}/custom_game/hints/hint_abaddon.png" />
+			<Image src="file://{images}/custom_game/hints/hint_winter_wyvern.png" />
+			<Image src="file://{images}/custom_game/hints/hint_dragon_knight.png" />
+			<Image src="file://{images}/custom_game/hints/hint_centaur.png" />
+			<Image src="file://{images}/custom_game/hints/hint_phoenix.png" />
+			<Image src="file://{images}/custom_game/hints/hint_ancient_apparition.png" />
+			<Image src="file://{images}/custom_game/hints/hint_discord.png" />
+			<Image src="file://{images}/custom_game/hints/hint_bots_difficulty.png" />
+			<Image src="file://{images}/custom_game/hints/hint_duels.png" />
+			<Image src="file://{images}/custom_game/hints/hint_silver.png" />
+			<Image src="file://{images}/custom_game/hints/hint_shadow_shaman.png" />
+			<Image src="file://{images}/custom_game/hints/hint_doom.png" />
+			<Image src="file://{images}/custom_game/hints/hint_lich.png" />
+			<Image src="file://{images}/custom_game/hints/hint_spectre.png" />
+			<Image src="file://{images}/custom_game/hints/hint_dark_seer.png" />
+			<Image src="file://{images}/custom_game/hints/hint_enchantress.png" />
+			<Image src="file://{images}/custom_game/hints/hint_invoker.png" />
+			<Image src="file://{images}/custom_game/hints/hint_qop.png" />
+			<Image src="file://{images}/custom_game/hints/hint_wisp.png" />
+			<Image src="file://{images}/custom_game/hints/hint_meepo.png" />
+			<Image src="file://{images}/custom_game/hints/hint_pl.png" />
+			<Image src="file://{images}/custom_game/hints/hint_cm.png" />
+			<Image src="file://{images}/custom_game/hints/hint_anti_mage.png" />
+			<Image src="file://{images}/custom_game/hints/hint_elder_titan.png" />
+			<Image src="file://{images}/custom_game/hints/hint_lion.png" />
+			<Image src="file://{images}/custom_game/hints/hint_tusk.png" />
+			<Image src="file://{images}/custom_game/hints/hint_WD.png" />
+			<Image src="file://{images}/custom_game/hints/hint_clinkz.png" />
+			<Image src="file://{images}/custom_game/hints/hint_ogre_magi.png" />
+			<Image src="file://{images}/custom_game/hints/hint_vs.png" />
+			<Image src="file://{images}/custom_game/hints/hint_visage.png" />
+			<Image src="file://{images}/custom_game/hints/hint_naga.png" />
+			<Image src="file://{images}/custom_game/hints/hint_BH.png" />
+			<Image src="file://{images}/custom_game/hints/hint_drow.png" />
+			<Image src="file://{images}/custom_game/hints/hint_nyx.png" />
+			<Image src="file://{images}/custom_game/hints/hint_slark.png" />
+			<Image src="file://{images}/custom_game/hints/hint_luna.png" />
+			<Image src="file://{images}/custom_game/hints/hint_alchemist.png" />
+			<Image src="file://{images}/custom_game/hints/hint_arc_warden.png" />
+			<Image src="file://{images}/custom_game/hints/hint_axe.png" />
+			<Image src="file://{images}/custom_game/hints/hint_bane.png" />
+			<Image src="file://{images}/custom_game/hints/hint_beast_master.png" />
+			<Image src="file://{images}/custom_game/hints/hint_bristle_back.png" />
+			<Image src="file://{images}/custom_game/hints/hint_BM.png" />
+			<Image src="file://{images}/custom_game/hints/hint_CK.png" />
+			<Image src="file://{images}/custom_game/hints/hint_clockwerk.png" />
+			<Image src="file://{images}/custom_game/hints/hint_willow.png" />
+			<Image src="file://{images}/custom_game/hints/hint_pangolier.png" />
+			<Image src="file://{images}/custom_game/hints/hint_dazzle.png" />
+			<Image src="file://{images}/custom_game/hints/hint_DP.png" />
+			<Image src="file://{images}/custom_game/hints/hint_monkey_king.png" />
+			<Image src="file://{images}/custom_game/hints/hint_ctrl.png" />
+			<Image src="file://{images}/custom_game/hints/hint_singleplayer.png" />
+			<Image src="file://{images}/custom_game/hints/hint_GoldBorder.png" />
+			<Image src="file://{images}/custom_game/hints/hint_CustomAbility.png" />
+			<Image src="file://{images}/custom_game/hints/hint_alt.png" />
+			<Image src="file://{images}/custom_game/hints/hint_random.png" />
+			<Image src="file://{images}/custom_game/hints/hint_perks.png" />
+			<Image src="file://{images}/custom_game/hints/hint_Booster.png" />
+			<Image src="file://{images}/custom_game/hints/hint_RespawnTimes.png" />
+			<Image src="file://{images}/custom_game/hints/hint_MultiplyNeutrals.png" />
+			<Image src="file://{images}/custom_game/hints/hint_Balancing.png" />
+			<Image src="file://{images}/custom_game/hints/hint_disruptor.png" />
+			<Image src="file://{images}/custom_game/hints/hint_earth_spirit.png" />
+			<Image src="file://{images}/custom_game/hints/hint_ember_spirit.png" />
+			<Image src="file://{images}/custom_game/hints/hint_faceless_void.png" />
+			<Image src="file://{images}/custom_game/hints/hint_huskar.png" />
+			<Image src="file://{images}/custom_game/hints/hint_jakiro.png" />
+			<Image src="file://{images}/custom_game/hints/hint_juggernaut.png" />
+			<Image src="file://{images}/custom_game/hints/hint_kotl.png" />
+			<Image src="file://{images}/custom_game/hints/hint_kunkka.png" />
+			<Image src="file://{images}/custom_game/hints/hint_leshrac.png" />
+			<Image src="file://{images}/custom_game/hints/hint_lone_druid.png" />
+			<Image src="file://{images}/custom_game/hints/hint_lycan.png" />
+			<Image src="file://{images}/custom_game/hints/hint_magnus.png" />
+			<Image src="file://{images}/custom_game/hints/hint_medusa.png" />
+			<Image src="file://{images}/custom_game/hints/hint_mirana.png" />
+			<Image src="file://{images}/custom_game/hints/hint_necrophos.png" />
+			<Image src="file://{images}/custom_game/hints/hint_omniknight.png" />
+			<Image src="file://{images}/custom_game/hints/hint_oracle.png" />
+			<Image src="file://{images}/custom_game/hints/hint_OD.png" />
+			<Image src="file://{images}/custom_game/hints/hint_PA.png" />
+			<Image src="file://{images}/custom_game/hints/hint_pudge.png" />
+			<Image src="file://{images}/custom_game/hints/hint_pugna.png" />
+			<Image src="file://{images}/custom_game/hints/hint_razor.png" />
+			<Image src="file://{images}/custom_game/hints/hint_rubick.png" />
+			<Image src="file://{images}/custom_game/hints/hint_sand_king.png" />
+			<Image src="file://{images}/custom_game/hints/hint_shadow_demon.png" />
+			<Image src="file://{images}/custom_game/hints/hint_silencer.png" />
+			<Image src="file://{images}/custom_game/hints/hint_skywrath.png" />
+			<Image src="file://{images}/custom_game/hints/hint_slardar.png" />
+			<Image src="file://{images}/custom_game/hints/hint_sniper.png" />
+			<Image src="file://{images}/custom_game/hints/hint_spirit_breaker.png" />
+			<Image src="file://{images}/custom_game/hints/hint_sven.png" />
+			<Image src="file://{images}/custom_game/hints/hint_techies.png" />
+			<Image src="file://{images}/custom_game/hints/hint_ta.png" />
+			<Image src="file://{images}/custom_game/hints/hint_terrorblade.png" />
+			<Image src="file://{images}/custom_game/hints/hint_tinker.png" />
+			<Image src="file://{images}/custom_game/hints/hint_tiny.png" />
+			<Image src="file://{images}/custom_game/hints/hint_treant.png" />
+			<Image src="file://{images}/custom_game/hints/hint_troll_warlord.png" />
+			<Image src="file://{images}/custom_game/hints/hint_underlord.png" />
+			<Image src="file://{images}/custom_game/hints/hint_undying.png" />
+			<Image src="file://{images}/custom_game/hints/hint_venomancer.png" />
+			<Image src="file://{images}/custom_game/hints/hint_viper.png" />
+			<Image src="file://{images}/custom_game/hints/hint_warlock.png" />
+			<Image src="file://{images}/custom_game/hints/hint_weaver.png" />
+			<Image src="file://{images}/custom_game/hints/hint_windranger.png" />
+			<Image src="file://{images}/custom_game/hints/hint_WK.png" />
+			<Image src="file://{images}/custom_game/hints/hint_zuus.png" />
+			<Image src="file://{images}/custom_game/hints/hint_NS.png" />
+			<Image src="file://{images}/custom_game/hints/hint_earth_shaker.png" />
+			<Image src="file://{images}/custom_game/hints/hint_gyro.png" />
+        </Panel>
+        
+        <Panel id="LoDLoadingTip" class="workingPanel">
+            <Image id="LoDLoadingTipImage" />
+            <Label id="LoDLoadingTipText" />
+        </Panel>
+
+        <Panel id="statsContainerOuter">
+            <Panel id="statsContainer">
+            </Panel>
+            <Panel id="statsContainerMargin">
+
+            </Panel>
+        </Panel>
+	</Panel>
+</root>

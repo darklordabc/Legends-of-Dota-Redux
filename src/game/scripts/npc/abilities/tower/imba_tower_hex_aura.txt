@@ -1,0 +1,64 @@
+"DOTAAbilities"
+{
+    "imba_tower_hex_aura"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "custom/imba_tower_hex_aura"
+        "MaxLevel"                                                             "3"
+        "AbilitySharedWithTeammates"                                           "1"
+        "AbilityCastRange"                                                     "800 1000 1200"
+        "AbilityCooldown"                                                      "10 9 8"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "hex_aoe"                                              "800 1000 1200"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "hex_duration"                                         "1.0 1.5 2.0"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "min_creeps"                                           "4"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_tower_hex_aura"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "ThinkInterval"                                        "0.5"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/tower_abilities.lua"
+                        "Function"                             "HexAura"
+                        "modifier_slow"                        "modifier_imba_tower_hex_aura_slow"
+                    }
+                }
+            }
+            "modifier_imba_tower_hex_aura_slow"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "1"
+                "Duration"                                             "%hex_duration"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "-500"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "stun"
+        "ReduxCost"                                                            "120"
+    }
+}

@@ -1,0 +1,22 @@
+"DOTAAbilities" {
+	"invoker_exort_lod" {
+		"BaseClass" "invoker_exort"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"MaxLevel" "4"
+		"RequiredLevel" "1"
+		"AbilityCooldown" "0"
+		"AbilityManaCost" "0"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"bonus_damage_per_instance" "3 9 15 21"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"bonus_intelligence" "2 6 10 14"
+			}
+		}
+	}
+}

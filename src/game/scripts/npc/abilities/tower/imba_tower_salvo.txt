@@ -1,0 +1,53 @@
+"DOTAAbilities"
+{
+    "imba_tower_salvo"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "custom/imba_tower_salvo"
+        "MaxLevel"                                                             "3"
+        "AbilitySharedWithTeammates"                                           "1"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "as_slow"                                              "-50"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "salvo_dmg"                                            "100 150 200"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "salvo_aoe"                                            "250 300 350"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_tower_salvo"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "OnAttackLanded"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/tower_abilities.lua"
+                        "Function"                             "Cannon"
+                        "particle_explosion"                   "particles/ambient/tower_salvo_explosion.vpcf"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%as_slow"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "aoe_attack | attack_modifier"
+        "ReduxCost"                                                            "120"
+    }
+}

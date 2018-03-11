@@ -1,0 +1,66 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="file://{resources}/styles/custom_game/panorama_shop.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/panorama_shop.js" />
+	</scripts>
+	<snippets>
+		<snippet name="SmallItem">
+			<Panel class="SmallItemPanel" draggable="true">
+				<Button id="SmallItemButton">
+					<DOTAItemImage hittest="false" id="SmallItemImage" />
+					<Label hittest="false" id="SmallItemStock"/>
+					<Label hittest="false" id="StockTimer" />
+					<Panel hittest="false" id="StockOverlay" />
+				</Button>
+			</Panel>
+		</snippet>
+		<snippet name="ShopPage">
+			<Panel class="ShopPageElement">
+				<Panel id="ShopTabs" />
+				<Panel id="ShopItems" />
+			</Panel>
+		</snippet>
+		<snippet name="ShopPageButton">
+			<RadioButton group="shop" class="ShopPageButton">
+				<Image id="ButtonImage"/>
+			</RadioButton>
+		</snippet>
+	</snippets>
+	<Panel hittest="false" class="base">
+		<Panel hittest="true" onmouseactivate="" acceptfocus="true" onfocus="DropInputFocus()" oncancel="OpenCloseShop(false)" id="ShopBase">
+			<Panel id="ShopPagesList" />
+			<Panel id="ShopItemBasePanel">
+				<Panel id="ShopItemList">
+					<Panel id="ShopSearch">
+						<!-- <Button id="ShowHideItemguidesButton" hittest="true" onactivate="$.GetContextPanel().ToggleClass('ItembuildsHidden');">
+							<Panel id="ShowHideItemguidesIcon" hittest="false" />
+						</Button> -->
+						<TextEntry id="ShopSearchEntry" oncancel="ClearSearch()" oninputsubmit="DropInputFocus()" placeholder="#panorama_shop_search_placeholder"/>
+					</Panel>
+					<Panel id="ShopPagesHost" />
+					<Panel id="ShopSearchOverlay" />
+				</Panel>
+				<Panel id="ItemRecipeBox">
+					<Panel id="ItemRecipeBoxRows">
+						<Panel class="ItemRecipeBoxRow" id="ItemRecipeBoxRow1" />
+						<Panel class="ItemRecipeBoxRow" id="ItemRecipeBoxRow2" />
+						<Panel class="ItemRecipeBoxRow" id="ItemRecipeBoxRow3" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel hittest="true" onmouseactivate="" id="QuickBuyPanel">
+			<Panel class="DropDownValidTarget" hittest="false" />
+			<Panel id="QuickBuyPanelItems" />
+			<Image id="QuickBuyClearButtonPanel" onactivate="ClearQuickbuyItems()"/>
+			<Panel id="QuickBuyStickyButtonPanel" />
+		</Panel>
+		<Panel style="visibility: collapse;">
+			<Image src="file://{images}/custom_game/shop/page_1.png"/>
+			<Image src="file://{images}/custom_game/shop/page_2.png"/>
+		</Panel>
+	</Panel>
+</root>

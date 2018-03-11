@@ -1,0 +1,34 @@
+"DOTAAbilities" {
+	"aether_range_lod" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName" "custom/aether_range_lod"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"cast_range_bonus" "150 250 350 500"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"damage_per_second" "16 24 32 40"
+				"LinkedSpecialBonus" "special_bonus_unique_axe"
+			}
+		}
+
+		"OnOwnerSpawned" {
+			"RunScript" {
+				"ScriptFile" "abilities/aether_range_lod.lua"
+				"Function" "SetCastRange"
+			}
+		}
+
+		"OnUpgrade" {
+			"RunScript" {
+				"ScriptFile" "abilities/aether_range_lod.lua"
+				"Function" "SetCastRange"
+			}
+		}
+	}
+}

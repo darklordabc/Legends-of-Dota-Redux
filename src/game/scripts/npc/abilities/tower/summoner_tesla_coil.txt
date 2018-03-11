@@ -1,0 +1,78 @@
+"DOTAAbilities"
+{
+    "summoner_tesla_coil"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "custom/summoner_tesla"
+        "MaxLevel"                                                             "3"
+        "AbilityCastRange"                                                     "600"
+        "AbilityCastPoint"                                                     "0"
+        "AbilityCooldown"                                                      "0"
+        "AbilityManaCost"                                                      "0"
+        "AbilityModifierSupportValue"                                          "0.0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "slow"                                                 "-20 -40 -60"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage"                                               "30 45 60"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "interval"                                             "0.60"
+            }
+        }
+        "precache"
+        {
+            "particle"                                                     "particles/units/heroes/hero_summoner/cloaked.vpcf"
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
+        }
+        "Modifiers"
+        {
+            "modifier_tesla_coil"
+            {
+                "ThinkInterval"                                        "%interval"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/dusk/summoner_abilities.lua"
+                        "Function"                             "ChainLightning"
+                        "damage"                               "%damage"
+                    }
+                }
+                "Passive"                                              "1"
+                "IsPurgable"                                           "0"
+                "IsBuff"                                               "0"
+                "IsDebuff"                                             "0"
+                "IsStunDebuff"                                         "0"
+                "IsHidden"                                             "1"
+            }
+            "modifier_tesla_coil_slow"
+            {
+                "Duration"                                             "0.75"
+                "IsPurgable"                                           "1"
+                "IsBuff"                                               "0"
+                "IsDebuff"                                             "1"
+                "IsStunDebuff"                                         "0"
+                "IsHidden"                                             "1"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%slow"
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow"
+                }
+            }
+        }
+        "ReduxPerks"                                                           "lightning"
+        "ReduxCost"                                                            "120"
+        "ReduxFlags"                                                           ""
+    }
+}

@@ -1,0 +1,8 @@
+dota_180
+{
+	material materials/overviews/dota_180.vmat
+	pos_x -8527
+	pos_y 8719
+	scale 17.328
+}
+

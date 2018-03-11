@@ -1,0 +1,67 @@
+"DOTAAbilities"
+{
+    "imba_tower_chrono"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "custom/imba_tower_chrono"
+        "MaxLevel"                                                             "3"
+        "AbilitySharedWithTeammates"                                           "1"
+        "AbilityCastRange"                                                     "800 1000 1200"
+        "AbilityCooldown"                                                      "10 9 8"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "stun_radius"                                          "800 1000 1200"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "stun_duration"                                        "1.0 1.25 1.5"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "min_creeps"                                           "4"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_tower_chrono"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "ThinkInterval"                                        "0.5"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/tower_abilities.lua"
+                        "Function"                             "Chronotower"
+                        "sound_stun"                           "Hero_FacelessVoid.Chronosphere"
+                        "modifier_stun"                        "modifier_imba_tower_chrono_stun"
+                    }
+                }
+            }
+            "modifier_imba_tower_chrono_stun"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "1"
+                "Duration"                                             "%stun_duration"
+                "StatusEffectName"                                     "particles/status_fx/status_effect_faceless_chronosphere.vpcf"
+                "StatusEffectPriority"                                 "1"
+                "States"
+                {
+                    "MODIFIER_STATE_FROZEN"                        "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "stun"
+        "ReduxCost"                                                            "120"
+    }
+}

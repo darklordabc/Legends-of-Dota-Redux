@@ -1,0 +1,87 @@
+"DOTAAbilities"
+{
+    "invoker_retro_disarm"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+        "AbilityTextureName"                                                   "custom/invoker_retro_disarm"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityCastAnimation"                                                 "ACT_DOTA_CAST_COLD_SNAP"
+        "FightRecapLevel"                                                      "1"
+        "MaxLevel"                                                             "4"
+        "AbilityProcsMagicStick"                                               "1"
+        "AbilityCooldown"                                                      "25"
+        "AbilityManaCost"                                                      "100 75 100 125"
+        "AbilityCastRange"                                                     "500"
+        "precache"
+        {
+            "particle"                                                     "particles/units/heroes/hero_invoker/invoker_retro_disarm_impact.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                             "2 3 4 5"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "cast_range"                                           "600"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "pip_current"                                          "1"
+            }
+        }
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "EffectName"                                           "DOTA_Item.HeavensHalberd.Activate"
+                "Target"                                               "TARGET"
+            }
+            "FireEffect"
+            {
+                "EffectName"                                           "particles/units/heroes/hero_invoker/invoker_retro_disarm_impact.vpcf"
+                "EffectAttachType"                                     "PATTACH_ABSORIGIN"
+                "Target"                                               "TARGET"
+            }
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/retro_dota/invoker_retro_disarm.lua"
+                "Function"                                             "invoker_retro_disarm_on_spell_start"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_invoker_retro_disarm"
+            {
+                "Duration"                                             "%duration"
+                "IsPurgable"                                           "1"
+                "IsDebuff"                                             "1"
+                "IsHidden"                                             "0"
+                "TextureName"                                          "invoker_retro_disarm"
+                "EffectName"                                           "particles/units/heroes/hero_invoker/invoker_deafening_blast_disarm_debuff.vpcf"
+                "EffectAttachType"                                     "PATTACH_ABSORIGIN"
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "EffectName"                           "particles/units/heroes/hero_invoker/invoker_deafening_blast_disarm_debuff.vpcf"
+                        "EffectAttachType"                     "follow_overhead"
+                        "Target"                               "TARGET"
+                    }
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_DISARMED"                      "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "disarm_break"
+    }
+}

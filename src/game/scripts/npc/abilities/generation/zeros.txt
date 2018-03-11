@@ -1,0 +1,955 @@
+"DOTAAbilities"
+{
+    //=================================================================================================================
+    // Zeros - Gerrymandering
+    //=================================================================================================================
+    "zeros_gerrymandering"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "custom/zeros_gerrymandering"
+        "MaxLevel"                      "3"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_PURE"
+        "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityProcsMagicStick"        "1"
+        "HasScepterUpgrade"             "1"
+    
+        "AbilityGoldCost"               "100 125 150"
+        "AbilityManaCost"               "50"
+        "AbilityCooldown"               "5.0"
+    
+        "AbilityCastRange"              "800"
+        "AbilityCastPoint"              "0.3"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
+    
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "gold_cost"     "100 125 150"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "bonus_effect"      "30 40 50"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "delay"         "2.0"
+            }
+            "04"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "duration"      "15.0"
+            }
+            "05"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "movespeed_bonus"       "10 18 26"
+            }
+            "06"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "movespeed_slow"        "-10 -18 -26"
+            }
+        }
+    
+        "precache"
+        {
+            "particle"  "particles/zeros_gerrymander_debuff.vpcf"
+            "particle"  "particles/zeros_impose_tax.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_zeros.vsndevts"
+        }
+    
+        "OnSpellStart"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_gerrymander_buff"
+                "Target"
+                {
+                    "Center"        "TARGET"
+                    "Teams" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+                }
+                "Duration"      "%duration"
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_gerrymander_debuff"
+                "Target"
+                {
+                    "Center"        "TARGET"
+                    "Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                }
+                "Duration"      "%duration"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Hero_Zeros.Gerrymander.Cast"
+                "Target"        "CASTER"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Hero_Zeros.Gerrymander.Target"
+                "Target"        "TARGET"
+            }
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/nextgeneration/hero_zeros/gerrymandering.lua"
+                "Function"      "GerrymanderInitiate"
+            }
+        }       
+        "Modifiers"
+        {
+            "modifier_gerrymander_buff"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "0"
+                "IsPurgable"        "1"
+                "IsBuff"            "1"
+    
+                "EffectName"        "particles/zeros_impose_tax.vpcf"
+                "EffectAttachType"  "follow_origin"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%movespeed_bonus" 
+                }
+        
+                "OnTakeDamage"
+                // "%attack_damage" is set to the damage value after mitigation
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_zeros/gerrymandering.lua"
+                        "Function"      "GerrymanderBuff"
+                        "Damage"        "%attack_damage"
+                    }
+                }
+            }
+            "modifier_gerrymander_debuff"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "1"
+                "IsPurgable"        "1"
+    
+                "EffectName"        "particles/zeros_impose_tax.vpcf"
+                "EffectAttachType"  "follow_origin"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%movespeed_slow"
+                }
+            
+                "OnDealDamage"
+                // "%attack_damage" is set to the damage value after mitigation
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_zeros/gerrymandering.lua"
+                        "Function"      "GerrymanderDebuff"
+                        "Damage"        "%attack_damage"
+                    }
+                }
+            }
+        }   
+    }
+    //=================================================================================================================
+    // Zeros - Impose Tax
+    //=================================================================================================================
+    "zeros_impose_tax"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "custom/zeros_impose_tax"
+        "MaxLevel"                      "4"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+    
+        "AbilityCastRange"              "650"
+        "AbilityCastPoint"              "0.3"
+    
+        "AbilityCooldown"               "20"
+        "AbilityManaCost"               "80 90 100 110"
+        "AbilityProcsMagicStick"        "1"
+    
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "gold_loss_pct"     "10"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "damage_per_gold"   "8 12 16 20"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "duration"          "10.0"
+            }
+            "04"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "movement_slow"     "-30 -45 -60 -75"
+            }
+            "05"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "movement_slow_interval"    "-3.0 -4.5 -6.0 -7.5"
+            }
+    
+        }
+        "precache"
+        {
+            "particle"  "particles/zeros_poverty.vpcf"
+            "particle"  "particles/items2_fx/hand_of_midas.vpcf"
+            "particle"  "particles/zeros_impose_tax_slow.vpcf"
+            "particle"  "particles/econ/courier/courier_flopjaw_gold/flopjaw_death_coins_gold.vpcf"
+            "soundfile" "sounds/items/item_handofmidas.vsnd"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_silencer.vsndevts"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_chen.vsndevts"
+        }
+        "OnSpellStart"
+        {
+            "FireEffect"
+            {
+                "EffectName"        "particles/zeros_poverty.vpcf"
+                "EffectAttachType"  "follow_origin"
+                "Target"            "TARGET"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Hero_Chen.PenitenceCast"
+                "Target"        "CASTER"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Hero_Chen.PenitenceImpact"
+                "Target"        "TARGET"
+            }
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/nextgeneration/hero_zeros/impose_tax.lua"
+                "Function"      "TaxReturn"
+            }
+        }
+    }
+    //=================================================================================================================
+    // Zeros - Impose Tax
+    //=================================================================================================================
+    "zeros_innate"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "MaxLevel"                      "1"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    
+        "OnCreated"
+        {
+            "SpawnUnit"
+            {
+                "UnitName"      "dummy_unit"
+                "Target"        "CASTER"
+                "UnitCount"     "1"
+                "UnitLimit"     "0"
+                "GrantsGold"    "0"
+                "GrantsXP"      "0"
+                "SpawnRadius"   "10"
+                "OnSpawn"
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "modifier_tax_aura"
+                        "Target"        "TARGET"
+                    }
+                }
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_tax_aura"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "0"
+                "Attributes"        "MODIFIER_ATTRIBUTE_PERMANENT"
+    
+                "States"
+                {
+                    "MODIFIER_STATE_UNSELECTABLE"       "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NO_HEALTH_BAR"      "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NOT_ON_MINIMAP"     "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_INVULNERABLE"       "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_UNSELECTABLE"       "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NO_UNIT_COLLISION"  "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY"           "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            
+                "Aura"              "modifier_tax_counter"
+                "Aura_Radius"       "80000"
+                "Aura_Teams"        "DOTA_UNIT_TARGET_TEAM_BOTH"
+                "Aura_Types"        "DOTA_UNIT_TARGET_HERO"
+                "Aura_Flags"        "DOTA_UNIT_TARGET_FLAG_DEAD | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+                "Aura_ApplyToCaster" "1"
+            }
+            "modifier_tax_counter"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+                "Attributes"        "MODIFIER_ATTRIBUTE_PERMANENT | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+                "OnDealDamage"
+                // "%attack_damage" is set to the damage value after mitigation
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_zeros/impose_tax.lua"
+                        "Function"      "CheckLastHitGold"
+                        "Damage"        "%attack_damage"
+                    }
+                }
+                "OnRespawn"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_zeros/innate.lua"
+                        "Function"      "ScepterBuyback"
+                    }
+                }
+            }
+            "modifier_innate_passive"
+            {
+                "Passive"           "1"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+                "Attributes"        "MODIFIER_ATTRIBUTE_PERMANENT"
+                "OnRespawn"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_zeros/innate.lua"
+                        "Function"      "ScepterRespawn"
+                    }
+                }
+            }
+        }
+    }
+    //=================================================================================================================
+    // Zeros - Royal Statue
+    //=================================================================================================================
+    "zeros_royal_statue"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "custom/zeros_golden_statue"
+        "MaxLevel"                      "4"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    
+        "AbilityCooldown"               "65 60 55 50"
+        "AbilityManaCost"               "150"
+    
+        "AbilityCastRange"              "500"
+        "AbilityCastPoint"              "0.3"
+        "AnimationPlaybackRate"         "1.2"
+        "AbilityProcsMagicStick"        "1"
+    
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "duration"          "30"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "health"            "450 600 750 900"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "bounty"            "300 400 500 600"
+            }
+            "04"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "bonus_gold"        "10 15 20 25"
+            }
+            "05"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "radius"            "900"
+            }
+            "06"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "damage_reduction"      "-6 -9 -12 -15"
+            }
+            "06"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "debuff_duration"       "8"
+            }
+    
+        }
+        "precache"
+        {
+            "model"     "models/items/undying/idol_of_ruination/idol_tower_gold.vmdl"
+            "particle"  "particles/econ/items/effigies/status_fx_effigies/base_statue_destruction_gold.vpcf"
+            "particle"  "particles/econ/items/effigies/status_fx_effigies/gold_effigy_ambient_radiant_lvl2.vpcf"
+            "particle"  "particles/econ/courier/courier_golden_doomling/courier_golden_doomling_bloom_ambient.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts"
+        }
+        "OnSpellStart"
+        {
+            "SpawnUnit"
+            {
+                "UnitName"      "golden_statue"
+                "Target"        "POINT"
+                "Duration"      "%duration"
+                "UnitCount"     "1"
+                "GrantsGold"    "1"
+                "GrantsXP"      "1"
+                "SpawnRadius"   "10"
+                "OnSpawn"
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "modifier_phased"
+                        "Target"        "TARGET"
+                        "Duration"      "0.03"
+                    }
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "modifier_statue_aura_hero"
+                        "Target"        "TARGET"
+                    }
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "modifier_statue_aura_creep"
+                        "Target"        "TARGET"
+                    }
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_EarthSpirit.StoneRemnant.Impact"
+                        "Target"        "TARGET"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_zeros/royal_statue.lua"
+                        "Function"      "FaceDirectionOfCaster"
+                    }
+                }
+            }
+            "DestroyTrees"
+            {
+                "Target"        "POINT"
+                "Radius"        "350"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_phased"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+        
+                "States"
+                {
+                    "MODIFIER_STATE_NO_UNIT_COLLISION"      "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+            "modifier_statue_aura_hero"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+            
+                "Aura"              "modifier_statue_effect_hero"
+                "Aura_Radius"       "80000"
+                "Aura_Teams"        "DOTA_UNIT_TARGET_TEAM_BOTH"
+                "Aura_Types"        "DOTA_UNIT_TARGET_HERO"
+                "Aura_Flags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+    
+                "OnAttacked"
+                // "%attack_damage" is set to the damage value after mitigation
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_zeros/royal_statue.lua"
+                        "Function"      "ApplyDamageReductionStacks"
+                    }
+                    "Random"
+                    {
+                        "PseudoRandom" "DOTA_PSEUDO_RANDOM_JUGG_CRIT"
+                        "Chance"            "15"
+                        "OnSuccess"
+                        {
+                            "RunScript"
+                            {
+                                "ScriptFile"    "abilities/nextgeneration/hero_zeros/royal_statue"
+                                "Function"      "FindAbilityMalice"
+                            }
+                        }
+                    }
+                }
+                "OnCreated"
+                {
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/econ/items/effigies/status_fx_effigies/base_statue_destruction_gold.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"            "TARGET"
+                    }
+                }
+            }
+            "modifier_statue_aura_creep"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "0"
+            
+                "EffectName"        "particles/econ/items/effigies/status_fx_effigies/gold_effigy_ambient_radiant_lvl2.vpcf"
+                "EffectAttachType"  "follow_origin"
+            
+                "Aura"              "modifier_statue_effect_creep"
+                "Aura_Radius"       "%radius"
+                "Aura_Teams"        "DOTA_UNIT_TARGET_TEAM_BOTH"
+                "Aura_Types"        "DOTA_UNIT_TARGET_BASIC"
+                "Aura_Flags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+                "Aura_ApplyToCaster"    "0"
+    
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ATTACK_RANGE_BONUS" "%bonus_gold"
+                }
+            }
+    
+            "modifier_statue_effect_hero"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+
+                "OnKill"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_zeros/royal_statue.lua"
+                        "Function"      "BonusGold"
+                    }
+                }
+            
+            }
+            "modifier_statue_effect_creep"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "0"
+    
+                "EffectName" "particles/econ/courier/courier_golden_doomling/courier_golden_doomling_bloom_ambient.vpcf"
+                "EffectAttachType"  "follow_origin"
+            }
+            
+            "modifier_statue_debuff_stack"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "1"
+                "IsPurgable"        "1"
+            
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" "%damage_reduction"
+                }
+            }
+        }
+    }
+
+    //=================================================================================================================
+    // Zeros - Blade of Malice
+    //=================================================================================================================
+    "zeros_blade_of_malice"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "custom/zeros_blade_of_malice"
+        "MaxLevel"                      "4" 
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "proc_chance"       "15"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "crit_damage"       "150 200 250 300"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "stun_duration"     "1.75 2.0 2.25 2.5"
+            }
+            "04"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "duration"          "8.0"
+            }
+            "05"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "bonus_movement_speed"      "10"
+            }
+        }
+        "precache"
+        {
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
+            "particle"  "particles/units/heroes/hero_skeletonking/skeleton_king_weapon_blur_critical.vpcf"
+            "particle"  "particles/zeros_blade_of_malice.vpcf"
+            "particle"  "particles/generic_gameplay/generic_stunned.vpcf"
+        }
+        "Modifiers"
+        {
+            "modifier_malice"
+            {
+                "Passive"           "1"
+                "IsHidden"          "1"
+            
+                "OnAttacked"
+                // "%attack_damage" is set to the damage value after mitigation
+                {
+                    "Random"
+                    {
+                        "PseudoRandom" "DOTA_PSEUDO_RANDOM_JUGG_CRIT"
+                        "Chance"            "%proc_chance"
+                        "OnSuccess"
+                        {
+                            "ApplyModifier"
+                            {
+                                "ModifierName"  "modifier_malice_debuff"
+                                "Target"
+                                {
+                                    "Center"    "ATTACKER"
+                                    "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                                    "Types"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+                                    "Flags"     "DOTA_UNIT_TARGET_FLAG_NONE"
+                                }
+                                "Duration"      "%duration"
+                            }
+                        }
+                    }
+                }
+                "OnAttackStart"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_zeros/blade_of_malice.lua"
+                        "Function"      "MaliceOrbCheck"
+                    }
+                }
+            }
+            "modifier_malice_debuff"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "1"
+        
+                "EffectName"        "particles/zeros_blade_of_malice.vpcf"
+                "EffectAttachType"  "follow_overhead"
+        
+                "OnCreated"
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "modifier_malice_buff"
+                        "Target"        "CASTER"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "modifier_malice_buff"
+                        "Target"        "CASTER"
+                    }
+                }
+                "ThinkInterval"  "0.03"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_zeros/blade_of_malice.lua"
+                        "Function"      "MaliceVision"
+                    }
+                }
+            }
+            "modifier_malice_buff"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "0"
+        
+                "Attributes"        "MODIFIER_ATTRIBUTE_MULTIPLE"
+        
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%bonus_movement_speed" 
+                }
+            }
+            "modifier_malice_orb"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+            
+                "OverrideAnimation"     "ACT_DOTA_ATTACK_EVENT"
+            
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" "%crit_damage"
+                }
+                "OnAttackStart"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_SkeletonKing.CriticalStrike"
+                        "Target"        "CASTER"
+                    }
+    
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/units/heroes/hero_skeletonking/skeleton_king_weapon_blur_critical.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"            "CASTER"
+                    }
+                }
+                "OnAttackLanded"
+                // "%attack_damage" is set to the damage value before mitigation
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "modifier_malice_stun"
+                        "Target"        "TARGET"
+                        "Duration"      "%stun_duration"
+                    }
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "modifier_malice_debuff"
+                        "Target"        "TARGET"
+                    }
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "modifier_malice_orb"
+                        "Target"        "CASTER"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_zeros/blade_of_malice.lua"
+                        "Function"      "MaliceStrike"
+                    }
+                }
+                "OnOrder"
+                // Triggers on Move/Casting/Hold/Stop
+                {
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "modifier_malice_orb"
+                        "Target"        "CASTER"
+                    }
+                }
+            }
+            "modifier_malice_stun"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "1"
+                "IsStunDebuff"       "1"
+            
+                "EffectName"        "particles/generic_gameplay/generic_stunned.vpcf"
+                "EffectAttachType"  "follow_overhead"
+                "OverrideAnimation"     "ACT_DOTA_DISABLED"
+            
+                "States"
+                {
+                    "MODIFIER_STATE_STUNNED"        "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+    }
+    //=================================================================================================================
+    // Zeros - Fanaticism
+    //=================================================================================================================
+    "zeros_fanaticism"
+    {
+        "BaseClass"                     "ability_datadriven"
+        
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityTextureName"            "custom/skeleton_king_vampiric_aura"
+        "MaxLevel"                      "3"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    
+        "AbilityCastPoint"              "0.3"
+    
+        "AbilityCooldown"               "70"
+        "AbilityManaCost"               "150 200 250"
+        "AbilityProcsMagicStick"        "1"
+    
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "bonus_damage_pct"          "60 80 100"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "damage_reduction_pct"      "-10 -20 -30"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "duration"                  "15.0 20.0 25.0"
+            }
+            "04"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "day_vision"            "350"
+            }
+            "05"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "night_vision"      "175"
+            }
+            "06"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "break_radius"              "1800"
+            }
+            "07"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "day_vision_penalty"        "-1450"
+            }
+            "08"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "night_vision_penalty"      "-625"
+            }
+        }
+        "precache"
+        {
+            "particle"  "particles/units/heroes/hero_ursa/ursa_enrage_buff.vpcf"
+            "particle"  "particles/units/heroes/hero_ursa/ursa_overpower_buff.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_ursa.vsndevts"
+        }
+        "OnSpellStart"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_fanatic"
+                "Target"        "CASTER"
+                "Duration"      "%duration"
+            }
+            "FireSound"
+            {
+                "EffectName"    "Hero_Ursa.Enrage"
+                "Target"        "CASTER"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_fanatic"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "0"
+    
+                "ThinkInterval"  "0.1"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_zeros/fanaticism"
+                        "Function"      "AllyDistanceCheck"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "modifier_fanatic_buff"
+                        "Target"        "CASTER"
+                    }
+                }
+            }
+            "modifier_fanatic_buff"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsBuff"            "1"
+            
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "Target"                    "CASTER"
+                        "EffectName"                "particles/units/heroes/hero_ursa/ursa_overpower_buff.vpcf"
+                        "EffectAttachType"          "start_at_customorigin"
+                        "ControlPointEntities"
+                        {
+                            "CASTER"                "attach_head"
+                            "CASTER"                "attach_hitloc"
+                            "CASTER"                "attach_hitloc"
+                            "CASTER"                "attach_hitloc"
+                        }
+                    }
+                    "AttachEffect"
+                    {
+                        "Target"                    "CASTER"
+                        "EffectName"                "particles/units/heroes/hero_ursa/ursa_enrage_buff.vpcf"
+                        "EffectAttachType"          "start_at_customorigin"
+                        "ControlPointEntities"
+                        {
+                            "CASTER"                "attach_attack1"
+                        }
+                    }
+                    
+                    "AttachEffect"
+                    {
+                        "Target"                    "CASTER"
+                        "EffectName"                "particles/units/heroes/hero_ursa/ursa_enrage_buff.vpcf"
+                        "EffectAttachType"          "start_at_customorigin"
+                        "ControlPointEntities"
+                        {
+                            "CASTER"                "attach_attack2"
+                        }
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"   "%bonus_damage_pct"
+                    "MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"  "%damage_reduction_pct" 
+                    "MODIFIER_PROPERTY_BONUS_DAY_VISION"            "%day_vision_penalty"
+                    "MODIFIER_PROPERTY_BONUS_NIGHT_VISION"          "%night_vision_penalty"
+                }
+            }
+        }
+    }
+}

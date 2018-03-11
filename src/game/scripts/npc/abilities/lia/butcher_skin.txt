@@ -1,0 +1,21 @@
+"DOTAAbilities" {
+	"butcher_skin" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/life_in_arena/butcher_skin.lua"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName" "pudge_flesh_heap"
+		"MaxLevel" "4"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"bonus_armor" "1 2 3 4"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"damage_return" "2 4 6 8"
+			}
+		}
+	}
+}

@@ -1,0 +1,148 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_nMaxParticles = 400
+	m_Operators =
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_FadeAndKill"
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flStartScale = 2.000000
+			m_flEndScale = 0.100000
+			m_flBias = 0.200000
+		},
+		{
+			_class = "C_OP_Spin"
+			m_nSpinRateDegrees = 48
+		},
+		{
+			_class = "C_OP_ModelCull"
+			m_nControlPointNumber = 1
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_EndCapDecay"
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_BasicMovement"
+		},
+	]
+	m_Renderers =
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_nSequenceCombineMode = "2"
+			m_bAdditive = true
+			m_nRefractBlurType = "2"
+			m_bDisableZBuffering = true
+			m_hTexture = resource:"materials/particle/glyphs/runes_darkmagic.vtex"
+		},
+	]
+	m_Initializers =
+	[
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMin = 15.000000
+			m_flRadiusMax = 30.000000
+		},
+		{
+			_class = "C_INIT_RandomAlpha"
+			m_nAlphaMin = 50
+			m_nAlphaMax = 100
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_INIT_CreateOnModel"
+			m_nControlPointNumber = 1
+			m_flHitBoxScale = 0.800000
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMin = 0.750000
+			m_fLifetimeMax = 0.750000
+		},
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMin =
+			[
+				68,
+				92,
+				143,
+				255,
+			]
+			m_ColorMax =
+			[
+				0,
+				0,
+				255,
+				255,
+			]
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin =
+			[
+				0.000000,
+				0.000000,
+				75.000000,
+			]
+			m_OffsetMax =
+			[
+				0.000000,
+				0.000000,
+				75.000000,
+			]
+		},
+		{
+			_class = "C_INIT_CreateFromCPs"
+			m_nIncrement = 0
+			m_nMinCP = 1
+		},
+	]
+	m_Emitters =
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 300.000000
+		},
+	]
+	m_ForceGenerators =
+	[
+		{
+			_class = "C_OP_AttractToControlPoint"
+			m_fForceAmount = 1.000000
+			m_fFalloffPower = 0.000000
+			m_nScaleCP = 2
+		},
+		{
+			_class = "C_OP_TwistAroundAxis"
+			m_fForceAmount = 1.000000
+			m_TwistAxis =
+			[
+				1.000000,
+				1.000000,
+				0.000000,
+			]
+		},
+	]
+	m_Constraints =
+	[
+		{
+			_class = "C_OP_ConstrainDistanceToPath"
+			m_PathParameters =
+			{
+				m_nStartControlPointNumber = 1
+				m_nBulgeControl = 10
+			}
+			m_bDisableOperator = true
+		},
+	]
+}

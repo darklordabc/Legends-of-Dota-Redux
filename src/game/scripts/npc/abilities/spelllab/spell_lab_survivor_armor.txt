@@ -1,0 +1,24 @@
+"DOTAAbilities"
+{
+    "spell_lab_survivor_armor"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/spell_lab/survivor/armor.lua"
+        "AbilityTextureName"                                                   "custom/survival_armor"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "HasScepterUpgrade"                                                    "0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+        				"bonus"						"0.4 0.8 1.2 1.6"
+            }
+        }
+        "ReduxFlags"                                                           "tank"
+        "ReduxBans"                                                            ""
+        //"ReduxPerks"                                                           ""
+        "ReduxCost"                                                            "60"
+    }
+}

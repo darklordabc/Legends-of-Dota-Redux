@@ -1,0 +1,48 @@
+"DOTAAbilities" {
+	"ancient_priestess_surge_of_intelligence" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName" "custom/ancient_priestess_surge_of_intelligence"
+		"MaxLevel" "4"
+		"AbilityCastPoint" "0.5"
+
+		"precache" {
+			"particle" "particles/leshrac_diabolic_edict_custom.vpcf"
+			"particle" "particles/lion_spell_voodoo.vpcf"
+
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"radius_damage" "500"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"koef_damage" "3 6 9 12"
+			}
+		}
+
+		"OnSpellStart" {
+			"RunScript" {
+				"ScriptFile" "abilities/life_in_arena/surge_of_intelligence.lua"
+				"Function" "Damage"
+
+				"Target" {
+					"Center" "CASTER"
+					"Radius" "%radius_damage"
+					"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				}
+			}
+
+			"FireSound" {
+				"EffectName" "Hero_Leshrac.Pulse_Nova_Strike"
+				"Target" "CASTER"
+			}
+		}
+	}
+}

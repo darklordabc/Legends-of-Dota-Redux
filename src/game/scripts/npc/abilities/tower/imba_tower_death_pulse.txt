@@ -1,0 +1,107 @@
+"DOTAAbilities"
+{
+    "imba_tower_death_pulse"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "custom/imba_tower_death_pulse"
+        "MaxLevel"                                                             "3"
+        "AbilitySharedWithTeammates"                                           "1"
+        "AbilityCastRange"                                                     "800 1000 1200"
+        "AbilityCooldown"                                                      "6"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "ReduxCost"                                                            "120"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_necrolyte.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_necrolyte/necrolyte_pulse_enemy.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "area_of_effect"                                       "900"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "healdamage"                                           "100 200 300"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "projectile_speed"                                     "400"
+            }
+        }
+
+        "OnProjectileHitUnit"
+        {
+            "DeleteOnHit"    "1"
+            
+            "RunScript"
+            {
+                "ScriptFile"    "abilities/tower_abilities.lua"
+                "Function"        "DeathPulseHit"
+            }
+        }
+
+        "Modifiers"
+        {
+            "modifier_imba_tower_death_pulse"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "ThinkInterval"                                        "0.5"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/tower_abilities.lua"
+                        "Function"                             "DeathPulse"
+                    }
+                }
+            }
+            "modifier_imba_tower_death_pulse_cast"
+            {
+                "IsHidden"  "1"
+                "OnCreated"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Necrolyte.DeathPulse"
+                        "Target"         "TARGET"
+                    }
+                    "ActOnTargets"
+                    {
+                        "Target"
+                        {
+                            "Center"    "TARGET"
+                            "Radius"    "%area_of_effect"
+                            "Teams"     "DOTA_UNIT_TARGET_TEAM_BOTH"
+                            "Types"     "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                        }
+                        "Action"
+                        {
+                            "TrackingProjectile"
+                            {
+                                "Target"            "TARGET"
+                                "EffectName"        "particles/units/heroes/hero_necrolyte/necrolyte_pulse_enemy.vpcf"
+                                "Dodgeable"         "0"
+                                "ProvidesVision"    "0"
+                                "MoveSpeed"         "%projectile_speed"
+                                "SourceAttachment"  "DOTA_PROJECTILE_ATTACHMENT_HITLOCATION"
+                            }
+                        }
+                    }
+                    "RemoveModifier"
+                    {
+                        "ModifierName"    "modifier_imba_tower_death_pulse_cast"
+                        "Target"         "TARGET"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           ""
+    }
+}

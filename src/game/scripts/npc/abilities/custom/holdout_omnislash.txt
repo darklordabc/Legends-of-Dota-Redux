@@ -1,0 +1,49 @@
+"DOTAAbilities"
+{
+    "holdout_omnislash"
+    {
+        "AbilityTextureName"                                                   "custom/holdout_omnislash_lod"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_PHYSICAL"
+        "AbilityCastRange"                                                     "3000"
+        "AbilityCastPoint"                                                     "0.3 0.3 0.3"
+        "AbilityCooldown"                                                      "40.0 30.0 20.0"
+        "AbilityManaCost"                                                      "100"
+        "AbilityModifierSupportValue"                                          "0.25"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "image_travel_speed"                                   "850"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "image_radius"                                         "250 300 350"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "jugg_travel_speed"                                    "1200 1300 1400"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "range"                                                "1200 1300 1400"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "animation_rate"                                       "0.2"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_damage"                                         "50 85 120"
+            }
+        }
+        "ReduxBans"                                                            "holdout_multishot"
+    }
+}

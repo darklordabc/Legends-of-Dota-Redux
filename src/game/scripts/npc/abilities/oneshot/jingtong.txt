@@ -1,0 +1,18 @@
+"DOTAAbilities" {
+	"jingtong"	{
+        "BaseClass"                                                            "ability_lua"
+        "AbilityTextureName"                                                   "invoker_invoke"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "ScriptFile"                                                           "abilities/jingtong.lua"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "reduce"	"3 7 11 15"
+            }
+        }
+        "ReduxCost"                                                            "20"
+        "ReduxFlags"														    "cooldown"
+	}
+}

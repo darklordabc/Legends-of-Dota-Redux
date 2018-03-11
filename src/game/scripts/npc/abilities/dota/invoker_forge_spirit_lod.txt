@@ -1,0 +1,46 @@
+"DOTAAbilities"
+{
+    "invoker_forge_spirit_lod"
+    {
+        "BaseClass"                                                            "invoker_forge_spirit"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "MaxLevel"                                                             "4"
+        "RequiredLevel"                                                        "1"
+        "AbilityCooldown"                                                      "30"
+        "AbilityManaCost"                                                      "75"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "spirit_damage"                                        "29 47 65 83"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "spirit_hp"                                            "300 500 700 900"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "spirit_armor"                                         "0 2 4 6"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "spirit_attack_range"                                  "300 430 560 690"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "spirit_mana"                                          "100 200 300 400"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "spirit_duration"                                      "20 40 60 80"
+            }
+        }
+        "ReduxPerks"                                                           "fire"
+    }
+}

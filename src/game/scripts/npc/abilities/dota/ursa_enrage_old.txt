@@ -1,0 +1,98 @@
+"DOTAAbilities"
+{
+    "ursa_enrage_old"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityTextureName"                                                   "custom/ursa_enrage_old"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityCooldown"                                                      "25"
+        "AbilityManaCost"                                                      "0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "current_health_as_damage"                             "5 6 7"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "duration"                                             "15"
+            }
+        }
+        "Precache"
+        {
+            "particle"                                                     "particles/units/heroes/hero_ursa/ursa_enrage_buff.vpcf"
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_ursa.vsndevts"
+        }
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "Target"                                               "CASTER"
+                "EffectName"                                           "Hero_Ursa.Enrage"
+            }
+            "ApplyModifier"
+            {
+                "ModifierName"                                         "modifier_ursa_enrage_old_hidden"
+                "Target"                                               "CASTER"
+                "Duration"                                             "%duration"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_ursa_enrage_old"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsPurgable"                                           "1"
+                "IsBuff"                                               "1"
+                "IsDebuff"                                             "0"
+                "IsStunDebuff"                                         "0"
+                "EffectName"                                           "particles/units/heroes/hero_ursa/ursa_enrage_buff.vpcf"
+                "EffectAttachType"                                     "follow_origin"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/ursa_enrage_old.lua"
+                        "Function"                             "EnrageHeroVisual"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/ursa_enrage_old.lua"
+                        "Function"                             "RemoveEnrageVisual"
+                    }
+                }
+            }
+            "modifier_ursa_enrage_old_hidden"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsPurgable"                                           "1"
+                "IsBuff"                                               "1"
+                "IsDebuff"                                             "0"
+                "IsStunDebuff"                                         "0"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"     "1"
+                }
+                "ThinkInterval"                                        "0.2"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/ursa_enrage_old.lua"
+                        "Function"                             "UpdateEnrageBonusDamage"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "dota_custom"
+        "ReduxCost"                                                            "10"
+    }
+}

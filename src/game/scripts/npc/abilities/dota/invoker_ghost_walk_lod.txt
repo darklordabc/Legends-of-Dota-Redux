@@ -1,0 +1,43 @@
+"DOTAAbilities"
+{
+    "invoker_ghost_walk_lod"
+    {
+        "BaseClass"                                                            "invoker_ghost_walk"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+        "MaxLevel"                                                             "4"
+        "RequiredLevel"                                                        "1"
+        "AbilityCooldown"                                                      "35"
+        "AbilityManaCost"                                                      "200"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                             "100.0"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "area_of_effect"                                       "400"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "enemy_slow"                                           "-20 -30 -40 -50"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "self_slow"                                            "-30 -10 10 30"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "aura_fade_time"                                       "2.0"
+            }
+        }
+        "ReduxFlags"                                                           "mobility | invis"
+        "ReduxPerks"                                                           "mobility | ice | lightning"
+        "ReduxCost"                                                            "20"
+    }
+}

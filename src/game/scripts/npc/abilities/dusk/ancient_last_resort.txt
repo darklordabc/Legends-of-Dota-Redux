@@ -1,0 +1,169 @@
+"DOTAAbilities" {
+	//=====================================================================================================
+	// ANCIENT: Last Resort
+	//=====================================================================================================
+	"ancient_last_resort"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
+		"AbilityTextureName"			"custom/ancient_last_resort"
+		"MaxLevel"						"1"
+		"AbilitySharedWithTeammates" 	"1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"0"
+		"AbilityCastPoint"				"0"
+		
+		"AbilityDamage" 				"0"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"9999"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// All about the damage
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"8"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"1250"
+			}
+		}
+		
+		"precache"
+		{
+				"soundfile"					"soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
+				"particle"					"particles/units/building/last_resort_ally.vpcf"
+				"particle"					"particles/units/heroes/hero_tek/skycrack_eff.vpcf"
+		}
+		
+		"Modifiers"
+		{
+			"modifier_last_resort"
+			{
+				"Passive"			"1"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+			
+				"ThinkInterval"  "0.03"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"buildings/ancient_abilities.lua"
+						"Function"		"last_resort"
+					}
+				}
+			}
+			"modifier_last_resort_invulnerability_aura"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"Duration"			"%duration"
+
+				"Aura"		  	"modifier_last_resort_invulnerability"
+				"Aura_Radius"   	"%radius"
+				"Aura_Teams"		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+				"Aura_Flags"		"DOTA_UNIT_TARGET_FLAG_NONE"
+				"Aura_ApplyToCaster" "0"
+				
+			}
+
+			"modifier_last_resort_invulnerability"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"buildings/ancient_abilities.lua"
+						"Function"		"LastResortParticleCreate"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"buildings/ancient_abilities.lua"
+						"Function"		"LastResortParticleDestroy"
+					}
+				}
+			
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL" "1"
+					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL" "1"
+					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE" "1"
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "250"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "250"
+				}
+			}
+
+			"modifier_last_resort_invulnerability_building"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				"Duration"			"%duration"
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"buildings/ancient_abilities.lua"
+						"Function"		"LastResortParticleCreate"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"buildings/ancient_abilities.lua"
+						"Function"		"LastResortParticleDestroy"
+					}
+				}
+			
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL" "1"
+					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL" "1"
+					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE" "1"
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "50"
+				}
+			}
+		}
+	
+		"ReduxPerks"	""
+		"ReduxFlags"	""
+	}
+}

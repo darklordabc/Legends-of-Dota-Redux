@@ -1,0 +1,65 @@
+"DOTAAbilities"
+{
+    "imba_tower_vicious"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "custom/imba_tower_vicious"
+        "MaxLevel"                                                             "3"
+        "AbilitySharedWithTeammates"                                           "1"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "crit_chance"                                          "35"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "crit_damage"                                          "200 250 300"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_tower_vicious"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "OnAttack"
+                {
+                    "RemoveModifier"
+                    {
+                        "ModifierName"                         "modifier_imba_tower_vicious_crit"
+                        "Target"                               "ATTACKER"
+                    }
+                    "Random"
+                    {
+                        "Chance"                               "%crit_chance"
+                        "OnSuccess"
+                        {
+                            "ApplyModifier"
+                            {
+                                "ModifierName"         "modifier_imba_tower_vicious_crit"
+                                "Target"               "ATTACKER"
+                            }
+                        }
+                    }
+                }
+            }
+            "modifier_imba_tower_vicious_crit"
+            {
+                "IsHidden"                                             "1"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE"   "%crit_damage"
+                }
+            }
+        }
+        "ReduxCost"                                                            "120"
+        "ReduxFlags"                                                           ""
+    }
+}

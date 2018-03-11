@@ -1,0 +1,32 @@
+"DOTAAbilities"
+{
+    "holdout_scourge_ward"
+    {
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_AOE"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_PHYSICAL"
+        "AbilityCastPoint"                                                     "0.5 0.5 0.5 0.5"
+        "AbilityChannelTime"                                                   "3.0"
+        "AbilityCastRange"                                                     "850"
+        "AbilityCooldown"                                                      "15.0"
+        "AbilityManaCost"                                                      "20 20 20 20"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                             "40.0 40.0 40.0 40.0"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "ward_hp_tooltip"                                      "150 300 450 600"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "ward_damage_tooltip"                                  "20 30 40 50"
+            }
+        }
+        "ReduxPerks"                                                           "summon_non_ult"
+    }
+}

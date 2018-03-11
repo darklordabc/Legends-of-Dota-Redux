@@ -1,0 +1,28 @@
+"DOTAAbilities" {
+	"garden_red_flower" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName" "custom/cherub_flower_red"
+		"MaxLevel" "3"
+		"AOERadius" "400"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"range" "400"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"damage" "68 84 100"
+			}
+		}
+
+		"OnSpellStart" {
+			"RunScript" {
+				"ScriptFile" "abilities/cherub_flower_garden.lua"
+				"Function" "PlantRed"
+			}
+		}
+	}
+}

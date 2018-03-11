@@ -1,0 +1,58 @@
+"DOTAAbilities"
+{
+    "imba_tower_spell_shield"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "antimage_spell_shield"
+        "MaxLevel"                                                             "3"
+        "AbilitySharedWithTeammates"                                           "1"
+        "AbilityCastRange"                                                     "1200"
+        "LevelsBetweenUpgrades"                                                "1"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "magic_resistance_aura"                                "15 25 35"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "aura_radius"                                          "1200"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_tower_spell_shield"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "Aura"                                                 "modifier_imba_tower_spell_shield_aura"
+                "Aura_Radius"                                          "%aura_radius"
+                "Aura_Teams"                                           "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+                "Aura_Types"                                           "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                "Aura_ApplyToCaster"                                   "0"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"   "%magic_resistance_aura"
+                }
+            }
+            "modifier_imba_tower_spell_shield_aura"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"   "%magic_resistance_aura"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "tank"
+        "ReduxPerks"                                                           "aura"
+        "ReduxCost"                                                            "120"
+    }
+}

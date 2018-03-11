@@ -1,0 +1,61 @@
+"DOTAAbilities"
+{
+    "imba_tower_permabash"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "custom/imba_tower_permabash"
+        "MaxLevel"                                                             "3"
+        "AbilitySharedWithTeammates"                                           "1"
+        "AbilityCooldown"                                                      "4 3 2"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bash_damage"                                          "50 75 100"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "bash_duration"                                        "1.0"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_tower_permabash"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "OnAttackLanded"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/tower_abilities.lua"
+                        "Function"                             "Permabash"
+                        "sound_bash"                           "Hero_FacelessVoid.TimeLockImpact"
+                        "modifier_bash"                        "modifier_imba_tower_permabash_bash"
+                    }
+                }
+            }
+            "modifier_imba_tower_permabash_bash"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "1"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "1"
+                "Duration"                                             "%bash_duration"
+                "StatusEffectName"                                     "particles/status_fx/status_effect_faceless_chronosphere.vpcf"
+                "StatusEffectPriority"                                 "1"
+                "States"
+                {
+                    "MODIFIER_STATE_FROZEN"                        "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "bash | attack_modifier | stun"
+        "ReduxPerks"                                                           "bash"
+        "ReduxCost"                                                            "120"
+    }
+}

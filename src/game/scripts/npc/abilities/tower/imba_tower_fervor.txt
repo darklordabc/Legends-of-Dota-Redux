@@ -1,0 +1,61 @@
+"DOTAAbilities"
+{
+    "imba_tower_fervor"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "troll_warlord_fervor"
+        "MaxLevel"                                                             "3"
+        "AbilitySharedWithTeammates"                                           "1"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "stack_as"                                             "20"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "max_stacks"                                           "6 10 15"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "stack_duration"                                       "2.5"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_tower_fervor"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "OnAttackLanded"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/tower_abilities.lua"
+                        "Function"                             "Fervor"
+                        "modifier_fervor"                      "modifier_imba_tower_fervor_buff"
+                    }
+                }
+            }
+            "modifier_imba_tower_fervor_buff"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "Duration"                                             "%stack_duration"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%stack_as"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxCost"                                                            "120"
+    }
+}

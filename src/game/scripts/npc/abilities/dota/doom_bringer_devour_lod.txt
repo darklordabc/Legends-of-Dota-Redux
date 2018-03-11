@@ -1,0 +1,71 @@
+"DOTAAbilities" {
+	"doom_bringer_devour_lod" {
+		"BaseClass" "ability_datadriven"
+		"AbilityTextureName" "doom_bringer_devour"
+		"MaxLevel" "4"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+		"AbilityCooldown" "70 60 50 40"
+		"AbilityManaCost" "60"
+		"AbilityCastRange" "300"
+		"AbilityCastPoint" "0.3"
+		"ReduxPerks"                                                           "demon"
+
+		"precache" {
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_doombringer.vsndevts"
+			"particle" "particles/units/heroes/hero_doom_bringer/doom_bringer_devour.vpcf"
+		}
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"devour_gold" "25 50 75 100"
+			}
+		}
+
+		"OnAbilityPhaseStart" {
+			"RunScript" {
+				"ScriptFile" "abilities/hero_doom.lua"
+				"Function" "DevourCheck"
+				"modifier" "modifier_creep_eaten"
+			}
+		}
+
+		"OnSpellStart" {
+			"FireSound" {
+				"EffectName" "Hero_DoomBringer.DevourCast"
+				"Target" "TARGET"
+			}
+
+			"FireEffect" {
+				"EffectName" "particles/units/heroes/hero_doom_bringer/doom_bringer_devour.vpcf"
+				"EffectAttachType" "follow_origin"
+
+				"ControlPointEntities" {
+					"TARGET" "attach_origin"
+					"CASTER" "attach_origin"
+				}
+			}
+
+			"RunScript" {
+				"ScriptFile" "abilities/hero_doom.lua"
+				"Function" "EatCreep"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_creep_eaten" {
+				"IsDebuff" "1"
+
+				"OnDestroy" {
+					"RunScript" {
+						"ScriptFile" "abilities/hero_doom.lua"
+						"Function" "CreepGold"
+					}
+				}
+			}
+		}
+	}
+}

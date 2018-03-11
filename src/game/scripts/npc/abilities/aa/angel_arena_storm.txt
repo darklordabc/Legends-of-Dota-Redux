@@ -1,0 +1,120 @@
+"DOTAAbilities"
+{
+    "angel_arena_storm"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityTextureName"                                                   "custom/angel_arena_storm"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_leshrac/leshrac_pulse_nova_ambient.vpcf"
+        }
+        "AbilityCooldown"                                                      "30.0"
+        "AbilityCastPoint"                                                     "0.0 0.0 0.0 0.0"
+        "AbilityManaCost"                                                      "110 130 150 190"
+        "MaxLevel"                                                             "4"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                             "2.0 3.0 3.0 4.0"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage"                                               "120 180 250 310"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "500"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "tick_time"                                            "1.0 1.0 1.0 1.0"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "damage_percent"                                       "1.5 2.0 2.5 3.0"
+            }
+        }
+        "OnSpellStart"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"                                         "aa_modifier_storm"
+                "Target"                                               "CASTER"
+                "Duration"                                             "%duration"
+            }
+        }
+        "Modifiers"
+        {
+            "aa_modifier_storm"
+            {
+                "IsHidden"                                             "0"
+                "IsDebuff"                                             "0"
+                "ThinkInterval"                                        "%tick_time"
+                "OnIntervalThink"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"                           "Hero_Leshrac.Pulse_Nova_Strike"
+                        "Target"                               "CASTER"
+                    }
+                    "ActOnTargets"
+                    {
+                        "Target"
+                        {
+                            "Center"                       "CASTER"
+                            "Radius"                       "%radius"
+                            "Teams"                        "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                            "Types"                        "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+                        }
+                        "Action"
+                        {
+                            "FireEffect"
+                            {
+                                "EffectName"           "particles/units/heroes/hero_leshrac/leshrac_pulse_nova.vpcf"
+                                "EffectAttachType"     "follow_origin"
+                                "Target"               "TARGET"
+                            }
+                            "Damage"
+                            {
+                                "Target"               "TARGET"
+                                "Type"                 "DAMAGE_TYPE_MAGICAL"
+                                "Damage"               "%damage"
+                            }
+                            "RunScript"
+                            {
+                                "ScriptFile"           "abilities/angel_arena_reborn/storm.lua"
+                                "Function"             "StormDamage"
+                                "dmg_pct"              "%damage_percent"
+                            }
+                        }
+                    }
+                }
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "EffectName"                           "particles/units/heroes/hero_leshrac/leshrac_pulse_nova_ambient.vpcf"
+                        "EffectAttachType"                     "follow_origin"
+                        "Target"                               "CASTER"
+                        "ControlPoints"
+                        {
+                            "00"                           "0 0 0"
+                            "01"                           "%radius 0 0"
+                        }
+                    }
+                }
+            }
+        }
+        "ReduxPerks"                                                           "lightning"
+    }
+}

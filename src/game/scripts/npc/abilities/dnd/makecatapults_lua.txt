@@ -1,0 +1,25 @@
+"DOTAAbilities"
+{
+    "makecatapults_lua"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "AbilityTextureName"                                                   "custom/spawnseigecreep"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "ScriptFile"                                                           "abilities/definitely not dota/makecatapults_lua"
+        "MaxLevel"                                                             "3"
+        "AbilityCastPoint"                                                     "0.0"
+        "AbilityCooldown"                                                      "90 63 40"
+        "AbilityManaCost"                                                      "0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "maxcatapults"                                         "1 1 2"
+            }
+        }
+        "ReduxFlags"                                                           "summon | doNotRandom"
+        "ReduxPerks"                                                           "summon_non_ult"
+        "ReduxCost"                                                            "30"
+    }
+}

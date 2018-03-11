@@ -1,0 +1,47 @@
+"DOTAAbilities"
+{
+    "imba_tower_forest_one"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "custom/imba_tower_forest"
+        "MaxLevel"                                                             "1"
+        "AbilitySharedWithTeammates"                                           "1"
+        "AbilityCastRange"                                                     "700"
+        "AbilityCooldown"                                                      "8"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
+        "RequiredLevel"                                                        "1"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "tree_radius"                                          "700"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "tree_duration"                                        "240"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_tower_forest"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "ThinkInterval"                                        "1.0"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/tower_abilities.lua"
+                        "Function"                             "Forest"
+                        "sound_tree"                           "Tree.GrowBack"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+}

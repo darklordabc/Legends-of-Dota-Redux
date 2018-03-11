@@ -1,0 +1,63 @@
+"DOTAAbilities"
+{
+    "imba_tower_mindblast"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "custom/imba_tower_mindblast"
+        "MaxLevel"                                                             "3"
+        "AbilitySharedWithTeammates"                                           "1"
+        "AbilityCastRange"                                                     "800 1000 1200"
+        "AbilityCooldown"                                                      "10 9 8"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "silence_radius"                                       "800 1000 1200"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "silence_duration"                                     "2.0 2.5 3.0"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_tower_mindblast"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "ThinkInterval"                                        "0.5"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/tower_abilities.lua"
+                        "Function"                             "Mindblast"
+                        "sound_silence"                        "DOTA_Item.Orchid.Activate"
+                        "modifier_silence"                     "modifier_imba_tower_mindblast_silence"
+                    }
+                }
+            }
+            "modifier_imba_tower_mindblast_silence"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "1"
+                "Duration"                                             "%silence_duration"
+                "EffectName"                                           "particles/generic_gameplay/generic_silenced.vpcf"
+                "EffectAttachType"                                     "follow_overhead"
+                "ThinkInterval"                                        "1.0"
+                "States"
+                {
+                    "MODIFIER_STATE_SILENCED"                      "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+        "ReduxCost"                                                            "120"
+        "ReduxFlags"                                                           ""
+    }
+}

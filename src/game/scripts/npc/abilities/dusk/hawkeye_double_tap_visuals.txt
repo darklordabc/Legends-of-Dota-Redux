@@ -1,0 +1,66 @@
+"DOTAAbilities" {
+	//=====================================================================================================
+	// HAWKEYE: Double Tap Visuals
+	//=====================================================================================================
+	"hawkeye_double_tap_visuals"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityTextureName"			"tusk_ice_shards"
+		
+		"MaxLevel" "1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"4500"
+		"AbilityCastPoint"				"1.0"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"30 25 20"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"350 325 300"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// All about the damage
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+		}
+		
+		"precache"
+		{
+			"particle" "particles/units/heroes/hero_sniper/sniper_assassinate.vpcf"
+			"soundfile" "soundevents/game_sounds_heroes/game_sounds_sniper.vsndevts"
+		}
+			
+		"OnProjectileHitUnit"
+		{
+			"RunScript"
+			{
+				"ScriptFile" "abilities/dusk/hawkeye_abilities.lua"
+				"Function" "hawkeye_double_tap_end"
+			}
+		}
+		
+		"Modifiers"
+		{
+		}
+
+		"ReduxPerks"	""
+		"ReduxFlags"	""
+	}
+}

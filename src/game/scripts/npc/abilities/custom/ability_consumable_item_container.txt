@@ -1,0 +1,336 @@
+"DOTAAbilities" 
+{
+  "ability_consumable_item_container"
+  {
+    "BaseClass"                        "ability_datadriven"
+    // Add an icon for this
+    "AbilityTextureName"               ""
+    "AbilityBehavior"                  "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "MaxLevel"                         "1"
+
+    "precache"
+    {
+      "particle"  "particles/items3_fx/octarine_core_lifesteal.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+      // Assault
+      "01"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "assault_bonus_attack_speed"    "30"
+      }
+      "02"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "assault_bonus_armor"           "10"
+      }
+      "03"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "assault_aura_radius"           "900"
+      }
+      "04"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "assault_aura_attack_speed"     "25"
+      }
+      "05"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "assault_aura_armor"   "5"
+      }
+      // Skadi
+      "06"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "skadi_bonus_all_stats"   "25"
+      }
+      "07"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "skadi_bonus_health"      "225"
+      }
+      "08"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "skadi_bonus_mana"      "250"
+      }
+      "09"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "skadi_cold_movement_speed" "-35"
+      }
+      "10"
+      {
+        "var_type"        "FIELD_INTEGER"
+        "skadi_cold_attack_speed"   "-45"
+      }
+      "11"
+      {
+        "var_type"        "FIELD_FLOAT"
+        "skadi_cold_duration_melee" "5.0"
+      }
+      "12"
+      {
+        "var_type"        "FIELD_FLOAT"
+        "skadi_cold_duration_ranged"  "2.5"
+      }
+      // Desolator
+      "13"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "desolator_bonus_damage"          "50"
+      }
+      "14"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "desolator_corruption_armor"      "-6"
+      }
+      "15"
+      {
+        "var_type"              "FIELD_FLOAT"
+        "desolator_corruption_duration"   "15.0"
+      }
+      // Heart
+      "16"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "heart_bonus_strength"        "40"
+      }
+      "17"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "heart_bonus_health"          "500"
+      }
+      "18"
+      {
+        "var_type"              "FIELD_FLOAT"
+        "heart_health_regen_rate"     "7"
+      }
+      "19"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "heart_cooldown_melee"        "5"
+      }
+      "20"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "heart_cooldown_ranged_tooltip"       "7"
+      }
+      // Daedalous
+      "21"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "greater_crit_bonus_damage"          "80"
+      }
+      "22"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "greater_crit_crit_chance"           "30"
+      }
+      "23"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "greater_crit_crit_multiplier"       "235"
+      }
+      // Octarine Core
+      "24"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "octarine_core_bonus_intelligence"    "25"
+      }
+      "25"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "octarine_core_bonus_health"          "425"
+      }
+      "26"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "octarine_core_bonus_mana"            "425"
+      }
+      "27"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "octarine_core_bonus_cooldown"        "25"
+      }
+      "28"
+      {
+        "var_type"              "FIELD_FLOAT"
+        "octarine_core_hero_lifesteal"        "25"
+      }           
+      "29"
+      {
+        "var_type"              "FIELD_FLOAT"
+        "octarine_core_creep_lifesteal"       "5"
+      }   
+      "30"
+      {
+        "var_type"              "FIELD_INTEGER"
+        "octarine_core_active_duration"       "7"
+      }
+      "31"
+      {
+          "var_type"              "FIELD_INTEGER"
+          "monkey_king_bar_bonus_attack_speed"	"60"
+      }
+      "32"
+      {
+          "var_type"              "FIELD_INTEGER"
+          "monkey_king_bar_bonus_chance"           "75"
+      }
+      "33"
+      {
+          "var_type"              "FIELD_INTEGER"
+          "monkey_king_bar_bonus_chance_damage"           "60"
+      }
+      "34" // No longer needed
+      {
+          "var_type"              "FIELD_FLOAT"
+          "monkey_king_bar_bash_stun"             "0.01"
+      }
+      // Aether Lens
+      "35"
+      {
+          "var_type"              "FIELD_INTEGER"
+          "aether_lens_bonus_mana"            "450"
+      }
+      "36"
+      {
+          "var_type"              "FIELD_FLOAT"
+          "aether_lens_bonus_mana_regen"      "1.25"
+      }
+      "37"
+      {
+          "var_type"              "FIELD_INTEGER"
+          "aether_lens_cast_range_bonus"          "250"
+      }
+      "38" //No longer needed
+      {
+          "var_type"              "FIELD_INTEGER"
+          "aether_lens_spell_amp"             "0"
+      }
+      //Aeon Disk
+      "39"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "bonus_health"            "250"
+      }
+      "40"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "bonus_mana"              "250"
+      }
+      "41"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "status_resistance"       "25"
+      }
+      "42"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "health_threshold_pct"    "70"
+      }
+      "43"
+      {
+        "var_type"                "FIELD_FLOAT"
+        "buff_duration"           "2.5"
+      }
+      //Echo Sabre
+      "44"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "bonus_attack_speed"      "10"
+      }
+      "45"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "bonus_damage"            "15"
+      }
+      "46"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "bonus_intellect"         "10"
+      }
+      "47"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "bonus_strength"          "10"
+      }
+      "48"
+      {
+        "var_type"                "FIELD_FLOAT"
+        "bonus_mana_regen"        "0.75"
+      }
+      "49"
+      {
+        "var_type"                "FIELD_FLOAT"
+        "slow_duration"           "0.7"
+      }
+      "50"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "movement_slow"           "100"
+      }
+      //Kaya
+      "51"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "bonus_intellect_kaya"    "16"
+      }
+      "52"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "spell_amp"               "10"
+      }
+      "53"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "manacost_reduction"       "10"
+      }
+      //Vlads
+      "54"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "aura_radius"             "900"
+      }
+      "55"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "bonus_all_stats"         "2"
+      }
+      "56"
+      {
+        "var_type"                "FIELD_FLOAT"
+        "hp_regen"                "2.5"
+      }
+      "57"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "vampiric_aura_ranged"    "10"
+      }
+      "58"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "vampiric_aura"           "15"
+      }
+      "59"
+      {
+        "var_type"                "FIELD_FLOAT"
+        "mana_regen_aura"          "0.65"
+      }
+      "60"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "armor_aura"              "4"
+      }
+      "61"
+      {
+        "var_type"                "FIELD_INTEGER"
+        "damage_aura"             "15"
+      }
+    }
+  }
+}

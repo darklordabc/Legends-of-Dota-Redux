@@ -1,0 +1,36 @@
+"DOTAAbilities"
+{
+    "lone_druid_savage_roar_op"
+    {
+        "BaseClass"                                                            "lone_druid_savage_roar"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "SpellDispellableType"                                                 "SPELL_DISPELLABLE_YES"
+        "AbilityTextureName"                                                   "custom/lone_druid_savage_roar_op"
+        "AbilityCastPoint"                                                     "0.1"
+        "AbilityCooldown"                                                      "70 60 50"
+        "AbilityManaCost"                                                      "250 200 150"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "99999"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_speed"                                          "60"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                             "4 5 6"
+            }
+        }
+        "ReduxCost"                                                            "120"
+        "ReduxBans"                                                            "tinker_rearm"
+        "ReduxFlags"                                                           ""
+    }
+}

@@ -1,0 +1,150 @@
+.LoDLoadingRoot {
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    overflow: clip;
+}
+
+#CustomBackground {
+    width: 100%;
+    height: 100%;
+}
+
+#BackgroundImage {
+    width: 100%;
+    height: 100%;
+}
+
+#vignette {
+    width: 100%;
+    height: 100%;
+
+    background-color: black;
+
+    background-image: url("s2r://panorama/images/backgrounds/dashboard_background_ingame_psd.vtex");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+    transition-property: opacity;
+    transition-duration: 1s;
+    transition-timing-function: ease-in-out;
+
+    opacity: 0;
+}
+
+#vignette.show {
+    opacity: 0.52;    
+}
+
+.creditContainer {
+    vertical-align: bottom;
+    horizontal-align: center;
+
+    margin-bottom: 30px;
+
+    flow-children: down;
+}
+
+.creditContainer Panel, Label {
+   horizontal-align: center; 
+}
+
+.creditText {
+    font-size: 20px;
+    color: #ffffff20;
+}
+
+.url {
+    text-decoration: underline;
+}
+
+.LoDDeps {
+    visibility: collapse;
+    width: 0px;
+    height: 0px;
+    overflow: clip;
+}
+
+#LoDLoadingTip {
+    margin: 10px;
+    horizontal-align: left;
+    vertical-align: top;
+
+    width: 640px;
+    height: 140px;
+}
+
+.moveHintTheHint #LoDLoadingTip {
+    vertical-align: bottom;
+    horizontal-align: right;
+}
+
+.statsFullyLoaded #LoDLoadingTip {
+    visibility: collapse;
+}
+
+#LoDLoadingTipImage {
+    width: 140px;
+    height: 140px;
+    background-color: #000000;
+
+    border:1px solid #000000;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+#LoDGameTitle {
+    margin-right: 415px;
+    margin-bottom: 155px;
+    horizontal-align: right;
+    vertical-align: bottom;
+
+    color: #FFFFFF;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#LoDLoadingTipText {
+    margin-left: 140px;
+    width: 500px;
+    height: 140px;
+    color: #FFFFFF;
+    padding: 12px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#statsContainerOuter {
+    margin-top: 48px;
+    width: fill-parent-flow(1);
+    flow-children: right;
+    visibility: collapse;
+}
+
+.statsFullyLoaded #statsContainerOuter {
+    visibility: visible;
+}
+
+#statsContainer {
+    margin: 8px;
+    width: fill-parent-flow(1);
+    flow-children: down;
+
+    border: 1px solid #FFFFFF;
+    border-radius: 4px;
+}
+
+.moveHintTheHint #statsContainer {
+    visibility: collapse;
+}
+
+#statsContainerMargin {
+    width: 400px;
+    height:100px;
+}
+
+#buildLoadingIndicator {
+    margin: 50px;
+    align: right bottom;
+    visibility: collapse;
+}

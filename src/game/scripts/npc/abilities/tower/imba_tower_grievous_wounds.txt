@@ -1,0 +1,55 @@
+"DOTAAbilities"
+{
+    "imba_tower_grievous_wounds"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "ursa_fury_swipes"
+        "MaxLevel"                                                             "3"
+        "AbilitySharedWithTeammates"                                           "1"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage_increase"                                      "10 15 20"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "debuff_duration"                                      "5"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_tower_grievous_wounds"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "OnAttackLanded"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/tower_abilities.lua"
+                        "Function"                             "GrievousWounds"
+                        "modifier_debuff"                      "modifier_imba_tower_grievous_wounds_debuff"
+                        "particle_hit"                         "particles/units/heroes/hero_ursa/ursa_fury_swipes.vpcf"
+                    }
+                }
+            }
+            "modifier_imba_tower_grievous_wounds_debuff"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "0"
+                "Duration"                                             "%debuff_duration"
+                "EffectName"                                           "particles/units/heroes/hero_ursa/ursa_fury_swipes_debuff.vpcf"
+                "EffectAttachType"                                     "follow_overhead"
+            }
+        }
+        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxCost"                                                            "120"
+    }
+}

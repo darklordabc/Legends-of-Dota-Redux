@@ -1,0 +1,55 @@
+"DOTAAbilities"
+{
+    "imba_tower_thorns"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "custom/tower_thorns"
+        "MaxLevel"                                                             "3"
+        "AbilitySharedWithTeammates"                                           "1"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage_per_hit"                                       "20 30 40"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_tower_thorns"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "OnAttacked"
+                {
+                    "Damage"
+                    {
+                        "Type"                                 "DAMAGE_TYPE_PURE"
+                        "Damage"                               "%damage_per_hit"
+                        "Target"
+                        {
+                            "Center"                       "ATTACKER"
+                            "Teams"                        "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                            "Types"                        "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                            "Flags"                        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+                        }
+                    }
+                    "FireEffect"
+                    {
+                        "EffectName"                           "particles/units/heroes/hero_centaur/centaur_return.vpcf"
+                        "EffectAttachType"                     "attach_hitloc"
+                        "Target"                               "CASTER"
+                        "ControlPointEntities"
+                        {
+                            "CASTER"                       "attach_hitloc"
+                            "ATTACKER"                     "attach_hitloc"
+                        }
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "tank"
+    }
+}

@@ -1,0 +1,104 @@
+{
+	"makeDirs" : [
+		"dota",
+		"dota/game",
+		"dota/content",
+		"dota/game/resource",
+		"dota/game/scripts",
+		"dota/game/scripts/npc",
+		"dota/game/scripts/npc/abilities",
+		"dota/game/scripts/npc/items",
+
+		"dota/game/panorama",
+ 		"dota/game/panorama/localization",
+		
+		"dota/game/panorama/images",
+		"dota/game/panorama/images/custom_game",
+		"dota/game/panorama/images/custom_game/flags",
+		"dota/game/panorama/images/custom_game/loading_screens",
+		
+		"dota/game/panorama/layout",
+		"dota/game/panorama/layout/custom_game",
+		
+		"dota/game/panorama/scripts",
+		"dota/game/panorama/scripts/custom_game",
+		
+		"dota/content/soundevents",
+		"dota/content/sounds",
+
+		"dota/game/soundevents",
+		"dota/game/sounds"
+	],
+
+	"linkDirs" : [
+		{ "link": "../dota/content/maps", "dir": "../src/content/maps" },
+		{ "link": "../dota/game/maps", "dir": "../src/game/maps" },
+		{ "link": "../dota/content/materials", "dir": "../src/content/materials" },
+		{ "link": "../dota/content/models", "dir": "../src/content/models" },
+		{ "link": "../dota/content/textures", "dir": "../src/content/textures" },
+
+
+		{ "link": "../dota/game/addoninfo.txt", "dir": "../src/game/addoninfo.txt" },
+
+		{ "link": "../dota/game/scripts/custom_events.txt", "dir": "../src/game/scripts/custom_events.txt" },
+		{ "link": "../dota/game/scripts/stat_collection.kv", "dir": "../src/game/scripts/stat_collection.kv" },
+		{ "link": "../dota/game/scripts/shops.txt", "dir": "../src/game/scripts/shops.txt" },
+		{ "link": "../dota/game/scripts/custom_net_tables.txt", "dir": "../src/game/scripts/custom_net_tables.txt" },
+
+		{ "link": "../dota/content/panorama", "dir": "../src/content/panorama" },
+
+		{ "link": "../dota/game/scripts/npc/activelist.txt", "dir": "../src/game/scripts/npc/activelist.txt" },
+		{ "link": "../dota/game/scripts/npc/herolist.txt", "dir": "../src/game/scripts/npc/herolist.txt" },
+		{ "link": "../dota/game/scripts/npc/npc_units_custom.txt", "dir": "../script_generator/BIN/npc_units_custom.txt" },
+		{ "link": "../dota/game/scripts/npc/npc_items_custom.txt", "dir": "../src/game/scripts/npc/npc_items_custom.txt" },
+
+		{ "link": "../dota/game/scripts/vscripts", "dir": "../src/game/scripts/vscripts/" },
+		{ "link": "../dota/game/scripts/kv", "dir": "../src/game/scripts/kv" },
+		{ "link": "../dota/game/scripts/game_sounds", "dir": "../src/game/scripts/game_sounds" },
+
+		{ "link": "../dota/game/particles", "dir": "../src/game/particles" },
+		{ "link": "../dota/content/particles", "dir": "../src/content/particles" },
+		
+		{ "link": "../dota/content/soundevents", "dir": "../src/content/soundevents" },
+		{ "link": "../dota/content/sounds", "dir": "../src/content/sounds" },
+
+		{ "link": "../dota/game/soundevents", "dir": "../src/game/soundevents" },
+		{ "link": "../dota/game/sounds", "dir": "../src/game/sounds" },
+
+		{ "link": "../dota/game/resource/flash3", "dir": "../src/game/resource/flash3" },
+		{ "link": "../dota/game/resource/overviews", "dir": "../src/game/resource/overviews" },
+
+		{ "link": "../dota/game/resource/addon_english.txt", "dir": "../script_generator/BIN/addon_english_token.txt" },
+		{ "link": "../dota/game/panorama/localization/addon_english.txt", "dir": "../script_generator/BIN/addon_english.txt" },
+
+		{ "link": "../dota/game/resource/addon_schinese.txt", "dir": "../script_generator/BIN/addon_schinese_token.txt" },
+		{ "link": "../dota/game/panorama/localization/addon_schinese.txt", "dir": "../script_generator/BIN/addon_schinese.txt" },
+		
+		{ "link": "../dota/game/resource/addon_russian.txt", "dir": "../script_generator/BIN/addon_russian_token.txt" },
+		{ "link": "../dota/game/panorama/localization/addon_russian.txt", "dir": "../script_generator/BIN/addon_russian.txt" },
+
+		{ "link": "../dota/game/resource/addon_korean.txt", "dir": "../script_generator/BIN/addon_korean_token.txt" },
+		{ "link": "../dota/game/panorama/localization/addon_korean.txt", "dir": "../script_generator/BIN/addon_korean.txt" },
+
+		{ "link": "../dota/game/resource/addon_koreana.txt", "dir": "../script_generator/BIN/addon_koreana_token.txt" },
+		{ "link": "../dota/game/panorama/localization/addon_koreana.txt", "dir": "../script_generator/BIN/addon_koreana.txt" },
+
+		{ "link": "../dota/game/scripts/npc/npc_abilities_override.txt", "dir": "../src/game/scripts/npc/npc_abilities_override.txt" },
+		{ "link": "../dota/game/scripts/npc/npc_abilities_custom.txt", "dir": "../src/game/scripts/npc/npc_abilities_custom.txt" },
+		{ "link": "../dota/game/scripts/npc/npc_heroes_custom.txt", "dir": "../script_generator/BIN/npc_heroes_custom.txt" },
+		{ "link": "../dota/game/scripts/npc/abilities", "dir": "../src/game/scripts/npc/abilities" },
+		{ "link": "../dota/game/scripts/npc/items", "dir": "../src/game/scripts/npc/items" },
+		
+		{ "link": "../dota/game/materials", "dir": "../src/game/materials" },
+
+		{ "link": "../dota/game/panorama/images/custom_game/flags", "dir": "../src/game/panorama/images/custom_game/flags" },
+		{ "link": "../dota/game/panorama/images/custom_game/loading_screens", "dir": "../src/game/panorama/images/custom_game/loading_screens" },
+		
+		{ "link": "../dota/game/panorama/layout/custom_game/dev_message.vxml_c", "dir": "../src/game/panorama/layout/custom_game/dev_message.vxml_c" },
+		
+		{ "link": "../dota/game/panorama/layout/custom_game/custom_tooltip.vxml_c", "dir": "../src/game/panorama/layout/custom_game/custom_tooltip.vxml_c" },
+		
+		{ "link": "../dota/game/panorama/layout/custom_game/all_random_build.vxml_c", "dir": "../src/game/panorama/layout/custom_game/all_random_build.vxml_c" },
+		{ "link": "../dota/game/panorama/scripts/custom_game/all_random_build.vjs_c", "dir": "../src/game/panorama/scripts/custom_game/all_random_build.vjs_c" }
+	]
+}

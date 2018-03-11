@@ -1,0 +1,83 @@
+"DOTAAbilities"
+{
+    "invoker_retro_deafening_blast"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET "
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_BUILDING"
+        "AbilityTextureName"                                                   "custom/invoker_retro_deafening_blast"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityCastAnimation"                                                 "ACT_DOTA_CAST_COLD_SNAP"
+        "FightRecapLevel"                                                      "1"
+        "MaxLevel"                                                             "4"
+        "AbilityProcsMagicStick"                                               "1"
+        "AbilityCooldown"                                                      "35"
+        "AbilityManaCost"                                                      "200"
+        "AbilityCastRange"                                                     "700"
+        "precache"
+        {
+            "particle"                                                     "particles/units/heroes/hero_invoker/invoker_retro_deafening_blast_impact.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "mute_duration"                                        "3 4 5 6"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "damage"                                               "80 160 240 320"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "pip_current"                                          "1"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/retro_dota/invoker_retro_deafening_blast.lua"
+                "Function"                                             "invoker_retro_deafening_blast_on_spell_start"
+            }
+            "FireEffect"
+            {
+                "EffectName"                                           "particles/units/heroes/hero_invoker/invoker_retro_deafening_blast_impact.vpcf"
+                "EffectAttachType"                                     "PATTACH_ABSORIGIN_FOLLOW"
+                "Target"                                               "TARGET"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_invoker_retro_deafening_blast"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsBuff"                                               "0"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "1"
+                "TextureName"                                          "invoker_retro_deafening_blast"
+                "EffectName"                                           "particles/units/heroes/hero_invoker/invoker_retro_deafening_blast_debuff.vpcf"
+                "EffectAttachType"                                     "PATTACH_ABSORIGIN"
+                "States"
+                {
+                    "MODIFIER_STATE_PASSIVES_DISABLED"             "MODIFIER_STATE_VALUE_ENABLED"
+                }
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "Target"                               "TARGET"
+                        "EffectName"                           "particles/generic_gameplay/generic_silence.vpcf"
+                        "EffectAttachType"                     "follow_overhead"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "disarm_break"
+    }
+}

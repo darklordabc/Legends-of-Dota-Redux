@@ -1,4 +1,5 @@
 {
+    "addonName" : "addon name",
     "scriptDir":    "SRC/",
     "scriptDirOut": "BIN/",
     "dotaDir":      "path to dota 2 beta/",

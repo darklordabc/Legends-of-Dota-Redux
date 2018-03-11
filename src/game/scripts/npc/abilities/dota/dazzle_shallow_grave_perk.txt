@@ -1,0 +1,28 @@
+"DOTAAbilities" {
+	"dazzle_shallow_grave_perk" {
+		"BaseClass" "dazzle_shallow_grave"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO"
+		"SpellImmunityType" "SPELL_IMMUNITY_ALLIES_YES"
+		"AbilityTextureName" "dazzle_shallow_grave"
+		"FightRecapLevel" "1"
+		"AbilityCastRange" "25000"
+		"AbilityCastPoint" "0.4"
+		"AbilityCooldown" "60 45 30 15"
+		"AbilityManaCost" "150"
+		"AbilityDuration" "5 5 5 5"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_FLOAT"
+				"duration_tooltip" "5 5 5 5"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"range_tooltip" "25000"
+			}
+		}
+	}
+}

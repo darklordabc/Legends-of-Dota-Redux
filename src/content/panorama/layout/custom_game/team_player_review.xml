@@ -1,0 +1,31 @@
+<root>
+    <styles>
+        <include src="file://{resources}/styles/custom_game/game_setup/game_setup.css" />
+    </styles>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/team_player_review.js" />
+    </scripts>
+    <Panel class="reviewPlayerContainer">
+        <Panel class="reviewPlayerAvatarContainer">
+            <DOTAAvatarImage id="reviewPhasePlayerAvatarBig" />
+            <Panel class="playerBackground"/>
+            <Panel id="reviewPhaseHeroImageContainer" />
+            <Image id="playerAttribute" src="file://{images}/primary_attribute_icons/primary_attribute_icon_strength.psd" class="reviewPhasePlayerAttribute doNotShow" />
+            <Label class="lodPlayerReadyText" text="Ready" />
+        </Panel>
+
+        <Panel id="reviewPhasePlayerSkillContainer">
+            <DOTAAbilityImage id="playerSkill1" abilityname="life_stealer_empty_1" onactivate="onPlayerAbilityClicked(1)" />
+            <DOTAAbilityImage id="playerSkill2" abilityname="life_stealer_empty_1" onactivate="onPlayerAbilityClicked(2)" />
+            <DOTAAbilityImage id="playerSkill3" abilityname="life_stealer_empty_1" onactivate="onPlayerAbilityClicked(3)" />
+            <DOTAAbilityImage id="playerSkill4" abilityname="life_stealer_empty_1" onactivate="onPlayerAbilityClicked(4)" />
+            <DOTAAbilityImage id="playerSkill5" abilityname="life_stealer_empty_1" onactivate="onPlayerAbilityClicked(5)" />
+            <DOTAAbilityImage id="playerSkill6" abilityname="life_stealer_empty_1" onactivate="onPlayerAbilityClicked(6)" />
+        </Panel>
+
+        <Panel class="playerNameContainer">
+            <DOTAAvatarImage id="reviewPhasePlayerAvatar" />
+            <Label id="playerName" text="PLAYER_NAME" />
+        </Panel>
+    </Panel>
+</root>

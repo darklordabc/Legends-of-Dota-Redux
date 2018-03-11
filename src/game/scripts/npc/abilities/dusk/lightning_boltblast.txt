@@ -1,0 +1,85 @@
+"DOTAAbilities" {
+	//=====================================================================================================
+	// LIGHTNING: Boltblast
+	//=====================================================================================================
+	"lightning_boltblast"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/dusk/lightning_boltblast"
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILTIY_BEHAVIOR_DIRECTIONAL | DOTA_ABILITY_BEHAVIOR_AOE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityTextureName"			"custom/lightning_boltblast"
+		"AoERadius"						"315"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"975"
+		"AbilityCastPoint"				"0.4"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"80 90 100 110"
+		
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"	"0.0"	// All about the damage
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"explosion_delay"			"1.0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"explosion_damage"			"120 180 240 300"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"movespeed_slow"			"-40"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attack_slow"				"-50"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"slow_duration"				"1.2 1.6 2.0 2.4"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"315"
+			}
+		}
+		
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+			"particle"  "particles/units/heroes/hero_lightning/boltblast.vpcf"
+		}
+		
+		"Modifiers"
+		{
+		}
+
+		"ReduxPerks"	"lightning | explosive"
+		"ReduxFlags"	""
+	}
+}

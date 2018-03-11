@@ -1,0 +1,71 @@
+"DOTAAbilities"
+{
+    "imba_tower_self_repair"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "custom/imba_tower_self_repair"
+        "MaxLevel"                                                             "3"
+        "AbilitySharedWithTeammates"                                           "1"
+        "AbilityCastRange"                                                     "1200"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "hp_regen"                                             "3 6 12"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "hp_regen_aura"                                        "0.5 1.0 1.5"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "aura_radius"                                          "1200"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_tower_self_repair"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "Aura"                                                 "modifier_imba_tower_self_repair_aura"
+                "Aura_Radius"                                          "%aura_radius"
+                "Aura_Teams"                                           "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+                "Aura_Types"                                           "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                "Aura_ApplyToCaster"                                   "0"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/tower_abilities.lua"
+                        "Function"                             "SelfRepairParticle"
+                        "particle_regen"                       "particles/units/heroes/hero_treant/treant_livingarmor.vpcf"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"      "%hp_regen"
+                }
+            }
+            "modifier_imba_tower_self_repair_aura"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"    "%hp_regen_aura"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "support | tank"
+        "ReduxPerks"                                                           "support | aura"
+        "ReduxCost"                                                            "30"
+    }
+}

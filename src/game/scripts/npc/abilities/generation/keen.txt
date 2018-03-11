@@ -1,0 +1,634 @@
+"DOTAAbilities"
+{
+    //=================================================================================================================
+    // Keen Commander - Mortar Shot
+    //=================================================================================================================
+    "keen_commander_mortar_shot"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "custom/mortar_shot"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "AbilityCooldown"               "34 28 22 16"
+        "AbilityManaCost"               "90"
+        "AbilityCastPoint"              "0.4"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
+        "AbilityProcsMagicStick"        "1"
+        "ReduxPerks"                                                           "explosive"
+    
+        "precache"
+        {
+            "particle"      "particles/units/heroes/hero_gyrocopter/gyro_calldown_marker.vpcf"
+            "particle"      "particles/units/heroes/hero_gyrocopter/gyro_call_down_explosion_impact_b.vpcf"
+            "particle"      "particles/units/heroes/hero_gyrocopter/gyro_calldown_explosion_flash_c.vpcf"
+            "particle"      "particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_calldown_first.vpcf"
+            "particle"      "particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_calldown_second.vpcf"
+            "soundfile"     "sounds/weapons/hero/gyrocopter/homing_missile_destroy.vsnd"
+        }
+    
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "range"             "1200"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "radius"            "300"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "shots"             "6 8 10 12"
+            }
+            "04"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "mortar_damage"     "60"
+            }
+            "05"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "shot_interval"         "0.6 0.5 0.4 0.3"
+            }
+            "06"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "duration"          "3.6 4.0 4.0 3.6"
+            }
+        }
+        "OnUpgrade"
+        {
+            "LevelUpAbility"
+            {
+                "Target"        "CASTER"
+                "AbilityName"   "keen_commander_mortar_shot_siege"
+            }
+        }
+        "OnSpellStart"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_mortar_shots"
+                "Target"        "CASTER"
+                "Duration"      "%duration"
+            }
+        }
+    
+        "Modifiers"
+        {
+            "modifier_mortar_shots"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "0"
+                "OverrideAnimation"     "ACT_DOTA_OVERRIDE_ABILITY_1"
+            
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_keen/mortar_shot.lua"
+                        "Function"      "CreateMarkers"
+                    }
+                }
+            }
+        }
+    }
+    //=================================================================================================================
+    // Keen Commander - Mortar Shot (Hidden)
+    //=================================================================================================================
+    "keen_commander_mortar_shot_siege"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "custom/mortar_shot"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "AbilityCastRange"              "1600 2000 2400"
+        "AbilityCastPoint"              "0.0"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
+    
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "radius"            "300"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "duration"          "18 20 22 24"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "mortar_damage"         "60"
+            }
+        }
+    
+        "precache"
+        {
+            "particle"  "particles/keen_mortar_shot_first_shot.vpcf"
+        }
+    
+        "OnSpellStart"
+        {
+            "CreateThinker"
+            {
+                "ModifierName"  "modifier_mortar_shot_marker"
+                "Target"        "POINT" 
+            }
+            "FireSound"
+            {
+                "EffectName"    "Hero_Tinker.LaserImpact"
+                "Target"        "CASTER"
+            }
+        }
+    
+        "Modifiers"
+        {
+            "modifier_mortar_shot_marker"
+            {
+                "Passive"   "0"
+                "IsHidden"  "1"
+                "Duration"  "2.0"
+                "Attributes"        "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+                
+                "OnCreated"
+                {
+                    "AttachEffect"
+                    {
+                        "EffectName"        "particles/keen_mortar_shot_marker.vpcf"
+                        "EffectAttachType"  "attach_origin"
+                        "Target"            "TARGET"
+                        "ControlPoints"
+                        {
+                            "00" "0 0 0"
+                            "01" "%radius %radius %radius"
+                        }
+                    }
+                    
+                    "TrackingProjectile"
+                    {
+                        "Target"            "TARGET"
+                        "EffectName"        "particles/keen_mortar_shot_first_shot.vpcf"
+                        "Dodgeable"         "1"
+                        "ProvidesVision"    "0"
+                        "MoveSpeed"         "100"
+                        "SourceAttachment"  "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+                        "TargetTypes"       "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                    }
+                }
+                
+                "OnDestroy"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"    "Hero_Gyrocopter.HomingMissile.Destroy"
+                        "Target"        "TARGET"
+                    }
+                
+                    "ActOnTargets"
+                    {
+                        "Target"
+                        {
+                            "Center"                "TARGET"
+                            "Radius"                "%radius"
+                            "Teams"                 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                            "Types"                 "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                        }
+        
+                        "Action"
+                        {                   
+                            "Damage"
+                            {
+                                "Target"  "TARGET"
+                                "Type"    "DAMAGE_TYPE_MAGICAL"
+                                "Damage"  "%mortar_damage"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    //=================================================================================================================
+    // Keen Commander - Recon Systems
+    //=================================================================================================================
+    "keen_commander_recon_systems"
+    {
+        "BaseClass"                     "ability_lua"
+        "ScriptFile"                    "abilities/nextgeneration/hero_keen/keen_commander_recon_systems.lua"
+        "AbilityTextureName"            "custom/recon_systems"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_TREE"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+        "AbilityCooldown"               "60 45 30 15"
+        "AbilityManaCost"               "100 110 120 130"
+        "AbilityCastRange"              "160"
+        "AbilityCastPoint"              "0.3"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
+        "AbilityProcsMagicStick"    "1"
+        "ReduxPerks"                                                           "trap"     
+        
+        "precache"
+        {
+            "model"     "models/items/rattletrap/cog_tesla/cog_tesla.vmdl"
+            "particle"  "particles/units/heroes/hero_shadowshaman/shadowshaman_ether_shock.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_shadowshaman.vsndevts"
+        }
+    
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "shock_range"   "300"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "slow_duration"     "0.5 1.0 1.5 2.0"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "shock_damage"  "150 200 250 300"
+            }
+            "04"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "shock_null_duration"   "5"
+            }
+            "05"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "shock_bot_duration"    "180" 
+            }
+            "06"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "movespeed_slow_percentage" "100" 
+            }   
+        }
+    }
+    //=================================================================================================================
+    // Keen Commander - Siege Mode
+    //=================================================================================================================
+    "keen_commander_siege_mode"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "custom/siege_mode"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_ATTACK"
+        "AbilityCooldown"               "0"
+        "AbilityManaCost"               "0"
+        "AbilityCastPoint"              "2 1.5 1"
+        "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
+        "AbilityType"                   "DOTA_ABILITY_TYPE_ULTIMATE"
+        "ReduxBans"                     "ebf_clinkz_trickshot"
+    
+        "precache"
+        {
+            "model"     "models/props_structures/tower_good4.vmdl"
+            "particle"  "particles/units/heroes/hero_doom_bringer/doom_infernal_blade_impact.vpcf"
+            "particle"  "particles/econ/items/dragon_knight/dk_immortal_dragon/dragon_knight_dragon_tail_projectile_iron_dragon.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "armor_bonus"           "6 10 14"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "turn_rate_slow"        "-70"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "splash_radius"         "300"
+            }
+            "04"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "transform_time"    "3.0 2.5 2.0"
+            }
+            "05"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "mortar_shot_range" "1600 2000 2400"
+            }
+            "06"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "missile_speed"         "2500"
+            }
+            "07"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "attack_bonus"          "40 80 120"
+            }
+            "08"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "attack_bonus_range"    "1000 2000 3000"
+            }
+            "09"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "attack_min_range"      "400"
+            }
+            "10"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "bat_increase"          "1.0 0.8 0.6"
+            }
+            "11"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "seconds_per_attack"    "5.0 4.0 3.0"
+            }
+        }
+        "OnToggleOn"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_siege_silence"
+                "Target"        "CASTER"
+                "Duration"      "%transform_time"
+            }
+            "DelayedAction"
+            {
+                "Delay"     "%transform_time"
+                "Action"    
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "modifier_siege_mode"
+                        "Target"        "CASTER"
+                    }
+                }
+            }   
+        }
+        "OnToggleOff"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"  "modifier_siege_silence"
+                "Target"        "CASTER"
+                "Duration"      "%transform_time"
+            }
+            "DelayedAction"
+            {
+                "Delay"     "%transform_time"
+                "Action"    
+                {
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "modifier_siege_mode"
+                        "Target"        "CASTER"
+                    }
+                }
+            }
+        }   
+        "Modifiers"
+        {
+            "modifier_siege_silence"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "0"
+            
+                "States"
+                {
+                    "MODIFIER_STATE_STUNNED"        "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_SILENCED"       "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+            "modifier_siege_mode"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "0"
+                "IsBuff"            "1"
+        
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"    "%armor_bonus"
+                    "MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE"    "%turn_rate_slow"
+                    "MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"  "%attack_bonus"
+                    "MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"      "%attack_bonus_range"
+                    "MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT"   "%bat_increase"
+                    "MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS"      "750"
+                    "MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"  "-9999"
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_ROOTED" "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_FLYING" "MODIFIER_STATE_VALUE_ENABLED"
+                }
+                    
+                "OnAttackStart"
+                // Triggers on Move/Casting/Hold/Stop
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_keen/siege_mode.lua"
+                        "Function"      "MinAttackRange"
+                    }
+                }
+                "OnAttackLanded"
+                // "%attack_damage" is set to the damage value before mitigation
+                {
+                    "FireEffect"
+                    {
+                        "EffectName"        "particles/units/heroes/hero_doom_bringer/doom_infernal_blade_impact.vpcf"
+                        "EffectAttachType"  "follow_origin"
+                        "Target"            "TARGET"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_keen/siege_mode.lua"
+                        "Function"      "SplashAttack"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_keen/siege_mode.lua"
+                        "Function"      "GetSiegeModeSpell"
+                    }
+                }
+            }
+        }
+    }
+    //=================================================================================================================
+    // Keen Commander - Slag Armor
+    //=================================================================================================================
+    "keen_commander_slag_armor"
+    {
+        "BaseClass"                     "ability_datadriven"
+        "AbilityTextureName"            "custom/slag_armor"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+    
+        "AbilityCastRange"              "600"
+        "AbilityCastPoint"              "0.0"
+        "AbilityCooldown"               "6 5 4 3"
+        "AbilityManaCost"               "40"
+        "HasScepterUpgrade"             "1"
+    
+        "AbilityModifierSupportBonus"       "35"
+    
+        "precache"
+        {
+            "particle"  "particles/keen_slag_armor_projectile.vpcf"
+            "particle"  "particles/econ/events/coal/coal_projectile.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_batrider.vsndevts"
+        }
+    
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "damage_per_second" "7 12 17 22"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "duration"          "9"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "armor_reduction"   "-3"
+            }
+            "04"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "slow_duration"     "1"
+            }
+            "05"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "ms_slow"           "10"
+            }
+            "06"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "siege_radius"      "300"
+            }
+            "07"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "cooldown"          "6 5 4 3"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_slag_armor_dummy"
+            {
+                "Passive"           "1"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+
+                "OnAttackStart"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_keen/slag_armor.lua"
+                        "Function"      "CheckOrb"
+                    }
+                }
+            }
+            "modifier_slag_armor_orb"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+            
+                "Orb"
+                {
+                    "Priority"          "DOTA_ORB_PRIORITY_ABILITY"
+                    "ProjectileName"    "particles/econ/events/coal/coal_projectile.vpcf"
+                    "CastAttack"        "1"
+                }
+                "OnOrder"
+                // Triggers on Move/Casting/Hold/Stop
+                {
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "modifier_slag_armor_orb"
+                        "Target"        "CASTER"
+                    }
+                }
+                "OnOrbFire"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_keen/slag_armor.lua"
+                        "Function"      "StartCooldown"
+                    }
+                }
+                "OnOrbImpact"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_keen/slag_armor.lua"
+                        "Function"      "AttackWasHit"
+                    }
+                    "RemoveModifier"
+                    {
+                        "ModifierName"  "modifier_slag_armor_orb"
+                        "Target"        "CASTER"
+                    }
+                }
+            }
+            "modifier_slag_armor_debuff"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "1"
+            
+                "EffectName"        "particles/keen_slag_armor_debuff.vpcf"
+                "EffectAttachType"  "follow_overhead"
+            
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%armor_reduction" 
+                }
+            }
+            "modifier_slag_armor_damage_debuff"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "1"
+            
+                "ThinkInterval"  "1.0"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/nextgeneration/hero_keen/slag_armor.lua"
+                        "Function"      "SlagArmorDamage"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,36 @@
+"DOTAAbilities" {
+	"zhanhun"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"custom/zhanhun"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"HotKeyOverride"	"C"
+		"ReduxFlags"														    "cooldown"
+		"Modifiers"
+		{
+			"modifier_zhanhun"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"OnAbilityExecuted"
+				{
+					"RunScript"
+					{
+						"Target"	"CASTER"
+						"ScriptFile"	"scripts/vscripts/abilities/oneshotonekill/speed_ninja.lua"
+						"Function"	"zhanhun"
+						"reduce"	"%reduce_per"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"reduce_per"	"0.4 0.6 0.8 1.0"
+			}
+		}
+	}
+}

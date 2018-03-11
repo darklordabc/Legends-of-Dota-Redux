@@ -1,0 +1,21 @@
+"DOTAAbilities" {
+	"tower_anti_rat" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel" "1"
+		"AbilitySharedWithTeammates" "1"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName" "custom/anti-rat"
+
+		"Modifiers" {
+			"modifier_tower_anti_rat" {
+				"Passive" "1"
+				"IsHidden" "0"
+
+				"States" {
+					"MODIFIER_STATE_INVULNERABLE" "MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,74 @@
+"DOTAAbilities" {
+	"erra_morbid_blade"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"			 "ability_lua"
+		"ScriptFile"			"abilities/dusk/erra_morbid_blade"
+		"AbilityBehavior"			   "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"		 "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"		 "DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"			 "SPELL_IMMUNITY_ENEMIES_NO"
+		"AnimationPlaybackRate"		 "1"
+		"FightRecapLevel"			   "1"
+		"AbilityTextureName"			"custom/erra_morbid_blade"
+		"AoERadius"					 "%radius"
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"			  "500"
+		"AbilityCastPoint"			  "0.3"
+
+		// Time	 
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"			   "9 8 7 6"
+
+		// Damage.
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"				 "75 125 175 225"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"			   "80 90 100 110"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityModifierSupportValue"   "0.5"   // Applies two modifiers
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			  "FIELD_INTEGER"
+				"pure_threshold"		"40"
+			}
+			
+			"02"
+			{
+				"var_type"			  "FIELD_INTEGER"
+				"radius"				"325"
+			}
+
+			"03"
+			{
+				"var_type"			  "FIELD_INTEGER"
+				"lifesteal"			 "4 6 8 10"
+			}
+		}
+
+		"precache"
+		{
+			"soundfile" "soundevents/hero_erra.vsndevts"
+			"particle"  "particles/units/heroes/hero_erra/morbid_blade.vpcf"
+		}
+
+		"Modifiers"
+		{
+		}
+
+		"ReduxPerks"	""
+		"ReduxFlags"	""
+	}
+}

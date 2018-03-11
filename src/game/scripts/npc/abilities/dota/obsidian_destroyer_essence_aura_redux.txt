@@ -1,0 +1,77 @@
+"DOTAAbilities"
+{
+    "obsidian_destroyer_essence_aura_redux"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO"
+        "ReduxFlags"    "mana"
+        "AbilityTextureName"                                                   "custom/obsidian_destroyer_essence_aura_redux"
+        "precache"
+        {
+            "particle"                                                     "particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_essence_effect.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "900 900 900 900"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_mana"                                           "75 150 225 300"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "restore_amount"                                       "10 15 20 25"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "restore_chance"                                       "20"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_essence_aura_mana_bonus_lod"
+            {
+                "Passive"                                              "1"
+                "IsPurgable"                                           "0"
+                "IsHidden"                                             "1"
+                "Aura"                                                 "modifier_essence_aura_effect_lod"
+                "Aura_Radius"                                          "%radius"
+                "Aura_Teams"                                           "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+                "Aura_Types"                                           "DOTA_UNIT_TARGET_HERO"
+                "Aura_ApplyToCaster"                                   "1"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MANA_BONUS"                 "%bonus_mana"
+                }
+            }
+            "modifier_essence_aura_effect_lod"
+            {
+                "OnAbilityExecuted"
+                {
+                    "Random"
+                    {
+                        "Chance"                               "%restore_chance"
+                        "OnSuccess"
+                        {
+                            "RunScript"
+                            {
+                                "ScriptFile"           "abilities/obsidian_destroyer_essence_aura_lod.lua"
+                                "Function"             "RestoreMana"
+                                "Target"               "UNIT"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        "ReduxBans"                                                            "obsidian_destroyer_essence_aura_lod"
+    }
+}

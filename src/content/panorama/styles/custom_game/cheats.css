@@ -1,0 +1,206 @@
+.cheatsRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+#cheatsDisplay
+{
+	flow-children: down;
+	background-color: #000000EB;
+	align: right top;
+	margin-top: 50px;
+	padding-bottom: 8px;
+	height: fit-children;
+	/*min-height: 300px;*/
+	width: 255px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	transition-timing-function: ease-in-out;
+	transition-property: transform, height;
+	transition-duration: 0.3s;
+}
+
+.cheatsDisplayHidden
+{
+	transform: translate3d( 105%, 0px, 0px );
+}
+
+.commandMenuBlock 
+{
+	width: 100%;
+}
+
+#closeCheatsButton {
+	horizontal-align: right;
+}
+
+#commandMenuTitle {
+	margin-top: 10px;
+	margin-bottom: 10px;
+    color: #ffffff;
+    font-size: 20px;
+    text-transform: uppercase;
+	font-family: Goudy Trajan Medium;
+	text-align: center;
+	horizontal-align: middle;
+}
+
+#commandList
+{
+	flow-children: down;
+	width: 100%;
+	overflow: clip scroll;
+}
+
+
+
+.commandGroup
+{
+	margin-bottom: 5px;
+	width: 100%;
+	flow-children: down;
+}
+
+#groupContents
+{
+	width: 100%;
+	height: fit-children;
+	flow-children: down;
+
+	transition-timing-function: ease-in-out;
+	transition-property: transform, height;
+	transition-duration: 0.3s;
+
+	transform-origin: 50% 0%;
+}
+
+#groupHeader
+{
+	/*margin-left: 3px;*/
+	background-color: transparent;
+	width: 100%;
+}
+#groupHeader Label
+{
+	text-transform: uppercase;
+	text-shadow: 0 0 2 black;
+}
+
+
+.command
+{
+	flow-children: down;
+	width: 100%;
+}
+
+#commandHeader
+{
+	flow-children: right;
+	width: 100%;
+}
+
+#commandHeader:hover
+{
+	background-color: rgba(112,234,114, 0.196);
+}
+
+#commandHeader:hover #commandTitle
+{
+	color: white;
+}
+
+#commandHeader:active {
+	box-shadow: 0 1px #66;
+	transform: translateY(1px);
+	background-color: rgba(50,205,50, 0.078);
+}
+
+.commandGroup.cheatOnly {
+	brightness: 0.1;
+}
+
+.cheatMode .commandGroup.cheatOnly {
+	brightness: 1;
+}
+
+.command.cheatOnly {
+	brightness: 0.1;
+}
+
+.cheatMode .command.cheatOnly,
+.commandGroup.cheatOnly .command.cheatOnly
+{
+	brightness: 1;
+}
+
+#commandIcon
+{
+	height: 16px;
+	width: 12px;
+	margin-top: 4px;
+	margin-left: 12px;
+	opacity: 0.0;
+	transition-timing-function: ease-in-out;
+	transition-property: opacity;
+	transition-duration: 0.1s;
+}
+#commandHeader:hover #commandIcon
+{
+	opacity: 0.2;
+}
+/*#commandIcon
+{
+
+	opacity: 1.0;
+}
+*/
+#commandTitle
+{
+	margin-top: 2px;
+	margin-left: 6px;
+	color: #8e9795;
+}
+
+#commandSettings
+{
+	width: 100%;
+	flow-children: down;
+	margin-left: 30px;
+	margin-right: 16px;
+}
+
+#commandSettings DropDown
+{
+	height: 36px;
+}
+
+#commandSettings DropDown Label
+{
+	font-size: 14px;
+	margin-left: -3px;
+}
+
+#TextEntry {
+	color: #8e9795;
+}
+
+.ExpandCollapseToggleButton .TickBox,
+.ExpandCollapseToggleButton:selected .TickBox {
+	margin-left: 8px;
+	background-image: url("file://{images}/custom_game/commandIcon.png");
+}
+
+DropDown Label {
+	vertical-align: middle;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.tooltipContents
+{
+    min-width: 80px;
+    max-width: 400px;
+    max-height: 600px;
+    flow-children: down;
+}

@@ -1,0 +1,72 @@
+"DOTAAbilities"
+{
+    "ability_mjolnir"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/ability_mjolnir.lua"
+        "AbilityTextureName"                                                   "custom/ability_mjolnir"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "ItemSellable"                  "0"
+        
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "chain_chance"          "25"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "chain_damage"          "60 80 100 120"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "chain_strikes"         "4 5 5 6"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "chain_radius"          "800 900 100 1100"
+            }
+        }
+        "ReduxFlags"                                                           "dota_custom"
+        "ReduxCost"                                                            "0"
+    }
+
+    "ability_mjolnir_op"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/ability_mjolnir.lua"
+        "AbilityTextureName"                                                   "custom/ability_mjolnir_op"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "ItemSellable"                  "0"
+        
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "chain_chance"          "25 50 75 100"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "chain_damage"          "120 150 180 210"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "chain_strikes"         "4 6 8 10"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "chain_radius"          "1200"
+            }
+        }
+        "ReduxFlags"                                                           "dota_custom"
+        "ReduxCost"                                                            "120"
+    }
+}

@@ -1,0 +1,40 @@
+"DOTAAbilities"
+{
+    "imba_tower_mana_burn"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "custom/imba_tower_mana_burn"
+        "MaxLevel"                                                             "3"
+        "AbilitySharedWithTeammates"                                           "1"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "mana_burn"                                            "50 75 100"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_tower_mana_burn"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "OnAttackLanded"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/tower_abilities.lua"
+                        "Function"                             "ManaBurn"
+                        "particle_burn"                        "particles/generic_gameplay/generic_manaburn.vpcf"
+                        "sound_burn"                           "Hero_Antimage.ManaBreak"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxCost"                                                            "120"
+    }
+}

@@ -1,0 +1,38 @@
+"DOTAAbilities"
+{
+    "imba_tower_sniper"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "custom/imba_tower_sniper"
+        "MaxLevel"                                                             "3"
+        "AbilitySharedWithTeammates"                                           "1"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_range"                                          "200 400 600"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_tower_sniper"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"         "%bonus_range"
+                }
+                "States"
+                {
+                    "MODIFIER_STATE_CANNOT_MISS"                   "MODIFIER_STATE_VALUE_ENABLED"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "attack_modifier"
+        "ReduxCost"                                                            "120"
+    }
+}

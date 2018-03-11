@@ -1,0 +1,136 @@
+"DOTAAbilities"
+{
+    "paladin_impregnability"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "AOERadius"                                                            "1000"
+        "AbilityCastPoint"                                                     "0.5"
+        "AbilityTextureName"                                                   "custom/paladin_impregnability"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "MaxLevel"                                                             "3"
+        "RequiredLevel"                                                        "6"
+        "AbilityCooldown"                                                      "200.0 190.0 180.0"
+        "AbilityManaCost"                                                      "200 300 400"
+        "AbilityCastRange"                                                     "1000"
+        "AbilityChannelTime"                                                   "4 5 6"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "1000"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "damage_per_sec"                                       "0 0 0"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "tick"                                                 "0.5"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                             "3 4.5 6"
+            }
+        }
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_omniknight/omniknight_purification_hit.vpcf"
+        }
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "EffectName"                                           "Hero_Omniknight.Repel"
+                "Target"
+                {
+                    "Center"                                       "CASTER"
+                    "Flags"                                        "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+                }
+            }
+            "ApplyModifier"
+            {
+                "Target"
+                {
+                    "Center"                                       "CASTER"
+                    "Flags"                                        "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+                }
+                "ModifierName"                                         "modifier_impregnability_new"
+            }
+        }
+        "OnChannelInterrupted"
+        {
+            "RemoveModifier"
+            {
+                "Target"
+                {
+                    "Center"                                       "CASTER"
+                    "Flags"                                        "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+                }
+                "ModifierName"                                         "modifier_impregnability_new"
+            }
+        }
+        "OnChannelFinish"
+        {
+            "RemoveModifier"
+            {
+                "Target"
+                {
+                    "Center"                                       "CASTER"
+                    "Flags"                                        "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+                }
+                "ModifierName"                                         "modifier_impregnability_new"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_impregnability_new"
+            {
+                "IsHidden"                                             "1"
+                "ThinkInterval"                                        "%tick"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/life_in_arena/impregnability.lua"
+                        "Function"                             "ApplyModifiersV2"
+                        "damage"                               "%damage_per_sec * %tick"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/life_in_arena/impregnability.lua"
+                        "Function"                             "DestroyModifiers"
+                    }
+                }
+                "EffectName"                                           "particles/units/heroes/hero_omniknight/omniknight_repel_buff.vpcf"
+                "EffectAttachType"                                     "follow_origin"
+            }
+            "modifier_impregnability_aura_inv"
+            {
+                "IsPurgable"                                           "0"
+                "IsHidden"                                             "0"
+                "Duration"                                             "%duration"
+                "States"
+                {
+                    "MODIFIER_STATE_INVULNERABLE"                  "MODIFIER_STATE_VALUE_ENABLED"
+                }
+                "EffectName"                                           "particles/units/heroes/hero_omniknight/omniknight_repel_buff.vpcf"
+                "EffectAttachType"                                     "follow_origin"
+            }
+        }
+        "ReduxFlags"                                                           "support"
+        "ReduxPerks"                                                           "support | channeled | light"
+    }
+}

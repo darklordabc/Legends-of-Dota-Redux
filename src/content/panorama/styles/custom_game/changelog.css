@@ -1,0 +1,404 @@
+.changelogRoot
+{
+    width: 100%;
+    height: 100%;
+	
+}
+
+.horizontalSeparator {
+	horizontal-align: center;
+	width: 90%;
+	height: 1px;
+
+	/*border-top: 1px solid #ffffff44;*/
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #ffffff00 ), color-stop( 0.4, #ffffff44 ), color-stop( 0.6, #ffffff44 ), to( #ffffff00 ) );
+
+	margin-bottom: 14px;
+	margin-top: 6px;
+}
+
+#changelogNotification {
+	margin-left: 440px;
+	margin-top: 5px;
+
+	width: 29px;
+	height: 28px;
+
+	background-color: #e51616bb;
+	border: 1px solid #323440;
+	border-bottom-right-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+#changelogNotification:hover {
+	wash-color: #bbbbbb;
+}
+
+#changelogNotificationLabel {
+	align: center center;
+	margin-top: 3px;
+	font-size: 16px;
+	font-family: RadianceM,Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	font-weight: bold;
+}
+
+#showChangelogButton
+{
+	width: 24px;
+	height: 24px;
+	wash-color: #00000030;
+}
+
+#changelogIcon
+{
+	width: 95%;
+	height: 95%;
+}
+ 
+#changelogDisplay
+{
+	flow-children: down;
+	background-color: #000000EB;
+	background-size: 435px 825px;
+	background-position: -35px -75px;
+    vertical-align: top;
+    margin-top: 50px;
+    height: 700px;
+	width: 400px;
+
+	border-bottom-right-radius: 5px;
+	border-top-right-radius: 5px;
+
+	transition-timing-function: ease-in-out;
+	transition-property: transform;
+	transition-duration: 0.3s;
+	
+	visibility: visible;
+}
+
+#closeChangelogButton {
+	horizontal-align: right;
+}
+ 
+.changelogDisplayHidden
+{
+    transform: translate3d( -600px, 0px, 0px );
+}
+ 
+#Title
+{
+    flow-children: down;
+	padding: 10px 0 10px 0;
+}
+
+#TitleIcon
+{
+    width: 64px;
+    height: 64px;
+    vertical-align: center;
+}
+
+#TitleName
+{
+    color: #ffffff;
+    font-size: 36px;
+    text-transform: uppercase;
+	font-family: Goudy Trajan Medium;
+	text-align: center;
+	horizontal-align: middle;
+}
+#SubTitleName
+{
+    color: #666666;
+    font-size: 12px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	margin-left: 7px;
+    text-transform: uppercase;
+    text-align: center;
+	horizontal-align: middle;
+	font-family: Goudy Trajan Medium;
+}
+
+#ObjectiveHeader
+{
+	margin-top: 18px;
+}
+
+#OptionSelect
+{
+	flow-children: right;
+	margin-left: 35px;
+	margin-top: 10px;
+}
+
+.OptionButton
+{
+	margin-left: 40px;
+}
+
+.OptionText
+{
+	color: #ffffff;
+    font-size: 18px;
+	margin-left: 0px;
+    margin-top: 0px;
+    vertical-align: top;
+	font-family: Radiance;
+}
+
+.displaySelected
+{
+	border-bottom: 2px solid #FFFFFF;
+}
+
+#currentDisplay
+{
+	padding: 0px 20px 0 20px;
+	flow-children: down;
+}
+
+
+.displayPanel
+{
+	flow-children: down;
+    height: fill-parent-flow(1.0);
+	width: fill-parent-flow(1.0);
+	visibility: collapse;
+	/*overflow: clip scroll;*/
+}
+
+.displayText
+{
+	color: #a6a6a6;
+    font-size: 18px;
+    text-align: left;
+	text-overflow: clip;
+	width:	fill-parent-flow(1.0);
+	font-family: Radiance;
+}
+
+.displayHeader
+{
+	flow-children: down;
+
+}
+
+.displayBody
+{
+	flow-children: down;
+	width:	fill-parent-flow(1.0);
+	height: fill-parent-flow(1.0);
+}
+
+.descriptionTextPanel {
+	padding: 0 20px 0 20px;
+}
+
+.HeaderText
+{
+	color: #a6a6a6;
+    font-size: 28px;
+    text-align: center;
+	text-decoration: underline;
+	text-overflow: clip;
+	width:	fill-parent-flow(1.0);
+	font-family: Radiance;
+}
+
+.submitRoot
+{
+	flow-children: down;
+	margin-top: -10px;
+
+	width: 100%;
+	height:	fill-parent-flow(1.0);
+}
+
+.submitPanel {
+    flow-children: right;
+    background-color: transparent;
+
+	vertical-align: bottom;
+	horizontal-align: middle;
+
+	padding: 0px;
+}
+
+/*.submitPanel:hover {
+	wash-color: #000000bb;
+}
+*/
+#submitInputRoot {
+	height: 200px;
+	margin: 0px;
+}
+
+.submitText {
+    //width: 275px;
+	max-height: 350px;
+	/*overflow: clip scroll;*/
+	text-overflow: shrink;
+    opacity: 0.5;
+	vertical-align: bottom;
+	font-size: 20px;
+	margin-left: 10px;
+	font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+
+	height: 38px;
+
+	transition-timing-function: ease-in-out;
+	transition-property: height;
+	transition-duration: 0.5s;
+}
+
+.submitText:focus {
+	height: 170px;
+}
+
+.submitPnlText {
+    width: fill-parent-flow(1.0);
+	text-align: center;
+	color: #ffffff;
+	font-family: Radiance;
+}
+.submitPanelTxt
+{
+	margin-bottom: 5px;
+	margin-right: 35px;
+	margin-top: 5px;
+}
+
+#submitButton {
+    max-height: 30px;
+    width: fit-children;
+
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #599e5e ), to( #406d55 ) );
+
+    margin: 0px;
+    margin-bottom: 10px;
+
+    horizontal-align: center;
+    vertical-align: bottom;
+}
+
+.Sent {
+    saturation: 0.2;
+}
+
+TextEntry #PlaceholderText {
+	font-size: 18px;
+	line-height: 25px;
+}
+
+#submitButton Label {
+	font-size: 14px;
+}
+
+.updateHeaderText
+{
+	color: #a6a6a6;
+    
+	margin-top: 5px;
+	margin-bottom: 5px;
+    text-align: left;
+	text-decoration: underline;
+	text-overflow: clip;
+	width:	fill-parent-flow(1.0);
+	font-family: Radiance;
+}
+
+.updateClipper
+{
+	flow-children: down;
+	padding-left: 20px;
+	overflow: clip scroll;
+}
+
+.creditsPanel {
+	flow-children: down;
+	width: 100%;
+	height: 100%;
+
+	padding-left: 20px;
+	overflow: clip scroll;
+}
+
+.userPic {
+	horizontal-align: left;
+
+	margin-top: 10px;
+
+	width: 52px;
+	height: 52px;
+}
+
+.userPicRoot {
+	flow-children: right;
+
+	width: 100%;
+	height: 52px;
+
+	margin-bottom: 10px;
+}
+
+.userPicInfo {
+	margin-top: 10px;
+
+	flow-children: down;
+}
+
+.userPicNameFlag {
+	flow-children: right;
+}
+
+.userPicName {
+	font-size: 18px;
+
+	color: #ffffff88;
+}
+
+#userPicFlag {
+	width: 20px;
+	height: 20px;
+}
+
+.userPicName:hover {
+	text-decoration: underline;
+}
+
+.userPicDescription {
+	font-size: 14px;
+
+	color: #ffffff44;
+}
+
+.devMessage {
+	align: right center;
+
+	margin-right: 40px;
+	margin-top: 9px;
+
+	width: 36px;
+	height: 36px;
+
+	background-color: #e51616bb;
+	border: 1px solid #e51616;
+	border-radius: 6px;
+}
+
+.devMessage:hover {
+	wash-color: #bbbbbb;
+}
+
+.devMessageLabel {
+	align: center center;
+	margin-top: 3px;
+	font-size: 22px;
+	font-family: RadianceM,Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+	font-weight: bold;
+}
+
+.userPicMessages {
+	align: right center;
+}

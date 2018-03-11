@@ -1,0 +1,41 @@
+"DOTAAbilities"
+{
+    "angel_arena_summon_hawk"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+        "AbilityTextureName"                                                   "custom/angel_arena_summon_hawk"
+        "AbilityCooldown"                                                      "60.0"
+        "AbilityCastPoint"                                                     "0.0"
+        "AbilityManaCost"                                                      "200 250 280 300"
+        "MaxLevel"                                                             "4"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "duration"                                             "180.0"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_damage"                                         "30 40 50 60"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_armor"                                          "10 15 20 25"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/angel_arena_reborn/summon_hawk.lua"
+                "Function"                                             "SpawnHawk"
+            }
+        }
+        "ReduxFlags"                                                           "summon"
+        "ReduxPerks"                                                           "summon_non_ult"
+    }
+}

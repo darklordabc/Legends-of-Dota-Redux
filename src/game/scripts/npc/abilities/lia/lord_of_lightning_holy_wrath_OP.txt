@@ -1,0 +1,75 @@
+"DOTAAbilities"
+{
+    "lord_of_lightning_holy_wrath_OP"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityTextureName"                                                   "custom/lord_of_lightning_holy_wrath_OP"
+        "MaxLevel"                                                             "4"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityCastRange"                                                     "800"
+        "AbilityCooldown"                                                      "0.0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "chance_dmg"                                           "25"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "800"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "damage_per_int"                                       ".5 .75 1 2"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius_dop_dmg"                                       "200"
+            }
+        }
+        "precache"
+        {
+            "particle"                                                     "particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf"
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_disruptor.vsndevts"
+        }
+        "Modifiers"
+        {
+            "modifier_lord_of_lightning_holy_wrath"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "0"
+                "Aura"                                                 "modifier_lord_of_lightning_holy_wrath_aura"
+                "Aura_Radius"                                          "%radius"
+                "Aura_Teams"                                           "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+                "Aura_Types"                                           "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+            }
+            "modifier_lord_of_lightning_holy_wrath_aura"
+            {
+                "IsHidden"                                             "1"
+                "OnAttacked"
+                {
+                    "Random"
+                    {
+                        "Chance"                               "%chance_dmg"
+                        "PseudoRandom"                         "DOTA_PSEUDO_RANDOM_FACELESS_BASH"
+                        "OnSuccess"
+                        {
+                            "RunScript"
+                            {
+                                "ScriptFile"           "abilities/life_in_arena/holy_wrath.lua"
+                                "Function"             "damageTo"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "tank"
+        "ReduxCost"                                                            "120"
+        "ReduxBans"                                                            "lord_of_lightning_holy_wrath"
+    }
+}

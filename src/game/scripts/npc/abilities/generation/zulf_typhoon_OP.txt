@@ -1,0 +1,173 @@
+"DOTAAbilities"
+{
+    "zulf_typhoon_OP"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_CHANNELED | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_PHYSICAL"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ENEMIES_NO"
+        "AbilityTextureName"                                                   "custom/zulf_typhoon_OP"
+        "AnimationPlaybackRate"                                                "0.5"
+        "AbilityProcsMagicStick"                                               "1"
+        "HasScepterUpgrade"                                                    "1"
+        "AbilityCastPoint"                                                     "0.65"
+        "AOERadius"                                                            "750 900 1050"
+        "AbilityCooldown"                                                      "60"
+        "AbilityChannelTime"                                                   "3.0 4.0 5.0"
+        "AbilityManaCost"                                                      "175 250 325"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "cast_delay"                                           "0.65"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "duration"                                             "3 4 5"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "damage"                                               "40 60 70"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "slow"                                                 "-60"
+            }
+            "05"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "slow_duration"                                        "2 2.5 3"
+            }
+            "06"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"                                               "1050 1200 1500"
+            }
+        }
+        "precache"
+        {
+            "particle"                                                     "particles/units/heroes/hero_invoker/invoker_tornado_trail.vpcf"
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+        }
+        "OnSpellStart"
+        {
+            "ApplyModifier"
+            {
+                "ModifierName"                                         "modifier_typhoon"
+                "Target"                                               "CASTER"
+                "Duration"                                             "%duration"
+            }
+            "DestroyTrees"
+            {
+                "Target"                                               "CASTER"
+                "Radius"                                               "%radius"
+            }
+            "FireSound"
+            {
+                "EffectName"                                           "Hero_Invoker.Tornado"
+                "Target"                                               "CASTER"
+            }
+        }
+        "OnChannelInterrupted"
+        {
+            "RemoveModifier"
+            {
+                "ModifierName"                                         "modifier_typhoon"
+                "Target"                                               "CASTER"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_typhoon"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "EffectName"                                           "particles/zulf_typhoon.vpcf"
+                "EffectAttachType"                                     "follow_origin"
+                "EffectRadius"                                         "%radius"
+                "OverrideAnimation"                                    "ACT_DOTA_FLAIL"
+                "ControlPoints"
+                {
+                    "01"                                           "%radius %radius %radius"
+                    "02"                                           "%radius %radius %radius"
+                }
+                "Aura"                                                 "modifier_typhoon_effect"
+                "Aura_Radius"                                          "%radius"
+                "Aura_Teams"                                           "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                "Aura_Types"                                           "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                "Aura_Flags"                                           "DOTA_UNIT_TARGET_FLAG_NONE"
+                "ThinkInterval"                                        "0.03"
+                "OnIntervalThink"
+                {
+                    "Rotate"
+                    {
+                        "Target"                               "CASTER"
+                        "PitchYawRoll"                         "0 30 0"
+                    }
+                }
+            }
+            "modifier_typhoon_effect"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsDebuff"                                             "1"
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/zulf_typhoon.lua"
+                        "Function"                             "TyphoonSpinStart"
+                    }
+                }
+            }
+            "modifier_typhoon_stunned"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "0"
+                "OverrideAnimation"                                    "ACT_DOTA_FLAIL"
+                "States"
+                {
+                    "MODIFIER_STATE_STUNNED"                       "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_UNSELECTABLE"                  "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NO_UNIT_COLLISION"             "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NOT_ON_MINIMAP"                "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_PROVIDES_VISION"               "MODIFIER_STATE_VALUE_DISABLED"
+                    "MODIFIER_STATE_INVULNERABLE"                  "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_LOW_ATTACK_PRIORITY"           "MODIFIER_STATE_VALUE_ENABLED"
+                    "MODIFIER_STATE_NO_HEALTH_BAR"                 "MODIFIER_STATE_VALUE_ENABLED"
+                }
+                "OnDestroy"
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"                         "modifier_typhoon_slow"
+                        "Target"                               "TARGET"
+                        "Duration"                             "%slow_duration"
+                    }
+                }
+            }
+            "modifier_typhoon_slow"
+            {
+                "Passive"                                              "0"
+                "IsHidden"                                             "0"
+                "IsDebuff"                                             "1"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%slow"
+                }
+            }
+        }
+        "ReduxFlags"                                                           "stun"
+        "ReduxPerks"                                                           "channeled | enemyMoving"
+        "ReduxCost"                                                            "120"
+    }
+}

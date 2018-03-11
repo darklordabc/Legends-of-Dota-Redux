@@ -1,0 +1,30 @@
+"DOTAAbilities"
+{
+    "dragon_knight_dragon_blood_OP"
+    {
+        "BaseClass"                                                            "dragon_knight_dragon_blood"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "MaxLevel"                                                             "20"
+        "AbilityTextureName"                                                   "custom/dragon_knight_dragon_blood_OP"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_health_regen"                                   "3 6 9 12 15 18 21 24 27 30 33 36 39 42 48 51 54 57 60"
+                "LinkedSpecialBonus"                                   "special_bonus_unique_dragon_knight"
+                "LinkedSpecialBonusOperation"                          "SPECIAL_BONUS_MULTIPLY"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "bonus_armor"                                          "3 6 9 12 15 18 21 24 27 30 33 36 39 42 48 51 54 57 60"
+                "LinkedSpecialBonus"                                   "special_bonus_unique_dragon_knight"
+                "LinkedSpecialBonusOperation"                          "SPECIAL_BONUS_MULTIPLY"
+            }
+        }
+        "ReduxCost"                                                            "120"
+        "ReduxBans"                                                            "dragon_knight_dragon_blood"
+        "ReduxFlags"                                                           ""
+    }
+}

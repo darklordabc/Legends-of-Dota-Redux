@@ -1,0 +1,31 @@
+"DOTAAbilities"
+{
+    "kret_lust_for_life"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/life_in_arena/kret_lust_for_life"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "AbilityTextureName"                                                   "custom/kret_lust_for_life"
+        "MaxLevel"                                                             "4"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "intellect_sacrifice"                                  "0"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "tolltip"                                              "2"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "health_regen_percent"                                 "0.03 0.04 0.05 0.06"
+            }
+        }
+        "ReduxFlags"                                                           "tank"
+        "ReduxCost"                                                            "30"
+    }
+}

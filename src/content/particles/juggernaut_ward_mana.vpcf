@@ -1,0 +1,83 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 32
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
+			m_hTexture = resource:"materials/particle/particle_glow_02.vtex"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_Gravity = [ 0.0, 0.0, 15.0 ]
+			m_fDrag = 0.05
+		},
+		{
+			_class = "C_OP_FadeAndKill"
+			m_flEndFadeInTime = 0.1
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_ColorFade = [ 0, 0, 255, 255 ]
+		},
+		{
+			_class = "C_OP_LockToBone"
+			m_flLifeTimeFadeEnd = 1.0
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomColor"
+			m_ColorMax = [ 0, 0, 255, 255 ]
+			m_ColorMin = [ 85, 0, 255, 255 ]
+		},
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMax = 1.0
+			m_fLifetimeMin = 1.0
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+			m_flDegreesMax = 10.0
+			m_flDegreesMin = -10.0
+		},
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMax = 4.0
+			m_flRadiusMin = 4.0
+		},
+		{
+			_class = "C_INIT_RandomAlpha"
+			m_nAlphaMax = 64
+			m_nAlphaMin = 32
+		},
+		{
+			_class = "C_INIT_CreateOnModel"
+		},
+		{
+			_class = "C_INIT_InitialVelocityNoise"
+			m_vecOutputMin = [ 0.0, 0.0, 64.0 ]
+			m_vecOutputMax = [ 0.0, 0.0, 90.0 ]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 30.0
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/juggernaut_ward_mana_b.vpcf"
+		},
+	]
+}

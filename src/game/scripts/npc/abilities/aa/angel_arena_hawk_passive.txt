@@ -1,0 +1,33 @@
+"DOTAAbilities" {
+	"angel_arena_hawk_passive" {
+		"BaseClass" "ability_datadriven"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName" "custom/angel_arena_hawk_passive"
+		"MaxLevel" "4"
+
+		"AbilitySpecial" {
+			"01" {
+				"var_type" "FIELD_INTEGER"
+				"bonus_damage" "30 40 50 60"
+			}
+
+			"02" {
+				"var_type" "FIELD_INTEGER"
+				"bonus_armor" "10 15 20 25"
+			}
+		}
+
+		"Modifiers" {
+			"modifier_hawk" {
+				"isBuff" "1"
+				"Passive" "1"
+				"isHidden" "1"
+
+				"Properties" {
+					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE" "%bonus_damage"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%bonus_armor"
+				}
+			}
+		}
+	}
+}

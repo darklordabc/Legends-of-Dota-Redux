@@ -1,0 +1,57 @@
+"DOTAAbilities"
+{
+    "android_pocket_factory"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "AbilityTextureName"                                                   "custom/android_pocket_factory"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "MaxLevel"                                                             "3"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityCastAnimation"                                                 "ACT_DOTA_CAST_ABILITY_3"
+        "AbilityCastRange"                                                     "500"
+        "AbilityCastPoint"                                                     "0.3"
+        "AbilityCooldown"                                                      "50"
+        "AbilityManaCost"                                                      "150 250 350"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
+            "model"                                                        "models/items/rattletrap/forge_warrior_rocket_cannon/forge_warrior_rocket_cannon.vmdl"
+            "particle"                                                     "particles/units/heroes/hero_techies/techies_suicide.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "factory_duration"                                     "45"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "goblin_hp"                                            "125 400 700"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "goblin_damage"                                        "10 43 76"
+            }
+        }
+        "OnSpellStart"
+        {
+            "FireSound"
+            {
+                "EffectName"                                           "Hero_Tinker.Rearm"
+                "Target"                                               "CASTER"
+            }
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/life_in_arena/PocketFactory.lua"
+                "Function"                                             "BuildPocketFactory"
+                "Target"                                               "POINT"
+            }
+        }
+        "ReduxFlags"                                                           "summon"
+        "ReduxPerks"                                                           "scientific | summon_non_ult"
+        "ReduxBans"                                                            "tinker_rearm | tinker_rearm_lod"
+    }
+}

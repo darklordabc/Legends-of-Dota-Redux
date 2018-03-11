@@ -1,0 +1,34 @@
+"DOTAAbilities"
+{
+    "spell_lab_souls_damage"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/spell_lab/souls/damage.lua"
+        "AbilityTextureName"                                                   "custom/souls/damage"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "HasScepterUpgrade"                                                    "0"
+        "precache"
+        {
+            "particle"                                                     "particles/spell_lab/soul_remnant.vpcf"
+            "particle"                                                     "particles/spell_lab/souls_gain.vpcf"
+        }
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+        				"per_soul"						"1.5"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+        				"max"						"100 150 200 250"
+            }
+        }
+        "ReduxFlags"                                                           ""
+        "ReduxBans"                                                            ""
+        //"ReduxPerks"                                                           ""
+        "ReduxCost"                                                            "60"
+    }
+}

@@ -1,0 +1,55 @@
+"DOTAAbilities" {
+	"angel_arena_tome_str"
+    {       
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "BaseClass"                     "ability_datadriven"
+        "ID"                            "1194"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityCooldown"               "70 60 50 40"
+        "AbilityGoldCost"            "100 300 400 700"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "ReduxCost"                     "10"
+        "AbilityTextureName"            "custom/tome_str_3"
+
+
+        // Stats
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCastPoint"              "0.0"
+        
+        "AbilitySpecial" 
+        {
+            "01" 
+            {
+                "var_type" "FIELD_INTEGER"
+                "str" "1 2 3 5"
+            }
+            
+            "02" // This is for the tooltips
+            {
+                "var_type" "FIELD_FLOAT"
+                "gold_cost_toolip" "100 300 400 700"
+            }
+        }
+
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "Target"            "CASTER"
+                "ScriptFile"        "abilities/angel_arena_reborn/tome.lua"
+                "Function"          "UpgradeStats"
+            }      
+        }
+        "OnUpgrade"
+        {
+            "RunScript"
+            {
+                "ScriptFile" "abilities/angel_arena_reborn/tome.lua"
+                "Function"  "LevelTome"
+            }
+        }
+
+    }
+}

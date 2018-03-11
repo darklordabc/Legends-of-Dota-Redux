@@ -1,0 +1,419 @@
+"Bans" {
+    "BannedTowerCombinations" {
+        "imba_tower_multihit" {
+            "imba_tower_machinegun"              "1"
+        }
+    }
+
+    // List of categories to use with the categories bans
+    "Categories" {
+        // List of spells that can be spammed easily
+        // 1 to reference a spell
+        // 2 to reference another list (note: Do NOT create recursion, there is no recursion checking!)
+        "SpammableSpells" {
+            // Ban ToggleSpells
+            "ToggleSpells"                      "2"
+
+            // Ban skillz
+            "abaddon_aphotic_shield"            "1"
+            "abaddon_death_coil"                "1"
+            "alchemist_unstable_concoction"     "1"
+            "ancient_apparition_ice_vortex"     "1"
+            "antimage_blink"                    "1"
+            "arc_warden_spark_wraith"           "1"
+            "axe_battle_hunger"                 "1"
+            "bane_nightmare"                    "1"
+            "batrider_sticky_napalm"            "1"
+            "bloodseeker_blood_rage"            "1"
+            "bounty_hunter_track"               "1"
+            "bristleback_quill_spray"           "1"
+            "bristleback_viscous_nasal_goo"     "1"
+            "chaos_knight_reality_rift"         "1"
+            "courier_burst"                     "1"
+            "dazzle_shadow_wave"                "1"
+            "doom_bringer_devour"               "1"
+            "earthshaker_enchant_totem"         "1"
+            "elder_titan_ancestral_spirit"      "1"
+            "gyrocopter_rocket_barrage"         "1"
+            "leshrac_lightning_storm"           "1"
+            "lich_ice_armor"                    "1"
+            "lion_mana_drain"                   "1"
+            "luna_lucent_beam"                  "1"
+            "necrolyte_death_pulse"             "1"
+            "phantom_assassin_phantom_strike"   "1"
+            "puck_phase_shift"                  "1"
+            "pugna_nether_blast"                "1"
+            "queen_of_pain_blink"               "1"
+            "rubick_telekinesis"                "1"
+            "shadow_demon_shadow_poison"        "1"
+            "shredder_timber_chain"             "1"
+            "skywrath_mage_arcane_bolt"         "1"
+            "slark_dark_pact"                   "1"
+            "templar_assassin_meld"             "1"
+            "tidehunter_anchor_smash"           "1"
+            "tinker_rearm"                      "1"
+            "treant_natures_guise"              "1"
+            "undying_decay"                     "1"
+            "venomancer_plague_ward"            "1"
+            "weaver_shukuchi"                   "1"
+
+            "oracle_purifying_flames"           "1"
+
+            // Items
+            "lod_item_ring_of_basilius"         "1"
+            "lod_item_necronomicon"             "1"
+            "lod_item_necronomicon_2"           "1"
+            "lod_item_necronomicon_3"           "1"
+            "lod_item_mjollnir"                 "1"
+            "lod_item_diffusal_blade"           "1"
+            "lod_item_diffusal_blade_2"         "1"
+        }
+
+        // Toggle spells
+        "ToggleSpells" {
+	    "proteus_jet"			"1"
+            "courier_go_to_secretshop"          "1"
+            "ability_wards"          		"1"
+            "ability_wards_op"        		"1"
+            "courier_return_stash_items"        "1"
+            "courier_return_to_base"            "1"
+            "courier_take_stash_items"          "1"
+            "courier_transfer_items"            "1"
+            "forest_troll_high_priest_heal"     "1"
+            "furion_teleportation"              "1"
+            "harpy_storm_chain_lightning"       "1"
+            "holdout_multishot"                 "1"
+            "lod_item_power_treads"             "1" // Amazing when toggling aftershock!
+            "leshrac_pulse_nova"                "1"
+            "medusa_mana_shield"                "1"
+            "medusa_split_shot"                 "1"
+            "meepo_poof"                        "1"
+            "morphling_morph_agi"               "1"
+            "morphling_morph_str"               "1"
+    	    "morph_agi_int_redux"	"1"
+    	    "morph_str_int_redux"	"1"
+    	    "morph_int_str_redux"	"1"
+    	    "morph_int_agi_redux"	"1"
+            "pudge_rot"                         "1"
+            "riki_blink_strike"                 "1"
+            "shredder_chakram"                  "1"
+            "techies_focused_detonate"          "1"
+            "troll_warlord_berserkers_rage"     "1"
+            "wisp_overcharge"                   "1"
+            "witch_doctor_voodoo_restoration"   "1"
+            "life_stealer_consume"              "1"
+            "life_stealer_assimilate"           "1"
+            "life_stealer_infest"               "1" // You get consume, which can be spammmmed
+            "nyx_assassin_burrow"               "1" // Why you do this, valve?
+            "nyx_assassin_burrow_redux"         "1"
+            "spectre_reality"                   "1" // Can be used over and over
+            "skeleton_king_vampiric_aura"       "1" // New update allows it to be toggled
+            "life_stealer_assimilate"           "1"
+            "cherub_synthesis"           "1"
+            "elder_titan_return_spirit" "1"
+        }
+    }
+
+    // These are groups of spells where none of these can be used together
+    "BannedGroups" {
+        // The one hit combo group
+        "1" {
+	    "ursa_overpower"			"1"
+	    "ursa_overpower_melee"        	"1"// Range hero got multi totem/walrus punch.
+            "bounty_hunter_jinada"              "1"
+            "brewmaster_drunken_brawler"        "1"
+            "earthshaker_enchant_totem"         "1"
+            "kunkka_tidebringer"                "1"
+            //"tiny_grow"                         "1"
+            "tusk_walrus_punch"                 "1"
+            "weaver_geminate_attack"            "1"
+            "terrorblade_metamorphosis"         "1"
+            "clinkz_death_pact"                 "1"
+            "tiny_grow_lod"                     "1"
+            "tiny_grow_lod_redux"                     "1"
+            "hero_one_punch"                    "1"
+            "ursa_overpower"                    "1"
+            "alexander_godfall"                 "1"
+            "monkey_king_boundless_strike"  "1"
+        }
+
+        // The mega range group
+        "2" {
+            "dragon_knight_elder_dragon_form"   "1"
+            "sniper_take_aim"                   "1"
+            "templar_assassin_psi_blades"       "1"
+            "terrorblade_metamorphosis"         "1"
+            "winter_wyvern_arctic_burn"         "1"
+        }
+
+        // Chemical Rages
+        "3" {
+            "alchemist_chemical_rage"            "1"
+            "custom_bot_chemical_rage"           "1"
+        }
+
+        // Shadow Dances
+        "4" {
+            "slark_shadow_dance"                 "1"
+            "custom_bot_shadow_dance"            "1"
+        }
+
+        "5" {
+            "roshan_bash"                           "1"
+            "slardar_bash"                          "1"
+            "spirit_breaker_greater_bash"           "1"
+            "faceless_void_time_lock"               "1"
+            "troll_warlord_berserkers_rage"         "1"
+            "imba_tower_permabash"   "1"
+        }
+        // Flesh heaps
+        "6" {
+            //"pudge_flesh_heap_bonus_vision"         "1"
+            "pudge_flesh_heap"                           "1"
+            "pudge_flesh_heap_agility"                          "1"
+            "pudge_flesh_heap_move_speed"           "1"
+            "pudge_flesh_heap_attack_range"               "1"
+            "pudge_flesh_heap_spell_amp"   "1"
+            "pudge_flesh_heap_int"   "1"
+            //"pudge_flesh_heap_evasion"   "1"
+            "pudge_flesh_heap_cooldown_reduction"   "1"
+            "pudge_flesh_heap_magic_resistance"   "1"
+            "pudge_flesh_heap_agility"            "1"
+            "pudge_flesh_heap_cast_range"   "1"
+            "pudge_flesh_heap_spell_lifesteal" "1"
+            "pudge_flesh_heap_lifesteal" "1"
+            "pudge_flesh_heap_armor" "1"
+            "spell_lab_survivor_cooldown" "1"
+            "spell_lab_survivor_critical" "1"
+            "spell_lab_survivor_damage_boost" "1"
+            "spell_lab_survivor_health_regen" "1"
+            "spell_lab_survivor_int_survival" "1"
+            "spell_lab_survivor_magic_resistance" "1"
+            "spell_lab_survivor_spell_boost" "1"
+            "spell_lab_survivor_spell_vamp" "1"
+            "spell_lab_survivor_str_survival" "1"
+            "spell_lab_survivor_mana_regen" "1"
+            "spell_lab_survivor_agi_survival" "1"
+            "spell_lab_survivor_attack_speed" "1"
+            "spell_lab_survivor_cast_range" "1"
+            "spell_lab_survivor_vision" "1"
+            "spell_lab_survivor_evasion" "1"
+            "spell_lab_survivor_mana_burn" "1"
+            "spell_lab_survivor_life_steal" "1"
+            "spell_lab_survivor_armor" "1"
+            "spell_lab_survivor_attack_range" "1"
+            "spell_lab_survivor_move_speed" "1"
+            "spell_lab_survivor_bash" "1"
+                "spell_lab_souls_str" "1"
+                "spell_lab_souls_vision" "1"
+                "spell_lab_souls_agi" "1"
+                "spell_lab_souls_armor" "1"
+                "spell_lab_souls_attack_range" "1"
+                "spell_lab_souls_attack_speed" "1"
+                "spell_lab_souls_cast_range" "1"
+                "spell_lab_souls_cooldown" "1"
+                "spell_lab_souls_damage" "1"
+                "spell_lab_souls_evasion" "1"
+                "spell_lab_souls_health_regen" "1"
+                "spell_lab_souls_int" "1"
+                "spell_lab_souls_magic_resistance" "1"
+                "spell_lab_souls_mana_regen" "1"
+                "spell_lab_souls_move_speed" "1"
+                "spell_lab_souls_spell_boost" "1"
+            "spell_lab_souls_damage" "1"
+              "angel_arena_tome_gods"  "1"
+              "angel_arena_tome_int"  "1"
+              "angel_arena_tome_str"  "1"
+              "angel_arena_tome_agi"  "1"
+              "angel_arena_tome_med"  "1"
+                "lina_banana_redux"     "1"
+                "lina_coconut_redux"    "1"
+                "lina_grapefruit_redux" "1"
+        }
+        // Cooldown manipulation abilities
+        "7" {
+            		"keeper_of_the_light_chakra_magic"	"1" // lod's rearm + CD reduction talent.
+			"keeper_of_the_light_chakra_magic_cooldown"	"1"
+			"tinker_rearm_lod"	"1"
+			"tinker_rearm"	"1"
+			//"aabs_nightshadow"	"1"
+			"pudge_flesh_heap_cooldown_reduction"	"1"
+			//"holdout_gods_strength"	"1"
+			"jingtong"	"1"
+			"zhanhun"	"1"
+			"zhanhun_op"	"1"
+			"jingtong_op"	"1"
+			//"proteus_rarefaction"	"1"
+			"death_prophet_witchcraft" "1"
+            		"veera_thrill_of_the_hunt"  "1"
+	   		"master_magic" "1" //Allowed you Master_magic + CD reduction + Nimbus or any global ability.
+          "spell_lab_survivor_cooldown" "1"
+                "spell_lab_souls_cooldown" "1"
+        }
+    }
+
+    "BannedTowerGroups" {
+        "1" {
+            "imba_tower_fervor"             "1"
+            "imba_tower_berserk"   "1"
+            "imba_tower_machinegun"              "1"
+            "imba_tower_essence_drain"              "1"
+            "imba_tower_multihit"             "1"
+        }
+    }
+
+
+    // Stop multicast on these spells
+    "noMulticast" {
+        "ability_wards"                 "1"
+        "ability_wards_op"                 "1"
+        "arc_warden_tempest_double"                 "1"
+        "arc_warden_tempest_double_redux"                 "1"
+        "uther_Hurl_Hammer"                 "1"
+        "enraged_wildkin_tornado"           "1"
+        "invoker_cold_snap_lod"             "1"
+        "item_ancient_janggo"               "1"
+        "item_black_king_bar"               "1"
+        "item_courier"                      "1"
+        "item_diffusal_blade"               "1"
+        "item_diffusal_blade_2"             "1"
+        "item_power_treads"                 "1"
+        "item_slippers_of_halcyon"          "1"
+        "item_tpscroll"                     "1"
+        "item_travel_boots"                 "1"
+        "item_travel_boots_2"               "1"
+        "item_urn_of_shadows"               "1"
+        "lich_dark_ritual"                  "1"
+        "phoenix_sun_ray"                   "1"
+        "shredder_chakram"                  "1"
+        "shredder_chakram_2"                  "1"
+        "shredder_timber_chain"             "1"
+        //"witch_doctor_death_ward"         "1"
+        "item_ward_observer"                "1"
+        "item_ward_sentry"                  "1"
+        "item_bottle"                       "1"
+        "item_moon_shard"                   "1"
+        "phantom_assassin_phantom_strike"   "1"
+        "life_stealer_infest"               "1"
+        "pudge_meat_hook"                   "1"
+        "item_tango"                        "1"
+        "item_clarity"                      "1"
+        "item_enchanted_mango"              "1"
+        "item_flask"                        "1"
+        "item_dust"                         "1"
+        "item_ward_dispenser"               "1"
+        "item_tango_single"                 "1"
+        "tusk_snowball"             "1"
+        "spell_lab_symbiotic"               "1"
+        "arcane_mastery"                    "1"
+        "angel_arena_tome_lvlup"  "1"
+        "angel_arena_tome_gods"  "1"
+        "angel_arena_tome_int"  "1"
+        "angel_arena_tome_str"  "1"
+        "angel_arena_tome_agi"  "1"
+        "angel_arena_tome_med"  "1"
+        "angel_arena_tome_lvlup_op"  "1"
+        "angel_arena_tome_gods_op"  "1"
+        "angel_arena_tome_int_op"  "1"
+        "angel_arena_tome_str_op"  "1"
+        "angel_arena_tome_agi_op"  "1"
+        "angel_arena_tome_med_op"  "1"
+        "master_magic"  "1"
+	    "furion_teleportation" "1"
+        "lina_banana_redux"     "1"
+        "lina_coconut_redux"    "1"
+        "lina_grapefruit_redux" "1"
+    }
+
+    "noSpellEcho" {
+        "ability_wards"                 "1"
+        "ability_wards_op"                 "1"
+        "master_magic"  "1"
+        "hawkeye_ricochet"            "1"
+        //"android_pocket_factory"            "1"
+        "monkey_king_wukongs_command"            "1"
+        "witch_doctor_paralyzing_cask"            "1"
+        "angel_arena_tome_lvlup"  "1"
+        "angel_arena_tome_gods"  "1"
+        "angel_arena_tome_int"  "1"
+        "angel_arena_tome_str"  "1"
+        "angel_arena_tome_agi"  "1"
+        "angel_arena_tome_med"  "1"
+        "angel_arena_tome_lvlup_op"  "1"
+        "angel_arena_tome_gods_op"  "1"
+        "angel_arena_tome_int_op"  "1"
+        "angel_arena_tome_str_op"  "1"
+        "angel_arena_tome_agi_op"  "1"
+        "angel_arena_tome_med_op"  "1"
+        "shredder_chakram"  "1"
+        "shredder_chakram_return"   "1"
+        "shredder_chakram_2"    "1"
+        "shredder_return_chakram_2" "1"
+        "arc_warden_tempest_double" "1"
+        "alchemist_unstable_concoction" "1"
+        "alchemist_unstable_concoction_throw"   "1"
+        "vengefulspirit_nether_swap"    "1"
+        "juggernaut_omni_slash" "1"
+        "rubick_telekinesis_land"   "1"
+        "antimage_blink"    "1"
+        "queenofpain_blink" "1"
+        "phoenix_icarus_dive"   "1"
+        "phoenix_icarus_dive_stop"  "1"
+        "phoenix_fire_spirits"  "1"
+        "phoenix_sun_ray_stop"  "1"
+        "phoenix_sun_ray"   "1"
+        "phoenix_sun_ray_toggle_move"   "1"
+        "phoenix_supernova" "1"
+        "phoenix_launch_fire_spirit"    "1"
+        "spell_lab_symbiotic"  "1"
+        "furion_teleportation" "1"
+        "lina_banana_redux"     "1"
+        "lina_coconut_redux"    "1"
+        "lina_grapefruit_redux" "1"
+    }
+
+    // Abiltiies that won't have their cooldowns lowered by our patch
+    "noWitchcraft" {
+        "death_prophet_carrion_swarm"   "1"
+        "death_prophet_silence"         "1"
+        "chi_strike"         "1"
+    }
+
+    // Skills that are never allowed on a tower
+    "noTowerAlways" {
+        "pudge_flesh_heap"              "1"
+        "troll_warlord_berserkers_rage" "1"
+        "vengefulspirit_command_aura"   "1"
+        "riki_permanent_invisibility"   "1" //Towers become unclickable
+    }
+
+    // Stop tower from getting these abilities
+    "noTower" {
+        "pudge_flesh_heap"              "#noTowerCrash"
+        "troll_warlord_berserkers_rage" "#noTowerCrash"
+        "life_stealer_feast"            "#noTowerOP"
+        "medusa_split_shot"             "#noTowerActivate"
+        "dragon_knight_dragon_blood"    "#noTowerLongGame"
+        "shredder_reactive_armor"       "#noTowerLongGame"
+        "vengefulspirit_command_aura"   "#noTowerCrash"
+        "ursa_fury_swipes"              "#noTowerOP"
+        "riki_permanent_invisibility"   "#noTowerNoAttack"
+        "lod_item_helm_of_the_dominator""#noTowerLongGame"
+        "lod_item_mask_of_madness"      "#noTowerLongGame"
+        "lod_item_lifesteal"            "#noTowerLongGame"
+        "lod_item_satanic"              "#noTowerLongGame"
+        "lod_item_heart"                "#noTowerLongGame"
+        "slark_shadow_dance"            "#noTowerLongGame"
+        "necrolyte_sadist"              "#noTowerOP"
+        "brewmaster_drunken_brawler"    "#noTowerOP"
+        "faceless_void_backtrack"       "#noTowerOP"
+        "phantom_assassin_blur"         "#noTowerOP"
+    }
+
+    // Skills that can not be used on bears
+    "noBear" {
+        "pudge_flesh_heap"              "1"
+        "troll_warlord_berserkers_rage" "1"
+        "vengefulspirit_command_aura"   "1"
+    }
+}
