@@ -1126,7 +1126,7 @@
     "option_vote_entry_title_singlePlayerAbilities" "Enable SUPER-OP Abilities"
     "option_vote_entry_title_OPAbilities"           "Enable OP Abilities"
     "option_vote_entry_title_heroPerks"             "Enable Hero Perks"
-    "option_vote_entry_title_allPick"               "Enable All Pick"
+    "option_vote_entry_title_allPick"               "Disable Single Draft"
 
 
 
@@ -5238,6 +5238,9 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
 
         "DOTA_Tooltip_generic_lua_stun"                                             "Stun"
         "DOTA_Tooltip_generic_lua_stun_Description"                                 "Stunned"
+
+        "DOTA_Tooltip_gold_bonus_modifier"                                             "Bonus Gold Income"
+        "DOTA_Tooltip_gold_bonus_modifier_Description"                                 "Getting bonus gold. Buff counter is number of hundreds left to recieve."
 
         "DOTA_Tooltip_Ability_seer"                                                       "Seer"
         "DOTA_Tooltip_Ability_seer_Description"                                           "While channelling gain vision of all enemy heroes.\nDoes not include enemies who are invisible or dead at the start of the channel. Channeling lasts for 10 seconds. \n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>\n"

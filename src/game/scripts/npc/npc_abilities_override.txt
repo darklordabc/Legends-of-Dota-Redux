@@ -204,7 +204,7 @@
     }
     "brewmaster_earth_hurl_boulder"
     {
-        "MaxLevel"                                                             "1"
+        "MaxLevel"                                                             "3"
         "ReduxFlags"                                                           "stun"
         "ReduxPerks"                                                           "earth"
         "ReduxCost"                                                            "80"
