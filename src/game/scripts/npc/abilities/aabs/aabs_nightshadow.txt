@@ -1,20 +1,19 @@
 "DOTAAbilities" {
 	"aabs_nightshadow"
 	{
-		"BaseClass"                     "ability_datadriven"
-		"ID"							"10043"
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/angel_arena_blackstar/nightshadow.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"            "custom/nightshadow"
+		"AbilityCooldown"				"1.5"
 		"ReduxCost"                                                            "10"
 		"ReduxFlags"														    "cooldown"
 		
-		"precache" {
-			"soundfile" "sounds/weapons/hero/riki/riki_attack1.vsnd"
+		"precache"
+		{
 			"particle" "particles/items_fx/electrical_arc_01_system.vpcf"
 		}
 
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
@@ -28,43 +27,12 @@
 				"cooldown_reduction"			"0.25 0.5 0.75 1"
 			}
 		}
-		"Modifiers"
-		{
-			"modifier_item_nightshadow_unique"
-			{
-				"Passive"			"1"
-				"IsHidden"			"1"
-				"AllowIllusionDuplicate"     "0"
-				"OnCreated"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"abilities/angel_arena_blackstar/kv.lua"
-						"Function"		"IllusionModifierCleaner"
-						"modifier"		"modifier_item_nightshadow_unique"
-					}
-				}
-
-				"OnAttackLanded"
-				{
-					"RunScript"
-					{
-						"ScriptFile"			"abilities/angel_arena_blackstar/items_SYNS.lua"
-						"Function"				"CooldownReduction"
-						"particle" "particles/units/heroes/hero_leshrac/leshrac_lightning_impact.vpcf"
-						"cooldown_reducted"		"%cooldown_reduction"
-						"chance"				"%proc_chance"
-						"modifier"				"modifier_item_nightshadow_unique"
-					}
-				}
-			}
-		}
 	}
 
 	"aabs_thunder_musket"
 	{
-		"BaseClass"						"ability_datadriven"
-		"ID"							"10235"
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/angel_arena_blackstar/thunder_musket.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityTextureName"			"custom/thunder_musket"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
@@ -75,173 +43,18 @@
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_strength"		"0"
+				"var_type"				"FIELD_FLOAT"
+				"thunderstruck_cooldown"		"6 5 4 3"
 			}
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_agility"			"0"
+				"thunderstruck_bonus_attack_range"		"120 220 320 420"
 			}
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_damage"			"0"
-			}
-			"04"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_attack_range"	"0"
-			}
-			"05"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"crit_chance"			"0"
-			}
-			"06"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"crit_multiplier"		"0"
-			}
-			"07"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"thunderstruck_cooldown"		"6 5 4 3"
-			}
-			"08"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"thunderstruck_bonus_attack_range"		"120 220 320 420"
-			}
-			"09"
-			{
-				"var_type"				"FIELD_INTEGER"
 				"thunderstruck_magical_damage"		"50 75 100 125"
-			}
-		}
-
-		"Modifiers"
-		{
-			"modifier_item_thunder_musket"
-			{
-				"Passive"			"1"
-				"IsHidden"			"1"
-				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
-
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%bonus_strength"
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%bonus_agility"
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%bonus_damage"
-				}
-			}
-			"modifier_item_thunder_musket_unique"
-			{
-				"Passive"			"1"
-				"IsHidden"			"1"
-
-				"OnAttackStart"
-				{
-					"RemoveModifier"
-					{
-						"ModifierName" 	"modifier_item_thunder_musket_crit"
-						"Target" 		"CASTER"
-					}
-
-					"Random"
-					{
-						"Chance" "%crit_chance"
-						"OnSuccess"
-						{
-							"ApplyModifier"
-							{
-								"ModifierName" 	"modifier_item_thunder_musket_crit"
-								"Target"    	"CASTER"
-							}
-						}
-					}
-				}
-
-				"OnAttackLanded"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"abilities/angel_arena_blackstar/item_thunder_musket.lua"
-						"Function"		"ThunderstruckProc"
-					}
-				}
-
-				"ThinkInterval"  "0.1"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"abilities/angel_arena_blackstar/item_thunder_musket.lua"
-						"Function"		"UpdateRangedBonus"
-					}
-				}
-
-				"OnDestroy"
-				{
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_item_thunder_musket_ranged"
-						"Target" 		"CASTER"
-					}
-					"RemoveModifier"
-					{
-						"ModifierName"	"modifier_item_thunder_musket_ranged_thunderstruck"
-						"Target" 		"CASTER"
-					}
-				}
-			}
-
-			"modifier_item_thunder_musket_crit"
-			{
-				"IsHidden"			"1"
-				"IsPurgable"		"0"
-
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" "%crit_multiplier"
-				}
-
-				"OnAttackLanded"
-				{
-					"FireSound"
-					{
-						"EffectName"	"DOTA_Item.Daedelus.Crit"
-						"Target"		"CASTER"
-					}
-
-					"RemoveModifier"
-					{
-						"ModifierName"  "modifier_item_thunder_musket_crit"
-						"Target"   		"CASTER"
-					}
-				}
-			}
-
-			"modifier_item_thunder_musket_ranged"
-			{
-				"IsHidden"			"1"
-				"IsPurgable"		"0"
-
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"		"%bonus_attack_range"
-				}
-			}
-
-			"modifier_item_thunder_musket_ranged_thunderstruck"
-			{
-				"IsHidden"			"1"
-				"IsPurgable"		"0"
-
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"		"%thunderstruck_bonus_attack_range"
-				}
 			}
 		}
 	}
