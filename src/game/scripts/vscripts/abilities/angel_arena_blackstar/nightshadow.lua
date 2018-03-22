@@ -12,7 +12,7 @@ modifier_aabs_nightshadow = {
 	DeclareFunctions = function() return {MODIFIER_EVENT_ON_ATTACK_LANDED} end,
 
 	OnAttackLanded = function(self, keys)
-		if not IsServer() or keys.attacker ~= self:GetParent() or self:GetParent():PassivesDisabled() then return end
+		if not IsServer() or keys.attacker ~= self:GetParent() or self:GetParent():PassivesDisabled() or not self:GetParent():IsRealHero() then return end
 
 		if self:GetAbility() then
 			if RollPercentage(self:GetAbility():GetSpecialValueFor("proc_chance")) then

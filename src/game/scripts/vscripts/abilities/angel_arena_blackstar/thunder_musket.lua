@@ -17,7 +17,7 @@ modifier_aabs_thunder_musket = {
 	OnIntervalThink = function(self)
 		if not IsServer() then return end
 
-		if self:GetParent():PassivesDisabled() then
+		if self:GetParent():PassivesDisabled() or self:GetParent():IsRealHero() then
 			self.range = 0
 			return
 		end
@@ -30,7 +30,7 @@ modifier_aabs_thunder_musket = {
 	end,
 
 	OnAttackLanded = function(self, keys)
-		if not IsServer() or keys.attacker ~= self:GetParent() or self:GetParent():PassivesDisabled() then return end
+		if not IsServer() or keys.attacker ~= self:GetParent() or self:GetParent():PassivesDisabled() or not self:GetParent():IsRealHero() then return end
 
 		if self:GetAbility() then
 			if self:GetAbility():IsCooldownReady() then
