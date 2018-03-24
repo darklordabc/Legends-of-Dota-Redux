@@ -5984,6 +5984,11 @@
         "TalentRequiredAbility"                                                   "alchemist_chemical_rage"
     }
 
+    "special_bonus_unique_alchemist_4"
+    {
+        "TalentRequiredAbility"                                                   "alchemist_chemical_rage"
+    }
+
     "special_bonus_unique_abaddon"
     {
         "TalentRequiredAbility"                                                   "abaddon_aphotic_shield"
