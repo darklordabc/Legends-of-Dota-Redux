@@ -6,7 +6,7 @@ end
 
 
 modifier_aabs_thunder_musket = {
-	IsHidden = function() return self.range and self.range == 0 or true end,
+	IsHidden = function(self) return self.range and self.range == 0 or true end,
 	IsPurgeable = function() return false end,
 	RemoveOnDeath = function() return false end,
 
@@ -38,14 +38,14 @@ modifier_aabs_thunder_musket = {
 
 				ApplyDamage({
 					attacker = self:GetParent(),
-					victim = keys.victim,
+					victim = keys.target,
 					ability = self:GetAbility(),
 					damage = self:GetAbility():GetSpecialValueFor("thunderstruck_magical_damage"),
 					damage_type = self:GetAbility():GetAbilityDamageType()
 				})
 
-				keys.victim:EmitSound("Hero_Zuus.ArcLightning.Target")
-				local p = ParticleManager:CreateParticle("particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_manavoid_lightning_ti_5.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.victim)
+				keys.target:EmitSound("Hero_Zuus.ArcLightning.Target")
+				local p = ParticleManager:CreateParticle("particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_manavoid_lightning_ti_5.vpcf", PATTACH_ABSORIGIN_FOLLOW, keys.target)
 				ParticleManager:ReleaseParticleIndex(p)
 			end
 		else
