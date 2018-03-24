@@ -5651,6 +5651,11 @@
         "TalentRequiredAbility"                                                   "doom_bringer_doom"
     }
 
+    "special_bonus_unique_doom_6"
+    {
+        "TalentRequiredAbility"                                                   "doom_bringer_scorched_earth"
+    }
+
     "special_bonus_unique_disruptor"
     {
         "TalentRequiredAbility"                                                   "disruptor_thunder_strike"
