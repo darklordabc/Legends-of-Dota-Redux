@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## 10.7
 - Fixed Hurl Boulder only having 1 level
 - Rewrote Arcane Art and Thunder Musket, hopefully fixed issues
+- +2 Intelligence Steal talent is now connected to the ability, not the hero
 
 ## 10.6
 - Added Grapefruit and Coconuts ability

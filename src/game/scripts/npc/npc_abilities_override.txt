@@ -4830,10 +4830,10 @@
         "TalentRequiredAbility"                                                   "silencer_curse_of_the_silent"
     }
 
-    //"special_bonus_unique_silencer_2"
-    //{
-    //    "TalentRequiredAbility"                                           //        "silencer_curse_of_the_silent"
-    //}
+    "special_bonus_unique_silencer_2"
+    {
+        "TalentRequiredAbility"                                                   "silencer_glaives_of_wisdom_steal"
+    }
 
     "special_bonus_unique_silencer_3"
     {
