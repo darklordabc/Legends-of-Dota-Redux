@@ -2,6 +2,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 10.8
+- Lifebreak Redux now troll combo with Dispersion
+
 ## 10.7
 - Fixed Hurl Boulder only having 1 level
 - Rewrote Arcane Art and Thunder Musket, hopefully fixed issues

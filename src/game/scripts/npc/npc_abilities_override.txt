@@ -1820,7 +1820,7 @@
     {
         "ReduxFlags"                                                           "tank"
         "ReduxCost"                                                            "40"
-        "ReduxBans"                                                            "furion_teleportation | centaur_return | nyx_assassin_burrow | nyx_assassin_burrow_redux | huskar_life_break | huskar_life_break_redux "
+        "ReduxBans"                                                            "furion_teleportation | centaur_return | nyx_assassin_burrow | nyx_assassin_burrow_redux | huskar_life_break | huskar_life_break_redux"
     }
     "phantom_assassin_blur"
     {
