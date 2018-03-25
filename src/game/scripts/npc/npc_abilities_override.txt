@@ -1940,7 +1940,7 @@
     }
     "skeleton_king_mortal_strike"
     {
-        "ReduxFlags"                                                           "crit | attack_modifier"
+        "ReduxFlags"                                                           "crit | attack_modifier | semi_passive"
         "ReduxPerks"                                                           "attack_modifier"
     }
     "tusk_walrus_punch"
