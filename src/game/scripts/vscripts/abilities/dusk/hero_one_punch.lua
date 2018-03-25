@@ -11,6 +11,7 @@ end
 function hero_one_punch:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
+	local delay = self:GetSpecialValueFor("landing_delay")
 
 	caster:AddNewModifier(caster, self, "modifier_one_punch", {Duration=0.03})
 
@@ -34,7 +35,7 @@ function hero_one_punch:OnSpellStart()
 
 	Timers:CreateTimer(0.03,function()
 		if target:IsAlive() then
-			target:AddNewModifier(caster, self, "modifier_one_punch_air", {})
+			target:AddNewModifier(caster, self, "modifier_one_punch_air", {duration = delay+0.6})
 		end
 	end)
 
@@ -112,8 +113,6 @@ function modifier_one_punch_air:OnCreated(kv)
 
 			ScreenShake(fx:GetAbsOrigin(), 1200, 170, 0.3, 1200, 0, true)
 
-			self:GetParent():RemoveNoDraw()
-
 			self:SetStackCount(0)
 
 			local enemies = FindEnemies(caster,self:GetParent():GetAbsOrigin(),radius)
@@ -128,6 +127,10 @@ function modifier_one_punch_air:OnCreated(kv)
 			self:Destroy()
 		end)
 	end
+end
+
+function modifier_one_punch_air:OnDestroy()
+	self:GetParent():RemoveNoDraw()
 end
 
 function modifier_one_punch_air:CheckState()
