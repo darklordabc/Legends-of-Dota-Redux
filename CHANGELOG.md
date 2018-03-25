@@ -9,7 +9,6 @@ All notable changes to this project will be documented in this file.
 - +30 Chemical Rage Regeneration talent is now connected to the ability. Scortched Earth talent now attached to ability
 - Fixed server issue that made all abilities give the new ability bonus
 - Moral Strike, Empowering Haste and Infernal Blade are now considered a semi-passives
-- Gold bonuses from new or rare abilities are now automatically applied to players, they no longer need to click the item.
 
 ## 10.6
 - Added Grapefruit and Coconuts ability
