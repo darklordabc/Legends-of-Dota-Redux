@@ -163,3 +163,17 @@ function InflictDamage(target,attacker,ability,damage,damage_type,flags)
 	    ability = ability
   	})
 end
+
+function FindEnemies(caster,point,radius,targets,flags)
+  local targets = targets or DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_CREEP
+  local flags = flags or DOTA_UNIT_TARGET_FLAG_NONE
+  return FindUnitsInRadius( caster:GetTeamNumber(),
+                            point,
+                            nil,
+                            radius,
+                            DOTA_UNIT_TARGET_TEAM_ENEMY,
+                            targets,
+                            flags,
+                            FIND_CLOSEST,
+                            false)
+end
