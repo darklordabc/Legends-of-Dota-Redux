@@ -3720,6 +3720,14 @@
     {
         "TalentRequiredAbility"                                                   "dragon_knight_dragon_tail"
     }
+    "special_bonus_unique_dragon_knight_3"
+    {
+        "TalentRequiredAbility"                                                   "dragon_knight_breathe_fire"
+    }
+    "special_bonus_unique_dragon_knight_4"
+    {
+        "TalentRequiredAbility"                                                   "dragon_knight_dragon_blood"
+    }
     "special_bonus_unique_earth_spirit"
     {
         "TalentRequiredAbility"                                                   "earth_spirit_rolling_boulder"
@@ -4054,6 +4062,11 @@
         "TalentRequiredAbility"                                                   "leshrac_pulse_nova_redux"
     }
 
+    "special_bonus_unique_leshrac_4"
+    {
+        "TalentRequiredAbility"                                                   "leshrac_diabolic_edict"
+    }
+
     "special_bonus_unique_lich_1"
     {
         "TalentRequiredAbility"                                                   "lich_frost_armor"
@@ -4171,6 +4184,11 @@
         "TalentRequiredAbility"                                                   "lone_druid_true_form_battle_cry"
     }
 
+    "special_bonus_unique_lone_druid_9"
+    {
+        "TalentRequiredAbility"                                                   "do_not_give_talent"
+    }
+
     "special_bonus_unique_luna_1"
     {
         "TalentRequiredAbility"                                                   "luna_lucent_beam"
@@ -4279,6 +4297,10 @@
         "TalentRequiredAbility"                                                   "meepo_poof"
     }
     "special_bonus_unique_meepo_3"
+    {
+        "TalentRequiredAbility"                                                   "meepo_earthbind"
+    }
+    "special_bonus_unique_meepo_4"
     {
         "TalentRequiredAbility"                                                   "meepo_earthbind"
     }
@@ -4397,6 +4419,16 @@
     "special_bonus_unique_necrophos_2"
     {
         "TalentRequiredAbility"                                                   "necrolyte_heartstopper_aura"
+    }
+
+    "special_bonus_unique_necrophos_3"
+    {
+        "TalentRequiredAbility"                                                   "imba_necrolyte_ghost_shroud"
+    }
+
+    "special_bonus_unique_necrophos_4"
+    {
+        "TalentRequiredAbility"                                                   "necrolyte_death_pulse"
     }
 
     "special_bonus_unique_nevermore_1"
@@ -4590,6 +4622,11 @@
     "special_bonus_unique_puck_3"
     {
         "TalentRequiredAbility"                                                   "puck_dream_coil"
+    }
+
+    "special_bonus_unique_puck_4"
+    {
+        "TalentRequiredAbility"                                                   "puck_waning_rift"
     }
 
     "special_bonus_unique_pudge_1"
@@ -4797,8 +4834,15 @@
         "TalentRequiredAbility"                                                   "shadow_demon_disruption"
     }
 
+    "special_bonus_unique_shadow_demon_6"
+    {
+        "TalentRequiredAbility"                                                   "shadow_demon_soul_catcher"
+    }
 
-
+    "special_bonus_unique_shadow_demon_7"
+    {
+        "TalentRequiredAbility"                                                   "shadow_demon_disruption"
+    }
 
     "special_bonus_unique_shadow_shaman_1"
     {
@@ -5013,6 +5057,11 @@
         "TalentRequiredAbility"                                                   "sven_storm_bolt"
     }
 
+    "special_bonus_unique_sven_4"
+    {
+        "TalentRequiredAbility"                                                   "sven_storm_bolt"
+    }
+
 
     "special_bonus_unique_techies"
     {
@@ -5058,6 +5107,11 @@
     "special_bonus_unique_templar_assassin_5"
     {
         "TalentRequiredAbility"                                                   "templar_assassin_psi_blades"
+    }
+
+    "special_bonus_unique_templar_assassin_6"
+    {
+        "TalentRequiredAbility"                                                   "templar_assassin_psionic_trap"
     }
 
     "special_bonus_unique_terrorblade"
@@ -5174,6 +5228,16 @@
     "special_bonus_unique_treant_5"
     {
         "TalentRequiredAbility"                                                   "treant_overgrowth"
+    }
+
+    "special_bonus_unique_treant_6"
+    {
+        "TalentRequiredAbility"                                                   "treant_living_armor"
+    }
+
+    "special_bonus_unique_treant_7"
+    {
+        "TalentRequiredAbility"                                                   "treant_living_armor"
     }
 
     "special_bonus_unique_troll_warlord"
@@ -5487,6 +5551,10 @@
         "TalentRequiredAbility"                                                   "windrunner_shackleshot"
     }
 
+    "special_bonus_unique_windranger_6"
+    {
+        "TalentRequiredAbility"                                                   "windrunner_shackleshot"
+    }
 
     "special_bonus_unique_winter_wyvern_1"
     {
@@ -5587,6 +5655,16 @@
     }
 
     "special_bonus_unique_wraith_king_6"
+    {
+        "TalentRequiredAbility"                                                   "skeleton_king_mortal_strike"
+    }
+
+    "special_bonus_unique_wraith_king_7"
+    {
+        "TalentRequiredAbility"                                                   "skeleton_king_hellfire_blast"
+    }
+
+    "special_bonus_unique_wraith_king_8"
     {
         "TalentRequiredAbility"                                                   "skeleton_king_mortal_strike"
     }
@@ -5759,10 +5837,10 @@
         "TalentRequiredAbility"                                                   "crystal_maiden_freezing_field"
     }
 
-    //"special_bonus_unique_crystal_maiden_4"
-    //{
-    //    "TalentRequiredAbility"                                           //        ""
-    //}
+    "special_bonus_unique_crystal_maiden_4"
+    {
+        "TalentRequiredAbility"                                                   "crystal_maiden_brilliance_aura"
+    }
 
     "special_bonus_unique_clockwerk"
     {
@@ -5923,6 +6001,16 @@
         "TalentRequiredAbility"                                                   "arc_warden_flux"
     }
 
+    "special_bonus_unique_arc_warden_3"
+    {
+        "TalentRequiredAbility"                                                   "arc_warden_spark_wraith"
+    }
+
+    "special_bonus_unique_arc_warden_4"
+    {
+        "TalentRequiredAbility"                                                   "arc_warden_flux"
+    }
+
 
     "special_bonus_unique_antimage"
     {
@@ -5972,6 +6060,11 @@
     "special_bonus_unique_ancient_apparition_5"
     {
         "TalentRequiredAbility"                                                   "ancient_apparition_ice_blast"
+    }
+
+    "special_bonus_unique_ancient_apparition_6"
+    {
+        "TalentRequiredAbility"                                                   "ancient_apparition_cold_feet"
     }
 
     "special_bonus_unique_alchemist"
