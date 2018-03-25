@@ -1367,6 +1367,7 @@
         "Model"                         "models/props_gameplay/treasure_chest001.vmdl"
         "ItemKillable"                  "0"
         "IsTempestDoubleClonable"       "0"
+        "ItemCastOnPickup"              "1"
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
@@ -1391,6 +1392,7 @@
         "ItemKillable"                  "0"
         "AbilitySharedCooldown"         "bonus"
         "IsTempestDoubleClonable"       "0"
+        "ItemCastOnPickup"              "1"
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
@@ -1415,6 +1417,7 @@
         "Model"                         "models/props_gameplay/treasure_chest001.vmdl"
         "ItemKillable"                  "0"
         "IsTempestDoubleClonable"       "0"
+        "ItemCastOnPickup"              "1"
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
