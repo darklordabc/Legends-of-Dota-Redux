@@ -18,6 +18,10 @@
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 		"MaxLevel" 						"4"
 
+		"ReduxFlags"                                                           "attack_modifier | semi_passive"
+	    "ReduxPerks"                                                           "demon | attack_modifier | fire | autocast_basic"
+	    "ReduxCost"                                                            "20"
+
 		"precache"
 		{
 			"particle"		"particles/generic_gameplay/generic_stunned.vpcf"
@@ -57,7 +61,4 @@
 			}
 		}
 	}
-    "ReduxFlags"                                                           "attack_modifier | semi_passive"
-    "ReduxPerks"                                                           "demon | attack_modifier | fire | autocast_basic"
-    "ReduxCost"                                                            "20"
 }

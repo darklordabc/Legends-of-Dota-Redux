@@ -1408,7 +1408,7 @@
     }
     "spirit_breaker_empowering_haste"
     {
-        "ReduxFlags"                                                           "support"
+        "ReduxFlags"                                                           "support | semi_passive"
         "ReduxPerks"                                                           "support | aura | rage"
     }
     "oracle_fates_edict"

@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file.
 - +2 Intelligence Steal talent is now connected to the ability, not the hero
 - +30 Chemical Rage Regeneration talent is now connected to the ability. Scortched Earth talent now attached to ability
 - Fixed server issue that made all abilities give the new ability bonus
-- Moral Strike is now considered a semi-passive
+- Moral Strike, Empowering Haste and Infernal Blade are now considered a semi-passives
 
 ## 10.6
 - Added Grapefruit and Coconuts ability
