@@ -28,8 +28,7 @@ end
 
 function modifier_redux_silver_break_damage_reduction:GetModifierTotalDamageOutgoing_Percentage()
   local caster = self:GetParent()
-
-  return self:GetAbility():GetSpecialValueFor("damage_reduction") * -1
+  return GetAbilitySpecial("item_redux_silver", "damage_reduction") * -1
 end
 
 function ApplyDamageReductionModifier( keys )
