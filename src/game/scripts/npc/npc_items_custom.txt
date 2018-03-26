@@ -1056,7 +1056,7 @@
         
         // Stats        
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCastRange"              "600"
+        "AbilityCastRange"              "800"
         "AbilityCastPoint"              "0.0"
         "AbilityCooldown"               "24.0"
         "AbilityManaCost"               "75"
@@ -1093,7 +1093,7 @@
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "damage_reduction"      "25"
+                "damage_reduction"      "100"
             }
         }
         
@@ -1188,7 +1188,7 @@
         
         // Stats        
         //-------------------------------------------------------------------------------------------------------------
-        "AbilityCastRange"              "600"
+        "AbilityCastRange"              "800"
         "AbilityCastPoint"              "0.0"
         "AbilityCooldown"               "24.0"
         "AbilityManaCost"               "75"
@@ -1200,7 +1200,7 @@
         
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
-        "ItemCost"            "450"
+        "ItemCost"            "200"
         "ItemShopTags"                  "consumable"
         "ItemQuality"                   "consumable"
         "ItemStackable"                 "0"
@@ -1229,7 +1229,7 @@
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "damage_reduction"      "25"
+                "damage_reduction"      "100"
             }
         }
         

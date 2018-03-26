@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 - Various talents connected to abilities. All should be connected now.
 - Fixed server issue that made all abilities give the new ability bonus
 - Moral Strike, Empowering Haste and Infernal Blade are now considered a semi-passives
+- Silver Consumeable and Silver cast range increased to 800, damage reduction increased to 35%. Silver Consumeable and Silver now cost 250 less gold.
 
 ## 10.6
 - Added Grapefruit and Coconuts ability
