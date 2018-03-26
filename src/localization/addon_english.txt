@@ -5240,7 +5240,7 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
         "DOTA_Tooltip_generic_lua_stun_Description"                                 "Stunned"
 
         "DOTA_Tooltip_gold_bonus_modifier"                                             "Bonus Gold Income"
-        "DOTA_Tooltip_gold_bonus_modifier_Description"                                 "Getting bonus gold. Buff counter is number of hundreds left to recieve."
+        "DOTA_Tooltip_gold_bonus_modifier_Description"                                 "Getting bonus gold from using new abilities or rarely used abilities. Buff counter is number of hundreds left to recieve."
 
         "DOTA_Tooltip_Ability_seer"                                                       "Seer"
         "DOTA_Tooltip_Ability_seer_Description"                                           "While channelling gain vision of all enemy heroes.\nDoes not include enemies who are invisible or dead at the start of the channel. Channeling lasts for 10 seconds. \n\n Upgradeable by Aghanim's Scepter\n\n<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>\n"
