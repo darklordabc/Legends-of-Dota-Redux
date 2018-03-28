@@ -1,3 +1,5 @@
+LinkLuaModifier("modifier_aabs_nightshadow", "abilities/angel_arena_blackstar/nightshadow.lua", LUA_MODIFIER_MOTION_NONE)
+
 aabs_nightshadow = {}
 
 function aabs_nightshadow:GetIntrinsicModifierName()
