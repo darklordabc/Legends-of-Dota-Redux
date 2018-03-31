@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - Changed Lingering Souls Attack Range from 5 to 2.4
 - Fixed Silver Consumeable item not applying damage reduction
 - Silver Consumeable and Silver cast range increased to 800, damage reduction increased to 40%. Silver Consumeable and Silver now cost 250 less gold.
+- Shadow Dance no longer treated as an Invis ability
 
 ## 10.7
 - Fixed Hurl Boulder only having 1 level

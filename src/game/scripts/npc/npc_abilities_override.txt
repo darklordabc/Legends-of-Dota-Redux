@@ -1630,7 +1630,7 @@
     }
     "slark_shadow_dance"
     {
-        "ReduxFlags"                                                           "mobility | invis"
+        "ReduxFlags"                                                           "mobility"
         "ReduxPerks"                                                           "mobility"
         "ReduxCost"                                                            "50"
         "ReduxBans"                                                            "tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux"
