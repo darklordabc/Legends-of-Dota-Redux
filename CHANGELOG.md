@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## 10.8
 - Lifebreak Redux now troll combo with Dispersion
+- Changed Lingering Souls Int from 0.75 to 0.5
+- Changed Lingering Souls Spell Amp from 1.0 to 1.2
+- Changed Lingering Souls Attack Range from 5 to 2.4
 
 ## 10.7
 - Fixed Hurl Boulder only having 1 level

@@ -1,3 +1,5 @@
+LinkLuaModifier("modifier_aabs_thunder_musket", "abilities/angel_arena_blackstar/thunder_musket.lua", LUA_MODIFIER_MOTION_NONE)
+
 aabs_thunder_musket = {}
 
 function aabs_thunder_musket:GetIntrinsicModifierName()

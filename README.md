@@ -14,7 +14,7 @@ Legends of Dota Redux
  - There are two major lists of issues, ordered by priority, the bug list is [HERE](https://github.com/darklordabc/Dota-2-Redux/milestone/4), and the improvement list is [HERE](https://github.com/darklordabc/Dota-2-Redux/milestone/5). 
 
 ### Steam Workshop ###
- - Click [here](https://steamcommunity.com/sharedfiles/filedetails/?id=717356279) to view Dota 2 Redux on the steam workshop.
+ - Click [here](https://steamcommunity.com/sharedfiles/filedetails/?id=786348190) to view Dota 2 Redux on the steam workshop.
  
 ### Discord Chat Server ###
  - Click [here](https://discordapp.com/channels/242335821426851842/242335821426851842).

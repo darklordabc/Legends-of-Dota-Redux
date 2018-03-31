@@ -16,7 +16,6 @@
 		"AbilityCastAnimation"			"ACT_DOTA_ATTACK"
 		"AbilityTextureName"			"custom/ancient_giga_graviton"
 		"MaxLevel"						"1"
-		"AbilitySharedWithTeammates" 	"1"
 
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
@@ -71,7 +70,7 @@
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"buildings/ancient_abilities.lua"
+						"ScriptFile"	"dusk/ancient_abilities.lua"
 						"Function"		"d_waves"
 					}
 				}
