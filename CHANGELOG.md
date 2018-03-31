@@ -7,6 +7,8 @@ All notable changes to this project will be documented in this file.
 - Changed Lingering Souls Int from 0.75 to 0.5
 - Changed Lingering Souls Spell Amp from 1.0 to 1.2
 - Changed Lingering Souls Attack Range from 5 to 2.4
+- Fixed Silver Consumeable item not applying damage reduction
+- Silver Consumeable and Silver cast range increased to 800, damage reduction increased to 40%. Silver Consumeable and Silver now cost 250 less gold.
 
 ## 10.7
 - Fixed Hurl Boulder only having 1 level
