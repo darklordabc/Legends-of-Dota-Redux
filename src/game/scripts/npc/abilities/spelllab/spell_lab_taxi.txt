@@ -1,0 +1,36 @@
+"DOTAAbilities"
+{
+    "spell_lab_taxi"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/spell_lab/taxi/taxi.lua"
+        "AbilityTextureName"                                                   "custom/spell_lab_taxi"
+        "AbilityCooldown"                                                      "30 25 20 15"
+        "AbilityManaCost"                                                      "160"
+        "AbilityCastRange"                                                     "2000 3000 4000 5000"
+        "AbilityCastPoint"                                                     "0.5"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+        "HasScepterUpgrade"                                                    "0"
+        "AoERadius"               "250"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "radius"						"250"
+            }
+        }
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/spell_lab_sounds.vsndevts"
+            "particle"                                                     "particles/spell_lab/taxi_linear.vpcf"
+      			"particle"          "particles/spell_lab/taxi_shock.vpcf"
+        }
+        "ReduxFlags"                                                           ""
+        //"ReduxBans"                                                            ""
+        //"ReduxPerks"                                                           ""
+        "ReduxCost"                                                            "30"
+		     "AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+    }
+}

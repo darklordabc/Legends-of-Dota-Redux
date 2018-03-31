@@ -1,0 +1,44 @@
+"DOTAAbilities"
+{
+    "spell_lab_bfg"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/spell_lab/bfg/bfg.lua"
+        "AbilityTextureName"                                                   "custom/spell_lab_bfg"
+        "AbilityCooldown"                                                      "120"
+        "AbilityManaCost"                                                      "150"
+        "AbilityCastRange"                                                     "1400 1600 1800"
+        "AbilityCastPoint"                                                     "0.5"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_ULTIMATE"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+        "HasScepterUpgrade"                                                    "1"
+    		"AbilityChannelTime"      "60.0"
+        "AoERadius"               "225"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "mana_pct"						"1.0 1.5 2.0"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "mana_pct_scepter"						"1.5 2.0 2.5"
+            }
+        }
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/spell_lab_sounds.vsndevts"
+            "particle"                                                     "particles/spell_lab/bfg_linear.vpcf"
+            "particle"                                                     "particles/spell_lab/bfg_aoe.vpcf"
+      			"particle"          "particles/spell_lab/bfg_shock.vpcf"
+        }
+        "ReduxFlags"                                                           ""
+        //"ReduxBans"                                                            ""
+        //"ReduxPerks"                                                           ""
+        "ReduxCost"                                                            "80"
+		     "AbilityCastAnimation"		"ACT_DOTA_CHANNEL_ABILITY_1"
+    }
+}

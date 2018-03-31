@@ -31,7 +31,7 @@
             "particle"                                                     "particles/spell_lab/storm_missile.vpcf"
         }
         "ReduxFlags"                                                           ""
-        //"ReduxBans"                                                            ""
+        "ReduxBans"                                                            "blink_support"
         //"ReduxPerks"                                                           "support | mobility"
         "ReduxCost"                                                            "40"
 		     "AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"

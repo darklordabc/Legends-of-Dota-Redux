@@ -1,0 +1,59 @@
+"DOTAAbilities"
+{
+    "spell_lab_ggs"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/spell_lab/ggs/ggs.lua"
+        "AbilityTextureName"                                                   "custom/spell_lab_ggs"
+        "AbilityCooldown"                                                      "75"
+        "AbilityManaCost"                                                      "100 200 300 400"
+        "AbilityCastRange"                                                     "1000"
+        "AbilityCastPoint"                                                     "0.21"
+        "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+        "HasScepterUpgrade"                                                    "0"
+    		"AbilityChannelTime"      "15.0 25.0 35.0 45.0"
+        "AoERadius"               "125"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "radius"						"125"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "damage"						"2.0"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "interval"						"0.5"
+            }
+            "04"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "channel_time"						"15.0 25.0 35.0 45.0"
+            }
+        }
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/spell_lab_sounds.vsndevts"
+            "particle"                                                     "particles/spell_lab/sky_beam.vpcf"
+        }
+        "ReduxFlags"                                                           ""
+        //"ReduxBans"                                                            ""
+        "ReduxPerks"                                                           "summon"
+        "ReduxCost"                                                            "20"
+		     "AbilityCastAnimation"		"ACT_DOTA_CHANNEL_ABILITY_1"
+    }
+	"spell_lab_ggs_passive"
+    {
+    	"BaseClass"				"ability_lua"
+    	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+      "ScriptFile"                                                           "abilities/spell_lab/ggs/ggs.lua"
+      "AbilityTextureName"                                                   "custom/spell_lab_ggs"
+    }
+}
