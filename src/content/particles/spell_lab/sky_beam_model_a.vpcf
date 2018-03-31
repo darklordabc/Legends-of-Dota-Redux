@@ -1,0 +1,95 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf1:version{d47d07e6-072c-49cb-9718-5bfd8d6c3d21} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 100
+	m_nConstantSequenceNumber = 7
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_bAdditive = true
+			m_hTexture = resource:"materials/particle/burst01.vtex"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_PositionLock"
+			m_nOpEndCapState = 0
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndTime = 0.5
+			m_flStartScale = 0.0
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+			m_flFadeInTime = 0.5
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_ColorInterpolate"
+			m_ColorFade = [ 217, 255, 157, 255 ]
+		},
+		{
+			_class = "C_OP_EndCapTimedDecay"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphere"
+		},
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMin = 100.0
+			m_flRadiusMax = 100.0
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+			m_nFieldOutput = 12
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+			m_nFieldOutput = 20
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 30.4
+			m_flStartTime = 0.2
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_flConstantRadius = 1.0
+	m_flConstantLifespan = 0.7
+}

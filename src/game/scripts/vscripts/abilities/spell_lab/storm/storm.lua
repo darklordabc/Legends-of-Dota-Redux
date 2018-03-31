@@ -31,6 +31,7 @@ function spell_lab_storm_modifier:OnAbilityExecuted (kv)
       self.point = kv.ability:GetCursorPosition()
     end
     table.insert(self.stacks,GameRules:GetGameTime()+3)
+		self:SetDuration( 3, true )
     local bStart = self:GetStackCount() < 1
     self:IncrementStackCount()
     if bStart then self:StartIntervalThink(0.25) end
@@ -60,4 +61,8 @@ end
 
 function spell_lab_storm_modifier:GetAttributes()
 	return MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE + MODIFIER_ATTRIBUTE_PERMANENT + MODIFIER_ATTRIBUTE_MULTIPLE
+end
+
+function spell_lab_storm_modifier:DestroyOnExpire()
+	return false
 end

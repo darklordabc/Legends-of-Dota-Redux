@@ -17252,4 +17252,45 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
 	
 	"DOTA_Tooltip_spell_lab_storm_modifier"	"Storm"
 	"DOTA_Tooltip_spell_lab_storm_modifier_Description"	"Spells cast in last three seconds."
+	
+	
+    "DOTA_Tooltip_ability_spell_lab_storm_minions"                                  "Restless Reaver"
+    "DOTA_Tooltip_ability_spell_lab_storm_minions_Description"                      "Summon Restless Reaver at target location. Storm Mongrel uses mana as shield against all damage.\n\n<h1><font color=\'#7072EA\'>Storm</font></h1>When you cast ability with <font color='#7072EA'>Storm</font> it is cast one additional time for each ability cast in last three seconds. Abilities with zero cooldown are ignored."
+    "DOTA_Tooltip_ability_spell_lab_storm_minions_health"                                  "REAVER HEALTH:"
+    "DOTA_Tooltip_ability_spell_lab_storm_minions_mana"                                  "REAVER MANA:"
+    "DOTA_Tooltip_ability_spell_lab_storm_minions_damage"                                  "REAVER DAMAGE:"
+    "DOTA_Tooltip_ability_spell_lab_storm_minions_duration"                                  "DURATION:"
+    "DOTA_Tooltip_ability_spell_lab_storm_minions_Lore"								"Damned spirits are always interested causing some chaos."
+	
+	"DOTA_Tooltip_ability_spell_lab_storm_minion_passive"							"Restless Mana Shield"
+    "DOTA_Tooltip_ability_spell_lab_storm_minion_passive_Description"                      "Damage against this unit is dealt to mana before health."
+	"npc_spell_lab_storm_minion_1"	"Restless Reaver"
+	"npc_spell_lab_storm_minion_2"	"Restless Reaver"
+	"npc_spell_lab_storm_minion_3"	"Restless Reaver"
+	"npc_spell_lab_storm_minion_4"	"Restless Reaver"
+	
+	"DOTA_Tooltip_ability_spell_lab_bfg"							"Doctor's Binomial Fibonacci Geometry"
+    "DOTA_Tooltip_ability_spell_lab_bfg_Description"                      "Pour as much of your mana into this massive orb of planar energy. The orb snatches enemies into temporal prison releasing them with lethal explosion at the end. Damage is increased by every point of mana spent casting this spell."
+	"DOTA_Tooltip_ability_spell_lab_bfg_mana_pct"							"DAMAGE PER MANA:"
+	"DOTA_Tooltip_ability_spell_lab_bfg_mana_pct_scepter"							"SCEPTER DAMAGE PER MANA:"
+	"DOTA_Tooltip_ability_spell_lab_bfg_aghanim_description"							"Increases damage per mana."
+    "DOTA_Tooltip_ability_spell_lab_bfg_Lore"								"Was found in spell book 'Majestic Spells by Doctor Teaspoon'. Book was later banned due inappropriate spell names."
+	
+	"DOTA_Tooltip_ability_spell_lab_taxi"							"Doctor's Tormenting Allied Xeno Invasion"
+    "DOTA_Tooltip_ability_spell_lab_taxi_Description"                      "Send forward an orb of planar energy, picks up all allied creatures along the way."
+	"DOTA_Tooltip_ability_spell_lab_taxi_radius"					"PICKUP RADIUS:"
+    "DOTA_Tooltip_ability_spell_lab_taxi_Lore"								"Was found in spell book 'Majestic Spells by Doctor Teaspoon'. Book was later banned due inappropriate spell names."
+	
+	"DOTA_Tooltip_ability_spell_lab_ggs"							"Doctor's Divine Golden Shower"
+    "DOTA_Tooltip_ability_spell_lab_ggs_Description"                      "Open rift to heavens pulling beam of planar energy dealing damage based on your Intelligence. You can control the point of impact after summoning the rift.\n<font color='#FF6060'>Warning: The beam is not selected automatically after cast.</font>"
+	"DOTA_Tooltip_ability_spell_lab_ggs_radius"					"RADIUS:"
+	"DOTA_Tooltip_ability_spell_lab_ggs_damage"					"DAMAGE PER INT:"
+	"DOTA_Tooltip_ability_spell_lab_ggs_channel_time"			"CHANNEL TIME:"
+    "DOTA_Tooltip_ability_spell_lab_ggs_Lore"								"Was found in spell book 'Majestic Spells by Doctor Teaspoon'. Book was later banned due inappropriate spell names."
+	
+	"npc_spell_lab_ggs_summon"	"Divine Golden Shower"
+	
+	"DOTA_Tooltip_ability_spell_lab_ggs_passive"							"Doctor's Divine Golden Shower"
+    "DOTA_Tooltip_ability_spell_lab_ggs_passive_Description"                      "Deals damage based on caster's intelligence."
+	
 }

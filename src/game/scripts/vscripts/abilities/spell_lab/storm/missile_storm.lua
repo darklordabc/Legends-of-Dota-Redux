@@ -9,15 +9,15 @@ function spell_lab_missile_storm:GetIntrinsicModifierName() return "spell_lab_st
 
 function spell_lab_missile_storm:OnSpellStart()
 
-	--local nFXIndex = ParticleManager:CreateParticle( "particles/spell_lab/one_with_nothing.vpcf", PATTACH_ABSORIGIN, self:GetCaster() )
-	--ParticleManager:SetParticleControl( nFXIndex, 0,self:GetCaster():GetAbsOrigin())
-	--ParticleManager:SetParticleControl( nFXIndex, 3,self:GetCaster():GetAbsOrigin())
   EmitSoundOnLocationWithCaster(self:GetCaster():GetAbsOrigin(), "Spell_Lab.Storm_Missile", self:GetCaster())
---  self:GetCaster():SpendMana(self:GetCaster():GetMana(),self)
+if self.fc == nil then
+	self.fc = 0.0
+else
+	self.fc = self.fc + 0.1
+end
   local hCaster = self:GetCaster()
   local hTarget = self:GetCursorTarget()
-  local f = GameRules:GetGameTime()
-  local vPos = Vector(math.sin(f)*150,math.cos(f)*150,0)
+  local vPos = Vector(math.sin(self.fc)*150,math.cos(self.fc)*150,0)
 local info =
 {
 	Target = hTarget,

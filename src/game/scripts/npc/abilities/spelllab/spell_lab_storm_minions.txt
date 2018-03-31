@@ -1,0 +1,67 @@
+"DOTAAbilities"
+{
+    "spell_lab_storm_minions"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/spell_lab/storm/storm_minions.lua"
+        "AbilityTextureName"                                                   "custom/spell_lab_storm_minions"
+        "AbilityCooldown"                                                      "20 18 16 14"
+        "AbilityManaCost"                                                      "120"
+        "AbilityCastRange"                                                     "750"
+        "AbilityCastPoint"                                                     "0.21"
+        "AbilityType"                                                          "DOTA_ABILITY_TYPE_BASIC"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT"
+        "HasScepterUpgrade"                                                    "0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "health"						"50"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+        				"mana"						"150 225 300 375"
+            }
+            "03"
+            {
+      				"var_type"				"FIELD_INTEGER"
+      				"damage"            "35 50 65 80"
+            }
+            "04"
+            {
+      				"var_type"				"FIELD_INTEGER"
+      				"duration"            "90"
+            }
+        }
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/spell_lab_sounds.vsndevts"
+            "particle"                                                     "particles/spell_lab/status_effect_storm_minion_summon.vpcf"
+            "particle"                                                     "particles/spell_lab/passive_effect_storm_minion_summon.vpcf"
+            "particle"                                                     "particles/spell_lab/storm_minion_summon.vpcf"
+            "particle"                                                     "particles/spell_lab/storm_missile.vpcf"
+        }
+        "ReduxFlags"                                                           ""
+        "ReduxBans"                                                            "blink_support"
+        "ReduxPerks"                                                           "summon"
+        "ReduxCost"                                                            "20"
+		     "AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+    }
+	"spell_lab_storm_minion_passive"
+    {
+    	"BaseClass"				"ability_lua"
+    	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+      "ScriptFile"                                                           "abilities/spell_lab/storm/storm_minions.lua"
+      "AbilityTextureName"                                                   "custom/spell_lab_storm_minion_passive"
+      "AbilitySpecial"
+      {
+          "01"
+          {
+    				"var_type"				"FIELD_INTEGER"
+    				"mana"	"300 400 500 600"
+          }
+      }
+    }
+}
