@@ -1,0 +1,47 @@
+"DOTAAbilities"
+{
+  "slark_shadow_dance_redux"
+  {
+    "BaseClass"                                                            "slark_shadow_dance"
+    "AbilityTextureName"                                                   "custom/slark_shadow_dance_redux"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"FightRecapLevel"				"2"
+		"HasScepterUpgrade"				"0"
+
+		// Time
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"0"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_movement_speed"		"30 35 40"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_regen_pct"			"3 5 7"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"activation_delay"			"0.5 0.5 0.5"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"neutral_disable"			"2.0 2.0 2.0"
+			}
+		}
+  }
+}
