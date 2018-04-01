@@ -206,6 +206,7 @@
 #base "abilities\dota\silencer_global_break.txt"
 #base "abilities\dota\silencer_global_disarm.txt"
 #base "abilities\dota\skywrath_mage_concussive_break.txt"
+#base "abilities\dota\slark_shadow_dance_redux.txt"
 #base "abilities\dota\slark_essence_shift_agility_lod.txt"
 #base "abilities\dota\slark_essence_shift_intellect_lod.txt"
 #base "abilities\dota\slark_essence_shift_strength_lod.txt"

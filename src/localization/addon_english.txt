@@ -17293,4 +17293,11 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
 	"DOTA_Tooltip_ability_spell_lab_ggs_passive"							"Doctor's Divine Golden Shower"
     "DOTA_Tooltip_ability_spell_lab_ggs_passive_Description"                      "Deals damage based on caster's intelligence."
 	
+	"DOTA_Tooltip_ability_slark_shadow_dance_redux"								"Shadow Dance Redux"
+	"DOTA_Tooltip_ability_slark_shadow_dance_redux_Description"					"<font color=\'#70EA72\'>Passive component only.</font>\nPassively, when not visible to the enemy team, Slark gains bonus movement speed and health regeneration."
+	"DOTA_Tooltip_ability_slark_shadow_dance_redux_Lore"							"The hidden Thirteenth is a slippery foe."
+	"DOTA_Tooltip_ability_slark_shadow_dance_redux_Note0"							"If Slark is damaged by a neutral unit, the passive movement and health regeneration bonuses are lost for 2 seconds."
+	"DOTA_Tooltip_ability_slark_shadow_dance_redux_Note1"							"The passive movement and health regeneration bonuses have a 0.5 second activation and deactivation delay."
+	"DOTA_Tooltip_ability_slark_shadow_dance_redux_bonus_movement_speed"			"%BONUS MOVEMENT SPEED:"
+	"DOTA_Tooltip_ability_slark_shadow_dance_redux_bonus_regen_pct"				"%HEALTH GAINED PER SECOND:"
 }
