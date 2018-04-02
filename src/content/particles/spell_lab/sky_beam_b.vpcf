@@ -34,9 +34,10 @@
 	[
 		{
 			_class = "C_INIT_RingWave"
-			m_flInitialRadius = 40.0
+			m_flInitialRadius = 0.4
 			m_flParticlesPerOrbit = 20.0
 			m_bEvenDistribution = true
+			m_nOverrideCP = 1
 		},
 		{
 			_class = "C_INIT_PositionOffset"
@@ -90,6 +91,13 @@
 		},
 		{
 			_class = "C_OP_PositionLock"
+		},
+		{
+			_class = "C_OP_RemapCPtoVector"
+			m_nCPInput = 15
+			m_nFieldOutput = 6
+			m_vInputMax = [ 255.0, 255.0, 255.0 ]
+			m_vOutputMax = [ 1.0, 1.0, 1.0 ]
 		},
 	]
 }

@@ -5,7 +5,6 @@
 	m_nMaxParticles = 90
 	m_flConstantRadius = 8.0
 	m_flConstantLifespan = 2.0
-	m_ConstantColor = [ 0, 0, 0, 255 ]
 	m_bShouldSort = false
 	m_Renderers = 
 	[
@@ -69,6 +68,13 @@
 		},
 		{
 			_class = "C_INIT_RandomRotation"
+		},
+		{
+			_class = "C_INIT_RemapCPtoScalar"
+			m_nCPInput = 1
+			m_flInputMax = 1000.0
+			m_flOutputMin = 25.0
+			m_flOutputMax = 1025.0
 		},
 	]
 	m_Emitters = 

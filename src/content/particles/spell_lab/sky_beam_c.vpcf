@@ -26,6 +26,7 @@
 			_class = "C_OP_ColorInterpolate"
 			m_bEaseInOut = false
 			m_ColorFade = [ 173, 255, 47, 255 ]
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_OP_Orient2DRelToCP"
@@ -60,10 +61,18 @@
 		},
 		{
 			_class = "C_OP_Noise"
-			m_flOutputMin = 110.0
-			m_flOutputMax = 170.0
+			m_flOutputMin = 1.0
+			m_flOutputMax = 10.0
 			m_flNoiseAnimationTimeScale = 1.0
 			m_nOpEndCapState = 0
+			m_bAdditive = true
+		},
+		{
+			_class = "C_OP_RemapCPtoVector"
+			m_nCPInput = 15
+			m_nFieldOutput = 6
+			m_vInputMax = [ 255.0, 255.0, 255.0 ]
+			m_vOutputMax = [ 1.0, 1.0, 1.0 ]
 		},
 	]
 	m_Initializers = 
@@ -102,6 +111,12 @@
 		},
 		{
 			_class = "C_INIT_CreateWithinSphere"
+		},
+		{
+			_class = "C_INIT_RemapCPtoScalar"
+			m_nCPInput = 1
+			m_flInputMax = 1000.0
+			m_flOutputMax = 1000.0
 		},
 	]
 	m_Emitters = 

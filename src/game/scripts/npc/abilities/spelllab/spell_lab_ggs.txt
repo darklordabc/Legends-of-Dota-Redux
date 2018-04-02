@@ -20,7 +20,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"						"125"
+                "radius"						"125 150 175 200"
             }
             "02"
             {
@@ -55,5 +55,13 @@
     	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
       "ScriptFile"                                                           "abilities/spell_lab/ggs/ggs.lua"
       "AbilityTextureName"                                                   "custom/spell_lab_ggs"
+      "AbilitySpecial"
+      {
+          "01"
+          {
+              "var_type"                                             "FIELD_INTEGER"
+              "radius"						"125 150 175 200"
+          }
+      }
     }
 }

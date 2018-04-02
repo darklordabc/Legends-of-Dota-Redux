@@ -15,6 +15,7 @@
 				},
 			]
 			m_hOverrideMaterial = resource:"materials/dev/primary_white_additive.vmat"
+			m_bDisableOperator = true
 		},
 	]
 	m_Operators = 

@@ -33,9 +33,18 @@
 		{
 			_class = "C_OP_ColorInterpolate"
 			m_ColorFade = [ 217, 255, 157, 255 ]
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_OP_EndCapTimedDecay"
+		},
+		{
+			_class = "C_OP_RemapCPtoVector"
+			m_nCPInput = 15
+			m_nFieldOutput = 6
+			m_vInputMax = [ 255.0, 255.0, 255.0 ]
+			m_vOutputMin = [ 0.6, 0.6, 0.6 ]
+			m_vOutputMax = [ 1.0, 1.0, 1.0 ]
 		},
 	]
 	m_Initializers = 
@@ -58,6 +67,13 @@
 		{
 			_class = "C_INIT_RandomRotation"
 			m_nFieldOutput = 20
+		},
+		{
+			_class = "C_INIT_RemapCPtoScalar"
+			m_nCPInput = 1
+			m_flInputMax = 1000.0
+			m_flOutputMin = 25.0
+			m_flOutputMax = 1025.0
 		},
 	]
 	m_Emitters = 

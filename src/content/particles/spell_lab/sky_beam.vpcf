@@ -60,16 +60,16 @@
 		},
 		{
 			_class = "C_OP_Noise"
-			m_flOutputMin = 90.0
-			m_flOutputMax = 150.0
+			m_flOutputMin = 1.0
+			m_flOutputMax = 2.0
 			m_flNoiseAnimationTimeScale = 1.0
 			m_nOpEndCapState = 0
+			m_bAdditive = true
 		},
 		{
 			_class = "C_OP_InterpolateRadius"
 			m_flEndTime = 0.2
 			m_flStartScale = 0.2
-			m_flEndScale = 2.0
 		},
 	]
 	m_Initializers = 
@@ -108,6 +108,12 @@
 		},
 		{
 			_class = "C_INIT_CreateWithinSphere"
+		},
+		{
+			_class = "C_INIT_RemapCPtoScalar"
+			m_nCPInput = 1
+			m_flInputMax = 1000.0
+			m_flOutputMax = 1000.0
 		},
 	]
 	m_Emitters = 
@@ -165,6 +171,9 @@
 		},
 		{
 			m_ChildRef = resource:"particles/spell_lab/sky_beam_sound.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/spell_lab/sky_beam_light.vpcf"
 		},
 	]
 }

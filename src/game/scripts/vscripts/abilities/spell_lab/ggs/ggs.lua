@@ -100,6 +100,8 @@ end
 function spell_lab_ggs_passive_modifier:OnCreated(kv)
 	if IsServer() then
 		self.nFXIndex = ParticleManager:CreateParticle( "particles/spell_lab/sky_beam.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
+		ParticleManager:SetParticleControl(self.nFXIndex, 15, Vector(150,255,50))
+		ParticleManager:SetParticleControl(self.nFXIndex, 1, Vector(self:GetAbility():GetSpecialValueFor("radius"),0,0))
 		self:AddParticle( self.nFXIndex, false, false, -1, false, false )
 	end
 end
