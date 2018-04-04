@@ -27,7 +27,7 @@
             }
         }
         "ReduxFlags"                                                           ""
-        "ReduxBans"                                                            ""
+        "ReduxBans"                                                            "storm_spirit_ball_lightning"
         //"ReduxPerks"                                                           ""
         "ReduxCost"                                                            "60"
     }
