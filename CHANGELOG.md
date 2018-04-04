@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 - Silver Consumeable and Silver cast range increased to 800, damage reduction increased to 40%. Silver Consumeable and Silver now cost 250 less gold.
 - Shadow Dance no longer treated as an Invis ability
 - Lingering Souls Mana Regen is now considered troll combo with Ball Lightning
+- Grapeshot now troll combo with Enchant Totem
 
 ## 10.7
 - Fixed Hurl Boulder only having 1 level
