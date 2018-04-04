@@ -629,6 +629,7 @@
 #base "abilities\unpickable\dummy_passive.txt"
 #base "abilities\unpickable\dummy_passive_vulnerable.txt"
 #base "abilities\unpickable\dummy_unit_state.txt"
+#base "abilities\unpickable\fountain_break_aura.txt"
 #base "abilities\unpickable\global_mutator.txt"
 #base "abilities\unpickable\lod_creep_power.txt"
 #base "abilities\unpickable\lod_creep_power_hp.txt"
