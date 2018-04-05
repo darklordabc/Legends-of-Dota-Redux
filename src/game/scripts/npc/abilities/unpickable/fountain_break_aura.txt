@@ -1,0 +1,22 @@
+"DOTAAbilities"
+{
+	"fountain_break_aura"
+	{
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"					"abilities/unpickable/fountain_break_aura.lua"
+		"AbilityTextureName"			"backdoor_protection"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"MaxLevel" 						"1"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"1200"
+			}
+		}
+	}
+}
