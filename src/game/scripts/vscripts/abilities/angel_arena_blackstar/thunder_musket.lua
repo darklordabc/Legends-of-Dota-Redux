@@ -8,23 +8,23 @@ end
 
 
 modifier_aabs_thunder_musket = {
-	IsHidden = function(self) return self.range and self.range == 0 or true end,
+	IsHidden = function() return true end,
 	IsPurgeable = function() return false end,
 	RemoveOnDeath = function() return false end,
 
 	DeclareFunctions = function() return {MODIFIER_PROPERTY_ATTACK_RANGE_BONUS, MODIFIER_EVENT_ON_ATTACK_LANDED,} end,
-	GetModifierAttackRangeBonus = function(self) return self.range end,
+	GetModifierAttackRangeBonus = function(self) return self:GetStackCount() end,
 
 	OnCreated = function(self) self:StartIntervalThink(FrameTime()) end,
 	OnIntervalThink = function(self)
 		if not IsServer() then return end
 
-		if self:GetParent():PassivesDisabled() or self:GetParent():IsRealHero() then
-			self.range = 0
+		if self:GetParent():PassivesDisabled() or not self:GetParent():IsRealHero() then
+			self:SetStackCount(0)
 			return
 		end
 		if self:GetAbility() then
-			self.range = self:GetAbility():IsCooldownReady() and self:GetAbility():GetSpecialValueFor("thunderstruck_bonus_attack_range") or 0
+			self:SetStackCount(self:GetAbility():IsCooldownReady() and self:GetAbility():GetSpecialValueFor("thunderstruck_bonus_attack_range") or 0)
 		else
 			self:Destroy()
 			return
