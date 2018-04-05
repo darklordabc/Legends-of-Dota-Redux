@@ -17303,14 +17303,4 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
 	"DOTA_Tooltip_ability_slark_shadow_dance_redux_Note1"							"The passive movement and health regeneration bonuses have a 0.5 second activation and deactivation delay."
 	"DOTA_Tooltip_ability_slark_shadow_dance_redux_bonus_movement_speed"			"%BONUS MOVEMENT SPEED:"
 	"DOTA_Tooltip_ability_slark_shadow_dance_redux_bonus_regen_pct"				"%HEALTH GAINED PER SECOND:"
-
-    "DOTA_Tooltip_modifier_fountain_break"  "Break Aura"
-    "DOTA_Tooltip_modifier_fountain_break_Description"  "Disabling the passives of nearby enemies"
-
-    "DOTA_Tooltip_modifier_fountain_break_aura"  "Passives Disabled"
-    "DOTA_Tooltip_modifier_fountain_break_Description"  "Disabled by the enemy's fountain"
-
-    "DOTA_Tooltip_ability_fountain_break_aura"  "Fountain Break"
-    "DOTA_Tooltip_ability_fountain_break_aura_Description"  "Nearby enemies will have their passives disabled"
-    "DOTA_Tooltip_ability_fountain_break_aura_radius"  "RADIUS:"
 }

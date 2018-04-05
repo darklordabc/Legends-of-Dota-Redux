@@ -6742,8 +6742,7 @@ function Pregame:preventCamping()
     if self.optionStore['lodOptionCrazyNoCamping'] == 1 then
         local toAdd = {
             ursa_fury_swipes = 4,
-            slark_essence_shift = 4,
-            fountain_break_aura = 1,
+            slark_essence_shift = 4
         }
 
         local fountains = Entities:FindAllByClassname('ent_dota_fountain')
