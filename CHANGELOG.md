@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 - Shadow Dance no longer treated as an Invis ability
 - Lingering Souls Mana Regen is now considered troll combo with Ball Lightning
 - Grapeshot now troll combo with Enchant Totem
+- Foutains now have an aura that breaks enemie's passives 
 
 ## 10.7
 - Fixed Hurl Boulder only having 1 level
