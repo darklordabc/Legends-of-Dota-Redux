@@ -5,10 +5,10 @@
         "BaseClass"                                                            "ability_lua"
         "ScriptFile"                                                           "abilities/spell_lab/taxi/taxi.lua"
         "AbilityTextureName"                                                   "custom/spell_lab_taxi"
-        "AbilityCooldown"                                                      "30 25 20 15"
+        "AbilityCooldown"                                                      "30"
         "AbilityManaCost"                                                      "160"
         "AbilityCastRange"                                                     "2000 3000 4000 5000"
-        "AbilityCastPoint"                                                     "0.5"
+        "AbilityCastPoint"                                                     "2.5"
         "AbilityUnitDamageType"                                                "DAMAGE_TYPE_MAGICAL"
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
         "HasScepterUpgrade"                                                    "0"
@@ -19,6 +19,11 @@
             {
                 "var_type"                                             "FIELD_FLOAT"
                 "radius"						"250"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "cast_range_tooltip"                        "2000 3000 4000 5000"
             }
         }
         "precache"
