@@ -1360,6 +1360,7 @@
     {
         "ReduxFlags"                                                           "support"
         "ReduxPerks"                                                           "support | light"
+        "ReduxBans"                                                            "spell_lab_symbiotic | life_stealer_infest"
     }
     "wisp_relocate"
     {

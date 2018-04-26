@@ -13,6 +13,8 @@ All notable changes to this project will be documented in this file.
 - Lingering Souls Mana Regen is now considered troll combo with Ball Lightning
 - Grapeshot now troll combo with Enchant Totem
 - Foutains now have an aura that breaks enemie's passives 
+- Tether is now troll combo with Infest and Arcane Symbiosis
+- Added a few more custom abilities
 
 ## 10.7
 - Fixed Hurl Boulder only having 1 level

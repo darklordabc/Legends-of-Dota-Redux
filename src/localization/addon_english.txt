@@ -48,7 +48,7 @@
     "76561198078268404_Description" "Spells Contributor"
 
     // Warning
-    "lodLocalWarning" "<font color='#70EA72'>Legends of Dota: Redux</font> will move to it's former \"local\" workshop entry. <br>This version is <font color='#FF0000'>deprecated</font> and will be removed soon! Go uninstall it and grab latest version."
+    "lodLocalWarning" "<font color='#70EA72'>Legends of Dota: Redux</font> will move to it's former \'local\'' workshop entry. <br>This version is <font color='#FF0000'>deprecated</font> and will be removed soon! Go uninstall it and grab latest version."
 
     // Chat announcemnts
     "announcement"  "Announcement"
@@ -1651,6 +1651,13 @@
     "credit_spell_lab_survivor_bash"    "<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>"
     "credit_spell_lab_survivor_cast_range"  "<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>"
 
+    "credit_spell_lab_one_with_nothing"  "<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>"
+    "credit_spell_lab_missile_storm"  "<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>"
+    "credit_spell_lab_storm_minions"  "<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>"
+    "credit_spell_lab_bfg"  "<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>"
+    "credit_spell_lab_taxi"  "<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>"
+    "credit_spell_lab_ggs"  "<font color=\'#7D7D7D\'>Credits: Otso Turpeinen | github.com/OtsoTurpeinen</font>"
+
     "credit_night_stalker_innate_redux"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
     "credit_keeper_of_the_light_innate_redux"           "<font color=\'#7D7D7D\'>Credits: Wouterz90 | github.com/Wouterz90</font>"
 
@@ -2817,8 +2824,6 @@
 
     "DOTA_Tooltip_modifier_brawler_agi_effect_datadriven"                          "Brawler AGI"
     "DOTA_Tooltip_modifier_brawler_agi_effect_datadriven_Description"              "Bonus Agility. Activated by nearby enemy heroes."
-
-_Description"    "Converting Mana into Health"
 
     "DOTA_Tooltip_Modifier_explosive_spore"        "Explosive"
     "DOTA_Tooltip_Modifier_explosive_spore_Description"    "This unit will explode upon dying, dealing magical damage to units within 350 units."
@@ -4198,7 +4203,6 @@ _Description"    "Converting Mana into Health"
 
     "DOTA_Tooltip_modifier_vassal_shield"                                             "Shielded"
     "DOTA_Tooltip_modifier_vassal_shield_description"                                 "Taking less damage from sources."
-on"  "An icy blast launches out in a path in front of Frost Lord dealing damage to all enemies on its way. The ice delivers additional damage over time."
     "DOTA_Tooltip_ability_frost_lord_frost_breath_damage"   "INITIAL DAMAGE:"
     "DOTA_Tooltip_ability_frost_lord_frost_breath_damage_per_second"    "DAMAGE PER SECOND:"
     "DOTA_Tooltip_ability_frost_lord_frost_breath_duration" "DURATION:"
@@ -4925,32 +4929,28 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
         "DOTA_Tooltip_spell_lab_survivor_cooldown_modifier_Description" "Cooldown Reduction gained through staying alive."
 
         "DOTA_Tooltip_ability_spell_lab_survivor_damage_boost"                  "Survival of the Fittest: Damage"
-        "DOTA_Tooltip_ability_spell_lab_survivor_damage_boost_Description"      "Your survival instinct is enhanced. You gain <font color='#70EA72'>Base Damage
-</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death."
+        "DOTA_Tooltip_ability_spell_lab_survivor_damage_boost_Description"      "Your survival instinct is enhanced. You gain <font color='#70EA72'>Base Damage</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death."
         "DOTA_Tooltip_ability_spell_lab_survivor_damage_boost_bonus"            "BASE DAMAGE PER MINUTE:"
         "DOTA_Tooltip_ability_spell_lab_survivor_damage_boost_Note0"            "Fully retroactive. Reincarnate effects won't reset the stack."
         "DOTA_Tooltip_spell_lab_survivor_damage_boost_modifier"                 "Survival of the Fittest: Damage"
         "DOTA_Tooltip_spell_lab_survivor_damage_boost_modifier_Description" "Base Damage gained through staying alive."
 
         "DOTA_Tooltip_ability_spell_lab_survivor_evasion"                   "Survival of the Fittest: Evasion"
-        "DOTA_Tooltip_ability_spell_lab_survivor_evasion_Description"       "Your survival instinct is enhanced. You gain <font color='#70EA72'>Evasion
-</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death."
+        "DOTA_Tooltip_ability_spell_lab_survivor_evasion_Description"       "Your survival instinct is enhanced. You gain <font color='#70EA72'>Evasion</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death."
         "DOTA_Tooltip_ability_spell_lab_survivor_evasion_bonus"         "%EVASION PER MINUTE:"
         "DOTA_Tooltip_ability_spell_lab_survivor_evasion_Note0"         "Fully retroactive. Reincarnate effects won't reset the stack."
         "DOTA_Tooltip_spell_lab_survivor_evasion_modifier"                  "Survival of the Fittest: Evasion"
         "DOTA_Tooltip_spell_lab_survivor_evasion_modifier_Description" "Evasion gained through staying alive."
 
         "DOTA_Tooltip_ability_spell_lab_survivor_health_regen"                  "Survival of the Fittest: Health Regen"
-        "DOTA_Tooltip_ability_spell_lab_survivor_health_regen_Description"      "Your survival instinct is enhanced. You gain <font color='#70EA72'>Health Regen
-</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death."
+        "DOTA_Tooltip_ability_spell_lab_survivor_health_regen_Description"      "Your survival instinct is enhanced. You gain <font color='#70EA72'>Health Regen</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death."
         "DOTA_Tooltip_ability_spell_lab_survivor_health_regen_bonus"            "HEALTH REGEN PER MINUTE:"
         "DOTA_Tooltip_ability_spell_lab_survivor_health_regen_Note0"            "Fully retroactive. Reincarnate effects won't reset the stack."
         "DOTA_Tooltip_spell_lab_survivor_health_regen_modifier"                 "Survival of the Fittest: Health Regen"
         "DOTA_Tooltip_spell_lab_survivor_health_regen_modifier_Description" "Health Regen gained through staying alive."
 
         "DOTA_Tooltip_ability_spell_lab_survivor_mana_regen"                    "Survival of the Fittest: Mana Regen"
-        "DOTA_Tooltip_ability_spell_lab_survivor_mana_regen_Description"        "Your survival instinct is enhanced. You gain <font color='#70EA72'>Mana Regen
-</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death."
+        "DOTA_Tooltip_ability_spell_lab_survivor_mana_regen_Description"        "Your survival instinct is enhanced. You gain <font color='#70EA72'>Mana Regen</font> for every minute you survive without dying.\nYou keep 33% of your stacks after death."
         "DOTA_Tooltip_ability_spell_lab_survivor_mana_regen_bonus"          "MANA REGEN PER MINUTE:"
         "DOTA_Tooltip_ability_spell_lab_survivor_mana_regen_Note0"          "Fully retroactive. Reincarnate effects won't reset the stack."
         "DOTA_Tooltip_spell_lab_survivor_mana_regen_modifier"                   "Survival of the Fittest: Mana Regen"
@@ -9551,7 +9551,7 @@ on"  "An icy blast launches out in a path in front of Frost Lord dealing damage 
     "DOTA_Tooltip_ability_imba_dragon_knight_elder_dragon_charge_distance"              "DISTANCE:"
 
     "DOTA_Tooltip_ability_imba_dragon_knight_elder_dragon_form"                         "Elder Dragon Form"
-    "DOTA_Tooltip_ability_imba_dragon_knight_elder_dragon_form_Description"             "Dragon Knight takes the form of one of three powerful elder dragons, increasing his speed, and Dragon Tail's range, while granting him new powers.\n<font color=\"#9acd32\">LEVEL 1 Green Dragon</font> - Corrosive Breath: attacks deal 20 poison damage per second for 5 seconds. Works on structures.\n<font color=\"#ff0000\">LEVEL 2 Red Dragon</font> - Splash Attack: attacks damage all enemy units in a 300 radius, with Corrosive Breath added to the targets.\n<font color=\"#87ceeb\">LEVEL 3 Blue Dragon</font> - Frost Breath: slows movement speed by 30%% and attack speed by 30 of enemy units in Splash Attack range for 3 seconds, with Corrosive Breath added to the targets.\n\n<font color='#00FF40'>Upgradable by Aghanim's Scepter.</font>"
+    "DOTA_Tooltip_ability_imba_dragon_knight_elder_dragon_form_Description"             "Dragon Knight takes the form of one of three powerful elder dragons, increasing his speed, and Dragon Tail's range, while granting him new powers.\n<font color=\'#9acd32\''>LEVEL 1 Green Dragon</font> - Corrosive Breath: attacks deal 20 poison damage per second for 5 seconds. Works on structures.\n<font color=\'#ff0000\''>LEVEL 2 Red Dragon</font> - Splash Attack: attacks damage all enemy units in a 300 radius, with Corrosive Breath added to the targets.\n<font color=\'#87ceeb\''>LEVEL 3 Blue Dragon</font> - Frost Breath: slows movement speed by 30%% and attack speed by 30 of enemy units in Splash Attack range for 3 seconds, with Corrosive Breath added to the targets.\n\n<font color='#00FF40'>Upgradable by Aghanim's Scepter.</font>"
     "DOTA_Tooltip_ability_imba_dragon_knight_elder_dragon_form_Lore"                    "The dormant dragon power springs forth from within Davion, combining the powers of a legendary knight with a legendary Eldwurm."
     "DOTA_Tooltip_ability_imba_dragon_knight_elder_dragon_form_Note0"                   "Corrosive Breath poison damage is lethal."
     "DOTA_Tooltip_ability_imba_dragon_knight_elder_dragon_form_Note1"                   "Splash Attack deals 100/75/50% damage in a 150/225/300 radius. Splash damage does not affect buildings."
