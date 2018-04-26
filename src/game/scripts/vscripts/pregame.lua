@@ -2143,7 +2143,7 @@ function Pregame:onIngameBuilder(eventSourceIndex, args)
     if not hero then
         return
     end
-    if OptionManager:GetOption('duels') == 1 and duel_active or hero:HasModifier("modifier_tribune") then
+    if OptionManager:GetOption('duels') == 1 and (duel_active or hero:HasModifier("modifier_tribune")) then
         customAttension("#duel_cant_swap", 5)
         return
     end
