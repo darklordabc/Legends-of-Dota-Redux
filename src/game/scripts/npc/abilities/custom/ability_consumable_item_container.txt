@@ -97,7 +97,7 @@
       "16"
       {
         "var_type"              "FIELD_INTEGER"
-        "heart_bonus_strength"        "40"
+        "heart_bonus_strength"        "45"
       }
       "17"
       {
@@ -174,7 +174,7 @@
       "31"
       {
           "var_type"              "FIELD_INTEGER"
-          "monkey_king_bar_bonus_attack_speed"	"60"
+          "monkey_king_bar_bonus_attack_speed"	"10"
       }
       "32"
       {
@@ -184,12 +184,12 @@
       "33"
       {
           "var_type"              "FIELD_INTEGER"
-          "monkey_king_bar_bonus_chance_damage"           "60"
+          "monkey_king_bar_bonus_chance_damage"           "100"
       }
-      "34" // No longer needed
+      "34" 
       {
-          "var_type"              "FIELD_FLOAT"
-          "monkey_king_bar_bash_stun"             "0.01"
+          "var_type"              "FIELD_INTEGER"
+          "monkey_king_bar_bonus_damage"             "52"
       }
       // Aether Lens
       "35"
