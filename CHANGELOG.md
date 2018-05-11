@@ -2,6 +2,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 10.9
+- Made Morph a single player ability because its currently buggy
+
 ## 10.8
 - Lifebreak Redux now troll combo with Dispersion
 - Changed Lingering Souls Int from 0.75 to 0.5

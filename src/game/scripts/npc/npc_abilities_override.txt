@@ -2720,6 +2720,7 @@
     {
         "ReduxFlags"                                                           "illusion"
         "ReduxPerks"                                                           "water | illusion"
+        "ReduxCost"                                                            "120"
     }
     "morphling_hybrid"
     {
