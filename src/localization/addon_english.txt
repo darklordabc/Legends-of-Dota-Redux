@@ -148,7 +148,7 @@
     "lodMutatorBanningBanInvis2"                    "No Invisible Items Too"
     "lodMutatorUpgradedUlts"                        "Free Scepter"
     "lodMutatorUpgradedUltsNoBots"                  "Free Scepter (Humans Only)"
-    "lodMutatorFreeAbility"                         "Free Ability"
+    "lodMutatorFreeAbility"                         "Bonus Ability"
     "lodMutatorSliders"                             "Unstable Rift"
     "lodMutatorNothl"                               "Nothl Protection"
     "lodMutatorMonkeyBusiness"                      "Forest Maker"
