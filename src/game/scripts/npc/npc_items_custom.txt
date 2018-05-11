@@ -730,7 +730,7 @@
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "heart_bonus_strength"        "40"
+                "heart_bonus_strength"        "45"
             }
             "02"
             {
@@ -885,15 +885,15 @@
 
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
-        "ItemCost"                      "4200"
-        "AbilityGoldCost"               "4200"
+        "ItemCost"                      "4175"
+        "AbilityGoldCost"               "4175"
         "ItemPurchasable"              "0"
         "AbilitySpecial"
         {
             "01"
             {
                 "var_type"              "FIELD_INTEGER"
-                "monkey_king_bar_bonus_attack_speed"          "60"
+                "monkey_king_bar_bonus_attack_speed"          "10"
             }
             "02"
             {
@@ -903,7 +903,12 @@
             "03"
             {
                 "var_type"              "FIELD_INTEGER"
-                "monkey_king_bar_bonus_chance_damage"           "60"
+                "monkey_king_bar_bonus_chance_damage"           "100"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "monkey_king_bar_bonus_damage"           "52"
             }
             
         }
