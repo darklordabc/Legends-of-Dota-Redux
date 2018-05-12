@@ -1489,6 +1489,7 @@
     ////////////////
     "warning_mercy_angelic_descent"   "<font color=\'#FF4949\'>Warning:</font> Removes the ability to physically attack.\n"
     "warning_morphling_replicate"   "<font color=\'#FF4949\'>Warning:</font> Buggy."
+    "warning_axe_counter_helix"   "<font color=\'#FF4949\'>Warning:</font> Does not work on illusions."
     "warning_imba_tower_plasma_field"   "<font color=\'#FF4949\'>Warning:</font> Requies an extra ability slot. If you have many side abilities (including hidden abilities), this ability will not work."
     "warning_keeper_of_the_light_spirit_form"   "<font color=\'#FF4949\'>Warning:</font> Will not give additional abilities.<br><font color=\'#FF4949\'>Hero Requirement:</font> You have to play as <font color=\'#70EA72\'>Elazor</font> to get Aghanim's Scepter bonuses."
     "warning_undying_tombstone_zombie_deathstrike"   "<font color=\'#FF4949\'>Warning:</font> This ability is half broken, you will not gain bonus movementspeed nor bonus attack speed. Its recommended you don't pick it."
@@ -5877,7 +5878,7 @@
 
     "DOTA_Tooltip_ability_hylonome_eldritch_pull_OP"                   "Eldritch Pull OP"
     "DOTA_Tooltip_ability_hylonome_eldritch_pull_OP_lore"              "Eldritch rends the life out of Hylonome's foes."
-    "DOTA_Tooltip_ability_hylonome_eldritch_pull_OP_description"       "Pulls the target enemy toward Hylonome and damages them. Target is stunned while pulled, then slowed. </font color=\'#70EA72\'>Longer pull distance, more damage and greater slow</font>.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
+    "DOTA_Tooltip_ability_hylonome_eldritch_pull_OP_description"       "Pulls the target enemy toward Hylonome and damages them. Target is stunned while pulled, then slowed. <font color='#70EA72'>Longer pull distance, more damage and greater slow</font>.\n\n<font color=\'#7D7D7D\'>Imported from 'Hero Concepts (The Next Generation)'</font>\n"
     "DOTA_Tooltip_ability_hylonome_eldritch_pull_OP_cast_range"            "CAST RANGE:"
     "DOTA_Tooltip_ability_hylonome_eldritch_pull_OP_distance"              "PULL DISTANCE:"
     "DOTA_Tooltip_ability_hylonome_eldritch_pull_OP_move_slow"             "%MOVEMENT SLOW:"
