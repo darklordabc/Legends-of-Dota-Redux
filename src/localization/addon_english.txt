@@ -2273,7 +2273,6 @@
     "DOTA_Tooltip_ability_invoker_sun_strike_lod_op_Note1"                             "Invoker gains experience with kills made from Sun Strike, even if made from outside of experience range."
     "DOTA_Tooltip_ability_invoker_sun_strike_lod_op_area_of_effect"                    "RADIUS:"
     "DOTA_Tooltip_ability_invoker_sun_strike_lod_op_lod_delay"                             "DELAY:"
-    "DOTA_Tooltip_ability_invoker_sun_strike_lod_op_damage"                            "DAMAGE:\n"
     
     "DOTA_Tooltip_ability_invoker_forge_spirit_lod"                                 "Forge Spirit"
     "DOTA_Tooltip_ability_invoker_forge_spirit_lod_Description"                     "Invoker forges a spirit embodying the strength of fire and fortitude of ice. Damage, health, and armor are while attack range, mana, and duration are. The elemental's scorching attack is capable of melting the armor of enemy heroes."
