@@ -33,9 +33,9 @@ function modifier_npc_dota_hero_medusa_perk:DeclareFunctions()
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_medusa_perk:OnCreated(keys)
+    self.manaRegenPerToggle = 0.5
+    self.toggles = 0
     if IsServer() then
-        self.manaRegenPerToggle = 0.5
-        self.toggles = 0
         self.toggleItems = {}
         self:StartIntervalThink(0.2)
     end
@@ -72,13 +72,14 @@ function modifier_npc_dota_hero_medusa_perk:OnIntervalThink()
             end
         end
         self.toggles = self.toggles + #self.toggleItems
+        self:SetStackCount(self.toggles)
     end
 
     return true
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_medusa_perk:GetModifierConstantManaRegen()
-    self.toggles = self.toggles or 0
+    self.toggles = self:GetStackCount()
     return self.toggles * self.manaRegenPerToggle
 end
 --------------------------------------------------------------------------------------------------------
