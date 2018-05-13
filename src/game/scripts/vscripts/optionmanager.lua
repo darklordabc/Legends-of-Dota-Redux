@@ -167,7 +167,7 @@ if not OptionManager.initialSettings then
 	OptionManager:SetOption('vampirism', false)
 	OptionManager:SetOption('killstreakPower', false)
 	OptionManager:SetOption('cooldownReduction', false)
-	OptionManager:SetOption('explodeOnDeath', true)
+	OptionManager:SetOption('explodeOnDeath', false)
 	OptionManager:SetOption('goldDropOnDeath', false)
 	--OptionManager:SetOption('resurrectAllies', false)
 	--OptionManager:SetOption('randomLaneCreeps', false)

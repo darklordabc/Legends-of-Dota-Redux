@@ -27,6 +27,8 @@ function modifier_random_spell_mutator.OnCreated(self)
     if IsClient() then
         return
     end
+
+    print("DUMMYMADE")
     self.level_up_duration=5
     self.cast_interval=60
     self.warning_time=(self.cast_interval-5)
@@ -44,7 +46,9 @@ end
 function modifier_random_spell_mutator.OnIntervalThink(self)
     if math.floor(GameRules:GetDOTATime(false,false)%60)==self.warning_time then
         local unit = self:GetParent()
-
+        local rnd = RandomInt(0,#self.random_spells-1)
+        self.abilityName = self.random_spells[rnd+1]
+        Notifications:TopToAll({ability=self.abilityName, duration=5.0})
         TS_forEach(self.random_spells, function(spell)
             local ability = unit:FindAbilityByName(spell)
 
@@ -52,14 +56,15 @@ function modifier_random_spell_mutator.OnIntervalThink(self)
         end
 )
     end
-    if math.floor(GameRules:GetDOTATime(false,false)%60)==self.cast_interval then
+    if math.floor(GameRules:GetDOTATime(false,false)%60)==0 then
         local unit = self:GetParent()
 
         local rnd = RandomInt(0,#self.random_spells-1)
+        self.abilityName = self.abilityName or self.random_spells[rnd+1]
 
-        local ability = unit:FindAbilityByName(self.random_spells[rnd+1])
+        local ability = unit:FindAbilityByName(self.abilityName)
 
-        local targets = FindUnitsInRadius(DOTA_TEAM_GOODGUYS,Vector(0,0,0),nil,10000,DOTA_UNIT_TARGET_TEAM_BOTH,DOTA_UNIT_TARGET_HERO,DOTA_UNIT_TARGET_FLAG_NONE,FIND_ANY_ORDER,false)
+        local targets = FindUnitsInRadius(DOTA_TEAM_NEUTRALS,Vector(0,0,0),nil,100000,DOTA_UNIT_TARGET_TEAM_BOTH,DOTA_UNIT_TARGET_HERO,DOTA_UNIT_TARGET_FLAG_NONE,FIND_ANY_ORDER,false)
 
         TS_forEach(targets, function(hero)
             if (bit.band(ability:GetBehavior(),DOTA_ABILITY_BEHAVIOR_UNIT_TARGET))==DOTA_ABILITY_BEHAVIOR_UNIT_TARGET then

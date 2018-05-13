@@ -4206,9 +4206,7 @@ function Pregame:processOptions()
             GameRules:SetRuneSpawnTime(30)
         end
 
-        -- Create thinker for periodic spellcast
-        CreateModifierThinker( nil, nil, "modifier_random_spell_mutator", {}, Vector(0,0,0), DOTA_TEAM_NEUTRALS, false )
-
+        
 
         -- Enable Universal Shop
         if this.optionStore['lodOptionCrazyUniversalShop'] == 1 then
@@ -8144,6 +8142,15 @@ function Pregame:fixSpawningIssues()
     ListenToGameEvent('npc_spawned', function(keys)
         -- Grab the unit that spawned
         local spawnedUnit = EntIndexToHScript(keys.entindex)
+        
+        if not periodicDummyCastingUnitMade and OptionManager:GetOption("periodicSpellCast") == true then
+            -- Create dummy for periodic spellcast
+            periodicDummyCastingUnitMade = true
+            local periodicDummyCastingUnit = CreateUnitByName("npc_dummy_unit_imba",Vector(0,0,0),true,nil,nil,DOTA_TEAM_NEUTRALS)
+            periodicDummyCastingUnit:AddNewModifier(periodicDummyCastingUnit,nil,"modifier_random_spell_mutator",{})
+            local a = periodicDummyCastingUnit:AddAbility("dummy_unit_state")
+            a:SetLevel(1)
+        end
 
         if self.wispSpawning then
             if not self.selectedHeroes[spawnedUnit:GetPlayerOwnerID()] and spawnedUnit:IsRealHero() then
