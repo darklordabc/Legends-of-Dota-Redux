@@ -476,9 +476,54 @@ var basicOptions = {
                         about: 'lodMutatorLimitPassives'
                     },
                     {
-                        name: 'lodOptionAntiBash',
-                        extraInfo: 'lodOptionAboutAntiBash',
-                        about: 'lodMutatorAntiBash'
+                        name: 'lodOptionFastRunes',
+                        extraInfo: 'lodOptionAboutFastRunes',
+                        about: 'lodMutatorFastRunes'
+                    },
+                    {
+                        name: 'lodOptionPeriodicSpellCast',
+                        extraInfo: 'lodOptionAboutPeriodicSpellCast',
+                        about: 'lodMutatorPeriodicSpellCast'
+                    },
+                    {
+                        name: 'lodOptionVampirism',
+                        extraInfo: 'lodOptionAboutVampirism',
+                        about: 'lodMutatorVampirism'
+                    },
+                    {
+                        name: 'lodOptionKillStreakPower',
+                        extraInfo: 'lodOptionAboutKillStreakPower',
+                        about: 'lodMutatorKillStreakPower'
+                    },
+                    {
+                        name: 'lodOptionCooldownReduction',
+                        extraInfo: 'lodOptionAboutCooldownReduction',
+                        about: 'lodMutatorCooldownReduction'
+                    },
+                    {
+                        name: 'lodOptionExplodeOnDeath',
+                        extraInfo: 'lodOptionAboutExplodeOnDeath',
+                        about: 'lodMutatorExplodeOnDeath'
+                    },
+                    {
+                        name: 'lodOptionGoldDropOnDeath',
+                        extraInfo: 'lodOptionAboutGoldDropOnDeath',
+                        about: 'lodMutatorGoldDropOnDeath'
+                    },
+                    {
+                        name: 'lodOptionNoHealthbars',
+                        extraInfo: 'lodOptionAboutNoHealthbars',
+                        about: 'lodMutatorNoHealthbars'
+                    },
+                    {
+                        name: 'lodOptionRandomLaneCreeps',
+                        extraInfo: 'lodOptionAboutRandomLaneCreeps',
+                        about: 'lodMutatorRandomLaneCreeps'
+                    },
+                    {
+                        name: 'lodOptionResurrectAllies',
+                        extraInfo: 'lodOptionAboutResurrectAllies',
+                        about: 'lodMutatorResurrectAllies'
                     },
                 ]
             }

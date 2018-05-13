@@ -53,6 +53,17 @@ LinkLuaModifier( "modifier_alchemist_chemical_rage_ai", "abilities/botAI/modifie
 -- Creep power modifier
 LinkLuaModifier("modifier_neutral_power", "abilities/modifiers/modifier_neutral_power.lua", LUA_MODIFIER_MOTION_NONE)
 
+-- Mutator modifiers
+
+LinkLuaModifier("modifier_vampirism_mutator","abilities/mutators/modifier_vampirism_mutator.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_cooldown_reduction_mutator","abilities/mutators/modifier_cooldown_reduction_mutator.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_death_explosion_mutator","abilities/mutators/modifier_death_explosion_mutator.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_drop_gold_bag_mutator","abilities/mutators/modifier_drop_gold_bag_mutator.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_killstreak_mutator_redux","abilities/mutators/modifier_killstreak_mutator_redux.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_no_healthbar_mutator","abilities/mutators/modifier_no_healthbar_mutator.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_random_spell_mutator","abilities/mutators/modifier_random_spell_mutator.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_resurrection_mutator","abilities/mutators/modifier_resurrection_mutator.lua",LUA_MODIFIER_MOTION_NONE)
+
 --[[
     Main pregame, selection related handler
 ]]
@@ -3984,6 +3995,16 @@ function Pregame:processOptions()
         OptionManager:SetOption('consumeItems', this.optionStore['lodOptionConsumeItems'])
         OptionManager:SetOption('limitPassives', this.optionStore['lodOptionLimitPassives'])
         OptionManager:SetOption('antiBash', this.optionStore['lodOptionAntiBash'])
+        OptionManager:SetOption('fastRunes',this.optionStore['lodOptionFastRunes'])
+        OptionManager:SetOption('periodicSpellCast',this.optionStore['lodOptionPeriodicSpellCast'])
+        OptionManager:SetOption('vampirism',this.optionStore['lodOptionVampirism'])
+        OptionManager:SetOption('killstreakPower',this.optionStore['lodOptionKillStreakPower'])
+        OptionManager:SetOption('cooldownReduction',this.optionStore['lodOptionCooldownReduction'])
+        OptionManager:SetOption('explodeOnDeath',this.optionStore['lodOptionExplodeOnDeath'])
+        OptionManager:SetOption('goldDropOnDeath',this.optionStore['lodOptionGoldDropOnDeath'])
+        OptionManager:SetOption('noHealthbars',this.optionStore['lodOptionNoHealthbars'])
+        --OptionManager:SetOption('randomLaneCreeps',this.optionStore['lodOptionRandomLaneCreeps'])
+        --OptionManager:SetOption('resurrectAllies',this.optionStore['lodOptionResurrectAllies'])
 
         -- Enforce max level
         if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -4179,6 +4200,14 @@ function Pregame:processOptions()
             this:banAbility("pudge_meat_hook")
             this:banAbility("earthshaker_fissure")
         end
+
+        -- Set runespawn times
+        if OptionManager:GetOption("fastRunes") then
+            GameRules:SetRuneSpawnTime(30)
+        end
+
+        -- Create thinker for periodic spellcast
+        CreateModifierThinker( nil, nil, "modifier_random_spell_mutator", {}, Vector(0,0,0), DOTA_TEAM_NEUTRALS, false )
 
 
         -- Enable Universal Shop
@@ -7780,6 +7809,31 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                     end
                 end
             end
+
+
+            -- Add mutator modifiers
+            if OptionManager:GetOption('vampirism') then
+                spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_vampirism_mutator",{})
+            end
+            if OptionManager:GetOption('killstreakPower') then
+                spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_killstreak_mutator_redux",{})
+            end
+            if OptionManager:GetOption('cooldownReduction') then
+                spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_cooldown_reduction_mutator",{})
+            end
+            if OptionManager:GetOption('explodeOnDeath') then
+                spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_death_explosion_mutator",{})
+            end
+            if OptionManager:GetOption('goldDropOnDeath') then
+                spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_drop_gold_bag_mutator",{})
+            end
+            if OptionManager:GetOption('resurrectAllies') then
+                spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_resurrection_mutator",{})
+            end
+            if OptionManager:GetOption('noHealthbars') then
+                spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_no_healthbar_mutator",{})
+            end
+
         end
     end, DoUniqueString('variousFixes'), 0.5)
 
