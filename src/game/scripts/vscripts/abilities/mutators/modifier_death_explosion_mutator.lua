@@ -3,7 +3,7 @@
 -- Date: Sun May 13 2018
 --=======================================================================================
 require("typescript_lualib")
-LinkLuaModifier("modifier_death_explosion_mutator","",LUA_MODIFIER_MOTION_NONE)
+--LinkLuaModifier("modifier_death_explosion_mutator","",LUA_MODIFIER_MOTION_NONE)
 modifier_death_explosion_mutator = {}
 modifier_death_explosion_mutator.__index = modifier_death_explosion_mutator
 function modifier_death_explosion_mutator.new(construct, ...)
@@ -43,6 +43,8 @@ function modifier_death_explosion_mutator.OnDeath(self,kv)
             damageTable.victim=unit
             ApplyDamage(damageTable)
         end
-)
+        )   
+        
+
     end
 end

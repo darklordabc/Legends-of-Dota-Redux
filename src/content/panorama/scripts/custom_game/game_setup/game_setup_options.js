@@ -1818,10 +1818,91 @@ var advancedOptions = {
                     }
                 ]
             },
+            
             {
                 name: 'lodOptionAntiBash',
                 des: 'lodOptionDesAntiBash',
                 about: 'lodOptionAboutAntiBash',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionVampirism',
+                des: 'lodOptionDesVampirism',
+                about: 'lodOptionAboutVampirism',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionPeriodicSpellCast',
+                des: 'lodOptionDesPeriodicSpellCast',
+                about: 'lodOptionAboutPeriodicSpellCast',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionResurrectAllies',
+                des: 'lodOptionDesResurrectAllies',
+                about: 'lodOptionAboutResurrectAllies',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionSuperRunes',
+                des: 'lodOptionDesSuperRunes',
+                about: 'lodOptionAboutSuperRunes',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionFastRunes',
+                des: 'lodOptionDesFastRunes',
+                about: 'lodOptionAboutFastRunes',
                 sort: 'toggle',
                 values: [
                     {

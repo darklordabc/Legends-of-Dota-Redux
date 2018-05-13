@@ -62,7 +62,7 @@ LinkLuaModifier("modifier_drop_gold_bag_mutator","abilities/mutators/modifier_dr
 LinkLuaModifier("modifier_killstreak_mutator_redux","abilities/mutators/modifier_killstreak_mutator_redux.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_no_healthbar_mutator","abilities/mutators/modifier_no_healthbar_mutator.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_random_spell_mutator","abilities/mutators/modifier_random_spell_mutator.lua",LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_resurrection_mutator","abilities/mutators/modifier_resurrection_mutator.lua",LUA_MODIFIER_MOTION_NONE)
+--LinkLuaModifier("modifier_resurrection_mutator","abilities/mutators/modifier_resurrection_mutator.lua",LUA_MODIFIER_MOTION_NONE)
 
 --[[
     Main pregame, selection related handler
@@ -4202,7 +4202,7 @@ function Pregame:processOptions()
         end
 
         -- Set runespawn times
-        if OptionManager:GetOption("fastRunes") then
+        if OptionManager:GetOption("fastRunes") == 1 then
             GameRules:SetRuneSpawnTime(30)
         end
 
@@ -7812,25 +7812,25 @@ function Pregame:fixSpawnedHero( spawnedUnit )
 
 
             -- Add mutator modifiers
-            if OptionManager:GetOption('vampirism') then
+            if OptionManager:GetOption('vampirism') == 1 then
                 spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_vampirism_mutator",{})
             end
-            if OptionManager:GetOption('killstreakPower') then
+            if OptionManager:GetOption('killstreakPower') == 1 then
                 spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_killstreak_mutator_redux",{})
             end
-            if OptionManager:GetOption('cooldownReduction') then
+            if OptionManager:GetOption('cooldownReduction') == 1 then
                 spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_cooldown_reduction_mutator",{})
             end
-            if OptionManager:GetOption('explodeOnDeath') then
+            if OptionManager:GetOption('explodeOnDeath') == 1 then
                 spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_death_explosion_mutator",{})
             end
-            if OptionManager:GetOption('goldDropOnDeath') then
+            if OptionManager:GetOption('goldDropOnDeath') == 1 then
                 spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_drop_gold_bag_mutator",{})
             end
-            if OptionManager:GetOption('resurrectAllies') then
+            --[[if OptionManager:GetOption('resurrectAllies') then
                 spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_resurrection_mutator",{})
-            end
-            if OptionManager:GetOption('noHealthbars') then
+            end]]
+            if OptionManager:GetOption('noHealthbars') == 1 then
                 spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_no_healthbar_mutator",{})
             end
 
