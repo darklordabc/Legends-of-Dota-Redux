@@ -476,7 +476,12 @@ var basicOptions = {
                         about: 'lodMutatorLimitPassives'
                     },
                     {
-                        name: 'lodOptionFastRunes',
+                        name: 'lodOptionAntiBash',
+                        extraInfo: 'lodOptionAboutAntiBash',
+                        about: 'lodMutatorAntiBash'
+                    },
+                    {
+                        name: 'lodOptionFastRunes', 
                         extraInfo: 'lodOptionAboutFastRunes',
                         about: 'lodMutatorFastRunes'
                     },
