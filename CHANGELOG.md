@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ## 10.9
 - Made Morph a single player ability because its currently buggy
+- Returned Pocket Factory (As a single player ability)
 
 ## 10.8
 - Lifebreak Redux now troll combo with Dispersion
