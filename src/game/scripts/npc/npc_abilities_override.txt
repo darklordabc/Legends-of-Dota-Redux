@@ -2600,6 +2600,7 @@
     {
         "ReduxFlags"                                                           "mobility | physical"
         "ReduxPerks"                                                           "mobility | physical"
+        "ReduxBans"                                                            "ursa_fury_swipes | ursa_fury_swipes_lod | obsidian_destroyer_arcane_orb"
     }
      "pangolier_heartpiercer" 
     {

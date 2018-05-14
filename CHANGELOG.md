@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 ## 10.9
 - Made Morph a single player ability because its currently buggy
 - Returned Pocket Factory (As a single player ability)
+- Swashbuckle now troll combo with Fury Swipes (both of them) and arcane orb
+- 3 Mana Regen custom abilities (Flesh Heap, Survival, Souls) have been disabled until their values can be readjusted
 
 ## 10.8
 - Lifebreak Redux now troll combo with Dispersion
