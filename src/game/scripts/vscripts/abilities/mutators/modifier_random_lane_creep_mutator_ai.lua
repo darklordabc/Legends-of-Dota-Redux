@@ -4,6 +4,83 @@
 --=======================================================================================
 require("typescript_lualib")
 
+modifier_random_lane_creep_spawner_mutator = {}
+modifier_random_lane_creep_spawner_mutator.__index = modifier_random_lane_creep_spawner_mutator
+function modifier_random_lane_creep_spawner_mutator.new(construct, ...)
+    local instance = setmetatable({}, modifier_random_lane_creep_spawner_mutator)
+    if construct and modifier_random_lane_creep_spawner_mutator.constructor then modifier_random_lane_creep_spawner_mutator.constructor(instance, ...) end
+    return instance
+end
+function modifier_random_lane_creep_spawner_mutator.IsPermanent(self)
+    return true
+end
+function modifier_random_lane_creep_spawner_mutator.IsPurgable(self)
+    return false
+end
+function modifier_random_lane_creep_spawner_mutator.IsHidden(self)
+    return true
+end
+function modifier_random_lane_creep_spawner_mutator:OnCreated()
+    if IsServer() then
+        self:StartIntervalThink(1)
+
+        print("modifier_random_lane_creep_spawner_mutator")
+
+        self.units = {
+            "npc_dota_neutral_centaur_khan",
+            "npc_dota_neutral_polar_furbolg_ursa_warrior",
+            "npc_dota_neutral_alpha_wolf",
+            "npc_dota_neutral_enraged_wildkin",
+            "npc_dota_neutral_satyr_soulstealer",
+            "npc_dota_neutral_satyr_hellcaller",
+            "npc_dota_neutral_dark_troll_warlord",
+        }   
+    end
+end
+
+function modifier_random_lane_creep_spawner_mutator:OnIntervalThink()
+    print(GameRules:GetDOTATime(false,false),math.floor(GameRules:GetDOTATime(false,false)%30)==0)
+
+    if GameRules:GetDOTATime(false,false) > 5 and math.floor(GameRules:GetDOTATime(false,false)%30)==0 then
+        if RollPercentage(50) then
+            local unit = self:GetParent()
+            local rnd = RandomInt(1,#self.units)
+            local name = self.units[rnd]
+
+            local spawnEnts = {
+                'lane_top_goodguys_melee_spawner',
+                'lane_bot_goodguys_melee_spawner',
+                'lane_mid_goodguys_melee_spawner',
+                'lane_top_badguys_melee_spawner',
+                'lane_bot_badguys_melee_spawner',
+                'lane_mid_badguys_melee_spawner',
+            }
+
+            TS_forEach(spawnEnts, function(entName)
+                local ent = Entities:FindByName(nil,entName)
+                local origin = ent:GetAbsOrigin()
+                local unit = CreateUnitByName(name,origin,true,nil,nil,ent:GetTeamNumber())
+                unit:AddNewModifier(unit,nil,"modifier_random_lane_creep_mutator_ai",{unit=spawnedUnit:entindex()})
+                unit:AddNewModifier(unit,nil,"modifier_phased",{duration = 0.1})
+
+                local units = FindUnitsInRadius(ent:GetTeamNumber(),origin,nil,500,DOTA_UNIT_TARGET_TEAM_BOTH,DOTA_UNIT_TARGET_BASIC,DOTA_UNIT_TARGET_FLAG_NONE,FIND_ANY_ORDER,false)
+                local rangeCreep
+                for _,u in pairs(units) do
+                    if string.find(u:GetUnitName(),"_ranged") then
+                        rangeCreep = u
+                        break
+                    end
+                end
+
+                local waypoint = rangeCreep:GetInitialGoalEntity()
+                unit:SetInitialGoalEntity(waypoint)
+
+            end)
+        end
+    end
+end
+
+
 modifier_random_lane_creep_mutator_ai = {}
 modifier_random_lane_creep_mutator_ai.__index = modifier_random_lane_creep_mutator_ai
 function modifier_random_lane_creep_mutator_ai.new(construct, ...)
@@ -21,16 +98,23 @@ function modifier_random_lane_creep_mutator_ai.IsHidden(self)
     return true
 end
 
-function modifier_random_lane_creep_mutator_ai.OnCreated(self)
+function modifier_random_lane_creep_mutator_ai.OnCreated(self,kv)
     if IsClient() then
         return
     end
+    self.unit = EntIndexToHScript(kv.unit)
 
     self:StartIntervalThink(FrameTime())
 end
 
 function modifier_random_lane_creep_mutator_ai.OnIntervalThink(self)
     local unit = self:GetParent()
+
+    if self.unit and not self.unit:IsNull() then
+        --unit:MoveToPositionAggressive(self.unit:GetAbsOrigin())
+        print(self.unit:GetInitialGoalEntity())
+        unit:SetInitialGoalEntity(self.unit:GetInitialGoalEntity())
+    end
     for i=0,1 do
         local ability = unit:GetAbilityByIndex(i)
         if ability and not ability:IsPassive() and ability:IsCooldownReady() and unit:GetMana() >= ability:GetManaCost(-1) then
@@ -51,7 +135,7 @@ function modifier_random_lane_creep_mutator_ai.OnIntervalThink(self)
                 break
             end
 
-            local units = FindUnitsInRadius(unit:GetTeamNumber(),unit:GetAbsOrigin(),nil,GetCastRange(unit:GetAbsOrigin(),nil),DOTA_UNIT_TARGET_TEAM_ENEMY,DOTA_UNIT_TARGET_HERO,DOTA_UNIT_TARGET_FLAG_NONE,FIND_NEAREST,false)
+            local units = FindUnitsInRadius(unit:GetTeamNumber(),unit:GetAbsOrigin(),nil,ability:GetCastRange(unit:GetAbsOrigin(),nil),DOTA_UNIT_TARGET_TEAM_ENEMY,DOTA_UNIT_TARGET_HERO,DOTA_UNIT_TARGET_FLAG_NONE,FIND_CLOSEST ,false)
             if #units > 0 then
                 unit:CastAbilityOnTarget(units[1],ability,-1)
             end

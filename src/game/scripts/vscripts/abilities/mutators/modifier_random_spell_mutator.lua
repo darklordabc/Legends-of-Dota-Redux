@@ -27,8 +27,6 @@ function modifier_random_spell_mutator.OnCreated(self)
     if IsClient() then
         return
     end
-
-    print("DUMMYMADE")
     self.level_up_duration=5
     self.cast_interval=60
     self.warning_time=(self.cast_interval-5)
@@ -56,12 +54,12 @@ function modifier_random_spell_mutator.OnIntervalThink(self)
         end
 )
     end
-    if math.floor(GameRules:GetDOTATime(false,false)%60)==0 then
+    if GameRules:GetDOTATime(false,false) > 0 and math.floor(GameRules:GetDOTATime(false,false)%60)==0 then
         local unit = self:GetParent()
 
         local rnd = RandomInt(0,#self.random_spells-1)
-        self.abilityName = self.abilityName or self.random_spells[rnd+1]
-
+        --self.abilityName = self.abilityName or self.random_spells[rnd+1]
+        if not self.abilityName then return end
         local ability = unit:FindAbilityByName(self.abilityName)
 
         local targets = FindUnitsInRadius(DOTA_TEAM_NEUTRALS,Vector(0,0,0),nil,100000,DOTA_UNIT_TARGET_TEAM_BOTH,DOTA_UNIT_TARGET_HERO,DOTA_UNIT_TARGET_FLAG_NONE,FIND_ANY_ORDER,false)

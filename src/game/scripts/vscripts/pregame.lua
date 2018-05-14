@@ -63,6 +63,7 @@ LinkLuaModifier("modifier_killstreak_mutator_redux","abilities/mutators/modifier
 LinkLuaModifier("modifier_no_healthbar_mutator","abilities/mutators/modifier_no_healthbar_mutator.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_random_spell_mutator","abilities/mutators/modifier_random_spell_mutator.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_random_lane_creep_mutator_ai","abilities/mutators/modifier_random_lane_creep_mutator_ai.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_random_lane_creep_spawner_mutator","abilities/mutators/modifier_random_lane_creep_mutator_ai.lua",LUA_MODIFIER_MOTION_NONE)
 --LinkLuaModifier("modifier_resurrection_mutator","abilities/mutators/modifier_resurrection_mutator.lua",LUA_MODIFIER_MOTION_NONE)
 
 --[[
@@ -3105,6 +3106,48 @@ function Pregame:initOptionSelector()
         lodOptionBattleThirst = function(value)
             return value == 0 or value == 1
         end,
+
+        -- Mutators
+        lodOptionfastRunes = function(value)
+            return value == 0 or value == 1
+        end,
+        -- Mutators
+        lodOptionperiodicSpellCast = function(value)
+            return value == 0 or value == 1
+        end,
+        -- Mutators
+        lodOptionVampirism = function(value)
+            return value == 0 or value == 1
+        end,
+        -- Mutators
+        lodOptionKillstreakPower = function(value)
+            return value == 0 or value == 1
+        end,
+        -- Mutators
+        lodOptionCooldownReduction = function(value)
+            return value == 0 or value == 1
+        end,
+        -- Mutators
+        lodOptionExplodeOnDeath = function(value)
+            return value == 0 or value == 1
+        end,
+        -- Mutators
+        lodOptionGoldDropOnDeath = function(value)
+            return value == 0 or value == 1
+        end,
+        -- Mutators
+        lodOptionResurrectAllies = function(value)
+            return value == 0 or value == 1
+        end,
+        -- Mutators
+        lodOptionRandomLaneCreeps = function(value)
+            return value == 0 or value == 1
+        end,
+        -- Mutators
+        lodOptionNoHealthbars = function(value)
+            return value == 0 or value == 1
+        end,
+
     }
 
     -- Callbacks
@@ -4004,7 +4047,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('explodeOnDeath',this.optionStore['lodOptionExplodeOnDeath'])
         OptionManager:SetOption('goldDropOnDeath',this.optionStore['lodOptionGoldDropOnDeath'])
         OptionManager:SetOption('noHealthbars',this.optionStore['lodOptionNoHealthbars'])
-        --OptionManager:SetOption('randomLaneCreeps',this.optionStore['lodOptionRandomLaneCreeps'])
+        OptionManager:SetOption('randomLaneCreeps',this.optionStore['lodOptionRandomLaneCreeps'])
         --OptionManager:SetOption('resurrectAllies',this.optionStore['lodOptionResurrectAllies'])
 
         -- Enforce max level
@@ -4327,6 +4370,17 @@ function Pregame:processOptions()
                     ['Towers: Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],
                     ['Bots: Unique Skills'] = this.optionStore['lodOptionBotsUniqueSkills'],
                     ['Bots: Stupefy'] = this.optionStore['lodOptionBotsStupid'],
+                    ['Mutators: Fast Runes'] = this.optionStore['fastRunes'],
+                    ['Mutators: Periodic Spell Cast'] = this.optionStore['periodicSpellCast'],
+                    ['Mutators: Vampirism'] = this.optionStore['vampirism'],
+                    ['Mutators: Kill Streak Power'] = this.optionStore['killstreakPower'],
+                    ['Mutators: Cooldown Reduction'] = this.optionStore['cooldownReduction'],
+                    ['Mutators: Explode On Death'] = this.optionStore['explodeOnDeath'],
+                    ['Mutators: Gold Drop On Death'] = this.optionStore['goldDropOnDeath'],
+                    ['Mutators: Resurrect Allies'] = this.optionStore['resurrectAllies'],
+                    ['Mutators: Random Lane Creeps'] = this.optionStore['randomLaneCreeps'],
+                    ['Mutators: No Healthbars'] = this.optionStore['noHealthbars'],
+
                 })
 
                 -- Draft arrays
@@ -8145,7 +8199,7 @@ function Pregame:fixSpawningIssues()
         local spawnedUnit = EntIndexToHScript(keys.entindex)
         
         -- Periodic Spell Cast
-        if not periodicDummyCastingUnitMade and OptionManager:GetOption("periodicSpellCast") == true then
+        if not periodicDummyCastingUnitMade and OptionManager:GetOption("periodicSpellCast") == 1 then
             -- Create dummy for periodic spellcast
             periodicDummyCastingUnitMade = true
             local periodicDummyCastingUnit = CreateUnitByName("npc_dummy_unit_imba",Vector(0,0,0),true,nil,nil,DOTA_TEAM_NEUTRALS)
@@ -8153,23 +8207,16 @@ function Pregame:fixSpawningIssues()
             local a = periodicDummyCastingUnit:AddAbility("dummy_unit_state")
             a:SetLevel(1)
         end
-        if OptionManager:GetOption("randomLaneCreeps") == true then
-            if string.find(spawnedUnit:GetUnitName(),"_ranged") then
-                if RollPercentage(20) then
-                    local units = {
-                        "npc_dota_neutral_centaur_khan",
-                        "npc_dota_neutral_polar_furbolg_ursa_warrior",
-                        "npc_dota_neutral_alpha_wolf",
-                        "npc_dota_neutral_enraged_wildkin",
-                        "npc_dota_neutral_satyr_soulstealer",
-                        "npc_dota_neutral_satyr_hellcaller",
-                        "npc_dota_neutral_dark_troll_warlord",
-                    }
-                    local waypoint = spawnedUnit:GetInitialGoalEntity()
-                    spawnedUnit:SetInitialGoalEntity(waypoint)
-                    spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_random_lane_creep_mutator_ai",{})
-                end
-            end
+
+
+
+        if not randomLaneCreepSpawnerMade and OptionManager:GetOption("randomLaneCreeps") == 1 then
+            randomLaneCreepSpawnerMade = true
+            local randomLaneCreepSpawner = CreateUnitByName("npc_dummy_unit_imba",Vector(0,0,0),true,nil,nil,DOTA_TEAM_NEUTRALS)
+            randomLaneCreepSpawner:AddNewModifier(periodicDummyCastingUnit,nil,"modifier_random_lane_creep_spawner_mutator",{})
+            local a = randomLaneCreepSpawner:AddAbility("dummy_unit_state")
+            a:SetLevel(1)
+
         end
 
 
