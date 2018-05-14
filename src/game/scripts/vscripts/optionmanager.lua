@@ -170,7 +170,7 @@ if not OptionManager.initialSettings then
 	OptionManager:SetOption('explodeOnDeath', false)
 	OptionManager:SetOption('goldDropOnDeath', false)
 	--OptionManager:SetOption('resurrectAllies', false)
-	--OptionManager:SetOption('randomLaneCreeps', false)
+	OptionManager:SetOption('randomLaneCreeps', true)
 	OptionManager:SetOption('noHealthbars', false)
 
 	-- Other Mutators

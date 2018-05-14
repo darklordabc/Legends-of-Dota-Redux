@@ -62,6 +62,7 @@ LinkLuaModifier("modifier_drop_gold_bag_mutator","abilities/mutators/modifier_dr
 LinkLuaModifier("modifier_killstreak_mutator_redux","abilities/mutators/modifier_killstreak_mutator_redux.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_no_healthbar_mutator","abilities/mutators/modifier_no_healthbar_mutator.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_random_spell_mutator","abilities/mutators/modifier_random_spell_mutator.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_random_lane_creep_mutator_ai","abilities/mutators/modifier_random_lane_creep_mutator_ai.lua",LUA_MODIFIER_MOTION_NONE)
 --LinkLuaModifier("modifier_resurrection_mutator","abilities/mutators/modifier_resurrection_mutator.lua",LUA_MODIFIER_MOTION_NONE)
 
 --[[
@@ -8143,6 +8144,7 @@ function Pregame:fixSpawningIssues()
         -- Grab the unit that spawned
         local spawnedUnit = EntIndexToHScript(keys.entindex)
         
+        -- Periodic Spell Cast
         if not periodicDummyCastingUnitMade and OptionManager:GetOption("periodicSpellCast") == true then
             -- Create dummy for periodic spellcast
             periodicDummyCastingUnitMade = true
@@ -8151,6 +8153,26 @@ function Pregame:fixSpawningIssues()
             local a = periodicDummyCastingUnit:AddAbility("dummy_unit_state")
             a:SetLevel(1)
         end
+        if OptionManager:GetOption("randomLaneCreeps") == true then
+            if string.find(spawnedUnit:GetUnitName(),"_ranged") then
+                if RollPercentage(20) then
+                    local units = {
+                        "npc_dota_neutral_centaur_khan",
+                        "npc_dota_neutral_polar_furbolg_ursa_warrior",
+                        "npc_dota_neutral_alpha_wolf",
+                        "npc_dota_neutral_enraged_wildkin",
+                        "npc_dota_neutral_satyr_soulstealer",
+                        "npc_dota_neutral_satyr_hellcaller",
+                        "npc_dota_neutral_dark_troll_warlord",
+                    }
+                    local waypoint = spawnedUnit:GetInitialGoalEntity()
+                    spawnedUnit:SetInitialGoalEntity(waypoint)
+                    spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_random_lane_creep_mutator_ai",{})
+                end
+            end
+        end
+
+
 
         if self.wispSpawning then
             if not self.selectedHeroes[spawnedUnit:GetPlayerOwnerID()] and spawnedUnit:IsRealHero() then
