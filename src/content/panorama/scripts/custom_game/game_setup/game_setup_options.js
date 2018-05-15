@@ -486,6 +486,11 @@ var basicOptions = {
                         about: 'lodMutatorFastRunes'
                     },
                     {
+                        name: 'lodOptionSuperRunes', 
+                        extraInfo: 'lodOptionAboutSuperRunes',
+                        about: 'lodMutatorSuperRunes'
+                    },
+                    {
                         name: 'lodOptionPeriodicSpellCast',
                         extraInfo: 'lodOptionAboutPeriodicSpellCast',
                         about: 'lodMutatorPeriodicSpellCast'
@@ -525,11 +530,11 @@ var basicOptions = {
                         extraInfo: 'lodOptionAboutRandomLaneCreeps',
                         about: 'lodMutatorRandomLaneCreeps'
                     },
-                    {
-                        name: 'lodOptionResurrectAllies',
-                        extraInfo: 'lodOptionAboutResurrectAllies',
-                        about: 'lodMutatorResurrectAllies'
-                    },
+                    //{
+                    //    name: 'lodOptionResurrectAllies',
+                    //    extraInfo: 'lodOptionAboutResurrectAllies',
+                    //    about: 'lodMutatorResurrectAllies'
+                    //},
                 ]
             }
         ]
@@ -1836,41 +1841,9 @@ var advancedOptions = {
                 ]
             },
             {
-                name: 'lodOptionVampirism',
-                des: 'lodOptionDesVampirism',
-                about: 'lodOptionAboutVampirism',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
-            {
-                name: 'lodOptionPeriodicSpellCast',
-                des: 'lodOptionDesPeriodicSpellCast',
-                about: 'lodOptionAboutPeriodicSpellCast',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
-            {
-                name: 'lodOptionResurrectAllies',
-                des: 'lodOptionDesResurrectAllies',
-                about: 'lodOptionAboutResurrectAllies',
+                name: 'lodOptionFastRunes',
+                des: 'lodOptionDesFastRunes',
+                about: 'lodOptionAboutFastRunes',
                 sort: 'toggle',
                 values: [
                     {
@@ -1900,9 +1873,9 @@ var advancedOptions = {
                 ]
             },
             {
-                name: 'lodOptionFastRunes',
-                des: 'lodOptionDesFastRunes',
-                about: 'lodOptionAboutFastRunes',
+                name: 'lodOptionPeriodicSpellCast',
+                des: 'lodOptionDesPeriodicSpellCast',
+                about: 'lodOptionAboutPeriodicSpellCast',
                 sort: 'toggle',
                 values: [
                     {
@@ -1915,6 +1888,139 @@ var advancedOptions = {
                     }
                 ]
             },
+            {
+                name: 'lodOptionVampirism',
+                des: 'lodOptionDesVampirism',
+                about: 'lodOptionAboutVampirism',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionKillStreakPower',
+                des: 'lodOptionDesKillStreakPower',
+                about: 'lodOptionAboutKillStreakPower',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+
+                name: 'lodOptionCooldownReduction',
+                des: 'lodOptionDesCooldownReduction',
+                about: 'lodOptionAboutCooldownReduction',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+
+                name: 'lodOptionGoldDropOnDeath',
+                des: 'lodOptionDesGoldDropOnDeath',
+                about: 'lodOptionAboutGoldDropOnDeath',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+
+                name: 'lodOptionExplodeOnDeath',
+                des: 'lodOptionDesExplodeOnDeath',
+                about: 'lodOptionAboutExplodeOnDeath',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },         
+            {
+
+                name: 'lodOptionNoHealthbars',
+                des: 'lodOptionDesNoHealthbars',
+                about: 'lodOptionAboutNoHealthbars',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+
+                name: 'lodOptionRandomLaneCreeps',
+                des: 'lodOptionDesRandomLaneCreeps',
+                about: 'lodOptionAboutRandomLaneCreeps',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },           
+            //{
+            //    name: 'lodOptionResurrectAllies',
+            //    des: 'lodOptionDesResurrectAllies',
+            //    about: 'lodOptionAboutResurrectAllies',
+            //    sort: 'toggle',
+            //    values: [
+            //        {
+            //            text: 'lodOptionNo',
+            //            value: 0
+            //        },
+            //        {
+            //            text: 'lodOptionYes',
+            //            value: 1
+            //        }
+            //    ]
+            //},
             //{
             //    name: 'lodOptionMonkeyBusiness',
             //    des: 'lodOptionDesMonkeyBusiness',

@@ -812,6 +812,17 @@ function Pregame:loadDefaultSettings()
     self:setOption('lodOptionBotsDire', 0, true)
     self:setOption('lodOptionBotsUnfairBalance', 1, true)
 
+    self:setOption('lodOptionFastRunes', 0, true)
+    self:setOption('lodOptionPeriodicSpellCast', 0, true)
+    self:setOption('lodOptionVampirism', 0, true)
+    self:setOption('lodOptionKillStreakPower', 0, true)
+    self:setOption('lodOptionCooldownReduction', 0, true)
+    self:setOption('lodOptionExplodeOnDeath', 0, true)
+    self:setOption('lodOptionGoldDropOnDeath', 0, true)
+    -- self:setOption('lodOptionResurrectAllies', 0, true)
+    self:setOption('lodOptionRandomLaneCreeps', 0, true)
+    self:setOption('lodOptionNoHealthbars', 0, true)
+
     -- Turn easy mode off
     --self:setOption('lodOptionCrazyEasymode', 0, true)
 
@@ -3108,11 +3119,11 @@ function Pregame:initOptionSelector()
         end,
 
         -- Mutators
-        lodOptionfastRunes = function(value)
+        lodOptionFastRunes = function(value)
             return value == 0 or value == 1
         end,
         -- Mutators
-        lodOptionperiodicSpellCast = function(value)
+        lodOptionPeriodicSpellCast = function(value)
             return value == 0 or value == 1
         end,
         -- Mutators
@@ -3120,7 +3131,7 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
         -- Mutators
-        lodOptionKillstreakPower = function(value)
+        lodOptionKillStreakPower = function(value)
             return value == 0 or value == 1
         end,
         -- Mutators
@@ -5911,23 +5922,23 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
 
     -- Limit powerful passives
     if self.optionStore['lodOptionLimitPassives'] == 1 then
-    	local powerfulPassives = 0
-    	for _,buildAbility in pairs(newBuild) do
-    		-- Check that ability is passive and is powerful ability
+        local powerfulPassives = 0
+        for _,buildAbility in pairs(newBuild) do
+            -- Check that ability is passive and is powerful ability
             -- Temporarily limit all passives, indepedent of their power
-    		if SkillManager:isPassive(buildAbility) or self.flags["semi_passive"][buildAbility] ~= nil then -- and self.spellCosts[buildAbility] ~= nil and self.spellCosts[buildAbility] >= 60 then
-    			powerfulPassives = powerfulPassives + 1
-    		end
-    	end
-    	-- Check that we have 3 OP passives
-    	if powerfulPassives >= 4 then
+            if SkillManager:isPassive(buildAbility) or self.flags["semi_passive"][buildAbility] ~= nil then -- and self.spellCosts[buildAbility] ~= nil and self.spellCosts[buildAbility] >= 60 then
+                powerfulPassives = powerfulPassives + 1
+            end
+        end
+        -- Check that we have 3 OP passives
+        if powerfulPassives >= 4 then
             network:sendNotification(player, {
                 sort = 'lodDanger',
                 text = 'lodFailedTooManyPassives'
             })
             self:PlayAlert(playerID)
             return
-	    end
+        end
     end
 
     -- Consider unique skills
@@ -6400,10 +6411,10 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
                     powerfulPassives = powerfulPassives + 1
                 end
             end
-			
-	    if (SkillManager:isPassive(abilityName) or self.flags["semi_passive"][abilityName] ~= nil) then
-		powerfulPassives = powerfulPassives + 1
-	    end
+            
+        if (SkillManager:isPassive(abilityName) or self.flags["semi_passive"][abilityName] ~= nil) then
+        powerfulPassives = powerfulPassives + 1
+        end
 
             if powerfulPassives >= 3 then
                 shouldAdd = false
@@ -7778,7 +7789,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
             --        end
             --    end
             --end
-				
+                
              -- 'No Charges' fix for Tiny Toss
             if spawnedUnit:HasAbility('tiny_toss') then
                 Timers:CreateTimer(function()
