@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 - Disable an Essence Aura talent that doesnt work
 - Added cheat to cheat menu: True Sight (-gem)
 - Shadow Dance is troll combo with its redux version
+- Tempest Double considered an OP ability
 
 ## 10.8
 - Lifebreak Redux now troll combo with Dispersion
