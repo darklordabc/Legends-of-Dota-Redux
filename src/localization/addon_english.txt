@@ -2138,6 +2138,14 @@
     "DOTA_Tooltip_ability_holdout_omnislash_range"                              "RANGE:"
     "DOTA_Tooltip_ability_holdout_omnislash_bonus_damage"                       "BONUS DAMAGE:"
 
+    //Bot Controller
+    "DOTA_Tooltip_ability_imba_tower_ai_controller"                                 "Bot AI Helper"
+    "DOTA_Tooltip_ability_imba_tower_ai_controller_Description"                     "<font color='#70EA72'>This ability is designed to help bots deal with multiple towers. The logic is roughly as follows:</font>\n1. If an enemy bot is nearby AND tower is not invunerable AND there is no nearby allies = <font color='#70EA72'>Force enemy bot to attack tower</font>
+\n2. If an enemy bot is nearby AND enemy bot health is below 300 AND there is no nearby allies = <font color='#70EA72'>Teleport bot back to their base </font>
+\n3. If an enemy bot is nearby AND tower is invunerable = <font color='#70EA72'>Scare enemy bot away</font>
+\n\nEnemy bots that are teleported back to their base, receive the following compenstation for being displaced from battle: <font color='#70EA72'>100 gold and experience, full HP and MP on return and maximum movespeed for a period of time. \nIf the tower has anti-rat protection, it will scare aware bots and teleport them back.</font>"
+    "DOTA_Tooltip_ability_imba_tower_ai_controller_Lore"                                "ASSUMING DIRECT CONTROL"
+
 
     "npc_dota_healing_ward"                                                           "Mana Ward"
 
