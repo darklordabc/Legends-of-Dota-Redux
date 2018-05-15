@@ -15,4 +15,22 @@
         "ReduxCost"                                                            "20"
         "ReduxFlags"														    "cooldown"
 	}
+
+    "jingtong_cheat"  {
+        "BaseClass"                                                            "ability_lua"
+        "MaxLevel"  "1"
+        "AbilityTextureName"                                                   "invoker_invoke"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "ScriptFile"                                                           "abilities/jingtong_cheat.lua"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "reduce"    "100"
+            }
+        }
+        "ReduxCost"                                                            "20"
+        "ReduxFlags"                                                            "cooldown"
+    }
 }

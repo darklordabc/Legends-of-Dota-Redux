@@ -18,7 +18,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"                                           "abilities/aether_range_lod.lua"
+                "ScriptFile"                                           "abilities/aether_range_lod_global.lua"
                 "Function"                                             "SetCastRange"
             }
         }
@@ -26,7 +26,7 @@
         {
             "RunScript"
             {
-                "ScriptFile"                                           "abilities/aether_range_lod.lua"
+                "ScriptFile"                                           "abilities/aether_range_lod_global.lua"
                 "Function"                                             "SetCastRange"
             }
         }

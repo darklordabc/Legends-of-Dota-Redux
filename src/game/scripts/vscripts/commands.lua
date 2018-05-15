@@ -490,6 +490,38 @@ function Commands:OnPlayerChat(keys)
                              
             end, DoUniqueString('cheat'), .1)
 
+        elseif IsCommand("-cooldown") then 
+            Timers:CreateTimer(function()
+                local cooldown = hero:FindAbilityByName("jingtong_cheat")
+
+                if cooldown then
+                    hero:RemoveAbility("jingtong_cheat")
+                else 
+                    cooldownAbility = hero:AddAbility("jingtong_cheat")
+                    cooldownAbility:SetActivated(true)
+                    cooldownAbility:SetLevel(1)
+                    cooldownAbility:SetHidden(false)
+                    ingame:CommandNotification("-spellblock", 'Cheat Used (-cooldown): Given No Cooldowns to '.. PlayerResource:GetPlayerName(playerID))
+                end  
+                             
+            end, DoUniqueString('cheat'), .1)
+
+        elseif IsCommand("-globalcast") then 
+            Timers:CreateTimer(function()
+                local globalcast = hero:FindAbilityByName("aether_range_lod_global")
+
+                if globalcast then
+                    hero:RemoveAbility("aether_range_lod_global")
+                else 
+                    globalcastAbility = hero:AddAbility("aether_range_lod_global")
+                    globalcastAbility:SetActivated(true)
+                    globalcastAbility:SetLevel(1)
+                    globalcastAbility:SetHidden(false)
+                    ingame:CommandNotification("-spellblock", 'Cheat Used (-cooldown): Given global cast range to '.. PlayerResource:GetPlayerName(playerID))
+                end  
+                             
+            end, DoUniqueString('cheat'), .1)
+
         elseif (IsCommand("-wtf") and not blockConfliction) or IsCommand("-wtfmenu") then 
             Timers:CreateTimer(function()  
                 print(OptionManager:GetOption('lodOptionCrazyWTF'))

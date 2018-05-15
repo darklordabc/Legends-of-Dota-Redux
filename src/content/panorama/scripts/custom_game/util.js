@@ -153,6 +153,14 @@ Util.commandList = [{
         chatCommand: "gem",
         isCheat: true,
     },{
+        title: "cooldown",
+        chatCommand: "cooldown",
+        isCheat: true,
+    },{
+        title: "globalcast",
+        chatCommand: "globalcast",
+        isCheat: true,
+    },{
         title: "dagger",
         chatCommand: "dagger",
         isCheat: true,

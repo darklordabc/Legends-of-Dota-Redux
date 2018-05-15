@@ -12,8 +12,9 @@ All notable changes to this project will be documented in this file.
 - Shadow Dance is troll combo with its redux version
 - Tempest Double considered an OP ability
 - Made it so a few Redux version of abilities (underpowered) no longer appear if their powerful counterparts are pickable
-*
 - Disabled Wisp until critical bug can be fixed
+*
+- Added two more cheats: No cooldowns (-cooldown) and global cast range (-globalcast)
 
 ## 10.8
 - Lifebreak Redux now troll combo with Dispersion

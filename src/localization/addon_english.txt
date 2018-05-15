@@ -1456,6 +1456,10 @@
     "command_menu_command_invis"                        "Invisibility"
     "command_menu_command_reflect"                      "Spell Reflect"
     "command_menu_command_spellblock"                   "Spell Block"
+    "command_menu_command_cooldown"                     "No Cooldowns"
+    "command_menu_command_globalcast"                   "Global Cast Range"
+
+    
 
     //Scoreboard
     "DOTA_Scoreboard_Header_Abilities"                  "ABILITIES"
@@ -5128,6 +5132,17 @@
         "DOTA_Tooltip_ability_jingtong_op" "Elemental Mystery OP"
         "DOTA_Tooltip_ability_jingtong_op_Description" "Years of practices let ninja reduce all the cooldown time of his skills. <font color='#70EA72'>Larger cooldown reduction</font>."
         "DOTA_Tooltip_ability_jingtong_op_reduce"  "%COOLDOWN REDUCTION:"
+
+        "DOTA_Tooltip_ability_jingtong_cheat" "No Cooldowns"
+        "DOTA_Tooltip_ability_jingtong_cheat_Description" "Cheat: No Cooldowns for abilities or items."
+
+        "DOTA_Tooltip_ability_aether_range_lod_global" "Global Cast Range"
+        "DOTA_Tooltip_ability_aether_range_lod_global_Description" "Cheat: Can cast spells globally."
+
+        
+
+        "DOTA_Tooltip_modifier_spell_aether_lens"                                            "Global Cast Range"
+        "DOTA_Tooltip_modifier_spell_aether_lens_Description"                                "Can cast spells globally"
 
         "DOTA_Tooltip_ability_shiguanghuisu"    "Time Backtrack"
         "DOTA_Tooltip_ability_shiguanghuisu_Description"    "Teleport to the position you were at 3 seconds ago, also restores your health amount from 3 seconds ago."
