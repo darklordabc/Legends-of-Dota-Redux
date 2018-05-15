@@ -435,8 +435,26 @@ function Commands:OnPlayerChat(keys)
                     hero:RemoveModifierByName("modifier_tower_truesight_aura")
                 else
                     hero:AddNewModifier(hero,nil,"modifier_tower_truesight_aura",{})
-                    ingame:CommandNotification("-gem", 'Cheat Used (-gem): Given True Sight regeneration to '.. PlayerResource:GetPlayerName(playerID)) 
+                    ingame:CommandNotification("-gem", 'Cheat Used (-gem): Given True Sight to '.. PlayerResource:GetPlayerName(playerID)) 
                 end
+                             
+            end, DoUniqueString('cheat'), .1)
+            
+        elseif IsCommand("-invis") then 
+            Timers:CreateTimer(function()
+                local invis = hero:FindAbilityByName("riki_permanent_invisibility_lod")
+
+                if invis then
+                    hero:RemoveAbility("riki_permanent_invisibility_lod")
+                    hero:RemoveModifierByName("modifier_invisible")
+                else 
+                    invisAbility = hero:AddAbility("riki_permanent_invisibility_lod")
+                    hero:AddNewModifier(hero,nil,"modifier_invisible",{})
+                    invisAbility:SetActivated(true)
+                    invisAbility:SetLevel(3)
+                    invisAbility:SetHidden(true)
+                    ingame:CommandNotification("-invis", 'Cheat Used (-invis): Given Invisibility to '.. PlayerResource:GetPlayerName(playerID))
+                end  
                              
             end, DoUniqueString('cheat'), .1)
 

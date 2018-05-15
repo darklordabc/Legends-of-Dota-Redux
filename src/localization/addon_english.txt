@@ -1453,6 +1453,7 @@
     "command_menu_command_regen"                        "Fountain Regeneration"
     "command_menu_command_scepter"                      "Free Scepter"
     "command_menu_command_gem"                          "True Sight"
+    "command_menu_command_invis"                        "Invisibility"
 
 
     //Scoreboard

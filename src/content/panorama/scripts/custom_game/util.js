@@ -137,6 +137,10 @@ Util.commandList = [{
         chatCommand: "scepter",
         isCheat: true,
     },{
+        title: "invis",
+        chatCommand: "invis",
+        isCheat: true,
+    },{
         title: "gem",
         chatCommand: "gem",
         isCheat: true,
