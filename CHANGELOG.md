@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 - Returned Pocket Factory (As a single player ability)
 - Swashbuckle now troll combo with Fury Swipes (both of them) and arcane orb
 - 3 Mana Regen custom abilities (Flesh Heap, Survival, Souls) have been disabled until their values can be readjusted
+- Disable an Essence Aura talent that doesnt work
 
 ## 10.8
 - Lifebreak Redux now troll combo with Dispersion
