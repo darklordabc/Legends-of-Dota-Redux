@@ -1463,6 +1463,23 @@ var advancedOptions = {
                     }
                 ]
             },
+            {
+
+                name: 'lodOptionRandomLaneCreeps',
+                des: 'lodOptionDesRandomLaneCreeps',
+                about: 'lodOptionAboutRandomLaneCreeps',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            }, 
         ]
     },
 
@@ -1987,24 +2004,7 @@ var advancedOptions = {
                         value: 1
                     }
                 ]
-            },
-            {
-
-                name: 'lodOptionRandomLaneCreeps',
-                des: 'lodOptionDesRandomLaneCreeps',
-                about: 'lodOptionAboutRandomLaneCreeps',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },           
+            },          
             //{
             //    name: 'lodOptionResurrectAllies',
             //    des: 'lodOptionDesResurrectAllies',
