@@ -141,6 +141,14 @@ Util.commandList = [{
         chatCommand: "invis",
         isCheat: true,
     },{
+        title: "reflect",
+        chatCommand: "reflect",
+        isCheat: true,
+    },{
+        title: "spellblock",
+        chatCommand: "spellblock",
+        isCheat: true,
+    },{
         title: "gem",
         chatCommand: "gem",
         isCheat: true,

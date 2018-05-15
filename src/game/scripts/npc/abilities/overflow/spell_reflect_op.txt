@@ -9,6 +9,16 @@
         "AbilityCooldown"                                                      "20.0 15.0 10.0 5.0"
         "ReduxCost"                                                            "120"
         "ReduxBans"                                                            "spell_reflect"
-        "ReduxFlags"                                                           ""
+    }
+
+    "spell_reflect_cheat"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "MaxLevel"  "1"
+        "ScriptFile"                                                           "abilities/overflow/spell_reflect/passive_cheat.lua"
+        "AbilityTextureName"                                                   "custom/spell_reflect_op"
+        "AbilityCooldown"                                                      "0"
+        "ReduxCost"                                                            "120"
     }
 }

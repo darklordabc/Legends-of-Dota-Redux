@@ -458,6 +458,38 @@ function Commands:OnPlayerChat(keys)
                              
             end, DoUniqueString('cheat'), .1)
 
+        elseif IsCommand("-reflect") then 
+            Timers:CreateTimer(function()
+                local reflect = hero:FindAbilityByName("spell_reflect_cheat")
+
+                if reflect then
+                    hero:RemoveAbility("spell_reflect_cheat")
+                else 
+                    reflectAbility = hero:AddAbility("spell_reflect_cheat")
+                    reflectAbility:SetActivated(true)
+                    reflectAbility:SetLevel(1)
+                    reflectAbility:SetHidden(false)
+                    ingame:CommandNotification("-reflect", 'Cheat Used (-invis): Given Spell Reflect to '.. PlayerResource:GetPlayerName(playerID))
+                end  
+                             
+            end, DoUniqueString('cheat'), .1)
+
+        elseif IsCommand("-spellblock") then 
+            Timers:CreateTimer(function()
+                local block = hero:FindAbilityByName("roshan_spell_block_cheat")
+
+                if block then
+                    hero:RemoveAbility("roshan_spell_block_cheat")
+                else 
+                    blockAbility = hero:AddAbility("roshan_spell_block_cheat")
+                    blockAbility:SetActivated(true)
+                    blockAbility:SetLevel(1)
+                    blockAbility:SetHidden(true)
+                    ingame:CommandNotification("-spellblock", 'Cheat Used (-invis): Given Spell Block to '.. PlayerResource:GetPlayerName(playerID))
+                end  
+                             
+            end, DoUniqueString('cheat'), .1)
+
         elseif (IsCommand("-wtf") and not blockConfliction) or IsCommand("-wtfmenu") then 
             Timers:CreateTimer(function()  
                 print(OptionManager:GetOption('lodOptionCrazyWTF'))

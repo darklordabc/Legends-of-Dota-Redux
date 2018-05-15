@@ -1,0 +1,16 @@
+"DOTAAbilities"
+{
+    "roshan_spell_block_cheat"
+    {
+        "BaseClass" "roshan_spell_block"
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                    "5213"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+        // Time     
+        //-------------------------------------------------------------------------------------------------------------
+        "AbilityCooldown"               "0.0"
+        "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"
+    }
+}

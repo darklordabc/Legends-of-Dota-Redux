@@ -8,7 +8,7 @@ All notable changes to this project will be documented in this file.
 - Swashbuckle now troll combo with Fury Swipes (both of them) and arcane orb
 - 3 Mana Regen custom abilities (Flesh Heap, Survival, Souls) have been disabled until their values can be readjusted
 - Disable an Essence Aura talent that doesnt work
-- Added more cheats to cheat menu: True Sight (-gem), Invisibility (-invis)
+- Added more cheats to cheat menu: True Sight (-gem), Invisibility (-invis), Spell Reflect (-reflect), Spell Block (-spellblock)
 - Shadow Dance is troll combo with its redux version
 - Tempest Double considered an OP ability
 - Made it so a few Redux version of abilities (underpowered) no longer appear if their powerful counterparts are pickable
