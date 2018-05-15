@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 - Added cheat to cheat menu: True Sight (-gem)
 - Shadow Dance is troll combo with its redux version
 - Tempest Double considered an OP ability
+- Made it so a few Redux version of abilities (underpowered) no longer appear if their powerful counterparts are pickable
 
 ## 10.8
 - Lifebreak Redux now troll combo with Dispersion
