@@ -1634,7 +1634,7 @@
         "ReduxFlags"                                                           "mobility"
         "ReduxPerks"                                                           "mobility"
         "ReduxCost"                                                            "50"
-        "ReduxBans"                                                            "tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux"
+        "ReduxBans"                                                            "slark_shadow_dance_redux | tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux"
     }
     "templar_assassin_meld"
     {

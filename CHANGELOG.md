@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - 3 Mana Regen custom abilities (Flesh Heap, Survival, Souls) have been disabled until their values can be readjusted
 - Disable an Essence Aura talent that doesnt work
 - Added cheat to cheat menu: True Sight (-gem)
+- Shadow Dance is troll combo with its redux version
 
 ## 10.8
 - Lifebreak Redux now troll combo with Dispersion
