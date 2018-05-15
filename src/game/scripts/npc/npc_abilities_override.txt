@@ -4542,7 +4542,7 @@
 
     "special_bonus_unique_outworld_devourer_2"
     {
-        "TalentRequiredAbility"                                                   "obsidian_destroyer_essence_aura_redux"
+        "TalentRequiredAbility"                                                   "do_not_give_talent"
     }
 
     "special_bonus_unique_outworld_devourer_3"
