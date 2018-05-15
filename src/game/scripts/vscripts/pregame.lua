@@ -4903,17 +4903,21 @@ end
 -- Player wants to ready up
 function Pregame:onPlayerReady(eventSourceIndex, args)
     print("Pregame:onPlayerReady")
+    CustomGameEventManager:Send_ServerToAllClients("redux_print_debug", { text = "pressed player ready" })
     local playerID = args.PlayerID
     if self:getPhase() ~= constants.PHASE_BANNING and self:getPhase() ~= constants.PHASE_SELECTION and self:getPhase() ~= constants.PHASE_RANDOM_SELECTION and self:getPhase() ~= constants.PHASE_REVIEW and not self:canPlayerPickSkill(playerID) then return end
     if self:isBackgroundSpawning() and self:getPhase() ~= constants.PHASE_BANNING then
         print("\tcase1")
         self:validateBuilds(playerID)
+        CustomGameEventManager:Send_ServerToAllClients("redux_print_debug", { text = "case1: validating" })
     end
     if self:canPlayerPickSkill(playerID) and IsValidEntity(PlayerResource:GetSelectedHeroEntity(args.PlayerID)) then
         print("\tcase2")
+        CustomGameEventManager:Send_ServerToAllClients("redux_print_debug", { text = "case2: ingame building" })
         local hero = PlayerResource:GetSelectedHeroEntity(playerID)
         if IsValidEntity(hero) then
             print("\tcase2 validation")
+            CustomGameEventManager:Send_ServerToAllClients("redux_print_debug", { text = "case2: validation" })
             -- if self.wispSpawning then
                 self:validateBuilds(playerID)
             -- end
@@ -4957,7 +4961,9 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
                 network:hideHeroBuilder(player)
                 return
             end
+            CustomGameEventManager:Send_ServerToAllClients("redux_print_debug", { text = "case2: preparing to precache" })
             PrecacheUnitByNameAsync(newBuild.hero,function (  )
+                CustomGameEventManager:Send_ServerToAllClients("redux_print_debug", { text = "case2: precached" })
                 SkillManager:ApplyBuild(hero, newBuild)
                 local player = PlayerResource:GetPlayer(playerID)
                 network:hideHeroBuilder(player)
