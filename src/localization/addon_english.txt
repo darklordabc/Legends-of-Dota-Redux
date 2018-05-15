@@ -1451,7 +1451,8 @@
 
     "command_menu_command_godMode"                      "Invulnerability"
     "command_menu_command_regen"                        "Fountain Regeneration"
-    "command_menu_command_scepter"                        "Free Scepter"
+    "command_menu_command_scepter"                      "Free Scepter"
+    "command_menu_command_gem"                          "True Sight"
 
 
     //Scoreboard

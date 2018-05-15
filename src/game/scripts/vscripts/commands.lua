@@ -428,6 +428,18 @@ function Commands:OnPlayerChat(keys)
                              
             end, DoUniqueString('cheat'), .1)
 
+         elseif IsCommand("-gem") then 
+            Timers:CreateTimer(function()  
+                local trueSight = hero:FindModifierByName("modifier_tower_truesight_aura")
+                if trueSight then
+                    hero:RemoveModifierByName("modifier_tower_truesight_aura")
+                else
+                    hero:AddNewModifier(hero,nil,"modifier_tower_truesight_aura",{})
+                    ingame:CommandNotification("-gem", 'Cheat Used (-gem): Given True Sight regeneration to '.. PlayerResource:GetPlayerName(playerID)) 
+                end
+                             
+            end, DoUniqueString('cheat'), .1)
+
         elseif (IsCommand("-wtf") and not blockConfliction) or IsCommand("-wtfmenu") then 
             Timers:CreateTimer(function()  
                 print(OptionManager:GetOption('lodOptionCrazyWTF'))
