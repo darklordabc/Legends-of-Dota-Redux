@@ -481,6 +481,21 @@
     "lodOptionAboutAntiBash"                             "Makes it so when a hero is bashed, they cannot be bashed again for 5 seconds"
     "lodMutatorAntiBash"                         "Anti Perma-Stun"
 
+    "lodOptionAntiBash"                                  "Anti Perma-Stun"
+    "lodOptionDesAntiBash"                               "Enable Anti Perma-Stun"
+    "lodOptionAboutAntiBash"                             "Makes it so when a hero is bashed, they cannot be bashed again for 5 seconds"
+    "lodMutatorAntiBash"                         "Anti Perma-Stun"
+
+    "lodOptionNoHealthbars"                             "No Health Bars"
+    "lodOptionDesNoHealthbars"                          "No Health Bars"
+    "lodOptionAboutNoHealthbars"                        "Heroes will no longer show health or mana bars above them."
+    "lodMutatorNoHealthbars"                            "No Health Bars"
+
+    "lodOptionExplodeOnDeath"                             "Explode on Death"
+    "lodOptionDesExplodeOnDeath"                          "Explode on Death"
+    "lodOptionAboutExplodeOnDeath"                        "Heroes will explode upon death. 150 base damage + 25 damage per level dealt in a 300 area of effect."
+    "lodMutatorExplodeOnDeath"                            "Explode on Death"
+
     "lodOptionAntiRat"                                  "Anti-Rat"
     "lodOptionDesAntiRat"                               "Enable Anti-Rat Protection"
     "lodOptionAboutAntiRat"                             "When Anti-Rat is enabled, Tier3 towers cannot be destroyed unless all the outer towers are dead. Also, towers with backdoor protection cannot be damaged."

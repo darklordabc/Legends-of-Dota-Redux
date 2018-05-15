@@ -504,7 +504,7 @@ var basicOptions = {
                         name: 'lodOptionKillStreakPower',
                         extraInfo: 'lodOptionAboutKillStreakPower',
                         about: 'lodMutatorKillStreakPower'
-                    },
+                    }, 
                     {
                         name: 'lodOptionCooldownReduction',
                         extraInfo: 'lodOptionAboutCooldownReduction',
@@ -512,17 +512,17 @@ var basicOptions = {
                     },
                     {
                         name: 'lodOptionExplodeOnDeath',
-                        extraInfo: 'lodOptionAboutExplodeOnDeath',
+                        //extraInfo: 'lodOptionAboutExplodeOnDeath',
                         about: 'lodMutatorExplodeOnDeath'
                     },
                     {
                         name: 'lodOptionGoldDropOnDeath',
-                        extraInfo: 'lodOptionAboutGoldDropOnDeath',
+                        //extraInfo: 'lodOptionAboutGoldDropOnDeath',
                         about: 'lodMutatorGoldDropOnDeath'
                     },
                     {
                         name: 'lodOptionNoHealthbars',
-                        extraInfo: 'lodOptionAboutNoHealthbars',
+                        //extraInfo: 'lodOptionAboutNoHealthbars',
                         about: 'lodMutatorNoHealthbars'
                     },
                     {
