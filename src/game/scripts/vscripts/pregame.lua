@@ -513,6 +513,9 @@ function Pregame:init()
     Timers:CreateTimer(function()
         if util:isSinglePlayerMode() then
             self:setOption('lodOptionBanningUseBanList', 0, true)
+            self:setOption("lodOptionNewAbilitiesBonusGold", 0, true)
+            self:setOption("lodOptionGlobalNewAbilitiesBonusGold", 0, true)
+            self:setOption("lodOptionBalancedBuildBonusGold", 0, true)
         end
     end, DoUniqueString('checkSinglePlayer'), 1.5)
 
