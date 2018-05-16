@@ -67,13 +67,18 @@ function modifier_random_spell_mutator.OnIntervalThink(self)
             if (bit.band(ability:GetBehavior(),DOTA_ABILITY_BEHAVIOR_UNIT_TARGET))==DOTA_ABILITY_BEHAVIOR_UNIT_TARGET then
                 unit:SetCursorCastTarget(hero)
                 ability:OnSpellStart()
+                --unit:CastAbilityOnTarget( hero, ability, -1 )
             else
                 if (bit.band(ability:GetBehavior(),DOTA_ABILITY_BEHAVIOR_POINT))==DOTA_ABILITY_BEHAVIOR_POINT then
+                    unit:SetCursorCastTarget(hero)
                     unit:SetCursorPosition(hero:GetAbsOrigin())
                     ability:OnSpellStart()
+
+                    --unit:CastAbilityOnPosition( hero:GetAbsOrigin(), ability, -1 )
                 else
                     if (bit.band(ability:GetBehavior(),DOTA_ABILITY_BEHAVIOR_NO_TARGET))==DOTA_ABILITY_BEHAVIOR_NO_TARGET then
                         ability:OnSpellStart()
+                        --unit:CastAbilityNoTarget(ability,-1)
                     end
                 end
             end

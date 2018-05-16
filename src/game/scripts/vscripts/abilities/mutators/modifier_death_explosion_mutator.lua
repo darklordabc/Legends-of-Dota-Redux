@@ -31,10 +31,13 @@ function modifier_death_explosion_mutator.DeclareFunctions(self)
 end
 function modifier_death_explosion_mutator.OnDeath(self,kv)
     if self:GetParent()==kv.unit then
-        local p = ParticleManager:CreateParticle("particles/units/heroes/hero_undying/undying_tombstone_spawn.vpcf",PATTACH_POINT,self:GetParent())
+        local origin = kv.unit:GetAbsOrigin()
+        local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_techies/techies_remote_mines_detonate.vpcf", PATTACH_ABSORIGIN, self:GetParent())
+        ParticleManager:SetParticleControl(particle, 0, origin)
+        ParticleManager:SetParticleControl(particle, 1, origin)
+        ParticleManager:SetParticleControl(particle, 2, Vector(self.aoe, 1, 1))
+        ParticleManager:ReleaseParticleIndex(particle)
 
-        ParticleManager:SetParticleControl(p,0,self:GetParent():GetAbsOrigin())
-        ParticleManager:ReleaseParticleIndex(p)
         local damageTable = {damage=self.damage_base+(self.damage_per_level*self:GetParent():GetLevel()),attacker=self:GetParent(),victim=self:GetParent(),damage_type=DAMAGE_TYPE_MAGICAL}
 
         local units = FindUnitsInRadius(DOTA_TEAM_NEUTRALS,self:GetParent():GetAbsOrigin(),nil,self.aoe,DOTA_UNIT_TARGET_TEAM_BOTH,DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC,DOTA_UNIT_TARGET_FLAG_NONE,FIND_ANY_ORDER,false)

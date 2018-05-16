@@ -30,7 +30,7 @@ function modifier_killstreak_mutator_redux.OnDeath(self,kv)
     if self:GetParent()==kv.unit then
         self:SetStackCount(0)
     else
-        if self:GetParent()==kv.attacker then
+        if self:GetParent()==kv.attacker and kv.unit:IsRealHero() then
             self:IncrementStackCount()
         end
     end
