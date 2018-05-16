@@ -469,7 +469,7 @@ function Commands:OnPlayerChat(keys)
                     reflectAbility:SetActivated(true)
                     reflectAbility:SetLevel(1)
                     reflectAbility:SetHidden(false)
-                    ingame:CommandNotification("-reflect", 'Cheat Used (-invis): Given Spell Reflect to '.. PlayerResource:GetPlayerName(playerID))
+                    ingame:CommandNotification("-reflect", 'Cheat Used (-reflect): Given Spell Reflect to '.. PlayerResource:GetPlayerName(playerID))
                 end  
                              
             end, DoUniqueString('cheat'), .1)
@@ -485,7 +485,7 @@ function Commands:OnPlayerChat(keys)
                     blockAbility:SetActivated(true)
                     blockAbility:SetLevel(1)
                     blockAbility:SetHidden(true)
-                    ingame:CommandNotification("-spellblock", 'Cheat Used (-invis): Given Spell Block to '.. PlayerResource:GetPlayerName(playerID))
+                    ingame:CommandNotification("-spellblock", 'Cheat Used (-spellblock): Given Spell Block to '.. PlayerResource:GetPlayerName(playerID))
                 end  
                              
             end, DoUniqueString('cheat'), .1)
@@ -517,7 +517,7 @@ function Commands:OnPlayerChat(keys)
                     globalcastAbility:SetActivated(true)
                     globalcastAbility:SetLevel(1)
                     globalcastAbility:SetHidden(false)
-                    ingame:CommandNotification("-spellblock", 'Cheat Used (-cooldown): Given global cast range to '.. PlayerResource:GetPlayerName(playerID))
+                    ingame:CommandNotification("-spellblock", 'Cheat Used (-globalcast): Given global cast range to '.. PlayerResource:GetPlayerName(playerID))
                 end  
                              
             end, DoUniqueString('cheat'), .1)
