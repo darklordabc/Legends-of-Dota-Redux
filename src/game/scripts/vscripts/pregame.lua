@@ -5121,39 +5121,6 @@ function Pregame:checkForReady()
     end
 end
 
--- Track local stats
-function Pregame:onPlayerSaveStats(playerID, abilities)
-    -- Grab data
-    local player = PlayerResource:GetPlayer(playerID)
-
-    if PlayerResource:GetSteamAccountID(playerID) == 0 then
-        return
-    end
-
-    local i = 1
-    local function statsQueue()
-        local abName = abilities[i]
-
-        if abName then
-            localStorage:getKey(playerID, "redux_stats", abName, function (sequenceNumber, success, value)
-                -- local value = 0
-                if success then
-                    value = (tonumber(value) or 0) + 1
-                else
-                    value = 1
-                end
-                localStorage:setKey(playerID, "redux_stats", abName, value, function (sequenceNumber, success)
-                    if i < 23 then
-                        i = i + 1
-                        statsQueue()
-                    end
-                end)
-            end)
-        end
-    end
-    statsQueue()
-end
-
 -- Player wants to ban an ability
 function Pregame:onPlayerSaveBans(eventSourceIndex, args)
     -- Grab data
