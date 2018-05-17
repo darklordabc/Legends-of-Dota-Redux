@@ -42,9 +42,21 @@ function modifier_death_explosion_mutator.OnDeath(self,kv)
 
         local units = FindUnitsInRadius(DOTA_TEAM_NEUTRALS,self:GetParent():GetAbsOrigin(),nil,self.aoe,DOTA_UNIT_TARGET_TEAM_BOTH,DOTA_UNIT_TARGET_HERO+DOTA_UNIT_TARGET_BASIC,DOTA_UNIT_TARGET_FLAG_NONE,FIND_ANY_ORDER,false)
 
+        local knockback_param ={   
+            should_stun = 0,
+            knockback_duration = 0.5,
+            duration = 0.5,
+            knockback_distance = 250,
+            knockback_height = 0,
+            center_x = origin.x,
+            center_y = origin.y,
+            center_z = origin.z
+        }
+
         TS_forEach(units, function(unit)
             damageTable.victim=unit
             ApplyDamage(damageTable)
+            unit:AddNewModifier(nil,nil,"modifier_knockback",knockback_param)
         end
         )   
         

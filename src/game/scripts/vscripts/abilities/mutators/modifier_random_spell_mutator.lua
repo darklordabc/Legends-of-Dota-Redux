@@ -63,26 +63,28 @@ function modifier_random_spell_mutator.OnIntervalThink(self)
 
         local targets = FindUnitsInRadius(DOTA_TEAM_NEUTRALS,Vector(0,0,0),nil,100000,DOTA_UNIT_TARGET_TEAM_BOTH,DOTA_UNIT_TARGET_HERO,DOTA_UNIT_TARGET_FLAG_NONE,FIND_ANY_ORDER,false)
 
+
+
         TS_forEach(targets, function(hero)
+            if ability:GetAbilityTargetTeam() == DOTA_UNIT_TARGET_TEAM_FRIENDLY then
+                unit:SetTeam(hero:GetTeam())
+            else
+                unit:SetTeam(DOTA_TEAM_NEUTRALS )
+            end
+
             if (bit.band(ability:GetBehavior(),DOTA_ABILITY_BEHAVIOR_UNIT_TARGET))==DOTA_ABILITY_BEHAVIOR_UNIT_TARGET then
                 unit:SetCursorCastTarget(hero)
                 ability:OnSpellStart()
                 --unit:CastAbilityOnTarget( hero, ability, -1 )
-            else
-                if (bit.band(ability:GetBehavior(),DOTA_ABILITY_BEHAVIOR_POINT))==DOTA_ABILITY_BEHAVIOR_POINT then
-                    unit:SetCursorCastTarget(hero)
-                    unit:SetCursorPosition(hero:GetAbsOrigin())
-                    ability:OnSpellStart()
-
-                    --unit:CastAbilityOnPosition( hero:GetAbsOrigin(), ability, -1 )
-                else
-                    if (bit.band(ability:GetBehavior(),DOTA_ABILITY_BEHAVIOR_NO_TARGET))==DOTA_ABILITY_BEHAVIOR_NO_TARGET then
-                        ability:OnSpellStart()
-                        --unit:CastAbilityNoTarget(ability,-1)
-                    end
-                end
+            elseif (bit.band(ability:GetBehavior(),DOTA_ABILITY_BEHAVIOR_POINT))==DOTA_ABILITY_BEHAVIOR_POINT then
+                unit:SetCursorCastTarget(hero)
+                unit:SetCursorPosition(hero:GetAbsOrigin())
+                ability:OnSpellStart()
+                --unit:CastAbilityOnPosition( hero:GetAbsOrigin(), ability, -1 )
+            elseif (bit.band(ability:GetBehavior(),DOTA_ABILITY_BEHAVIOR_NO_TARGET))==DOTA_ABILITY_BEHAVIOR_NO_TARGET then
+                ability:OnSpellStart()
+                --unit:CastAbilityNoTarget(ability,-1)
             end
-        end
-)
+        end)
     end
 end
