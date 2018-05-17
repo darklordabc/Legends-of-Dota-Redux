@@ -32,7 +32,6 @@ require('statcollection.init')
 local Debug = require('lod_debug')              -- Debug library with helper functions, by Ash47
 local challenge = require('challenge')
 local ingame = require('ingame')
-local localStorage = require("lib/LocalStorage")
 require('lib/wearables')
 
 -- This should alone be used if duels are on.
@@ -1486,7 +1485,7 @@ function Pregame:setWispMethod()
     else
         GameRules:GetGameModeEntity():SetCustomGameForceHero("npc_dota_hero_wisp")
         self.wispSpawning = true
-    end 
+    end
 end
 
 -- Called to prepare to get player data when someone connects
@@ -3835,7 +3834,7 @@ end]]
 -- Validates builds
 function Pregame:validateBuilds(specificID)
     if not specificID or self.validatedBuilds then return end
-    self.validatedBuilds = true 
+    self.validatedBuilds = true
 
     -- Generate 10 builds
     local minPlayerID = 0
@@ -6032,7 +6031,7 @@ function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
     -- Grab data
     local playerID = args.PlayerID
     local player = PlayerResource:GetPlayer(playerID)
-    
+
     -- Ensure we are in the picking phase
     if self:getPhase() ~= constants.PHASE_SELECTION and not self:canPlayerPickSkill(playerID) then
         network:sendNotification(player, {
@@ -6217,7 +6216,7 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
             local draftArray = self.draftArrays[draftID] or {}
             local heroDraft = draftArray.heroDraft or {}
             local abilityDraft = draftArray.abilityDraft or {}
-            
+
             -- if self.maxDraftHeroes > 0 then
             --     local heroName = self.abilityHeroOwner[abilityName]
 
@@ -6278,7 +6277,7 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
                     powerfulPassives = powerfulPassives + 1
                 end
             end
-			
+
 	    if (SkillManager:isPassive(abilityName) or self.flags["semi_passive"][abilityName] ~= nil) then
 		powerfulPassives = powerfulPassives + 1
 	    end
@@ -6834,7 +6833,7 @@ end
 -- Generate builds for bots
 function Pregame:generateBotBuilds()
     if OptionManager:GetOption('mapname') ~= "custom_bot" then return end
-    
+
     -- Ensure bots are actually enabled
     if not self.enabledBots then return end
 
@@ -7793,7 +7792,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
             --        end
             --    end
             --end
-				
+
              -- 'No Charges' fix for Tiny Toss
             if spawnedUnit:HasAbility('tiny_toss') then
                 Timers:CreateTimer(function()
@@ -7970,7 +7969,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
     if OptionManager:GetOption('extraAbility') > 0 then
         Timers:CreateTimer(function (  )
             self:applyExtraAbility(spawnedUnit)
-        end, DoUniqueString('giveExtraAbility'), 0.1) 
+        end, DoUniqueString('giveExtraAbility'), 0.1)
     end
 
     if OptionManager:GetOption('freeCourier') then
@@ -8070,7 +8069,7 @@ function Pregame:fixSpawningIssues()
                         if not self.handled[spawnedUnit] then
                             local mainHero = PlayerResource:GetSelectedHeroEntity(playerID)
                             local heroName = self.selectedHeroes[playerID] or self:getRandomHero()
-                            
+
                             mainHero = PlayerResource:ReplaceHeroWith(playerID,heroName,0,0)
 
                             if IsValidEntity(mainHero) then
@@ -8101,9 +8100,9 @@ function Pregame:fixSpawningIssues()
                     roshan_bash = true,
                     arc_warden_tempest_double = true,    -- This is to stop tempest doubles from getting the ability and using cooldown reduction to cast again
                     arc_warden_tempest_double_redux = true,
-                    aabs_thunder_musket = true,   
-                    mirana_starfall_lod = true,    -- This is buggy with tempest doubles for some reason   
-                    warlock_rain_of_chaos = true,    -- This is buggy with tempest doubles for some reason 
+                    aabs_thunder_musket = true,
+                    mirana_starfall_lod = true,    -- This is buggy with tempest doubles for some reason
+                    warlock_rain_of_chaos = true,    -- This is buggy with tempest doubles for some reason
                 }
 
                 -- Apply the build

@@ -5,7 +5,6 @@
         <include src="file://{resources}/scripts/custom_game/util.js" />
         <include src="file://{resources}/scripts/custom_game/stat_uploader.js" />
         <include src="file://{resources}/scripts/custom_game/ability_costs.js" />
-        <include src="file://{resources}/scripts/ModDota/LocalStorage.js" />
 
         <include src="file://{resources}/scripts/custom_game/ui_hack.js" />
         <include src="file://{resources}/scripts/custom_game/camera_zoom.js" />
