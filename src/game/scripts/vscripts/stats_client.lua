@@ -6,7 +6,7 @@ StatsClient.PlayerBans = StatsClient.PlayerBans or {}
 -- Change to true if you have local server running, so contributors without local server can see some things
 StatsClient.Debug = IsInToolsMode() and false
 StatsClient.ServerAddress = StatsClient.Debug and
-    "http://127.0.0.1:3333/" or
+    "http://127.0.0.1:8080/" or
     "http://lodr-lodr.1d35.starter-us-east-1.openshiftapps.com/"
 
 StatsClient.GameVersion = LoadKeyValues('addoninfo.txt').version
