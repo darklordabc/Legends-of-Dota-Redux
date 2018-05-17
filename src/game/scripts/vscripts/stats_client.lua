@@ -1,7 +1,10 @@
 StatsClient = StatsClient or class({})
 JSON = JSON or require("lib/json")
 StatsClient.AbilityData = StatsClient.AbilityData or {}
-StatsClient.Debug = IsInToolsMode() and false -- Change to true if you have local server running, so contributors without local server can see some things
+StatsClient.PlayerBans = StatsClient.PlayerBans or {}
+
+-- Change to true if you have local server running, so contributors without local server can see some things
+StatsClient.Debug = IsInToolsMode() and false
 StatsClient.ServerAddress = StatsClient.Debug and
     "http://127.0.0.1:3333/" or
     "http://lodr-lodr.1d35.starter-us-east-1.openshiftapps.com/"
@@ -32,6 +35,11 @@ function StatsClient:SubscribeToClientEvents()
     end)
 
     ListenToGameEvent('dota_match_done', Dynamic_Wrap(StatsClient, "SendAbilityUsageData"), self)
+end
+
+function StatsClient:Fetch()
+    StatsClient:FetchAbilityUsageData()
+    StatsClient:FetchBans()
 end
 
 function StatsClient:CreateSkillBuild(args)
@@ -187,6 +195,34 @@ end
 
 function StatsClient:GetAbilityUsageData(playerID)
     return StatsClient.AbilityData[playerID]
+end
+
+function StatsClient:SendBans(data, callback)
+    StatsClient:Send("saveBans", data, callback, math.huge)
+end
+
+function StatsClient:FetchBans()
+    local required = {}
+
+    for i = 0, DOTA_MAX_TEAM_PLAYERS do
+        if PlayerResource:IsValidPlayerID(i) then
+            required[i] = PlayerResource:GetRealSteamID(i)
+        end
+    end
+
+    StatsClient:Send("fetchBans", required, function(response)
+        for playerID, value in pairs(response) do
+            StatsClient:SetBans(tonumber(playerID), value)
+        end
+    end, math.huge)
+end
+
+function StatsClient:GetBans(playerID)
+    return StatsClient.PlayerBans[playerID]
+end
+
+function StatsClient:SetBans(playerID, value)
+    StatsClient.PlayerBans[playerID] = value
 end
 
 function StatsClient:Send(path, data, callback, retryCount, protocol, _currentRetry)

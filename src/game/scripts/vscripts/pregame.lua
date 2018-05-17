@@ -1095,7 +1095,7 @@ function Pregame:onThink()
 
             Chat:Say( {channel = "all", msg = "chatChannelsAnnouncement", PlayerID = -1, localize = true})
 
-            StatsClient:FetchAbilityUsageData()
+            StatsClient:Fetch()
 
             -- Are we using option selection, or option voting?
             if self.useOptionVoting then
@@ -5125,69 +5125,56 @@ end
 function Pregame:onPlayerSaveBans(eventSourceIndex, args)
     -- Grab data
     local playerID = args.PlayerID
-    local player = PlayerResource:GetPlayer(playerID)
 
     local count = (self.optionStore['lodOptionBanningMaxBans'] + self.optionStore['lodOptionBanningMaxHeroBans'])
-
     if count == 0 and self.optionStore['lodOptionBanningHostBanning'] > 0 then
         count = util:getTableLength(self.playerBansList[playerID])
     end
 
-    local id = 0
-
-    if self.playerBansList[playerID] then
-        local i = 0
-        repeat
-            i = i + 1
-            local tempI = i
-            localStorage:setKey(playerID, "bans", tostring(tempI), "", function (sequenceNumber, success)
-                localStorage:setKey(playerID, "bans", tostring(tempI), self.playerBansList[playerID][tempI] or "", function (sequenceNumber, success)
-                    id = id + 1
-                    if id == #self.playerBansList[playerID] then
-                        CustomGameEventManager:Send_ServerToPlayer(player,"lodNotification",{text = 'lodSuccessSavedBans', params = {['entries'] = id}})
-                    end
-                end)
-            end)
-        until
-            i > count
+    local selectedData = {}
+    for i = 1, count do
+        selectedData[i] = self.playerBansList[playerID][i]
     end
+
+    StatsClient:SetBans(playerID, selectedData)
+    StatsClient:SendBans({ steamid = PlayerResource:GetRealSteamID(playerID), bans = selectedData }, function()
+        CustomGameEventManager:Send_ServerToPlayer(
+            PlayerResource:GetPlayer(playerID),
+            "lodNotification",
+            { text = 'lodSuccessSavedBans', params = { entries = #selectedData } }
+        )
+    end)
 end
 
 -- Player wants to ban an ability
 function Pregame:onPlayerLoadBans(eventSourceIndex, args)
     -- Grab data
     local playerID = args.PlayerID
-    local player = PlayerResource:GetPlayer(playerID)
+    local bans = StatsClient:GetBans(playerID)
+    if bans == nil then return end
 
-    local id = 0
+    local lodOptionBanningHostBanning = self.optionStore['lodOptionBanningHostBanning'] and self.optionStore['lodOptionBanningHostBanning'] > 0
+    local lodOptionBanningMaxBans = self.optionStore['lodOptionBanningMaxBans']
 
-    local count = (self.optionStore['lodOptionBanningMaxBans'] + self.optionStore['lodOptionBanningMaxHeroBans'])
+    local count = self.optionStore['lodOptionBanningMaxBans'] + self.optionStore['lodOptionBanningMaxHeroBans']
+    if count == 0 and lodOptionBanningHostBanning then count = 1000 end
 
-    if count == 0 and self.optionStore['lodOptionBanningHostBanning'] > 0 then
-        count = 1000
+    local n = 1
+    while bans[n] do
+        local value = bans[n]
+        if string.match(value, "npc_dota_hero_") and not self.bannedHeroes[value] and (lodOptionBanningHostBanning or not self.usedBans[playerID] or self.usedBans[playerID].heroBans < lodOptionBanningMaxBans) then
+            self:onPlayerBan(0, { PlayerID = playerID, heroName = value }, true)
+        elseif not self.bannedAbilities[value] and (lodOptionBanningHostBanning or not self.usedBans[playerID] or self.usedBans[playerID].abilityBans < lodOptionBanningMaxBans) then
+            self:onPlayerBan(0, { PlayerID = playerID, abilityName = value }, true)
+        end
+        n = n + 1
     end
 
-    for i=1,count do
-        localStorage:getKey(playerID, "bans", tostring(i), function (sequenceNumber, success, value)
-            if success and value and value ~= "" then
-                if string.match(value, "npc_dota_hero_") and not self.bannedHeroes[value] and (self.optionStore['lodOptionBanningHostBanning'] > 0 or not self.usedBans[playerID] or self.usedBans[playerID].heroBans < self.optionStore['lodOptionBanningMaxBans']) then
-                    self:onPlayerBan(0, {
-                        PlayerID = playerID,
-                        heroName = value
-                        }, true)
-                elseif not self.bannedAbilities[value] and (self.optionStore['lodOptionBanningHostBanning'] > 0 or not self.usedBans[playerID] or self.usedBans[playerID].abilityBans < self.optionStore['lodOptionBanningMaxBans']) then
-                    self:onPlayerBan(0, {
-                        PlayerID = playerID,
-                        abilityName = value
-                        }, true)
-                end
-                id = id + 1
-            end
-            if not success or i == count then
-                CustomGameEventManager:Send_ServerToPlayer(player,"lodNotification",{text = "lodSuccessLoadBans", params = {['entries'] = id}})
-            end
-        end)
-    end
+    CustomGameEventManager:Send_ServerToPlayer(
+        PlayerResource:GetPlayer(playerID),
+        "lodNotification",
+        { text = "lodSuccessLoadBans", params = { entries = n } }
+    )
 end
 
 -- Player wants to ban an ability
