@@ -5136,8 +5136,14 @@
         "DOTA_Tooltip_ability_jingtong_cheat" "No Cooldowns"
         "DOTA_Tooltip_ability_jingtong_cheat_Description" "Cheat: No Cooldowns for abilities or items."
 
-        "DOTA_Tooltip_ability_aether_range_lod_global" "Global Cast Range"
-        "DOTA_Tooltip_ability_aether_range_lod_global_Description" "Cheat: Can cast spells globally."
+        "DOTA_Tooltip_ability_aether_range_lod_global" "Extreme Cast Range"
+        "DOTA_Tooltip_ability_aether_range_lod_global_Description" "Spells have a much greater cast range."
+
+        "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_passive_one"                                    "Nothl Protection IMBA"
+        "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_passive_one_Description"                        "If Dazzle is mortally wounded, <font color='#70EA72'>Nothl Protection will trigger automatically</font>. No matter how close to death, Dazzle cannot die while under its protection. Nothl Protection needs to cool down for some time after activation."
+        "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_passive_one_Note0"                              "Damage which would not kill the target is not counted for Gravely mistaken."
+        "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_passive_one_Lore"                               "Only a seasoned acolyte of the Shadow can properly perform the rite of preventing death."
+        "DOTA_Tooltip_ability_imba_dazzle_shallow_grave_passive_one_duration"                   "DURATION:"
 
         
 

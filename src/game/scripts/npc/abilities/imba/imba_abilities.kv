@@ -181,6 +181,152 @@
 		}
 	}
 
+	"imba_dazzle_shallow_grave_passive_one"
+    {
+        "BaseClass"                                                            "ability_datadriven"
+        "MaxLevel"                                                             "1"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"                                                "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"                                                "DOTA_UNIT_TARGET_HERO"
+        "SpellImmunityType"                                                    "SPELL_IMMUNITY_ALLIES_YES"
+        "FightRecapLevel"                                                      "1"
+        "AbilityTextureName"                                                   "custom/dazzle_nothl_protection"
+        "precache"
+        {
+            "soundfile"                                                    "soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
+            "particle"                                                     "particles/units/heroes/hero_dazzle/dazzle_shallow_grave.vpcf"
+        }
+        "AbilityCooldown"                                                      "50.0"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"                                             "FIELD_INTEGER"
+                "min_health"                                           "2"
+            }
+            "02"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "passive_cooldown_scepter"                             "50.0"
+            }
+            "03"
+            {
+                "var_type"                                             "FIELD_FLOAT"
+                "passive_duration"                                     "3.5"
+            }
+        }
+        "OnSpellStart"
+        {
+            "RunScript"
+            {
+                "ScriptFile"                                           "abilities/hero_dazzle.lua"
+                "Function"                                             "ShallowGraveDamageTrigger"
+                "modifier_passive"                                     "modifier_imba_shallow_grave_passive"
+                "modifier_grave"                                       "modifier_imba_shallow_grave"
+            }
+        }
+        "Modifiers"
+        {
+            "modifier_imba_shallow_grave_passive_check"
+            {
+                "Passive"                                              "1"
+                "IsHidden"                                             "1"
+                "IsBuff"                                               "1"
+                "IsPurgable"                                           "0"
+                "ThinkInterval"                                        "0.1"
+                "OnIntervalThink"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/hero_dazzle.lua"
+                        "Function"                             "ShallowGravePassive"
+                        "Target"                               "CASTER"
+                        "modifier_passive"                     "modifier_imba_shallow_grave_passive"
+                        "modifier_cooldown"                    "modifier_imba_shallow_grave_passive_cooldown"
+                    }
+                }
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "lib/util_imba.lua"
+                        "Function"                             "IllusionPassiveRemover"
+                        "modifier"                             "modifier_imba_shallow_grave_passive_check"
+                    }
+                }
+            }
+            "modifier_imba_shallow_grave"
+            {
+                "Passive"                                              "0"
+                "IsBuff"                                               "1"
+                "IsHidden"                                             "0"
+                "IsPurgable"                                           "0"
+                "EffectName"                                           "particles/units/heroes/hero_dazzle/dazzle_shallow_grave.vpcf"
+                "EffectAttachType"                                     "follow_origin"
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MIN_HEALTH"                 "%min_health"
+                }
+                "OnCreated"
+                {
+                    "FireSound"
+                    {
+                        "EffectName"                           "Hero_Dazzle.Shallow_Grave"
+                        "Target"                               "TARGET"
+                    }
+                }
+                "OnTakeDamage"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/hero_dazzle.lua"
+                        "Function"                             "ShallowGraveDamageStorage"
+                        "DamageTaken"                          "%attack_damage"
+                    }
+                }
+            }
+            "modifier_imba_shallow_grave_passive"
+            {
+                "Passive"                                              "0"
+                "IsBuff"                                               "1"
+                "IsHidden"                                             "0"
+                "IsPurgable"                                           "0"
+                "TextureName"                                          "dazzle_nothl_protection"
+                "Attributes"                                           "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+                "OnTakeDamage"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"                           "abilities/hero_dazzle.lua"
+                        "Function"                             "ShallowGraveDamageCheck"
+                        "modifier_grave"                       "modifier_imba_shallow_grave"
+                    }
+                }
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_MIN_HEALTH"                 "%min_health"
+                }
+            }
+            "modifier_imba_shallow_grave_passive_cooldown"
+            {
+                "IsHidden"                                             "0"
+                "IsDebuff"                                             "1"
+                "IsPurgable"                                           "0"
+                "TextureName"                                          "dazzle_shallow_grave_cooldown"
+                "Attributes"                                           "MODIFIER_ATTRIBUTE_PERMANENT"
+                "OnDestroy"
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"                         "modifier_imba_shallow_grave_passive_check"
+                        "Target"                               "CASTER"
+                    }
+                }
+            }
+        }
+        "ReduxFlags"                                                           "doNotRandom"
+    }
+
 	//=================================================================================================================
 	// Super Ranged Lane Creep Upgrade
 	//=================================================================================================================
