@@ -841,7 +841,7 @@
     "hintGoldBorder"  "Ultimate Abilities have a gold border."
     "hintAntiKamikaze"  "Anti-Kamikaze mechanic: If you die more than 3 times within 60 seconds, you will be penalized with extra respawn time. This is to prevent players taking advantage of lowered respawn."
     "hintChatCheats"  "You can use cheats in any single player game (even without sv_cheats enabled) like: '-gold x' '-lvlup x' '-lvlmax' '-dagger' '-teleport' '-startgame' '-respawn' '-refresh' '-item x'"
-    "hintSilver"                         "Silver is new item that can break passives. It cost 2850 gold and is made from an Ultimate Orb and a Recipe"
+    "hintSilver"                         "Silver is new item that can break passives. It is made from an Ultimate Orb and a consumable item"
 
     // Perk-related Hints
     "hintLina"                          "Lina's intelligence increases by 3 for each level put in Fire abilities"
@@ -1496,6 +1496,7 @@
     ////////////////
     "warning_mercy_angelic_descent"   "<font color=\'#FF4949\'>Warning:</font> Removes the ability to physically attack.\n"
     "warning_morphling_replicate"   "<font color=\'#FF4949\'>Warning:</font> Buggy."
+    "warning_imba_queenofpain_blink"   "<font color=\'#FF4949\'>Warning:</font> Swift Encore requires Scream of Pain IMBA being leveled."
     "warning_axe_counter_helix"   "<font color=\'#FF4949\'>Warning:</font> Does not work on illusions."
     "warning_imba_tower_plasma_field"   "<font color=\'#FF4949\'>Warning:</font> Requies an extra ability slot. If you have many side abilities (including hidden abilities), this ability will not work."
     "warning_keeper_of_the_light_spirit_form"   "<font color=\'#FF4949\'>Warning:</font> Will not give additional abilities.<br><font color=\'#FF4949\'>Hero Requirement:</font> You have to play as <font color=\'#70EA72\'>Elazor</font> to get Aghanim's Scepter bonuses."
@@ -1532,7 +1533,7 @@
     "warning_shredder_chakram" "<font color=\'#FF4949\'>Warning:</font> Aghanim's Scepter will not give <font color=\'#70EA72\'>Second Chakram</font> as an extra ability.</font>"
     "warning_shredder_chakram_2" "<font color=\'#FF4949\'>Warning:</font> Requires original <font color=\'#70EA72\'>Chakram.</font>"
     "warning_spectre_haunt" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Reality.</font>"
-    "warning_imba_abaddon_aphotic_shield" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Overchannel.</font>"
+    "warning_imba_abaddon_aphotic_shield" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Overchannel.</font> Cursed Shield requires having levels in Curse of Avernus IMBA."
     "warning_imba_abaddon_mist_coil" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Overchannel.</font>"
     "warning_shadow_demon_shadow_poison" "<font color=\'#FF4949\'>Warning:</font> Gives <font color=\'#70EA72\'>Shadow Poison Release.</font>"
     "warning_nevermore_requiem" "<font color=\'#FF4949\'>Warning:</font> Requires <font color=\'#70EA72\'>Necromastery</font> and stored souls to do damage."
