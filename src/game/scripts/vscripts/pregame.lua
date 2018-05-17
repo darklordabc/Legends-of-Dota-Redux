@@ -4105,8 +4105,8 @@ function Pregame:processOptions()
 
         -- All extra ability mutator stuff
         if this.optionStore['lodOptionExtraAbility'] == 1 then
-            self.freeAbility = "gemini_unstable_rift_one"
-            this:banAbility("gemini_unstable_rift")
+            self.freeAbility = "basic_spell_amp_bonus_op"
+            this:banAbility("basic_spell_amp_bonus_op")
         elseif this.optionStore['lodOptionExtraAbility'] == 2 then
             self.freeAbility = "imba_dazzle_shallow_grave_passive_one"
             this:banAbility("imba_dazzle_shallow_grave_passive")

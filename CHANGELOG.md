@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## 11
 - Fixed Nothl Protection Bonus ability mutator
+- Replaced Unstable Rift Bonus ability mutator with Spell Amp bonus ability
+- Fixed Bots getting "Generic" blank abilities
+- Fixed Bonus abilities not being applied after changing builds
 
 ## 10.9
 - Made Morph a single player ability because its currently buggy

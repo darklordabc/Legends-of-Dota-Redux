@@ -149,7 +149,7 @@
     "lodMutatorUpgradedUlts"                        "Free Scepter"
     "lodMutatorUpgradedUltsNoBots"                  "Free Scepter (Humans Only)"
     "lodMutatorFreeAbility"                         "Bonus Ability"
-    "lodMutatorSliders"                             "Unstable Rift"
+    "lodMutatorSliders"                             "Spell Amp"
     "lodMutatorNothl"                               "Nothl Protection"
     "lodMutatorMonkeyBusiness"                      "Forest Maker"
     "lodMutatorFleashHeaps"                         "Random Flesh Heap"
