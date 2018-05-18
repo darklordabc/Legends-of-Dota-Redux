@@ -501,7 +501,7 @@ function Commands:OnPlayerChat(keys)
                     cooldownAbility:SetActivated(true)
                     cooldownAbility:SetLevel(1)
                     cooldownAbility:SetHidden(false)
-                    ingame:CommandNotification("-spellblock", 'Cheat Used (-cooldown): Given No Cooldowns to '.. PlayerResource:GetPlayerName(playerID))
+                    ingame:CommandNotification("-cooldown", 'Cheat Used (-cooldown): Given No Cooldowns to '.. PlayerResource:GetPlayerName(playerID))
                 end  
                              
             end, DoUniqueString('cheat'), .1)
@@ -517,7 +517,7 @@ function Commands:OnPlayerChat(keys)
                     globalcastAbility:SetActivated(true)
                     globalcastAbility:SetLevel(1)
                     globalcastAbility:SetHidden(false)
-                    ingame:CommandNotification("-spellblock", 'Cheat Used (-globalcast): Given global cast range to '.. PlayerResource:GetPlayerName(playerID))
+                    ingame:CommandNotification("-globalcast", 'Cheat Used (-globalcast): Given global cast range to '.. PlayerResource:GetPlayerName(playerID))
                 end  
                              
             end, DoUniqueString('cheat'), .1)
