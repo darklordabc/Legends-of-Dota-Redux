@@ -4252,7 +4252,7 @@
     "DOTA_Tooltip_modifier_akron_explosion_burn"    "Living Bomb"
     "DOTA_Tooltip_modifier_akron_explosion_burn_Description"    "This unit is taking damage."
 
-    "DOTA_Tooltip_ability_paladin_impregnability"   "Guardian Angel"
+    "DOTA_Tooltip_ability_paladin_impregnability"   "Guardian Light"
     "DOTA_Tooltip_ability_paladin_impregnability_Description"   "Holy Knight's allies affected by this ability become invulnerable.  The hero stays vulnerable."
     "DOTA_Tooltip_ability_paladin_impregnability_radius"    "RADIUS:"
     "DOTA_Tooltip_ability_paladin_impregnability_duration"  "DURATION:"

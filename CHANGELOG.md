@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file.
 - Following Lingering Souls ability has had their max value per soul reduced: Agility (0.5 to 0.4), Base Damge (1.5 to 1), Strength (0.5 to 0.4), Attack Range (2.4 to 2), Attack Speed (4 to 3)
 - Lingering Souls per soul bonus now scales with level, no longer flat value. 
 - Lingering Souls now have 80 seconds to recover souls, instead of 60
+*
+- Improved Following Unpopular custom abilities: Guardian Light
 
 ## 11
 - Fixed Nothl Protection Bonus ability mutator
