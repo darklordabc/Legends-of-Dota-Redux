@@ -1633,8 +1633,8 @@
     {
         "ReduxFlags"                                                           "mobility"
         "ReduxPerks"                                                           "mobility"
-        "ReduxCost"                                                            "50"
-        "ReduxBans"                                                            "tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux"
+        "ReduxCost"                                                            "80"
+        "ReduxBans"                                                            "slark_shadow_dance_redux | tinker_rearm | arc_warden_tempest_double | arc_warden_tempest_double_redux"
     }
     "templar_assassin_meld"
     {
@@ -2600,6 +2600,7 @@
     {
         "ReduxFlags"                                                           "mobility | physical"
         "ReduxPerks"                                                           "mobility | physical"
+        "ReduxBans"                                                            "ursa_fury_swipes | ursa_fury_swipes_lod | obsidian_destroyer_arcane_orb"
     }
      "pangolier_heartpiercer" 
     {
@@ -2935,9 +2936,8 @@
     "arc_warden_tempest_double"
     {
         "ReduxPerks"                                                           "lightning"
-        "ReduxCost"                                                            "60"
+        "ReduxCost"                                                            "80"
         "ReduxBans"                                                            "imba_omniknight_purification | tinker_rearm | arc_warden_tempest_double_redux"
-        "ReduxFlags"                                                           ""
     }
     "disruptor_glimpse_op"
     {
@@ -3394,6 +3394,10 @@
     "tiny_toss"
     {
         "ReduxPerks"                                                           "enemyMoving"
+    }
+    "tiny_grow"
+    {
+        "ReduxCost"                                                            "80"
     }
     "item_orchid"
     {

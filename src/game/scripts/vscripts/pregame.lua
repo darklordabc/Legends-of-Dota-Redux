@@ -32,7 +32,6 @@ require('statcollection.init')
 local Debug = require('lod_debug')              -- Debug library with helper functions, by Ash47
 local challenge = require('challenge')
 local ingame = require('ingame')
-local localStorage = require("lib/LocalStorage")
 require('lib/wearables')
 
 -- This should alone be used if duels are on.
@@ -526,6 +525,9 @@ function Pregame:init()
     Timers:CreateTimer(function()
         if util:isSinglePlayerMode() then
             self:setOption('lodOptionBanningUseBanList', 0, true)
+            self:setOption("lodOptionNewAbilitiesBonusGold", 0, true)
+            self:setOption("lodOptionGlobalNewAbilitiesBonusGold", 0, true)
+            self:setOption("lodOptionBalancedBuildBonusGold", 0, true)
         end
     end, DoUniqueString('checkSinglePlayer'), 1.5)
 
@@ -1116,7 +1118,7 @@ function Pregame:onThink()
 
             Chat:Say( {channel = "all", msg = "chatChannelsAnnouncement", PlayerID = -1, localize = true})
 
-            StatsClient:FetchAbilityUsageData()
+            StatsClient:Fetch()
 
             -- Are we using option selection, or option voting?
             if self.useOptionVoting then
@@ -1507,7 +1509,7 @@ function Pregame:setWispMethod()
     else
         GameRules:GetGameModeEntity():SetCustomGameForceHero("npc_dota_hero_wisp")
         self.wispSpawning = true
-    end 
+    end
 end
 
 -- Called to prepare to get player data when someone connects
@@ -3898,7 +3900,7 @@ end]]
 -- Validates builds
 function Pregame:validateBuilds(specificID)
     if not specificID or self.validatedBuilds then return end
-    self.validatedBuilds = true 
+    self.validatedBuilds = true
 
     -- Generate 10 builds
     local minPlayerID = 0
@@ -4178,8 +4180,8 @@ function Pregame:processOptions()
 
         -- All extra ability mutator stuff
         if this.optionStore['lodOptionExtraAbility'] == 1 then
-            self.freeAbility = "gemini_unstable_rift_one"
-            this:banAbility("gemini_unstable_rift")
+            self.freeAbility = "basic_spell_amp_bonus_op"
+            this:banAbility("basic_spell_amp_bonus_op")
         elseif this.optionStore['lodOptionExtraAbility'] == 2 then
             self.freeAbility = "imba_dazzle_shallow_grave_passive_one"
             this:banAbility("imba_dazzle_shallow_grave_passive")
@@ -5054,6 +5056,9 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
                 network:setSelectedAbilities(playerID, self.selectedSkills[playerID])
                 network:setSelectedHero(playerID, newBuild.hero)
                 network:setSelectedAttr(playerID, newBuild.setAttr)
+                if hero == PlayerResource:GetSelectedHeroEntity(playerID) then
+                    self:applyExtraAbility( hero )
+                end
                 hero = PlayerResource:GetSelectedHeroEntity(playerID)
                 --if OptionManager:GetOption('ingameBuilderPenalty') > 0 then
                 --TODO: If long enough, players die to respawn
@@ -5208,106 +5213,60 @@ function Pregame:checkForReady()
     end
 end
 
--- Track local stats
-function Pregame:onPlayerSaveStats(playerID, abilities)
-    -- Grab data
-    local player = PlayerResource:GetPlayer(playerID)
-
-    if PlayerResource:GetSteamAccountID(playerID) == 0 then
-        return
-    end
-
-    local i = 1
-    local function statsQueue()
-        local abName = abilities[i]
-
-        if abName then
-            localStorage:getKey(playerID, "redux_stats", abName, function (sequenceNumber, success, value)
-                -- local value = 0
-                if success then
-                    value = (tonumber(value) or 0) + 1
-                else
-                    value = 1
-                end
-                localStorage:setKey(playerID, "redux_stats", abName, value, function (sequenceNumber, success)
-                    if i < 23 then
-                        i = i + 1
-                        statsQueue()
-                    end
-                end)
-            end)
-        end
-    end
-    statsQueue()
-end
-
 -- Player wants to ban an ability
 function Pregame:onPlayerSaveBans(eventSourceIndex, args)
     -- Grab data
     local playerID = args.PlayerID
-    local player = PlayerResource:GetPlayer(playerID)
 
     local count = (self.optionStore['lodOptionBanningMaxBans'] + self.optionStore['lodOptionBanningMaxHeroBans'])
-
     if count == 0 and self.optionStore['lodOptionBanningHostBanning'] > 0 then
         count = util:getTableLength(self.playerBansList[playerID])
     end
 
-    local id = 0
-
-    if self.playerBansList[playerID] then
-        local i = 0
-        repeat
-            i = i + 1
-            local tempI = i
-            localStorage:setKey(playerID, "bans", tostring(tempI), "", function (sequenceNumber, success)
-                localStorage:setKey(playerID, "bans", tostring(tempI), self.playerBansList[playerID][tempI] or "", function (sequenceNumber, success)
-                    id = id + 1
-                    if id == #self.playerBansList[playerID] then
-                        CustomGameEventManager:Send_ServerToPlayer(player,"lodNotification",{text = 'lodSuccessSavedBans', params = {['entries'] = id}})
-                    end
-                end)
-            end)
-        until
-            i > count
+    local selectedData = {}
+    for i = 1, count do
+        selectedData[i] = self.playerBansList[playerID][i]
     end
+
+    StatsClient:SetBans(playerID, selectedData)
+    StatsClient:SendBans({ steamid = PlayerResource:GetRealSteamID(playerID), bans = selectedData }, function()
+        CustomGameEventManager:Send_ServerToPlayer(
+            PlayerResource:GetPlayer(playerID),
+            "lodNotification",
+            { text = 'lodSuccessSavedBans', params = { entries = #selectedData } }
+        )
+    end)
 end
 
 -- Player wants to ban an ability
 function Pregame:onPlayerLoadBans(eventSourceIndex, args)
     -- Grab data
     local playerID = args.PlayerID
-    local player = PlayerResource:GetPlayer(playerID)
+    local bans = StatsClient:GetBans(playerID)
+    if bans == nil then return end
 
-    local id = 0
+    local lodOptionBanningHostBanning = self.optionStore['lodOptionBanningHostBanning'] and self.optionStore['lodOptionBanningHostBanning'] > 0
+    local lodOptionBanningMaxBans = self.optionStore['lodOptionBanningMaxBans']
 
-    local count = (self.optionStore['lodOptionBanningMaxBans'] + self.optionStore['lodOptionBanningMaxHeroBans'])
+    local count = self.optionStore['lodOptionBanningMaxBans'] + self.optionStore['lodOptionBanningMaxHeroBans']
+    if count == 0 and lodOptionBanningHostBanning then count = 1000 end
 
-    if count == 0 and self.optionStore['lodOptionBanningHostBanning'] > 0 then
-        count = 1000
+    local n = 1
+    while bans[n] do
+        local value = bans[n]
+        if string.match(value, "npc_dota_hero_") and not self.bannedHeroes[value] and (lodOptionBanningHostBanning or not self.usedBans[playerID] or self.usedBans[playerID].heroBans < lodOptionBanningMaxBans) then
+            self:onPlayerBan(0, { PlayerID = playerID, heroName = value }, true)
+        elseif not self.bannedAbilities[value] and (lodOptionBanningHostBanning or not self.usedBans[playerID] or self.usedBans[playerID].abilityBans < lodOptionBanningMaxBans) then
+            self:onPlayerBan(0, { PlayerID = playerID, abilityName = value }, true)
+        end
+        n = n + 1
     end
 
-    for i=1,count do
-        localStorage:getKey(playerID, "bans", tostring(i), function (sequenceNumber, success, value)
-            if success and value and value ~= "" then
-                if string.match(value, "npc_dota_hero_") and not self.bannedHeroes[value] and (self.optionStore['lodOptionBanningHostBanning'] > 0 or not self.usedBans[playerID] or self.usedBans[playerID].heroBans < self.optionStore['lodOptionBanningMaxBans']) then
-                    self:onPlayerBan(0, {
-                        PlayerID = playerID,
-                        heroName = value
-                        }, true)
-                elseif not self.bannedAbilities[value] and (self.optionStore['lodOptionBanningHostBanning'] > 0 or not self.usedBans[playerID] or self.usedBans[playerID].abilityBans < self.optionStore['lodOptionBanningMaxBans']) then
-                    self:onPlayerBan(0, {
-                        PlayerID = playerID,
-                        abilityName = value
-                        }, true)
-                end
-                id = id + 1
-            end
-            if not success or i == count then
-                CustomGameEventManager:Send_ServerToPlayer(player,"lodNotification",{text = "lodSuccessLoadBans", params = {['entries'] = id}})
-            end
-        end)
-    end
+    CustomGameEventManager:Send_ServerToPlayer(
+        PlayerResource:GetPlayer(playerID),
+        "lodNotification",
+        { text = "lodSuccessLoadBans", params = { entries = n } }
+    )
 end
 
 -- Player wants to ban an ability
@@ -6165,7 +6124,7 @@ function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
     -- Grab data
     local playerID = args.PlayerID
     local player = PlayerResource:GetPlayer(playerID)
-    
+
     -- Ensure we are in the picking phase
     if self:getPhase() ~= constants.PHASE_SELECTION and not self:canPlayerPickSkill(playerID) then
         network:sendNotification(player, {
@@ -6350,7 +6309,7 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
             local draftArray = self.draftArrays[draftID] or {}
             local heroDraft = draftArray.heroDraft or {}
             local abilityDraft = draftArray.abilityDraft or {}
-            
+
             -- if self.maxDraftHeroes > 0 then
             --     local heroName = self.abilityHeroOwner[abilityName]
 
@@ -6411,10 +6370,11 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
                     powerfulPassives = powerfulPassives + 1
                 end
             end
+
             
-        if (SkillManager:isPassive(abilityName) or self.flags["semi_passive"][abilityName] ~= nil) then
-        powerfulPassives = powerfulPassives + 1
-        end
+            if (SkillManager:isPassive(abilityName) or self.flags["semi_passive"][abilityName] ~= nil) then
+            powerfulPassives = powerfulPassives + 1
+            end
 
             if powerfulPassives >= 3 then
                 shouldAdd = false
@@ -6967,7 +6927,7 @@ end
 -- Generate builds for bots
 function Pregame:generateBotBuilds()
     if OptionManager:GetOption('mapname') ~= "custom_bot" then return end
-    
+
     -- Ensure bots are actually enabled
     if not self.enabledBots then return end
 
@@ -7545,6 +7505,143 @@ function Pregame:giveAbilityUsageBonuses(playerID)
     end
 end
 
+function Pregame:applyExtraAbility( spawnedUnit )
+    -- Timers:CreateTimer(function()
+        local fleshHeapToGive = nil
+        local survivalToGive = nil
+        local essenceshiftToGive = nil
+        local rangedTrickshot = nil
+
+        -- Random Flesh Heaps
+        if OptionManager:GetOption('extraAbility') == 5 then
+
+            local random = RandomInt(1,16)
+            local givenAbility = false
+            -- Randomly choose which flesh heap to give them
+            if random == 1 and not spawnedUnit:HasAbility('pudge_flesh_heap') then fleshHeapToGive = "pudge_flesh_heap" ; givenAbility = true
+            elseif random == 2 and not spawnedUnit:HasAbility('pudge_flesh_heap_int') then fleshHeapToGive = "pudge_flesh_heap_int" ; givenAbility = true
+            elseif random == 3 and not spawnedUnit:HasAbility('pudge_flesh_heap_agility') then fleshHeapToGive = "pudge_flesh_heap_agility" ; givenAbility = true
+            elseif random == 4 and not spawnedUnit:HasAbility('pudge_flesh_heap_move_speed') then fleshHeapToGive = "pudge_flesh_heap_move_speed" ; givenAbility = true
+            elseif random == 5 and not spawnedUnit:HasAbility('pudge_flesh_heap_spell_amp') then fleshHeapToGive = "pudge_flesh_heap_spell_amp" ; givenAbility = true
+            elseif random == 6 and not spawnedUnit:HasAbility('pudge_flesh_heap_attack_range') then fleshHeapToGive = "pudge_flesh_heap_attack_range" ; givenAbility = true
+            elseif random == 7 and not spawnedUnit:HasAbility('pudge_flesh_heap_bonus_vision') then fleshHeapToGive = "pudge_flesh_heap_bonus_vision" ; givenAbility = true
+            elseif random == 8 and not spawnedUnit:HasAbility('pudge_flesh_heap_cooldown_reduction') then fleshHeapToGive = "pudge_flesh_heap_cooldown_reduction" ; givenAbility = true
+            elseif random == 9 and not spawnedUnit:HasAbility('pudge_flesh_heap_magic_resistance') then fleshHeapToGive = "pudge_flesh_heap_evasion" ; givenAbility = true
+            elseif random == 10 and not spawnedUnit:HasAbility('pudge_flesh_heap_evasion') then fleshHeapToGive = "pudge_flesh_heap_evasion" ; givenAbility = true
+            elseif random == 11 and not spawnedUnit:HasAbility('pudge_flesh_heap_cast_range') then fleshHeapToGive = "pudge_flesh_heap_cast_range" ; givenAbility = true
+            elseif random == 12 and not spawnedUnit:HasAbility('pudge_flesh_heap_spell_lifesteal') then fleshHeapToGive = "pudge_flesh_heap_spell_lifesteal" ; givenAbility = true
+            elseif random == 13 and not spawnedUnit:HasAbility('pudge_flesh_heap_lifesteal') then fleshHeapToGive = "pudge_flesh_heap_lifesteal" ; givenAbility = true
+            elseif random == 14 and not spawnedUnit:HasAbility('pudge_flesh_heap_armor') then fleshHeapToGive = "pudge_flesh_heap_armor" ; givenAbility = true
+            elseif random == 15 and not spawnedUnit:HasAbility('pudge_flesh_heap_health_regeneration') then fleshHeapToGive = "pudge_flesh_heap_health_regeneration" ; givenAbility = true
+            elseif random == 16 and not spawnedUnit:HasAbility('pudge_flesh_heap_mana_regeneration') then fleshHeapToGive = "pudge_flesh_heap_mana_regeneration" ; givenAbility = true
+            end
+
+            -- If they randomly picked a flesh heap they already had, go through this list and try to give them one until they get one
+            if not givenAbility then
+                if not spawnedUnit:HasAbility('pudge_flesh_heap') then fleshHeapToGive = "pudge_flesh_heap"
+                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_int') then fleshHeapToGive = "pudge_flesh_heap_int"
+                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_agility') then fleshHeapToGive = "pudge_flesh_heap_agility"
+                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_move_speed') then fleshHeapToGive = "pudge_flesh_heap_move_speed"
+                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_spell_amp') then fleshHeapToGive = "pudge_flesh_heap_spell_amp"
+                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_attack_range') then fleshHeapToGive = "pudge_flesh_heap_attack_range"
+                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_bonus_vision') then fleshHeapToGive = "pudge_flesh_heap_bonus_vision"
+                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_cooldown_reduction') then fleshHeapToGive = "pudge_flesh_heap_cooldown_reduction"
+                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_magic_resistance') then fleshHeapToGive = "pudge_flesh_heap_magic_resistance"
+                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_evasion') then fleshHeapToGive = "pudge_flesh_heap_evasion"
+                -- We dont need to add any more to this list because they will defintely get one of the above because of the max ability slots
+                end
+            end
+        end
+
+        -- Random Survivals
+        if OptionManager:GetOption('extraAbility') == 22 then
+
+            local random = RandomInt(1,21)
+            local givenAbility = false
+            -- Randomly choose which flesh heap to give them
+            if random == 1  and not spawnedUnit:HasAbility('spell_lab_survivor_cooldown') then survivalToGive = "spell_lab_survivor_cooldown" ; givenAbility = true
+            elseif random == 2  and not spawnedUnit:HasAbility('spell_lab_survivor_critical') then survivalToGive = "spell_lab_survivor_critical" ; givenAbility = true
+            elseif random == 3  and not spawnedUnit:HasAbility('spell_lab_survivor_damage_boost') then survivalToGive = "spell_lab_survivor_damage_boost" ; givenAbility = true
+            elseif random == 4  and not spawnedUnit:HasAbility('spell_lab_survivor_health_regen') then survivalToGive = "spell_lab_survivor_health_regen" ; givenAbility = true
+            elseif random == 5  and not spawnedUnit:HasAbility('spell_lab_survivor_int_survival') then survivalToGive = "spell_lab_survivor_int_survival" ; givenAbility = true
+            elseif random == 6  and not spawnedUnit:HasAbility('spell_lab_survivor_magic_resistance') then survivalToGive = "spell_lab_survivor_magic_resistance" ; givenAbility = true
+            elseif random == 7  and not spawnedUnit:HasAbility('spell_lab_survivor_spell_boost') then survivalToGive = "spell_lab_survivor_spell_boost" ; givenAbility = true
+            elseif random == 8  and not spawnedUnit:HasAbility('spell_lab_survivor_spell_vamp') then survivalToGive = "spell_lab_survivor_spell_vamp" ; givenAbility = true
+            elseif random == 9  and not spawnedUnit:HasAbility('spell_lab_survivor_str_survival') then survivalToGive = "spell_lab_survivor_str_survival" ; givenAbility = true
+            elseif random == 10 and not spawnedUnit:HasAbility('spell_lab_survivor_mana_regen') then survivalToGive = "spell_lab_survivor_mana_regen" ; givenAbility = true
+            elseif random == 11 and not spawnedUnit:HasAbility('spell_lab_survivor_agi_survival') then survivalToGive = "spell_lab_survivor_agi_survival" ; givenAbility = true
+            elseif random == 12 and not spawnedUnit:HasAbility('spell_lab_survivor_attack_speed') then survivalToGive = "spell_lab_survivor_attack_speed" ; givenAbility = true
+            elseif random == 13 and not spawnedUnit:HasAbility('spell_lab_survivor_cast_range') then survivalToGive = "spell_lab_survivor_cast_range" ; givenAbility = true
+            elseif random == 14 and not spawnedUnit:HasAbility('spell_lab_survivor_vision') then survivalToGive = "spell_lab_survivor_vision" ; givenAbility = true
+            elseif random == 15 and not spawnedUnit:HasAbility('spell_lab_survivor_evasion') then survivalToGive = "spell_lab_survivor_evasion" ; givenAbility = true
+            elseif random == 16 and not spawnedUnit:HasAbility('spell_lab_survivor_mana_burn') then survivalToGive = "spell_lab_survivor_mana_burn" ; givenAbility = true
+            elseif random == 17 and not spawnedUnit:HasAbility('spell_lab_survivor_life_steal') then survivalToGive = "spell_lab_survivor_life_steal" ; givenAbility = true
+            elseif random == 18 and not spawnedUnit:HasAbility('spell_lab_survivor_armor') then survivalToGive = "spell_lab_survivor_armor" ; givenAbility = true
+            elseif random == 19 and not spawnedUnit:HasAbility('spell_lab_survivor_attack_range') then survivalToGive = "spell_lab_survivor_attack_range" ; givenAbility = true
+            elseif random == 20 and not spawnedUnit:HasAbility('spell_lab_survivor_move_speed') then survivalToGive = "spell_lab_survivor_move_speed" ; givenAbility = true
+            elseif random == 21 and not spawnedUnit:HasAbility('spell_lab_survivor_bash') then survivalToGive = "spell_lab_survivor_bash" ; givenAbility = true
+            end
+
+
+
+            -- If they randomly picked a flesh heap they already had, go through this list and try to give them one until they get one
+            if not givenAbility then
+                if not spawnedUnit:HasAbility('spell_lab_survivor_cooldown') then survivalToGive = "spell_lab_survivor_cooldown"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_critical') then survivalToGive = "spell_lab_survivor_critical"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_damage_boost') then survivalToGive = "spell_lab_survivor_damage_boost"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_health_regen') then survivalToGive = "spell_lab_survivor_health_regen"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_int_survival') then survivalToGive = "spell_lab_survivor_int_survival"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_magic_resistance') then survivalToGive = "spell_lab_survivor_magic_resistance"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_spell_boost') then survivalToGive = "spell_lab_survivor_spell_boost"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_spell_vamp') then survivalToGive = "spell_lab_survivor_spell_vamp"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_str_survival') then survivalToGive = "spell_lab_survivor_str_survival"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_mana_regen') then survivalToGive = "spell_lab_survivor_mana_regen"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_agi_survival') then survivalToGive = "spell_lab_survivor_agi_survival"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_attack_speed') then survivalToGive = "spell_lab_survivor_attack_speed"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_cast_range') then survivalToGive = "spell_lab_survivor_cast_range"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_vision') then survivalToGive = "spell_lab_survivor_vision"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_evasion') then survivalToGive = "spell_lab_survivor_evasion"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_mana_burn') then survivalToGive = "spell_lab_survivor_mana_burn"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_life_steal') then survivalToGive = "spell_lab_survivor_life_steal"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_armor') then survivalToGive = "spell_lab_survivor_armor"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_attack_range') then survivalToGive = "spell_lab_survivor_attack_range"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_move_speed') then survivalToGive = "spell_lab_survivor_move_speed"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_bash') then survivalToGive = "spell_lab_survivor_bash"
+                end
+            end
+        end
+
+        if OptionManager:GetOption('extraAbility') == 13 then
+            -- Give an essence shift based on heros primary attribute
+            if spawnedUnit:GetPrimaryAttribute() == 0 then essenceshiftToGive = "slark_essence_shift_strength_lod"
+            elseif spawnedUnit:GetPrimaryAttribute() == 1 then essenceshiftToGive = "slark_essence_shift_agility_lod"
+            elseif spawnedUnit:GetPrimaryAttribute() == 2 then essenceshiftToGive = "slark_essence_shift_intellect_lod"
+            end
+        end
+
+         if OptionManager:GetOption('extraAbility') == 19 then
+            -- Give an essence shift based on heros primary attribute
+            if spawnedUnit:IsRangedAttacker() then rangedTrickshot = "ebf_clinkz_trickshot_passive_ranged"
+            end
+        end
+
+        local abilityToGive = self.freeAbility
+
+        if fleshHeapToGive then abilityToGive = fleshHeapToGive
+        elseif essenceshiftToGive then abilityToGive = essenceshiftToGive
+        elseif rangedTrickshot then abilityToGive = rangedTrickshot
+        elseif survivalToGive then abilityToGive = survivalToGive
+        end
+
+        spawnedUnit:AddAbility(abilityToGive)
+        local givenAbility = spawnedUnit:FindAbilityByName(abilityToGive)
+        if givenAbility then
+            givenAbility:SetLevel(givenAbility:GetMaxLevel())
+        end
+
+    -- end, DoUniqueString('addExtra'), RandomInt(1,3) )
+end
+
 -- This function gets runned when heros are recreated with there proper abilities, below is a function that runs at every npc spawn
 function Pregame:fixSpawnedHero( spawnedUnit )
     self.givenBonuses = self.givenBonuses or {}
@@ -7789,7 +7886,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
             --        end
             --    end
             --end
-                
+
              -- 'No Charges' fix for Tiny Toss
             if spawnedUnit:HasAbility('tiny_toss') then
                 Timers:CreateTimer(function()
@@ -7989,140 +8086,9 @@ function Pregame:fixSpawnedHero( spawnedUnit )
 
     -- Give out the free extra abilities
     if OptionManager:GetOption('extraAbility') > 0 then
-        Timers:CreateTimer(function()
-            local fleshHeapToGive = nil
-            local survivalToGive = nil
-            local essenceshiftToGive = nil
-            local rangedTrickshot = nil
-
-            -- Random Flesh Heaps
-            if OptionManager:GetOption('extraAbility') == 5 then
-
-                local random = RandomInt(1,16)
-                local givenAbility = false
-                -- Randomly choose which flesh heap to give them
-                if random == 1 and not spawnedUnit:HasAbility('pudge_flesh_heap') then fleshHeapToGive = "pudge_flesh_heap" ; givenAbility = true
-                elseif random == 2 and not spawnedUnit:HasAbility('pudge_flesh_heap_int') then fleshHeapToGive = "pudge_flesh_heap_int" ; givenAbility = true
-                elseif random == 3 and not spawnedUnit:HasAbility('pudge_flesh_heap_agility') then fleshHeapToGive = "pudge_flesh_heap_agility" ; givenAbility = true
-                elseif random == 4 and not spawnedUnit:HasAbility('pudge_flesh_heap_move_speed') then fleshHeapToGive = "pudge_flesh_heap_move_speed" ; givenAbility = true
-                elseif random == 5 and not spawnedUnit:HasAbility('pudge_flesh_heap_spell_amp') then fleshHeapToGive = "pudge_flesh_heap_spell_amp" ; givenAbility = true
-                elseif random == 6 and not spawnedUnit:HasAbility('pudge_flesh_heap_attack_range') then fleshHeapToGive = "pudge_flesh_heap_attack_range" ; givenAbility = true
-                elseif random == 7 and not spawnedUnit:HasAbility('pudge_flesh_heap_bonus_vision') then fleshHeapToGive = "pudge_flesh_heap_bonus_vision" ; givenAbility = true
-                elseif random == 8 and not spawnedUnit:HasAbility('pudge_flesh_heap_cooldown_reduction') then fleshHeapToGive = "pudge_flesh_heap_cooldown_reduction" ; givenAbility = true
-                elseif random == 9 and not spawnedUnit:HasAbility('pudge_flesh_heap_magic_resistance') then fleshHeapToGive = "pudge_flesh_heap_evasion" ; givenAbility = true
-                elseif random == 10 and not spawnedUnit:HasAbility('pudge_flesh_heap_evasion') then fleshHeapToGive = "pudge_flesh_heap_evasion" ; givenAbility = true
-                elseif random == 11 and not spawnedUnit:HasAbility('pudge_flesh_heap_cast_range') then fleshHeapToGive = "pudge_flesh_heap_cast_range" ; givenAbility = true
-                elseif random == 12 and not spawnedUnit:HasAbility('pudge_flesh_heap_spell_lifesteal') then fleshHeapToGive = "pudge_flesh_heap_spell_lifesteal" ; givenAbility = true
-                elseif random == 13 and not spawnedUnit:HasAbility('pudge_flesh_heap_lifesteal') then fleshHeapToGive = "pudge_flesh_heap_lifesteal" ; givenAbility = true
-                elseif random == 14 and not spawnedUnit:HasAbility('pudge_flesh_heap_armor') then fleshHeapToGive = "pudge_flesh_heap_armor" ; givenAbility = true
-                elseif random == 15 and not spawnedUnit:HasAbility('pudge_flesh_heap_health_regeneration') then fleshHeapToGive = "pudge_flesh_heap_health_regeneration" ; givenAbility = true
-                elseif random == 16 and not spawnedUnit:HasAbility('pudge_flesh_heap_mana_regeneration') then fleshHeapToGive = "pudge_flesh_heap_mana_regeneration" ; givenAbility = true
-                end
-
-                -- If they randomly picked a flesh heap they already had, go through this list and try to give them one until they get one
-                if not givenAbility then
-                    if not spawnedUnit:HasAbility('pudge_flesh_heap') then fleshHeapToGive = "pudge_flesh_heap"
-                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_int') then fleshHeapToGive = "pudge_flesh_heap_int"
-                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_agility') then fleshHeapToGive = "pudge_flesh_heap_agility"
-                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_move_speed') then fleshHeapToGive = "pudge_flesh_heap_move_speed"
-                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_spell_amp') then fleshHeapToGive = "pudge_flesh_heap_spell_amp"
-                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_attack_range') then fleshHeapToGive = "pudge_flesh_heap_attack_range"
-                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_bonus_vision') then fleshHeapToGive = "pudge_flesh_heap_bonus_vision"
-                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_cooldown_reduction') then fleshHeapToGive = "pudge_flesh_heap_cooldown_reduction"
-                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_magic_resistance') then fleshHeapToGive = "pudge_flesh_heap_magic_resistance"
-                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_evasion') then fleshHeapToGive = "pudge_flesh_heap_evasion"
-                    -- We dont need to add any more to this list because they will defintely get one of the above because of the max ability slots
-                    end
-                end
-            end
-
-            -- Random Survivals
-            if OptionManager:GetOption('extraAbility') == 22 then
-
-                local random = RandomInt(1,21)
-                local givenAbility = false
-                -- Randomly choose which flesh heap to give them
-                if random == 1  and not spawnedUnit:HasAbility('spell_lab_survivor_cooldown') then survivalToGive = "spell_lab_survivor_cooldown" ; givenAbility = true
-                elseif random == 2  and not spawnedUnit:HasAbility('spell_lab_survivor_critical') then survivalToGive = "spell_lab_survivor_critical" ; givenAbility = true
-                elseif random == 3  and not spawnedUnit:HasAbility('spell_lab_survivor_damage_boost') then survivalToGive = "spell_lab_survivor_damage_boost" ; givenAbility = true
-                elseif random == 4  and not spawnedUnit:HasAbility('spell_lab_survivor_health_regen') then survivalToGive = "spell_lab_survivor_health_regen" ; givenAbility = true
-                elseif random == 5  and not spawnedUnit:HasAbility('spell_lab_survivor_int_survival') then survivalToGive = "spell_lab_survivor_int_survival" ; givenAbility = true
-                elseif random == 6  and not spawnedUnit:HasAbility('spell_lab_survivor_magic_resistance') then survivalToGive = "spell_lab_survivor_magic_resistance" ; givenAbility = true
-                elseif random == 7  and not spawnedUnit:HasAbility('spell_lab_survivor_spell_boost') then survivalToGive = "spell_lab_survivor_spell_boost" ; givenAbility = true
-                elseif random == 8  and not spawnedUnit:HasAbility('spell_lab_survivor_spell_vamp') then survivalToGive = "spell_lab_survivor_spell_vamp" ; givenAbility = true
-                elseif random == 9  and not spawnedUnit:HasAbility('spell_lab_survivor_str_survival') then survivalToGive = "spell_lab_survivor_str_survival" ; givenAbility = true
-                elseif random == 10 and not spawnedUnit:HasAbility('spell_lab_survivor_mana_regen') then survivalToGive = "spell_lab_survivor_mana_regen" ; givenAbility = true
-                elseif random == 11 and not spawnedUnit:HasAbility('spell_lab_survivor_agi_survival') then survivalToGive = "spell_lab_survivor_agi_survival" ; givenAbility = true
-                elseif random == 12 and not spawnedUnit:HasAbility('spell_lab_survivor_attack_speed') then survivalToGive = "spell_lab_survivor_attack_speed" ; givenAbility = true
-                elseif random == 13 and not spawnedUnit:HasAbility('spell_lab_survivor_cast_range') then survivalToGive = "spell_lab_survivor_cast_range" ; givenAbility = true
-                elseif random == 14 and not spawnedUnit:HasAbility('spell_lab_survivor_vision') then survivalToGive = "spell_lab_survivor_vision" ; givenAbility = true
-                elseif random == 15 and not spawnedUnit:HasAbility('spell_lab_survivor_evasion') then survivalToGive = "spell_lab_survivor_evasion" ; givenAbility = true
-                elseif random == 16 and not spawnedUnit:HasAbility('spell_lab_survivor_mana_burn') then survivalToGive = "spell_lab_survivor_mana_burn" ; givenAbility = true
-                elseif random == 17 and not spawnedUnit:HasAbility('spell_lab_survivor_life_steal') then survivalToGive = "spell_lab_survivor_life_steal" ; givenAbility = true
-                elseif random == 18 and not spawnedUnit:HasAbility('spell_lab_survivor_armor') then survivalToGive = "spell_lab_survivor_armor" ; givenAbility = true
-                elseif random == 19 and not spawnedUnit:HasAbility('spell_lab_survivor_attack_range') then survivalToGive = "spell_lab_survivor_attack_range" ; givenAbility = true
-                elseif random == 20 and not spawnedUnit:HasAbility('spell_lab_survivor_move_speed') then survivalToGive = "spell_lab_survivor_move_speed" ; givenAbility = true
-                elseif random == 21 and not spawnedUnit:HasAbility('spell_lab_survivor_bash') then survivalToGive = "spell_lab_survivor_bash" ; givenAbility = true
-                end
-
-
-
-                -- If they randomly picked a flesh heap they already had, go through this list and try to give them one until they get one
-                if not givenAbility then
-                    if not spawnedUnit:HasAbility('spell_lab_survivor_cooldown') then survivalToGive = "spell_lab_survivor_cooldown"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_critical') then survivalToGive = "spell_lab_survivor_critical"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_damage_boost') then survivalToGive = "spell_lab_survivor_damage_boost"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_health_regen') then survivalToGive = "spell_lab_survivor_health_regen"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_int_survival') then survivalToGive = "spell_lab_survivor_int_survival"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_magic_resistance') then survivalToGive = "spell_lab_survivor_magic_resistance"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_spell_boost') then survivalToGive = "spell_lab_survivor_spell_boost"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_spell_vamp') then survivalToGive = "spell_lab_survivor_spell_vamp"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_str_survival') then survivalToGive = "spell_lab_survivor_str_survival"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_mana_regen') then survivalToGive = "spell_lab_survivor_mana_regen"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_agi_survival') then survivalToGive = "spell_lab_survivor_agi_survival"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_attack_speed') then survivalToGive = "spell_lab_survivor_attack_speed"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_cast_range') then survivalToGive = "spell_lab_survivor_cast_range"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_vision') then survivalToGive = "spell_lab_survivor_vision"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_evasion') then survivalToGive = "spell_lab_survivor_evasion"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_mana_burn') then survivalToGive = "spell_lab_survivor_mana_burn"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_life_steal') then survivalToGive = "spell_lab_survivor_life_steal"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_armor') then survivalToGive = "spell_lab_survivor_armor"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_attack_range') then survivalToGive = "spell_lab_survivor_attack_range"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_move_speed') then survivalToGive = "spell_lab_survivor_move_speed"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_bash') then survivalToGive = "spell_lab_survivor_bash"
-                    end
-                end
-            end
-
-            if OptionManager:GetOption('extraAbility') == 13 then
-                -- Give an essence shift based on heros primary attribute
-                if spawnedUnit:GetPrimaryAttribute() == 0 then essenceshiftToGive = "slark_essence_shift_strength_lod"
-                elseif spawnedUnit:GetPrimaryAttribute() == 1 then essenceshiftToGive = "slark_essence_shift_agility_lod"
-                elseif spawnedUnit:GetPrimaryAttribute() == 2 then essenceshiftToGive = "slark_essence_shift_intellect_lod"
-                end
-            end
-
-             if OptionManager:GetOption('extraAbility') == 19 then
-                -- Give an essence shift based on heros primary attribute
-                if spawnedUnit:IsRangedAttacker() then rangedTrickshot = "ebf_clinkz_trickshot_passive_ranged"
-                end
-            end
-
-            local abilityToGive = self.freeAbility
-
-            if fleshHeapToGive then abilityToGive = fleshHeapToGive
-            elseif essenceshiftToGive then abilityToGive = essenceshiftToGive
-            elseif rangedTrickshot then abilityToGive = rangedTrickshot
-            elseif survivalToGive then abilityToGive = survivalToGive
-            end
-
-            spawnedUnit:AddAbility(abilityToGive)
-            local givenAbility = spawnedUnit:FindAbilityByName(abilityToGive)
-            if givenAbility then
-                givenAbility:SetLevel(givenAbility:GetMaxLevel())
-            end
-
-        end, DoUniqueString('addExtra'), RandomInt(1,3) )
+        Timers:CreateTimer(function (  )
+            self:applyExtraAbility(spawnedUnit)
+        end, DoUniqueString('giveExtraAbility'), 0.1)
     end
 
     if OptionManager:GetOption('freeCourier') then
@@ -8245,7 +8211,7 @@ function Pregame:fixSpawningIssues()
                         if not self.handled[spawnedUnit] then
                             local mainHero = PlayerResource:GetSelectedHeroEntity(playerID)
                             local heroName = self.selectedHeroes[playerID] or self:getRandomHero()
-                            
+
                             mainHero = PlayerResource:ReplaceHeroWith(playerID,heroName,0,0)
 
                             if IsValidEntity(mainHero) then
@@ -8276,9 +8242,9 @@ function Pregame:fixSpawningIssues()
                     roshan_bash = true,
                     arc_warden_tempest_double = true,    -- This is to stop tempest doubles from getting the ability and using cooldown reduction to cast again
                     arc_warden_tempest_double_redux = true,
-                    aabs_thunder_musket = true,   
-                    mirana_starfall_lod = true,    -- This is buggy with tempest doubles for some reason   
-                    warlock_rain_of_chaos = true,    -- This is buggy with tempest doubles for some reason 
+                    aabs_thunder_musket = true,
+                    mirana_starfall_lod = true,    -- This is buggy with tempest doubles for some reason
+                    warlock_rain_of_chaos = true,    -- This is buggy with tempest doubles for some reason
                 }
 
                 -- Apply the build

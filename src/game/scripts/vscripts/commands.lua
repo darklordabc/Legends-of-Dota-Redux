@@ -428,6 +428,100 @@ function Commands:OnPlayerChat(keys)
                              
             end, DoUniqueString('cheat'), .1)
 
+         elseif IsCommand("-gem") then 
+            Timers:CreateTimer(function()  
+                local trueSight = hero:FindModifierByName("modifier_tower_truesight_aura")
+                if trueSight then
+                    hero:RemoveModifierByName("modifier_tower_truesight_aura")
+                else
+                    hero:AddNewModifier(hero,nil,"modifier_tower_truesight_aura",{})
+                    ingame:CommandNotification("-gem", 'Cheat Used (-gem): Given True Sight to '.. PlayerResource:GetPlayerName(playerID)) 
+                end
+                             
+            end, DoUniqueString('cheat'), .1)
+            
+        elseif IsCommand("-invis") then 
+            Timers:CreateTimer(function()
+                local invis = hero:FindAbilityByName("riki_permanent_invisibility_lod")
+
+                if invis then
+                    hero:RemoveAbility("riki_permanent_invisibility_lod")
+                    hero:RemoveModifierByName("modifier_invisible")
+                else 
+                    invisAbility = hero:AddAbility("riki_permanent_invisibility_lod")
+                    hero:AddNewModifier(hero,nil,"modifier_invisible",{})
+                    invisAbility:SetActivated(true)
+                    invisAbility:SetLevel(3)
+                    invisAbility:SetHidden(true)
+                    ingame:CommandNotification("-invis", 'Cheat Used (-invis): Given Invisibility to '.. PlayerResource:GetPlayerName(playerID))
+                end  
+                             
+            end, DoUniqueString('cheat'), .1)
+
+        elseif IsCommand("-reflect") then 
+            Timers:CreateTimer(function()
+                local reflect = hero:FindAbilityByName("spell_reflect_cheat")
+
+                if reflect then
+                    hero:RemoveAbility("spell_reflect_cheat")
+                else 
+                    reflectAbility = hero:AddAbility("spell_reflect_cheat")
+                    reflectAbility:SetActivated(true)
+                    reflectAbility:SetLevel(1)
+                    reflectAbility:SetHidden(false)
+                    ingame:CommandNotification("-reflect", 'Cheat Used (-reflect): Given Spell Reflect to '.. PlayerResource:GetPlayerName(playerID))
+                end  
+                             
+            end, DoUniqueString('cheat'), .1)
+
+        elseif IsCommand("-spellblock") then 
+            Timers:CreateTimer(function()
+                local block = hero:FindAbilityByName("roshan_spell_block_cheat")
+
+                if block then
+                    hero:RemoveAbility("roshan_spell_block_cheat")
+                else 
+                    blockAbility = hero:AddAbility("roshan_spell_block_cheat")
+                    blockAbility:SetActivated(true)
+                    blockAbility:SetLevel(1)
+                    blockAbility:SetHidden(true)
+                    ingame:CommandNotification("-spellblock", 'Cheat Used (-spellblock): Given Spell Block to '.. PlayerResource:GetPlayerName(playerID))
+                end  
+                             
+            end, DoUniqueString('cheat'), .1)
+
+        elseif IsCommand("-cooldown") then 
+            Timers:CreateTimer(function()
+                local cooldown = hero:FindAbilityByName("jingtong_cheat")
+
+                if cooldown then
+                    hero:RemoveAbility("jingtong_cheat")
+                else 
+                    cooldownAbility = hero:AddAbility("jingtong_cheat")
+                    cooldownAbility:SetActivated(true)
+                    cooldownAbility:SetLevel(1)
+                    cooldownAbility:SetHidden(false)
+                    ingame:CommandNotification("-cooldown", 'Cheat Used (-cooldown): Given No Cooldowns to '.. PlayerResource:GetPlayerName(playerID))
+                end  
+                             
+            end, DoUniqueString('cheat'), .1)
+
+        elseif IsCommand("-globalcast") then 
+            Timers:CreateTimer(function()
+                local globalcast = hero:FindAbilityByName("aether_range_lod_global")
+
+                if globalcast then
+                    hero:RemoveAbility("aether_range_lod_global")
+                else 
+                    globalcastAbility = hero:AddAbility("aether_range_lod_global")
+                    globalcastAbility:SetActivated(true)
+                    globalcastAbility:SetLevel(1)
+                    globalcastAbility:SetHidden(false)
+                    ingame:CommandNotification("-globalcast", 'Cheat Used (-globalcast): Given global cast range to '.. PlayerResource:GetPlayerName(playerID))
+                end  
+                             
+            end, DoUniqueString('cheat'), .1)
+
         elseif (IsCommand("-wtf") and not blockConfliction) or IsCommand("-wtfmenu") then 
             Timers:CreateTimer(function()  
                 print(OptionManager:GetOption('lodOptionCrazyWTF'))

@@ -137,6 +137,30 @@ Util.commandList = [{
         chatCommand: "scepter",
         isCheat: true,
     },{
+        title: "invis",
+        chatCommand: "invis",
+        isCheat: true,
+    },{
+        title: "reflect",
+        chatCommand: "reflect",
+        isCheat: true,
+    },{
+        title: "spellblock",
+        chatCommand: "spellblock",
+        isCheat: true,
+    },{
+        title: "gem",
+        chatCommand: "gem",
+        isCheat: true,
+    },{
+        title: "cooldown",
+        chatCommand: "cooldown",
+        isCheat: true,
+    },{
+        title: "globalcast",
+        chatCommand: "globalcast",
+        isCheat: true,
+    },{
         title: "dagger",
         chatCommand: "dagger",
         isCheat: true,

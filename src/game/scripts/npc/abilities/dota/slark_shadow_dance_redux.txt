@@ -9,6 +9,7 @@
 		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
 		"FightRecapLevel"				"2"
 		"HasScepterUpgrade"				"0"
+		"ReduxFlags"                                                    "underpowered"
 
 		// Time
 		//-------------------------------------------------------------------------------------------------------------
