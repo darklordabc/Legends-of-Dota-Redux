@@ -32,7 +32,6 @@ require('statcollection.init')
 local Debug = require('lod_debug')              -- Debug library with helper functions, by Ash47
 local challenge = require('challenge')
 local ingame = require('ingame')
-local localStorage = require("lib/LocalStorage")
 require('lib/wearables')
 
 -- This should alone be used if duels are on.
@@ -1095,7 +1094,7 @@ function Pregame:onThink()
 
             Chat:Say( {channel = "all", msg = "chatChannelsAnnouncement", PlayerID = -1, localize = true})
 
-            StatsClient:FetchAbilityUsageData()
+            StatsClient:Fetch()
 
             -- Are we using option selection, or option voting?
             if self.useOptionVoting then
@@ -1486,7 +1485,7 @@ function Pregame:setWispMethod()
     else
         GameRules:GetGameModeEntity():SetCustomGameForceHero("npc_dota_hero_wisp")
         self.wispSpawning = true
-    end 
+    end
 end
 
 -- Called to prepare to get player data when someone connects
@@ -3835,7 +3834,7 @@ end]]
 -- Validates builds
 function Pregame:validateBuilds(specificID)
     if not specificID or self.validatedBuilds then return end
-    self.validatedBuilds = true 
+    self.validatedBuilds = true
 
     -- Generate 10 builds
     local minPlayerID = 0
@@ -5121,106 +5120,60 @@ function Pregame:checkForReady()
     end
 end
 
--- Track local stats
-function Pregame:onPlayerSaveStats(playerID, abilities)
-    -- Grab data
-    local player = PlayerResource:GetPlayer(playerID)
-
-    if PlayerResource:GetSteamAccountID(playerID) == 0 then
-        return
-    end
-
-    local i = 1
-    local function statsQueue()
-        local abName = abilities[i]
-
-        if abName then
-            localStorage:getKey(playerID, "redux_stats", abName, function (sequenceNumber, success, value)
-                -- local value = 0
-                if success then
-                    value = (tonumber(value) or 0) + 1
-                else
-                    value = 1
-                end
-                localStorage:setKey(playerID, "redux_stats", abName, value, function (sequenceNumber, success)
-                    if i < 23 then
-                        i = i + 1
-                        statsQueue()
-                    end
-                end)
-            end)
-        end
-    end
-    statsQueue()
-end
-
 -- Player wants to ban an ability
 function Pregame:onPlayerSaveBans(eventSourceIndex, args)
     -- Grab data
     local playerID = args.PlayerID
-    local player = PlayerResource:GetPlayer(playerID)
 
     local count = (self.optionStore['lodOptionBanningMaxBans'] + self.optionStore['lodOptionBanningMaxHeroBans'])
-
     if count == 0 and self.optionStore['lodOptionBanningHostBanning'] > 0 then
         count = util:getTableLength(self.playerBansList[playerID])
     end
 
-    local id = 0
-
-    if self.playerBansList[playerID] then
-        local i = 0
-        repeat
-            i = i + 1
-            local tempI = i
-            localStorage:setKey(playerID, "bans", tostring(tempI), "", function (sequenceNumber, success)
-                localStorage:setKey(playerID, "bans", tostring(tempI), self.playerBansList[playerID][tempI] or "", function (sequenceNumber, success)
-                    id = id + 1
-                    if id == #self.playerBansList[playerID] then
-                        CustomGameEventManager:Send_ServerToPlayer(player,"lodNotification",{text = 'lodSuccessSavedBans', params = {['entries'] = id}})
-                    end
-                end)
-            end)
-        until
-            i > count
+    local selectedData = {}
+    for i = 1, count do
+        selectedData[i] = self.playerBansList[playerID][i]
     end
+
+    StatsClient:SetBans(playerID, selectedData)
+    StatsClient:SendBans({ steamid = PlayerResource:GetRealSteamID(playerID), bans = selectedData }, function()
+        CustomGameEventManager:Send_ServerToPlayer(
+            PlayerResource:GetPlayer(playerID),
+            "lodNotification",
+            { text = 'lodSuccessSavedBans', params = { entries = #selectedData } }
+        )
+    end)
 end
 
 -- Player wants to ban an ability
 function Pregame:onPlayerLoadBans(eventSourceIndex, args)
     -- Grab data
     local playerID = args.PlayerID
-    local player = PlayerResource:GetPlayer(playerID)
+    local bans = StatsClient:GetBans(playerID)
+    if bans == nil then return end
 
-    local id = 0
+    local lodOptionBanningHostBanning = self.optionStore['lodOptionBanningHostBanning'] and self.optionStore['lodOptionBanningHostBanning'] > 0
+    local lodOptionBanningMaxBans = self.optionStore['lodOptionBanningMaxBans']
 
-    local count = (self.optionStore['lodOptionBanningMaxBans'] + self.optionStore['lodOptionBanningMaxHeroBans'])
+    local count = self.optionStore['lodOptionBanningMaxBans'] + self.optionStore['lodOptionBanningMaxHeroBans']
+    if count == 0 and lodOptionBanningHostBanning then count = 1000 end
 
-    if count == 0 and self.optionStore['lodOptionBanningHostBanning'] > 0 then
-        count = 1000
+    local n = 1
+    while bans[n] do
+        local value = bans[n]
+        if string.match(value, "npc_dota_hero_") and not self.bannedHeroes[value] and (lodOptionBanningHostBanning or not self.usedBans[playerID] or self.usedBans[playerID].heroBans < lodOptionBanningMaxBans) then
+            self:onPlayerBan(0, { PlayerID = playerID, heroName = value }, true)
+        elseif not self.bannedAbilities[value] and (lodOptionBanningHostBanning or not self.usedBans[playerID] or self.usedBans[playerID].abilityBans < lodOptionBanningMaxBans) then
+            self:onPlayerBan(0, { PlayerID = playerID, abilityName = value }, true)
+        end
+        n = n + 1
     end
 
-    for i=1,count do
-        localStorage:getKey(playerID, "bans", tostring(i), function (sequenceNumber, success, value)
-            if success and value and value ~= "" then
-                if string.match(value, "npc_dota_hero_") and not self.bannedHeroes[value] and (self.optionStore['lodOptionBanningHostBanning'] > 0 or not self.usedBans[playerID] or self.usedBans[playerID].heroBans < self.optionStore['lodOptionBanningMaxBans']) then
-                    self:onPlayerBan(0, {
-                        PlayerID = playerID,
-                        heroName = value
-                        }, true)
-                elseif not self.bannedAbilities[value] and (self.optionStore['lodOptionBanningHostBanning'] > 0 or not self.usedBans[playerID] or self.usedBans[playerID].abilityBans < self.optionStore['lodOptionBanningMaxBans']) then
-                    self:onPlayerBan(0, {
-                        PlayerID = playerID,
-                        abilityName = value
-                        }, true)
-                end
-                id = id + 1
-            end
-            if not success or i == count then
-                CustomGameEventManager:Send_ServerToPlayer(player,"lodNotification",{text = "lodSuccessLoadBans", params = {['entries'] = id}})
-            end
-        end)
-    end
+    CustomGameEventManager:Send_ServerToPlayer(
+        PlayerResource:GetPlayer(playerID),
+        "lodNotification",
+        { text = "lodSuccessLoadBans", params = { entries = n } }
+    )
 end
 
 -- Player wants to ban an ability
@@ -6078,7 +6031,7 @@ function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
     -- Grab data
     local playerID = args.PlayerID
     local player = PlayerResource:GetPlayer(playerID)
-    
+
     -- Ensure we are in the picking phase
     if self:getPhase() ~= constants.PHASE_SELECTION and not self:canPlayerPickSkill(playerID) then
         network:sendNotification(player, {
@@ -6263,7 +6216,7 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
             local draftArray = self.draftArrays[draftID] or {}
             local heroDraft = draftArray.heroDraft or {}
             local abilityDraft = draftArray.abilityDraft or {}
-            
+
             -- if self.maxDraftHeroes > 0 then
             --     local heroName = self.abilityHeroOwner[abilityName]
 
@@ -6324,7 +6277,7 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
                     powerfulPassives = powerfulPassives + 1
                 end
             end
-			
+
 	    if (SkillManager:isPassive(abilityName) or self.flags["semi_passive"][abilityName] ~= nil) then
 		powerfulPassives = powerfulPassives + 1
 	    end
@@ -6880,7 +6833,7 @@ end
 -- Generate builds for bots
 function Pregame:generateBotBuilds()
     if OptionManager:GetOption('mapname') ~= "custom_bot" then return end
-    
+
     -- Ensure bots are actually enabled
     if not self.enabledBots then return end
 
@@ -7839,7 +7792,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
             --        end
             --    end
             --end
-				
+
              -- 'No Charges' fix for Tiny Toss
             if spawnedUnit:HasAbility('tiny_toss') then
                 Timers:CreateTimer(function()
@@ -8016,7 +7969,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
     if OptionManager:GetOption('extraAbility') > 0 then
         Timers:CreateTimer(function (  )
             self:applyExtraAbility(spawnedUnit)
-        end, DoUniqueString('giveExtraAbility'), 0.1) 
+        end, DoUniqueString('giveExtraAbility'), 0.1)
     end
 
     if OptionManager:GetOption('freeCourier') then
@@ -8116,7 +8069,7 @@ function Pregame:fixSpawningIssues()
                         if not self.handled[spawnedUnit] then
                             local mainHero = PlayerResource:GetSelectedHeroEntity(playerID)
                             local heroName = self.selectedHeroes[playerID] or self:getRandomHero()
-                            
+
                             mainHero = PlayerResource:ReplaceHeroWith(playerID,heroName,0,0)
 
                             if IsValidEntity(mainHero) then
@@ -8147,9 +8100,9 @@ function Pregame:fixSpawningIssues()
                     roshan_bash = true,
                     arc_warden_tempest_double = true,    -- This is to stop tempest doubles from getting the ability and using cooldown reduction to cast again
                     arc_warden_tempest_double_redux = true,
-                    aabs_thunder_musket = true,   
-                    mirana_starfall_lod = true,    -- This is buggy with tempest doubles for some reason   
-                    warlock_rain_of_chaos = true,    -- This is buggy with tempest doubles for some reason 
+                    aabs_thunder_musket = true,
+                    mirana_starfall_lod = true,    -- This is buggy with tempest doubles for some reason
+                    warlock_rain_of_chaos = true,    -- This is buggy with tempest doubles for some reason
                 }
 
                 -- Apply the build
