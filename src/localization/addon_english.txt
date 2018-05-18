@@ -17143,6 +17143,60 @@
     "DOTA_Tooltip_modifier_frost_lord_freezing_block"   "Cold Embrace"
     "DOTA_Tooltip_modifier_frost_lord_freezing_block_Description"   "This unit is frozen."
 
+    "DOTA_Tooltip_ability_firelord_fire_trap"   "Fire Trap"
+    "DOTA_Tooltip_ability_firelord_fire_trap_Description"   "Sets an invisible trap that stuns the caught enemies. The trap activates when an enemy unit approaches."
+    "DOTA_Tooltip_ability_firelord_fire_trap_duration"  "TRAP LIFETIME:"
+    "DOTA_Tooltip_ability_firelord_fire_trap_detonation_radius" "DETONATION RADIUS:"
+    "DOTA_Tooltip_ability_firelord_fire_trap_stun_duration" "STUN DURATION:"
+    "DOTA_Tooltip_ability_firelord_fire_trap_stun_hero_duration"    "HERO STUN DURATION:"
+    "DOTA_Tooltip_ability_firelord_fire_trap_activation_delay"  "ACTIVATION DELAY:"
+    "DOTA_Tooltip_ability_firelord_fire_trap_detection_radius"  "DETECTION RADIUS:"
+
+    "fire_trap_unit"    "Fire Trap"
+
+    "DOTA_Tooltip_ability_frost_lord_cold"  "Chilling Touch"
+    "DOTA_Tooltip_ability_frost_lord_cold_Description"  "Target enemies lose their movement and attack speed and take damage over time. If thet are affected by Frost Breath, they will take additional damage."
+    "DOTA_Tooltip_ability_frost_lord_cold_damage"   "DAMAGE PER SECOND:"
+    "DOTA_Tooltip_ability_frost_lord_cold_add_damage"   "ADDITIONAL DAMAGE PER SECOND:"
+    "DOTA_Tooltip_ability_frost_lord_cold_movement_speed_slow"  "%MOVESPEED SLOW:"
+    "DOTA_Tooltip_ability_frost_lord_cold_attack_speed_slow"    "ATTACK SLOW:"
+    "DOTA_Tooltip_ability_frost_lord_cold_duration" "DURATION:"
+    "DOTA_Tooltip_ability_frost_lord_cold_radius"   "RADIUS:"
+
+    "DOTA_Tooltip_modifier_frost_lord_cold" "Chilling Touch"
+    "DOTA_Tooltip_modifier_frost_lord_cold_Description" "This unit is slowed and is taking damage."
+
+    "DOTA_Tooltip_ability_frost_lord_ice"   "Frozen Core"
+    "DOTA_Tooltip_ability_frost_lord_ice_Description"   "Frost Lord creates magic ice in a target point. This ice chooses a random target in a 500 area of effect and damages and slows units around it every second."
+    "DOTA_Tooltip_ability_frost_lord_ice_damage"    "DAMAGE:"
+    "DOTA_Tooltip_ability_frost_lord_ice_movement_slow" "%MOVEMENT SLOW:"
+    "DOTA_Tooltip_ability_frost_lord_ice_slow_duration" "SLOW DURATION:"
+    "DOTA_Tooltip_ability_frost_lord_ice_duration"  "ICE DURATION:"
+
+    "DOTA_Tooltip_modifier_modifier_frost_lord_ice_damage"  "Frozen Core"
+    "DOTA_Tooltip_modifier_modifier_frost_lord_ice_damage_Description"  "This unit is slowed."
+
+    "DOTA_Tooltip_ability_frost_lord_frost_breath"  "Frost Breath"
+    "DOTA_Tooltip_ability_frost_lord_frost_breath_Description"  "An icy blast launches out in a path in front of Frost Lord dealing damage to all enemies on its way. The ice delivers additional damage over time."
+    "DOTA_Tooltip_ability_frost_lord_frost_breath_damage"   "INITIAL DAMAGE:"
+    "DOTA_Tooltip_ability_frost_lord_frost_breath_damage_per_second"    "DAMAGE PER SECOND:"
+    "DOTA_Tooltip_ability_frost_lord_frost_breath_duration" "DURATION:"
+
+    "DOTA_Tooltip_modifier_frost_lord_frost_breath" "Frost Breath"
+    "DOTA_Tooltip_modifier_frost_lord_frost_breath_Description" "This unit takes damage over time."
+
+    "DOTA_Tooltip_ability_firelord_flame_strike"    "Flame Strike"
+    "DOTA_Tooltip_ability_firelord_flame_strike_Description"    "Conjures a pillar of fire which damages ground units in a target area for 5 seconds. When interrupted during the channeling, the spell does nothing, cooldown and mana are wasted."
+    "DOTA_Tooltip_ability_firelord_flame_strike_radius" "RADIUS:"
+    "DOTA_Tooltip_ability_firelord_flame_strike_first_strike_dps"   "DAMAGE PER SECOND:"
+    "DOTA_Tooltip_ability_firelord_flame_strike_delay"  "CHANNELING TIME:"
+
+    "DOTA_Tooltip_modifier_flame_strike_first_burn" "Flame Strike"
+    "DOTA_Tooltip_modifier_flame_strike_first_burn_Description" "This unit is taking damage."
+
+    "DOTA_Tooltip_modifier_flame_strike_second_burn"    "Flame Strike"
+    "DOTA_Tooltip_modifier_flame_strike_second_burn_Description"    "This unit is taking damage."
+
     "DOTA_Tooltip_ability_ptomely_mirror_blade"                                       "Mirror Blade"
     "DOTA_Tooltip_ability_ptomely_mirror_blade_Description"                           "Fires multiple blades of pure energy towards the target location, dealing Physical damage based upon Ptomely's Intelligence.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"
     "DOTA_Tooltip_ability_ptomely_mirror_blade_damage"                                "DAMAGE PER INT:"

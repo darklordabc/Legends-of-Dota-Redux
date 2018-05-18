@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file.
 - Lingering Souls per soul bonus now scales with level, no longer flat value. 
 - Lingering Souls now have 80 seconds to recover souls, instead of 60
 *
-- Improved Following Unpopular custom abilities: Guardian Light
+- Improved Following Unpopular custom abilities: Guardian Light, Shards of True Sight, Song of Death
 
 ## 11
 - Fixed Nothl Protection Bonus ability mutator

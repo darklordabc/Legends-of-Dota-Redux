@@ -18,12 +18,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "ms_boost"                                             "25"
+                "ms_boost"                                             "25 45 65 85"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "duration"                                             "5"
+                "duration"                                             "6"
             }
             "03"
             {
