@@ -74,4 +74,8 @@ function hackHotkeys() {
         $.$(selector).css(styles[selector]);
 
     hackHotkeys();
+
+    GameEvents.Subscribe("redux_print_debug", function (keys) {
+        $.Msg(keys.text);
+    })
 })();
