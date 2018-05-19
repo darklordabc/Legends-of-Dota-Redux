@@ -458,6 +458,17 @@ function Commands:OnPlayerChat(keys)
                              
             end, DoUniqueString('cheat'), .1)
 
+        -- Command that can change the difficulty of buts example "-diff 4 #6", 4 is unfair and #6 indentifies a player ID
+        elseif IsCommand("-dif") then 
+            Timers:CreateTimer(function()
+                local splitedcommand = arguments       
+                if splitedcommand[1] and tonumber(splitedcommand[1])then
+                    difficulty = tonumber(splitedcommand[1])
+                end
+                hero:SetBotDifficulty(difficulty) )
+                             
+            end, DoUniqueString('botdiff'), .1)
+
         elseif IsCommand("-reflect") then 
             Timers:CreateTimer(function()
                 local reflect = hero:FindAbilityByName("spell_reflect_cheat")

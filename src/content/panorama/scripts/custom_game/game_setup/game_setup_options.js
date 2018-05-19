@@ -294,6 +294,31 @@ var basicOptions = {
                         }
                     },
                     {
+                        about: 'lodMutatorBotDifficulty1',
+                        default: {
+                            'lodOptionBotsRadiantDiff': 0,
+                            'lodOptionBotsDireDiff': 0
+                        },
+                        states: {
+                            'lodMutatorBotDifficulty2': {
+                                'lodOptionBotsRadiantDiff': 1,
+                                'lodOptionBotsDireDiff': 1
+                            },
+                            'lodMutatorBotDifficulty3': {
+                                'lodOptionBotsRadiantDiff': 2,
+                                'lodOptionBotsDireDiff': 2
+                            },
+                            'lodMutatorBotDifficulty4': {
+                                'lodOptionBotsRadiantDiff': 3,
+                                'lodOptionBotsDireDiff': 3
+                            },
+                            'lodMutatorBotDifficulty5': {
+                                'lodOptionBotsRadiantDiff': 4,
+                                'lodOptionBotsDireDiff': 4
+                            }
+                        }
+                    },
+                    {
                         name: 'lodOptionBotsStupid',
                         extraInfo: 'lodOptionAboutBotsStupid',
                         about: 'lodMutatorBotsStupid'
@@ -1443,6 +1468,62 @@ var advancedOptions = {
                 max: 10,
                 step: 1,
                 default: 5
+            },
+            {
+                name: 'lodOptionBotsRadiantDiff',
+                des: 'lodOptionDesBotsRadiantDiff',
+                about: 'lodOptionAboutBotsRadiantDiff',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionBotPassive',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionBotEasy',
+                        value: 1
+                    },
+                    {
+                        text: 'lodOptionBotMedium',
+                        value: 2
+                    },
+                    {
+                        text: 'lodOptionBotHard',
+                        value: 3
+                    },
+                    {
+                        text: 'lodOptionBotUnfair',
+                        value: 4
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionBotsDireDiff',
+                des: 'lodOptionDesBotsDireDiff',
+                about: 'lodOptionAboutBotsDireDiff',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionBotPassive',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionBotEasy',
+                        value: 1
+                    },
+                    {
+                        text: 'lodOptionBotMedium',
+                        value: 2
+                    },
+                    {
+                        text: 'lodOptionBotHard',
+                        value: 3
+                    },
+                    {
+                        text: 'lodOptionBotUnfair',
+                        value: 4
+                    }
+                ]
             },
             {
                 name: 'lodOptionBotsUniqueSkills',

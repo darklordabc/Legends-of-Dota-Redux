@@ -822,6 +822,10 @@ function Pregame:loadDefaultSettings()
     -- Unique Skills default
     self:setOption('lodOptionBotsUniqueSkills', 1, true)
 
+    -- Bot Difficulty
+    self:setOption('lodOptionBotsRadiantDiff', 2, true)
+    self:setOption('lodOptionBotsDireDiff', 2, true)
+
     -- Unique Skills default
     self:setOption('lodOptionBotsStupid', 0, true)
 
@@ -2903,6 +2907,16 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
+        -- Bots - Radiant Bot Difficulty
+        lodOptionBotsRadiantDiff = function(value)
+            return value == 0 or value == 1 or value == 2 or value == 3 or value == 4
+        end,
+
+        -- Bots - Dire Bot Difficulty
+        lodOptionBotsDireDiff = function(value)
+            return value == 0 or value == 1 or value == 2 or value == 3 or value == 4
+        end,
+
         -- Game Speed - Easy Mode
         --[[lodOptionCrazyEasymode = function(value)
             -- Ensure gamemode is set to custom
@@ -3968,8 +3982,9 @@ function Pregame:processOptions()
         OptionManager:SetOption('universalShops', this.optionStore['lodOptionCrazyUniversalShop'])
         OptionManager:SetOption('allowIngameHeroBuilder', this.optionStore['lodOptionIngameBuilder'] == 1)
         --OptionManager:SetOption('botBonusPoints', this.optionStore['lodOptionBotsBonusPoints'] == 1)
-
         OptionManager:SetOption('botsUniqueSkills', this.optionStore['lodOptionBotsUniqueSkills'])
+        OptionManager:SetOption('direBotDiff', this.optionStore['lodOptionBotsDireDiff'])
+        OptionManager:SetOption('radiantBotDiff', this.optionStore['lodOptionBotsRadiantDiff'])
         OptionManager:SetOption('stupidBots', this.optionStore['lodOptionBotsStupid'])
         OptionManager:SetOption('ingameBuilderPenalty', this.optionStore['lodOptionIngameBuilderPenalty'])
         OptionManager:SetOption('322', this.optionStore['lodOption322'])
@@ -4299,6 +4314,9 @@ function Pregame:processOptions()
                     ['Towers: Anti-Rat'] = this.optionStore['lodOptionAntiRat'],
                     ['Towers: Enable Stronger Towers'] = this.optionStore['lodOptionGameSpeedStrongTowers'],
                     ['Towers: Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],
+                    ['Bots: Unique Skills'] = this.optionStore['lodOptionBotsUniqueSkills'],
+                    ['Bots: Radiant Difficulty'] = this.optionStore['lodOptionBotsRadiantDiff'],
+                    ['Bots: Dire Difficulty'] = this.optionStore['lodOptionBotsDireDiff'],
                     ['Bots: Unique Skills'] = this.optionStore['lodOptionBotsUniqueSkills'],
                     ['Bots: Stupefy'] = this.optionStore['lodOptionBotsStupid'],
                 })
@@ -7772,6 +7790,15 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                 else
                     spawnedUnit:RemoveModifierByName('modifier_silencer_int_steal')
                 end
+
+            -- Apply Bot Difficulty 
+            if util:isPlayerBot(playerID) then
+                if spawnedUnit:GetTeam() == DOTA_TEAM_GOODGUYS then
+                    spawnedUnit:SetBotDifficulty(OptionManager:GetOption('radiantBotDiff'))
+                elseif spawnedUnit:GetTeam() == DOTA_TEAM_BADGUYS then
+                    spawnedUnit:SetBotDifficulty(OptionManager:GetOption('direBotDiff'))
+                end
+            end
             -- Disabled due to innates being convereted into normal 4 level abilities
             -- Stalker Innate Auto-Level
             --if spawnedUnit:HasAbility('night_stalker_innate_redux') then

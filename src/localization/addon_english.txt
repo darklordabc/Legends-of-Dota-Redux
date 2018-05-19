@@ -131,6 +131,22 @@
     "lodOptionSkills"                                  "Yes (Skills Only)"
     "lodOptionSkillsAndItems"                          "Yes (Skills and Items)"
 
+    "lodOptionBotsRadiantDiff"                       "Bot Difficulty Radiant"
+    "lodOptionDesBotsRadiantDiff"                    "Bot Difficulty Radiant"
+    "lodOptionAboutBotsRadiantDiff"                  "Sets the difficult level for the Radiant bots."
+
+    "lodOptionBotsDireDiff"                          "Bot Difficulty Dire"
+    "lodOptionDesBotsDireDiff"                       "Bot Difficulty Dire"
+    "lodOptionAboutBotsDireDiff"                     "Sets the difficult level for the Dire bots."
+
+    "lodOptionBotDifficulty"                            "Passive"
+
+    "lodOptionBotPassive"                            "Passive"
+    "lodOptionBotEasy"                               "Easy"
+    "lodOptionBotMedium"                             "Medium"
+    "lodOptionBotHard"                               "Hard"
+    "lodOptionBotUnfair"                             "Unfair"
+
     // Option text
     "lodOptionsPresetGamemode"                      "Preset Gamemode"
     "lodOptionBalancedAllPick"                      "Balanced All Pick"
@@ -193,6 +209,13 @@
     "lodMutatorFastBuybackCooldown1"                "Fast Respawn"
     "lodMutatorFastBuybackCooldown2"                "Faster Respawn"
     "lodMutatorFastBuybackCooldown3"                "Instant Respawn"
+
+    "lodMutatorBotDifficulty1"                      "Passive Bots"  
+
+    "lodMutatorBotDifficulty2"                      "Easy Bots"
+    "lodMutatorBotDifficulty3"                      "Medium Bots"
+    "lodMutatorBotDifficulty4"                      "Hard Bots"
+    "lodMutatorBotDifficulty5"                      "Unfair Bots"
 
     "lodMutatorMaxUlts1"                            "2 Ultimates"
     "lodMutatorMaxUlts2"                            "3 Ultimates"

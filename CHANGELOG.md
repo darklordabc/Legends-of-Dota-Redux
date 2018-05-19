@@ -8,6 +8,9 @@ All notable changes to this project will be documented in this file.
 - Lingering Souls now have 80 seconds to recover souls, instead of 60
 *
 - Improved Following Unpopular custom abilities: Guardian Light, Shards of True Sight, Song of Death
+- Added Bot Difficulty Mutator/Option. 
+- Bot Default Difficulty changed from Unfair to Medium
+- Team Specific difficulty can be changed by advanced options menu
 
 ## 11
 - Fixed Nothl Protection Bonus ability mutator
