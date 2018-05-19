@@ -4322,13 +4322,7 @@ function Pregame:processOptions()
                     ['Other: Anti Perma-Stun'] = this.optionStore['lodOptionAntiBash'],
                     ['Towers: Anti-Rat'] = this.optionStore['lodOptionAntiRat'],
                     ['Towers: Enable Stronger Towers'] = this.optionStore['lodOptionGameSpeedStrongTowers'],
-                    ['Towers: Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],
-                    ['Bots: Unique Skills'] = this.optionStore['lodOptionBotsUniqueSkills'],
-                    ['Bots: Radiant Difficulty'] = this.optionStore['lodOptionBotsRadiantDiff'],
-                    ['Bots: Dire Difficulty'] = this.optionStore['lodOptionBotsDireDiff'],
-                    ['Bots: Unique Skills'] = this.optionStore['lodOptionBotsUniqueSkills'],
-                    ['Bots: Stupefy'] = this.optionStore['lodOptionBotsStupid'],
-                    ['Bots: Allow Duplicates'] = this.optionStore['lodOptionBotsUnique'],                  
+                    ['Towers: Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],                  
                 })
 
                 -- Draft arrays
@@ -4362,7 +4356,13 @@ function Pregame:processOptions()
             statCollection:setFlags({
                 ['Bots: Bots Enabled'] = 1,
                 ['Bots: Desired Radiant Bots'] = this.optionStore['lodOptionBotsRadiant'],
-                ['Bots: Desired Dire Bots'] = this.optionStore['lodOptionBotsDire']
+                ['Bots: Desired Dire Bots'] = this.optionStore['lodOptionBotsDire'],
+                ['Bots: Unique Skills'] = this.optionStore['lodOptionBotsUniqueSkills'],
+                ['Bots: Radiant Difficulty'] = this.optionStore['lodOptionBotsRadiantDiff'],
+                ['Bots: Dire Difficulty'] = this.optionStore['lodOptionBotsDireDiff'],
+                ['Bots: Unique Skills'] = this.optionStore['lodOptionBotsUniqueSkills'],
+                ['Bots: Stupefy'] = this.optionStore['lodOptionBotsStupid'],
+                ['Bots: Allow Duplicates'] = this.optionStore['lodOptionBotsUnique'],
             })
         else
             statCollection:setFlags({
