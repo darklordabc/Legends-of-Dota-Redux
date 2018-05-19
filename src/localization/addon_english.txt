@@ -211,7 +211,7 @@
     "lodMutatorFastBuybackCooldown3"                "Instant Respawn"
 
     "lodMutatorBotDifficulty1"                      "Passive Bots"
-    "lodOptionAboutBotDifficulty"                   "For detailed information about bot difficulty differences refer to the DotA 2 Wiki page about bots. Team specific difficulty can be set in advanced options"
+    "lodOptionAboutBotDifficulty"                   "For detailed information about bot difficulty differences refer to the DotA 2 Wiki page about bots. Team specific difficulty can be set in advanced options."
 
     "lodMutatorBotDifficulty2"                      "Easy Bots"
     "lodMutatorBotDifficulty3"                      "Medium Bots"
