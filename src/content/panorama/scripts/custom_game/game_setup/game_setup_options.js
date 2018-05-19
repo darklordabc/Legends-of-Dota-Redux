@@ -118,7 +118,7 @@ var basicOptions = {
                                 'lodOptionGameSpeedRespawnTimePercentage': 5
                             }
                         }
-                    },
+                    },                  
                     {
                         name: 'lodOptionGameSpeedStrongTowers',
                         about: 'lodMutatorStrongTowers'
@@ -295,6 +295,7 @@ var basicOptions = {
                     },
                     {
                         about: 'lodMutatorBotDifficulty1',
+                        extraInfo: 'lodOptionAboutBotDifficulty',
                         default: {
                             'lodOptionBotsRadiantDiff': 0,
                             'lodOptionBotsDireDiff': 0

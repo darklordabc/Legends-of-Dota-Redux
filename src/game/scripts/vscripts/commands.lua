@@ -465,7 +465,7 @@ function Commands:OnPlayerChat(keys)
                 if splitedcommand[1] and tonumber(splitedcommand[1])then
                     difficulty = tonumber(splitedcommand[1])
                 end
-                hero:SetBotDifficulty(difficulty) )
+                hero:SetBotDifficulty(difficulty)
                              
             end, DoUniqueString('botdiff'), .1)
 
