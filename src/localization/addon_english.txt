@@ -218,6 +218,8 @@
     "lodMutatorBotDifficulty4"                      "Hard Bots"
     "lodMutatorBotDifficulty5"                      "Unfair Bots"
 
+    
+
     "lodMutatorMaxUlts1"                            "2 Ultimates"
     "lodMutatorMaxUlts2"                            "3 Ultimates"
     "lodMutatorMaxUlts3"                            "4 Ultimates"
@@ -365,6 +367,11 @@
     "lodOptionDesBalanceMode"                       "Points Mode"
 
     "lodOptionDesBalanceModePoints"                 "Points"
+
+    "lodMutatorBotsUnique"                          "Bot Duplicates"
+    "lodOptionBotsUnique"                           "Allow Bot Duplicates"
+    "lodOptionDesBotsUnique"                        "Allow Bot Duplicates"
+    "lodOptionAboutBotsUnique"                      "Allows bots to use a hero that is already in use by another bot. If this is disabled, bots will all have unique heroes."
 
     "lodOptionDesBanningHostBanning"                "Host has unlimited bans"
     "lodOptionAboutHostBanning"                     "This option will allow the host to ban as many heroes and abilities as they like."

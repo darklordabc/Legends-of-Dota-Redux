@@ -829,6 +829,9 @@ function Pregame:loadDefaultSettings()
     -- Unique Skills default
     self:setOption('lodOptionBotsStupid', 0, true)
 
+    -- Allow Duplicate Bots
+    self:setOption('lodOptionBotsUnique', 0, true)
+
     -- Restrict Skills default
     self:setOption('lodOptionBotsRestrict', 0, true)
 
@@ -2998,6 +3001,11 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1 or value == 2
         end,
 
+        -- Bots -- Allow Duplicates
+        lodOptionBotsUnique = function(value)
+            return value == 0 or value == 1
+        end,
+
         -- Bots -- Stupefy
         lodOptionBotsStupid = function(value)
             return value == 0 or value == 1
@@ -3986,6 +3994,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('direBotDiff', this.optionStore['lodOptionBotsDireDiff'])
         OptionManager:SetOption('radiantBotDiff', this.optionStore['lodOptionBotsRadiantDiff'])
         OptionManager:SetOption('stupidBots', this.optionStore['lodOptionBotsStupid'])
+        OptionManager:SetOption('duplicateBots', this.optionStore['lodOptionBotsUnique'])
         OptionManager:SetOption('ingameBuilderPenalty', this.optionStore['lodOptionIngameBuilderPenalty'])
         OptionManager:SetOption('322', this.optionStore['lodOption322'])
         OptionManager:SetOption('extraAbility', this.optionStore['lodOptionExtraAbility'])
@@ -4319,6 +4328,7 @@ function Pregame:processOptions()
                     ['Bots: Dire Difficulty'] = this.optionStore['lodOptionBotsDireDiff'],
                     ['Bots: Unique Skills'] = this.optionStore['lodOptionBotsUniqueSkills'],
                     ['Bots: Stupefy'] = this.optionStore['lodOptionBotsStupid'],
+                    ['Bots: Allow Duplicates'] = this.optionStore['lodOptionBotsUnique'],                  
                 })
 
                 -- Draft arrays
@@ -6947,7 +6957,11 @@ function Pregame:generateBotBuilds()
                     end
                 end
             else
-                heroName = table.remove(possibleHeroes, math.random(#possibleHeroes))
+                if OptionManager:GetOption('duplicateBots') then -- If allowed duplicates option is on, pick random hero but do not remove from available pool of bot heroes
+                    heroName = possibleHeroes[ math.random( #possibleHeroes ) ]
+                else -- If allowed duplicates is off, pick random hero then remove from pool of available bot heroes
+                    heroName = table.remove(possibleHeroes, math.random(#possibleHeroes))
+                end
             end
         end
 

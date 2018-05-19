@@ -294,6 +294,11 @@ var basicOptions = {
                         }
                     },
                     {
+                        name: 'lodOptionBotsUnique',
+                        extraInfo: 'lodOptionAboutBotsUnique',
+                        about: 'lodMutatorBotsUnique'
+                    },
+                    {
                         about: 'lodMutatorBotDifficulty1',
                         extraInfo: 'lodOptionAboutBotDifficulty',
                         default: {
@@ -809,7 +814,7 @@ var advancedOptions = {
                         value: 2
                     },
                 ]
-            },
+            },       
             {
                 name: 'lodOptionAdvancedUniqueHeroes',
                 des: 'lodOptionDesAdvancedUniqueHeroes',
@@ -1543,6 +1548,22 @@ var advancedOptions = {
                     {
                         text: 'lodOptionUniqueGlobal',
                         value: 2
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionBotsUnique',
+                des: 'lodOptionDesBotsUnique',
+                about: 'lodOptionAboutBotsUnique',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
                     }
                 ]
             },
