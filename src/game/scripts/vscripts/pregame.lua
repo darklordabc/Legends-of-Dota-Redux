@@ -6878,41 +6878,22 @@ function Pregame:generateBotBuilds()
     -- List of bots that are borked
     if IsInToolsMode() then
         brokenBots = {
-            npc_dota_hero_tidehunter = true,
-            npc_dota_hero_razor = true,
+            --npc_dota_hero_tidehunter = true, --Works
+            --npc_dota_hero_razor = true, -- Works
 
             -- Stoped working around Feburary, 24, 2017
-            npc_dota_hero_skywrath_mage = true,
-            npc_dota_hero_nevermore = true,
-            npc_dota_hero_pudge = true,
-            npc_dota_hero_phantom_assassin = true,
-
-            --[[npc_dota_hero_sven = true,
-            npc_dota_hero_skeleton_king = true,
-            npc_dota_hero_lina = true,
-            npc_dota_hero_luna = true,
-            npc_dota_hero_dragon_knight = true,
-            npc_dota_hero_bloodseeker = true,
-            npc_dota_hero_lion = true,
-            npc_dota_hero_tiny = true,
-            npc_dota_hero_oracle = true,]]
+            --npc_dota_hero_skywrath_mage = true, -- Works
+            --npc_dota_hero_nevermore = true, -- Works
+           -- npc_dota_hero_pudge = true, --Works
+            --npc_dota_hero_phantom_assassin = true, --Works
         }
     else
         brokenBots = {
-            npc_dota_hero_tidehunter = true,
-            npc_dota_hero_razor = true,
-            npc_dota_hero_pudge = true,
+           -- npc_dota_hero_tidehunter = true, --Works
+            --npc_dota_hero_razor = true, -- Works
+            --npc_dota_hero_pudge = true, --Works
 
             -- Stoped working around Feburary, 24, 2017
-            --[[npc_dota_hero_sven = true,
-            npc_dota_hero_skeleton_king = true,
-            npc_dota_hero_lina = true,
-            npc_dota_hero_luna = true,
-            npc_dota_hero_dragon_knight = true,
-            npc_dota_hero_bloodseeker = true,
-            npc_dota_hero_lion = true,
-            npc_dota_hero_tiny = true,
-            npc_dota_hero_oracle = true,]]
         }
 
     end
@@ -6957,7 +6938,7 @@ function Pregame:generateBotBuilds()
                     end
                 end
             else
-                if OptionManager:GetOption('duplicateBots') then -- If allowed duplicates option is on, pick random hero but do not remove from available pool of bot heroes
+                if OptionManager:GetOption('duplicateBots') == 1 then -- If allowed duplicates option is on, pick random hero but do not remove from available pool of bot heroes
                     heroName = possibleHeroes[ math.random( #possibleHeroes ) ]
                 else -- If allowed duplicates is off, pick random hero then remove from pool of available bot heroes
                     heroName = table.remove(possibleHeroes, math.random(#possibleHeroes))

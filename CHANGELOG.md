@@ -11,6 +11,8 @@ All notable changes to this project will be documented in this file.
 - Added Bot Difficulty Mutator/Option. 
 - Bot Default Difficulty changed from Unfair to Medium
 - Team Specific difficulty can be changed by advanced options menu
+- Added Option to allow bots to use the same hero (Duplicate Heroes)
+- Enabled Extra Bots: Tide Hunter, Razor and Pudge (If the game starts crashing its because of these bots)
 
 ## 11
 - Fixed Nothl Protection Bonus ability mutator
