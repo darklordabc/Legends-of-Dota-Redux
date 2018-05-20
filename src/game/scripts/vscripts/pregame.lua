@@ -7432,9 +7432,11 @@ function Pregame:giveAbilityUsageBonuses(playerID)
         if hero then
             if newAbilities > 0 then
                 hero:AddItemByName('item_new_ability_bonus'):SetCurrentCharges(newAbilities)
+                hero:HeroLevelUp(true)
             end
             if newGlobalAbilities > 0 then
                 hero:AddItemByName('item_new_global_ability_bonus'):SetCurrentCharges(newGlobalAbilities)
+                hero:HeroLevelUp(true)
             end
             if pregame.optionStore["lodOptionBalancedBuildBonusGold"] > 0 and passiveAbilities <= 3 then
                 hero:AddItemByName('item_balanced_build_bonus')
