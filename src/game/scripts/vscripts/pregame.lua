@@ -6878,23 +6878,14 @@ function Pregame:generateBotBuilds()
     -- List of bots that are borked
     if IsInToolsMode() then
         brokenBots = {
-            --npc_dota_hero_tidehunter = true, --Works
-            --npc_dota_hero_razor = true, -- Works
+            npc_dota_hero_tidehunter = true, -- Stays at foutain and doesnt do anything in workshop version
+            npc_dota_hero_razor = true, -- Stays at foutain and doesnt do anything in workshop version
 
-            -- Stoped working around Feburary, 24, 2017
-            --npc_dota_hero_skywrath_mage = true, -- Works
-            --npc_dota_hero_nevermore = true, -- Works
-           -- npc_dota_hero_pudge = true, --Works
-            --npc_dota_hero_phantom_assassin = true, --Works
         }
     else
         brokenBots = {
-           -- npc_dota_hero_tidehunter = true, --Works
-            --npc_dota_hero_razor = true, -- Works
-            --npc_dota_hero_pudge = true, --Works
-
-            -- Stoped working around Feburary, 24, 2017
-        }
+            npc_dota_hero_tidehunter = true, -- Stays at foutain and doesnt do anything in workshop version
+            npc_dota_hero_razor = true, -- Stays at foutain and doesnt do anything in workshop version
 
     end
 
