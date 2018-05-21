@@ -3,7 +3,7 @@
 -- Date: Sun May 13 2018
 --=======================================================================================
 require("typescript_lualib")
---LinkLuaModifier("modifier_vampirism_mutator","abilities/mutators/modifier_vampirism_mutator.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_day_night","abilities/mutators/modifier_vampirism_mutator.lua",LUA_MODIFIER_MOTION_NONE)
 modifier_vampirism_mutator = {}
 modifier_vampirism_mutator.__index = modifier_vampirism_mutator
 function modifier_vampirism_mutator.new(construct, ...)
@@ -30,6 +30,8 @@ function modifier_vampirism_mutator.OnCreated(self)
 
     if IsServer() then
         self:StartIntervalThink(FrameTime())
+
+        self:GetParent():AddNewModifier(self:GetParent(),nil,"modifier_day_night",{})
     end
 end
 
@@ -48,6 +50,11 @@ function modifier_vampirism_mutator.OnIntervalThink(self)
 
 end
 
+function modifier_vampirism_mutator.IsDayTime(self)
+    return self:GetParent():GetModifierStackCount("modifier_day_night",self:GetParent()) == 0
+end
+
+
 function modifier_vampirism_mutator.DeclareFunctions(self)
     return {
         MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
@@ -58,33 +65,28 @@ function modifier_vampirism_mutator.DeclareFunctions(self)
 end
 
 function modifier_vampirism_mutator.GetModifierMoveSpeedBonus_Percentage(self)
-    if IsClient() then
+   
+    if self.IsDayTime() then
         return 0
+    else 
+        return self.night_bonus_ms
     end
-    if GameRules:IsDaytime() then
-        return 0
-    end
-    return self.night_bonus_ms
 end
 
 function modifier_vampirism_mutator.GetModifierHealthRegenPercentage(self)
-    if IsClient() then
-        return 0
-    end
-    if GameRules:IsDaytime() then
+    if self.IsDayTime() then
         return -1
+    else 
+        return 1
     end
-    return 1
 end
 
 function modifier_vampirism_mutator.GetModifierTotalPercentageManaRegen(self)
-    if IsClient() then
+    if self.IsDayTime() then
         return 0
+    else 
+        return 1
     end
-    if GameRules:IsDaytime() then
-        return 0
-    end
-    return 1
 end
 
 function modifier_vampirism_mutator.OnTakeDamage(self,kv)
@@ -101,8 +103,8 @@ function modifier_vampirism_mutator.OnTakeDamage(self,kv)
     end
 
     self.night_lifesteal = self.night_lifesteal or 20
-    if (self:GetParent()==kv.attacker) and kv.target:IsAlive() then
-        if not kv.target:IsOther() and not kv.target:IsBuilding() then
+    if (self:GetParent()==kv.attacker) and kv.unit:IsAlive() then
+        if not kv.unit:IsOther() and not kv.unit:IsBuilding() then
             self:GetParent():Heal((kv.damage*self.night_lifesteal)*0.01,self:GetParent())
             local p
             if not kv.ability then
@@ -113,5 +115,24 @@ function modifier_vampirism_mutator.OnTakeDamage(self,kv)
             ParticleManager:ReleaseParticleIndex(p)
 
         end
+    end
+end
+
+
+modifier_day_night = class({})
+function modifier_day_night:IsHidden() return true end
+function modifier_day_night:IsPermanent() return true end
+ 
+function modifier_day_night:OnCreated()
+    if IsServer then
+        self:StartIntervalThink(FrameTime())
+    end
+end
+
+function modifier_day_night:OnIntervalThink()
+    if GameRules:IsDaytime() then
+        self:SetStackCount(0)
+    else
+        self:SetStackCount(1)
     end
 end

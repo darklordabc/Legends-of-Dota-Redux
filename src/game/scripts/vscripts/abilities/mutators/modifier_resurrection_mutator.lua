@@ -32,6 +32,8 @@ function modifier_resurrection_mutator.OnDeath(self,kv)
         newItem:SetPurchaseTime(0)
         newItem:SetPurchaser(killedUnit)
 
+        newItem.GetChannelTime = function() return killedUnit:GetTimeUntilRespawn()/3 end
+
         local tombstone = SpawnEntityFromTableSynchronous("dota_item_tombstone_drop",{})
         tombstone:SetContainedItem(newItem)
         tombstone:SetAngles(0,RandomFloat(0,360),0)
