@@ -123,6 +123,16 @@ function modifier_random_lane_creep_mutator_ai.OnIntervalThink(self)
     --     print(self.unit:GetInitialGoalEntity())
     --     unit:SetInitialGoalEntity(self.unit:GetInitialGoalEntity())
     -- end
+
+    if not unit:GetInitialGoalEntity() then
+        local units = FindUnitsInRadius(unit:GetTeamNumber(),unit:GetAbsOrigin(),nil,500,DOTA_UNIT_TARGET_TEAM_FRIENDLY,DOTA_UNIT_TARGET_BASIC,DOTA_UNIT_TARGET_FLAG_NONE,FIND_ANY_ORDER,false)
+        for _,u in pairs(units) do
+            print(u:GetUnitName(),u:GetInitialGoalEntity())
+            if u:GetInitialGoalEntity() then
+                unit:SetInitialGoalEntity(u:GetInitialGoalEntity())
+            end
+        end
+    end
     for i=0,1 do
         local ability = unit:GetAbilityByIndex(i)
         if ability and not ability:IsPassive() and ability:IsCooldownReady() and unit:GetMana() >= ability:GetManaCost(-1) then

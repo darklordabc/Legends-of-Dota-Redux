@@ -32,7 +32,7 @@ end
 function modifier_death_explosion_mutator.OnDeath(self,kv)
     if self:GetParent()==kv.unit then
         local origin = kv.unit:GetAbsOrigin()
-        local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_techies/techies_remote_mines_detonate.vpcf", PATTACH_ABSORIGIN, self:GetParent())
+        local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_techies/techies_land_mine_explode.vpcf", PATTACH_ABSORIGIN, self:GetParent())
         ParticleManager:SetParticleControl(particle, 0, origin)
         ParticleManager:SetParticleControl(particle, 1, origin)
         ParticleManager:SetParticleControl(particle, 2, Vector(self.aoe, 1, 1))
@@ -46,8 +46,8 @@ function modifier_death_explosion_mutator.OnDeath(self,kv)
             should_stun = 0,
             knockback_duration = 0.5,
             duration = 0.5,
-            knockback_distance = 250,
-            knockback_height = 250,
+            knockback_distance = 200 + (10 * self:GetParent():GetLevel()),
+            knockback_height = 100 + (10 * self:GetParent():GetLevel()),
             center_x = origin.x,
             center_y = origin.y,
             center_z = origin.z
