@@ -30,6 +30,8 @@
     "76561198059260684_Description" "Points Mode Developer, Spells Contributor"
     "76561198071596545" "『　　』"
     "76561198071596545_Description" "Tester, Balance Advice"
+    "76561198061491531" "Ixla"
+    "76561198061491531_Description" "Patreon Supporter"
     "76561197996730911" "K1llMan"
     "76561197996730911_Description" "Developer, Server Architecture"
     "76561198016015988" "Mentos"
