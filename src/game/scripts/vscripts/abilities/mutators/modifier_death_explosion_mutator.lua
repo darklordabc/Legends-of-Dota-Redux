@@ -47,7 +47,7 @@ function modifier_death_explosion_mutator.OnDeath(self,kv)
             knockback_duration = 0.5,
             duration = 0.5,
             knockback_distance = 250,
-            knockback_height = 0,
+            knockback_height = 250,
             center_x = origin.x,
             center_y = origin.y,
             center_z = origin.z

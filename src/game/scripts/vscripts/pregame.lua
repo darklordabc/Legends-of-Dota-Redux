@@ -63,7 +63,9 @@ LinkLuaModifier("modifier_no_healthbar_mutator","abilities/mutators/modifier_no_
 LinkLuaModifier("modifier_random_spell_mutator","abilities/mutators/modifier_random_spell_mutator.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_random_lane_creep_mutator_ai","abilities/mutators/modifier_random_lane_creep_mutator_ai.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_random_lane_creep_spawner_mutator","abilities/mutators/modifier_random_lane_creep_mutator_ai.lua",LUA_MODIFIER_MOTION_NONE)
---LinkLuaModifier("modifier_resurrection_mutator","abilities/mutators/modifier_resurrection_mutator.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_resurrection_mutator","abilities/mutators/modifier_resurrection_mutator.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_rune_doubledamage_mutated","abilities/mutators/super_runes.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_rune_arcane_mutated","abilities/mutators/super_runes.lua",LUA_MODIFIER_MOTION_NONE)
 
 --[[
     Main pregame, selection related handler
@@ -815,13 +817,14 @@ function Pregame:loadDefaultSettings()
     self:setOption('lodOptionBotsUnfairBalance', 1, true)
 
     self:setOption('lodOptionFastRunes', 0, true)
+    self:SetOption('lodOptionSuperRunes', 0, true)
     self:setOption('lodOptionPeriodicSpellCast', 0, true)
     self:setOption('lodOptionVampirism', 0, true)
     self:setOption('lodOptionKillStreakPower', 0, true)
     self:setOption('lodOptionCooldownReduction', 0, true)
     self:setOption('lodOptionExplodeOnDeath', 0, true)
     self:setOption('lodOptionGoldDropOnDeath', 0, true)
-    -- self:setOption('lodOptionResurrectAllies', 0, true)
+    self:setOption('lodOptionResurrectAllies', 0, true)
     self:setOption('lodOptionRandomLaneCreeps', 0, true)
     self:setOption('lodOptionNoHealthbars', 0, true)
 
@@ -3124,6 +3127,9 @@ function Pregame:initOptionSelector()
         lodOptionFastRunes = function(value)
             return value == 0 or value == 1
         end,
+        lodOptionSuperRunes = function(value)
+            return value == 0 or value == 1
+        end,
         -- Mutators
         lodOptionPeriodicSpellCast = function(value)
             return value == 0 or value == 1
@@ -4052,6 +4058,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('consumeItems', this.optionStore['lodOptionConsumeItems'])
         OptionManager:SetOption('limitPassives', this.optionStore['lodOptionLimitPassives'])
         OptionManager:SetOption('antiBash', this.optionStore['lodOptionAntiBash'])
+        OptionManager:SetOption('superRunes',this.optionStore['lodOptionSuperRunes'])
         OptionManager:SetOption('fastRunes',this.optionStore['lodOptionFastRunes'])
         OptionManager:SetOption('periodicSpellCast',this.optionStore['lodOptionPeriodicSpellCast'])
         OptionManager:SetOption('vampirism',this.optionStore['lodOptionVampirism'])
@@ -4061,7 +4068,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('goldDropOnDeath',this.optionStore['lodOptionGoldDropOnDeath'])
         OptionManager:SetOption('noHealthbars',this.optionStore['lodOptionNoHealthbars'])
         OptionManager:SetOption('randomLaneCreeps',this.optionStore['lodOptionRandomLaneCreeps'])
-        --OptionManager:SetOption('resurrectAllies',this.optionStore['lodOptionResurrectAllies'])
+        OptionManager:SetOption('resurrectAllies',this.optionStore['lodOptionResurrectAllies'])
 
         -- Enforce max level
         if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -4384,6 +4391,7 @@ function Pregame:processOptions()
                     ['Bots: Unique Skills'] = this.optionStore['lodOptionBotsUniqueSkills'],
                     ['Bots: Stupefy'] = this.optionStore['lodOptionBotsStupid'],
                     ['Mutators: Fast Runes'] = this.optionStore['fastRunes'],
+                    ['Mutators: Super Runes'] = this.optionStore['superRunes'],
                     ['Mutators: Periodic Spell Cast'] = this.optionStore['periodicSpellCast'],
                     ['Mutators: Vampirism'] = this.optionStore['vampirism'],
                     ['Mutators: Kill Streak Power'] = this.optionStore['killstreakPower'],
@@ -7988,9 +7996,9 @@ function Pregame:fixSpawnedHero( spawnedUnit )
             if OptionManager:GetOption('goldDropOnDeath') == 1 then
                 spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_drop_gold_bag_mutator",{})
             end
-            --[[if OptionManager:GetOption('resurrectAllies') then
+            if OptionManager:GetOption('resurrectAllies') then
                 spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_resurrection_mutator",{})
-            end]]
+            end
             if OptionManager:GetOption('noHealthbars') == 1 then
                 spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_no_healthbar_mutator",{})
             end

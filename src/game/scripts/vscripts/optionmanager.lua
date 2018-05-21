@@ -163,14 +163,15 @@ if not OptionManager.initialSettings then
 
 	-- Mutators
 	OptionManager:SetOption('fastRunes', false)
-	OptionManager:SetOption('periodicSpellCast', true)
+	OptionManager:SetOption('superRunes', false)
+	OptionManager:SetOption('periodicSpellCast', false)
 	OptionManager:SetOption('vampirism', false)
 	OptionManager:SetOption('killstreakPower', false)
 	OptionManager:SetOption('cooldownReduction', false)
 	OptionManager:SetOption('explodeOnDeath', false)
 	OptionManager:SetOption('goldDropOnDeath', false)
-	--OptionManager:SetOption('resurrectAllies', false)
-	OptionManager:SetOption('randomLaneCreeps', true)
+	OptionManager:SetOption('resurrectAllies', false)
+	OptionManager:SetOption('randomLaneCreeps', false)
 	OptionManager:SetOption('noHealthbars', false)
 
 	-- Other Mutators

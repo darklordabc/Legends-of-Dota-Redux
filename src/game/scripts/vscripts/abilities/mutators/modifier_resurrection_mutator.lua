@@ -31,8 +31,8 @@ function modifier_resurrection_mutator.OnDeath(self,kv)
 
         newItem:SetPurchaseTime(0)
         newItem:SetPurchaser(killedUnit)
-        local tombstone = SpawnEntityFromTableSynchronous("dota_item_tombstone_drop",{})
 
+        local tombstone = SpawnEntityFromTableSynchronous("dota_item_tombstone_drop",{})
         tombstone:SetContainedItem(newItem)
         tombstone:SetAngles(0,RandomFloat(0,360),0)
         tombstone:SetAbsOrigin(killedUnit:GetAbsOrigin())
