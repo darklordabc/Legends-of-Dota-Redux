@@ -7042,7 +7042,7 @@
     "PointsToWin_VeryCloseToVictory"                "+{d:points_to_win} more!"
     "PointsToWin_Victory"                           "Victory!"
 
-    "InstructionsTitle"                             "OVERTHROW"
+    "InstructionsTitle"                             "Legends of Dota:Redux"
     "InstructionsObjective"                         "OBJECTIVE"
     "InstructionsObjectiveText"                     "Slay your enemies! Be the first to earn the goal number of kills, or the team with the most kills when the round ends, and you will be victorious."
     "InstructionsHowToPlay"                         "HOW TO PLAY"
@@ -7082,7 +7082,7 @@
     "KillMessageText"                               "HAS KILLED THE LEADER"
     "KillMessageBounty"                             "FOR 500 BONUS GOLD!"
 
-    "addonname"                                     "Overthrow"
+    "addonname"                                     "Legends of Dota:Redux"
     "overthrow_game_info_header_objective"          "Objective:"
     "overthrow_brief_description"                   "Slay your enemies! First team to hit the kill limit wins!"
     "overthrow_game_info_header_how_to_play"        "How To Play:"
