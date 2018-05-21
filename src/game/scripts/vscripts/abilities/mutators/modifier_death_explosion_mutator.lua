@@ -47,7 +47,7 @@ function modifier_death_explosion_mutator.OnDeath(self,kv)
             knockback_duration = 0.5,
             duration = 0.5,
             knockback_distance = 200 + (10 * self:GetParent():GetLevel()),
-            knockback_height = 100 + (10 * self:GetParent():GetLevel()),
+            knockback_height = 20 + (10 * self:GetParent():GetLevel()),
             center_x = origin.x,
             center_y = origin.y,
             center_z = origin.z
