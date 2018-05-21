@@ -545,6 +545,8 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
         end
     end
 
+    hero.buildApplied = true
+
     -- Store the hero of this build
     build.hero = hero:GetClassname()
 
