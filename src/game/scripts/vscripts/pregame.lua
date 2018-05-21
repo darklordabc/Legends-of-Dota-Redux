@@ -4905,12 +4905,25 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
     print("Pregame:onPlayerReady")
     CustomGameEventManager:Send_ServerToAllClients("redux_print_debug", { text = "pressed player ready" })
     local playerID = args.PlayerID
-    if self:getPhase() ~= constants.PHASE_BANNING and self:getPhase() ~= constants.PHASE_SELECTION and self:getPhase() ~= constants.PHASE_RANDOM_SELECTION and self:getPhase() ~= constants.PHASE_REVIEW and not self:canPlayerPickSkill(playerID) then return end
+    CustomGameEventManager:Send_ServerToAllClients("redux_print_debug", { text = "check1: "..tostring(self:getPhase() ~= constants.PHASE_BANNING) })
+    CustomGameEventManager:Send_ServerToAllClients("redux_print_debug", { text = "check2: "..tostring(self:getPhase() ~= constants.PHASE_SELECTION) })
+    CustomGameEventManager:Send_ServerToAllClients("redux_print_debug", { text = "check3: "..tostring(self:getPhase() ~= constants.PHASE_RANDOM_SELECTION ) })
+    CustomGameEventManager:Send_ServerToAllClients("redux_print_debug", { text = "check4: "..tostring(self:getPhase() ~= constants.PHASE_REVIEW) })
+    CustomGameEventManager:Send_ServerToAllClients("redux_print_debug", { text = "check5: "..tostring(not self:canPlayerPickSkill(playerID)) })
+    if self:getPhase() ~= constants.PHASE_BANNING and 
+        self:getPhase() ~= constants.PHASE_SELECTION and 
+        self:getPhase() ~= constants.PHASE_RANDOM_SELECTION and 
+        self:getPhase() ~= constants.PHASE_REVIEW and
+        not self:canPlayerPickSkill(playerID) then return end
+    CustomGameEventManager:Send_ServerToAllClients("redux_print_debug", { text = "check1a: "..tostring(self:isBackgroundSpawning()) })
+    CustomGameEventManager:Send_ServerToAllClients("redux_print_debug", { text = "check2a: "..tostring(self:getPhase() ~= constants.PHASE_BANNING) })
     if self:isBackgroundSpawning() and self:getPhase() ~= constants.PHASE_BANNING then
         print("\tcase1")
         self:validateBuilds(playerID)
         CustomGameEventManager:Send_ServerToAllClients("redux_print_debug", { text = "case1: validating" })
     end
+    CustomGameEventManager:Send_ServerToAllClients("redux_print_debug", { text = "check1b: "..tostring(self:canPlayerPickSkill(playerID)) })
+    CustomGameEventManager:Send_ServerToAllClients("redux_print_debug", { text = "check1b: "..tostring(IsValidEntity(PlayerResource:GetSelectedHeroEntity(args.PlayerID))) })
     if self:canPlayerPickSkill(playerID) and IsValidEntity(PlayerResource:GetSelectedHeroEntity(args.PlayerID)) then
         print("\tcase2")
         CustomGameEventManager:Send_ServerToAllClients("redux_print_debug", { text = "case2: ingame building" })
@@ -5023,6 +5036,8 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
             end
             EmitGlobalSound("Event.LockBuild")
         end
+
+        CustomGameEventManager:Send_ServerToAllClients("redux_print_debug", { text = "checking if everyone is ready" })
 
         -- Checks if people are ready
         self:checkForReady()
