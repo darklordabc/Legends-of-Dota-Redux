@@ -12,14 +12,14 @@
             "particle"                                                     "particles/units/heroes/hero_siren/naga_siren_song_debuff.vpcf"
         }
         "MaxLevel"                                                             "3"
-        "AbilityCooldown"                                                      "100 90 80"
-        "AbilityManaCost"                                                      "100 150 200"
+        "AbilityCooldown"                                                      "80 60 45"
+        "AbilityManaCost"                                                      "100"
         "AbilitySpecial"
         {
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "radius"                                               "650"
+                "radius"                                               "750"
             }
             "02"
             {

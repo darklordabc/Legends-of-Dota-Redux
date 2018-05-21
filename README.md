@@ -9,6 +9,10 @@ Legends of Dota Redux
  - Take advantage of hero perks and custom abilities to further enhance your hero! 
  - View the [Changelog](https://github.com/darklordabc/Dota-2-Redux/blob/develop/CHANGELOG.md)
 
+### Patreon ###
+- Nearly all the major features of Redux have been achieved by paying talented developers to implment them. If you enjoy Redux and can spare a few dollars, please consider supporting the mod financially so that it can continue to grow.
+- https://www.patreon.com/darklordabc
+
 ### Github Issues ###
  - Feel free to post an [issue](https://github.com/darklordabc/Dota-2-Redux/issues) on any subject. Improvements, bugs, ideas or to start a discussion, its all good.
  - There are two major lists of issues, ordered by priority, the bug list is [HERE](https://github.com/darklordabc/Dota-2-Redux/milestone/4), and the improvement list is [HERE](https://github.com/darklordabc/Dota-2-Redux/milestone/5). 
