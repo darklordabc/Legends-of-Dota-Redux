@@ -39,6 +39,7 @@
 		"AbilityCooldown"				"0.0"
 		"ReduxCost"                                                            "10"
 		"ReduxFlags"														    "cooldown"
+		"ReduxCost"                                                            "120"
 		
 		"precache"
 		{

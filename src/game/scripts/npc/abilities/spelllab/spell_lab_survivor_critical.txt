@@ -24,6 +24,6 @@
         "ReduxFlags"                                                           "crit | attack_modifier"
         "ReduxBans"                                                            ""
         //"ReduxPerks"                                                           ""
-        "ReduxCost"                                                            "60"
+        "ReduxCost"                                                            "120"
     }
 }
