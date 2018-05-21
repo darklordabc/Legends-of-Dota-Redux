@@ -1547,7 +1547,7 @@ end
 function Ingame:BountyRunePickupFilter(filterTable)
     if OptionManager:GetOption('superRunes') then
         filterTable.xp_bounty = filterTable.xp_bounty * 2
-        filtertable.gold_bounty = filtertable.gold_bounty * 2
+        filterTable.gold_bounty = filterTable.gold_bounty * 2
     end
 
     if OptionManager:GetOption('sharedXP') == 1 then

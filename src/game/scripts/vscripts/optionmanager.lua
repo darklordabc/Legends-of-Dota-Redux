@@ -163,7 +163,7 @@ if not OptionManager.initialSettings then
 
 	-- Mutators
 	OptionManager:SetOption('fastRunes', false)
-	OptionManager:SetOption('superRunes', false)
+	OptionManager:SetOption('superRunes', true)
 	OptionManager:SetOption('periodicSpellCast', false)
 	OptionManager:SetOption('vampirism', false)
 	OptionManager:SetOption('killstreakPower', false)

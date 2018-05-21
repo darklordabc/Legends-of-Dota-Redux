@@ -8089,7 +8089,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
             if OptionManager:GetOption('goldDropOnDeath') == 1 then
                 spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_drop_gold_bag_mutator",{})
             end
-            if OptionManager:GetOption('resurrectAllies') then
+            if OptionManager:GetOption('resurrectAllies') == 1 then
                 spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_resurrection_mutator",{})
             end
             if OptionManager:GetOption('noHealthbars') == 1 then

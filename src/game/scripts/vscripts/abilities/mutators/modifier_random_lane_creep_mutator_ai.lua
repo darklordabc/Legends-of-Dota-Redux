@@ -39,13 +39,13 @@ function modifier_random_lane_creep_spawner_mutator:OnCreated()
 end
 
 function modifier_random_lane_creep_spawner_mutator:OnIntervalThink()
-    print(GameRules:GetDOTATime(false,false),math.floor(GameRules:GetDOTATime(false,false)%30)==0)
+    --print(GameRules:GetDOTATime(false,false),math.floor(GameRules:GetDOTATime(false,false)%30)==0)
 
     if GameRules:GetDOTATime(false,false) > 5 and math.floor(GameRules:GetDOTATime(false,false)%30)==0 then
         if RollPercentage(50) then
             local unit = self:GetParent()
-            local rnd = RandomInt(1,#self.units)
-            local name = self.units[rnd]
+            
+            
 
             local spawnEnts = {
                 'lane_top_goodguys_melee_spawner',
@@ -57,7 +57,9 @@ function modifier_random_lane_creep_spawner_mutator:OnIntervalThink()
             }
 
             TS_forEach(spawnEnts, function(entName)
-                print("entName")
+                local rnd = RandomInt(1,#self.units)
+                local name = self.units[rnd]
+                --print("entName")
                 local ent = Entities:FindByName(nil,entName)
                 local origin = ent:GetAbsOrigin()
                 local teamNumber = DOTA_TEAM_GOODGUYS
@@ -71,10 +73,11 @@ function modifier_random_lane_creep_spawner_mutator:OnIntervalThink()
                 local units = FindUnitsInRadius(teamNumber,origin,nil,500,DOTA_UNIT_TARGET_TEAM_FRIENDLY,DOTA_UNIT_TARGET_BASIC,DOTA_UNIT_TARGET_FLAG_NONE,FIND_ANY_ORDER,false)
                 local rangeCreep
                 for _,u in pairs(units) do
+                    if u:GetInitialGoalEntity() then
                     --if string.find(u:GetUnitName(),"_ranged") then
                         rangeCreep = u
                         break
-                    --end
+                    end
                 end
                 if not rangeCreep then print("NO rangecreep found")return end
                 local waypoint = rangeCreep:GetInitialGoalEntity()
