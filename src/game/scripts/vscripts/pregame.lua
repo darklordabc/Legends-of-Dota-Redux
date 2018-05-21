@@ -6010,7 +6010,7 @@ end
 
 function Pregame:canPlayerPickSkill(playerID)
     local hero = PlayerResource:GetSelectedHeroEntity(playerID)
-    if (self.wispSpawning and hero and hero:GetUnitName() ~= self.selectedHeroes[playerID]) then return true end
+    if (self.wispSpawning and hero and not hero.buildApplied) then return true end
     if (self:getPhase() == constants.PHASE_INGAME or self:getPhase() == constants.PHASE_REVIEW) and (OptionManager:GetOption('allowIngameHeroBuilder')) then
         return true
     end
