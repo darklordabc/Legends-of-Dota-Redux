@@ -55,8 +55,9 @@ function modifier_death_explosion_mutator.OnDeath(self,kv)
 
         TS_forEach(units, function(unit)
             damageTable.victim=unit
-            ApplyDamage(damageTable)
             unit:AddNewModifier(nil,nil,"modifier_knockback",knockback_param)
+            ApplyDamage(damageTable)
+            
         end
         )   
         
