@@ -342,6 +342,8 @@
                                      <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsSameHero.png"></Image>
                                      <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorRandomBotHero.png"></Image>
                                      <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotDifficultyRandom.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorRandom.png"></Image>
+
 
 
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorNoFatOMeter.png"></Image>

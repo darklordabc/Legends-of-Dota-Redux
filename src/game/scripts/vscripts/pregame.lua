@@ -3068,7 +3068,7 @@ function Pregame:initOptionSelector()
 
         -- Other - Extra ability
         lodOptionExtraAbility = function(value)
-            return value == 0 or value == 1 or value == 2 or value == 3 or value == 4  or value == 5 or value == 6 or value == 7 or value == 8 or value == 9 or value == 10  or value == 11 or value == 12 or value == 13 or value == 14 or value == 15 or value == 16 or value == 17 or value == 18  or value == 19 or value == 20 or value == 21 or value == 22
+            return value == 0 or value == 1 or value == 2 or value == 3 or value == 4  or value == 5 or value == 6 or value == 7 or value == 8 or value == 9 or value == 10  or value == 11 or value == 12 or value == 13 or value == 14 or value == 15 or value == 16 or value == 17 or value == 18  or value == 19 or value == 20 or value == 21 or value == 22 or value == 23
         end,
 
         -- Bots - Use Same Hero        
@@ -4139,72 +4139,75 @@ function Pregame:processOptions()
 
         -- All extra ability mutator stuff
         if this.optionStore['lodOptionExtraAbility'] == 1 then
+            self:setOption('lodOptionExtraAbility', math.random(2,23), false)
+        end
+        if this.optionStore['lodOptionExtraAbility'] == 2 then
             self.freeAbility = "basic_spell_amp_bonus_op"
             this:banAbility("basic_spell_amp_bonus_op")
-        elseif this.optionStore['lodOptionExtraAbility'] == 2 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 3 then
             self.freeAbility = "imba_dazzle_shallow_grave_passive_one"
             this:banAbility("imba_dazzle_shallow_grave_passive")
-        elseif this.optionStore['lodOptionExtraAbility'] == 3 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 4 then
             self.freeAbility = "imba_tower_forest_one"
             this:banAbility("imba_tower_forest")
-        elseif this.optionStore['lodOptionExtraAbility'] == 4 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 5 then
             self.freeAbility = "ebf_rubick_arcane_echo_one"
             this:banAbility("ebf_rubick_arcane_echo")
             this:banAbility("ebf_rubick_arcane_echo_OP")
-        elseif this.optionStore['lodOptionExtraAbility'] == 6 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 7 then
             self.freeAbility = "ursa_fury_swipes"
             this:banAbility("ursa_fury_swipes")
             this:banAbility("ursa_fury_swipes_lod")
-        elseif this.optionStore['lodOptionExtraAbility'] == 7 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 8 then
             self.freeAbility = "spirit_breaker_greater_bash"
             this:banAbility("spirit_breaker_greater_bash")
-        elseif this.optionStore['lodOptionExtraAbility'] == 8 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 9 then
             self.freeAbility = "death_prophet_witchcraft"
             this:banAbility("death_prophet_witchcraft")
-        elseif this.optionStore['lodOptionExtraAbility'] == 9 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 10 then
             self.freeAbility = "sniper_take_aim"
             this:banAbility("sniper_take_aim")
         --If global cast range mutator is on, dont added this ability as it overrides it
-        elseif this.optionStore['lodOptionExtraAbility'] == 10 and OptionManager:GetOption('globalCastRange') == 0 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 11 and OptionManager:GetOption('globalCastRange') == 0 then
             self.freeAbility = "aether_range_lod"
             this:banAbility("aether_range_lod")
             this:banAbility("aether_range_lod_op")
-        elseif this.optionStore['lodOptionExtraAbility'] == 11 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 12 then
             self.freeAbility = "alchemist_goblins_greed"
             this:banAbility("alchemist_goblins_greed")
             this:banAbility("alchemist_goblins_greed_op")
-        elseif this.optionStore['lodOptionExtraAbility'] == 12 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 13 then
             self.freeAbility = "angel_arena_nether_ritual"
             this:banAbility("angel_arena_nether_ritual")
-        elseif this.optionStore['lodOptionExtraAbility'] == 13 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 14 then
             this:banAbility("slark_essence_shift")
             this:banAbility("slark_essence_shift_intellect_lod")
             this:banAbility("slark_essence_shift_strength_lod")
             this:banAbility("slark_essence_shift_agility_lod")
-        elseif this.optionStore['lodOptionExtraAbility'] == 14 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 15 then
             self.freeAbility = "ogre_magi_multicast_lod"
             this:banAbility("ogre_magi_multicast_lod")
             this:banAbility("ogre_magi_multicast")
-        elseif this.optionStore['lodOptionExtraAbility'] == 15 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 16 then
             self.freeAbility = "phantom_assassin_coup_de_grace"
             this:banAbility("phantom_assassin_coup_de_grace")
-        elseif this.optionStore['lodOptionExtraAbility'] == 16 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 17 then
             self.freeAbility = "riki_permanent_invisibility"
             this:banAbility("riki_permanent_invisibility")
-        elseif this.optionStore['lodOptionExtraAbility'] == 17 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 18 then
             self.freeAbility = "imba_tower_multihit"
             this:banAbility("imba_tower_multihit")
-        elseif this.optionStore['lodOptionExtraAbility'] == 18 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 19 then
             self.freeAbility = "skeleton_king_reincarnation"
             this:banAbility("skeleton_king_reincarnation")
-        elseif this.optionStore['lodOptionExtraAbility'] == 19 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 20 then
             self.freeAbility = "ebf_clinkz_trickshot_passive"
             this:banAbility("ebf_clinkz_trickshot_passive")
             this:banAbility("ebf_clinkz_trickshot")
-        elseif this.optionStore['lodOptionExtraAbility'] == 20 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 21 then
             self.freeAbility = "abaddon_borrowed_time"
             this:banAbility("abaddon_borrowed_time")
-        elseif this.optionStore['lodOptionExtraAbility'] == 21 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 22 then
             self.freeAbility = "summoner_tesla_coil"
             this:banAbility("summoner_tesla_coil")
         end
@@ -7479,7 +7482,7 @@ function Pregame:applyExtraAbility( spawnedUnit )
         local rangedTrickshot = nil
 
         -- Random Flesh Heaps
-        if OptionManager:GetOption('extraAbility') == 5 then
+        if OptionManager:GetOption('extraAbility') == 6 then
 
             local random = RandomInt(1,16)
             local givenAbility = false
@@ -7520,7 +7523,7 @@ function Pregame:applyExtraAbility( spawnedUnit )
         end
 
         -- Random Survivals
-        if OptionManager:GetOption('extraAbility') == 22 then
+        if OptionManager:GetOption('extraAbility') == 23 then
 
             local random = RandomInt(1,21)
             local givenAbility = false
@@ -7577,7 +7580,7 @@ function Pregame:applyExtraAbility( spawnedUnit )
             end
         end
 
-        if OptionManager:GetOption('extraAbility') == 13 then
+        if OptionManager:GetOption('extraAbility') == 14 then
             -- Give an essence shift based on heros primary attribute
             if spawnedUnit:GetPrimaryAttribute() == 0 then essenceshiftToGive = "slark_essence_shift_strength_lod"
             elseif spawnedUnit:GetPrimaryAttribute() == 1 then essenceshiftToGive = "slark_essence_shift_agility_lod"
@@ -7585,7 +7588,7 @@ function Pregame:applyExtraAbility( spawnedUnit )
             end
         end
 
-         if OptionManager:GetOption('extraAbility') == 19 then
+         if OptionManager:GetOption('extraAbility') == 20 then
             -- Give an essence shift based on heros primary attribute
             if spawnedUnit:IsRangedAttacker() then rangedTrickshot = "ebf_clinkz_trickshot_passive_ranged"
             end

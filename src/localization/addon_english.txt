@@ -127,6 +127,8 @@
     "lodOptionYes"                                  "Yes"
     "lodOptionNo"                                   "No"
     "lodOptionYesHumansOnly"                                  "Yes (Humans Only)"
+    "lodOptionRandom"                                   "Random"
+    "lodMutatorRandom"                                  "Random Bonus Ability"
 
     "lodOptionSkills"                                  "Yes (Skills Only)"
     "lodOptionSkillsAndItems"                          "Yes (Skills and Items)"
