@@ -13,7 +13,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-        				"bonus"						"0.75 1.0 1.25 1.50"
+        				"bonus"						"1 2 3 4"
             }
             "02"
             {

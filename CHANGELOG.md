@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file.
 - Added Arcane Art OP (User Request)
 - Added Random Option for Same Bot Hero Mutator
 - Added Random Individual for Bot Difficulty Settings (Every bot gets a random difficulty)
+- Moved most souls and survival abilities to single player abilities and improved their stats
 
 ## 11
 - Fixed Nothl Protection Bonus ability mutator
