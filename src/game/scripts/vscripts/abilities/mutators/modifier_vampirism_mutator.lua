@@ -50,11 +50,6 @@ function modifier_vampirism_mutator.OnIntervalThink(self)
 
 end
 
-function modifier_vampirism_mutator.IsDayTime(self)
-    return self:GetParent():GetModifierStackCount("modifier_day_night",self:GetParent()) == 0
-end
-
-
 function modifier_vampirism_mutator.DeclareFunctions(self)
     return {
         MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
@@ -66,7 +61,7 @@ end
 
 function modifier_vampirism_mutator.GetModifierMoveSpeedBonus_Percentage(self)
    
-    if self.IsDayTime() then
+    if self:GetParent():GetModifierStackCount("modifier_day_night",self:GetParent()) == 0 then
         return 0
     else 
         return self.night_bonus_ms
@@ -74,7 +69,7 @@ function modifier_vampirism_mutator.GetModifierMoveSpeedBonus_Percentage(self)
 end
 
 function modifier_vampirism_mutator.GetModifierHealthRegenPercentage(self)
-    if self.IsDayTime() then
+    if self:GetParent():GetModifierStackCount("modifier_day_night",self:GetParent()) == 0 then
         return -1
     else 
         return 1
@@ -82,7 +77,7 @@ function modifier_vampirism_mutator.GetModifierHealthRegenPercentage(self)
 end
 
 function modifier_vampirism_mutator.GetModifierTotalPercentageManaRegen(self)
-    if self.IsDayTime() then
+    if self:GetParent():GetModifierStackCount("modifier_day_night",self:GetParent()) == 0 then
         return 0
     else 
         return 1
@@ -107,7 +102,7 @@ function modifier_vampirism_mutator.OnTakeDamage(self,kv)
         if not kv.unit:IsOther() and not kv.unit:IsBuilding() then
             self:GetParent():Heal((kv.damage*self.night_lifesteal)*0.01,self:GetParent())
             local p
-            if not kv.ability then
+            if not kv.inflictor then
                 p = ParticleManager:CreateParticle("particles/generic_gameplay/generic_lifesteal.vpcf",PATTACH_OVERHEAD_FOLLOW,self:GetParent())
             else
                 p = ParticleManager:CreateParticle("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN, self:GetParent())
@@ -124,7 +119,7 @@ function modifier_day_night:IsHidden() return true end
 function modifier_day_night:IsPermanent() return true end
  
 function modifier_day_night:OnCreated()
-    if IsServer then
+    if IsServer() then
         self:StartIntervalThink(FrameTime())
     end
 end

@@ -568,11 +568,11 @@ var basicOptions = {
                         extraInfo: 'lodOptionAboutFastRunes',
                         about: 'lodMutatorFastRunes'
                     },
-                    {
-                        name: 'lodOptionSuperRunes', 
-                        extraInfo: 'lodOptionAboutSuperRunes',
-                        about: 'lodMutatorSuperRunes'
-                    },
+                    // {
+                    //     name: 'lodOptionSuperRunes', 
+                    //     extraInfo: 'lodOptionAboutSuperRunes',
+                    //     about: 'lodMutatorSuperRunes'
+                    // },
                     {
                         name: 'lodOptionPeriodicSpellCast',
                         extraInfo: 'lodOptionAboutPeriodicSpellCast',
@@ -608,16 +608,16 @@ var basicOptions = {
                         extraInfo: 'lodOptionAboutNoHealthbars',
                         about: 'lodMutatorNoHealthbars'
                     },
-                    {
-                        name: 'lodOptionRandomLaneCreeps',
-                        extraInfo: 'lodOptionAboutRandomLaneCreeps',
-                        about: 'lodMutatorRandomLaneCreeps'
-                    },
-                    {
-                       name: 'lodOptionResurrectAllies',
-                       extraInfo: 'lodOptionAboutResurrectAllies',
-                       about: 'lodMutatorResurrectAllies'
-                    },
+                    // {
+                    //     name: 'lodOptionRandomLaneCreeps',
+                    //     extraInfo: 'lodOptionAboutRandomLaneCreeps',
+                    //     about: 'lodMutatorRandomLaneCreeps'
+                    // },
+                    // {
+                    //    name: 'lodOptionResurrectAllies',
+                    //    extraInfo: 'lodOptionAboutResurrectAllies',
+                    //    about: 'lodMutatorResurrectAllies'
+                    // },
                 ]
             }
         ]
@@ -2208,22 +2208,22 @@ var advancedOptions = {
                     }
                 ]
             },
-            {
-                name: 'lodOptionSuperRunes',
-                des: 'lodOptionDesSuperRunes',
-                about: 'lodOptionAboutSuperRunes',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
+            // {
+            //     name: 'lodOptionSuperRunes',
+            //     des: 'lodOptionDesSuperRunes',
+            //     about: 'lodOptionAboutSuperRunes',
+            //     sort: 'toggle',
+            //     values: [
+            //         {
+            //             text: 'lodOptionNo',
+            //             value: 0
+            //         },
+            //         {
+            //             text: 'lodOptionYes',
+            //             value: 1
+            //         }
+            //     ]
+            // },
             {
                 name: 'lodOptionPeriodicSpellCast',
                 des: 'lodOptionDesPeriodicSpellCast',
@@ -2340,22 +2340,38 @@ var advancedOptions = {
                     }
                 ]
             },          
-            {
-               name: 'lodOptionResurrectAllies',
-               des: 'lodOptionDesResurrectAllies',
-               about: 'lodOptionAboutResurrectAllies',
-               sort: 'toggle',
-               values: [
-                   {
-                       text: 'lodOptionNo',
-                       value: 0
-                   },
-                   {
-                       text: 'lodOptionYes',
-                       value: 1
-                   }
-               ]
-            },
+            // {
+            //    name: 'lodOptionRandomLaneCreeps',
+            //    des: 'lodOptionDesRandomLaneCreeps',
+            //    about: 'lodOptionAboutRandomLaneCreeps',
+            //    sort: 'toggle',
+            //    values: [
+            //        {
+            //            text: 'lodOptionNo',
+            //            value: 0
+            //        },
+            //        {
+            //            text: 'lodOptionYes',
+            //            value: 1
+            //        }
+            //    ]
+            // },
+            // {
+            //    name: 'lodOptionResurrectAllies',
+            //    des: 'lodOptionDesResurrectAllies',
+            //    about: 'lodOptionAboutResurrectAllies',
+            //    sort: 'toggle',
+            //    values: [
+            //        {
+            //            text: 'lodOptionNo',
+            //            value: 0
+            //        },
+            //        {
+            //            text: 'lodOptionYes',
+            //            value: 1
+            //        }
+            //    ]
+            // },
             //{
             //    name: 'lodOptionMonkeyBusiness',
             //    des: 'lodOptionDesMonkeyBusiness',

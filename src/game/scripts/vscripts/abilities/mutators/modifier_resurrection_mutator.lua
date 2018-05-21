@@ -33,10 +33,19 @@ function modifier_resurrection_mutator.OnDeath(self,kv)
         newItem:SetPurchaser(killedUnit)
 
         newItem.GetChannelTime = function() return killedUnit:GetTimeUntilRespawn()/3 end
+        print("TABLE PRINT")
+        for k,v in pairs(newItem) do print(k,v) end
 
         local tombstone = SpawnEntityFromTableSynchronous("dota_item_tombstone_drop",{})
+        
         tombstone:SetContainedItem(newItem)
-        tombstone:SetAngles(0,RandomFloat(0,360),0)
+        --tombstone:SetAngles(0,RandomFloat(0,360),0)
+        if killedUnit:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
+            tombstone:SetModel("models/heroes/phantom_assassin/arcana_tombstone2.vmdl")
+        else
+            tombstone:SetModel("models/heroes/phantom_assassin/arcana_tombstone3.vmdl")
+        end
         tombstone:SetAbsOrigin(killedUnit:GetAbsOrigin())
+        tombstone:SetModelScale(2)
     end
 end

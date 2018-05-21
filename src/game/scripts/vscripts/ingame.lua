@@ -1545,9 +1545,11 @@ function Ingame:FilterModifyExperience(filterTable)
 end
 
 function Ingame:BountyRunePickupFilter(filterTable)
-    if OptionManager:GetOption('superRunes') then
+    if OptionManager:GetOption('superRunes') == 1 then
+        print(1,filterTable.gold_bounty)
         filterTable.xp_bounty = filterTable.xp_bounty * 2
         filterTable.gold_bounty = filterTable.gold_bounty * 2
+        print(2,filterTable.gold_bounty)
     end
 
     if OptionManager:GetOption('sharedXP') == 1 then
@@ -2039,12 +2041,15 @@ function Ingame:FilterModifiers( filterTable )
     local ability = EntIndexToHScript( ability_index )
     local modifier_name = filterTable.name_const
 
-    if OptionManager:GetOption('superRunes') then
+    if OptionManager:GetOption('superRunes') == 1 then
+        --print(modifier_name)
         if modifier_name == "modifier_rune_doubledamage" then
             caster:AddNewModifier(nil,nil,"modifier_rune_doubledamage_mutated",{duration = filterTable.duration})
+            --print("Made dd")
             return false
         elseif modifier_name == "modifier_rune_arcane" then
             caster:AddNewModifier(nil,nil,"modifier_rune_arcane_mutated",{duration = filterTable.duration})
+            --print("Made ARC")
             return false
         end
     end

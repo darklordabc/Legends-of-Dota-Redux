@@ -822,7 +822,7 @@ function Pregame:loadDefaultSettings()
     self:setOption('lodOptionBotsUnfairBalance', 1, true)
 
     self:setOption('lodOptionFastRunes', 0, true)
-    --self:SetOption('lodOptionSuperRunes', 0, true)
+    self:setOption('lodOptionSuperRunes', 0, true)
     self:setOption('lodOptionPeriodicSpellCast', 0, true)
     self:setOption('lodOptionVampirism', 0, true)
     self:setOption('lodOptionKillStreakPower', 0, true)
@@ -3159,6 +3159,7 @@ function Pregame:initOptionSelector()
         lodOptionFastRunes = function(value)
             return value == 0 or value == 1
         end,
+
         lodOptionSuperRunes = function(value)
             return value == 0 or value == 1
         end,
