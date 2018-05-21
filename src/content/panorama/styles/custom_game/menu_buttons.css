@@ -4,11 +4,16 @@
 }
 
 .menuButtonsList {
-    //width: 100%;
-    height: 530px;
+    // mapHeight - 5px
+    margin-bottom: 255px;
     vertical-align: bottom;
     flow-children: right;
     horizontal-align: left;
+}
+
+.MinimapExtraLarge .menuButtonsList {
+    // mapHeight - 5px
+    margin-bottom: 291px;
 }
 
 #heroBuilder {
@@ -25,8 +30,6 @@
     height: 24px;
 	opacity: 0.8;
     background-color: gradient(linear, 0% 0%, 0% 100%, from(#40404068), color-stop( 0.3, #33333360), to(#18181855));
-
-    vertical-align: center;
 
     margin-left: 10px;
 
