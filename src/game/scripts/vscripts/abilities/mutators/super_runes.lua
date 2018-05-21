@@ -18,6 +18,10 @@ function modifier_rune_doubledamage_mutated:GetEffectAttachType()
   return PATTACH_ABSORIGIN_FOLLOW
 end
 
+function modifier_rune_doubledamage_mutated:GetTexture()
+    return ""
+end
+
 modifier_rune_arcane_mutated = class({})
 
 function modifier_rune_arcane_mutated:DeclareFunctions()
@@ -42,4 +46,8 @@ end
 
 function modifier_rune_arcane_mutated:GetEffectAttachType()
   return PATTACH_ABSORIGIN_FOLLOW
+end
+
+function modifier_rune_arcane_mutated:GetTexture()
+    return ""
 end

@@ -57,21 +57,26 @@ function modifier_random_lane_creep_spawner_mutator:OnIntervalThink()
             }
 
             TS_forEach(spawnEnts, function(entName)
+                print("entName")
                 local ent = Entities:FindByName(nil,entName)
                 local origin = ent:GetAbsOrigin()
-                local unit = CreateUnitByName(name,origin,true,nil,nil,ent:GetTeamNumber())
-                unit:AddNewModifier(unit,nil,"modifier_random_lane_creep_mutator_ai",{unit=spawnedUnit:entindex()})
+                local teamNumber = DOTA_TEAM_GOODGUYS
+                if  string.find(entName,"badguys") then
+                    teamNumber = DOTA_TEAM_BADGUYS 
+                end
+                local unit = CreateUnitByName(name,origin,true,nil,nil,teamNumber)
+                unit:AddNewModifier(unit,nil,"modifier_random_lane_creep_mutator_ai",{})
                 unit:AddNewModifier(unit,nil,"modifier_phased",{duration = 0.1})
 
-                local units = FindUnitsInRadius(ent:GetTeamNumber(),origin,nil,500,DOTA_UNIT_TARGET_TEAM_BOTH,DOTA_UNIT_TARGET_BASIC,DOTA_UNIT_TARGET_FLAG_NONE,FIND_ANY_ORDER,false)
+                local units = FindUnitsInRadius(teamNumber,origin,nil,500,DOTA_UNIT_TARGET_TEAM_FRIENDLY,DOTA_UNIT_TARGET_BASIC,DOTA_UNIT_TARGET_FLAG_NONE,FIND_ANY_ORDER,false)
                 local rangeCreep
                 for _,u in pairs(units) do
-                    if string.find(u:GetUnitName(),"_ranged") then
+                    --if string.find(u:GetUnitName(),"_ranged") then
                         rangeCreep = u
                         break
-                    end
+                    --end
                 end
-
+                if not rangeCreep then print("NO rangecreep found")return end
                 local waypoint = rangeCreep:GetInitialGoalEntity()
                 unit:SetInitialGoalEntity(waypoint)
 
@@ -102,7 +107,7 @@ function modifier_random_lane_creep_mutator_ai.OnCreated(self,kv)
     if IsClient() then
         return
     end
-    self.unit = EntIndexToHScript(kv.unit)
+    --self.unit = EntIndexToHScript(kv.unit)
 
     self:StartIntervalThink(FrameTime())
 end
@@ -110,11 +115,11 @@ end
 function modifier_random_lane_creep_mutator_ai.OnIntervalThink(self)
     local unit = self:GetParent()
 
-    if self.unit and not self.unit:IsNull() then
-        --unit:MoveToPositionAggressive(self.unit:GetAbsOrigin())
-        print(self.unit:GetInitialGoalEntity())
-        unit:SetInitialGoalEntity(self.unit:GetInitialGoalEntity())
-    end
+    -- if self.unit and not self.unit:IsNull() then
+    --     unit:MoveToPositionAggressive(self.unit:GetAbsOrigin())
+    --     print(self.unit:GetInitialGoalEntity())
+    --     unit:SetInitialGoalEntity(self.unit:GetInitialGoalEntity())
+    -- end
     for i=0,1 do
         local ability = unit:GetAbilityByIndex(i)
         if ability and not ability:IsPassive() and ability:IsCooldownReady() and unit:GetMana() >= ability:GetManaCost(-1) then

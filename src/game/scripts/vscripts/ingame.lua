@@ -588,7 +588,7 @@ function Ingame:onStart()
     GameRules:GetGameModeEntity():SetTrackingProjectileFilter(Dynamic_Wrap(Ingame, 'FilterProjectiles'), self)
     GameRules:GetGameModeEntity():SetModifierGainedFilter(Dynamic_Wrap(Ingame, 'FilterModifiers'),self)
     GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(Ingame, 'FilterDamage'),self)
-    GameRules:GetGameModeEntity():SetAbilityTuningValueFilter(Dynamic_Wrap(Ingame,"FilterValueTuning"),self)
+    --GameRules:GetGameModeEntity():SetAbilityTuningValueFilter(Dynamic_Wrap(Ingame,"FilterValueTuning"),self)
 
     -- -- Listen if abilities are being used.
     --ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(Ingame, 'OnAbilityUsed'), self)
@@ -2085,10 +2085,10 @@ function Ingame:FilterModifiers( filterTable )
     ReflectBashes(filterTable)
     -- Bash Cooldown
     if OptionManager:GetOption('antiBash') == 1 then
-        if not BashCooldown(filterTable) then return false end
+        if not BashCooldown(filterTable) then 
+            return false 
+        end
     end
-
-
 
     return true
 end
