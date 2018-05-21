@@ -2030,8 +2030,6 @@ function Ingame:FilterModifiers( filterTable )
     local caster_index = filterTable["entindex_caster_const"]
     local ability_index = filterTable["entindex_ability_const"]
 
-    if OptionManager:GetOption()
-
 
     if not parent_index or not caster_index or not ability_index then
         return true
