@@ -133,11 +133,11 @@
 
     "lodOptionBotsRadiantDiff"                       "Bot Difficulty Radiant"
     "lodOptionDesBotsRadiantDiff"                    "Bot Difficulty Radiant"
-    "lodOptionAboutBotsRadiantDiff"                  "Sets the difficult level for the Radiant bots."
+    "lodOptionAboutBotsRadiantDiff"                  "Sets the difficult level for the Radiant bots. Random Individual means that every individual bot has a random difficulty setting between easy to unfair."
 
     "lodOptionBotsDireDiff"                          "Bot Difficulty Dire"
     "lodOptionDesBotsDireDiff"                       "Bot Difficulty Dire"
-    "lodOptionAboutBotsDireDiff"                     "Sets the difficult level for the Dire bots."
+    "lodOptionAboutBotsDireDiff"                     "Sets the difficult level for the Dire bots. Random Individual means that every individual bot has a random difficulty setting between easy to unfair."
 
     "lodOptionBotDifficulty"                            "Passive"
 
@@ -146,6 +146,7 @@
     "lodOptionBotMedium"                             "Medium"
     "lodOptionBotHard"                               "Hard"
     "lodOptionBotUnfair"                             "Unfair"
+    "lodOptionBotRandomIndividual"                   "Random Individual"
 
     // Option text
     "lodOptionsPresetGamemode"                      "Preset Gamemode"
@@ -211,12 +212,13 @@
     "lodMutatorFastBuybackCooldown3"                "Instant Respawn"
 
     "lodMutatorBotDifficulty1"                      "Passive Bots"
-    "lodOptionAboutBotDifficulty"                   "For detailed information about bot difficulty differences refer to the DotA 2 Wiki page about bots. Team specific difficulty can be set in advanced options."
+    "lodOptionAboutBotDifficulty"                   "For detailed information about bot difficulty differences refer to the DotA 2 Wiki page about bots. Team specific difficulty can be set in advanced options. Random Individual means that every individual bot has a random difficulty setting between easy to unfair."
 
     "lodMutatorBotDifficulty2"                      "Easy Bots"
     "lodMutatorBotDifficulty3"                      "Medium Bots"
     "lodMutatorBotDifficulty4"                      "Hard Bots"
     "lodMutatorBotDifficulty5"                      "Unfair Bots"
+    "lodMutatorBotDifficultyRandom"                 "Random Individual"
 
     
 
@@ -372,6 +374,50 @@
     "lodOptionBotsUnique"                           "Allow Bot Duplicates"
     "lodOptionDesBotsUnique"                        "Allow Bot Duplicates"
     "lodOptionAboutBotsUnique"                      "Allows bots to use a hero that is already in use by another bot. If this is disabled, bots will all have unique heroes."
+
+    "lodOptionBotsSameHero"                         "Bots Same Hero"
+    "lodOptionDesBotsSameHero"                      "All Bots Use The Same hero"
+    "lodOptionAboutBotsSameHero"                    "Forces all bots to be the same hero."
+
+    "lodMutatorBotsSameHero"                        "Bots Same Hero"
+    "lodMutatorRandomBotHero"                       "Random Hero"
+    "lodMutatorAxe"                                 "Axe"
+    "lodMutatorBane"                                "Bane"
+    "lodMutatorBountyHunter"                        "Bounty Hunter"
+    "lodMutatorBloodseeker"                         "Bloodseeker"
+    "lodMutatorBristleback"                         "Bristleback"
+    "lodMutatorChaosKnight"                         "Chaos Knight"
+    "lodMutatorCrystalMaiden"                       "Crystal Maiden"
+    "lodMutatorDazzle"                              "Dazzle"
+    "lodMutatorDeathProphet"                        "Death Prophet"
+    "lodMutatorDragonKnight"                        "Dragon Knight"
+    "lodMutatorDrowRanger"                          "Drow Ranger"
+    "lodMutatorEarthshaker"                         "Earth Shaker"
+    "lodMutatorJakiro"                              "Jakiro"
+    "lodMutatorJuggernaut"                          "Juggernaut"
+    "lodMutatorKunkka"                              "Kunkka"
+    "lodMutatorLich"                                "Lich"
+    "lodMutatorLina"                                "Lina"
+    "lodMutatorLion"                                "Lion"
+    "lodMutatorLuna"                                "Luna"
+    "lodMutatorNecrophos"                           "Necrophos"
+    "lodMutatorOmniknight"                          "Omniknight"
+    "lodMutatorOracle"                              "Oracle"
+    "lodMutatorPhantomAssassin"                     "Phantom Assassin"
+    "lodMutatorPudge"                               "Pudge"
+    "lodMutatorSandKing"                            "Sand King"
+    "lodMutatorShadowFiend"                         "Shadow Fiend"
+    "lodMutatorSkywrathMage"                        "Skywrath Mage"
+    "lodMutatorSniper"                              "Sniper"
+    "lodMutatorSven"                                "Sven"
+    "lodMutatorTiny"                                "Tiny"
+    "lodMutatorVengefulSpirit"                      "Vengeful Spirit"
+    "lodMutatorViper"                               "Viper"
+    "lodMutatorWarlock"                             "Warlock"
+    "lodMutatorWindranger"                          "Windranger"
+    "lodMutatorWitchDoctor"                         "Witch Doctor"
+    "lodMutatorWraithKing"                          "Wraith King"
+    "lodMutatorZeus"                                "Zeus"
 
     "lodOptionDesBanningHostBanning"                "Host has unlimited bans"
     "lodOptionAboutHostBanning"                     "This option will allow the host to ban as many heroes and abilities as they like."
@@ -652,6 +698,8 @@
     "lodUniqueSkillsOff"                            "Disabled"
     "lodUniqueSkillsTeam"                           "Unique Team Skills"
     "lodUniqueSkillsGlobal"                         "Unique Global Skills"
+
+    "lodRandomHero"                                 "Random Hero"
 
     "lodOptionDesGameSpeedRespawnTimePercentage"    "Respawn Time Percentage (100 = normal)"
     "lodOptionAboutGameSpeedRespawnTimePercentage"  "Makes the default respawn time decrease by the given percentage."
@@ -1890,6 +1938,18 @@
 
     "DOTA_Tooltip_modifier_bash_cooldown"                           "Bash Cooldown"
     "DOTA_Tooltip_modifier_bash_cooldown_Description"               "Your hero temporary can't be bashed, because it was bashed recently."
+
+    "DOTA_Tooltip_modifier_easybot"                           "Easy Bot"
+    "DOTA_Tooltip_modifier_easybot_Description"               "Easy bots willingly attack other heroes and use abilities/items (with the exception of Phase Boots, Force Staff, and Orchid Malevolence), but usually at a slow pace, and their last hit timing is not as accurate. Easy bots will not deny creeps. Easy bots will generally not attempt to gank other lanes, and will only group up in small groups to push or defend. Easy bots will not attempt to 'stun-lock' enemies, nor will they try to interrupt channeling spells. Easy bots are fooled by illusions."
+
+    "DOTA_Tooltip_modifier_mediumbot"                         "Medium Bot"
+    "DOTA_Tooltip_modifier_mediumbot_Description"             "Medium bots are almost identical to easy bots in terms of play-style, with a few exceptions. Their reaction time is faster, making their last hits more precise, and if played in practice/single player mode, only the allied bots will deny creeps. Medium bots are also better at detecting whether a hero is an illusion. Medium bots are allowed to use Phase Boots, Force Staff, and Orchid Malevolence."
+
+    "DOTA_Tooltip_modifier_hardbot"                           "Hard Bot"
+    "DOTA_Tooltip_modifier_hardbot_Description"               "Hard bots have very accurate last hitting capabilities, and they deny just as well. Multiple Hard bots will time their stuns to avoid overlap, resulting in longer stun times. Hard bots will also attempt to interrupt channeling spells, as well as dodge projectiles. If their Hero has a good spammable or harassing spell they will repeatedly use said spells to deter enemies out of the lane. After the laning phase has ended, enemy Hard bots will generally stay together as a group of five."
+
+    "DOTA_Tooltip_modifier_unfairbot"                         "Unfair Bot"
+    "DOTA_Tooltip_modifier_unfairbot_Description"             "Unfair bots are the hardest bots, and are almost identical to Hard bots in terms of play-style. Their last hits are almost perfect, and when played in single player mode, the bots on the player's team would purposely play poorly (such as kill stealing, missing denies, refusing to use stuns, diving into enemy towers, running toward and pushing alone agaisnt the enemy team, farming in jungle while enermy pushing to the base..). Enemy Unfair bots will also receive a 25%d% boost in gold and experience earned."
 
     //Scepter Buff Modifer
     "DOTA_Tooltip_modifier_item_ultimate_scepter_consumed" "Free Aghanim's Scepter"
@@ -5525,6 +5585,13 @@
         "DOTA_Tooltip_ability_aabs_nightshadow_bonus_intellect"                          "+$int"
         "DOTA_Tooltip_ability_aabs_nightshadow_proc_chance"                              "%REDUCTION CHANCE:"
         "DOTA_Tooltip_ability_aabs_nightshadow_cooldown_reduction"                       "COOLDOWN REDUCTION:"
+
+        "DOTA_Tooltip_ability_aabs_nightshadow_op"                                          "Arcane Art OP"
+        "DOTA_Tooltip_ability_aabs_nightshadow_op_Description"                              "Each attack has a chance to decrease all your active cooldowns.<font color='#70EA72'> No cooldown.</font>\n\n<font color=\'#7D7D7D\'>Imported from Angel Arena BlackStar</font>\n"
+        "DOTA_Tooltip_ability_aabs_nightshadow_op_Lore"                                     "Nightshadow an ancient weapon used by legendary archmages."
+        "DOTA_Tooltip_ability_aabs_nightshadow_op_bonus_intellect"                          "+$int"
+        "DOTA_Tooltip_ability_aabs_nightshadow_op_proc_chance"                              "%REDUCTION CHANCE:"
+        "DOTA_Tooltip_ability_aabs_nightshadow_op_cooldown_reduction"                       "COOLDOWN REDUCTION:"
 
         "DOTA_Tooltip_ability_dark_seer_vacuum_op"                                         "Vacuum OP"
         "DOTA_Tooltip_ability_dark_seer_vacuum_op_Description"                             "Dark Seer creates a vacuum over the target area that sucks in enemy units, disrupting them and dealing damage. <font color='#70EA72'>Larger cast range, radius and damage.</font>"

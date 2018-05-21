@@ -47,6 +47,10 @@ require('abilities/angel_arena_reborn/duels')
 -- Custom AI script modifiers
 LinkLuaModifier( "modifier_slark_shadow_dance_ai", "abilities/botAI/modifier_slark_shadow_dance_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_alchemist_chemical_rage_ai", "abilities/botAI/modifier_alchemist_chemical_rage_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_easybot", "abilities/botAI/modifier_easybot.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_mediumbot", "abilities/botAI/modifier_mediumbot.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_hardbot", "abilities/botAI/modifier_hardbot.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_unfairbot", "abilities/botAI/modifier_unfairbot.lua", LUA_MODIFIER_MOTION_NONE )
 --LinkLuaModifier( "modifier_rattletrap_rocket_flare_ai", "abilities/botAI/modifier_rattletrap_rocket_flare_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 -- Creep power modifier
@@ -730,6 +734,7 @@ function Pregame:loadDefaultSettings()
     self:setOption('lodOptionDuels', 0, false)
     self:setOption('lodOption322', 0, false)
     self:setOption('lodOptionExtraAbility', 0, false)
+    self:setOption('lodOptionBotsSameHero', 0, false)
     self:setOption('lodOptionRefreshCooldownsOnDeath', 0, false)
     self:setOption('lodOptionGlobalCast', 0, false)
 
@@ -2912,12 +2917,12 @@ function Pregame:initOptionSelector()
 
         -- Bots - Radiant Bot Difficulty
         lodOptionBotsRadiantDiff = function(value)
-            return value == 0 or value == 1 or value == 2 or value == 3 or value == 4
+            return value == 0 or value == 1 or value == 2 or value == 3 or value == 4 or value == 5
         end,
 
         -- Bots - Dire Bot Difficulty
         lodOptionBotsDireDiff = function(value)
-            return value == 0 or value == 1 or value == 2 or value == 3 or value == 4
+            return value == 0 or value == 1 or value == 2 or value == 3 or value == 4 or value == 5
         end,
 
         -- Game Speed - Easy Mode
@@ -3064,6 +3069,11 @@ function Pregame:initOptionSelector()
         -- Other - Extra ability
         lodOptionExtraAbility = function(value)
             return value == 0 or value == 1 or value == 2 or value == 3 or value == 4  or value == 5 or value == 6 or value == 7 or value == 8 or value == 9 or value == 10  or value == 11 or value == 12 or value == 13 or value == 14 or value == 15 or value == 16 or value == 17 or value == 18  or value == 19 or value == 20 or value == 21 or value == 22
+        end,
+
+        -- Bots - Use Same Hero        
+        lodOptionBotsSameHero = function(value)
+            return value == 0 or value == 1 or value == 2 or value == 3 or value == 4  or value == 5 or value == 6 or value == 7 or value == 8 or value == 9 or value == 10  or value == 11 or value == 12 or value == 13 or value == 14 or value == 15 or value == 16 or value == 17 or value == 18  or value == 19 or value == 20 or value == 21 or value == 22 or value == 23 or value == 24 or value == 25 or value == 26 or value == 27 or value == 28 or value == 29 or value == 30 or value == 31 or value == 32 or value == 33 or value == 34 or value == 35 or value == 36 or value == 37 or value == 38
         end,
 
         -- Other -- Gotta Go Fast!
@@ -3998,6 +4008,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('ingameBuilderPenalty', this.optionStore['lodOptionIngameBuilderPenalty'])
         OptionManager:SetOption('322', this.optionStore['lodOption322'])
         OptionManager:SetOption('extraAbility', this.optionStore['lodOptionExtraAbility'])
+        OptionManager:SetOption('botsSameHero', this.optionStore['lodOptionBotsSameHero'])
         OptionManager:SetOption('globalCastRange', this.optionStore['lodOptionGlobalCast'])
         OptionManager:SetOption('refreshCooldownsOnDeath', this.optionStore['lodOptionRefreshCooldownsOnDeath'])
         OptionManager:SetOption('gottaGoFast', this.optionStore['lodOptionGottaGoFast'])
@@ -4362,7 +4373,8 @@ function Pregame:processOptions()
                 ['Bots: Dire Difficulty'] = this.optionStore['lodOptionBotsDireDiff'],
                 ['Bots: Unique Skills'] = this.optionStore['lodOptionBotsUniqueSkills'],
                 ['Bots: Stupefy'] = this.optionStore['lodOptionBotsStupid'],
-                ['Bots: Allow Duplicates'] = this.optionStore['lodOptionBotsUnique'],
+                ['Bots: Same Hero'] = this.optionStore['lodOptionBotsSameHero'],
+                ['Bots: Allow Duplicates'] = this.optionStore['lodOptionBotsUnique'],      
             })
         else
             statCollection:setFlags({
@@ -6886,7 +6898,7 @@ function Pregame:generateBotBuilds()
         brokenBots = {
             npc_dota_hero_tidehunter = true, -- Stays at foutain and doesnt do anything in workshop version
             npc_dota_hero_razor = true, -- Stays at foutain and doesnt do anything in workshop version
-
+        }
     end
 
     local ignoreAbilities = {
@@ -6929,7 +6941,49 @@ function Pregame:generateBotBuilds()
                     end
                 end
             else
-                if OptionManager:GetOption('duplicateBots') == 1 then -- If allowed duplicates option is on, pick random hero but do not remove from available pool of bot heroes
+                if OptionManager:GetOption('botsSameHero') > 0 then
+                    if OptionManager:GetOption('botsSameHero') == 1 then -- If random hero is selected random a choice between 2 and 37
+                        OptionManager:SetOption('botsSameHero', math.random(2, 38))
+                    end
+                    if OptionManager:GetOption('botsSameHero') == 2 then heroName = "npc_dota_hero_axe"
+                    elseif OptionManager:GetOption('botsSameHero') == 3 then heroName = "npc_dota_hero_bane"
+                    elseif OptionManager:GetOption('botsSameHero') == 4 then heroName = "npc_dota_hero_bounty_hunter"
+                    elseif OptionManager:GetOption('botsSameHero') == 5 then heroName = "npc_dota_hero_bloodseeker"
+                    elseif OptionManager:GetOption('botsSameHero') == 6 then heroName = "npc_dota_hero_bristleback"
+                    elseif OptionManager:GetOption('botsSameHero') == 7 then heroName = "npc_dota_hero_chaos_knight"
+                    elseif OptionManager:GetOption('botsSameHero') == 8 then heroName = "npc_dota_hero_crystal_maiden"
+                    elseif OptionManager:GetOption('botsSameHero') == 9 then heroName = "npc_dota_hero_dazzle"
+                    elseif OptionManager:GetOption('botsSameHero') == 10 then heroName = "npc_dota_hero_death_prophet"
+                    elseif OptionManager:GetOption('botsSameHero') == 11 then heroName = "npc_dota_hero_dragon_knight"
+                    elseif OptionManager:GetOption('botsSameHero') == 12 then heroName = "npc_dota_hero_drow_ranger"
+                    elseif OptionManager:GetOption('botsSameHero') == 13 then heroName = "npc_dota_hero_earthshaker"
+                    elseif OptionManager:GetOption('botsSameHero') == 14 then heroName = "npc_dota_hero_jakiro"
+                    elseif OptionManager:GetOption('botsSameHero') == 15 then heroName = "npc_dota_hero_juggernaut"
+                    elseif OptionManager:GetOption('botsSameHero') == 16 then heroName = "npc_dota_hero_kunkka"
+                    elseif OptionManager:GetOption('botsSameHero') == 17 then heroName = "npc_dota_hero_lich"
+                    elseif OptionManager:GetOption('botsSameHero') == 18 then heroName = "npc_dota_hero_lina"
+                    elseif OptionManager:GetOption('botsSameHero') == 19 then heroName = "npc_dota_hero_lion"
+                    elseif OptionManager:GetOption('botsSameHero') == 20 then heroName = "npc_dota_hero_luna"
+                    elseif OptionManager:GetOption('botsSameHero') == 21 then heroName = "npc_dota_hero_necrolyte"
+                    elseif OptionManager:GetOption('botsSameHero') == 22 then heroName = "npc_dota_hero_omniknight"
+                    elseif OptionManager:GetOption('botsSameHero') == 23 then heroName = "npc_dota_hero_oracle"
+                    elseif OptionManager:GetOption('botsSameHero') == 24 then heroName = "npc_dota_hero_phantom_assassin"
+                    elseif OptionManager:GetOption('botsSameHero') == 25 then heroName = "npc_dota_hero_pudge"
+                    elseif OptionManager:GetOption('botsSameHero') == 26 then heroName = "npc_dota_hero_sand_king"
+                    elseif OptionManager:GetOption('botsSameHero') == 27 then heroName = "npc_dota_hero_nevermore"
+                    elseif OptionManager:GetOption('botsSameHero') == 28 then heroName = "npc_dota_hero_skywrath_mage"
+                    elseif OptionManager:GetOption('botsSameHero') == 29 then heroName = "npc_dota_hero_sniper"
+                    elseif OptionManager:GetOption('botsSameHero') == 30 then heroName = "npc_dota_hero_sven"
+                    elseif OptionManager:GetOption('botsSameHero') == 31 then heroName = "npc_dota_hero_tiny"
+                    elseif OptionManager:GetOption('botsSameHero') == 32 then heroName = "npc_dota_hero_vengefulspirit"
+                    elseif OptionManager:GetOption('botsSameHero') == 33 then heroName = "npc_dota_hero_viper"
+                    elseif OptionManager:GetOption('botsSameHero') == 34 then heroName = "npc_dota_hero_warlock"
+                    elseif OptionManager:GetOption('botsSameHero') == 35 then heroName = "npc_dota_hero_windrunner"
+                    elseif OptionManager:GetOption('botsSameHero') == 36 then heroName = "npc_dota_hero_witch_doctor"
+                    elseif OptionManager:GetOption('botsSameHero') == 37 then heroName = "npc_dota_hero_skeleton_king"
+                    elseif OptionManager:GetOption('botsSameHero') == 38 then heroName = "npc_dota_hero_zuus"
+                    end
+                elseif OptionManager:GetOption('duplicateBots') == 1 then -- If allowed duplicates option is on, pick random hero but do not remove from available pool of bot heroes
                     heroName = possibleHeroes[ math.random( #possibleHeroes ) ]
                 else -- If allowed duplicates is off, pick random hero then remove from pool of available bot heroes
                     heroName = table.remove(possibleHeroes, math.random(#possibleHeroes))
@@ -7782,9 +7836,29 @@ function Pregame:fixSpawnedHero( spawnedUnit )
             -- Apply Bot Difficulty 
             if util:isPlayerBot(playerID) then
                 if spawnedUnit:GetTeam() == DOTA_TEAM_GOODGUYS then
-                    spawnedUnit:SetBotDifficulty(OptionManager:GetOption('radiantBotDiff'))
+                    if OptionManager:GetOption('radiantBotDiff') == 5 then -- If its random individual, give the bot a difficulty between easy and unfair
+                        local difficulty = math.random(1, 4)
+                        spawnedUnit:SetBotDifficulty(difficulty)
+                        if difficulty == 1 then spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_easybot", {}) 
+                        elseif difficulty == 2 then spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_mediumbot", {})
+                        elseif difficulty == 3 then spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_hardbot", {}) 
+                        elseif difficulty == 4 then spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_unfairbot", {})  
+                        end
+                    else
+                        spawnedUnit:SetBotDifficulty(OptionManager:GetOption('radiantBotDiff'))
+                    end
                 elseif spawnedUnit:GetTeam() == DOTA_TEAM_BADGUYS then
-                    spawnedUnit:SetBotDifficulty(OptionManager:GetOption('direBotDiff'))
+                    if OptionManager:GetOption('direBotDiff') == 5 then 
+                        local difficulty = math.random(1, 4)
+                        spawnedUnit:SetBotDifficulty(difficulty)
+                        if difficulty == 1 then spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_easybot", {}) 
+                        elseif difficulty == 2 then spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_mediumbot", {})
+                        elseif difficulty == 3 then spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_hardbot", {}) 
+                        elseif difficulty == 4 then spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_unfairbot", {})  
+                        end
+                    else
+                        spawnedUnit:SetBotDifficulty(OptionManager:GetOption('direBotDiff'))
+                    end
                 end
             end
             -- Disabled due to innates being convereted into normal 4 level abilities

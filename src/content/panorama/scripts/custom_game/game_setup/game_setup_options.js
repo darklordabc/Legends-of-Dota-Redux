@@ -321,6 +321,10 @@ var basicOptions = {
                             'lodMutatorBotDifficulty5': {
                                 'lodOptionBotsRadiantDiff': 4,
                                 'lodOptionBotsDireDiff': 4
+                            },
+                            'lodMutatorBotDifficultyRandom': {
+                                'lodOptionBotsRadiantDiff': 5,
+                                'lodOptionBotsDireDiff': 5
                             }
                         }
                     },
@@ -328,6 +332,53 @@ var basicOptions = {
                         name: 'lodOptionBotsStupid',
                         extraInfo: 'lodOptionAboutBotsStupid',
                         about: 'lodMutatorBotsStupid'
+                    },
+                    {
+                        name: 'lodOptionBotsSameHero',
+                        extraInfo: 'lodOptionAboutBotsSameHero',
+                        default: {
+                            'lodMutatorBotsSameHero': 0,
+                        },
+                        states: {
+                            'lodMutatorRandomBotHero': 1,
+                            'lodMutatorAxe': 2,
+                            'lodMutatorBane': 3,
+                            'lodMutatorBountyHunter': 4,
+                            'lodMutatorBloodseeker': 5,
+                            'lodMutatorBristleback': 6,
+                            'lodMutatorChaosKnight': 7,
+                            'lodMutatorCrystalMaiden': 8,
+                            'lodMutatorDazzle': 9,
+                            'lodMutatorDeathProphet': 10,
+                            'lodMutatorDragonKnight': 11,
+                            'lodMutatorDrowRanger': 12,
+                            'lodMutatorEarthshaker': 13,
+                            'lodMutatorJakiro': 14,
+                            'lodMutatorJuggernaut': 15,
+                            'lodMutatorKunkka': 16,
+                            'lodMutatorLich': 17,
+                            'lodMutatorLina': 18,
+                            'lodMutatorLion': 19,
+                            'lodMutatorLuna': 20,
+                            'lodMutatorNecrophos': 21,
+                            'lodMutatorOmniknight': 22,
+                            'lodMutatorOracle': 23,
+                            'lodMutatorPhantomAssassin': 24,
+                            'lodMutatorPudge': 25,
+                            'lodMutatorSandKing': 26,
+                            'lodMutatorShadowFiend': 27,
+                            'lodMutatorSkywrathMage': 28,
+                            'lodMutatorSniper': 29,
+                            'lodMutatorSven': 30,
+                            'lodMutatorTiny': 31,
+                            'lodMutatorVengefulSpirit': 32,
+                            'lodMutatorViper': 33,
+                            'lodMutatorWarlock': 34,
+                            'lodMutatorWindranger': 35,
+                            'lodMutatorWitchDoctor': 36,
+                            'lodMutatorWraithKing': 37,
+                            'lodMutatorZeus': 38,
+                        }
                     },
                     {
                         name: 'lodOptionAdvancedUniqueSkills',
@@ -1500,6 +1551,10 @@ var advancedOptions = {
                     {
                         text: 'lodOptionBotUnfair',
                         value: 4
+                    },
+                    {
+                        text: 'lodOptionBotRandomIndividual',
+                        value: 5
                     }
                 ]
             },
@@ -1528,6 +1583,10 @@ var advancedOptions = {
                     {
                         text: 'lodOptionBotUnfair',
                         value: 4
+                    },
+                    {
+                        text: 'lodOptionBotRandomIndividual',
+                        value: 5
                     }
                 ]
             },
@@ -1548,6 +1607,170 @@ var advancedOptions = {
                     {
                         text: 'lodOptionUniqueGlobal',
                         value: 2
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionBotsSameHero',
+                des: 'lodOptionDesBotsSameHero',
+                about: 'lodOptionAboutBotsSameHero',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodUniqueSkillsOff',
+                        value: 0
+                    },
+                    {
+                        text: 'lodRandomHero',
+                        value: 1
+                    },
+                    {
+                        text: 'lodMutatorAxe',
+                        value: 2
+                    },
+                    {
+                        text: 'lodMutatorBane',
+                        value: 3
+                    },
+                    {
+                        text: 'lodMutatorBountyHunter',
+                        value: 4
+                    },
+                    {
+                        text: 'lodMutatorBloodseeker',
+                        value: 5
+                    },
+                    {
+                        text: 'lodMutatorBristleback',
+                        value: 6
+                    },
+                    {
+                        text: 'lodMutatorChaosKnight',
+                        value: 7
+                    },
+                    {
+                        text: 'lodMutatorCrystalMaiden',
+                        value: 8
+                    },
+                    {
+                        text: 'lodMutatorDazzle',
+                        value: 9
+                    },
+                    {
+                        text: 'lodMutatorDeathProphet',
+                        value: 10
+                    },
+                    {
+                        text: 'lodMutatorDragonKnight',
+                        value: 11
+                    },
+                    {
+                        text: 'lodMutatorDrowRanger',
+                        value: 12
+                    },
+                    {
+                        text: 'lodMutatorEarthshaker',
+                        value: 13
+                    },
+                    {
+                        text: 'lodMutatorJakiro',
+                        value: 14
+                    },
+                    {
+                        text: 'lodMutatorJuggernaut',
+                        value: 15
+                    },
+                    {
+                        text: 'lodMutatorKunkka',
+                        value: 16
+                    },
+                    {
+                        text: 'lodMutatorLich',
+                        value: 17
+                    },
+                    {
+                        text: 'lodMutatorLina',
+                        value: 18
+                    },
+                    {
+                        text: 'lodMutatorLion',
+                        value: 19
+                    },
+                    {
+                        text: 'lodMutatorLuna',
+                        value: 20
+                    },
+                    {
+                        text: 'lodMutatorNecrophos',
+                        value: 21
+                    },
+                    {
+                        text: 'lodMutatorOmniknight',
+                        value: 22
+                    },
+                    {
+                        text: 'lodMutatorOracle',
+                        value: 23
+                    },
+                    {
+                        text: 'lodMutatorPhantomAssassin',
+                        value: 24
+                    },
+                    {
+                        text: 'lodMutatorPudge',
+                        value: 25
+                    },
+                    {
+                        text: 'lodMutatorSandKing',
+                        value: 26
+                    },
+                    {
+                        text: 'lodMutatorShadowFiend',
+                        value: 27
+                    },
+                    {
+                        text: 'lodMutatorSkywrathMage',
+                        value: 28
+                    },
+                    {
+                        text: 'lodMutatorSniper',
+                        value: 29
+                    },
+                    {
+                        text: 'lodMutatorSven',
+                        value: 30
+                    },
+                    {
+                        text: 'lodMutatorTiny',
+                        value: 31
+                    },
+                    {
+                        text: 'lodMutatorVengefulSpirit',
+                        value: 32
+                    },
+                    {
+                        text: 'lodMutatorViper',
+                        value: 33
+                    },
+                    {
+                        text: 'lodMutatorWarlock',
+                        value: 34
+                    },
+                    {
+                        text: 'lodMutatorWindranger',
+                        value: 35
+                    },
+                    {
+                        text: 'lodMutatorWitchDoctor',
+                        value: 36
+                    },
+                    {
+                        text: 'lodMutatorWraithKing',
+                        value: 37
+                    },
+                    {
+                        text: 'lodMutatorZeus',
+                        value: 38
                     }
                 ]
             },

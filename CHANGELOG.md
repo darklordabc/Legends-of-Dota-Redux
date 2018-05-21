@@ -13,6 +13,10 @@ All notable changes to this project will be documented in this file.
 - Team Specific difficulty can be changed by advanced options menu
 - Added Option to allow bots to use the same hero (Duplicate Heroes)
 - Enabled Bot: Pudge
+- Added Same Bot Mutator
+- Added Arcane Art OP (User Request)
+- Added Random Option for Same Bot Hero Mutator
+- Added Random Individual for Bot Difficulty Settings (Every bot gets a random difficulty)
 
 ## 11
 - Fixed Nothl Protection Bonus ability mutator
