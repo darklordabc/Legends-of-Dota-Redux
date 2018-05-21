@@ -7,8 +7,8 @@
     <scripts>
         <include src="file://{resources}/scripts/custom_game/menu_buttons.js" />
     </scripts>
-    <Panel class="menuButtons">
-        <Panel class="menuButtonsList" hittest="false">
+    <Panel class="menuButtons" hittest="false">
+        <Panel class="menuButtonsList">
             <Button id="optionReview" class="menuButton" onactivate="onBtnOpenOptionReviewPressed()" onmouseover="DOTAShowTextTooltip(#minimapMenuReviewGameOptions)" onmouseout="DOTAHideTextTooltip()" hittest="true">
                 <Image class="menuButtonsIcon" src="file://{images}/custom_game/changelog.png"/>
             </Button>
