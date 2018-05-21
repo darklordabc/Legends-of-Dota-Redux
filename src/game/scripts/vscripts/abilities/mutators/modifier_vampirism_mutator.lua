@@ -17,9 +17,11 @@ end
 function modifier_vampirism_mutator.IsPurgable(self)
     return false
 end
-function modifier_vampirism_mutator.OnCreated(self)
-    self.daytime_hp_drain=1
-    self.night_lifesteal=20
+function modifier_vampirism_mutator.IsPurgable(self)
+    return false
+end
+function modifier_vampirism_mutator.GetTexture(self)
+    return "custom/modifier_vampirism_mutator"
 end
 function modifier_vampirism_mutator.DeclareFunctions(self)
     return {MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,MODIFIER_EVENT_ON_ATTACK_LANDED}
