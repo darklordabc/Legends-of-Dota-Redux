@@ -11,6 +11,7 @@ end
 
 function spell_lab_souls_base_modifier:OnDeath(kv)
   if IsServer() then
+		if self:GetAbility():GetLevel() < 1 then return end
 		if self.bDrop then
 			if kv.unit == self:GetCaster() then
 				if (not self.bPickedup) then

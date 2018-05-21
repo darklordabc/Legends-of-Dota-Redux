@@ -127,9 +127,28 @@
     "lodOptionYes"                                  "Yes"
     "lodOptionNo"                                   "No"
     "lodOptionYesHumansOnly"                                  "Yes (Humans Only)"
+    "lodOptionRandom"                                   "Random"
+    "lodMutatorRandom"                                  "Random Bonus Ability"
 
     "lodOptionSkills"                                  "Yes (Skills Only)"
     "lodOptionSkillsAndItems"                          "Yes (Skills and Items)"
+
+    "lodOptionBotsRadiantDiff"                       "Bot Difficulty Radiant"
+    "lodOptionDesBotsRadiantDiff"                    "Bot Difficulty Radiant"
+    "lodOptionAboutBotsRadiantDiff"                  "Sets the difficult level for the Radiant bots. Random Individual means that every individual bot has a random difficulty setting between easy to unfair."
+
+    "lodOptionBotsDireDiff"                          "Bot Difficulty Dire"
+    "lodOptionDesBotsDireDiff"                       "Bot Difficulty Dire"
+    "lodOptionAboutBotsDireDiff"                     "Sets the difficult level for the Dire bots. Random Individual means that every individual bot has a random difficulty setting between easy to unfair."
+
+    "lodOptionBotDifficulty"                            "Passive"
+
+    "lodOptionBotPassive"                            "Passive"
+    "lodOptionBotEasy"                               "Easy"
+    "lodOptionBotMedium"                             "Medium"
+    "lodOptionBotHard"                               "Hard"
+    "lodOptionBotUnfair"                             "Unfair"
+    "lodOptionBotRandomIndividual"                   "Random Individual"
 
     // Option text
     "lodOptionsPresetGamemode"                      "Preset Gamemode"
@@ -193,6 +212,17 @@
     "lodMutatorFastBuybackCooldown1"                "Fast Respawn"
     "lodMutatorFastBuybackCooldown2"                "Faster Respawn"
     "lodMutatorFastBuybackCooldown3"                "Instant Respawn"
+
+    "lodMutatorBotDifficulty1"                      "Passive Bots"
+    "lodOptionAboutBotDifficulty"                   "For detailed information about bot difficulty differences refer to the DotA 2 Wiki page about bots. Team specific difficulty can be set in advanced options. Random Individual means that every individual bot has a random difficulty setting between easy to unfair."
+
+    "lodMutatorBotDifficulty2"                      "Easy Bots"
+    "lodMutatorBotDifficulty3"                      "Medium Bots"
+    "lodMutatorBotDifficulty4"                      "Hard Bots"
+    "lodMutatorBotDifficulty5"                      "Unfair Bots"
+    "lodMutatorBotDifficultyRandom"                 "Random Individual"
+
+    
 
     "lodMutatorMaxUlts1"                            "2 Ultimates"
     "lodMutatorMaxUlts2"                            "3 Ultimates"
@@ -341,6 +371,55 @@
     "lodOptionDesBalanceMode"                       "Points Mode"
 
     "lodOptionDesBalanceModePoints"                 "Points"
+
+    "lodMutatorBotsUnique"                          "Bot Duplicates"
+    "lodOptionBotsUnique"                           "Allow Bot Duplicates"
+    "lodOptionDesBotsUnique"                        "Allow Bot Duplicates"
+    "lodOptionAboutBotsUnique"                      "Allows bots to use a hero that is already in use by another bot. If this is disabled, bots will all have unique heroes."
+
+    "lodOptionBotsSameHero"                         "Bots Same Hero"
+    "lodOptionDesBotsSameHero"                      "All Bots Use The Same hero"
+    "lodOptionAboutBotsSameHero"                    "Forces all bots to be the same hero."
+
+    "lodMutatorBotsSameHero"                        "Bots Same Hero"
+    "lodMutatorRandomBotHero"                       "Random Hero"
+    "lodMutatorAxe"                                 "Axe"
+    "lodMutatorBane"                                "Bane"
+    "lodMutatorBountyHunter"                        "Bounty Hunter"
+    "lodMutatorBloodseeker"                         "Bloodseeker"
+    "lodMutatorBristleback"                         "Bristleback"
+    "lodMutatorChaosKnight"                         "Chaos Knight"
+    "lodMutatorCrystalMaiden"                       "Crystal Maiden"
+    "lodMutatorDazzle"                              "Dazzle"
+    "lodMutatorDeathProphet"                        "Death Prophet"
+    "lodMutatorDragonKnight"                        "Dragon Knight"
+    "lodMutatorDrowRanger"                          "Drow Ranger"
+    "lodMutatorEarthshaker"                         "Earth Shaker"
+    "lodMutatorJakiro"                              "Jakiro"
+    "lodMutatorJuggernaut"                          "Juggernaut"
+    "lodMutatorKunkka"                              "Kunkka"
+    "lodMutatorLich"                                "Lich"
+    "lodMutatorLina"                                "Lina"
+    "lodMutatorLion"                                "Lion"
+    "lodMutatorLuna"                                "Luna"
+    "lodMutatorNecrophos"                           "Necrophos"
+    "lodMutatorOmniknight"                          "Omniknight"
+    "lodMutatorOracle"                              "Oracle"
+    "lodMutatorPhantomAssassin"                     "Phantom Assassin"
+    "lodMutatorPudge"                               "Pudge"
+    "lodMutatorSandKing"                            "Sand King"
+    "lodMutatorShadowFiend"                         "Shadow Fiend"
+    "lodMutatorSkywrathMage"                        "Skywrath Mage"
+    "lodMutatorSniper"                              "Sniper"
+    "lodMutatorSven"                                "Sven"
+    "lodMutatorTiny"                                "Tiny"
+    "lodMutatorVengefulSpirit"                      "Vengeful Spirit"
+    "lodMutatorViper"                               "Viper"
+    "lodMutatorWarlock"                             "Warlock"
+    "lodMutatorWindranger"                          "Windranger"
+    "lodMutatorWitchDoctor"                         "Witch Doctor"
+    "lodMutatorWraithKing"                          "Wraith King"
+    "lodMutatorZeus"                                "Zeus"
 
     "lodOptionDesBanningHostBanning"                "Host has unlimited bans"
     "lodOptionAboutHostBanning"                     "This option will allow the host to ban as many heroes and abilities as they like."
@@ -671,6 +750,8 @@
     "lodUniqueSkillsOff"                            "Disabled"
     "lodUniqueSkillsTeam"                           "Unique Team Skills"
     "lodUniqueSkillsGlobal"                         "Unique Global Skills"
+
+    "lodRandomHero"                                 "Random Hero"
 
     "lodOptionDesGameSpeedRespawnTimePercentage"    "Respawn Time Percentage (100 = normal)"
     "lodOptionAboutGameSpeedRespawnTimePercentage"  "Makes the default respawn time decrease by the given percentage."
@@ -1909,6 +1990,18 @@
 
     "DOTA_Tooltip_modifier_bash_cooldown"                           "Bash Cooldown"
     "DOTA_Tooltip_modifier_bash_cooldown_Description"               "Your hero temporary can't be bashed, because it was bashed recently."
+
+    "DOTA_Tooltip_modifier_easybot"                           "Easy Bot"
+    "DOTA_Tooltip_modifier_easybot_Description"               "Easy bots willingly attack other heroes and use abilities/items (with the exception of Phase Boots, Force Staff, and Orchid Malevolence), but usually at a slow pace, and their last hit timing is not as accurate. Easy bots will not deny creeps. Easy bots will generally not attempt to gank other lanes, and will only group up in small groups to push or defend. Easy bots will not attempt to 'stun-lock' enemies, nor will they try to interrupt channeling spells. Easy bots are fooled by illusions."
+
+    "DOTA_Tooltip_modifier_mediumbot"                         "Medium Bot"
+    "DOTA_Tooltip_modifier_mediumbot_Description"             "Medium bots are almost identical to easy bots in terms of play-style, with a few exceptions. Their reaction time is faster, making their last hits more precise, and if played in practice/single player mode, only the allied bots will deny creeps. Medium bots are also better at detecting whether a hero is an illusion. Medium bots are allowed to use Phase Boots, Force Staff, and Orchid Malevolence."
+
+    "DOTA_Tooltip_modifier_hardbot"                           "Hard Bot"
+    "DOTA_Tooltip_modifier_hardbot_Description"               "Hard bots have very accurate last hitting capabilities, and they deny just as well. Multiple Hard bots will time their stuns to avoid overlap, resulting in longer stun times. Hard bots will also attempt to interrupt channeling spells, as well as dodge projectiles. If their Hero has a good spammable or harassing spell they will repeatedly use said spells to deter enemies out of the lane. After the laning phase has ended, enemy Hard bots will generally stay together as a group of five."
+
+    "DOTA_Tooltip_modifier_unfairbot"                         "Unfair Bot"
+    "DOTA_Tooltip_modifier_unfairbot_Description"             "Unfair bots are the hardest bots, and are almost identical to Hard bots in terms of play-style. Their last hits are almost perfect, and when played in single player mode, the bots on the player's team would purposely play poorly (such as kill stealing, missing denies, refusing to use stuns, diving into enemy towers, running toward and pushing alone agaisnt the enemy team, farming in jungle while enermy pushing to the base..). Enemy Unfair bots will also receive a 25%d% boost in gold and experience earned."
 
     //Scepter Buff Modifer
     "DOTA_Tooltip_modifier_item_ultimate_scepter_consumed" "Free Aghanim's Scepter"
@@ -4302,7 +4395,7 @@
     "DOTA_Tooltip_modifier_akron_explosion_burn"    "Living Bomb"
     "DOTA_Tooltip_modifier_akron_explosion_burn_Description"    "This unit is taking damage."
 
-    "DOTA_Tooltip_ability_paladin_impregnability"   "Guardian Angel"
+    "DOTA_Tooltip_ability_paladin_impregnability"   "Guardian Light"
     "DOTA_Tooltip_ability_paladin_impregnability_Description"   "Holy Knight's allies affected by this ability become invulnerable.  The hero stays vulnerable."
     "DOTA_Tooltip_ability_paladin_impregnability_radius"    "RADIUS:"
     "DOTA_Tooltip_ability_paladin_impregnability_duration"  "DURATION:"
@@ -5544,6 +5637,13 @@
         "DOTA_Tooltip_ability_aabs_nightshadow_bonus_intellect"                          "+$int"
         "DOTA_Tooltip_ability_aabs_nightshadow_proc_chance"                              "%REDUCTION CHANCE:"
         "DOTA_Tooltip_ability_aabs_nightshadow_cooldown_reduction"                       "COOLDOWN REDUCTION:"
+
+        "DOTA_Tooltip_ability_aabs_nightshadow_op"                                          "Arcane Art OP"
+        "DOTA_Tooltip_ability_aabs_nightshadow_op_Description"                              "Each attack has a chance to decrease all your active cooldowns.<font color='#70EA72'> No cooldown.</font>\n\n<font color=\'#7D7D7D\'>Imported from Angel Arena BlackStar</font>\n"
+        "DOTA_Tooltip_ability_aabs_nightshadow_op_Lore"                                     "Nightshadow an ancient weapon used by legendary archmages."
+        "DOTA_Tooltip_ability_aabs_nightshadow_op_bonus_intellect"                          "+$int"
+        "DOTA_Tooltip_ability_aabs_nightshadow_op_proc_chance"                              "%REDUCTION CHANCE:"
+        "DOTA_Tooltip_ability_aabs_nightshadow_op_cooldown_reduction"                       "COOLDOWN REDUCTION:"
 
         "DOTA_Tooltip_ability_dark_seer_vacuum_op"                                         "Vacuum OP"
         "DOTA_Tooltip_ability_dark_seer_vacuum_op_Description"                             "Dark Seer creates a vacuum over the target area that sucks in enemy units, disrupting them and dealing damage. <font color='#70EA72'>Larger cast range, radius and damage.</font>"
@@ -17192,6 +17292,60 @@
 
     "DOTA_Tooltip_modifier_frost_lord_freezing_block"   "Cold Embrace"
     "DOTA_Tooltip_modifier_frost_lord_freezing_block_Description"   "This unit is frozen."
+
+    "DOTA_Tooltip_ability_firelord_fire_trap"   "Fire Trap"
+    "DOTA_Tooltip_ability_firelord_fire_trap_Description"   "Sets an invisible trap that stuns the caught enemies. The trap activates when an enemy unit approaches."
+    "DOTA_Tooltip_ability_firelord_fire_trap_duration"  "TRAP LIFETIME:"
+    "DOTA_Tooltip_ability_firelord_fire_trap_detonation_radius" "DETONATION RADIUS:"
+    "DOTA_Tooltip_ability_firelord_fire_trap_stun_duration" "STUN DURATION:"
+    "DOTA_Tooltip_ability_firelord_fire_trap_stun_hero_duration"    "HERO STUN DURATION:"
+    "DOTA_Tooltip_ability_firelord_fire_trap_activation_delay"  "ACTIVATION DELAY:"
+    "DOTA_Tooltip_ability_firelord_fire_trap_detection_radius"  "DETECTION RADIUS:"
+
+    "fire_trap_unit"    "Fire Trap"
+
+    "DOTA_Tooltip_ability_frost_lord_cold"  "Chilling Touch"
+    "DOTA_Tooltip_ability_frost_lord_cold_Description"  "Target enemies lose their movement and attack speed and take damage over time. If thet are affected by Frost Breath, they will take additional damage."
+    "DOTA_Tooltip_ability_frost_lord_cold_damage"   "DAMAGE PER SECOND:"
+    "DOTA_Tooltip_ability_frost_lord_cold_add_damage"   "ADDITIONAL DAMAGE PER SECOND:"
+    "DOTA_Tooltip_ability_frost_lord_cold_movement_speed_slow"  "%MOVESPEED SLOW:"
+    "DOTA_Tooltip_ability_frost_lord_cold_attack_speed_slow"    "ATTACK SLOW:"
+    "DOTA_Tooltip_ability_frost_lord_cold_duration" "DURATION:"
+    "DOTA_Tooltip_ability_frost_lord_cold_radius"   "RADIUS:"
+
+    "DOTA_Tooltip_modifier_frost_lord_cold" "Chilling Touch"
+    "DOTA_Tooltip_modifier_frost_lord_cold_Description" "This unit is slowed and is taking damage."
+
+    "DOTA_Tooltip_ability_frost_lord_ice"   "Frozen Core"
+    "DOTA_Tooltip_ability_frost_lord_ice_Description"   "Frost Lord creates magic ice in a target point. This ice chooses a random target in a 500 area of effect and damages and slows units around it every second."
+    "DOTA_Tooltip_ability_frost_lord_ice_damage"    "DAMAGE:"
+    "DOTA_Tooltip_ability_frost_lord_ice_movement_slow" "%MOVEMENT SLOW:"
+    "DOTA_Tooltip_ability_frost_lord_ice_slow_duration" "SLOW DURATION:"
+    "DOTA_Tooltip_ability_frost_lord_ice_duration"  "ICE DURATION:"
+
+    "DOTA_Tooltip_modifier_modifier_frost_lord_ice_damage"  "Frozen Core"
+    "DOTA_Tooltip_modifier_modifier_frost_lord_ice_damage_Description"  "This unit is slowed."
+
+    "DOTA_Tooltip_ability_frost_lord_frost_breath"  "Frost Breath"
+    "DOTA_Tooltip_ability_frost_lord_frost_breath_Description"  "An icy blast launches out in a path in front of Frost Lord dealing damage to all enemies on its way. The ice delivers additional damage over time."
+    "DOTA_Tooltip_ability_frost_lord_frost_breath_damage"   "INITIAL DAMAGE:"
+    "DOTA_Tooltip_ability_frost_lord_frost_breath_damage_per_second"    "DAMAGE PER SECOND:"
+    "DOTA_Tooltip_ability_frost_lord_frost_breath_duration" "DURATION:"
+
+    "DOTA_Tooltip_modifier_frost_lord_frost_breath" "Frost Breath"
+    "DOTA_Tooltip_modifier_frost_lord_frost_breath_Description" "This unit takes damage over time."
+
+    "DOTA_Tooltip_ability_firelord_flame_strike"    "Flame Strike"
+    "DOTA_Tooltip_ability_firelord_flame_strike_Description"    "Conjures a pillar of fire which damages ground units in a target area for 5 seconds. When interrupted during the channeling, the spell does nothing, cooldown and mana are wasted."
+    "DOTA_Tooltip_ability_firelord_flame_strike_radius" "RADIUS:"
+    "DOTA_Tooltip_ability_firelord_flame_strike_first_strike_dps"   "DAMAGE PER SECOND:"
+    "DOTA_Tooltip_ability_firelord_flame_strike_delay"  "CHANNELING TIME:"
+
+    "DOTA_Tooltip_modifier_flame_strike_first_burn" "Flame Strike"
+    "DOTA_Tooltip_modifier_flame_strike_first_burn_Description" "This unit is taking damage."
+
+    "DOTA_Tooltip_modifier_flame_strike_second_burn"    "Flame Strike"
+    "DOTA_Tooltip_modifier_flame_strike_second_burn_Description"    "This unit is taking damage."
 
     "DOTA_Tooltip_ability_ptomely_mirror_blade"                                       "Mirror Blade"
     "DOTA_Tooltip_ability_ptomely_mirror_blade_Description"                           "Fires multiple blades of pure energy towards the target location, dealing Physical damage based upon Ptomely's Intelligence.\n\n<font color=\'#7D7D7D\'>Imported from Dusk\n"

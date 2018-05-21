@@ -8,6 +8,37 @@
 		"AbilityCooldown"				"1.5"
 		"ReduxCost"                                                            "10"
 		"ReduxFlags"														    "cooldown"
+		"ReduxBans"                                                            "aabs_nightshadow_op"
+		
+		"precache"
+		{
+			"particle" "particles/items_fx/electrical_arc_01_system.vpcf"
+		}
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"proc_chance"			"25"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"cooldown_reduction"			"0.25 0.5 0.75 1"
+			}
+		}
+	}
+
+	"aabs_nightshadow_op"
+	{
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"abilities/angel_arena_blackstar/nightshadow.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"            "custom/nightshadow_op"
+		"AbilityCooldown"				"0.0"
+		"ReduxCost"                                                            "10"
+		"ReduxFlags"														    "cooldown"
 		
 		"precache"
 		{

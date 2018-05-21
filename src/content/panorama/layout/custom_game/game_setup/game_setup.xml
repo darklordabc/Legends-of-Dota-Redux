@@ -278,6 +278,12 @@
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorFastBuybackCooldown2.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorFastBuybackCooldown3.png"></Image>
 
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotDifficulty1.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotDifficulty2.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotDifficulty3.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotDifficulty4.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotDifficulty5.png"></Image>
+
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorEXPModifier1.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorEXPModifier2.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorEXPModifier3.png"></Image>
@@ -295,6 +301,50 @@
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorDoubleCreeps.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorDisablePerks.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsStupid.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsUnique.png"></Image>
+
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorAxe.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBane.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBloodseeker.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBristleback.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorChaosKnight.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorCrystalMaiden.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorDazzle.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorDeathProphet.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorDragonKnight.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorDrowRanger.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorEarthshaker.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorJakiro.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorJuggernaut.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorKunkka.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorLich.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorLina.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorLion.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorLuna.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorNecrophos.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorOmniknight.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorOracle.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorPhantomAssassin.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorPudge.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorSandKing.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorShadowFiend.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorSkywrathMage.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorSniper.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorSven.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorTiny.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorVengefulSpirit.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorViper.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorWarlock.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorWindranger.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorWitchDoctor.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorWraithKing.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorZeus.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotsSameHero.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorRandomBotHero.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotDifficultyRandom.png"></Image>
+                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorRandom.png"></Image>
+
+
 
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorNoFatOMeter.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorFarmFatOMeter.png"></Image>
