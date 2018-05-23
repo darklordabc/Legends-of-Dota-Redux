@@ -169,6 +169,10 @@ function Ingame:OnHeroLeveledUp(keys)
     -- print(hero:GetUnitName(), level, hero:GetDeathXP(), GetXPForLevel( level ))
 end
 
+function Ingame:OnModifierEvent(keys)
+    print("MODIFIER EVENT")
+    for k,v in pairs(keys) do print(k,v) end
+end
 
 function Ingame:OnPlayerPurchasedItem(keys)
     -- Bots will get items auto-delievered to them
@@ -589,6 +593,9 @@ function Ingame:onStart()
     GameRules:GetGameModeEntity():SetModifierGainedFilter(Dynamic_Wrap(Ingame, 'FilterModifiers'),self)
     GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(Ingame, 'FilterDamage'),self)
     --GameRules:GetGameModeEntity():SetAbilityTuningValueFilter(Dynamic_Wrap(Ingame,"FilterValueTuning"),self)
+
+
+    ListenToGameEvent('modifier_event', Dynamic_Wrap(Ingame, 'OnModifierEvent'), self)
 
     -- -- Listen if abilities are being used.
     --ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(Ingame, 'OnAbilityUsed'), self)
@@ -1546,10 +1553,8 @@ end
 
 function Ingame:BountyRunePickupFilter(filterTable)
     if OptionManager:GetOption('superRunes') == 1 then
-        print(1,filterTable.gold_bounty)
         filterTable.xp_bounty = filterTable.xp_bounty * 2
         filterTable.gold_bounty = filterTable.gold_bounty * 2
-        print(2,filterTable.gold_bounty)
     end
 
     if OptionManager:GetOption('sharedXP') == 1 then
@@ -2033,26 +2038,28 @@ function Ingame:FilterModifiers( filterTable )
     local ability_index = filterTable["entindex_ability_const"]
 
 
-    if not parent_index or not caster_index or not ability_index then
+    if not parent_index --[[or not caster_index -or not ability_index]] then
         return true
     end
-    local parent = EntIndexToHScript( parent_index )
-    local caster = EntIndexToHScript( caster_index )
-    local ability = EntIndexToHScript( ability_index )
+    
     local modifier_name = filterTable.name_const
-
+    local parent = EntIndexToHScript( parent_index )
     if OptionManager:GetOption('superRunes') == 1 then
-        --print(modifier_name)
         if modifier_name == "modifier_rune_doubledamage" then
-            caster:AddNewModifier(nil,nil,"modifier_rune_doubledamage_mutated",{duration = filterTable.duration})
-            --print("Made dd")
+            parent:AddNewModifier(nil,nil,"modifier_rune_doubledamage_mutated",{duration = filterTable.duration})
             return false
         elseif modifier_name == "modifier_rune_arcane" then
-            caster:AddNewModifier(nil,nil,"modifier_rune_arcane_mutated",{duration = filterTable.duration})
-            --print("Made ARC")
+            parent:AddNewModifier(nil,nil,"modifier_rune_arcane_mutated",{duration = filterTable.duration})
             return false
         end
     end
+
+    if not caster_index or not ability_index then
+        return true
+    end
+    
+    local caster = EntIndexToHScript( caster_index )
+    local ability = EntIndexToHScript( ability_index )
 
      -- Hero perks
     if not OptionManager:GetOption('disablePerks') then
