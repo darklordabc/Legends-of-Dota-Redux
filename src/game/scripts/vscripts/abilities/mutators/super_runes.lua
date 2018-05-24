@@ -1,5 +1,9 @@
 modifier_rune_doubledamage_mutated = class({})
 
+function modifier_rune_doubledamage_mutated:IsHidden()
+  return false
+end
+
 function modifier_rune_doubledamage_mutated:DeclareFunctions()
     return {
         MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE 
@@ -23,6 +27,10 @@ function modifier_rune_doubledamage_mutated:GetTexture()
 end
 
 modifier_rune_arcane_mutated = class({})
+
+function modifier_rune_arcane_mutated:IsHidden()
+  return false
+end
 
 function modifier_rune_arcane_mutated:DeclareFunctions()
     return {
