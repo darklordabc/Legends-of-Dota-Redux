@@ -2046,13 +2046,9 @@ function Ingame:FilterModifiers( filterTable )
     local parent = EntIndexToHScript( parent_index )
     if OptionManager:GetOption('superRunes') == 1 then
         if modifier_name == "modifier_rune_doubledamage" then
-            local m = parent:AddNewModifier(nil,nil,"modifier_rune_doubledamage_mutated",{duration = 45})
-            print("dd",m)
-            return false
+            local m = parent:AddNewModifier(nil,nil,"modifier_rune_doubledamage_mutated_redux",{duration = 45})
         elseif modifier_name == "modifier_rune_arcane" then
-            local m = parent:AddNewModifier(nil,nil,"modifier_rune_arcane_mutated",{duration = 50})
-            print("ar",m)
-            return false
+            local m = parent:AddNewModifier(nil,nil,"modifier_rune_arcane_mutated_redux",{duration = 50})
         end
     end
 
