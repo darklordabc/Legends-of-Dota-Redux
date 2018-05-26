@@ -68,8 +68,8 @@ LinkLuaModifier("modifier_random_spell_mutator","abilities/mutators/modifier_ran
 LinkLuaModifier("modifier_random_lane_creep_mutator_ai","abilities/mutators/modifier_random_lane_creep_mutator_ai.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_random_lane_creep_spawner_mutator","abilities/mutators/modifier_random_lane_creep_mutator_ai.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_resurrection_mutator","abilities/mutators/modifier_resurrection_mutator.lua",LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_rune_doubledamage_mutated","abilities/mutators/super_runes.lua",LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_rune_arcane_mutated","abilities/mutators/super_runes.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_rune_doubledamage_mutated_redux","abilities/mutators/super_runes.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_rune_arcane_mutated_redux","abilities/mutators/super_runes.lua",LUA_MODIFIER_MOTION_NONE)
 
 --[[
     Main pregame, selection related handler

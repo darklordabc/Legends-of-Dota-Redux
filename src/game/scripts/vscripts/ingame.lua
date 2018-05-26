@@ -491,7 +491,7 @@ function Ingame:onStart()
 
     -- Remove powerup runes, spawned before 2 minutes
     Timers:CreateTimer(function ()
-        if math.floor(GameRules:GetDOTATime(false, false)/60) < 2 then
+        if math.floor(GameRules:GetDOTATime(false, false)/60) < 0.2 then
             local spawners = Entities:FindAllByClassname("dota_item_rune_spawner_powerup")
             for k,v in ipairs(spawners) do
                 if v ~= nil then
@@ -2047,8 +2047,10 @@ function Ingame:FilterModifiers( filterTable )
     if OptionManager:GetOption('superRunes') == 1 then
         if modifier_name == "modifier_rune_doubledamage" then
             local m = parent:AddNewModifier(nil,nil,"modifier_rune_doubledamage_mutated_redux",{duration = 45})
+            return false
         elseif modifier_name == "modifier_rune_arcane" then
             local m = parent:AddNewModifier(nil,nil,"modifier_rune_arcane_mutated_redux",{duration = 50})
+            return false
         end
     end
 

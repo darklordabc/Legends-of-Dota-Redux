@@ -1,24 +1,29 @@
 modifier_rune_doubledamage_mutated_redux = class({})
 
 function modifier_rune_doubledamage_mutated_redux:IsHidden()
-  return true
+  return false
 end
 
 function modifier_rune_doubledamage_mutated_redux:DeclareFunctions()
     return {
-        MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE 
+      MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE 
     }
 end
 
 function modifier_rune_doubledamage_mutated_redux:OnCreated()
   print("AAA")
+  print(self:GetRemainingTime())
 end
 
+function modifier_rune_doubledamage_mutated_redux:OnDestroy()
+  print("modifier_rune_doubledamage_mutated_redux Gone")
+end
 
 function modifier_rune_doubledamage_mutated_redux:GetModifierBaseDamageOutgoing_Percentage()
-    return 100 -- 300?
+    print("200")
+    return 200 -- 300?
 end
---[[
+
 function modifier_rune_doubledamage_mutated_redux:GetEffectName()
   return "particles/generic_gameplay/rune_doubledamage.vpcf"
 end
@@ -28,13 +33,23 @@ function modifier_rune_doubledamage_mutated_redux:GetEffectAttachType()
 end
 
 function modifier_rune_doubledamage_mutated_redux:GetTexture()
-    return "puck_phase_shift"
-end]]
+    return "abaddon_death_coil"
+end
 
 modifier_rune_arcane_mutated_redux = class({})
 
+function modifier_rune_arcane_mutated_redux:OnCreated()
+  print("bbb")
+  print(self:GetRemainingTime())
+end
+
+function modifier_rune_arcane_mutated_redux:OnDestroy()
+  print("modifier_rune_arcane_mutated_redux Gone")
+end
+
+
 function modifier_rune_arcane_mutated_redux:IsHidden()
-  return true
+  return false
 end
 
 function modifier_rune_arcane_mutated_redux:DeclareFunctions()
@@ -45,15 +60,15 @@ function modifier_rune_arcane_mutated_redux:DeclareFunctions()
 end
 
 function modifier_rune_arcane_mutated_redux:GetModifierPercentageCooldownStacking()
-    return 30
+    return 60
 end
 
 function modifier_rune_arcane_mutated_redux:GetModifierPercentageManacostStacking()
-    return 30
+    return 60
 end
 
 
---[[function modifier_rune_arcane_mutated_redux:GetEffectName()
+function modifier_rune_arcane_mutated_redux:GetEffectName()
   return "particles/generic_gameplay/rune_arcane_owner.vpcf"
 end
 
@@ -62,5 +77,5 @@ function modifier_rune_arcane_mutated_redux:GetEffectAttachType()
 end
 
 function modifier_rune_arcane_mutated_redux:GetTexture()
-    return "tiny_toss"
-end]]
+    return "abaddon_aphotic_shield"
+end
