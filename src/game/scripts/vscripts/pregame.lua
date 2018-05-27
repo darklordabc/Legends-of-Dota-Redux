@@ -56,6 +56,7 @@ LinkLuaModifier( "modifier_unfairbot", "abilities/botAI/modifier_unfairbot.lua",
 -- Creep power modifier
 LinkLuaModifier("modifier_neutral_power", "abilities/modifiers/modifier_neutral_power.lua", LUA_MODIFIER_MOTION_NONE)
 
+<<<<<<< HEAD
 -- Mutator modifiers
 
 LinkLuaModifier("modifier_vampirism_mutator","abilities/mutators/modifier_vampirism_mutator.lua",LUA_MODIFIER_MOTION_NONE)
@@ -71,6 +72,8 @@ LinkLuaModifier("modifier_resurrection_mutator","abilities/mutators/modifier_res
 LinkLuaModifier("modifier_rune_doubledamage_mutated_redux","abilities/mutators/super_runes.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_rune_arcane_mutated_redux","abilities/mutators/super_runes.lua",LUA_MODIFIER_MOTION_NONE)
 
+=======
+>>>>>>> develop
 --[[
     Main pregame, selection related handler
 ]]
@@ -4094,6 +4097,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('consumeItems', this.optionStore['lodOptionConsumeItems'])
         OptionManager:SetOption('limitPassives', this.optionStore['lodOptionLimitPassives'])
         OptionManager:SetOption('antiBash', this.optionStore['lodOptionAntiBash'])
+<<<<<<< HEAD
         OptionManager:SetOption('superRunes',this.optionStore['lodOptionSuperRunes'])
         OptionManager:SetOption('fastRunes',this.optionStore['lodOptionFastRunes'])
         OptionManager:SetOption('periodicSpellCast',this.optionStore['lodOptionPeriodicSpellCast'])
@@ -4105,6 +4109,8 @@ function Pregame:processOptions()
         OptionManager:SetOption('noHealthbars',this.optionStore['lodOptionNoHealthbars'])
         OptionManager:SetOption('randomLaneCreeps',this.optionStore['lodOptionRandomLaneCreeps'])
         OptionManager:SetOption('resurrectAllies',this.optionStore['lodOptionResurrectAllies'])
+=======
+>>>>>>> develop
 
         -- Enforce max level
         if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -4304,12 +4310,15 @@ function Pregame:processOptions()
             this:banAbility("earthshaker_fissure")
         end
 
+<<<<<<< HEAD
         -- Set runespawn times
         if OptionManager:GetOption("fastRunes") == 1 then
             GameRules:SetRuneSpawnTime(30)
         end
 
         
+=======
+>>>>>>> develop
 
         -- Enable Universal Shop
         if this.optionStore['lodOptionCrazyUniversalShop'] == 1 then
@@ -6113,7 +6122,7 @@ end
 
 function Pregame:canPlayerPickSkill(playerID)
     local hero = PlayerResource:GetSelectedHeroEntity(playerID)
-    if (self.wispSpawning and hero and hero:GetUnitName() ~= self.selectedHeroes[playerID]) then return true end
+    if (self.wispSpawning and hero and not hero.buildApplied) then return true end
     if (self:getPhase() == constants.PHASE_INGAME or self:getPhase() == constants.PHASE_REVIEW) and (OptionManager:GetOption('allowIngameHeroBuilder')) then
         return true
     end
@@ -8072,6 +8081,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                     end
                 end
             end
+<<<<<<< HEAD
 
 
             -- Add mutator modifiers
@@ -8097,6 +8107,8 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                 spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_no_healthbar_mutator",{})
             end
 
+=======
+>>>>>>> develop
         end
     end, DoUniqueString('variousFixes'), 0.5)
 

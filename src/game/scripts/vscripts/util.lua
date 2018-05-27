@@ -219,11 +219,11 @@ end
 
 -- Returns a player's premium rank
 function util:getPremiumRank(playerID)
-    local steamID = PlayerResource:GetSteamAccountID(playerID)
+    local steamID = tostring(PlayerResource:GetSteamAccountID(playerID))
     local conData
 
     for k,v in pairs(util.contributors) do
-        if v.steamID3 == tostring(steamID) then
+        if tostring(v.steamID3) == steamID then
             conData = v
             break
         end

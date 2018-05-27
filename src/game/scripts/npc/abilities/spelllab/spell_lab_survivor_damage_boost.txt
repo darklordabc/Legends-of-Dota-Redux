@@ -13,12 +13,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-        				"bonus"						"2.5 5.0 7.5 10.0"
+        				"bonus"						"3 6 9 12"
             }
         }
         "ReduxFlags"                                                           ""
         "ReduxBans"                                                            ""
         //"ReduxPerks"                                                           ""
-        "ReduxCost"                                                            "60"
+        "ReduxCost"                                                            "120"
     }
 }

@@ -161,6 +161,7 @@ if not OptionManager.initialSettings then
 	-- Full price sellback
 	OptionManager:SetOption('fullPriceSellback', false)
 
+<<<<<<< HEAD
 	-- Mutators
 	OptionManager:SetOption('fastRunes', false)
 	OptionManager:SetOption('superRunes', false)
@@ -174,6 +175,8 @@ if not OptionManager.initialSettings then
 	OptionManager:SetOption('randomLaneCreeps', false)
 	OptionManager:SetOption('noHealthbars', false)
 
+=======
+>>>>>>> develop
 	-- Other Mutators
 	OptionManager:SetOption('322', 0)
 	OptionManager:SetOption('refreshCooldownsOnDeath', 0)

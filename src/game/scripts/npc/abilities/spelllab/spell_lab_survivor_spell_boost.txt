@@ -13,7 +13,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-        				"bonus"						"1.0 2.0 3.0 4.0"
+        				"bonus"						"3.0 4.0 5.0 6.0"
             }
             "02"
             {
@@ -24,7 +24,7 @@
         "ReduxFlags"                                                           ""
         "ReduxBans"                                                            ""
         //"ReduxPerks"                                                           ""
-        "ReduxCost"                                                            "60"
+        "ReduxCost"                                                            "120"
     }
 
     "spell_lab_survivor_spell_boost_op"
@@ -40,7 +40,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-                        "bonus"                     "2.0 3.0 4.0 5.0"
+                        "bonus"                     "6.0 8.0 10.0 12.0"
             }
         }
         "ReduxFlags"                                                           ""

@@ -33,7 +33,18 @@ function enableIngameBuilder() {
 	$('#heroBuilder').visible = true;
 }
 
+function openPatreon() {
+    $.DispatchEvent('ExternalBrowserGoToURL', 'https://www.patreon.com/darklordabc');
+}
+
+function hidePatreonButton() {
+    $('#patreonButton').visible = false;
+}
+
 (function() {
+    var isPremium = GameUI.CustomUIConfig().isPremiumPlayer;
+    $('#patreonButton').visible = !isPremium;
+
 	GameUI.CustomUIConfig().Util.builderEnabled = false;
     CustomNetTables.SubscribeNetTableListener('options', function (tableName, key, value) {
         if (key == 'lodEnableIngameBuilder' && value.state == true) {
@@ -45,6 +56,6 @@ function enableIngameBuilder() {
     if (data && data.state == true) {
         enableIngameBuilder()
     }
-    
+
     GameEvents.Subscribe('lodShowCheatPanel', setupCheats);
 })();

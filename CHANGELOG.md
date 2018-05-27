@@ -6,7 +6,6 @@ All notable changes to this project will be documented in this file.
 - Following Lingering Souls ability has had their max value per soul reduced: Agility (0.5 to 0.4), Base Damge (1.5 to 1), Strength (0.5 to 0.4), Attack Range (2.4 to 2), Attack Speed (4 to 3)
 - Lingering Souls per soul bonus now scales with level, no longer flat value. 
 - Lingering Souls now have 80 seconds to recover souls, instead of 60
-*
 - Improved Following Unpopular custom abilities: Guardian Light, Shards of True Sight, Song of Death
 - Added Bot Difficulty Mutator/Option. 
 - Bot Default Difficulty changed from Unfair to Medium
@@ -17,6 +16,9 @@ All notable changes to this project will be documented in this file.
 - Added Arcane Art OP (User Request)
 - Added Random Option for Same Bot Hero Mutator
 - Added Random Individual for Bot Difficulty Settings (Every bot gets a random difficulty)
+- Moved most souls and survival abilities to single player abilities and improved their stats
+- Added Patreon Button
+
 
 ## 11
 - Fixed Nothl Protection Bonus ability mutator

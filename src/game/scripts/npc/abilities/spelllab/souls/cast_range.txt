@@ -18,7 +18,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-        				"per_soul"						"4 6 8 10"
+        				"per_soul"						"6 9 12 15"
             }
             "02"
             {
@@ -29,6 +29,6 @@
         "ReduxFlags"                                                           ""
         "ReduxBans"                                                            ""
         //"ReduxPerks"                                                           ""
-        "ReduxCost"                                                            "60"
+        "ReduxCost"                                                            "120"
     }
 }

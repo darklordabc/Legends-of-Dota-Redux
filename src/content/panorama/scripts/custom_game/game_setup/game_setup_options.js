@@ -563,6 +563,7 @@ var basicOptions = {
                         extraInfo: 'lodOptionAboutAntiBash',
                         about: 'lodMutatorAntiBash'
                     },
+<<<<<<< HEAD
                     {
                         name: 'lodOptionFastRunes', 
                         extraInfo: 'lodOptionAboutFastRunes',
@@ -618,6 +619,8 @@ var basicOptions = {
                     //    extraInfo: 'lodOptionAboutResurrectAllies',
                     //    about: 'lodMutatorResurrectAllies'
                     // },
+=======
+>>>>>>> develop
                 ]
             }
         ]
