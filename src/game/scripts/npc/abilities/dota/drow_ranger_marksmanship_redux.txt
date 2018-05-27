@@ -39,7 +39,7 @@
                 "damage_reduction_scepter" "50"
             }
         }
-        //"ReduxFlags"                                                           ""
+        "ReduxFlags"                                                    "underpowered"
         //"ReduxCost"                                                            ""
         //"ReduxBans"                                                            ""
         "ReduxBans"                                                            "brawler_agi"

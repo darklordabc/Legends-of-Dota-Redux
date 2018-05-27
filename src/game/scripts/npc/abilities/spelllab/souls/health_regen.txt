@@ -18,7 +18,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-        				"per_soul"						"0.75"
+        				"per_soul"						"0.1 0.25 0.5 0.75"
             }
             "02"
             {

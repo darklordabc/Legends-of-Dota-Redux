@@ -7,21 +7,28 @@
     <scripts>
         <include src="file://{resources}/scripts/custom_game/menu_buttons.js" />
     </scripts>
-    <Panel class="menuButtonsRoot" hittest="false">
-		<Button id="optionReview" class="menuButton" onactivate="onBtnOpenOptionReviewPressed()" onmouseover="DOTAShowTextTooltip(#minimapMenuReviewGameOptions)" onmouseout="DOTAHideTextTooltip()" hittest="true">
-            <Image class="menuButtonsIcon" src="file://{images}/custom_game/changelog.png"/>
-        </Button>
-	
-        <Button id="heroBuilder" class="menuButton" onactivate="onBtnOpenHeroBuilderPressed()" onmouseover="DOTAShowTextTooltip(#minimapMenuHeroBuilder)" onmouseout="DOTAHideTextTooltip()" hittest="true">
-            <Image class="menuButtonsIcon" src="file://{images}/custom_game/changebuild.png"/>
-        </Button>
+    <Panel class="menuButtons" hittest="false">
+        <Panel class="menuButtonsList">
+            <Button id="optionReview" class="menuButton" onactivate="onBtnOpenOptionReviewPressed()" onmouseover="DOTAShowTextTooltip(#minimapMenuReviewGameOptions)" onmouseout="DOTAHideTextTooltip()" hittest="true">
+                <Image class="menuButtonsIcon" src="file://{images}/custom_game/changelog.png"/>
+            </Button>
 
-        <Button class="menuButton" onactivate='onBtnOpenChangelog()' onmouseover="DOTAShowTextTooltip(#minimapMenuCredits)" onmouseout="DOTAHideTextTooltip()" >
-            <Image class="menuButtonsIcon" src="file://{images}/custom_game/info.png"/>
-        </Button>
+            <Button id="heroBuilder" class="menuButton" onactivate="onBtnOpenHeroBuilderPressed()" onmouseover="DOTAShowTextTooltip(#minimapMenuHeroBuilder)" onmouseout="DOTAHideTextTooltip()" hittest="true">
+                <Image class="menuButtonsIcon" src="file://{images}/custom_game/changebuild.png"/>
+            </Button>
 
-        <Button class="menuButton" onactivate="toggleCheats()" onmouseover="DOTAShowTextTooltip(#minimapMenuCheats)" onmouseout="DOTAHideTextTooltip()" >
-            <Image class="menuButtonsIcon" src="file://{images}/custom_game/cheats.png"/>
+            <Button class="menuButton" onactivate='onBtnOpenChangelog()' onmouseover="DOTAShowTextTooltip(#minimapMenuCredits)" onmouseout="DOTAHideTextTooltip()" >
+                <Image class="menuButtonsIcon" src="file://{images}/custom_game/info.png"/>
+            </Button>
+
+            <Button class="menuButton" onactivate="toggleCheats()" onmouseover="DOTAShowTextTooltip(#minimapMenuCheats)" onmouseout="DOTAHideTextTooltip()" >
+                <Image class="menuButtonsIcon" src="file://{images}/custom_game/cheats.png"/>
+            </Button>
+        </Panel>
+
+        <Button id="patreonButton" onactivate="openPatreon()" >
+            <Image src="file://{images}/custom_game/patreon.png" />
+            <Panel id="patreonButtonClose" onactivate="hidePatreonButton()" />
         </Button>
     </Panel>
 </root>

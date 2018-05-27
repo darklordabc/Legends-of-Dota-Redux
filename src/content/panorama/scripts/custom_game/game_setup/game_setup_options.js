@@ -118,7 +118,7 @@ var basicOptions = {
                                 'lodOptionGameSpeedRespawnTimePercentage': 5
                             }
                         }
-                    },
+                    },                  
                     {
                         name: 'lodOptionGameSpeedStrongTowers',
                         about: 'lodMutatorStrongTowers'
@@ -294,9 +294,91 @@ var basicOptions = {
                         }
                     },
                     {
+                        name: 'lodOptionBotsUnique',
+                        extraInfo: 'lodOptionAboutBotsUnique',
+                        about: 'lodMutatorBotsUnique'
+                    },
+                    {
+                        about: 'lodMutatorBotDifficulty1',
+                        extraInfo: 'lodOptionAboutBotDifficulty',
+                        default: {
+                            'lodOptionBotsRadiantDiff': 0,
+                            'lodOptionBotsDireDiff': 0
+                        },
+                        states: {
+                            'lodMutatorBotDifficulty2': {
+                                'lodOptionBotsRadiantDiff': 1,
+                                'lodOptionBotsDireDiff': 1
+                            },
+                            'lodMutatorBotDifficulty3': {
+                                'lodOptionBotsRadiantDiff': 2,
+                                'lodOptionBotsDireDiff': 2
+                            },
+                            'lodMutatorBotDifficulty4': {
+                                'lodOptionBotsRadiantDiff': 3,
+                                'lodOptionBotsDireDiff': 3
+                            },
+                            'lodMutatorBotDifficulty5': {
+                                'lodOptionBotsRadiantDiff': 4,
+                                'lodOptionBotsDireDiff': 4
+                            },
+                            'lodMutatorBotDifficultyRandom': {
+                                'lodOptionBotsRadiantDiff': 5,
+                                'lodOptionBotsDireDiff': 5
+                            }
+                        }
+                    },
+                    {
                         name: 'lodOptionBotsStupid',
                         extraInfo: 'lodOptionAboutBotsStupid',
                         about: 'lodMutatorBotsStupid'
+                    },
+                    {
+                        name: 'lodOptionBotsSameHero',
+                        extraInfo: 'lodOptionAboutBotsSameHero',
+                        default: {
+                            'lodMutatorBotsSameHero': 0,
+                        },
+                        states: {
+                            'lodMutatorRandomBotHero': 1,
+                            'lodMutatorAxe': 2,
+                            'lodMutatorBane': 3,
+                            'lodMutatorBountyHunter': 4,
+                            'lodMutatorBloodseeker': 5,
+                            'lodMutatorBristleback': 6,
+                            'lodMutatorChaosKnight': 7,
+                            'lodMutatorCrystalMaiden': 8,
+                            'lodMutatorDazzle': 9,
+                            'lodMutatorDeathProphet': 10,
+                            'lodMutatorDragonKnight': 11,
+                            'lodMutatorDrowRanger': 12,
+                            'lodMutatorEarthshaker': 13,
+                            'lodMutatorJakiro': 14,
+                            'lodMutatorJuggernaut': 15,
+                            'lodMutatorKunkka': 16,
+                            'lodMutatorLich': 17,
+                            'lodMutatorLina': 18,
+                            'lodMutatorLion': 19,
+                            'lodMutatorLuna': 20,
+                            'lodMutatorNecrophos': 21,
+                            'lodMutatorOmniknight': 22,
+                            'lodMutatorOracle': 23,
+                            'lodMutatorPhantomAssassin': 24,
+                            'lodMutatorPudge': 25,
+                            'lodMutatorSandKing': 26,
+                            'lodMutatorShadowFiend': 27,
+                            'lodMutatorSkywrathMage': 28,
+                            'lodMutatorSniper': 29,
+                            'lodMutatorSven': 30,
+                            'lodMutatorTiny': 31,
+                            'lodMutatorVengefulSpirit': 32,
+                            'lodMutatorViper': 33,
+                            'lodMutatorWarlock': 34,
+                            'lodMutatorWindranger': 35,
+                            'lodMutatorWitchDoctor': 36,
+                            'lodMutatorWraithKing': 37,
+                            'lodMutatorZeus': 38,
+                        }
                     },
                     {
                         name: 'lodOptionAdvancedUniqueSkills',
@@ -391,28 +473,29 @@ var basicOptions = {
                             'lodMutatorFreeAbility': 0,
                         },
                         states: {
-                            'lodMutatorSliders': 1,
-                            'lodMutatorNothl': 2,
-                            'lodMutatorMonkeyBusiness': 3,
-                            'lodMutatorEcho': 4,
-                            'lodMutatorFleashHeaps': 5,
-                            'lodMutatorFury': 6,
-                            'lodMutatorBashwars': 7,
-                            'lodMutatorWitch': 8,
-                            'lodMutatorTakeaim': 9,
-                            'lodMutatorAether': 10,
-                            'lodMutatorGreed': 11,
-                            'lodMutatorNether': 12,
-                            'lodMutatorShift': 13,
-                            'lodMutatorMulticast': 14,
-                            'lodMutatorCoup': 15,
-                            'lodMutatorPermaInvis': 16,
-                            'lodMutatorMultishot': 17,
-                            'lodMutatorRespawn': 18,
-                            'lodMutatorTrickshot': 19,
-                            'lodMutatorBorrowed': 20,
-                            'lodMutatorTesla': 21,
-                            'lodMutatorSurvival': 22,
+                            'lodMutatorRandom': 1,
+                            'lodMutatorSliders': 2,
+                            'lodMutatorNothl': 3,
+                            'lodMutatorMonkeyBusiness': 4,
+                            'lodMutatorEcho': 5,
+                            'lodMutatorFleashHeaps': 6,
+                            'lodMutatorFury': 7,
+                            'lodMutatorBashwars': 8,
+                            'lodMutatorWitch': 9,
+                            'lodMutatorTakeaim': 10,
+                            'lodMutatorAether': 11,
+                            'lodMutatorGreed': 12,
+                            'lodMutatorNether': 13,
+                            'lodMutatorShift': 14,
+                            'lodMutatorMulticast': 15,
+                            'lodMutatorCoup': 16,
+                            'lodMutatorPermaInvis': 17,
+                            'lodMutatorMultishot': 18,
+                            'lodMutatorRespawn': 19,
+                            'lodMutatorTrickshot': 20,
+                            'lodMutatorBorrowed': 21,
+                            'lodMutatorTesla': 22,
+                            'lodMutatorSurvival': 23,
                         }
                     },
                     {
@@ -783,7 +866,7 @@ var advancedOptions = {
                         value: 2
                     },
                 ]
-            },
+            },       
             {
                 name: 'lodOptionAdvancedUniqueHeroes',
                 des: 'lodOptionDesAdvancedUniqueHeroes',
@@ -843,88 +926,96 @@ var advancedOptions = {
                         value: 0
                     },
                     {
-                        text: 'DOTA_Tooltip_ability_gemini_unstable_rift',
+                        text: 'lodOptionRandom',
                         value: 1
                     },
                     {
-                        text: 'DOTA_Tooltip_ability_imba_dazzle_shallow_grave_passive',
+                        text: 'DOTA_Tooltip_ability_gemini_unstable_rift',
                         value: 2
                     },
                     {
-                        text: 'DOTA_Tooltip_ability_imba_tower_forest',
+                        text: 'DOTA_Tooltip_ability_imba_dazzle_shallow_grave_passive',
                         value: 3
                     },
                     {
-                        text: 'DOTA_Tooltip_ability_ebf_rubick_arcane_echo',
+                        text: 'DOTA_Tooltip_ability_imba_tower_forest',
                         value: 4
                     },
                     {
-                        text: 'lodMutatorFleashHeaps',
+                        text: 'DOTA_Tooltip_ability_ebf_rubick_arcane_echo',
                         value: 5
                     },
                     {
-                        text: 'DOTA_Tooltip_ability_ursa_fury_swipes',
+                        text: 'lodMutatorFleashHeaps',
                         value: 6
                     },
                     {
-                        text: 'DOTA_Tooltip_ability_spirit_breaker_greater_bash',
+                        text: 'DOTA_Tooltip_ability_ursa_fury_swipes',
                         value: 7
                     },
                     {
-                        text: 'DOTA_Tooltip_ability_death_prophet_witchcraft',
+                        text: 'DOTA_Tooltip_ability_spirit_breaker_greater_bash',
                         value: 8
                     },
                     {
-                        text: 'DOTA_Tooltip_ability_sniper_take_aim',
+                        text: 'DOTA_Tooltip_ability_death_prophet_witchcraft',
                         value: 9
                     },
                     {
-                        text: 'DOTA_Tooltip_ability_aether_range_lod',
+                        text: 'DOTA_Tooltip_ability_sniper_take_aim',
                         value: 10
                     },
                     {
-                        text: 'DOTA_Tooltip_ability_alchemist_goblins_greed',
+                        text: 'DOTA_Tooltip_ability_aether_range_lod',
                         value: 11
                     },
                     {
-                        text: 'DOTA_Tooltip_ability_angel_arena_nether_ritual',
+                        text: 'DOTA_Tooltip_ability_alchemist_goblins_greed',
                         value: 12
                     },
                     {
-                        text: 'DOTA_Tooltip_ability_slark_essence_shift',
+                        text: 'DOTA_Tooltip_ability_angel_arena_nether_ritual',
                         value: 13
                     },
                     {
-                        text: 'DOTA_Tooltip_ability_ogre_magi_multicast',
+                        text: 'DOTA_Tooltip_ability_slark_essence_shift',
                         value: 14
                     },
                     {
-                        text: 'DOTA_Tooltip_ability_phantom_assassin_coup_de_grace',
+                        text: 'DOTA_Tooltip_ability_ogre_magi_multicast',
                         value: 15
                     },
                     {
-                        text: 'DOTA_Tooltip_ability_riki_permanent_invisibility',
+                        text: 'DOTA_Tooltip_ability_phantom_assassin_coup_de_grace',
                         value: 16
                     },
                     {
-                        text: 'DOTA_Tooltip_ability_imba_tower_multihit',
+                        text: 'DOTA_Tooltip_ability_riki_permanent_invisibility',
                         value: 17
                     },
                     {
-                        text: 'DOTA_Tooltip_ability_skeleton_king_reincarnation',
+                        text: 'DOTA_Tooltip_ability_imba_tower_multihit',
                         value: 18
                     },
                     {
-                        text: 'DOTA_Tooltip_ability_ebf_clinkz_trickshot_passive',
+                        text: 'DOTA_Tooltip_ability_skeleton_king_reincarnation',
                         value: 19
                     },
                     {
-                        text: 'DOTA_Tooltip_ability_abaddon_borrowed_time',
+                        text: 'DOTA_Tooltip_ability_ebf_clinkz_trickshot_passive',
                         value: 20
                     },
                     {
-                        text: 'DOTA_Tooltip_ability_summoner_tesla_coil',
+                        text: 'DOTA_Tooltip_ability_abaddon_borrowed_time',
                         value: 21
+                    },
+                    {
+                        text: 'DOTA_Tooltip_ability_summoner_tesla_coil',
+                        value: 22
+                    },
+                    {
+                        text: 'lodMutatorSurvival',
+                        value: 23
                     }
                 ]
             },
@@ -1445,6 +1536,70 @@ var advancedOptions = {
                 default: 5
             },
             {
+                name: 'lodOptionBotsRadiantDiff',
+                des: 'lodOptionDesBotsRadiantDiff',
+                about: 'lodOptionAboutBotsRadiantDiff',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionBotPassive',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionBotEasy',
+                        value: 1
+                    },
+                    {
+                        text: 'lodOptionBotMedium',
+                        value: 2
+                    },
+                    {
+                        text: 'lodOptionBotHard',
+                        value: 3
+                    },
+                    {
+                        text: 'lodOptionBotUnfair',
+                        value: 4
+                    },
+                    {
+                        text: 'lodOptionBotRandomIndividual',
+                        value: 5
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionBotsDireDiff',
+                des: 'lodOptionDesBotsDireDiff',
+                about: 'lodOptionAboutBotsDireDiff',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionBotPassive',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionBotEasy',
+                        value: 1
+                    },
+                    {
+                        text: 'lodOptionBotMedium',
+                        value: 2
+                    },
+                    {
+                        text: 'lodOptionBotHard',
+                        value: 3
+                    },
+                    {
+                        text: 'lodOptionBotUnfair',
+                        value: 4
+                    },
+                    {
+                        text: 'lodOptionBotRandomIndividual',
+                        value: 5
+                    }
+                ]
+            },
+            {
                 name: 'lodOptionBotsUniqueSkills',
                 des: 'lodOptionDesBotsUniqueSkills',
                 about: 'lodOptionAboutBotsUniqueSkills',
@@ -1461,6 +1616,186 @@ var advancedOptions = {
                     {
                         text: 'lodOptionUniqueGlobal',
                         value: 2
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionBotsSameHero',
+                des: 'lodOptionDesBotsSameHero',
+                about: 'lodOptionAboutBotsSameHero',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodUniqueSkillsOff',
+                        value: 0
+                    },
+                    {
+                        text: 'lodRandomHero',
+                        value: 1
+                    },
+                    {
+                        text: 'lodMutatorAxe',
+                        value: 2
+                    },
+                    {
+                        text: 'lodMutatorBane',
+                        value: 3
+                    },
+                    {
+                        text: 'lodMutatorBountyHunter',
+                        value: 4
+                    },
+                    {
+                        text: 'lodMutatorBloodseeker',
+                        value: 5
+                    },
+                    {
+                        text: 'lodMutatorBristleback',
+                        value: 6
+                    },
+                    {
+                        text: 'lodMutatorChaosKnight',
+                        value: 7
+                    },
+                    {
+                        text: 'lodMutatorCrystalMaiden',
+                        value: 8
+                    },
+                    {
+                        text: 'lodMutatorDazzle',
+                        value: 9
+                    },
+                    {
+                        text: 'lodMutatorDeathProphet',
+                        value: 10
+                    },
+                    {
+                        text: 'lodMutatorDragonKnight',
+                        value: 11
+                    },
+                    {
+                        text: 'lodMutatorDrowRanger',
+                        value: 12
+                    },
+                    {
+                        text: 'lodMutatorEarthshaker',
+                        value: 13
+                    },
+                    {
+                        text: 'lodMutatorJakiro',
+                        value: 14
+                    },
+                    {
+                        text: 'lodMutatorJuggernaut',
+                        value: 15
+                    },
+                    {
+                        text: 'lodMutatorKunkka',
+                        value: 16
+                    },
+                    {
+                        text: 'lodMutatorLich',
+                        value: 17
+                    },
+                    {
+                        text: 'lodMutatorLina',
+                        value: 18
+                    },
+                    {
+                        text: 'lodMutatorLion',
+                        value: 19
+                    },
+                    {
+                        text: 'lodMutatorLuna',
+                        value: 20
+                    },
+                    {
+                        text: 'lodMutatorNecrophos',
+                        value: 21
+                    },
+                    {
+                        text: 'lodMutatorOmniknight',
+                        value: 22
+                    },
+                    {
+                        text: 'lodMutatorOracle',
+                        value: 23
+                    },
+                    {
+                        text: 'lodMutatorPhantomAssassin',
+                        value: 24
+                    },
+                    {
+                        text: 'lodMutatorPudge',
+                        value: 25
+                    },
+                    {
+                        text: 'lodMutatorSandKing',
+                        value: 26
+                    },
+                    {
+                        text: 'lodMutatorShadowFiend',
+                        value: 27
+                    },
+                    {
+                        text: 'lodMutatorSkywrathMage',
+                        value: 28
+                    },
+                    {
+                        text: 'lodMutatorSniper',
+                        value: 29
+                    },
+                    {
+                        text: 'lodMutatorSven',
+                        value: 30
+                    },
+                    {
+                        text: 'lodMutatorTiny',
+                        value: 31
+                    },
+                    {
+                        text: 'lodMutatorVengefulSpirit',
+                        value: 32
+                    },
+                    {
+                        text: 'lodMutatorViper',
+                        value: 33
+                    },
+                    {
+                        text: 'lodMutatorWarlock',
+                        value: 34
+                    },
+                    {
+                        text: 'lodMutatorWindranger',
+                        value: 35
+                    },
+                    {
+                        text: 'lodMutatorWitchDoctor',
+                        value: 36
+                    },
+                    {
+                        text: 'lodMutatorWraithKing',
+                        value: 37
+                    },
+                    {
+                        text: 'lodMutatorZeus',
+                        value: 38
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionBotsUnique',
+                des: 'lodOptionDesBotsUnique',
+                about: 'lodOptionAboutBotsUnique',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
                     }
                 ]
             },

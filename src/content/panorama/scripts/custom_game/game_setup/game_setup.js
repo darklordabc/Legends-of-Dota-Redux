@@ -180,6 +180,7 @@ var waitingForPrecache = true;
 
 // Are we a premium player?
 var isPremiumPlayer = false;
+GameUI.CustomUIConfig().isPremiumPlayer = false;
 
 // Save code timer
 var saveSCTimer = false;
@@ -569,7 +570,7 @@ function OnSelectedSkillsChanged(table_name, key, data) {
                 ab.SetAttributeString('abilityname', defaultSkill);
                 hookSkillInfo(ab);
 
-                var abCost = ab.GetChild(0); 
+                var abCost = ab.GetChild(0);
 
                 if (balanceMode) {
                     // Clear the labels
@@ -1095,7 +1096,7 @@ function onLockBuildButtonPressed() {
 
 function onBacktrackButton() {
     util.reviewOptions = !util.reviewOptions;
-    
+
     fixBacktrackUI();
 }
 
@@ -2599,8 +2600,8 @@ function OnSkillTabShown(tabName) {
                         if(a.grouped) return -1;
                         return 1;
                     }
-                    
-                    // Check if ability is custom and is attached to some hero 
+
+                    // Check if ability is custom and is attached to some hero
                     if ((a.category == "custom" && a.hasOwner) || (b.category == "custom" && b.hasOwner)) {
                         return helperSort(txtA,txtB)
                     } else {
@@ -4785,6 +4786,7 @@ function OnPhaseChanged(table_name, key, data) {
             if(data[playerID] != null) {
                 // Store if we are a premium player
                 isPremiumPlayer = data[playerID] > 0;
+                GameUI.CustomUIConfig().isPremiumPlayer = isPremiumPlayer;
                 $.GetContextPanel().SetHasClass('premiumUser', isPremiumPlayer);
             }
             break;
@@ -4881,7 +4883,7 @@ function OnOptionChanged(table_name, key, data) {
 
         case 'lodOptionBalanceModePoints':
             SetBalanceModePoints(data.v);
-            break;      
+            break;
     }
 
     $('#importAndExportEntry').text = JSON.stringify(optionValueList).replace(/,/g, ',\n');
@@ -5296,11 +5298,11 @@ function UpdateTimer() {
 // Player has accepting the hosting message
 function onAcceptPopup() {
     if (LOCAL_WARNING) {
-        
+
     } else {
         $('#lodPopupMessage').visible = false;
         $('#lodOptionsRoot').SetHasClass("darkened", false);
-        $('#tipPanel').SetHasClass("darkened", false);        
+        $('#tipPanel').SetHasClass("darkened", false);
     }
 }
 
@@ -5679,10 +5681,10 @@ function getAbilityGlobalPickPopularity(ability) {
     GameEvents.Subscribe('addTrollCombo', function(data) {
        var ab1 = data.ab1;
        var ab2 = data.ab2;
-       
+
        // Break if it's the same
        if (ab1 == ab2) return;
-       
+
        trollCombos[ab1] = trollCombos[ab1] || {};
        trollCombos[ab2] = trollCombos[ab2] || {};
 
@@ -5816,6 +5818,6 @@ function getAbilityGlobalPickPopularity(ability) {
     });
 
     if (LOCAL_WARNING) {
-        showPopupMessage('lodLocalWarning');        
+        showPopupMessage('lodLocalWarning');
     }
 })();

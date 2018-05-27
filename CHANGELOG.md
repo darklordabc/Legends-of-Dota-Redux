@@ -2,8 +2,43 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 11.1
+- Following Lingering Souls ability has had their max value per soul reduced: Agility (0.5 to 0.4), Base Damge (1.5 to 1), Strength (0.5 to 0.4), Attack Range (2.4 to 2), Attack Speed (4 to 3)
+- Lingering Souls per soul bonus now scales with level, no longer flat value. 
+- Lingering Souls now have 80 seconds to recover souls, instead of 60
+- Improved Following Unpopular custom abilities: Guardian Light, Shards of True Sight, Song of Death
+- Added Bot Difficulty Mutator/Option. 
+- Bot Default Difficulty changed from Unfair to Medium
+- Team Specific difficulty can be changed by advanced options menu
+- Added Option to allow bots to use the same hero (Duplicate Heroes)
+- Enabled Bot: Pudge
+- Added Same Bot Mutator
+- Added Arcane Art OP (User Request)
+- Added Random Option for Same Bot Hero Mutator
+- Added Random Individual for Bot Difficulty Settings (Every bot gets a random difficulty)
+- Moved most souls and survival abilities to single player abilities and improved their stats
+- Added Patreon Button
+
+
+## 11
+- Fixed Nothl Protection Bonus ability mutator
+- Replaced Unstable Rift Bonus ability mutator with Spell Amp bonus ability
+- Fixed Bots getting "Generic" blank abilities
+- Fixed Bonus abilities not being applied after changing builds
+- Fixed Saving and Loading of bans
+
 ## 10.9
 - Made Morph a single player ability because its currently buggy
+- Returned Pocket Factory (As a single player ability)
+- Swashbuckle now troll combo with Fury Swipes (both of them) and arcane orb
+- 3 Mana Regen custom abilities (Flesh Heap, Survival, Souls) have been disabled until their values can be readjusted
+- Disable an Essence Aura talent that doesnt work
+- Added more cheats to cheat menu: True Sight (-gem), Invisibility (-invis), Spell Reflect (-reflect), Spell Block (-spellblock)
+- Shadow Dance is troll combo with its redux version
+- Tempest Double considered an OP ability
+- Made it so a few Redux version of abilities (underpowered) no longer appear if their powerful counterparts are pickable
+- Disabled Wisp until critical bug can be fixed
+- Added two more cheats: No cooldowns (-cooldown) and global cast range (-globalcast)
 
 ## 10.8
 - Lifebreak Redux now troll combo with Dispersion

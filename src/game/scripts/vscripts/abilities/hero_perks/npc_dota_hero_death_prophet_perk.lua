@@ -1,31 +1,31 @@
 --------------------------------------------------------------------------------------------------------
 --
---		Hero: Death Prophet
---		Perk: Any silence from Death Prophet is also a mute.
+--    Hero: Death Prophet
+--    Perk: Any silence from Death Prophet is also a mute.
 --
 --------------------------------------------------------------------------------------------------------
 LinkLuaModifier( "modifier_npc_dota_hero_death_prophet_perk", "abilities/hero_perks/npc_dota_hero_death_prophet_perk.lua" ,LUA_MODIFIER_MOTION_NONE )
 --------------------------------------------------------------------------------------------------------
 if npc_dota_hero_death_prophet_perk ~= "" then npc_dota_hero_death_prophet_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
---		Modifier: modifier_npc_dota_hero_death_prophet_perk				
+--    Modifier: modifier_npc_dota_hero_death_prophet_perk       
 --------------------------------------------------------------------------------------------------------
 if modifier_npc_dota_hero_death_prophet_perk ~= "" then modifier_npc_dota_hero_death_prophet_perk = class({}) end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_death_prophet_perk:IsPassive()
-	return true
+  return true
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_death_prophet_perk:IsHidden()
-	return false
+  return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_death_prophet_perk:RemoveOnDeath()
-	return false
+  return false
 end
 --------------------------------------------------------------------------------------------------------
 function modifier_npc_dota_hero_death_prophet_perk:IsPurgable()
-	return false
+  return false
 end
 --------------------------------------------------------------------------------------------------------
 -- Add additional functions
@@ -69,6 +69,13 @@ function perkDeathProphet(filterTable)  --ModifierGainedFilter
         local modifierDuration = filterTable["duration"]
         parent:AddNewModifier(caster,ability,"modifier_npc_dota_hero_death_prophet_perk_mute",{duration = modifierDuration})
       end
-    end  
+    end
+  -- Exception for silencer glaives
+  else
+    if caster:HasAbility("silencer_glaives_of_wisdom") and caster:HasAbility("special_bonus_unique_silencer_5") then
+      if caster:FindAbilityByName("silencer_glaives_of_wisdom"):GetToggleState() and caster:FindAbilityByName("special_bonus_unique_silencer_5"):GetLevel() > 0 then
+        parent:AddNewModifier(caster,nil,"modifier_npc_dota_hero_death_prophet_perk_mute",{duration = modifierDuration})
+      end
+    end
   end  
 end

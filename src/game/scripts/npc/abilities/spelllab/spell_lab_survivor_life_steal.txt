@@ -17,12 +17,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-        				"bonus"						"1.25 2.5 3.75 5.0"
+        				"bonus"						"2 5 8 11"
             }
         }
         "ReduxFlags"                                                           "tank | attack_modifier"
         "ReduxBans"                                                            ""
         //"ReduxPerks"                                                           ""
-        "ReduxCost"                                                            "60"
+        "ReduxCost"                                                            "120"
     }
 }

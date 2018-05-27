@@ -18,7 +18,7 @@
             "01"
             {
                 "var_type"                                             "FIELD_FLOAT"
-        				"bonus"						"1.5 3.0 4.5 6.0" //mana burn
+        				"bonus"						"3 6 9 12" //mana burn
             }
             "02"
             {
@@ -29,6 +29,6 @@
         "ReduxFlags"                                                           "attack_modifier"
         "ReduxBans"                                                            ""
         //"ReduxPerks"                                                           ""
-        "ReduxCost"                                                            "60"
+        "ReduxCost"                                                            "120"
     }
 }

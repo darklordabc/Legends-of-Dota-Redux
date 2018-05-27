@@ -6,7 +6,7 @@
         "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
         "AbilityTextureName"                                                   "custom/shards_of_truesight_lod"
         "AbilityCooldown"                                                      "30 25 20 15"
-        "AbilityManaCost"                                                      "100"
+        "AbilityManaCost"                                                      "50"
         "AbilityCastRange"                                                     "%radius"
         "precache"
         {
@@ -18,12 +18,12 @@
             "01"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "ms_boost"                                             "25"
+                "ms_boost"                                             "25 35 45 55"
             }
             "02"
             {
                 "var_type"                                             "FIELD_INTEGER"
-                "duration"                                             "5"
+                "duration"                                             "6"
             }
             "03"
             {

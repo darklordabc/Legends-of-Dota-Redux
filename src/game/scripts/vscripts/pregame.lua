@@ -32,7 +32,6 @@ require('statcollection.init')
 local Debug = require('lod_debug')              -- Debug library with helper functions, by Ash47
 local challenge = require('challenge')
 local ingame = require('ingame')
-local localStorage = require("lib/LocalStorage")
 require('lib/wearables')
 
 -- This should alone be used if duels are on.
@@ -48,6 +47,10 @@ require('abilities/angel_arena_reborn/duels')
 -- Custom AI script modifiers
 LinkLuaModifier( "modifier_slark_shadow_dance_ai", "abilities/botAI/modifier_slark_shadow_dance_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_alchemist_chemical_rage_ai", "abilities/botAI/modifier_alchemist_chemical_rage_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_easybot", "abilities/botAI/modifier_easybot.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_mediumbot", "abilities/botAI/modifier_mediumbot.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_hardbot", "abilities/botAI/modifier_hardbot.lua", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_unfairbot", "abilities/botAI/modifier_unfairbot.lua", LUA_MODIFIER_MOTION_NONE )
 --LinkLuaModifier( "modifier_rattletrap_rocket_flare_ai", "abilities/botAI/modifier_rattletrap_rocket_flare_ai.lua" ,LUA_MODIFIER_MOTION_NONE )
 
 -- Creep power modifier
@@ -513,6 +516,9 @@ function Pregame:init()
     Timers:CreateTimer(function()
         if util:isSinglePlayerMode() then
             self:setOption('lodOptionBanningUseBanList', 0, true)
+            self:setOption("lodOptionNewAbilitiesBonusGold", 0, true)
+            self:setOption("lodOptionGlobalNewAbilitiesBonusGold", 0, true)
+            self:setOption("lodOptionBalancedBuildBonusGold", 0, true)
         end
     end, DoUniqueString('checkSinglePlayer'), 1.5)
 
@@ -728,6 +734,7 @@ function Pregame:loadDefaultSettings()
     self:setOption('lodOptionDuels', 0, false)
     self:setOption('lodOption322', 0, false)
     self:setOption('lodOptionExtraAbility', 0, false)
+    self:setOption('lodOptionBotsSameHero', 0, false)
     self:setOption('lodOptionRefreshCooldownsOnDeath', 0, false)
     self:setOption('lodOptionGlobalCast', 0, false)
 
@@ -820,8 +827,15 @@ function Pregame:loadDefaultSettings()
     -- Unique Skills default
     self:setOption('lodOptionBotsUniqueSkills', 1, true)
 
+    -- Bot Difficulty
+    self:setOption('lodOptionBotsRadiantDiff', 2, true)
+    self:setOption('lodOptionBotsDireDiff', 2, true)
+
     -- Unique Skills default
     self:setOption('lodOptionBotsStupid', 0, true)
+
+    -- Allow Duplicate Bots
+    self:setOption('lodOptionBotsUnique', 0, true)
 
     -- Restrict Skills default
     self:setOption('lodOptionBotsRestrict', 0, true)
@@ -1092,7 +1106,7 @@ function Pregame:onThink()
 
             Chat:Say( {channel = "all", msg = "chatChannelsAnnouncement", PlayerID = -1, localize = true})
 
-            StatsClient:FetchAbilityUsageData()
+            StatsClient:Fetch()
 
             -- Are we using option selection, or option voting?
             if self.useOptionVoting then
@@ -1483,7 +1497,7 @@ function Pregame:setWispMethod()
     else
         GameRules:GetGameModeEntity():SetCustomGameForceHero("npc_dota_hero_wisp")
         self.wispSpawning = true
-    end 
+    end
 end
 
 -- Called to prepare to get player data when someone connects
@@ -2901,6 +2915,16 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
+        -- Bots - Radiant Bot Difficulty
+        lodOptionBotsRadiantDiff = function(value)
+            return value == 0 or value == 1 or value == 2 or value == 3 or value == 4 or value == 5
+        end,
+
+        -- Bots - Dire Bot Difficulty
+        lodOptionBotsDireDiff = function(value)
+            return value == 0 or value == 1 or value == 2 or value == 3 or value == 4 or value == 5
+        end,
+
         -- Game Speed - Easy Mode
         --[[lodOptionCrazyEasymode = function(value)
             -- Ensure gamemode is set to custom
@@ -2982,6 +3006,11 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1 or value == 2
         end,
 
+        -- Bots -- Allow Duplicates
+        lodOptionBotsUnique = function(value)
+            return value == 0 or value == 1
+        end,
+
         -- Bots -- Stupefy
         lodOptionBotsStupid = function(value)
             return value == 0 or value == 1
@@ -3039,7 +3068,12 @@ function Pregame:initOptionSelector()
 
         -- Other - Extra ability
         lodOptionExtraAbility = function(value)
-            return value == 0 or value == 1 or value == 2 or value == 3 or value == 4  or value == 5 or value == 6 or value == 7 or value == 8 or value == 9 or value == 10  or value == 11 or value == 12 or value == 13 or value == 14 or value == 15 or value == 16 or value == 17 or value == 18  or value == 19 or value == 20 or value == 21 or value == 22
+            return value == 0 or value == 1 or value == 2 or value == 3 or value == 4  or value == 5 or value == 6 or value == 7 or value == 8 or value == 9 or value == 10  or value == 11 or value == 12 or value == 13 or value == 14 or value == 15 or value == 16 or value == 17 or value == 18  or value == 19 or value == 20 or value == 21 or value == 22 or value == 23
+        end,
+
+        -- Bots - Use Same Hero        
+        lodOptionBotsSameHero = function(value)
+            return value == 0 or value == 1 or value == 2 or value == 3 or value == 4  or value == 5 or value == 6 or value == 7 or value == 8 or value == 9 or value == 10  or value == 11 or value == 12 or value == 13 or value == 14 or value == 15 or value == 16 or value == 17 or value == 18  or value == 19 or value == 20 or value == 21 or value == 22 or value == 23 or value == 24 or value == 25 or value == 26 or value == 27 or value == 28 or value == 29 or value == 30 or value == 31 or value == 32 or value == 33 or value == 34 or value == 35 or value == 36 or value == 37 or value == 38
         end,
 
         -- Other -- Gotta Go Fast!
@@ -3832,7 +3866,7 @@ end]]
 -- Validates builds
 function Pregame:validateBuilds(specificID)
     if not specificID or self.validatedBuilds then return end
-    self.validatedBuilds = true 
+    self.validatedBuilds = true
 
     -- Generate 10 builds
     local minPlayerID = 0
@@ -3966,12 +4000,15 @@ function Pregame:processOptions()
         OptionManager:SetOption('universalShops', this.optionStore['lodOptionCrazyUniversalShop'])
         OptionManager:SetOption('allowIngameHeroBuilder', this.optionStore['lodOptionIngameBuilder'] == 1)
         --OptionManager:SetOption('botBonusPoints', this.optionStore['lodOptionBotsBonusPoints'] == 1)
-
         OptionManager:SetOption('botsUniqueSkills', this.optionStore['lodOptionBotsUniqueSkills'])
+        OptionManager:SetOption('direBotDiff', this.optionStore['lodOptionBotsDireDiff'])
+        OptionManager:SetOption('radiantBotDiff', this.optionStore['lodOptionBotsRadiantDiff'])
         OptionManager:SetOption('stupidBots', this.optionStore['lodOptionBotsStupid'])
+        OptionManager:SetOption('duplicateBots', this.optionStore['lodOptionBotsUnique'])
         OptionManager:SetOption('ingameBuilderPenalty', this.optionStore['lodOptionIngameBuilderPenalty'])
         OptionManager:SetOption('322', this.optionStore['lodOption322'])
         OptionManager:SetOption('extraAbility', this.optionStore['lodOptionExtraAbility'])
+        OptionManager:SetOption('botsSameHero', this.optionStore['lodOptionBotsSameHero'])
         OptionManager:SetOption('globalCastRange', this.optionStore['lodOptionGlobalCast'])
         OptionManager:SetOption('refreshCooldownsOnDeath', this.optionStore['lodOptionRefreshCooldownsOnDeath'])
         OptionManager:SetOption('gottaGoFast', this.optionStore['lodOptionGottaGoFast'])
@@ -4102,72 +4139,75 @@ function Pregame:processOptions()
 
         -- All extra ability mutator stuff
         if this.optionStore['lodOptionExtraAbility'] == 1 then
-            self.freeAbility = "gemini_unstable_rift_one"
-            this:banAbility("gemini_unstable_rift")
-        elseif this.optionStore['lodOptionExtraAbility'] == 2 then
+            self:setOption('lodOptionExtraAbility', math.random(2,23), false)
+        end
+        if this.optionStore['lodOptionExtraAbility'] == 2 then
+            self.freeAbility = "basic_spell_amp_bonus_op"
+            this:banAbility("basic_spell_amp_bonus_op")
+        elseif this.optionStore['lodOptionExtraAbility'] == 3 then
             self.freeAbility = "imba_dazzle_shallow_grave_passive_one"
             this:banAbility("imba_dazzle_shallow_grave_passive")
-        elseif this.optionStore['lodOptionExtraAbility'] == 3 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 4 then
             self.freeAbility = "imba_tower_forest_one"
             this:banAbility("imba_tower_forest")
-        elseif this.optionStore['lodOptionExtraAbility'] == 4 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 5 then
             self.freeAbility = "ebf_rubick_arcane_echo_one"
             this:banAbility("ebf_rubick_arcane_echo")
             this:banAbility("ebf_rubick_arcane_echo_OP")
-        elseif this.optionStore['lodOptionExtraAbility'] == 6 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 7 then
             self.freeAbility = "ursa_fury_swipes"
             this:banAbility("ursa_fury_swipes")
             this:banAbility("ursa_fury_swipes_lod")
-        elseif this.optionStore['lodOptionExtraAbility'] == 7 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 8 then
             self.freeAbility = "spirit_breaker_greater_bash"
             this:banAbility("spirit_breaker_greater_bash")
-        elseif this.optionStore['lodOptionExtraAbility'] == 8 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 9 then
             self.freeAbility = "death_prophet_witchcraft"
             this:banAbility("death_prophet_witchcraft")
-        elseif this.optionStore['lodOptionExtraAbility'] == 9 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 10 then
             self.freeAbility = "sniper_take_aim"
             this:banAbility("sniper_take_aim")
         --If global cast range mutator is on, dont added this ability as it overrides it
-        elseif this.optionStore['lodOptionExtraAbility'] == 10 and OptionManager:GetOption('globalCastRange') == 0 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 11 and OptionManager:GetOption('globalCastRange') == 0 then
             self.freeAbility = "aether_range_lod"
             this:banAbility("aether_range_lod")
             this:banAbility("aether_range_lod_op")
-        elseif this.optionStore['lodOptionExtraAbility'] == 11 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 12 then
             self.freeAbility = "alchemist_goblins_greed"
             this:banAbility("alchemist_goblins_greed")
             this:banAbility("alchemist_goblins_greed_op")
-        elseif this.optionStore['lodOptionExtraAbility'] == 12 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 13 then
             self.freeAbility = "angel_arena_nether_ritual"
             this:banAbility("angel_arena_nether_ritual")
-        elseif this.optionStore['lodOptionExtraAbility'] == 13 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 14 then
             this:banAbility("slark_essence_shift")
             this:banAbility("slark_essence_shift_intellect_lod")
             this:banAbility("slark_essence_shift_strength_lod")
             this:banAbility("slark_essence_shift_agility_lod")
-        elseif this.optionStore['lodOptionExtraAbility'] == 14 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 15 then
             self.freeAbility = "ogre_magi_multicast_lod"
             this:banAbility("ogre_magi_multicast_lod")
             this:banAbility("ogre_magi_multicast")
-        elseif this.optionStore['lodOptionExtraAbility'] == 15 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 16 then
             self.freeAbility = "phantom_assassin_coup_de_grace"
             this:banAbility("phantom_assassin_coup_de_grace")
-        elseif this.optionStore['lodOptionExtraAbility'] == 16 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 17 then
             self.freeAbility = "riki_permanent_invisibility"
             this:banAbility("riki_permanent_invisibility")
-        elseif this.optionStore['lodOptionExtraAbility'] == 17 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 18 then
             self.freeAbility = "imba_tower_multihit"
             this:banAbility("imba_tower_multihit")
-        elseif this.optionStore['lodOptionExtraAbility'] == 18 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 19 then
             self.freeAbility = "skeleton_king_reincarnation"
             this:banAbility("skeleton_king_reincarnation")
-        elseif this.optionStore['lodOptionExtraAbility'] == 19 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 20 then
             self.freeAbility = "ebf_clinkz_trickshot_passive"
             this:banAbility("ebf_clinkz_trickshot_passive")
             this:banAbility("ebf_clinkz_trickshot")
-        elseif this.optionStore['lodOptionExtraAbility'] == 20 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 21 then
             self.freeAbility = "abaddon_borrowed_time"
             this:banAbility("abaddon_borrowed_time")
-        elseif this.optionStore['lodOptionExtraAbility'] == 21 then
+        elseif this.optionStore['lodOptionExtraAbility'] == 22 then
             self.freeAbility = "summoner_tesla_coil"
             this:banAbility("summoner_tesla_coil")
         end
@@ -4296,9 +4336,7 @@ function Pregame:processOptions()
                     ['Other: Anti Perma-Stun'] = this.optionStore['lodOptionAntiBash'],
                     ['Towers: Anti-Rat'] = this.optionStore['lodOptionAntiRat'],
                     ['Towers: Enable Stronger Towers'] = this.optionStore['lodOptionGameSpeedStrongTowers'],
-                    ['Towers: Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],
-                    ['Bots: Unique Skills'] = this.optionStore['lodOptionBotsUniqueSkills'],
-                    ['Bots: Stupefy'] = this.optionStore['lodOptionBotsStupid'],
+                    ['Towers: Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],                  
                 })
 
                 -- Draft arrays
@@ -4332,7 +4370,14 @@ function Pregame:processOptions()
             statCollection:setFlags({
                 ['Bots: Bots Enabled'] = 1,
                 ['Bots: Desired Radiant Bots'] = this.optionStore['lodOptionBotsRadiant'],
-                ['Bots: Desired Dire Bots'] = this.optionStore['lodOptionBotsDire']
+                ['Bots: Desired Dire Bots'] = this.optionStore['lodOptionBotsDire'],
+                ['Bots: Unique Skills'] = this.optionStore['lodOptionBotsUniqueSkills'],
+                ['Bots: Radiant Difficulty'] = this.optionStore['lodOptionBotsRadiantDiff'],
+                ['Bots: Dire Difficulty'] = this.optionStore['lodOptionBotsDireDiff'],
+                ['Bots: Unique Skills'] = this.optionStore['lodOptionBotsUniqueSkills'],
+                ['Bots: Stupefy'] = this.optionStore['lodOptionBotsStupid'],
+                ['Bots: Same Hero'] = this.optionStore['lodOptionBotsSameHero'],
+                ['Bots: Allow Duplicates'] = this.optionStore['lodOptionBotsUnique'],      
             })
         else
             statCollection:setFlags({
@@ -4961,6 +5006,9 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
                 network:setSelectedAbilities(playerID, self.selectedSkills[playerID])
                 network:setSelectedHero(playerID, newBuild.hero)
                 network:setSelectedAttr(playerID, newBuild.setAttr)
+                if hero == PlayerResource:GetSelectedHeroEntity(playerID) then
+                    self:applyExtraAbility( hero )
+                end
                 hero = PlayerResource:GetSelectedHeroEntity(playerID)
                 --if OptionManager:GetOption('ingameBuilderPenalty') > 0 then
                 --TODO: If long enough, players die to respawn
@@ -5115,106 +5163,60 @@ function Pregame:checkForReady()
     end
 end
 
--- Track local stats
-function Pregame:onPlayerSaveStats(playerID, abilities)
-    -- Grab data
-    local player = PlayerResource:GetPlayer(playerID)
-
-    if PlayerResource:GetSteamAccountID(playerID) == 0 then
-        return
-    end
-
-    local i = 1
-    local function statsQueue()
-        local abName = abilities[i]
-
-        if abName then
-            localStorage:getKey(playerID, "redux_stats", abName, function (sequenceNumber, success, value)
-                -- local value = 0
-                if success then
-                    value = (tonumber(value) or 0) + 1
-                else
-                    value = 1
-                end
-                localStorage:setKey(playerID, "redux_stats", abName, value, function (sequenceNumber, success)
-                    if i < 23 then
-                        i = i + 1
-                        statsQueue()
-                    end
-                end)
-            end)
-        end
-    end
-    statsQueue()
-end
-
 -- Player wants to ban an ability
 function Pregame:onPlayerSaveBans(eventSourceIndex, args)
     -- Grab data
     local playerID = args.PlayerID
-    local player = PlayerResource:GetPlayer(playerID)
 
     local count = (self.optionStore['lodOptionBanningMaxBans'] + self.optionStore['lodOptionBanningMaxHeroBans'])
-
     if count == 0 and self.optionStore['lodOptionBanningHostBanning'] > 0 then
         count = util:getTableLength(self.playerBansList[playerID])
     end
 
-    local id = 0
-
-    if self.playerBansList[playerID] then
-        local i = 0
-        repeat
-            i = i + 1
-            local tempI = i
-            localStorage:setKey(playerID, "bans", tostring(tempI), "", function (sequenceNumber, success)
-                localStorage:setKey(playerID, "bans", tostring(tempI), self.playerBansList[playerID][tempI] or "", function (sequenceNumber, success)
-                    id = id + 1
-                    if id == #self.playerBansList[playerID] then
-                        CustomGameEventManager:Send_ServerToPlayer(player,"lodNotification",{text = 'lodSuccessSavedBans', params = {['entries'] = id}})
-                    end
-                end)
-            end)
-        until
-            i > count
+    local selectedData = {}
+    for i = 1, count do
+        selectedData[i] = self.playerBansList[playerID][i]
     end
+
+    StatsClient:SetBans(playerID, selectedData)
+    StatsClient:SendBans({ steamid = PlayerResource:GetRealSteamID(playerID), bans = selectedData }, function()
+        CustomGameEventManager:Send_ServerToPlayer(
+            PlayerResource:GetPlayer(playerID),
+            "lodNotification",
+            { text = 'lodSuccessSavedBans', params = { entries = #selectedData } }
+        )
+    end)
 end
 
 -- Player wants to ban an ability
 function Pregame:onPlayerLoadBans(eventSourceIndex, args)
     -- Grab data
     local playerID = args.PlayerID
-    local player = PlayerResource:GetPlayer(playerID)
+    local bans = StatsClient:GetBans(playerID)
+    if bans == nil then return end
 
-    local id = 0
+    local lodOptionBanningHostBanning = self.optionStore['lodOptionBanningHostBanning'] and self.optionStore['lodOptionBanningHostBanning'] > 0
+    local lodOptionBanningMaxBans = self.optionStore['lodOptionBanningMaxBans']
 
-    local count = (self.optionStore['lodOptionBanningMaxBans'] + self.optionStore['lodOptionBanningMaxHeroBans'])
+    local count = self.optionStore['lodOptionBanningMaxBans'] + self.optionStore['lodOptionBanningMaxHeroBans']
+    if count == 0 and lodOptionBanningHostBanning then count = 1000 end
 
-    if count == 0 and self.optionStore['lodOptionBanningHostBanning'] > 0 then
-        count = 1000
+    local n = 1
+    while bans[n] do
+        local value = bans[n]
+        if string.match(value, "npc_dota_hero_") and not self.bannedHeroes[value] and (lodOptionBanningHostBanning or not self.usedBans[playerID] or self.usedBans[playerID].heroBans < lodOptionBanningMaxBans) then
+            self:onPlayerBan(0, { PlayerID = playerID, heroName = value }, true)
+        elseif not self.bannedAbilities[value] and (lodOptionBanningHostBanning or not self.usedBans[playerID] or self.usedBans[playerID].abilityBans < lodOptionBanningMaxBans) then
+            self:onPlayerBan(0, { PlayerID = playerID, abilityName = value }, true)
+        end
+        n = n + 1
     end
 
-    for i=1,count do
-        localStorage:getKey(playerID, "bans", tostring(i), function (sequenceNumber, success, value)
-            if success and value and value ~= "" then
-                if string.match(value, "npc_dota_hero_") and not self.bannedHeroes[value] and (self.optionStore['lodOptionBanningHostBanning'] > 0 or not self.usedBans[playerID] or self.usedBans[playerID].heroBans < self.optionStore['lodOptionBanningMaxBans']) then
-                    self:onPlayerBan(0, {
-                        PlayerID = playerID,
-                        heroName = value
-                        }, true)
-                elseif not self.bannedAbilities[value] and (self.optionStore['lodOptionBanningHostBanning'] > 0 or not self.usedBans[playerID] or self.usedBans[playerID].abilityBans < self.optionStore['lodOptionBanningMaxBans']) then
-                    self:onPlayerBan(0, {
-                        PlayerID = playerID,
-                        abilityName = value
-                        }, true)
-                end
-                id = id + 1
-            end
-            if not success or i == count then
-                CustomGameEventManager:Send_ServerToPlayer(player,"lodNotification",{text = "lodSuccessLoadBans", params = {['entries'] = id}})
-            end
-        end)
-    end
+    CustomGameEventManager:Send_ServerToPlayer(
+        PlayerResource:GetPlayer(playerID),
+        "lodNotification",
+        { text = "lodSuccessLoadBans", params = { entries = n } }
+    )
 end
 
 -- Player wants to ban an ability
@@ -6008,7 +6010,7 @@ end
 
 function Pregame:canPlayerPickSkill(playerID)
     local hero = PlayerResource:GetSelectedHeroEntity(playerID)
-    if (self.wispSpawning and hero and hero:GetUnitName() ~= self.selectedHeroes[playerID]) then return true end
+    if (self.wispSpawning and hero and not hero.buildApplied) then return true end
     if (self:getPhase() == constants.PHASE_INGAME or self:getPhase() == constants.PHASE_REVIEW) and (OptionManager:GetOption('allowIngameHeroBuilder')) then
         return true
     end
@@ -6072,7 +6074,7 @@ function Pregame:onPlayerSelectAbility(eventSourceIndex, args)
     -- Grab data
     local playerID = args.PlayerID
     local player = PlayerResource:GetPlayer(playerID)
-    
+
     -- Ensure we are in the picking phase
     if self:getPhase() ~= constants.PHASE_SELECTION and not self:canPlayerPickSkill(playerID) then
         network:sendNotification(player, {
@@ -6257,7 +6259,7 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
             local draftArray = self.draftArrays[draftID] or {}
             local heroDraft = draftArray.heroDraft or {}
             local abilityDraft = draftArray.abilityDraft or {}
-            
+
             -- if self.maxDraftHeroes > 0 then
             --     local heroName = self.abilityHeroOwner[abilityName]
 
@@ -6318,7 +6320,7 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
                     powerfulPassives = powerfulPassives + 1
                 end
             end
-			
+
 	    if (SkillManager:isPassive(abilityName) or self.flags["semi_passive"][abilityName] ~= nil) then
 		powerfulPassives = powerfulPassives + 1
 	    end
@@ -6874,7 +6876,7 @@ end
 -- Generate builds for bots
 function Pregame:generateBotBuilds()
     if OptionManager:GetOption('mapname') ~= "custom_bot" then return end
-    
+
     -- Ensure bots are actually enabled
     if not self.enabledBots then return end
 
@@ -6891,43 +6893,15 @@ function Pregame:generateBotBuilds()
     -- List of bots that are borked
     if IsInToolsMode() then
         brokenBots = {
-            npc_dota_hero_tidehunter = true,
-            npc_dota_hero_razor = true,
+            npc_dota_hero_tidehunter = true, -- Stays at foutain and doesnt do anything in workshop version
+            npc_dota_hero_razor = true, -- Stays at foutain and doesnt do anything in workshop version
 
-            -- Stoped working around Feburary, 24, 2017
-            npc_dota_hero_skywrath_mage = true,
-            npc_dota_hero_nevermore = true,
-            npc_dota_hero_pudge = true,
-            npc_dota_hero_phantom_assassin = true,
-
-            --[[npc_dota_hero_sven = true,
-            npc_dota_hero_skeleton_king = true,
-            npc_dota_hero_lina = true,
-            npc_dota_hero_luna = true,
-            npc_dota_hero_dragon_knight = true,
-            npc_dota_hero_bloodseeker = true,
-            npc_dota_hero_lion = true,
-            npc_dota_hero_tiny = true,
-            npc_dota_hero_oracle = true,]]
         }
     else
         brokenBots = {
-            npc_dota_hero_tidehunter = true,
-            npc_dota_hero_razor = true,
-            npc_dota_hero_pudge = true,
-
-            -- Stoped working around Feburary, 24, 2017
-            --[[npc_dota_hero_sven = true,
-            npc_dota_hero_skeleton_king = true,
-            npc_dota_hero_lina = true,
-            npc_dota_hero_luna = true,
-            npc_dota_hero_dragon_knight = true,
-            npc_dota_hero_bloodseeker = true,
-            npc_dota_hero_lion = true,
-            npc_dota_hero_tiny = true,
-            npc_dota_hero_oracle = true,]]
+            npc_dota_hero_tidehunter = true, -- Stays at foutain and doesnt do anything in workshop version
+            npc_dota_hero_razor = true, -- Stays at foutain and doesnt do anything in workshop version
         }
-
     end
 
     local ignoreAbilities = {
@@ -6970,7 +6944,53 @@ function Pregame:generateBotBuilds()
                     end
                 end
             else
-                heroName = table.remove(possibleHeroes, math.random(#possibleHeroes))
+                if OptionManager:GetOption('botsSameHero') > 0 then
+                    if OptionManager:GetOption('botsSameHero') == 1 then -- If random hero is selected random a choice between 2 and 37
+                        OptionManager:SetOption('botsSameHero', math.random(2, 38))
+                    end
+                    if OptionManager:GetOption('botsSameHero') == 2 then heroName = "npc_dota_hero_axe"
+                    elseif OptionManager:GetOption('botsSameHero') == 3 then heroName = "npc_dota_hero_bane"
+                    elseif OptionManager:GetOption('botsSameHero') == 4 then heroName = "npc_dota_hero_bounty_hunter"
+                    elseif OptionManager:GetOption('botsSameHero') == 5 then heroName = "npc_dota_hero_bloodseeker"
+                    elseif OptionManager:GetOption('botsSameHero') == 6 then heroName = "npc_dota_hero_bristleback"
+                    elseif OptionManager:GetOption('botsSameHero') == 7 then heroName = "npc_dota_hero_chaos_knight"
+                    elseif OptionManager:GetOption('botsSameHero') == 8 then heroName = "npc_dota_hero_crystal_maiden"
+                    elseif OptionManager:GetOption('botsSameHero') == 9 then heroName = "npc_dota_hero_dazzle"
+                    elseif OptionManager:GetOption('botsSameHero') == 10 then heroName = "npc_dota_hero_death_prophet"
+                    elseif OptionManager:GetOption('botsSameHero') == 11 then heroName = "npc_dota_hero_dragon_knight"
+                    elseif OptionManager:GetOption('botsSameHero') == 12 then heroName = "npc_dota_hero_drow_ranger"
+                    elseif OptionManager:GetOption('botsSameHero') == 13 then heroName = "npc_dota_hero_earthshaker"
+                    elseif OptionManager:GetOption('botsSameHero') == 14 then heroName = "npc_dota_hero_jakiro"
+                    elseif OptionManager:GetOption('botsSameHero') == 15 then heroName = "npc_dota_hero_juggernaut"
+                    elseif OptionManager:GetOption('botsSameHero') == 16 then heroName = "npc_dota_hero_kunkka"
+                    elseif OptionManager:GetOption('botsSameHero') == 17 then heroName = "npc_dota_hero_lich"
+                    elseif OptionManager:GetOption('botsSameHero') == 18 then heroName = "npc_dota_hero_lina"
+                    elseif OptionManager:GetOption('botsSameHero') == 19 then heroName = "npc_dota_hero_lion"
+                    elseif OptionManager:GetOption('botsSameHero') == 20 then heroName = "npc_dota_hero_luna"
+                    elseif OptionManager:GetOption('botsSameHero') == 21 then heroName = "npc_dota_hero_necrolyte"
+                    elseif OptionManager:GetOption('botsSameHero') == 22 then heroName = "npc_dota_hero_omniknight"
+                    elseif OptionManager:GetOption('botsSameHero') == 23 then heroName = "npc_dota_hero_oracle"
+                    elseif OptionManager:GetOption('botsSameHero') == 24 then heroName = "npc_dota_hero_phantom_assassin"
+                    elseif OptionManager:GetOption('botsSameHero') == 25 then heroName = "npc_dota_hero_pudge"
+                    elseif OptionManager:GetOption('botsSameHero') == 26 then heroName = "npc_dota_hero_sand_king"
+                    elseif OptionManager:GetOption('botsSameHero') == 27 then heroName = "npc_dota_hero_nevermore"
+                    elseif OptionManager:GetOption('botsSameHero') == 28 then heroName = "npc_dota_hero_skywrath_mage"
+                    elseif OptionManager:GetOption('botsSameHero') == 29 then heroName = "npc_dota_hero_sniper"
+                    elseif OptionManager:GetOption('botsSameHero') == 30 then heroName = "npc_dota_hero_sven"
+                    elseif OptionManager:GetOption('botsSameHero') == 31 then heroName = "npc_dota_hero_tiny"
+                    elseif OptionManager:GetOption('botsSameHero') == 32 then heroName = "npc_dota_hero_vengefulspirit"
+                    elseif OptionManager:GetOption('botsSameHero') == 33 then heroName = "npc_dota_hero_viper"
+                    elseif OptionManager:GetOption('botsSameHero') == 34 then heroName = "npc_dota_hero_warlock"
+                    elseif OptionManager:GetOption('botsSameHero') == 35 then heroName = "npc_dota_hero_windrunner"
+                    elseif OptionManager:GetOption('botsSameHero') == 36 then heroName = "npc_dota_hero_witch_doctor"
+                    elseif OptionManager:GetOption('botsSameHero') == 37 then heroName = "npc_dota_hero_skeleton_king"
+                    elseif OptionManager:GetOption('botsSameHero') == 38 then heroName = "npc_dota_hero_zuus"
+                    end
+                elseif OptionManager:GetOption('duplicateBots') == 1 then -- If allowed duplicates option is on, pick random hero but do not remove from available pool of bot heroes
+                    heroName = possibleHeroes[ math.random( #possibleHeroes ) ]
+                else -- If allowed duplicates is off, pick random hero then remove from pool of available bot heroes
+                    heroName = table.remove(possibleHeroes, math.random(#possibleHeroes))
+                end
             end
         end
 
@@ -7441,15 +7461,154 @@ function Pregame:giveAbilityUsageBonuses(playerID)
         if hero then
             if newAbilities > 0 then
                 hero:AddItemByName('item_new_ability_bonus'):SetCurrentCharges(newAbilities)
+                hero:HeroLevelUp(true)
             end
             if newGlobalAbilities > 0 then
                 hero:AddItemByName('item_new_global_ability_bonus'):SetCurrentCharges(newGlobalAbilities)
+                hero:HeroLevelUp(true)
             end
             if pregame.optionStore["lodOptionBalancedBuildBonusGold"] > 0 and passiveAbilities <= 3 then
                 hero:AddItemByName('item_balanced_build_bonus')
             end
         end
     end
+end
+
+function Pregame:applyExtraAbility( spawnedUnit )
+    -- Timers:CreateTimer(function()
+        local fleshHeapToGive = nil
+        local survivalToGive = nil
+        local essenceshiftToGive = nil
+        local rangedTrickshot = nil
+
+        -- Random Flesh Heaps
+        if OptionManager:GetOption('extraAbility') == 6 then
+
+            local random = RandomInt(1,16)
+            local givenAbility = false
+            -- Randomly choose which flesh heap to give them
+            if random == 1 and not spawnedUnit:HasAbility('pudge_flesh_heap') then fleshHeapToGive = "pudge_flesh_heap" ; givenAbility = true
+            elseif random == 2 and not spawnedUnit:HasAbility('pudge_flesh_heap_int') then fleshHeapToGive = "pudge_flesh_heap_int" ; givenAbility = true
+            elseif random == 3 and not spawnedUnit:HasAbility('pudge_flesh_heap_agility') then fleshHeapToGive = "pudge_flesh_heap_agility" ; givenAbility = true
+            elseif random == 4 and not spawnedUnit:HasAbility('pudge_flesh_heap_move_speed') then fleshHeapToGive = "pudge_flesh_heap_move_speed" ; givenAbility = true
+            elseif random == 5 and not spawnedUnit:HasAbility('pudge_flesh_heap_spell_amp') then fleshHeapToGive = "pudge_flesh_heap_spell_amp" ; givenAbility = true
+            elseif random == 6 and not spawnedUnit:HasAbility('pudge_flesh_heap_attack_range') then fleshHeapToGive = "pudge_flesh_heap_attack_range" ; givenAbility = true
+            elseif random == 7 and not spawnedUnit:HasAbility('pudge_flesh_heap_bonus_vision') then fleshHeapToGive = "pudge_flesh_heap_bonus_vision" ; givenAbility = true
+            elseif random == 8 and not spawnedUnit:HasAbility('pudge_flesh_heap_cooldown_reduction') then fleshHeapToGive = "pudge_flesh_heap_cooldown_reduction" ; givenAbility = true
+            elseif random == 9 and not spawnedUnit:HasAbility('pudge_flesh_heap_magic_resistance') then fleshHeapToGive = "pudge_flesh_heap_evasion" ; givenAbility = true
+            elseif random == 10 and not spawnedUnit:HasAbility('pudge_flesh_heap_evasion') then fleshHeapToGive = "pudge_flesh_heap_evasion" ; givenAbility = true
+            elseif random == 11 and not spawnedUnit:HasAbility('pudge_flesh_heap_cast_range') then fleshHeapToGive = "pudge_flesh_heap_cast_range" ; givenAbility = true
+            elseif random == 12 and not spawnedUnit:HasAbility('pudge_flesh_heap_spell_lifesteal') then fleshHeapToGive = "pudge_flesh_heap_spell_lifesteal" ; givenAbility = true
+            elseif random == 13 and not spawnedUnit:HasAbility('pudge_flesh_heap_lifesteal') then fleshHeapToGive = "pudge_flesh_heap_lifesteal" ; givenAbility = true
+            elseif random == 14 and not spawnedUnit:HasAbility('pudge_flesh_heap_armor') then fleshHeapToGive = "pudge_flesh_heap_armor" ; givenAbility = true
+            elseif random == 15 and not spawnedUnit:HasAbility('pudge_flesh_heap_health_regeneration') then fleshHeapToGive = "pudge_flesh_heap_health_regeneration" ; givenAbility = true
+            elseif random == 16 and not spawnedUnit:HasAbility('pudge_flesh_heap_mana_regeneration') then fleshHeapToGive = "pudge_flesh_heap_mana_regeneration" ; givenAbility = true
+            end
+
+            -- If they randomly picked a flesh heap they already had, go through this list and try to give them one until they get one
+            if not givenAbility then
+                if not spawnedUnit:HasAbility('pudge_flesh_heap') then fleshHeapToGive = "pudge_flesh_heap"
+                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_int') then fleshHeapToGive = "pudge_flesh_heap_int"
+                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_agility') then fleshHeapToGive = "pudge_flesh_heap_agility"
+                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_move_speed') then fleshHeapToGive = "pudge_flesh_heap_move_speed"
+                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_spell_amp') then fleshHeapToGive = "pudge_flesh_heap_spell_amp"
+                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_attack_range') then fleshHeapToGive = "pudge_flesh_heap_attack_range"
+                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_bonus_vision') then fleshHeapToGive = "pudge_flesh_heap_bonus_vision"
+                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_cooldown_reduction') then fleshHeapToGive = "pudge_flesh_heap_cooldown_reduction"
+                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_magic_resistance') then fleshHeapToGive = "pudge_flesh_heap_magic_resistance"
+                elseif not spawnedUnit:HasAbility('pudge_flesh_heap_evasion') then fleshHeapToGive = "pudge_flesh_heap_evasion"
+                -- We dont need to add any more to this list because they will defintely get one of the above because of the max ability slots
+                end
+            end
+        end
+
+        -- Random Survivals
+        if OptionManager:GetOption('extraAbility') == 23 then
+
+            local random = RandomInt(1,21)
+            local givenAbility = false
+            -- Randomly choose which flesh heap to give them
+            if random == 1  and not spawnedUnit:HasAbility('spell_lab_survivor_cooldown') then survivalToGive = "spell_lab_survivor_cooldown" ; givenAbility = true
+            elseif random == 2  and not spawnedUnit:HasAbility('spell_lab_survivor_critical') then survivalToGive = "spell_lab_survivor_critical" ; givenAbility = true
+            elseif random == 3  and not spawnedUnit:HasAbility('spell_lab_survivor_damage_boost') then survivalToGive = "spell_lab_survivor_damage_boost" ; givenAbility = true
+            elseif random == 4  and not spawnedUnit:HasAbility('spell_lab_survivor_health_regen') then survivalToGive = "spell_lab_survivor_health_regen" ; givenAbility = true
+            elseif random == 5  and not spawnedUnit:HasAbility('spell_lab_survivor_int_survival') then survivalToGive = "spell_lab_survivor_int_survival" ; givenAbility = true
+            elseif random == 6  and not spawnedUnit:HasAbility('spell_lab_survivor_magic_resistance') then survivalToGive = "spell_lab_survivor_magic_resistance" ; givenAbility = true
+            elseif random == 7  and not spawnedUnit:HasAbility('spell_lab_survivor_spell_boost') then survivalToGive = "spell_lab_survivor_spell_boost" ; givenAbility = true
+            elseif random == 8  and not spawnedUnit:HasAbility('spell_lab_survivor_spell_vamp') then survivalToGive = "spell_lab_survivor_spell_vamp" ; givenAbility = true
+            elseif random == 9  and not spawnedUnit:HasAbility('spell_lab_survivor_str_survival') then survivalToGive = "spell_lab_survivor_str_survival" ; givenAbility = true
+            elseif random == 10 and not spawnedUnit:HasAbility('spell_lab_survivor_mana_regen') then survivalToGive = "spell_lab_survivor_mana_regen" ; givenAbility = true
+            elseif random == 11 and not spawnedUnit:HasAbility('spell_lab_survivor_agi_survival') then survivalToGive = "spell_lab_survivor_agi_survival" ; givenAbility = true
+            elseif random == 12 and not spawnedUnit:HasAbility('spell_lab_survivor_attack_speed') then survivalToGive = "spell_lab_survivor_attack_speed" ; givenAbility = true
+            elseif random == 13 and not spawnedUnit:HasAbility('spell_lab_survivor_cast_range') then survivalToGive = "spell_lab_survivor_cast_range" ; givenAbility = true
+            elseif random == 14 and not spawnedUnit:HasAbility('spell_lab_survivor_vision') then survivalToGive = "spell_lab_survivor_vision" ; givenAbility = true
+            elseif random == 15 and not spawnedUnit:HasAbility('spell_lab_survivor_evasion') then survivalToGive = "spell_lab_survivor_evasion" ; givenAbility = true
+            elseif random == 16 and not spawnedUnit:HasAbility('spell_lab_survivor_mana_burn') then survivalToGive = "spell_lab_survivor_mana_burn" ; givenAbility = true
+            elseif random == 17 and not spawnedUnit:HasAbility('spell_lab_survivor_life_steal') then survivalToGive = "spell_lab_survivor_life_steal" ; givenAbility = true
+            elseif random == 18 and not spawnedUnit:HasAbility('spell_lab_survivor_armor') then survivalToGive = "spell_lab_survivor_armor" ; givenAbility = true
+            elseif random == 19 and not spawnedUnit:HasAbility('spell_lab_survivor_attack_range') then survivalToGive = "spell_lab_survivor_attack_range" ; givenAbility = true
+            elseif random == 20 and not spawnedUnit:HasAbility('spell_lab_survivor_move_speed') then survivalToGive = "spell_lab_survivor_move_speed" ; givenAbility = true
+            elseif random == 21 and not spawnedUnit:HasAbility('spell_lab_survivor_bash') then survivalToGive = "spell_lab_survivor_bash" ; givenAbility = true
+            end
+
+
+
+            -- If they randomly picked a flesh heap they already had, go through this list and try to give them one until they get one
+            if not givenAbility then
+                if not spawnedUnit:HasAbility('spell_lab_survivor_cooldown') then survivalToGive = "spell_lab_survivor_cooldown"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_critical') then survivalToGive = "spell_lab_survivor_critical"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_damage_boost') then survivalToGive = "spell_lab_survivor_damage_boost"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_health_regen') then survivalToGive = "spell_lab_survivor_health_regen"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_int_survival') then survivalToGive = "spell_lab_survivor_int_survival"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_magic_resistance') then survivalToGive = "spell_lab_survivor_magic_resistance"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_spell_boost') then survivalToGive = "spell_lab_survivor_spell_boost"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_spell_vamp') then survivalToGive = "spell_lab_survivor_spell_vamp"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_str_survival') then survivalToGive = "spell_lab_survivor_str_survival"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_mana_regen') then survivalToGive = "spell_lab_survivor_mana_regen"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_agi_survival') then survivalToGive = "spell_lab_survivor_agi_survival"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_attack_speed') then survivalToGive = "spell_lab_survivor_attack_speed"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_cast_range') then survivalToGive = "spell_lab_survivor_cast_range"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_vision') then survivalToGive = "spell_lab_survivor_vision"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_evasion') then survivalToGive = "spell_lab_survivor_evasion"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_mana_burn') then survivalToGive = "spell_lab_survivor_mana_burn"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_life_steal') then survivalToGive = "spell_lab_survivor_life_steal"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_armor') then survivalToGive = "spell_lab_survivor_armor"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_attack_range') then survivalToGive = "spell_lab_survivor_attack_range"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_move_speed') then survivalToGive = "spell_lab_survivor_move_speed"
+                elseif not spawnedUnit:HasAbility('spell_lab_survivor_bash') then survivalToGive = "spell_lab_survivor_bash"
+                end
+            end
+        end
+
+        if OptionManager:GetOption('extraAbility') == 14 then
+            -- Give an essence shift based on heros primary attribute
+            if spawnedUnit:GetPrimaryAttribute() == 0 then essenceshiftToGive = "slark_essence_shift_strength_lod"
+            elseif spawnedUnit:GetPrimaryAttribute() == 1 then essenceshiftToGive = "slark_essence_shift_agility_lod"
+            elseif spawnedUnit:GetPrimaryAttribute() == 2 then essenceshiftToGive = "slark_essence_shift_intellect_lod"
+            end
+        end
+
+         if OptionManager:GetOption('extraAbility') == 20 then
+            -- Give an essence shift based on heros primary attribute
+            if spawnedUnit:IsRangedAttacker() then rangedTrickshot = "ebf_clinkz_trickshot_passive_ranged"
+            end
+        end
+
+        local abilityToGive = self.freeAbility
+
+        if fleshHeapToGive then abilityToGive = fleshHeapToGive
+        elseif essenceshiftToGive then abilityToGive = essenceshiftToGive
+        elseif rangedTrickshot then abilityToGive = rangedTrickshot
+        elseif survivalToGive then abilityToGive = survivalToGive
+        end
+
+        spawnedUnit:AddAbility(abilityToGive)
+        local givenAbility = spawnedUnit:FindAbilityByName(abilityToGive)
+        if givenAbility then
+            givenAbility:SetLevel(givenAbility:GetMaxLevel())
+        end
+
+    -- end, DoUniqueString('addExtra'), RandomInt(1,3) )
 end
 
 -- This function gets runned when heros are recreated with there proper abilities, below is a function that runs at every npc spawn
@@ -7676,6 +7835,35 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                 else
                     spawnedUnit:RemoveModifierByName('modifier_silencer_int_steal')
                 end
+
+            -- Apply Bot Difficulty 
+            if util:isPlayerBot(playerID) then
+                if spawnedUnit:GetTeam() == DOTA_TEAM_GOODGUYS then
+                    if OptionManager:GetOption('radiantBotDiff') == 5 then -- If its random individual, give the bot a difficulty between easy and unfair
+                        local difficulty = math.random(1, 4)
+                        spawnedUnit:SetBotDifficulty(difficulty)
+                        if difficulty == 1 then spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_easybot", {}) 
+                        elseif difficulty == 2 then spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_mediumbot", {})
+                        elseif difficulty == 3 then spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_hardbot", {}) 
+                        elseif difficulty == 4 then spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_unfairbot", {})  
+                        end
+                    else
+                        spawnedUnit:SetBotDifficulty(OptionManager:GetOption('radiantBotDiff'))
+                    end
+                elseif spawnedUnit:GetTeam() == DOTA_TEAM_BADGUYS then
+                    if OptionManager:GetOption('direBotDiff') == 5 then 
+                        local difficulty = math.random(1, 4)
+                        spawnedUnit:SetBotDifficulty(difficulty)
+                        if difficulty == 1 then spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_easybot", {}) 
+                        elseif difficulty == 2 then spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_mediumbot", {})
+                        elseif difficulty == 3 then spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_hardbot", {}) 
+                        elseif difficulty == 4 then spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_unfairbot", {})  
+                        end
+                    else
+                        spawnedUnit:SetBotDifficulty(OptionManager:GetOption('direBotDiff'))
+                    end
+                end
+            end
             -- Disabled due to innates being convereted into normal 4 level abilities
             -- Stalker Innate Auto-Level
             --if spawnedUnit:HasAbility('night_stalker_innate_redux') then
@@ -7696,7 +7884,7 @@ function Pregame:fixSpawnedHero( spawnedUnit )
             --        end
             --    end
             --end
-				
+
              -- 'No Charges' fix for Tiny Toss
             if spawnedUnit:HasAbility('tiny_toss') then
                 Timers:CreateTimer(function()
@@ -7871,140 +8059,9 @@ function Pregame:fixSpawnedHero( spawnedUnit )
 
     -- Give out the free extra abilities
     if OptionManager:GetOption('extraAbility') > 0 then
-        Timers:CreateTimer(function()
-            local fleshHeapToGive = nil
-            local survivalToGive = nil
-            local essenceshiftToGive = nil
-            local rangedTrickshot = nil
-
-            -- Random Flesh Heaps
-            if OptionManager:GetOption('extraAbility') == 5 then
-
-                local random = RandomInt(1,16)
-                local givenAbility = false
-                -- Randomly choose which flesh heap to give them
-                if random == 1 and not spawnedUnit:HasAbility('pudge_flesh_heap') then fleshHeapToGive = "pudge_flesh_heap" ; givenAbility = true
-                elseif random == 2 and not spawnedUnit:HasAbility('pudge_flesh_heap_int') then fleshHeapToGive = "pudge_flesh_heap_int" ; givenAbility = true
-                elseif random == 3 and not spawnedUnit:HasAbility('pudge_flesh_heap_agility') then fleshHeapToGive = "pudge_flesh_heap_agility" ; givenAbility = true
-                elseif random == 4 and not spawnedUnit:HasAbility('pudge_flesh_heap_move_speed') then fleshHeapToGive = "pudge_flesh_heap_move_speed" ; givenAbility = true
-                elseif random == 5 and not spawnedUnit:HasAbility('pudge_flesh_heap_spell_amp') then fleshHeapToGive = "pudge_flesh_heap_spell_amp" ; givenAbility = true
-                elseif random == 6 and not spawnedUnit:HasAbility('pudge_flesh_heap_attack_range') then fleshHeapToGive = "pudge_flesh_heap_attack_range" ; givenAbility = true
-                elseif random == 7 and not spawnedUnit:HasAbility('pudge_flesh_heap_bonus_vision') then fleshHeapToGive = "pudge_flesh_heap_bonus_vision" ; givenAbility = true
-                elseif random == 8 and not spawnedUnit:HasAbility('pudge_flesh_heap_cooldown_reduction') then fleshHeapToGive = "pudge_flesh_heap_cooldown_reduction" ; givenAbility = true
-                elseif random == 9 and not spawnedUnit:HasAbility('pudge_flesh_heap_magic_resistance') then fleshHeapToGive = "pudge_flesh_heap_evasion" ; givenAbility = true
-                elseif random == 10 and not spawnedUnit:HasAbility('pudge_flesh_heap_evasion') then fleshHeapToGive = "pudge_flesh_heap_evasion" ; givenAbility = true
-                elseif random == 11 and not spawnedUnit:HasAbility('pudge_flesh_heap_cast_range') then fleshHeapToGive = "pudge_flesh_heap_cast_range" ; givenAbility = true
-                elseif random == 12 and not spawnedUnit:HasAbility('pudge_flesh_heap_spell_lifesteal') then fleshHeapToGive = "pudge_flesh_heap_spell_lifesteal" ; givenAbility = true
-                elseif random == 13 and not spawnedUnit:HasAbility('pudge_flesh_heap_lifesteal') then fleshHeapToGive = "pudge_flesh_heap_lifesteal" ; givenAbility = true
-                elseif random == 14 and not spawnedUnit:HasAbility('pudge_flesh_heap_armor') then fleshHeapToGive = "pudge_flesh_heap_armor" ; givenAbility = true
-                elseif random == 15 and not spawnedUnit:HasAbility('pudge_flesh_heap_health_regeneration') then fleshHeapToGive = "pudge_flesh_heap_health_regeneration" ; givenAbility = true
-                elseif random == 16 and not spawnedUnit:HasAbility('pudge_flesh_heap_mana_regeneration') then fleshHeapToGive = "pudge_flesh_heap_mana_regeneration" ; givenAbility = true
-                end
-
-                -- If they randomly picked a flesh heap they already had, go through this list and try to give them one until they get one
-                if not givenAbility then
-                    if not spawnedUnit:HasAbility('pudge_flesh_heap') then fleshHeapToGive = "pudge_flesh_heap"
-                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_int') then fleshHeapToGive = "pudge_flesh_heap_int"
-                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_agility') then fleshHeapToGive = "pudge_flesh_heap_agility"
-                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_move_speed') then fleshHeapToGive = "pudge_flesh_heap_move_speed"
-                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_spell_amp') then fleshHeapToGive = "pudge_flesh_heap_spell_amp"
-                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_attack_range') then fleshHeapToGive = "pudge_flesh_heap_attack_range"
-                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_bonus_vision') then fleshHeapToGive = "pudge_flesh_heap_bonus_vision"
-                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_cooldown_reduction') then fleshHeapToGive = "pudge_flesh_heap_cooldown_reduction"
-                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_magic_resistance') then fleshHeapToGive = "pudge_flesh_heap_magic_resistance"
-                    elseif not spawnedUnit:HasAbility('pudge_flesh_heap_evasion') then fleshHeapToGive = "pudge_flesh_heap_evasion"
-                    -- We dont need to add any more to this list because they will defintely get one of the above because of the max ability slots
-                    end
-                end
-            end
-
-            -- Random Survivals
-            if OptionManager:GetOption('extraAbility') == 22 then
-
-                local random = RandomInt(1,21)
-                local givenAbility = false
-                -- Randomly choose which flesh heap to give them
-                if random == 1  and not spawnedUnit:HasAbility('spell_lab_survivor_cooldown') then survivalToGive = "spell_lab_survivor_cooldown" ; givenAbility = true
-                elseif random == 2  and not spawnedUnit:HasAbility('spell_lab_survivor_critical') then survivalToGive = "spell_lab_survivor_critical" ; givenAbility = true
-                elseif random == 3  and not spawnedUnit:HasAbility('spell_lab_survivor_damage_boost') then survivalToGive = "spell_lab_survivor_damage_boost" ; givenAbility = true
-                elseif random == 4  and not spawnedUnit:HasAbility('spell_lab_survivor_health_regen') then survivalToGive = "spell_lab_survivor_health_regen" ; givenAbility = true
-                elseif random == 5  and not spawnedUnit:HasAbility('spell_lab_survivor_int_survival') then survivalToGive = "spell_lab_survivor_int_survival" ; givenAbility = true
-                elseif random == 6  and not spawnedUnit:HasAbility('spell_lab_survivor_magic_resistance') then survivalToGive = "spell_lab_survivor_magic_resistance" ; givenAbility = true
-                elseif random == 7  and not spawnedUnit:HasAbility('spell_lab_survivor_spell_boost') then survivalToGive = "spell_lab_survivor_spell_boost" ; givenAbility = true
-                elseif random == 8  and not spawnedUnit:HasAbility('spell_lab_survivor_spell_vamp') then survivalToGive = "spell_lab_survivor_spell_vamp" ; givenAbility = true
-                elseif random == 9  and not spawnedUnit:HasAbility('spell_lab_survivor_str_survival') then survivalToGive = "spell_lab_survivor_str_survival" ; givenAbility = true
-                elseif random == 10 and not spawnedUnit:HasAbility('spell_lab_survivor_mana_regen') then survivalToGive = "spell_lab_survivor_mana_regen" ; givenAbility = true
-                elseif random == 11 and not spawnedUnit:HasAbility('spell_lab_survivor_agi_survival') then survivalToGive = "spell_lab_survivor_agi_survival" ; givenAbility = true
-                elseif random == 12 and not spawnedUnit:HasAbility('spell_lab_survivor_attack_speed') then survivalToGive = "spell_lab_survivor_attack_speed" ; givenAbility = true
-                elseif random == 13 and not spawnedUnit:HasAbility('spell_lab_survivor_cast_range') then survivalToGive = "spell_lab_survivor_cast_range" ; givenAbility = true
-                elseif random == 14 and not spawnedUnit:HasAbility('spell_lab_survivor_vision') then survivalToGive = "spell_lab_survivor_vision" ; givenAbility = true
-                elseif random == 15 and not spawnedUnit:HasAbility('spell_lab_survivor_evasion') then survivalToGive = "spell_lab_survivor_evasion" ; givenAbility = true
-                elseif random == 16 and not spawnedUnit:HasAbility('spell_lab_survivor_mana_burn') then survivalToGive = "spell_lab_survivor_mana_burn" ; givenAbility = true
-                elseif random == 17 and not spawnedUnit:HasAbility('spell_lab_survivor_life_steal') then survivalToGive = "spell_lab_survivor_life_steal" ; givenAbility = true
-                elseif random == 18 and not spawnedUnit:HasAbility('spell_lab_survivor_armor') then survivalToGive = "spell_lab_survivor_armor" ; givenAbility = true
-                elseif random == 19 and not spawnedUnit:HasAbility('spell_lab_survivor_attack_range') then survivalToGive = "spell_lab_survivor_attack_range" ; givenAbility = true
-                elseif random == 20 and not spawnedUnit:HasAbility('spell_lab_survivor_move_speed') then survivalToGive = "spell_lab_survivor_move_speed" ; givenAbility = true
-                elseif random == 21 and not spawnedUnit:HasAbility('spell_lab_survivor_bash') then survivalToGive = "spell_lab_survivor_bash" ; givenAbility = true
-                end
-
-
-
-                -- If they randomly picked a flesh heap they already had, go through this list and try to give them one until they get one
-                if not givenAbility then
-                    if not spawnedUnit:HasAbility('spell_lab_survivor_cooldown') then survivalToGive = "spell_lab_survivor_cooldown"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_critical') then survivalToGive = "spell_lab_survivor_critical"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_damage_boost') then survivalToGive = "spell_lab_survivor_damage_boost"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_health_regen') then survivalToGive = "spell_lab_survivor_health_regen"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_int_survival') then survivalToGive = "spell_lab_survivor_int_survival"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_magic_resistance') then survivalToGive = "spell_lab_survivor_magic_resistance"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_spell_boost') then survivalToGive = "spell_lab_survivor_spell_boost"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_spell_vamp') then survivalToGive = "spell_lab_survivor_spell_vamp"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_str_survival') then survivalToGive = "spell_lab_survivor_str_survival"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_mana_regen') then survivalToGive = "spell_lab_survivor_mana_regen"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_agi_survival') then survivalToGive = "spell_lab_survivor_agi_survival"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_attack_speed') then survivalToGive = "spell_lab_survivor_attack_speed"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_cast_range') then survivalToGive = "spell_lab_survivor_cast_range"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_vision') then survivalToGive = "spell_lab_survivor_vision"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_evasion') then survivalToGive = "spell_lab_survivor_evasion"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_mana_burn') then survivalToGive = "spell_lab_survivor_mana_burn"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_life_steal') then survivalToGive = "spell_lab_survivor_life_steal"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_armor') then survivalToGive = "spell_lab_survivor_armor"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_attack_range') then survivalToGive = "spell_lab_survivor_attack_range"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_move_speed') then survivalToGive = "spell_lab_survivor_move_speed"
-                    elseif not spawnedUnit:HasAbility('spell_lab_survivor_bash') then survivalToGive = "spell_lab_survivor_bash"
-                    end
-                end
-            end
-
-            if OptionManager:GetOption('extraAbility') == 13 then
-                -- Give an essence shift based on heros primary attribute
-                if spawnedUnit:GetPrimaryAttribute() == 0 then essenceshiftToGive = "slark_essence_shift_strength_lod"
-                elseif spawnedUnit:GetPrimaryAttribute() == 1 then essenceshiftToGive = "slark_essence_shift_agility_lod"
-                elseif spawnedUnit:GetPrimaryAttribute() == 2 then essenceshiftToGive = "slark_essence_shift_intellect_lod"
-                end
-            end
-
-             if OptionManager:GetOption('extraAbility') == 19 then
-                -- Give an essence shift based on heros primary attribute
-                if spawnedUnit:IsRangedAttacker() then rangedTrickshot = "ebf_clinkz_trickshot_passive_ranged"
-                end
-            end
-
-            local abilityToGive = self.freeAbility
-
-            if fleshHeapToGive then abilityToGive = fleshHeapToGive
-            elseif essenceshiftToGive then abilityToGive = essenceshiftToGive
-            elseif rangedTrickshot then abilityToGive = rangedTrickshot
-            elseif survivalToGive then abilityToGive = survivalToGive
-            end
-
-            spawnedUnit:AddAbility(abilityToGive)
-            local givenAbility = spawnedUnit:FindAbilityByName(abilityToGive)
-            if givenAbility then
-                givenAbility:SetLevel(givenAbility:GetMaxLevel())
-            end
-
-        end, DoUniqueString('addExtra'), RandomInt(1,3) )
+        Timers:CreateTimer(function (  )
+            self:applyExtraAbility(spawnedUnit)
+        end, DoUniqueString('giveExtraAbility'), 0.1)
     end
 
     if OptionManager:GetOption('freeCourier') then
@@ -8104,7 +8161,7 @@ function Pregame:fixSpawningIssues()
                         if not self.handled[spawnedUnit] then
                             local mainHero = PlayerResource:GetSelectedHeroEntity(playerID)
                             local heroName = self.selectedHeroes[playerID] or self:getRandomHero()
-                            
+
                             mainHero = PlayerResource:ReplaceHeroWith(playerID,heroName,0,0)
 
                             if IsValidEntity(mainHero) then
@@ -8135,9 +8192,9 @@ function Pregame:fixSpawningIssues()
                     roshan_bash = true,
                     arc_warden_tempest_double = true,    -- This is to stop tempest doubles from getting the ability and using cooldown reduction to cast again
                     arc_warden_tempest_double_redux = true,
-                    aabs_thunder_musket = true,   
-                    mirana_starfall_lod = true,    -- This is buggy with tempest doubles for some reason   
-                    warlock_rain_of_chaos = true,    -- This is buggy with tempest doubles for some reason 
+                    aabs_thunder_musket = true,
+                    mirana_starfall_lod = true,    -- This is buggy with tempest doubles for some reason
+                    warlock_rain_of_chaos = true,    -- This is buggy with tempest doubles for some reason
                 }
 
                 -- Apply the build

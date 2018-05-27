@@ -545,6 +545,8 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
         end
     end
 
+    hero.buildApplied = true
+
     -- Store the hero of this build
     build.hero = hero:GetClassname()
 
@@ -830,11 +832,15 @@ function skillManager:ApplyBuild(hero, build, autoLevelSkills)
     end     
     -- Handle cooldowns     
     for i=0,hero:GetAbilityCount()-1 do     
-        local ab = hero:GetAbilityByIndex(i)        
-        if IsValidEntity(ab) then       
-            local timeLeft = (cooldownInfo[ab:GetClassname()] or 0) - Time()        
-            if timeLeft > 0 then        
-                ab:StartCooldown(timeLeft)
+        local ab = hero:GetAbilityByIndex(i)
+        if IsValidEntity(ab) then   
+            if ab:GetName() == "generic_hidden" then
+                ab:SetHidden(true)    
+            else       
+                local timeLeft = (cooldownInfo[ab:GetClassname()] or 0) - Time()        
+                if timeLeft > 0 then        
+                    ab:StartCooldown(timeLeft)
+                end
             end
         end
     end
