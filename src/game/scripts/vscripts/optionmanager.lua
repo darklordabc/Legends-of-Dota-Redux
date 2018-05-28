@@ -161,6 +161,19 @@ if not OptionManager.initialSettings then
 	-- Full price sellback
 	OptionManager:SetOption('fullPriceSellback', false)
 
+	-- Mutators
+	OptionManager:SetOption('fastRunes', false)
+	OptionManager:SetOption('superRunes', false)
+	OptionManager:SetOption('periodicSpellCast', false)
+	OptionManager:SetOption('vampirism', false)
+	OptionManager:SetOption('killstreakPower', false)
+	OptionManager:SetOption('cooldownReduction', false)
+	OptionManager:SetOption('explodeOnDeath', false)
+	OptionManager:SetOption('goldDropOnDeath', false)
+	OptionManager:SetOption('resurrectAllies', false)
+	OptionManager:SetOption('randomLaneCreeps', false)
+	OptionManager:SetOption('noHealthbars', false)
+
 	-- Other Mutators
 	OptionManager:SetOption('322', 0)
 	OptionManager:SetOption('refreshCooldownsOnDeath', 0)

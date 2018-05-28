@@ -506,7 +506,7 @@
     "lodMutatorRefreshCooldownsOnDeath"             "Refresh Cooldowns On Death"
 
     "lodOption322"                                  "322"
-    "lodOptionDes322"                               "Enable 322"
+    "lodOptionDes322"                               "322"
     "lodOptionAbout322"                             "Heroes gain 322 gold upon dying instead of losing gold."
     "lodMutator322"                                 "322"
 
@@ -533,47 +533,97 @@
     "lodOptionAboutExtraAbility"                                 "All players gain a free extra ability."
 
     "lodOptionGlobalCast"                                 "Global Cast Range"
-    "lodOptionDesGlobalCast"                               "Enable Global Cast Range"
+    "lodOptionDesGlobalCast"                               "Global Cast Range"
     "lodOptionAboutGlobalCast"                                 "Makes most spells have global cast range. Some spells are disabled (like Fissure) for technial reasons."
     "lodMutatorGlobalCast"                                 "Global Cast Range"
 
     "lodOptionMemesRedux"                                  "Memes Redux"
-    "lodOptionDesMemesRedux"                               "Enable Memes"
+    "lodOptionDesMemesRedux"                               "Memes"
     "lodOptionAboutMemesRedux"                             "Adds all the dankest memes into your game, depending on what abilities you use."
     "lodMutatorMemesRedux"                                 "Memes Redux"
 
     "lodOptionBattleThirst"                                  "Out-of-Sight Peanlty"
-    "lodOptionDesBattleThirst"                               "Enable Out-of-Sight Peanlty"
+    "lodOptionDesBattleThirst"                               "Out-of-Sight Peanlty"
     "lodOptionAboutBattleThirst"                             "Players lose 2 gold per second if they are out of enemies sights for too long."
     "lodMutatorBattleThirst"                                 "Anti-Hiding"
 
     "lodOptionDarkMoon"                                  "Dark Moon Drops"
-    "lodOptionDesDarkMoon"                               "Enable Dark Moon Item Drops"
+    "lodOptionDesDarkMoon"                               "Dark Moon Item Drops"
     "lodOptionAboutDarkMoon"                             "When a unit dies it has a chance to drop one of the items from the Dark Moon event."
     "lodMutatorDarkMoon"                                 "Item Drops"
 
     "lodOptionBlackForest"                                  "Black Forest"
-    "lodOptionDesBlackForest"                               "Enable Black Forest"
+    "lodOptionDesBlackForest"                               "Black Forest"
     "lodOptionAboutBlackForest"                             "At the start of the game a Forest is generated, planting many more trees on the map."
     "lodMutatorBlackForest"                         "Black Forest"
 
     "lodOptionAntiBash"                                  "Anti Perma-Stun"
-    "lodOptionDesAntiBash"                               "Enable Anti Perma-Stun"
+    "lodOptionDesAntiBash"                               "Anti Perma-Stun"
     "lodOptionAboutAntiBash"                             "Makes it so when a hero is bashed, they cannot be bashed again for 5 seconds"
     "lodMutatorAntiBash"                         "Anti Perma-Stun"
 
+    "lodOptionNoHealthbars"                             "No Health Bars"
+    "lodOptionDesNoHealthbars"                          "No Health Bars"
+    "lodOptionAboutNoHealthbars"                        "Heroes will no longer show health or mana bars above them."
+    "lodMutatorNoHealthbars"                            "No Health Bars"
+
+    "lodOptionExplodeOnDeath"                             "Explode on Death"
+    "lodOptionDesExplodeOnDeath"                          "Explode on Death"
+    "lodOptionAboutExplodeOnDeath"                        "Heroes will explode upon death. 150 base damage + 25 damage per level dealt in a 300 area of effect."
+    "lodMutatorExplodeOnDeath"                            "Explode on Death"
+
+    "lodOptionSuperRunes"                                 "Super Runes"
+    "lodOptionDesSuperRunes"                              "Super Runes"
+    "lodOptionAboutSuperRunes"                            "TODO"
+    "lodMutatorSuperRunes"                                "Super Runes
+
+    "lodOptionPeriodicSpellCast"                                 "Periodic Spellcast"
+    "lodOptionDesPeriodicSpellCast"                              "Periodic Spellcast"
+    "lodOptionAboutPeriodicSpellCast"                            "Spells will be cast on all players every few seconds."
+    "lodMutatorPeriodicSpellCast"                                "Periodic Spellcast"
+
+    "lodOptionRandomLaneCreeps"                                 "Random Lane Creeps"
+    "lodOptionDesRandomLaneCreeps"                              "Random Lane Creeps"
+    "lodOptionAboutRandomLaneCreeps"                            "Random neutral creeps will spawn in lanes with regular lane creeps."
+    "lodMutatorRandomLaneCreeps"                                "Random Lane Creeps"
+
+    "lodOptionFastRunes"                                 "Fast Runes"
+    "lodOptionDesFastRunes"                              "Fast Runes"
+    "lodOptionAboutFastRunes"                            "TODO"
+    "lodMutatorFastRunes"                                "Fast Runes
+
+    "lodOptionCooldownReduction"                         "Cooldown Reduction"
+    "lodOptionDesCooldownReduction"                      "Cooldown Reduction"
+    "lodOptionAboutCooldownReduction"                    "Spells have 50% less cooldown and heros have extra mana regen. TODO"
+    "lodMutatorCooldownReduction"                        "Cooldown Reduction"
+
+    "lodOptionGoldDropOnDeath"                         "Drop Gold on Death"
+    "lodOptionDesGoldDropOnDeath"                      "Drop Gold on Death"
+    "lodOptionAboutGoldDropOnDeath"                    "Heroes will drop a sack of gold upon death. TODO"
+    "lodMutatorGoldDropOnDeath"                        "Drop Gold on Death"
+
+    "lodOptionKillStreakPower"                         "Killstreak Power"
+    "lodOptionDesKillStreakPower"                      "Killstreak Power"
+    "lodOptionAboutKillStreakPower"                    "TODO"
+    "lodMutatorKillStreakPower"                        "Killstreak Power"
+
+    "lodOptionVampirism"                               "Vampire"
+    "lodOptionDesVampirism"                            "Vampire"
+    "lodOptionAboutVampirism"                          "TODO"
+    "lodMutatorVampirism"                              "Vampire"
+
     "lodOptionAntiRat"                                  "Anti-Rat"
-    "lodOptionDesAntiRat"                               "Enable Anti-Rat Protection"
+    "lodOptionDesAntiRat"                               "Anti-Rat Protection"
     "lodOptionAboutAntiRat"                             "When Anti-Rat is enabled, Tier3 towers cannot be destroyed unless all the outer towers are dead. Also, towers with backdoor protection cannot be damaged."
     "lodMutatorAntiRat"                                 "Anti-Rat"
 
     "lodOptionConsumeItems"                                  "Consumable Items"
-    "lodOptionDesConsumeItems"                               "Enable Consumable Items"
+    "lodOptionDesConsumeItems"                               "Consumable Items"
     "lodOptionAboutConsumeItems"                             "This enables some late game items to be able to be consumed and gained as a permanent buff (for the cost of the original price)."
     "lodMutatorConsumeItems"                                 "Consumable Items"
 
     "lodOptionLimitPassives"                                  "Limit Passives"
-    "lodOptionDesLimitPassives"                               "Enable Limit Passives"
+    "lodOptionDesLimitPassives"                               "Limit Passives"
     "lodOptionAboutLimitPassives"                             "This will force players to have maximum 3 passives. Semi-Passives are counted as passives (like Empower and Vampiric Aura)."
     "lodMutatorLimitPassives"                                 "Limit Passives"
 
@@ -582,12 +632,12 @@
     "lodOptionDesAdvancedCustomSkills"              "Allow Custom Abilities"
     "lodOptionDesAdvancedIMBASkills"              "Allow Dota IMBA Abilities"
     "lodOptionDesAdvancedOPAbilities"               "Ban OP Abilities"
-    "lodOptionDesCrazyWTF"                          "Enable WTF Mode"
-    "lodOptionDesIngameBuilder"                     "Enable Ingame Hero Builder"
+    "lodOptionDesCrazyWTF"                          "WTF Mode"
+    "lodOptionDesIngameBuilder"                     "Ingame Hero Builder"
     "lodOptionDesIngameBuilderPenalty"              "Build Change Death Penalty (sec.)"
     "lodOptionDesGameSpeedUpgradedUlts"             "Free Aghanim's Scepter"
     "lodOptionDesGameSpeedFreeCourier"              "Free Starting Courier"
-    "lodOptionDesGameSpeedStrongTowers"             "Enable Stronger Towers"
+    "lodOptionDesGameSpeedStrongTowers"             "Stronger Towers"
     "lodOptionDesCreepPower"                        "Increase Lane Creep Power Over Time"
     "lodOptionDesNeutralCreepPower"                        "Increase Neutral Creep Power Over Time"
     "lodOptionDesNeutralMultiply"                   "Multiply Neutral Camps"
@@ -603,7 +653,7 @@
     "lodOptionDesBanningMaxHeroBans"                "Max Hero Bans"
     "lodOptionDesDisablePerks"                      "Disable Perks"
 
-    "lodOptionDesCrazyFatOMeter"                    "Enable Fat-O-Meter"
+    "lodOptionDesCrazyFatOMeter"                    "Fat-O-Meter"
     "lodOptionNoFatOMeter"                          "Disabled"
     "lodOptionFarmFatOMeter"                        "Networth"
     "lodOptionKDAFatOMeter"                         "KDA"
@@ -1943,6 +1993,9 @@
 
     "DOTA_Tooltip_modifier_bash_cooldown"                           "Bash Cooldown"
     "DOTA_Tooltip_modifier_bash_cooldown_Description"               "Your hero temporary can't be bashed, because it was bashed recently."
+
+    "DOTA_Tooltip_modifier_vampirism_mutator"                       "Vampire Mode"
+    "DOTA_Tooltip_modifier_vampirism_mutator_Description"           "In the day you lose 1%d% of your health per second. At night you gain 20%d% lifesteal."
 
     "DOTA_Tooltip_modifier_easybot"                           "Easy Bot"
     "DOTA_Tooltip_modifier_easybot_Description"               "Easy bots willingly attack other heroes and use abilities/items (with the exception of Phase Boots, Force Staff, and Orchid Malevolence), but usually at a slow pace, and their last hit timing is not as accurate. Easy bots will not deny creeps. Easy bots will generally not attempt to gank other lanes, and will only group up in small groups to push or defend. Easy bots will not attempt to 'stun-lock' enemies, nor will they try to interrupt channeling spells. Easy bots are fooled by illusions."
@@ -17508,7 +17561,7 @@
     "DOTA_Tooltip_ability_spell_lab_ggs_passive_Description"                      "Deals damage based on caster's intelligence."
 
 	"DOTA_Tooltip_ability_slark_shadow_dance_redux"								"Shadow Dance Redux"
-	"DOTA_Tooltip_ability_slark_shadow_dance_redux_Description"					"<font color=\'#70EA72\'>Passive component only.</font>\nPassively, when not visible to the enemy team, Slark gains bonus movement speed and health regeneration."
+	"DOTA_Tooltip_ability_slark_shadow_dance_redux_Description"					"Passively, when not visible to the enemy team, Slark gains bonus movement speed and health regeneration.<font color=\'#70EA72\'> Passive component only.</font>"
 	"DOTA_Tooltip_ability_slark_shadow_dance_redux_Lore"							"The hidden Thirteenth is a slippery foe."
 	"DOTA_Tooltip_ability_slark_shadow_dance_redux_Note0"							"If Slark is damaged by a neutral unit, the passive movement and health regeneration bonuses are lost for 2 seconds."
 	"DOTA_Tooltip_ability_slark_shadow_dance_redux_Note1"							"The passive movement and health regeneration bonuses have a 0.5 second activation and deactivation delay."

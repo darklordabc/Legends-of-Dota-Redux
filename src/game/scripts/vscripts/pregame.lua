@@ -56,6 +56,21 @@ LinkLuaModifier( "modifier_unfairbot", "abilities/botAI/modifier_unfairbot.lua",
 -- Creep power modifier
 LinkLuaModifier("modifier_neutral_power", "abilities/modifiers/modifier_neutral_power.lua", LUA_MODIFIER_MOTION_NONE)
 
+-- Mutator modifiers
+
+LinkLuaModifier("modifier_vampirism_mutator","abilities/mutators/modifier_vampirism_mutator.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_cooldown_reduction_mutator","abilities/mutators/modifier_cooldown_reduction_mutator.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_death_explosion_mutator","abilities/mutators/modifier_death_explosion_mutator.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_drop_gold_bag_mutator","abilities/mutators/modifier_drop_gold_bag_mutator.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_killstreak_mutator_redux","abilities/mutators/modifier_killstreak_mutator_redux.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_no_healthbar_mutator","abilities/mutators/modifier_no_healthbar_mutator.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_random_spell_mutator","abilities/mutators/modifier_random_spell_mutator.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_random_lane_creep_mutator_ai","abilities/mutators/modifier_random_lane_creep_mutator_ai.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_random_lane_creep_spawner_mutator","abilities/mutators/modifier_random_lane_creep_mutator_ai.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_resurrection_mutator","abilities/mutators/modifier_resurrection_mutator.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_rune_doubledamage_mutated_redux","abilities/mutators/super_runes.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_rune_arcane_mutated_redux","abilities/mutators/super_runes.lua",LUA_MODIFIER_MOTION_NONE)
+
 --[[
     Main pregame, selection related handler
 ]]
@@ -805,6 +820,18 @@ function Pregame:loadDefaultSettings()
     self:setOption('lodOptionBotsRadiant', 0, true)
     self:setOption('lodOptionBotsDire', 0, true)
     self:setOption('lodOptionBotsUnfairBalance', 1, true)
+
+    self:setOption('lodOptionFastRunes', 0, true)
+    self:setOption('lodOptionSuperRunes', 0, true)
+    self:setOption('lodOptionPeriodicSpellCast', 0, true)
+    self:setOption('lodOptionVampirism', 0, true)
+    self:setOption('lodOptionKillStreakPower', 0, true)
+    self:setOption('lodOptionCooldownReduction', 0, true)
+    self:setOption('lodOptionExplodeOnDeath', 0, true)
+    self:setOption('lodOptionGoldDropOnDeath', 0, true)
+    self:setOption('lodOptionResurrectAllies', 0, true)
+    self:setOption('lodOptionRandomLaneCreeps', 0, true)
+    self:setOption('lodOptionNoHealthbars', 0, true)
 
     -- Turn easy mode off
     --self:setOption('lodOptionCrazyEasymode', 0, true)
@@ -3127,6 +3154,52 @@ function Pregame:initOptionSelector()
         lodOptionBattleThirst = function(value)
             return value == 0 or value == 1
         end,
+
+        -- Mutators
+        lodOptionFastRunes = function(value)
+            return value == 0 or value == 1
+        end,
+
+        lodOptionSuperRunes = function(value)
+            return value == 0 or value == 1
+        end,
+        -- Mutators
+        lodOptionPeriodicSpellCast = function(value)
+            return value == 0 or value == 1
+        end,
+        -- Mutators
+        lodOptionVampirism = function(value)
+            return value == 0 or value == 1
+        end,
+        -- Mutators
+        lodOptionKillStreakPower = function(value)
+            return value == 0 or value == 1
+        end,
+        -- Mutators
+        lodOptionCooldownReduction = function(value)
+            return value == 0 or value == 1
+        end,
+        -- Mutators
+        lodOptionExplodeOnDeath = function(value)
+            return value == 0 or value == 1
+        end,
+        -- Mutators
+        lodOptionGoldDropOnDeath = function(value)
+            return value == 0 or value == 1
+        end,
+        -- Mutators
+        lodOptionResurrectAllies = function(value)
+            return value == 0 or value == 1
+        end,
+        -- Mutators
+        lodOptionRandomLaneCreeps = function(value)
+            return value == 0 or value == 1
+        end,
+        -- Mutators
+        lodOptionNoHealthbars = function(value)
+            return value == 0 or value == 1
+        end,
+
     }
 
     -- Callbacks
@@ -4022,6 +4095,18 @@ function Pregame:processOptions()
         OptionManager:SetOption('limitPassives', this.optionStore['lodOptionLimitPassives'])
         OptionManager:SetOption('antiBash', this.optionStore['lodOptionAntiBash'])
 
+        OptionManager:SetOption('superRunes',this.optionStore['lodOptionSuperRunes'])
+        OptionManager:SetOption('fastRunes',this.optionStore['lodOptionFastRunes'])
+        OptionManager:SetOption('periodicSpellCast',this.optionStore['lodOptionPeriodicSpellCast'])
+        OptionManager:SetOption('vampirism',this.optionStore['lodOptionVampirism'])
+        OptionManager:SetOption('killstreakPower',this.optionStore['lodOptionKillStreakPower'])
+        OptionManager:SetOption('cooldownReduction',this.optionStore['lodOptionCooldownReduction'])
+        OptionManager:SetOption('explodeOnDeath',this.optionStore['lodOptionExplodeOnDeath'])
+        OptionManager:SetOption('goldDropOnDeath',this.optionStore['lodOptionGoldDropOnDeath'])
+        OptionManager:SetOption('noHealthbars',this.optionStore['lodOptionNoHealthbars'])
+        OptionManager:SetOption('randomLaneCreeps',this.optionStore['lodOptionRandomLaneCreeps'])
+        OptionManager:SetOption('resurrectAllies',this.optionStore['lodOptionResurrectAllies'])
+
         -- Enforce max level
         if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
             this.optionStore['lodOptionGameSpeedStartingLevel'] = this.optionStore['lodOptionGameSpeedMaxLevel']
@@ -4220,6 +4305,10 @@ function Pregame:processOptions()
             this:banAbility("earthshaker_fissure")
         end
 
+        -- Set runespawn times
+        if OptionManager:GetOption("fastRunes") == 1 then
+            GameRules:SetRuneSpawnTime(30)
+        end
 
         -- Enable Universal Shop
         if this.optionStore['lodOptionCrazyUniversalShop'] == 1 then
@@ -4336,7 +4425,20 @@ function Pregame:processOptions()
                     ['Other: Anti Perma-Stun'] = this.optionStore['lodOptionAntiBash'],
                     ['Towers: Anti-Rat'] = this.optionStore['lodOptionAntiRat'],
                     ['Towers: Enable Stronger Towers'] = this.optionStore['lodOptionGameSpeedStrongTowers'],
-                    ['Towers: Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],                  
+                    ['Towers: Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],
+                    ['Bots: Unique Skills'] = this.optionStore['lodOptionBotsUniqueSkills'],
+                    ['Bots: Stupefy'] = this.optionStore['lodOptionBotsStupid'],
+                    ['Mutators: Fast Runes'] = this.optionStore['fastRunes'],
+                    ['Mutators: Super Runes'] = this.optionStore['superRunes'],
+                    ['Mutators: Periodic Spell Cast'] = this.optionStore['periodicSpellCast'],
+                    ['Mutators: Vampirism'] = this.optionStore['vampirism'],
+                    ['Mutators: Kill Streak Power'] = this.optionStore['killstreakPower'],
+                    ['Mutators: Cooldown Reduction'] = this.optionStore['cooldownReduction'],
+                    ['Mutators: Explode On Death'] = this.optionStore['explodeOnDeath'],
+                    ['Mutators: Gold Drop On Death'] = this.optionStore['goldDropOnDeath'],
+                    ['Mutators: Resurrect Allies'] = this.optionStore['resurrectAllies'],
+                    ['Mutators: Random Lane Creeps'] = this.optionStore['randomLaneCreeps'],
+                    ['Mutators: No Healthbars'] = this.optionStore['noHealthbars'],
                 })
 
                 -- Draft arrays
@@ -5831,23 +5933,23 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
 
     -- Limit powerful passives
     if self.optionStore['lodOptionLimitPassives'] == 1 then
-    	local powerfulPassives = 0
-    	for _,buildAbility in pairs(newBuild) do
-    		-- Check that ability is passive and is powerful ability
+        local powerfulPassives = 0
+        for _,buildAbility in pairs(newBuild) do
+            -- Check that ability is passive and is powerful ability
             -- Temporarily limit all passives, indepedent of their power
-    		if SkillManager:isPassive(buildAbility) or self.flags["semi_passive"][buildAbility] ~= nil then -- and self.spellCosts[buildAbility] ~= nil and self.spellCosts[buildAbility] >= 60 then
-    			powerfulPassives = powerfulPassives + 1
-    		end
-    	end
-    	-- Check that we have 3 OP passives
-    	if powerfulPassives >= 4 then
+            if SkillManager:isPassive(buildAbility) or self.flags["semi_passive"][buildAbility] ~= nil then -- and self.spellCosts[buildAbility] ~= nil and self.spellCosts[buildAbility] >= 60 then
+                powerfulPassives = powerfulPassives + 1
+            end
+        end
+        -- Check that we have 3 OP passives
+        if powerfulPassives >= 4 then
             network:sendNotification(player, {
                 sort = 'lodDanger',
                 text = 'lodFailedTooManyPassives'
             })
             self:PlayAlert(playerID)
             return
-	    end
+        end
     end
 
     -- Consider unique skills
@@ -6321,9 +6423,10 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
                 end
             end
 
-	    if (SkillManager:isPassive(abilityName) or self.flags["semi_passive"][abilityName] ~= nil) then
-		powerfulPassives = powerfulPassives + 1
-	    end
+            
+            if (SkillManager:isPassive(abilityName) or self.flags["semi_passive"][abilityName] ~= nil) then
+            powerfulPassives = powerfulPassives + 1
+            end
 
             if powerfulPassives >= 3 then
                 shouldAdd = false
@@ -7968,6 +8071,28 @@ function Pregame:fixSpawnedHero( spawnedUnit )
                     end
                 end
             end
+            -- Add mutator modifiers
+            if OptionManager:GetOption('vampirism') == 1 then
+                spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_vampirism_mutator",{})
+            end
+            if OptionManager:GetOption('killstreakPower') == 1 then
+                spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_killstreak_mutator_redux",{})
+            end
+            if OptionManager:GetOption('cooldownReduction') == 1 then
+                spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_cooldown_reduction_mutator",{})
+            end
+            if OptionManager:GetOption('explodeOnDeath') == 1 then
+                spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_death_explosion_mutator",{})
+            end
+            if OptionManager:GetOption('goldDropOnDeath') == 1 then
+                spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_drop_gold_bag_mutator",{})
+            end
+            if OptionManager:GetOption('resurrectAllies') == 1 then
+                spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_resurrection_mutator",{})
+            end
+            if OptionManager:GetOption('noHealthbars') == 1 then
+                spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_no_healthbar_mutator",{})
+            end
         end
     end, DoUniqueString('variousFixes'), 0.5)
 
@@ -8147,6 +8272,29 @@ function Pregame:fixSpawningIssues()
     ListenToGameEvent('npc_spawned', function(keys)
         -- Grab the unit that spawned
         local spawnedUnit = EntIndexToHScript(keys.entindex)
+        
+        -- Periodic Spell Cast
+        if not periodicDummyCastingUnitMade and OptionManager:GetOption("periodicSpellCast") == 1 then
+            -- Create dummy for periodic spellcast
+            periodicDummyCastingUnitMade = true
+            local periodicDummyCastingUnit = CreateUnitByName("npc_dummy_unit_imba",Vector(0,0,0),true,nil,nil,DOTA_TEAM_NEUTRALS)
+            periodicDummyCastingUnit:AddNewModifier(periodicDummyCastingUnit,nil,"modifier_random_spell_mutator",{})
+            local a = periodicDummyCastingUnit:AddAbility("dummy_unit_state")
+            a:SetLevel(1)
+        end
+
+
+
+        if not randomLaneCreepSpawnerMade and OptionManager:GetOption("randomLaneCreeps") == 1 then
+            randomLaneCreepSpawnerMade = true
+            local randomLaneCreepSpawner = CreateUnitByName("npc_dummy_unit_imba",Vector(0,0,0),true,nil,nil,DOTA_TEAM_NEUTRALS)
+            randomLaneCreepSpawner:AddNewModifier(periodicDummyCastingUnit,nil,"modifier_random_lane_creep_spawner_mutator",{})
+            local a = randomLaneCreepSpawner:AddAbility("dummy_unit_state")
+            a:SetLevel(1)
+
+        end
+
+
 
         if self.wispSpawning then
             if not self.selectedHeroes[spawnedUnit:GetPlayerOwnerID()] and spawnedUnit:IsRealHero() then
