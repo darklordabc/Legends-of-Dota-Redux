@@ -128,7 +128,7 @@
 
     "lodOptionYes"                                  "Yes"
     "lodOptionNo"                                   "No"
-    "lodOptionYesHumansOnly"                                  "Yes (Humans Only)"
+    "lodOptionYesHumansOnly"                            "Yes (Humans Only)"
     "lodOptionRandom"                                   "Random"
     "lodMutatorRandom"                                  "Random Bonus Ability"
 
@@ -209,7 +209,7 @@
     "lodMutatorDisablePerks"                        "Disable Perks"
     "lodMutatorDuel"                                "Duels"
     "lodMutatorBoosterDraft"                        "Booster Draft"
-    "lodMutatorDoubleCreeps"                        "Double Lane Creeps"
+    "lodMutatorDoubleCreeps"                        "Multiple Lane Creeps"
 
     "lodMutatorFastBuybackCooldown1"                "Fast Respawn"
     "lodMutatorFastBuybackCooldown2"                "Faster Respawn"
@@ -1250,8 +1250,9 @@
     "lodOptionRestrictDire"                         "Only Dire Bots"
     "lodOptionRestrictBoth"                         "Both Teams"
 
-    "lodOptionAboutLaneMultiply"                    "When Lane Creeps come in contact with an enemy, they will clone a double to help fight. Does not clone siege units."
-    "lodOptionDesLaneMultiply"                      "Double Lane Creeps"
+    "lodOptionAboutLaneMultiply"                    "When Lane Creeps come in contact with an enemy, they will clone a themselves to help fight. Does not clone siege units."
+    "lodOptionAboutLaneMultiplyMutator"             "Can be changed to triple or quadruple lane creeps but only through advanced options menu."
+    "lodOptionDesLaneMultiply"                      "Multiply Lane Creeps"
 
     "statsPlayerName"                               "Player Name"
     "statsTotalGames"                               "Total Games"

@@ -2857,7 +2857,7 @@ function Pregame:initOptionSelector()
 
         -- Game Speed - Multiply Lane Creeps
         lodOptionLaneMultiply = function(value)
-            return value == 0 or value == 1
+            return value == 0 or value == 1 or value == 2 or value == 3
         end,
 
         -- Game Speed - Free Courier
@@ -6604,13 +6604,13 @@ function Pregame:multiplyLaneCreeps()
                 if ent:GetName() == "npc_dota_creep_lane" and ent:FindAbilityByName("clone_token_ability") == nil then
 
                     ent:AddAbility("clone_token_ability")
-                    self:MultiplyLaneUnit( ent, 2 )
+                    self:MultiplyLaneUnit( ent, (this.optionStore['lodOptionLaneMultiply'] + 1) ) -- Plus one, because 0 is the starting value
 
                 end
                 if attacker:GetName() == "npc_dota_creep_lane" and attacker:FindAbilityByName("clone_token_ability") == nil then
 
                     attacker:AddAbility("clone_token_ability")
-                    self:MultiplyLaneUnit( attacker, 2 )
+                    self:MultiplyLaneUnit( attacker, (this.optionStore['lodOptionLaneMultiply'] + 1) )
 
                 end
             end

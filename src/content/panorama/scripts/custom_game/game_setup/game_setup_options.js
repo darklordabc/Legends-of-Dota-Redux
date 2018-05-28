@@ -147,6 +147,7 @@ var basicOptions = {
                     },
                     {
                         name: 'lodOptionLaneMultiply',
+                        extraInfo: 'lodOptionAboutLaneMultiplyMutator',
                         about: 'lodMutatorDoubleCreeps'
                     },
                     {
@@ -1487,15 +1488,23 @@ var advancedOptions = {
                 name: 'lodOptionLaneMultiply',
                 des: 'lodOptionDesLaneMultiply',
                 about: 'lodOptionAboutLaneMultiply',
-                sort: 'toggle',
+                sort: 'dropdown',
                 values: [
                     {
-                        text: 'lodOptionNo',
+                        text: 'lodOptionNoNeutralMultiply',
                         value: 0
                     },
                     {
-                        text: 'lodOptionYes',
+                        text: 'lodOptionDouble',
                         value: 1
+                    },
+                    {
+                        text: 'lodOptionTriple',
+                        value: 2
+                    },
+                    {
+                        text: 'lodOptionQuadruple',
+                        value: 3
                     }
                 ]
             },
