@@ -11,7 +11,7 @@ function modifier_rune_doubledamage_mutated_redux:DeclareFunctions()
 end
 
 function modifier_rune_doubledamage_mutated_redux:OnCreated()
-  print("AAA")
+  print("AAA",IsServer())
   print(self:GetRemainingTime())
 end
 
@@ -20,7 +20,6 @@ function modifier_rune_doubledamage_mutated_redux:OnDestroy()
 end
 
 function modifier_rune_doubledamage_mutated_redux:GetModifierBaseDamageOutgoing_Percentage()
-    print("200")
     return 200 -- 300?
 end
 
@@ -39,7 +38,7 @@ end
 modifier_rune_arcane_mutated_redux = class({})
 
 function modifier_rune_arcane_mutated_redux:OnCreated()
-  print("bbb")
+  print("bbb",IsServer())
   print(self:GetRemainingTime())
 end
 

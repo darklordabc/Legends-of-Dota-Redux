@@ -2030,8 +2030,17 @@ function Ingame:FilterDamage( filterTable )
     return true
 end
 
+LinkLuaModifier("modifier_rune_doubledamage_mutated_redux","abilities/mutators/super_runes.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_rune_arcane_mutated_redux","abilities/mutators/super_runes.lua",LUA_MODIFIER_MOTION_NONE)
+function AddRuneModifier(hero,name,duration)
+    
+    local m = hero:AddNewModifier(nil,nil,name,{duration = duration})
+    print(m,hero:GetUnitName(),name,duration)
+end
+
 require('abilities/bash_reflect')
 require('abilities/bash_cooldown')
+
 function Ingame:FilterModifiers( filterTable )
     local parent_index = filterTable["entindex_parent_const"]
     local caster_index = filterTable["entindex_caster_const"]
@@ -2045,11 +2054,17 @@ function Ingame:FilterModifiers( filterTable )
     local modifier_name = filterTable.name_const
     local parent = EntIndexToHScript( parent_index )
     if OptionManager:GetOption('superRunes') == 1 then
+        if modifier_name == "modifier_rune_doubledamage_mutated_redux" then return true end
+        if modifier_name == "modifier_rune_arcane_mutated_redux" then return true end
         if modifier_name == "modifier_rune_doubledamage" then
-            local m = parent:AddNewModifier(nil,nil,"modifier_rune_doubledamage_mutated_redux",{duration = filterTable.duration})
+            AddRuneModifier(parent,"modifier_rune_doubledamage_mutated_redux",filterTable.duration)
+            --local m = parent:AddNewModifier(nil,nil,"modifier_rune_doubledamage_mutated_redux",{duration = filterTable.duration})
+            --local m = parent:AddNewModifier(nil,nil,"modifier_vampirism_mutator",{duration = filterTable.duration})
             return false
         elseif modifier_name == "modifier_rune_arcane" then
-            local m = parent:AddNewModifier(nil,nil,"modifier_rune_arcane_mutated_redux",{duration = filterTable.duration})
+            AddRuneModifier(parent,"modifier_rune_arcane_mutated_redux",filterTable.duration)
+            --local m = parent:AddNewModifier(nil,nil,"modifier_rune_arcane_mutated_redux",{duration = filterTable.duration})
+            --local m = parent:AddNewModifier(nil,nil,"modifier_vampirism_mutator",{duration = filterTable.duration})
             return false
         end
     end
