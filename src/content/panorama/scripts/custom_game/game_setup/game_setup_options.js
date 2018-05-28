@@ -300,6 +300,29 @@ var basicOptions = {
                         about: 'lodMutatorBotsUnique'
                     },
                     {
+                        name: 'lodOptionLaneCreepBonusAbility',
+                        extraInfo: 'lodOptionAboutLaneCreepBonusAbility',
+                        default: {
+                            'lodMutatorNoAbility': 0,
+                        },
+                        states: {
+                            'lodMutatorRandomAll': 1,
+                            'lodMutatorRandomIndividual': 2,
+                            'lodMutatorBashwars': 3,
+                            'lodMutatorFeast': 4,
+                            'lodMutatorFury': 5,
+                            'lodMutatorTakeaim': 6,
+                            'lodMutatorSideGunner':7,
+                            'lodMutatorReactive':8,
+                            'lodMutatorBrawler':9,
+                            'lodMutatorNothl':10,
+                            'lodMutatorFervor':11,
+                            'lodMutatorNether':12,
+                            'lodMutatorTimeLock':13,
+                            'lodMutatorMjolnir':14,
+                        }
+                    },
+                    {
                         about: 'lodMutatorBotDifficulty1',
                         extraInfo: 'lodOptionAboutBotDifficulty',
                         default: {
@@ -1467,7 +1490,7 @@ var advancedOptions = {
                 sort: 'dropdown',
                 values: [
                     {
-                        text: 'lodOptionNoNeutralMultiply',
+                        text: 'lodOptionNo',
                         value: 1
                     },
                     {
@@ -1481,6 +1504,74 @@ var advancedOptions = {
                     {
                         text: 'lodOptionQuadruple',
                         value: 4
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionLaneCreepBonusAbility',
+                des: 'lodOptionDesLaneCreepBonusAbility',
+                about: 'lodOptionAboutLaneCreepBonusAbility',
+                sort: 'dropdown',
+                values: [
+                    {
+                        text: 'lodOptionNoNeutralMultiply',
+                        value: 0
+                    },
+                    {
+                        text: 'lodMutatorRandomAll',
+                        value: 1
+                    },
+                    {
+                        text: 'lodMutatorRandomIndividual',
+                        value: 2
+                    },
+                    {
+                        text: 'lodMutatorBashwars',
+                        value: 3
+                    },
+                    {
+                        text: 'lodMutatorFeast',
+                        value: 4
+                    },
+                    {
+                        text: 'lodMutatorFury',
+                        value: 5
+                    },
+                    {
+                        text: 'lodMutatorTakeaim',
+                        value: 6
+                    },
+                    {
+                        text: 'lodMutatorSideGunner',
+                        value: 7
+                    },
+                    {
+                        text: 'lodMutatorReactive',
+                        value: 8
+                    },
+                    {
+                        text: 'lodMutatorBrawler',
+                        value: 9
+                    },
+                    {
+                        text: 'lodMutatorNothl',
+                        value: 10
+                    },
+                    {
+                        text: 'lodMutatorFervor',
+                        value: 11
+                    },
+                    {
+                        text: 'lodMutatorNether',
+                        value: 12
+                    },
+                    {
+                        text: 'lodMutatorTimeLock',
+                        value: 13
+                    },
+                    {
+                        text: 'lodMutatorMjolnir',
+                        value: 14
                     }
                 ]
             },

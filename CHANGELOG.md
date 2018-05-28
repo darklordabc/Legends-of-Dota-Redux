@@ -18,6 +18,7 @@ All notable changes to this project will be documented in this file.
 - Added Random Individual for Bot Difficulty Settings (Every bot gets a random difficulty)
 - Moved most souls and survival abilities to single player abilities and improved their stats
 - Added Patreon Button
+- Added Free Creep Ability mutator
 
 
 ## 11

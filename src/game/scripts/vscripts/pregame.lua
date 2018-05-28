@@ -122,6 +122,7 @@ function Pregame:init()
 
     self.chanceToHearMeme = 1
     self.freeAbility = nil
+    self.freeCreepAbility = nil
 
     self.heard = {}
 
@@ -797,6 +798,9 @@ function Pregame:loadDefaultSettings()
     self:setOption('lodOptionNeutralCreepPower', 0, true)
     self:setOption('lodOptionNeutralMultiply', 1, true)
     self:setOption('lodOptionLaneMultiply', 0, true)
+
+    self:setOption('lodOptionLaneCreepBonusAbility', 0, true)
+    
 
     -- Start with a free courier
     self:setOption('lodOptionGameSpeedFreeCourier', 1, true)
@@ -2860,6 +2864,11 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1 or value == 2 or value == 3
         end,
 
+        -- Game Speed - Lane Creeps Bonus aBility
+        lodOptionLaneCreepBonusAbility = function(value)
+            return value == 0 or value == 1 or value == 2 or value == 3 or value == 4 or value == 5 or value == 6 or value == 7 or value == 8 or value == 9 or value == 10 or value == 11 or value == 12 or value == 13 or value == 14
+        end,
+
         -- Game Speed - Free Courier
         lodOptionGameSpeedFreeCourier = function(value)
             return value == 0 or value == 1
@@ -3996,6 +4005,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('neutralCreepPower', this.optionStore['lodOptionNeutralCreepPower'])
         OptionManager:SetOption('neutralMultiply', this.optionStore['lodOptionNeutralMultiply'])
         OptionManager:SetOption('laneMultiply', this.optionStore['lodOptionLaneMultiply'])
+        OptionManager:SetOption('laneCreepAbility', this.optionStore['lodOptionLaneCreepBonusAbility'])  
         OptionManager:SetOption('useFatOMeter', this.optionStore['lodOptionCrazyFatOMeter'])
         OptionManager:SetOption('universalShops', this.optionStore['lodOptionCrazyUniversalShop'])
         OptionManager:SetOption('allowIngameHeroBuilder', this.optionStore['lodOptionIngameBuilder'] == 1)
@@ -4299,6 +4309,7 @@ function Pregame:processOptions()
                     ['Creeps: Increase Neutral Creep Power Over Time'] = this.optionStore['lodOptionNeutralCreepPower'],
                     ['Creeps: Multiply Neutral Camps'] = this.optionStore['lodOptionNeutralMultiply'],
                     ['Creeps: Multiply Lane Creeps'] = this.optionStore['lodOptionLaneMultiply'],
+                    ['Creeps: Creep Ability'] = this.optionStore['lodOptionLaneCreepBonusAbility'], 
                     ['Game Speed: Bonus Starting Gold'] = this.optionStore['lodOptionGameSpeedStartingGold'],
                     ['Game Speed: Buyback Cooldown Constant'] = this.optionStore['lodOptionBuybackCooldownTimeConstant'],
                     ['Game Speed: Gold Modifier'] = math.floor(this.optionStore['lodOptionGameSpeedGoldModifier']),
@@ -5831,23 +5842,23 @@ function Pregame:setSelectedAbility(playerID, slot, abilityName, dontNetwork)
 
     -- Limit powerful passives
     if self.optionStore['lodOptionLimitPassives'] == 1 then
-    	local powerfulPassives = 0
-    	for _,buildAbility in pairs(newBuild) do
-    		-- Check that ability is passive and is powerful ability
+        local powerfulPassives = 0
+        for _,buildAbility in pairs(newBuild) do
+            -- Check that ability is passive and is powerful ability
             -- Temporarily limit all passives, indepedent of their power
-    		if SkillManager:isPassive(buildAbility) or self.flags["semi_passive"][buildAbility] ~= nil then -- and self.spellCosts[buildAbility] ~= nil and self.spellCosts[buildAbility] >= 60 then
-    			powerfulPassives = powerfulPassives + 1
-    		end
-    	end
-    	-- Check that we have 3 OP passives
-    	if powerfulPassives >= 4 then
+            if SkillManager:isPassive(buildAbility) or self.flags["semi_passive"][buildAbility] ~= nil then -- and self.spellCosts[buildAbility] ~= nil and self.spellCosts[buildAbility] >= 60 then
+                powerfulPassives = powerfulPassives + 1
+            end
+        end
+        -- Check that we have 3 OP passives
+        if powerfulPassives >= 4 then
             network:sendNotification(player, {
                 sort = 'lodDanger',
                 text = 'lodFailedTooManyPassives'
             })
             self:PlayAlert(playerID)
             return
-	    end
+        end
     end
 
     -- Consider unique skills
@@ -6321,9 +6332,9 @@ function Pregame:findRandomSkill(build, slotNumber, playerID, optionalFilter)
                 end
             end
 
-	    if (SkillManager:isPassive(abilityName) or self.flags["semi_passive"][abilityName] ~= nil) then
-		powerfulPassives = powerfulPassives + 1
-	    end
+        if (SkillManager:isPassive(abilityName) or self.flags["semi_passive"][abilityName] ~= nil) then
+        powerfulPassives = powerfulPassives + 1
+        end
 
             if powerfulPassives >= 3 then
                 shouldAdd = false
@@ -8350,6 +8361,58 @@ function Pregame:fixSpawningIssues()
             --end
             -- Make sure it is a hero
             if spawnedUnit:IsHero() then
+
+            elseif string.match(spawnedUnit:GetUnitName(), "creep") or string.match(spawnedUnit:GetUnitName(), "siege") or spawnedUnit:GetTeam() == DOTA_TEAM_NEUTRALS then
+                if this.optionStore['lodOptionLaneCreepBonusAbility'] > 0 then
+
+                    if this.optionStore['lodOptionLaneCreepBonusAbility'] == 1 then -- Random All: All Creeps get the same random ability
+                        this.optionStore['lodOptionLaneCreepBonusAbility'] = math.random(3,14)
+                    end
+         
+                    local pickedAbility = this.optionStore['lodOptionLaneCreepBonusAbility']
+
+                    if this.optionStore['lodOptionLaneCreepBonusAbility'] == 2 then -- Random Individual: All creeps get a random ability each time
+                        pickedAbility = math.random(3,14)
+                    end
+
+
+                    if pickedAbility == 3 then
+                        self.freeCreepAbility = "spirit_breaker_greater_bash"
+                    elseif pickedAbility == 4 then
+                        self.freeCreepAbility = "life_stealer_feast"
+                    elseif pickedAbility == 5 then
+                        self.freeCreepAbility = "ursa_fury_swipes"
+                    elseif pickedAbility == 6 then
+                        self.freeCreepAbility = "sniper_take_aim"
+                    elseif pickedAbility == 7 then
+                        self.freeCreepAbility = "side_gunner_redux"
+                    elseif pickedAbility == 8 then
+                        self.freeCreepAbility = "shredder_reactive_armor"
+                    elseif pickedAbility == 9 then
+                        self.freeCreepAbility = "brewmaster_drunken_brawler"
+                    elseif pickedAbility == 10 then
+                        self.freeCreepAbility = "imba_dazzle_shallow_grave"
+                    elseif pickedAbility == 11 then
+                        self.freeCreepAbility = "troll_warlord_fervor"
+                    elseif pickedAbility == 12 then
+                        self.freeCreepAbility = "angel_arena_nether_ritual"
+                    elseif pickedAbility == 13 then
+                        self.freeCreepAbility = "faceless_void_time_lock"
+                    elseif pickedAbility == 14 then
+                        self.freeCreepAbility = "ability_mjolnir_creep"
+                    end
+
+                    local creepAbility = spawnedUnit:AddAbility(self.freeCreepAbility)
+                    creepAbility:UpgradeAbility(true)
+
+                    local dotaTime = GameRules:GetDOTATime(false, false)
+                    local level = math.ceil(dotaTime / 240) -- 240 = Gains a level every 4 minutes, at game time 12 mins, abilities are maxed
+                    
+                    if level == 0 then level = 1 end
+                    if level > creepAbility:GetMaxLevel() then level = creepAbility:GetMaxLevel() end
+
+                    creepAbility:SetLevel(level)
+                end
 
             elseif string.match(spawnedUnit:GetUnitName(), "creep") or string.match(spawnedUnit:GetUnitName(), "siege") then
                 if this.optionStore['lodOptionCreepPower'] > 0 then

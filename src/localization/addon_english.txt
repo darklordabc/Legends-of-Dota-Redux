@@ -1254,6 +1254,21 @@
     "lodOptionAboutLaneMultiplyMutator"             "Can be changed to triple or quadruple lane creeps but only through advanced options menu."
     "lodOptionDesLaneMultiply"                      "Multiply Lane Creeps"
 
+    "lodOptionLaneCreepBonusAbility"                "Free Creep Ability"
+    "lodOptionDesLaneCreepBonusAbility"             "Free Creep Ability"
+    "lodOptionAboutLaneCreepBonusAbility"           "Gives all creeps (lane, neutral and roshan) a specific ability. Abilities start at level 1 and increase a level every 4 minutes. 'Random All' gives all creeps the same random ability, 'Random Individual' gives each creep a random ability individually."
+
+    "lodMutatorNoAbility"                           "Free Creep Ability"
+    "lodMutatorRandomAll"                           "Random All"
+    "lodMutatorRandomIndividual"                    "Random Individual"
+    "lodMutatorFeast"                               "Feast"
+    "lodMutatorSideGunner"                          "Side Gunner"
+    "lodMutatorReactive"                            "Reactive Armor"
+    "lodMutatorBrawler"                             "Drunken Brawler"
+    "lodMutatorFervor"                              "Fervor"
+    "lodMutatorTimeLock"                            "Time Lock"
+    "lodMutatorMjolnir"                             "Mjolnir"
+
     "statsPlayerName"                               "Player Name"
     "statsTotalGames"                               "Total Games"
     "statsTotalWins"                                "Total Wins"
@@ -7329,6 +7344,14 @@
     "DOTA_Tooltip_ability_ability_mjolnir_chain_damage"                       "CHAIN DAMAGE:"
     "DOTA_Tooltip_ability_ability_mjolnir_chain_strikes"                      "CHAIN TARGETS:"
     "DOTA_Tooltip_ability_ability_mjolnir_chain_radius"                       "CHAIN LEAP RADIUS:"
+
+    "DOTA_Tooltip_ability_ability_mjolnir_creep"            "Hammer of Sparks Creep"
+    "DOTA_Tooltip_ability_ability_mjolnir_creep_Description"        "Charges the Hero, giving a chance on attack to release a bolt of electricity that leaps between targets, dealing magical damage to each. <font color='#70EA72'>Has more levels but deals less damage at ealier levels, and jumps less.</font>"
+    "DOTA_Tooltip_ability_ability_mjolnir_creep_Lore"           "A Hammer not to be confused with its more famous contemporary."
+    "DOTA_Tooltip_ability_ability_mjolnir_creep_chain_chance"                       "%CHAIN CHANCE:"
+    "DOTA_Tooltip_ability_ability_mjolnir_creep_chain_damage"                       "CHAIN DAMAGE:"
+    "DOTA_Tooltip_ability_ability_mjolnir_creep_chain_strikes"                      "CHAIN TARGETS:"
+    "DOTA_Tooltip_ability_ability_mjolnir_creep_chain_radius"                       "CHAIN LEAP RADIUS:"
 
     "DOTA_Tooltip_ability_ability_mjolnir_op"            "Hammer of Thunder"
     "DOTA_Tooltip_ability_ability_mjolnir_op_Description"        "Charges the Hero, giving a chance on attack to release a bolt of electricity that leaps between targets, dealing magical damage to each. <font color='#70EA72'>Deals more damage, jumps more, higher chance to proc and larger jump radius</font>."
