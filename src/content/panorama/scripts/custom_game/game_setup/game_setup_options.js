@@ -609,16 +609,21 @@ var basicOptions = {
                         extraInfo: 'lodOptionAboutNoHealthbars',
                         about: 'lodMutatorNoHealthbars'
                     },
+                    {
+                        name: 'lodOptionInstantCast',
+                        extraInfo: 'lodOptionAboutInstantCast',
+                        about: 'lodMutatorInstantCast'
+                    },
                     // {
                     //     name: 'lodOptionRandomLaneCreeps',
                     //     extraInfo: 'lodOptionAboutRandomLaneCreeps',
                     //     about: 'lodMutatorRandomLaneCreeps'
                     // },
-                    // {
-                    //    name: 'lodOptionResurrectAllies',
-                    //    extraInfo: 'lodOptionAboutResurrectAllies',
-                    //    about: 'lodMutatorResurrectAllies'
-                    // },
+                    {
+                       name: 'lodOptionResurrectAllies',
+                       extraInfo: 'lodOptionAboutResurrectAllies',
+                       about: 'lodMutatorResurrectAllies'
+                    },
                 ]
             }
         ]
@@ -2365,22 +2370,22 @@ var advancedOptions = {
             //        }
             //    ]
             // },
-            // {
-            //    name: 'lodOptionResurrectAllies',
-            //    des: 'lodOptionDesResurrectAllies',
-            //    about: 'lodOptionAboutResurrectAllies',
-            //    sort: 'toggle',
-            //    values: [
-            //        {
-            //            text: 'lodOptionNo',
-            //            value: 0
-            //        },
-            //        {
-            //            text: 'lodOptionYes',
-            //            value: 1
-            //        }
-            //    ]
-            // },
+            {
+               name: 'lodOptionResurrectAllies',
+               des: 'lodOptionDesResurrectAllies',
+               about: 'lodOptionAboutResurrectAllies',
+               sort: 'toggle',
+               values: [
+                   {
+                       text: 'lodOptionNo',
+                       value: 0
+                   },
+                   {
+                       text: 'lodOptionYes',
+                       value: 1
+                   }
+               ]
+            },
             //{
             //    name: 'lodOptionMonkeyBusiness',
             //    des: 'lodOptionDesMonkeyBusiness',
