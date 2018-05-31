@@ -169,6 +169,10 @@ function Ingame:OnHeroLeveledUp(keys)
     -- print(hero:GetUnitName(), level, hero:GetDeathXP(), GetXPForLevel( level ))
 end
 
+function Ingame:OnModifierEvent(keys)
+    print("MODIFIER EVENT")
+    for k,v in pairs(keys) do print(k,v) end
+end
 
 function Ingame:OnPlayerPurchasedItem(keys)
     -- Bots will get items auto-delievered to them
@@ -487,7 +491,7 @@ function Ingame:onStart()
 
     -- Remove powerup runes, spawned before 2 minutes
     Timers:CreateTimer(function ()
-        if math.floor(GameRules:GetDOTATime(false, false)/60) < 2 then
+        if math.floor(GameRules:GetDOTATime(false, false)/60) < 0.2 then
             local spawners = Entities:FindAllByClassname("dota_item_rune_spawner_powerup")
             for k,v in ipairs(spawners) do
                 if v ~= nil then
@@ -588,6 +592,10 @@ function Ingame:onStart()
     GameRules:GetGameModeEntity():SetTrackingProjectileFilter(Dynamic_Wrap(Ingame, 'FilterProjectiles'), self)
     GameRules:GetGameModeEntity():SetModifierGainedFilter(Dynamic_Wrap(Ingame, 'FilterModifiers'),self)
     GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(Ingame, 'FilterDamage'),self)
+    --GameRules:GetGameModeEntity():SetAbilityTuningValueFilter(Dynamic_Wrap(Ingame,"FilterValueTuning"),self)
+
+
+    ListenToGameEvent('modifier_event', Dynamic_Wrap(Ingame, 'OnModifierEvent'), self)
 
     -- -- Listen if abilities are being used.
     --ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(Ingame, 'OnAbilityUsed'), self)
@@ -1544,6 +1552,11 @@ function Ingame:FilterModifyExperience(filterTable)
 end
 
 function Ingame:BountyRunePickupFilter(filterTable)
+    if OptionManager:GetOption('superRunes') == 1 then
+        filterTable.xp_bounty = filterTable.xp_bounty * 2
+        filterTable.gold_bounty = filterTable.gold_bounty * 2
+    end
+
     if OptionManager:GetOption('sharedXP') == 1 then
         local team = PlayerResource:GetPlayer(filterTable.player_id_const):GetTeamNumber()
 
@@ -1915,6 +1928,15 @@ function Ingame:FilterProjectiles(filterTable)
     return true
   end
 
+function Ingame:FilterValueTuning(filterTable)
+    local caster = EntIndexToHScript(filterTable["entindex_caster_const"]) 
+    local ability = EntIndexToHScript(filterTable["entindex_ability_const"]) 
+    -- for k,v in pairs(filterTable) do
+    --     print(k,v)
+    -- end
+    return true
+end
+
 
 function Ingame:FilterDamage( filterTable )
     local victim_index = filterTable["entindex_victim_const"]
@@ -2008,19 +2030,51 @@ function Ingame:FilterDamage( filterTable )
     return true
 end
 
+LinkLuaModifier("modifier_rune_doubledamage_mutated_redux","abilities/mutators/super_runes.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_rune_arcane_mutated_redux","abilities/mutators/super_runes.lua",LUA_MODIFIER_MOTION_NONE)
+function AddRuneModifier(hero,name,duration)
+    
+    local m = hero:AddNewModifier(nil,nil,name,{duration = duration})
+    print(m,hero:GetUnitName(),name,duration)
+end
+
 require('abilities/bash_reflect')
 require('abilities/bash_cooldown')
+
 function Ingame:FilterModifiers( filterTable )
     local parent_index = filterTable["entindex_parent_const"]
     local caster_index = filterTable["entindex_caster_const"]
     local ability_index = filterTable["entindex_ability_const"]
-    if not parent_index or not caster_index or not ability_index then
+
+
+    if not parent_index --[[or not caster_index -or not ability_index]] then
         return true
     end
+    
+    local modifier_name = filterTable.name_const
     local parent = EntIndexToHScript( parent_index )
+    if OptionManager:GetOption('superRunes') == 1 then
+        if modifier_name == "modifier_rune_doubledamage_mutated_redux" then return true end
+        if modifier_name == "modifier_rune_arcane_mutated_redux" then return true end
+        if modifier_name == "modifier_rune_doubledamage" then
+            AddRuneModifier(parent,"modifier_rune_doubledamage_mutated_redux",filterTable.duration)
+            --local m = parent:AddNewModifier(nil,nil,"modifier_rune_doubledamage_mutated_redux",{duration = filterTable.duration})
+            --local m = parent:AddNewModifier(nil,nil,"modifier_vampirism_mutator",{duration = filterTable.duration})
+            return false
+        elseif modifier_name == "modifier_rune_arcane" then
+            AddRuneModifier(parent,"modifier_rune_arcane_mutated_redux",filterTable.duration)
+            --local m = parent:AddNewModifier(nil,nil,"modifier_rune_arcane_mutated_redux",{duration = filterTable.duration})
+            --local m = parent:AddNewModifier(nil,nil,"modifier_vampirism_mutator",{duration = filterTable.duration})
+            return false
+        end
+    end
+
+    if not caster_index or not ability_index then
+        return true
+    end
+    
     local caster = EntIndexToHScript( caster_index )
     local ability = EntIndexToHScript( ability_index )
-    local modifier_name = filterTable.name_const
 
      -- Hero perks
     if not OptionManager:GetOption('disablePerks') then
@@ -2058,8 +2112,11 @@ function Ingame:FilterModifiers( filterTable )
     ReflectBashes(filterTable)
     -- Bash Cooldown
     if OptionManager:GetOption('antiBash') == 1 then
-        if not BashCooldown(filterTable) then return false end
+        if not BashCooldown(filterTable) then 
+            return false 
+        end
     end
+
     return true
 end
 
