@@ -627,13 +627,13 @@ var basicOptions = {
                         name: 'lodOptionGoldDropOnDeath',
                         extraInfo: 'lodOptionAboutGoldDropOnDeath',
                         about: 'lodMutatorGoldDropOnDeath'
-                    },*/
+                    },
                     {
                         name: 'lodOptionNoHealthbars',
                         extraInfo: 'lodOptionAboutNoHealthbars',
                         about: 'lodMutatorNoHealthbars'
                     },
-                    /*
+                    
                     {
                         name: 'lodOptionInstantCast',
                         extraInfo: 'lodOptionAboutInstantCast',
@@ -2430,7 +2430,7 @@ var advancedOptions = {
                         value: 1
                     }
                 ]
-            },         
+            },/*         
             {
 
                 name: 'lodOptionNoHealthbars',
@@ -2447,7 +2447,7 @@ var advancedOptions = {
                         value: 1
                     }
                 ]
-            },          
+            },  */        
             // {
             //    name: 'lodOptionRandomLaneCreeps',
             //    des: 'lodOptionDesRandomLaneCreeps',
