@@ -3006,9 +3006,6 @@
     "DOTA_Tooltip_modifier_brawler_agi_effect_datadriven"                          "Brawler AGI"
     "DOTA_Tooltip_modifier_brawler_agi_effect_datadriven_Description"              "Bonus Agility. Activated by nearby enemy heroes."
 
-    "DOTA_Tooltip_Modifier_explosive_spore"        "Explosive"
-    "DOTA_Tooltip_Modifier_explosive_spore_Description"    "This unit will explode upon dying, dealing magical damage to units within 350 units."
-
     "DOTA_Tooltip_Modifier_garden_channel"        "Fertilizing Plot"
     "DOTA_Tooltip_Modifier_garden_channel_Description"    "Creating a garden plot after 2 seconds of channeling."
     "DOTA_Tooltip_Modifier_yellow_flower_aura"        "Attackspeed Bonus"
@@ -3016,6 +3013,26 @@
 
     "DOTA_Tooltip_Modifier_aghs_thorns"        "Thorns"
     "DOTA_Tooltip_Modifier_aghs_thorns_Description"      "Increased armor. Damages enemies on being attacked."
+
+    // Modifiers
+    "DOTA_Tooltip_modifier_creep_power"      "Creep Power"
+    "DOTA_Tooltip_modifier_creep_power_Description"      "Damage, bounty and health increased."
+
+    "DOTA_Tooltip_modifier_neutral_power"      "Neutral Power"
+    "DOTA_Tooltip_modifier_neutral_power_Description"      "Health, damage and exp/gold bounty increased."
+
+    "DOTA_Tooltip_Modifier_sleep_cloud_aura"      "Sleep Aura"
+    "DOTA_Tooltip_Modifier_sleep_cloud_aura_Description"    "Affected units will fall asleep if they stay within the cloud for 4 seconds."
+    "DOTA_Tooltip_Modifier_sleep_cloud_effect"      "Sleep Effect"
+    "DOTA_Tooltip_Modifier_sleep_cloud_effect_Description"    "Unit is asleep and will wake up if they take a certain amount of damage."
+
+    "DOTA_Tooltip_Modifier_synthesis_day"        "Synthesis Day"
+    "DOTA_Tooltip_Modifier_synthesis_day_Description"    "Converting Health into Mana"
+    "DOTA_Tooltip_Modifier_synthesis_night"        "Synthesis Night"
+    "DOTA_Tooltip_Modifier_synthesis_night_Description"    "Converting Mana into Health"
+
+    "DOTA_Tooltip_Modifier_explosive_spore"        "Explosive"
+    "DOTA_Tooltip_Modifier_explosive_spore_Description"    "This unit will explode upon dying, dealing magical damage to units within 350 units."
 
     // Units
     "explosive_spore"       "Explosive Spore"

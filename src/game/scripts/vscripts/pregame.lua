@@ -8508,7 +8508,9 @@ function Pregame:fixSpawningIssues()
             --end
             -- Make sure it is a hero
             if spawnedUnit:IsHero() then
-            elseif string.match(spawnedUnit:GetUnitName(), "creep") or string.match(spawnedUnit:GetUnitName(), "siege") or spawnedUnit:GetTeam() == DOTA_TEAM_NEUTRALS then
+                -- Do nothing
+            end
+            if string.match(spawnedUnit:GetUnitName(), "creep") or string.match(spawnedUnit:GetUnitName(), "siege") or spawnedUnit:GetTeam() == DOTA_TEAM_NEUTRALS then
                 if this.optionStore['lodOptionLaneCreepBonusAbility'] > 0 then
 
                     if this.optionStore['lodOptionLaneCreepBonusAbility'] == 1 then -- Random All: All Creeps get the same random ability
@@ -8559,8 +8561,9 @@ function Pregame:fixSpawningIssues()
 
                     creepAbility:SetLevel(level)
                 end
+            end
 
-            elseif string.match(spawnedUnit:GetUnitName(), "creep") or string.match(spawnedUnit:GetUnitName(), "siege") then
+            if string.match(spawnedUnit:GetUnitName(), "creep") or string.match(spawnedUnit:GetUnitName(), "siege") then
                 if this.optionStore['lodOptionCreepPower'] > 0 then
                     local dotaTime = GameRules:GetDOTATime(false, false)
                     local level = math.ceil(dotaTime / this.optionStore['lodOptionCreepPower'])

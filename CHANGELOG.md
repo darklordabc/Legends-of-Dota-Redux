@@ -2,6 +2,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 11.2
+- Added Free Creep Ability mutator
+- Added Explode on Death Mutator
+- Disabled Adventrous Gale cause it crashes the game, and Echo stomp because it crashes while ancestral spirit is out
+- Fixed a bug that would disable the creep power mutator if creep extra ability was enabled
+
 ## 11.1
 - Following Lingering Souls ability has had their max value per soul reduced: Agility (0.5 to 0.4), Base Damge (1.5 to 1), Strength (0.5 to 0.4), Attack Range (2.4 to 2), Attack Speed (4 to 3)
 - Lingering Souls per soul bonus now scales with level, no longer flat value. 
@@ -18,9 +24,6 @@ All notable changes to this project will be documented in this file.
 - Added Random Individual for Bot Difficulty Settings (Every bot gets a random difficulty)
 - Moved most souls and survival abilities to single player abilities and improved their stats
 - Added Patreon Button
-- Added Free Creep Ability mutator
-- Disabled Adventrous Gale cause it crashes the game, and Echo stomp because it crashes while ancestral spirit is out
-
 
 ## 11
 - Fixed Nothl Protection Bonus ability mutator
