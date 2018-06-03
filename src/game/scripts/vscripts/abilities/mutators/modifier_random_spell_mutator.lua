@@ -28,9 +28,9 @@ function modifier_random_spell_mutator.OnCreated(self)
         return
     end
     self.level_up_duration=5
-    self.cast_interval=15
+    self.cast_interval=60
     self.warning_time=(self.cast_interval-5)
-    self.random_spells={"invoker_retro_disarm", "dark_seer_surge", "dark_seer_ion_shell","lion_voodoo", "omniknight_repel", "oracle_false_promise", "tusk_walrus_kick", "light_blade","lich_chain_frost", "furion_sprout", "gyrocopter_homing_missile", "keeper_of_the_light_mana_leak","bloodseeker_rupture","zuus_lightning_bolt","invoker_sun_strike","kunkka_torrent","bounty_hunter_track","ancient_apparition_cold_feet","disruptor_glimpse","rubick_telekinesis"}
+    self.random_spells={"invoker_retro_disarm", "dark_seer_surge", "dark_seer_ion_shell","lion_voodoo", "oracle_false_promise", "tusk_walrus_kick", "light_blade","lich_chain_frost", "furion_sprout", "gyrocopter_homing_missile", "keeper_of_the_light_mana_leak","bloodseeker_rupture","zuus_lightning_bolt","invoker_sun_strike","kunkka_torrent","ancient_apparition_cold_feet","disruptor_glimpse","rubick_telekinesis"}
     local unit = self:GetParent()
     TS_forEach(self.random_spells, function(spell)
         local ability = unit:AddAbility(spell)
