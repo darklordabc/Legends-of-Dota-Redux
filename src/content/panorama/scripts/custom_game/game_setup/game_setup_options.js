@@ -587,7 +587,7 @@ var basicOptions = {
                         extraInfo: 'lodOptionAboutAntiBash',
                         about: 'lodMutatorAntiBash'
                     },
-                    {
+                    /*{
                         name: 'lodOptionFastRunes', 
                         extraInfo: 'lodOptionAboutFastRunes',
                         about: 'lodMutatorFastRunes'
@@ -616,22 +616,24 @@ var basicOptions = {
                         name: 'lodOptionCooldownReduction',
                         extraInfo: 'lodOptionAboutCooldownReduction',
                         about: 'lodMutatorCooldownReduction'
-                    },
+                    },*/
                     {
                         name: 'lodOptionExplodeOnDeath',
                         extraInfo: 'lodOptionAboutExplodeOnDeath',
                         about: 'lodMutatorExplodeOnDeath'
                     },
+                    /*
                     {
                         name: 'lodOptionGoldDropOnDeath',
                         extraInfo: 'lodOptionAboutGoldDropOnDeath',
                         about: 'lodMutatorGoldDropOnDeath'
-                    },
+                    },*/
                     {
                         name: 'lodOptionNoHealthbars',
                         extraInfo: 'lodOptionAboutNoHealthbars',
                         about: 'lodMutatorNoHealthbars'
                     },
+                    /*
                     {
                         name: 'lodOptionInstantCast',
                         extraInfo: 'lodOptionAboutInstantCast',
@@ -646,7 +648,7 @@ var basicOptions = {
                        name: 'lodOptionResurrectAllies',
                        extraInfo: 'lodOptionAboutResurrectAllies',
                        about: 'lodMutatorResurrectAllies'
-                    },
+                    },*/
                 ]
             }
         ]
@@ -1659,6 +1661,7 @@ var advancedOptions = {
                     }
                 ]
             },
+            /*
             {
 
                 name: 'lodOptionRandomLaneCreeps',
@@ -1675,7 +1678,7 @@ var advancedOptions = {
                         value: 1
                     }
                 ]
-            }, 
+            }, */
         ]
     },
 
@@ -2297,7 +2300,7 @@ var advancedOptions = {
                     }
                 ]
             },
-            {
+            /*{
                 name: 'lodOptionFastRunes',
                 des: 'lodOptionDesFastRunes',
                 about: 'lodOptionAboutFastRunes',
@@ -2410,7 +2413,7 @@ var advancedOptions = {
                         value: 1
                     }
                 ]
-            },
+            },*/
             {
 
                 name: 'lodOptionExplodeOnDeath',
@@ -2461,6 +2464,7 @@ var advancedOptions = {
             //        }
             //    ]
             // },
+            /*
             {
                name: 'lodOptionResurrectAllies',
                des: 'lodOptionDesResurrectAllies',
@@ -2476,7 +2480,7 @@ var advancedOptions = {
                        value: 1
                    }
                ]
-            },
+            },*/
             //{
             //    name: 'lodOptionMonkeyBusiness',
             //    des: 'lodOptionDesMonkeyBusiness',
