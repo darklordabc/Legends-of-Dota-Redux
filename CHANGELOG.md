@@ -19,7 +19,7 @@ All notable changes to this project will be documented in this file.
 - Moved most souls and survival abilities to single player abilities and improved their stats
 - Added Patreon Button
 - Added Free Creep Ability mutator
-- Disabled Adventrous Gale cause it crashes the game
+- Disabled Adventrous Gale cause it crashes the game, and Echo stomp because it crashes while ancestral spirit is out
 
 
 ## 11
