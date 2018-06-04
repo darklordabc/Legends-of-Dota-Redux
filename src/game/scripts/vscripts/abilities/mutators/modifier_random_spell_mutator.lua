@@ -46,12 +46,19 @@ function modifier_random_spell_mutator.OnIntervalThink(self)
         local rnd = RandomInt(0,#self.random_spells-1)
         self.abilityName = self.random_spells[rnd+1]
         Notifications:TopToAll({ability=self.abilityName, duration=5.0})
+
+        local sounds = {
+            "sounds/ui/panorama/panorama_find_match_cancel_01.vsnd",
+            "sounds/ui/panorama/panorama_find_match_change_options_01.vsnd", 
+            "sounds/ui/panorama/panorama_find_match_slide_in_01.vsnd",
+            "sounds/ui/panorama/panorama_find_match_slide_out_01.vsnd",
+        }
+        EmitGlobalSound(sounds(RandomInt(1,#sounds)))   
         TS_forEach(self.random_spells, function(spell)
             local ability = unit:FindAbilityByName(spell)
 
             ability:SetLevel(math.min(math.floor(GameRules:GetGameTime()/5),ability:GetMaxLevel()))
-        end
-)
+        end)
     end
     if GameRules:GetDOTATime(false,false) > 0 and math.floor(GameRules:GetDOTATime(false,false)%15)==0 then
         local unit = self:GetParent()

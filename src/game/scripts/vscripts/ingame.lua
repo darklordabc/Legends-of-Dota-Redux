@@ -2069,12 +2069,12 @@ function Ingame:FilterModifiers( filterTable )
         end
     end
 
-    if not caster_index or not ability_index then
+    if not caster_index --[[or not ability_index]] then
         return true
     end
     
     local caster = EntIndexToHScript( caster_index )
-    local ability = EntIndexToHScript( ability_index )
+    local ability = EntIndexToHScript( ability_index ) or nil
 
      -- Hero perks
     if not OptionManager:GetOption('disablePerks') then

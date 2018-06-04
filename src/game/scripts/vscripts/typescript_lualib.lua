@@ -85,6 +85,47 @@ function TS_indexOf(list, object )
     return -1
 end
 
+function TS_replace(source, searchVal, newVal)
+    local result = string.gsub(source, searchVal, newVal)
+    return result
+end
+
+function TS_split(str, separator)
+    local out = {}
+
+    if separator == "" then
+        string.gsub(str,".", function(c)
+            table.insert(out, c)
+        end)
+        return out
+    end
+
+    if not string.find(str, separator) then
+        return { str }
+    end
+
+    local fstr = str .. separator
+    local fpat = "(.-)" .. separator
+    local last_end = 1
+    local s, e, cap = string.find(fstr, fpat, 1)
+    while s do
+        table.insert(out, cap)
+        last_end = e+1
+        s, e, cap = string.find(fstr, fpat, last_end)
+    end
+    if last_end <= #str then
+        cap = string.sub(fstr, last_end)
+        table.insert(out, cap)
+    end
+    return out
+end
+
+function TS_push(list, ...)
+    for _, v in ipairs({...}) do
+        list[#list + 1] = v
+    end
+end
+
 -- Set data structure implementation
 Set = Set or {}
 Set.__index = Set

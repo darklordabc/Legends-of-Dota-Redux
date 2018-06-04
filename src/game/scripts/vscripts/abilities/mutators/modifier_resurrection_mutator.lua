@@ -21,8 +21,12 @@ function modifier_resurrection_mutator.IsHidden(self)
     return true
 end
 function modifier_resurrection_mutator.DeclareFunctions(self)
-    return {MODIFIER_EVENT_ON_DEATH}
+    return {
+        MODIFIER_EVENT_ON_DEATH,
+        MODIFIER_PROPERTY_CASTTIME_PERCENTAGE,
+    }
 end
+
 function modifier_resurrection_mutator.OnDeath(self,kv)
     local killedUnit = self:GetParent()
 
@@ -31,21 +35,18 @@ function modifier_resurrection_mutator.OnDeath(self,kv)
 
         newItem:SetPurchaseTime(0)
         newItem:SetPurchaser(killedUnit)
+        newItem:SetCurrentCharges(RandomInt(5,25))
 
         newItem.GetChannelTime = function() return killedUnit:GetTimeUntilRespawn()/3 end
-        print("TABLE PRINT")
-        for k,v in pairs(newItem) do print(k,v) end
-
         local tombstone = SpawnEntityFromTableSynchronous("dota_item_tombstone_drop",{})
         
         tombstone:SetContainedItem(newItem)
-        --tombstone:SetAngles(0,RandomFloat(0,360),0)
         if killedUnit:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
-            tombstone:SetModel("models/heroes/phantom_assassin/arcana_tombstone2.vmdl")
+            --tombstone:SetModel("models/heroes/phantom_assassin/arcana_tombstone2.vmdl")
         else
-            tombstone:SetModel("models/heroes/phantom_assassin/arcana_tombstone3.vmdl")
+            --tombstone:SetModel("models/heroes/phantom_assassin/arcana_tombstone3.vmdl")
         end
         tombstone:SetAbsOrigin(killedUnit:GetAbsOrigin())
-        tombstone:SetModelScale(2)
+        --tombstone:SetModelScale(2)
     end
 end

@@ -4438,17 +4438,17 @@ function Pregame:processOptions()
                     ['Towers: Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],
                     ['Bots: Unique Skills'] = this.optionStore['lodOptionBotsUniqueSkills'],
                     ['Bots: Stupefy'] = this.optionStore['lodOptionBotsStupid'],
-                    --['Mutators: Fast Runes'] = this.optionStore['fastRunes'],
-                    --['Mutators: Super Runes'] = this.optionStore['superRunes'],
-                    --['Mutators: Periodic Spell Cast'] = this.optionStore['periodicSpellCast'],
-                    --['Mutators: Vampirism'] = this.optionStore['vampirism'],
-                    --['Mutators: Kill Streak Power'] = this.optionStore['killstreakPower'],
-                    --['Mutators: Cooldown Reduction'] = this.optionStore['cooldownReduction'],
+                    ['Mutators: Fast Runes'] = this.optionStore['fastRunes'],
+                    ['Mutators: Super Runes'] = this.optionStore['superRunes'],
+                    ['Mutators: Periodic Spell Cast'] = this.optionStore['periodicSpellCast'],
+                    ['Mutators: Vampirism'] = this.optionStore['vampirism'],
+                    ['Mutators: Kill Streak Power'] = this.optionStore['killstreakPower'],
+                    ['Mutators: Cooldown Reduction'] = this.optionStore['cooldownReduction'],
                     ['Mutators: Explode On Death'] = this.optionStore['explodeOnDeath'],
-                    --['Mutators: Gold Drop On Death'] = this.optionStore['goldDropOnDeath'],
-                    --['Mutators: Resurrect Allies'] = this.optionStore['resurrectAllies'],
-                    --['Mutators: Random Lane Creeps'] = this.optionStore['randomLaneCreeps'],
-                    --['Mutators: No Healthbars'] = this.optionStore['noHealthbars'],
+                    ['Mutators: Gold Drop On Death'] = this.optionStore['goldDropOnDeath'],
+                    ['Mutators: Resurrect Allies'] = this.optionStore['resurrectAllies'],
+                    ['Mutators: Random Lane Creeps'] = this.optionStore['randomLaneCreeps'],
+                    ['Mutators: No Healthbars'] = this.optionStore['noHealthbars'],
                 })
 
                 -- Draft arrays
@@ -8508,9 +8508,7 @@ function Pregame:fixSpawningIssues()
             --end
             -- Make sure it is a hero
             if spawnedUnit:IsHero() then
-                -- Do nothing
-            end
-            if string.match(spawnedUnit:GetUnitName(), "creep") or string.match(spawnedUnit:GetUnitName(), "siege") or spawnedUnit:GetTeam() == DOTA_TEAM_NEUTRALS then
+            elseif string.match(spawnedUnit:GetUnitName(), "creep") or string.match(spawnedUnit:GetUnitName(), "siege") or spawnedUnit:GetTeam() == DOTA_TEAM_NEUTRALS then
                 if this.optionStore['lodOptionLaneCreepBonusAbility'] > 0 then
 
                     if this.optionStore['lodOptionLaneCreepBonusAbility'] == 1 then -- Random All: All Creeps get the same random ability
@@ -8561,9 +8559,8 @@ function Pregame:fixSpawningIssues()
 
                     creepAbility:SetLevel(level)
                 end
-            end
 
-            if string.match(spawnedUnit:GetUnitName(), "creep") or string.match(spawnedUnit:GetUnitName(), "siege") then
+            elseif string.match(spawnedUnit:GetUnitName(), "creep") or string.match(spawnedUnit:GetUnitName(), "siege") then
                 if this.optionStore['lodOptionCreepPower'] > 0 then
                     local dotaTime = GameRules:GetDOTATime(false, false)
                     local level = math.ceil(dotaTime / this.optionStore['lodOptionCreepPower'])
