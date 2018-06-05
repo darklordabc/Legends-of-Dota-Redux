@@ -2069,7 +2069,7 @@ function Ingame:FilterModifiers( filterTable )
         end
     end
 
-    if not caster_index --[[or not ability_index]] then
+    if not caster_index or not ability_index then
         return true
     end
     
