@@ -28,6 +28,6 @@ function modifier_drop_gold_bag_mutator.OnDeath(self,kv)
         local newItem = CreateItem("item_bag_of_gold",nil,nil)
         newItem:SetCurrentCharges(1000)
         local item = CreateItemOnPositionSync(self:GetParent():GetAbsOrigin(),newItem)
-        item:SetModel("models/props_gameplay/gold_bag.vmdl")
+        item:SetModel("models/props_gameplay/gold_coin001.vmdl")
     end
 end
