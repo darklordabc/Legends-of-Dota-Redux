@@ -737,6 +737,7 @@ function util:RandomChoice(input)
 end
 
 function CDOTABaseAbility:HasAbilityFlag(flag)
+    if not GameRules.perks[flag] then return false end
     return GameRules.perks[flag][self:GetAbilityName()] ~= nil
 end
 
