@@ -3097,6 +3097,16 @@ function Pregame:initOptionSelector()
             return true
         end,
 
+        -- Other - Turbo Courier
+        lodOptionTurboCourier = function(value)
+            return value == 0 or value == 1
+        end,
+
+        -- Other - Random on Death
+        lodOptionRandomOnDeath = function(value)
+            return value == 0 or value == 1
+        end,
+
         -- Other - Item Drops
         lodOptionDarkMoon = function(value)
             return value == 0 or value == 1
@@ -4021,6 +4031,9 @@ function Pregame:processOptions()
         OptionManager:SetOption('consumeItems', this.optionStore['lodOptionConsumeItems'])
         OptionManager:SetOption('limitPassives', this.optionStore['lodOptionLimitPassives'])
         OptionManager:SetOption('antiBash', this.optionStore['lodOptionAntiBash'])
+        OptionManager:SetOption('turboCourier', this.optionStore['lodOptionTurboCourier'])
+        OptionManager:SetOption('randomOnDeath', this.optionStore['lodOptionRandomOnDeath'])
+
 
         -- Enforce max level
         if OptionManager:GetOption('startingLevel') > OptionManager:GetOption('maxHeroLevel') then
@@ -4334,6 +4347,8 @@ function Pregame:processOptions()
                     ['Other: Item Drops'] = this.optionStore['lodOptionDarkMoon'],
                     ['Other: Black Forest'] = this.optionStore['lodOptionBlackForest'],
                     ['Other: Anti Perma-Stun'] = this.optionStore['lodOptionAntiBash'],
+                    ['Other: Turbo Courier'] = this.optionStore['lodOptionTurboCourier'],
+                    ['Other: Random on Death'] = this.optionStore['lodOptionRandomOnDeath'],
                     ['Towers: Anti-Rat'] = this.optionStore['lodOptionAntiRat'],
                     ['Towers: Enable Stronger Towers'] = this.optionStore['lodOptionGameSpeedStrongTowers'],
                     ['Towers: Towers Per Lane'] = this.optionStore['lodOptionGameSpeedTowersPerLane'],                  
@@ -4946,12 +4961,14 @@ end
 function Pregame:onPlayerReady(eventSourceIndex, args)
     print("Pregame:onPlayerReady")
     local playerID = args.PlayerID
-    if self:getPhase() ~= constants.PHASE_BANNING and self:getPhase() ~= constants.PHASE_SELECTION and self:getPhase() ~= constants.PHASE_RANDOM_SELECTION and self:getPhase() ~= constants.PHASE_REVIEW and not self:canPlayerPickSkill(playerID) then return end
-    if self:isBackgroundSpawning() and self:getPhase() ~= constants.PHASE_BANNING then
-        print("\tcase1")
-        self:validateBuilds(playerID)
+    if not args.randomOnDeath then
+        if self:getPhase() ~= constants.PHASE_BANNING and self:getPhase() ~= constants.PHASE_SELECTION and self:getPhase() ~= constants.PHASE_RANDOM_SELECTION and self:getPhase() ~= constants.PHASE_REVIEW and not self:canPlayerPickSkill(playerID) then return end
+        if self:isBackgroundSpawning() and self:getPhase() ~= constants.PHASE_BANNING then
+            print("\tcase1")
+            self:validateBuilds(playerID)
+        end
     end
-    if self:canPlayerPickSkill(playerID) and IsValidEntity(PlayerResource:GetSelectedHeroEntity(args.PlayerID)) then
+    if (self:canPlayerPickSkill(playerID) or args.randomOnDeath) and IsValidEntity(PlayerResource:GetSelectedHeroEntity(args.PlayerID)) then
         print("\tcase2")
         local hero = PlayerResource:GetSelectedHeroEntity(playerID)
         if IsValidEntity(hero) then
@@ -8176,6 +8193,10 @@ function Pregame:fixSpawningIssues()
                 end, DoUniqueString('applyHeroStuff'), .1)
                 return
             end
+        end
+
+        if spawnedUnit:GetUnitName() == "npc_dota_flying_courier" or spawnedUnit:GetUnitName() == "npc_dota_courier" and OptionManager:GetOption('turboCourier') == 1 then
+            print(spawnedUnit:AddNewModifier(spawnedUnit, nil, "modifier_turbo_courier", {}))
         end
 
         -- Grab their playerID

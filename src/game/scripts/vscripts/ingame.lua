@@ -326,7 +326,7 @@ function Ingame:FilterExecuteOrder(filterTable)
     local unit = EntIndexToHScript(units["0"])
     local ability = EntIndexToHScript(filterTable.entindex_ability)
     local target = EntIndexToHScript(filterTable.entindex_target)
-	
+
     -- if order_type == DOTA_UNIT_ORDER_PURCHASE_ITEM then		
     --     return false		
     -- end		
@@ -1591,10 +1591,10 @@ function Ingame:checkBuybackStatus()
         local unit = EntIndexToHScript(keys.entindex)
 
         if IsValidEntity(unit) then
-            if unit:IsRealHero() and OptionManager:GetOption('buybackCooldownConstant') ~= 420 then
+            if unit:IsRealHero() then
                 Timers:CreateTimer(
                 function()
-                    if IsValidEntity(unit) then
+                    if IsValidEntity(unit) and OptionManager:GetOption('buybackCooldownConstant') ~= 420 then
                         local buyBackLeft = unit:GetBuybackCooldownTime()
                         if buyBackLeft >= 420 then
                             local maxCooldown = OptionManager:GetOption('buybackCooldownConstant')
@@ -1604,6 +1604,18 @@ function Ingame:checkBuybackStatus()
                         end
                     end
                 end, DoUniqueString('buyback'), 0.1)
+
+                if OptionManager:GetOption('randomOnDeath') == 1 then
+                    if not unit.randomOnDeath then
+                        unit.randomOnDeath = true
+                    else
+                        local pID = unit:GetPlayerOwnerID()
+                        GameRules.pregame.selectedSkills[pID] = {}
+                        -- GameRules.pregame.selectedHeroes[pID] = {}
+                        -- GameRules.pregame.selectedPlayerAttr[pID] = ({'str', 'agi', 'int'})[math.random(1,3)]
+                        GameRules.pregame:onPlayerReady(nil, {PlayerID = pID, randomOnDeath = true})
+                    end
+                end
             elseif CustomNetTables:GetTableValue("phase_ingame","duel") and CustomNetTables:GetTableValue("phase_ingame","duel").active == 1 and (string.match(unit:GetUnitName(), "badguys") or string.match(unit:GetUnitName(), "goodguys")) then
                 unit:ForceKill(false)
             end

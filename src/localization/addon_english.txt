@@ -224,7 +224,8 @@
     "lodMutatorBotDifficulty5"                      "Unfair Bots"
     "lodMutatorBotDifficultyRandom"                 "Random Individual"
 
-    
+    "lodMutatorTurboCourier"                            "Turbo Courier"
+    "lodMutatorRandomOnDeath"                            "Random on Death"
 
     "lodMutatorMaxUlts1"                            "2 Ultimates"
     "lodMutatorMaxUlts2"                            "3 Ultimates"

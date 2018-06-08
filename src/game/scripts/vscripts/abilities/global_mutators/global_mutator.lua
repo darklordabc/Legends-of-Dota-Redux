@@ -21,6 +21,8 @@ LinkLuaModifier( "modifier_battle_thirst", "abilities/global_mutators/battle_thi
 LinkLuaModifier( "modifier_battle_thirst_aura", "abilities/global_mutators/battle_thirst.lua" ,LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_battle_thirst_effect", "abilities/global_mutators/battle_thirst.lua" ,LUA_MODIFIER_MOTION_NONE )
 
+LinkLuaModifier( "modifier_turbo_courier", "abilities/global_mutators/global_mutator.lua" ,LUA_MODIFIER_MOTION_NONE )
+
 --------------------------------------------------------------------------------------------------------
 if global_mutator ~= "" then global_mutator = class({}) end
 
@@ -319,3 +321,52 @@ function modifier_gottagoreallyfast_effect:GetModifierMoveSpeed_Max()
 	return 1000
 end
 ----------------------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------------------
+--		Modifier: modifier_gottagofast_effect				
+--------------------------------------------------------------------------------------------------------
+if modifier_turbo_courier ~= "" then modifier_turbo_courier = class({}) end
+----------------------------------------------------------------------------------------------------------
+function modifier_turbo_courier:IsDebuff()
+	return false
+end
+----------------------------------------------------------------------------------------------------------
+function modifier_turbo_courier:GetTexture()
+	return "custom/mutator_gottagofast"
+end
+function modifier_turbo_courier:GetPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
+function modifier_turbo_courier:GetAttributes()
+	return MODIFIER_ATTRIBUTE_PERMANENT
+end
+----------------------------------------------------------------------------------------------------------
+function modifier_turbo_courier:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+		MODIFIER_PROPERTY_MOVESPEED_LIMIT,
+		MODIFIER_PROPERTY_MOVESPEED_MAX,
+		MODIFIER_PROPERTY_FIXED_DAY_VISION,
+		MODIFIER_PROPERTY_FIXED_NIGHT_VISION
+	}
+	return funcs
+end
+function modifier_turbo_courier:GetFixedDayVision()
+	return 32
+end
+function modifier_turbo_courier:GetFixedNightVision()
+	return 32
+end
+----------------------------------------------------------------------------------------------------------
+function modifier_turbo_courier:GetModifierMoveSpeedBonus_Percentage()
+	return 100
+end
+----------------------------------------------------------------------------------------------------------
+function modifier_turbo_courier:GetModifierMoveSpeed_Limit()
+	return 2000
+end
+----------------------------------------------------------------------------------------------------------
+function modifier_turbo_courier:GetModifierMoveSpeed_Max()
+	return 2000
+end

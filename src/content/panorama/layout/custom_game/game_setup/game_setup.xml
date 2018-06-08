@@ -344,7 +344,8 @@
                                      <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorBotDifficultyRandom.png"></Image>
                                      <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorRandom.png"></Image>
 
-
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorTurboCourier.png"></Image>
+                                    <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorRandomOnDeath.png"></Image>
 
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorNoFatOMeter.png"></Image>
                                     <Image class="optionImageCached" src="file://{images}/custom_game/mutators/mutator_lodMutatorFarmFatOMeter.png"></Image>
