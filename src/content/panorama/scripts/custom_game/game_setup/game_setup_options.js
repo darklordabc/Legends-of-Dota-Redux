@@ -608,7 +608,7 @@ var basicOptions = {
                                 'lodOptionRandomOnDeath': 0
                             }
                         }
-                    }
+                    },
 
                     /*{
                         name: 'lodOptionFastRunes', 

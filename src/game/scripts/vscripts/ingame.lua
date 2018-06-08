@@ -1627,6 +1627,7 @@ function Ingame:checkBuybackStatus()
                         -- GameRules.pregame.selectedHeroes[pID] = {}
                         -- GameRules.pregame.selectedPlayerAttr[pID] = ({'str', 'agi', 'int'})[math.random(1,3)]
                         GameRules.pregame:onPlayerReady(nil, {PlayerID = pID, randomOnDeath = true})
+                        GameRules.pregame:applyExtraAbility(PlayerResource:GetSelectedHeroEntity(pID))
                     end
                 end
             elseif CustomNetTables:GetTableValue("phase_ingame","duel") and CustomNetTables:GetTableValue("phase_ingame","duel").active == 1 and (string.match(unit:GetUnitName(), "badguys") or string.match(unit:GetUnitName(), "goodguys")) then
