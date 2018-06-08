@@ -35,6 +35,41 @@
         "ReduxCost"                                                            "0"
     }
 
+    "ability_mjolnir_creep"
+    {
+        "BaseClass"                                                            "ability_lua"
+        "ScriptFile"                                                           "abilities/ability_mjolnir.lua"
+        "AbilityTextureName"                                                   "custom/ability_mjolnir"
+        "AbilityBehavior"                                                      "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        "ItemSellable"                  "0"
+        "MaxLevel"                      "7"
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "chain_chance"          "10 13 15 18 21 23 25"
+            }
+            "02"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "chain_damage"          "10 20 40 60 80 100 120"
+            }
+            "03"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "chain_strikes"         "2 2 3 3 4 4 5"
+            }
+            "04"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "chain_radius"          "800 900 100 1100"
+            }
+        }
+        "ReduxFlags"                                                           "dota_custom"
+        "ReduxCost"                                                            "0"
+    }
+
     "ability_mjolnir_op"
     {
         "BaseClass"                                                            "ability_lua"

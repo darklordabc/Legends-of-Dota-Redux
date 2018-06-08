@@ -128,7 +128,7 @@
 
     "lodOptionYes"                                  "Yes"
     "lodOptionNo"                                   "No"
-    "lodOptionYesHumansOnly"                                  "Yes (Humans Only)"
+    "lodOptionYesHumansOnly"                            "Yes (Humans Only)"
     "lodOptionRandom"                                   "Random"
     "lodMutatorRandom"                                  "Random Bonus Ability"
 
@@ -209,7 +209,7 @@
     "lodMutatorDisablePerks"                        "Disable Perks"
     "lodMutatorDuel"                                "Duels"
     "lodMutatorBoosterDraft"                        "Booster Draft"
-    "lodMutatorDoubleCreeps"                        "Double Lane Creeps"
+    "lodMutatorDoubleCreeps"                        "Multiple Lane Creeps"
 
     "lodMutatorFastBuybackCooldown1"                "Fast Respawn"
     "lodMutatorFastBuybackCooldown2"                "Faster Respawn"
@@ -507,7 +507,7 @@
     "lodMutatorRefreshCooldownsOnDeath"             "Refresh Cooldowns On Death"
 
     "lodOption322"                                  "322"
-    "lodOptionDes322"                               "Enable 322"
+    "lodOptionDes322"                               "322"
     "lodOptionAbout322"                             "Heroes gain 322 gold upon dying instead of losing gold."
     "lodMutator322"                                 "322"
 
@@ -534,47 +534,97 @@
     "lodOptionAboutExtraAbility"                                 "All players gain a free extra ability."
 
     "lodOptionGlobalCast"                                 "Global Cast Range"
-    "lodOptionDesGlobalCast"                               "Enable Global Cast Range"
+    "lodOptionDesGlobalCast"                               "Global Cast Range"
     "lodOptionAboutGlobalCast"                                 "Makes most spells have global cast range. Some spells are disabled (like Fissure) for technial reasons."
     "lodMutatorGlobalCast"                                 "Global Cast Range"
 
     "lodOptionMemesRedux"                                  "Memes Redux"
-    "lodOptionDesMemesRedux"                               "Enable Memes"
+    "lodOptionDesMemesRedux"                               "Memes"
     "lodOptionAboutMemesRedux"                             "Adds all the dankest memes into your game, depending on what abilities you use."
     "lodMutatorMemesRedux"                                 "Memes Redux"
 
     "lodOptionBattleThirst"                                  "Out-of-Sight Peanlty"
-    "lodOptionDesBattleThirst"                               "Enable Out-of-Sight Peanlty"
+    "lodOptionDesBattleThirst"                               "Out-of-Sight Peanlty"
     "lodOptionAboutBattleThirst"                             "Players lose 2 gold per second if they are out of enemies sights for too long."
     "lodMutatorBattleThirst"                                 "Anti-Hiding"
 
     "lodOptionDarkMoon"                                  "Dark Moon Drops"
-    "lodOptionDesDarkMoon"                               "Enable Dark Moon Item Drops"
+    "lodOptionDesDarkMoon"                               "Dark Moon Item Drops"
     "lodOptionAboutDarkMoon"                             "When a unit dies it has a chance to drop one of the items from the Dark Moon event."
     "lodMutatorDarkMoon"                                 "Item Drops"
 
     "lodOptionBlackForest"                                  "Black Forest"
-    "lodOptionDesBlackForest"                               "Enable Black Forest"
+    "lodOptionDesBlackForest"                               "Black Forest"
     "lodOptionAboutBlackForest"                             "At the start of the game a Forest is generated, planting many more trees on the map."
     "lodMutatorBlackForest"                         "Black Forest"
 
     "lodOptionAntiBash"                                  "Anti Perma-Stun"
-    "lodOptionDesAntiBash"                               "Enable Anti Perma-Stun"
+    "lodOptionDesAntiBash"                               "Anti Perma-Stun"
     "lodOptionAboutAntiBash"                             "Makes it so when a hero is bashed, they cannot be bashed again for 5 seconds"
     "lodMutatorAntiBash"                         "Anti Perma-Stun"
 
+    "lodOptionNoHealthbars"                             "No Health Bars"
+    "lodOptionDesNoHealthbars"                          "No Health Bars"
+    "lodOptionAboutNoHealthbars"                        "Heroes will no longer show health or mana bars above them."
+    "lodMutatorNoHealthbars"                            "No Health Bars"
+
+    "lodOptionExplodeOnDeath"                             "Explode on Death"
+    "lodOptionDesExplodeOnDeath"                          "Explode on Death"
+    "lodOptionAboutExplodeOnDeath"                        "Heroes will explode upon death. 150 base damage + 25 damage per level dealt in a 300 area of effect."
+    "lodMutatorExplodeOnDeath"                            "Explode on Death"
+
+    "lodOptionSuperRunes"                                 "Super Runes"
+    "lodOptionDesSuperRunes"                              "Super Runes"
+    "lodOptionAboutSuperRunes"                            "TODO"
+    "lodMutatorSuperRunes"                                "Super Runes
+
+    "lodOptionPeriodicSpellCast"                                 "Periodic Spellcast"
+    "lodOptionDesPeriodicSpellCast"                              "Periodic Spellcast"
+    "lodOptionAboutPeriodicSpellCast"                            "Spells will be cast on all players every few seconds."
+    "lodMutatorPeriodicSpellCast"                                "Periodic Spellcast"
+
+    "lodOptionRandomLaneCreeps"                                 "Random Lane Creeps"
+    "lodOptionDesRandomLaneCreeps"                              "Random Lane Creeps"
+    "lodOptionAboutRandomLaneCreeps"                            "Random neutral creeps will spawn in lanes with regular lane creeps."
+    "lodMutatorRandomLaneCreeps"                                "Random Lane Creeps"
+
+    "lodOptionFastRunes"                                 "Fast Runes"
+    "lodOptionDesFastRunes"                              "Fast Runes"
+    "lodOptionAboutFastRunes"                            "TODO"
+    "lodMutatorFastRunes"                                "Fast Runes
+
+    "lodOptionCooldownReduction"                         "Cooldown Reduction"
+    "lodOptionDesCooldownReduction"                      "Cooldown Reduction"
+    "lodOptionAboutCooldownReduction"                    "Spells have 50% less cooldown and heros have extra mana regen. TODO"
+    "lodMutatorCooldownReduction"                        "Cooldown Reduction"
+
+    "lodOptionGoldDropOnDeath"                         "Drop Gold on Death"
+    "lodOptionDesGoldDropOnDeath"                      "Drop Gold on Death"
+    "lodOptionAboutGoldDropOnDeath"                    "Heroes will drop a sack of gold upon death. TODO"
+    "lodMutatorGoldDropOnDeath"                        "Drop Gold on Death"
+
+    "lodOptionKillStreakPower"                         "Killstreak Power"
+    "lodOptionDesKillStreakPower"                      "Killstreak Power"
+    "lodOptionAboutKillStreakPower"                    "TODO"
+    "lodMutatorKillStreakPower"                        "Killstreak Power"
+
+    "lodOptionVampirism"                               "Vampire"
+    "lodOptionDesVampirism"                            "Vampire"
+    "lodOptionAboutVampirism"                          "TODO"
+    "lodMutatorVampirism"                              "Vampire"
+
     "lodOptionAntiRat"                                  "Anti-Rat"
-    "lodOptionDesAntiRat"                               "Enable Anti-Rat Protection"
+    "lodOptionDesAntiRat"                               "Anti-Rat Protection"
     "lodOptionAboutAntiRat"                             "When Anti-Rat is enabled, Tier3 towers cannot be destroyed unless all the outer towers are dead. Also, towers with backdoor protection cannot be damaged."
     "lodMutatorAntiRat"                                 "Anti-Rat"
 
     "lodOptionConsumeItems"                                  "Consumable Items"
-    "lodOptionDesConsumeItems"                               "Enable Consumable Items"
+    "lodOptionDesConsumeItems"                               "Consumable Items"
     "lodOptionAboutConsumeItems"                             "This enables some late game items to be able to be consumed and gained as a permanent buff (for the cost of the original price)."
     "lodMutatorConsumeItems"                                 "Consumable Items"
 
     "lodOptionLimitPassives"                                  "Limit Passives"
-    "lodOptionDesLimitPassives"                               "Enable Limit Passives"
+    "lodOptionDesLimitPassives"                               "Limit Passives"
     "lodOptionAboutLimitPassives"                             "This will force players to have maximum 3 passives. Semi-Passives are counted as passives (like Empower and Vampiric Aura)."
     "lodMutatorLimitPassives"                                 "Limit Passives"
 
@@ -583,12 +633,12 @@
     "lodOptionDesAdvancedCustomSkills"              "Allow Custom Abilities"
     "lodOptionDesAdvancedIMBASkills"              "Allow Dota IMBA Abilities"
     "lodOptionDesAdvancedOPAbilities"               "Ban OP Abilities"
-    "lodOptionDesCrazyWTF"                          "Enable WTF Mode"
-    "lodOptionDesIngameBuilder"                     "Enable Ingame Hero Builder"
+    "lodOptionDesCrazyWTF"                          "WTF Mode"
+    "lodOptionDesIngameBuilder"                     "Ingame Hero Builder"
     "lodOptionDesIngameBuilderPenalty"              "Build Change Death Penalty (sec.)"
     "lodOptionDesGameSpeedUpgradedUlts"             "Free Aghanim's Scepter"
     "lodOptionDesGameSpeedFreeCourier"              "Free Starting Courier"
-    "lodOptionDesGameSpeedStrongTowers"             "Enable Stronger Towers"
+    "lodOptionDesGameSpeedStrongTowers"             "Stronger Towers"
     "lodOptionDesCreepPower"                        "Increase Lane Creep Power Over Time"
     "lodOptionDesNeutralCreepPower"                        "Increase Neutral Creep Power Over Time"
     "lodOptionDesNeutralMultiply"                   "Multiply Neutral Camps"
@@ -604,7 +654,7 @@
     "lodOptionDesBanningMaxHeroBans"                "Max Hero Bans"
     "lodOptionDesDisablePerks"                      "Disable Perks"
 
-    "lodOptionDesCrazyFatOMeter"                    "Enable Fat-O-Meter"
+    "lodOptionDesCrazyFatOMeter"                    "Fat-O-Meter"
     "lodOptionNoFatOMeter"                          "Disabled"
     "lodOptionFarmFatOMeter"                        "Networth"
     "lodOptionKDAFatOMeter"                         "KDA"
@@ -1251,8 +1301,24 @@
     "lodOptionRestrictDire"                         "Only Dire Bots"
     "lodOptionRestrictBoth"                         "Both Teams"
 
-    "lodOptionAboutLaneMultiply"                    "When Lane Creeps come in contact with an enemy, they will clone a double to help fight. Does not clone siege units."
-    "lodOptionDesLaneMultiply"                      "Double Lane Creeps"
+    "lodOptionAboutLaneMultiply"                    "When Lane Creeps come in contact with an enemy, they will clone a themselves to help fight. Does not clone siege units."
+    "lodOptionAboutLaneMultiplyMutator"             "Can be changed to triple or quadruple lane creeps but only through advanced options menu."
+    "lodOptionDesLaneMultiply"                      "Multiply Lane Creeps"
+
+    "lodOptionLaneCreepBonusAbility"                "Free Creep Ability"
+    "lodOptionDesLaneCreepBonusAbility"             "Free Creep Ability"
+    "lodOptionAboutLaneCreepBonusAbility"           "Gives all creeps (lane, neutral and roshan) a specific ability. Abilities start at level 1 and increase a level every 4 minutes. 'Random All' gives all creeps the same random ability, 'Random Individual' gives each creep a random ability individually."
+
+    "lodMutatorNoAbility"                           "Free Creep Ability"
+    "lodMutatorRandomAll"                           "Random All"
+    "lodMutatorRandomIndividual"                    "Random Individual"
+    "lodMutatorFeast"                               "Feast"
+    "lodMutatorSideGunner"                          "Side Gunner"
+    "lodMutatorReactive"                            "Reactive Armor"
+    "lodMutatorBrawler"                             "Drunken Brawler"
+    "lodMutatorFervor"                              "Fervor"
+    "lodMutatorTimeLock"                            "Time Lock"
+    "lodMutatorMjolnir"                             "Mjolnir"
 
     "statsPlayerName"                               "Player Name"
     "statsTotalGames"                               "Total Games"
@@ -1943,6 +2009,9 @@
 
     "DOTA_Tooltip_modifier_bash_cooldown"                           "Bash Cooldown"
     "DOTA_Tooltip_modifier_bash_cooldown_Description"               "Your hero temporary can't be bashed, because it was bashed recently."
+
+    "DOTA_Tooltip_modifier_vampirism_mutator"                       "Vampire Mode"
+    "DOTA_Tooltip_modifier_vampirism_mutator_Description"           "In the day you lose 1%d% of your health per second. At night you gain 20%d% lifesteal."
 
     "DOTA_Tooltip_modifier_easybot"                           "Easy Bot"
     "DOTA_Tooltip_modifier_easybot_Description"               "Easy bots willingly attack other heroes and use abilities/items (with the exception of Phase Boots, Force Staff, and Orchid Malevolence), but usually at a slow pace, and their last hit timing is not as accurate. Easy bots will not deny creeps. Easy bots will generally not attempt to gank other lanes, and will only group up in small groups to push or defend. Easy bots will not attempt to 'stun-lock' enemies, nor will they try to interrupt channeling spells. Easy bots are fooled by illusions."
@@ -2938,9 +3007,6 @@
     "DOTA_Tooltip_modifier_brawler_agi_effect_datadriven"                          "Brawler AGI"
     "DOTA_Tooltip_modifier_brawler_agi_effect_datadriven_Description"              "Bonus Agility. Activated by nearby enemy heroes."
 
-    "DOTA_Tooltip_Modifier_explosive_spore"        "Explosive"
-    "DOTA_Tooltip_Modifier_explosive_spore_Description"    "This unit will explode upon dying, dealing magical damage to units within 350 units."
-
     "DOTA_Tooltip_Modifier_garden_channel"        "Fertilizing Plot"
     "DOTA_Tooltip_Modifier_garden_channel_Description"    "Creating a garden plot after 2 seconds of channeling."
     "DOTA_Tooltip_Modifier_yellow_flower_aura"        "Attackspeed Bonus"
@@ -2948,6 +3014,26 @@
 
     "DOTA_Tooltip_Modifier_aghs_thorns"        "Thorns"
     "DOTA_Tooltip_Modifier_aghs_thorns_Description"      "Increased armor. Damages enemies on being attacked."
+
+    // Modifiers
+    "DOTA_Tooltip_modifier_creep_power"      "Creep Power"
+    "DOTA_Tooltip_modifier_creep_power_Description"      "Damage, bounty and health increased."
+
+    "DOTA_Tooltip_modifier_neutral_power"      "Neutral Power"
+    "DOTA_Tooltip_modifier_neutral_power_Description"      "Health, damage and exp/gold bounty increased."
+
+    "DOTA_Tooltip_Modifier_sleep_cloud_aura"      "Sleep Aura"
+    "DOTA_Tooltip_Modifier_sleep_cloud_aura_Description"    "Affected units will fall asleep if they stay within the cloud for 4 seconds."
+    "DOTA_Tooltip_Modifier_sleep_cloud_effect"      "Sleep Effect"
+    "DOTA_Tooltip_Modifier_sleep_cloud_effect_Description"    "Unit is asleep and will wake up if they take a certain amount of damage."
+
+    "DOTA_Tooltip_Modifier_synthesis_day"        "Synthesis Day"
+    "DOTA_Tooltip_Modifier_synthesis_day_Description"    "Converting Health into Mana"
+    "DOTA_Tooltip_Modifier_synthesis_night"        "Synthesis Night"
+    "DOTA_Tooltip_Modifier_synthesis_night_Description"    "Converting Mana into Health"
+
+    "DOTA_Tooltip_Modifier_explosive_spore"        "Explosive"
+    "DOTA_Tooltip_Modifier_explosive_spore_Description"    "This unit will explode upon dying, dealing magical damage to units within 350 units."
 
     // Units
     "explosive_spore"       "Explosive Spore"
@@ -3070,6 +3156,52 @@
     "DOTA_Tooltip_ability_garden_purple_lotus_base_Radius"    "AURA RADIUS:"
     "DOTA_Tooltip_ability_garden_purple_lotus_base_resistance"  "%MAGIC RESISTANCE:"
     "DOTA_Tooltip_ability_garden_purple_lotus_base_Flower_health"    "FLOWER HEALTH:"
+
+    "DOTA_Tooltip_ability_garden_teleport"    "Transplant"
+    "DOTA_Tooltip_ability_garden_teleport_Description"    "Teleports this flower to any location within 1500 units."
+
+    "DOTA_Tooltip_ability_destroy_flower"    "Destroy Flower"
+    "DOTA_Tooltip_ability_destroy_flower_Description"    "Destroys this flower if it has not been damaged in the last 3 seconds."
+
+
+    // Modifiers
+    "DOTA_Tooltip_modifier_creep_power"      "Creep Power"
+    "DOTA_Tooltip_modifier_creep_power_Description"      "Damage, bounty and health increased."
+
+    "DOTA_Tooltip_modifier_neutral_power"      "Neutral Power"
+    "DOTA_Tooltip_modifier_neutral_power_Description"      "Health, damage and exp/gold bounty increased."
+
+    "DOTA_Tooltip_Modifier_sleep_cloud_aura"      "Sleep Aura"
+    "DOTA_Tooltip_Modifier_sleep_cloud_aura_Description"    "Affected units will fall asleep if they stay within the cloud for 4 seconds."
+    "DOTA_Tooltip_Modifier_sleep_cloud_effect"      "Sleep Effect"
+    "DOTA_Tooltip_Modifier_sleep_cloud_effect_Description"    "Unit is asleep and will wake up if they take a certain amount of damage."
+
+    "DOTA_Tooltip_Modifier_synthesis_day"        "Synthesis Day"
+    "DOTA_Tooltip_Modifier_synthesis_day_Description"    "Converting Health into Mana"
+    "DOTA_Tooltip_Modifier_synthesis_night"        "Synthesis Night"
+    "DOTA_Tooltip_Modifier_synthesis_night_Description"    "Converting Mana into Health"
+
+    "DOTA_Tooltip_Modifier_explosive_spore"        "Explosive"
+    "DOTA_Tooltip_Modifier_explosive_spore_Description"    "This unit will explode upon dying, dealing magical damage to units within 350 units."
+
+    "DOTA_Tooltip_Modifier_garden_channel"        "Fertilizing Plot"
+    "DOTA_Tooltip_Modifier_garden_channel_Description"    "Creating a garden plot after 2 seconds of channeling."
+    "DOTA_Tooltip_Modifier_yellow_flower_aura"        "Attackspeed Bonus"
+    "DOTA_Tooltip_Modifier_purple_flower_aura"        "Magic Resistance"
+
+    "DOTA_Tooltip_Modifier_aghs_thorns"        "Thorns"
+    "DOTA_Tooltip_Modifier_aghs_thorns_Description"      "Increased armor. Damages enemies on being attacked."
+
+    // Units
+    "explosive_spore"       "Explosive Spore"
+    "garden_plot"           "Garden Plot"
+    "white_flower"          "White Flower"
+    "red_flower"            "Red Flower"
+    "red_flower_OP"         "Scarlet Flower"
+    "pink_flower"           "Pink Blossom"
+    "blue_flower"           "Blue Blossom"
+    "yellow_flower"         "Yellow Daisy"
+    "purple_flower"         "Purple Lotus"
 
     //-------------------------------------------------------------------
     // Zulf, the Stormhunter
@@ -5029,7 +5161,7 @@
         "DOTA_Tooltip_ability_spell_lab_survivor_cooldown"                  "Survival of the Fittest: Cooldown"
         "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_Description"      "Your survival instinct is enhanced. You gain <font color='#70EA72'>Cooldown Reduction</font> for every minute you survive without dying. Does not gain stacks unless you have been seen by the enemy team recently.\nYou keep 33% of your stacks after death."
         "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_bonus"            "%COOLDOWN REDUCTION PER MINUTE:"
-		"DOTA_Tooltip_ability_spell_lab_survivor_cooldown_battle_thirst"    "LAST SEEN COOLDOWN (SECONDS):"
+        "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_battle_thirst"    "LAST SEEN COOLDOWN (SECONDS):"
         "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_Note0"            "Fully retroactive. Reincarnate effects won't reset the stack."
 
         "DOTA_Tooltip_ability_spell_lab_survivor_cooldown_op"                  "Survival of the Fittest: Cooldown OP"
@@ -5100,7 +5232,7 @@
         "DOTA_Tooltip_ability_spell_lab_survivor_spell_boost"                   "Survival of the Fittest: Spell Amplification"
         "DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_Description"       "Your survival instinct is enhanced. You gain <font color='#70EA72'>Spell Amplification</font> for every minute you survive without dying. Does not gain stacks unless you have been seen by the enemy team recently.\nYou keep 33% of your stacks after death."
         "DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_bonus"         "%SPELL AMP PER MINUTE:"
-		"DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_battle_thirst"    "LAST SEEN COOLDOWN (SECONDS):"
+        "DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_battle_thirst"    "LAST SEEN COOLDOWN (SECONDS):"
         "DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_Note0"         "Fully retroactive. Reincarnate effects won't reset the stack."
 
         "DOTA_Tooltip_ability_spell_lab_survivor_spell_boost_op"                   "Survival of the Fittest: Spell Amplification OP"
@@ -7329,6 +7461,14 @@
     "DOTA_Tooltip_ability_ability_mjolnir_chain_damage"                       "CHAIN DAMAGE:"
     "DOTA_Tooltip_ability_ability_mjolnir_chain_strikes"                      "CHAIN TARGETS:"
     "DOTA_Tooltip_ability_ability_mjolnir_chain_radius"                       "CHAIN LEAP RADIUS:"
+
+    "DOTA_Tooltip_ability_ability_mjolnir_creep"            "Hammer of Sparks Creep"
+    "DOTA_Tooltip_ability_ability_mjolnir_creep_Description"        "Charges the Hero, giving a chance on attack to release a bolt of electricity that leaps between targets, dealing magical damage to each. <font color='#70EA72'>Has more levels but deals less damage at ealier levels, and jumps less.</font>"
+    "DOTA_Tooltip_ability_ability_mjolnir_creep_Lore"           "A Hammer not to be confused with its more famous contemporary."
+    "DOTA_Tooltip_ability_ability_mjolnir_creep_chain_chance"                       "%CHAIN CHANCE:"
+    "DOTA_Tooltip_ability_ability_mjolnir_creep_chain_damage"                       "CHAIN DAMAGE:"
+    "DOTA_Tooltip_ability_ability_mjolnir_creep_chain_strikes"                      "CHAIN TARGETS:"
+    "DOTA_Tooltip_ability_ability_mjolnir_creep_chain_radius"                       "CHAIN LEAP RADIUS:"
 
     "DOTA_Tooltip_ability_ability_mjolnir_op"            "Hammer of Thunder"
     "DOTA_Tooltip_ability_ability_mjolnir_op_Description"        "Charges the Hero, giving a chance on attack to release a bolt of electricity that leaps between targets, dealing magical damage to each. <font color='#70EA72'>Deals more damage, jumps more, higher chance to proc and larger jump radius</font>."
@@ -17314,33 +17454,33 @@
     "DOTA_Tooltip_ability_spell_lab_souls_agi_Note0"                                  "SOUL LIMIT is maximum number souls that are counted towards Agility. If you die, you keep souls over that limit."
     "DOTA_Tooltip_ability_spell_lab_souls_agi_max"                      "SOUL LIMIT:"
 
-	"DOTA_Tooltip_ability_spell_lab_souls_str"                                  "Lingering Souls: Strength"
+    "DOTA_Tooltip_ability_spell_lab_souls_str"                                  "Lingering Souls: Strength"
     "DOTA_Tooltip_ability_spell_lab_souls_str_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Strength</font>.\nIf you die before you can recover the dropped souls they are lost forever. You have 80 seconds to recover the dropped souls.\nHero kills earn you 10 souls."
     "DOTA_Tooltip_ability_spell_lab_souls_str_Note0"                                  "SOUL LIMIT is maximum number souls that are counted towards Strength. If you die, you keep souls over that limit."
     "DOTA_Tooltip_ability_spell_lab_souls_str_per_soul"                      "STRENGTH PER SOUL:"
     "DOTA_Tooltip_ability_spell_lab_souls_str_max"                      "SOUL LIMIT:"
 
-	"DOTA_Tooltip_ability_spell_lab_souls_int"                                  "Lingering Souls: Intelligence"
+    "DOTA_Tooltip_ability_spell_lab_souls_int"                                  "Lingering Souls: Intelligence"
     "DOTA_Tooltip_ability_spell_lab_souls_int_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Intelligence</font>.\nIf you die before you can recover the dropped souls they are lost forever. You have 80 seconds to recover the dropped souls.\nHero kills earn you 10 souls."
     "DOTA_Tooltip_ability_spell_lab_souls_int_per_soul"                      "INTELLIGENCE PER SOUL:"
     "DOTA_Tooltip_ability_spell_lab_souls_int_Note0"                                  "SOUL LIMIT is maximum number souls that are counted towards Intelligence. If you die, you keep souls over that limit."
     "DOTA_Tooltip_ability_spell_lab_souls_int_max"                      "SOUL LIMIT:"
 
-	"DOTA_Tooltip_ability_spell_lab_souls_damage"                                  "Lingering Souls: Damage"
+    "DOTA_Tooltip_ability_spell_lab_souls_damage"                                  "Lingering Souls: Damage"
     "DOTA_Tooltip_ability_spell_lab_souls_damage_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Damage</font>.\nIf you die before you can recover the dropped souls they are lost forever. You have 80 seconds to recover the dropped souls.\nHero kills earn you 10 souls."
     "DOTA_Tooltip_ability_spell_lab_souls_damage_per_soul"                      "BASE DAMAGE PER SOUL:"
     "DOTA_Tooltip_ability_spell_lab_souls_damage_Note0"                                  "SOUL LIMIT is maximum number souls that are counted towards Base Damage. If you die, you keep souls over that limit."
     "DOTA_Tooltip_ability_spell_lab_souls_damage_max"                      "SOUL LIMIT:"
 
 
-	"DOTA_Tooltip_spell_lab_souls_str_modifier"                                  "Lingering Souls: Strength"
-	"DOTA_Tooltip_spell_lab_souls_str_modifier_Description"                      "Soul Count"
-	"DOTA_Tooltip_spell_lab_souls_agi_modifier"                                  "Lingering Souls: Agility"
-	"DOTA_Tooltip_spell_lab_souls_agi_modifier_Description"                      "Soul Count"
-	"DOTA_Tooltip_spell_lab_souls_int_modifier"                                  "Lingering Souls: Intelligence"
-	"DOTA_Tooltip_spell_lab_souls_int_modifier_Description"                      "Soul Count"
-	"DOTA_Tooltip_spell_lab_souls_damage_modifier"                                  "Lingering Souls: Damage"
-	"DOTA_Tooltip_spell_lab_souls_damage_modifier_Description"                      "Soul Count"
+    "DOTA_Tooltip_spell_lab_souls_str_modifier"                                  "Lingering Souls: Strength"
+    "DOTA_Tooltip_spell_lab_souls_str_modifier_Description"                      "Soul Count"
+    "DOTA_Tooltip_spell_lab_souls_agi_modifier"                                  "Lingering Souls: Agility"
+    "DOTA_Tooltip_spell_lab_souls_agi_modifier_Description"                      "Soul Count"
+    "DOTA_Tooltip_spell_lab_souls_int_modifier"                                  "Lingering Souls: Intelligence"
+    "DOTA_Tooltip_spell_lab_souls_int_modifier_Description"                      "Soul Count"
+    "DOTA_Tooltip_spell_lab_souls_damage_modifier"                                  "Lingering Souls: Damage"
+    "DOTA_Tooltip_spell_lab_souls_damage_modifier_Description"                      "Soul Count"
 
 
     "DOTA_Tooltip_ability_spell_lab_souls_vision"                                  "Lingering Souls: Vision"
@@ -17349,17 +17489,17 @@
     "DOTA_Tooltip_ability_spell_lab_souls_vision_Note0"                                  "SOUL LIMIT is maximum number souls that are counted towards Vision. If you die, you keep souls over that limit."
     "DOTA_Tooltip_ability_spell_lab_souls_vision_max"                      "SOUL LIMIT:"
 
-	"DOTA_Tooltip_spell_lab_souls_vision_modifier"                                  "Lingering Souls: Vision"
-	"DOTA_Tooltip_spell_lab_souls_vision_modifier_Description"                      "Soul Count"
+    "DOTA_Tooltip_spell_lab_souls_vision_modifier"                                  "Lingering Souls: Vision"
+    "DOTA_Tooltip_spell_lab_souls_vision_modifier_Description"                      "Soul Count"
 
-	"DOTA_Tooltip_ability_spell_lab_souls_armor"                                  "Lingering Souls: Armor"
+    "DOTA_Tooltip_ability_spell_lab_souls_armor"                                  "Lingering Souls: Armor"
     "DOTA_Tooltip_ability_spell_lab_souls_armor_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Armor</font>.\nIf you die before you can recover the dropped souls they are lost forever. You have 80 seconds to recover the dropped souls.\nHero kills earn you 10 souls."
     "DOTA_Tooltip_ability_spell_lab_souls_armor_per_soul"                      "ARMOR PER SOUL:"
     "DOTA_Tooltip_ability_spell_lab_souls_armor_Note0"                                  "SOUL LIMIT is maximum number souls that are counted towards Armor. If you die, you keep souls over that limit."
     "DOTA_Tooltip_ability_spell_lab_souls_armor_max"                      "SOUL LIMIT:"
 
-	"DOTA_Tooltip_spell_lab_souls_armor_modifier"                                  "Lingering Souls: Armor"
-	"DOTA_Tooltip_spell_lab_souls_armor_modifier_Description"                      "Soul Count"
+    "DOTA_Tooltip_spell_lab_souls_armor_modifier"                                  "Lingering Souls: Armor"
+    "DOTA_Tooltip_spell_lab_souls_armor_modifier_Description"                      "Soul Count"
 
     "DOTA_Tooltip_ability_spell_lab_souls_attack_range"                                  "Lingering Souls: Attack Range"
     "DOTA_Tooltip_ability_spell_lab_souls_attack_range_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Attack Range</font>.\nIf you die before you can recover the dropped souls they are lost forever. You have 80 seconds to recover the dropped souls.\nHero kills earn you 10 souls."
@@ -17367,8 +17507,8 @@
     "DOTA_Tooltip_ability_spell_lab_souls_attack_range_Note0"                                  "SOUL LIMIT is maximum number souls that are counted towards Attack Range. If you die, you keep souls over that limit."
     "DOTA_Tooltip_ability_spell_lab_souls_attack_range_max"                      "SOUL LIMIT:"
 
-	"DOTA_Tooltip_spell_lab_souls_attack_range_modifier"                                  "Lingering Souls: Attack Range"
-	"DOTA_Tooltip_spell_lab_souls_attack_range_modifier_Description"                      "Soul Count"
+    "DOTA_Tooltip_spell_lab_souls_attack_range_modifier"                                  "Lingering Souls: Attack Range"
+    "DOTA_Tooltip_spell_lab_souls_attack_range_modifier_Description"                      "Soul Count"
 
     "DOTA_Tooltip_ability_spell_lab_souls_attack_speed"                                  "Lingering Souls: Attack Speed"
     "DOTA_Tooltip_ability_spell_lab_souls_attack_speed_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Attack Speed</font>.\nIf you die before you can recover the dropped souls they are lost forever. You have 80 seconds to recover the dropped souls.\nHero kills earn you 10 souls."
@@ -17376,8 +17516,8 @@
     "DOTA_Tooltip_ability_spell_lab_souls_attack_speed_Note0"                                  "SOUL LIMIT is maximum number souls that are counted towards Attack Speed. If you die, you keep souls over that limit."
     "DOTA_Tooltip_ability_spell_lab_souls_attack_speed_max"                      "SOUL LIMIT:"
 
-	"DOTA_Tooltip_spell_lab_souls_attack_speed_modifier"                                  "Lingering Souls: Attack Speed"
-	"DOTA_Tooltip_spell_lab_souls_attack_speed_modifier_Description"                      "Soul Count"
+    "DOTA_Tooltip_spell_lab_souls_attack_speed_modifier"                                  "Lingering Souls: Attack Speed"
+    "DOTA_Tooltip_spell_lab_souls_attack_speed_modifier_Description"                      "Soul Count"
 
     "DOTA_Tooltip_ability_spell_lab_souls_cast_range"                                  "Lingering Souls: Cast Range"
     "DOTA_Tooltip_ability_spell_lab_souls_cast_range_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Cast Range</font>.\nIf you die before you can recover the dropped souls they are lost forever. You have 80 seconds to recover the dropped souls.\nHero kills earn you 10 souls."
@@ -17385,8 +17525,8 @@
     "DOTA_Tooltip_ability_spell_lab_souls_cast_range_per_soul"                      "CAST RANGE PER SOUL:"
     "DOTA_Tooltip_ability_spell_lab_souls_cast_range_max"                      "SOUL LIMIT:"
 
-	"DOTA_Tooltip_spell_lab_souls_cast_range_modifier"                                  "Lingering Souls: Cast Range"
-	"DOTA_Tooltip_spell_lab_souls_cast_range_modifier_Description"                      "Soul Count"
+    "DOTA_Tooltip_spell_lab_souls_cast_range_modifier"                                  "Lingering Souls: Cast Range"
+    "DOTA_Tooltip_spell_lab_souls_cast_range_modifier_Description"                      "Soul Count"
 
     "DOTA_Tooltip_ability_spell_lab_souls_cooldown"                                  "Lingering Souls: Cooldown"
     "DOTA_Tooltip_ability_spell_lab_souls_cooldown_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Cooldown</font>.\nIf you die before you can recover the dropped souls they are lost forever. You have 80 seconds to recover the dropped souls.\nHero kills earn you 10 souls."
@@ -17394,8 +17534,8 @@
     "DOTA_Tooltip_ability_spell_lab_souls_cooldown_per_soul"                      "%COOLDOWN REDUCTION PER SOUL:"
     "DOTA_Tooltip_ability_spell_lab_souls_cooldown_max"                      "SOUL LIMIT:"
 
-	"DOTA_Tooltip_spell_lab_souls_cooldown_modifier"                                  "Lingering Souls: Cooldown"
-	"DOTA_Tooltip_spell_lab_souls_cooldown_modifier_Description"                      "Soul Count"
+    "DOTA_Tooltip_spell_lab_souls_cooldown_modifier"                                  "Lingering Souls: Cooldown"
+    "DOTA_Tooltip_spell_lab_souls_cooldown_modifier_Description"                      "Soul Count"
 
     "DOTA_Tooltip_ability_spell_lab_souls_evasion"                                  "Lingering Souls: Evasion"
     "DOTA_Tooltip_ability_spell_lab_souls_evasion_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Evasion</font>.\nIf you die before you can recover the dropped souls they are lost forever. You have 80 seconds to recover the dropped souls.\nHero kills earn you 10 souls."
@@ -17403,8 +17543,8 @@
     "DOTA_Tooltip_ability_spell_lab_souls_evasion_per_soul"                      "%EVASION PER SOUL:"
     "DOTA_Tooltip_ability_spell_lab_souls_evasion_max"                      "SOUL LIMIT:"
 
-	"DOTA_Tooltip_spell_lab_souls_evasion_modifier"                                  "Lingering Souls: Evasion"
-	"DOTA_Tooltip_spell_lab_souls_evasion_modifier_Description"                      "Soul Count"
+    "DOTA_Tooltip_spell_lab_souls_evasion_modifier"                                  "Lingering Souls: Evasion"
+    "DOTA_Tooltip_spell_lab_souls_evasion_modifier_Description"                      "Soul Count"
 
     "DOTA_Tooltip_ability_spell_lab_souls_health_regen"                                  "Lingering Souls: Health Regen"
     "DOTA_Tooltip_ability_spell_lab_souls_health_regen_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Health Regen</font>.\nIf you die before you can recover the dropped souls they are lost forever. You have 80 seconds to recover the dropped souls.\nHero kills earn you 10 souls."
@@ -17412,8 +17552,8 @@
     "DOTA_Tooltip_ability_spell_lab_souls_health_regen_per_soul"                      "HEALTH REGEN PER SOUL:"
     "DOTA_Tooltip_ability_spell_lab_souls_health_regen_max"                      "SOUL LIMIT:"
 
-	"DOTA_Tooltip_spell_lab_souls_health_regen_modifier"                                  "Lingering Souls: Health Regen"
-	"DOTA_Tooltip_spell_lab_souls_health_regen_modifier_Description"                      "Soul Count"
+    "DOTA_Tooltip_spell_lab_souls_health_regen_modifier"                                  "Lingering Souls: Health Regen"
+    "DOTA_Tooltip_spell_lab_souls_health_regen_modifier_Description"                      "Soul Count"
 
     "DOTA_Tooltip_ability_spell_lab_souls_magic_resistance"                                  "Lingering Souls: Magic Resistance"
     "DOTA_Tooltip_ability_spell_lab_souls_magic_resistance_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Magic Resistance</font>.\nIf you die before you can recover the dropped souls they are lost forever. You have 80 seconds to recover the dropped souls.\nHero kills earn you 10 souls."
@@ -17421,8 +17561,8 @@
     "DOTA_Tooltip_ability_spell_lab_souls_magic_resistance_per_soul"                      "%MAGIC RESISTANCE PER SOUL:"
     "DOTA_Tooltip_ability_spell_lab_souls_magic_resistance_max"                      "SOUL LIMIT:"
 
-	"DOTA_Tooltip_spell_lab_souls_magic_resistance_modifier"                                  "Lingering Souls: Magic Resistance"
-	"DOTA_Tooltip_spell_lab_souls_magic_resistance_modifier_Description"                      "Soul Count"
+    "DOTA_Tooltip_spell_lab_souls_magic_resistance_modifier"                                  "Lingering Souls: Magic Resistance"
+    "DOTA_Tooltip_spell_lab_souls_magic_resistance_modifier_Description"                      "Soul Count"
 
     "DOTA_Tooltip_ability_spell_lab_souls_mana_regen"                                  "Lingering Souls: Mana Regen"
     "DOTA_Tooltip_ability_spell_lab_souls_mana_regen_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Mana Regen</font>.\nIf you die before you can recover the dropped souls they are lost forever. You have 80 seconds to recover the dropped souls.\nHero kills earn you 10 souls."
@@ -17430,8 +17570,8 @@
     "DOTA_Tooltip_ability_spell_lab_souls_mana_regen_per_soul"                      "MANA REGEN PER SOUL:"
     "DOTA_Tooltip_ability_spell_lab_souls_mana_regen_max"                      "SOUL LIMIT:"
 
-	"DOTA_Tooltip_spell_lab_souls_mana_regen_modifier"                                  "Lingering Souls: Mana Regen"
-	"DOTA_Tooltip_spell_lab_souls_mana_regen_modifier_Description"                      "Soul Count"
+    "DOTA_Tooltip_spell_lab_souls_mana_regen_modifier"                                  "Lingering Souls: Mana Regen"
+    "DOTA_Tooltip_spell_lab_souls_mana_regen_modifier_Description"                      "Soul Count"
 
     "DOTA_Tooltip_ability_spell_lab_souls_move_speed"                                  "Lingering Souls: Move Speed"
     "DOTA_Tooltip_ability_spell_lab_souls_move_speed_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Move Speed</font>.\nIf you die before you can recover the dropped souls they are lost forever. You have 80 seconds to recover the dropped souls.\nHero kills earn you 10 souls."
@@ -17439,8 +17579,8 @@
     "DOTA_Tooltip_ability_spell_lab_souls_move_speed_per_soul"                      "MOVE SPEED PER SOUL:"
     "DOTA_Tooltip_ability_spell_lab_souls_move_speed_max"                      "SOUL LIMIT:"
 
-	"DOTA_Tooltip_spell_lab_souls_move_speed_modifier"                                  "Lingering Souls: Move Speed"
-	"DOTA_Tooltip_spell_lab_souls_move_speed_modifier_Description"                      "Soul Count"
+    "DOTA_Tooltip_spell_lab_souls_move_speed_modifier"                                  "Lingering Souls: Move Speed"
+    "DOTA_Tooltip_spell_lab_souls_move_speed_modifier_Description"                      "Soul Count"
 
     "DOTA_Tooltip_ability_spell_lab_souls_spell_boost"                                  "Lingering Souls: Spell Amplification"
     "DOTA_Tooltip_ability_spell_lab_souls_spell_boost_Description"                      "When killing an enemy, you drain their souls to empower your <font color='#70EA72'>Spell Amplification</font>.\nIf you die before you can recover the dropped souls they are lost forever. You have 80 seconds to recover the dropped souls.\nHero kills earn you 10 souls."
@@ -17448,23 +17588,23 @@
     "DOTA_Tooltip_ability_spell_lab_souls_spell_boost_per_soul"                      "%SPELL AMPLIFICATION PER SOUL:"
     "DOTA_Tooltip_ability_spell_lab_souls_spell_boost_max"                      "SOUL LIMIT:"
 
-	"DOTA_Tooltip_spell_lab_souls_spell_boost_modifier"                                  "Lingering Souls: Spell Amplification"
-	"DOTA_Tooltip_spell_lab_souls_spell_boost_modifier_Description"                      "Soul Count"
+    "DOTA_Tooltip_spell_lab_souls_spell_boost_modifier"                                  "Lingering Souls: Spell Amplification"
+    "DOTA_Tooltip_spell_lab_souls_spell_boost_modifier_Description"                      "Soul Count"
 
 
     "DOTA_Tooltip_ability_spell_lab_one_with_nothing"                                  "One With Nothing"
     "DOTA_Tooltip_ability_spell_lab_one_with_nothing_Description"                      "Instantly spend your entire mana pool."
-    "DOTA_Tooltip_ability_spell_lab_one_with_nothing_Lore"								"When nothing remains, everything is equally possible."
+    "DOTA_Tooltip_ability_spell_lab_one_with_nothing_Lore"                              "When nothing remains, everything is equally possible."
 
 
     "DOTA_Tooltip_ability_spell_lab_missile_storm"                                  "Missile Storm"
     "DOTA_Tooltip_ability_spell_lab_missile_storm_Description"                      "Fires a magic missile at an enemy unit, stunning and dealing damage. This stun stacks with itself.\n\n<h1><font color=\'#7072EA\'>Storm</font></h1>When you cast ability with <font color='#7072EA'>Storm</font> it is cast one additional time for each ability cast in last three seconds. Abilities with zero cooldown are ignored."
     "DOTA_Tooltip_ability_spell_lab_missile_storm_damage"                                  "DAMAGE:"
     "DOTA_Tooltip_ability_spell_lab_missile_storm_duration"                                  "STUN DURATION:"
-    "DOTA_Tooltip_ability_spell_lab_missile_storm_Lore"								"A simple Skywrath technique, honed beyond mere Magic Missile."
+    "DOTA_Tooltip_ability_spell_lab_missile_storm_Lore"                             "A simple Skywrath technique, honed beyond mere Magic Missile."
 
-	"DOTA_Tooltip_spell_lab_storm_modifier"	"Storm"
-	"DOTA_Tooltip_spell_lab_storm_modifier_Description"	"Spells cast in last three seconds."
+    "DOTA_Tooltip_spell_lab_storm_modifier" "Storm"
+    "DOTA_Tooltip_spell_lab_storm_modifier_Description" "Spells cast in last three seconds."
 
 
     "DOTA_Tooltip_ability_spell_lab_storm_minions"                                  "Restless Reaver"
@@ -17473,47 +17613,47 @@
     "DOTA_Tooltip_ability_spell_lab_storm_minions_mana"                                  "REAVER MANA:"
     "DOTA_Tooltip_ability_spell_lab_storm_minions_damage"                                  "REAVER DAMAGE:"
     "DOTA_Tooltip_ability_spell_lab_storm_minions_duration"                                  "DURATION:"
-    "DOTA_Tooltip_ability_spell_lab_storm_minions_Lore"								"Damned spirits are always interested causing some chaos."
+    "DOTA_Tooltip_ability_spell_lab_storm_minions_Lore"                             "Damned spirits are always interested causing some chaos."
 
-	"DOTA_Tooltip_ability_spell_lab_storm_minion_passive"							"Restless Mana Shield"
+    "DOTA_Tooltip_ability_spell_lab_storm_minion_passive"                           "Restless Mana Shield"
     "DOTA_Tooltip_ability_spell_lab_storm_minion_passive_Description"                      "Damage against this unit is dealt to mana before health."
-	"npc_spell_lab_storm_minion_1"	"Restless Reaver"
-	"npc_spell_lab_storm_minion_2"	"Restless Reaver"
-	"npc_spell_lab_storm_minion_3"	"Restless Reaver"
-	"npc_spell_lab_storm_minion_4"	"Restless Reaver"
+    "npc_spell_lab_storm_minion_1"  "Restless Reaver"
+    "npc_spell_lab_storm_minion_2"  "Restless Reaver"
+    "npc_spell_lab_storm_minion_3"  "Restless Reaver"
+    "npc_spell_lab_storm_minion_4"  "Restless Reaver"
 
-	"DOTA_Tooltip_ability_spell_lab_bfg"							"Doctor's Binomial Fibonacci Geometry"
+    "DOTA_Tooltip_ability_spell_lab_bfg"                            "Doctor's Binomial Fibonacci Geometry"
     "DOTA_Tooltip_ability_spell_lab_bfg_Description"                      "Pour as much of your mana into this massive orb of planar energy. The orb snatches enemies into temporal prison releasing them with lethal explosion at the end. Damage is increased by every point of mana spent casting this spell."
-	"DOTA_Tooltip_ability_spell_lab_bfg_mana_pct"							"DAMAGE PER MANA:"
-	"DOTA_Tooltip_ability_spell_lab_bfg_mana_pct_scepter"							"SCEPTER DAMAGE PER MANA:"
-	"DOTA_Tooltip_ability_spell_lab_bfg_aghanim_description"							"Increases damage per mana."
-    "DOTA_Tooltip_ability_spell_lab_bfg_Lore"								"Was found in spell book 'Majestic Spells by Doctor Teaspoon'. Book was later banned due inappropriate spell names."
+    "DOTA_Tooltip_ability_spell_lab_bfg_mana_pct"                           "DAMAGE PER MANA:"
+    "DOTA_Tooltip_ability_spell_lab_bfg_mana_pct_scepter"                           "SCEPTER DAMAGE PER MANA:"
+    "DOTA_Tooltip_ability_spell_lab_bfg_aghanim_description"                            "Increases damage per mana."
+    "DOTA_Tooltip_ability_spell_lab_bfg_Lore"                               "Was found in spell book 'Majestic Spells by Doctor Teaspoon'. Book was later banned due inappropriate spell names."
 
-	"DOTA_Tooltip_ability_spell_lab_taxi"							"Doctor's Tormenting Allied Xeno Invasion"
+    "DOTA_Tooltip_ability_spell_lab_taxi"                           "Doctor's Tormenting Allied Xeno Invasion"
     "DOTA_Tooltip_ability_spell_lab_taxi_Description"                      "Send forward an orb of planar energy, picks up all allied creatures along the way."
-	"DOTA_Tooltip_ability_spell_lab_taxi_radius"					"PICKUP RADIUS:"
+    "DOTA_Tooltip_ability_spell_lab_taxi_radius"                    "PICKUP RADIUS:"
     "DOTA_Tooltip_ability_spell_lab_taxi_cast_range_tooltip"                    "CAST RANGE:"
-    "DOTA_Tooltip_ability_spell_lab_taxi_Lore"								"Was found in spell book 'Majestic Spells by Doctor Teaspoon'. Book was later banned due inappropriate spell names."
+    "DOTA_Tooltip_ability_spell_lab_taxi_Lore"                              "Was found in spell book 'Majestic Spells by Doctor Teaspoon'. Book was later banned due inappropriate spell names."
 
-	"DOTA_Tooltip_ability_spell_lab_ggs"							"Doctor's Divine Golden Shower"
+    "DOTA_Tooltip_ability_spell_lab_ggs"                            "Doctor's Divine Golden Shower"
     "DOTA_Tooltip_ability_spell_lab_ggs_Description"                      "Open rift to heavens pulling beam of planar energy dealing damage based on your Intelligence. You can control the point of impact after summoning the rift.\n<font color='#FF6060'>Warning: The beam is not selected automatically after cast.</font>"
-	"DOTA_Tooltip_ability_spell_lab_ggs_radius"					"RADIUS:"
-	"DOTA_Tooltip_ability_spell_lab_ggs_damage"					"DAMAGE PER INT:"
-	"DOTA_Tooltip_ability_spell_lab_ggs_channel_time"			"CHANNEL TIME:"
-    "DOTA_Tooltip_ability_spell_lab_ggs_Lore"								"Was found in spell book 'Majestic Spells by Doctor Teaspoon'. Book was later banned due inappropriate spell names."
+    "DOTA_Tooltip_ability_spell_lab_ggs_radius"                 "RADIUS:"
+    "DOTA_Tooltip_ability_spell_lab_ggs_damage"                 "DAMAGE PER INT:"
+    "DOTA_Tooltip_ability_spell_lab_ggs_channel_time"           "CHANNEL TIME:"
+    "DOTA_Tooltip_ability_spell_lab_ggs_Lore"                               "Was found in spell book 'Majestic Spells by Doctor Teaspoon'. Book was later banned due inappropriate spell names."
 
-	"npc_spell_lab_ggs_summon"	"Divine Golden Shower"
+    "npc_spell_lab_ggs_summon"  "Divine Golden Shower"
 
-	"DOTA_Tooltip_ability_spell_lab_ggs_passive"							"Doctor's Divine Golden Shower"
+    "DOTA_Tooltip_ability_spell_lab_ggs_passive"                            "Doctor's Divine Golden Shower"
     "DOTA_Tooltip_ability_spell_lab_ggs_passive_Description"                      "Deals damage based on caster's intelligence."
 
-	"DOTA_Tooltip_ability_slark_shadow_dance_redux"								"Shadow Dance Redux"
-	"DOTA_Tooltip_ability_slark_shadow_dance_redux_Description"					"<font color=\'#70EA72\'>Passive component only.</font>\nPassively, when not visible to the enemy team, Slark gains bonus movement speed and health regeneration."
-	"DOTA_Tooltip_ability_slark_shadow_dance_redux_Lore"							"The hidden Thirteenth is a slippery foe."
-	"DOTA_Tooltip_ability_slark_shadow_dance_redux_Note0"							"If Slark is damaged by a neutral unit, the passive movement and health regeneration bonuses are lost for 2 seconds."
-	"DOTA_Tooltip_ability_slark_shadow_dance_redux_Note1"							"The passive movement and health regeneration bonuses have a 0.5 second activation and deactivation delay."
-	"DOTA_Tooltip_ability_slark_shadow_dance_redux_bonus_movement_speed"			"%BONUS MOVEMENT SPEED:"
-	"DOTA_Tooltip_ability_slark_shadow_dance_redux_bonus_regen_pct"				"%HEALTH GAINED PER SECOND:"
+    "DOTA_Tooltip_ability_slark_shadow_dance_redux"                             "Shadow Dance Redux"
+    "DOTA_Tooltip_ability_slark_shadow_dance_redux_Description"                 "Passively, when not visible to the enemy team, Slark gains bonus movement speed and health regeneration.<font color=\'#70EA72\'> Passive component only.</font>"
+    "DOTA_Tooltip_ability_slark_shadow_dance_redux_Lore"                            "The hidden Thirteenth is a slippery foe."
+    "DOTA_Tooltip_ability_slark_shadow_dance_redux_Note0"                           "If Slark is damaged by a neutral unit, the passive movement and health regeneration bonuses are lost for 2 seconds."
+    "DOTA_Tooltip_ability_slark_shadow_dance_redux_Note1"                           "The passive movement and health regeneration bonuses have a 0.5 second activation and deactivation delay."
+    "DOTA_Tooltip_ability_slark_shadow_dance_redux_bonus_movement_speed"            "%BONUS MOVEMENT SPEED:"
+    "DOTA_Tooltip_ability_slark_shadow_dance_redux_bonus_regen_pct"             "%HEALTH GAINED PER SECOND:"
 
     "DOTA_Tooltip_modifier_fountain_break"  "Break Aura"
     "DOTA_Tooltip_modifier_fountain_break_Description"  "Disabling the passives of nearby enemies"
