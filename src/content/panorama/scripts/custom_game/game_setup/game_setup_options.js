@@ -649,6 +649,28 @@ var basicOptions = {
                        extraInfo: 'lodOptionAboutResurrectAllies',
                        about: 'lodMutatorResurrectAllies'
                     },
+		    {
+                        about: 'lodMutatorTurboCourier',
+                        values: {
+                            enabled: {
+                                'lodOptionTurboCourier': 1
+                            },
+                            disabled: {
+                                'lodOptionTurboCourier': 0
+                            }
+                        }
+                    },
+                    {
+                        about: 'lodMutatorRandomOnDeath',
+                        values: {
+                            enabled: {
+                                'lodOptionRandomOnDeath': 1
+                            },
+                            disabled: {
+                                'lodOptionRandomOnDeath': 0
+                            }
+                        }
+                    },	
                 ]
             }
         ]
@@ -2336,6 +2358,38 @@ var advancedOptions = {
                 name: 'lodOptionPeriodicSpellCast',
                 des: 'lodOptionDesPeriodicSpellCast',
                 about: 'lodOptionAboutPeriodicSpellCast',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+	    {
+                name: 'lodOptionTurboCourier',
+                des: 'lodOptionDesTurboCourier',
+                about: 'lodOptionAboutTurboCourier',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionRandomOnDeath',
+                des: 'lodOptionDesRandomOnDeath',
+                about: 'lodOptionAboutRandomOnDeath',
                 sort: 'toggle',
                 values: [
                     {
