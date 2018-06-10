@@ -1,4 +1,4 @@
-// All options JSON (todo: EXPORT IT)
+    // All options JSON (todo: EXPORT IT)
 var basicOptions = {
     // Presets, to make selection FAST
     presets: {
@@ -588,29 +588,6 @@ var basicOptions = {
                         about: 'lodMutatorAntiBash'
                     },
                     {
-                        about: 'lodMutatorTurboCourier',
-                        values: {
-                            enabled: {
-                                'lodOptionTurboCourier': 1
-                            },
-                            disabled: {
-                                'lodOptionTurboCourier': 0
-                            }
-                        }
-                    },
-                    {
-                        about: 'lodMutatorRandomOnDeath',
-                        values: {
-                            enabled: {
-                                'lodOptionRandomOnDeath': 1
-                            },
-                            disabled: {
-                                'lodOptionRandomOnDeath': 0
-                            }
-                        }
-                    },
-
-                    /*{
                         name: 'lodOptionFastRunes', 
                         extraInfo: 'lodOptionAboutFastRunes',
                         about: 'lodMutatorFastRunes'
@@ -639,13 +616,13 @@ var basicOptions = {
                         name: 'lodOptionCooldownReduction',
                         extraInfo: 'lodOptionAboutCooldownReduction',
                         about: 'lodMutatorCooldownReduction'
-                    },*/
+                    },
                     {
                         name: 'lodOptionExplodeOnDeath',
                         extraInfo: 'lodOptionAboutExplodeOnDeath',
                         about: 'lodMutatorExplodeOnDeath'
                     },
-                    /*
+                    
                     {
                         name: 'lodOptionGoldDropOnDeath',
                         extraInfo: 'lodOptionAboutGoldDropOnDeath',
@@ -657,11 +634,11 @@ var basicOptions = {
                         about: 'lodMutatorNoHealthbars'
                     },
                     
-                    {
-                        name: 'lodOptionInstantCast',
-                        extraInfo: 'lodOptionAboutInstantCast',
-                        about: 'lodMutatorInstantCast'
-                    },
+                    // {
+                    //     name: 'lodOptionInstantCast',
+                    //     extraInfo: 'lodOptionAboutInstantCast',
+                    //     about: 'lodMutatorInstantCast'
+                    // },
                     // {
                     //     name: 'lodOptionRandomLaneCreeps',
                     //     extraInfo: 'lodOptionAboutRandomLaneCreeps',
@@ -671,7 +648,7 @@ var basicOptions = {
                        name: 'lodOptionResurrectAllies',
                        extraInfo: 'lodOptionAboutResurrectAllies',
                        about: 'lodMutatorResurrectAllies'
-                    },*/
+                    },
                 ]
             }
         ]
@@ -2324,39 +2301,6 @@ var advancedOptions = {
                 ]
             },
             {
-                name: 'lodOptionTurboCourier',
-                des: 'lodOptionDesTurboCourier',
-                about: 'lodOptionAboutTurboCourier',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
-            {
-                name: 'lodOptionRandomOnDeath',
-                des: 'lodOptionDesRandomOnDeath',
-                about: 'lodOptionAboutRandomOnDeath',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
-
-            /*{
                 name: 'lodOptionFastRunes',
                 des: 'lodOptionDesFastRunes',
                 about: 'lodOptionAboutFastRunes',
@@ -2469,7 +2413,7 @@ var advancedOptions = {
                         value: 1
                     }
                 ]
-            },*/
+            },
             {
 
                 name: 'lodOptionExplodeOnDeath',
@@ -2486,7 +2430,7 @@ var advancedOptions = {
                         value: 1
                     }
                 ]
-            },/*         
+            },         
             {
 
                 name: 'lodOptionNoHealthbars',
@@ -2503,7 +2447,7 @@ var advancedOptions = {
                         value: 1
                     }
                 ]
-            },  */        
+            },        
             // {
             //    name: 'lodOptionRandomLaneCreeps',
             //    des: 'lodOptionDesRandomLaneCreeps',
@@ -2520,7 +2464,7 @@ var advancedOptions = {
             //        }
             //    ]
             // },
-            /*
+                
             {
                name: 'lodOptionResurrectAllies',
                des: 'lodOptionDesResurrectAllies',
@@ -2536,7 +2480,7 @@ var advancedOptions = {
                        value: 1
                    }
                ]
-            },*/
+            },
             //{
             //    name: 'lodOptionMonkeyBusiness',
             //    des: 'lodOptionDesMonkeyBusiness',
