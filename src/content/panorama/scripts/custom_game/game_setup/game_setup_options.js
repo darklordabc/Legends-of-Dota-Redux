@@ -662,6 +662,7 @@ var basicOptions = {
                     },            
                     {
                         about: 'lodMutatorRandomOnDeath',
+                        extraInfo: 'lodOptionAboutRandomOnDeath',
                         values: {
                             enabled: {
                                 'lodOptionRandomOnDeath': 1
@@ -1011,6 +1012,22 @@ var advancedOptions = {
                 name: 'lodOptionGameSpeedFreeCourier',
                 des: 'lodOptionDesGameSpeedFreeCourier',
                 about: 'lodOptionAboutGameSpeedFreeCourier',
+                sort: 'toggle',
+                values: [
+                    {
+                        text: 'lodOptionNo',
+                        value: 0
+                    },
+                    {
+                        text: 'lodOptionYes',
+                        value: 1
+                    }
+                ]
+            },
+            {
+                name: 'lodOptionTurboCourier',
+                des: 'lodOptionDesTurboCourier',
+                about: 'lodOptionAboutTurboCourier',
                 sort: 'toggle',
                 values: [
                     {
@@ -2358,22 +2375,6 @@ var advancedOptions = {
                 name: 'lodOptionPeriodicSpellCast',
                 des: 'lodOptionDesPeriodicSpellCast',
                 about: 'lodOptionAboutPeriodicSpellCast',
-                sort: 'toggle',
-                values: [
-                    {
-                        text: 'lodOptionNo',
-                        value: 0
-                    },
-                    {
-                        text: 'lodOptionYes',
-                        value: 1
-                    }
-                ]
-            },
-	       {
-                name: 'lodOptionTurboCourier',
-                des: 'lodOptionDesTurboCourier',
-                about: 'lodOptionAboutTurboCourier',
                 sort: 'toggle',
                 values: [
                     {

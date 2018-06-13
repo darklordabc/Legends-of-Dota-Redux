@@ -228,6 +228,18 @@
     "lodOptionDesTurboCourier"                      "Turbo Courier"
     "lodOptionAboutTurboCourier"                    "Turbo Courier will move 900% faster and have very limited vision. Courier is not invulnerable."
 
+    "lodOptionRandomOnDeath"                         "Random on Death"
+    "lodOptionDesRandomOnDeath"                      "Random on Death"
+    "lodOptionAboutRandomOnDeath"                    "Upon respawning you will get a new hero and new set of abilities."
+
+    "lodOptionResurrectAllies"                       "Resurrect Allies"
+    "lodOptionDesResurrectAllies"                    "Resurrect Allies"
+    "lodOptionAboutResurrectAllies"                  "When heroes die they leave behind a tombstone that allies can use to resurrect them."
+
+    "lodMutatorResurrectAllies"                            "Resurrect Allies"
+
+    "DOTA_Tooltip_ability_item_tombstone"                "Right Click to Ressurrect"
+
     "lodMutatorTurboCourier"                            "Turbo Courier"
     "lodMutatorRandomOnDeath"                            "Random on Death"
 
