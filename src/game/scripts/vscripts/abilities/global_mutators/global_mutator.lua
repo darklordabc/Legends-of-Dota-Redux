@@ -333,7 +333,7 @@ function modifier_turbo_courier:IsDebuff()
 end
 ----------------------------------------------------------------------------------------------------------
 function modifier_turbo_courier:GetTexture()
-	return "custom/mutator_gottagofast"
+	return "custom/mutator_turbocourier"
 end
 function modifier_turbo_courier:GetPriority()
 	return MODIFIER_PRIORITY_ULTRA
@@ -360,13 +360,13 @@ function modifier_turbo_courier:GetFixedNightVision()
 end
 ----------------------------------------------------------------------------------------------------------
 function modifier_turbo_courier:GetModifierMoveSpeedBonus_Percentage()
-	return 100
+	return 200
 end
 ----------------------------------------------------------------------------------------------------------
 function modifier_turbo_courier:GetModifierMoveSpeed_Limit()
-	return 2000
+	return 4000
 end
 ----------------------------------------------------------------------------------------------------------
 function modifier_turbo_courier:GetModifierMoveSpeed_Max()
-	return 2000
+	return 4000
 end

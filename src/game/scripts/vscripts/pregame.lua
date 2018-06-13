@@ -5076,19 +5076,17 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
     if not args.randomOnDeath then
         if self:getPhase() ~= constants.PHASE_BANNING and self:getPhase() ~= constants.PHASE_SELECTION and self:getPhase() ~= constants.PHASE_RANDOM_SELECTION and self:getPhase() ~= constants.PHASE_REVIEW and not self:canPlayerPickSkill(playerID) then return end
         if self:isBackgroundSpawning() and self:getPhase() ~= constants.PHASE_BANNING then
-            print("\tcase1")
             self:validateBuilds(playerID)
         end
     end
     if (self:canPlayerPickSkill(playerID) or args.randomOnDeath) and IsValidEntity(PlayerResource:GetSelectedHeroEntity(args.PlayerID)) then
-        print("\tcase2")
         local hero = PlayerResource:GetSelectedHeroEntity(playerID)
         if IsValidEntity(hero) then
-            print("\tcase2 validation")
+            local newBuild = util:DeepCopy(self.selectedSkills[playerID])
             -- if self.wispSpawning then
                 self:validateBuilds(playerID)
             -- end
-            local newBuild = util:DeepCopy(self.selectedSkills[playerID])
+            
             local count = 0
             for key,_ in pairs(newBuild) do
                 if tonumber(key) then
@@ -5169,7 +5167,6 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
             end,playerID)
         end
     else
-        print("\tcase3")
         local playerID = args.PlayerID
 
         -- Ensure we have a store for this player's ready state
@@ -7004,19 +7001,8 @@ function Pregame:addBotPlayers()
 end
 
 -- Generate builds for bots
-function Pregame:generateBotBuilds()
-    if OptionManager:GetOption('mapname') ~= "custom_bot" then return end
-
-    -- Ensure bots are actually enabled
-    if not self.enabledBots then return end
-
-    -- Ensure we have bot players allocated
-    if not self.botPlayers.all then return end
-    if self.optionStore['lodOptionBotsUniqueSkills'] == 0 then
-        self.optionStore['lodOptionBotsUniqueSkills'] = self.optionStore['lodOptionAdvancedUniqueSkills']
-    end
-
-    -- Create a table to store bot builds
+function Pregame:generateBotBuilds(singleID)
+        -- Create a table to store bot builds
     --self.botBuilds = {}
     local brokenBots = {}
 
@@ -7060,6 +7046,101 @@ function Pregame:generateBotBuilds()
     local forceBotHeroes = {
         -- npc_dota_hero_nevermore = true
     }
+
+    if singleID and self.botPlayers.all then
+        local playerID = singleID
+        local build = {}
+        local skillID = 1
+        local heroName = 'npc_dota_hero_pudge'
+        if #possibleHeroes > 0 then
+            if util:getTableLength(forceBotHeroes) > 0 then
+                for k,v in pairs(forceBotHeroes) do
+                    if v == true then
+                        heroName = k
+                        forceBotHeroes[k] = nil
+                    end
+                end
+            else
+                if OptionManager:GetOption('botsSameHero') > 0 then
+                    if OptionManager:GetOption('botsSameHero') == 1 then -- If random hero is selected random a choice between 2 and 37
+                        OptionManager:SetOption('botsSameHero', math.random(2, 38))
+                    end
+                    if OptionManager:GetOption('botsSameHero') == 2 then heroName = "npc_dota_hero_axe"
+                    elseif OptionManager:GetOption('botsSameHero') == 3 then heroName = "npc_dota_hero_bane"
+                    elseif OptionManager:GetOption('botsSameHero') == 4 then heroName = "npc_dota_hero_bounty_hunter"
+                    elseif OptionManager:GetOption('botsSameHero') == 5 then heroName = "npc_dota_hero_bloodseeker"
+                    elseif OptionManager:GetOption('botsSameHero') == 6 then heroName = "npc_dota_hero_bristleback"
+                    elseif OptionManager:GetOption('botsSameHero') == 7 then heroName = "npc_dota_hero_chaos_knight"
+                    elseif OptionManager:GetOption('botsSameHero') == 8 then heroName = "npc_dota_hero_crystal_maiden"
+                    elseif OptionManager:GetOption('botsSameHero') == 9 then heroName = "npc_dota_hero_dazzle"
+                    elseif OptionManager:GetOption('botsSameHero') == 10 then heroName = "npc_dota_hero_death_prophet"
+                    elseif OptionManager:GetOption('botsSameHero') == 11 then heroName = "npc_dota_hero_dragon_knight"
+                    elseif OptionManager:GetOption('botsSameHero') == 12 then heroName = "npc_dota_hero_drow_ranger"
+                    elseif OptionManager:GetOption('botsSameHero') == 13 then heroName = "npc_dota_hero_earthshaker"
+                    elseif OptionManager:GetOption('botsSameHero') == 14 then heroName = "npc_dota_hero_jakiro"
+                    elseif OptionManager:GetOption('botsSameHero') == 15 then heroName = "npc_dota_hero_juggernaut"
+                    elseif OptionManager:GetOption('botsSameHero') == 16 then heroName = "npc_dota_hero_kunkka"
+                    elseif OptionManager:GetOption('botsSameHero') == 17 then heroName = "npc_dota_hero_lich"
+                    elseif OptionManager:GetOption('botsSameHero') == 18 then heroName = "npc_dota_hero_lina"
+                    elseif OptionManager:GetOption('botsSameHero') == 19 then heroName = "npc_dota_hero_lion"
+                    elseif OptionManager:GetOption('botsSameHero') == 20 then heroName = "npc_dota_hero_luna"
+                    elseif OptionManager:GetOption('botsSameHero') == 21 then heroName = "npc_dota_hero_necrolyte"
+                    elseif OptionManager:GetOption('botsSameHero') == 22 then heroName = "npc_dota_hero_omniknight"
+                    elseif OptionManager:GetOption('botsSameHero') == 23 then heroName = "npc_dota_hero_oracle"
+                    elseif OptionManager:GetOption('botsSameHero') == 24 then heroName = "npc_dota_hero_phantom_assassin"
+                    elseif OptionManager:GetOption('botsSameHero') == 25 then heroName = "npc_dota_hero_pudge"
+                    elseif OptionManager:GetOption('botsSameHero') == 26 then heroName = "npc_dota_hero_sand_king"
+                    elseif OptionManager:GetOption('botsSameHero') == 27 then heroName = "npc_dota_hero_nevermore"
+                    elseif OptionManager:GetOption('botsSameHero') == 28 then heroName = "npc_dota_hero_skywrath_mage"
+                    elseif OptionManager:GetOption('botsSameHero') == 29 then heroName = "npc_dota_hero_sniper"
+                    elseif OptionManager:GetOption('botsSameHero') == 30 then heroName = "npc_dota_hero_sven"
+                    elseif OptionManager:GetOption('botsSameHero') == 31 then heroName = "npc_dota_hero_tiny"
+                    elseif OptionManager:GetOption('botsSameHero') == 32 then heroName = "npc_dota_hero_vengefulspirit"
+                    elseif OptionManager:GetOption('botsSameHero') == 33 then heroName = "npc_dota_hero_viper"
+                    elseif OptionManager:GetOption('botsSameHero') == 34 then heroName = "npc_dota_hero_warlock"
+                    elseif OptionManager:GetOption('botsSameHero') == 35 then heroName = "npc_dota_hero_windrunner"
+                    elseif OptionManager:GetOption('botsSameHero') == 36 then heroName = "npc_dota_hero_witch_doctor"
+                    elseif OptionManager:GetOption('botsSameHero') == 37 then heroName = "npc_dota_hero_skeleton_king"
+                    elseif OptionManager:GetOption('botsSameHero') == 38 then heroName = "npc_dota_hero_zuus"
+                    end
+                elseif OptionManager:GetOption('duplicateBots') == 1 then -- If allowed duplicates option is on, pick random hero but do not remove from available pool of bot heroes
+                    heroName = possibleHeroes[ math.random( #possibleHeroes ) ]
+                else -- If allowed duplicates is off, pick random hero then remove from pool of available bot heroes
+                    heroName = table.remove(possibleHeroes, math.random(#possibleHeroes))
+                end
+            end
+        end
+
+        -- Generate build
+        local build = {}
+        local skillID = 1
+        local defaultSkills = self.botHeroes[heroName]
+        if defaultSkills then
+            for _, abilityName in pairs(defaultSkills) do
+                if (self.flagsInverse[abilityName] or self.uniqueSkills['replaced_skills'][abilityName]) and not ignoreAbilities[abilityName] then
+                    local newAb = self.uniqueSkills['replaced_skills'][abilityName] and self.uniqueSkills['replaced_skills'][abilityName] or abilityName
+                    build[skillID] = newAb
+                    skillID = skillID + 1
+                end
+            end
+        end
+        self.botPlayers.all[playerID].heroName = heroName
+        self.botPlayers.all[playerID].skillID = skillID
+        self.botPlayers.all[playerID].build = build
+
+        return true
+    end
+
+    if OptionManager:GetOption('mapname') ~= "custom_bot" then return end
+
+    -- Ensure bots are actually enabled
+    if not self.enabledBots then return end
+
+    -- Ensure we have bot players allocated
+    if not self.botPlayers.all then return end
+    if self.optionStore['lodOptionBotsUniqueSkills'] == 0 then
+        self.optionStore['lodOptionBotsUniqueSkills'] = self.optionStore['lodOptionAdvancedUniqueSkills']
+    end
 
     for playerID,botInfo in pairs(self.botPlayers.all) do
         local build = {}

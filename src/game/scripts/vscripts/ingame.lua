@@ -1624,10 +1624,19 @@ function Ingame:checkBuybackStatus()
                     else
                         local pID = unit:GetPlayerOwnerID()
                         GameRules.pregame.selectedSkills[pID] = {}
-                        -- GameRules.pregame.selectedHeroes[pID] = {}
-                        -- GameRules.pregame.selectedPlayerAttr[pID] = ({'str', 'agi', 'int'})[math.random(1,3)]
+                        GameRules.pregame.selectedHeroes[pID] = GameRules.pregame:getRandomHero()
+                        GameRules.pregame.selectedPlayerAttr[pID] = ({'str', 'agi', 'int'})[math.random(1,3)]
+                        if util:isPlayerBot(pID) then
+                            GameRules.pregame.botPlayers.all[pID] = {}
+                            GameRules.pregame:generateBotBuilds(pID)
+
+                            GameRules.pregame.selectedSkills[pID] = GameRules.pregame.botPlayers.all[pID].build
+                            GameRules.pregame.selectedHeroes[pID] = GameRules.pregame.botPlayers.all[pID].heroName
+                        end
                         GameRules.pregame:onPlayerReady(nil, {PlayerID = pID, randomOnDeath = true})
-                        GameRules.pregame:applyExtraAbility(PlayerResource:GetSelectedHeroEntity(pID))
+                        if not util:isPlayerBot(pID) then
+                            GameRules.pregame:applyExtraAbility(PlayerResource:GetSelectedHeroEntity(pID))
+                        end
                     end
                 end
             elseif CustomNetTables:GetTableValue("phase_ingame","duel") and CustomNetTables:GetTableValue("phase_ingame","duel").active == 1 and (string.match(unit:GetUnitName(), "badguys") or string.match(unit:GetUnitName(), "goodguys")) then
