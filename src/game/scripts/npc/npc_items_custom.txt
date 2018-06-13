@@ -467,6 +467,26 @@
 
     }
 
+    //=================================================================================================================
+    //  Pocket Tower
+    //=================================================================================================================
+    "item_redux_pocket_tower"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2260"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "items/pocket_tower.lua"
+        "AbilityTextureName"            "item_pocket_tower"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityCastRange"              "300"
+        "ItemPermanent"                 "0"
+        "ItemInitialCharges"            "1"
+        "ItemRequiresCharges"           "1"
+        "ItemStackable"                 "0"
+        "ItemCost"                      "1"
+    }
+
     "item_assault_consumable"
     {
         "ID"                            "2112"                                                       // unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
