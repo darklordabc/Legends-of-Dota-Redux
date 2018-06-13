@@ -224,6 +224,10 @@
     "lodMutatorBotDifficulty5"                      "Unfair Bots"
     "lodMutatorBotDifficultyRandom"                 "Random Individual"
 
+    "lodOptionTurboCourier"                         "Turbo Courier"
+    "lodOptionDesTurboCourier"                      "Turbo Courier"
+    "lodOptionAboutTurboCourier"                    "Turbo Courier will move 900% faster and have very limited vision. Courier is not invulnerable."
+
     "lodMutatorTurboCourier"                            "Turbo Courier"
     "lodMutatorRandomOnDeath"                            "Random on Death"
 
