@@ -825,7 +825,7 @@ function Pregame:loadDefaultSettings()
     self:setOption('lodOptionBotsUnfairBalance', 1, true)
 
     self:setOption('lodOptionFastRunes', 0, true)
-    self:setOption('lodOptionSuperRunes', 0, true)
+    --self:setOption('lodOptionSuperRunes', 0, true)
     self:setOption('lodOptionPeriodicSpellCast', 0, true)
     self:setOption('lodOptionVampirism', 0, true)
     self:setOption('lodOptionKillStreakPower', 0, true)
@@ -918,6 +918,12 @@ function Pregame:loadDefaultSettings()
 
     -- No Item Drops
     self:setOption("lodOptionDarkMoon", 0)
+
+    -- No Turbo Courier
+    self:setOption("lodOptionTurboCourier", 0)
+
+    -- No Random on Death
+    self:setOption("lodOptionRandomOnDeath", 0)
 
     -- No Dark Forest
     self:setOption('lodOptionBlackForest', 0, true)
@@ -3178,9 +3184,9 @@ function Pregame:initOptionSelector()
             return value == 0 or value == 1
         end,
 
-        lodOptionSuperRunes = function(value)
-            return value == 0 or value == 1
-        end,
+        --lodOptionSuperRunes = function(value)
+        --    return value == 0 or value == 1
+        --end,
         -- Mutators
         lodOptionPeriodicSpellCast = function(value)
             return value == 0 or value == 1
@@ -4117,7 +4123,7 @@ function Pregame:processOptions()
         OptionManager:SetOption('randomOnDeath', this.optionStore['lodOptionRandomOnDeath'])
 
 
-        OptionManager:SetOption('superRunes',this.optionStore['lodOptionSuperRunes'])
+        --OptionManager:SetOption('superRunes',this.optionStore['lodOptionSuperRunes'])
         OptionManager:SetOption('fastRunes',this.optionStore['lodOptionFastRunes'])
         OptionManager:SetOption('periodicSpellCast',this.optionStore['lodOptionPeriodicSpellCast'])
         OptionManager:SetOption('vampirism',this.optionStore['lodOptionVampirism'])
@@ -4454,7 +4460,6 @@ function Pregame:processOptions()
                     ['Bots: Unique Skills'] = this.optionStore['lodOptionBotsUniqueSkills'],
                     ['Bots: Stupefy'] = this.optionStore['lodOptionBotsStupid'],
                     ['Mutators: Fast Runes'] = this.optionStore['fastRunes'],
-                    ['Mutators: Super Runes'] = this.optionStore['superRunes'],
                     ['Mutators: Periodic Spell Cast'] = this.optionStore['periodicSpellCast'],
                     ['Mutators: Vampirism'] = this.optionStore['vampirism'],
                     ['Mutators: Kill Streak Power'] = this.optionStore['killstreakPower'],
@@ -4465,7 +4470,7 @@ function Pregame:processOptions()
                     ['Mutators: Random Lane Creeps'] = this.optionStore['randomLaneCreeps'],
                     ['Mutators: No Healthbars'] = this.optionStore['noHealthbars'],
                 })
-
+                -- ['Mutators: Super Runes'] = this.optionStore['superRunes'],
                 -- Draft arrays
                 if this.useDraftArrays then
                     statCollection:setFlags({

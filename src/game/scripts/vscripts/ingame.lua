@@ -1552,10 +1552,10 @@ function Ingame:FilterModifyExperience(filterTable)
 end
 
 function Ingame:BountyRunePickupFilter(filterTable)
-    if OptionManager:GetOption('superRunes') == 1 then
-        filterTable.xp_bounty = filterTable.xp_bounty * 2
-        filterTable.gold_bounty = filterTable.gold_bounty * 2
-    end
+    --if OptionManager:GetOption('superRunes') == 1 then
+    --    filterTable.xp_bounty = filterTable.xp_bounty * 2
+    --    filterTable.gold_bounty = filterTable.gold_bounty * 2
+    --end
 
     if OptionManager:GetOption('sharedXP') == 1 then
         local team = PlayerResource:GetPlayer(filterTable.player_id_const):GetTeamNumber()
@@ -2075,21 +2075,21 @@ function Ingame:FilterModifiers( filterTable )
     
     local modifier_name = filterTable.name_const
     local parent = EntIndexToHScript( parent_index )
-    if OptionManager:GetOption('superRunes') == 1 then
-        if modifier_name == "modifier_rune_doubledamage_mutated_redux" then return true end
-        if modifier_name == "modifier_rune_arcane_mutated_redux" then return true end
-        if modifier_name == "modifier_rune_doubledamage" then
-            AddRuneModifier(parent,"modifier_rune_doubledamage_mutated_redux",filterTable.duration)
-            --local m = parent:AddNewModifier(nil,nil,"modifier_rune_doubledamage_mutated_redux",{duration = filterTable.duration})
-            --local m = parent:AddNewModifier(nil,nil,"modifier_vampirism_mutator",{duration = filterTable.duration})
-            return false
-        elseif modifier_name == "modifier_rune_arcane" then
-            AddRuneModifier(parent,"modifier_rune_arcane_mutated_redux",filterTable.duration)
-            --local m = parent:AddNewModifier(nil,nil,"modifier_rune_arcane_mutated_redux",{duration = filterTable.duration})
-            --local m = parent:AddNewModifier(nil,nil,"modifier_vampirism_mutator",{duration = filterTable.duration})
-            return false
-        end
-    end
+    --if OptionManager:GetOption('superRunes') == 1 then
+    --    if modifier_name == "modifier_rune_doubledamage_mutated_redux" then return true end
+    --    if modifier_name == "modifier_rune_arcane_mutated_redux" then return true end
+    --    if modifier_name == "modifier_rune_doubledamage" then
+    --        AddRuneModifier(parent,"modifier_rune_doubledamage_mutated_redux",filterTable.duration)
+    --        --local m = parent:AddNewModifier(nil,nil,"modifier_rune_doubledamage_mutated_redux",{duration = filterTable.duration})
+    --        --local m = parent:AddNewModifier(nil,nil,"modifier_vampirism_mutator",{duration = filterTable.duration})
+    --        return false
+    --    elseif modifier_name == "modifier_rune_arcane" then
+    --        AddRuneModifier(parent,"modifier_rune_arcane_mutated_redux",filterTable.duration)
+    --        --local m = parent:AddNewModifier(nil,nil,"modifier_rune_arcane_mutated_redux",{duration = filterTable.duration})
+    --        --local m = parent:AddNewModifier(nil,nil,"modifier_vampirism_mutator",{duration = filterTable.duration})
+    --        return false
+    --    end
+    --end
 
     if not caster_index or not ability_index then
         return true
