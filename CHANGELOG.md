@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - Fixed a bug that would disable the creep power mutator if creep extra ability was enabled
 *
 - Added Turbo Courier Mutator
+- The following mutators have been removed from the main screen, they are still available in advanced options: Bots: Allow Duplicates, Bots Stupify, All bots same hero
 
 ## 11.1
 - Following Lingering Souls ability has had their max value per soul reduced: Agility (0.5 to 0.4), Base Damge (1.5 to 1), Strength (0.5 to 0.4), Attack Range (2.4 to 2), Attack Speed (4 to 3)
