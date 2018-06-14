@@ -619,7 +619,7 @@
 
     "lodOptionGoldDropOnDeath"                         "Drop Gold on Death"
     "lodOptionDesGoldDropOnDeath"                      "Drop Gold on Death"
-    "lodOptionAboutGoldDropOnDeath"                    "Heroes will drop a sack of gold upon death. Sacks gave 150 gold in them."
+    "lodOptionAboutGoldDropOnDeath"                    "Heroes will drop a sack of gold upon death. Sacks have 200 gold in them."
     "lodMutatorGoldDropOnDeath"                        "Drop Gold on Death"
 
     "lodOptionKillStreakPower"                         "Killstreak Power"
