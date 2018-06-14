@@ -53,7 +53,7 @@ function modifier_random_spell_mutator.OnIntervalThink(self)
             "sounds/ui/panorama/panorama_find_match_slide_in_01.vsnd",
             "sounds/ui/panorama/panorama_find_match_slide_out_01.vsnd",
         }
-        EmitGlobalSound(sounds(RandomInt(1,#sounds)))   
+        EmitGlobalSound(sounds[RandomInt(1,#sounds)])   
         TS_forEach(self.random_spells, function(spell)
             local ability = unit:FindAbilityByName(spell)
 
