@@ -59,6 +59,7 @@ LinkLuaModifier("modifier_neutral_power", "abilities/modifiers/modifier_neutral_
 -- Mutator modifiers
 
 LinkLuaModifier("modifier_vampirism_mutator","abilities/mutators/modifier_vampirism_mutator.lua",LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_hunter_mutator","abilities/mutators/modifier_hunter_mutator.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_cooldown_reduction_mutator","abilities/mutators/modifier_cooldown_reduction_mutator.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_death_explosion_mutator","abilities/mutators/modifier_death_explosion_mutator.lua",LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_drop_gold_bag_mutator","abilities/mutators/modifier_drop_gold_bag_mutator.lua",LUA_MODIFIER_MOTION_NONE)
@@ -8186,7 +8187,11 @@ function Pregame:fixSpawnedHero( spawnedUnit )
             end
             -- Add mutator modifiers
             if OptionManager:GetOption('vampirism') == 1 then
-                spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_vampirism_mutator",{})
+                if RollPercentage(50) then
+                    spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_vampirism_mutator",{})
+                else
+                    spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_hunter_mutator",{})
+                end
             end
             if OptionManager:GetOption('killstreakPower') == 1 then
                 spawnedUnit:AddNewModifier(spawnedUnit,nil,"modifier_killstreak_mutator_redux",{})
