@@ -606,12 +606,12 @@
 
     "lodOptionFastRunes"                                 "Fast Runes"
     "lodOptionDesFastRunes"                              "Fast Runes"
-    "lodOptionAboutFastRunes"                            "TODO"
+    "lodOptionAboutFastRunes"                            "Runes spawn every 30 seconds."
     "lodMutatorFastRunes"                                "Fast Runes
 
     "lodOptionCooldownReduction"                         "Cooldown Reduction"
     "lodOptionDesCooldownReduction"                      "Cooldown Reduction"
-    "lodOptionAboutCooldownReduction"                    "Spells have 50% less cooldown and heros have extra mana regen. TODO"
+    "lodOptionAboutCooldownReduction"                    "Spells have 50% less cooldown and heros have extra mana regen."
     "lodMutatorCooldownReduction"                        "Cooldown Reduction"
 
     "lodOptionGoldDropOnDeath"                         "Drop Gold on Death"
