@@ -24,7 +24,7 @@ function modifier_killstreak_mutator_redux.OnCreated(self)
     self.damage_multiplier=20
 end
 function modifier_killstreak_mutator_redux.DeclareFunctions(self)
-    return {MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,MODIFIER_PROPERTY_MODEL_SCALE,MODIFIER_EVENT_ON_DEATH}
+    return {MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE ,MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,MODIFIER_PROPERTY_MODEL_SCALE,MODIFIER_EVENT_ON_DEATH}
 end
 function modifier_killstreak_mutator_redux.OnDeath(self,kv)
     if self:GetParent()==kv.unit then
@@ -48,7 +48,7 @@ function modifier_killstreak_mutator_redux.GetModifierIncomingDamage_Percentage(
 
     return self.damage_multiplier*killStreak
 end
-function modifier_killstreak_mutator_redux.GetModifierDamageOutgoing_Percentage(self)
+function modifier_killstreak_mutator_redux.GetModifierTotalDamageOutgoing_Percentage(self)
     if IsClient() then
         return 0
     end
