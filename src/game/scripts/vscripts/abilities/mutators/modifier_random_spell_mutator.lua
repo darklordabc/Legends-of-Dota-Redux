@@ -41,7 +41,7 @@ function modifier_random_spell_mutator.OnCreated(self)
     self:StartIntervalThink(1)
 end
 function modifier_random_spell_mutator.OnIntervalThink(self)
-    if math.floor(GameRules:GetDOTATime(false,false)%15)==self.warning_time then
+    if math.floor(GameRules:GetDOTATime(false,false)%60)==self.warning_time then
         local unit = self:GetParent()
         local rnd = RandomInt(0,#self.random_spells-1)
         self.abilityName = self.random_spells[rnd+1]
@@ -60,7 +60,7 @@ function modifier_random_spell_mutator.OnIntervalThink(self)
             ability:SetLevel(math.min(math.floor(GameRules:GetGameTime()/5),ability:GetMaxLevel()))
         end)
     end
-    if GameRules:GetDOTATime(false,false) > 0 and math.floor(GameRules:GetDOTATime(false,false)%15)==0 then
+    if GameRules:GetDOTATime(false,false) > 0 and math.floor(GameRules:GetDOTATime(false,false)%60)==0 then
         local unit = self:GetParent()
 
         local rnd = RandomInt(0,#self.random_spells-1)
