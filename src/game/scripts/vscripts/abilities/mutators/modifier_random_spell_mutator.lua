@@ -48,10 +48,10 @@ function modifier_random_spell_mutator.OnIntervalThink(self)
         Notifications:TopToAll({ability=self.abilityName, duration=5.0})
 
         local sounds = {
-            "sounds/ui/panorama/panorama_find_match_cancel_01.vsnd",
-            "sounds/ui/panorama/panorama_find_match_change_options_01.vsnd", 
-            "sounds/ui/panorama/panorama_find_match_slide_in_01.vsnd",
-            "sounds/ui/panorama/panorama_find_match_slide_out_01.vsnd",
+            "ui_find_match_cancel",
+            "ui_find_match_change_options", 
+            "ui_custom_lobby_drawer_slide_in",
+            "ui_custom_lobby_drawer_slide_out",
         }
         EmitGlobalSound(sounds[RandomInt(1,#sounds)])   
         TS_forEach(self.random_spells, function(spell)
