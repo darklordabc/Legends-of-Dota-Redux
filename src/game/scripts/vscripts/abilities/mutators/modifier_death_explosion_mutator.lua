@@ -59,14 +59,14 @@ function modifier_death_explosion_mutator.OnDeath(self,kv)
                 unit:AddNewModifier(nil,nil,"modifier_knockback",knockback_param)
             end)   
 
-            Timers:CreateTimer(function()
+            --Timers:CreateTimer(function()
                 TS_forEach(units, function(unit)
                     if IsValidEntity(unit) then
                         damageTable.victim=unit
                         ApplyDamage(damageTable)
                     end
                 end)
-            end, DoUniqueString('damage_after_knockback'), 0.5)
-        end, DoUniqueString('wait_time_after_death'), 1)
+            --end, DoUniqueString('damage_after_knockback'), 0.5)
+        end, DoUniqueString('explosion_wait_time_after_death'), 1)
     end
 end
