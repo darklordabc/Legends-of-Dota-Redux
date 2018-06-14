@@ -18,7 +18,7 @@ function modifier_killstreak_mutator_redux.IsPurgable(self)
     return false
 end
 function modifier_killstreak_mutator_redux.IsHidden(self)
-    return false
+    return self:GetStackCount() == 0
 end
 function modifier_killstreak_mutator_redux.OnCreated(self)
     self.damage_multiplier=20
