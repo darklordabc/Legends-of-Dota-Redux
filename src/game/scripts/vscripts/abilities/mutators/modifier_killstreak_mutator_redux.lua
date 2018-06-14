@@ -26,6 +26,9 @@ end
 function modifier_killstreak_mutator_redux.DeclareFunctions(self)
     return {MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,MODIFIER_PROPERTY_MODEL_SCALE,MODIFIER_EVENT_ON_DEATH}
 end
+function modifier_killstreak_mutator_redux:GetTexture()
+    return "custom/empress_hellbolt"
+end
 function modifier_killstreak_mutator_redux.OnDeath(self,kv)
     if self:GetParent()==kv.unit then
         self:SetStackCount(0)

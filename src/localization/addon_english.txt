@@ -614,6 +614,9 @@
     "lodOptionAboutCooldownReduction"                    "Spells have 50% less cooldown and heros have extra mana regen."
     "lodMutatorCooldownReduction"                        "Cooldown Reduction"
 
+    "DOTA_Tooltip_modifier_killstreak_mutator_redux"                "Killstreak Power Level"
+    "DOTA_Tooltip_modifier_killstreak_mutator_redux_Description"    "For each kill in a kill streak, you deal AND receive 20%d% extra damage. You also increase in size."
+
     "lodOptionGoldDropOnDeath"                         "Drop Gold on Death"
     "lodOptionDesGoldDropOnDeath"                      "Drop Gold on Death"
     "lodOptionAboutGoldDropOnDeath"                    "Heroes will drop a sack of gold upon death. TODO"
@@ -621,7 +624,7 @@
 
     "lodOptionKillStreakPower"                         "Killstreak Power"
     "lodOptionDesKillStreakPower"                      "Killstreak Power"
-    "lodOptionAboutKillStreakPower"                    "TODO"
+    "lodOptionAboutKillStreakPower"                    "For each kill in a kill streak, players will deal AND receive 20% extra damage. Players also increase in size as their kill streak grows."
     "lodMutatorKillStreakPower"                        "Killstreak Power"
 
     "lodOptionVampirism"                               "Vampire"
@@ -4160,7 +4163,7 @@
 
     /// WRAITH KING​
     "DOTA_Tooltip_modifier_npc_dota_hero_skeleton_king_perk"    "Wraith King Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_skeleton_king_perk_Description"    "Wraith King can buyback with a 50% reduced cooldown, refunding 50% of the buyback cost and removing the gold penalty."
+    "DOTA_Tooltip_modifier_npc_dota_hero_skeleton_king_perk_Description"    "Wraith King can buyback with a 50%d% reduced cooldown, refunding 50%d% of the buyback cost and removing the gold penalty."
 
     /// ZEUS​
     "DOTA_Tooltip_modifier_npc_dota_hero_zuus_perk" "Zeus Perk"
