@@ -561,7 +561,7 @@
 
     "lodOptionBattleThirst"                                  "Out-of-Sight Peanlty"
     "lodOptionDesBattleThirst"                               "Out-of-Sight Peanlty"
-    "lodOptionAboutBattleThirst"                             "Players lose 2 gold per second if they are out of enemies sights for too long."
+    "lodOptionAboutBattleThirst"                             "Players lose 2 gold per second if they are out of enemies sights for 45 seconds."
     "lodMutatorBattleThirst"                                 "Anti-Hiding"
 
     "lodOptionDarkMoon"                                  "Dark Moon Drops"
@@ -2049,7 +2049,7 @@
     "DOTA_Tooltip_modifier_item_ultimate_scepter_consumed_Description" "Permanently granted 'Ultimate Upgrade' benefit from Aghanim's Scepter. Certain ultimates and abilities will be upgraded."
 
     "DOTA_Tooltip_modifier_battle_thirst_effect"  "Out-of-Sight Penalty"
-    "DOTA_Tooltip_modifier_battle_thirst_effect_Description"  "Losing 2 gold per second. You have been unseen by the enemy for too long, reveal yourself to remove this peanlty."
+    "DOTA_Tooltip_modifier_battle_thirst_effect_Description"  "Losing 2 gold per second. You have been unseen by the enemy for 45 seconds, reveal yourself to remove this peanlty."
 
     // Slard Sprint Perk
     "DOTA_Tooltip_modifier_item_phase_boots_datadriven_active"  "Slardar Sprint Perk"
