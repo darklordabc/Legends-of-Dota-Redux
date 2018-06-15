@@ -468,7 +468,7 @@
     }
 
     //=================================================================================================================
-    //  Pocket Tower
+    //  Pocket Towers
     //=================================================================================================================
     "item_redux_pocket_tower"
     {
@@ -479,12 +479,102 @@
         "ScriptFile"                    "items/pocket_tower.lua"
         "AbilityTextureName"            "item_pocket_tower"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
-        "AbilityCastRange"              "300"
+        "AbilityCastRange"              "600"
         "ItemPermanent"                 "0"
         "ItemInitialCharges"            "1"
         "ItemRequiresCharges"           "1"
         "ItemStackable"                 "0"
         "ItemCost"                      "1"
+    }
+
+    "item_redux_pocket_tower_permanent_60"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2261"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "items/pocket_tower_permanent.lua"
+        "AbilityTextureName"            "item_pocket_tower"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityCastRange"              "600"
+        "ItemPermanent"                 "1"
+        "ItemInitialCharges"            "0"
+        "ItemRequiresCharges"           "0"
+        "ItemStackable"                 "0"
+        "ItemCost"                      "1"
+        "AbilityCooldown"               "60"
+    }
+
+    "item_redux_pocket_tower_permanent_120"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2262"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "items/pocket_tower_permanent.lua"
+        "AbilityTextureName"            "item_pocket_tower"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityCastRange"              "600"
+        "ItemPermanent"                 "1"
+        "ItemInitialCharges"            "0"
+        "ItemRequiresCharges"           "0"
+        "ItemStackable"                 "0"
+        "ItemCost"                      "1"
+        "AbilityCooldown"               "120"
+    }
+
+    "item_redux_pocket_tower_permanent_180"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2263"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "items/pocket_tower_permanent.lua"
+        "AbilityTextureName"            "item_pocket_tower"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityCastRange"              "600"
+        "ItemPermanent"                 "1"
+        "ItemInitialCharges"            "0"
+        "ItemRequiresCharges"           "0"
+        "ItemStackable"                 "0"
+        "ItemCost"                      "1"
+        "AbilityCooldown"               "180"
+    }
+
+    "item_redux_pocket_tower_permanent_240"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2264"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "items/pocket_tower_permanent.lua"
+        "AbilityTextureName"            "item_pocket_tower"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityCastRange"              "600"
+        "ItemPermanent"                 "1"
+        "ItemInitialCharges"            "0"
+        "ItemRequiresCharges"           "0"
+        "ItemStackable"                 "0"
+        "ItemCost"                      "1"
+        "AbilityCooldown"               "240"
+    }
+
+    "item_redux_pocket_tower_permanent_300"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+        "ID"                            "2265"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "items/pocket_tower_permanent.lua"
+        "AbilityTextureName"            "item_pocket_tower"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
+        "AbilityCastRange"              "600"
+        "ItemPermanent"                 "1"
+        "ItemInitialCharges"            "0"
+        "ItemRequiresCharges"           "0"
+        "ItemStackable"                 "0"
+        "ItemCost"                      "1"
+        "AbilityCooldown"               "300"
     }
 
     "item_assault_consumable"
