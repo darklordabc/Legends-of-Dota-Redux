@@ -1735,6 +1735,29 @@ function Ingame:giveAntiRatProtection()
     end
 end
 
+function Ingame:updateStrongTowers(tower)
+    self.towerList = LoadKeyValues('scripts/kv/towers.kv')
+    self.usedRandomTowers = {}
+
+    local handledTowers = {}
+
+    if not handledTowers[tower] then
+        -- Main ability handling
+        local difference = 0 -- will always be 0 anyway
+        tower.strongTowerAbilities = tower.strongTowerAbilities or {}
+        local abName = PullTowerAbility(self.towerList, self.usedRandomTowers, self.banList, tower.strongTowerAbilities, difference, tower:GetLevel() * 10, tower)
+        if not tower:HasAbility(abName) and abName then
+            tower:AddAbility(abName):SetLevel(1)
+            self.usedRandomTowers[abName] = true
+            handledTowers[tower] = true
+            table.insert(tower.strongTowerAbilities, abName)
+        end
+
+        tower:AddAbility("imba_tower_counter")
+        tower:FindAbilityByName("imba_tower_counter"):SetLevel(1)
+    end
+end
+
 function Ingame:addStrongTowers()
     ListenToGameEvent('game_rules_state_change', function(keys)
         local newState = GameRules:State_Get()
