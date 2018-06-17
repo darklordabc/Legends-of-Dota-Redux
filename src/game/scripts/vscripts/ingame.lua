@@ -453,6 +453,8 @@ function Ingame:FilterExecuteOrder(filterTable)
     if OptionManager:GetOption('memesRedux') == 1 then
         filterTable = memesOrderFilter(filterTable)
     end
+
+
     return true
 end
 
@@ -610,6 +612,8 @@ function Ingame:onStart()
     ListenToGameEvent("player_chat", Dynamic_Wrap(Commands, 'OnPlayerChat'), self)
 
     ListenToGameEvent("dota_player_learned_ability", Dynamic_Wrap(Ingame, "OnPlayerLearnedAbility"), self)
+
+    ListenToGameEvent( "dota_holdout_revive_complete", Dynamic_Wrap( Ingame, "OnPlayerRevived" ), self )
     
     -- Set it to no team balance
     self:setNoTeamBalanceNeeded()
@@ -2140,6 +2144,21 @@ function Ingame:FilterModifiers( filterTable )
     end
 
     return true
+end
+
+function Ingame:OnPlayerRevived(kv)
+    local hRevivedHero = EntIndexToHScript( event.target )
+    local hReviverHero = EntIndexToHScript( event.caster )
+    if hRevivedHero ~= nil and hRevivedHero:IsRealHero() then
+        hRevivedHero:SetHealth( hRevivedHero:GetMaxHealth() * 0.4 )
+        hRevivedHero:SetMana( hRevivedHero:GetMaxMana() * 0.4 )
+        EmitSoundOn( "Dungeon.HeroRevived", hRevivedHero )
+
+
+        local fInvulnDuration = 3
+        hRevivedHero:AddNewModifier( hRevivedHero, nil, "modifier_invulnerable", { duration = fInvulnDuration } )
+        hRevivedHero:AddNewModifier( hRevivedHero, nil, "modifier_omninight_guardian_angel", { duration = fInvulnDuration } )
+    end
 end
 
 function Ingame:SetPlayerColors( )
