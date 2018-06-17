@@ -32,7 +32,7 @@ function modifier_resurrection_mutator.OnDeath(self,kv)
 
     if kv.unit==killedUnit then
 
-        local numb = math.max(1,math.ceil(killedUnit:GetRespawnTime()/9) * 3)
+        local numb = math.max(1,math.ceil(killedUnit:GetRespawnTime()/9))
         local newItem = CreateItem("item_tombstone_"..numb,killedUnit:GetPlayerOwner(),killedUnit:GetPlayerOwner())
 
         newItem:SetPurchaseTime(0)
