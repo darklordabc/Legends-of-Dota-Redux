@@ -30,10 +30,11 @@ end
 function modifier_resurrection_mutator.OnDeath(self,kv)
     local killedUnit = self:GetParent()
 
-    if kv.unit==killedUnit then
+    if kv.unit==killedUnit and not killedUnit:IsReincarnating() then
 
-        local numb = math.max(1,math.ceil(killedUnit:GetRespawnTime()/3))
-        local newItem = CreateItem("item_tombstone_"..numb,killedUnit:GetPlayerOwner(),killedUnit:GetPlayerOwner())
+        local timeLeft = killedUnit.timeLeft or killedUnit:GetRespawnTime()
+        local numb = math.min(50,math.max(1,math.ceil(timeLeft/3)))
+        local newItem = CreateItem("item_tombstone_".."1",killedUnit:GetPlayerOwner(),killedUnit:GetPlayerOwner())
 
         newItem:SetPurchaseTime(0)
         newItem:SetPurchaser(killedUnit)

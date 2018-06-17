@@ -1338,7 +1338,7 @@ function Ingame:handleRespawnModifier()
                             -------
                             -- Anti-Kamikaze Mechanic END
                             -------
-
+                            hero.timeLeft = timeLeft
                             hero:SetTimeUntilRespawn(timeLeft)
 
                             -- Give 322 gold if enabled
