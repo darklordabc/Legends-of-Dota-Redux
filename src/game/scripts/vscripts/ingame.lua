@@ -2146,7 +2146,7 @@ function Ingame:FilterModifiers( filterTable )
     return true
 end
 
-function Ingame:OnPlayerRevived(kv)
+function Ingame:OnPlayerRevived(event)
     local hRevivedHero = EntIndexToHScript( event.target )
     local hReviverHero = EntIndexToHScript( event.caster )
     if hRevivedHero ~= nil and hRevivedHero:IsRealHero() then
