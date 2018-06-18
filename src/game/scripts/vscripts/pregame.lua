@@ -5100,6 +5100,17 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
                 end
             end
             local maxCount = self.optionStore['lodOptionCommonMaxSlots']
+            if util:isPlayerBot(playerID) then
+                if self.optionStore['lodOptionBotsRestrict'] > 0 then
+                    if self.optionStore['lodOptionBotsRestrict'] == 1 and PlayerResource:GetTeam(playerID) == DOTA_TEAM_GOODGUYS then
+                        maxCount = 4
+                    elseif self.optionStore['lodOptionBotsRestrict'] == 2 and PlayerResource:GetTeam(playerID) == DOTA_TEAM_BADGUYS then
+                        maxCount = 4
+                    elseif self.optionStore['lodOptionBotsRestrict'] == 3 then
+                        maxCount = 4
+                    end
+                end
+            end
             if count ~= maxCount then
                 for i=1,maxCount do
                     if not newBuild[i] then
@@ -7129,8 +7140,21 @@ function Pregame:generateBotBuilds(singleID)
 
         self.botPlayers.all[playerID].ID = playerID
 
-        self:getSkillforBot(self.botPlayers.all[playerID], botSkills)
-        self:getSkillforBot(self.botPlayers.all[playerID], botSkills)
+        if self.optionStore['lodOptionBotsRestrict'] > 0 then
+            if self.optionStore['lodOptionBotsRestrict'] == 1 and PlayerResource:GetTeam(playerID) == DOTA_TEAM_GOODGUYS then
+                --maxSlots = 4
+            elseif self.optionStore['lodOptionBotsRestrict'] == 2 and PlayerResource:GetTeam(playerID) == DOTA_TEAM_BADGUYS then
+                --maxSlots = 4
+            elseif self.optionStore['lodOptionBotsRestrict'] == 3 then
+                --maxSlots = 4 
+            else
+                self:getSkillforBot(self.botPlayers.all[playerID], botSkills)
+                self:getSkillforBot(self.botPlayers.all[playerID], botSkills) 
+            end
+        else
+            self:getSkillforBot(self.botPlayers.all[playerID], botSkills)
+            self:getSkillforBot(self.botPlayers.all[playerID], botSkills)
+        end
 
         return true
     end
@@ -7349,7 +7373,9 @@ function Pregame:getSkillforBot( botInfo, botSkills )
         botInfo.build = build
         botInfo.heroName = heroName
         botInfo.isDone = true
-        self.isTeamReady[botInfo.team] = self:isTeamBotReady(botInfo.team)
+        if botInfo.team then
+            self.isTeamReady[botInfo.team] = self:isTeamBotReady(botInfo.team)
+        end
 
         -- Network their build
         self:setSelectedHero(playerID, heroName, true)
@@ -7363,7 +7389,7 @@ end
 function Pregame:isTeamBotReady( team )
     local maxSlots = self.optionStore['lodOptionCommonMaxSlots']
     local array = team == DOTA_TEAM_GOODGUYS and self.botPlayers.radiant or team == DOTA_TEAM_BADGUYS and self.botPlayers.dire
-    if #array == 0 then return true end
+    if not array or #array == 0 then return true end
     if array then
         for _,botInfo in pairs(array) do
             if not botInfo.isDone then
