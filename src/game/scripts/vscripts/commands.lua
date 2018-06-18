@@ -75,9 +75,19 @@ function Commands:OnPlayerChat(keys)
        if OptionManager:GetOption('universalShops') == 0 then
             util:CreateVoting("lodVotingUniversalShops", playerID, 10, OptionManager:GetOption('mapname') == 'all_allowed' and 50 or 100, function()
                 OptionManager:SetOption('universalShops', 1)
+                OptionManager:SetOption('turboCourier', 1)
                 GameRules:SetUseUniversalShopMode(true)
+                local groundCouriers = Entities:FindAllByClassname('npc_dota_courier')
+                local flyingCouriers = Entities:FindAllByClassname('npc_dota_flying_courier')
+                -- Loop over all ents
+                for k,groundCouriers in pairs(groundCouriers) do
+                    groundCouriers:AddNewModifier(spawnedUnit, nil, "modifier_turbo_courier", {})               
+                end
+                for k,flyingCouriers in pairs(flyingCouriers) do
+                    flyingCouriers:AddNewModifier(spawnedUnit, nil, "modifier_turbo_courier", {})               
+                end
                 EmitGlobalSound("Event.CheatEnabled")
-                GameRules:SendCustomMessage('Enough players voted to enable universal shops. <font color=\'#70EA72\'>You can now buy any item from any shop</font>.',0,0)
+                GameRules:SendCustomMessage('Enough players voted to enable universal shops. <font color=\'#70EA72\'>You can now buy any item from any shop and turbo couriers are enabled</font>.',0,0)
             end)
         else
             util:DisplayError(playerID, "#universalShopsAlreadyOn")

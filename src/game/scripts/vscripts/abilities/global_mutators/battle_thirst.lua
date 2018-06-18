@@ -1,6 +1,6 @@
 local Timers = require('easytimers')
 
-BATTLE_THIRST_TIME = 60.0
+BATTLE_THIRST_TIME = 45.0
 
 --------------------------------------------------------------------------------------------------------
 --    Modifier: modifier_battle_thirst        

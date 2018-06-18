@@ -30,14 +30,17 @@ end
 function modifier_resurrection_mutator.OnDeath(self,kv)
     local killedUnit = self:GetParent()
 
-    if kv.unit==killedUnit then
-        local newItem = CreateItem("item_tombstone",killedUnit:GetPlayerOwner(),killedUnit:GetPlayerOwner())
+    if kv.unit==killedUnit and not killedUnit:IsReincarnating() then
+
+        local timeLeft = killedUnit.timeLeft or killedUnit:GetRespawnTime()
+        local numb = math.min(50,math.max(1,math.ceil(timeLeft/3)))
+        local newItem = CreateItem("item_tombstone_"..numb,killedUnit:GetPlayerOwner(),killedUnit:GetPlayerOwner())
 
         newItem:SetPurchaseTime(0)
         newItem:SetPurchaser(killedUnit)
-        newItem:SetCurrentCharges(RandomInt(5,25))
+        
 
-        newItem.GetChannelTime = function() return killedUnit:GetTimeUntilRespawn()/3 end
+        
         local tombstone = SpawnEntityFromTableSynchronous("dota_item_tombstone_drop",{})
         
         tombstone:SetContainedItem(newItem)
@@ -47,6 +50,8 @@ function modifier_resurrection_mutator.OnDeath(self,kv)
             --tombstone:SetModel("models/heroes/phantom_assassin/arcana_tombstone3.vmdl")
         end
         tombstone:SetAbsOrigin(killedUnit:GetAbsOrigin())
+        tombstone:SetAngles(0, 90, 0)
         --tombstone:SetModelScale(2)
     end
 end
+

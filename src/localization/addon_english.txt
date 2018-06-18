@@ -224,6 +224,22 @@
     "lodMutatorBotDifficulty5"                      "Unfair Bots"
     "lodMutatorBotDifficultyRandom"                 "Random Individual"
 
+    "lodOptionTurboCourier"                         "Turbo Courier"
+    "lodOptionDesTurboCourier"                      "Turbo Courier"
+    "lodOptionAboutTurboCourier"                    "Turbo Courier will move 900% faster and have very limited vision. Courier is not invulnerable."
+
+    "lodOptionRandomOnDeath"                         "Random on Death"
+    "lodOptionDesRandomOnDeath"                      "Random on Death"
+    "lodOptionAboutRandomOnDeath"                    "Upon respawning you will get a new hero and new set of abilities."
+
+    "lodOptionResurrectAllies"                       "Resurrect Allies"
+    "lodOptionDesResurrectAllies"                    "Resurrect Allies"
+    "lodOptionAboutResurrectAllies"                  "When heroes die they leave behind a tombstone that allies can use to resurrect them."
+
+    "lodMutatorResurrectAllies"                            "Resurrect Allies"
+
+    "DOTA_Tooltip_ability_item_tombstone"                "Right Click to Ressurrect"
+
     "lodMutatorTurboCourier"                            "Turbo Courier"
     "lodMutatorRandomOnDeath"                            "Random on Death"
 
@@ -574,7 +590,7 @@
 
     "lodOptionBattleThirst"                                  "Out-of-Sight Peanlty"
     "lodOptionDesBattleThirst"                               "Out-of-Sight Peanlty"
-    "lodOptionAboutBattleThirst"                             "Players lose 2 gold per second if they are out of enemies sights for too long."
+    "lodOptionAboutBattleThirst"                             "Players lose 2 gold per second if they are out of enemies sights for 45 seconds."
     "lodMutatorBattleThirst"                                 "Anti-Hiding"
 
     "lodOptionDarkMoon"                                  "Dark Moon Drops"
@@ -619,22 +635,25 @@
 
     "lodOptionFastRunes"                                 "Fast Runes"
     "lodOptionDesFastRunes"                              "Fast Runes"
-    "lodOptionAboutFastRunes"                            "TODO"
+    "lodOptionAboutFastRunes"                            "Runes spawn every 30 seconds."
     "lodMutatorFastRunes"                                "Fast Runes
 
     "lodOptionCooldownReduction"                         "Cooldown Reduction"
     "lodOptionDesCooldownReduction"                      "Cooldown Reduction"
-    "lodOptionAboutCooldownReduction"                    "Spells have 50% less cooldown and heros have extra mana regen. TODO"
+    "lodOptionAboutCooldownReduction"                    "Spells have 50% less cooldown and heros have extra mana regen."
     "lodMutatorCooldownReduction"                        "Cooldown Reduction"
+
+    "DOTA_Tooltip_modifier_killstreak_mutator_redux"                "Killstreak Power Level"
+    "DOTA_Tooltip_modifier_killstreak_mutator_redux_Description"    "For each kill in a kill streak, you deal AND receive 20%d% extra damage. You also increase in size."
 
     "lodOptionGoldDropOnDeath"                         "Drop Gold on Death"
     "lodOptionDesGoldDropOnDeath"                      "Drop Gold on Death"
-    "lodOptionAboutGoldDropOnDeath"                    "Heroes will drop a sack of gold upon death. TODO"
+    "lodOptionAboutGoldDropOnDeath"                    "Heroes will drop a sack of gold upon death. Sacks have 200 gold in them."
     "lodMutatorGoldDropOnDeath"                        "Drop Gold on Death"
 
     "lodOptionKillStreakPower"                         "Killstreak Power"
     "lodOptionDesKillStreakPower"                      "Killstreak Power"
-    "lodOptionAboutKillStreakPower"                    "TODO"
+    "lodOptionAboutKillStreakPower"                    "For each kill in a kill streak, players will deal AND receive 20% extra damage. Players also increase in size as their kill streak grows."
     "lodMutatorKillStreakPower"                        "Killstreak Power"
 
     "lodOptionVampirism"                               "Vampire"
@@ -2059,7 +2078,7 @@
     "DOTA_Tooltip_modifier_item_ultimate_scepter_consumed_Description" "Permanently granted 'Ultimate Upgrade' benefit from Aghanim's Scepter. Certain ultimates and abilities will be upgraded."
 
     "DOTA_Tooltip_modifier_battle_thirst_effect"  "Out-of-Sight Penalty"
-    "DOTA_Tooltip_modifier_battle_thirst_effect_Description"  "Losing 2 gold per second. You have been unseen by the enemy for too long, reveal yourself to remove this peanlty."
+    "DOTA_Tooltip_modifier_battle_thirst_effect_Description"  "Losing 2 gold per second. You have been unseen by the enemy for 45 seconds, reveal yourself to remove this peanlty."
 
     // Slard Sprint Perk
     "DOTA_Tooltip_modifier_item_phase_boots_datadriven_active"  "Slardar Sprint Perk"
@@ -4173,7 +4192,7 @@
 
     /// WRAITH KING​
     "DOTA_Tooltip_modifier_npc_dota_hero_skeleton_king_perk"    "Wraith King Perk"
-    "DOTA_Tooltip_modifier_npc_dota_hero_skeleton_king_perk_Description"    "Wraith King can buyback with a 50% reduced cooldown, refunding 50% of the buyback cost and removing the gold penalty."
+    "DOTA_Tooltip_modifier_npc_dota_hero_skeleton_king_perk_Description"    "Wraith King can buyback with a 50%d% reduced cooldown, refunding 50%d% of the buyback cost and removing the gold penalty."
 
     /// ZEUS​
     "DOTA_Tooltip_modifier_npc_dota_hero_zuus_perk" "Zeus Perk"
@@ -5933,6 +5952,12 @@
     //"DOTA_Tooltip_ability_item_monkey_king_bar_consumable_monkey_king_bar_bash_chance"                 "%MINI-BASH CHANCE:"
     //"DOTA_Tooltip_ability_item_monkey_king_bar_consumable_monkey_king_bar_bash_damage"                 "MINI-BASH DAMAGE:"
 
+    //Consumable Companion
+    "DOTA_Tooltip_ability_item_companion_consumable"                        "Companion Cube"
+    "DOTA_Tooltip_ability_item_companion_consumable_Lore"                   "<h1>Will respawn your hero on death</h1>"
+    "DOTA_Tooltip_ability_item_companion_consumable_Note0"                  "Multiple instances of this item do not stack."
+    "DOTA_Tooltip_ability_item_companion_consumable_reincarnate_delay"      "RESPAWN DELAY"
+
     //Consumable Kaya
     "DOTA_Tooltip_ability_item_kaya_consumable"                        "Kaya"
     "DOTA_Tooltip_ability_item_kaya_consumable_Lore"                   "The staff of a renowned sorceress, lost for countless millennia."
@@ -5959,6 +5984,9 @@
     "DOTA_Tooltip_Ability_item_echo_sabre_consumable_bonus_mana_regen"              "+$mana_regen"
     //"DOTA_Tooltip_Ability_item_echo_sabre_consumable_movement_slow"                 "%MOVEMENT SLOW:"
     //"DOTA_Tooltip_Ability_item_echo_sabre_consumable_slow_duration"                 "SLOW DURATION:"
+
+    "DOTA_Tooltip_modifier_companion_reincarnation"                 "The Companion Cube"
+    "DOTA_Tooltip_modifier_companion_reincarnation_Description"     "<h1>Passive: Companion Cube</h1> Will respawn hero on death"
 
     //Consumable Vlads
     "DOTA_Tooltip_ability_item_vladimir_consumable"                         "Vladmir's Offering"

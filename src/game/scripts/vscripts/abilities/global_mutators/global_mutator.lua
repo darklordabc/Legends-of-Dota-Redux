@@ -360,13 +360,13 @@ function modifier_turbo_courier:GetFixedNightVision()
 end
 ----------------------------------------------------------------------------------------------------------
 function modifier_turbo_courier:GetModifierMoveSpeedBonus_Percentage()
-	return 200
+	return 900
 end
 ----------------------------------------------------------------------------------------------------------
 function modifier_turbo_courier:GetModifierMoveSpeed_Limit()
-	return 4000
+	return 8000
 end
 ----------------------------------------------------------------------------------------------------------
 function modifier_turbo_courier:GetModifierMoveSpeed_Max()
-	return 4000
+	return 8000
 end
