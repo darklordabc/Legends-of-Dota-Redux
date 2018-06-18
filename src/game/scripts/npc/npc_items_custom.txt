@@ -1645,4 +1645,42 @@
             }
         }
     }
+
+    "item_companion_consumable"
+    {
+        "ID"                            "2279"
+        "ScriptFile"                    "abilities/items/companion.lua"
+        "AbilityTextureName"            "custom/item_companion_consumable"
+        "BaseClass"                     "item_lua"
+        "ItemCost"                      "9500"
+
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "ItemPurchasable"               "1"
+
+        "ItemCost"                      "200"
+        "ItemShopTags"                  "consumable"
+        "ItemQuality"                   "consumable"
+        "ItemStackable"                 "0"
+        "ItemPermanent"                 "0"
+        "ItemInitialCharges"            "1"
+        "ItemQuality"                   "component"
+        "ItemPurchasable"               "1"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "reincarnate_delay"     "5"
+            }           
+        }
+
+        "precache"
+        {
+            "particle"  "particles/econ/items/wisp/wisp_death_ti7_model_heart.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_wisp.vsndevts"
+        }
+    }
 }

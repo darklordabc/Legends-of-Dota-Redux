@@ -5088,7 +5088,7 @@ function Pregame:onPlayerReady(eventSourceIndex, args)
     if (self:canPlayerPickSkill(playerID) or args.randomOnDeath) and IsValidEntity(PlayerResource:GetSelectedHeroEntity(args.PlayerID)) then
         local hero = PlayerResource:GetSelectedHeroEntity(playerID)
         if IsValidEntity(hero) then
-            local newBuild = util:DeepCopy(self.selectedSkills[playerID])
+            local newBuild = util:DeepCopy(self.selectedSkills[playerID]) or {}
             -- if self.wispSpawning then
                 self:validateBuilds(playerID)
             -- end
