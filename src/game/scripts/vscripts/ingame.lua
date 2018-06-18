@@ -453,6 +453,8 @@ function Ingame:FilterExecuteOrder(filterTable)
     if OptionManager:GetOption('memesRedux') == 1 then
         filterTable = memesOrderFilter(filterTable)
     end
+
+
     return true
 end
 
@@ -610,6 +612,8 @@ function Ingame:onStart()
     ListenToGameEvent("player_chat", Dynamic_Wrap(Commands, 'OnPlayerChat'), self)
 
     ListenToGameEvent("dota_player_learned_ability", Dynamic_Wrap(Ingame, "OnPlayerLearnedAbility"), self)
+
+    ListenToGameEvent( "dota_holdout_revive_complete", Dynamic_Wrap( Ingame, "OnPlayerRevived" ), self )
     
     -- Set it to no team balance
     self:setNoTeamBalanceNeeded()
@@ -1334,7 +1338,7 @@ function Ingame:handleRespawnModifier()
                             -------
                             -- Anti-Kamikaze Mechanic END
                             -------
-
+                            hero.timeLeft = timeLeft
                             hero:SetTimeUntilRespawn(timeLeft)
 
                             -- Give 322 gold if enabled
@@ -1552,10 +1556,10 @@ function Ingame:FilterModifyExperience(filterTable)
 end
 
 function Ingame:BountyRunePickupFilter(filterTable)
-    if OptionManager:GetOption('superRunes') == 1 then
-        filterTable.xp_bounty = filterTable.xp_bounty * 2
-        filterTable.gold_bounty = filterTable.gold_bounty * 2
-    end
+    --if OptionManager:GetOption('superRunes') == 1 then
+    --    filterTable.xp_bounty = filterTable.xp_bounty * 2
+    --    filterTable.gold_bounty = filterTable.gold_bounty * 2
+    --end
 
     if OptionManager:GetOption('sharedXP') == 1 then
         local team = PlayerResource:GetPlayer(filterTable.player_id_const):GetTeamNumber()
@@ -2098,21 +2102,21 @@ function Ingame:FilterModifiers( filterTable )
     
     local modifier_name = filterTable.name_const
     local parent = EntIndexToHScript( parent_index )
-    if OptionManager:GetOption('superRunes') == 1 then
-        if modifier_name == "modifier_rune_doubledamage_mutated_redux" then return true end
-        if modifier_name == "modifier_rune_arcane_mutated_redux" then return true end
-        if modifier_name == "modifier_rune_doubledamage" then
-            AddRuneModifier(parent,"modifier_rune_doubledamage_mutated_redux",filterTable.duration)
-            --local m = parent:AddNewModifier(nil,nil,"modifier_rune_doubledamage_mutated_redux",{duration = filterTable.duration})
-            --local m = parent:AddNewModifier(nil,nil,"modifier_vampirism_mutator",{duration = filterTable.duration})
-            return false
-        elseif modifier_name == "modifier_rune_arcane" then
-            AddRuneModifier(parent,"modifier_rune_arcane_mutated_redux",filterTable.duration)
-            --local m = parent:AddNewModifier(nil,nil,"modifier_rune_arcane_mutated_redux",{duration = filterTable.duration})
-            --local m = parent:AddNewModifier(nil,nil,"modifier_vampirism_mutator",{duration = filterTable.duration})
-            return false
-        end
-    end
+    --if OptionManager:GetOption('superRunes') == 1 then
+    --    if modifier_name == "modifier_rune_doubledamage_mutated_redux" then return true end
+    --    if modifier_name == "modifier_rune_arcane_mutated_redux" then return true end
+    --    if modifier_name == "modifier_rune_doubledamage" then
+    --        AddRuneModifier(parent,"modifier_rune_doubledamage_mutated_redux",filterTable.duration)
+    --        --local m = parent:AddNewModifier(nil,nil,"modifier_rune_doubledamage_mutated_redux",{duration = filterTable.duration})
+    --        --local m = parent:AddNewModifier(nil,nil,"modifier_vampirism_mutator",{duration = filterTable.duration})
+    --        return false
+    --    elseif modifier_name == "modifier_rune_arcane" then
+    --        AddRuneModifier(parent,"modifier_rune_arcane_mutated_redux",filterTable.duration)
+    --        --local m = parent:AddNewModifier(nil,nil,"modifier_rune_arcane_mutated_redux",{duration = filterTable.duration})
+    --        --local m = parent:AddNewModifier(nil,nil,"modifier_vampirism_mutator",{duration = filterTable.duration})
+    --        return false
+    --    end
+    --end
 
     if not caster_index or not ability_index then
         return true
@@ -2163,6 +2167,21 @@ function Ingame:FilterModifiers( filterTable )
     end
 
     return true
+end
+
+function Ingame:OnPlayerRevived(event)
+    local hRevivedHero = EntIndexToHScript( event.target )
+    local hReviverHero = EntIndexToHScript( event.caster )
+    if hRevivedHero ~= nil and hRevivedHero:IsRealHero() then
+        hRevivedHero:SetHealth( hRevivedHero:GetMaxHealth() * 0.4 )
+        hRevivedHero:SetMana( hRevivedHero:GetMaxMana() * 0.4 )
+        EmitSoundOn( "Dungeon.HeroRevived", hRevivedHero )
+
+
+        local fInvulnDuration = 3
+        hRevivedHero:AddNewModifier( hRevivedHero, nil, "modifier_invulnerable", { duration = fInvulnDuration } )
+        hRevivedHero:AddNewModifier( hRevivedHero, nil, "modifier_omninight_guardian_angel", { duration = fInvulnDuration } )
+    end
 end
 
 function Ingame:SetPlayerColors( )

@@ -450,7 +450,7 @@
         //-------------------------------------------------------------------------------------------------------------
         "AbilityCastRange"              "100"
         
-        "AbilityChannelTime"            "20"
+        "AbilityChannelTime"            "10"
         
         // Item Info
         //-------------------------------------------------------------------------------------------------------------
@@ -575,6 +575,366 @@
         "ItemStackable"                 "0"
         "ItemCost"                      "1"
         "AbilityCooldown"               "300"
+    }
+
+    "item_tombstone_1"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "1"
+    }
+
+    "item_tombstone_2"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "2"
+    }
+
+    "item_tombstone_3"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "3"
+    }
+
+    "item_tombstone_4"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "4"
+    }
+
+    "item_tombstone_5"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "5"
+    }
+
+    "item_tombstone_6"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "6"
+    }
+
+    "item_tombstone_7"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "7"
+    }
+
+    "item_tombstone_8"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "8"
+    }
+
+    "item_tombstone_9"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "9"
+    }
+
+    "item_tombstone_10"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "10"
+    }
+
+    "item_tombstone_11"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "11"
+    }
+
+    "item_tombstone_12"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "12"
+    }
+
+    "item_tombstone_13"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "13"
+    }
+
+    "item_tombstone_14"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "14"
+    }
+
+    "item_tombstone_15"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "15"
+    }
+
+    "item_tombstone_16"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "16"
+    }
+
+    "item_tombstone_17"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "17"
+    }
+
+    "item_tombstone_18"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "18"
+    }
+
+    "item_tombstone_19"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "19"
+    }
+
+    "item_tombstone_20"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "20"
+    }
+
+    "item_tombstone_21"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "21"
+    }
+
+    "item_tombstone_22"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "22"
+    }
+
+    "item_tombstone_23"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "23"
+    }
+
+    "item_tombstone_24"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "24"
+    }
+
+    "item_tombstone_25"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "25"
+    }
+
+    "item_tombstone_26"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "26"
+    }
+
+    "item_tombstone_27"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "27"
+    }
+
+    "item_tombstone_28"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "28"
+    }
+
+    "item_tombstone_29"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "29"
+    }
+
+    "item_tombstone_30"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "30"
+    }
+
+    "item_tombstone_31"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "31"
+    }
+
+    "item_tombstone_32"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "32"
+    }
+
+    "item_tombstone_33"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "33"
+    }
+
+    "item_tombstone_34"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "34"
+    }
+
+    "item_tombstone_35"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "35"
+    }
+
+    "item_tombstone_36"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "36"
+    }
+
+    "item_tombstone_37"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "37"
+    }
+
+    "item_tombstone_38"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "38"
+    }
+
+    "item_tombstone_39"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "39"
+    }
+
+    "item_tombstone_40"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "40"
+    }
+
+    "item_tombstone_41"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "41"
+    }
+
+    "item_tombstone_42"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "42"
+    }
+
+    "item_tombstone_43"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "43"
+    }
+
+    "item_tombstone_44"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "44"
+    }
+
+    "item_tombstone_45"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "45"
+    }
+
+    "item_tombstone_46"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "46"
+    }
+
+    "item_tombstone_47"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "47"
+    }
+
+    "item_tombstone_48"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "48"
+    }
+
+    "item_tombstone_49"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "49"
+    }
+
+    "item_tombstone_50"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "50"
+    }
+
+    "item_tombstone_51"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "51"
+    }
+
+    "item_tombstone_52"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "52"
+    }
+
+    "item_tombstone_53"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "53"
+    }
+
+    "item_tombstone_54"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "54"
+    }
+
+    "item_tombstone_55"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "55"
+    }
+
+    "item_tombstone_56"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "56"
+    }
+
+    "item_tombstone_57"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "57"
+    }
+
+    "item_tombstone_58"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "58"
+    }
+
+    "item_tombstone_59"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "59"
+    }
+
+    "item_tombstone_60"
+    {
+        "BaseClass"                     "item_tombstone"               
+        "AbilityChannelTime"            "60"
     }
 
     "item_assault_consumable"
@@ -1441,38 +1801,7 @@
         }
     }
 
-    //=================================================================================================================
-    // Bag of Gold
-    //=================================================================================================================
-    "item_bag_of_gold"
-    {
-        // General
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilityName"                   "item_bag_of_gold"
-        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
-        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
-        "Model"                         "models/props_gameplay/gold_coin001.vmdl"
-        "ItemKillable"                  "0"
-        
-        // Stats
-        //-------------------------------------------------------------------------------------------------------------
-        "AbilityCastRange"              "100"
-        "AbilityCastPoint"              "0.0"
-        
-        // Item Info
-        //-------------------------------------------------------------------------------------------------------------
-        "ItemCost"                      "99999"
-        "ItemPurchasable"               "0"
-        "ItemShopTags"                  "consumable"
-        "ItemQuality"                   "consumable"
-        "ItemStackable"                 "1"
-        "ItemShareability"              "ITEM_FULLY_SHAREABLE"
-        "ItemPermanent"                 "0"
-        "ItemInitialCharges"            "0"
-        "ItemKillable"                  "0"
-        "ItemCastOnPickup"              "1"
-    }
+    
     //=================================================================================================================
     // Treasure Chest
     //=================================================================================================================
@@ -1784,6 +2113,44 @@
                 "var_type"              "FIELD_INTEGER"
                 "manacost_reduction"    "10"
             }
+        }
+    }
+
+    "item_companion_consumable"
+    {
+        "ID"                            "2279"
+        "ScriptFile"                    "abilities/items/companion.lua"
+        "AbilityTextureName"            "custom/item_companion_consumable"
+        "BaseClass"                     "item_lua"
+        "ItemCost"                      "9500"
+
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+        "ItemPurchasable"               "1"
+
+        "ItemCost"                      "200"
+        "ItemShopTags"                  "consumable"
+        "ItemQuality"                   "consumable"
+        "ItemStackable"                 "0"
+        "ItemPermanent"                 "0"
+        "ItemInitialCharges"            "1"
+        "ItemQuality"                   "component"
+        "ItemPurchasable"               "1"
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"              "FIELD_INTEGER"
+                "reincarnate_delay"     "5"
+            }           
+        }
+
+        "precache"
+        {
+            "particle"  "particles/econ/items/wisp/wisp_death_ti7_model_heart.vpcf"
+            "soundfile" "soundevents/game_sounds_heroes/game_sounds_wisp.vsndevts"
         }
     }
 }
