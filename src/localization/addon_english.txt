@@ -5924,10 +5924,8 @@
     //"DOTA_Tooltip_ability_item_monkey_king_bar_consumable_monkey_king_bar_bash_damage"                 "MINI-BASH DAMAGE:"
 
     //Consumable Companion
-    "DOTA_Tooltip_ability_item_companion_consumable"                        "Companion Cube"
-    "DOTA_Tooltip_ability_item_companion_consumable_Lore"                   "<h1>Will respawn your hero on death</h1>"
-    "DOTA_Tooltip_ability_item_companion_consumable_Note0"                  "Multiple instances of this item do not stack."
-    "DOTA_Tooltip_ability_item_companion_consumable_reincarnate_delay"      "RESPAWN DELAY"
+    "DOTA_Tooltip_ability_item_companion_consumable"                        "Extra Life"
+    "DOTA_Tooltip_ability_item_companion_consumable_Description"                   "<h1>Use: Consume</h1> Consume the Extra Life to permanently gain an Extra Life counter.<br><br>When you would normally die, an Extra Life counter will be consumed, giving you max health and mana and refreshing your cooldowns.<br><br>Can be cast on allies."
 
     //Consumable Kaya
     "DOTA_Tooltip_ability_item_kaya_consumable"                        "Kaya"
@@ -5956,8 +5954,8 @@
     //"DOTA_Tooltip_Ability_item_echo_sabre_consumable_movement_slow"                 "%MOVEMENT SLOW:"
     //"DOTA_Tooltip_Ability_item_echo_sabre_consumable_slow_duration"                 "SLOW DURATION:"
 
-    "DOTA_Tooltip_modifier_companion_reincarnation"                 "The Companion Cube"
-    "DOTA_Tooltip_modifier_companion_reincarnation_Description"     "<h1>Passive: Companion Cube</h1> Will respawn hero on death"
+    "DOTA_Tooltip_modifier_companion_reincarnation"                 "Extra Life"
+    "DOTA_Tooltip_modifier_companion_reincarnation_Description"     "This hero has another life, they are protected from death."
 
     //Consumable Vlads
     "DOTA_Tooltip_ability_item_vladimir_consumable"                         "Vladmir's Offering"
