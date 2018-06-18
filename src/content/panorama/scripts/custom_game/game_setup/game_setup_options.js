@@ -121,6 +121,7 @@ var basicOptions = {
                     },
                     {
                         name: 'lodOptionPocketTowers',
+                        extraInfo: 'lodOptionAboutPocketTowers',
                         default: {
                             'lodMutatorNoPocketTowers': 0,
                         },

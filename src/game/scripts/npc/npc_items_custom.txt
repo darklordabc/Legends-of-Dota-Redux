@@ -477,7 +477,7 @@
         "ID"                            "2260"
         "BaseClass"                     "item_lua"
         "ScriptFile"                    "items/pocket_tower.lua"
-        "AbilityTextureName"            "item_pocket_tower"
+        "AbilityTextureName"            "custom/item_pocket_tower"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
         "AbilityCastRange"              "600"
         "ItemPermanent"                 "0"
@@ -485,6 +485,7 @@
         "ItemRequiresCharges"           "1"
         "ItemStackable"                 "0"
         "ItemCost"                      "1"
+        "ItemSellable"                  "0"
     }
 
     "item_redux_pocket_tower_permanent_60"
@@ -494,7 +495,7 @@
         "ID"                            "2261"
         "BaseClass"                     "item_lua"
         "ScriptFile"                    "items/pocket_tower_permanent.lua"
-        "AbilityTextureName"            "item_pocket_tower"
+        "AbilityTextureName"            "custom/item_pocket_tower"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
         "AbilityCastRange"              "600"
         "ItemPermanent"                 "1"
@@ -503,6 +504,7 @@
         "ItemStackable"                 "0"
         "ItemCost"                      "1"
         "AbilityCooldown"               "60"
+        "ItemSellable"                  "0"
     }
 
     "item_redux_pocket_tower_permanent_120"
@@ -512,7 +514,7 @@
         "ID"                            "2262"
         "BaseClass"                     "item_lua"
         "ScriptFile"                    "items/pocket_tower_permanent.lua"
-        "AbilityTextureName"            "item_pocket_tower"
+        "AbilityTextureName"            "custom/item_pocket_tower"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
         "AbilityCastRange"              "600"
         "ItemPermanent"                 "1"
@@ -521,6 +523,7 @@
         "ItemStackable"                 "0"
         "ItemCost"                      "1"
         "AbilityCooldown"               "120"
+        "ItemSellable"                  "0"
     }
 
     "item_redux_pocket_tower_permanent_180"
@@ -530,7 +533,7 @@
         "ID"                            "2263"
         "BaseClass"                     "item_lua"
         "ScriptFile"                    "items/pocket_tower_permanent.lua"
-        "AbilityTextureName"            "item_pocket_tower"
+        "AbilityTextureName"            "custom/item_pocket_tower"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
         "AbilityCastRange"              "600"
         "ItemPermanent"                 "1"
@@ -539,6 +542,7 @@
         "ItemStackable"                 "0"
         "ItemCost"                      "1"
         "AbilityCooldown"               "180"
+        "ItemSellable"                  "0"
     }
 
     "item_redux_pocket_tower_permanent_240"
@@ -548,7 +552,7 @@
         "ID"                            "2264"
         "BaseClass"                     "item_lua"
         "ScriptFile"                    "items/pocket_tower_permanent.lua"
-        "AbilityTextureName"            "item_pocket_tower"
+        "AbilityTextureName"            "custom/item_pocket_tower"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
         "AbilityCastRange"              "600"
         "ItemPermanent"                 "1"
@@ -557,6 +561,7 @@
         "ItemStackable"                 "0"
         "ItemCost"                      "1"
         "AbilityCooldown"               "240"
+        "ItemSellable"                  "0"
     }
 
     "item_redux_pocket_tower_permanent_300"
@@ -566,7 +571,7 @@
         "ID"                            "2265"
         "BaseClass"                     "item_lua"
         "ScriptFile"                    "items/pocket_tower_permanent.lua"
-        "AbilityTextureName"            "item_pocket_tower"
+        "AbilityTextureName"            "custom/item_pocket_tower"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT"
         "AbilityCastRange"              "600"
         "ItemPermanent"                 "1"
@@ -575,6 +580,7 @@
         "ItemStackable"                 "0"
         "ItemCost"                      "1"
         "AbilityCooldown"               "300"
+        "ItemSellable"                  "0"
     }
 
     "item_assault_consumable"
